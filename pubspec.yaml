@@ -1,0 +1,80 @@
+name: utilities
+description: A new Flutter package project.
+version: 0.0.1
+homepage: SinaMN75.com
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.17.0'
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  url_launcher: ^6.0.15
+  get: ^4.6.3
+  package_info_plus: ^3.1.0
+  share_plus: ^6.3.2
+  file_picker: ^5.2.4
+  intl: ^0.17.0
+  webviewx: ^0.2.1
+  get_storage: ^2.0.3
+  flutter_svg: ^2.0.5
+  persian_tools: ^1.0.1
+  group_button: ^5.2.0
+  image_cropper: ^3.0.0
+  cached_network_image: ^3.2.1
+  just_audio: ^0.9.27
+  path_provider: ^2.0.11
+  flutter_local_notifications: ^14.0.0-dev.5
+  flutter_easyloading: ^3.0.5
+  pin_code_fields: ^7.4.0
+  intl_phone_number_input: ^0.7.0+2
+  flutter_image_compress: ^1.1.2
+  dio: ^5.1.1
+  dio_smart_retry: ^5.0.0
+  local_auth: ^2.1.6
+  local_auth_ios: ^1.1.1
+  video_thumbnail: ^0.5.3
+  video_box: ^0.17.0
+  crypto: ^3.0.2
+  path_drawing: ^1.0.1
+
+#  video_player: ^2.4.6
+  #  local_auth_android: ^1.0.21
+  #  flick_video_player: ^0.5.0
+  #  visibility_detector: ^0.4.0+2
+  #  provider: ^6.0.5
+#  photo_manager: ^2.6.0
+#  shimmer: ^2.0.0
+#  image_crop: ^0.4.1
+#  camera: ^0.10.0+1
+#  image: ^3.2.0
+#  image_picker: ^0.8.5+3
+#  fl_chart: ^0.62.0
+
+  syncfusion_localizations: ^21.1.41
+  syncfusion_flutter_datagrid_export: ^21.1.41
+  syncfusion_flutter_calendar: ^21.1.41
+  syncfusion_flutter_datepicker: ^21.1.41
+  syncfusion_flutter_charts: ^21.1.41
+  syncfusion_flutter_gauges: ^21.1.41
+  syncfusion_flutter_sliders: ^21.1.41
+  syncfusion_flutter_pdf: ^21.1.41
+  syncfusion_flutter_barcodes: ^21.1.41
+  syncfusion_officechart: ^21.1.41
+  syncfusion_flutter_maps: ^21.1.41
+  syncfusion_flutter_signaturepad: ^21.1.41
+  syncfusion_flutter_pdfviewer: ^21.1.41
+  syncfusion_flutter_treemap: ^21.1.41
+
+
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - lib/assets/data/
