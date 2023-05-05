@@ -24,6 +24,12 @@ enum CategoryType {
   insurance("insurance"),
   active("active"),
   archive("archive"),
+  image("image"),
+  video("video"),
+  music("music"),
+  pdf("pdf"),
+  commodity("commodity"),
+  job("job"),
   speciality("speciality");
 
   const CategoryType(this.title);
