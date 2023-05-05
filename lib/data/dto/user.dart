@@ -630,6 +630,7 @@ class UserFilterDto {
     this.showMedia,
     this.stateTr1,
     this.state,
+    this.appUserName,
     this.showProducts,
     this.showTransactions,
     this.pageSize,
@@ -643,6 +644,7 @@ class UserFilterDto {
   final String? query;
   final String? phoneNumber;
   final String? badge;
+  final String? appUserName;
   final bool? showGender;
   final bool? showMedia;
   final bool? showCategories;
@@ -669,6 +671,7 @@ class UserFilterDto {
         query: json["query"],
         phoneNumber: json["phoneNumber"],
         showGender: json["showGender"],
+        appUserName: json["appUserName"],
         showMedia: json["showMedia"],
         showCategories: json["showCategories"],
         showLocations: json["showLocations"],
@@ -691,6 +694,7 @@ class UserFilterDto {
         "badge": badge,
         "phoneNumber": phoneNumber,
         "showGender": showGender,
+        "appUserName": appUserName,
         "showMedia": showMedia,
         "showCategories": showCategories,
         "showLocations": showLocations,
