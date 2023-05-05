@@ -64,7 +64,6 @@ enum FilterType { history, text, username, hashtag, location }
 
 enum NotificationType { vote, comment, join, phopx }
 
-
 enum PostType { all, text, voice, video, image, unknown }
 
 enum ProductType {
@@ -131,6 +130,7 @@ enum TypeMedia {
   String toString() => name;
   final String title;
 }
+
 enum PostMediaType {
   all("all"),
   image("image"),
@@ -231,6 +231,7 @@ enum TypeCategory {
   Explore('Explore'),
   Digital('Digital'),
   Physical('Physical');
+
   const TypeCategory(this.title);
 
   @override

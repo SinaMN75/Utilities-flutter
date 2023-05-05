@@ -188,8 +188,8 @@ mixin Widgets {
       ),
     );
   }
-
 }
+
 class SeekBar extends StatefulWidget {
   final Duration duration;
   final Duration position;
@@ -209,7 +209,6 @@ class SeekBar extends StatefulWidget {
   @override
   SeekBarState createState() => SeekBarState();
 }
-
 
 class SeekBarState extends State<SeekBar> {
   double? _dragValue;

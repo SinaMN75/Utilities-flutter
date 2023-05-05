@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -75,4 +74,4 @@ Color hexStringToColor(final String hexString) {
 
 String stringToHexColor(final Color color) => '#${color.value.toRadixString(16)}';
 
-void copyToClipboard(final String text) async =>  await Clipboard.setData(ClipboardData(text: text));
+void copyToClipboard(final String text) async => await Clipboard.setData(ClipboardData(text: text));

@@ -3,7 +3,6 @@ import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/data/dto/mail_sms_notification.dart';
 import 'package:utilities/utils/dio_interceptor.dart';
 
-
 class MailSmsNotificationDataSource {
   final String baseUrl;
 
@@ -22,6 +21,4 @@ class MailSmsNotificationDataSource {
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
-
-
 }

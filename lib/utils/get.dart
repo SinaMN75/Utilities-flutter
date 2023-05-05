@@ -47,6 +47,7 @@ Future<String> appBuildNumber() async {
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
   return packageInfo.buildNumber;
 }
+
 //
 Future<void> push(
   final Widget page, {

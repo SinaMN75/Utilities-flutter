@@ -27,7 +27,6 @@ class UserDataSource {
         failure: failure,
       );
 
-
   Future<void> update({
     required final UserCreateUpdateDto dto,
     required final Function(GenericResponse<UserReadDto>) onResponse,

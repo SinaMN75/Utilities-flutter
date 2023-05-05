@@ -774,7 +774,6 @@ extension TextExtension on Text {
         ),
       );
 
-
   Text bodySmall({
     final Color? color,
     final FontWeight? fontWeight,

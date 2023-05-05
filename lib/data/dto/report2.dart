@@ -58,54 +58,53 @@ class CreateGroupMessage {
   String toJson() => json.encode(toMap());
 
   factory CreateGroupMessage.fromMap(Map<String, dynamic> json) => CreateGroupMessage(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
-    title: json["title"]!,
-    description: json["description"]!,
-    creatorUserId: json["creatorUserId"]!,
-    creatorUser: json["creatorUser"] == null ? null : UserReadDto.fromMap(json["creatorUser"]),
-    userId: json["userId"]!,
-    user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-    productId: json["productId"],
-    product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
-    comment: json["comment"] == null ? null : CommentReadDto.fromMap(json["comment"]),
-    commentId: json["commentId"],
-    chat: json["chat"] == null ? null : Chat.fromMap(json["chat"]),
-    chatId: json["chatId"],
-    groupChatMessage: json["groupChatMessage"] == null ? null : ChatGroupMessageReadDto.fromMap(json["groupChatMessage"]),
-    groupChatMessageId: json["groupChatMessageId"],
-    groupChat: json["groupChat"] == null ? null : ChatGroupReadDto.fromMap(json["groupChat"]),
-    groupChatId: json["groupChatId"],
-    reportType: json["reportType"],
-  );
+        id: json["id"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
+        title: json["title"]!,
+        description: json["description"]!,
+        creatorUserId: json["creatorUserId"]!,
+        creatorUser: json["creatorUser"] == null ? null : UserReadDto.fromMap(json["creatorUser"]),
+        userId: json["userId"]!,
+        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
+        productId: json["productId"],
+        product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
+        comment: json["comment"] == null ? null : CommentReadDto.fromMap(json["comment"]),
+        commentId: json["commentId"],
+        chat: json["chat"] == null ? null : Chat.fromMap(json["chat"]),
+        chatId: json["chatId"],
+        groupChatMessage: json["groupChatMessage"] == null ? null : ChatGroupMessageReadDto.fromMap(json["groupChatMessage"]),
+        groupChatMessageId: json["groupChatMessageId"],
+        groupChat: json["groupChat"] == null ? null : ChatGroupReadDto.fromMap(json["groupChat"]),
+        groupChatId: json["groupChatId"],
+        reportType: json["reportType"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "deletedAt": deletedAt?.toIso8601String(),
-    "title": title,
-    "description": description,
-    "creatorUserId": creatorUserId,
-    "creatorUser": creatorUser?.toMap(),
-    "userId": userId,
-    "user": user?.toMap(),
-    "productId": productId,
-    "product": product?.toMap(),
-    "comment": comment?.toMap(),
-    "commentId": commentId,
-    "chat": chat?.toMap(),
-    "chatId": chatId,
-    "groupChatMessage": groupChatMessage?.toMap(),
-    "groupChatMessageId": groupChatMessageId,
-    "groupChat": groupChat?.toMap(),
-    "groupChatId": groupChatId,
-    "reportType": reportType,
-  };
+        "id": id,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "deletedAt": deletedAt?.toIso8601String(),
+        "title": title,
+        "description": description,
+        "creatorUserId": creatorUserId,
+        "creatorUser": creatorUser?.toMap(),
+        "userId": userId,
+        "user": user?.toMap(),
+        "productId": productId,
+        "product": product?.toMap(),
+        "comment": comment?.toMap(),
+        "commentId": commentId,
+        "chat": chat?.toMap(),
+        "chatId": chatId,
+        "groupChatMessage": groupChatMessage?.toMap(),
+        "groupChatMessageId": groupChatMessageId,
+        "groupChat": groupChat?.toMap(),
+        "groupChatId": groupChatId,
+        "reportType": reportType,
+      };
 }
-
 
 // class ChatReact {
 //   ChatReact({
@@ -170,9 +169,6 @@ class CreateGroupMessage {
 //     "user": creatorUserIdValues.reverse[user],
 //   };
 // }
-
-
-
 
 // class OrderDetail {
 //   OrderDetail({

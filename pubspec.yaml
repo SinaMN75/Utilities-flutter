@@ -35,26 +35,12 @@ dependencies:
   intl_phone_number_input: ^0.7.0+2
   flutter_image_compress: ^1.1.2
   dio: ^5.1.1
-  dio_smart_retry: ^5.0.0
   local_auth: ^2.1.6
   local_auth_ios: ^1.1.1
   video_thumbnail: ^0.5.3
   video_box: ^0.17.0
   crypto: ^3.0.2
   path_drawing: ^1.0.1
-
-#  video_player: ^2.4.6
-  #  local_auth_android: ^1.0.21
-  #  flick_video_player: ^0.5.0
-  #  visibility_detector: ^0.4.0+2
-  #  provider: ^6.0.5
-#  photo_manager: ^2.6.0
-#  shimmer: ^2.0.0
-#  image_crop: ^0.4.1
-#  camera: ^0.10.0+1
-#  image: ^3.2.0
-#  image_picker: ^0.8.5+3
-#  fl_chart: ^0.62.0
 
   syncfusion_localizations: ^21.1.41
   syncfusion_flutter_datagrid_export: ^21.1.41
@@ -70,9 +56,6 @@ dependencies:
   syncfusion_flutter_signaturepad: ^21.1.41
   syncfusion_flutter_pdfviewer: ^21.1.41
   syncfusion_flutter_treemap: ^21.1.41
-
-
-
 
 flutter:
   uses-material-design: true

@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:utilities/data/dto/generic_response.dart';
 
-
 class Me {
   final File? file;
   final String? useCase;

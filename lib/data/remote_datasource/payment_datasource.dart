@@ -6,7 +6,6 @@ import 'package:utilities/utils/dio_interceptor.dart';
 
 import '../../utils/local_storage.dart';
 
-
 class PaymentDataSource {
   final String baseUrl;
 
@@ -28,11 +27,11 @@ class PaymentDataSource {
         failure: failure,
       );
 
-   Future<void> buyProduct({
+  Future<void> buyProduct({
     required final String productId,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse response) onError,
-     final Function(String error)? failure,
+    final Function(String error)? failure,
   }) async =>
       httpGet(
         url: "${baseUrl}Payment/BuyProduct/$productId",
@@ -43,5 +42,4 @@ class PaymentDataSource {
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
-
 }

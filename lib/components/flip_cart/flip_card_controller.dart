@@ -4,9 +4,9 @@ import 'package:utilities/utilities.dart';
 
 class FlipCardController {
   FlipCardState? state;
+
   AnimationController? get controller {
-    assert(state != null,
-        'Controller not attached to any FlipCard. Did you forget to pass the controller to the FlipCard?');
+    assert(state != null, 'Controller not attached to any FlipCard. Did you forget to pass the controller to the FlipCard?');
     return state!.controller;
   }
 
@@ -18,10 +18,7 @@ class FlipCardController {
     assert(0 <= amount && amount <= 1);
 
     final target = state!.isFront ? amount : 1 - amount;
-    await controller
-        ?.animateTo(target, duration: duration, curve: curve ?? Curves.linear)
-        .asStream()
-        .first;
+    await controller?.animateTo(target, duration: duration, curve: curve ?? Curves.linear).asStream().first;
   }
 
   Future<void> hint({Duration? duration, Duration? total}) async {

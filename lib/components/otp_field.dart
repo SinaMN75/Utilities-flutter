@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:utilities/utilities.dart';
 
 Widget otpTextField({

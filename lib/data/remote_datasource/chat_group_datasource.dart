@@ -23,11 +23,9 @@ class ChatGroupDataSource {
         failure: failure,
       );
 
-
-
-    Future<void> seenGroupChatMessage({
+  Future<void> seenGroupChatMessage({
     required final String id,
-      required final Function(GenericResponse) onResponse,
+    required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse response) onError,
     final Function(String error)? failure,
   }) async =>
@@ -37,8 +35,6 @@ class ChatGroupDataSource {
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
-
-
 
   Future<void> createMessage({
     required final CreateGroupMessage dto,

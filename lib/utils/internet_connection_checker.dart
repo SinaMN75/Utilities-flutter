@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:utilities/utilities.dart';
 
 Future<bool> isConnectedToNetwork() async => InternetConnectionChecker().hasConnection;

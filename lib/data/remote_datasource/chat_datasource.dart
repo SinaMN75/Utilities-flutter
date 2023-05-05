@@ -74,7 +74,7 @@ class ChatDataSource {
         failure: failure,
       );
 
-  String toJ(ChatReadDto chatReadDto){
+  String toJ(ChatReadDto chatReadDto) {
     return chatReadDto.toJson();
   }
 }

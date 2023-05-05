@@ -4,7 +4,6 @@ import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/data/dto/user.dart';
 import 'package:utilities/utils/dio_interceptor.dart';
 
-
 class FollowBookmarkDataSource {
   final String baseUrl;
 

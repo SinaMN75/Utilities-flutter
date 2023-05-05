@@ -3,7 +3,6 @@ import 'package:utilities/data/dto/content.dart';
 import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/utils/dio_interceptor.dart';
 
-
 class ContentDataSource {
   final String baseUrl;
 

@@ -5,7 +5,6 @@ import 'package:utilities/data/dto/form_filed.dart';
 import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/utils/dio_interceptor.dart';
 
-
 class FormDataSource {
   final String baseUrl;
 

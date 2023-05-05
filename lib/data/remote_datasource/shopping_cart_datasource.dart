@@ -3,7 +3,6 @@ import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/data/dto/shopping_cart.dart';
 import 'package:utilities/utils/dio_interceptor.dart';
 
-
 class ShoppingCartDataSource {
   final String baseUrl;
 

@@ -2,17 +2,14 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
-import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/data/dto/media.dart';
 import 'package:utilities/utils/constants.dart';
 import 'package:utilities/utils/dio_interceptor.dart';
 import 'package:utilities/utils/local_storage.dart';
-
-import 'package:http/http.dart' as http;
 
 class MediaDataSource {
   final String baseUrl;
@@ -49,19 +46,6 @@ class MediaDataSource {
     for (int i = 0; i < files!.length; i++) {
       File file = files[i];
       String fileName = file.path.split('/')[file.path.split('/').length - 1];
-
-      dio.interceptors.add(RetryInterceptor(
-        dio: dio,
-        logPrint: (final String message) => print('RetryPolicy >> $message'),
-        retries: 4, // retry count (optional)
-        retryDelays: const [
-          // set delays between retries (optional)
-          Duration(seconds: 1),
-          Duration(seconds: 2),
-          Duration(seconds: 3),
-          Duration(seconds: 4),
-        ],
-      ));
 
       final Response<dynamic> response = await dio.post(
         '$baseUrl/Media',
@@ -131,19 +115,6 @@ class MediaDataSource {
   }) async {
     final Dio dio = Dio();
     final String fileName = file.path.split('/').last;
-
-    dio.interceptors.add(RetryInterceptor(
-      dio: dio,
-      logPrint: (final String message) => debugPrint('RetryPolicy >> $message'),
-      retries: 4, // retry count (optional)
-      retryDelays: const <Duration>[
-        // set delays between retries (optional)
-        Duration(seconds: 1),
-        Duration(seconds: 2),
-        Duration(seconds: 3),
-        Duration(seconds: 4),
-      ],
-    ));
 
     final Response<dynamic> response = await dio.post(
       '$baseUrl/Media',

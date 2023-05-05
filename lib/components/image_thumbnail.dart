@@ -1,9 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'dart:io';
-
 import 'package:video_thumbnail/video_thumbnail.dart';
 
 class ThumbnailRequest {

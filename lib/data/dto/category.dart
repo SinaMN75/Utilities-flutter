@@ -5,25 +5,25 @@ extension CategoryReadDtoExtension on List<CategoryReadDto>? {
       this
           ?.where(
             (final CategoryReadDto e) => e.type == type && e.useCase == useCase,
-      )
+          )
           .toList() ??
-          <CategoryReadDto>[];
+      <CategoryReadDto>[];
 
   List<CategoryReadDto> getByType({required final type}) =>
       this
           ?.where(
             (final CategoryReadDto e) => e.type == type,
-      )
+          )
           .toList() ??
-          <CategoryReadDto>[];
+      <CategoryReadDto>[];
 
   List<CategoryReadDto> getByUseCase({required final useCase}) =>
       this
           ?.where(
             (final CategoryReadDto e) => e.useCase == useCase,
-      )
+          )
           .toList() ??
-          <CategoryReadDto>[];
+      <CategoryReadDto>[];
 }
 
 class CategoryCreateUpdateDto {
@@ -57,8 +57,7 @@ class CategoryCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory CategoryCreateUpdateDto.fromMap(Map<String, dynamic> json) =>
-      CategoryCreateUpdateDto(
+  factory CategoryCreateUpdateDto.fromMap(Map<String, dynamic> json) => CategoryCreateUpdateDto(
         id: json["id"],
         parentId: json["parentId"],
         title: json["title"],
@@ -72,8 +71,7 @@ class CategoryCreateUpdateDto {
         isUnique: json["isUnique"],
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "parentId": parentId,
         "title": title,
@@ -146,8 +144,7 @@ class CategoryReadDto {
     }
   }
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,
         "titleTr1": titleTr1,
@@ -158,9 +155,9 @@ class CategoryReadDto {
         "useCase": useCase,
         "type": type,
         "parentId": parentId,
-        "parent":parent==null?null: parent!.toMap(),
-        "children":children==null?null: List<dynamic>.from(children!.map((x) => x.toMap())),
-        "media":media==null?null: List<dynamic>.from(media!.map((x) => x.toMap())),
+        "parent": parent == null ? null : parent!.toMap(),
+        "children": children == null ? null : List<dynamic>.from(children!.map((x) => x.toMap())),
+        "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
       };
 }
 
@@ -196,30 +193,30 @@ class CategoryFilterDto {
   String toJson() => json.encode(toMap());
 
   factory CategoryFilterDto.fromMap(Map<String, dynamic> json) => CategoryFilterDto(
-    id: json["id"],
-    title: json["title"],
-    titleTr1: json["titleTr1"],
-    titleTr2: json["titleTr2"],
-    useCase: json["useCase"],
-    type: json["type"],
-    parentId: json["parentId"],
-    showMedia: json["showMedia"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
-  );
+        id: json["id"],
+        title: json["title"],
+        titleTr1: json["titleTr1"],
+        titleTr2: json["titleTr2"],
+        useCase: json["useCase"],
+        type: json["type"],
+        parentId: json["parentId"],
+        showMedia: json["showMedia"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "title": title,
-    "titleTr1": titleTr1,
-    "titleTr2": titleTr2,
-    "useCase": useCase,
-    "type": type,
-    "parentId": parentId,
-    "showMedia": showMedia,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "deletedAt": deletedAt?.toIso8601String(),
-  };
+        "id": id,
+        "title": title,
+        "titleTr1": titleTr1,
+        "titleTr2": titleTr2,
+        "useCase": useCase,
+        "type": type,
+        "parentId": parentId,
+        "showMedia": showMedia,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "deletedAt": deletedAt?.toIso8601String(),
+      };
 }

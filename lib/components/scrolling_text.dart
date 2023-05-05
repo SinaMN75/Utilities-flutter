@@ -114,7 +114,7 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
   @override
   Widget build(final BuildContext context) {
     return Container(
-      height: widget.height??30,
+      height: widget.height ?? 30,
       color: widget.color,
       child: widget.text.length > widget.maxLengthForScrolling
           ? ListView(

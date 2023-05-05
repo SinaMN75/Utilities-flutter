@@ -1,6 +1,7 @@
 library flip_card;
 
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:utilities/components/flip_cart/flip_card_controller.dart';
 import 'package:utilities/utilities.dart';
@@ -85,8 +86,7 @@ class FlipCard extends StatefulWidget {
   }
 }
 
-class FlipCardState extends State<FlipCard>
-    with SingleTickerProviderStateMixin {
+class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin {
   AnimationController? controller;
   Animation<double>? _frontRotation;
   Animation<double>? _backRotation;
@@ -106,8 +106,7 @@ class FlipCardState extends State<FlipCard>
     _frontRotation = TweenSequence(
       [
         TweenSequenceItem<double>(
-          tween: Tween(begin: 0.0, end: pi / 2)
-              .chain(CurveTween(curve: Curves.easeIn)),
+          tween: Tween(begin: 0.0, end: pi / 2).chain(CurveTween(curve: Curves.easeIn)),
           weight: 50.0,
         ),
         TweenSequenceItem<double>(
@@ -123,8 +122,7 @@ class FlipCardState extends State<FlipCard>
           weight: 50.0,
         ),
         TweenSequenceItem<double>(
-          tween: Tween(begin: -pi / 2, end: 0.0)
-              .chain(CurveTween(curve: Curves.easeOut)),
+          tween: Tween(begin: -pi / 2, end: 0.0).chain(CurveTween(curve: Curves.easeOut)),
           weight: 50.0,
         ),
       ],
@@ -209,4 +207,5 @@ class FlipCardState extends State<FlipCard>
 }
 
 Widget _fill(Widget child) => Positioned.fill(child: child);
+
 Widget _noop(Widget child) => child;

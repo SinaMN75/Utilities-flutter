@@ -25,16 +25,7 @@ class FormFieldReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory FormFieldReadDto.fromMap(Map<String, dynamic> json) => FormFieldReadDto(
-        id: json["id"],
-        label: json["label"],
-        title: json["title"],
-        isRequired: json["isRequired"],
-        optionList: json["optionList"],
-        type: json["type"],
-        categoryId: json["categoryId"],
-        children: json["children"] == null ? null : List<FormFieldReadDto>.from(json["children"].map((e) => FormFieldReadDto.fromMap(e)))
-      );
+  factory FormFieldReadDto.fromMap(Map<String, dynamic> json) => FormFieldReadDto(id: json["id"], label: json["label"], title: json["title"], isRequired: json["isRequired"], optionList: json["optionList"], type: json["type"], categoryId: json["categoryId"], children: json["children"] == null ? null : List<FormFieldReadDto>.from(json["children"].map((e) => FormFieldReadDto.fromMap(e))));
 
   Map<String, dynamic> toMap() => {
         "id": id,
