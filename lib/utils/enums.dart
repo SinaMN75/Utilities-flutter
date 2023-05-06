@@ -239,7 +239,6 @@ enum TypeCategory {
   digital('Digital'),
   image("image"),
   video("video"),
-  music("music"),
   audio("audio"),
   pdf("pdf"),
   text("text"),
