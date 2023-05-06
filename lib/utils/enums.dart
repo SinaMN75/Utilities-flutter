@@ -242,6 +242,7 @@ enum TypeCategory {
   pdf("pdf"),
   commodity("commodity"),
   job("job"),
+  twitter("twitter"),
   Physical('Physical');
 
   const TypeCategory(this.title);
