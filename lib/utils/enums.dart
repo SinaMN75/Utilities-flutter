@@ -234,17 +234,18 @@ enum UseCaseCategory {
 }
 
 enum TypeCategory {
-  Explore('Explore'),
-  Digital('Digital'),
+  explore('Explore'),
+  digital('Digital'),
   image("image"),
   video("video"),
   music("music"),
+  audio("audio"),
   pdf("pdf"),
   text("text"),
   commodity("commodity"),
   job("job"),
   twitter("twitter"),
-  Physical('Physical');
+  physical('Physical');
 
   const TypeCategory(this.title);
 
