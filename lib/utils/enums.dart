@@ -240,6 +240,7 @@ enum TypeCategory {
   video("video"),
   music("music"),
   pdf("pdf"),
+  text("text"),
   commodity("commodity"),
   job("job"),
   twitter("twitter"),
