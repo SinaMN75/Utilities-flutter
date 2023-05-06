@@ -234,6 +234,7 @@ enum UseCaseCategory {
 }
 
 enum TypeCategory {
+  all('all'),
   explore('Explore'),
   digital('Digital'),
   image("image"),
