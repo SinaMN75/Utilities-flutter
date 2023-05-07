@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:utilities/utilities.dart';
 
 Widget image(
   final String source, {
@@ -61,6 +62,33 @@ Widget image(
       );
   }
 }
+
+Widget iconPrimary(
+  final String source, {
+  final Color? color,
+  final double? width,
+  final double? height,
+  final BoxFit fit = BoxFit.contain,
+  final Clip clipBehavior = Clip.hardEdge,
+  final double borderRadius = 1,
+  final EdgeInsets margin = EdgeInsets.zero,
+  final String? placeholder,
+  final ProgressIndicatorBuilder? progressIndicatorBuilder,
+  final VoidCallback? onTap,
+}) =>
+    image(
+      source,
+      color: color ?? colorScheme.primary,
+      width: width,
+      height: height,
+      fit: fit,
+      clipBehavior: clipBehavior,
+      borderRadius: borderRadius,
+      margin: margin,
+      placeholder: placeholder,
+      progressIndicatorBuilder: progressIndicatorBuilder,
+      onTap: onTap,
+    );
 
 Widget imageAsset(
   final String asset, {
