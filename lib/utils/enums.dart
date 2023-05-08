@@ -123,19 +123,6 @@ enum TenderType {
   final String title;
 }
 
-enum TypeMedia {
-  image("image"),
-  all("all"),
-  audio("audio"),
-  video("video"),
-  text("text");
-
-  const TypeMedia(this.title);
-
-  @override
-  String toString() => name;
-  final String title;
-}
 
 enum PostMediaType {
   all("all"),
@@ -233,7 +220,7 @@ enum UseCaseCategory {
   final String title;
 }
 
-enum TypeCategory {
+enum TypePost {
   all('all'),
   explore('Explore'),
   digital('Digital'),
@@ -247,7 +234,7 @@ enum TypeCategory {
   twitter("twitter"),
   physical('Physical');
 
-  const TypeCategory(this.title);
+  const TypePost(this.title);
 
   @override
   String toString() => name;
@@ -278,6 +265,7 @@ enum UseCaseMedia {
   cover("cover"),
   profile("profile"),
   chat("Chat"),
+  bio("bio"),
   post("post"),
   text("text");
 
