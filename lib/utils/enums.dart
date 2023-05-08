@@ -265,6 +265,7 @@ enum UseCaseMedia {
   cover("cover"),
   profile("profile"),
   chat("Chat"),
+  bio("bio"),
   post("post"),
   text("text");
 
