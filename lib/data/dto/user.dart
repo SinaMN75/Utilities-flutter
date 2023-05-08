@@ -636,6 +636,7 @@ class UserFilterDto {
     this.pageSize,
     this.userIds,
     this.pageNumber,
+    this.categories,
   });
 
   final String? userId;
@@ -658,6 +659,7 @@ class UserFilterDto {
   final String? state;
   final int? pageNumber;
   final List<String>? userIds;
+  final List<String>? categories;
 
   factory UserFilterDto.fromJson(String str) => UserFilterDto.fromMap(json.decode(str));
 
@@ -683,6 +685,7 @@ class UserFilterDto {
         stateTr1: json["stateTr1"],
         state: json["state"],
         pageNumber: json["pageNumber"],
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
         userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].map((x) => x)),
       );
 
@@ -706,6 +709,7 @@ class UserFilterDto {
         "stateTr1": stateTr1,
         "state": state,
         "pageNumber": pageNumber,
+        "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((x) => x)),
         "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((x) => x)),
       };
 }
