@@ -231,7 +231,7 @@ enum TypePost {
   text("text"),
   commodity("commodity"),
   job("job"),
-  twitter("twitter"),
+  yooNote("yooNote"),
   physical('Physical');
 
   const TypePost(this.title);
@@ -287,6 +287,26 @@ enum UseCaseMedia {
 //   String toString() => name;
 //   final String title;
 // }
+
+
+enum TypeCategory {
+  Explore('Explore'),
+  Digital('Digital'),
+  image("image"),
+  video("video"),
+  music("music"),
+  yooNote("yooNote"),
+  pdf("pdf"),
+  commodity("commodity"),
+  job("job"),
+  Physical('Physical');
+
+  const TypeCategory(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
 
 enum UseCaseContent {
   news("news"),
