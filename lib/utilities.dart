@@ -34,6 +34,10 @@ export 'utils/utils.dart';
 export 'utils/validators.dart';
 export 'view_models/view_models.dart';
 
+
+
+
+
 void initUtilities() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
