@@ -71,7 +71,7 @@ Future<String> appBuildNumber() async {
 //     ),
 //   );
 // }
-void push(final Widget page){
+Future<void> push(final Widget page)async{
   Future<void>.delayed(Duration.zero, () async {
     await Navigator.of(context).push(MaterialPageRoute<Widget>(builder: (final BuildContext context) => page,));
   });
