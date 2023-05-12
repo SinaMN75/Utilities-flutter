@@ -62,7 +62,7 @@ Future<void> push(
   delay(
     milliSecondDelay,
     () => Get.to(
-      _page,
+      () => _page,
       fullscreenDialog: dialog,
       popGesture: true,
       opaque: dialog ? false : true,
@@ -92,7 +92,7 @@ Future<void> offAll(
   delay(
     milliSecondDelay,
     () => Get.offAll(
-      _page,
+      () => _page,
       fullscreenDialog: dialog,
       popGesture: true,
       opaque: dialog ? false : true,
@@ -101,7 +101,7 @@ Future<void> offAll(
   );
 }
 
-void off(final Widget page) => Get.off(page);
+void off(final Widget page) => Get.off(() => page);
 
 void back() => Get.back();
 
