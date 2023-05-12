@@ -73,7 +73,7 @@ Future<String> appBuildNumber() async {
 // }
 
 
-Future<dynamic> push(
+Future<void> push(
   final Widget page, {
   final bool dialog = false,
   final Transition transition = Transition.cupertino,
