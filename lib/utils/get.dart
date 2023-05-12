@@ -71,7 +71,22 @@ Future<String> appBuildNumber() async {
 //     ),
 //   );
 // }
-Future<void> push(final Widget page)async{
+
+
+Future<dynamic> push(
+  final Widget page, {
+  final bool dialog = false,
+  final Transition transition = Transition.cupertino,
+  final bool backFirst = false,
+  final bool preventDuplicates = true,
+  final int milliSecondDelay = 1,
+}) async {
+  if (backFirst) back();
+  Future<void>.delayed(Duration.zero, () async {
+    await Navigator.of(context).push(MaterialPageRoute<Widget>(builder: (final BuildContext context) => page,));
+  });
+}
+Future<void> push2(final Widget page)async{
   Future<void>.delayed(Duration.zero, () async {
     await Navigator.of(context).push(MaterialPageRoute<Widget>(builder: (final BuildContext context) => page,));
   });
