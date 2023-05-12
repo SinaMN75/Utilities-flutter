@@ -178,6 +178,7 @@ enum UseCaseProduct {
   service("service"),
   consultant("consultant"),
   company("company"),
+  yooNote("yooNote"),
   tutorial("tutorial"),
   product("product"),
   story("story"),
