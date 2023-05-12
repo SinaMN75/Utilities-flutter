@@ -19,7 +19,7 @@ dependencies:
   package_info_plus: ^4.0.0
   share_plus: ^7.0.0
   file_picker: ^5.3.0
-  intl: ^0.18.0
+  intl: ^0.17.0
   webviewx: ^0.2.2
   get_storage: ^2.1.1
   flutter_svg: ^2.0.5
@@ -42,19 +42,19 @@ dependencies:
   crypto: ^3.0.3
   path_drawing: ^1.0.1
 
-  syncfusion_localizations: ^21.2.4
-  syncfusion_flutter_datagrid_export: ^21.2.4
-  syncfusion_flutter_calendar: ^21.2.4
-  syncfusion_flutter_datepicker: ^21.2.4
-  syncfusion_flutter_charts: ^21.2.4
-  syncfusion_flutter_gauges: ^21.2.4
-  syncfusion_flutter_sliders: ^21.2.4
-  syncfusion_flutter_pdf: ^21.2.4
-  syncfusion_flutter_barcodes: ^21.2.4
-  syncfusion_officechart: ^21.2.4
-  syncfusion_flutter_maps: ^21.2.4
-  syncfusion_flutter_signaturepad: ^21.2.4
-  syncfusion_flutter_pdfviewer: ^21.2.4
+#  syncfusion_localizations: ^21.2.4
+#  syncfusion_flutter_datagrid_export: ^21.2.4
+#  syncfusion_flutter_calendar: ^21.2.4
+#  syncfusion_flutter_datepicker: ^21.2.4
+#  syncfusion_flutter_charts: ^21.2.4
+#  syncfusion_flutter_gauges: ^21.2.4
+#  syncfusion_flutter_sliders: ^21.2.4
+#  syncfusion_flutter_pdf: ^21.2.4
+#  syncfusion_flutter_barcodes: ^21.2.4
+#  syncfusion_officechart: ^21.2.4
+#  syncfusion_flutter_maps: ^21.2.4
+#  syncfusion_flutter_signaturepad: ^21.2.4
+#  syncfusion_flutter_pdfviewer: ^21.2.4
   syncfusion_flutter_treemap: ^21.2.4
 
 flutter:
