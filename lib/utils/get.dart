@@ -58,11 +58,12 @@ Future<void> push(
   final int milliSecondDelay = 1,
 }) async {
   if (backFirst) back();
-  final Widget _page = await Future<Widget>.microtask(() => page);
+  // final Widget _page = await Future<Widget>.microtask(() => page);
+  //
   delay(
     milliSecondDelay,
     () => Get.to(
-      () => _page,
+      () => page,
       fullscreenDialog: dialog,
       popGesture: true,
       opaque: dialog ? false : true,

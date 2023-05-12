@@ -42,20 +42,24 @@ dependencies:
   crypto: ^3.0.3
   path_drawing: ^1.0.1
 
-  syncfusion_localizations: ^21.1.41
-  syncfusion_flutter_datagrid_export: ^21.1.41
-  syncfusion_flutter_calendar: ^21.1.41
-  syncfusion_flutter_datepicker: ^21.1.41
-  syncfusion_flutter_charts: ^21.1.41
-  syncfusion_flutter_gauges: ^21.1.41
-  syncfusion_flutter_sliders: ^21.1.41
-  syncfusion_flutter_pdf: ^21.1.41
-  syncfusion_flutter_barcodes: ^21.1.41
-  syncfusion_officechart: ^21.1.41
-  syncfusion_flutter_maps: ^21.1.41
-  syncfusion_flutter_signaturepad: ^21.1.41
-  syncfusion_flutter_pdfviewer: ^21.1.41
-  syncfusion_flutter_treemap: ^21.1.41
+  syncfusion_localizations: ^21.2.4
+  syncfusion_flutter_datagrid_export: ^21.2.4
+  syncfusion_flutter_calendar: ^21.2.4
+  syncfusion_flutter_datepicker: ^21.2.4
+  syncfusion_flutter_charts: ^21.2.4
+  syncfusion_flutter_gauges: ^21.2.4
+  syncfusion_flutter_sliders: ^21.2.4
+  syncfusion_flutter_pdf: ^21.2.4
+  syncfusion_flutter_barcodes: ^21.2.4
+  syncfusion_officechart: ^21.2.4
+  syncfusion_flutter_maps: ^21.2.4
+  syncfusion_flutter_signaturepad: ^21.2.4
+  syncfusion_flutter_pdfviewer: ^21.2.4
+  syncfusion_flutter_treemap: ^21.2.4
+
+dependency_overrides:
+  intl: ^0.18.0
+
 
 flutter:
   uses-material-design: true
