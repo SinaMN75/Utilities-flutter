@@ -58,19 +58,27 @@ Future<void> push(
   final int milliSecondDelay = 1,
 }) async {
   if (backFirst) back();
+ await Get.to(
+        () => page,
+    fullscreenDialog: dialog,
+    popGesture: true,
+    opaque: dialog ? false : true,
+    transition: transition,
+    preventDuplicates: preventDuplicates,
+  );
   // final Widget _page = await Future<Widget>.microtask(() => page);
   //
-  delay(
-    milliSecondDelay,
-    () => Get.to(
-      () => page,
-      fullscreenDialog: dialog,
-      popGesture: true,
-      opaque: dialog ? false : true,
-      transition: transition,
-      preventDuplicates: preventDuplicates,
-    ),
-  );
+  // delay(
+  //   milliSecondDelay,
+  //   () => Get.to(
+  //     () => page,
+  //     fullscreenDialog: dialog,
+  //     popGesture: true,
+  //     opaque: dialog ? false : true,
+  //     transition: transition,
+  //     preventDuplicates: preventDuplicates,
+  //   ),
+  // );
 }
 
 Future<void> dialog(
