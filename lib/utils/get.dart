@@ -49,27 +49,32 @@ Future<String> appBuildNumber() async {
 }
 
 //
-Future<dynamic> push(
-  final Widget page, {
-  final bool dialog = false,
-  final Transition transition = Transition.cupertino,
-  final bool backFirst = false,
-  final bool preventDuplicates = true,
-  final int milliSecondDelay = 1,
-}) async {
-  if (backFirst) back();
-  final Widget _page = await Future<Widget>.microtask(() => page);
-  delay(
-    milliSecondDelay,
-    () => Get.to(
-      () => _page,
-      fullscreenDialog: dialog,
-      popGesture: true,
-      opaque: dialog ? false : true,
-      transition: transition,
-      preventDuplicates: preventDuplicates,
-    ),
-  );
+// Future<dynamic> push(
+//   final Widget page, {
+//   final bool dialog = false,
+//   final Transition transition = Transition.cupertino,
+//   final bool backFirst = false,
+//   final bool preventDuplicates = true,
+//   final int milliSecondDelay = 1,
+// }) async {
+//   if (backFirst) back();
+//   final Widget _page = await Future<Widget>.microtask(() => page);
+//   delay(
+//     milliSecondDelay,
+//     () => Get.to(
+//       () => _page,
+//       fullscreenDialog: dialog,
+//       popGesture: true,
+//       opaque: dialog ? false : true,
+//       transition: transition,
+//       preventDuplicates: preventDuplicates,
+//     ),
+//   );
+// }
+void push(final Widget page){
+  Future<void>.delayed(Duration.zero, () async {
+    await Navigator.of(context).push(MaterialPageRoute<Widget>(builder: (final BuildContext context) => page,));
+  });
 }
 
 Future<void> dialog(
