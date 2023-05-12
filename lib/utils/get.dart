@@ -59,12 +59,7 @@ Future<void> push(
 }) async {
   if (backFirst) back();
  await Get.to(
-        () => page,
-    fullscreenDialog: dialog,
-    popGesture: true,
-    opaque: dialog ? false : true,
-    transition: transition,
-    preventDuplicates: preventDuplicates,
+        () => page
   );
   // final Widget _page = await Future<Widget>.microtask(() => page);
   //
