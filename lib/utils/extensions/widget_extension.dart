@@ -1,6 +1,8 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:utilities/components/components.dart';
 import 'package:utilities/utils/extensions/shimmer_extension.dart';
 
@@ -36,8 +38,8 @@ extension WidgetsExtension on Widget {
     final Color? highlightColor,
   }) =>
       Shimmer.fromColors(
-        baseColor: Colors.white.withOpacity(0.1),
-        highlightColor: Colors.white.withOpacity(0.3),
+        baseColor: baseColor ?? Get.context!.theme.primaryColorDark.withOpacity(0.1),
+        highlightColor: highlightColor ?? Get.context!.theme.primaryColorDark.withOpacity(0.3),
         child: this,
       );
 
