@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:utilities/components/components.dart';
+import 'package:utilities/utils/extensions/shimmer_extension.dart';
 
 extension WidgetsExtension on Widget {
   Widget withTooltip(
@@ -29,6 +30,16 @@ extension WidgetsExtension on Widget {
   Widget fit() => FittedBox(key: key, child: this, fit: BoxFit.scaleDown);
 
   Widget expanded({final int flex = 1}) => Expanded(flex: flex, child: this);
+
+  Widget shimmer({
+    final Color? baseColor,
+    final Color? highlightColor,
+  }) =>
+      Shimmer.fromColors(
+        baseColor: Colors.white.withOpacity(0.1),
+        highlightColor: Colors.white.withOpacity(0.3),
+        child: this,
+      );
 
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
