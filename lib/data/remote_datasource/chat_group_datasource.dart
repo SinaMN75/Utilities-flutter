@@ -121,8 +121,8 @@ class ChatGroupDataSource {
     required final String groupId,
     required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
     required final Function(GenericResponse response) onError,
-    final String? pageSize,
-    final String? pageNumber,
+    final int? pageSize,
+    final int? pageNumber,
     final Function(String error)? failure,
   }) async =>
       httpGet(
