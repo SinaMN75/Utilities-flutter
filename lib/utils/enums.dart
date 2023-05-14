@@ -301,6 +301,8 @@ enum TypeCategory {
   music("music"),
   yooNote("yooNote"),
   pdf("pdf"),
+  group("group"),
+  chanel("chanel"),
   commodity("commodity"),
   job("job"),
   Physical('Physical');
