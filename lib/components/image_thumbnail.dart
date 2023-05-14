@@ -26,7 +26,7 @@ class ThumbnailResult {
   const ThumbnailResult({this.image, this.dataSize, this.height, this.width});
 }
 
-Future<ThumbnailResult> genThumbnail(ThumbnailRequest r) async {
+Future<ThumbnailResult> genThumbnail(final ThumbnailRequest r) async {
   //WidgetsFlutterBinding.ensureInitialized();
   Uint8List? bytes;
   final Completer<ThumbnailResult> completer = Completer();
@@ -66,7 +66,7 @@ Future<ThumbnailResult> genThumbnail(ThumbnailRequest r) async {
   print("image size: $_imageDataSize");
 
   final _image = Image.memory(bytes!);
-  _image.image.resolve(ImageConfiguration()).addListener(ImageStreamListener((ImageInfo info, bool _) {
+  _image.image.resolve(const ImageConfiguration()).addListener(ImageStreamListener((final ImageInfo info, final bool _) {
     completer.complete(ThumbnailResult(
       image: _image,
       dataSize: _imageDataSize,
@@ -79,8 +79,9 @@ Future<ThumbnailResult> genThumbnail(ThumbnailRequest r) async {
 
 class GenThumbnailImage extends StatefulWidget {
   final ThumbnailRequest thumbnailRequest;
+  final Widget? loading;
 
-  const GenThumbnailImage({Key? key, required this.thumbnailRequest}) : super(key: key);
+  const GenThumbnailImage({final Key? key,this.loading, required this.thumbnailRequest}) : super(key: key);
 
   @override
   _GenThumbnailImageState createState() => _GenThumbnailImageState();
@@ -88,15 +89,14 @@ class GenThumbnailImage extends StatefulWidget {
 
 class _GenThumbnailImageState extends State<GenThumbnailImage> {
   @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<ThumbnailResult>(
+  Widget build(final BuildContext context) => FutureBuilder<ThumbnailResult>(
       future: genThumbnail(widget.thumbnailRequest),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (final BuildContext context, final AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
           return snapshot.data.image;
         } else if (snapshot.hasError) {
           return Container(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8),
             color: Colors.red,
             child: Text(
               "Error:\n${snapshot.error.toString()}",
@@ -104,10 +104,9 @@ class _GenThumbnailImageState extends State<GenThumbnailImage> {
           );
         } else {
           return Center(
-            child: CircularProgressIndicator(),
+            child:widget.loading?? const CircularProgressIndicator(),
           );
         }
       },
     );
-  }
 }
