@@ -203,6 +203,8 @@ enum UseCaseCategory {
   brand("brand"),
   dailyPrice("dailyPrice"),
   tender("tender"),
+  chanel("chanel"),
+  group("group"),
   auction("auction"),
   project("project"),
   service("service"),
