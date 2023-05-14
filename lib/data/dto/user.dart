@@ -39,6 +39,8 @@ class UserCreateUpdateDto {
     this.state,
     this.stateTr1,
     this.genderTr1,
+    this.industry,
+    this.companySize,
   });
 
   final String? id;
@@ -76,6 +78,8 @@ class UserCreateUpdateDto {
   final String? birthDate;
   final String? gender;
   final String? genderTr1;
+  final String? companySize;
+  final String? industry;
   final List<String>? categories;
   final List<int>? locations;
 
@@ -119,6 +123,8 @@ class UserCreateUpdateDto {
         birthDate: json["birthDate"],
         gender: json["gender"],
         genderTr1: json["genderTr1"],
+        companySize: json["companySize"],
+        industry: json["industry"],
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((x) => x)),
         locations: json["locations"] == null ? null : List<int>.from(json["locations"].map((x) => x)),
       );
@@ -159,6 +165,8 @@ class UserCreateUpdateDto {
         "birthDate": birthDate,
         "gender": gender,
         "genderTr1": genderTr1,
+        "companySize": companySize,
+        "industry": industry,
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x)),
         "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x)),
       };
@@ -213,6 +221,8 @@ class UserReadDto {
     this.countFollowing,
     this.genderTr1,
     this.stateTr1,
+    this.industry,
+    this.companySize,
   });
 
   final String? token;
@@ -256,6 +266,8 @@ class UserReadDto {
   final int? countFollowing;
   final int? countProducts;
   final String? color;
+  final String? industry;
+  final String? companySize;
   final GrowthRateReadDto? growthRate;
   final List<MediaReadDto>? media;
   final List<LocationReadDto>? locations;
@@ -311,6 +323,8 @@ class UserReadDto {
         countProducts: json["countProducts"],
         color: json["color"],
         isFollowing: json["isFollowing"],
+        industry: json["industry"],
+        companySize: json["companySize"],
         growthRate: json["growthRate"] == null ? null : GrowthRateReadDto.fromMap(json["growthRate"]),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
         locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].map((x) => LocationReadDto.fromMap(x))) : null,
@@ -361,6 +375,8 @@ class UserReadDto {
         "countProducts": countProducts,
         "color": color,
         "isFollowing": isFollowing,
+        "industry": industry,
+        "companySize": companySize,
         "growthRate": growthRate == null ? null : growthRate!.toMap(),
         "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
         "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x.toMap())),
@@ -637,6 +653,8 @@ class UserFilterDto {
     this.userIds,
     this.pageNumber,
     this.categories,
+    this.industry,
+    this.companySize,
   });
 
   final String? userId;
@@ -657,6 +675,8 @@ class UserFilterDto {
   final int? pageSize;
   final String? stateTr1;
   final String? state;
+  final String? industry;
+  final String? companySize;
   final int? pageNumber;
   final List<String>? userIds;
   final List<String>? categories;
@@ -685,6 +705,8 @@ class UserFilterDto {
         stateTr1: json["stateTr1"],
         state: json["state"],
         pageNumber: json["pageNumber"],
+        industry: json["industry"],
+        companySize: json["companySize"],
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
         userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].map((x) => x)),
       );
@@ -709,6 +731,8 @@ class UserFilterDto {
         "stateTr1": stateTr1,
         "state": state,
         "pageNumber": pageNumber,
+        "industry": industry,
+        "companySize": companySize,
         "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((x) => x)),
         "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((x) => x)),
       };
