@@ -378,6 +378,8 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
     return list.isNotEmpty ? list.first : "--";
   }
 
+  String getCover() => getImages(useCase: UseCaseMedia.cover.title).getFirstIfExist() ??getImages(useCase: UseCaseMedia.post.title).getFirstIfExist()?? "--";
+
   String getImage({final String? useCase}) => getImages(useCase: useCase).getFirstIfExist() ?? "--";
 
   String getVideo({final String? useCase}) => getVideos(useCase: useCase).getFirstIfExist() ?? "--";
@@ -465,6 +467,9 @@ extension MediaResponseExtension on List<MediaReadDto> {
   }
 
   String getImage({final String? useCase}) => getImages(useCase: useCase).getFirstIfExist() ?? "--";
+
+
+  String getCover() => getImages(useCase: UseCaseMedia.cover.title).getFirstIfExist() ??getImages(useCase: UseCaseMedia.post.title).getFirstIfExist()?? "--";
 
   String getVideo({final String? useCase}) => getVideos(useCase: useCase).getFirstIfExist() ?? "--";
 
