@@ -245,7 +245,7 @@ class UserReadDto {
   final String? linkedIn;
   final bool? showContactInfo;
   final bool? isAdmin;
-  final bool? isFollowing;
+  bool? isFollowing;
   final bool? suspend;
   final String? birthDate;
   final String? gender;
