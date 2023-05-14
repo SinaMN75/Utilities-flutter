@@ -207,6 +207,7 @@ enum UseCaseCategory {
   project("project"),
   service("service"),
   consultant("consultant"),
+  yooNote("yooNote"),
   company("company"),
   learn("learn"),
   user("user"),
