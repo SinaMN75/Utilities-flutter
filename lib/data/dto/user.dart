@@ -39,10 +39,8 @@ class UserCreateUpdateDto {
     this.state,
     this.stateTr1,
     this.genderTr1,
-    this.industry,
     this.detail1,
     this.detail2,
-    this.companySize,
   });
 
   final String? id;
@@ -80,8 +78,6 @@ class UserCreateUpdateDto {
   final String? birthDate;
   final String? gender;
   final String? genderTr1;
-  final String? companySize;
-  final String? industry;
   final String? detail1;
   final String? detail2;
   final List<String>? categories;
@@ -127,8 +123,6 @@ class UserCreateUpdateDto {
         birthDate: json["birthDate"],
         gender: json["gender"],
         genderTr1: json["genderTr1"],
-        companySize: json["companySize"],
-        industry: json["industry"],
         detail1: json["detail1"],
         detail2: json["detail2"],
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((x) => x)),
@@ -171,8 +165,6 @@ class UserCreateUpdateDto {
         "birthDate": birthDate,
         "gender": gender,
         "genderTr1": genderTr1,
-        "companySize": companySize,
-        "industry": industry,
         "detail1": detail1,
         "detail2": detail2,
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x)),
@@ -229,10 +221,8 @@ class UserReadDto {
     this.countFollowing,
     this.genderTr1,
     this.stateTr1,
-    this.industry,
     this.detail1,
     this.detail2,
-    this.companySize,
   });
 
   final String? token;
@@ -276,8 +266,6 @@ class UserReadDto {
   final int? countFollowing;
   final int? countProducts;
   final String? color;
-  final String? industry;
-  final String? companySize;
   final String? detail1;
   final String? detail2;
   final GrowthRateReadDto? growthRate;
@@ -335,10 +323,8 @@ class UserReadDto {
         countProducts: json["countProducts"],
         color: json["color"],
         isFollowing: json["isFollowing"],
-        industry: json["industry"],
         detail1: json["detail1"],
         detail2: json["detail2"],
-        companySize: json["companySize"],
         growthRate: json["growthRate"] == null ? null : GrowthRateReadDto.fromMap(json["growthRate"]),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
         locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].map((x) => LocationReadDto.fromMap(x))) : null,
@@ -391,8 +377,6 @@ class UserReadDto {
         "detail1": detail1,
         "detail2": detail2,
         "isFollowing": isFollowing,
-        "industry": industry,
-        "companySize": companySize,
         "growthRate": growthRate == null ? null : growthRate!.toMap(),
         "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
         "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x.toMap())),
@@ -669,10 +653,8 @@ class UserFilterDto {
     this.userIds,
     this.pageNumber,
     this.categories,
-    this.industry,
     this.detail1,
     this.detail2,
-    this.companySize,
   });
 
   final String? userId;
@@ -693,8 +675,6 @@ class UserFilterDto {
   final int? pageSize;
   final String? stateTr1;
   final String? state;
-  final String? industry;
-  final String? companySize;
   final String? detail1;
   final String? detail2;
   final int? pageNumber;
@@ -725,8 +705,6 @@ class UserFilterDto {
         stateTr1: json["stateTr1"],
         state: json["state"],
         pageNumber: json["pageNumber"],
-        industry: json["industry"],
-        companySize: json["companySize"],
         detail1: json["detail1"],
         detail2: json["detail2"],
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
@@ -753,8 +731,6 @@ class UserFilterDto {
         "stateTr1": stateTr1,
         "state": state,
         "pageNumber": pageNumber,
-        "industry": industry,
-        "companySize": companySize,
         "detail1": detail1,
         "detail2": detail2,
         "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((x) => x)),
