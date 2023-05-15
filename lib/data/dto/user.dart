@@ -40,6 +40,8 @@ class UserCreateUpdateDto {
     this.stateTr1,
     this.genderTr1,
     this.industry,
+    this.detail1,
+    this.detail2,
     this.companySize,
   });
 
@@ -80,6 +82,8 @@ class UserCreateUpdateDto {
   final String? genderTr1;
   final String? companySize;
   final String? industry;
+  final String? detail1;
+  final String? detail2;
   final List<String>? categories;
   final List<int>? locations;
 
@@ -125,6 +129,8 @@ class UserCreateUpdateDto {
         genderTr1: json["genderTr1"],
         companySize: json["companySize"],
         industry: json["industry"],
+        detail1: json["detail1"],
+        detail2: json["detail2"],
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((x) => x)),
         locations: json["locations"] == null ? null : List<int>.from(json["locations"].map((x) => x)),
       );
@@ -167,6 +173,8 @@ class UserCreateUpdateDto {
         "genderTr1": genderTr1,
         "companySize": companySize,
         "industry": industry,
+        "detail1": detail1,
+        "detail2": detail2,
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x)),
         "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x)),
       };
@@ -222,6 +230,8 @@ class UserReadDto {
     this.genderTr1,
     this.stateTr1,
     this.industry,
+    this.detail1,
+    this.detail2,
     this.companySize,
   });
 
@@ -268,6 +278,8 @@ class UserReadDto {
   final String? color;
   final String? industry;
   final String? companySize;
+  final String? detail1;
+  final String? detail2;
   final GrowthRateReadDto? growthRate;
   final List<MediaReadDto>? media;
   final List<LocationReadDto>? locations;
@@ -324,6 +336,8 @@ class UserReadDto {
         color: json["color"],
         isFollowing: json["isFollowing"],
         industry: json["industry"],
+        detail1: json["detail1"],
+        detail2: json["detail2"],
         companySize: json["companySize"],
         growthRate: json["growthRate"] == null ? null : GrowthRateReadDto.fromMap(json["growthRate"]),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
@@ -374,6 +388,8 @@ class UserReadDto {
         "countFollowing": countFollowing,
         "countProducts": countProducts,
         "color": color,
+        "detail1": detail1,
+        "detail2": detail2,
         "isFollowing": isFollowing,
         "industry": industry,
         "companySize": companySize,
@@ -654,6 +670,8 @@ class UserFilterDto {
     this.pageNumber,
     this.categories,
     this.industry,
+    this.detail1,
+    this.detail2,
     this.companySize,
   });
 
@@ -677,6 +695,8 @@ class UserFilterDto {
   final String? state;
   final String? industry;
   final String? companySize;
+  final String? detail1;
+  final String? detail2;
   final int? pageNumber;
   final List<String>? userIds;
   final List<String>? categories;
@@ -707,6 +727,8 @@ class UserFilterDto {
         pageNumber: json["pageNumber"],
         industry: json["industry"],
         companySize: json["companySize"],
+        detail1: json["detail1"],
+        detail2: json["detail2"],
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
         userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].map((x) => x)),
       );
@@ -733,6 +755,8 @@ class UserFilterDto {
         "pageNumber": pageNumber,
         "industry": industry,
         "companySize": companySize,
+        "detail1": detail1,
+        "detail2": detail2,
         "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((x) => x)),
         "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((x) => x)),
       };
