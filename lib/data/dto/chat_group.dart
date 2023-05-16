@@ -80,9 +80,73 @@ class ChatGroupReadDto {
       };
 }
 
-// To parse this JSON data, do
-//
-//     final chatGroupFilterDto = chatGroupFilterDtoFromMap(jsonString);
+class ChatGroupCreateUpdateDto {
+  ChatGroupCreateUpdateDto({
+    this.id,
+    this.title,
+    this.description,
+    this.value,
+    this.typeChat,
+    this.department,
+    this.readIfExist,
+    this.isPrivateChat,
+    this.chatStatus,
+    this.priority,
+    this.userIds,
+    this.categories,
+    this.productIds,
+  });
+
+  final String? id;
+  final String? title;
+  final String? description;
+  final String? value;
+  final int? typeChat;
+  final String? department;
+  final bool? readIfExist;
+  final bool? isPrivateChat;
+  final int? chatStatus;
+  final int? priority;
+  final List<String>? userIds;
+  final List<String>? categories;
+  final List<String>? productIds;
+
+  factory ChatGroupCreateUpdateDto.fromJson(String str) => ChatGroupCreateUpdateDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ChatGroupCreateUpdateDto.fromMap(Map<String, dynamic> json) => ChatGroupCreateUpdateDto(
+    id: json["id"],
+    title: json["title"],
+    description: json["description"],
+    value: json["value"],
+    typeChat: json["type"],
+    department: json["department"],
+    readIfExist: json["readIfExist"],
+    isPrivateChat: json["IsPrivateChat"],
+    chatStatus: json["chatStatus"],
+    priority: json["priority"],
+    userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
+    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+    productIds: json["productIds"] == null ? [] : List<String>.from(json["productIds"]!.map((x) => x)),
+  );
+
+  Map<String, dynamic> toMap() => {
+    "id": id,
+    "title": title,
+    "description": description,
+    "value": value,
+    "type": typeChat,
+    "department": department,
+    "readIfExist": readIfExist,
+    "IsPrivateChat": isPrivateChat,
+    "chatStatus": chatStatus,
+    "priority": priority,
+    "userIds": userIds == null ? [] : List<String>.from(userIds!.map((x) => x)),
+    "categories": categories == null ? [] : List<String>.from(categories!.map((x) => x)),
+    "productIds": productIds == null ? [] : List<String>.from(productIds!.map((x) => x)),
+  };
+}
 
 class ChatGroupFilterDto {
   final List<String>? usersIds;
@@ -172,73 +236,7 @@ class ChatGroupFilterDto {
       };
 }
 
-class ChatGroupCreateUpdateDto {
-  ChatGroupCreateUpdateDto({
-    this.id,
-    this.title,
-    this.description,
-    this.value,
-    this.typeChat,
-    this.department,
-    this.readIfExist,
-    this.isPrivateChat,
-    this.chatStatus,
-    this.priority,
-    this.userIds,
-    this.categories,
-    this.productIds,
-  });
 
-  final String? id;
-  final String? title;
-  final String? description;
-  final String? value;
-  final int? typeChat;
-  final String? department;
-  final bool? readIfExist;
-  final bool? isPrivateChat;
-  final int? chatStatus;
-  final int? priority;
-  final List<String>? userIds;
-  final List<String>? categories;
-  final List<String>? productIds;
-
-  factory ChatGroupCreateUpdateDto.fromJson(String str) => ChatGroupCreateUpdateDto.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory ChatGroupCreateUpdateDto.fromMap(Map<String, dynamic> json) => ChatGroupCreateUpdateDto(
-        id: json["id"],
-        title: json["title"],
-        description: json["description"],
-        value: json["value"],
-        typeChat: json["type"],
-        department: json["department"],
-        readIfExist: json["readIfExist"],
-        isPrivateChat: json["IsPrivateChat"],
-        chatStatus: json["chatStatus"],
-        priority: json["priority"],
-        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-        productIds: json["productIds"] == null ? [] : List<String>.from(json["productIds"]!.map((x) => x)),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "title": title,
-        "description": description,
-        "value": value,
-        "type": typeChat,
-        "department": department,
-        "readIfExist": readIfExist,
-        "IsPrivateChat": isPrivateChat,
-        "chatStatus": chatStatus,
-        "priority": priority,
-        "userIds": userIds == null ? [] : List<String>.from(userIds!.map((x) => x)),
-        "categories": categories == null ? [] : List<String>.from(categories!.map((x) => x)),
-        "productIds": productIds == null ? [] : List<String>.from(productIds!.map((x) => x)),
-      };
-}
 
 class ChatGroupMessageReadDto {
   ChatGroupMessageReadDto({
@@ -320,6 +318,8 @@ class ChatGroupMessageReadDto {
       };
 }
 
+
+
 class CreateGroupMessage {
   CreateGroupMessage({
     this.id,
@@ -365,69 +365,5 @@ class CreateGroupMessage {
         "products": products,
         "forwardedMessageId": forwardedMessageId,
         "groupChatId": groupChatId,
-      };
-}
-
-class GroupChat {
-  GroupChat({
-    this.title,
-    this.description,
-    this.media,
-    this.users,
-    this.products,
-    this.id,
-    this.createdAt,
-    this.updatedAt,
-    this.useCase,
-    this.creatorUserId,
-    this.chatStatus,
-    this.priority,
-  });
-
-  final String? title;
-  final String? description;
-  final List<MediaReadDto>? media;
-  final List<UserReadDto>? users;
-  final List<dynamic>? products;
-  final String? id;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final String? useCase;
-  final String? creatorUserId;
-  final int? chatStatus;
-  final int? priority;
-
-  factory GroupChat.fromJson(String str) => GroupChat.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory GroupChat.fromMap(Map<String, dynamic> json) => GroupChat(
-        title: json["title"],
-        description: json["description"],
-        media: json["media"] == null ? [] : List<MediaReadDto>.from(json["media"]!.map((x) => MediaReadDto.fromMap(x))),
-        users: json["users"] == null ? [] : List<UserReadDto>.from(json["users"]!.map((x) => UserReadDto.fromMap(x))),
-        products: json["products"] == null ? [] : List<dynamic>.from(json["products"]!.map((x) => x)),
-        id: json["id"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        useCase: json["useCase"],
-        creatorUserId: json["creatorUserId"],
-        chatStatus: json["chatStatus"],
-        priority: json["priority"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "title": title,
-        "description": description,
-        "media": media == null ? [] : List<dynamic>.from(media!.map((x) => x.toMap())),
-        "users": users == null ? [] : List<dynamic>.from(users!.map((x) => x.toMap())),
-        "products": products == null ? [] : List<dynamic>.from(products!.map((x) => x)),
-        "id": id,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        "useCase": useCase,
-        "creatorUserId": creatorUserId,
-        "chatStatus": chatStatus,
-        "priority": priority,
       };
 }
