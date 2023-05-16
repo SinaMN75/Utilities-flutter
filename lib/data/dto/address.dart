@@ -12,6 +12,7 @@ class AddressReadDto {
     this.unit,
     this.postalCode,
     this.isDefault,
+    this.isSelected,
   });
 
   factory AddressReadDto.fromJson(final String str) => AddressReadDto.fromMap(json.decode(str));
@@ -54,4 +55,5 @@ class AddressReadDto {
   final String? unit;
   final String? postalCode;
   final bool? isDefault;
+  final bool? isSelected;
 }
