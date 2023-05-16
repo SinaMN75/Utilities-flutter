@@ -1,3 +1,4 @@
+export 'address.dart';
 export 'category.dart';
 export 'chat.dart';
 export 'chat_group.dart';
