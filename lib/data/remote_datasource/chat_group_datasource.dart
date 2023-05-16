@@ -9,75 +9,6 @@ class ChatGroupDataSource {
 
   ChatGroupDataSource({required this.baseUrl});
 
-  Future<void> createGroup({
-    required final ChatGroupCreateUpdateDto dto,
-    required final Function(GenericResponse<ChatGroupReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPost(
-        url: "$baseUrl/Chat/CreateGroupChat",
-        body: dto,
-        action: (final Response response) => onResponse(GenericResponse<ChatGroupReadDto>.fromJson(response.data, fromMap: ChatGroupReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
-        failure: failure,
-      );
-
-  Future<void> seenGroupChatMessage({
-    required final String id,
-    required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse response) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPost(
-        url: "$baseUrl/Chat/SeenGroupChatMessage/$id",
-        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: ChatGroupReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
-        failure: failure,
-      );
-
-  Future<void> createMessage({
-    required final CreateGroupMessage dto,
-    required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPost(
-        url: "$baseUrl/Chat/CreateGroupChatMessage",
-        body: dto,
-        action: (final Response response) => onResponse(GenericResponse<ChatGroupMessageReadDto>.fromJson(response.data, fromMap: ChatGroupMessageReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
-        failure: failure,
-      );
-
-  Future<void> updateGroup({
-    required final ChatGroupCreateUpdateDto dto,
-    required final Function(GenericResponse<ChatGroupReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPut(
-        url: "$baseUrl/Chat/UpdateGroupChat",
-        body: dto,
-        action: (final Response response) => onResponse(GenericResponse<ChatGroupReadDto>.fromJson(response.data, fromMap: ChatGroupReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
-        failure: failure,
-      );
-
-  Future<void> updateMessage({
-    required final CreateGroupMessage dto,
-    required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPut(
-        url: "$baseUrl/Chat/UpdateGroupChatMessage",
-        body: dto,
-        action: (final Response response) => onResponse(GenericResponse<ChatGroupMessageReadDto>.fromJson(response.data, fromMap: ChatGroupMessageReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
-        failure: failure,
-      );
-
   Future<void> readMyGroups({
     required final Function(GenericResponse<ChatGroupReadDto> response) onResponse,
     required final Function(GenericResponse response) onError,
@@ -117,18 +48,16 @@ class ChatGroupDataSource {
         failure: failure,
       );
 
-  Future<void> readGroupMessages({
-    required final String groupId,
-    required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
+  Future<void> createGroup({
+    required final ChatGroupCreateUpdateDto dto,
+    required final Function(GenericResponse<ChatGroupReadDto>) onResponse,
     required final Function(GenericResponse response) onError,
-    final int? pageSize,
-    final int? pageNumber,
     final Function(String error)? failure,
   }) async =>
-      httpGet(
-        url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId?pageSize=${pageSize??10000}&pageNumber=$pageNumber",
-        // url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId",
-        action: (final Response response) => onResponse(GenericResponse<ChatGroupMessageReadDto>.fromJson(response.data, fromMap: ChatGroupMessageReadDto.fromMap)),
+      httpPost(
+        url: "$baseUrl/Chat/CreateGroupChat",
+        body: dto,
+        action: (final Response response) => onResponse(GenericResponse<ChatGroupReadDto>.fromJson(response.data, fromMap: ChatGroupReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -146,6 +75,20 @@ class ChatGroupDataSource {
         failure: failure,
       );
 
+  Future<void> updateGroup({
+    required final ChatGroupCreateUpdateDto dto,
+    required final Function(GenericResponse<ChatGroupReadDto> response) onResponse,
+    required final Function(GenericResponse response) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPut(
+        url: "$baseUrl/Chat/UpdateGroupChat",
+        body: dto,
+        action: (final Response response) => onResponse(GenericResponse<ChatGroupReadDto>.fromJson(response.data, fromMap: ChatGroupReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
+        failure: failure,
+      );
+
   Future<void> exitFromGroup({
     required final String groupId,
     required final Function(GenericResponse response) onResponse,
@@ -159,6 +102,50 @@ class ChatGroupDataSource {
         failure: failure,
       );
 
+  Future<void> readGroupMessages({
+    required final String groupId,
+    required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
+    required final Function(GenericResponse response) onError,
+    final int? pageSize,
+    final int? pageNumber,
+    final Function(String error)? failure,
+  }) async =>
+      httpGet(
+        url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId?pageSize=${pageSize ?? 10000}&pageNumber=$pageNumber",
+        // url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId",
+        action: (final Response response) => onResponse(GenericResponse<ChatGroupMessageReadDto>.fromJson(response.data, fromMap: ChatGroupMessageReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
+        failure: failure,
+      );
+
+  Future<void> createMessage({
+    required final CreateGroupMessage dto,
+    required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
+    required final Function(GenericResponse response) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/Chat/CreateGroupChatMessage",
+        body: dto,
+        action: (final Response response) => onResponse(GenericResponse<ChatGroupMessageReadDto>.fromJson(response.data, fromMap: ChatGroupMessageReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
+        failure: failure,
+      );
+
+  Future<void> updateMessage({
+    required final CreateGroupMessage dto,
+    required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
+    required final Function(GenericResponse response) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPut(
+        url: "$baseUrl/Chat/UpdateGroupChatMessage",
+        body: dto,
+        action: (final Response response) => onResponse(GenericResponse<ChatGroupMessageReadDto>.fromJson(response.data, fromMap: ChatGroupMessageReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
+        failure: failure,
+      );
+
   Future<void> deleteMessage({
     required final String chatId,
     required final Function(GenericResponse response) onResponse,
@@ -168,6 +155,19 @@ class ChatGroupDataSource {
       httpDelete(
         url: "$baseUrl/Chat/DeleteGroupChatMessage/$chatId",
         action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: ChatReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
+        failure: failure,
+      );
+
+  Future<void> seenGroupChatMessage({
+    required final String id,
+    required final Function(GenericResponse) onResponse,
+    required final Function(GenericResponse response) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/Chat/SeenGroupChatMessage/$id",
+        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: ChatGroupReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

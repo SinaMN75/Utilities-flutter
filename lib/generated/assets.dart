@@ -12,7 +12,6 @@ class Assets {
   static const String componentsFormBuilder = 'lib/components/form_builder.dart';
   static const String componentsGrid = 'lib/components/grid.dart';
   static const String componentsImage = 'lib/components/image.dart';
-  static const String componentsImageThumbnail = 'lib/components/image_thumbnail.dart';
   static const String componentsItemVideo = 'lib/components/item_video.dart';
   static const String componentsOthers = 'lib/components/others.dart';
   static const String componentsOtpField = 'lib/components/otp_field.dart';
@@ -27,6 +26,7 @@ class Assets {
   static const String dataData = 'lib/data/data.dart';
   static const String dataIran = 'lib/assets/data/iran.json';
   static const String dataIranEnglish = 'lib/assets/data/iran_english.json';
+  static const String dtoAddress = 'lib/data/dto/address.dart';
   static const String dtoAppSettings = 'lib/data/dto/app_settings.dart';
   static const String dtoBlock = 'lib/data/dto/block.dart';
   static const String dtoCategory = 'lib/data/dto/category.dart';
@@ -53,7 +53,6 @@ class Assets {
   static const String dtoPushe = 'lib/data/dto/pushe.dart';
   static const String dtoReaction = 'lib/data/dto/reaction.dart';
   static const String dtoReport = 'lib/data/dto/report.dart';
-  static const String dtoReport2 = 'lib/data/dto/report2.dart';
   static const String dtoServerLocation = 'lib/data/dto/server_location.dart';
   static const String dtoShoppingCart = 'lib/data/dto/shopping_cart.dart';
   static const String dtoTeam = 'lib/data/dto/team.dart';
@@ -105,6 +104,7 @@ class Assets {
   static const String persianDatePickerPersianDatetimePicker = 'lib/utils/persian_date_picker/persian_datetime_picker.dart';
   static const String persianDatePickerTimePicker = 'lib/utils/persian_date_picker/time_picker.dart';
   static const String persianDatePickerYearPicker = 'lib/utils/persian_date_picker/year_picker.dart';
+  static const String remoteDatasourceAddressDatasource = 'lib/data/remote_datasource/address_datasource.dart';
   static const String remoteDatasourceAppSettingsDatasource = 'lib/data/remote_datasource/app_settings_datasource.dart';
   static const String remoteDatasourceBlockDatasource = 'lib/data/remote_datasource/block_datasource.dart';
   static const String remoteDatasourceCategoryDatasource = 'lib/data/remote_datasource/category_datasource.dart';
@@ -122,7 +122,6 @@ class Assets {
   static const String remoteDatasourceOrdersDatasource = 'lib/data/remote_datasource/orders_datasource.dart';
   static const String remoteDatasourcePaymentDatasource = 'lib/data/remote_datasource/payment_datasource.dart';
   static const String remoteDatasourceProductDatasource = 'lib/data/remote_datasource/product_datasource.dart';
-  static const String remoteDatasourceProductDatasource2 = 'lib/data/remote_datasource/product_datasource2.dart';
   static const String remoteDatasourcePusheDatasource = 'lib/data/remote_datasource/pushe_datasource.dart';
   static const String remoteDatasourceReportDatasource = 'lib/data/remote_datasource/report_datasource.dart';
   static const String remoteDatasourceShoppingCartDatasource = 'lib/data/remote_datasource/shopping_cart_datasource.dart';

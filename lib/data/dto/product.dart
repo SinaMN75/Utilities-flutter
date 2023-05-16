@@ -38,246 +38,6 @@ extension ProductReadDtoExtension on ProductReadDto {
       );
 }
 
-class ProductCreateUpdateDto {
-  ProductCreateUpdateDto({
-    this.id,
-    this.userId,
-    this.title,
-    this.subtitle,
-    this.description,
-    this.details,
-    this.address,
-    this.author,
-    this.phoneNumber,
-    this.link,
-    this.website,
-    this.email,
-    this.type,
-    this.unit,
-    this.useCase,
-    this.isForSale,
-    this.enabled,
-    this.isBookmarked,
-    this.latitude,
-    this.longitude,
-    this.visitsCount,
-    this.minOrder,
-    this.maxOrder,
-    this.price,
-    this.startDate,
-    this.endDate,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
-    this.discountPercent,
-    this.discountPrice,
-    this.expireDate,
-    this.user,
-    this.status,
-    this.currency,
-    this.locations,
-    this.media,
-    this.categories,
-    this.forms,
-    this.comments,
-    this.teams,
-    this.state,
-    this.stateTr1,
-    this.value1,
-    this.value2,
-    this.value3,
-    this.value4,
-    this.value5,
-    this.value6,
-    this.productInsight,
-  });
-
-  final String? id;
-  final String? userId;
-  final String? title;
-  final String? subtitle;
-  final String? description;
-  final String? details;
-  final String? address;
-  final String? author;
-  final String? phoneNumber;
-  final String? link;
-  final String? website;
-  final String? email;
-  final String? type;
-  final String? unit;
-  final String? useCase;
-  final String? state;
-  final String? stateTr1;
-  final bool? isForSale;
-  final bool? enabled;
-  final bool? isBookmarked;
-  final double? latitude;
-  final double? longitude;
-  final int? visitsCount;
-  final double? minOrder;
-  final double? maxOrder;
-  final int? discountPercent;
-  final int? discountPrice;
-  final double? price;
-  final String? startDate;
-  final String? endDate;
-  final String? createdAt;
-  final String? updatedAt;
-  final String? deletedAt;
-  final String? expireDate;
-  final String? value1;
-  final String? value2;
-  final String? value3;
-  final String? value4;
-  final String? value5;
-  final String? value6;
-  final int? status;
-  final int? currency;
-  final UserReadDto? user;
-  final ProductInsight? productInsight;
-  final List<int>? locations;
-  final List<MediaReadDto>? media;
-  final List<String>? categories;
-  final List<FormReadDto>? forms;
-  final List<CommentReadDto>? comments;
-  final List<String>? teams;
-
-  factory ProductCreateUpdateDto.fromJson(String str) => ProductCreateUpdateDto.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory ProductCreateUpdateDto.fromMap(Map<String, dynamic> json) => ProductCreateUpdateDto(
-        id: json["id"],
-        userId: json["userId"],
-        title: json["title"],
-        subtitle: json["subtitle"],
-        description: json["description"],
-        details: json["details"],
-        address: json["address"],
-        author: json["author"],
-        state: json["state"],
-        stateTr1: json["stateTr1"],
-        phoneNumber: json["phoneNumber"],
-        link: json["link"],
-        website: json["website"],
-        email: json["email"],
-        type: json["type"],
-        unit: json["unit"],
-        useCase: json["useCase"],
-        isForSale: json["isForSale"],
-        enabled: json["enabled"],
-        isBookmarked: json["isBookmarked"],
-        latitude: json["latitude"],
-        longitude: json["longitude"],
-        discountPercent: json["discountPercent"],
-        discountPrice: json["discountPrice"],
-        visitsCount: json["visitsCount"],
-        minOrder: json["minOrder"],
-        maxOrder: json["maxOrder"],
-        price: json["price"],
-        value1: json["value1"],
-        value2: json["value2"],
-        value3: json["value3"],
-        value4: json["value4"],
-        value5: json["value5"],
-        value6: json["value6"],
-        startDate: json["startDate"],
-        endDate: json["endDate"],
-        createdAt: json["createdAt"],
-        updatedAt: json["updatedAt"],
-        deletedAt: json["deletedAt"],
-        expireDate: json["expireDate"],
-        status: json["status"],
-        currency: json["currency"],
-        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-        productInsight: json["productInsight"] == null ? null : ProductInsight.fromMap(json["productInsight"]),
-        locations: json["locations"] == null ? null : List<int>.from(json["locations"].map((x) => x)),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
-        categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((x) => x)),
-        forms: json["forms"] == null ? null : List<FormReadDto>.from(json["forms"].map((x) => FormReadDto.fromMap(x))),
-        comments: json["comments"] == null ? null : List<CommentReadDto>.from(json["comments"].map((x) => CommentReadDto.fromMap(x))),
-        teams: json["teams"] == null ? null : List<String>.from(json["teams"].map((x) => x)),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "userId": userId,
-        "title": title,
-        "subtitle": subtitle,
-        "description": description,
-        "details": details,
-        "address": address,
-        "author": author,
-        "state": state,
-        "stateTr1": stateTr1,
-        "phoneNumber": phoneNumber,
-        "link": link,
-        "website": website,
-        "email": email,
-        "type": type,
-        "unit": unit,
-        "useCase": useCase,
-        "isForSale": isForSale,
-        "enabled": enabled,
-        "isBookmarked": isBookmarked,
-        "latitude": latitude,
-        "longitude": longitude,
-        "discountPercent": discountPercent,
-        "discountPrice": discountPrice,
-        "visitsCount": visitsCount,
-        "minOrder": minOrder,
-        "maxOrder": maxOrder,
-        "price": price,
-        "value1": value1,
-        "value2": value2,
-        "value3": value3,
-        "value4": value4,
-        "value5": value5,
-        "value6": value6,
-        "startDate": startDate,
-        "endDate": endDate,
-        "createdAt": createdAt,
-        "updatedAt": updatedAt,
-        "deletedAt": deletedAt,
-        "expireDate": expireDate,
-        "status": status,
-        "currency": currency,
-        "user": user == null ? null : user!.toMap(),
-        "productInsight": productInsight?.toMap(),
-        "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x)),
-        "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
-        "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x)),
-        "forms": forms == null ? null : List<dynamic>.from(forms!.map((x) => x.toMap())),
-        "comments": comments == null ? null : List<dynamic>.from(comments!.map((x) => x.toMap())),
-        "teams": teams == null ? null : List<dynamic>.from(teams!.map((x) => x)),
-      };
-}
-
-class ProductInsight {
-  ProductInsight({
-    this.reaction,
-    this.userId,
-  });
-
-  final int? reaction;
-  final String? userId;
-
-  factory ProductInsight.fromJson(String str) => ProductInsight.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory ProductInsight.fromMap(Map<String, dynamic> json) => ProductInsight(
-        reaction: json["reaction"],
-        userId: json["userId"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "reaction": reaction,
-        "userId": userId,
-      };
-}
-
 class ProductReadDto {
   ProductReadDto({
     this.id,
@@ -509,55 +269,219 @@ class ProductReadDto {
       };
 }
 
-class ProductInsightDto {
-  ProductInsightDto({
+class ProductCreateUpdateDto {
+  ProductCreateUpdateDto({
     this.id,
+    this.userId,
+    this.title,
+    this.subtitle,
+    this.description,
+    this.details,
+    this.address,
+    this.author,
+    this.phoneNumber,
+    this.link,
+    this.website,
+    this.email,
+    this.type,
+    this.unit,
+    this.useCase,
+    this.isForSale,
+    this.enabled,
+    this.isBookmarked,
+    this.latitude,
+    this.longitude,
+    this.visitsCount,
+    this.minOrder,
+    this.maxOrder,
+    this.price,
+    this.startDate,
+    this.endDate,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
-    this.reaction,
+    this.discountPercent,
+    this.discountPrice,
+    this.expireDate,
     this.user,
-    this.userId,
-    this.productEntity,
-    this.productId,
+    this.status,
+    this.currency,
+    this.locations,
+    this.media,
+    this.categories,
+    this.forms,
+    this.comments,
+    this.teams,
+    this.state,
+    this.stateTr1,
+    this.value1,
+    this.value2,
+    this.value3,
+    this.value4,
+    this.value5,
+    this.value6,
+    this.productInsight,
   });
 
   final String? id;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final DateTime? deletedAt;
-  final int? reaction;
-  final UserReadDto? user;
   final String? userId;
-  final String? productEntity;
-  final String? productId;
+  final String? title;
+  final String? subtitle;
+  final String? description;
+  final String? details;
+  final String? address;
+  final String? author;
+  final String? phoneNumber;
+  final String? link;
+  final String? website;
+  final String? email;
+  final String? type;
+  final String? unit;
+  final String? useCase;
+  final String? state;
+  final String? stateTr1;
+  final bool? isForSale;
+  final bool? enabled;
+  final bool? isBookmarked;
+  final double? latitude;
+  final double? longitude;
+  final int? visitsCount;
+  final double? minOrder;
+  final double? maxOrder;
+  final int? discountPercent;
+  final int? discountPrice;
+  final double? price;
+  final String? startDate;
+  final String? endDate;
+  final String? createdAt;
+  final String? updatedAt;
+  final String? deletedAt;
+  final String? expireDate;
+  final String? value1;
+  final String? value2;
+  final String? value3;
+  final String? value4;
+  final String? value5;
+  final String? value6;
+  final int? status;
+  final int? currency;
+  final UserReadDto? user;
+  final ProductInsight? productInsight;
+  final List<int>? locations;
+  final List<MediaReadDto>? media;
+  final List<String>? categories;
+  final List<FormReadDto>? forms;
+  final List<CommentReadDto>? comments;
+  final List<String>? teams;
 
-  factory ProductInsightDto.fromJson(String str) => ProductInsightDto.fromMap(json.decode(str));
+  factory ProductCreateUpdateDto.fromJson(String str) => ProductCreateUpdateDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ProductInsightDto.fromMap(Map<String, dynamic> json) => ProductInsightDto(
+  factory ProductCreateUpdateDto.fromMap(Map<String, dynamic> json) => ProductCreateUpdateDto(
         id: json["id"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
-        reaction: json["reaction"],
-        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         userId: json["userId"],
-        productEntity: json["productEntity"],
-        productId: json["productId"],
+        title: json["title"],
+        subtitle: json["subtitle"],
+        description: json["description"],
+        details: json["details"],
+        address: json["address"],
+        author: json["author"],
+        state: json["state"],
+        stateTr1: json["stateTr1"],
+        phoneNumber: json["phoneNumber"],
+        link: json["link"],
+        website: json["website"],
+        email: json["email"],
+        type: json["type"],
+        unit: json["unit"],
+        useCase: json["useCase"],
+        isForSale: json["isForSale"],
+        enabled: json["enabled"],
+        isBookmarked: json["isBookmarked"],
+        latitude: json["latitude"],
+        longitude: json["longitude"],
+        discountPercent: json["discountPercent"],
+        discountPrice: json["discountPrice"],
+        visitsCount: json["visitsCount"],
+        minOrder: json["minOrder"],
+        maxOrder: json["maxOrder"],
+        price: json["price"],
+        value1: json["value1"],
+        value2: json["value2"],
+        value3: json["value3"],
+        value4: json["value4"],
+        value5: json["value5"],
+        value6: json["value6"],
+        startDate: json["startDate"],
+        endDate: json["endDate"],
+        createdAt: json["createdAt"],
+        updatedAt: json["updatedAt"],
+        deletedAt: json["deletedAt"],
+        expireDate: json["expireDate"],
+        status: json["status"],
+        currency: json["currency"],
+        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
+        productInsight: json["productInsight"] == null ? null : ProductInsight.fromMap(json["productInsight"]),
+        locations: json["locations"] == null ? null : List<int>.from(json["locations"].map((x) => x)),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
+        categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((x) => x)),
+        forms: json["forms"] == null ? null : List<FormReadDto>.from(json["forms"].map((x) => FormReadDto.fromMap(x))),
+        comments: json["comments"] == null ? null : List<CommentReadDto>.from(json["comments"].map((x) => CommentReadDto.fromMap(x))),
+        teams: json["teams"] == null ? null : List<String>.from(json["teams"].map((x) => x)),
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        "deletedAt": deletedAt?.toIso8601String(),
-        "reaction": reaction,
-        "user": user?.toMap(),
         "userId": userId,
-        "productEntity": productEntity,
-        "productId": productId,
+        "title": title,
+        "subtitle": subtitle,
+        "description": description,
+        "details": details,
+        "address": address,
+        "author": author,
+        "state": state,
+        "stateTr1": stateTr1,
+        "phoneNumber": phoneNumber,
+        "link": link,
+        "website": website,
+        "email": email,
+        "type": type,
+        "unit": unit,
+        "useCase": useCase,
+        "isForSale": isForSale,
+        "enabled": enabled,
+        "isBookmarked": isBookmarked,
+        "latitude": latitude,
+        "longitude": longitude,
+        "discountPercent": discountPercent,
+        "discountPrice": discountPrice,
+        "visitsCount": visitsCount,
+        "minOrder": minOrder,
+        "maxOrder": maxOrder,
+        "price": price,
+        "value1": value1,
+        "value2": value2,
+        "value3": value3,
+        "value4": value4,
+        "value5": value5,
+        "value6": value6,
+        "startDate": startDate,
+        "endDate": endDate,
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
+        "deletedAt": deletedAt,
+        "expireDate": expireDate,
+        "status": status,
+        "currency": currency,
+        "user": user == null ? null : user!.toMap(),
+        "productInsight": productInsight?.toMap(),
+        "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x)),
+        "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
+        "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x)),
+        "forms": forms == null ? null : List<dynamic>.from(forms!.map((x) => x.toMap())),
+        "comments": comments == null ? null : List<dynamic>.from(comments!.map((x) => x.toMap())),
+        "teams": teams == null ? null : List<dynamic>.from(teams!.map((x) => x)),
       };
 }
 
@@ -906,5 +830,81 @@ class ProductFilterDto {
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
         "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((x) => x)),
         "query": query,
+      };
+}
+
+class ProductInsight {
+  ProductInsight({
+    this.reaction,
+    this.userId,
+  });
+
+  final int? reaction;
+  final String? userId;
+
+  factory ProductInsight.fromJson(String str) => ProductInsight.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ProductInsight.fromMap(Map<String, dynamic> json) => ProductInsight(
+        reaction: json["reaction"],
+        userId: json["userId"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "reaction": reaction,
+        "userId": userId,
+      };
+}
+
+class ProductInsightDto {
+  ProductInsightDto({
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
+    this.reaction,
+    this.user,
+    this.userId,
+    this.productEntity,
+    this.productId,
+  });
+
+  final String? id;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final DateTime? deletedAt;
+  final int? reaction;
+  final UserReadDto? user;
+  final String? userId;
+  final String? productEntity;
+  final String? productId;
+
+  factory ProductInsightDto.fromJson(String str) => ProductInsightDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ProductInsightDto.fromMap(Map<String, dynamic> json) => ProductInsightDto(
+        id: json["id"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
+        reaction: json["reaction"],
+        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
+        userId: json["userId"],
+        productEntity: json["productEntity"],
+        productId: json["productId"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "deletedAt": deletedAt?.toIso8601String(),
+        "reaction": reaction,
+        "user": user?.toMap(),
+        "userId": userId,
+        "productEntity": productEntity,
+        "productId": productId,
       };
 }

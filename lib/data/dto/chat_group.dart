@@ -116,36 +116,36 @@ class ChatGroupCreateUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory ChatGroupCreateUpdateDto.fromMap(Map<String, dynamic> json) => ChatGroupCreateUpdateDto(
-    id: json["id"],
-    title: json["title"],
-    description: json["description"],
-    value: json["value"],
-    typeChat: json["type"],
-    department: json["department"],
-    readIfExist: json["readIfExist"],
-    isPrivateChat: json["IsPrivateChat"],
-    chatStatus: json["chatStatus"],
-    priority: json["priority"],
-    userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
-    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-    productIds: json["productIds"] == null ? [] : List<String>.from(json["productIds"]!.map((x) => x)),
-  );
+        id: json["id"],
+        title: json["title"],
+        description: json["description"],
+        value: json["value"],
+        typeChat: json["type"],
+        department: json["department"],
+        readIfExist: json["readIfExist"],
+        isPrivateChat: json["IsPrivateChat"],
+        chatStatus: json["chatStatus"],
+        priority: json["priority"],
+        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+        productIds: json["productIds"] == null ? [] : List<String>.from(json["productIds"]!.map((x) => x)),
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "title": title,
-    "description": description,
-    "value": value,
-    "type": typeChat,
-    "department": department,
-    "readIfExist": readIfExist,
-    "IsPrivateChat": isPrivateChat,
-    "chatStatus": chatStatus,
-    "priority": priority,
-    "userIds": userIds == null ? [] : List<String>.from(userIds!.map((x) => x)),
-    "categories": categories == null ? [] : List<String>.from(categories!.map((x) => x)),
-    "productIds": productIds == null ? [] : List<String>.from(productIds!.map((x) => x)),
-  };
+        "id": id,
+        "title": title,
+        "description": description,
+        "value": value,
+        "type": typeChat,
+        "department": department,
+        "readIfExist": readIfExist,
+        "IsPrivateChat": isPrivateChat,
+        "chatStatus": chatStatus,
+        "priority": priority,
+        "userIds": userIds == null ? [] : List<String>.from(userIds!.map((x) => x)),
+        "categories": categories == null ? [] : List<String>.from(categories!.map((x) => x)),
+        "productIds": productIds == null ? [] : List<String>.from(productIds!.map((x) => x)),
+      };
 }
 
 class ChatGroupFilterDto {
@@ -236,8 +236,6 @@ class ChatGroupFilterDto {
       };
 }
 
-
-
 class ChatGroupMessageReadDto {
   ChatGroupMessageReadDto({
     this.message,
@@ -317,8 +315,6 @@ class ChatGroupMessageReadDto {
         "messageSeenBy": messageSeenBy == null ? null : List<dynamic>.from(messageSeenBy!.map((x) => x.toMap())),
       };
 }
-
-
 
 class CreateGroupMessage {
   CreateGroupMessage({

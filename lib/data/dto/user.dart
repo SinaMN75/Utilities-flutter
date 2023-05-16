@@ -1,4 +1,217 @@
 import 'package:utilities/utilities.dart';
+class UserReadDto {
+  UserReadDto({
+    this.token,
+    this.id,
+    this.fullName,
+    this.phoneNumber,
+    this.userName,
+    this.bio,
+    this.appUserName,
+    this.appPhoneNumber,
+    this.appEmail,
+    this.type,
+    this.firstName,
+    this.lastName,
+    this.headline,
+    this.website,
+    this.region,
+    this.activity,
+    this.wallet,
+    this.point,
+    this.badge,
+    this.instagram,
+    this.telegram,
+    this.whatsapp,
+    this.linkedIn,
+    this.showContactInfo,
+    this.isAdmin,
+    this.suspend,
+    this.birthDate,
+    this.gender,
+    this.followingUsers,
+    this.followedUsers,
+    this.media,
+    this.locations,
+    this.categories,
+    this.products,
+    this.countFollowers,
+    this.countProducts,
+    this.color,
+    this.bookmarkFolders,
+    this.growthRate,
+    this.isFollowing,
+    this.soundcloud,
+    this.dribble,
+    this.pinterest,
+    this.state,
+    this.countFollowing,
+    this.genderTr1,
+    this.stateTr1,
+    this.detail1,
+    this.detail2,
+  });
+
+  final String? token;
+  final String? id;
+  final String? fullName;
+  final String? phoneNumber;
+  final String? userName;
+  final String? bio;
+  final String? appUserName;
+  final String? appPhoneNumber;
+  final String? appEmail;
+  final String? type;
+  final String? firstName;
+  final String? lastName;
+  final String? headline;
+  final String? state;
+  final String? stateTr1;
+  final String? website;
+  final String? region;
+  final String? activity;
+  final double? wallet;
+  final double? point;
+  final String? badge;
+  final String? instagram;
+  final String? telegram;
+  final String? dribble;
+  final String? soundcloud;
+  final String? pinterest;
+  final String? whatsapp;
+  final String? linkedIn;
+  final bool? showContactInfo;
+  final bool? isAdmin;
+  bool? isFollowing;
+  final bool? suspend;
+  final String? birthDate;
+  final String? gender;
+  final String? genderTr1;
+  final String? followingUsers;
+  final String? followedUsers;
+  final int? countFollowers;
+  final int? countFollowing;
+  final int? countProducts;
+  final String? color;
+  final String? detail1;
+  final String? detail2;
+  final GrowthRateReadDto? growthRate;
+  final List<MediaReadDto>? media;
+  final List<LocationReadDto>? locations;
+  final List<CategoryReadDto>? categories;
+  final List<ProductReadDto>? products;
+  final List<BookmarkFolder>? bookmarkFolders;
+
+  factory UserReadDto.fromJson(String str) => UserReadDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  static ChatReadDto ff(Map<String, dynamic> _json) => ChatReadDto.fromMap(_json);
+
+  factory UserReadDto.fromMap(Map<String, dynamic> json) => UserReadDto(
+    token: json["token"],
+    id: json["id"],
+    fullName: json["fullName"],
+    phoneNumber: json["phoneNumber"],
+    userName: json["userName"],
+    bio: json["bio"],
+    appUserName: json["appUserName"],
+    appPhoneNumber: json["appPhoneNumber"],
+    appEmail: json["appEmail"],
+    type: json["type"],
+    firstName: json["firstName"],
+    state: json["state"],
+    stateTr1: json["stateTr1"],
+    lastName: json["lastName"],
+    headline: json["headline"],
+    website: json["website"],
+    followingUsers: json["followingUsers"],
+    followedUsers: json["followedUsers"],
+    instagram: json["instagram"],
+    telegram: json["telegram"],
+    whatsapp: json["whatsApp"],
+    linkedIn: json["linkedIn"],
+    soundcloud: json["soundCloud"],
+    dribble: json["dribble"],
+    pinterest: json["pinterest"],
+    region: json["region"],
+    activity: json["activity"],
+    wallet: json["wallet"],
+    point: json["point"],
+    badge: json["badge"],
+    showContactInfo: json["showContactInfo"],
+    isAdmin: json["isAdmin"],
+    suspend: json["suspend"],
+    birthDate: json["birthdate"],
+    gender: json["gender"],
+    genderTr1: json["genderTr1"],
+    countFollowers: json["countFollowers"],
+    countFollowing: json["countFollowing"],
+    countProducts: json["countProducts"],
+    color: json["color"],
+    isFollowing: json["isFollowing"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    growthRate: json["growthRate"] == null ? null : GrowthRateReadDto.fromMap(json["growthRate"]),
+    media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
+    locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].map((x) => LocationReadDto.fromMap(x))) : null,
+    categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].map((x) => CategoryReadDto.fromMap(x))),
+    products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].map((x) => ProductReadDto.fromMap(x))),
+    bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].map((x) => BookmarkFolder.fromMap(x))),
+  );
+
+  Map<String, dynamic> toMap() => {
+    "token": token,
+    "id": id,
+    "fullName": fullName,
+    "phoneNumber": phoneNumber,
+    "userName": userName,
+    "bio": bio,
+    "appUserName": appUserName,
+    "appPhoneNumber": appPhoneNumber,
+    "appEmail": appEmail,
+    "type": type,
+    "followingUsers": followingUsers,
+    "followedUsers": followedUsers,
+    "firstName": firstName,
+    "lastName": lastName,
+    "headline": headline,
+    "state": state,
+    "stateTr1": stateTr1,
+    "website": website,
+    "region": region,
+    "activity": activity,
+    "wallet": wallet,
+    "point": point,
+    "badge": badge,
+    "instagram": instagram,
+    "telegram": telegram,
+    "whatsApp": whatsapp,
+    "linkedIn": linkedIn,
+    "pinterest": pinterest,
+    "dribble": dribble,
+    "soundCloud": soundcloud,
+    "showContactInfo": showContactInfo,
+    "isAdmin": isAdmin,
+    "suspend": suspend,
+    "birthdate": birthDate,
+    "gender": gender,
+    "genderTr1": genderTr1,
+    "countFollowers": countFollowers,
+    "countFollowing": countFollowing,
+    "countProducts": countProducts,
+    "color": color,
+    "detail1": detail1,
+    "detail2": detail2,
+    "isFollowing": isFollowing,
+    "growthRate": growthRate == null ? null : growthRate!.toMap(),
+    "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
+    "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x.toMap())),
+    "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x.toMap())),
+    "products": products == null ? null : List<dynamic>.from(products!.map((x) => x.toMap())),
+    "bookmarkFolders": bookmarkFolders == null ? null : List<dynamic>.from(bookmarkFolders!.map((x) => x.toMap())),
+  };
+}
 
 class UserCreateUpdateDto {
   UserCreateUpdateDto({
@@ -172,218 +385,112 @@ class UserCreateUpdateDto {
       };
 }
 
-class UserReadDto {
-  UserReadDto({
-    this.token,
-    this.id,
-    this.fullName,
-    this.phoneNumber,
+class UserFilterDto {
+  UserFilterDto({
+    this.userId,
     this.userName,
-    this.bio,
-    this.appUserName,
-    this.appPhoneNumber,
-    this.appEmail,
-    this.type,
-    this.firstName,
-    this.lastName,
-    this.headline,
-    this.website,
-    this.region,
-    this.activity,
-    this.wallet,
-    this.point,
+    this.userNameExact,
+    this.query,
+    this.phoneNumber,
+    this.showCategories,
+    this.showFollowings,
+    this.showForms,
     this.badge,
-    this.instagram,
-    this.telegram,
-    this.whatsapp,
-    this.linkedIn,
-    this.showContactInfo,
-    this.isAdmin,
-    this.suspend,
-    this.birthDate,
-    this.gender,
-    this.followingUsers,
-    this.followedUsers,
-    this.media,
-    this.locations,
-    this.categories,
-    this.products,
-    this.countFollowers,
-    this.countProducts,
-    this.color,
-    this.bookmarkFolders,
-    this.growthRate,
-    this.isFollowing,
-    this.soundcloud,
-    this.dribble,
-    this.pinterest,
-    this.state,
-    this.countFollowing,
-    this.genderTr1,
+    this.showGender,
+    this.showLocations,
+    this.showMedia,
     this.stateTr1,
+    this.state,
+    this.appUserName,
+    this.showProducts,
+    this.showTransactions,
+    this.pageSize,
+    this.userIds,
+    this.pageNumber,
+    this.categories,
     this.detail1,
     this.detail2,
   });
 
-  final String? token;
-  final String? id;
-  final String? fullName;
-  final String? phoneNumber;
+  final String? userId;
   final String? userName;
-  final String? bio;
-  final String? appUserName;
-  final String? appPhoneNumber;
-  final String? appEmail;
-  final String? type;
-  final String? firstName;
-  final String? lastName;
-  final String? headline;
-  final String? state;
-  final String? stateTr1;
-  final String? website;
-  final String? region;
-  final String? activity;
-  final double? wallet;
-  final double? point;
+  final String? userNameExact;
+  final String? query;
+  final String? phoneNumber;
   final String? badge;
-  final String? instagram;
-  final String? telegram;
-  final String? dribble;
-  final String? soundcloud;
-  final String? pinterest;
-  final String? whatsapp;
-  final String? linkedIn;
-  final bool? showContactInfo;
-  final bool? isAdmin;
-  bool? isFollowing;
-  final bool? suspend;
-  final String? birthDate;
-  final String? gender;
-  final String? genderTr1;
-  final String? followingUsers;
-  final String? followedUsers;
-  final int? countFollowers;
-  final int? countFollowing;
-  final int? countProducts;
-  final String? color;
+  final String? appUserName;
+  final bool? showGender;
+  final bool? showMedia;
+  final bool? showCategories;
+  final bool? showLocations;
+  final bool? showForms;
+  final bool? showProducts;
+  final bool? showTransactions;
+  final bool? showFollowings;
+  final int? pageSize;
+  final String? stateTr1;
+  final String? state;
   final String? detail1;
   final String? detail2;
-  final GrowthRateReadDto? growthRate;
-  final List<MediaReadDto>? media;
-  final List<LocationReadDto>? locations;
-  final List<CategoryReadDto>? categories;
-  final List<ProductReadDto>? products;
-  final List<BookmarkFolder>? bookmarkFolders;
+  final int? pageNumber;
+  final List<String>? userIds;
+  final List<String>? categories;
 
-  factory UserReadDto.fromJson(String str) => UserReadDto.fromMap(json.decode(str));
+  factory UserFilterDto.fromJson(String str) => UserFilterDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  static ChatReadDto ff(Map<String, dynamic> _json) => ChatReadDto.fromMap(_json);
-
-  factory UserReadDto.fromMap(Map<String, dynamic> json) => UserReadDto(
-        token: json["token"],
-        id: json["id"],
-        fullName: json["fullName"],
-        phoneNumber: json["phoneNumber"],
-        userName: json["userName"],
-        bio: json["bio"],
-        appUserName: json["appUserName"],
-        appPhoneNumber: json["appPhoneNumber"],
-        appEmail: json["appEmail"],
-        type: json["type"],
-        firstName: json["firstName"],
-        state: json["state"],
-        stateTr1: json["stateTr1"],
-        lastName: json["lastName"],
-        headline: json["headline"],
-        website: json["website"],
-        followingUsers: json["followingUsers"],
-        followedUsers: json["followedUsers"],
-        instagram: json["instagram"],
-        telegram: json["telegram"],
-        whatsapp: json["whatsApp"],
-        linkedIn: json["linkedIn"],
-        soundcloud: json["soundCloud"],
-        dribble: json["dribble"],
-        pinterest: json["pinterest"],
-        region: json["region"],
-        activity: json["activity"],
-        wallet: json["wallet"],
-        point: json["point"],
-        badge: json["badge"],
-        showContactInfo: json["showContactInfo"],
-        isAdmin: json["isAdmin"],
-        suspend: json["suspend"],
-        birthDate: json["birthdate"],
-        gender: json["gender"],
-        genderTr1: json["genderTr1"],
-        countFollowers: json["countFollowers"],
-        countFollowing: json["countFollowing"],
-        countProducts: json["countProducts"],
-        color: json["color"],
-        isFollowing: json["isFollowing"],
-        detail1: json["detail1"],
-        detail2: json["detail2"],
-        growthRate: json["growthRate"] == null ? null : GrowthRateReadDto.fromMap(json["growthRate"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
-        locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].map((x) => LocationReadDto.fromMap(x))) : null,
-        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].map((x) => CategoryReadDto.fromMap(x))),
-        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].map((x) => ProductReadDto.fromMap(x))),
-        bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].map((x) => BookmarkFolder.fromMap(x))),
-      );
+  factory UserFilterDto.fromMap(Map<String, dynamic> json) => UserFilterDto(
+    userId: json["userId"],
+    userName: json["userName"],
+    badge: json["badge"],
+    userNameExact: json["userNameExact"],
+    query: json["query"],
+    phoneNumber: json["phoneNumber"],
+    showGender: json["showGender"],
+    appUserName: json["appUserName"],
+    showMedia: json["showMedia"],
+    showCategories: json["showCategories"],
+    showLocations: json["showLocations"],
+    showForms: json["showForms"],
+    showProducts: json["showProducts"],
+    showTransactions: json["showTransactions"],
+    showFollowings: json["showFollowings"],
+    pageSize: json["pageSize"],
+    stateTr1: json["stateTr1"],
+    state: json["state"],
+    pageNumber: json["pageNumber"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+    userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].map((x) => x)),
+  );
 
   Map<String, dynamic> toMap() => {
-        "token": token,
-        "id": id,
-        "fullName": fullName,
-        "phoneNumber": phoneNumber,
-        "userName": userName,
-        "bio": bio,
-        "appUserName": appUserName,
-        "appPhoneNumber": appPhoneNumber,
-        "appEmail": appEmail,
-        "type": type,
-        "followingUsers": followingUsers,
-        "followedUsers": followedUsers,
-        "firstName": firstName,
-        "lastName": lastName,
-        "headline": headline,
-        "state": state,
-        "stateTr1": stateTr1,
-        "website": website,
-        "region": region,
-        "activity": activity,
-        "wallet": wallet,
-        "point": point,
-        "badge": badge,
-        "instagram": instagram,
-        "telegram": telegram,
-        "whatsApp": whatsapp,
-        "linkedIn": linkedIn,
-        "pinterest": pinterest,
-        "dribble": dribble,
-        "soundCloud": soundcloud,
-        "showContactInfo": showContactInfo,
-        "isAdmin": isAdmin,
-        "suspend": suspend,
-        "birthdate": birthDate,
-        "gender": gender,
-        "genderTr1": genderTr1,
-        "countFollowers": countFollowers,
-        "countFollowing": countFollowing,
-        "countProducts": countProducts,
-        "color": color,
-        "detail1": detail1,
-        "detail2": detail2,
-        "isFollowing": isFollowing,
-        "growthRate": growthRate == null ? null : growthRate!.toMap(),
-        "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
-        "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x.toMap())),
-        "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x.toMap())),
-        "products": products == null ? null : List<dynamic>.from(products!.map((x) => x.toMap())),
-        "bookmarkFolders": bookmarkFolders == null ? null : List<dynamic>.from(bookmarkFolders!.map((x) => x.toMap())),
-      };
+    "userId": userId,
+    "userName": userName,
+    "userNameExact": userNameExact,
+    "query": query,
+    "badge": badge,
+    "phoneNumber": phoneNumber,
+    "showGender": showGender,
+    "appUserName": appUserName,
+    "showMedia": showMedia,
+    "showCategories": showCategories,
+    "showLocations": showLocations,
+    "showForms": showForms,
+    "showProducts": showProducts,
+    "showTransactions": showTransactions,
+    "showFollowings": showFollowings,
+    "pageSize": pageSize,
+    "stateTr1": stateTr1,
+    "state": state,
+    "pageNumber": pageNumber,
+    "detail1": detail1,
+    "detail2": detail2,
+    "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((x) => x)),
+    "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((x) => x)),
+  };
 }
 
 class GetMobileVerificationCodeForLoginDto {
@@ -630,110 +737,4 @@ class BookmarkFolder {
       };
 }
 
-class UserFilterDto {
-  UserFilterDto({
-    this.userId,
-    this.userName,
-    this.userNameExact,
-    this.query,
-    this.phoneNumber,
-    this.showCategories,
-    this.showFollowings,
-    this.showForms,
-    this.badge,
-    this.showGender,
-    this.showLocations,
-    this.showMedia,
-    this.stateTr1,
-    this.state,
-    this.appUserName,
-    this.showProducts,
-    this.showTransactions,
-    this.pageSize,
-    this.userIds,
-    this.pageNumber,
-    this.categories,
-    this.detail1,
-    this.detail2,
-  });
 
-  final String? userId;
-  final String? userName;
-  final String? userNameExact;
-  final String? query;
-  final String? phoneNumber;
-  final String? badge;
-  final String? appUserName;
-  final bool? showGender;
-  final bool? showMedia;
-  final bool? showCategories;
-  final bool? showLocations;
-  final bool? showForms;
-  final bool? showProducts;
-  final bool? showTransactions;
-  final bool? showFollowings;
-  final int? pageSize;
-  final String? stateTr1;
-  final String? state;
-  final String? detail1;
-  final String? detail2;
-  final int? pageNumber;
-  final List<String>? userIds;
-  final List<String>? categories;
-
-  factory UserFilterDto.fromJson(String str) => UserFilterDto.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory UserFilterDto.fromMap(Map<String, dynamic> json) => UserFilterDto(
-        userId: json["userId"],
-        userName: json["userName"],
-        badge: json["badge"],
-        userNameExact: json["userNameExact"],
-        query: json["query"],
-        phoneNumber: json["phoneNumber"],
-        showGender: json["showGender"],
-        appUserName: json["appUserName"],
-        showMedia: json["showMedia"],
-        showCategories: json["showCategories"],
-        showLocations: json["showLocations"],
-        showForms: json["showForms"],
-        showProducts: json["showProducts"],
-        showTransactions: json["showTransactions"],
-        showFollowings: json["showFollowings"],
-        pageSize: json["pageSize"],
-        stateTr1: json["stateTr1"],
-        state: json["state"],
-        pageNumber: json["pageNumber"],
-        detail1: json["detail1"],
-        detail2: json["detail2"],
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-        userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].map((x) => x)),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "userId": userId,
-        "userName": userName,
-        "userNameExact": userNameExact,
-        "query": query,
-        "badge": badge,
-        "phoneNumber": phoneNumber,
-        "showGender": showGender,
-        "appUserName": appUserName,
-        "showMedia": showMedia,
-        "showCategories": showCategories,
-        "showLocations": showLocations,
-        "showForms": showForms,
-        "showProducts": showProducts,
-        "showTransactions": showTransactions,
-        "showFollowings": showFollowings,
-        "pageSize": pageSize,
-        "stateTr1": stateTr1,
-        "state": state,
-        "pageNumber": pageNumber,
-        "detail1": detail1,
-        "detail2": detail2,
-        "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((x) => x)),
-        "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((x) => x)),
-      };
-}

@@ -4,7 +4,6 @@ export 'carousel_slider.dart';
 export 'container.dart';
 export 'grid.dart';
 export 'image.dart';
-export 'image_thumbnail.dart';
 export 'item_video.dart';
 export 'others.dart';
 export 'otp_field.dart';

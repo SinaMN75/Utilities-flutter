@@ -48,19 +48,6 @@ class ReportDataSource {
         failure: failure,
       );
 
-  // Future<void> delete({
-  //   required final String id,
-  //   required final Function(GenericResponse) onResponse,
-  //   required final Function(GenericResponse response) onError,
-  //   final Function(String error)? failure,
-  // }) async =>
-  //     httpDelete(
-  //       url: "$baseUrl/Report/$id",
-  //       action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)),
-  //       error: (Response response) => onError(GenericResponse.fromJson(response.data)),
-  //       failure: failure,
-  //     );
-
   Future<void> filter({
     required final ReportFilterDto filter,
     required final Function(GenericResponse<ReportReadDto>) onResponse,
