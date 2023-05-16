@@ -8,7 +8,6 @@ class Assets {
   static const String componentsComponents = 'lib/components/components.dart';
   static const String componentsContainer = 'lib/components/container.dart';
   static const String componentsDottedBorder = 'lib/components/dotted_border.dart';
-  static const String componentsDottedLine = 'lib/components/dotted_line.dart';
   static const String componentsFormBuilder = 'lib/components/form_builder.dart';
   static const String componentsGrid = 'lib/components/grid.dart';
   static const String componentsImage = 'lib/components/image.dart';
