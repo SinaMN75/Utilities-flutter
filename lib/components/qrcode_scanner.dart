@@ -1,3 +1,11 @@
+///https://pub.dev/packages/mobile_scanner
+///
+///iOS:
+/// <key>NSCameraUsageDescription</key>
+/// <string>This app needs camera access to scan QR codes</string>
+/// <key>NSPhotoLibraryUsageDescription</key>
+/// <string>This app needs photos access to get QR code from photo library</string>
+
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:utilities/utilities.dart';
