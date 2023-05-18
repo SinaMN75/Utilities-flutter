@@ -269,6 +269,7 @@ enum UseCaseMedia {
   video("video"),
   media("media"),
   cover("cover"),
+  apk("apk"),
   profile("profile"),
   chat("Chat"),
   bio("bio"),
