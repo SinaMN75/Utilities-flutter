@@ -303,6 +303,8 @@ enum TypeCategory {
   pdf("pdf"),
   group("group"),
   chanel("chanel"),
+  app("app"),
+  game("game"),
   commodity("commodity"),
   job("job"),
   Physical('Physical');
