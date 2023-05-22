@@ -184,7 +184,10 @@ enum UseCaseProduct {
   story("story"),
   physicalProduct("physicalProduct"),
   digitalProduct("digitalProduct"),
-  magazine("magazine");
+  magazine("magazine"),
+  adHiring("hiringAd"),
+  adProject("adProject"),
+  adEmployee("adEmployee");
 
   const UseCaseProduct(this.title);
 
