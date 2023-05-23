@@ -1,5 +1,56 @@
 import 'package:utilities/utilities.dart';
 class UserReadDto {
+  UserReadDto({
+    this.token,
+    this.id,
+    this.fullName,
+    this.phoneNumber,
+    this.userName,
+    this.bio,
+    this.appUserName,
+    this.appPhoneNumber,
+    this.appEmail,
+    this.type,
+    this.firstName,
+    this.lastName,
+    this.headline,
+    this.website,
+    this.region,
+    this.activity,
+    this.wallet,
+    this.point,
+    this.badge,
+    this.instagram,
+    this.telegram,
+    this.whatsapp,
+    this.linkedIn,
+    this.showContactInfo,
+    this.isAdmin,
+    this.suspend,
+    this.birthDate,
+    this.gender,
+    this.followingUsers,
+    this.followedUsers,
+    this.media,
+    this.locations,
+    this.categories,
+    this.products,
+    this.countFollowers,
+    this.countProducts,
+    this.color,
+    this.bookmarkFolders,
+    this.growthRate,
+    this.isFollowing,
+    this.soundcloud,
+    this.dribble,
+    this.pinterest,
+    this.state,
+    this.countFollowing,
+    this.genderTr1,
+    this.stateTr1,
+    this.detail1,
+    this.detail2,
+  });
 
   factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
 
@@ -54,57 +105,6 @@ class UserReadDto {
     products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].map((final x) => ProductReadDto.fromMap(x))),
     bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].map((final x) => BookmarkFolder.fromMap(x))),
   );
-  UserReadDto({
-    this.token,
-    this.id,
-    this.fullName,
-    this.phoneNumber,
-    this.userName,
-    this.bio,
-    this.appUserName,
-    this.appPhoneNumber,
-    this.appEmail,
-    this.type,
-    this.firstName,
-    this.lastName,
-    this.headline,
-    this.website,
-    this.region,
-    this.activity,
-    this.wallet,
-    this.point,
-    this.badge,
-    this.instagram,
-    this.telegram,
-    this.whatsapp,
-    this.linkedIn,
-    this.showContactInfo,
-    this.isAdmin,
-    this.suspend,
-    this.birthDate,
-    this.gender,
-    this.followingUsers,
-    this.followedUsers,
-    this.media,
-    this.locations,
-    this.categories,
-    this.products,
-    this.countFollowers,
-    this.countProducts,
-    this.color,
-    this.bookmarkFolders,
-    this.growthRate,
-    this.isFollowing,
-    this.soundcloud,
-    this.dribble,
-    this.pinterest,
-    this.state,
-    this.countFollowing,
-    this.genderTr1,
-    this.stateTr1,
-    this.detail1,
-    this.detail2,
-  });
 
   final String? token;
   final String? id;
@@ -214,6 +214,47 @@ class UserReadDto {
 }
 
 class UserCreateUpdateDto {
+  UserCreateUpdateDto({
+    this.id,
+    this.phoneNumber,
+    this.userName,
+    this.firstName,
+    this.lastName,
+    this.fullName,
+    this.bio,
+    this.headline,
+    this.website,
+    this.instagram,
+    this.telegram,
+    this.whatsapp,
+    this.linkedIn,
+    this.password,
+    this.appUserName,
+    this.appPhoneNumber,
+    this.appEmail,
+    this.type,
+    this.region,
+    this.activity,
+    this.color,
+    this.badge,
+    this.point,
+    this.suspend,
+    this.wallet,
+    this.showContactInfo,
+    this.birthDate,
+    this.gender,
+    this.categories,
+    this.locations,
+    this.pinterest,
+    this.soundcloud,
+    this.dribble,
+    this.email,
+    this.state,
+    this.stateTr1,
+    this.genderTr1,
+    this.detail1,
+    this.detail2,
+  });
 
   factory UserCreateUpdateDto.fromJson(final String str) => UserCreateUpdateDto.fromMap(json.decode(str));
 
@@ -258,47 +299,6 @@ class UserCreateUpdateDto {
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((final x) => x)),
         locations: json["locations"] == null ? null : List<int>.from(json["locations"].map((final x) => x)),
       );
-  UserCreateUpdateDto({
-    this.id,
-    this.phoneNumber,
-    this.userName,
-    this.firstName,
-    this.lastName,
-    this.fullName,
-    this.bio,
-    this.headline,
-    this.website,
-    this.instagram,
-    this.telegram,
-    this.whatsapp,
-    this.linkedIn,
-    this.password,
-    this.appUserName,
-    this.appPhoneNumber,
-    this.appEmail,
-    this.type,
-    this.region,
-    this.activity,
-    this.color,
-    this.badge,
-    this.point,
-    this.suspend,
-    this.wallet,
-    this.showContactInfo,
-    this.birthDate,
-    this.gender,
-    this.categories,
-    this.locations,
-    this.pinterest,
-    this.soundcloud,
-    this.dribble,
-    this.email,
-    this.state,
-    this.stateTr1,
-    this.genderTr1,
-    this.detail1,
-    this.detail2,
-  });
 
   final String? id;
   final String? phoneNumber;
@@ -386,6 +386,31 @@ class UserCreateUpdateDto {
 }
 
 class UserFilterDto {
+  UserFilterDto({
+    this.userId,
+    this.userName,
+    this.userNameExact,
+    this.query,
+    this.phoneNumber,
+    this.showCategories,
+    this.showFollowings,
+    this.showForms,
+    this.badge,
+    this.showGender,
+    this.showLocations,
+    this.showMedia,
+    this.stateTr1,
+    this.state,
+    this.appUserName,
+    this.showProducts,
+    this.showTransactions,
+    this.pageSize,
+    this.userIds,
+    this.pageNumber,
+    this.categories,
+    this.detail1,
+    this.detail2,
+  });
 
   factory UserFilterDto.fromJson(final String str) => UserFilterDto.fromMap(json.decode(str));
 
@@ -414,31 +439,6 @@ class UserFilterDto {
     categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
     userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].map((final x) => x)),
   );
-  UserFilterDto({
-    this.userId,
-    this.userName,
-    this.userNameExact,
-    this.query,
-    this.phoneNumber,
-    this.showCategories,
-    this.showFollowings,
-    this.showForms,
-    this.badge,
-    this.showGender,
-    this.showLocations,
-    this.showMedia,
-    this.stateTr1,
-    this.state,
-    this.appUserName,
-    this.showProducts,
-    this.showTransactions,
-    this.pageSize,
-    this.userIds,
-    this.pageNumber,
-    this.categories,
-    this.detail1,
-    this.detail2,
-  });
 
   final String? userId;
   final String? userName;
@@ -494,6 +494,11 @@ class UserFilterDto {
 }
 
 class GetMobileVerificationCodeForLoginDto {
+  GetMobileVerificationCodeForLoginDto({
+    this.mobile,
+    this.sendSms,
+    this.token,
+  });
 
   factory GetMobileVerificationCodeForLoginDto.fromJson(final String str) => GetMobileVerificationCodeForLoginDto.fromMap(json.decode(str));
 
@@ -502,11 +507,6 @@ class GetMobileVerificationCodeForLoginDto {
         sendSms: json["sendSMS"],
         token: json["token"],
       );
-  GetMobileVerificationCodeForLoginDto({
-    this.mobile,
-    this.sendSms,
-    this.token,
-  });
 
   final String? mobile;
   final String? token;
@@ -522,6 +522,12 @@ class GetMobileVerificationCodeForLoginDto {
 }
 
 class LoginWithEmail {
+  LoginWithEmail({
+    this.email,
+    this.password,
+    this.returnUrl,
+    this.keep,
+  });
 
   factory LoginWithEmail.fromJson(final String str) => LoginWithEmail.fromMap(json.decode(str));
 
@@ -531,12 +537,6 @@ class LoginWithEmail {
         returnUrl: json["returnUrl"],
         keep: json["keep"],
       );
-  LoginWithEmail({
-    this.email,
-    this.password,
-    this.returnUrl,
-    this.keep,
-  });
 
   final String? email;
   final String? password;
@@ -554,6 +554,11 @@ class LoginWithEmail {
 }
 
 class LoginWithPassword {
+  LoginWithPassword({
+    this.email,
+    this.userName,
+    this.password,
+  });
 
   factory LoginWithPassword.fromJson(final String str) => LoginWithPassword.fromMap(json.decode(str));
 
@@ -562,11 +567,6 @@ class LoginWithPassword {
         userName: json["userName"],
         password: json["password"],
       );
-  LoginWithPassword({
-    this.email,
-    this.userName,
-    this.password,
-  });
 
   final String? email;
   final String? password;
@@ -582,6 +582,10 @@ class LoginWithPassword {
 }
 
 class VerifyMobileForLoginDto {
+  VerifyMobileForLoginDto({
+    this.mobile,
+    this.verificationCode,
+  });
 
   factory VerifyMobileForLoginDto.fromJson(final String str) => VerifyMobileForLoginDto.fromMap(json.decode(str));
 
@@ -589,10 +593,6 @@ class VerifyMobileForLoginDto {
         mobile: json["mobile"],
         verificationCode: json["verificationCode"],
       );
-  VerifyMobileForLoginDto({
-    this.mobile,
-    this.verificationCode,
-  });
 
   final String? mobile;
   final String? verificationCode;
@@ -606,6 +606,10 @@ class VerifyMobileForLoginDto {
 }
 
 class ActiveMobileDto {
+  ActiveMobileDto({
+    this.code,
+    this.mobile,
+  });
 
   factory ActiveMobileDto.fromJson(final String str) => ActiveMobileDto.fromMap(json.decode(str));
 
@@ -613,10 +617,6 @@ class ActiveMobileDto {
         code: json["code"],
         mobile: json["mobile"],
       );
-  ActiveMobileDto({
-    this.code,
-    this.mobile,
-  });
 
   final String? code;
   final String? mobile;
@@ -630,6 +630,25 @@ class ActiveMobileDto {
 }
 
 class GrowthRateReadDto {
+  GrowthRateReadDto({
+    this.id,
+    this.interActive1,
+    this.interActive2,
+    this.interActive3,
+    this.interActive4,
+    this.interActive5,
+    this.interActive6,
+    this.interActive7,
+    this.feedback1,
+    this.feedback2,
+    this.feedback3,
+    this.feedback4,
+    this.feedback5,
+    this.feedback6,
+    this.feedback7,
+    this.totalInterActive,
+    this.totalFeedback,
+  });
 
   factory GrowthRateReadDto.fromJson(final String str) => GrowthRateReadDto.fromMap(json.decode(str));
 
@@ -652,25 +671,6 @@ class GrowthRateReadDto {
         totalInterActive: json["totalInterActive"],
         totalFeedback: json["totalFeedback"],
       );
-  GrowthRateReadDto({
-    this.id,
-    this.interActive1,
-    this.interActive2,
-    this.interActive3,
-    this.interActive4,
-    this.interActive5,
-    this.interActive6,
-    this.interActive7,
-    this.feedback1,
-    this.feedback2,
-    this.feedback3,
-    this.feedback4,
-    this.feedback5,
-    this.feedback6,
-    this.feedback7,
-    this.totalInterActive,
-    this.totalFeedback,
-  });
 
   final String? id;
   final double? interActive1;
@@ -714,6 +714,10 @@ class GrowthRateReadDto {
 }
 
 class BookmarkFolder {
+  BookmarkFolder({
+    this.id,
+    this.title,
+  });
 
   factory BookmarkFolder.fromJson(final String str) => BookmarkFolder.fromMap(json.decode(str));
 
@@ -721,10 +725,6 @@ class BookmarkFolder {
         id: json["id"],
         title: json["title"],
       );
-  BookmarkFolder({
-    this.id,
-    this.title,
-  });
 
   final String? id;
   final String? title;
@@ -738,6 +738,11 @@ class BookmarkFolder {
 }
 
 class AuthenticateDto {
+  AuthenticateDto({
+    this.isForeigner,
+    this.code,
+    this.shebaNumber,
+  });
 
   factory AuthenticateDto.fromJson(final String str) => AuthenticateDto.fromMap(json.decode(str));
 
@@ -746,13 +751,8 @@ class AuthenticateDto {
     shebaNumber: json["shebaNumber"],
     isForeigner: json["isForeigner"],
   );
-  AuthenticateDto({
-    this.isForeigner,
-    this.code,
-    this.shebaNumber,
-  });
 
-  final String? isForeigner;
+  final bool? isForeigner;
   final String? code;
   final String? shebaNumber;
 
