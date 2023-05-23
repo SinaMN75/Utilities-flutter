@@ -2,13 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/utils/dio_interceptor.dart';
 
-class Withdraw {
+class WithdrawDataSource {
 
-  Withdraw({required this.baseUrl});
+  WithdrawDataSource({required this.baseUrl});
 
   final String baseUrl;
 
-  Future<void> increaseWalletBalance({
+  Future<void> withdraw({
     required final String amount,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse response) onError,
