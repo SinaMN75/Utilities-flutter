@@ -102,13 +102,13 @@ class UserReadDto {
   final List<ProductReadDto>? products;
   final List<BookmarkFolder>? bookmarkFolders;
 
-  factory UserReadDto.fromJson(String str) => UserReadDto.fromMap(json.decode(str));
+  factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  static ChatReadDto ff(Map<String, dynamic> _json) => ChatReadDto.fromMap(_json);
+  static ChatReadDto ff(final Map<String, dynamic> _json) => ChatReadDto.fromMap(_json);
 
-  factory UserReadDto.fromMap(Map<String, dynamic> json) => UserReadDto(
+  factory UserReadDto.fromMap(final Map<String, dynamic> json) => UserReadDto(
     token: json["token"],
     id: json["id"],
     fullName: json["fullName"],
@@ -153,11 +153,11 @@ class UserReadDto {
     detail1: json["detail1"],
     detail2: json["detail2"],
     growthRate: json["growthRate"] == null ? null : GrowthRateReadDto.fromMap(json["growthRate"]),
-    media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
-    locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].map((x) => LocationReadDto.fromMap(x))) : null,
-    categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].map((x) => CategoryReadDto.fromMap(x))),
-    products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].map((x) => ProductReadDto.fromMap(x))),
-    bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].map((x) => BookmarkFolder.fromMap(x))),
+    media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((final x) => MediaReadDto.fromMap(x))),
+    locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].map((final x) => LocationReadDto.fromMap(x))) : null,
+    categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].map((final x) => CategoryReadDto.fromMap(x))),
+    products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].map((final x) => ProductReadDto.fromMap(x))),
+    bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].map((final x) => BookmarkFolder.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
@@ -205,11 +205,11 @@ class UserReadDto {
     "detail2": detail2,
     "isFollowing": isFollowing,
     "growthRate": growthRate == null ? null : growthRate!.toMap(),
-    "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
-    "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x.toMap())),
-    "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x.toMap())),
-    "products": products == null ? null : List<dynamic>.from(products!.map((x) => x.toMap())),
-    "bookmarkFolders": bookmarkFolders == null ? null : List<dynamic>.from(bookmarkFolders!.map((x) => x.toMap())),
+    "media": media == null ? null : List<dynamic>.from(media!.map((final x) => x.toMap())),
+    "locations": locations == null ? null : List<dynamic>.from(locations!.map((final x) => x.toMap())),
+    "categories": categories == null ? null : List<dynamic>.from(categories!.map((final x) => x.toMap())),
+    "products": products == null ? null : List<dynamic>.from(products!.map((final x) => x.toMap())),
+    "bookmarkFolders": bookmarkFolders == null ? null : List<dynamic>.from(bookmarkFolders!.map((final x) => x.toMap())),
   };
 }
 
@@ -296,11 +296,11 @@ class UserCreateUpdateDto {
   final List<String>? categories;
   final List<int>? locations;
 
-  factory UserCreateUpdateDto.fromJson(String str) => UserCreateUpdateDto.fromMap(json.decode(str));
+  factory UserCreateUpdateDto.fromJson(final String str) => UserCreateUpdateDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory UserCreateUpdateDto.fromMap(Map<String, dynamic> json) => UserCreateUpdateDto(
+  factory UserCreateUpdateDto.fromMap(final Map<String, dynamic> json) => UserCreateUpdateDto(
         id: json["id"],
         phoneNumber: json["phoneNumber"],
         userName: json["userName"],
@@ -338,8 +338,8 @@ class UserCreateUpdateDto {
         genderTr1: json["genderTr1"],
         detail1: json["detail1"],
         detail2: json["detail2"],
-        categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((x) => x)),
-        locations: json["locations"] == null ? null : List<int>.from(json["locations"].map((x) => x)),
+        categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((final x) => x)),
+        locations: json["locations"] == null ? null : List<int>.from(json["locations"].map((final x) => x)),
       );
 
   Map<String, dynamic> toMap() => {
@@ -380,8 +380,8 @@ class UserCreateUpdateDto {
         "genderTr1": genderTr1,
         "detail1": detail1,
         "detail2": detail2,
-        "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x)),
-        "locations": locations == null ? null : List<dynamic>.from(locations!.map((x) => x)),
+        "categories": categories == null ? null : List<dynamic>.from(categories!.map((final x) => x)),
+        "locations": locations == null ? null : List<dynamic>.from(locations!.map((final x) => x)),
       };
 }
 
@@ -436,11 +436,11 @@ class UserFilterDto {
   final List<String>? userIds;
   final List<String>? categories;
 
-  factory UserFilterDto.fromJson(String str) => UserFilterDto.fromMap(json.decode(str));
+  factory UserFilterDto.fromJson(final String str) => UserFilterDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory UserFilterDto.fromMap(Map<String, dynamic> json) => UserFilterDto(
+  factory UserFilterDto.fromMap(final Map<String, dynamic> json) => UserFilterDto(
     userId: json["userId"],
     userName: json["userName"],
     badge: json["badge"],
@@ -462,8 +462,8 @@ class UserFilterDto {
     pageNumber: json["pageNumber"],
     detail1: json["detail1"],
     detail2: json["detail2"],
-    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-    userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].map((x) => x)),
+    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
+    userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].map((final x) => x)),
   );
 
   Map<String, dynamic> toMap() => {
@@ -488,8 +488,8 @@ class UserFilterDto {
     "pageNumber": pageNumber,
     "detail1": detail1,
     "detail2": detail2,
-    "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((x) => x)),
-    "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((x) => x)),
+    "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((final x) => x)),
+    "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((final x) => x)),
   };
 }
 
@@ -504,11 +504,11 @@ class GetMobileVerificationCodeForLoginDto {
   final String? token;
   final bool? sendSms;
 
-  factory GetMobileVerificationCodeForLoginDto.fromJson(String str) => GetMobileVerificationCodeForLoginDto.fromMap(json.decode(str));
+  factory GetMobileVerificationCodeForLoginDto.fromJson(final String str) => GetMobileVerificationCodeForLoginDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory GetMobileVerificationCodeForLoginDto.fromMap(Map<String, dynamic> json) => GetMobileVerificationCodeForLoginDto(
+  factory GetMobileVerificationCodeForLoginDto.fromMap(final Map<String, dynamic> json) => GetMobileVerificationCodeForLoginDto(
         mobile: json["mobile"],
         sendSms: json["sendSMS"],
         token: json["token"],
@@ -534,11 +534,11 @@ class LoginWithEmail {
   final String? returnUrl;
   final bool? keep;
 
-  factory LoginWithEmail.fromJson(String str) => LoginWithEmail.fromMap(json.decode(str));
+  factory LoginWithEmail.fromJson(final String str) => LoginWithEmail.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory LoginWithEmail.fromMap(Map<String, dynamic> json) => LoginWithEmail(
+  factory LoginWithEmail.fromMap(final Map<String, dynamic> json) => LoginWithEmail(
         email: json["email"],
         password: json["password"],
         returnUrl: json["returnUrl"],
@@ -564,11 +564,11 @@ class LoginWithPassword {
   final String? password;
   final String? userName;
 
-  factory LoginWithPassword.fromJson(String str) => LoginWithPassword.fromMap(json.decode(str));
+  factory LoginWithPassword.fromJson(final String str) => LoginWithPassword.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory LoginWithPassword.fromMap(Map<String, dynamic> json) => LoginWithPassword(
+  factory LoginWithPassword.fromMap(final Map<String, dynamic> json) => LoginWithPassword(
         email: json["email"],
         userName: json["userName"],
         password: json["password"],
@@ -590,11 +590,11 @@ class VerifyMobileForLoginDto {
   final String? mobile;
   final String? verificationCode;
 
-  factory VerifyMobileForLoginDto.fromJson(String str) => VerifyMobileForLoginDto.fromMap(json.decode(str));
+  factory VerifyMobileForLoginDto.fromJson(final String str) => VerifyMobileForLoginDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory VerifyMobileForLoginDto.fromMap(Map<String, dynamic> json) => VerifyMobileForLoginDto(
+  factory VerifyMobileForLoginDto.fromMap(final Map<String, dynamic> json) => VerifyMobileForLoginDto(
         mobile: json["mobile"],
         verificationCode: json["verificationCode"],
       );
@@ -614,11 +614,11 @@ class ActiveMobileDto {
   final String? code;
   final String? mobile;
 
-  factory ActiveMobileDto.fromJson(String str) => ActiveMobileDto.fromMap(json.decode(str));
+  factory ActiveMobileDto.fromJson(final String str) => ActiveMobileDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ActiveMobileDto.fromMap(Map<String, dynamic> json) => ActiveMobileDto(
+  factory ActiveMobileDto.fromMap(final Map<String, dynamic> json) => ActiveMobileDto(
         code: json["code"],
         mobile: json["mobile"],
       );
@@ -668,11 +668,11 @@ class GrowthRateReadDto {
   final double? totalInterActive;
   final double? totalFeedback;
 
-  factory GrowthRateReadDto.fromJson(String str) => GrowthRateReadDto.fromMap(json.decode(str));
+  factory GrowthRateReadDto.fromJson(final String str) => GrowthRateReadDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory GrowthRateReadDto.fromMap(Map<String, dynamic> json) => GrowthRateReadDto(
+  factory GrowthRateReadDto.fromMap(final Map<String, dynamic> json) => GrowthRateReadDto(
         id: json["id"],
         interActive1: json["interActive1"],
         interActive2: json["interActive2"],
@@ -722,11 +722,11 @@ class BookmarkFolder {
   final String? id;
   final String? title;
 
-  factory BookmarkFolder.fromJson(String str) => BookmarkFolder.fromMap(json.decode(str));
+  factory BookmarkFolder.fromJson(final String str) => BookmarkFolder.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory BookmarkFolder.fromMap(Map<String, dynamic> json) => BookmarkFolder(
+  factory BookmarkFolder.fromMap(final Map<String, dynamic> json) => BookmarkFolder(
         id: json["id"],
         title: json["title"],
       );
@@ -736,5 +736,35 @@ class BookmarkFolder {
         "title": title,
       };
 }
+
+class AuthorizeDto {
+  AuthorizeDto({
+    this.isForeigner,
+    this.code,
+    this.shebaNumber,
+  });
+
+  final String? isForeigner;
+  final String? code;
+  final String? shebaNumber;
+
+  factory AuthorizeDto.fromJson(final String str) => AuthorizeDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory AuthorizeDto.fromMap(final Map<String, dynamic> json) => AuthorizeDto(
+    code: json["code"],
+    shebaNumber: json["shebaNumber"],
+    isForeigner: json["isForeigner"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "code": code,
+    "shebaNumber": shebaNumber,
+    "isForeigner": isForeigner,
+  };
+}
+
+
 
 
