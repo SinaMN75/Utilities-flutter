@@ -42,9 +42,9 @@ Future<void> request(
     } else {
       error(response);
     }
-  } catch (e) {
+  } on Exception catch (error) {
     if (failure != null) {
-      failure(e.toString());
+      failure(error.toString());
     }
   }
 
@@ -52,7 +52,7 @@ Future<void> request(
   print("${httpMethod.toString()}\n$url\n${response.statusCode}");
   try {
     print(body.toJson());
-  } catch (e) {}
+  } on Exception catch (_) {}
   print(response.data);
 }
 

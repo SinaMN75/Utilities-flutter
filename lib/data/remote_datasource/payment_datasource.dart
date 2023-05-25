@@ -22,7 +22,7 @@ class PaymentDataSource {
         headers: <String, String>{
           "Authorization": "${getString(UtilitiesConstants.token)}",
         },
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: PaymentReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: PaymentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -38,7 +38,7 @@ class PaymentDataSource {
         headers: <String, String>{
           "Authorization": "${getString(UtilitiesConstants.token)}",
         },
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: PaymentReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: PaymentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

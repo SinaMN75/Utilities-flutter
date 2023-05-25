@@ -21,7 +21,7 @@ class TransactionDataSource {
         headers: <String, String>{
           "Authorization": "${getString(UtilitiesConstants.token)}",
         },
-        action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.data, fromMap: TransactionReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.data, fromMap: TransactionReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

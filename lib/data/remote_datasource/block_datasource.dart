@@ -28,7 +28,7 @@ class BlockDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Block",
-        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -40,7 +40,7 @@ class BlockDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Block/ReadMine",
-        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

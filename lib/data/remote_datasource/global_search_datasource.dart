@@ -12,7 +12,7 @@ class GlobalSearchDataSource {
 //     httpPost(
 //       url: "$baseUrl/GlobalSearch",
 //       body: dto,
-//       action: (Response response) => onResponse(GenericResponse<GlobalSearchReadDto>.fromJson(response.data, fromMap: GlobalSearchReadDto.fromMap)).toList(),
+//       action: (Response response) => onResponse(GenericResponse<GlobalSearchReadDto>.fromJson(response.data, fromMap: GlobalSearchReadDto.fromMap)),
 //       error: (Response response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
 //       failure: failure,
 //     );

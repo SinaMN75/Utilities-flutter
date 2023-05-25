@@ -15,7 +15,7 @@ class AddressDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/address/ReadMyAddresses",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)).toList(),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
         failure: failure,
       );
@@ -29,7 +29,7 @@ class AddressDataSource {
       httpPost(
         url: "$baseUrl/address",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)).toList(),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
         failure: failure,
       );
@@ -43,7 +43,7 @@ class AddressDataSource {
       httpPut(
         url: "$baseUrl/address",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)).toList(),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
         failure: failure,
       );
@@ -56,7 +56,7 @@ class AddressDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/address/$id",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)).toList(),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
         failure: failure,
       );

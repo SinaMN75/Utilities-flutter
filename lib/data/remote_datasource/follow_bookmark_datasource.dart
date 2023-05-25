@@ -18,7 +18,7 @@ class FollowBookmarkDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/FollowBookmark/ReadBookmarksByFolderName?userId=$userId&folderName=$folderName",
-        action: (Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.data, fromMap: BookmarkReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.data, fromMap: BookmarkReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -31,7 +31,7 @@ class FollowBookmarkDataSource {
   }) async =>
       httpPost(
         url: userId != null ? "$baseUrl/FollowBookmark/ReadBookmarks?userId=$userId" : "$baseUrl/FollowBookmark/ReadBookmarks",
-        action: (Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.data, fromMap: BookmarkReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.data, fromMap: BookmarkReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -44,7 +44,7 @@ class FollowBookmarkDataSource {
   }) async =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowers/$userId",
-        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse()),
         failure: failure,
       );
@@ -57,7 +57,7 @@ class FollowBookmarkDataSource {
   }) async =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowings/$userId",
-        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse()),
         failure: failure,
       );
@@ -85,7 +85,7 @@ class FollowBookmarkDataSource {
       httpPost(
         url: "$baseUrl/FollowBookmark/ToggleBookmark",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.data, fromMap: BookmarkReadDto.fromMap)).toList(),
+        action: (Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.data, fromMap: BookmarkReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse()),
         failure: failure,
       );

@@ -104,11 +104,11 @@ class UserReadDto {
         detail1: json["detail1"],
         detail2: json["detail2"],
         growthRate: json["growthRate"] == null ? null : GrowthRateReadDto.fromMap(json["growthRate"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map((final x) => MediaReadDto.fromMap)).toList(),
-        locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].cast<Map<String, dynamic>>().map((final x) => LocationReadDto.fromMap(x))) : null,
-        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map((final x) => CategoryReadDto.fromMap)).toList(),
-        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map((final x) => ProductReadDto.fromMap)).toList(),
-        bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].cast<Map<String, dynamic>>().map((final x) => BookmarkFolder.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+        locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].cast<Map<String, dynamic>>().map(LocationReadDto.fromMap)) : null,
+        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
+        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
+        bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].cast<Map<String, dynamic>>().map(BookmarkFolder.fromMap)).toList(),
       );
 
   final String? token;

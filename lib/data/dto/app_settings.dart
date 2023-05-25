@@ -52,7 +52,7 @@ class AppSettingsDto {
         sender: json["sender"] == null ? null : List<Sender>.from(json["sender"].cast<Map<String, dynamic>>().map( Sender.fromMap)).toList(),
         currency: json["currency"] == null ? null : List<Currency>.from(json["currency"].cast<Map<String, dynamic>>().map( Currency.fromMap)).toList(),
         seenStatus: json["seenStatus"] == null ? null : List<SeenStatus>.from(json["seenStatus"].cast<Map<String, dynamic>>().map( SeenStatus.fromMap)).toList(),
-        priority: json["priority"] == null ? null : List<Priority>.from(json["priority"].cast<Map<String, dynamic>>().map( Priority.fromMap)).toList().toList(),
+        priority: json["priority"] == null ? null : List<Priority>.from(json["priority"].cast<Map<String, dynamic>>().map( Priority.fromMap)).toList(),
         chatStatus: json["chatStatus"] == null ? null : List<ChatStatus>.from(json["chatStatus"].cast<Map<String, dynamic>>().map( ChatStatus.fromMap)).toList(),
         appSettings: json["appSettings"] == null ? null : AppSettings.fromMap(json["appSettings"]),
       );
