@@ -345,7 +345,7 @@ enum UseCaseContent {
 enum GenderType {
   male("male"),
   female("female"),
-  unknown("unkhown"),
+  unknown("unknown"),
   both("both");
 
   const GenderType(this.title);
