@@ -38,6 +38,7 @@ class UserReadDto {
     this.countFollowers,
     this.countProducts,
     this.color,
+    this.nationalCode,
     this.bookmarkFolders,
     this.growthRate,
     this.isFollowing,
@@ -71,6 +72,7 @@ class UserReadDto {
     lastName: json["lastName"],
     headline: json["headline"],
     website: json["website"],
+    nationalCode: json["nationalCode"],
     followingUsers: json["followingUsers"],
     followedUsers: json["followedUsers"],
     instagram: json["instagram"],
@@ -99,11 +101,11 @@ class UserReadDto {
     detail1: json["detail1"],
     detail2: json["detail2"],
     growthRate: json["growthRate"] == null ? null : GrowthRateReadDto.fromMap(json["growthRate"]),
-    media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((final x) => MediaReadDto.fromMap(x))),
-    locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].map((final x) => LocationReadDto.fromMap(x))) : null,
-    categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].map((final x) => CategoryReadDto.fromMap(x))),
-    products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].map((final x) => ProductReadDto.fromMap(x))),
-    bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].map((final x) => BookmarkFolder.fromMap(x))),
+    media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map((final x) => MediaReadDto.fromMap)).toList(),
+    locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].cast<Map<String, dynamic>>().map((final x) => LocationReadDto.fromMap(x))) : null,
+    categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map((final x) => CategoryReadDto.fromMap)).toList(),
+    products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map((final x) => ProductReadDto.fromMap)).toList(),
+    bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].cast<Map<String, dynamic>>().map((final x) => BookmarkFolder.fromMap)).toList(),
   );
 
   final String? token;
@@ -134,6 +136,7 @@ class UserReadDto {
   final String? pinterest;
   final String? whatsapp;
   final String? linkedIn;
+  final String? nationalCode;
   final bool? showContactInfo;
   final bool? isAdmin;
   bool? isFollowing;
@@ -180,6 +183,7 @@ class UserReadDto {
     "stateTr1": stateTr1,
     "website": website,
     "region": region,
+    "nationalCode": nationalCode,
     "activity": activity,
     "wallet": wallet,
     "point": point,
@@ -235,6 +239,7 @@ class UserCreateUpdateDto {
     this.type,
     this.region,
     this.activity,
+    this.nationalCode,
     this.color,
     this.badge,
     this.point,
@@ -279,6 +284,7 @@ class UserCreateUpdateDto {
         dribble: json["dribble"],
         pinterest: json["pinterest"],
         password: json["password"],
+    nationalCode: json["nationalCode"],
         appUserName: json["appUserName"],
         appPhoneNumber: json["appPhoneNumber"],
         appEmail: json["appEmail"],
@@ -296,8 +302,8 @@ class UserCreateUpdateDto {
         genderTr1: json["genderTr1"],
         detail1: json["detail1"],
         detail2: json["detail2"],
-        categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((final x) => x)),
-        locations: json["locations"] == null ? null : List<int>.from(json["locations"].map((final x) => x)),
+        categories: json["categories"] == null ? null : List<String>.from(json["categories"].cast<Map<String, dynamic>>().map((final x) => x)),
+        locations: json["locations"] == null ? null : List<int>.from(json["locations"].cast<Map<String, dynamic>>().map((final x) => x)),
       );
 
   final String? id;
@@ -325,6 +331,7 @@ class UserCreateUpdateDto {
   final String? appEmail;
   final String? type;
   final String? region;
+  final String? nationalCode;
   final String? activity;
   final String? color;
   final String? state;
@@ -370,6 +377,7 @@ class UserCreateUpdateDto {
         "state": state,
         "stateTr1": stateTr1,
         "region": region,
+        "nationalCode": nationalCode,
         "activity": activity,
         "color": color,
         "suspend": suspend,
@@ -399,6 +407,7 @@ class UserFilterDto {
     this.showGender,
     this.showLocations,
     this.showMedia,
+    this.nationalCode,
     this.stateTr1,
     this.state,
     this.appUserName,
@@ -423,6 +432,7 @@ class UserFilterDto {
     phoneNumber: json["phoneNumber"],
     showGender: json["showGender"],
     appUserName: json["appUserName"],
+    nationalCode: json["nationalCode"],
     showMedia: json["showMedia"],
     showCategories: json["showCategories"],
     showLocations: json["showLocations"],
@@ -437,7 +447,7 @@ class UserFilterDto {
     detail1: json["detail1"],
     detail2: json["detail2"],
     categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-    userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].map((final x) => x)),
+    userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].cast<Map<String, dynamic>>().map((final x) => x)),
   );
 
   final String? userId;
@@ -447,6 +457,7 @@ class UserFilterDto {
   final String? phoneNumber;
   final String? badge;
   final String? appUserName;
+  final String? nationalCode;
   final bool? showGender;
   final bool? showMedia;
   final bool? showCategories;
@@ -479,6 +490,7 @@ class UserFilterDto {
     "showCategories": showCategories,
     "showLocations": showLocations,
     "showForms": showForms,
+    "nationalCode": nationalCode,
     "showProducts": showProducts,
     "showTransactions": showTransactions,
     "showFollowings": showFollowings,

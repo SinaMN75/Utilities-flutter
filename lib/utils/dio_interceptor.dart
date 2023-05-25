@@ -13,8 +13,11 @@ Future<void> request(
   final bool encodeBody = true,
   final Map<String, String>? headers,
 }) async {
-  final Map<String, String> header = <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? "","Content-Type": "application/json-patch+json","accept": "text/plain"};
-
+  final Map<String, String> header = <String, String>{
+    "Authorization": getString(UtilitiesConstants.token) ?? "",
+    "Content-Type": "application/json-patch+json",
+    "accept": "text/plain",
+  };
 
   if (headers != null) header.addAll(headers);
   final Dio dio = Dio();

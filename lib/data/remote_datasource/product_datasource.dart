@@ -17,7 +17,7 @@ class ProductDataSource {
       httpPost(
         url: "$baseUrl/ProductV2",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -36,7 +36,7 @@ class ProductDataSource {
           "productId": productId,
         },
         encodeBody: false,
-        action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.data, fromMap: ProductReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.data, fromMap: ProductReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -50,7 +50,7 @@ class ProductDataSource {
       httpPut(
         url: "$baseUrl/ProductV2",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -62,7 +62,7 @@ class ProductDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/ProductV2",
-        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -75,7 +75,7 @@ class ProductDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/ProductV2/$id",
-        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -88,7 +88,7 @@ class ProductDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/ProductV2/$id",
-        action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.data, fromMap: ProductReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.data, fromMap: ProductReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
         failure: failure,
       );
@@ -102,7 +102,7 @@ class ProductDataSource {
       httpPost(
         url: "$baseUrl/ProductV2/Filter",
         body: filter,
-        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -115,7 +115,7 @@ class ProductDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/ProductV2/Mine",
-        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.data, fromMap: ProductReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

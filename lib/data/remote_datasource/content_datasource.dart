@@ -17,7 +17,7 @@ class ContentDataSource {
       httpPost(
         url: "$baseUrl/Content",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -31,7 +31,7 @@ class ContentDataSource {
       httpPut(
         url: "$baseUrl/Content",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -43,7 +43,7 @@ class ContentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Content",
-        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -56,7 +56,7 @@ class ContentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Content/$id",
-        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -69,7 +69,7 @@ class ContentDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/Content/$id",
-        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

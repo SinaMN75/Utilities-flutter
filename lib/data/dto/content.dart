@@ -38,8 +38,8 @@ class ContentReadDto {
         subTitle: json["subTitle"],
         description: json["description"],
         useCase: json["useCase"],
-        contactInformation: json["contactInformation"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformation"].map((x) => ContactInformationReadDto.fromMap(x))),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
+        contactInformation: json["contactInformation"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformation"].cast<Map<String, dynamic>>().map( ContactInformationReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map( MediaReadDto.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {
@@ -86,7 +86,7 @@ class ContentCreateUpdateDto {
         description: json["description"],
         useCase: json["useCase"],
         approvalStatus: json["approvalStatus"],
-        contactInformations: json["contactInformations"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformations"].map((x) => ContactInformationReadDto.fromMap(x))),
+        contactInformations: json["contactInformations"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformations"].cast<Map<String, dynamic>>().map( ContactInformationReadDto.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {

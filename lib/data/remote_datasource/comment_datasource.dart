@@ -18,7 +18,7 @@ class CommentDataSource {
       httpPost(
         url: "$baseUrl/Comment",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -31,7 +31,7 @@ class CommentDataSource {
   }) async =>
       httpPost(
         url: "$baseUrl/Comment/ToggleLikeComment/$commentId",
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -73,7 +73,7 @@ class CommentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Comment/$id",
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -86,7 +86,7 @@ class CommentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Comment/ReadByProductId/$id",
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

@@ -135,8 +135,8 @@ class CategoryReadDto {
         type: json["type"],
         parentId: json["parentId"],
         parent: json["parent"] == null ? null : CategoryReadDto.fromMap(json["parent"]),
-        children: json["children"] == null ? null : List<CategoryReadDto>.from(json["children"].map((x) => CategoryReadDto.fromMap(x))),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
+        children: json["children"] == null ? null : List<CategoryReadDto>.from(json["children"].cast<Map<String, dynamic>>().map( CategoryReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map( MediaReadDto.fromMap)).toList(),
       );
     } catch (e) {
       print(e.toString());

@@ -17,7 +17,7 @@ class OrdersDataSource {
       httpPost(
         url: "$baseUrl/Order",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -31,7 +31,7 @@ class OrdersDataSource {
       httpPost(
         url: "$baseUrl/Order/Filter",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -45,7 +45,7 @@ class OrdersDataSource {
       httpPut(
         url: "$baseUrl/Content",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -58,7 +58,7 @@ class OrdersDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Order/$id",
-        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -71,7 +71,7 @@ class OrdersDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/Order/$id",
-        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

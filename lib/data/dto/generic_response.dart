@@ -13,7 +13,7 @@ class GenericResponse<T> {
     if (fromMap == null) return GenericResponse<T>(status: json["status"], message: json["message"]);
     if (json["result"] is List)
       return GenericResponse<T>(
-        resultList: List<T>.from(json['result'].cast<Map<String, dynamic>>().map(fromMap)),
+        resultList: List<T>.from(json['result'].cast<Map<String, dynamic>>().map(fromMap)).toList(),
         pageSize: json["pageSize"],
         pageCount: json["pageCount"],
         totalCount: json["totalCount"],

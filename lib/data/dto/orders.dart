@@ -65,7 +65,7 @@ class OrdersReadDto {
         payType: json["payType"],
         payNumber: json["payNumber"],
         receivedDate: json["receivedDate"],
-        orderDetails: json["orderDetails"] == null ? null : List<OrderDetail>.from(json["orderDetails"].map((x) => OrderDetail.fromMap(x))),
+        orderDetails: json["orderDetails"] == null ? null : List<OrderDetail>.from(json["orderDetails"].cast<Map<String, dynamic>>().map( OrderDetail.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {
@@ -183,7 +183,7 @@ class OrderCreateUpdateDto {
         sendPrice: json["sendPrice"],
         payType: json["payType"],
         sendType: json["sendType"],
-        orderDetails: json["orderDetails"] == null ? null : List<OrderDetail>.from(json["orderDetails"].map((x) => OrderDetail.fromMap(x))),
+        orderDetails: json["orderDetails"] == null ? null : List<OrderDetail>.from(json["orderDetails"].cast<Map<String, dynamic>>().map( OrderDetail.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {

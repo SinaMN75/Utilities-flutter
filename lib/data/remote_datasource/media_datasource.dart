@@ -324,7 +324,7 @@ class MediaDataSource {
       httpPut(
         url: "$baseUrl/Media/$mediaId",
         body: MediaReadDto(title: title, useCase: useCase, size: size),
-        action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.data, fromMap: MediaReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.data, fromMap: MediaReadDto.fromMap)).toList(),
         error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -337,7 +337,7 @@ class MediaDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/Media/$id",
-        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: MediaReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: MediaReadDto.fromMap)).toList(),
         error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

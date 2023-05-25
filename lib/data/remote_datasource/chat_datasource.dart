@@ -17,7 +17,7 @@ class ChatDataSource {
       httpPost(
         url: "$baseUrl/Chat",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ChatReadDto>.fromJson(response.data, fromMap: ChatReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ChatReadDto>.fromJson(response.data, fromMap: ChatReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -31,7 +31,7 @@ class ChatDataSource {
       httpPut(
         url: "$baseUrl/Chat",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ChatReadDto>.fromJson(response.data, fromMap: ChatReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ChatReadDto>.fromJson(response.data, fromMap: ChatReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -43,7 +43,7 @@ class ChatDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Chat",
-        action: (Response response) => onResponse(GenericResponse<ChatReadDto>.fromJson(response.data, fromMap: ChatReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ChatReadDto>.fromJson(response.data, fromMap: ChatReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -56,7 +56,7 @@ class ChatDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Chat/$userId",
-        action: (Response response) => onResponse(GenericResponse<ChatReadDto>.fromJson(response.data, fromMap: ChatReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ChatReadDto>.fromJson(response.data, fromMap: ChatReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -69,7 +69,7 @@ class ChatDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/Chat?id=$chatId",
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: ChatReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: ChatReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

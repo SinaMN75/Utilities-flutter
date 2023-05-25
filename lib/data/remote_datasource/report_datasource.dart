@@ -17,7 +17,7 @@ class ReportDataSource {
       httpPost(
         url: "$baseUrl/Report",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -43,7 +43,7 @@ class ReportDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Report/$id",
-        action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -57,7 +57,7 @@ class ReportDataSource {
       httpPost(
         url: "$baseUrl/Report/Filter",
         body: filter,
-        action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)).toList(),
         error: (Response response) {},
         failure: failure,
       );

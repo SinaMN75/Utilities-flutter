@@ -146,13 +146,13 @@ class ProductReadDto {
         seenUsers: json["seenUsers"],
         currency: json["currency"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map(MediaReadDto.fromMap)),
-        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].map(CategoryReadDto.fromMap)),
-        forms: json["forms"] == null ? null : List<FormReadDto>.from(json["forms"].map(FormReadDto.fromMap)),
-        comments: json["comments"] == null ? null : List<CommentReadDto>.from(json["comments"].map(CommentReadDto.fromMap)),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
+        forms: json["forms"] == null ? null : List<FormReadDto>.from(json["forms"].cast<Map<String, dynamic>>().map(FormReadDto.fromMap)).toList(),
+        comments: json["comments"] == null ? null : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
         teams: json["teams"],
-        reports: json["reports"] == null ? null : List<Report>.from(json["reports"].map(Report.fromMap)),
-        productInsights: json["productInsights"] == null ? [] : List<ProductInsightDto>.from(json["productInsights"]!.map(ProductInsightDto.fromMap)),
+        reports: json["reports"] == null ? null : List<Report>.from(json["reports"].cast<Map<String, dynamic>>().map(Report.fromMap)).toList(),
+        productInsights: json["productInsights"] == null ? [] : List<ProductInsightDto>.from(json["productInsights"]!.map(ProductInsightDto.fromMap)).toList(),
       );
 
   final String? id;
@@ -362,12 +362,12 @@ class ProductCreateUpdateDto {
         currency: json["currency"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         productInsight: json["productInsight"] == null ? null : ProductInsight.fromMap(json["productInsight"]),
-        locations: json["locations"] == null ? null : List<int>.from(json["locations"].map((final dynamic x) => x)),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map(MediaReadDto.fromMap)),
-        categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((final dynamic x) => x)),
-        forms: json["forms"] == null ? null : List<FormReadDto>.from(json["forms"].map(FormReadDto.fromMap)),
-        comments: json["comments"] == null ? null : List<CommentReadDto>.from(json["comments"].map(CommentReadDto.fromMap)),
-        teams: json["teams"] == null ? null : List<String>.from(json["teams"].map((final dynamic x) => x)),
+        locations: json["locations"] == null ? null : List<int>.from(json["locations"].cast<Map<String, dynamic>>().map((final dynamic x) => x)),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+        categories: json["categories"] == null ? null : List<String>.from(json["categories"].cast<Map<String, dynamic>>().map((final dynamic x) => x)),
+        forms: json["forms"] == null ? null : List<FormReadDto>.from(json["forms"].cast<Map<String, dynamic>>().map(FormReadDto.fromMap)).toList(),
+        comments: json["comments"] == null ? null : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
+        teams: json["teams"] == null ? null : List<String>.from(json["teams"].cast<Map<String, dynamic>>().map((final dynamic x) => x)),
       );
 
   final String? id;
@@ -617,7 +617,7 @@ class ProductFilterDto {
         orderByCreatedDate: json["orderByCreatedDate"],
         orderByCreaedDateDecending: json["orderByCreaedDateDecending"],
         locations: json["locations"],
-        teams: json["teams"] == null ? null : List<UserReadDto>.from(json["teams"].map(UserReadDto.fromMap)),
+        teams: json["teams"] == null ? null : List<UserReadDto>.from(json["teams"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),
         subtitle: json["subtitle"],
         keyValues1: json["keyValues1"],
         keyValues2: json["keyValues2"],

@@ -17,8 +17,8 @@ class AppSettingsDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/AppSettings",
-        action: (Response<dynamic> response) => onResponse(GenericResponse<AppSettingsDto>.fromJson(response.data, fromMap: AppSettingsDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data, fromMap: AppSettingsDto.fromMap)),
+        action: (Response<dynamic> response) => onResponse(GenericResponse<AppSettingsDto>.fromJson(response.data, fromMap: AppSettingsDto.fromMap)).toList(),
+        error: (Response response) => onError(GenericResponse.fromJson(response.data, fromMap: AppSettingsDto.fromMap)).toList(),
         failure: failure,
       );
 
@@ -30,8 +30,8 @@ class AppSettingsDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/AppSettings/ReadLocation",
-        action: (Response response) => onResponse(GenericResponse<LocationReadDto>.fromJson(response.data, fromMap: LocationReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data, fromMap: AppSettingsDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<LocationReadDto>.fromJson(response.data, fromMap: LocationReadDto.fromMap)).toList(),
+        error: (Response response) => onError(GenericResponse.fromJson(response.data, fromMap: AppSettingsDto.fromMap)).toList(),
         failure: failure,
       );
 }

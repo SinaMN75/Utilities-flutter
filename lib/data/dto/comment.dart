@@ -46,10 +46,10 @@ class CommentReadDto {
         parentId: json["parentId"],
         isLiked: json["isLiked"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-        children: json["children"] == null ? null : List<CommentReadDto>.from(json["children"].map((x) => CommentReadDto.fromMap(x))),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].map((x) => MediaReadDto.fromMap(x))),
-        likeComments: json["likeComments"] == null ? null : List<CommentReadDto>.from(json["likeComments"].map((x) => CommentReadDto.fromMap(x))),
-        commentReacts: json["commentReacts"] == null ? null : List<ReactionReadDto>.from(json["commentReacts"].map((x) => ReactionReadDto.fromMap(x))),
+        children: json["children"] == null ? null : List<CommentReadDto>.from(json["children"].cast<Map<String, dynamic>>().map( CommentReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map( MediaReadDto.fromMap)).toList(),
+        likeComments: json["likeComments"] == null ? null : List<CommentReadDto>.from(json["likeComments"].cast<Map<String, dynamic>>().map( CommentReadDto.fromMap)).toList(),
+        commentReacts: json["commentReacts"] == null ? null : List<ReactionReadDto>.from(json["commentReacts"].cast<Map<String, dynamic>>().map( ReactionReadDto.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {

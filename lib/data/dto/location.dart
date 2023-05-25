@@ -33,7 +33,7 @@ class LocationReadDto {
         longitude: json["lon"],
         type: json["t"],
         parent: json["p"] == null ? null : LocationReadDto.fromMap(json["p"]),
-        children: json["ch"] == null ? null : List<LocationReadDto>.from(json["ch"].map((x) => LocationReadDto.fromMap(x))),
+        children: json["ch"] == null ? null : List<LocationReadDto>.from(json["ch"].cast<Map<String, dynamic>>().map( LocationReadDto.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {

@@ -17,7 +17,7 @@ class MailSmsNotificationDataSource {
       httpPost(
         url: "$baseUrl/MailSmsNotification/SendNotification",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: CreateMailSmsNotificationDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: CreateMailSmsNotificationDto.fromMap)).toList(),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );

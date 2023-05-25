@@ -22,7 +22,7 @@ class FormReadDto {
         id: json["id"],
         title: json["title"],
         formField: json["formField"] == null ? null : FormFieldReadDto.fromMap(json["formField"]),
-        children: json["children"] == null ? [] : List<FormReadDto>.from(json["children"].map((x) => FormReadDto.fromMap(x))),
+        children: json["children"] == null ? [] : List<FormReadDto>.from(json["children"].cast<Map<String, dynamic>>().map( FormReadDto.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {
@@ -54,7 +54,7 @@ class FormCreateUpdateDto {
         userId: json["userId"],
         productId: json["productId"],
         orderDetailId: json["orderDetailId"],
-        forms: json["form"] == null ? null : List<FormReadDto>.from(json["form"].map((x) => FormReadDto.fromMap(x))),
+        forms: json["form"] == null ? null : List<FormReadDto>.from(json["form"].cast<Map<String, dynamic>>().map( FormReadDto.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {
