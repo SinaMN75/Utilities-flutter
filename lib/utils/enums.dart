@@ -342,6 +342,34 @@ enum UseCaseContent {
   final String title;
 }
 
+enum GenderType {
+  male("male"),
+  female("female"),
+  unknown("unkhown"),
+  both("both");
+
+  const GenderType(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+enum AgeType {
+  none("none"),
+  kids("kids"),
+  teen("teen"),
+  young("young"),
+  adult("adult"),
+  elder("elder");
+
+  const AgeType(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
 enum UseCaseNotification {
   success("success"),
   error("error"),
