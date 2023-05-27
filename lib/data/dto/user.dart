@@ -193,6 +193,8 @@ class UserJsonDetail {
     this.shebaNumber,
     this.isAuthorize,
     this.isForeigner,
+    this.detail1,
+    this.detail2,
   });
 
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
@@ -200,6 +202,8 @@ class UserJsonDetail {
   factory UserJsonDetail.fromMap(final Map<String, dynamic> json) => UserJsonDetail(
         instagram: json["instagram"],
         telegram: json["telegram"],
+        detail1: json["detail1"],
+        detail2: json["detail2"],
         whatsApp: json["whatsApp"],
         linkedIn: json["linkedIn"],
         dribble: json["dribble"],
@@ -219,6 +223,8 @@ class UserJsonDetail {
   String? telegram;
   String? whatsApp;
   String? linkedIn;
+  String? detail1;
+  String? detail2;
   String? dribble;
   String? soundCloud;
   String? pinterest;
@@ -239,6 +245,8 @@ class UserJsonDetail {
         "telegram": telegram,
         "whatsApp": whatsApp,
         "linkedIn": linkedIn,
+        "detail1": detail1,
+        "detail2": detail2,
         "dribble": dribble,
         "soundCloud": soundCloud,
         "pinterest": pinterest,
