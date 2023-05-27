@@ -8,11 +8,11 @@ class CommentReadDto {
   String? comment;
   int? status;
   String? parentId;
-  String? parent;
+  CommentReadDto? parent;
   UserReadDto? user;
   String? userId;
   CommentJsonDetail? commentJsonDetail;
-  List<String>? children;
+  List<CommentReadDto>? children;
   List<MediaReadDto>? media;
 
   CommentReadDto({
@@ -43,11 +43,11 @@ class CommentReadDto {
         comment: json["comment"],
         status: json["status"],
         parentId: json["parentId"],
-        parent: json["parent"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
+        parent: json["parent"] == null ? null : CommentReadDto.fromMap(json["parent"]),
         userId: json["userId"],
         commentJsonDetail: json["commentJsonDetail"] == null ? null : CommentJsonDetail.fromMap(json["commentJsonDetail"]),
-        children: json["children"] == null ? <String>[] : List<String>.from(json["children"].cast<Map<String, dynamic>>().map((final x) => x)).toList(),
+        children: json["children"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
       );
 
