@@ -352,7 +352,6 @@ class ProductCreateUpdateDto {
     this.comments,
     this.teams,
     this.state,
-    this.stateTr1,
     this.productInsight,
   });
 
@@ -368,7 +367,6 @@ class ProductCreateUpdateDto {
         address: json["address"],
         author: json["author"],
         state: json["state"],
-        stateTr1: json["stateTr1"],
         phoneNumber: json["phoneNumber"],
         link: json["link"],
         website: json["website"],
@@ -423,7 +421,6 @@ class ProductCreateUpdateDto {
   final String? unit;
   final String? useCase;
   final String? state;
-  final String? stateTr1;
   final String? keyValue1;
   final String? keyValue2;
   final bool? isForSale;
@@ -466,7 +463,6 @@ class ProductCreateUpdateDto {
         "address": address,
         "author": author,
         "state": state,
-        "stateTr1": stateTr1,
         "phoneNumber": phoneNumber,
         "link": link,
         "website": website,
@@ -553,8 +549,6 @@ class ProductFilterDto {
     this.showExpired,
     this.userId,
     this.state,
-    this.stateTr1,
-    this.stateTr2,
     this.orderByVotes,
     this.orderByVotesDecending,
     this.orderByAtoZ,
@@ -602,8 +596,6 @@ class ProductFilterDto {
         details: json["details"],
         link: json["link"],
         state: json["state"],
-        stateTr1: json["stateTr1"],
-        stateTr2: json["stateTr2"],
         website: json["website"],
         address: json["address"],
         author: json["author"],
@@ -728,8 +720,6 @@ class ProductFilterDto {
   final int? pageNumber;
   final String? useCase;
   final String? state;
-  final String? stateTr1;
-  final String? stateTr2;
   final bool? orderByVotesDecending;
   final bool? orderByVotes;
   final bool? orderByAtoZ;
@@ -779,8 +769,6 @@ class ProductFilterDto {
         "phoneNumber": phoneNumber,
         "email": email,
         "state": state,
-        "stateTr1": stateTr1,
-        "stateTr2": stateTr2,
         "type": type,
         "userId": userId,
         "startPriceRange": startPriceRange,
