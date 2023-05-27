@@ -69,10 +69,10 @@ class CommentReadDto {
 }
 
 class CommentJsonDetail {
-  List<React>? reacts;
+  List<React>? commentReacts;
 
   CommentJsonDetail({
-    this.reacts,
+    this.commentReacts,
   });
 
   factory CommentJsonDetail.fromJson(final String str) => CommentJsonDetail.fromMap(json.decode(str));
@@ -80,11 +80,11 @@ class CommentJsonDetail {
   String toJson() => json.encode(toMap());
 
   factory CommentJsonDetail.fromMap(final Map<String, dynamic> json) => CommentJsonDetail(
-        reacts: json["reacts"] == null ? <React>[] : List<React>.from(json["reacts"].cast<Map<String, dynamic>>().map(React.fromMap)).toList(),
+    commentReacts: json["reacts"] == null ? <React>[] : List<React>.from(json["reacts"].cast<Map<String, dynamic>>().map(React.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {
-        "reacts": reacts == null ? <React>[] : List<React>.from(reacts!.map((final x) => x.toMap())),
+        "reacts": commentReacts == null ? <React>[] : List<React>.from(commentReacts!.map((final x) => x.toMap())),
       };
 }
 
