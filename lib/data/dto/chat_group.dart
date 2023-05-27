@@ -358,9 +358,6 @@ class ChatGroupMessageReadDto {
 }
 
 
-
-
-
 class GroupChatMessageJsonDetail {
   String? description;
   String? value;
