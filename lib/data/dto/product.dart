@@ -52,6 +52,7 @@ class ProductReadDto {
   int? discountPercent;
   int? visitsCount;
   bool? enabled;
+  bool? isSeen;
   int? discountPrice;
   int? price;
   int? currency;
@@ -84,6 +85,7 @@ class ProductReadDto {
     this.type,
     this.state,
     this.boosted,
+    this.isSeen,
     this.stock,
     this.voteCount,
     this.discountPercent,
@@ -120,6 +122,7 @@ class ProductReadDto {
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         title: json["title"],
+    isSeen: json["isSeen"],
         subtitle: json["subtitle"],
         description: json["description"],
         useCase: json["useCase"],
@@ -161,6 +164,7 @@ class ProductReadDto {
         "subtitle": subtitle,
         "description": description,
         "useCase": useCase,
+        "isSeen": isSeen,
         "type": type,
         "state": state,
         "boosted": boosted?.toIso8601String(),
