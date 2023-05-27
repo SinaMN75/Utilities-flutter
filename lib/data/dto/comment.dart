@@ -6,6 +6,7 @@ class CommentReadDto {
   DateTime? createdAt;
   DateTime? updatedAt;
   double? score;
+  bool? isLiked;
   String? comment;
   int? status;
   String? parentId;
@@ -22,6 +23,7 @@ class CommentReadDto {
     this.updatedAt,
     this.score,
     this.comment,
+    this.isLiked,
     this.status,
     this.parentId,
     this.parent,
@@ -42,6 +44,7 @@ class CommentReadDto {
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         score: json["score"],
         comment: json["comment"],
+        isLiked: json["isLiked"],
         status: json["status"],
         parentId: json["parentId"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
@@ -58,6 +61,7 @@ class CommentReadDto {
         "updatedAt": updatedAt?.toIso8601String(),
         "score": score,
         "comment": comment,
+        "isLiked": isLiked,
         "status": status,
         "parentId": parentId,
         "parent": parent,
@@ -81,14 +85,13 @@ class CommentJsonDetail {
   String toJson() => json.encode(toMap());
 
   factory CommentJsonDetail.fromMap(final Map<String, dynamic> json) => CommentJsonDetail(
-    commentReacts: json["reacts"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reacts"].cast<Map<String, dynamic>>().map(ReactionReadDto.fromMap)).toList(),
+        commentReacts: json["reacts"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reacts"].cast<Map<String, dynamic>>().map(ReactionReadDto.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {
         "reacts": commentReacts == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(commentReacts!.map((final x) => x.toMap())),
       };
 }
-
 
 class CommentCreateUpdateDto {
   CommentCreateUpdateDto({
