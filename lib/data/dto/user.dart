@@ -115,7 +115,7 @@ class UserReadDto {
   String? state;
   String? stateTr1;
   int? gender;
-  int? wallet;
+  double? wallet;
   double? point;
   DateTime? birthdate;
   DateTime? createdAt;
