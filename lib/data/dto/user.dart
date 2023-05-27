@@ -1,118 +1,183 @@
 import 'package:utilities/utilities.dart';
 
+
 class UserReadDto {
-  bool? suspend;
-  String? firstName;
-  String? lastName;
-  String? fullName;
-  bool? isPrivate;
-  int? wallet;
-  double? point;
-  bool? isOnline;
-  int? ageCategory;
-  UserJsonDetail? userJsonDetail;
-  List<MediaReadDto>? media;
-  List<CategoryReadDto>? categories;
-  bool? isFollowing;
-  int? countFollowers;
-  int? countFollowing;
-  String? id;
-  String? userName;
-  String? email;
-  String? token;
-  String? phoneNumber;
 
   UserReadDto({
+    this.id,
+    this.userName,
+    this.email,
+    this.phoneNumber,
     this.suspend,
     this.firstName,
     this.lastName,
     this.fullName,
     this.isPrivate,
+    this.meliCode,
+    this.shebaNumber,
+    this.headline,
+    this.bio,
+    this.appUserName,
+    this.appPhoneNumber,
+    this.appEmail,
+    this.useCase,
+    this.type,
+    this.accessLevel,
+    this.region,
+    this.state,
+    this.gender,
     this.wallet,
     this.point,
+    this.birthdate,
+    this.createdAt,
+    this.updatedAt,
+    this.badge,
     this.isOnline,
+    this.mutedChats,
+    this.expireUpgradeAccount,
     this.ageCategory,
     this.userJsonDetail,
     this.media,
     this.categories,
     this.isFollowing,
+    this.countProducts,
     this.countFollowers,
     this.countFollowing,
-    this.id,
-    this.userName,
-    this.email,
     this.token,
-    this.phoneNumber,
   });
 
-  factory UserReadDto.fromJson(String str) => UserReadDto.fromMap(json.decode(str));
+  factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
-  factory UserReadDto.fromMap(Map<String, dynamic> json) => UserReadDto(
+  factory UserReadDto.fromMap(final Map<String, dynamic> json) => UserReadDto(
+    id: json["id"],
+    userName: json["userName"],
+    email: json["email"],
+    phoneNumber: json["phoneNumber"],
     suspend: json["suspend"],
     firstName: json["firstName"],
     lastName: json["lastName"],
     fullName: json["fullName"],
     isPrivate: json["isPrivate"],
+    meliCode: json["meliCode"],
+    shebaNumber: json["shebaNumber"],
+    headline: json["headline"],
+    bio: json["bio"],
+    appUserName: json["appUserName"],
+    appPhoneNumber: json["appPhoneNumber"],
+    appEmail: json["appEmail"],
+    useCase: json["useCase"],
+    type: json["type"],
+    accessLevel: json["accessLevel"],
+    region: json["region"],
+    state: json["state"],
+    gender: json["gender"],
     wallet: json["wallet"],
     point: json["point"],
+    birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    badge: json["badge"],
     isOnline: json["isOnline"],
+    mutedChats: json["mutedChats"],
+    expireUpgradeAccount: json["expireUpgradeAccount"] == null ? null : DateTime.parse(json["expireUpgradeAccount"]),
     ageCategory: json["ageCategory"],
     userJsonDetail: json["userJsonDetail"] == null ? null : UserJsonDetail.fromMap(json["userJsonDetail"]),
-    media: json["media"] == null ? [] : List<MediaReadDto>.from(json["media"]!.map((x) => x)),
-    categories: json["categories"] == null ? [] : List<CategoryReadDto>.from(json["categories"]!.map((x) => x)),
+    media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map((final x) => MediaReadDto.fromMap(x))),
+    categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
     isFollowing: json["isFollowing"],
+    countProducts: json["countProducts"],
     countFollowers: json["countFollowers"],
     countFollowing: json["countFollowing"],
-    id: json["id"],
-    userName: json["userName"],
-    email: json["email"],
     token: json["token"],
-    phoneNumber: json["phoneNumber"],
   );
+  String? id;
+  String? userName;
+  String? email;
+  String? phoneNumber;
+  bool? suspend;
+  String? firstName;
+  String? lastName;
+  String? fullName;
+  bool? isPrivate;
+  String? meliCode;
+  String? shebaNumber;
+  String? headline;
+  String? bio;
+  String? appUserName;
+  String? appPhoneNumber;
+  String? appEmail;
+  String? useCase;
+  String? type;
+  String? accessLevel;
+  String? region;
+  String? state;
+  int? gender;
+  int? wallet;
+  int? point;
+  DateTime? birthdate;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? badge;
+  bool? isOnline;
+  String? mutedChats;
+  DateTime? expireUpgradeAccount;
+  int? ageCategory;
+  UserJsonDetail? userJsonDetail;
+  List<MediaReadDto>? media;
+  List<CategoryReadDto>? categories;
+  bool? isFollowing;
+  int? countProducts;
+  int? countFollowers;
+  int? countFollowing;
+  String? token;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => {
+    "id": id,
+    "userName": userName,
+    "email": email,
+    "phoneNumber": phoneNumber,
     "suspend": suspend,
     "firstName": firstName,
     "lastName": lastName,
     "fullName": fullName,
     "isPrivate": isPrivate,
+    "meliCode": meliCode,
+    "shebaNumber": shebaNumber,
+    "headline": headline,
+    "bio": bio,
+    "appUserName": appUserName,
+    "appPhoneNumber": appPhoneNumber,
+    "appEmail": appEmail,
+    "useCase": useCase,
+    "type": type,
+    "accessLevel": accessLevel,
+    "region": region,
+    "state": state,
+    "gender": gender,
     "wallet": wallet,
     "point": point,
+    "birthdate": birthdate?.toIso8601String(),
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
+    "badge": badge,
     "isOnline": isOnline,
+    "mutedChats": mutedChats,
+    "expireUpgradeAccount": expireUpgradeAccount?.toIso8601String(),
     "ageCategory": ageCategory,
     "userJsonDetail": userJsonDetail?.toMap(),
-    "media": media == null ? [] : List<MediaReadDto>.from(media!.map((x) => x)),
-    "categories": categories == null ? [] : List<CategoryReadDto>.from(categories!.map((x) => x)),
+    "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
+    "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final x) => x.toMap())),
     "isFollowing": isFollowing,
+    "countProducts": countProducts,
     "countFollowers": countFollowers,
     "countFollowing": countFollowing,
-    "id": id,
-    "userName": userName,
-    "email": email,
     "token": token,
-    "phoneNumber": phoneNumber,
   };
 }
 
 class UserJsonDetail {
-  String? instagram;
-  String? telegram;
-  String? whatsApp;
-  String? linkedIn;
-  String? dribble;
-  String? soundCloud;
-  String? pinterest;
-  String? website;
-  String? activity;
-  String? color;
-  bool? showContactInfo;
-  bool? isPrivate;
-  String? meliCode;
-  String? shebaNumber;
-  bool? isAuthorize;
-  bool? isForeigner;
 
   UserJsonDetail({
     this.instagram,
@@ -133,11 +198,9 @@ class UserJsonDetail {
     this.isForeigner,
   });
 
-  factory UserJsonDetail.fromJson(String str) => UserJsonDetail.fromMap(json.decode(str));
+  factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
-  factory UserJsonDetail.fromMap(Map<String, dynamic> json) => UserJsonDetail(
+  factory UserJsonDetail.fromMap(final Map<String, dynamic> json) => UserJsonDetail(
     instagram: json["instagram"],
     telegram: json["telegram"],
     whatsApp: json["whatsApp"],
@@ -155,6 +218,24 @@ class UserJsonDetail {
     isAuthorize: json["isAuthorize"],
     isForeigner: json["isForeigner"],
   );
+  String? instagram;
+  String? telegram;
+  String? whatsApp;
+  String? linkedIn;
+  String? dribble;
+  String? soundCloud;
+  String? pinterest;
+  String? website;
+  String? activity;
+  String? color;
+  bool? showContactInfo;
+  bool? isPrivate;
+  String? meliCode;
+  String? shebaNumber;
+  bool? isAuthorize;
+  bool? isForeigner;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => {
     "instagram": instagram,
@@ -175,6 +256,7 @@ class UserJsonDetail {
     "isForeigner": isForeigner,
   };
 }
+
 
 class UserCreateUpdateDto {
   UserCreateUpdateDto({
