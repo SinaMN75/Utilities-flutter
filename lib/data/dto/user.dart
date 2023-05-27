@@ -23,7 +23,6 @@ class UserReadDto {
     this.accessLevel,
     this.region,
     this.state,
-    this.stateTr1,
     this.gender,
     this.wallet,
     this.point,
@@ -70,7 +69,6 @@ class UserReadDto {
         accessLevel: json["accessLevel"],
         region: json["region"],
         state: json["state"],
-        stateTr1: json["stateTr1"],
         gender: json["gender"],
         wallet: json["wallet"],
         point: json["point"],
@@ -113,7 +111,6 @@ class UserReadDto {
   String? accessLevel;
   String? region;
   String? state;
-  String? stateTr1;
   int? gender;
   double? wallet;
   double? point;
@@ -159,7 +156,6 @@ class UserReadDto {
         "accessLevel": accessLevel,
         "region": region,
         "state": state,
-        "stateTr1": stateTr1,
         "gender": gender,
         "wallet": wallet,
         "point": point,
@@ -309,7 +305,6 @@ class UserCreateUpdateDto {
     this.dribble,
     this.email,
     this.state,
-    this.stateTr1,
     this.detail1,
     this.detail2,
   });
@@ -344,7 +339,6 @@ class UserCreateUpdateDto {
         appEmail: json["appEmail"],
         type: json["type"],
         state: json["state"],
-        stateTr1: json["stateTr1"],
         region: json["region"],
         activity: json["activity"],
         color: json["color"],
@@ -388,7 +382,6 @@ class UserCreateUpdateDto {
   final String? activity;
   final String? color;
   final String? state;
-  final String? stateTr1;
   final bool? suspend;
   final bool? isPrivate;
   final double? wallet;
@@ -429,7 +422,6 @@ class UserCreateUpdateDto {
         "appEmail": appEmail,
         "type": type,
         "state": state,
-        "stateTr1": stateTr1,
         "region": region,
         "nationalCode": nationalCode,
         "activity": activity,
@@ -461,7 +453,6 @@ class UserFilterDto {
     this.showLocations,
     this.showMedia,
     this.nationalCode,
-    this.stateTr1,
     this.state,
     this.appUserName,
     this.showProducts,
@@ -494,7 +485,6 @@ class UserFilterDto {
         showTransactions: json["showTransactions"],
         showFollowings: json["showFollowings"],
         pageSize: json["pageSize"],
-        stateTr1: json["stateTr1"],
         state: json["state"],
         pageNumber: json["pageNumber"],
         detail1: json["detail1"],
@@ -520,7 +510,6 @@ class UserFilterDto {
   final bool? showTransactions;
   final bool? showFollowings;
   final int? pageSize;
-  final String? stateTr1;
   final String? state;
   final String? detail1;
   final String? detail2;
@@ -548,7 +537,6 @@ class UserFilterDto {
         "showTransactions": showTransactions,
         "showFollowings": showFollowings,
         "pageSize": pageSize,
-        "stateTr1": stateTr1,
         "state": state,
         "pageNumber": pageNumber,
         "detail1": detail1,
