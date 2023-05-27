@@ -69,7 +69,7 @@ class CommentReadDto {
 }
 
 class CommentJsonDetail {
-  List<React>? commentReacts;
+  List<ReactionReadDto>? commentReacts;
 
   CommentJsonDetail({
     this.commentReacts,
@@ -80,28 +80,28 @@ class CommentJsonDetail {
   String toJson() => json.encode(toMap());
 
   factory CommentJsonDetail.fromMap(final Map<String, dynamic> json) => CommentJsonDetail(
-    commentReacts: json["reacts"] == null ? <React>[] : List<React>.from(json["reacts"].cast<Map<String, dynamic>>().map(React.fromMap)).toList(),
+    commentReacts: json["reacts"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reacts"].cast<Map<String, dynamic>>().map(ReactionReadDto.fromMap)).toList(),
       );
 
   Map<String, dynamic> toMap() => {
-        "reacts": commentReacts == null ? <React>[] : List<React>.from(commentReacts!.map((final x) => x.toMap())),
+        "reacts": commentReacts == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(commentReacts!.map((final x) => x.toMap())),
       };
 }
 
-class React {
+class ReactionReadDto {
   int? reaction;
   String? userId;
 
-  React({
+  ReactionReadDto({
     this.reaction,
     this.userId,
   });
 
-  factory React.fromJson(final String str) => React.fromMap(json.decode(str));
+  factory ReactionReadDto.fromJson(final String str) => ReactionReadDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory React.fromMap(final Map<String, dynamic> json) => React(
+  factory ReactionReadDto.fromMap(final Map<String, dynamic> json) => ReactionReadDto(
         reaction: json["reaction"],
         userId: json["userId"],
       );
