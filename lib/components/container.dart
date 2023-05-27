@@ -114,6 +114,8 @@ Widget row({
   final BoxDecoration? decoration,
   final double? width,
   final double? height,
+  final int? count,
+  final ScrollPhysics? physics,
   final bool isScrollable = false,
   final VoidCallback? onTap,
 }) =>
@@ -124,16 +126,28 @@ Widget row({
       padding: padding,
       margin: margin,
       child: isScrollable
-          ? SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: mainAxisAlignment,
-                mainAxisSize: mainAxisSize,
-                crossAxisAlignment: crossAxisAlignment,
-                verticalDirection: verticalDirection,
-                children: children,
-              ),
-            )
+          ? count != null
+              ? ListView.builder(
+                  itemCount: count,
+                  physics: physics,
+                  itemBuilder: (final BuildContext context, final int index) => Row(
+                    mainAxisAlignment: mainAxisAlignment,
+                    mainAxisSize: mainAxisSize,
+                    crossAxisAlignment: crossAxisAlignment,
+                    verticalDirection: verticalDirection,
+                    children: children,
+                  ),
+                )
+              : SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: mainAxisAlignment,
+                    mainAxisSize: mainAxisSize,
+                    crossAxisAlignment: crossAxisAlignment,
+                    verticalDirection: verticalDirection,
+                    children: children,
+                  ),
+                )
           : GestureDetector(
               onTap: onTap,
               child: Row(
