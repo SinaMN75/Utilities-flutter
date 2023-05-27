@@ -4,7 +4,7 @@ class CommentReadDto {
   String? id;
   DateTime? createdAt;
   DateTime? updatedAt;
-  int? score;
+  double? score;
   String? comment;
   int? status;
   String? parentId;
