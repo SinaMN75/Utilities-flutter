@@ -23,6 +23,7 @@ class UserReadDto {
     this.accessLevel,
     this.region,
     this.state,
+    this.stateTr1,
     this.gender,
     this.wallet,
     this.point,
@@ -35,6 +36,7 @@ class UserReadDto {
     this.expireUpgradeAccount,
     this.ageCategory,
     this.userJsonDetail,
+    this.growthRateReadDto,
     this.media,
     this.categories,
     this.isFollowing,
@@ -68,6 +70,7 @@ class UserReadDto {
         accessLevel: json["accessLevel"],
         region: json["region"],
         state: json["state"],
+        stateTr1: json["stateTr1"],
         gender: json["gender"],
         wallet: json["wallet"],
         point: json["point"],
@@ -80,6 +83,7 @@ class UserReadDto {
         expireUpgradeAccount: json["expireUpgradeAccount"] == null ? null : DateTime.parse(json["expireUpgradeAccount"]),
         ageCategory: json["ageCategory"],
         userJsonDetail: json["userJsonDetail"] == null ? null : UserJsonDetail.fromMap(json["userJsonDetail"]),
+        growthRateReadDto: json["growthRateReadDto"] == null ? null : GrowthRateReadDto.fromMap(json["growthRateReadDto"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         isFollowing: json["isFollowing"],
@@ -109,6 +113,7 @@ class UserReadDto {
   String? accessLevel;
   String? region;
   String? state;
+  String? stateTr1;
   int? gender;
   int? wallet;
   double? point;
@@ -121,6 +126,7 @@ class UserReadDto {
   DateTime? expireUpgradeAccount;
   int? ageCategory;
   UserJsonDetail? userJsonDetail;
+  GrowthRateReadDto? growthRateReadDto;
   List<MediaReadDto>? media;
   List<CategoryReadDto>? categories;
   bool? isFollowing;
@@ -153,6 +159,7 @@ class UserReadDto {
         "accessLevel": accessLevel,
         "region": region,
         "state": state,
+        "stateTr1": stateTr1,
         "gender": gender,
         "wallet": wallet,
         "point": point,
@@ -165,6 +172,7 @@ class UserReadDto {
         "expireUpgradeAccount": expireUpgradeAccount?.toIso8601String(),
         "ageCategory": ageCategory,
         "userJsonDetail": userJsonDetail?.toMap(),
+        "growthRateReadDto": growthRateReadDto?.toMap(),
         "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
         "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final x) => x.toMap())),
         "isFollowing": isFollowing,
