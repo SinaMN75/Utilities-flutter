@@ -276,7 +276,7 @@ class ChatGroupMessageReadDto {
   String? groupChatId;
   UserReadDto? user;
   String? userId;
-  String? forwardedMessage;
+  ChatGroupMessageReadDto? forwardedMessage;
   String? forwardedMessageId;
   ChatGroupMessageReadDto? parent;
   String? parentId;
@@ -323,7 +323,7 @@ class ChatGroupMessageReadDto {
     groupChatId: json["groupChatId"],
     user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
     userId: json["userId"],
-    forwardedMessage: json["forwardedMessage"],
+    forwardedMessage: json["forwardedMessage"] == null ? null : ChatGroupMessageReadDto.fromMap(json["forwardedMessage"]),
     forwardedMessageId: json["forwardedMessageId"],
     parentId: json["parentId"],
     seenUsers: json["seenUsers"] == null ? null : SeenUsers.fromMap(json["seenUsers"]),
