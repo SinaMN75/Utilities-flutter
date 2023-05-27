@@ -278,7 +278,7 @@ class ChatGroupMessageReadDto {
   String? userId;
   String? forwardedMessage;
   String? forwardedMessageId;
-  String? parent;
+  ChatGroupMessageReadDto? parent;
   String? parentId;
   SeenUsers? seenUsers;
   String? seenUsersId;
@@ -325,9 +325,9 @@ class ChatGroupMessageReadDto {
     userId: json["userId"],
     forwardedMessage: json["forwardedMessage"],
     forwardedMessageId: json["forwardedMessageId"],
-    parent: json["parent"],
     parentId: json["parentId"],
     seenUsers: json["seenUsers"] == null ? null : SeenUsers.fromMap(json["seenUsers"]),
+    parent: json["parent"] == null ? null : ChatGroupMessageReadDto.fromMap(json["parent"]),
     seenUsersId: json["seenUsersId"],
     media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
     products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
