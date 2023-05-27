@@ -1,6 +1,7 @@
 import 'package:utilities/utilities.dart';
 
 
+
 class MediaReadDto {
   String? id;
   DateTime? createdAt;
@@ -44,6 +45,8 @@ class MediaReadDto {
     "url": url,
   };
 }
+
+
 
 class MediaJsonDetail {
   String? link;
