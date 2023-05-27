@@ -67,6 +67,7 @@ class ProductReadDto {
   String? userId;
   UserReadDto? user;
   ProductJsonDetail? productJsonDetail;
+  List<CommentReadDto>? comments;
   List<MediaReadDto>? media;
   List<FormReadDto>? forms;
   List<CategoryReadDto>? categories;
@@ -107,6 +108,7 @@ class ProductReadDto {
     this.productJsonDetail,
     this.media,
     this.forms,
+    this.comments,
     this.categories,
     this.productInsights,
     this.visitProducts,
@@ -122,7 +124,7 @@ class ProductReadDto {
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         title: json["title"],
-    isSeen: json["isSeen"],
+        isSeen: json["isSeen"],
         subtitle: json["subtitle"],
         description: json["description"],
         useCase: json["useCase"],
@@ -149,6 +151,7 @@ class ProductReadDto {
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         productJsonDetail: json["productJsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["productJsonDetail"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+        comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
         forms: json["forms"] == null ? <FormReadDto>[] : List<FormReadDto>.from(json["forms"].cast<Map<String, dynamic>>().map(FormReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         productInsights: json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
@@ -190,6 +193,7 @@ class ProductReadDto {
         "media": media == null ? [] : List<dynamic>.from(media!.map((x) => x.toMap())),
         "forms": forms == null ? [] : List<dynamic>.from(forms!.map((x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x.toMap())),
+        "comments": comments == null ? [] : List<CommentReadDto>.from(comments!.map((x) => x.toMap())),
         "productInsights": productInsights == null ? [] : List<dynamic>.from(productInsights!.map((x) => x.toMap())),
         "visitProducts": visitProducts == null ? [] : List<dynamic>.from(visitProducts!.map((x) => x.toMap())),
         "successfulPurchase": successfulPurchase,
