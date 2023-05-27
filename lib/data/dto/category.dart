@@ -103,7 +103,7 @@ class CategoryJsonDetail {
   String? link;
   double? latitude;
   double? longitude;
-  int? value;
+  double? value;
   DateTime? date1;
   DateTime? date2;
 

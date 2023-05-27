@@ -310,7 +310,6 @@ class UserCreateUpdateDto {
     this.email,
     this.state,
     this.stateTr1,
-    this.genderTr1,
     this.detail1,
     this.detail2,
   });
@@ -354,7 +353,6 @@ class UserCreateUpdateDto {
         showContactInfo: json["showContactInfo"],
         birthDate: json["birthDate"],
         gender: json["gender"],
-        genderTr1: json["genderTr1"],
         detail1: json["detail1"],
         detail2: json["detail2"],
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].cast<Map<String, dynamic>>().map((final x) => x)),
@@ -396,8 +394,7 @@ class UserCreateUpdateDto {
   final double? wallet;
   final bool? showContactInfo;
   final String? birthDate;
-  final String? gender;
-  final String? genderTr1;
+  final int? gender;
   final String? detail1;
   final String? detail2;
   final List<String>? categories;
@@ -442,7 +439,6 @@ class UserCreateUpdateDto {
         "showContactInfo": showContactInfo,
         "birthDate": birthDate,
         "gender": gender,
-        "genderTr1": genderTr1,
         "detail1": detail1,
         "detail2": detail2,
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((final x) => x)),
