@@ -34,7 +34,7 @@ extension ProductReadDtoExtension on ProductReadDto {
         deletedAt: null,
         user: UserReadDto(),
         status: 1,
-        media: <MediaReadDto>[MediaReadDto(link: Sample.loremPicsum)],
+        media: <MediaReadDto>[MediaReadDto(url: Sample.loremPicsum)],
       );
 }
 

@@ -323,7 +323,7 @@ class MediaDataSource {
   }) async =>
       httpPut(
         url: "$baseUrl/Media/$mediaId",
-        body: MediaReadDto(title: title, useCase: useCase, size: size),
+        body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), useCase: useCase),
         action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.data, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
