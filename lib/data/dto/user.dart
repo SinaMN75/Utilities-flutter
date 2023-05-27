@@ -1,225 +1,179 @@
 import 'package:utilities/utilities.dart';
 
 class UserReadDto {
+  bool? suspend;
+  String? firstName;
+  String? lastName;
+  String? fullName;
+  bool? isPrivate;
+  int? wallet;
+  double? point;
+  bool? isOnline;
+  int? ageCategory;
+  UserJsonDetail? userJsonDetail;
+  List<MediaReadDto>? media;
+  List<CategoryReadDto>? categories;
+  bool? isFollowing;
+  int? countFollowers;
+  int? countFollowing;
+  String? id;
+  String? userName;
+  String? email;
+  String? token;
+  String? phoneNumber;
+
   UserReadDto({
-    this.token,
-    this.id,
-    this.fullName,
-    this.phoneNumber,
-    this.userName,
-    this.bio,
-    this.appUserName,
-    this.appPhoneNumber,
-    this.appEmail,
-    this.type,
+    this.suspend,
     this.firstName,
     this.lastName,
-    this.headline,
-    this.website,
-    this.region,
-    this.activity,
+    this.fullName,
+    this.isPrivate,
     this.wallet,
     this.point,
-    this.badge,
-    this.instagram,
-    this.telegram,
-    this.whatsapp,
-    this.linkedIn,
-    this.showContactInfo,
-    this.isAdmin,
-    this.suspend,
-    this.birthDate,
-    this.gender,
-    this.followingUsers,
-    this.followedUsers,
+    this.isOnline,
+    this.ageCategory,
+    this.userJsonDetail,
     this.media,
-    this.locations,
     this.categories,
-    this.products,
-    this.countFollowers,
-    this.countProducts,
-    this.color,
-    this.nationalCode,
-    this.bookmarkFolders,
-    this.growthRate,
-    this.isPrivate,
     this.isFollowing,
-    this.soundcloud,
-    this.dribble,
-    this.pinterest,
-    this.state,
+    this.countFollowers,
     this.countFollowing,
-    this.genderTr1,
-    this.stateTr1,
-    this.detail1,
-    this.detail2,
+    this.id,
+    this.userName,
+    this.email,
+    this.token,
+    this.phoneNumber,
   });
 
-  factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
-
-  factory UserReadDto.fromMap(final Map<String, dynamic> json) => UserReadDto(
-        token: json["token"],
-        id: json["id"],
-        fullName: json["fullName"],
-        phoneNumber: json["phoneNumber"],
-        userName: json["userName"],
-        bio: json["bio"],
-        appUserName: json["appUserName"],
-        appPhoneNumber: json["appPhoneNumber"],
-        appEmail: json["appEmail"],
-        type: json["type"],
-        firstName: json["firstName"],
-        state: json["state"],
-        stateTr1: json["stateTr1"],
-        lastName: json["lastName"],
-        isPrivate: json["isPrivate"],
-        headline: json["headline"],
-        website: json["website"],
-        nationalCode: json["nationalCode"],
-        followingUsers: json["followingUsers"],
-        followedUsers: json["followedUsers"],
-        instagram: json["instagram"],
-        telegram: json["telegram"],
-        whatsapp: json["whatsApp"],
-        linkedIn: json["linkedIn"],
-        soundcloud: json["soundCloud"],
-        dribble: json["dribble"],
-        pinterest: json["pinterest"],
-        region: json["region"],
-        activity: json["activity"],
-        wallet: json["wallet"],
-        point: json["point"],
-        badge: json["badge"],
-        showContactInfo: json["showContactInfo"],
-        isAdmin: json["isAdmin"],
-        suspend: json["suspend"],
-        birthDate: json["birthdate"],
-        gender: json["gender"],
-        genderTr1: json["genderTr1"],
-        countFollowers: json["countFollowers"],
-        countFollowing: json["countFollowing"],
-        countProducts: json["countProducts"],
-        color: json["color"],
-        isFollowing: json["isFollowing"],
-        detail1: json["detail1"],
-        detail2: json["detail2"],
-        growthRate: json["growthRate"] == null ? null : GrowthRateReadDto.fromMap(json["growthRate"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
-        locations: json["locations"] != null ? List<LocationReadDto>.from(json["locations"].cast<Map<String, dynamic>>().map(LocationReadDto.fromMap)) : null,
-        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
-        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
-        bookmarkFolders: json["bookmarkFolders"] == null ? null : List<BookmarkFolder>.from(json["bookmarkFolders"].cast<Map<String, dynamic>>().map(BookmarkFolder.fromMap)).toList(),
-      );
-
-  final String? token;
-  final String? id;
-  final String? fullName;
-  final String? phoneNumber;
-  final String? userName;
-  final String? bio;
-  final String? appUserName;
-  final String? appPhoneNumber;
-  final String? appEmail;
-  final String? type;
-  final String? firstName;
-  final String? lastName;
-  final String? headline;
-  final String? state;
-  final String? stateTr1;
-  final String? website;
-  final String? region;
-  final String? activity;
-  final double? wallet;
-  final double? point;
-  final String? badge;
-  final String? instagram;
-  final String? telegram;
-  final String? dribble;
-  final String? soundcloud;
-  final String? pinterest;
-  final String? whatsapp;
-  final String? linkedIn;
-  final String? nationalCode;
-  final bool? showContactInfo;
-  final bool? isAdmin;
-  final bool? isPrivate;
-  bool? isFollowing;
-  final bool? suspend;
-  final String? birthDate;
-  final String? gender;
-  final String? genderTr1;
-  final String? followingUsers;
-  final String? followedUsers;
-  final int? countFollowers;
-  final int? countFollowing;
-  final int? countProducts;
-  final String? color;
-  final String? detail1;
-  final String? detail2;
-  final GrowthRateReadDto? growthRate;
-  final List<MediaReadDto>? media;
-  final List<LocationReadDto>? locations;
-  final List<CategoryReadDto>? categories;
-  final List<ProductReadDto>? products;
-  final List<BookmarkFolder>? bookmarkFolders;
+  factory UserReadDto.fromJson(String str) => UserReadDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  static ChatReadDto ff(final Map<String, dynamic> _json) => ChatReadDto.fromMap(_json);
+  factory UserReadDto.fromMap(Map<String, dynamic> json) => UserReadDto(
+    suspend: json["suspend"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
+    fullName: json["fullName"],
+    isPrivate: json["isPrivate"],
+    wallet: json["wallet"],
+    point: json["point"],
+    isOnline: json["isOnline"],
+    ageCategory: json["ageCategory"],
+    userJsonDetail: json["userJsonDetail"] == null ? null : UserJsonDetail.fromMap(json["userJsonDetail"]),
+    media: json["media"] == null ? [] : List<MediaReadDto>.from(json["media"]!.map((x) => x)),
+    categories: json["categories"] == null ? [] : List<CategoryReadDto>.from(json["categories"]!.map((x) => x)),
+    isFollowing: json["isFollowing"],
+    countFollowers: json["countFollowers"],
+    countFollowing: json["countFollowing"],
+    id: json["id"],
+    userName: json["userName"],
+    email: json["email"],
+    token: json["token"],
+    phoneNumber: json["phoneNumber"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "token": token,
-        "id": id,
-        "fullName": fullName,
-        "phoneNumber": phoneNumber,
-        "userName": userName,
-        "bio": bio,
-        "appUserName": appUserName,
-        "appPhoneNumber": appPhoneNumber,
-        "appEmail": appEmail,
-        "type": type,
-        "followingUsers": followingUsers,
-        "followedUsers": followedUsers,
-        "firstName": firstName,
-        "lastName": lastName,
-        "headline": headline,
-        "state": state,
-        "isPrivate": isPrivate,
-        "stateTr1": stateTr1,
-        "website": website,
-        "region": region,
-        "nationalCode": nationalCode,
-        "activity": activity,
-        "wallet": wallet,
-        "point": point,
-        "badge": badge,
-        "instagram": instagram,
-        "telegram": telegram,
-        "whatsApp": whatsapp,
-        "linkedIn": linkedIn,
-        "pinterest": pinterest,
-        "dribble": dribble,
-        "soundCloud": soundcloud,
-        "showContactInfo": showContactInfo,
-        "isAdmin": isAdmin,
-        "suspend": suspend,
-        "birthdate": birthDate,
-        "gender": gender,
-        "genderTr1": genderTr1,
-        "countFollowers": countFollowers,
-        "countFollowing": countFollowing,
-        "countProducts": countProducts,
-        "color": color,
-        "detail1": detail1,
-        "detail2": detail2,
-        "isFollowing": isFollowing,
-        "growthRate": growthRate == null ? null : growthRate!.toMap(),
-        "media": media == null ? null : List<dynamic>.from(media!.map((final x) => x.toMap())),
-        "locations": locations == null ? null : List<dynamic>.from(locations!.map((final x) => x.toMap())),
-        "categories": categories == null ? null : List<dynamic>.from(categories!.map((final x) => x.toMap())),
-        "products": products == null ? null : List<dynamic>.from(products!.map((final x) => x.toMap())),
-        "bookmarkFolders": bookmarkFolders == null ? null : List<dynamic>.from(bookmarkFolders!.map((final x) => x.toMap())),
-      };
+    "suspend": suspend,
+    "firstName": firstName,
+    "lastName": lastName,
+    "fullName": fullName,
+    "isPrivate": isPrivate,
+    "wallet": wallet,
+    "point": point,
+    "isOnline": isOnline,
+    "ageCategory": ageCategory,
+    "userJsonDetail": userJsonDetail?.toMap(),
+    "media": media == null ? [] : List<MediaReadDto>.from(media!.map((x) => x)),
+    "categories": categories == null ? [] : List<CategoryReadDto>.from(categories!.map((x) => x)),
+    "isFollowing": isFollowing,
+    "countFollowers": countFollowers,
+    "countFollowing": countFollowing,
+    "id": id,
+    "userName": userName,
+    "email": email,
+    "token": token,
+    "phoneNumber": phoneNumber,
+  };
+}
+
+class UserJsonDetail {
+  String? instagram;
+  String? telegram;
+  String? whatsApp;
+  String? linkedIn;
+  String? dribble;
+  String? soundCloud;
+  String? pinterest;
+  String? website;
+  String? activity;
+  String? color;
+  bool? showContactInfo;
+  bool? isPrivate;
+  String? meliCode;
+  String? shebaNumber;
+  bool? isAuthorize;
+  bool? isForeigner;
+
+  UserJsonDetail({
+    this.instagram,
+    this.telegram,
+    this.whatsApp,
+    this.linkedIn,
+    this.dribble,
+    this.soundCloud,
+    this.pinterest,
+    this.website,
+    this.activity,
+    this.color,
+    this.showContactInfo,
+    this.isPrivate,
+    this.meliCode,
+    this.shebaNumber,
+    this.isAuthorize,
+    this.isForeigner,
+  });
+
+  factory UserJsonDetail.fromJson(String str) => UserJsonDetail.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UserJsonDetail.fromMap(Map<String, dynamic> json) => UserJsonDetail(
+    instagram: json["instagram"],
+    telegram: json["telegram"],
+    whatsApp: json["whatsApp"],
+    linkedIn: json["linkedIn"],
+    dribble: json["dribble"],
+    soundCloud: json["soundCloud"],
+    pinterest: json["pinterest"],
+    website: json["website"],
+    activity: json["activity"],
+    color: json["color"],
+    showContactInfo: json["showContactInfo"],
+    isPrivate: json["isPrivate"],
+    meliCode: json["meliCode"],
+    shebaNumber: json["shebaNumber"],
+    isAuthorize: json["isAuthorize"],
+    isForeigner: json["isForeigner"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "instagram": instagram,
+    "telegram": telegram,
+    "whatsApp": whatsApp,
+    "linkedIn": linkedIn,
+    "dribble": dribble,
+    "soundCloud": soundCloud,
+    "pinterest": pinterest,
+    "website": website,
+    "activity": activity,
+    "color": color,
+    "showContactInfo": showContactInfo,
+    "isPrivate": isPrivate,
+    "meliCode": meliCode,
+    "shebaNumber": shebaNumber,
+    "isAuthorize": isAuthorize,
+    "isForeigner": isForeigner,
+  };
 }
 
 class UserCreateUpdateDto {

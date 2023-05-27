@@ -16,6 +16,7 @@ class Assets {
   static const String componentsOtpField = 'lib/components/otp_field.dart';
   static const String componentsPercentIndicator = 'lib/components/percent_indicator.dart';
   static const String componentsPlusMinus = 'lib/components/plus_minus.dart';
+  static const String componentsQrcodeScanner = 'lib/components/qrcode_scanner.dart';
   static const String componentsRadarChart = 'lib/components/radar_chart.dart';
   static const String componentsRatingBar = 'lib/components/rating_bar.dart';
   static const String componentsReadmore = 'lib/components/readmore.dart';
@@ -57,6 +58,7 @@ class Assets {
   static const String dtoTeam = 'lib/data/dto/team.dart';
   static const String dtoTransaction = 'lib/data/dto/transaction.dart';
   static const String dtoUser = 'lib/data/dto/user.dart';
+  static const String dtoWithdraw = 'lib/data/dto/withdraw.dart';
   static const String effectsColorTransitionEffect = 'lib/components/smooth_page_indicator/src/effects/color_transition_effect.dart';
   static const String effectsCustomizableEffect = 'lib/components/smooth_page_indicator/src/effects/customizable_effect.dart';
   static const String effectsExpandingDotsEffect = 'lib/components/smooth_page_indicator/src/effects/expanding_dots_effect.dart';
@@ -126,6 +128,7 @@ class Assets {
   static const String remoteDatasourceShoppingCartDatasource = 'lib/data/remote_datasource/shopping_cart_datasource.dart';
   static const String remoteDatasourceTransactionDatasource = 'lib/data/remote_datasource/transaction_datasource.dart';
   static const String remoteDatasourceUserDatasource = 'lib/data/remote_datasource/user_datasource.dart';
+  static const String remoteDatasourceWithdrawDatasource = 'lib/data/remote_datasource/withdraw_datasource.dart';
   static const String shamsiDateShamsiDate = 'lib/utils/shamsi_date/shamsi_date.dart';
   static const String smoothPageIndicatorSmoothPageIndicator = 'lib/components/smooth_page_indicator/smooth_page_indicator.dart';
   static const String soundPlayerSoundPlayer = 'lib/components/sound_player/sound_player.dart';

@@ -1,112 +1,95 @@
 import 'package:utilities/utilities.dart';
 
-class MediaReadDto {
-  MediaReadDto({
-    this.id = "-1",
-    this.type = -1,
-    this.useCase = "-1",
-    this.link = "-1",
-    this.url = "-1",
-    this.title = "-1",
-    this.file,
-    this.fileName,
-    this.fileType,
-    this.productId,
-    this.userId,
-    this.categoryId,
-    this.contentId,
-    this.time,
-    this.artist,
-    this.album,
-    this.notificationId,
-    this.visibility,
-    this.size,
-    this.chat,
-    this.isPrivate,
-    this.chatId,
-    this.createdAt,
-  });
 
-  final String? id;
-  final int? type;
-  final String? useCase;
-  final String? link;
-  final String? url;
-  final String? file;
-  final String? fileName;
-  final String? fileType;
-  final String? title;
-  final String? notificationId;
-  final String? categoryId;
-  final String? contentId;
-  final String? productId;
-  final int? visibility;
-  final String? userId;
-  final String? size;
-  final String? time;
-  final String? artist;
-  final String? album;
-  final Chat? chat;
-  final bool? isPrivate;
-  final String? chatId;
-  final String? createdAt;
+class MediaReadDto {
+  String? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? fileName;
+  String? useCase;
+  MediaJsonDetail? mediaJsonDetail;
+  String? url;
+
+  MediaReadDto({
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.fileName,
+    this.useCase,
+    this.mediaJsonDetail,
+    this.url,
+  });
 
   factory MediaReadDto.fromJson(String str) => MediaReadDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory MediaReadDto.fromMap(Map<String, dynamic> json) {
-    try {
-      return MediaReadDto(
-        id: json["id"],
-        type: json["type"],
-        useCase: json["useCase"],
-        link: json["link"],
-        url: json["url"],
-        title: json["title"],
-        file: json["file"],
-        fileName: json["fileName"],
-        fileType: json["fileName"].toString().split('.')[1],
-        notificationId: json["notificationId"],
-        categoryId: json["categoryId"],
-        contentId: json["contentId"],
-        productId: json["productId"],
-        visibility: json["visibility"],
-        userId: json["userId"],
-        size: json["size"],
-        chatId: json["chatId"],
-        isPrivate: json["isPrivate"],
-        createdAt: json["createdAt"],
-        chat: json["chat"] == null ? null : Chat.fromMap(json["chat"]),
-      );
-    } catch (e) {
-      print(e.toString());
-      return MediaReadDto();
-    }
-  }
+  factory MediaReadDto.fromMap(Map<String, dynamic> json) => MediaReadDto(
+    id: json["id"],
+    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+    fileName: json["fileName"],
+    useCase: json["useCase"],
+    mediaJsonDetail: json["mediaJsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["mediaJsonDetail"]),
+    url: json["url"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "type": type,
-        "useCase": useCase,
-        "link": link,
-        "url": url,
-        "title": title,
-        "file": file,
-        "fileName": fileName,
-        "notificationId": notificationId,
-        "categoryId": categoryId,
-        "contentId": contentId,
-        "productId": productId,
-        "visibility": visibility,
-        "chatId": chatId,
-        "isPrivate": isPrivate,
-        "createdAt": createdAt,
-        "userId": userId,
-        "size": size,
-        "chat": chat == null ? null : chat!.toMap(),
-      };
+    "id": id,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
+    "fileName": fileName,
+    "useCase": useCase,
+    "mediaJsonDetail": mediaJsonDetail?.toMap(),
+    "url": url,
+  };
 }
+
+class MediaJsonDetail {
+  String? link;
+  String? title;
+  String? size;
+  String? time;
+  String? artist;
+  String? album;
+  bool? isPrivate;
+
+  MediaJsonDetail({
+    this.link,
+    this.title,
+    this.size,
+    this.time,
+    this.artist,
+    this.album,
+    this.isPrivate,
+  });
+
+  factory MediaJsonDetail.fromJson(String str) => MediaJsonDetail.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory MediaJsonDetail.fromMap(Map<String, dynamic> json) => MediaJsonDetail(
+    link: json["link"],
+    title: json["title"],
+    size: json["size"],
+    time: json["time"],
+    artist: json["artist"],
+    album: json["album"],
+    isPrivate: json["isPrivate"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "link": link,
+    "title": title,
+    "size": size,
+    "time": time,
+    "artist": artist,
+    "album": album,
+    "isPrivate": isPrivate,
+  };
+}
+
+
 
 class Chat {
   Chat({
