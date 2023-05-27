@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:utilities/data/dto/media.dart';
+
 class CategoryReadDto {
   CategoryReadDto({
     this.title,
@@ -16,6 +18,7 @@ class CategoryReadDto {
     this.id,
     this.updatedAt,
     this.parentId,
+    this.media,
   });
 
   factory CategoryReadDto.fromJson(final String str) => CategoryReadDto.fromMap(json.decode(str));
@@ -32,6 +35,7 @@ class CategoryReadDto {
         order: json["order"],
         categoryJsonDetail: json["categoryJsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["categoryJsonDetail"]),
         children: json["children"] == null ? [] : List<CategoryReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         id: json["id"],
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         parentId: json["parentId"],
@@ -50,10 +54,11 @@ class CategoryReadDto {
   String? id;
   DateTime? updatedAt;
   String? parentId;
+  final List<MediaReadDto>? media;
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "title": title,
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,
@@ -64,7 +69,8 @@ class CategoryReadDto {
         "stock": stock,
         "order": order,
         "categoryJsonDetail": categoryJsonDetail?.toMap(),
-        "children": children == null ? <dynamic>[] : List<dynamic>.from(children!.map((final CategoryReadDto x) => x.toMap())),
+        "children": children == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(children!.map((final CategoryReadDto x) => x.toMap())),
+        "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
         "id": id,
         "updatedAt": updatedAt?.toIso8601String(),
         "parentId": parentId,
@@ -114,9 +120,7 @@ class CategoryJsonDetail {
       };
 }
 
-
 class CategoryCreateUpdateDto {
-
   CategoryCreateUpdateDto({
     this.id,
     this.title,
@@ -140,24 +144,24 @@ class CategoryCreateUpdateDto {
   factory CategoryCreateUpdateDto.fromJson(final String str) => CategoryCreateUpdateDto.fromMap(json.decode(str));
 
   factory CategoryCreateUpdateDto.fromMap(final Map<String, dynamic> json) => CategoryCreateUpdateDto(
-    id: json["id"],
-    title: json["title"],
-    titleTr1: json["titleTr1"],
-    titleTr2: json["titleTr2"],
-    subtitle: json["subtitle"],
-    color: json["color"],
-    link: json["link"],
-    useCase: json["useCase"],
-    type: json["type"],
-    latitude: json["latitude"],
-    longitude: json["longitude"],
-    price: json["price"],
-    value: json["value"],
-    stock: json["stock"],
-    order: json["order"],
-    parentId: json["parentId"],
-    isUnique: json["isUnique"],
-  );
+        id: json["id"],
+        title: json["title"],
+        titleTr1: json["titleTr1"],
+        titleTr2: json["titleTr2"],
+        subtitle: json["subtitle"],
+        color: json["color"],
+        link: json["link"],
+        useCase: json["useCase"],
+        type: json["type"],
+        latitude: json["latitude"],
+        longitude: json["longitude"],
+        price: json["price"],
+        value: json["value"],
+        stock: json["stock"],
+        order: json["order"],
+        parentId: json["parentId"],
+        isUnique: json["isUnique"],
+      );
   String? id;
   String? title;
   String? titleTr1;
@@ -178,30 +182,28 @@ class CategoryCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String,dynamic>{
-    "id": id,
-    "title": title,
-    "titleTr1": titleTr1,
-    "titleTr2": titleTr2,
-    "subtitle": subtitle,
-    "color": color,
-    "link": link,
-    "useCase": useCase,
-    "type": type,
-    "latitude": latitude,
-    "longitude": longitude,
-    "price": price,
-    "value": value,
-    "stock": stock,
-    "order": order,
-    "parentId": parentId,
-    "isUnique": isUnique,
-  };
+  Map<String, dynamic> toMap() => <String, dynamic>{
+        "id": id,
+        "title": title,
+        "titleTr1": titleTr1,
+        "titleTr2": titleTr2,
+        "subtitle": subtitle,
+        "color": color,
+        "link": link,
+        "useCase": useCase,
+        "type": type,
+        "latitude": latitude,
+        "longitude": longitude,
+        "price": price,
+        "value": value,
+        "stock": stock,
+        "order": order,
+        "parentId": parentId,
+        "isUnique": isUnique,
+      };
 }
 
-
 class CategoryFilterDto {
-
   CategoryFilterDto({
     this.title,
     this.titleTr1,
@@ -219,18 +221,18 @@ class CategoryFilterDto {
   factory CategoryFilterDto.fromJson(final String str) => CategoryFilterDto.fromMap(json.decode(str));
 
   factory CategoryFilterDto.fromMap(final Map<String, dynamic> json) => CategoryFilterDto(
-    title: json["title"],
-    titleTr1: json["titleTr1"],
-    titleTr2: json["titleTr2"],
-    useCase: json["useCase"],
-    type: json["type"],
-    parentId: json["parentId"],
-    showMedia: json["showMedia"],
-    orderByOrder: json["orderByOrder"],
-    orderByOrderDescending: json["orderByOrderDescending"],
-    orderByCreatedAt: json["orderByCreatedAt"],
-    orderByCreatedAtDescending: json["orderByCreatedAtDescending"],
-  );
+        title: json["title"],
+        titleTr1: json["titleTr1"],
+        titleTr2: json["titleTr2"],
+        useCase: json["useCase"],
+        type: json["type"],
+        parentId: json["parentId"],
+        showMedia: json["showMedia"],
+        orderByOrder: json["orderByOrder"],
+        orderByOrderDescending: json["orderByOrderDescending"],
+        orderByCreatedAt: json["orderByCreatedAt"],
+        orderByCreatedAtDescending: json["orderByCreatedAtDescending"],
+      );
   String? title;
   String? titleTr1;
   String? titleTr2;
@@ -246,18 +248,42 @@ class CategoryFilterDto {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => {
-    "title": title,
-    "titleTr1": titleTr1,
-    "titleTr2": titleTr2,
-    "useCase": useCase,
-    "type": type,
-    "parentId": parentId,
-    "showMedia": showMedia,
-    "orderByOrder": orderByOrder,
-    "orderByOrderDescending": orderByOrderDescending,
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDescending": orderByCreatedAtDescending,
-  };
+        "title": title,
+        "titleTr1": titleTr1,
+        "titleTr2": titleTr2,
+        "useCase": useCase,
+        "type": type,
+        "parentId": parentId,
+        "showMedia": showMedia,
+        "orderByOrder": orderByOrder,
+        "orderByOrderDescending": orderByOrderDescending,
+        "orderByCreatedAt": orderByCreatedAt,
+        "orderByCreatedAtDescending": orderByCreatedAtDescending,
+      };
 }
 
+extension CategoryReadDtoExtension on List<CategoryReadDto>? {
+  List<CategoryReadDto> getByTypeUseCase({required final String type, required final String useCase}) =>
+      this
+          ?.where(
+            (final CategoryReadDto e) => e.type == type && e.useCase == useCase,
+          )
+          .toList() ??
+      <CategoryReadDto>[];
 
+  List<CategoryReadDto> getByType({required final type}) =>
+      this
+          ?.where(
+            (final CategoryReadDto e) => e.type == type,
+          )
+          .toList() ??
+      <CategoryReadDto>[];
+
+  List<CategoryReadDto> getByUseCase({required final useCase}) =>
+      this
+          ?.where(
+            (final CategoryReadDto e) => e.useCase == useCase,
+          )
+          .toList() ??
+      <CategoryReadDto>[];
+}
