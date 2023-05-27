@@ -351,9 +351,9 @@ class ChatGroupMessageReadDto {
     "parentId": parentId,
     "seenUsers": seenUsers?.toMap(),
     "seenUsersId": seenUsersId,
-    "media": media == null ? [] : List<dynamic>.from(media!.map((final x) => x.toMap())),
-    "products": products == null ? [] : List<dynamic>.from(products!.map((final x) => x.toMap())),
-    "messageSeenBy": messageSeenBy == null ? [] : List<dynamic>.from(messageSeenBy!.map((final x) => x.toMap())),
+    "media": media == null ? [] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
+    "products": products == null ? <ProductReadDto>[] : List<ProductReadDto>.from(products!.map((final x) => x.toMap())),
+    "messageSeenBy": messageSeenBy == null ? <UserReadDto>[] : List<UserReadDto>.from(messageSeenBy!.map((final x) => x.toMap())),
   };
 }
 
