@@ -1,3 +1,4 @@
+import 'package:utilities/data/dto/reaction.dart';
 import 'package:utilities/utilities.dart';
 
 class CommentReadDto {
@@ -88,29 +89,6 @@ class CommentJsonDetail {
       };
 }
 
-class ReactionReadDto {
-  int? reaction;
-  String? userId;
-
-  ReactionReadDto({
-    this.reaction,
-    this.userId,
-  });
-
-  factory ReactionReadDto.fromJson(final String str) => ReactionReadDto.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory ReactionReadDto.fromMap(final Map<String, dynamic> json) => ReactionReadDto(
-        reaction: json["reaction"],
-        userId: json["userId"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "reaction": reaction,
-        "userId": userId,
-      };
-}
 
 class CommentCreateUpdateDto {
   CommentCreateUpdateDto({
