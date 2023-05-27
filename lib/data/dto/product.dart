@@ -1,4 +1,3 @@
-import 'package:utilities/data/dto/report.dart';
 import 'package:utilities/utilities.dart';
 
 extension ProductReadDtoExtension on ProductReadDto {
@@ -8,30 +7,29 @@ extension ProductReadDtoExtension on ProductReadDto {
         title: "title",
         subtitle: "subtitle",
         description: "description",
-        details: "details",
-        address: "address",
-        author: "author",
-        phoneNumber: "phoneNumber",
-        link: "link",
-        website: "website",
-        email: "email",
+        productJsonDetail: ProductJsonDetail(
+          details: "details",
+          address: "address",
+          author: "author",
+          phoneNumber: "phoneNumber",
+          link: "link",
+          website: "website",
+          email: "email",
+          unit: "unit",
+          latitude: 35,
+          longitude: 55,
+          minOrder: 10,
+          maxOrder: 1000,
+          startDate: DateTime.now(),
+          endDate: DateTime.now(),
+        ),
         type: "type",
-        unit: "unit",
         useCase: "useCase",
-        isForSale: true,
         enabled: true,
-        latitude: 35,
-        longitude: 55,
         visitsCount: 100,
-        minOrder: 10,
-        maxOrder: 1000,
         price: 10000,
-        score: 10,
-        startDate: DateTime.now().toString(),
-        endDate: DateTime.now().toString(),
-        createdAt: DateTime.now().toString(),
-        updatedAt: DateTime.now().toString(),
-        deletedAt: null,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
         user: UserReadDto(),
         status: 1,
         media: <MediaReadDto>[MediaReadDto(url: Sample.loremPicsum)],
@@ -39,13 +37,188 @@ extension ProductReadDtoExtension on ProductReadDto {
 }
 
 class ProductReadDto {
+  String? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? title;
+  String? subtitle;
+  String? description;
+  String? useCase;
+  String? type;
+  String? state;
+  DateTime? boosted;
+  int? stock;
+  int? voteCount;
+  int? discountPercent;
+  int? visitsCount;
+  bool? enabled;
+  int? discountPrice;
+  int? price;
+  int? currency;
+  int? status;
+  int? ageCategory;
+  int? productState;
+  DateTime? expireDate;
+  String? seenUsers;
+  String? teams;
+  String? product;
+  String? parentId;
+  String? userId;
+  UserReadDto? user;
+  ProductJsonDetail? productJsonDetail;
+  List<MediaReadDto>? media;
+  List<FormReadDto>? forms;
+  List<CategoryReadDto>? categories;
+  List<ProductInsight>? productInsights;
+  List<ProductInsight>? visitProducts;
+  String? successfulPurchase;
 
   ProductReadDto({
     this.id,
-    this.userId,
+    this.createdAt,
+    this.updatedAt,
     this.title,
     this.subtitle,
     this.description,
+    this.useCase,
+    this.type,
+    this.state,
+    this.boosted,
+    this.stock,
+    this.voteCount,
+    this.discountPercent,
+    this.visitsCount,
+    this.enabled,
+    this.discountPrice,
+    this.price,
+    this.currency,
+    this.status,
+    this.ageCategory,
+    this.productState,
+    this.expireDate,
+    this.seenUsers,
+    this.teams,
+    this.product,
+    this.parentId,
+    this.userId,
+    this.user,
+    this.productJsonDetail,
+    this.media,
+    this.forms,
+    this.categories,
+    this.productInsights,
+    this.visitProducts,
+    this.successfulPurchase,
+  });
+
+  factory ProductReadDto.fromJson(String str) => ProductReadDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ProductReadDto.fromMap(Map<String, dynamic> json) => ProductReadDto(
+        id: json["id"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        title: json["title"],
+        subtitle: json["subtitle"],
+        description: json["description"],
+        useCase: json["useCase"],
+        type: json["type"],
+        state: json["state"],
+        boosted: json["boosted"] == null ? null : DateTime.parse(json["boosted"]),
+        stock: json["stock"],
+        voteCount: json["voteCount"],
+        discountPercent: json["discountPercent"],
+        visitsCount: json["visitsCount"],
+        enabled: json["enabled"],
+        discountPrice: json["discountPrice"],
+        price: json["price"],
+        currency: json["currency"],
+        status: json["status"],
+        ageCategory: json["ageCategory"],
+        productState: json["productState"],
+        expireDate: json["expireDate"] == null ? null : DateTime.parse(json["expireDate"]),
+        seenUsers: json["seenUsers"],
+        teams: json["teams"],
+        product: json["product"],
+        parentId: json["parentId"],
+        userId: json["userId"],
+        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
+        productJsonDetail: json["productJsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["productJsonDetail"]),
+        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+        forms: json["forms"] == null ? <FormReadDto>[] : List<FormReadDto>.from(json["forms"].cast<Map<String, dynamic>>().map(FormReadDto.fromMap)).toList(),
+        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
+        productInsights: json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
+        visitProducts: json["visitProducts"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["visitProducts"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
+        successfulPurchase: json["successfulPurchase"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "title": title,
+        "subtitle": subtitle,
+        "description": description,
+        "useCase": useCase,
+        "type": type,
+        "state": state,
+        "boosted": boosted?.toIso8601String(),
+        "stock": stock,
+        "voteCount": voteCount,
+        "discountPercent": discountPercent,
+        "visitsCount": visitsCount,
+        "enabled": enabled,
+        "discountPrice": discountPrice,
+        "price": price,
+        "currency": currency,
+        "status": status,
+        "ageCategory": ageCategory,
+        "productState": productState,
+        "expireDate": expireDate?.toIso8601String(),
+        "seenUsers": seenUsers,
+        "teams": teams,
+        "product": product,
+        "parentId": parentId,
+        "userId": userId,
+        "user": user?.toMap(),
+        "productJsonDetail": productJsonDetail?.toMap(),
+        "media": media == null ? [] : List<dynamic>.from(media!.map((x) => x.toMap())),
+        "forms": forms == null ? [] : List<dynamic>.from(forms!.map((x) => x.toMap())),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x.toMap())),
+        "productInsights": productInsights == null ? [] : List<dynamic>.from(productInsights!.map((x) => x.toMap())),
+        "visitProducts": visitProducts == null ? [] : List<dynamic>.from(visitProducts!.map((x) => x.toMap())),
+        "successfulPurchase": successfulPurchase,
+      };
+}
+
+class ProductJsonDetail {
+  String? details;
+  String? address;
+  String? author;
+  String? phoneNumber;
+  String? link;
+  String? website;
+  String? email;
+  String? unit;
+  int? latitude;
+  int? responseTime;
+  int? onTimeDelivery;
+  int? longitude;
+  int? length;
+  int? width;
+  int? height;
+  int? weight;
+  int? minOrder;
+  int? maxOrder;
+  int? maxPrice;
+  int? minPrice;
+  int? shippingCost;
+  int? shippingTime;
+  DateTime? startDate;
+  DateTime? endDate;
+
+  ProductJsonDetail({
     this.details,
     this.address,
     this.author,
@@ -53,171 +226,57 @@ class ProductReadDto {
     this.link,
     this.website,
     this.email,
-    this.state,
-    this.stateTr1,
-    this.stateTr2,
-    this.type,
     this.unit,
-    this.useCase,
-    this.isForSale,
-    this.isSeen,
-    this.expireDate,
-    this.enabled,
     this.latitude,
+    this.responseTime,
+    this.onTimeDelivery,
     this.longitude,
-    this.visitsCount,
+    this.length,
+    this.width,
+    this.height,
+    this.weight,
     this.minOrder,
     this.maxOrder,
-    this.discountPrice,
-    this.discountPercent,
-    this.price,
-    this.score,
+    this.maxPrice,
+    this.minPrice,
+    this.shippingCost,
+    this.shippingTime,
     this.startDate,
     this.endDate,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
-    this.user,
-    this.status,
-    this.seenUsers,
-    this.currency,
-    this.media,
-    this.categories,
-    this.forms,
-    this.comments,
-    this.teams,
-    this.reports,
-    this.voteCount,
-    this.productInsights,
-    this.value1,
-    this.value2,
-    this.value3,
-    this.value4,
-    this.value5,
-    this.value6,
   });
-  factory ProductReadDto.fromJson(final String str) => ProductReadDto.fromMap(json.decode(str));
 
-  factory ProductReadDto.fromMap(final Map<String, dynamic> json) => ProductReadDto(
-        id: json["id"],
-        userId: json["userId"],
-        title: json["title"],
-        subtitle: json["subtitle"],
-        description: json["description"],
+  factory ProductJsonDetail.fromJson(String str) => ProductJsonDetail.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ProductJsonDetail.fromMap(Map<String, dynamic> json) => ProductJsonDetail(
         details: json["details"],
         address: json["address"],
         author: json["author"],
         phoneNumber: json["phoneNumber"],
         link: json["link"],
         website: json["website"],
-        value1: json["value1"],
-        value2: json["value2"],
-        value3: json["value3"],
-        value4: json["value4"],
-        value5: json["value5"],
-        value6: json["value6"],
         email: json["email"],
-        state: json["state"],
-        discountPrice: json["discountPrice"],
-        discountPercent: json["discountPercent"],
-        stateTr1: json["stateTr1"],
-        stateTr2: json["stateTr2"],
-        type: json["type"],
         unit: json["unit"],
-        useCase: json["useCase"],
-        isForSale: json["isForSale"],
-        isSeen: json["isSeen"],
-        expireDate: json["expireDate"],
-        enabled: json["enabled"],
         latitude: json["latitude"],
+        responseTime: json["responseTime"],
+        onTimeDelivery: json["onTimeDelivery"],
         longitude: json["longitude"],
-        visitsCount: json["visitsCount"],
+        length: json["length"],
+        width: json["width"],
+        height: json["height"],
+        weight: json["weight"],
         minOrder: json["minOrder"],
         maxOrder: json["maxOrder"],
-        price: json["price"],
-        score: json["score"],
-        voteCount: json["voteCount"],
-        startDate: json["startDate"],
-        endDate: json["endDate"],
-        createdAt: json["createdAt"],
-        updatedAt: json["updatedAt"],
-        deletedAt: json["deletedAt"],
-        status: json["status"],
-        seenUsers: json["seenUsers"],
-        currency: json["currency"],
-        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
-        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
-        forms: json["forms"] == null ? null : List<FormReadDto>.from(json["forms"].cast<Map<String, dynamic>>().map(FormReadDto.fromMap)).toList(),
-        comments: json["comments"] == null ? null : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
-        teams: json["teams"],
-        reports: json["reports"] == null ? null : List<Report>.from(json["reports"].cast<Map<String, dynamic>>().map(Report.fromMap)).toList(),
-        productInsights: json["productInsights"] == null ? [] : List<ProductInsightDto>.from(json["productInsights"]!.map(ProductInsightDto.fromMap)).toList(),
+        maxPrice: json["maxPrice"],
+        minPrice: json["minPrice"],
+        shippingCost: json["shippingCost"],
+        shippingTime: json["shippingTime"],
+        startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
+        endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
       );
 
-  final String? id;
-  final String? userId;
-  final String? title;
-  final String? subtitle;
-  final String? description;
-  final String? details;
-  final String? address;
-  final String? author;
-  final String? phoneNumber;
-  final String? link;
-  final String? website;
-  final String? email;
-  final String? seenUsers;
-  final String? state;
-  final String? stateTr1;
-  final String? stateTr2;
-  final String? type;
-  final String? unit;
-  final String? useCase;
-  final bool? isForSale;
-  final bool? isSeen;
-  final String? expireDate;
-  final bool? enabled;
-  final double? latitude;
-  final double? longitude;
-  final int? discountPercent;
-  final int? discountPrice;
-  final int? visitsCount;
-  final double? minOrder;
-  final double? maxOrder;
-  final double? price;
-  final double? score;
-  final double? voteCount;
-  final String? startDate;
-  final String? endDate;
-  final String? createdAt;
-  final String? updatedAt;
-  final String? deletedAt;
-  final int? status;
-  final int? currency;
-  final String? value1;
-  final String? value2;
-  final String? value3;
-  final String? value4;
-  final String? value5;
-  final String? value6;
-  UserReadDto? user;
-  final List<MediaReadDto>? media;
-  final List<CategoryReadDto>? categories;
-  final List<FormReadDto>? forms;
-  final List<ProductInsightDto>? productInsights;
-  final List<CommentReadDto>? comments;
-  final String? teams;
-  final List<Report>? reports;
-
-  String toJson() => json.encode(toMap());
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-        "id": id,
-        "userId": userId,
-        "title": title,
-        "subtitle": subtitle,
-        "description": description,
+  Map<String, dynamic> toMap() => {
         "details": details,
         "address": address,
         "author": author,
@@ -225,52 +284,29 @@ class ProductReadDto {
         "link": link,
         "website": website,
         "email": email,
-        "state": state,
-        "stateTr1": stateTr1,
-        "stateTr2": stateTr2,
-        "type": type,
         "unit": unit,
-        "seenUsers": seenUsers,
-        "useCase": useCase,
-        "isForSale": isForSale,
-        "isSeen": isSeen,
-        "discountPrice": discountPrice,
-        "discountPercent": discountPercent,
-        "expireDate": expireDate,
-        "enabled": enabled,
         "latitude": latitude,
+        "responseTime": responseTime,
+        "onTimeDelivery": onTimeDelivery,
         "longitude": longitude,
-        "visitsCount": visitsCount,
+        "length": length,
+        "width": width,
+        "height": height,
+        "weight": weight,
         "minOrder": minOrder,
         "maxOrder": maxOrder,
-        "price": price,
-        "score": score,
-        "startDate": startDate,
-        "endDate": endDate,
-        "createdAt": createdAt,
-        "updatedAt": updatedAt,
-        "deletedAt": deletedAt,
-        "value1": value1,
-        "value2": value2,
-        "value3": value3,
-        "value4": value4,
-        "value5": value5,
-        "value6": value6,
-        "status": status,
-        "currency": currency,
-        "voteCount": voteCount,
-        "user": user == null ? null : user!.toMap(),
-        "media": media == null ? null : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
-        "categories": categories == null ? null : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
-        "forms": forms == null ? null : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
-        "comments": comments == null ? null : List<dynamic>.from(comments!.map((final CommentReadDto x) => x.toMap())),
-        "teams": teams,
-        "reports": reports == null ? null : List<dynamic>.from(reports!.map((final Report x) => x.toMap())),
+        "maxPrice": maxPrice,
+        "minPrice": minPrice,
+        "shippingCost": shippingCost,
+        "shippingTime": shippingTime,
+        "startDate": startDate?.toIso8601String(),
+        "endDate": endDate?.toIso8601String(),
       };
 }
 
-class ProductCreateUpdateDto {
+///***********************************
 
+class ProductCreateUpdateDto {
   ProductCreateUpdateDto({
     this.id,
     this.userId,
@@ -319,6 +355,7 @@ class ProductCreateUpdateDto {
     this.stateTr1,
     this.productInsight,
   });
+
   factory ProductCreateUpdateDto.fromJson(final String str) => ProductCreateUpdateDto.fromMap(json.decode(str));
 
   factory ProductCreateUpdateDto.fromMap(final Map<String, dynamic> json) => ProductCreateUpdateDto(
@@ -470,7 +507,6 @@ class ProductCreateUpdateDto {
 }
 
 class ProductFilterDto {
-
   ProductFilterDto({
     this.title,
     this.subTitle,
@@ -556,6 +592,7 @@ class ProductFilterDto {
     this.categoriesAnd,
     this.query,
   });
+
   factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
 
   factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
@@ -818,11 +855,11 @@ class ProductFilterDto {
 }
 
 class ProductInsight {
-
   ProductInsight({
     this.reaction,
     this.userId,
   });
+
   factory ProductInsight.fromJson(final String str) => ProductInsight.fromMap(json.decode(str));
 
   factory ProductInsight.fromMap(final Map<String, dynamic> json) => ProductInsight(
@@ -842,7 +879,6 @@ class ProductInsight {
 }
 
 class ProductInsightDto {
-
   ProductInsightDto({
     this.id,
     this.createdAt,
@@ -854,6 +890,7 @@ class ProductInsightDto {
     this.productEntity,
     this.productId,
   });
+
   factory ProductInsightDto.fromJson(final String str) => ProductInsightDto.fromMap(json.decode(str));
 
   factory ProductInsightDto.fromMap(final Map<String, dynamic> json) => ProductInsightDto(
