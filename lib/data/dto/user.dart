@@ -36,7 +36,7 @@ class UserReadDto {
     this.expireUpgradeAccount,
     this.ageCategory,
     this.userJsonDetail,
-    this.growthRateReadDto,
+    this.growthRate,
     this.media,
     this.categories,
     this.isFollowing,
@@ -83,7 +83,7 @@ class UserReadDto {
         expireUpgradeAccount: json["expireUpgradeAccount"] == null ? null : DateTime.parse(json["expireUpgradeAccount"]),
         ageCategory: json["ageCategory"],
         userJsonDetail: json["userJsonDetail"] == null ? null : UserJsonDetail.fromMap(json["userJsonDetail"]),
-        growthRateReadDto: json["growthRateReadDto"] == null ? null : GrowthRateReadDto.fromMap(json["growthRateReadDto"]),
+        growthRate: json["growthRateReadDto"] == null ? null : GrowthRateReadDto.fromMap(json["growthRateReadDto"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         isFollowing: json["isFollowing"],
@@ -126,7 +126,7 @@ class UserReadDto {
   DateTime? expireUpgradeAccount;
   int? ageCategory;
   UserJsonDetail? userJsonDetail;
-  GrowthRateReadDto? growthRateReadDto;
+  GrowthRateReadDto? growthRate;
   List<MediaReadDto>? media;
   List<CategoryReadDto>? categories;
   bool? isFollowing;
@@ -172,7 +172,7 @@ class UserReadDto {
         "expireUpgradeAccount": expireUpgradeAccount?.toIso8601String(),
         "ageCategory": ageCategory,
         "userJsonDetail": userJsonDetail?.toMap(),
-        "growthRateReadDto": growthRateReadDto?.toMap(),
+        "growthRate": growthRate?.toMap(),
         "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
         "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final x) => x.toMap())),
         "isFollowing": isFollowing,
