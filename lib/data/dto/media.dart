@@ -1,7 +1,5 @@
 import 'package:utilities/utilities.dart';
 
-
-
 class MediaReadDto {
   String? id;
   DateTime? createdAt;
@@ -10,6 +8,7 @@ class MediaReadDto {
   String? useCase;
   MediaJsonDetail? mediaJsonDetail;
   String? url;
+  String? fileType;
 
   MediaReadDto({
     this.id,
@@ -19,6 +18,7 @@ class MediaReadDto {
     this.useCase,
     this.mediaJsonDetail,
     this.url,
+    this.fileType,
   });
 
   factory MediaReadDto.fromJson(String str) => MediaReadDto.fromMap(json.decode(str));
@@ -26,27 +26,27 @@ class MediaReadDto {
   String toJson() => json.encode(toMap());
 
   factory MediaReadDto.fromMap(Map<String, dynamic> json) => MediaReadDto(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    fileName: json["fileName"],
-    useCase: json["useCase"],
-    mediaJsonDetail: json["mediaJsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["mediaJsonDetail"]),
-    url: json["url"],
-  );
+        id: json["id"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        fileName: json["fileName"],
+        useCase: json["useCase"],
+        fileType: json["url"] == null ? '' : json["url"].toString().split('.').last,
+        mediaJsonDetail: json["mediaJsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["mediaJsonDetail"]),
+        url: json["url"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "fileName": fileName,
-    "useCase": useCase,
-    "mediaJsonDetail": mediaJsonDetail?.toMap(),
-    "url": url,
-  };
+        "id": id,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "fileName": fileName,
+        "useCase": useCase,
+        "fileType": url?.split('.').last ?? '',
+        "mediaJsonDetail": mediaJsonDetail?.toMap(),
+        "url": url,
+      };
 }
-
-
 
 class MediaJsonDetail {
   String? link;
@@ -72,27 +72,25 @@ class MediaJsonDetail {
   String toJson() => json.encode(toMap());
 
   factory MediaJsonDetail.fromMap(Map<String, dynamic> json) => MediaJsonDetail(
-    link: json["link"],
-    title: json["title"],
-    size: json["size"],
-    time: json["time"],
-    artist: json["artist"],
-    album: json["album"],
-    isPrivate: json["isPrivate"],
-  );
+        link: json["link"],
+        title: json["title"],
+        size: json["size"],
+        time: json["time"],
+        artist: json["artist"],
+        album: json["album"],
+        isPrivate: json["isPrivate"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "link": link,
-    "title": title,
-    "size": size,
-    "time": time,
-    "artist": artist,
-    "album": album,
-    "isPrivate": isPrivate,
-  };
+        "link": link,
+        "title": title,
+        "size": size,
+        "time": time,
+        "artist": artist,
+        "album": album,
+        "isPrivate": isPrivate,
+      };
 }
-
-
 
 class Chat {
   Chat({
@@ -364,7 +362,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
     return list.isNotEmpty ? list.first : "--";
   }
 
-  String getCover() => getImages(useCase: UseCaseMedia.cover.title).getFirstIfExist() ??getImages(useCase: UseCaseMedia.post.title).getFirstIfExist()?? "--";
+  String getCover() => getImages(useCase: UseCaseMedia.cover.title).getFirstIfExist() ?? getImages(useCase: UseCaseMedia.post.title).getFirstIfExist() ?? "--";
 
   String getImage({final String? useCase}) => getImages(useCase: useCase).getFirstIfExist() ?? "--";
 
@@ -454,8 +452,7 @@ extension MediaResponseExtension on List<MediaReadDto> {
 
   String getImage({final String? useCase}) => getImages(useCase: useCase).getFirstIfExist() ?? "--";
 
-
-  String getCover() => getImages(useCase: UseCaseMedia.cover.title).getFirstIfExist() ??getImages(useCase: UseCaseMedia.post.title).getFirstIfExist()?? "--";
+  String getCover() => getImages(useCase: UseCaseMedia.cover.title).getFirstIfExist() ?? getImages(useCase: UseCaseMedia.post.title).getFirstIfExist() ?? "--";
 
   String getVideo({final String? useCase}) => getVideos(useCase: useCase).getFirstIfExist() ?? "--";
 

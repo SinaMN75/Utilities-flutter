@@ -28,6 +28,7 @@ extension StringExtensions on String {
 
   int getMinute() => int.parse(substring(3, 5).append0());
 
+
   String toTimeAgo({final bool numericDates = false, final bool persian = false}) {
     try {
       final Duration difference = DateTime.now().difference(DateFormat("yyyy-MM-ddThh:mm:sss").parse(this));
