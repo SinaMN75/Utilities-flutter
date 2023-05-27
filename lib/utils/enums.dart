@@ -123,7 +123,6 @@ enum TenderType {
   final String title;
 }
 
-
 enum PostMediaType {
   all("all"),
   image("image"),
@@ -265,6 +264,19 @@ enum TypeChat {
   final int title;
 }
 
+enum TypeGender {
+  Man(100),
+  Woman(101),
+  Company(102),
+  Team(103);
+
+  const TypeGender(this.title);
+
+  @override
+  String toString() => name;
+  final int title;
+}
+
 enum UseCaseMedia {
   image("image"),
   all("all"),
@@ -297,7 +309,6 @@ enum UseCaseMedia {
 //   String toString() => name;
 //   final String title;
 // }
-
 
 enum TypeCategory {
   Explore('Explore'),
