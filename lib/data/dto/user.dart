@@ -232,7 +232,7 @@ class UserJsonDetail {
   String? activity;
   String? color;
   bool? showContactInfo;
-  bool? privacyType;
+  int? privacyType;
   String? meliCode;
   String? shebaNumber;
   bool? isAuthorize;
