@@ -10,7 +10,6 @@ class UserReadDto {
     this.firstName,
     this.lastName,
     this.fullName,
-    this.isPrivate,
     this.meliCode,
     this.shebaNumber,
     this.headline,
@@ -56,7 +55,6 @@ class UserReadDto {
         firstName: json["firstName"],
         lastName: json["lastName"],
         fullName: json["fullName"],
-        isPrivate: json["isPrivate"],
         meliCode: json["meliCode"],
         shebaNumber: json["shebaNumber"],
         headline: json["headline"],
@@ -98,7 +96,6 @@ class UserReadDto {
   String? firstName;
   String? lastName;
   String? fullName;
-  bool? isPrivate;
   String? meliCode;
   String? shebaNumber;
   String? headline;
@@ -143,7 +140,6 @@ class UserReadDto {
         "firstName": firstName,
         "lastName": lastName,
         "fullName": fullName,
-        "isPrivate": isPrivate,
         "meliCode": meliCode,
         "shebaNumber": shebaNumber,
         "headline": headline,
@@ -192,7 +188,7 @@ class UserJsonDetail {
     this.activity,
     this.color,
     this.showContactInfo,
-    this.isPrivate,
+    this.privacyType,
     this.meliCode,
     this.shebaNumber,
     this.isAuthorize,
@@ -217,7 +213,7 @@ class UserJsonDetail {
         activity: json["activity"],
         color: json["color"],
         showContactInfo: json["showContactInfo"],
-        isPrivate: json["isPrivate"],
+        privacyType: json["privacyType"],
         meliCode: json["meliCode"],
         shebaNumber: json["shebaNumber"],
         isAuthorize: json["isAuthorize"],
@@ -236,7 +232,7 @@ class UserJsonDetail {
   String? activity;
   String? color;
   bool? showContactInfo;
-  bool? isPrivate;
+  bool? privacyType;
   String? meliCode;
   String? shebaNumber;
   bool? isAuthorize;
@@ -258,7 +254,7 @@ class UserJsonDetail {
         "activity": activity,
         "color": color,
         "showContactInfo": showContactInfo,
-        "isPrivate": isPrivate,
+        "privacyType": privacyType,
         "meliCode": meliCode,
         "shebaNumber": shebaNumber,
         "isAuthorize": isAuthorize,
@@ -301,7 +297,7 @@ class UserCreateUpdateDto {
     this.locations,
     this.pinterest,
     this.soundcloud,
-    this.isPrivate,
+    this.privacyType,
     this.dribble,
     this.email,
     this.state,
@@ -320,7 +316,7 @@ class UserCreateUpdateDto {
         lastName: json["lastName"],
         fullName: json["fullName"],
         bio: json["bio"],
-        isPrivate: json["isPrivate"],
+        privacyType: json["privacyType"],
         badge: json["badge"],
         point: json["point"],
         headline: json["headline"],
@@ -383,7 +379,7 @@ class UserCreateUpdateDto {
   final String? color;
   final String? state;
   final bool? suspend;
-  final bool? isPrivate;
+  final int? privacyType;
   final double? wallet;
   final bool? showContactInfo;
   final String? birthDate;
@@ -412,7 +408,7 @@ class UserCreateUpdateDto {
         "telegram": telegram,
         "whatsApp": whatsapp,
         "linkedIn": linkedIn,
-        "isPrivate": isPrivate,
+        "privacyType": privacyType,
         "soundCloud": soundcloud,
         "pinterest": pinterest,
         "dribble": dribble,
@@ -449,6 +445,7 @@ class UserFilterDto {
     this.showFollowings,
     this.showForms,
     this.badge,
+    this.privacyType,
     this.showGender,
     this.showLocations,
     this.showMedia,
@@ -477,6 +474,7 @@ class UserFilterDto {
         showGender: json["showGender"],
         appUserName: json["appUserName"],
         nationalCode: json["nationalCode"],
+        privacyType: json["privacyType"],
         showMedia: json["showMedia"],
         showCategories: json["showCategories"],
         showLocations: json["showLocations"],
@@ -501,6 +499,7 @@ class UserFilterDto {
   final String? badge;
   final String? appUserName;
   final String? nationalCode;
+  final int? privacyType;
   final bool? showGender;
   final bool? showMedia;
   final bool? showCategories;
@@ -525,6 +524,7 @@ class UserFilterDto {
         "userNameExact": userNameExact,
         "query": query,
         "badge": badge,
+        "privacyType": privacyType,
         "phoneNumber": phoneNumber,
         "showGender": showGender,
         "appUserName": appUserName,
