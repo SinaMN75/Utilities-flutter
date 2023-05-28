@@ -54,7 +54,7 @@ class ProductReadDto {
   bool? enabled;
   bool? isSeen;
   int? discountPrice;
-  int? price;
+  double? price;
   int? currency;
   int? status;
   int? ageCategory;
