@@ -130,6 +130,7 @@ Widget row({
               ? ListView.builder(
                   itemCount: count,
                   physics: physics,
+                  scrollDirection: Axis.horizontal,
                   itemBuilder: (final BuildContext context, final int index) => Row(
                     mainAxisAlignment: mainAxisAlignment,
                     mainAxisSize: mainAxisSize,

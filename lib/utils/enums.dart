@@ -265,10 +265,10 @@ enum TypeChat {
 }
 
 enum TypeGender {
-  Man(100),
-  Woman(101),
-  Company(102),
-  Team(103);
+  man(100),
+  woman(101),
+  company(102),
+  team(103);
 
   const TypeGender(this.title);
 
@@ -296,6 +296,18 @@ enum UseCaseMedia {
   @override
   String toString() => name;
   final String title;
+}
+
+enum PrivacyType {
+  private(100),
+  public(101),
+  followersOnly(102);
+
+  const PrivacyType(this.title);
+
+  @override
+  String toString() => name;
+  final int title;
 }
 
 // enum UseCaseChat {
