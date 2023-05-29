@@ -60,13 +60,31 @@ Future<dynamic> push(
   final Widget _page = await Future<Widget>.microtask(() => page);
   delay(
     milliSecondDelay,
-    () => Get.to(_page,
+    () => Get.to(
+      _page,
       fullscreenDialog: dialog,
       popGesture: true,
       opaque: dialog ? false : true,
       transition: transition,
       preventDuplicates: preventDuplicates,
     ),
+  );
+}
+
+Future<dynamic> pushReturn(
+  final Widget page, {
+  final bool dialog = false,
+  final Transition transition = Transition.cupertino,
+  final bool preventDuplicates = true,
+}) async {
+  final Widget _page = await Future<Widget>.microtask(() => page);
+  return await Get.to(
+    _page,
+    fullscreenDialog: dialog,
+    popGesture: true,
+    opaque: dialog ? false : true,
+    transition: transition,
+    preventDuplicates: preventDuplicates,
   );
 }
 
