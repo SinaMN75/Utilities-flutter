@@ -48,7 +48,7 @@ Future<String> appBuildNumber() async {
   return packageInfo.buildNumber;
 }
 
-Future<dynamic> push(
+void push(
   final Widget page, {
   final bool dialog = false,
   final Transition transition = Transition.cupertino,
