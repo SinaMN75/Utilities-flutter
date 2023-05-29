@@ -48,7 +48,7 @@ Future<String> appBuildNumber() async {
   return packageInfo.buildNumber;
 }
 
-void push(
+Future<dynamic> push(
   final Widget page, {
   final bool dialog = false,
   final Transition transition = Transition.cupertino,
@@ -60,7 +60,7 @@ void push(
   final Widget _page = await Future<Widget>.microtask(() => page);
   delay(
     milliSecondDelay,
-    () => Get.to(
+    () async => await Get.to(
       _page,
       fullscreenDialog: dialog,
       popGesture: true,
