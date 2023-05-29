@@ -2,7 +2,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/get_utils.dart';
 import 'package:utilities/components/components.dart';
 import 'package:utilities/utils/extensions/shimmer_extension.dart';
 
@@ -54,6 +53,8 @@ extension WidgetsExtension on Widget {
   Widget translate(final Offset offset) => Transform.translate(offset: offset, child: this);
 
   Widget rotate(final double scale) => Transform.rotate(angle: scale, child: this);
+
+  Widget safeArea() => SafeArea(child: this,);
 
   Widget cornerRadius({
     final double? all,
