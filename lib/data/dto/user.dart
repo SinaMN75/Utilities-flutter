@@ -78,7 +78,7 @@ class UserReadDto {
         mutedChats: json["mutedChats"],
         expireUpgradeAccount: json["expireUpgradeAccount"] == null ? null : DateTime.parse(json["expireUpgradeAccount"]),
         ageCategory: json["ageCategory"],
-        userJsonDetail: json["userJsonDetail"] == null ? null : UserJsonDetail.fromMap(json["userJsonDetail"]),
+        userJsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
         growthRate: json["growthRateReadDto"] == null ? null : GrowthRateReadDto.fromMap(json["growthRateReadDto"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),

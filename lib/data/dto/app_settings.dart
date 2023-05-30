@@ -59,7 +59,7 @@ class AppSettings {
         iosDownloadLink2: json["iosDownloadLink2"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "smsPanelSettings": smsPanelSettings == null ? null : smsPanelSettings!.toMap(),
         "androidMinimumVersion": androidMinimumVersion,
         "androidLatestVersion": androidLatestVersion,

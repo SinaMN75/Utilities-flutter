@@ -33,7 +33,7 @@ class CategoryReadDto {
         price: json["price"],
         stock: json["stock"],
         order: json["order"],
-        categoryJsonDetail: json["categoryJsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["categoryJsonDetail"]),
+        categoryJsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
         children: json["children"] == null ? [] : List<CategoryReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         id: json["id"],

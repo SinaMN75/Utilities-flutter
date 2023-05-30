@@ -50,7 +50,7 @@ class CommentReadDto {
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         parent: json["parent"] == null ? null : CommentReadDto.fromMap(json["parent"]),
         userId: json["userId"],
-        commentJsonDetail: json["commentJsonDetail"] == null ? null : CommentJsonDetail.fromMap(json["commentJsonDetail"]),
+        commentJsonDetail: json["jsonDetail"] == null ? null : CommentJsonDetail.fromMap(json["jsonDetail"]),
         children: json["children"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
       );

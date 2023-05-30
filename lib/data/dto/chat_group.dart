@@ -42,7 +42,7 @@ class ChatGroupReadDto {
         title: json["title"],
         creatorUserId: json["creatorUserId"],
         type: json["type"],
-        groupChatJsonDetail: json["groupChatJsonDetail"] == null ? null : GroupChatJsonDetail.fromMap(json["groupChatJsonDetail"]),
+        groupChatJsonDetail: json["jsonDetail"] == null ? null : GroupChatJsonDetail.fromMap(json["jsonDetail"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         users: json["users"] == null ? <UserReadDto>[] : List<UserReadDto>.from(json["users"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),
         products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),

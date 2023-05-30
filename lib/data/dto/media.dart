@@ -32,7 +32,7 @@ class MediaReadDto {
         fileName: json["fileName"],
         useCase: json["useCase"],
         fileType: json["url"] == null ? '' : json["url"].toString().split('.').last,
-        mediaJsonDetail: json["mediaJsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["mediaJsonDetail"]),
+        mediaJsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
         url: json["url"],
       );
 
