@@ -379,18 +379,20 @@ enum GenderType {
 }
 
 enum AgeType {
-  none("none"),
-  kids("kids"),
-  teen("teen"),
-  young("young"),
-  adult("adult"),
-  elder("elder");
+  none("none", "هیچ کدام"),
+  all("all", "همه"),
+  kids("kids", "کودکان"),
+  teen("teen", "نوجوان"),
+  young("young", "جوان"),
+  adult("adult", ""),
+  elder("elder", "");
 
-  const AgeType(this.title);
+  const AgeType(this.title, this.titleTr1);
 
   @override
   String toString() => name;
   final String title;
+  final String titleTr1;
 }
 
 enum UseCaseNotification {
