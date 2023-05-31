@@ -336,6 +336,7 @@ class ProductCreateUpdateDto {
     this.isBookmarked,
     this.latitude,
     this.longitude,
+    this.parentId,
     this.visitsCount,
     this.minOrder,
     this.maxOrder,
@@ -373,6 +374,7 @@ class ProductCreateUpdateDto {
         description: json["description"],
         details: json["details"],
         address: json["address"],
+        parentId: json["parentId"],
         author: json["author"],
         state: json["state"],
         phoneNumber: json["phoneNumber"],
@@ -425,6 +427,7 @@ class ProductCreateUpdateDto {
   final String? link;
   final String? website;
   final String? email;
+  final String? parentId;
   final String? type;
   final String? unit;
   final String? useCase;
@@ -469,6 +472,7 @@ class ProductCreateUpdateDto {
         "description": description,
         "details": details,
         "address": address,
+        "parentId": parentId,
         "author": author,
         "state": state,
         "phoneNumber": phoneNumber,
