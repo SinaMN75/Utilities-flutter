@@ -63,6 +63,7 @@ class ProductReadDto {
   String? seenUsers;
   String? teams;
   ProductReadDto? product;
+  ProductReadDto? parent;
   String? parentId;
   String? userId;
   UserReadDto? user;
@@ -105,6 +106,7 @@ class ProductReadDto {
     this.userId,
     this.user,
     this.product,
+    this.parent,
     this.productJsonDetail,
     this.media,
     this.forms,
@@ -148,7 +150,8 @@ class ProductReadDto {
         parentId: json["parentId"],
         userId: json["userId"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-    product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
+        parent: json["parent"] == null ? null : ProductReadDto.fromMap(json["parent"]),
+        product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
         productJsonDetail: json["jsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["jsonDetail"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
@@ -190,6 +193,7 @@ class ProductReadDto {
         "user": user?.toMap(),
         "productJsonDetail": productJsonDetail?.toMap(),
         "product": product?.toMap(),
+        "parent": parent?.toMap(),
         "media": media == null ? [] : List<dynamic>.from(media!.map((x) => x.toMap())),
         "forms": forms == null ? [] : List<dynamic>.from(forms!.map((x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x.toMap())),
