@@ -62,7 +62,7 @@ class ProductReadDto {
   DateTime? expireDate;
   String? seenUsers;
   String? teams;
-  String? product;
+  ProductReadDto? product;
   String? parentId;
   String? userId;
   UserReadDto? user;
@@ -101,10 +101,10 @@ class ProductReadDto {
     this.expireDate,
     this.seenUsers,
     this.teams,
-    this.product,
     this.parentId,
     this.userId,
     this.user,
+    this.product,
     this.productJsonDetail,
     this.media,
     this.forms,
@@ -145,10 +145,10 @@ class ProductReadDto {
         expireDate: json["expireDate"] == null ? null : DateTime.parse(json["expireDate"]),
         seenUsers: json["seenUsers"],
         teams: json["teams"],
-        product: json["product"],
         parentId: json["parentId"],
         userId: json["userId"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
+    product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
         productJsonDetail: json["jsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["jsonDetail"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
@@ -185,11 +185,11 @@ class ProductReadDto {
         "expireDate": expireDate?.toIso8601String(),
         "seenUsers": seenUsers,
         "teams": teams,
-        "product": product,
         "parentId": parentId,
         "userId": userId,
         "user": user?.toMap(),
         "productJsonDetail": productJsonDetail?.toMap(),
+        "product": product?.toMap(),
         "media": media == null ? [] : List<dynamic>.from(media!.map((x) => x.toMap())),
         "forms": forms == null ? [] : List<dynamic>.from(forms!.map((x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x.toMap())),
@@ -337,6 +337,7 @@ class ProductCreateUpdateDto {
     this.latitude,
     this.longitude,
     this.parentId,
+    this.parent,
     this.visitsCount,
     this.minOrder,
     this.maxOrder,
@@ -406,6 +407,7 @@ class ProductCreateUpdateDto {
         status: json["status"],
         currency: json["currency"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
+        parent: json["parent"] == null ? null : ProductReadDto.fromMap(json["parent"]),
         productInsight: json["productInsight"] == null ? null : ProductInsight.fromMap(json["productInsight"]),
         locations: json["locations"] == null ? null : List<int>.from(json["locations"].cast<Map<String, dynamic>>().map((final dynamic x) => x)),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
@@ -428,6 +430,7 @@ class ProductCreateUpdateDto {
   final String? website;
   final String? email;
   final String? parentId;
+  final ProductReadDto? parent;
   final String? type;
   final String? unit;
   final String? useCase;
@@ -504,6 +507,7 @@ class ProductCreateUpdateDto {
         "status": status,
         "currency": currency,
         "user": user == null ? null : user!.toMap(),
+        "parent": parent == null ? null : parent!.toMap(),
         "productInsight": productInsight?.toMap(),
         "locations": locations == null ? null : List<dynamic>.from(locations!.map((final int x) => x)),
         "media": media == null ? null : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
