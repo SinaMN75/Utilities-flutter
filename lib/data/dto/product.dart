@@ -368,62 +368,9 @@ class ProductCreateUpdateDto {
     this.keyValues,
     this.categories,
     this.teams,
+    this.productInsight,
   });
 
-  factory ProductCreateUpdateDto.fromJson(final String str) => ProductCreateUpdateDto.fromMap(json.decode(str));
-
-  factory ProductCreateUpdateDto.fromMap(final Map<String, dynamic> json) => ProductCreateUpdateDto(
-        id: json["id"],
-        title: json["title"],
-        subtitle: json["subtitle"],
-        description: json["description"],
-        details: json["details"],
-        address: json["address"],
-        author: json["author"],
-        phoneNumber: json["phoneNumber"],
-        link: json["link"],
-        website: json["website"],
-        email: json["email"],
-        type: json["type"],
-        unit: json["unit"],
-        useCase: json["useCase"],
-        keyValue: json["keyValue"],
-        state: json["state"],
-        latitude: json["latitude"],
-        longitude: json["longitude"],
-        price: json["price"],
-        length: json["length"],
-        width: json["width"],
-        height: json["height"],
-        weight: json["weight"],
-        minOrder: json["minOrder"],
-        maxOrder: json["maxOrder"],
-        maxPrice: json["maxPrice"],
-        minPrice: json["minPrice"],
-        scorePlus: json["scorePlus"],
-        scoreMinus: json["scoreMinus"],
-        discountPrice: json["discountPrice"],
-        responseTime: json["responseTime"],
-        onTimeDelivery: json["onTimeDelivery"],
-        discountPercent: json["discountPercent"],
-        commentsCount: json["commentsCount"],
-        stock: json["stock"],
-        enabled: json["enabled"],
-        startDate: json["startDate"],
-        endDate: json["endDate"],
-        expireDate: json["expireDate"],
-        status: json["status"],
-        currency: json["currency"],
-        ageCategory: json["ageCategory"],
-        productState: json["productState"],
-        shippingTime: json["shippingTime"],
-        shippingCost: json["shippingCost"],
-        boosted: json["boosted"],
-        parentId: json["parentId"],
-        keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-        teams: json["teams"] == null ? [] : List<String>.from(json["teams"]!.map((final x) => x)),
-      );
   final String? id;
   final String? title;
   final String? subtitle;
@@ -474,6 +421,7 @@ class ProductCreateUpdateDto {
   final List<KeyValueViewModel>? keyValues;
   final List<String>? categories;
   final List<String>? teams;
+  final ProductInsight? productInsight;
 
   String toJson() => json.encode(toMap());
 
@@ -525,6 +473,7 @@ class ProductCreateUpdateDto {
         "shippingCost": shippingCost,
         "boosted": boosted,
         "parentId": parentId,
+        "productInsight": productInsight?.toMap(),
         "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
         "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final String x) => x)),
