@@ -193,12 +193,12 @@ class ProductReadDto {
         "productJsonDetail": productJsonDetail?.toMap(),
         "product": product?.toMap(),
         "parent": parent?.toMap(),
-        "media": media == null ? [] : List<dynamic>.from(media!.map((final x) => x.toMap())),
-        "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final x) => x.toMap())),
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final x) => x.toMap())),
-        "comments": comments == null ? [] : List<CommentReadDto>.from(comments!.map((final x) => x.toMap())),
-        "productInsights": productInsights == null ? [] : List<dynamic>.from(productInsights!.map((final x) => x.toMap())),
-        "visitProducts": visitProducts == null ? [] : List<dynamic>.from(visitProducts!.map((final x) => x.toMap())),
+        "media": media == null ? [] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
+        "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
+        "comments": comments == null ? [] : List<CommentReadDto>.from(comments!.map((final CommentReadDto x) => x.toMap())),
+        "productInsights": productInsights == null ? [] : List<dynamic>.from(productInsights!.map((final ProductInsight x) => x.toMap())),
+        "visitProducts": visitProducts == null ? [] : List<dynamic>.from(visitProducts!.map((final ProductInsight x) => x.toMap())),
         "successfulPurchase": successfulPurchase,
       };
 }
@@ -420,7 +420,7 @@ class ProductCreateUpdateDto {
         shippingCost: json["shippingCost"],
         boosted: json["boosted"],
         parentId: json["parentId"],
-        keyValues: json["keyValues"] == null ? [] : List<KeyValue>.from(json["keyValues"]!.map((final x) => KeyValue.fromMap(x))),
+        keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
         teams: json["teams"] == null ? [] : List<String>.from(json["teams"]!.map((final x) => x)),
       );
@@ -471,7 +471,7 @@ class ProductCreateUpdateDto {
   final int? shippingCost;
   final String? boosted;
   final String? parentId;
-  final List<KeyValue>? keyValues;
+  final List<KeyValueViewModel>? keyValues;
   final List<String>? categories;
   final List<String>? teams;
 
@@ -525,32 +525,9 @@ class ProductCreateUpdateDto {
         "shippingCost": shippingCost,
         "boosted": boosted,
         "parentId": parentId,
-        "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final x) => x.toMap())),
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final x) => x)),
-        "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final x) => x)),
-      };
-}
-
-class KeyValue {
-  KeyValue({
-    this.key,
-    this.value,
-  });
-
-  factory KeyValue.fromJson(final String str) => KeyValue.fromMap(json.decode(str));
-
-  factory KeyValue.fromMap(final Map<String, dynamic> json) => KeyValue(
-        key: json["key"],
-        value: json["value"],
-      );
-  final String? key;
-  final String? value;
-
-  String toJson() => json.encode(toMap());
-
-  Map<String, dynamic> toMap() => {
-        "key": key,
-        "value": value,
+        "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
+        "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final String x) => x)),
       };
 }
 
