@@ -229,6 +229,7 @@ class ProductJsonDetail {
     this.shippingTime,
     this.startDate,
     this.endDate,
+    this.keyValues,
   });
 
   factory ProductJsonDetail.fromJson(final String str) => ProductJsonDetail.fromMap(json.decode(str));
@@ -256,6 +257,7 @@ class ProductJsonDetail {
         minPrice: json["minPrice"],
         shippingCost: json["shippingCost"],
         shippingTime: json["shippingTime"],
+        keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
       );
@@ -283,6 +285,7 @@ class ProductJsonDetail {
   int? shippingTime;
   DateTime? startDate;
   DateTime? endDate;
+  List<KeyValueViewModel>? keyValues;
 
   String toJson() => json.encode(toMap());
 
