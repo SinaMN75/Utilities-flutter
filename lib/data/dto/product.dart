@@ -218,9 +218,9 @@ class ProductJsonDetail {
   int? onTimeDelivery;
   int? longitude;
   int? length;
-  int? width;
-  int? height;
-  int? weight;
+  double? width;
+  double? height;
+  double? weight;
   int? minOrder;
   int? maxOrder;
   int? maxPrice;
