@@ -5,7 +5,7 @@ class KeyValueViewModel {
 
   factory KeyValueViewModel.fromJson(final String str) => KeyValueViewModel.fromMap(json.decode(str));
 
-  factory KeyValueViewModel.fromMap(final Map<String, dynamic> json) => KeyValueViewModel(
+  factory KeyValueViewModel.fromMap(final dynamic json) => KeyValueViewModel(
         json["key"],
         json["value"],
         id: json["id"],

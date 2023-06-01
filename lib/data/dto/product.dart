@@ -234,7 +234,7 @@ class ProductJsonDetail {
 
   factory ProductJsonDetail.fromJson(final String str) => ProductJsonDetail.fromMap(json.decode(str));
 
-  factory ProductJsonDetail.fromMap(final Map<String, dynamic> json) => ProductJsonDetail(
+  factory ProductJsonDetail.fromMap(final dynamic json) => ProductJsonDetail(
         details: json["details"],
         address: json["address"],
         author: json["author"],
