@@ -7,7 +7,7 @@ extension ProductReadDtoExtension on ProductReadDto {
         title: "title",
         subtitle: "subtitle",
         description: "description",
-        productJsonDetail: ProductJsonDetail(
+        jsonDetail: ProductJsonDetail(
           details: "details",
           address: "address",
           author: "author",
@@ -68,7 +68,7 @@ class ProductReadDto {
     this.user,
     this.product,
     this.parent,
-    this.productJsonDetail,
+    this.jsonDetail,
     this.media,
     this.forms,
     this.comments,
@@ -111,7 +111,7 @@ class ProductReadDto {
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         parent: json["parent"] == null ? null : ProductReadDto.fromMap(json["parent"]),
         product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
-        productJsonDetail: json["jsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["jsonDetail"]),
+        jsonDetail: json["jsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["jsonDetail"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
         forms: json["forms"] == null ? <FormReadDto>[] : List<FormReadDto>.from(json["forms"].cast<Map<String, dynamic>>().map(FormReadDto.fromMap)).toList(),
@@ -150,7 +150,7 @@ class ProductReadDto {
   String? parentId;
   String? userId;
   UserReadDto? user;
-  ProductJsonDetail? productJsonDetail;
+  ProductJsonDetail? jsonDetail;
   List<CommentReadDto>? comments;
   List<MediaReadDto>? media;
   List<FormReadDto>? forms;
@@ -190,7 +190,7 @@ class ProductReadDto {
         "parentId": parentId,
         "userId": userId,
         "user": user?.toMap(),
-        "productJsonDetail": productJsonDetail?.toMap(),
+        "jsonDetail": jsonDetail?.toMap(),
         "product": product?.toMap(),
         "parent": parent?.toMap(),
         "media": media == null ? [] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
