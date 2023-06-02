@@ -13,7 +13,7 @@ export 'remote_datasource/global_search_datasource.dart';
 export 'remote_datasource/mail_sms_notification_datasource.dart';
 export 'remote_datasource/media_datasource.dart';
 export 'remote_datasource/notification_datasource.dart';
-export 'remote_datasource/orders_datasource.dart';
+export 'remote_datasource/order_datasource.dart';
 export 'remote_datasource/payment_datasource.dart';
 export 'remote_datasource/product_datasource.dart';
 export 'remote_datasource/pushe_datasource.dart';
