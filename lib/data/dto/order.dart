@@ -6,14 +6,9 @@ class OrderFilterDto {
   OrderFilterDto({
     this.id,
     this.showProducts,
-    this.showCategories,
-    this.showUser,
     this.status,
     this.sendType,
     this.payType,
-    this.payNumber,
-    this.payDateTime,
-    this.receivedDate,
     this.startDate,
     this.endDate,
     this.userId,
@@ -27,14 +22,9 @@ class OrderFilterDto {
   factory OrderFilterDto.fromMap(final Map<String, dynamic> json) => OrderFilterDto(
         id: json["id"],
         showProducts: json["showProducts"],
-        showCategories: json["showCategories"],
-        showUser: json["showUser"],
         status: json["status"],
         sendType: json["sendType"],
         payType: json["payType"],
-        payNumber: json["payNumber"],
-        payDateTime: json["payDateTime"],
-        receivedDate: json["receivedDate"],
         startDate: json["startDate"],
         endDate: json["endDate"],
         userId: json["userId"],
@@ -44,14 +34,9 @@ class OrderFilterDto {
       );
   final String? id;
   final bool? showProducts;
-  final bool? showCategories;
-  final bool? showUser;
   final int? status;
   final int? sendType;
   final int? payType;
-  final String? payNumber;
-  final String? payDateTime;
-  final String? receivedDate;
   final String? startDate;
   final String? endDate;
   final String? userId;
@@ -64,14 +49,9 @@ class OrderFilterDto {
   Map<String, dynamic> toMap() => {
         "id": id,
         "showProducts": showProducts,
-        "showCategories": showCategories,
-        "showUser": showUser,
         "status": status,
         "sendType": sendType,
         "payType": payType,
-        "payNumber": payNumber,
-        "payDateTime": payDateTime,
-        "receivedDate": receivedDate,
         "startDate": startDate,
         "endDate": endDate,
         "userId": userId,
@@ -152,7 +132,7 @@ class OrderDetailCreateDto {
       );
   final String? orderId;
   final String? productId;
-  final int? price;
+  final double? price;
   final int? count;
   final String? category;
 
@@ -231,10 +211,10 @@ class OrderReadDto {
   final String? productUseCase;
   final String? payNumber;
   final int? status;
-  final int? totalPrice;
-  final int? discountPrice;
-  final int? discountPercent;
-  final int? sendPrice;
+  final double? totalPrice;
+  final double? discountPrice;
+  final double? discountPercent;
+  final double? sendPrice;
   final int? sendType;
   final int? payType;
   final String? payDateTime;
@@ -311,7 +291,7 @@ class OrderDetail {
   final String? id;
   final String? createdAt;
   final String? updatedAt;
-  final int? price;
+  final double? price;
   final int? count;
   final String? order;
   final String? orderId;
