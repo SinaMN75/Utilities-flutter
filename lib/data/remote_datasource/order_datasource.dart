@@ -23,7 +23,7 @@ class OrderDataSource {
       );
 
   Future<void> filter({
-    required final OrderReadDto dto,
+    required final OrderFilterDto dto,
     required final Function(GenericResponse<OrderReadDto>) onResponse,
     required final Function(GenericResponse response) onError,
     final Function(String error)? failure,
