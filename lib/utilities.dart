@@ -4,11 +4,11 @@ import 'package:utilities/utilities.dart';
 export 'dart:async';
 export 'dart:convert';
 
-export 'package:get/get.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:flutter_svg/flutter_svg.dart';
+export 'package:get/get.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:group_button/group_button.dart';
 export 'package:image_cropper/image_cropper.dart';
