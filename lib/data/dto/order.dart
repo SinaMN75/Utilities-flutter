@@ -19,7 +19,7 @@ class OrderFilterDto {
 
   factory OrderFilterDto.fromJson(final String str) => OrderFilterDto.fromMap(json.decode(str));
 
-  factory OrderFilterDto.fromMap(final Map<String, dynamic> json) => OrderFilterDto(
+  factory OrderFilterDto.fromMap(final dynamic json) => OrderFilterDto(
         id: json["id"],
         showProducts: json["showProducts"],
         status: json["status"],
@@ -76,7 +76,7 @@ class OrderCreateUpdateDto {
 
   factory OrderCreateUpdateDto.fromJson(final String str) => OrderCreateUpdateDto.fromMap(json.decode(str));
 
-  factory OrderCreateUpdateDto.fromMap(final Map<String, dynamic> json) => OrderCreateUpdateDto(
+  factory OrderCreateUpdateDto.fromMap(final dynamic json) => OrderCreateUpdateDto(
         id: json["id"],
         description: json["description"],
         discountCode: json["discountCode"],
@@ -123,7 +123,7 @@ class OrderDetailCreateDto {
 
   factory OrderDetailCreateDto.fromJson(final String str) => OrderDetailCreateDto.fromMap(json.decode(str));
 
-  factory OrderDetailCreateDto.fromMap(final Map<String, dynamic> json) => OrderDetailCreateDto(
+  factory OrderDetailCreateDto.fromMap(final dynamic json) => OrderDetailCreateDto(
         orderId: json["orderId"],
         productId: json["productId"],
         price: json["price"],
@@ -177,7 +177,7 @@ class OrderReadDto {
 
   factory OrderReadDto.fromJson(final String str) => OrderReadDto.fromMap(json.decode(str));
 
-  factory OrderReadDto.fromMap(final Map<String, dynamic> json) => OrderReadDto(
+  factory OrderReadDto.fromMap(final dynamic json) => OrderReadDto(
         id: json["id"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
@@ -276,7 +276,7 @@ class OrderDetail {
 
   factory OrderDetail.fromJson(final String str) => OrderDetail.fromMap(json.decode(str));
 
-  factory OrderDetail.fromMap(final Map<String, dynamic> json) => OrderDetail(
+  factory OrderDetail.fromMap(final dynamic json) => OrderDetail(
         id: json["id"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
