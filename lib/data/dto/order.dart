@@ -74,9 +74,9 @@ class OrderCreateUpdateDto {
     this.orderDetails,
   });
 
-  factory OrderCreateUpdateDto.fromJson(String str) => OrderCreateUpdateDto.fromMap(json.decode(str));
+  factory OrderCreateUpdateDto.fromJson(final String str) => OrderCreateUpdateDto.fromMap(json.decode(str));
 
-  factory OrderCreateUpdateDto.fromMap(Map<String, dynamic> json) => OrderCreateUpdateDto(
+  factory OrderCreateUpdateDto.fromMap(final Map<String, dynamic> json) => OrderCreateUpdateDto(
         id: json["id"],
         description: json["description"],
         discountCode: json["discountCode"],
@@ -85,7 +85,7 @@ class OrderCreateUpdateDto {
         status: json["status"],
         payType: json["payType"],
         sendType: json["sendType"],
-        orderDetails: json["orderDetails"] == null ? [] : List<OrderDetail>.from(json["orderDetails"]!.map((x) => OrderDetail.fromMap(x))),
+        orderDetails: json["orderDetails"] == null ? [] : List<OrderDetail>.from(json["orderDetails"]!.map(OrderDetail.fromMap)),
       );
   final String? id;
   final String? description;
@@ -108,7 +108,7 @@ class OrderCreateUpdateDto {
         "status": status,
         "payType": payType,
         "sendType": sendType,
-        "orderDetails": orderDetails == null ? [] : List<dynamic>.from(orderDetails!.map((x) => x.toMap())),
+        "orderDetails": orderDetails == null ? [] : List<dynamic>.from(orderDetails!.map((final x) => x.toMap())),
       };
 }
 
@@ -121,9 +121,9 @@ class OrderDetailCreateDto {
     this.category,
   });
 
-  factory OrderDetailCreateDto.fromJson(String str) => OrderDetailCreateDto.fromMap(json.decode(str));
+  factory OrderDetailCreateDto.fromJson(final String str) => OrderDetailCreateDto.fromMap(json.decode(str));
 
-  factory OrderDetailCreateDto.fromMap(Map<String, dynamic> json) => OrderDetailCreateDto(
+  factory OrderDetailCreateDto.fromMap(final Map<String, dynamic> json) => OrderDetailCreateDto(
         orderId: json["orderId"],
         productId: json["productId"],
         price: json["price"],
@@ -200,7 +200,7 @@ class OrderReadDto {
         userId: json["userId"],
         productOwner: json["productOwner"] == null ? null : UserReadDto.fromMap(json["productOwner"]),
         productOwnerId: json["productOwnerId"],
-        orderDetails: json["orderDetails"] == null ? [] : List<OrderDetail>.from(json["orderDetails"]!.map((final x) => OrderDetail.fromMap(x))),
+        orderDetails: json["orderDetails"] == null ? [] : List<OrderDetail>.from(json["orderDetails"]!.map(OrderDetail.fromMap)),
         state: json["state"],
       );
   final String? id;
@@ -264,6 +264,7 @@ class OrderDetail {
     this.createdAt,
     this.updatedAt,
     this.price,
+    this.unitPrice,
     this.count,
     this.order,
     this.orderId,
@@ -280,6 +281,7 @@ class OrderDetail {
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
         price: json["price"],
+        unitPrice: json["unitPrice"],
         count: json["count"],
         order: json["order"],
         orderId: json["orderId"],
@@ -291,8 +293,9 @@ class OrderDetail {
   final String? id;
   final String? createdAt;
   final String? updatedAt;
-  final double? price;
-  final int? count;
+  double? price;
+  double? unitPrice;
+  int? count;
   final String? order;
   final String? orderId;
   final ProductReadDto? product;
@@ -310,6 +313,7 @@ class OrderDetail {
         "count": count,
         "order": order,
         "orderId": orderId,
+        "unitPrice": unitPrice,
         "product": product?.toMap(),
         "productId": productId,
         "category": category?.toMap(),
