@@ -16,7 +16,7 @@ dependencies:
 
   url_launcher: ^6.1.11
   get: ^4.6.5
-  package_info_plus: ^4.0.0
+  package_info_plus: ^4.0.2
   share_plus: ^7.0.0
   file_picker: ^5.3.2
   intl: ^0.18.0
@@ -43,24 +43,24 @@ dependencies:
   shimmer: ^2.0.0
   mobile_scanner: ^3.2.0
 
-  syncfusion_localizations: ^21.2.4
-  syncfusion_flutter_datagrid_export: ^21.2.4
-  syncfusion_flutter_calendar: ^21.2.4
-  syncfusion_flutter_datepicker: ^21.2.4
-#  syncfusion_flutter_charts: ^21.2.4
-  syncfusion_flutter_gauges: ^21.2.4
-  syncfusion_flutter_sliders: ^21.2.4
-  syncfusion_flutter_pdf: ^21.2.4
-  syncfusion_flutter_barcodes: ^21.2.4
-  syncfusion_officechart: ^21.2.4
-  syncfusion_flutter_maps: ^21.2.4
-  syncfusion_flutter_signaturepad: ^21.2.4
-  syncfusion_flutter_pdfviewer: ^21.2.4
-  syncfusion_flutter_treemap: ^21.2.4
+  syncfusion_localizations: ^21.2.8
+  syncfusion_flutter_datagrid_export: ^21.2.8
+  syncfusion_flutter_calendar: ^21.2.8
+  syncfusion_flutter_datepicker: ^21.2.8
+#  syncfusion_flutter_charts: ^21.2.8
+  syncfusion_flutter_gauges: ^21.2.8
+  syncfusion_flutter_sliders: ^21.2.8
+  syncfusion_flutter_pdf: ^21.2.8
+  syncfusion_flutter_barcodes: ^21.2.8
+  syncfusion_officechart: ^21.2.8
+  syncfusion_flutter_maps: ^21.2.8
+  syncfusion_flutter_signaturepad: ^21.2.8
+  syncfusion_flutter_pdfviewer: ^21.2.8
+  syncfusion_flutter_treemap: ^21.2.8
 
 dependency_overrides:
   intl: ^0.18.0
-
+  win32: ^5.0.2
 
 flutter:
   uses-material-design: true
