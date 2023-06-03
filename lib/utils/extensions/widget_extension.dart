@@ -28,7 +28,7 @@ extension WidgetsExtension on Widget {
         child: this,
       );
 
-  Widget fit() => FittedBox(key: key, child: this, fit: BoxFit.scaleDown);
+  Widget fit() => FittedBox(key: key, fit: BoxFit.scaleDown, child: this);
 
   Widget expanded({final int flex = 1}) => Expanded(flex: flex, child: this);
 
@@ -54,7 +54,7 @@ extension WidgetsExtension on Widget {
 
   Widget rotate(final double scale) => Transform.rotate(angle: scale, child: this);
 
-  Widget safeArea() => SafeArea(child: this,);
+  Widget safeArea() => SafeArea(child: this);
 
   Widget cornerRadius({
     final double? all,
@@ -64,4 +64,29 @@ extension WidgetsExtension on Widget {
     final double bottomRight = 0,
   }) =>
       radius(child: this, radius: all, bottomRight: bottomRight, bottomLeft: bottomLeft, topRight: topRight, topLeft: topLeft);
+
+  Widget container({
+    final double? width,
+    final double? height,
+    final Alignment? alignment,
+    final Color? backgroundColor,
+    final double borderWidth = 1,
+    final double radius = 1,
+    final Color borderColor = Colors.transparent,
+    final EdgeInsets padding = EdgeInsets.zero,
+    final EdgeInsets margin = EdgeInsets.zero,
+  }) =>
+      Container(
+        width: width,
+        height: height,
+        padding: padding,
+        margin: margin,
+        alignment: alignment,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(radius),
+          border: Border.all(color: borderColor, width: borderWidth),
+        ),
+        child: this,
+      );
 }
