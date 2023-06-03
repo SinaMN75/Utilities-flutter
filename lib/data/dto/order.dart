@@ -119,6 +119,7 @@ class OrderDetailCreateDto {
     this.price,
     this.count,
     this.category,
+    this.orderDetailId,
   });
 
   factory OrderDetailCreateDto.fromJson(final String str) => OrderDetailCreateDto.fromMap(json.decode(str));
@@ -129,12 +130,14 @@ class OrderDetailCreateDto {
         price: json["price"],
         count: json["count"],
         category: json["category"],
+        orderDetailId: json["orderDetailId"],
       );
   final String? orderId;
   final String? productId;
   final double? price;
   final int? count;
   final String? category;
+  final String? orderDetailId;
 
   String toJson() => json.encode(toMap());
 
@@ -144,6 +147,7 @@ class OrderDetailCreateDto {
         "price": price,
         "count": count,
         "category": category,
+        "orderDetailId": orderDetailId,
       };
 }
 
