@@ -381,11 +381,11 @@ enum GenderType {
 enum AgeType {
   none("none", "هیچ کدام"),
   all("all", "همه"),
-  kids("kids", "کودکان"),
+  kids("kids", "خردسال"),
   teen("teen", "نوجوان"),
-  young("young", "جوان"),
-  adult("adult", ""),
-  elder("elder", "");
+  young("young", "بزرگسال"),
+  adult("adult", "میانسال"),
+  elder("elder", "کهن سال");
 
   const AgeType(this.title, this.titleTr1);
 
