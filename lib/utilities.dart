@@ -18,6 +18,7 @@ export 'package:path_provider/path_provider.dart';
 export 'package:persian_tools/persian_tools.dart';
 export 'package:pin_code_fields/pin_code_fields.dart';
 export 'package:share_plus/share_plus.dart';
+export 'package:syncfusion_flutter_charts/charts.dart';
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:video_player/video_player.dart';

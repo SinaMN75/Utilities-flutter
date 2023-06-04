@@ -47,7 +47,7 @@ dependencies:
   syncfusion_flutter_datagrid_export: ^21.2.8
   syncfusion_flutter_calendar: ^21.2.8
   syncfusion_flutter_datepicker: ^21.2.8
-#  syncfusion_flutter_charts: ^21.2.8
+  syncfusion_flutter_charts: ^21.2.8
   syncfusion_flutter_gauges: ^21.2.8
   syncfusion_flutter_sliders: ^21.2.8
   syncfusion_flutter_pdf: ^21.2.8
