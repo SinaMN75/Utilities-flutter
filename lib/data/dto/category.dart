@@ -23,7 +23,7 @@ class CategoryReadDto {
 
   factory CategoryReadDto.fromJson(final String str) => CategoryReadDto.fromMap(json.decode(str));
 
-  factory CategoryReadDto.fromMap(final Map<String, dynamic> json) => CategoryReadDto(
+  factory CategoryReadDto.fromMap(final dynamic json) => CategoryReadDto(
         title: json["title"],
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
@@ -34,8 +34,8 @@ class CategoryReadDto {
         stock: json["stock"],
         order: json["order"],
         categoryJsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
-        children: json["children"] == null ? [] : List<CategoryReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+        children: json["children"] == null ? [] : List<CategoryReadDto>.from(json["children"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
         id: json["id"],
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         parentId: json["parentId"],
@@ -58,7 +58,7 @@ class CategoryReadDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  dynamic toMap() => <String, dynamic>{
         "title": title,
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,
@@ -90,7 +90,7 @@ class CategoryJsonDetail {
 
   factory CategoryJsonDetail.fromJson(final String str) => CategoryJsonDetail.fromMap(json.decode(str));
 
-  factory CategoryJsonDetail.fromMap(final Map<String, dynamic> json) => CategoryJsonDetail(
+  factory CategoryJsonDetail.fromMap(final dynamic json) => CategoryJsonDetail(
         subtitle: json["subtitle"],
         link: json["link"],
         latitude: json["latitude"]?.toDouble(),
@@ -109,7 +109,7 @@ class CategoryJsonDetail {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "subtitle": subtitle,
         "link": link,
         "latitude": latitude,
@@ -143,7 +143,7 @@ class CategoryCreateUpdateDto {
 
   factory CategoryCreateUpdateDto.fromJson(final String str) => CategoryCreateUpdateDto.fromMap(json.decode(str));
 
-  factory CategoryCreateUpdateDto.fromMap(final Map<String, dynamic> json) => CategoryCreateUpdateDto(
+  factory CategoryCreateUpdateDto.fromMap(final dynamic json) => CategoryCreateUpdateDto(
         id: json["id"],
         title: json["title"],
         titleTr1: json["titleTr1"],
@@ -182,7 +182,7 @@ class CategoryCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  dynamic toMap() => <String, dynamic>{
         "id": id,
         "title": title,
         "titleTr1": titleTr1,
@@ -220,7 +220,7 @@ class CategoryFilterDto {
 
   factory CategoryFilterDto.fromJson(final String str) => CategoryFilterDto.fromMap(json.decode(str));
 
-  factory CategoryFilterDto.fromMap(final Map<String, dynamic> json) => CategoryFilterDto(
+  factory CategoryFilterDto.fromMap(final dynamic json) => CategoryFilterDto(
         title: json["title"],
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
@@ -247,7 +247,7 @@ class CategoryFilterDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "title": title,
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,

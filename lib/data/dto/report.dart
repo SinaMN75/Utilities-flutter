@@ -25,7 +25,7 @@ class ReportCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ReportCreateUpdateDto.fromMap(Map<String, dynamic> json) => ReportCreateUpdateDto(
+  factory ReportCreateUpdateDto.fromMap(dynamic json) => ReportCreateUpdateDto(
         title: json["title"],
         description: json["description"],
         productId: json["productId"],
@@ -35,7 +35,7 @@ class ReportCreateUpdateDto {
         chatId: json["chatId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "title": title,
         "description": description,
         "productId": productId,
@@ -64,14 +64,14 @@ class ReportReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ReportReadDto.fromMap(Map<String, dynamic> json) => ReportReadDto(
+  factory ReportReadDto.fromMap(dynamic json) => ReportReadDto(
         id: json["id"],
         title: json["title"],
         description: json["description"],
         product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "title": title,
         "description": description,
@@ -102,7 +102,7 @@ class Report {
 
   String toJson() => json.encode(toMap());
 
-  factory Report.fromMap(Map<String, dynamic> json) => Report(
+  factory Report.fromMap(dynamic json) => Report(
         title: json["title"],
         description: json["description"],
         creatorUserId: json["creatorUserId"],
@@ -112,7 +112,7 @@ class Report {
         updatedAt: json["updatedAt"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "title": title,
         "description": description,
         "creatorUserId": creatorUserId,
@@ -142,7 +142,7 @@ class ReportFilterDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ReportFilterDto.fromMap(Map<String, dynamic> json) => ReportFilterDto(
+  factory ReportFilterDto.fromMap(dynamic json) => ReportFilterDto(
         user: json["user"],
         product: json["product"],
         chat: json["chat"],
@@ -150,7 +150,7 @@ class ReportFilterDto {
         groupChatMessage: json["groupChatMessage"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "user": user,
         "product": product,
         "chat": chat,

@@ -38,7 +38,7 @@ class CommentReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory CommentReadDto.fromMap(final Map<String, dynamic> json) => CommentReadDto(
+  factory CommentReadDto.fromMap(final dynamic json) => CommentReadDto(
         id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -51,11 +51,11 @@ class CommentReadDto {
         parent: json["parent"] == null ? null : CommentReadDto.fromMap(json["parent"]),
         userId: json["userId"],
         commentJsonDetail: json["jsonDetail"] == null ? null : CommentJsonDetail.fromMap(json["jsonDetail"]),
-        children: json["children"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
-        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+        children: json["children"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["children"].cast<dynamic>().map(CommentReadDto.fromMap)).toList(),
+        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  dynamic toMap() => <String, dynamic>{
         "id": id,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
@@ -84,11 +84,11 @@ class CommentJsonDetail {
 
   String toJson() => json.encode(toMap());
 
-  factory CommentJsonDetail.fromMap(final Map<String, dynamic> json) => CommentJsonDetail(
-        commentReacts: json["reacts"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reacts"].cast<Map<String, dynamic>>().map(ReactionReadDto.fromMap)).toList(),
+  factory CommentJsonDetail.fromMap(final dynamic json) => CommentJsonDetail(
+        commentReacts: json["reacts"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reacts"].cast<dynamic>().map(ReactionReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "reacts": commentReacts == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(commentReacts!.map((final x) => x.toMap())),
       };
 }
@@ -110,14 +110,14 @@ class CommentCreateUpdateDto {
 
   String? toJson() => json.encode(toMap());
 
-  factory CommentCreateUpdateDto.fromMap(final Map<String, dynamic> json) => CommentCreateUpdateDto(
+  factory CommentCreateUpdateDto.fromMap(final dynamic json) => CommentCreateUpdateDto(
         parentId: json["parentId"],
         score: json["score"],
         comment: json["comment"],
         productId: json["productId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "parentId": parentId,
         "score": score,
         "comment": comment,

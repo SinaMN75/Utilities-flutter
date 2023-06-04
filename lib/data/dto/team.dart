@@ -13,12 +13,12 @@ class TeamReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory TeamReadDto.fromMap(Map<String, dynamic> json) => TeamReadDto(
+  factory TeamReadDto.fromMap(dynamic json) => TeamReadDto(
         id: json["id"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "user": user == null ? null : user!.toMap(),
       };

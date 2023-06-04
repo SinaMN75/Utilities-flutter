@@ -25,7 +25,7 @@ class MediaReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory MediaReadDto.fromMap(Map<String, dynamic> json) => MediaReadDto(
+  factory MediaReadDto.fromMap(dynamic json) => MediaReadDto(
         id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -36,7 +36,7 @@ class MediaReadDto {
         url: json["url"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
@@ -71,7 +71,7 @@ class MediaJsonDetail {
 
   String toJson() => json.encode(toMap());
 
-  factory MediaJsonDetail.fromMap(Map<String, dynamic> json) => MediaJsonDetail(
+  factory MediaJsonDetail.fromMap(dynamic json) => MediaJsonDetail(
         link: json["link"],
         title: json["title"],
         size: json["size"],
@@ -81,7 +81,7 @@ class MediaJsonDetail {
         isPrivate: json["isPrivate"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "link": link,
         "title": title,
         "size": size,
@@ -119,7 +119,7 @@ class Chat {
 
   String toJson() => json.encode(toMap());
 
-  factory Chat.fromMap(Map<String, dynamic> json) {
+  factory Chat.fromMap(dynamic json) {
     try {
       return Chat(
         id: json["id"],
@@ -138,7 +138,7 @@ class Chat {
     }
   }
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "fromUserId": fromUserId,
         "toUserId": toUserId,
@@ -184,7 +184,7 @@ class CreateOrUpdateGroupChat {
 
   String toJson() => json.encode(toMap());
 
-  factory CreateOrUpdateGroupChat.fromMap(Map<String, dynamic> json) => CreateOrUpdateGroupChat(
+  factory CreateOrUpdateGroupChat.fromMap(dynamic json) => CreateOrUpdateGroupChat(
         id: json["id"],
         title: json["title"],
         description: json["description"],
@@ -199,7 +199,7 @@ class CreateOrUpdateGroupChat {
         productIds: json["productIds"] == null ? [] : List<String>.from(json["productIds"]!.map((x) => x)),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "title": title,
         "description": description,
@@ -246,7 +246,7 @@ class ResponseMediaDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ResponseMediaDto.fromMap(Map<String, dynamic> json) => ResponseMediaDto(
+  factory ResponseMediaDto.fromMap(dynamic json) => ResponseMediaDto(
         fileName: json["fileName"],
         useCase: json["useCase"],
         link: json["link"],
@@ -260,7 +260,7 @@ class ResponseMediaDto {
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "fileName": fileName,
         "useCase": useCase,
         "url": url,

@@ -29,7 +29,7 @@ class NotificationReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory NotificationReadDto.fromMap(Map<String, dynamic> json) => NotificationReadDto(
+  factory NotificationReadDto.fromMap(dynamic json) => NotificationReadDto(
         id: json["id"],
         title: json["title"],
         message: json["message"],
@@ -39,10 +39,10 @@ class NotificationReadDto {
         seenStatus: json["seenStatus"],
         useCase: json["useCase"],
         creatorUser: json["creatorUser"] == null ? null : UserReadDto.fromMap(json["creatorUser"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map( MediaReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map( MediaReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "title": title,
         "message": message,
@@ -79,7 +79,7 @@ class NotificationFilterReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory NotificationFilterReadDto.fromMap(Map<String, dynamic> json) => NotificationFilterReadDto(
+  factory NotificationFilterReadDto.fromMap(dynamic json) => NotificationFilterReadDto(
         title: json["title"],
         userId: json["userId"],
         creatorUserId: json["creatorUserId"],
@@ -89,7 +89,7 @@ class NotificationFilterReadDto {
         pageNumber: json["pageNumber"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "title": title,
         "userId": userId,
         "creatorUserId": creatorUserId,

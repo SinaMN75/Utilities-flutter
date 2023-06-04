@@ -25,7 +25,7 @@ class CreateMailSmsNotificationDto {
 
   String toJson() => json.encode(toMap());
 
-  factory CreateMailSmsNotificationDto.fromMap(Map<String, dynamic> json) => CreateMailSmsNotificationDto(
+  factory CreateMailSmsNotificationDto.fromMap(dynamic json) => CreateMailSmsNotificationDto(
         userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
         title: json["title"],
         bigTitle: json["bigTitle"],
@@ -36,7 +36,7 @@ class CreateMailSmsNotificationDto {
         showForeground: json["showForeground"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "userIds": userIds == null ? [] : List<String>.from(userIds!.map((x) => x)),
         "title": title,
         "bigTitle": bigTitle,

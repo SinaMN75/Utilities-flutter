@@ -35,7 +35,7 @@ class ChatReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ChatReadDto.fromMap(Map<String, dynamic> json) => ChatReadDto(
+  factory ChatReadDto.fromMap(dynamic json) => ChatReadDto(
         id: json["id"],
         userId: json["userId"],
         messageText: json["messageText"],
@@ -47,11 +47,11 @@ class ChatReadDto {
         send: json["send"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         parent: json["parent"] == null ? null : ChatReadDto.fromMap(json["parent"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map( MediaReadDto.fromMap)).toList(),
-        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map( ProductReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map( MediaReadDto.fromMap)).toList(),
+        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<dynamic>().map( ProductReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "userId": userId,
         "messageText": messageText,
@@ -89,7 +89,7 @@ class ChatCreateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ChatCreateDto.fromMap(Map<String, dynamic> json) => ChatCreateDto(
+  factory ChatCreateDto.fromMap(dynamic json) => ChatCreateDto(
         id: json["id"],
         userId: json["userId"],
         messageText: json["messageText"],
@@ -98,7 +98,7 @@ class ChatCreateDto {
         users: json["users"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "userId": userId,
         "messageText": messageText,

@@ -9,11 +9,11 @@ class GenericResponse<T> {
     this.totalCount,
   });
 
-  factory GenericResponse.fromJson(final Map<String, dynamic> json, {final Function? fromMap}) {
+  factory GenericResponse.fromJson(final dynamic json, {final Function? fromMap}) {
     if (fromMap == null) return GenericResponse<T>(status: json["status"], message: json["message"]);
     if (json["result"] is List)
       return GenericResponse<T>(
-        resultList: List<T>.from(json['result'].cast<Map<String, dynamic>>().map(fromMap)),
+        resultList: List<T>.from(json['result'].cast<dynamic>().map(fromMap)),
         pageSize: json["pageSize"],
         pageCount: json["pageCount"],
         totalCount: json["totalCount"],

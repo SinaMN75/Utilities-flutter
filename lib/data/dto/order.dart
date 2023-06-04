@@ -46,7 +46,7 @@ class OrderFilterDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "showProducts": showProducts,
         "status": status,
@@ -99,7 +99,7 @@ class OrderCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "description": description,
         "discountCode": discountCode,
@@ -141,7 +141,7 @@ class OrderDetailCreateDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "orderId": orderId,
         "productId": productId,
         "price": price,
@@ -234,7 +234,7 @@ class OrderReadDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "createdAt": createdAt,
         "updatedAt": updatedAt,
@@ -309,7 +309,7 @@ class OrderDetail {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "createdAt": createdAt,
         "updatedAt": updatedAt,

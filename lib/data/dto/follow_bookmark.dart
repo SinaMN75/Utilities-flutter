@@ -19,15 +19,15 @@ class BookmarkReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory BookmarkReadDto.fromMap(Map<String, dynamic> json) => BookmarkReadDto(
+  factory BookmarkReadDto.fromMap(dynamic json) => BookmarkReadDto(
         folderName: json["folderName"],
         id: json["id"],
         product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map( MediaReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map( MediaReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "folderName": folderName,
         "id": id,
         "product": product == null ? null : product!.toMap(),
@@ -51,13 +51,13 @@ class ToggleBookmark {
 
   String toJson() => json.encode(toMap());
 
-  factory ToggleBookmark.fromMap(Map<String, dynamic> json) => ToggleBookmark(
+  factory ToggleBookmark.fromMap(dynamic json) => ToggleBookmark(
         productId: json["productId"],
         categoryId: json["categoryId"],
         folderName: json["folderName"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "productId": productId,
         "categoryId": categoryId,
         "folderName": folderName,
@@ -75,11 +75,11 @@ class ToggleFollow {
 
   String toJson() => json.encode(toMap());
 
-  factory ToggleFollow.fromMap(Map<String, dynamic> json) => ToggleFollow(
+  factory ToggleFollow.fromMap(dynamic json) => ToggleFollow(
         userId: json["userId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "userId": userId,
       };
 }

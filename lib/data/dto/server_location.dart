@@ -23,7 +23,7 @@ class ServerLocationReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ServerLocationReadDto.fromMap(Map<String, dynamic> json) => ServerLocationReadDto(
+  factory ServerLocationReadDto.fromMap(dynamic json) => ServerLocationReadDto(
         i: json["i"],
         n: json["n"],
         p: json["p"],
@@ -33,7 +33,7 @@ class ServerLocationReadDto {
         ch: json["ch"] == null ? null : json["ch"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "i": i,
         "n": n,
         "p": p,

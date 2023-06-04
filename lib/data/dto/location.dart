@@ -33,10 +33,10 @@ class LocationReadDto {
         longitude: json["lon"],
         type: json["t"],
         parent: json["p"] == null ? null : LocationReadDto.fromMap(json["p"]),
-        children: json["ch"] == null ? null : List<LocationReadDto>.from(json["ch"].cast<Map<String, dynamic>>().map( LocationReadDto.fromMap)).toList(),
+        children: json["ch"] == null ? null : List<LocationReadDto>.from(json["ch"].cast<dynamic>().map( LocationReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "i": id,
         "n": title,
         "pi": parentId,
@@ -72,7 +72,7 @@ class IranLocationReadDto {
         provinceId: json["province_id"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "name": name,
         "slug": slug,

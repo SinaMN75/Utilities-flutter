@@ -25,7 +25,7 @@ class TransactionReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory TransactionReadDto.fromMap(Map<String, dynamic> json) => TransactionReadDto(
+  factory TransactionReadDto.fromMap(dynamic json) => TransactionReadDto(
         id: json["id"],
         userId: json["userId"],
         amount: json["amount"],
@@ -36,7 +36,7 @@ class TransactionReadDto {
         updatedAt: json["updatedAt"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "userId": userId,
         "amount": amount,

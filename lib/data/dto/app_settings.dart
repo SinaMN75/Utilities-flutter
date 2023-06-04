@@ -11,11 +11,11 @@ class AppSettingsDto {
 
   String toJson() => json.encode(toMap());
 
-  factory AppSettingsDto.fromMap(final Map<String, dynamic> json) => AppSettingsDto(
+  factory AppSettingsDto.fromMap(final dynamic json) => AppSettingsDto(
         appSettings: json["appSettings"] == null ? null : AppSettings.fromMap(json["appSettings"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "appSettings": appSettings == null ? null : appSettings!.toMap(),
       };
 }
@@ -47,7 +47,7 @@ class AppSettings {
 
   String toJson() => json.encode(toMap());
 
-  factory AppSettings.fromMap(final Map<String, dynamic> json) => AppSettings(
+  factory AppSettings.fromMap(final dynamic json) => AppSettings(
         smsPanelSettings: json["smsPanelSettings"] == null ? null : SmsPanelSettings.fromMap(json["smsPanelSettings"]),
         androidMinimumVersion: json["androidMinimumVersion"],
         androidLatestVersion: json["androidLatestVersion"],
@@ -59,7 +59,7 @@ class AppSettings {
         iosDownloadLink2: json["iosDownloadLink2"],
       );
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  dynamic toMap() => <String, dynamic>{
         "smsPanelSettings": smsPanelSettings == null ? null : smsPanelSettings!.toMap(),
         "androidMinimumVersion": androidMinimumVersion,
         "androidLatestVersion": androidLatestVersion,
@@ -93,7 +93,7 @@ class SmsPanelSettings {
 
   String toJson() => json.encode(toMap());
 
-  factory SmsPanelSettings.fromMap(final Map<String, dynamic> json) => SmsPanelSettings(
+  factory SmsPanelSettings.fromMap(final dynamic json) => SmsPanelSettings(
         userName: json["userName"],
         lineNumber: json["lineNumber"],
         smsApiKey: json["smsApiKey"],
@@ -102,7 +102,7 @@ class SmsPanelSettings {
         patternCode: json["patternCode"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "userName": userName,
         "lineNumber": lineNumber,
         "smsApiKey": smsApiKey,

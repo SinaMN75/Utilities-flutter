@@ -29,7 +29,7 @@ class ContentReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ContentReadDto.fromMap(Map<String, dynamic> json) => ContentReadDto(
+  factory ContentReadDto.fromMap(dynamic json) => ContentReadDto(
         id: json["id"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
@@ -38,11 +38,11 @@ class ContentReadDto {
         subTitle: json["subTitle"],
         description: json["description"],
         useCase: json["useCase"],
-        contactInformation: json["contactInformation"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformation"].cast<Map<String, dynamic>>().map( ContactInformationReadDto.fromMap)).toList(),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map( MediaReadDto.fromMap)).toList(),
+        contactInformation: json["contactInformation"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformation"].cast<dynamic>().map( ContactInformationReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map( MediaReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "createdAt": createdAt,
         "updatedAt": updatedAt,
@@ -79,17 +79,17 @@ class ContentCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ContentCreateUpdateDto.fromMap(Map<String, dynamic> json) => ContentCreateUpdateDto(
+  factory ContentCreateUpdateDto.fromMap(dynamic json) => ContentCreateUpdateDto(
         id: json["id"],
         title: json["title"],
         subTitle: json["subTitle"],
         description: json["description"],
         useCase: json["useCase"],
         approvalStatus: json["approvalStatus"],
-        contactInformations: json["contactInformations"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformations"].cast<Map<String, dynamic>>().map( ContactInformationReadDto.fromMap)).toList(),
+        contactInformations: json["contactInformations"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformations"].cast<dynamic>().map( ContactInformationReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "title": title,
         "subTitle": subTitle,

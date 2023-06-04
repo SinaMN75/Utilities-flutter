@@ -11,11 +11,11 @@ class BlockCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory BlockCreateUpdateDto.fromMap(Map<String, dynamic> json) => BlockCreateUpdateDto(
+  factory BlockCreateUpdateDto.fromMap(dynamic json) => BlockCreateUpdateDto(
         userId: json["userId"] == null ? null : json["userId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "userId": userId == null ? null : userId,
       };
 }

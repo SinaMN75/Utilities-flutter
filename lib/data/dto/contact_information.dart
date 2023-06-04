@@ -31,7 +31,7 @@ class ContactInformationReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ContactInformationReadDto.fromMap(Map<String, dynamic> json) => ContactInformationReadDto(
+  factory ContactInformationReadDto.fromMap(dynamic json) => ContactInformationReadDto(
         id: json["id"],
         secondaryId: json["secondaryId"],
         title: json["title"],
@@ -42,10 +42,10 @@ class ContactInformationReadDto {
         useCase: json["useCase"],
         parentId: json["parentId"],
         parent: json["parent"] == null ? null : ContactInformationReadDto.fromMap(json["parent"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map( MediaReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map( MediaReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "secondaryId": secondaryId,
         "title": title,

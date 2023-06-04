@@ -25,7 +25,7 @@ class ReactionReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ReactionReadDto.fromMap(Map<String, dynamic> json) => ReactionReadDto(
+  factory ReactionReadDto.fromMap(dynamic json) => ReactionReadDto(
         id: json["id"],
         userId: json["userId"],
         createdAt: json["createdAt"],
@@ -36,7 +36,7 @@ class ReactionReadDto {
         reaction: json["reaction"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "userId": userId,
         "createdAt": createdAt,

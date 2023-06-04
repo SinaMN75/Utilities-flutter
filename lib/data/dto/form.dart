@@ -18,14 +18,14 @@ class FormReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory FormReadDto.fromMap(Map<String, dynamic> json) => FormReadDto(
+  factory FormReadDto.fromMap(dynamic json) => FormReadDto(
         id: json["id"],
         title: json["title"],
         formField: json["formField"] == null ? null : FormFieldReadDto.fromMap(json["formField"]),
-        children: json["children"] == null ? [] : List<FormReadDto>.from(json["children"].cast<Map<String, dynamic>>().map( FormReadDto.fromMap)).toList(),
+        children: json["children"] == null ? [] : List<FormReadDto>.from(json["children"].cast<dynamic>().map( FormReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "title": title,
         "formField": formField == null ? null : formField!.toMap(),
@@ -50,14 +50,14 @@ class FormCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory FormCreateUpdateDto.fromMap(Map<String, dynamic> json) => FormCreateUpdateDto(
+  factory FormCreateUpdateDto.fromMap(dynamic json) => FormCreateUpdateDto(
         userId: json["userId"],
         productId: json["productId"],
         orderDetailId: json["orderDetailId"],
-        forms: json["form"] == null ? null : List<FormReadDto>.from(json["form"].cast<Map<String, dynamic>>().map( FormReadDto.fromMap)).toList(),
+        forms: json["form"] == null ? null : List<FormReadDto>.from(json["form"].cast<dynamic>().map( FormReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "userId": userId,
         "productId": productId,
         "orderDetailId": orderDetailId,
@@ -88,7 +88,7 @@ class FormFieldCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory FormFieldCreateUpdateDto.fromMap(Map<String, dynamic> json) => FormFieldCreateUpdateDto(
+  factory FormFieldCreateUpdateDto.fromMap(dynamic json) => FormFieldCreateUpdateDto(
         id: json["id"],
         label: json["label"],
         title: json["title"],
@@ -98,7 +98,7 @@ class FormFieldCreateUpdateDto {
         categoryId: json["categoryId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "label": label,
         "title": title,

@@ -80,7 +80,7 @@ class ProductReadDto {
 
   factory ProductReadDto.fromJson(final String str) => ProductReadDto.fromMap(json.decode(str));
 
-  factory ProductReadDto.fromMap(final Map<String, dynamic> json) => ProductReadDto(
+  factory ProductReadDto.fromMap(final dynamic json) => ProductReadDto(
         id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -112,12 +112,12 @@ class ProductReadDto {
         parent: json["parent"] == null ? null : ProductReadDto.fromMap(json["parent"]),
         product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
         jsonDetail: json["jsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["jsonDetail"]),
-        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
-        comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
-        forms: json["forms"] == null ? <FormReadDto>[] : List<FormReadDto>.from(json["forms"].cast<Map<String, dynamic>>().map(FormReadDto.fromMap)).toList(),
-        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
-        productInsights: json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
-        visitProducts: json["visitProducts"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["visitProducts"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
+        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
+        comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<dynamic>().map(CommentReadDto.fromMap)).toList(),
+        forms: json["forms"] == null ? <FormReadDto>[] : List<FormReadDto>.from(json["forms"].cast<dynamic>().map(FormReadDto.fromMap)).toList(),
+        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
+        productInsights: json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<dynamic>().map(ProductInsight.fromMap)).toList(),
+        visitProducts: json["visitProducts"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["visitProducts"].cast<dynamic>().map(ProductInsight.fromMap)).toList(),
         successfulPurchase: json["successfulPurchase"],
       );
   String? id;
@@ -161,7 +161,7 @@ class ProductReadDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
@@ -289,7 +289,7 @@ class ProductJsonDetail {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "details": details,
         "address": address,
         "author": author,
@@ -428,7 +428,7 @@ class ProductCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "title": title,
         "subtitle": subtitle,
@@ -570,7 +570,7 @@ class ProductFilterDto {
 
   factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
 
-  factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
+  factory ProductFilterDto.fromMap(final dynamic json) => ProductFilterDto(
         title: json["title"],
         subTitle: json["subTitle"],
         description: json["description"],
@@ -627,7 +627,7 @@ class ProductFilterDto {
         orderByCreatedDate: json["orderByCreatedDate"],
         orderByCreaedDateDecending: json["orderByCreaedDateDecending"],
         locations: json["locations"],
-        teams: json["teams"] == null ? null : List<UserReadDto>.from(json["teams"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),
+        teams: json["teams"] == null ? null : List<UserReadDto>.from(json["teams"].cast<dynamic>().map(UserReadDto.fromMap)).toList(),
         subtitle: json["subtitle"],
         keyValues1: json["keyValues1"],
         keyValues2: json["keyValues2"],
@@ -738,7 +738,7 @@ class ProductFilterDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  dynamic toMap() => <String, dynamic>{
         "title": title,
         "subTitle": subTitle,
         "description": description,
@@ -831,7 +831,7 @@ class ProductInsight {
 
   factory ProductInsight.fromJson(final String str) => ProductInsight.fromMap(json.decode(str));
 
-  factory ProductInsight.fromMap(final Map<String, dynamic> json) => ProductInsight(
+  factory ProductInsight.fromMap(final dynamic json) => ProductInsight(
         reaction: json["reaction"],
         userId: json["userId"],
       );
@@ -841,7 +841,7 @@ class ProductInsight {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  dynamic toMap() => <String, dynamic>{
         "reaction": reaction,
         "userId": userId,
       };
@@ -862,7 +862,7 @@ class ProductInsightDto {
 
   factory ProductInsightDto.fromJson(final String str) => ProductInsightDto.fromMap(json.decode(str));
 
-  factory ProductInsightDto.fromMap(final Map<String, dynamic> json) => ProductInsightDto(
+  factory ProductInsightDto.fromMap(final dynamic json) => ProductInsightDto(
         id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -886,7 +886,7 @@ class ProductInsightDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  dynamic toMap() => <String, dynamic>{
         "id": id,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),

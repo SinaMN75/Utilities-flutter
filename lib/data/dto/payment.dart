@@ -15,13 +15,13 @@ class PaymentReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory PaymentReadDto.fromMap(Map<String, dynamic> json) => PaymentReadDto(
+  factory PaymentReadDto.fromMap(dynamic json) => PaymentReadDto(
         result: json["result"],
         status: json["status"],
         message: json["message"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "result": result,
         "status": status,
         "message": message,

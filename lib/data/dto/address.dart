@@ -17,7 +17,7 @@ class AddressReadDto {
 
   factory AddressReadDto.fromJson(final String str) => AddressReadDto.fromMap(json.decode(str));
 
-  factory AddressReadDto.fromMap(final Map<String, dynamic> json) => AddressReadDto(
+  factory AddressReadDto.fromMap(final dynamic json) => AddressReadDto(
         id: json["id"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
@@ -32,7 +32,7 @@ class AddressReadDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  dynamic toMap() => <String, dynamic>{
         "id": id,
         "createdAt": createdAt,
         "updatedAt": updatedAt,
@@ -72,7 +72,7 @@ class AddressCreateUpdateDto {
 
   factory AddressCreateUpdateDto.fromJson(final String str) => AddressCreateUpdateDto.fromMap(json.decode(str));
 
-  factory AddressCreateUpdateDto.fromMap(final Map<String, dynamic> json) => AddressCreateUpdateDto(
+  factory AddressCreateUpdateDto.fromMap(final dynamic json) => AddressCreateUpdateDto(
     id: json["id"],
     receiverFullName: json["receiverFullName"],
     receiverPhoneNumber: json["receiverPhoneNumber"],
@@ -85,7 +85,7 @@ class AddressCreateUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  dynamic toMap() => <String, dynamic>{
     "id": id,
     "receiverFullName": receiverFullName,
     "receiverPhoneNumber": receiverPhoneNumber,

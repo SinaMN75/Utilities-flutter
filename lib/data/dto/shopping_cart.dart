@@ -21,16 +21,16 @@ class ShoppingCartReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory ShoppingCartReadDto.fromMap(Map<String, dynamic> json) => ShoppingCartReadDto(
+  factory ShoppingCartReadDto.fromMap(dynamic json) => ShoppingCartReadDto(
         id: json["id"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
         deletedAt: json["deletedAt"],
         userId: json["userId"],
-        shoppingCartItems: json["shoppingCartItems"] == null ? null : List<ShoppingCartItem>.from(json["shoppingCartItems"].cast<Map<String, dynamic>>().map( ShoppingCartItem.fromMap)).toList(),
+        shoppingCartItems: json["shoppingCartItems"] == null ? null : List<ShoppingCartItem>.from(json["shoppingCartItems"].cast<dynamic>().map( ShoppingCartItem.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "createdAt": createdAt,
         "updatedAt": updatedAt,
@@ -81,7 +81,7 @@ class ShoppingCartItem {
 
   String toJson() => json.encode(toMap());
 
-  factory ShoppingCartItem.fromMap(Map<String, dynamic> json) => ShoppingCartItem(
+  factory ShoppingCartItem.fromMap(dynamic json) => ShoppingCartItem(
         id: json["id"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
@@ -100,7 +100,7 @@ class ShoppingCartItem {
         magazineId: json["magazineId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "createdAt": createdAt,
         "updatedAt": updatedAt,

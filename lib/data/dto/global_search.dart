@@ -39,7 +39,7 @@ class GlobalSearchCreateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory GlobalSearchCreateDto.fromMap(Map<String, dynamic> json) => GlobalSearchCreateDto(
+  factory GlobalSearchCreateDto.fromMap(dynamic json) => GlobalSearchCreateDto(
         title: json["title"],
         query: json["query"],
         pageSize: json["pageSize"],
@@ -57,7 +57,7 @@ class GlobalSearchCreateDto {
         categories: json["categories"] == null ? null : json["categories"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "title": title,
         "query": query,
         "pageSize": pageSize,
@@ -87,13 +87,13 @@ class GlobalSearchReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory GlobalSearchReadDto.fromMap(Map<String, dynamic> json) => GlobalSearchReadDto(
-        users: json["users"] == null ? null : List<UserReadDto>.from(json["users"].cast<Map<String, dynamic>>().map( UserReadDto.fromMap)).toList(),
-        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map( ProductReadDto.fromMap)).toList(),
-        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map( CategoryReadDto.fromMap)).toList(),
+  factory GlobalSearchReadDto.fromMap(dynamic json) => GlobalSearchReadDto(
+        users: json["users"] == null ? null : List<UserReadDto>.from(json["users"].cast<dynamic>().map( UserReadDto.fromMap)).toList(),
+        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<dynamic>().map( ProductReadDto.fromMap)).toList(),
+        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map( CategoryReadDto.fromMap)).toList(),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "users": users == null ? null : List<dynamic>.from(users!.map((x) => x.toMap())),
         "products": products == null ? null : List<dynamic>.from(products!.map((x) => x.toMap())),
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x.toMap())),

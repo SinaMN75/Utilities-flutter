@@ -21,14 +21,14 @@ class PusheCreateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory PusheCreateDto.fromMap(Map<String, dynamic> json) => PusheCreateDto(
+  factory PusheCreateDto.fromMap(dynamic json) => PusheCreateDto(
         appIds: json["app_ids"],
         data: json["data"] == null ? null : PusheData.fromMap(json["data"]),
         isDraft: json["is_draft"],
         filter: json["filter"] == null ? null : PusheFilter.fromMap(json["filter"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "app_ids": appIds,
         "data": data?.toMap(),
         "is_draft": isDraft,
@@ -57,7 +57,7 @@ class PusheData {
 
   String toJson() => json.encode(toMap());
 
-  factory PusheData.fromMap(Map<String, dynamic> json) => PusheData(
+  factory PusheData.fromMap(dynamic json) => PusheData(
         title: json["title"],
         content: json["content"],
         bigTitle: json["big_title"],
@@ -66,7 +66,7 @@ class PusheData {
         action: json["action"] == null ? null : PusheAction.fromMap(json["action"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "title": title,
         "content": content,
         "big_title": bigTitle,
@@ -89,12 +89,12 @@ class PusheAction {
 
   String toJson() => json.encode(toMap());
 
-  factory PusheAction.fromMap(Map<String, dynamic> json) => PusheAction(
+  factory PusheAction.fromMap(dynamic json) => PusheAction(
         actionType: json["action_type"],
         url: json["url"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "action_type": actionType,
         "url": url,
       };
@@ -111,11 +111,11 @@ class PusheFilter {
 
   String toJson() => json.encode(toMap());
 
-  factory PusheFilter.fromMap(Map<String, dynamic> json) => PusheFilter(
+  factory PusheFilter.fromMap(dynamic json) => PusheFilter(
         customId: json["custom_id"] == null ? [] : List<String>.from(json["custom_id"]!.map((x) => x)),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "custom_id": customId == null ? [] : List<dynamic>.from(customId!.map((x) => x)),
       };
 }
@@ -193,7 +193,7 @@ class PusheReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory PusheReadDto.fromMap(Map<String, dynamic> json) => PusheReadDto(
+  factory PusheReadDto.fromMap(dynamic json) => PusheReadDto(
         wrapperId: json["wrapper_id"],
         hashedId: json["hashed_id"],
         appIds: json["app_ids"] == null ? [] : List<String>.from(json["app_ids"]!.map((x) => x)),
@@ -228,7 +228,7 @@ class PusheReadDto {
         senderConfig: json["sender_config"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "wrapper_id": wrapperId,
         "hashed_id": hashedId,
         "app_ids": appIds == null ? [] : List<dynamic>.from(appIds!.map((x) => x)),
@@ -271,9 +271,9 @@ class CustomContent {
 
   String toJson() => json.encode(toMap());
 
-  factory CustomContent.fromMap(Map<String, dynamic> json) => CustomContent();
+  factory CustomContent.fromMap(dynamic json) => CustomContent();
 
-  Map<String, dynamic> toMap() => {};
+  dynamic toMap() => {};
 }
 
 class Filters {
@@ -287,11 +287,11 @@ class Filters {
 
   String toJson() => json.encode(toMap());
 
-  factory Filters.fromMap(Map<String, dynamic> json) => Filters(
+  factory Filters.fromMap(dynamic json) => Filters(
         customId: json["custom_id"] == null ? [] : List<String>.from(json["custom_id"]!.map((x) => x)),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "custom_id": customId == null ? [] : List<dynamic>.from(customId!.map((x) => x)),
       };
 }
@@ -321,7 +321,7 @@ class Statistics {
 
   String toJson() => json.encode(toMap());
 
-  factory Statistics.fromMap(Map<String, dynamic> json) => Statistics(
+  factory Statistics.fromMap(dynamic json) => Statistics(
         recipientCount: json["recipient_count"],
         accurateRecipients: json["accurate_recipients"],
         delivered: json["delivered"],
@@ -332,7 +332,7 @@ class Statistics {
         published: json["published"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "recipient_count": recipientCount,
         "accurate_recipients": accurateRecipients,
         "delivered": delivered,

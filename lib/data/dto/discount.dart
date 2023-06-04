@@ -27,7 +27,7 @@ class DiscountReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory DiscountReadDto.fromMap(Map<String, dynamic> json) => DiscountReadDto(
+  factory DiscountReadDto.fromMap(dynamic json) => DiscountReadDto(
         id: json["id"],
         title: json["title"],
         discountPercent: json["discountPercent"],
@@ -39,7 +39,7 @@ class DiscountReadDto {
         updatedAt: json["updatedAt"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "title": title,
         "discountPercent": discountPercent,
@@ -79,7 +79,7 @@ class DiscountFilterDto {
 
   String toJson() => json.encode(toMap());
 
-  factory DiscountFilterDto.fromMap(Map<String, dynamic> json) => DiscountFilterDto(
+  factory DiscountFilterDto.fromMap(dynamic json) => DiscountFilterDto(
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
         deletedAt: json["deletedAt"],
@@ -91,7 +91,7 @@ class DiscountFilterDto {
         endDate: json["endDate"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "createdAt": createdAt,
         "updatedAt": updatedAt,
         "deletedAt": deletedAt,
