@@ -14,6 +14,7 @@ export 'mail_sms_notification.dart';
 export 'media.dart';
 export 'notification.dart';
 export 'product.dart';
+export 'promote.dart';
 export 'shopping_cart.dart';
 export 'transaction.dart';
 export 'user.dart';
