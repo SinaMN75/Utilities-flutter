@@ -16,6 +16,7 @@ export 'remote_datasource/notification_datasource.dart';
 export 'remote_datasource/order_datasource.dart';
 export 'remote_datasource/payment_datasource.dart';
 export 'remote_datasource/product_datasource.dart';
+export 'remote_datasource/promote_datasource.dart';
 export 'remote_datasource/pushe_datasource.dart';
 export 'remote_datasource/report_datasource.dart';
 export 'remote_datasource/shopping_cart_datasource.dart';
