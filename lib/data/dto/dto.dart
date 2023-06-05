@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 export 'address.dart';
 export 'category.dart';
 export 'chat.dart';
@@ -18,3 +20,16 @@ export 'promote.dart';
 export 'shopping_cart.dart';
 export 'transaction.dart';
 export 'user.dart';
+
+class EmptyObjectDto {
+  EmptyObjectDto({this.o});
+
+  factory EmptyObjectDto.fromJson(final String str) => EmptyObjectDto.fromMap(json.decode(str));
+
+  factory EmptyObjectDto.fromMap(final Map<String, dynamic> json) => EmptyObjectDto(o: json["o"]);
+  final String? o;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => <String, dynamic>{"o": o};
+}
