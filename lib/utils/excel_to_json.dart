@@ -2,52 +2,53 @@ import 'dart:convert';
 
 import 'package:excel_facility/excel_facility.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
 
 class ExcelToJson {
+  /// Use this method to convert the file to a json.
   Future<String?> convert() async {
-    final Excel? excel = await _getFile();
+    Excel? excel = await _getFile();
 
     if (excel != null) {
-      final List<String> tables = _getTables(excel);
+      String table = _getTables(excel).first;
 
       int index = 0;
-      final Map<String, dynamic> json = <String, dynamic>{};
+      Map<String, dynamic> json = {};
 
-      for (final String table in tables) {
-        List<Data?> keys = <Data?>[];
-        json.addAll(<String, dynamic>{table: <Data>[]});
+      List<Data?> keys = [];
+      json.addAll({table: []});
 
-        for (final List<Data?> row in excel.tables[table]?.rows ?? <dynamic>[]) {
-          try {
-            if (index == 0) {
-              keys = row;
-              index++;
-            } else {
-              final Map<String, dynamic> temp = _getRows(keys, row);
+      for (List<Data?> row in excel.tables[table]?.rows ?? []) {
+        try {
+          if (index == 0) {
+            keys = row;
+            index++;
+          } else {
+            Map<String, dynamic> temp = _getRows(keys, row);
 
-              json[table].add(temp);
-            }
-          } catch (ex) {}
+            json[table].add(temp);
+          }
+        } catch (ex) {
+          rethrow;
         }
-        index = 0;
       }
-
+      index = 0;
       return jsonEncode(json);
     }
 
     return null;
   }
 
-  Map<String, dynamic> _getRows(final List<Data?> keys, final List<Data?> row) {
-    final Map<String, dynamic> temp = <String, dynamic>{};
+  Map<String, dynamic> _getRows(List<Data?> keys, List<Data?> row) {
+    Map<String, dynamic> temp = {};
     int index = 0;
     String tk = '';
 
-    for (final Data? key in keys) {
+    for (Data? key in keys) {
       if (key != null && key.value != null) {
         tk = key.value.toString();
 
-        if (<dynamic>[
+        if ([
           CellType.String,
           CellType.int,
           CellType.double,
@@ -71,23 +72,28 @@ class ExcelToJson {
     return temp;
   }
 
-  List<String> _getTables(final Excel excel) {
-    final List<String> keys = <String>[];
+  List<String> _getTables(Excel excel) {
+    List<String> keys = [];
 
-    for (final String table in excel.tables.keys) keys.add(table);
+    for (String table in excel.tables.keys) {
+      keys.add(table);
+    }
 
     return keys;
   }
 
   Future<Excel?> _getFile() async {
-    final FilePickerResult? file = await FilePicker.platform.pickFiles(
+    FilePickerResult? file = await FilePicker.platform.pickFiles(
       withData: true,
       type: FileType.custom,
-      allowedExtensions: <String>['xlsx', 'csv', 'xls'],
+      allowedExtensions: ['xlsx', 'csv', 'xls'],
     );
-    if (file != null && file.files.isNotEmpty)
-      return Excel.decodeBytes(file.files.first.bytes!);
-    else
+    if (file != null && file.files.isNotEmpty) {
+      Uint8List bytes = file.files.first.bytes!;
+
+      return Excel.decodeBytes(bytes);
+    } else {
       return null;
+    }
   }
 }
