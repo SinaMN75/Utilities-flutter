@@ -8,6 +8,7 @@ import 'package:utilities/utilities.dart';
 export 'constants.dart';
 export 'dio_interceptor.dart';
 export 'enums.dart';
+export 'excel_to_json.dart';
 export 'extensions/align_extension.dart';
 export 'extensions/date_extension.dart';
 export 'extensions/extension.dart';
