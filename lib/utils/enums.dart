@@ -217,6 +217,7 @@ enum UseCaseCategory {
   user("user"),
   insurance("insurance"),
   tutorial("tutorial"),
+  productAttribute("productAttribute"),
   magazine("magazine");
 
   const UseCaseCategory(this.title);
