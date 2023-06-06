@@ -240,7 +240,10 @@ enum TypePost {
   commodity("commodity"),
   job("job"),
   yooNote("yooNote"),
-  physical('Physical');
+  physical('Physical'),
+  adHiring("hiringAd"),
+  adProject("adProject"),
+  adEmployee("adEmployee");
 
   const TypePost(this.title);
 
