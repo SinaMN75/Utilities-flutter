@@ -340,7 +340,8 @@ enum TypeCategory {
   game("game"),
   commodity("commodity"),
   job("job"),
-  Physical('Physical');
+  productAttribute("productAttribute"),
+  physical('physical');
 
   const TypeCategory(this.title);
 
