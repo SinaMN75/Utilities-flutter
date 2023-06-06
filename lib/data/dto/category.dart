@@ -134,6 +134,7 @@ class CategoryCreateUpdateDto {
     this.latitude,
     this.longitude,
     this.price,
+    this.discount,
     this.value,
     this.stock,
     this.order,
@@ -156,6 +157,7 @@ class CategoryCreateUpdateDto {
         latitude: json["latitude"],
         longitude: json["longitude"],
         price: json["price"],
+        discount: json["discount"],
         value: json["value"],
         stock: json["stock"],
         order: json["order"],
@@ -174,6 +176,7 @@ class CategoryCreateUpdateDto {
   double? latitude;
   double? longitude;
   double? price;
+  double? discount;
   double? value;
   int? stock;
   int? order;
@@ -195,6 +198,7 @@ class CategoryCreateUpdateDto {
         "latitude": latitude,
         "longitude": longitude,
         "price": price,
+        "discount": discount,
         "value": value,
         "stock": stock,
         "order": order,
