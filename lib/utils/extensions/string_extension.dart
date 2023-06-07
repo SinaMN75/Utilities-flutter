@@ -9,7 +9,7 @@ extension StringExtensions on String {
 
   bool isNumeric() => double.tryParse(this) != null;
 
-  int toInt() => int.parse(this);
+  int toInt() => int.tryParse(this) ?? 0;
 
   String separateNumbers3By3() => replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
