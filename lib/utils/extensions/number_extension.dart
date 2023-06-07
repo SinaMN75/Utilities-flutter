@@ -1,3 +1,5 @@
+import 'package:utilities/utilities.dart';
+
 extension IntExtesion on int {
   String toKMB() {
     if (this > 999 && this < 99999)
@@ -11,6 +13,8 @@ extension IntExtesion on int {
     else
       return toString();
   }
+
+  String toRialMoneyPersian() => "${toString().separateNumbers3By3()}ریال ";
 
   String secondsToTimeLeft() {
     final int h = this ~/ 3600;
