@@ -1,6 +1,8 @@
 import 'package:intl/intl.dart';
 
 extension StringExtensions on String {
+  String toRialMoneyPersian() => "${separateNumbers3By3()}ریال ";
+
   bool isTrue() => toLowerCase() == 'true';
 
   bool isFalse() => toLowerCase() == 'false';
@@ -27,7 +29,6 @@ extension StringExtensions on String {
   int getHour() => int.parse(substring(0, 2).append0());
 
   int getMinute() => int.parse(substring(3, 5).append0());
-
 
   String toTimeAgo({final bool numericDates = false, final bool persian = false}) {
     try {
