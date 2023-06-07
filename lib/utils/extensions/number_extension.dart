@@ -14,7 +14,7 @@ extension IntExtesion on int {
       return toString();
   }
 
-  String toRialMoneyPersian() => "${toString().separateNumbers3By3()}ریال ";
+  String toRialMoneyPersian() => "${toString().separateNumbers3By3()} ریال ";
 
   String secondsToTimeLeft() {
     final int h = this ~/ 3600;

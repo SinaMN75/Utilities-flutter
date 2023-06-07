@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 extension StringExtensions on String {
-  String toRialMoneyPersian() => "${separateNumbers3By3()}ریال ";
+  String toRialMoneyPersian() => "${separateNumbers3By3()} ریال ";
 
   bool isTrue() => toLowerCase() == 'true';
 
