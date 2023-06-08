@@ -291,6 +291,7 @@ enum UseCaseMedia {
   apk("apk"),
   profile("profile"),
   chat("Chat"),
+  zip("zip"),
   bio("bio"),
   post("post"),
   text("text");
