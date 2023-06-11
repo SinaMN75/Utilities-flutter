@@ -9,8 +9,8 @@ class AddressDataSource {
   final String baseUrl;
 
   Future<void> readMyAddresses({
-    required final Function(GenericResponse<AddressReadDto>) onResponse,
-    required final Function(GenericResponse<dynamic> response) onError,
+    required final Function(GenericResponse<AddressReadDto> response) onResponse,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -22,8 +22,8 @@ class AddressDataSource {
 
   Future<void> create({
     required final AddressCreateUpdateDto dto,
-    required final Function(GenericResponse<AddressReadDto>) onResponse,
-    required final Function(GenericResponse<dynamic> response) onError,
+    required final Function(GenericResponse<AddressReadDto> response) onResponse,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -36,8 +36,8 @@ class AddressDataSource {
 
   Future<void> update({
     required final AddressCreateUpdateDto dto,
-    required final Function(GenericResponse<AddressReadDto>) onResponse,
-    required final Function(GenericResponse<dynamic> response) onError,
+    required final Function(GenericResponse<AddressReadDto> response) onResponse,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -50,8 +50,8 @@ class AddressDataSource {
 
   Future<void> delete({
     required final String id,
-    required final Function(GenericResponse<AddressReadDto>) onResponse,
-    required final Function(GenericResponse<dynamic> response) onError,
+    required final Function(GenericResponse<AddressReadDto> response) onResponse,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(

@@ -12,8 +12,8 @@ class FormDataSource {
 
   Future<void> create({
     required final FormCreateUpdateDto dto,
-    required final Function(GenericResponse<FormReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<FormReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -26,8 +26,8 @@ class FormDataSource {
 
   Future<void> readByCategoryId({
     required final String categoryId,
-    required final Function(GenericResponse<FormFieldReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<FormFieldReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -40,7 +40,7 @@ class FormDataSource {
   Future<void> delete({
     required final String id,
     required final VoidCallback onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
@@ -52,8 +52,8 @@ class FormDataSource {
 
   Future<void> createFormField({
     required final FormFieldCreateUpdateDto dto,
-    required final Function(GenericResponse<FormReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<FormReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -67,7 +67,7 @@ class FormDataSource {
   Future<void> updateFormField({
     required final FormFieldCreateUpdateDto dto,
     required final VoidCallback onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -81,7 +81,7 @@ class FormDataSource {
   Future<void> deleteFormField({
     required final String id,
     required final VoidCallback onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(

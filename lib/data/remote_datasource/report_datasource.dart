@@ -10,8 +10,8 @@ class ReportDataSource {
 
   Future<void> create({
     required final ReportCreateUpdateDto dto,
-    required final Function(GenericResponse<ReportReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ReportReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -25,7 +25,7 @@ class ReportDataSource {
   Future<void> delete({
     required final String id,
     required final Function(String) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
@@ -37,8 +37,8 @@ class ReportDataSource {
 
   Future<void> readById({
     required final String id,
-    required final Function(GenericResponse<ReportReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ReportReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -50,8 +50,8 @@ class ReportDataSource {
 
   Future<void> filter({
     required final ReportFilterDto filter,
-    required final Function(GenericResponse<ReportReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ReportReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(

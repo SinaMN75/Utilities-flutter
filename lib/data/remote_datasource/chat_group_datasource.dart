@@ -11,7 +11,7 @@ class ChatGroupDataSource {
 
   Future<void> readMyGroups({
     required final Function(GenericResponse<ChatGroupReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -24,7 +24,7 @@ class ChatGroupDataSource {
   Future<void> readGroupById({
     required final String groupId,
     required final Function(GenericResponse<ChatGroupReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -37,7 +37,7 @@ class ChatGroupDataSource {
   Future<void> filterGroupChat({
     required final ChatGroupFilterDto filter,
     required final Function(GenericResponse<ChatGroupReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -50,8 +50,8 @@ class ChatGroupDataSource {
 
   Future<void> createGroup({
     required final ChatGroupCreateUpdateDto dto,
-    required final Function(GenericResponse<ChatGroupReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ChatGroupReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -65,7 +65,7 @@ class ChatGroupDataSource {
   Future<void> deleteGroup({
     required final String groupId,
     required final Function(GenericResponse response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
@@ -78,7 +78,7 @@ class ChatGroupDataSource {
   Future<void> updateGroup({
     required final ChatGroupCreateUpdateDto dto,
     required final Function(GenericResponse<ChatGroupReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -92,7 +92,7 @@ class ChatGroupDataSource {
   Future<void> exitFromGroup({
     required final String groupId,
     required final Function(GenericResponse response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -105,7 +105,7 @@ class ChatGroupDataSource {
   Future<void> readGroupMessages({
     required final String groupId,
     required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final int? pageSize,
     final int? pageNumber,
     final Function(String error)? failure,
@@ -121,7 +121,7 @@ class ChatGroupDataSource {
   Future<void> createMessage({
     required final CreateGroupMessage dto,
     required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -135,7 +135,7 @@ class ChatGroupDataSource {
   Future<void> updateMessage({
     required final CreateGroupMessage dto,
     required final Function(GenericResponse<ChatGroupMessageReadDto> response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -149,7 +149,7 @@ class ChatGroupDataSource {
   Future<void> deleteMessage({
     required final String chatId,
     required final Function(GenericResponse response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
@@ -162,7 +162,7 @@ class ChatGroupDataSource {
   Future<void> seenGroupChatMessage({
     required final String id,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(

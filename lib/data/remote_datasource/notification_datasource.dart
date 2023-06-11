@@ -11,8 +11,8 @@ class NotificationDataSource {
   NotificationDataSource({required this.baseUrl});
 
   Future<void> read({
-    required final Function(GenericResponse<NotificationReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<NotificationReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -24,8 +24,8 @@ class NotificationDataSource {
 
   Future<void> readById({
     required final String id,
-    required final Function(GenericResponse<NotificationReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<NotificationReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -37,8 +37,8 @@ class NotificationDataSource {
 
   Future<void> filter({
     required final NotificationFilterReadDto filter,
-    required final Function(GenericResponse<NotificationReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<NotificationReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -53,7 +53,7 @@ class NotificationDataSource {
     required final List<String> notificationIds,
     required final int status,
     required final VoidCallback onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(

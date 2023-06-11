@@ -10,8 +10,8 @@ class ChatDataSource {
 
   Future<void> create({
     required final ChatCreateDto dto,
-    required final Function(GenericResponse<ChatReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ChatReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -24,8 +24,8 @@ class ChatDataSource {
 
   Future<void> update({
     required final ChatCreateDto dto,
-    required final Function(GenericResponse<ChatReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ChatReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -37,8 +37,8 @@ class ChatDataSource {
       );
 
   Future<void> read({
-    required final Function(GenericResponse<ChatReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ChatReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -50,8 +50,8 @@ class ChatDataSource {
 
   Future<void> readByUserId({
     required final String userId,
-    required final Function(GenericResponse<ChatReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ChatReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -64,7 +64,7 @@ class ChatDataSource {
   Future<void> delete({
     required final String chatId,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(

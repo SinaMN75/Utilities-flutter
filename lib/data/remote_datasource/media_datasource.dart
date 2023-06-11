@@ -19,7 +19,7 @@ class MediaDataSource {
   Future<void> create({
     required final String useCase,
     required final VoidCallback action,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final ProgressCallback? onSendProgress,
     final Function(List<ResponseMediaDto> list)? onResponse,
     final List<File>? files,
@@ -94,7 +94,7 @@ class MediaDataSource {
     required final File file,
     required final String useCase,
     required final Function(ResponseMediaDto response) onResponse,
-    required final Function(GenericResponse<dynamic> response) onError,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final ProgressCallback? onSendProgress,
     final String? categoryId,
     final String? contentId,
@@ -257,7 +257,7 @@ class MediaDataSource {
     required final List<String> links,
     required final String useCase,
     required final VoidCallback action,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final ProgressCallback? onSendProgress,
     final String? categoryId,
     final String? contentId,
@@ -317,8 +317,8 @@ class MediaDataSource {
     final String? title,
     final String? size,
     final String? useCase,
-    required final Function(GenericResponse<MediaReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<MediaReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -332,7 +332,7 @@ class MediaDataSource {
   Future<void> delete({
     required final String id,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(

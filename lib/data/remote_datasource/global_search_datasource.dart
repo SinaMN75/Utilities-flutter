@@ -5,8 +5,8 @@ class GlobalSearchDataSource {
 
 // Future<void> create({
 //   required final GlobalSearchCreateDto dto,
-//   required final Function(GenericResponse<GlobalSearchReadDto>) onResponse,
-//   required final Function(GenericResponse response) onError,
+//   required final Function(GenericResponse<GlobalSearchReadDto> response) onResponse,
+//   required final Function(GenericResponse errorResponse) onError,
 //   final Function(String error)? failure,
 // }) async =>
 //     httpPost(

@@ -10,8 +10,8 @@ class BlockDataSource {
 
   Future<void> create({
     required final String userId,
-    required final Function(GenericResponse<dynamic>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<dynamic> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -22,8 +22,8 @@ class BlockDataSource {
       );
 
   Future<void> read({
-    required final Function(GenericResponse<UserReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<UserReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -34,8 +34,8 @@ class BlockDataSource {
       );
 
   Future<void> readMine({
-    required final Function(GenericResponse<UserReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<UserReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
