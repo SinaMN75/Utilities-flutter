@@ -10,8 +10,8 @@ class ProductDataSource {
 
   Future<void> create({
     required final ProductCreateUpdateDto dto,
-    required final Function(GenericResponse<ProductReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ProductReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -26,7 +26,7 @@ class ProductDataSource {
     required final String buyerUserId,
     required final String productId,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -43,8 +43,8 @@ class ProductDataSource {
 
   Future<void> update({
     required final ProductCreateUpdateDto dto,
-    required final Function(GenericResponse<ProductReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ProductReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -56,8 +56,8 @@ class ProductDataSource {
       );
 
   Future<void> read({
-    required final Function(GenericResponse<ProductReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ProductReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -69,8 +69,8 @@ class ProductDataSource {
 
   Future<void> readById({
     required final String id,
-    required final Function(GenericResponse<ProductReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ProductReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -83,7 +83,7 @@ class ProductDataSource {
   Future<void> delete({
     required final String id,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
@@ -95,8 +95,8 @@ class ProductDataSource {
 
   Future<void> filter({
     required final ProductFilterDto filter,
-    required final Function(GenericResponse<ProductReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ProductReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -109,8 +109,8 @@ class ProductDataSource {
 
   Future<void> readMine({
     required final ProductCreateUpdateDto filter,
-    required final Function(GenericResponse<ProductReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ProductReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(

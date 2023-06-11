@@ -10,8 +10,8 @@ class DiscountDataSource {
 
   Future<void> read({
     required final String code,
-    required final Function(GenericResponse<DiscountReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<DiscountReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(

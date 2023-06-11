@@ -11,8 +11,8 @@ class AppSettingsDataSource {
 
   Future<void> readAppSettings({
     required final String url,
-    required final Function(GenericResponse<AppSettingsDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<AppSettingsDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -24,8 +24,8 @@ class AppSettingsDataSource {
 
   Future<void> readLocation({
     required final String url,
-    required final Function(GenericResponse<LocationReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<LocationReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(

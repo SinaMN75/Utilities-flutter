@@ -10,8 +10,8 @@ class OrderDataSource {
 
   Future<void> create({
     required final OrderCreateUpdateDto dto,
-    required final Function(GenericResponse<OrderReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<OrderReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -24,8 +24,8 @@ class OrderDataSource {
 
   Future<void> filter({
     required final OrderFilterDto dto,
-    required final Function(GenericResponse<OrderReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<OrderReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -38,8 +38,8 @@ class OrderDataSource {
 
   Future<void> readById({
     required final String id,
-    required final Function(GenericResponse<OrderReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<OrderReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -51,8 +51,8 @@ class OrderDataSource {
 
   Future<void> delete({
     required final String id,
-    required final Function(GenericResponse<OrderReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<OrderReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
@@ -65,7 +65,7 @@ class OrderDataSource {
   Future<void> createOrderDetail({
     required final OrderDetailCreateDto dto,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -79,7 +79,7 @@ class OrderDataSource {
   Future<void> updateOrderDetail({
     required final OrderDetailCreateDto dto,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -94,7 +94,7 @@ class OrderDataSource {
   Future<void> deleteOrderDetail({
     required final String id,
     required final Function(GenericResponse response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(

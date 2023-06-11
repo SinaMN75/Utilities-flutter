@@ -11,8 +11,8 @@ class WithdrawDataSource {
 
   Future<void> withdraw({
     required final WithdrawCreateUpdateDto dto,
-    required final Function(GenericResponse<dynamic>) onResponse,
-    required final Function(GenericResponse<dynamic> response) onError,
+    required final Function(GenericResponse<dynamic> response) onResponse,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(

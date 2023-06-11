@@ -176,7 +176,7 @@ class CategoryCreateUpdateDto {
   double? latitude;
   double? longitude;
   double? price;
-  double? discount;
+  int? discount;
   double? value;
   int? stock;
   int? order;

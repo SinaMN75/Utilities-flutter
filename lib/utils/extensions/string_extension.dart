@@ -20,6 +20,8 @@ extension StringExtensions on String {
       return this;
   }
 
+  String maxLength({required final int max}) => length > max ? "${substring(0, max-3)}..." : this;
+
   int getDay() => int.parse(substring(8, 10).append0());
 
   int getMonth() => int.parse(substring(5, 7).append0());

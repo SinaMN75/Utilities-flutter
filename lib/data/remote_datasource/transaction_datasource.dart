@@ -12,8 +12,8 @@ class TransactionDataSource {
   TransactionDataSource({required this.baseUrl});
 
   Future<void> read({
-    required final Function(GenericResponse<TransactionReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<TransactionReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(

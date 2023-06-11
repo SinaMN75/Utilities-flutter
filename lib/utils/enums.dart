@@ -218,6 +218,7 @@ enum UseCaseCategory {
   insurance("insurance"),
   tutorial("tutorial"),
   productAttribute("productAttribute"),
+  shopCategory("shopCategory"),
   magazine("magazine");
 
   const UseCaseCategory(this.title);
@@ -291,6 +292,7 @@ enum UseCaseMedia {
   apk("apk"),
   profile("profile"),
   chat("Chat"),
+  zip("zip"),
   bio("bio"),
   post("post"),
   text("text");
@@ -384,18 +386,19 @@ enum GenderType {
 }
 
 enum AgeType {
-  none("none", "هیچ کدام"),
-  all("all", "همه"),
-  kids("kids", "خردسال"),
-  teen("teen", "نوجوان"),
-  young("young", "بزرگسال"),
-  adult("adult", "میانسال"),
-  elder("elder", "کهن سال");
+  none("none", "هیچ کدام",0),
+  all("all", "همه",100),
+  kids("kids", "خردسال",101),
+  teen("teen", "نوجوان",102),
+  young("young", "بزرگسال",103),
+  adult("adult", "میانسال",104),
+  elder("elder", "کهن سال",105);
 
-  const AgeType(this.title, this.titleTr1);
+  const AgeType(this.title, this.titleTr1,this.status);
 
   @override
   String toString() => name;
+  final int status;
   final String title;
   final String titleTr1;
 }

@@ -10,8 +10,8 @@ class ContentDataSource {
 
   Future<void> create({
     required final ContentCreateUpdateDto dto,
-    required final Function(GenericResponse<ContentReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ContentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -24,8 +24,8 @@ class ContentDataSource {
 
   Future<void> update({
     required final ContentCreateUpdateDto dto,
-    required final Function(GenericResponse<ContentReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ContentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -37,8 +37,8 @@ class ContentDataSource {
       );
 
   Future<void> read({
-    required final Function(GenericResponse<ContentReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ContentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -50,8 +50,8 @@ class ContentDataSource {
 
   Future<void> readById({
     required final String id,
-    required final Function(GenericResponse<ContentReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ContentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -63,8 +63,8 @@ class ContentDataSource {
 
   Future<void> delete({
     required final String id,
-    required final Function(GenericResponse<ContentReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<ContentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(

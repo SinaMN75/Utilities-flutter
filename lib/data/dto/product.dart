@@ -340,6 +340,7 @@ class ProductCreateUpdateDto {
     this.latitude,
     this.longitude,
     this.price,
+    this.count,
     this.length,
     this.width,
     this.height,
@@ -397,6 +398,7 @@ class ProductCreateUpdateDto {
   final double? width;
   final double? height;
   final double? weight;
+  final int? count;
   final int? minOrder;
   final int? maxOrder;
   final double? maxPrice;
@@ -438,6 +440,7 @@ class ProductCreateUpdateDto {
         "author": author,
         "phoneNumber": phoneNumber,
         "link": link,
+        "count": count,
         "website": website,
         "email": email,
         "type": type,

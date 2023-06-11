@@ -14,7 +14,7 @@ class PaymentDataSource {
   Future<void> increaseWalletBalance({
     required final String amount,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -30,7 +30,7 @@ class PaymentDataSource {
   Future<void> buyProduct({
     required final String productId,
     required final Function(GenericResponse response) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(

@@ -11,8 +11,8 @@ class CategoryDataSource {
 
   Future<void> create({
     required final CategoryCreateUpdateDto dto,
-    required final Function(GenericResponse<CategoryReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<CategoryReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -25,8 +25,8 @@ class CategoryDataSource {
 
   Future<void> update({
     required final CategoryCreateUpdateDto dto,
-    required final Function(GenericResponse<CategoryReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<CategoryReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -39,8 +39,8 @@ class CategoryDataSource {
 
   Future<void> filter({
     required final CategoryFilterDto dto,
-    required final Function(GenericResponse<CategoryReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<CategoryReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -54,7 +54,7 @@ class CategoryDataSource {
   Future<void> delete({
     required final String id,
     required final VoidCallback onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(

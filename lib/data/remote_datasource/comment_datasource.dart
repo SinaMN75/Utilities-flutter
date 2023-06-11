@@ -11,8 +11,8 @@ class CommentDataSource {
 
   Future<void> create({
     required final CommentCreateUpdateDto dto,
-    required final Function(GenericResponse<CommentReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<CommentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -25,8 +25,8 @@ class CommentDataSource {
 
   Future<void> toggleLike({
     required final String commentId,
-    required final Function(GenericResponse<CommentReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<CommentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -40,7 +40,7 @@ class CommentDataSource {
     required final String commentId,
     required final int reactionCode,
     required final VoidCallback onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -54,7 +54,7 @@ class CommentDataSource {
     required final String id,
     required final CommentCreateUpdateDto dto,
     required final Function(String) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -67,8 +67,8 @@ class CommentDataSource {
 
   Future<void> readById({
     required final String id,
-    required final Function(GenericResponse<CommentReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<CommentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -80,8 +80,8 @@ class CommentDataSource {
 
   Future<void> readByProductId({
     required final String id,
-    required final Function(GenericResponse<CommentReadDto>) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse<CommentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -94,7 +94,7 @@ class CommentDataSource {
   Future<void> delete({
     required final String id,
     required final Function(String) onResponse,
-    required final Function(GenericResponse response) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
