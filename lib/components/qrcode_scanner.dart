@@ -10,7 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:utilities/utilities.dart';
 
-Widget qrScanner({required final Function(String? value) onResponse}) => MobileScanner(
+Widget qrScanner({
+  required final Function(String? value) onResponse,
+  final MobileScannerController? controller,
+}) =>
+    MobileScanner(
+      controller: controller,
       onDetect: (final BarcodeCapture capture) {
         for (final Barcode barcode in capture.barcodes) onResponse(barcode.rawValue);
       },
