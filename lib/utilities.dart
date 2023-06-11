@@ -14,6 +14,7 @@ export 'package:group_button/group_button.dart';
 export 'package:image_cropper/image_cropper.dart';
 export 'package:intl/intl.dart';
 export 'package:just_audio/just_audio.dart';
+export 'package:mobile_scanner/mobile_scanner.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:persian_tools/persian_tools.dart';
 export 'package:pin_code_fields/pin_code_fields.dart';
