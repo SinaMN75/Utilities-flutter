@@ -404,9 +404,9 @@ enum AgeType {
 }
 
 enum ProductStatus {
-  none("new", "نو", 100),
-  kids("worked", "کارکرده", 101),
-  all("like new", "در حد نو", 102);
+  isNew("New", "نو", 100),
+  isWorked("Worked", "کارکرده", 101),
+  isLikeNew("Like new", "در حد نو", 102);
 
   const ProductStatus(this.title, this.titleTr1, this.status);
 
