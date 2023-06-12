@@ -85,7 +85,7 @@ class OrderCreateUpdateDto {
         status: json["status"],
         payType: json["payType"],
         sendType: json["sendType"],
-        orderDetails: json["orderDetails"] == null ? [] : List<OrderDetail>.from(json["orderDetails"]!.map(OrderDetail.fromMap)),
+        orderDetails: json["orderDetails"] == null ? [] : List<OrderDetailCreateDto>.from(json["orderDetails"]!.map(OrderDetailCreateDto.fromMap)),
       );
   final String? id;
   final String? description;
@@ -95,7 +95,7 @@ class OrderCreateUpdateDto {
   final int? status;
   final int? payType;
   final int? sendType;
-  final List<OrderDetail>? orderDetails;
+  final List<OrderDetailCreateDto>? orderDetails;
 
   String toJson() => json.encode(toMap());
 
