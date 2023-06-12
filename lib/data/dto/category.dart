@@ -11,6 +11,7 @@ class CategoryReadDto {
     this.useCase,
     this.type,
     this.price,
+    this.discount,
     this.stock,
     this.order,
     this.categoryJsonDetail,
@@ -31,6 +32,7 @@ class CategoryReadDto {
         useCase: json["useCase"],
         type: json["type"],
         price: json["price"],
+        discount: json["discount"],
         stock: json["stock"],
         order: json["order"],
         categoryJsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
@@ -45,6 +47,7 @@ class CategoryReadDto {
   String? titleTr2;
   String? color;
   String? useCase;
+  int? discount;
   String? type;
   double? price;
   int? stock;
@@ -64,6 +67,7 @@ class CategoryReadDto {
         "titleTr2": titleTr2,
         "color": color,
         "useCase": useCase,
+        "discount": discount,
         "type": type,
         "price": price,
         "stock": stock,
