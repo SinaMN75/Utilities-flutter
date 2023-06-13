@@ -421,18 +421,18 @@ enum ProductStatus {
 }
 
 enum OrderStatus {
-  Pending("Pending", "در انتظار", 100),
-  Canceled("Canceled", "لغو شده", 101),
-  Paid("Paid", "پرداخت شده", 102),
-  Accept("Accept", "قبول شده", 103),
-  Reject("Reject", "رد شده", 104),
-  InProgress("InProgress", "در حال انجام", 105),
-  InProcess("InProcess", "در حال انجام", 106),
-  Shipping("Shipping", "در حال ارسال", 107),
-  Refund("Refund", "بازپرداخت", 108),
-  RefundComplete("RefundComplete", "بازپرداخت کامل", 109),
-  Complete("Complete", "تکمیل شده", 110),
-  PaidFail("PaidFail", "پرداخت ناموفق", 112);
+  pending("Pending", "در انتظار", 100),
+  canceled("Canceled", "لغو شده", 101),
+  paid("Paid", "پرداخت شده", 102),
+  accept("Accept", "قبول شده", 103),
+  reject("Reject", "رد شده", 104),
+  inProgress("InProgress", "در حال انجام", 105),
+  inProcess("InProcess", "در حال انجام", 106),
+  shipping("Shipping", "در حال ارسال", 107),
+  refund("Refund", "بازپرداخت", 108),
+  refundComplete("RefundComplete", "بازپرداخت کامل", 109),
+  complete("Complete", "تکمیل شده", 110),
+  paidFail("PaidFail", "پرداخت ناموفق", 112);
 
   const OrderStatus(this.title, this.titleTr1, this.status);
 
