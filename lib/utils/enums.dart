@@ -403,6 +403,9 @@ enum AgeType {
   final String titleTr1;
 }
 
+
+
+
 enum ProductStatus {
   isNew("New", "نو", 100),
   isWorked("Worked", "کارکرده", 101),
@@ -416,6 +419,61 @@ enum ProductStatus {
   final String title;
   final String titleTr1;
 }
+
+enum OrderStatus {
+  Pending("Pending", "در انتظار", 100),
+  Canceled("Canceled", "لغو شده", 101),
+  Paid("Paid", "پرداخت شده", 102),
+  Accept("Accept", "قبول شده", 103),
+  Reject("Reject", "رد شده", 104),
+  InProgress("InProgress", "در حال انجام", 105),
+  InProcess("InProcess", "در حال انجام", 106),
+  Shipping("Shipping", "در حال ارسال", 107),
+  Refund("Refund", "بازپرداخت", 108),
+  RefundComplete("RefundComplete", "بازپرداخت کامل", 109),
+  Complete("Complete", "تکمیل شده", 110),
+  PaidFail("PaidFail", "پرداخت ناموفق", 112);
+
+  const OrderStatus(this.title, this.titleTr1, this.status);
+
+  @override
+  String toString() => name;
+  final int status;
+  final String title;
+  final String titleTr1;
+}
+
+// enum OrderStatus {
+//   Pending(StatusModel("Pending", "در انتظار", 100)),
+//   Canceled("Canceled", "لغو شده", 101),
+//   Paid("Paid", "پرداخت شده", 102),
+//   Accept("Accept", "قبول شده", 103),
+//   Reject("Reject", "رد شده", 104),
+//   InProgress("InProgress", "در حال انجام", 105),
+//   InProcess("InProcess", "در حال انجام", 106),
+//   Shipping("Shipping", "در حال ارسال", 107),
+//   Refund("Refund", "بازپرداخت", 108),
+//   RefundComplete("RefundComplete", "بازپرداخت کامل", 109),
+//   Complete("Complete", "تکمیل شده", 110),
+//   PaidFail("PaidFail", "پرداخت ناموفق", 112);
+//
+//   const OrderStatus(this.statusModel);
+//
+//   @override
+//   String toString() => name;
+//   final StatusModel statusModel;
+// }
+
+class StatusModel{
+  StatusModel(this.title, this.titleTr1,this.status,);
+
+  final String title;
+  final String titleTr1;
+  final int status;
+
+}
+
+
 
 enum UseCaseNotification {
   success("success"),
