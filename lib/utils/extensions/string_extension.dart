@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
 extension StringExtensions on String {
   String toRialMoneyPersian() => "${separateNumbers3By3()} ریال ";
@@ -13,6 +14,8 @@ extension StringExtensions on String {
 
   String separateNumbers3By3() => replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
+  String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this)).stringDate();
+
   String append0() {
     if (length == 1)
       return "0$this";
@@ -20,7 +23,7 @@ extension StringExtensions on String {
       return this;
   }
 
-  String maxLength({required final int max}) => length > max ? "${substring(0, max-3)}..." : this;
+  String maxLength({required final int max}) => length > max ? "${substring(0, max - 3)}..." : this;
 
   int getDay() => int.parse(substring(8, 10).append0());
 
