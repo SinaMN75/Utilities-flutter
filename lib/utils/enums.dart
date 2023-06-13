@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum AccountType { free, pro, unlimited, unknown }
 
 enum BackResult {
@@ -421,26 +423,27 @@ enum ProductStatus {
 }
 
 enum OrderStatus {
-  pending("Pending", "در انتظار", 100),
-  canceled("Canceled", "لغو شده", 101),
-  paid("Paid", "پرداخت شده", 102),
-  accept("Accept", "قبول شده", 103),
-  reject("Reject", "رد شده", 104),
-  inProgress("InProgress", "در حال انجام", 105),
-  inProcess("InProcess", "در حال انجام", 106),
-  shipping("Shipping", "در حال ارسال", 107),
-  refund("Refund", "بازپرداخت", 108),
-  refundComplete("RefundComplete", "بازپرداخت کامل", 109),
-  complete("Complete", "تکمیل شده", 110),
-  paidFail("PaidFail", "پرداخت ناموفق", 112);
+  pending("Pending", "در انتظار", 100,Color(0xffcfff00)),
+  canceled("Canceled", "لغو شده", 101,Color(0xff5a89ce)),
+  paid("Paid", "پرداخت شده", 102,Color(0xff00ffb2)),
+  accept("Accept", "قبول شده", 103,Color(0xffaa00ff)),
+  reject("Reject", "رد شده", 104,Color(0xff7bff00)),
+  inProgress("InProgress", "در حال انجام", 105,Color(0xffff003b)),
+  inProcess("InProcess", "در حال انجام", 106,Color(0xffff8800)),
+  shipping("Shipping", "در حال ارسال", 107,Color(0xffffdd00)),
+  refund("Refund", "بازپرداخت", 108,Color(0xffff0000)),
+  refundComplete("RefundComplete", "بازپرداخت کامل", 109,Color(0xff545319)),
+  complete("Complete", "تکمیل شده", 110,Color(0xff1e0823)),
+  paidFail("PaidFail", "پرداخت ناموفق", 112,Color(0xff0066ff));
 
-  const OrderStatus(this.title, this.titleTr1, this.status);
+  const OrderStatus(this.title, this.titleTr1, this.status,this.color);
 
   @override
   String toString() => name;
   final int status;
   final String title;
   final String titleTr1;
+  final Color color;
 }
 
 // enum OrderStatus {
