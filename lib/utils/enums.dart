@@ -284,7 +284,18 @@ enum TypeGender {
   final int status;
 }
 
+enum PrivacyType {
+  private("Private", 100),
+  public("Public", 101),
+  followersOnly("FollowersOnly", 102);
 
+  const PrivacyType(this.title1, this.status);
+
+  @override
+  String toString() => name;
+  final String title1;
+  final int status;
+}
 
 enum UseCaseMedia {
   image("image"),
@@ -308,17 +319,6 @@ enum UseCaseMedia {
   final String title;
 }
 
-enum PrivacyType {
-  private(100),
-  public(101),
-  followersOnly(102);
-
-  const PrivacyType(this.title);
-
-  @override
-  String toString() => name;
-  final int title;
-}
 
 // enum UseCaseChat {
 //   group("group"),
