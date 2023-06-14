@@ -285,16 +285,15 @@ enum TypeGender {
 }
 
 enum PrivacyType {
-  private("Private", 100),
-  public("Public", 101),
-  followersOnly("FollowersOnly", 102);
+  private(100),
+  public( 101),
+  followersOnly( 102);
 
-  const PrivacyType(this.title1, this.status);
+  const PrivacyType(this.title);
 
   @override
   String toString() => name;
-  final String title1;
-  final int status;
+  final int title;
 }
 
 enum UseCaseMedia {
