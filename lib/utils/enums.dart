@@ -270,17 +270,22 @@ enum TypeChat {
 }
 
 enum TypeGender {
-  man(100),
-  woman(101),
-  company(102),
-  team(103);
+  man("Man","مرد",100),
+  woman("Woman","زن",101),
+  company("Company","شرکت/موسسه/انجمن و کانون",102),
+  team("Team","تیم",103);
+  const TypeGender(this.title,this.titleTr1,this.status);
 
-  const TypeGender(this.title);
 
   @override
   String toString() => name;
-  final int title;
+  final String title;
+  final String titleTr1;
+  final int status;
 }
+
+
+
 
 enum UseCaseMedia {
   image("image"),
