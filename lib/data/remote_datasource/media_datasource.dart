@@ -31,7 +31,7 @@ class MediaDataSource {
     final String? chatId,
     final String? time,
     final String? artist,
-    final bool? isPrivate,
+    final int? privacyType,
     final String? album,
     final String? groupChatId,
     final String? groupChatMessageId,
@@ -59,7 +59,7 @@ class MediaDataSource {
           'GroupChatMessageId': groupChatMessageId,
           'ProductId': productId,
           'UserId': userId,
-          'IsPrivate': isPrivate,
+          'PrivacyType': privacyType,
           'Time': time,
           'Artist': artist,
           'Album': album,
@@ -111,7 +111,7 @@ class MediaDataSource {
     final String? title,
     final String? notificationId,
     final String? size,
-    final bool? isPrivate,
+    final int? privacyType,
   }) async {
     final Dio dio = Dio();
     final String fileName = file.path.split('/').last;
@@ -128,7 +128,7 @@ class MediaDataSource {
         'GroupChatMessageId': groupChatMessageId,
         'ProductId': productId,
         'UserId': userId,
-        'IsPrivate': isPrivate,
+        'PrivacyType': privacyType,
         'Time': time,
         'Artist': artist,
         'Album': album,
@@ -165,7 +165,7 @@ class MediaDataSource {
     final String? productId, //8f11171f-c0a4-4a70-7fe2-08da91550c6f
     final String? userId,
     final String? chatId,
-    final bool? isPrivate,
+    final int? privacyType,
     final String? time,
     final String? artist,
     final String? album,
@@ -194,8 +194,8 @@ class MediaDataSource {
         request.fields['UserId'] = userId;
       }
 
-      if (isPrivate != null) {
-        request.fields['IsPrivate'] = isPrivate.toString();
+      if (privacyType != null) {
+        request.fields['PrivacyType'] = privacyType.toString();
       }
 
       if (time != null) {
