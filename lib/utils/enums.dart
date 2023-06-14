@@ -270,12 +270,12 @@ enum TypeChat {
 }
 
 enum TypeGender {
-  man("Man","مرد",100),
-  woman("Woman","زن",101),
-  company("Company","شرکت/موسسه/انجمن و کانون",102),
-  team("Team","تیم",103);
-  const TypeGender(this.title,this.titleTr1,this.status);
+  man("Man", "مرد", 100),
+  woman("Woman", "زن", 101),
+  company("Company", "شرکت/موسسه/انجمن و کانون", 102),
+  team("Team", "تیم", 103);
 
+  const TypeGender(this.title, this.titleTr1, this.status);
 
   @override
   String toString() => name;
@@ -284,8 +284,18 @@ enum TypeGender {
   final int status;
 }
 
+enum PrivacyType {
+  private("Private", 100),
+  public("Public", 101),
+  followersOnly("FollowersOnly", 102);
 
+  const PrivacyType(this.title, this.status);
 
+  @override
+  String toString() => name;
+  final String title;
+  final int status;
+}
 
 enum UseCaseMedia {
   image("image"),
@@ -307,18 +317,6 @@ enum UseCaseMedia {
   @override
   String toString() => name;
   final String title;
-}
-
-enum PrivacyType {
-  private(100),
-  public(101),
-  followersOnly(102);
-
-  const PrivacyType(this.title);
-
-  @override
-  String toString() => name;
-  final int title;
 }
 
 // enum UseCaseChat {
@@ -408,9 +406,6 @@ enum AgeType {
   final String titleTr1;
 }
 
-
-
-
 enum ProductStatus {
   isNew("New", "نو", 100),
   isWorked("Worked", "کارکرده", 101),
@@ -469,16 +464,17 @@ enum OrderStatus {
 //   final StatusModel statusModel;
 // }
 
-class StatusModel{
-  StatusModel(this.title, this.titleTr1,this.status,);
+class StatusModel {
+  StatusModel(
+    this.title,
+    this.titleTr1,
+    this.status,
+  );
 
   final String title;
   final String titleTr1;
   final int status;
-
 }
-
-
 
 enum UseCaseNotification {
   success("success"),
