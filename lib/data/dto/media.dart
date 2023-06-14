@@ -55,7 +55,7 @@ class MediaJsonDetail {
   String? time;
   String? artist;
   String? album;
-  bool? isPrivate;
+  int? isPrivate;
 
   MediaJsonDetail({
     this.link,
@@ -239,7 +239,7 @@ class ResponseMediaDto {
   final String? artist;
   final String? album;
   final String? id;
-  final bool? isPrivate;
+  final int? isPrivate;
   final DateTime? createdAt;
 
   factory ResponseMediaDto.fromJson(String str) => ResponseMediaDto.fromMap(json.decode(str));
