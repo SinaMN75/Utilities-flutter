@@ -22,6 +22,19 @@ class CategoryDataSource {
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
+  Future<void> createFromExcel({
+    required final List<CategoryReadDto> dto,
+    required final Function(GenericResponse<CategoryReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/Category/BulkCreate",
+        body: dto,
+        action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.data, fromMap: CategoryReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        failure: failure,
+      );
 
   Future<void> update({
     required final CategoryCreateUpdateDto dto,
