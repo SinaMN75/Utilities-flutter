@@ -6,12 +6,12 @@ void showFilePicker({
   required final Function(List<File> file) action,
   final FileType fileType = FileType.image,
   final bool allowMultiple = false,
-  String? initialDirectory,
-  String? dialogTitle,
-  bool allowCompression = true,
-  bool withData = false,
-  bool withReadStream = false,
-  bool lockParentWindow = false,
+  final String? initialDirectory,
+  final String? dialogTitle,
+  final bool allowCompression = true,
+  final bool withData = false,
+  final bool withReadStream = false,
+  final bool lockParentWindow = false,
   final List<String>? allowedExtensions,
 }) async {
   final FilePickerResult? result = await FilePicker.platform.pickFiles(
