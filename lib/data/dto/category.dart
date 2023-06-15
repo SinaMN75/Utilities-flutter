@@ -18,6 +18,7 @@ class CategoryReadDto {
     this.children,
     this.id,
     this.updatedAt,
+    this.parent,
     this.parentId,
     this.media,
   });
@@ -36,6 +37,7 @@ class CategoryReadDto {
         stock: json["stock"],
         order: json["order"],
         categoryJsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
+        parent: json["parent"] == null ? null : CategoryReadDto.fromMap(json["parent"]),
         children: json["children"] == null ? [] : List<CategoryReadDto>.from(json["children"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
         id: json["id"],
@@ -53,6 +55,7 @@ class CategoryReadDto {
   int? stock;
   int? order;
   CategoryJsonDetail? categoryJsonDetail;
+  CategoryReadDto? parent;
   List<CategoryReadDto>? children;
   String? id;
   DateTime? updatedAt;
@@ -73,6 +76,7 @@ class CategoryReadDto {
         "stock": stock,
         "order": order,
         "categoryJsonDetail": categoryJsonDetail?.toMap(),
+        "parent": parent?.toMap(),
         "children": children == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(children!.map((final CategoryReadDto x) => x.toMap())),
         "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
         "id": id,
