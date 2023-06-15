@@ -11,6 +11,7 @@ extension OptionalStringExtension on String? {
   String formatJalaliDateTime() {
     final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString());
     final Jalali jalali = Jalali.fromDateTime(dateTime);
+    if (dateTime.hour == 0 && dateTime.minute == 0) return '${jalali.year}/${jalali.month}/${jalali.day}';
     return '${jalali.year}/${jalali.month}/${jalali.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
   }
 }
