@@ -7,6 +7,12 @@ extension OptionalStringExtension on String? {
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).stringDate();
 
   String toRialMoneyPersian() => "${(this ?? "").separateNumbers3By3()} ریال ";
+
+  String formatJalaliDateTime() {
+    final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString());
+    final Jalali jalali = Jalali.fromDateTime(dateTime);
+    return '${jalali.year}/${jalali.month}/${jalali.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
+  }
 }
 
 extension StringExtensions on String {
@@ -29,6 +35,12 @@ extension StringExtensions on String {
       return "0$this";
     else
       return this;
+  }
+
+  String formatJalaliDateTime() {
+    final DateTime dateTime = DateTime.parse(this);
+    final Jalali jalali = Jalali.fromDateTime(dateTime);
+    return '${jalali.year}/${jalali.month}/${jalali.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
   }
 
   String maxLength({required final int max}) => length > max ? "${substring(0, max - 3)}..." : this;
