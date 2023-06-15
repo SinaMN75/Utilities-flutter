@@ -18,7 +18,7 @@ dependencies:
   get: ^4.6.5
   package_info_plus: ^4.0.2
   share_plus: ^7.0.0
-  file_picker: ^5.3.2
+  file_picker: ^5.3.0
   intl: ^0.18.0
   webviewx: ^0.2.2
   get_storage: ^2.1.1
