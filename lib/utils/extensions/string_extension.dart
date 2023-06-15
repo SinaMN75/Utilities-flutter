@@ -1,6 +1,14 @@
 import 'package:intl/intl.dart';
 import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
+extension OptionalStringExtension on String? {
+  String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
+
+  String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).stringDate();
+
+  String toRialMoneyPersian() => "${(this ?? "").separateNumbers3By3()} ریال ";
+}
+
 extension StringExtensions on String {
   String toRialMoneyPersian() => "${separateNumbers3By3()} ریال ";
 
