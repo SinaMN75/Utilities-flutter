@@ -37,3 +37,7 @@ extension IntExtesion on int {
     return result;
   }
 }
+
+extension OptionalIntExtension on int? {
+  String toRialMoneyPersian() => "${(this ?? 0).toString().separateNumbers3By3()} ریال ";
+}

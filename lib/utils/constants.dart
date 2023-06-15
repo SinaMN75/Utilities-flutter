@@ -10,6 +10,8 @@ extension PageStateExtension on PageState {
   bool isError() => this == PageState.error;
 
   bool isPaging() => this == PageState.paging;
+
+  bool isEmpty() => this == PageState.empty;
 }
 
 extension RxPageStateExtension on Rx<PageState> {
@@ -23,6 +25,8 @@ extension RxPageStateExtension on Rx<PageState> {
 
   bool isPaging() => value == PageState.paging;
 
+  bool isEmpty() => value == PageState.empty;
+
   PageState initial() => this(PageState.initial);
 
   PageState loading() => this(PageState.loading);
@@ -32,6 +36,8 @@ extension RxPageStateExtension on Rx<PageState> {
   PageState error() => this(PageState.error);
 
   PageState paging() => this(PageState.paging);
+
+  PageState emptying() => this(PageState.empty);
 }
 
 class UtilitiesConstants {
