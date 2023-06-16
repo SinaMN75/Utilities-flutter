@@ -12,7 +12,7 @@ extension OptionalStringExtension on String? {
     final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString());
     final Jalali jalali = Jalali.fromDateTime(dateTime);
     if (dateTime.hour == 0 && dateTime.minute == 0) return '${jalali.year}/${jalali.month}/${jalali.day}';
-    return '${jalali.year}/${jalali.month}/${jalali.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
+    return '${dateTime.hour}:${dateTime.minute}:${dateTime.second} ${jalali.year}/${jalali.month}/${jalali.day}';
   }
 }
 
