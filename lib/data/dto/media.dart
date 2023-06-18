@@ -221,8 +221,12 @@ class ResponseMediaDto {
     this.useCase,
     this.url,
     this.link,
+    this.size,
+    this.time,
+    this.artist,
+    this.album,
+    this.isPrivate,
     this.id,
-    this.mediaJsonDetail,
     this.createdAt,
   });
 
@@ -230,8 +234,12 @@ class ResponseMediaDto {
   final String? useCase;
   final String? url;
   final String? link;
+  final String? size;
+  final String? time;
+  final String? artist;
+  final String? album;
   final String? id;
-  MediaJsonDetail? mediaJsonDetail;
+  final int? isPrivate;
   final DateTime? createdAt;
 
   factory ResponseMediaDto.fromJson(String str) => ResponseMediaDto.fromMap(json.decode(str));
@@ -239,24 +247,32 @@ class ResponseMediaDto {
   String toJson() => json.encode(toMap());
 
   factory ResponseMediaDto.fromMap(dynamic json) => ResponseMediaDto(
-    fileName: json["fileName"],
-    useCase: json["useCase"],
-    link: json["link"],
-    url: json["link"] != null ? json["link"] : json["url"],
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    mediaJsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
-  );
+        fileName: json["fileName"],
+        useCase: json["useCase"],
+        link: json["link"],
+        size: json["size"],
+        url: json["link"] != null ? json["link"] : json["url"],
+        time: json["time"],
+        artist: json["artist"],
+        album: json["album"],
+        isPrivate: json["IsPrivate"],
+        id: json["id"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+      );
 
   dynamic toMap() => {
-    "fileName": fileName,
-    "useCase": useCase,
-    "url": url,
-    "link": url ?? link,
-    "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "mediaJsonDetail": mediaJsonDetail?.toMap(),
-  };
+        "fileName": fileName,
+        "useCase": useCase,
+        "url": url,
+        "link": url ?? link,
+        "time": time,
+        "size": size,
+        "artist": artist,
+        "album": album,
+        "IsPrivate": isPrivate,
+        "id": id,
+        "createdAt": createdAt?.toIso8601String(),
+      };
 }
 
 extension NullableMediaResponseExtension on List<MediaReadDto>? {
