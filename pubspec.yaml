@@ -43,6 +43,9 @@ dependencies:
   shimmer: ^2.0.0
   mobile_scanner: ^3.2.0
   excel_facility: ^1.0.1
+  persian_datetime_picker: ^2.6.0
+  flutter_multi_formatter: ^2.11.1
+  screenshot: ^2.1.0
 
   syncfusion_localizations: ^21.2.8
   syncfusion_flutter_datagrid_export: ^21.2.8

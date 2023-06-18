@@ -16,6 +16,8 @@ extension IntExtesion on int {
 
   String toRialMoneyPersian() => "${toString().separateNumbers3By3()} ریال ";
 
+  String rialToTomanMoneyPersian() => "${(this / 10).toString().separateNumbers3By3()} تومان ";
+
   String secondsToTimeLeft() {
     final int h = this ~/ 3600;
     final int m = (this - h * 3600) ~/ 60;
@@ -40,4 +42,6 @@ extension IntExtesion on int {
 
 extension OptionalIntExtension on int? {
   String toRialMoneyPersian() => "${(this ?? 0).toString().separateNumbers3By3()} ریال ";
+
+  String rialToTomanMoneyPersian() => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان ";
 }
