@@ -331,6 +331,36 @@ enum UseCaseMedia {
 //   final String title;
 // }
 
+
+
+
+enum TypeAd {
+  fullTime('Full time',"تمام وقت",100),
+  partTime('Part time',"پاره وقت",101),
+  image("Contractual/project","قراردادی/پروژه ای",102);
+
+  const TypeAd(this.title,this.titleTr1,this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
+enum TypeKindAd {
+  inWork('In work',"حضوری",100),
+  freelancer('Freelancer',"دورکاری",101),
+  inWorkFreelancer("In work/Freelancer","حضوری/دورکاری",102);
+
+  const TypeKindAd(this.title,this.titleTr1,this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
+
 enum TypeCategory {
   Explore('Explore'),
   Digital('Digital'),
