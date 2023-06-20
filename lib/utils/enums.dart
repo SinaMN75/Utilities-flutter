@@ -228,6 +228,20 @@ enum UseCaseCategory {
   final String title;
 }
 
+enum TypeUser {
+  hiring('hiring'),
+  openToWork('openToWork');
+
+  const TypeUser(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+
+
+
 enum TypePost {
   all('all'),
   explore('Explore'),
@@ -248,6 +262,18 @@ enum TypePost {
   adEmployee("adEmployee");
 
   const TypePost(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+
+enum TypeProduct {
+  jobType('jobType'),
+  jobPlace('jobPlace');
+
+  const TypeProduct(this.title);
 
   @override
   String toString() => name;
@@ -331,6 +357,36 @@ enum UseCaseMedia {
 //   final String title;
 // }
 
+
+
+
+enum TypeAd {
+  fullTime('Full time',"تمام وقت",100),
+  partTime('Part time',"پاره وقت",101),
+  image("Contractual/project","قراردادی/پروژه ای",102);
+
+  const TypeAd(this.title,this.titleTr1,this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
+enum TypeKindAd {
+  inWork('In work',"حضوری",100),
+  freelancer('Freelancer',"دورکاری",101),
+  inWorkFreelancer("In work/Freelancer","حضوری/دورکاری",102);
+
+  const TypeKindAd(this.title,this.titleTr1,this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
+
 enum TypeCategory {
   Explore('Explore'),
   Digital('Digital'),
@@ -347,7 +403,10 @@ enum TypeCategory {
   commodity("commodity"),
   job("job"),
   productAttribute("productAttribute"),
-  physical('physical');
+  physical('physical'),
+  userStatus('userStatus'),
+  jobType('jobType'),
+  jobPlace('jobPlace');
 
   const TypeCategory(this.title);
 

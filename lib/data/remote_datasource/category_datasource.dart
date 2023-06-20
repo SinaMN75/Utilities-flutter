@@ -23,7 +23,7 @@ class CategoryDataSource {
         failure: failure,
       );
   Future<void> createFromExcel({
-    required final List<CategoryReadDto> dto,
+    required final String dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,

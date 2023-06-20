@@ -298,4 +298,6 @@ extension CategoryReadDtoExtension on List<CategoryReadDto>? {
           )
           .toList() ??
       <CategoryReadDto>[];
+  CategoryReadDto firstIfNull() => (this ?? <CategoryReadDto>[]).isNotEmpty ? this!.first : CategoryReadDto();
+
 }
