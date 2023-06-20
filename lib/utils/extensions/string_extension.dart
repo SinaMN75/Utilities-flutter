@@ -6,9 +6,9 @@ extension OptionalStringExtension on String? {
 
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).stringDate();
 
-  String toRialMoneyPersian() => "${(this ?? "").separateNumbers3By3()} ریال ";
+  String toRialMoneyPersian() => "${(this ?? "").separateNumbers3By3()} ریال ".trim();
 
-  String rialToTomanMoneyPersian() => "${((this ?? "0").toInt() / 10).toString().separateNumbers3By3()} تومان ";
+  String rialToTomanMoneyPersian() => "${((this ?? "0").toInt() / 10).toString().separateNumbers3By3()} تومان ".trim();
 
   String formatJalaliDateTime() {
     final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString());
