@@ -41,7 +41,7 @@ extension IntExtesion on int {
 }
 
 extension OptionalIntExtension on int? {
-  String toRialMoneyPersian() => "${(this ?? 0).toString().separateNumbers3By3()} ریال ";
+  String toRialMoneyPersian() => "${(this ?? 0).toString().separateNumbers3By3()} ریال".replaceAll("-", "");
 
-  String rialToTomanMoneyPersian() => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان ";
+  String rialToTomanMoneyPersian() => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان".replaceAll("-", "");
 }
