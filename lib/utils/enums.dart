@@ -404,6 +404,7 @@ enum TypeCategory {
   job("job"),
   productAttribute("productAttribute"),
   physical('physical'),
+  userStatus('userStatus'),
   jobType('jobType'),
   jobPlace('jobPlace');
 
