@@ -270,8 +270,8 @@ enum TypePost {
 
 
 enum TypeProduct {
-  ad('ad'),
-  adKind('adKind');
+  jobType('jobType'),
+  jobPlace('jobPlace');
 
   const TypeProduct(this.title);
 
