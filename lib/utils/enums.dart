@@ -403,7 +403,9 @@ enum TypeCategory {
   commodity("commodity"),
   job("job"),
   productAttribute("productAttribute"),
-  physical('physical');
+  physical('physical'),
+  jobType('jobType'),
+  jobPlace('jobPlace');
 
   const TypeCategory(this.title);
 
