@@ -228,6 +228,20 @@ enum UseCaseCategory {
   final String title;
 }
 
+enum TypeUser {
+  hiring('hiring'),
+  openToWork('openToWork');
+
+  const TypeUser(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+
+
+
 enum TypePost {
   all('all'),
   explore('Explore'),
@@ -248,6 +262,18 @@ enum TypePost {
   adEmployee("adEmployee");
 
   const TypePost(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+
+enum TypeProduct {
+  ad('ad'),
+  adKind('adKind');
+
+  const TypeProduct(this.title);
 
   @override
   String toString() => name;
