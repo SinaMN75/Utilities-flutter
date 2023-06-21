@@ -185,6 +185,7 @@ class UserJsonDetail {
     this.soundCloud,
     this.pinterest,
     this.website,
+    this.jobStatus,
     this.activity,
     this.color,
     this.showContactInfo,
@@ -210,6 +211,7 @@ class UserJsonDetail {
         soundCloud: json["soundCloud"],
         pinterest: json["pinterest"],
         website: json["website"],
+        jobStatus: json["jobStatus"],
         activity: json["activity"],
         color: json["color"],
         showContactInfo: json["showContactInfo"],
@@ -229,6 +231,7 @@ class UserJsonDetail {
   String? soundCloud;
   String? pinterest;
   String? website;
+  String? jobStatus;
   String? activity;
   String? color;
   bool? showContactInfo;
@@ -251,6 +254,7 @@ class UserJsonDetail {
         "soundCloud": soundCloud,
         "pinterest": pinterest,
         "website": website,
+        "jobStatus": jobStatus,
         "activity": activity,
         "color": color,
         "showContactInfo": showContactInfo,
@@ -278,6 +282,7 @@ class UserCreateUpdateDto {
     this.whatsapp,
     this.linkedIn,
     this.password,
+    this.jobStatus,
     this.appUserName,
     this.appPhoneNumber,
     this.appEmail,
@@ -325,6 +330,7 @@ class UserCreateUpdateDto {
         telegram: json["telegram"],
         whatsapp: json["whatsApp"],
         linkedIn: json["linkedIn"],
+        jobStatus: json["jobStatus"],
         soundcloud: json["soundCloud"],
         dribble: json["dribble"],
         pinterest: json["pinterest"],
@@ -363,6 +369,7 @@ class UserCreateUpdateDto {
   final String? website;
   final String? instagram;
   final String? telegram;
+  final String? jobStatus;
   final String? whatsapp;
   final String? linkedIn;
   final String? soundcloud;
@@ -407,6 +414,7 @@ class UserCreateUpdateDto {
         "instagram": instagram,
         "telegram": telegram,
         "whatsApp": whatsapp,
+        "jobStatus": jobStatus,
         "linkedIn": linkedIn,
         "privacyType": privacyType,
         "soundCloud": soundcloud,
@@ -445,6 +453,7 @@ class UserFilterDto {
     this.showFollowings,
     this.showForms,
     this.badge,
+    this.jobStatus,
     this.privacyType,
     this.showGender,
     this.showLocations,
@@ -470,6 +479,7 @@ class UserFilterDto {
         badge: json["badge"],
         userNameExact: json["userNameExact"],
         query: json["query"],
+        jobStatus: json["jobStatus"],
         phoneNumber: json["phoneNumber"],
         showGender: json["showGender"],
         appUserName: json["appUserName"],
@@ -499,6 +509,7 @@ class UserFilterDto {
   final String? badge;
   final String? appUserName;
   final String? nationalCode;
+  final String? jobStatus;
   final int? privacyType;
   final bool? showGender;
   final bool? showMedia;
@@ -530,6 +541,7 @@ class UserFilterDto {
         "appUserName": appUserName,
         "showMedia": showMedia,
         "showCategories": showCategories,
+        "jobStatus": jobStatus,
         "showLocations": showLocations,
         "showForms": showForms,
         "nationalCode": nationalCode,

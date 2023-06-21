@@ -216,6 +216,8 @@ class ProductJsonDetail {
     this.latitude,
     this.responseTime,
     this.onTimeDelivery,
+    this.type1,
+    this.type2,
     this.longitude,
     this.length,
     this.width,
@@ -249,6 +251,8 @@ class ProductJsonDetail {
         longitude: json["longitude"],
         length: json["length"],
         width: json["width"],
+        type1: json["type1"],
+        type2: json["type2"],
         height: json["height"],
         weight: json["weight"],
         minOrder: json["minOrder"],
@@ -269,6 +273,8 @@ class ProductJsonDetail {
   String? website;
   String? email;
   String? unit;
+  String? type1;
+  String? type2;
   int? latitude;
   int? responseTime;
   int? onTimeDelivery;
@@ -297,6 +303,8 @@ class ProductJsonDetail {
         "link": link,
         "website": website,
         "email": email,
+        "type1": type1,
+        "type2": type2,
         "unit": unit,
         "latitude": latitude,
         "responseTime": responseTime,
@@ -333,6 +341,8 @@ class ProductCreateUpdateDto {
     this.website,
     this.email,
     this.type,
+    this.type1,
+    this.type2,
     this.unit,
     this.useCase,
     this.keyValue,
@@ -387,6 +397,8 @@ class ProductCreateUpdateDto {
   final String? website;
   final String? email;
   final String? type;
+  final String? type1;
+  final String? type2;
   final String? unit;
   final String? useCase;
   final String? keyValue;
@@ -444,6 +456,8 @@ class ProductCreateUpdateDto {
         "website": website,
         "email": email,
         "type": type,
+        "type1": type1,
+        "type2": type2,
         "unit": unit,
         "useCase": useCase,
         "keyValue": keyValue,
@@ -499,6 +513,8 @@ class ProductFilterDto {
     this.phoneNumber,
     this.email,
     this.type,
+    this.type1,
+    this.type2,
     this.startPriceRange,
     this.endPriceRange,
     this.enabled,
@@ -586,6 +602,7 @@ class ProductFilterDto {
         phoneNumber: json["phoneNumber"],
         email: json["email"],
         type: json["type"],
+        type2: json["type2"],
         userId: json["userId"],
         discountPercent: json["discountPercent"],
         discountPrice: json["discountPrice"],
@@ -668,6 +685,8 @@ class ProductFilterDto {
   final String? phoneNumber;
   final String? email;
   final String? type;
+  final String? type1;
+  final String? type2;
   final String? userId;
   final double? startPriceRange;
   final double? endPriceRange;
@@ -754,6 +773,8 @@ class ProductFilterDto {
         "email": email,
         "state": state,
         "type": type,
+        "type1": type1,
+        "type2": type2,
         "userId": userId,
         "startPriceRange": startPriceRange,
         "endPriceRange": endPriceRange,
