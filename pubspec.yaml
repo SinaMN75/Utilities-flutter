@@ -14,6 +14,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  mobile_scanner:
+    path: mobile_scanner
+
   url_launcher: ^6.1.11
   get: ^4.6.5
   package_info_plus: ^4.0.2
@@ -41,7 +44,6 @@ dependencies:
   crypto: ^3.0.3
   path_drawing: ^1.0.1
   shimmer: ^2.0.0
-  mobile_scanner: ^3.0.0
   excel_facility: ^1.0.1
   persian_datetime_picker: ^2.6.0
   flutter_multi_formatter: ^2.11.1
