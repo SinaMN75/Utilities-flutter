@@ -381,6 +381,7 @@ class ProductCreateUpdateDto {
     this.parentId,
     this.keyValues,
     this.categories,
+    this.forms,
     this.teams,
     this.productInsight,
   });
@@ -438,6 +439,7 @@ class ProductCreateUpdateDto {
   final List<KeyValueViewModel>? keyValues;
   final List<String>? categories;
   final List<String>? teams;
+  List<FormReadDto>? forms;
   final ProductInsight? productInsight;
 
   String toJson() => json.encode(toMap());
@@ -495,6 +497,7 @@ class ProductCreateUpdateDto {
         "parentId": parentId,
         "productInsight": productInsight?.toMap(),
         "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
+        "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
         "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final String x) => x)),
       };
