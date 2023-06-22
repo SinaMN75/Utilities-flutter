@@ -22,6 +22,7 @@ class AppSettingsDto {
 
 class AppSettings {
   AppSettings({
+    this.formFieldType,
     this.smsPanelSettings,
     this.androidMinimumVersion,
     this.androidLatestVersion,
@@ -34,6 +35,7 @@ class AppSettings {
   });
 
   final SmsPanelSettings? smsPanelSettings;
+  final List<FormFieldTypeDto>? formFieldType;
   final String? androidMinimumVersion;
   final String? androidLatestVersion;
   final String? iosMinimumVersion;
@@ -49,6 +51,7 @@ class AppSettings {
 
   factory AppSettings.fromMap(final dynamic json) => AppSettings(
         smsPanelSettings: json["smsPanelSettings"] == null ? null : SmsPanelSettings.fromMap(json["smsPanelSettings"]),
+        formFieldType: json["formFieldType"] == null ? null : List<FormFieldTypeDto>.from(json["formFieldType"].map((x) => FormFieldTypeDto.fromMap(x))),
         androidMinimumVersion: json["androidMinimumVersion"],
         androidLatestVersion: json["androidLatestVersion"],
         iosMinimumVersion: json["iosMinimumVersion"],
@@ -60,6 +63,7 @@ class AppSettings {
       );
 
   dynamic toMap() => <String, dynamic>{
+        "formFieldType": formFieldType == null ? null : List<dynamic>.from(formFieldType!.map((x) => x.toMap())),
         "smsPanelSettings": smsPanelSettings == null ? null : smsPanelSettings!.toMap(),
         "androidMinimumVersion": androidMinimumVersion,
         "androidLatestVersion": androidLatestVersion,
@@ -109,5 +113,29 @@ class SmsPanelSettings {
         "smsSecret": smsSecret,
         "otpId": otpId,
         "patternCode": patternCode,
+      };
+}
+
+class FormFieldTypeDto {
+  FormFieldTypeDto({
+    this.id,
+    this.title,
+  });
+
+  final int? id;
+  final String? title;
+
+  factory FormFieldTypeDto.fromJson(String str) => FormFieldTypeDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory FormFieldTypeDto.fromMap(Map<String, dynamic> json) => FormFieldTypeDto(
+        id: json["id"],
+        title: json["title"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "title": title,
       };
 }
