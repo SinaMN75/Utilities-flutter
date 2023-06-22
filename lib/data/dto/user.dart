@@ -301,6 +301,7 @@ class UserCreateUpdateDto {
     this.dribble,
     this.email,
     this.state,
+    this.color,
     this.detail1,
     this.detail2,
   });
@@ -343,6 +344,7 @@ class UserCreateUpdateDto {
     showContactInfo: json["showContactInfo"],
     birthDate: json["birthDate"],
     gender: json["gender"],
+    color: json["color"],
     detail1: json["detail1"],
     detail2: json["detail2"],
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].cast<dynamic>().map((final x) => x)),
@@ -384,6 +386,7 @@ class UserCreateUpdateDto {
   final bool? showContactInfo;
   final String? birthDate;
   final int? gender;
+  final String? color;
   final String? detail1;
   final String? detail2;
   final List<String>? categories;
@@ -401,6 +404,7 @@ class UserCreateUpdateDto {
     "fullName": fullName,
     "bio": bio,
     "badge": badge,
+    "color": color,
     "point": point,
     "headline": headline,
     "website": website,
