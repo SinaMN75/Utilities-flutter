@@ -188,6 +188,7 @@ class UserJsonDetail {
     this.dribble,
     this.soundCloud,
     this.pinterest,
+    this.color,
     this.website,
     this.activity,
     this.showContactInfo,
@@ -205,6 +206,7 @@ class UserJsonDetail {
   factory UserJsonDetail.fromMap(final dynamic json) => UserJsonDetail(
     instagram: json["instagram"],
     telegram: json["telegram"],
+    color: json["color"],
     detail1: json["detail1"],
     detail2: json["detail2"],
     whatsApp: json["whatsApp"],
@@ -225,6 +227,7 @@ class UserJsonDetail {
   String? telegram;
   String? whatsApp;
   String? linkedIn;
+  String? color;
   String? detail1;
   String? detail2;
   String? dribble;
@@ -244,6 +247,7 @@ class UserJsonDetail {
   dynamic toMap() => {
     "instagram": instagram,
     "telegram": telegram,
+    "color": color,
     "whatsApp": whatsApp,
     "linkedIn": linkedIn,
     "detail1": detail1,
