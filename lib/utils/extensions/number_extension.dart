@@ -14,9 +14,9 @@ extension IntExtesion on int {
       return toString();
   }
 
-  String toRialMoneyPersian({final bool trim = false}) => "${toString().separateNumbers3By3()} ریال".replaceAll("-", "");
+  String toRialMoneyPersian({final bool removeNegative = false}) => "${toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "" : "-", "");
 
-  String rialToTomanMoneyPersian() => "${(this / 10).toString().separateNumbers3By3()} تومان ";
+  String rialToTomanMoneyPersian({final bool removeNegative = false}) => "${(this / 10).toString().separateNumbers3By3()} تومان ";
 
   String secondsToTimeLeft() {
     final int h = this ~/ 3600;
@@ -41,7 +41,7 @@ extension IntExtesion on int {
 }
 
 extension OptionalIntExtension on int? {
-  String toRialMoneyPersian() => "${(this ?? 0).toString().separateNumbers3By3()} ریال".replaceAll("-", "");
+  String toRialMoneyPersian({final bool removeNegative = false}) => "${(this ?? 0).toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "" : "-", "").trim();
 
-  String rialToTomanMoneyPersian() => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان".replaceAll("-", "");
+  String rialToTomanMoneyPersian({final bool removeNegative = false}) => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
 }

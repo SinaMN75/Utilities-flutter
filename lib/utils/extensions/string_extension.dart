@@ -6,7 +6,7 @@ extension OptionalStringExtension on String? {
 
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).stringDate();
 
-  String toRialMoneyPersian({final bool trim = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll("-", "");
+  String toRialMoneyPersian({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "" : "-", "");
 
   String rialToTomanMoneyPersian() => "${((this ?? "0").toInt() / 10).toString().separateNumbers3By3()} تومان ".trim();
 
