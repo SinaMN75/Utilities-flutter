@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:utilities/utils/constants.dart';
 import 'package:utilities/utils/http_interceptor.dart';
 import 'package:utilities/utils/local_storage.dart';
@@ -51,7 +52,10 @@ Future<void> request(
   print("${DateTime.now().year}${DateTime.now().month}${DateTime.now().day}${DateTime.now().hour}${DateTime.now().minute}SinaMN75");
   print("${httpMethod.toString()}\n$url\n${response.statusCode}");
   try {
-    print(body.toJson());
+    if(body!=null){
+
+      debugPrint(body.toJson());
+    }
   } on Exception catch (_) {}
   print(response.data);
 }

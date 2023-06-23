@@ -152,6 +152,7 @@ class Assets {
   static const String utilsInternetConnectionChecker = 'lib/utils/internet_connection_checker.dart';
   static const String utilsLaunch = 'lib/utils/launch.dart';
   static const String utilsLocalStorage = 'lib/utils/local_storage.dart';
+  static const String utilsScreenshot = 'lib/utils/screenshot.dart';
   static const String utilsShare = 'lib/utils/share.dart';
   static const String utilsUtils = 'lib/utils/utils.dart';
   static const String utilsValidators = 'lib/utils/validators.dart';
