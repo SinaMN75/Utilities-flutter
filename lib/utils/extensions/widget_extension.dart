@@ -44,6 +44,8 @@ extension WidgetsExtension on Widget {
 
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
+  Widget onLongPress(final GestureTapCallback? onPressed) => GestureDetector(onLongPress: onPressed, child: this);
+
   Widget ltr() => Directionality(textDirection: ui.TextDirection.ltr, child: this);
 
   Widget rtl() => Directionality(textDirection: ui.TextDirection.rtl, child: this);
