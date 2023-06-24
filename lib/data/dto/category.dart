@@ -11,7 +11,6 @@ class CategoryReadDto {
     this.useCase,
     this.type,
     this.price,
-    this.discount,
     this.stock,
     this.order,
     this.categoryJsonDetail,
@@ -33,7 +32,6 @@ class CategoryReadDto {
         useCase: json["useCase"],
         type: json["type"],
         price: json["price"],
-        discount: json["discount"],
         stock: json["stock"],
         order: json["order"],
         categoryJsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
@@ -49,7 +47,6 @@ class CategoryReadDto {
   String? titleTr2;
   String? color;
   String? useCase;
-  int? discount;
   String? type;
   double? price;
   int? stock;
@@ -70,7 +67,6 @@ class CategoryReadDto {
         "titleTr2": titleTr2,
         "color": color,
         "useCase": useCase,
-        "discount": discount,
         "type": type,
         "price": price,
         "stock": stock,
@@ -91,6 +87,7 @@ class CategoryJsonDetail {
     this.link,
     this.latitude,
     this.longitude,
+    this.discountedPrice,
     this.value,
     this.date1,
     this.date2,
@@ -103,6 +100,7 @@ class CategoryJsonDetail {
         link: json["link"],
         latitude: json["latitude"]?.toDouble(),
         longitude: json["longitude"]?.toDouble(),
+        discountedPrice: json["discountedPrice"],
         value: json["value"],
         date1: json["date1"] == null ? null : DateTime.parse(json["date1"]),
         date2: json["date2"] == null ? null : DateTime.parse(json["date2"]),
@@ -112,6 +110,7 @@ class CategoryJsonDetail {
   double? latitude;
   double? longitude;
   double? value;
+  int? discountedPrice;
   DateTime? date1;
   DateTime? date2;
 
@@ -123,6 +122,7 @@ class CategoryJsonDetail {
         "latitude": latitude,
         "longitude": longitude,
         "value": value,
+        "discountedPrice": discountedPrice,
         "date1": date1?.toIso8601String(),
         "date2": date2?.toIso8601String(),
       };
@@ -136,13 +136,13 @@ class CategoryCreateUpdateDto {
     this.titleTr2,
     this.subtitle,
     this.color,
+    this.discountedPrice,
     this.link,
     this.useCase,
     this.type,
     this.latitude,
     this.longitude,
     this.price,
-    this.discount,
     this.value,
     this.stock,
     this.order,
@@ -161,11 +161,11 @@ class CategoryCreateUpdateDto {
         color: json["color"],
         link: json["link"],
         useCase: json["useCase"],
+        discountedPrice: json["discountedPrice"],
         type: json["type"],
         latitude: json["latitude"],
         longitude: json["longitude"],
         price: json["price"],
-        discount: json["discount"],
         value: json["value"],
         stock: json["stock"],
         order: json["order"],
@@ -184,7 +184,7 @@ class CategoryCreateUpdateDto {
   double? latitude;
   double? longitude;
   double? price;
-  int? discount;
+  int? discountedPrice;
   double? value;
   int? stock;
   int? order;
@@ -206,7 +206,7 @@ class CategoryCreateUpdateDto {
         "latitude": latitude,
         "longitude": longitude,
         "price": price,
-        "discount": discount,
+        "discountedPrice": discountedPrice,
         "value": value,
         "stock": stock,
         "order": order,
@@ -298,6 +298,6 @@ extension CategoryReadDtoExtension on List<CategoryReadDto>? {
           )
           .toList() ??
       <CategoryReadDto>[];
-  CategoryReadDto firstIfNull() => (this ?? <CategoryReadDto>[]).isNotEmpty ? this!.first : CategoryReadDto();
 
+  CategoryReadDto firstIfNull() => (this ?? <CategoryReadDto>[]).isNotEmpty ? this!.first : CategoryReadDto();
 }
