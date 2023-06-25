@@ -110,7 +110,7 @@ class CategoryJsonDetail {
   double? latitude;
   double? longitude;
   double? value;
-  int? discountedPrice;
+  num? discountedPrice;
   DateTime? date1;
   DateTime? date2;
 
@@ -184,7 +184,7 @@ class CategoryCreateUpdateDto {
   double? latitude;
   double? longitude;
   double? price;
-  int? discountedPrice;
+  num? discountedPrice;
   double? value;
   int? stock;
   int? order;
