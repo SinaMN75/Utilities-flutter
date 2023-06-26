@@ -3,7 +3,9 @@ import 'package:intl/intl.dart';
 import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
 extension TextEditingControllerExtension on TextEditingController {
-  String number() => text.replaceAll(RegExp('[^0-9]'),'');
+  String numberString() => text.replaceAll(RegExp('[^0-9]'),'');
+
+  int number() => text.replaceAll(RegExp('[^0-9]'),'').toInt();
 }
 
 extension OptionalStringExtension on String? {
