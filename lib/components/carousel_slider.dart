@@ -115,18 +115,17 @@ class CarouselSliderState extends State<CarouselSlider> with TickerProviderState
     carouselState!.pageController = pageController;
   }
 
-  Timer? getTimer() {
-    return widget.options.autoPlay
+  Timer? getTimer() => widget.options.autoPlay
         ? Timer.periodic(widget.options.autoPlayInterval, (_) {
-            final route = ModalRoute.of(context);
+            final ModalRoute<Object?>? route = ModalRoute.of(context);
             if (route?.isCurrent == false) {
               return;
             }
 
-            CarouselPageChangedReason previousReason = mode;
+            final CarouselPageChangedReason previousReason = mode;
             changeMode(CarouselPageChangedReason.timed);
             int nextPage = carouselState!.pageController!.page!.round() + 1;
-            int itemCount = widget.itemCount ?? widget.items!.length;
+            final int itemCount = widget.itemCount ?? widget.items!.length;
 
             if (nextPage >= itemCount && widget.options.enableInfiniteScroll == false) {
               if (widget.options.pauseAutoPlayInFiniteScroll) {
@@ -139,7 +138,6 @@ class CarouselSliderState extends State<CarouselSlider> with TickerProviderState
             carouselState!.pageController!.animateToPage(nextPage, duration: widget.options.autoPlayAnimationDuration, curve: widget.options.autoPlayCurve).then((_) => changeMode(previousReason));
           })
         : null;
-  }
 
   void clearTimer() {
     if (timer != null) {
@@ -155,7 +153,7 @@ class CarouselSliderState extends State<CarouselSlider> with TickerProviderState
   }
 
   void handleAutoPlay() {
-    bool autoPlayEnabled = widget.options.autoPlay;
+    final bool autoPlayEnabled = widget.options.autoPlay;
 
     if (autoPlayEnabled && timer != null) return;
 
@@ -243,8 +241,7 @@ class CarouselSliderState extends State<CarouselSlider> with TickerProviderState
   }
 
   @override
-  Widget build(BuildContext context) {
-    return getGestureWrapper(PageView.builder(
+  Widget build(BuildContext context) => getGestureWrapper(PageView.builder(
       padEnds: widget.options.padEnds,
       scrollBehavior: ScrollConfiguration.of(context).copyWith(
         scrollbars: false,
@@ -260,7 +257,7 @@ class CarouselSliderState extends State<CarouselSlider> with TickerProviderState
       itemCount: widget.options.enableInfiniteScroll ? null : widget.itemCount,
       key: widget.options.pageViewKey,
       onPageChanged: (int index) {
-        int currentPage = getRealIndex(index + carouselState!.initialPage, carouselState!.realPage, widget.itemCount);
+        final int currentPage = getRealIndex(index + carouselState!.initialPage, carouselState!.realPage, widget.itemCount);
         if (widget.options.onPageChanged != null) {
           widget.options.onPageChanged!(currentPage, mode);
         }
@@ -271,20 +268,20 @@ class CarouselSliderState extends State<CarouselSlider> with TickerProviderState
         return AnimatedBuilder(
           animation: carouselState!.pageController!,
           child: (widget.items != null) ? (widget.items!.length > 0 ? widget.items![index] : Container()) : widget.itemBuilder!(context, index, idx),
-          builder: (BuildContext context, child) {
+          builder: (BuildContext context, Widget? child) {
             double distortionValue = 1.0;
 
             if (widget.options.enlargeCenterPage != null && widget.options.enlargeCenterPage == true) {
               double itemOffset = 0;
-              var position = carouselState?.pageController?.position;
+              ScrollPosition? position = carouselState?.pageController?.position;
               if (position != null && position.hasPixels && position.hasContentDimensions) {
-                var _page = carouselState?.pageController?.page;
+                double? _page = carouselState?.pageController?.page;
                 if (_page != null) {
                   itemOffset = _page - idx;
                 }
               } else {
-                BuildContext storageContext = carouselState!.pageController!.position.context.storageContext;
-                final double? previousSavedPosition = PageStorage.of(storageContext)?.readState(storageContext) as double?;
+                final BuildContext storageContext = carouselState!.pageController!.position.context.storageContext;
+                final double? previousSavedPosition = PageStorage.of(storageContext).readState(storageContext) as double?;
                 if (previousSavedPosition != null) {
                   itemOffset = previousSavedPosition - idx.toDouble();
                 } else {
@@ -307,7 +304,6 @@ class CarouselSliderState extends State<CarouselSlider> with TickerProviderState
         );
       },
     ));
-  }
 }
 
 class _MultipleGestureRecognizer extends PanGestureRecognizer {}
@@ -377,7 +373,7 @@ class CarouselControllerImpl implements CarouselController {
   }
 
   void jumpToPage(int page) {
-    final index = getRealIndex(_state!.pageController!.page!.toInt(), _state!.realPage - _state!.initialPage, _state!.itemCount);
+    final int index = getRealIndex(_state!.pageController!.page!.toInt(), _state!.realPage - _state!.initialPage, _state!.itemCount);
 
     _setModeController();
     final int pageToJump = _state!.pageController!.page!.toInt() + page - index;
@@ -389,7 +385,7 @@ class CarouselControllerImpl implements CarouselController {
     if (isNeedResetTimer) {
       _state!.onResetTimer();
     }
-    final index = getRealIndex(_state!.pageController!.page!.toInt(), _state!.realPage - _state!.initialPage, _state!.itemCount);
+    final int index = getRealIndex(_state!.pageController!.page!.toInt(), _state!.realPage - _state!.initialPage, _state!.itemCount);
     _setModeController();
     await _state!.pageController!.animateToPage(_state!.pageController!.page!.toInt() + page - index, duration: duration!, curve: curve!);
     if (isNeedResetTimer) {
@@ -461,29 +457,29 @@ class CarouselOptions {
 
   CarouselOptions({
     this.height,
-    this.aspectRatio: 16 / 9,
-    this.viewportFraction: 0.8,
-    this.initialPage: 0,
-    this.enableInfiniteScroll: true,
-    this.reverse: false,
-    this.autoPlay: false,
-    this.autoPlayInterval: const Duration(seconds: 4),
+    this.aspectRatio = 16 / 9,
+    this.viewportFraction = 0.8,
+    this.initialPage = 0,
+    this.enableInfiniteScroll = true,
+    this.reverse = false,
+    this.autoPlay = false,
+    this.autoPlayInterval = const Duration(seconds: 4),
     this.autoPlayAnimationDuration = const Duration(milliseconds: 800),
-    this.autoPlayCurve: Curves.fastOutSlowIn,
+    this.autoPlayCurve = Curves.fastOutSlowIn,
     this.enlargeCenterPage = false,
     this.onPageChanged,
     this.onScrolled,
     this.scrollPhysics,
     this.pageSnapping = true,
-    this.scrollDirection: Axis.horizontal,
-    this.pauseAutoPlayOnTouch: true,
-    this.pauseAutoPlayOnManualNavigate: true,
-    this.pauseAutoPlayInFiniteScroll: false,
+    this.scrollDirection = Axis.horizontal,
+    this.pauseAutoPlayOnTouch = true,
+    this.pauseAutoPlayOnManualNavigate = true,
+    this.pauseAutoPlayInFiniteScroll = false,
     this.pageViewKey,
-    this.enlargeStrategy: CenterPageEnlargeStrategy.scale,
-    this.disableCenter: false,
+    this.enlargeStrategy = CenterPageEnlargeStrategy.scale,
+    this.disableCenter = false,
     this.padEnds = true,
-    this.clipBehavior: Clip.hardEdge,
+    this.clipBehavior = Clip.hardEdge,
   });
 
   CarouselOptions copyWith({double? height, double? aspectRatio, double? viewportFraction, int? initialPage, bool? enableInfiniteScroll, bool? reverse, bool? autoPlay, Duration? autoPlayInterval, Duration? autoPlayAnimationDuration, Curve? autoPlayCurve, bool? enlargeCenterPage, Function(int index, CarouselPageChangedReason reason)? onPageChanged, ValueChanged<double?>? onScrolled, ScrollPhysics? scrollPhysics, bool? pageSnapping, Axis? scrollDirection, bool? pauseAutoPlayOnTouch, bool? pauseAutoPlayOnManualNavigate, bool? pauseAutoPlayInFiniteScroll, PageStorageKey? pageViewKey, CenterPageEnlargeStrategy? enlargeStrategy, bool? disableCenter, Clip? clipBehavior, bool? padEnds}) => CarouselOptions(

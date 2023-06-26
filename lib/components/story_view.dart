@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:utilities/utilities.dart';
+import 'package:video_box/video_box.dart';
 
 class StoryView extends StatefulWidget {
   const StoryView({

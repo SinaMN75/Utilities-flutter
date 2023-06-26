@@ -3,6 +3,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class ScrollingText extends StatefulWidget {
+
+  const ScrollingText({required this.text, super.key,
+    this.textStyle,
+    this.maxLengthForScrolling = 10,
+    this.color,
+    this.height,
+    this.scrollAxis = Axis.horizontal,
+    this.ratioOfBlankToScreen = 0.25,
+  });
   final String text;
   final TextStyle? textStyle;
   final int maxLengthForScrolling;
@@ -11,51 +20,37 @@ class ScrollingText extends StatefulWidget {
   final double? height;
   final double ratioOfBlankToScreen;
 
-  ScrollingText({
-    required this.text,
-    this.textStyle,
-    this.maxLengthForScrolling = 10,
-    this.color,
-    this.height,
-    this.scrollAxis: Axis.horizontal,
-    this.ratioOfBlankToScreen: 0.25,
-  }) : assert(
-          text != null,
-        );
-
   @override
-  State<StatefulWidget> createState() {
-    return ScrollingTextState();
-  }
+  State<StatefulWidget> createState() => ScrollingTextState();
 }
 
 class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderStateMixin {
   late ScrollController scrollController;
   double? screenWidth;
   double? screenHeight;
-  double position = 0.0;
+  double position = 0;
   Timer? timer;
-  final double _moveDistance = 3.0;
+  final double _moveDistance = 3;
   final int _timerRest = 100;
-  GlobalKey _key = GlobalKey();
+  final GlobalKey _key = GlobalKey();
 
   @override
   void initState() {
     super.initState();
     scrollController = ScrollController();
-    WidgetsBinding.instance.addPostFrameCallback((callback) {
+    WidgetsBinding.instance.addPostFrameCallback((final Duration callback) {
       startTimer();
     });
   }
 
   void startTimer() {
     if (_key.currentContext != null) {
-      double widgetWidth = _key.currentContext!.findRenderObject()!.paintBounds.size.width;
-      double widgetHeight = _key.currentContext!.findRenderObject()!.paintBounds.size.height;
+      final double widgetWidth = _key.currentContext!.findRenderObject()!.paintBounds.size.width;
+      final double widgetHeight = _key.currentContext!.findRenderObject()!.paintBounds.size.height;
 
-      timer = Timer.periodic(Duration(milliseconds: _timerRest), (timer) {
-        double maxScrollExtent = scrollController.position.maxScrollExtent;
-        double pixels = scrollController.position.pixels;
+      timer = Timer.periodic(Duration(milliseconds: _timerRest), (final Timer timer) {
+        final double maxScrollExtent = scrollController.position.maxScrollExtent;
+        final double pixels = scrollController.position.pixels;
         if (pixels + _moveDistance >= maxScrollExtent) {
           if (widget.scrollAxis == Axis.horizontal) {
             position = (maxScrollExtent - screenWidth! * widget.ratioOfBlankToScreen + widgetWidth) / 2 - widgetWidth + pixels - maxScrollExtent;
@@ -79,7 +74,7 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
 
   Widget getBothEndsChild() {
     if (widget.scrollAxis == Axis.vertical) {
-      String newString = widget.text.split("").join("\n");
+      final String newString = widget.text.split("").join("\n");
       return Center(
         child: Text(
           newString,
@@ -112,8 +107,7 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
   }
 
   @override
-  Widget build(final BuildContext context) {
-    return Container(
+  Widget build(final BuildContext context) => Container(
       height: widget.height ?? 30,
       color: widget.color,
       child: widget.text.length > widget.maxLengthForScrolling
@@ -121,7 +115,7 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
               key: _key,
               scrollDirection: widget.scrollAxis,
               controller: scrollController,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               children: <Widget>[
                 getBothEndsChild(),
                 getCenterChild(),
@@ -134,5 +128,4 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
               textAlign: TextAlign.center,
             ),
     );
-  }
 }
