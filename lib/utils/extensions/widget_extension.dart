@@ -1,9 +1,4 @@
-import 'dart:ui' as ui;
-
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:utilities/components/components.dart';
-import 'package:utilities/utils/extensions/shimmer_extension.dart';
+part of 'extension.dart';
 
 extension WidgetsExtension on Widget {
   Widget withTooltip(

@@ -1,91 +1,91 @@
-import 'package:flutter/material.dart';
+part of 'extension.dart';
 
 extension AlignExtensions on Widget {
-  Align alignAtBottomCenter({Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtBottomCenter({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.bottomCenter,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignAtTopLeft({Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtTopLeft({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.topLeft,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignAtBottomLeft({Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtBottomLeft({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.bottomLeft,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignAtBottomRight({Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtBottomRight({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.bottomRight,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignAtCenterLeft({Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtCenterLeft({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.centerLeft,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignAtCenter({Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtCenter({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.center,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignAtCenterRight({Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtCenterRight({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.centerRight,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignAtLERP(Alignment a, Alignment b, double t, {Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtLERP(final Alignment a, final Alignment b, final double t, {final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.lerp(a, b, t)!,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignXY(double x, double y, {Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignXY(final double x, final double y, {final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment(x, y),
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignAtTopCenter({Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtTopCenter({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.topCenter,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 
-  Align alignAtTopRight({Key? key, double? heightFactor, double? widthFactor}) => Align(
+  Align alignAtTopRight({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        child: this,
         alignment: Alignment.topRight,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
+        child: this,
       );
 }

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:utilities/utilities.dart';
@@ -9,16 +8,7 @@ export 'constants.dart';
 export 'dio_interceptor.dart';
 export 'enums.dart';
 export 'excel_to_json.dart';
-export 'extensions/align_extension.dart';
-export 'extensions/date_extension.dart';
 export 'extensions/extension.dart';
-export 'extensions/file_extension.dart';
-export 'extensions/iterable_extension.dart';
-export 'extensions/number_extension.dart';
-export 'extensions/shimmer_extension.dart';
-export 'extensions/string_extension.dart';
-export 'extensions/text_extension.dart';
-export 'extensions/widget_extension.dart';
 export 'file.dart';
 export 'get.dart';
 export 'launch.dart';

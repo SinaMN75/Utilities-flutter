@@ -1,17 +1,15 @@
-import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
-import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
+part of 'extension.dart';
 
 extension TextEditingControllerExtension on TextEditingController {
-  String numberString() => text.replaceAll(RegExp('[^0-9]'),'');
+  String numberString() => text.replaceAll(RegExp('[^0-9]'), '');
 
-  int number() => text.replaceAll(RegExp('[^0-9]'),'').toInt();
+  int number() => text.replaceAll(RegExp('[^0-9]'), '').toInt();
 }
 
 extension OptionalStringExtension on String? {
   String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
-  String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).stringDate();
+  String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatFullDate();
 
   String toRialMoneyPersian({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "" : "-", "");
 
@@ -38,7 +36,7 @@ extension StringExtensions on String {
 
   String separateNumbers3By3() => replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
-  String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this)).stringDate();
+  String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this)).formatFullDate();
 
   String append0() {
     if (length == 1)

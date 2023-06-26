@@ -1,5 +1,4 @@
-import 'package:intl/intl.dart';
-import 'package:utilities/utils/extensions/string_extension.dart';
+part of 'extension.dart';
 
 extension DateTimeExtensions on DateTime {
   String formatDate(final String dateFormat) => DateFormat(dateFormat).format(this);

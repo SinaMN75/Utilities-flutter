@@ -1,8 +1,4 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:utilities/utilities.dart';
+part of 'extension.dart';
 
 class Separate3By3Formatter extends TextInputFormatter {
   @override

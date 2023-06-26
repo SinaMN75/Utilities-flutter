@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:utilities/utilities.dart';
+part of 'extension.dart';
 
 extension ShimmerEffect on Widget {
   Widget applyShimmer({final bool enable = true, final Color? baseColor, final Color? highlightColor}) {
