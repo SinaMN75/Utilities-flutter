@@ -1,5 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
+
+extension TextEditingControllerExtension on TextEditingController {
+  String number() => text.replaceAll(RegExp('[^0-9]'),'');
+}
 
 extension OptionalStringExtension on String? {
   String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
