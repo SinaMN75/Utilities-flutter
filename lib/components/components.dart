@@ -1,4 +1,3 @@
-export 'badges.dart';
 export 'bottom_sheet.dart';
 export 'carousel_slider.dart';
 export 'container.dart';
