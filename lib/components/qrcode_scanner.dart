@@ -6,8 +6,6 @@
 /// <key>NSPhotoLibraryUsageDescription</key>
 /// <string>This app needs photos access to get QR code from photo library</string>
 
-import 'package:flutter/material.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:utilities/utilities.dart';
 
 Widget qrScanner({

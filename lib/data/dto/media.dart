@@ -239,24 +239,24 @@ class ResponseMediaDto {
   String toJson() => json.encode(toMap());
 
   factory ResponseMediaDto.fromMap(dynamic json) => ResponseMediaDto(
-    fileName: json["fileName"],
-    useCase: json["useCase"],
-    link: json["link"],
-    url: json["link"] != null ? json["link"] : json["url"],
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    mediaJsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
-  );
+        fileName: json["fileName"],
+        useCase: json["useCase"],
+        link: json["link"],
+        url: json["link"] != null ? json["link"] : json["url"],
+        id: json["id"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        mediaJsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
+      );
 
   dynamic toMap() => {
-    "fileName": fileName,
-    "useCase": useCase,
-    "url": url,
-    "link": url ?? link,
-    "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "mediaJsonDetail": mediaJsonDetail?.toMap(),
-  };
+        "fileName": fileName,
+        "useCase": useCase,
+        "url": url,
+        "link": url ?? link,
+        "id": id,
+        "createdAt": createdAt?.toIso8601String(),
+        "mediaJsonDetail": mediaJsonDetail?.toMap(),
+      };
 }
 
 extension NullableMediaResponseExtension on List<MediaReadDto>? {

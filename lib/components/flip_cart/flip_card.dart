@@ -2,7 +2,6 @@ library flip_card;
 
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:utilities/components/flip_cart/flip_card_controller.dart';
 import 'package:utilities/utilities.dart';
 
@@ -26,10 +25,10 @@ class AnimationCard extends StatelessWidget {
   final FlipDirection? direction;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return AnimatedBuilder(
       animation: animation!,
-      builder: (BuildContext context, Widget? child) {
+      builder: (final BuildContext context, final Widget? child) {
         var transform = Matrix4.identity();
         transform.setEntry(3, 2, 0.001);
         if (direction == FlipDirection.VERTICAL) {
@@ -66,7 +65,7 @@ class FlipCard extends StatefulWidget {
   final Alignment alignment;
 
   const FlipCard({
-    Key? key,
+    final Key? key,
     required this.front,
     required this.back,
     this.speed = 500,
@@ -132,8 +131,9 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
   }
 
   @override
-  void didUpdateWidget(FlipCard oldWidget) {
+  void didUpdateWidget(final FlipCard oldWidget) {
     widget.controller?.state ??= this;
+    super.didUpdateWidget(oldWidget);
   }
 
   Future<void> toggleCard() async {
@@ -164,7 +164,7 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final frontPositioning = widget.fill == Fill.fillFront ? _fill : _noop;
     final backPositioning = widget.fill == Fill.fillBack ? _fill : _noop;
 
@@ -188,7 +188,7 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
     return child;
   }
 
-  Widget _buildContent({required bool front}) {
+  Widget _buildContent({required final bool front}) {
     return IgnorePointer(
       ignoring: front ? !isFront : isFront,
       child: AnimationCard(
@@ -206,6 +206,6 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
   }
 }
 
-Widget _fill(Widget child) => Positioned.fill(child: child);
+Widget _fill(final Widget child) => Positioned.fill(child: child);
 
-Widget _noop(Widget child) => child;
+Widget _noop(final Widget child) => child;

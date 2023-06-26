@@ -33,14 +33,14 @@ class CDialog extends StatelessWidget {
 
   final Widget? child;
 
-  static const RoundedRectangleBorder _defaultDialogShape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2.0)));
-  static const double _defaultElevation = 24.0;
+  static const RoundedRectangleBorder _defaultDialogShape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(2)));
+  static const double _defaultElevation = 24;
 
   @override
   Widget build(BuildContext context) {
     final DialogTheme dialogTheme = DialogTheme.of(context);
     return AnimatedPadding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 24),
       duration: insetAnimationDuration,
       curve: insetAnimationCurve,
       child: MediaQuery.removeViewInsets(
@@ -75,7 +75,7 @@ class CAlertDialog extends StatelessWidget {
     this.titlePadding,
     this.titleTextStyle,
     this.content,
-    this.contentPadding = const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0),
+    this.contentPadding = const EdgeInsets.fromLTRB(24, 20, 24, 24),
     this.contentTextStyle,
     this.actions,
     this.backgroundColor,
@@ -119,9 +119,9 @@ class CAlertDialog extends StatelessWidget {
 
     if (title != null) {
       children.add(Padding(
-        padding: titlePadding ?? EdgeInsets.fromLTRB(24.0, 24.0, 24.0, content == null ? 20.0 : 0.0),
+        padding: titlePadding ?? EdgeInsets.fromLTRB(24, 24, 24, content == null ? 20.0 : 0.0),
         child: DefaultTextStyle(
-          style: titleTextStyle ?? dialogTheme.titleTextStyle ?? theme.textTheme.headline1!,
+          style: titleTextStyle ?? dialogTheme.titleTextStyle ?? theme.textTheme.headlineMedium!,
           child: Semantics(
             child: title,
             namesRoute: true,
@@ -151,7 +151,7 @@ class CAlertDialog extends StatelessWidget {
         child: Padding(
           padding: contentPadding,
           child: DefaultTextStyle(
-            style: contentTextStyle ?? dialogTheme.contentTextStyle ?? theme.textTheme.headline2!,
+            style: contentTextStyle ?? dialogTheme.contentTextStyle ?? theme.textTheme.headlineLarge!,
             child: content!,
           ),
         ),
@@ -209,7 +209,7 @@ class SimpleDialogOption extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
         child: child,
       ),
     );
@@ -220,9 +220,9 @@ class SimpleDialog extends StatelessWidget {
   const SimpleDialog({
     Key? key,
     this.title,
-    this.titlePadding = const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
+    this.titlePadding = const EdgeInsets.fromLTRB(24, 24, 24, 0),
     this.children,
-    this.contentPadding = const EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 16.0),
+    this.contentPadding = const EdgeInsets.fromLTRB(0, 12, 0, 16),
     this.backgroundColor,
     this.elevation,
     this.semanticLabel,
@@ -255,7 +255,7 @@ class SimpleDialog extends StatelessWidget {
       body.add(Padding(
         padding: titlePadding,
         child: DefaultTextStyle(
-          style: Theme.of(context).textTheme.headline1!,
+          style: Theme.of(context).textTheme.headlineMedium!,
           child: Semantics(namesRoute: true, child: title),
         ),
       ));
@@ -285,9 +285,9 @@ class SimpleDialog extends StatelessWidget {
     }
 
     Widget dialogChild = IntrinsicWidth(
-      stepWidth: 56.0,
+      stepWidth: 56,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: 280.0),
+        constraints: const BoxConstraints(minWidth: 280),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -327,7 +327,7 @@ Future<T?> showCDialog<T>({
   @Deprecated('Instead of using the "child" argument, return the child from a closure '
       'provided to the "builder" argument. This will ensure that the BuildContext '
       'is appropriate for components built in the dialog.')
-      Widget? child,
+  Widget? child,
   WidgetBuilder? builder,
 }) {
   assert(child == null || builder == null);

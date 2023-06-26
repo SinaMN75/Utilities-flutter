@@ -39,7 +39,7 @@ class NotificationReadDto {
         seenStatus: json["seenStatus"],
         useCase: json["useCase"],
         creatorUser: json["creatorUser"] == null ? null : UserReadDto.fromMap(json["creatorUser"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map( MediaReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
       );
 
   dynamic toMap() => {

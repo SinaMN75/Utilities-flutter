@@ -27,7 +27,7 @@ class ShoppingCartReadDto {
         updatedAt: json["updatedAt"],
         deletedAt: json["deletedAt"],
         userId: json["userId"],
-        shoppingCartItems: json["shoppingCartItems"] == null ? null : List<ShoppingCartItem>.from(json["shoppingCartItems"].cast<dynamic>().map( ShoppingCartItem.fromMap)).toList(),
+        shoppingCartItems: json["shoppingCartItems"] == null ? null : List<ShoppingCartItem>.from(json["shoppingCartItems"].cast<dynamic>().map(ShoppingCartItem.fromMap)).toList(),
       );
 
   dynamic toMap() => {

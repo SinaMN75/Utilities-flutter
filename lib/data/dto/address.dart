@@ -73,28 +73,28 @@ class AddressCreateUpdateDto {
   factory AddressCreateUpdateDto.fromJson(final String str) => AddressCreateUpdateDto.fromMap(json.decode(str));
 
   factory AddressCreateUpdateDto.fromMap(final dynamic json) => AddressCreateUpdateDto(
-    id: json["id"],
-    receiverFullName: json["receiverFullName"],
-    receiverPhoneNumber: json["receiverPhoneNumber"],
-    address: json["address"],
-    pelak: json["pelak"],
-    unit: json["unit"],
-    postalCode: json["postalCode"],
-    isDefault: json["isDefault"],
-  );
+        id: json["id"],
+        receiverFullName: json["receiverFullName"],
+        receiverPhoneNumber: json["receiverPhoneNumber"],
+        address: json["address"],
+        pelak: json["pelak"],
+        unit: json["unit"],
+        postalCode: json["postalCode"],
+        isDefault: json["isDefault"],
+      );
 
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => <String, dynamic>{
-    "id": id,
-    "receiverFullName": receiverFullName,
-    "receiverPhoneNumber": receiverPhoneNumber,
-    "address": address,
-    "pelak": pelak,
-    "unit": unit,
-    "postalCode": postalCode,
-    "isDefault": isDefault,
-  };
+        "id": id,
+        "receiverFullName": receiverFullName,
+        "receiverPhoneNumber": receiverPhoneNumber,
+        "address": address,
+        "pelak": pelak,
+        "unit": unit,
+        "postalCode": postalCode,
+        "isDefault": isDefault,
+      };
 
   final String? id;
   final String? receiverFullName;

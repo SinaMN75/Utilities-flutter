@@ -164,5 +164,4 @@ class Assets {
   static const String widgetPartition = 'lib/utils/persian_date_picker/widget/partition.dart';
   static const String widgetRenderTable = 'lib/utils/persian_date_picker/widget/render_table.dart';
   static const String widgetSnackBar = 'lib/utils/persian_date_picker/widget/snack_bar.dart';
-
 }

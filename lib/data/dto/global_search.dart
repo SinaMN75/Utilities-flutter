@@ -88,9 +88,9 @@ class GlobalSearchReadDto {
   String toJson() => json.encode(toMap());
 
   factory GlobalSearchReadDto.fromMap(dynamic json) => GlobalSearchReadDto(
-        users: json["users"] == null ? null : List<UserReadDto>.from(json["users"].cast<dynamic>().map( UserReadDto.fromMap)).toList(),
-        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<dynamic>().map( ProductReadDto.fromMap)).toList(),
-        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map( CategoryReadDto.fromMap)).toList(),
+        users: json["users"] == null ? null : List<UserReadDto>.from(json["users"].cast<dynamic>().map(UserReadDto.fromMap)).toList(),
+        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<dynamic>().map(ProductReadDto.fromMap)).toList(),
+        categories: json["categories"] == null ? null : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
       );
 
   dynamic toMap() => {

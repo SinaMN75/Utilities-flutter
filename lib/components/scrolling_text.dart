@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class ScrollingText extends StatefulWidget {
-
-  const ScrollingText({required this.text, super.key,
+  const ScrollingText({
+    required this.text,
+    super.key,
     this.textStyle,
     this.maxLengthForScrolling = 10,
     this.color,
@@ -12,6 +13,7 @@ class ScrollingText extends StatefulWidget {
     this.scrollAxis = Axis.horizontal,
     this.ratioOfBlankToScreen = 0.25,
   });
+
   final String text;
   final TextStyle? textStyle;
   final int maxLengthForScrolling;
@@ -108,24 +110,24 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
 
   @override
   Widget build(final BuildContext context) => Container(
-      height: widget.height ?? 30,
-      color: widget.color,
-      child: widget.text.length > widget.maxLengthForScrolling
-          ? ListView(
-              key: _key,
-              scrollDirection: widget.scrollAxis,
-              controller: scrollController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                getBothEndsChild(),
-                getCenterChild(),
-                getBothEndsChild(),
-              ],
-            )
-          : Text(
-              widget.text,
-              style: widget.textStyle,
-              textAlign: TextAlign.center,
-            ),
-    );
+        height: widget.height ?? 30,
+        color: widget.color,
+        child: widget.text.length > widget.maxLengthForScrolling
+            ? ListView(
+                key: _key,
+                scrollDirection: widget.scrollAxis,
+                controller: scrollController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: <Widget>[
+                  getBothEndsChild(),
+                  getCenterChild(),
+                  getBothEndsChild(),
+                ],
+              )
+            : Text(
+                widget.text,
+                style: widget.textStyle,
+                textAlign: TextAlign.center,
+              ),
+      );
 }

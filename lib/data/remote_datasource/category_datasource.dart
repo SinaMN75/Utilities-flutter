@@ -22,6 +22,7 @@ class CategoryDataSource {
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
+
   Future<void> createFromExcel({
     required final String dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,

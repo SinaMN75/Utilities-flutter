@@ -1,14 +1,13 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:utilities/utilities.dart';
 
 Widget divider({double? width, double height = 0.6, Color color = Colors.grey, EdgeInsets? padding}) => Container(
       margin: padding,
       width: width != null ? width : screenWidth,
       height: height,
-      color: color,//
+      color: color, //
     );
 
 Widget dashedDivider({double? height}) => Row(

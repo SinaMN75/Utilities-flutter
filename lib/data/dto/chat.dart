@@ -47,8 +47,8 @@ class ChatReadDto {
         send: json["send"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         parent: json["parent"] == null ? null : ChatReadDto.fromMap(json["parent"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map( MediaReadDto.fromMap)).toList(),
-        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<dynamic>().map( ProductReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
+        products: json["products"] == null ? null : List<ProductReadDto>.from(json["products"].cast<dynamic>().map(ProductReadDto.fromMap)).toList(),
       );
 
   dynamic toMap() => {

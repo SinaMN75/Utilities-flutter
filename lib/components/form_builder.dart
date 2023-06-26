@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:utilities/data/dto/form_filed.dart';
 import 'package:utilities/utilities.dart';
 
@@ -286,7 +285,7 @@ class _FormBuilderState extends State<FormBuilder> {
                 margin: MediaQuery.of(context).viewInsets,
                 height: 300,
                 decoration: BoxDecoration(
-                  color: context.theme.backgroundColor.withOpacity(0.9),
+                  color: context.theme.colorScheme.background.withOpacity(0.9),
                   borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
                 ),
                 padding: const EdgeInsets.all(20),
@@ -495,7 +494,7 @@ class _FormBuilderState extends State<FormBuilder> {
             decoration: InputDecoration(
               counter: const SizedBox(),
               fillColor: widget.textFieldFillColor,
-              hintStyle: context.textTheme.subtitle2!.copyWith(color: context.theme.hintColor),
+              hintStyle: context.textTheme.titleMedium!.copyWith(color: context.theme.hintColor),
               filled: true,
               contentPadding: widget.textFieldPadding,
               focusedBorder: widget.focusedBorder,

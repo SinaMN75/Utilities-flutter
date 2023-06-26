@@ -90,7 +90,6 @@ class OrderDataSource {
         failure: failure,
       );
 
-
   Future<void> deleteOrderDetail({
     required final String id,
     required final Function(GenericResponse response) onResponse,

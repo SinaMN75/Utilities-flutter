@@ -52,8 +52,7 @@ Future<void> request(
   print("${DateTime.now().year}${DateTime.now().month}${DateTime.now().day}${DateTime.now().hour}${DateTime.now().minute}SinaMN75");
   print("${httpMethod.toString()}\n$url\n${response.statusCode}");
   try {
-    if(body!=null){
-
+    if (body != null) {
       debugPrint(body.toJson());
     }
   } on Exception catch (_) {}

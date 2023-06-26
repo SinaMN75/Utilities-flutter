@@ -24,7 +24,7 @@ class BookmarkReadDto {
         id: json["id"],
         product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map( MediaReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
       );
 
   dynamic toMap() => {

@@ -1,9 +1,6 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:utilities/utilities.dart';
 
 Widget image(
@@ -113,7 +110,6 @@ Widget imageAsset(
         child: asset.substring(asset.length - 3).toLowerCase() == "svg"
             ? SvgPicture.asset(
                 asset,
-                color: color,
                 width: width,
                 height: height,
                 fit: fit,
@@ -157,7 +153,6 @@ Widget imageNetwork(
             : url.substring(url.length - 3) == "svg"
                 ? SvgPicture.network(
                     url,
-                    color: color,
                     width: width,
                     height: height,
                     fit: fit,
@@ -224,17 +219,18 @@ Widget imageFile(
         child: Image.file(file, color: color, width: width, height: height, fit: fit),
       ),
     );
+
 Widget imageMemory(
-    final Uint8List file, {
-      final Color? color,
-      final double? width,
-      final double? height,
-      final BoxFit fit = BoxFit.contain,
-      final Clip clipBehavior = Clip.hardEdge,
-      final double borderRadius = 1,
-      final EdgeInsets margin = EdgeInsets.zero,
-      final VoidCallback? onTap,
-    }) =>
+  final Uint8List file, {
+  final Color? color,
+  final double? width,
+  final double? height,
+  final BoxFit fit = BoxFit.contain,
+  final Clip clipBehavior = Clip.hardEdge,
+  final double borderRadius = 1,
+  final EdgeInsets margin = EdgeInsets.zero,
+  final VoidCallback? onTap,
+}) =>
     GestureDetector(
       onTap: onTap,
       child: Container(

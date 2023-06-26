@@ -239,9 +239,6 @@ enum TypeUser {
   final String title;
 }
 
-
-
-
 enum TypePost {
   all('all'),
   explore('Explore'),
@@ -267,7 +264,6 @@ enum TypePost {
   String toString() => name;
   final String title;
 }
-
 
 enum TypeProduct {
   jobType('jobType'),
@@ -312,9 +308,9 @@ enum TypeGender {
 
 enum PrivacyType {
   private(100),
-  public( 101),
-  followersOnly( 102),
-  commercial( 103);
+  public(101),
+  followersOnly(102),
+  commercial(103);
 
   const PrivacyType(this.title);
 
@@ -345,7 +341,6 @@ enum UseCaseMedia {
   final String title;
 }
 
-
 // enum UseCaseChat {
 //   group("group"),
 //   chat("chat"),
@@ -358,15 +353,12 @@ enum UseCaseMedia {
 //   final String title;
 // }
 
-
-
-
 enum TypeAd {
-  fullTime('Full time',"تمام وقت",100),
-  partTime('Part time',"پاره وقت",101),
-  image("Contractual/project","قراردادی/پروژه ای",102);
+  fullTime('Full time', "تمام وقت", 100),
+  partTime('Part time', "پاره وقت", 101),
+  image("Contractual/project", "قراردادی/پروژه ای", 102);
 
-  const TypeAd(this.title,this.titleTr1,this.status);
+  const TypeAd(this.title, this.titleTr1, this.status);
 
   @override
   String toString() => name;
@@ -374,12 +366,13 @@ enum TypeAd {
   final String titleTr1;
   final int status;
 }
-enum TypeKindAd {
-  inWork('In work',"حضوری",100),
-  freelancer('Freelancer',"دورکاری",101),
-  inWorkFreelancer("In work/Freelancer","حضوری/دورکاری",102);
 
-  const TypeKindAd(this.title,this.titleTr1,this.status);
+enum TypeKindAd {
+  inWork('In work', "حضوری", 100),
+  freelancer('Freelancer', "دورکاری", 101),
+  inWorkFreelancer("In work/Freelancer", "حضوری/دورکاری", 102);
+
+  const TypeKindAd(this.title, this.titleTr1, this.status);
 
   @override
   String toString() => name;

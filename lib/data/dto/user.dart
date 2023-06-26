@@ -48,48 +48,48 @@ class UserReadDto {
   factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
 
   factory UserReadDto.fromMap(final dynamic json) => UserReadDto(
-    id: json["id"],
-    userName: json["userName"],
-    email: json["email"],
-    phoneNumber: json["phoneNumber"],
-    suspend: json["suspend"],
-    firstName: json["firstName"],
-    lastName: json["lastName"],
-    fullName: json["fullName"],
-    meliCode: json["meliCode"],
-    shebaNumber: json["shebaNumber"],
-    headline: json["headline"],
-    bio: json["bio"],
-    jobStatus: json["jobStatus"],
-    appUserName: json["appUserName"],
-    appPhoneNumber: json["appPhoneNumber"],
-    appEmail: json["appEmail"],
-    useCase: json["useCase"],
-    type: json["type"],
-    accessLevel: json["accessLevel"],
-    region: json["region"],
-    state: json["state"],
-    gender: json["gender"],
-    wallet: json["wallet"],
-    point: json["point"],
-    birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    badge: json["badge"],
-    isOnline: json["isOnline"],
-    mutedChats: json["mutedChats"],
-    expireUpgradeAccount: json["expireUpgradeAccount"] == null ? null : DateTime.parse(json["expireUpgradeAccount"]),
-    ageCategory: json["ageCategory"],
-    userJsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
-    growthRate: json["growthRateReadDto"] == null ? null : GrowthRateReadDto.fromMap(json["growthRateReadDto"]),
-    media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
-    categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
-    isFollowing: json["isFollowing"],
-    countProducts: json["countProducts"],
-    countFollowers: json["countFollowers"],
-    countFollowing: json["countFollowing"],
-    token: json["token"],
-  );
+        id: json["id"],
+        userName: json["userName"],
+        email: json["email"],
+        phoneNumber: json["phoneNumber"],
+        suspend: json["suspend"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        fullName: json["fullName"],
+        meliCode: json["meliCode"],
+        shebaNumber: json["shebaNumber"],
+        headline: json["headline"],
+        bio: json["bio"],
+        jobStatus: json["jobStatus"],
+        appUserName: json["appUserName"],
+        appPhoneNumber: json["appPhoneNumber"],
+        appEmail: json["appEmail"],
+        useCase: json["useCase"],
+        type: json["type"],
+        accessLevel: json["accessLevel"],
+        region: json["region"],
+        state: json["state"],
+        gender: json["gender"],
+        wallet: json["wallet"],
+        point: json["point"],
+        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        badge: json["badge"],
+        isOnline: json["isOnline"],
+        mutedChats: json["mutedChats"],
+        expireUpgradeAccount: json["expireUpgradeAccount"] == null ? null : DateTime.parse(json["expireUpgradeAccount"]),
+        ageCategory: json["ageCategory"],
+        userJsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
+        growthRate: json["growthRateReadDto"] == null ? null : GrowthRateReadDto.fromMap(json["growthRateReadDto"]),
+        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
+        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
+        isFollowing: json["isFollowing"],
+        countProducts: json["countProducts"],
+        countFollowers: json["countFollowers"],
+        countFollowing: json["countFollowing"],
+        token: json["token"],
+      );
   String? id;
   String? userName;
   String? email;
@@ -135,48 +135,48 @@ class UserReadDto {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "id": id,
-    "userName": userName,
-    "email": email,
-    "phoneNumber": phoneNumber,
-    "suspend": suspend,
-    "firstName": firstName,
-    "lastName": lastName,
-    "fullName": fullName,
-    "meliCode": meliCode,
-    "shebaNumber": shebaNumber,
-    "headline": headline,
-    "jobStatus": jobStatus,
-    "bio": bio,
-    "appUserName": appUserName,
-    "appPhoneNumber": appPhoneNumber,
-    "appEmail": appEmail,
-    "useCase": useCase,
-    "type": type,
-    "accessLevel": accessLevel,
-    "region": region,
-    "state": state,
-    "gender": gender,
-    "wallet": wallet,
-    "point": point,
-    "birthdate": birthdate?.toIso8601String(),
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "badge": badge,
-    "isOnline": isOnline,
-    "mutedChats": mutedChats,
-    "expireUpgradeAccount": expireUpgradeAccount?.toIso8601String(),
-    "ageCategory": ageCategory,
-    "userJsonDetail": userJsonDetail?.toMap(),
-    "growthRate": growthRate?.toMap(),
-    "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
-    "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final x) => x.toMap())),
-    "isFollowing": isFollowing,
-    "countProducts": countProducts,
-    "countFollowers": countFollowers,
-    "countFollowing": countFollowing,
-    "token": token,
-  };
+        "id": id,
+        "userName": userName,
+        "email": email,
+        "phoneNumber": phoneNumber,
+        "suspend": suspend,
+        "firstName": firstName,
+        "lastName": lastName,
+        "fullName": fullName,
+        "meliCode": meliCode,
+        "shebaNumber": shebaNumber,
+        "headline": headline,
+        "jobStatus": jobStatus,
+        "bio": bio,
+        "appUserName": appUserName,
+        "appPhoneNumber": appPhoneNumber,
+        "appEmail": appEmail,
+        "useCase": useCase,
+        "type": type,
+        "accessLevel": accessLevel,
+        "region": region,
+        "state": state,
+        "gender": gender,
+        "wallet": wallet,
+        "point": point,
+        "birthdate": birthdate?.toIso8601String(),
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "badge": badge,
+        "isOnline": isOnline,
+        "mutedChats": mutedChats,
+        "expireUpgradeAccount": expireUpgradeAccount?.toIso8601String(),
+        "ageCategory": ageCategory,
+        "userJsonDetail": userJsonDetail?.toMap(),
+        "growthRate": growthRate?.toMap(),
+        "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
+        "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final x) => x.toMap())),
+        "isFollowing": isFollowing,
+        "countProducts": countProducts,
+        "countFollowers": countFollowers,
+        "countFollowing": countFollowing,
+        "token": token,
+      };
 }
 
 class UserJsonDetail {
@@ -204,25 +204,25 @@ class UserJsonDetail {
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
 
   factory UserJsonDetail.fromMap(final dynamic json) => UserJsonDetail(
-    instagram: json["instagram"],
-    telegram: json["telegram"],
-    color: json["color"],
-    detail1: json["detail1"],
-    detail2: json["detail2"],
-    whatsApp: json["whatsApp"],
-    linkedIn: json["linkedIn"],
-    dribble: json["dribble"],
-    soundCloud: json["soundCloud"],
-    pinterest: json["pinterest"],
-    website: json["website"],
-    activity: json["activity"],
-    showContactInfo: json["showContactInfo"],
-    privacyType: json["privacyType"],
-    meliCode: json["meliCode"],
-    shebaNumber: json["shebaNumber"],
-    isAuthorize: json["isAuthorize"],
-    isForeigner: json["isForeigner"],
-  );
+        instagram: json["instagram"],
+        telegram: json["telegram"],
+        color: json["color"],
+        detail1: json["detail1"],
+        detail2: json["detail2"],
+        whatsApp: json["whatsApp"],
+        linkedIn: json["linkedIn"],
+        dribble: json["dribble"],
+        soundCloud: json["soundCloud"],
+        pinterest: json["pinterest"],
+        website: json["website"],
+        activity: json["activity"],
+        showContactInfo: json["showContactInfo"],
+        privacyType: json["privacyType"],
+        meliCode: json["meliCode"],
+        shebaNumber: json["shebaNumber"],
+        isAuthorize: json["isAuthorize"],
+        isForeigner: json["isForeigner"],
+      );
   String? instagram;
   String? telegram;
   String? whatsApp;
@@ -245,25 +245,25 @@ class UserJsonDetail {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "instagram": instagram,
-    "telegram": telegram,
-    "color": color,
-    "whatsApp": whatsApp,
-    "linkedIn": linkedIn,
-    "detail1": detail1,
-    "detail2": detail2,
-    "dribble": dribble,
-    "soundCloud": soundCloud,
-    "pinterest": pinterest,
-    "website": website,
-    "activity": activity,
-    "showContactInfo": showContactInfo,
-    "privacyType": privacyType,
-    "meliCode": meliCode,
-    "shebaNumber": shebaNumber,
-    "isAuthorize": isAuthorize,
-    "isForeigner": isForeigner,
-  };
+        "instagram": instagram,
+        "telegram": telegram,
+        "color": color,
+        "whatsApp": whatsApp,
+        "linkedIn": linkedIn,
+        "detail1": detail1,
+        "detail2": detail2,
+        "dribble": dribble,
+        "soundCloud": soundCloud,
+        "pinterest": pinterest,
+        "website": website,
+        "activity": activity,
+        "showContactInfo": showContactInfo,
+        "privacyType": privacyType,
+        "meliCode": meliCode,
+        "shebaNumber": shebaNumber,
+        "isAuthorize": isAuthorize,
+        "isForeigner": isForeigner,
+      };
 }
 
 class UserCreateUpdateDto {
@@ -313,47 +313,47 @@ class UserCreateUpdateDto {
   factory UserCreateUpdateDto.fromJson(final String str) => UserCreateUpdateDto.fromMap(json.decode(str));
 
   factory UserCreateUpdateDto.fromMap(final dynamic json) => UserCreateUpdateDto(
-    id: json["id"],
-    phoneNumber: json["phoneNumber"],
-    userName: json["userName"],
-    email: json["email"],
-    firstName: json["firstName"],
-    lastName: json["lastName"],
-    fullName: json["fullName"],
-    bio: json["bio"],
-    privacyType: json["privacyType"],
-    badge: json["badge"],
-    point: json["point"],
-    headline: json["headline"],
-    website: json["website"],
-    instagram: json["instagram"],
-    telegram: json["telegram"],
-    whatsapp: json["whatsApp"],
-    linkedIn: json["linkedIn"],
-    jobStatus: json["jobStatus"],
-    soundcloud: json["soundCloud"],
-    dribble: json["dribble"],
-    pinterest: json["pinterest"],
-    password: json["password"],
-    nationalCode: json["nationalCode"],
-    appUserName: json["appUserName"],
-    appPhoneNumber: json["appPhoneNumber"],
-    appEmail: json["appEmail"],
-    type: json["type"],
-    state: json["state"],
-    region: json["region"],
-    activity: json["activity"],
-    suspend: json["suspend"],
-    wallet: json["wallet"],
-    showContactInfo: json["showContactInfo"],
-    birthDate: json["birthDate"],
-    gender: json["gender"],
-    color: json["color"],
-    detail1: json["detail1"],
-    detail2: json["detail2"],
-    categories: json["categories"] == null ? null : List<String>.from(json["categories"].cast<dynamic>().map((final x) => x)),
-    locations: json["locations"] == null ? null : List<int>.from(json["locations"].cast<dynamic>().map((final x) => x)),
-  );
+        id: json["id"],
+        phoneNumber: json["phoneNumber"],
+        userName: json["userName"],
+        email: json["email"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        fullName: json["fullName"],
+        bio: json["bio"],
+        privacyType: json["privacyType"],
+        badge: json["badge"],
+        point: json["point"],
+        headline: json["headline"],
+        website: json["website"],
+        instagram: json["instagram"],
+        telegram: json["telegram"],
+        whatsapp: json["whatsApp"],
+        linkedIn: json["linkedIn"],
+        jobStatus: json["jobStatus"],
+        soundcloud: json["soundCloud"],
+        dribble: json["dribble"],
+        pinterest: json["pinterest"],
+        password: json["password"],
+        nationalCode: json["nationalCode"],
+        appUserName: json["appUserName"],
+        appPhoneNumber: json["appPhoneNumber"],
+        appEmail: json["appEmail"],
+        type: json["type"],
+        state: json["state"],
+        region: json["region"],
+        activity: json["activity"],
+        suspend: json["suspend"],
+        wallet: json["wallet"],
+        showContactInfo: json["showContactInfo"],
+        birthDate: json["birthDate"],
+        gender: json["gender"],
+        color: json["color"],
+        detail1: json["detail1"],
+        detail2: json["detail2"],
+        categories: json["categories"] == null ? null : List<String>.from(json["categories"].cast<dynamic>().map((final x) => x)),
+        locations: json["locations"] == null ? null : List<int>.from(json["locations"].cast<dynamic>().map((final x) => x)),
+      );
 
   final String? id;
   final String? phoneNumber;
@@ -399,47 +399,47 @@ class UserCreateUpdateDto {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "id": id,
-    "phoneNumber": phoneNumber,
-    "userName": userName,
-    "email": email,
-    "firstName": firstName,
-    "lastName": lastName,
-    "fullName": fullName,
-    "bio": bio,
-    "badge": badge,
-    "color": color,
-    "point": point,
-    "headline": headline,
-    "website": website,
-    "instagram": instagram,
-    "telegram": telegram,
-    "whatsApp": whatsapp,
-    "jobStatus": jobStatus,
-    "linkedIn": linkedIn,
-    "privacyType": privacyType,
-    "soundCloud": soundcloud,
-    "pinterest": pinterest,
-    "dribble": dribble,
-    "password": password,
-    "appUserName": appUserName,
-    "appPhoneNumber": appPhoneNumber,
-    "appEmail": appEmail,
-    "type": type,
-    "state": state,
-    "region": region,
-    "nationalCode": nationalCode,
-    "activity": activity,
-    "suspend": suspend,
-    "wallet": wallet,
-    "showContactInfo": showContactInfo,
-    "birthDate": birthDate,
-    "gender": gender,
-    "detail1": detail1,
-    "detail2": detail2,
-    "categories": categories == null ? null : List<dynamic>.from(categories!.map((final x) => x)),
-    "locations": locations == null ? null : List<dynamic>.from(locations!.map((final x) => x)),
-  };
+        "id": id,
+        "phoneNumber": phoneNumber,
+        "userName": userName,
+        "email": email,
+        "firstName": firstName,
+        "lastName": lastName,
+        "fullName": fullName,
+        "bio": bio,
+        "badge": badge,
+        "color": color,
+        "point": point,
+        "headline": headline,
+        "website": website,
+        "instagram": instagram,
+        "telegram": telegram,
+        "whatsApp": whatsapp,
+        "jobStatus": jobStatus,
+        "linkedIn": linkedIn,
+        "privacyType": privacyType,
+        "soundCloud": soundcloud,
+        "pinterest": pinterest,
+        "dribble": dribble,
+        "password": password,
+        "appUserName": appUserName,
+        "appPhoneNumber": appPhoneNumber,
+        "appEmail": appEmail,
+        "type": type,
+        "state": state,
+        "region": region,
+        "nationalCode": nationalCode,
+        "activity": activity,
+        "suspend": suspend,
+        "wallet": wallet,
+        "showContactInfo": showContactInfo,
+        "birthDate": birthDate,
+        "gender": gender,
+        "detail1": detail1,
+        "detail2": detail2,
+        "categories": categories == null ? null : List<dynamic>.from(categories!.map((final x) => x)),
+        "locations": locations == null ? null : List<dynamic>.from(locations!.map((final x) => x)),
+      };
 }
 
 class UserFilterDto {
@@ -474,32 +474,32 @@ class UserFilterDto {
   factory UserFilterDto.fromJson(final String str) => UserFilterDto.fromMap(json.decode(str));
 
   factory UserFilterDto.fromMap(final dynamic json) => UserFilterDto(
-    userId: json["userId"],
-    userName: json["userName"],
-    badge: json["badge"],
-    userNameExact: json["userNameExact"],
-    query: json["query"],
-    jobStatus: json["jobStatus"],
-    phoneNumber: json["phoneNumber"],
-    showGender: json["showGender"],
-    appUserName: json["appUserName"],
-    nationalCode: json["nationalCode"],
-    privacyType: json["privacyType"],
-    showMedia: json["showMedia"],
-    showCategories: json["showCategories"],
-    showLocations: json["showLocations"],
-    showForms: json["showForms"],
-    showProducts: json["showProducts"],
-    showTransactions: json["showTransactions"],
-    showFollowings: json["showFollowings"],
-    pageSize: json["pageSize"],
-    state: json["state"],
-    pageNumber: json["pageNumber"],
-    detail1: json["detail1"],
-    detail2: json["detail2"],
-    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-    userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].cast<dynamic>().map((final x) => x)),
-  );
+        userId: json["userId"],
+        userName: json["userName"],
+        badge: json["badge"],
+        userNameExact: json["userNameExact"],
+        query: json["query"],
+        jobStatus: json["jobStatus"],
+        phoneNumber: json["phoneNumber"],
+        showGender: json["showGender"],
+        appUserName: json["appUserName"],
+        nationalCode: json["nationalCode"],
+        privacyType: json["privacyType"],
+        showMedia: json["showMedia"],
+        showCategories: json["showCategories"],
+        showLocations: json["showLocations"],
+        showForms: json["showForms"],
+        showProducts: json["showProducts"],
+        showTransactions: json["showTransactions"],
+        showFollowings: json["showFollowings"],
+        pageSize: json["pageSize"],
+        state: json["state"],
+        pageNumber: json["pageNumber"],
+        detail1: json["detail1"],
+        detail2: json["detail2"],
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
+        userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].cast<dynamic>().map((final x) => x)),
+      );
 
   final String? userId;
   final String? userName;
@@ -530,32 +530,32 @@ class UserFilterDto {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "userId": userId,
-    "userName": userName,
-    "userNameExact": userNameExact,
-    "query": query,
-    "badge": badge,
-    "privacyType": privacyType,
-    "phoneNumber": phoneNumber,
-    "showGender": showGender,
-    "appUserName": appUserName,
-    "showMedia": showMedia,
-    "showCategories": showCategories,
-    "jobStatus": jobStatus,
-    "showLocations": showLocations,
-    "showForms": showForms,
-    "nationalCode": nationalCode,
-    "showProducts": showProducts,
-    "showTransactions": showTransactions,
-    "showFollowings": showFollowings,
-    "pageSize": pageSize,
-    "state": state,
-    "pageNumber": pageNumber,
-    "detail1": detail1,
-    "detail2": detail2,
-    "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((final x) => x)),
-    "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((final x) => x)),
-  };
+        "userId": userId,
+        "userName": userName,
+        "userNameExact": userNameExact,
+        "query": query,
+        "badge": badge,
+        "privacyType": privacyType,
+        "phoneNumber": phoneNumber,
+        "showGender": showGender,
+        "appUserName": appUserName,
+        "showMedia": showMedia,
+        "showCategories": showCategories,
+        "jobStatus": jobStatus,
+        "showLocations": showLocations,
+        "showForms": showForms,
+        "nationalCode": nationalCode,
+        "showProducts": showProducts,
+        "showTransactions": showTransactions,
+        "showFollowings": showFollowings,
+        "pageSize": pageSize,
+        "state": state,
+        "pageNumber": pageNumber,
+        "detail1": detail1,
+        "detail2": detail2,
+        "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((final x) => x)),
+        "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((final x) => x)),
+      };
 }
 
 class GetMobileVerificationCodeForLoginDto {
@@ -568,10 +568,10 @@ class GetMobileVerificationCodeForLoginDto {
   factory GetMobileVerificationCodeForLoginDto.fromJson(final String str) => GetMobileVerificationCodeForLoginDto.fromMap(json.decode(str));
 
   factory GetMobileVerificationCodeForLoginDto.fromMap(final dynamic json) => GetMobileVerificationCodeForLoginDto(
-    mobile: json["mobile"],
-    sendSms: json["sendSMS"],
-    token: json["token"],
-  );
+        mobile: json["mobile"],
+        sendSms: json["sendSMS"],
+        token: json["token"],
+      );
 
   final String? mobile;
   final String? token;
@@ -580,10 +580,10 @@ class GetMobileVerificationCodeForLoginDto {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "mobile": mobile,
-    "sendSMS": sendSms,
-    "token": token,
-  };
+        "mobile": mobile,
+        "sendSMS": sendSms,
+        "token": token,
+      };
 }
 
 class LoginWithEmail {
@@ -597,11 +597,11 @@ class LoginWithEmail {
   factory LoginWithEmail.fromJson(final String str) => LoginWithEmail.fromMap(json.decode(str));
 
   factory LoginWithEmail.fromMap(final dynamic json) => LoginWithEmail(
-    email: json["email"],
-    password: json["password"],
-    returnUrl: json["returnUrl"],
-    keep: json["keep"],
-  );
+        email: json["email"],
+        password: json["password"],
+        returnUrl: json["returnUrl"],
+        keep: json["keep"],
+      );
 
   final String? email;
   final String? password;
@@ -611,11 +611,11 @@ class LoginWithEmail {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "email": email,
-    "password": password,
-    "returnUrl": returnUrl,
-    "keep": keep,
-  };
+        "email": email,
+        "password": password,
+        "returnUrl": returnUrl,
+        "keep": keep,
+      };
 }
 
 class LoginWithPassword {
@@ -628,10 +628,10 @@ class LoginWithPassword {
   factory LoginWithPassword.fromJson(final String str) => LoginWithPassword.fromMap(json.decode(str));
 
   factory LoginWithPassword.fromMap(final dynamic json) => LoginWithPassword(
-    email: json["email"],
-    userName: json["userName"],
-    password: json["password"],
-  );
+        email: json["email"],
+        userName: json["userName"],
+        password: json["password"],
+      );
 
   final String? email;
   final String? password;
@@ -640,10 +640,10 @@ class LoginWithPassword {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "email": email,
-    "userName": userName,
-    "password": password,
-  };
+        "email": email,
+        "userName": userName,
+        "password": password,
+      };
 }
 
 class VerifyMobileForLoginDto {
@@ -655,9 +655,9 @@ class VerifyMobileForLoginDto {
   factory VerifyMobileForLoginDto.fromJson(final String str) => VerifyMobileForLoginDto.fromMap(json.decode(str));
 
   factory VerifyMobileForLoginDto.fromMap(final dynamic json) => VerifyMobileForLoginDto(
-    mobile: json["mobile"],
-    verificationCode: json["verificationCode"],
-  );
+        mobile: json["mobile"],
+        verificationCode: json["verificationCode"],
+      );
 
   final String? mobile;
   final String? verificationCode;
@@ -665,9 +665,9 @@ class VerifyMobileForLoginDto {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "mobile": mobile,
-    "verificationCode": verificationCode,
-  };
+        "mobile": mobile,
+        "verificationCode": verificationCode,
+      };
 }
 
 class ActiveMobileDto {
@@ -679,9 +679,9 @@ class ActiveMobileDto {
   factory ActiveMobileDto.fromJson(final String str) => ActiveMobileDto.fromMap(json.decode(str));
 
   factory ActiveMobileDto.fromMap(final dynamic json) => ActiveMobileDto(
-    code: json["code"],
-    mobile: json["mobile"],
-  );
+        code: json["code"],
+        mobile: json["mobile"],
+      );
 
   final String? code;
   final String? mobile;
@@ -689,9 +689,9 @@ class ActiveMobileDto {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "code": code,
-    "mobile": mobile,
-  };
+        "code": code,
+        "mobile": mobile,
+      };
 }
 
 class GrowthRateReadDto {
@@ -718,24 +718,24 @@ class GrowthRateReadDto {
   factory GrowthRateReadDto.fromJson(final String str) => GrowthRateReadDto.fromMap(json.decode(str));
 
   factory GrowthRateReadDto.fromMap(final dynamic json) => GrowthRateReadDto(
-    id: json["id"],
-    interActive1: json["interActive1"],
-    interActive2: json["interActive2"],
-    interActive3: json["interActive3"],
-    interActive4: json["interActive4"],
-    interActive5: json["interActive5"],
-    interActive6: json["interActive6"],
-    interActive7: json["interActive7"],
-    feedback1: json["feedback1"],
-    feedback2: json["feedback2"],
-    feedback3: json["feedback3"],
-    feedback4: json["feedback4"],
-    feedback5: json["feedback5"],
-    feedback6: json["feedback6"],
-    feedback7: json["feedback7"],
-    totalInterActive: json["totalInterActive"],
-    totalFeedback: json["totalFeedback"],
-  );
+        id: json["id"],
+        interActive1: json["interActive1"],
+        interActive2: json["interActive2"],
+        interActive3: json["interActive3"],
+        interActive4: json["interActive4"],
+        interActive5: json["interActive5"],
+        interActive6: json["interActive6"],
+        interActive7: json["interActive7"],
+        feedback1: json["feedback1"],
+        feedback2: json["feedback2"],
+        feedback3: json["feedback3"],
+        feedback4: json["feedback4"],
+        feedback5: json["feedback5"],
+        feedback6: json["feedback6"],
+        feedback7: json["feedback7"],
+        totalInterActive: json["totalInterActive"],
+        totalFeedback: json["totalFeedback"],
+      );
 
   final String? id;
   final double? interActive1;
@@ -758,24 +758,24 @@ class GrowthRateReadDto {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "id": id,
-    "interActive1": interActive1,
-    "interActive2": interActive2,
-    "interActive3": interActive3,
-    "interActive4": interActive4,
-    "interActive5": interActive5,
-    "interActive6": interActive6,
-    "interActive7": interActive7,
-    "feedback1": feedback1,
-    "feedback2": feedback2,
-    "feedback3": feedback3,
-    "feedback4": feedback4,
-    "feedback5": feedback5,
-    "feedback6": feedback6,
-    "feedback7": feedback7,
-    "totalInterActive": totalInterActive,
-    "totalFeedback": totalFeedback,
-  };
+        "id": id,
+        "interActive1": interActive1,
+        "interActive2": interActive2,
+        "interActive3": interActive3,
+        "interActive4": interActive4,
+        "interActive5": interActive5,
+        "interActive6": interActive6,
+        "interActive7": interActive7,
+        "feedback1": feedback1,
+        "feedback2": feedback2,
+        "feedback3": feedback3,
+        "feedback4": feedback4,
+        "feedback5": feedback5,
+        "feedback6": feedback6,
+        "feedback7": feedback7,
+        "totalInterActive": totalInterActive,
+        "totalFeedback": totalFeedback,
+      };
 }
 
 class BookmarkFolder {
@@ -787,9 +787,9 @@ class BookmarkFolder {
   factory BookmarkFolder.fromJson(final String str) => BookmarkFolder.fromMap(json.decode(str));
 
   factory BookmarkFolder.fromMap(final dynamic json) => BookmarkFolder(
-    id: json["id"],
-    title: json["title"],
-  );
+        id: json["id"],
+        title: json["title"],
+      );
 
   final String? id;
   final String? title;
@@ -797,9 +797,9 @@ class BookmarkFolder {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "id": id,
-    "title": title,
-  };
+        "id": id,
+        "title": title,
+      };
 }
 
 class AuthenticateDto {
@@ -812,10 +812,10 @@ class AuthenticateDto {
   factory AuthenticateDto.fromJson(final String str) => AuthenticateDto.fromMap(json.decode(str));
 
   factory AuthenticateDto.fromMap(final dynamic json) => AuthenticateDto(
-    code: json["code"],
-    shebaNumber: json["shebaNumber"],
-    isForeigner: json["isForeigner"],
-  );
+        code: json["code"],
+        shebaNumber: json["shebaNumber"],
+        isForeigner: json["isForeigner"],
+      );
 
   final bool? isForeigner;
   final String? code;
@@ -824,8 +824,8 @@ class AuthenticateDto {
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-    "code": code,
-    "shebaNumber": shebaNumber,
-    "isForeigner": isForeigner,
-  };
+        "code": code,
+        "shebaNumber": shebaNumber,
+        "isForeigner": isForeigner,
+      };
 }

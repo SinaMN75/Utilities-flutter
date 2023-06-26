@@ -64,7 +64,7 @@ class PromoteReadDto {
         skillPerUsers: json["skillPerUsers"] == null ? [] : List<KeyValueViewModel>.from(json["skillPerUsers"]!.map(KeyValueViewModel.fromMap)),
         ageCategoryPerUsers: json["ageCategoryPerUsers"] == null ? [] : List<KeyValueViewModel>.from(json["ageCategoryPerUsers"]!.map(KeyValueViewModel.fromMap)),
       );
-  
+
   final int? totalSeen;
   final List<KeyValueViewModel>? statePerUsers;
   final List<KeyValueViewModel>? skillPerUsers;

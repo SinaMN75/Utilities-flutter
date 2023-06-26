@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:utilities/utilities.dart';
 
 Widget otpTextField({

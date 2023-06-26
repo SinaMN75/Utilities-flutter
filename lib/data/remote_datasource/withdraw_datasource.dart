@@ -4,7 +4,6 @@ import 'package:utilities/data/dto/withdraw.dart';
 import 'package:utilities/utils/dio_interceptor.dart';
 
 class WithdrawDataSource {
-
   WithdrawDataSource({required this.baseUrl});
 
   final String baseUrl;
@@ -22,5 +21,4 @@ class WithdrawDataSource {
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
         failure: failure,
       );
-
 }

@@ -207,25 +207,24 @@ class DottedLine extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => LayoutBuilder(
-    builder: (final BuildContext context, final BoxConstraints constraints) {
-      final double boxWidth = constraints.constrainWidth();
-      final int dashCount = (boxWidth / (dashWidth + space)).floor();
-      return Flex(
-        direction: Axis.horizontal,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List<Widget>.generate(
-          dashCount,
+        builder: (final BuildContext context, final BoxConstraints constraints) {
+          final double boxWidth = constraints.constrainWidth();
+          final int dashCount = (boxWidth / (dashWidth + space)).floor();
+          return Flex(
+            direction: Axis.horizontal,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List<Widget>.generate(
+              dashCount,
               (final _) => ClipRRect(
-            borderRadius: BorderRadius.circular(dashRadius),
-            child: SizedBox(
-              width: dashWidth,
-              height: dashHeight,
-              child: DecoratedBox(decoration: BoxDecoration(color: color)),
+                borderRadius: BorderRadius.circular(dashRadius),
+                child: SizedBox(
+                  width: dashWidth,
+                  height: dashHeight,
+                  child: DecoratedBox(decoration: BoxDecoration(color: color)),
+                ),
+              ),
             ),
-          ),
-        ),
+          );
+        },
       );
-    },
-  );
 }
-
