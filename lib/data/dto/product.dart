@@ -421,7 +421,7 @@ class ProductCreateUpdateDto {
   final double? discountPrice;
   final int? responseTime;
   final int? onTimeDelivery;
-  final int? discountPercent;
+  final double? discountPercent;
   final int? commentsCount;
   final int? stock;
   final bool? enabled;
