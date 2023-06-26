@@ -7,6 +7,10 @@ extension TextEditingControllerExtension on TextEditingController {
 }
 
 extension OptionalStringExtension on String? {
+  String numberString() => (this ?? "0").replaceAll(RegExp('[^0-9]'), '');
+
+  int number() => (this ?? "0").replaceAll(RegExp('[^0-9]'), '').toInt();
+
   String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatFullDate();
@@ -24,6 +28,10 @@ extension OptionalStringExtension on String? {
 }
 
 extension StringExtensions on String {
+  String numberString() => replaceAll(RegExp('[^0-9]'), '');
+
+  int number() => replaceAll(RegExp('[^0-9]'), '').toInt();
+
   String toRialMoneyPersian() => "${separateNumbers3By3()} ریال ";
 
   bool isTrue() => toLowerCase() == 'true';
