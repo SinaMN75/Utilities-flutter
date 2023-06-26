@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+part of 'view_models.dart';
 
 class MediaViewModel {
   MediaViewModel({required this.link, this.type = MediaType.image, this.deepLink});
