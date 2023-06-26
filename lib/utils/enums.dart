@@ -313,7 +313,8 @@ enum TypeGender {
 enum PrivacyType {
   private(100),
   public( 101),
-  followersOnly( 102);
+  followersOnly( 102),
+  commercial( 103);
 
   const PrivacyType(this.title);
 
