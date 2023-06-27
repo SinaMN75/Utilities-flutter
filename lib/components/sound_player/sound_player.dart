@@ -3,9 +3,9 @@ import 'package:just_audio/just_audio.dart';
 import 'package:utilities/components/sound_player/widgets.dart';
 
 class SoundPlayer extends StatefulWidget {
-  SoundPlayer({required this.list, Key? key}) : super(key: key);
+  const SoundPlayer({required this.list, final Key? key}) : super(key: key);
 
-  List<String> list;
+  final List<String> list;
 
   @override
   State<SoundPlayer> createState() => _SoundPlayerState();
@@ -25,23 +25,22 @@ class _SoundPlayerState extends State<SoundPlayer> with Widgets {
   }
 
   void setPlayer() async {
-    var playlist = ConcatenatingAudioSource(
-      useLazyPreparation: true,
+    final ConcatenatingAudioSource playlist = ConcatenatingAudioSource(
       shuffleOrder: DefaultShuffleOrder(),
-      children: widget.list.map((e) => AudioSource.uri(Uri.parse(e))).toList(),
+      children: widget.list.map((final String e) => AudioSource.uri(Uri.parse(e))).toList(),
     );
 
-    player.setAudioSource(playlist, initialIndex: 0, initialPosition: Duration.zero);
-    player.play();
+    await player.setAudioSource(playlist, initialIndex: 0, initialPosition: Duration.zero);
+    await player.play();
   }
 
-  String getTime(Duration? duration) {
-    String d = duration.toString();
+  String getTime(final Duration? duration) {
+    final String d = duration.toString();
     String res = '';
     if (duration != null && d.contains(":")) {
-      String h = d.split(":")[0];
-      String m = d.split(":")[1];
-      String s = d.split(":")[2].split(".")[0];
+      final String h = d.split(":")[0];
+      final String m = d.split(":")[1];
+      final String s = d.split(":")[2].split(".")[0];
       if (h != "0") {
         res = '$h:$m:$s';
       } else {
@@ -55,21 +54,20 @@ class _SoundPlayerState extends State<SoundPlayer> with Widgets {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
+  Widget build(final BuildContext context) => Container(
       color: const Color(0xff10182f),
       child: Stack(
-        children: [
+        children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    speedPlay(listSpeed: [0.25, 0.50, 0.75, 1.0, 1.25, 1.50, 1.75]),
+                  children: <Widget>[
+                    speedPlay(listSpeed: <double>[0.25, 0.50, 0.75, 1, 1.25, 1.50, 1.75]),
                     fileName(list: widget.list),
                   ],
                 ),
@@ -83,7 +81,7 @@ class _SoundPlayerState extends State<SoundPlayer> with Widgets {
                 ],
               ),
               Column(
-                children: [
+                children: <Widget>[
                   SizedBox(
                     height: 25,
                     width: MediaQuery.of(context).size.width,
@@ -93,18 +91,18 @@ class _SoundPlayerState extends State<SoundPlayer> with Widgets {
                     padding: const EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: <Widget>[
                         StreamBuilder<PositionData>(
                           stream: positionDataStream,
-                          builder: (context, snapshot) {
-                            final positionData = snapshot.data;
+                          builder: (final BuildContext context, final AsyncSnapshot<PositionData> snapshot) {
+                            final PositionData? positionData = snapshot.data;
                             return Text(getTime(positionData?.position ?? Duration.zero), style: const TextStyle(fontSize: 18, color: Colors.white));
                           },
                         ),
                         StreamBuilder<PositionData>(
                           stream: positionDataStream,
-                          builder: (context, snapshot) {
-                            final positionData = snapshot.data;
+                          builder: (final BuildContext context, final AsyncSnapshot<PositionData> snapshot) {
+                            final PositionData? positionData = snapshot.data;
                             return Text(getTime(positionData?.duration ?? Duration.zero), style: const TextStyle(fontSize: 18, color: Colors.white));
                           },
                         ),
@@ -118,34 +116,33 @@ class _SoundPlayerState extends State<SoundPlayer> with Widgets {
         ],
       ),
     );
-  }
 }
 
 class HiddenThumbComponentShape extends SliderComponentShape {
   @override
-  Size getPreferredSize(bool isEnabled, bool isDiscrete) => Size.zero;
+  Size getPreferredSize(final bool isEnabled, final bool isDiscrete) => Size.zero;
 
   @override
   void paint(
-    PaintingContext context,
-    Offset center, {
-    required Animation<double> activationAnimation,
-    required Animation<double> enableAnimation,
-    required bool isDiscrete,
-    required TextPainter labelPainter,
-    required RenderBox parentBox,
-    required SliderThemeData sliderTheme,
-    required TextDirection textDirection,
-    required double value,
-    required double textScaleFactor,
-    required Size sizeWithOverflow,
+    final PaintingContext context,
+    final Offset center, {
+    required final Animation<double> activationAnimation,
+    required final Animation<double> enableAnimation,
+    required final bool isDiscrete,
+    required final TextPainter labelPainter,
+    required final RenderBox parentBox,
+    required final SliderThemeData sliderTheme,
+    required final TextDirection textDirection,
+    required final double value,
+    required final double textScaleFactor,
+    required final Size sizeWithOverflow,
   }) {}
 }
 
 class PositionData {
+
+  PositionData(this.position, this.bufferedPosition, this.duration);
   final Duration position;
   final Duration bufferedPosition;
   final Duration duration;
-
-  PositionData(this.position, this.bufferedPosition, this.duration);
 }

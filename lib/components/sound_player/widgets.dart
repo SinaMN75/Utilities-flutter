@@ -14,35 +14,32 @@ mixin Widgets {
         player.positionStream,
         player.bufferedPositionStream,
         player.durationStream,
-        (position, bufferedPosition, duration) => PositionData(position, bufferedPosition, duration ?? Duration.zero),
+        (final Duration position, final Duration bufferedPosition, final Duration? duration) => PositionData(position, bufferedPosition, duration ?? Duration.zero),
       );
 
   void showSliderDialog({
-    required BuildContext context,
-    required String title,
-    required int divisions,
-    required double min,
-    required double max,
-    String valueSuffix = '',
-    required double value,
-    required Stream<double> stream,
-    required ValueChanged<double> onChanged,
+    required final BuildContext context,
+    required final String title,
+    required final int divisions,
+    required final double min,
+    required final double max,
+    required final double value, required final Stream<double> stream, required final ValueChanged<double> onChanged, final String valueSuffix = '',
   }) {
     showDialog<void>(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (final BuildContext context) => AlertDialog(
         title: Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
         content: StreamBuilder<double>(
           stream: stream,
-          builder: (context, snapshot) => SizedBox(
-            height: 100.0,
+          builder: (final BuildContext context, final AsyncSnapshot<double> snapshot) => SizedBox(
+            height: 100,
             child: Column(
               children: [
-                Text('${snapshot.data?.toStringAsFixed(1)}$valueSuffix', style: const TextStyle(fontFamily: 'Fixed', fontWeight: FontWeight.bold, fontSize: 24.0)),
+                Text('${snapshot.data?.toStringAsFixed(1)}$valueSuffix', style: const TextStyle(fontFamily: 'Fixed', fontWeight: FontWeight.bold, fontSize: 24)),
                 Slider(
                   divisions: divisions,
                   min: min,
@@ -58,10 +55,9 @@ mixin Widgets {
     );
   }
 
-  Widget speedPlay({required List<double> listSpeed}) {
-    return StreamBuilder<double>(
+  Widget speedPlay({required final List<double> listSpeed}) => StreamBuilder<double>(
       stream: player.speedStream,
-      builder: (context, snapshot) => Container(
+      builder: (final BuildContext context, final AsyncSnapshot<double> snapshot) => Container(
         width: 50,
         height: 35,
         decoration: BoxDecoration(
@@ -85,13 +81,11 @@ mixin Widgets {
         ),
       ),
     );
-  }
 
-  Widget seekBar() {
-    return StreamBuilder<PositionData>(
+  Widget seekBar() => StreamBuilder<PositionData>(
       stream: positionDataStream,
-      builder: (context, snapshot) {
-        final positionData = snapshot.data;
+      builder: (final BuildContext context, final AsyncSnapshot<PositionData> snapshot) {
+        final PositionData? positionData = snapshot.data;
         return SeekBar(
           duration: positionData?.duration ?? Duration.zero,
           position: positionData?.position ?? Duration.zero,
@@ -100,12 +94,10 @@ mixin Widgets {
         );
       },
     );
-  }
 
-  Widget previous() {
-    return StreamBuilder<PlayerState>(
+  Widget previous() => StreamBuilder<PlayerState>(
       stream: player.playerStateStream,
-      builder: (context, snapshot) {
+      builder: (final BuildContext context, final AsyncSnapshot<PlayerState> snapshot) {
         if (player.hasPrevious) {
           return iconPlay(icon: Icons.skip_previous, onTap: () => player.seekToPrevious());
         } else {
@@ -113,12 +105,10 @@ mixin Widgets {
         }
       },
     );
-  }
 
-  Widget next() {
-    return StreamBuilder<PlayerState>(
+  Widget next() => StreamBuilder<PlayerState>(
       stream: player.playerStateStream,
-      builder: (context, snapshot) {
+      builder: (final BuildContext context, final AsyncSnapshot<PlayerState> snapshot) {
         if (player.hasNext) {
           return iconPlay(icon: Icons.skip_next, onTap: () => player.seekToNext());
         } else {
@@ -126,17 +116,15 @@ mixin Widgets {
         }
       },
     );
-  }
 
-  Widget play() {
-    return StreamBuilder<PlayerState>(
+  Widget play() => StreamBuilder<PlayerState>(
       stream: player.playerStateStream,
-      builder: (context, snapshot) {
-        final playerState = snapshot.data;
-        final processingState = playerState?.processingState;
-        final playing = playerState?.playing;
+      builder: (final BuildContext context, final AsyncSnapshot<PlayerState> snapshot) {
+        final PlayerState? playerState = snapshot.data;
+        final ProcessingState? processingState = playerState?.processingState;
+        final bool? playing = playerState?.playing;
         if (processingState == ProcessingState.loading || processingState == ProcessingState.buffering) {
-          return Container(margin: const EdgeInsets.all(8.0), width: 48.0, height: 48.0, child: const CircularProgressIndicator());
+          return Container(margin: const EdgeInsets.all(8), width: 48, height: 48, child: const CircularProgressIndicator());
         } else if (playing != true) {
           return iconPlay(icon: Icons.play_arrow, onTap: player.play);
         } else if (processingState != ProcessingState.completed) {
@@ -146,32 +134,26 @@ mixin Widgets {
         }
       },
     );
-  }
 
   Widget fileName({
-    required List<String> list,
-  }) {
-    return StreamBuilder<Duration?>(
+    required final List<String> list,
+  }) => StreamBuilder<Duration?>(
       stream: player.durationStream,
-      builder: (context, snapshot) {
-        return Container(
+      builder: (final BuildContext context, final AsyncSnapshot<Duration?> snapshot) => Container(
           width: 300,
           height: 50,
           child: ListView.builder(
             itemCount: 3,
             scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) => Text(
+            itemBuilder: (final BuildContext context, final int index) => Text(
               list[player.currentIndex ?? 0].split("/")[list[player.currentIndex ?? 0].split("/").length - 1].replaceAll("%20", " "),
               style: const TextStyle(color: Colors.white),
             ),
           ),
-        );
-      },
+        ),
     );
-  }
 
-  Widget iconPlay({required IconData icon, Color? color, VoidCallback? onTap}) {
-    return InkWell(
+  Widget iconPlay({required final IconData icon, final Color? color, final VoidCallback? onTap}) => InkWell(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(4),
@@ -187,24 +169,20 @@ mixin Widgets {
         ),
       ),
     );
-  }
 }
 
 class SeekBar extends StatefulWidget {
+
+  const SeekBar({
+    required this.duration, required this.position, required this.bufferedPosition, final Key? key,
+    this.onChanged,
+    this.onChangeEnd,
+  }) : super(key: key);
   final Duration duration;
   final Duration position;
   final Duration bufferedPosition;
   final ValueChanged<Duration>? onChanged;
   final ValueChanged<Duration>? onChangeEnd;
-
-  const SeekBar({
-    Key? key,
-    required this.duration,
-    required this.position,
-    required this.bufferedPosition,
-    this.onChanged,
-    this.onChangeEnd,
-  }) : super(key: key);
 
   @override
   SeekBarState createState() => SeekBarState();
@@ -218,13 +196,12 @@ class SeekBarState extends State<SeekBar> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _sliderThemeData = SliderTheme.of(context).copyWith(
-      trackHeight: 2.0,
+      trackHeight: 2,
     );
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
+  Widget build(final BuildContext context) => Stack(
       children: [
         SliderTheme(
           data: _sliderThemeData.copyWith(
@@ -234,10 +211,10 @@ class SeekBarState extends State<SeekBar> {
           ),
           child: ExcludeSemantics(
             child: Slider(
-              min: 0.0,
+              min: 0,
               max: widget.duration.inMilliseconds.toDouble(),
               value: min(widget.bufferedPosition.inMilliseconds.toDouble(), widget.duration.inMilliseconds.toDouble()),
-              onChanged: (value) {
+              onChanged: (final double value) {
                 setState(() {
                   _dragValue = value;
                 });
@@ -245,7 +222,7 @@ class SeekBarState extends State<SeekBar> {
                   widget.onChanged!(Duration(milliseconds: value.round()));
                 }
               },
-              onChangeEnd: (value) {
+              onChangeEnd: (final double value) {
                 if (widget.onChangeEnd != null) {
                   widget.onChangeEnd!(Duration(milliseconds: value.round()));
                 }
@@ -259,10 +236,10 @@ class SeekBarState extends State<SeekBar> {
             inactiveTrackColor: Colors.transparent,
           ),
           child: Slider(
-            min: 0.0,
+            min: 0,
             max: widget.duration.inMilliseconds.toDouble(),
             value: min(_dragValue ?? widget.position.inMilliseconds.toDouble(), widget.duration.inMilliseconds.toDouble()),
-            onChanged: (value) {
+            onChanged: (final double value) {
               setState(() {
                 _dragValue = value;
               });
@@ -270,7 +247,7 @@ class SeekBarState extends State<SeekBar> {
                 widget.onChanged!(Duration(milliseconds: value.round()));
               }
             },
-            onChangeEnd: (value) {
+            onChangeEnd: (final double value) {
               if (widget.onChangeEnd != null) {
                 widget.onChangeEnd!(Duration(milliseconds: value.round()));
               }
@@ -279,13 +256,12 @@ class SeekBarState extends State<SeekBar> {
           ),
         ),
         Positioned(
-          right: 16.0,
-          bottom: 0.0,
-          child: Text(RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$').firstMatch("$_remaining")?.group(1) ?? '$_remaining', style: Theme.of(context).textTheme.caption),
+          right: 16,
+          bottom: 0,
+          child: Text(RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$').firstMatch("$_remaining")?.group(1) ?? '$_remaining', style: Theme.of(context).textTheme.bodySmall),
         ),
       ],
     );
-  }
 
   Duration get _remaining => widget.duration - widget.position;
 }
