@@ -12,6 +12,7 @@ class CategoryReadDto {
     this.type,
     this.price,
     this.stock,
+    this.count,
     this.order,
     this.categoryJsonDetail,
     this.children,
@@ -31,6 +32,7 @@ class CategoryReadDto {
         color: json["color"],
         useCase: json["useCase"],
         type: json["type"],
+        count: json["count"],
         price: json["price"],
         stock: json["stock"],
         order: json["order"],
@@ -50,6 +52,7 @@ class CategoryReadDto {
   String? type;
   double? price;
   int? stock;
+  int? count;
   int? order;
   CategoryJsonDetail? categoryJsonDetail;
   CategoryReadDto? parent;
@@ -70,6 +73,7 @@ class CategoryReadDto {
         "type": type,
         "price": price,
         "stock": stock,
+        "count": count,
         "order": order,
         "categoryJsonDetail": categoryJsonDetail?.toMap(),
         "parent": parent?.toMap(),
