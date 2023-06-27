@@ -1,9 +1,6 @@
 import 'package:url_launcher/url_launcher.dart';
 
-Future<void> launchURL(final String url, {final LaunchMode mode = LaunchMode.platformDefault}) async => launchUrl(
-      Uri.parse(url),
-      mode: mode,
-    );
+Future<void> launchURL(final String url, {final LaunchMode mode = LaunchMode.platformDefault}) async => launchUrl(Uri.parse(url), mode: mode);
 
 void launchWhatsApp(final String number) async => await launchURL("https://api.whatsapp.com/send?phone=$number");
 
@@ -21,18 +18,13 @@ void shareWithWhatsapp(final String param) async => await launchURL("whatsapp://
 
 void shareWithEmail(final String param) async => await launchURL("mailto:?body=$param");
 
-void email(final String email, final String subject) {
-  String? encodeQueryParameters(final Map<String, String> params) => params.entries
-      .map(
-        (final MapEntry<String, String> e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}',
-      )
-      .join('&');
-
-  final Uri emailLaunchUri = Uri(
-    scheme: 'mailto',
-    path: email,
-    query: encodeQueryParameters(<String, String>{'subject': subject}),
-  );
-
-  launchURL(emailLaunchUri.toString());
-}
+void email(final String email, final String subject) => launchURL(Uri(
+        scheme: 'mailto',
+        path: email,
+        query: <String, String>{'subject': subject}
+            .entries
+            .map(
+              (final MapEntry<String, String> e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}',
+            )
+            .join('&'))
+    .toString());

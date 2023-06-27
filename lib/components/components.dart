@@ -12,5 +12,4 @@ export 'radar_chart.dart';
 export 'rating_bar.dart';
 export 'readmore.dart';
 export 'scrolling_text.dart';
-export 'smooth_page_indicator/smooth_page_indicator.dart';
 export 'story_view.dart';

@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:utilities/utilities.dart';
 
 export 'constants.dart';
@@ -13,47 +15,11 @@ export 'file.dart';
 export 'get.dart';
 export 'launch.dart';
 export 'local_storage.dart';
-export 'share.dart';
 
 void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
       Duration(milliseconds: milliseconds),
       () async => action(),
     );
-
-Future<XFile> getCompressImageFile({
-  required final File file,
-  final int quality = 70,
-  final bool advanceCompress = true,
-}) async {
-  int advanceQuality = 20;
-
-  advanceQuality = (100 - ((file.lengthSync() / 1000000) * 0.85)).toInt();
-
-  final Directory dir = Directory.systemTemp;
-  final String targetPath = "${dir.absolute.path}/temp.jpg";
-  final XFile? result = await FlutterImageCompress.compressAndGetFile(
-    file.absolute.path,
-    targetPath,
-    quality: advanceCompress ? advanceQuality : quality,
-  );
-
-  return result ?? XFile("--");
-}
-
-Future<Uint8List> getCompressImageFileWeb({
-  required final Uint8List bytes,
-  final int quality = 70,
-  final bool advanceCompress = true,
-}) async {
-  int advanceQuality = 20;
-
-  final Uint8List result = await FlutterImageCompress.compressWithList(
-    bytes,
-    quality: advanceCompress ? advanceQuality : quality,
-  );
-
-  return result;
-}
 
 Color hexStringToColor(final String hexString) {
   if (hexString.isEmpty) return Colors.transparent;
@@ -66,3 +32,56 @@ Color hexStringToColor(final String hexString) {
 String stringToHexColor(final Color color) => '#${color.value.toRadixString(16)}';
 
 void copyToClipboard(final String text) async => await Clipboard.setData(ClipboardData(text: text));
+
+void validateForm({required final GlobalKey<FormState> key, required final VoidCallback action}) {
+  if (key.currentState!.validate()) action();
+}
+
+void shareText(final String text, {final String? subject}) => Share.share(text, subject: subject);
+
+void shareFile(final List<String> file, final String text) => Share.shareXFiles(file.map(XFile.new).toList());
+
+Future<Uint8List> screenshot({required final Widget widget}) async => await ScreenshotController().captureFromWidget(widget);
+
+void shareWidget({
+  required final Widget widget,
+}) async =>
+    await ScreenshotController().capture(delay: const Duration(milliseconds: 10)).then((
+        final Uint8List? image,
+        ) async {
+      if (image != null) {
+        final Directory directory = await getApplicationDocumentsDirectory();
+        final File imagePath = await File('${directory.path}/image.png').create();
+        await imagePath.writeAsBytes(image);
+        shareFile(<String>[imagePath.path], "");
+      }
+    });
+
+
+Future<String> appName() async {
+  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  return packageInfo.appName;
+}
+
+Future<String> appPackageName() async {
+  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  return packageInfo.packageName;
+}
+
+Future<String> appVersion() async {
+  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  return packageInfo.version;
+}
+
+Future<String> appBuildNumber() async {
+  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  return packageInfo.buildNumber;
+}
+
+Future<void> showEasyLoading() => EasyLoading.show();
+
+Future<void> dismissEasyLoading() => EasyLoading.dismiss();
+
+Future<void> showEasyError() => EasyLoading.showError("");
+
+bool isEasyLoadingShow() => EasyLoading.isShow;

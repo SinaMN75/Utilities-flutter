@@ -1,6 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:utilities/utilities.dart';
 
 bool isAndroid = GetPlatform.isAndroid;
@@ -26,26 +24,6 @@ Locale? currentLocale = Get.locale;
 bool isDebugMode = kDebugMode;
 
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
-
-Future<String> appName() async {
-  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  return packageInfo.appName;
-}
-
-Future<String> appPackageName() async {
-  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  return packageInfo.packageName;
-}
-
-Future<String> appVersion() async {
-  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  return packageInfo.version;
-}
-
-Future<String> appBuildNumber() async {
-  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  return packageInfo.buildNumber;
-}
 
 Future<dynamic> push(
   final Widget page, {
@@ -119,14 +97,6 @@ Future<void> offAll(
 void off(final Widget page) => Get.off(() => page);
 
 void back() => Get.back();
-
-Future<void> showEasyLoading() => EasyLoading.show();
-
-Future<void> dismissEasyLoading() => EasyLoading.dismiss();
-
-Future<void> showEasyError() => EasyLoading.showError("");
-
-bool isEasyLoadingShow() => EasyLoading.isShow;
 
 void snackbarGreen({
   required final String title,

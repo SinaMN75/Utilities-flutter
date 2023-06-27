@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:utilities/utilities.dart';
 
 void showFilePicker({
@@ -79,7 +81,7 @@ void showFilePickerWeb({
     allowedExtensions: allowedExtensions,
   );
   if (result != null) {
-    PlatformFile file = await result.files[0];
+    final PlatformFile file = await result.files[0];
     action(file);
   }
 }
@@ -146,5 +148,33 @@ Future<CroppedFile?> cropImage({
     ],
   );
   if (action != null) action(result!);
+  return result;
+}
+
+Future<XFile> getCompressImageFile({
+  required final File file,
+  final int quality = 70,
+  final bool advanceCompress = true,
+}) async {
+  int advanceQuality = 20;
+  advanceQuality = (100 - ((file.lengthSync() / 1000000) * 0.85)).toInt();
+  final Directory dir = Directory.systemTemp;
+  final String targetPath = "${dir.absolute.path}/temp.jpg";
+  final XFile? result = await FlutterImageCompress.compressAndGetFile(
+    file.absolute.path,
+    targetPath,
+    quality: advanceCompress ? advanceQuality : quality,
+  );
+
+  return result ?? XFile("--");
+}
+
+Future<Uint8List> getCompressImageFileWeb({
+  required final Uint8List bytes,
+  final int quality = 70,
+  final bool advanceCompress = true,
+}) async {
+  final int advanceQuality = 20;
+  final Uint8List result = await FlutterImageCompress.compressWithList(bytes, quality: advanceCompress ? advanceQuality : quality);
   return result;
 }
