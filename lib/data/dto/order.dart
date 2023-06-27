@@ -115,40 +115,44 @@ class OrderCreateUpdateDto {
 class OrderDetailCreateDto {
   OrderDetailCreateDto({
     this.orderId,
+    this.orderDetailId,
     this.productId,
-    this.price,
     this.count,
     this.category,
-    this.orderDetailId,
+    this.categoryId,
+    this.price,
   });
 
   factory OrderDetailCreateDto.fromJson(final String str) => OrderDetailCreateDto.fromMap(json.decode(str));
 
   factory OrderDetailCreateDto.fromMap(final dynamic json) => OrderDetailCreateDto(
-        orderId: json["orderId"],
-        productId: json["productId"],
-        price: json["price"],
-        count: json["count"],
-        category: json["category"],
-        orderDetailId: json["orderDetailId"],
-      );
+    orderId: json["orderId"],
+    productId: json["productId"],
+    price: json["price"],
+    count: json["count"],
+    category: json["category"],
+    categoryId: json["categoryId"],
+    orderDetailId: json["orderDetailId"],
+  );
   final String? orderId;
   final String? productId;
   final double? price;
   final int? count;
   final String? category;
+  final String? categoryId;
   final String? orderDetailId;
 
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-        "orderId": orderId,
-        "productId": productId,
-        "price": price,
-        "count": count,
-        "category": category,
-        "orderDetailId": orderDetailId,
-      };
+    "orderId": orderId,
+    "productId": productId,
+    "price": price,
+    "count": count,
+    "category": category,
+    "categoryId": categoryId,
+    "orderDetailId": orderDetailId,
+  };
 }
 
 class OrderReadDto {

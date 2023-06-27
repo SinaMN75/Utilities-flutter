@@ -76,6 +76,21 @@ class OrderDataSource {
         failure: failure,
       );
 
+  Future<void> createUpdateOrderDetail({
+    required final OrderDetailCreateDto dto,
+    required final Function(GenericResponse) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/Order/CreateUpdateOrderDetail",
+        body: dto,
+        action: (final Response response) => onResponse(GenericResponse.fromJson(response.data)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
+        failure: failure,
+      );
+
+
   Future<void> updateOrderDetail({
     required final OrderDetailCreateDto dto,
     required final Function(GenericResponse) onResponse,
