@@ -1,6 +1,4 @@
-import 'dart:math' as math;
-
-import 'package:flutter/material.dart';
+part of 'components.dart';
 
 enum ArcType { HALF, FULL }
 
@@ -19,7 +17,7 @@ extension CircularStrokeCapExtension on CircularStrokeCap {
   }
 }
 
-num radians(num deg) => deg * (math.pi / 180.0);
+num radians(num deg) => deg * (pi / 180.0);
 
 class CircularPercentIndicator extends StatefulWidget {
   final double percent;
@@ -383,7 +381,7 @@ class _CirclePainter extends CustomPainter {
       if (rotateLinearGradient && progress > 0) {
         double correction = 0;
         if (_paintLine.strokeCap != StrokeCap.butt) {
-          correction = math.atan(_paintLine.strokeWidth / 2 / radius);
+          correction = atan(_paintLine.strokeWidth / 2 / radius);
         }
         _paintLine.shader = SweepGradient(
           transform: reverse ? GradientRotation(radians(-90 - progress + startAngle) - correction) : GradientRotation(radians(-90.0 + startAngle) - correction),

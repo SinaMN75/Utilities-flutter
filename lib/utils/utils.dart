@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:utilities/utilities.dart';
 
@@ -47,8 +46,8 @@ void shareWidget({
   required final Widget widget,
 }) async =>
     await ScreenshotController().capture(delay: const Duration(milliseconds: 10)).then((
-        final Uint8List? image,
-        ) async {
+      final Uint8List? image,
+    ) async {
       if (image != null) {
         final Directory directory = await getApplicationDocumentsDirectory();
         final File imagePath = await File('${directory.path}/image.png').create();
@@ -56,7 +55,6 @@ void shareWidget({
         shareFile(<String>[imagePath.path], "");
       }
     });
-
 
 Future<String> appName() async {
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();

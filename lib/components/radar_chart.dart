@@ -1,7 +1,4 @@
-import 'dart:math' as math;
-import 'dart:math' show pi, cos, sin;
-
-import 'package:flutter/material.dart';
+part of 'components.dart';
 
 const defaultGraphColors = [
   Colors.green,
@@ -135,7 +132,7 @@ class RadarChartPainter extends CustomPainter {
 
   Path variablePath(Size size, double radius, int sides) {
     var path = Path();
-    var angle = (math.pi * 2) / sides;
+    var angle = (pi * 2) / sides;
 
     Offset center = Offset(size.width / 2, size.height / 2);
 
@@ -164,7 +161,7 @@ class RadarChartPainter extends CustomPainter {
     final centerX = size.width / 2.0;
     final centerY = size.height / 2.0;
     final centerOffset = Offset(centerX, centerY);
-    final radius = math.min(centerX, centerY) * 0.8;
+    final radius = min(centerX, centerY) * 0.8;
     final scale = radius / ticks.last;
 
     var outlinePaint = Paint()

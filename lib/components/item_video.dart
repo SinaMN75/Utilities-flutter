@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:video_box/video_box.dart';
+part of 'components.dart';
 
 class ItemVideo extends StatefulWidget {
-  ItemVideo({required this.address, this.setLooping, this.videoAspectRatio, this.aspectRatio, Key? key}) : super(key: key);
-  String address;
-  bool? setLooping;
-  double? aspectRatio;
-  Function(double aspectRatio)? videoAspectRatio;
+  const ItemVideo({required this.address, this.setLooping, this.videoAspectRatio, this.aspectRatio, Key? key}) : super(key: key);
+  final String address;
+  final bool? setLooping;
+  final double? aspectRatio;
+  final Function(double aspectRatio)? videoAspectRatio;
 
   @override
   createState() => _ItemVideoState();

@@ -1,6 +1,4 @@
-import 'dart:math' as math;
-
-import 'package:flutter/material.dart';
+part of 'components.dart';
 
 class RatingWidget {
   RatingWidget({
@@ -225,7 +223,7 @@ class _RatingBarState extends State<RatingBar> {
             value = index + (tappedOnFirstHalf && widget.allowHalfRating ? 0.5 : 1.0);
           }
 
-          value = math.max(value, widget.minRating);
+          value = max(value, widget.minRating);
           widget.onRatingUpdate(value);
           _rating = value;
           setState(() {});

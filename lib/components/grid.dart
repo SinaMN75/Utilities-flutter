@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+part of 'components.dart';
 
 class AdminGradeWidget {
   static Widget gridHeader(final String title, {final double? fontSize}) => Center(

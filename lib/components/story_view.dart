@@ -1,6 +1,4 @@
-import 'package:utilities/utilities.dart';
-import 'package:video_box/video_box.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
+part of 'components.dart';
 
 class StoryView extends StatefulWidget {
   const StoryView({

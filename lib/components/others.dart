@@ -1,7 +1,4 @@
-import 'dart:ui' as ui;
-
-import 'package:flutter/cupertino.dart';
-import 'package:utilities/utilities.dart';
+part of 'components.dart';
 
 Widget divider({double? width, double height = 0.6, Color color = Colors.grey, EdgeInsets? padding}) => Container(
       margin: padding,
@@ -29,6 +26,6 @@ Widget centerProgress() => const Center(child: CircularProgressIndicator());
 Widget centerProgressCupertino() => const Center(child: CupertinoActivityIndicator());
 
 Widget directionality({required final bool rtl, required final Widget child}) => Directionality(
-      textDirection: rtl ? ui.TextDirection.rtl : ui.TextDirection.ltr,
+      textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
       child: child,
     );

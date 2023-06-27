@@ -1,5 +1,4 @@
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:utilities/utilities.dart';
+part of 'components.dart';
 
 Widget textFieldCountry({
   final TextEditingController? controller,

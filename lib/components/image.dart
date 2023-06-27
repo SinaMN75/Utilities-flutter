@@ -1,7 +1,4 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
-import 'package:utilities/utilities.dart';
+part of 'components.dart';
 
 Widget image(
   final String source, {

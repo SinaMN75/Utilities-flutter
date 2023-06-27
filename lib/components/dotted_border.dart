@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:path_drawing/path_drawing.dart';
+part of 'components.dart';
 
 class DottedBorder extends StatelessWidget {
   DottedBorder({required this.child, super.key, this.color = Colors.black, this.strokeWidth = 1, this.borderType = BorderType.Rect, this.dashPattern = const <double>[3, 1], this.padding = const EdgeInsets.all(2), this.radius = Radius.zero, this.strokeCap = StrokeCap.butt, this.customPath}) {

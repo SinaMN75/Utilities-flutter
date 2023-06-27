@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+part of 'components.dart';
 
 Widget scaffold({
   required final Widget body,

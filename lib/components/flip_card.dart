@@ -1,6 +1,4 @@
-import 'dart:math';
-
-import 'package:utilities/utilities.dart';
+part of 'components.dart';
 
 enum FlipDirection { VERTICAL, HORIZONTAL }
 

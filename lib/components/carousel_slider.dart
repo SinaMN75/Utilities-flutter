@@ -1,7 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+part of 'components.dart';
 
 int getRealIndex(int position, int base, int? length) {
   final int offset = position - base;

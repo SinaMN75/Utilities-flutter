@@ -1,6 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
+part of 'components.dart';
 
 class ScrollingText extends StatefulWidget {
   const ScrollingText({

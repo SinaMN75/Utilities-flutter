@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'components.dart';
 
 enum BadgeAnimationType {
   slide,
@@ -6,9 +6,9 @@ enum BadgeAnimationType {
   fade,
 }
 
-class Badge extends StatefulWidget {
-  Badge({
-    Key? key,
+class BadgeWidget extends StatefulWidget {
+  const BadgeWidget({
+    final Key? key,
     this.badgeContent,
     this.child,
     this.badgeColor = Colors.red,
@@ -16,7 +16,7 @@ class Badge extends StatefulWidget {
     this.toAnimate = true,
     this.position,
     this.shape = BadgeShape.circle,
-    this.padding = const EdgeInsets.all(5.0),
+    this.padding = const EdgeInsets.all(5),
     this.animationDuration = const Duration(milliseconds: 500),
     this.borderRadius = BorderRadius.zero,
     this.alignment = Alignment.center,
@@ -66,11 +66,11 @@ class Badge extends StatefulWidget {
   BadgeState createState() => BadgeState();
 }
 
-class BadgeState extends State<Badge> with SingleTickerProviderStateMixin {
+class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
 
-  final Tween<Offset> _positionTween = Tween(begin: const Offset(-0.5, 0.9), end: const Offset(0.0, 0.0));
+  final Tween<Offset> _positionTween = Tween(begin: const Offset(-0.5, 0.9), end: Offset.zero);
   final Tween<double> _scaleTween = Tween<double>(begin: 0.1, end: 1);
 
   @override
@@ -93,7 +93,7 @@ class BadgeState extends State<Badge> with SingleTickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (widget.child == null) {
       return _getBadge();
     } else {
@@ -113,7 +113,7 @@ class BadgeState extends State<Badge> with SingleTickerProviderStateMixin {
   }
 
   Widget _getBadge() {
-    final border = widget.shape == BadgeShape.circle
+    final OutlinedBorder border = widget.shape == BadgeShape.circle
         ? CircleBorder(side: widget.borderSide)
         : RoundedRectangleBorder(
             side: widget.borderSide,
@@ -142,7 +142,6 @@ class BadgeState extends State<Badge> with SingleTickerProviderStateMixin {
                   ? BoxDecoration(gradient: widget.gradient, shape: BoxShape.circle)
                   : BoxDecoration(
                       gradient: widget.gradient,
-                      shape: BoxShape.rectangle,
                       borderRadius: widget.borderRadius,
                     ),
               child: Padding(padding: widget.padding, child: widget.badgeContent),
@@ -173,10 +172,10 @@ class BadgeState extends State<Badge> with SingleTickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(Badge oldWidget) {
+  void didUpdateWidget(final BadgeWidget oldWidget) {
     if (widget.badgeContent is Text && oldWidget.badgeContent is Text) {
-      final newText = widget.badgeContent as Text;
-      final oldText = oldWidget.badgeContent as Text;
+      final Text newText = widget.badgeContent as Text;
+      final Text oldText = oldWidget.badgeContent as Text;
       if (newText.data != oldText.data) {
         _animationController.reset();
         _animationController.forward();
@@ -184,8 +183,8 @@ class BadgeState extends State<Badge> with SingleTickerProviderStateMixin {
     }
 
     if (widget.badgeContent is Icon && oldWidget.badgeContent is Icon) {
-      final newIcon = widget.badgeContent as Icon;
-      final oldIcon = oldWidget.badgeContent as Icon;
+      final Icon newIcon = widget.badgeContent as Icon;
+      final Icon oldIcon = oldWidget.badgeContent as Icon;
       if (newIcon.icon != oldIcon.icon) {
         _animationController.reset();
         _animationController.forward();
@@ -203,6 +202,17 @@ class BadgeState extends State<Badge> with SingleTickerProviderStateMixin {
 }
 
 class BadgePosition {
+  const BadgePosition({this.top, this.end, this.bottom, this.start, this.isCenter = false});
+
+  factory BadgePosition.center() => BadgePosition(isCenter: true);
+
+  factory BadgePosition.topStart({final double top = -5, final double start = -10}) => BadgePosition(top: top, start: start);
+
+  factory BadgePosition.topEnd({final double top = -8, final double end = -10}) => BadgePosition(top: top, end: end);
+
+  factory BadgePosition.bottomEnd({final double bottom = -8, final double end = -10}) => BadgePosition(bottom: bottom, end: end);
+
+  factory BadgePosition.bottomStart({final double bottom = -8, final double start = -10}) => BadgePosition(bottom: bottom, start: start);
   final double? top;
 
   final double? end;
@@ -212,18 +222,6 @@ class BadgePosition {
   final double? bottom;
 
   final bool isCenter;
-
-  const BadgePosition({this.top, this.end, this.bottom, this.start, this.isCenter = false});
-
-  factory BadgePosition.center() => BadgePosition(isCenter: true);
-
-  factory BadgePosition.topStart({double top = -5, double start = -10}) => BadgePosition(top: top, start: start);
-
-  factory BadgePosition.topEnd({double top = -8, double end = -10}) => BadgePosition(top: top, end: end);
-
-  factory BadgePosition.bottomEnd({double bottom = -8, double end = -10}) => BadgePosition(bottom: bottom, end: end);
-
-  factory BadgePosition.bottomStart({double bottom = -8, double start = -10}) => BadgePosition(bottom: bottom, start: start);
 }
 
 enum BadgeShape {
@@ -232,23 +230,22 @@ enum BadgeShape {
 }
 
 class BadgePositioned extends StatelessWidget {
+  const BadgePositioned({final Key? key, this.position, required this.child}) : super(key: key);
   final BadgePosition? position;
 
   final Widget child;
 
-  const BadgePositioned({Key? key, this.position, required this.child}) : super(key: key);
-
   @override
-  Widget build(BuildContext context) {
-    final position = this.position;
+  Widget build(final BuildContext context) {
+    final BadgePosition? position = this.position;
     if (position == null) {
-      final topRight = BadgePosition.topEnd();
+      final BadgePosition topRight = BadgePosition.topEnd();
       return PositionedDirectional(top: topRight.top, end: topRight.end, child: child);
     }
 
     if (position.isCenter) {
       return Positioned.fill(
-        child: Align(alignment: Alignment.center, child: child),
+        child: Align(child: child),
       );
     }
 
