@@ -275,7 +275,7 @@ class ProductJsonDetail {
   String? unit;
   String? type1;
   String? type2;
-  int? latitude;
+  double? latitude;
   int? responseTime;
   int? onTimeDelivery;
   double? longitude;
