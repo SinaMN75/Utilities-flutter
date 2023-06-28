@@ -134,7 +134,7 @@ class ProductReadDto {
   String? type;
   String? state;
   DateTime? boosted;
-  int? stock;
+  num? stock;
   int? voteCount;
   int? discountPercent;
   int? visitsCount;
@@ -395,7 +395,7 @@ class ProductCreateUpdateDto {
   });
 
   final String? id;
-  final String? title;
+   String? title;
   final String? subtitle;
   final String? description;
   final String? details;
@@ -414,24 +414,24 @@ class ProductCreateUpdateDto {
   final String? state;
   final double? latitude;
   final double? longitude;
-  final double? price;
+   double? price;
   final double? length;
   final double? width;
   final double? height;
   final double? weight;
-  final int? count;
+   int? count;
   final int? minOrder;
   final int? maxOrder;
   final double? maxPrice;
   final double? minPrice;
   final int? scorePlus;
   final int? scoreMinus;
-  final double? discountPrice;
+   num? discountPrice;
   final int? responseTime;
   final int? onTimeDelivery;
   final double? discountPercent;
   final int? commentsCount;
-  final int? stock;
+   int? stock;
   final bool? enabled;
   final String? startDate;
   final String? endDate;
