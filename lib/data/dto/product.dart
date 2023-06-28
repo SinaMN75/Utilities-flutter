@@ -56,6 +56,7 @@ class ProductReadDto {
     this.enabled,
     this.discountPrice,
     this.price,
+    this.score,
     this.currency,
     this.status,
     this.ageCategory,
@@ -75,6 +76,7 @@ class ProductReadDto {
     this.categories,
     this.productInsights,
     this.visitProducts,
+    this.children,
     this.successfulPurchase,
   });
 
@@ -90,6 +92,7 @@ class ProductReadDto {
         description: json["description"],
         useCase: json["useCase"],
         type: json["type"],
+        score: json["score"],
         state: json["state"],
         boosted: json["boosted"] == null ? null : DateTime.parse(json["boosted"]),
         stock: json["stock"],
@@ -115,6 +118,7 @@ class ProductReadDto {
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<dynamic>().map(CommentReadDto.fromMap)).toList(),
         forms: json["forms"] == null ? <FormReadDto>[] : List<FormReadDto>.from(json["forms"].cast<dynamic>().map(FormReadDto.fromMap)).toList(),
+        children: json["children"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["children"].cast<dynamic>().map(ProductReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
         productInsights: json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<dynamic>().map(ProductInsight.fromMap)).toList(),
         visitProducts: json["visitProducts"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["visitProducts"].cast<dynamic>().map(ProductInsight.fromMap)).toList(),
@@ -136,6 +140,7 @@ class ProductReadDto {
   int? visitsCount;
   bool? enabled;
   bool? isSeen;
+  bool? score;
   int? discountPrice;
   double? price;
   int? currency;
@@ -154,6 +159,7 @@ class ProductReadDto {
   List<CommentReadDto>? comments;
   List<MediaReadDto>? media;
   List<FormReadDto>? forms;
+  List<ProductReadDto>? children;
   List<CategoryReadDto>? categories;
   List<ProductInsight>? productInsights;
   List<ProductInsight>? visitProducts;
@@ -172,6 +178,7 @@ class ProductReadDto {
         "isSeen": isSeen,
         "type": type,
         "state": state,
+        "score": score,
         "boosted": boosted?.toIso8601String(),
         "stock": stock,
         "voteCount": voteCount,
@@ -195,6 +202,7 @@ class ProductReadDto {
         "parent": parent?.toMap(),
         "media": media == null ? [] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
+        "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductReadDto x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "comments": comments == null ? [] : List<CommentReadDto>.from(comments!.map((final CommentReadDto x) => x.toMap())),
         "productInsights": productInsights == null ? [] : List<dynamic>.from(productInsights!.map((final ProductInsight x) => x.toMap())),
@@ -547,6 +555,7 @@ class ProductFilterDto {
     this.showCategories,
     this.showUserCategories,
     this.showCategoryMedia,
+    this.showChildren,
     this.showMedia,
     this.showTeams,
     this.showExpired,
@@ -635,6 +644,7 @@ class ProductFilterDto {
         showCreator: json["showCreator"],
         showTeams: json["showTeams"],
         showVotes: json["showVotes"],
+    showChildren: json["showChildren"],
         showExpired: json["showExpired"],
         showCategoryMedia: json["showCategoryMedia"],
         showUserCategories: json["showUserCategories"],
@@ -708,6 +718,7 @@ class ProductFilterDto {
   final bool? showExpired;
   final bool? showCategoryMedia;
   final bool? showUserCategories;
+  final bool? showChildren;
   final bool? isMyBoughtList;
   final int? visitsCount;
   final double? length;
@@ -806,6 +817,7 @@ class ProductFilterDto {
         "showTeams": showTeams,
         "showVotes": showVotes,
         "showExpired": showExpired,
+        "showChildren": showChildren,
         "showCategoryMedia": showCategoryMedia,
         "showUserCategories": showUserCategories,
         "showCategories": showCategories,
