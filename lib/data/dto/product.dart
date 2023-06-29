@@ -134,7 +134,7 @@ class ProductReadDto {
   String? type;
   String? state;
   DateTime? boosted;
-  num? stock;
+  int? stock;
   int? voteCount;
   int? discountPercent;
   int? visitsCount;
@@ -426,7 +426,7 @@ class ProductCreateUpdateDto {
   final int? minPrice;
   final int? scorePlus;
   final int? scoreMinus;
-   num? discountPrice;
+  int? discountPrice;
   final int? responseTime;
   final int? onTimeDelivery;
   final int? discountPercent;

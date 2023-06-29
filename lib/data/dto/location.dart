@@ -12,11 +12,11 @@ class LocationReadDto {
     this.children,
   });
 
-  final num? id;
+  final int? id;
   final String? title;
   final int? parentId;
-  final num? latitude;
-  final num? longitude;
+  final double? latitude;
+  final double? longitude;
   final int? type;
   final LocationReadDto? parent;
   final List<LocationReadDto>? children;
