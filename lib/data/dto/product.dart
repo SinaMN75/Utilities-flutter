@@ -140,7 +140,7 @@ class ProductReadDto {
   int? visitsCount;
   bool? enabled;
   bool? isSeen;
-  bool? score;
+  double? score;
   int? discountPrice;
   int? price;
   int? currency;
