@@ -14,7 +14,7 @@ class TransactionReadDto {
 
   final String? id;
   final String? userId;
-  final double? amount;
+  final int? amount;
   final String? descriptions;
   final int? statusId;
   final String? paymentId;

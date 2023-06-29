@@ -136,7 +136,7 @@ class OrderDetailCreateDto {
   );
   final String? orderId;
   final String? productId;
-  final double? price;
+  final int? price;
   final int? count;
   final String? category;
   final String? categoryId;
@@ -219,10 +219,10 @@ class OrderReadDto {
   final String? productUseCase;
   final String? payNumber;
   final int? status;
-  final double? totalPrice;
-  final double? discountPrice;
-  final double? discountPercent;
-  final double? sendPrice;
+  final int? totalPrice;
+  final int? discountPrice;
+  final int? discountPercent;
+  final int? sendPrice;
   final int? sendType;
   final int? payType;
   final String? payDateTime;
@@ -301,8 +301,8 @@ class OrderDetail {
   final String? id;
   final String? createdAt;
   final String? updatedAt;
-  double? price;
-  double? unitPrice;
+  int? price;
+  int? unitPrice;
   int? count;
   final String? order;
   final String? orderId;

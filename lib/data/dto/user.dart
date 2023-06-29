@@ -112,7 +112,7 @@ class UserReadDto {
   String? region;
   String? state;
   int? gender;
-  double? wallet;
+  int? wallet;
   double? point;
   DateTime? birthdate;
   DateTime? createdAt;
@@ -386,7 +386,7 @@ class UserCreateUpdateDto {
   final String? state;
   final bool? suspend;
   final int? privacyType;
-  final double? wallet;
+  final int? wallet;
   final bool? showContactInfo;
   final String? birthDate;
   final int? gender;
@@ -738,22 +738,22 @@ class GrowthRateReadDto {
       );
 
   final String? id;
-  final double? interActive1;
-  final double? interActive2;
-  final double? interActive3;
-  final double? interActive4;
-  final double? interActive5;
-  final double? interActive6;
-  final double? interActive7;
-  final double? feedback1;
-  final double? feedback2;
-  final double? feedback3;
-  final double? feedback4;
-  final double? feedback5;
-  final double? feedback6;
-  final double? feedback7;
-  final double? totalInterActive;
-  final double? totalFeedback;
+  final int? interActive1;
+  final int? interActive2;
+  final int? interActive3;
+  final int? interActive4;
+  final int? interActive5;
+  final int? interActive6;
+  final int? interActive7;
+  final int? feedback1;
+  final int? feedback2;
+  final int? feedback3;
+  final int? feedback4;
+  final int? feedback5;
+  final int? feedback6;
+  final int? feedback7;
+  final int? totalInterActive;
+  final int? totalFeedback;
 
   String toJson() => json.encode(toMap());
 

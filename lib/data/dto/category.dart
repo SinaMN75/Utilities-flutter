@@ -50,7 +50,7 @@ class CategoryReadDto {
   String? color;
   String? useCase;
   String? type;
-  double? price;
+  int? price;
   int? stock;
   int? count;
   int? order;
@@ -113,8 +113,8 @@ class CategoryJsonDetail {
   String? link;
   double? latitude;
   double? longitude;
-  double? value;
-  num? discountedPrice;
+  int? value;
+  int? discountedPrice;
   DateTime? date1;
   DateTime? date2;
 
@@ -187,9 +187,9 @@ class CategoryCreateUpdateDto {
   String? type;
   double? latitude;
   double? longitude;
-  double? price;
+  int? price;
   num? discountedPrice;
-  double? value;
+  int? value;
   int? stock;
   int? order;
   String? parentId;
