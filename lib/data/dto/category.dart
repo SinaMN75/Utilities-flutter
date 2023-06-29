@@ -113,7 +113,7 @@ class CategoryJsonDetail {
   String? link;
   double? latitude;
   double? longitude;
-  int? value;
+  double? value;
   int? discountedPrice;
   DateTime? date1;
   DateTime? date2;
@@ -189,7 +189,7 @@ class CategoryCreateUpdateDto {
   double? longitude;
   int? price;
   int? discountedPrice;
-  int? value;
+  double? value;
   int? stock;
   int? order;
   String? parentId;
