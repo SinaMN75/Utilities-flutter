@@ -25,7 +25,7 @@ export 'package:syncfusion_flutter_barcodes/barcodes.dart';
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:video_box/video_box.dart';
-export 'package:webviewx/webviewx.dart';
+export 'package:webviewx_plus/webviewx_plus.dart';
 
 export 'components/components.dart';
 export 'data/data.dart';
