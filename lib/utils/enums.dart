@@ -217,7 +217,7 @@ enum UseCaseCategory {
   user("user"),
   insurance("insurance"),
   tutorial("tutorial"),
-  productAttribute("productAttribute"),
+  attribute("attribute"),
   shopCategory("shopCategory"),
   magazine("magazine");
 
