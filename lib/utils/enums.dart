@@ -1,8 +1,8 @@
 enum AccountType { free, pro, unlimited, unknown }
 
 enum ExploreType {
-  donit("Donit"),
-  yoonote("Yoonote"),
+  donate("Donit"),
+  yooNote("Yoonote"),
   shop("Shop"),
   reserve("Reserve"),
   adviser("Adviser"),
