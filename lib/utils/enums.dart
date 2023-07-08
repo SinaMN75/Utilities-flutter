@@ -1,5 +1,21 @@
 enum AccountType { free, pro, unlimited, unknown }
 
+enum ExploreType {
+  donit("Donit"),
+  yoonote("Yoonote"),
+  shop("Shop"),
+  reserve("Reserve"),
+  adviser("Adviser"),
+  job("Job");
+
+  const ExploreType(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+
 enum BackResult {
   ok("ok"),
   error("error");
@@ -10,6 +26,23 @@ enum BackResult {
   String toString() => name;
   final String title;
 }
+
+enum SortLists {
+  atoZ("0"),
+  zToA("1"),
+  mostRecent("2"),
+  oldest("3"),
+  cheapest("4"),
+  mostExpensive("5"),
+  orderByVotes("6");
+
+  const SortLists(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
 
 enum CategoryType {
   brand("brand"),
@@ -82,21 +115,6 @@ enum ProductType {
   final String title;
 }
 
-enum SortLists {
-  atoZ("0"),
-  zToA("1"),
-  mostRecent("2"),
-  oldest("3"),
-  cheapest("4"),
-  mostExpensive("5"),
-  orderByVotes("6");
-
-  const SortLists(this.title);
-
-  @override
-  String toString() => name;
-  final String title;
-}
 
 enum SizeType {
   square("square"),
@@ -518,11 +536,9 @@ enum OrderStatus {
 // }
 
 class StatusModel {
-  StatusModel(
-    this.title,
-    this.titleTr1,
-    this.status,
-  );
+  StatusModel(this.title,
+      this.titleTr1,
+      this.status,);
 
   final String title;
   final String titleTr1;
