@@ -109,6 +109,8 @@ Widget imageAsset(
                 asset,
                 width: width,
                 height: height,
+                // ignore: deprecated_member_use
+                color: color,
                 fit: fit,
                 clipBehavior: clipBehavior,
               )
@@ -144,6 +146,8 @@ Widget imageNetwork(
                     placeholder,
                     width: width,
                     height: height,
+          // ignore: deprecated_member_use
+          color: color,
                     fit: fit,
                     clipBehavior: clipBehavior,
                   )
@@ -152,6 +156,8 @@ Widget imageNetwork(
                     url,
                     width: width,
                     height: height,
+                    // ignore: deprecated_member_use
+                    color: color,
                     fit: fit,
                     placeholderBuilder: placeholder == null
                         ? null
