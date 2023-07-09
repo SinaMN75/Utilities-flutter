@@ -348,7 +348,7 @@ enum UseCaseMedia {
   apk("apk"),
   profile("profile"),
   document("document"),
-  lisence("lisence"),
+  license("license"),
   chat("Chat"),
   zip("zip"),
   bio("bio"),
