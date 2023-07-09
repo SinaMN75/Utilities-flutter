@@ -1,18 +1,19 @@
 enum AccountType { free, pro, unlimited, unknown }
 
 enum ExploreType {
-  donate("Donit"),
-  yooNote("Yoonote"),
-  shop("Shop"),
-  reserve("Reserve"),
-  adviser("Adviser"),
-  job("Job");
+  donate("Donit","دونیت"),
+  yooNote("Yoonote","یونوت"),
+  shop("Shop","فروشگاه"),
+  reserve("Reserve","رزرو"),
+  adviser("Adviser","مشاور"),
+  job("Job","شغل");
 
-  const ExploreType(this.title);
+  const ExploreType(this.title,this.titleTr1);
 
   @override
   String toString() => name;
   final String title;
+  final String titleTr1;
 }
 
 
