@@ -411,6 +411,7 @@ enum TypeCategory {
   yooNote("yooNote"),
   pdf("pdf"),
   group("group"),
+  media("media"),
   chanel("chanel"),
   apk("apk"),
   app("app"),
