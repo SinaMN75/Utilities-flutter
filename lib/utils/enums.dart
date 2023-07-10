@@ -235,6 +235,7 @@ enum UseCaseCategory {
   learn("learn"),
   user("user"),
   insurance("insurance"),
+  target("target"),
   tutorial("tutorial"),
   attribute("attribute"),
   shopCategory("shopCategory"),
