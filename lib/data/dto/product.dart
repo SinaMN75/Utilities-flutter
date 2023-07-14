@@ -1,3 +1,4 @@
+import 'package:utilities/data/dto/order.dart';
 import 'package:utilities/utilities.dart';
 
 extension ProductReadDtoExtension on ProductReadDto {
@@ -77,6 +78,7 @@ class ProductReadDto {
     this.productInsights,
     this.visitProducts,
     this.children,
+    this.orders,
     this.successfulPurchase,
   });
 
@@ -121,6 +123,7 @@ class ProductReadDto {
         children: json["children"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["children"].cast<dynamic>().map(ProductReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
         productInsights: json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<dynamic>().map(ProductInsight.fromMap)).toList(),
+        orders: json["orders"] == null ? <OrderReadDto>[] : List<OrderReadDto>.from(json["orders"].cast<dynamic>().map(OrderReadDto.fromMap)).toList(),
         visitProducts: json["visitProducts"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["visitProducts"].cast<dynamic>().map(ProductInsight.fromMap)).toList(),
         successfulPurchase: json["successfulPurchase"],
       );
@@ -161,6 +164,7 @@ class ProductReadDto {
   List<FormReadDto>? forms;
   List<ProductReadDto>? children;
   List<CategoryReadDto>? categories;
+  List<OrderReadDto>? orders;
   List<ProductInsight>? productInsights;
   List<ProductInsight>? visitProducts;
   int? successfulPurchase;
@@ -205,6 +209,7 @@ class ProductReadDto {
         "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductReadDto x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "comments": comments == null ? [] : List<CommentReadDto>.from(comments!.map((final CommentReadDto x) => x.toMap())),
+        "orders": orders == null ? [] : List<OrderReadDto>.from(orders!.map((final OrderReadDto x) => x.toMap())),
         "productInsights": productInsights == null ? [] : List<dynamic>.from(productInsights!.map((final ProductInsight x) => x.toMap())),
         "visitProducts": visitProducts == null ? [] : List<dynamic>.from(visitProducts!.map((final ProductInsight x) => x.toMap())),
         "successfulPurchase": successfulPurchase,
@@ -395,7 +400,7 @@ class ProductCreateUpdateDto {
   });
 
   final String? id;
-   String? title;
+  String? title;
   final String? subtitle;
   final String? description;
   final String? details;
@@ -419,7 +424,7 @@ class ProductCreateUpdateDto {
   final double? width;
   final double? height;
   final int? weight;
-   int? count;
+  int? count;
   final int? minOrder;
   final int? maxOrder;
   final int? maxPrice;
@@ -431,7 +436,7 @@ class ProductCreateUpdateDto {
   final int? onTimeDelivery;
   final int? discountPercent;
   final int? commentsCount;
-   int? stock;
+  int? stock;
   final bool? enabled;
   final String? startDate;
   final String? endDate;
@@ -644,7 +649,7 @@ class ProductFilterDto {
         showCreator: json["showCreator"],
         showTeams: json["showTeams"],
         showVotes: json["showVotes"],
-    showChildren: json["showChildren"],
+        showChildren: json["showChildren"],
         showExpired: json["showExpired"],
         showCategoryMedia: json["showCategoryMedia"],
         showUserCategories: json["showUserCategories"],
