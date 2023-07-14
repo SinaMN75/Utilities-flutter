@@ -272,6 +272,7 @@ enum TypePost {
   app("app"),
   game("game"),
   text("text"),
+  blog("blog"),
   commodity("commodity"),
   job("job"),
   yooNote("yooNote"),
