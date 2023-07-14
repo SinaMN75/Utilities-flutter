@@ -204,6 +204,8 @@ enum UseCaseProduct {
   story("story"),
   physicalProduct("physicalProduct"),
   digitalProduct("digitalProduct"),
+  attribute("attribute"),
+  target("target"),
   magazine("magazine"),
   adHiring("hiringAd"),
   adProject("adProject"),
