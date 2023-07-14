@@ -198,6 +198,8 @@ enum UseCaseProduct {
   company("company"),
   yooNote("yooNote"),
   tutorial("tutorial"),
+  blog("blog"),
+  subBlog("subBlog"),
   product("product"),
   story("story"),
   physicalProduct("physicalProduct"),
@@ -287,6 +289,7 @@ enum TypePost {
 
 enum TypeProduct {
   jobType('jobType'),
+  blog('blog'),
   jobPlace('jobPlace');
 
   const TypeProduct(this.title);
@@ -419,7 +422,7 @@ enum TypeCategory {
   game("game"),
   commodity("commodity"),
   job("job"),
-  productAttribute("productAttribute"),
+  attribute("attribute"),
   physical('physical'),
   userStatus('userStatus'),
   jobType('jobType'),

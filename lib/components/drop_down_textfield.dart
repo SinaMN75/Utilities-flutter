@@ -662,7 +662,7 @@ class _DropDownTextFieldState extends State<DropDownTextField> with TickerProvid
                       listTextStyle: _listTileTextStyle,
                       onChanged: (final item) {
                         setState(() {
-                          _cnt.text = item.name;
+                          _cnt.text = item.title;
                           _isExpanded = !_isExpanded;
                         });
                         if (widget.singleController != null) {

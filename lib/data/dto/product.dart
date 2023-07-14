@@ -163,7 +163,7 @@ class ProductReadDto {
   List<CategoryReadDto>? categories;
   List<ProductInsight>? productInsights;
   List<ProductInsight>? visitProducts;
-  String? successfulPurchase;
+  int? successfulPurchase;
 
   String toJson() => json.encode(toMap());
 
