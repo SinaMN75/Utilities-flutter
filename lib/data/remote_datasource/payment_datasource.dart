@@ -18,7 +18,22 @@ class PaymentDataSource {
     final Function(String error)? failure,
   }) async =>
       httpGet(
-        url: "$baseUrl/Payment/IncreaseWalletBalance/$amount",
+        url: "$baseUrl/IncreaseWalletBalance/$amount",
+        headers: <String, String>{
+          "Authorization": "${getString(UtilitiesConstants.token)}",
+        },
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: PaymentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        failure: failure,
+      );
+  Future<void> payOrderZarinPal({
+    required final String orderId,
+    required final Function(GenericResponse) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpGet(
+        url: "$baseUrl/PayOrderZarinPal/$orderId",
         headers: <String, String>{
           "Authorization": "${getString(UtilitiesConstants.token)}",
         },
