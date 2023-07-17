@@ -320,7 +320,7 @@ enum TypeChat {
 enum TypeGender {
   man("Man", "مرد", 100),
   woman("Woman", "زن", 101),
-  company("Company", "شرکت/موسسه/انجمن و کانون", 102);
+  company("Company", "تجاری", 102);
   // team("Team", "تیم", 103);
 
   const TypeGender(this.title, this.titleTr1, this.status);
