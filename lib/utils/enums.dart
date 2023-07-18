@@ -406,7 +406,10 @@ enum TypePost {
   image("image"),
   video("video"),
   audio("audio"),
+  music("music"),
+  podcast("podcast"),
   pdf("pdf"),
+  podCasts("podCasts"),
   app("app"),
   game("game"),
   text("text"),
@@ -607,7 +610,6 @@ enum GenderType {
 }
 
 enum AgeType {
-  none("none", "هیچ کدام", 0),
   all("all", "همه", 100),
   kids("kids", "خردسال", 101),
   teen("teen", "نوجوان", 102),
