@@ -1,21 +1,159 @@
 enum AccountType { free, pro, unlimited, unknown }
 
-enum ExploreType {
-  donate("Donit","دونیت"),
-  yooNote("Yoonote","یونوت"),
-  shop("Shop","فروشگاه"),
-  reserve("Reserve","رزرو"),
-  adviser("Adviser","مشاور"),
-  job("Job","شغل");
+enum TagProduct {
+  product("100"),
+  yooNote("101"),
+  subProduct("102"),
+  image("103"),
+  video("104"),
+  audio("105"),
+  pdf("106"),
+  apk("107"),
+  game("108"),
+  goods("109"),
+  job("110"),
+  attribute("111"),
+  physical("112"),
+  digital("113"),
+  userStatus("114"),
+  jobType("115"),
+  jobPlace("116"),
+  chanel("117"),
+  story("118"),
+  ad("119"),
+  company("120"),
+  dailyPrice("121"),
+  tender("122"),
+  tutorial("123"),
+  blog("124"),
+  magazine("125");
+  const TagProduct(this.title);
 
-  const ExploreType(this.title,this.titleTr1);
+  @override
+  String toString() => name;
+  final String title;
+}
+
+enum TagCategory {
+  category("100"),
+  yooNote("101"),
+  specialty("102"),
+  specializedArt("103"),
+  colors("104"),
+  brand("105"),
+  tag("106"),
+  user("107"),
+  target("108"),
+  tutorial("109"),
+  attribute("110"),
+  shopCategory("111"),
+  magazine("112"),
+  insurance("113"),
+  learn("114"),
+  company("115"),
+  consultant("116"),
+  ad("117"),
+  dailyPrice("118"),
+  tender("119"),
+  chanel("120"),
+  group("121"),
+  auction("122"),
+  service("123"),
+  amnbekhar("124");
+
+  const TagCategory(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+enum TagGender {
+  male("100"),
+  female("101"),
+  both("102");
+
+  const TagGender(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+enum TagMedia {
+  all("100"),
+  image("101"),
+  video("102"),
+  audio("103"),
+  pdf("104"),
+  apk("105"),
+  profile("106"),
+  document("107"),
+  license("108"),
+  zip("109"),
+  bio("110"),
+  cover("111"),
+  media("112"),
+  text("113"),
+  chat("114"),
+  post("115");
+
+  const TagMedia(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+enum TagBase {
+  category("100"),
+  fffffffffffffffffffffffyooNote("101"),
+  fffffffffffffffffffffffsubProduct("102"),
+  fffffffffffffffffffffffimage("103"),
+  fffffffffffffffffffffffvideo("104"),
+  fffffffffffffffffffffffaudio("105"),
+  fffffffffffffffffffffffpdf("106"),
+  fffffffffffffffffffffffapk("107"),
+  fffffffffffffffffffffffgame("108"),
+  fffffffffffffffffffffffgoods("109"),
+  fffffffffffffffffffffffjob("110"),
+  fffffffffffffffffffffffattribute("111"),
+  fffffffffffffffffffffffphysical("112"),
+  fffffffffffffffffffffffdigital("113"),
+  fffffffffffffffffffffffuserStatus("114"),
+  fffffffffffffffffffffffjobType("115"),
+  fffffffffffffffffffffffjobPlace("116"),
+  fffffffffffffffffffffffchanel("117"),
+  fffffffffffffffffffffffstory("118"),
+  fffffffffffffffffffffffad("119"),
+  fffffffffffffffffffffffcompany("120"),
+  fffffffffffffffffffffffdailyPrice("121"),
+  ffffffffffffffffffffffftender("122"),
+  ffffffffffffffffffffffftutorial("123"),
+  magazine("124");
+
+  const TagBase(this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+}
+
+enum ExploreType {
+  donate("Donit", "دونیت"),
+  yooNote("Yoonote", "یونوت"),
+  shop("Shop", "فروشگاه"),
+  reserve("Reserve", "رزرو"),
+  adviser("Adviser", "مشاور"),
+  job("Job", "شغل");
+
+  const ExploreType(this.title, this.titleTr1);
 
   @override
   String toString() => name;
   final String title;
   final String titleTr1;
 }
-
 
 enum BackResult {
   ok("ok"),
@@ -43,7 +181,6 @@ enum SortLists {
   String toString() => name;
   final String title;
 }
-
 
 enum CategoryType {
   brand("brand"),
@@ -115,7 +252,6 @@ enum ProductType {
   String toString() => name;
   final String title;
 }
-
 
 enum SizeType {
   square("square"),
@@ -547,9 +683,11 @@ enum OrderStatus {
 // }
 
 class StatusModel {
-  StatusModel(this.title,
-      this.titleTr1,
-      this.status,);
+  StatusModel(
+    this.title,
+    this.titleTr1,
+    this.status,
+  );
 
   final String title;
   final String titleTr1;
