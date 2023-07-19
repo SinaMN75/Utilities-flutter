@@ -39,6 +39,7 @@ class MediaDataSource {
     final String? title,
     final String? notificationId,
     final String? size,
+    final List<int>? tags,
     final Duration? timeout,
   }) async {
     Dio dio = Dio();
@@ -66,6 +67,7 @@ class MediaDataSource {
           'CommentId': commentId,
           'BookmarkId': bookmarkId,
           'ChatId': chatId,
+          'tags': tags == null ? [] : List<dynamic>.from(tags.map((final int x) => x)),
           'Title': title ?? fileName,
           'NotificationId': notificationId,
           'Size': size,
@@ -111,6 +113,7 @@ class MediaDataSource {
     final String? title,
     final String? notificationId,
     final String? size,
+    final List<int>? tags,
     final int? privacyType,
   }) async {
     final Dio dio = Dio();
@@ -136,6 +139,7 @@ class MediaDataSource {
         'BookmarkId': bookmarkId,
         'ChatId': chatId,
         'Title': title ?? fileName,
+        'tags': tags == null ? [] : List<dynamic>.from(tags.map((final int x) => x)),
         'NotificationId': notificationId,
         'Size': size,
       }),
@@ -169,6 +173,7 @@ class MediaDataSource {
     final String? time,
     final String? artist,
     final String? album,
+    final List<int>? tags,
     final String? notificationId,
     final String? size,
     final String? title,
@@ -185,7 +190,10 @@ class MediaDataSource {
       if (categoryId != null) {
         request.fields['CategoryId'] = categoryId;
       }
-
+      // if (tags != null) {
+      //   request.fields['tags'] = tags;
+      // }
+      //
       if (productId != null) {
         request.fields['ProductId'] = productId;
       }
@@ -221,6 +229,7 @@ class MediaDataSource {
       if (chatId != null) {
         request.fields['ChatId'] = chatId;
       }
+
 
       if (contentId != null) {
         request.fields['ContentId'] = contentId;

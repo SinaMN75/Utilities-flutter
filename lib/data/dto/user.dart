@@ -42,6 +42,7 @@ class UserReadDto {
     this.countProducts,
     this.countFollowers,
     this.countFollowing,
+    this.tags,
     this.token,
   });
 
@@ -78,6 +79,7 @@ class UserReadDto {
         badge: json["badge"],
         isOnline: json["isOnline"],
         mutedChats: json["mutedChats"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         expireUpgradeAccount: json["expireUpgradeAccount"] == null ? null : DateTime.parse(json["expireUpgradeAccount"]),
         ageCategory: json["ageCategory"],
         userJsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
@@ -126,6 +128,7 @@ class UserReadDto {
   GrowthRateReadDto? growthRate;
   List<MediaReadDto>? media;
   List<CategoryReadDto>? categories;
+  List<int>? tags;
   bool? isFollowing;
   int? countProducts;
   int? countFollowers;
@@ -169,6 +172,7 @@ class UserReadDto {
         "ageCategory": ageCategory,
         "userJsonDetail": userJsonDetail?.toMap(),
         "growthRate": growthRate?.toMap(),
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
         "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final x) => x.toMap())),
         "isFollowing": isFollowing,
@@ -307,6 +311,7 @@ class UserCreateUpdateDto {
     this.state,
     this.color,
     this.detail1,
+    this.tags,
     this.detail2,
   });
 
@@ -351,6 +356,7 @@ class UserCreateUpdateDto {
         color: json["color"],
         detail1: json["detail1"],
         detail2: json["detail2"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].cast<dynamic>().map((final x) => x)),
         locations: json["locations"] == null ? null : List<int>.from(json["locations"].cast<dynamic>().map((final x) => x)),
       );
@@ -394,6 +400,7 @@ class UserCreateUpdateDto {
   final String? detail1;
   final String? detail2;
   final List<String>? categories;
+  final List<int>? tags;
   final List<int>? locations;
 
   String toJson() => json.encode(toMap());
@@ -437,6 +444,7 @@ class UserCreateUpdateDto {
         "gender": gender,
         "detail1": detail1,
         "detail2": detail2,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((final x) => x)),
         "locations": locations == null ? null : List<dynamic>.from(locations!.map((final x) => x)),
       };
@@ -467,6 +475,7 @@ class UserFilterDto {
     this.userIds,
     this.pageNumber,
     this.categories,
+    this.tags,
     this.detail1,
     this.detail2,
   });
@@ -497,6 +506,7 @@ class UserFilterDto {
         pageNumber: json["pageNumber"],
         detail1: json["detail1"],
         detail2: json["detail2"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
         userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].cast<dynamic>().map((final x) => x)),
       );
@@ -524,6 +534,7 @@ class UserFilterDto {
   final String? detail1;
   final String? detail2;
   final int? pageNumber;
+  final List<int>? tags;
   final List<String>? userIds;
   final List<String>? categories;
 
@@ -553,6 +564,7 @@ class UserFilterDto {
         "pageNumber": pageNumber,
         "detail1": detail1,
         "detail2": detail2,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((final x) => x)),
         "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((final x) => x)),
       };
