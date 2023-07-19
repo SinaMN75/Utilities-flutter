@@ -429,6 +429,17 @@ enum TypePost {
   final String title;
 }
 
+enum NationalityType {
+  iranian(100),
+  foreigner(101);
+
+  const NationalityType(this.title);
+
+  @override
+  String toString() => name;
+  final int title;
+}
+
 enum TypeProduct {
   jobType('jobType'),
   blog('blog'),
