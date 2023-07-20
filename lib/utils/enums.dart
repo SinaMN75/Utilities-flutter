@@ -1,71 +1,72 @@
 enum AccountType { free, pro, unlimited, unknown }
 
 enum TagProduct {
-  product("100"),
-  yooNote("101"),
-  subProduct("102"),
-  image("103"),
-  video("104"),
-  audio("105"),
-  pdf("106"),
-  apk("107"),
-  game("108"),
-  goods("109"),
-  job("110"),
-  attribute("111"),
-  physical("112"),
-  digital("113"),
-  userStatus("114"),
-  jobType("115"),
-  jobPlace("116"),
-  chanel("117"),
-  story("118"),
-  ad("119"),
-  company("120"),
-  dailyPrice("121"),
-  tender("122"),
-  tutorial("123"),
-  blog("124"),
-  magazine("125");
+  product(100),
+  yooNote(101),
+  subProduct(102),
+  image(103),
+  video(104),
+  audio(105),
+  pdf(106),
+  apk(107),
+  game(108),
+  goods(109),
+  job(110),
+  attribute(111),
+  physical(112),
+  digital(113),
+  userStatus(114),
+  jobType(115),
+  jobPlace(116),
+  chanel(117),
+  story(118),
+  ad(119),
+  company(120),
+  dailyPrice(121),
+  tender(122),
+  tutorial(123),
+  blog(124),
+  magazine(125);
+
   const TagProduct(this.title);
 
   @override
   String toString() => name;
-  final String title;
+  final int title;
 }
 
 enum TagCategory {
-  category("100"),
-  yooNote("101"),
-  specialty("102"),
-  specializedArt("103"),
-  colors("104"),
-  brand("105"),
-  tag("106"),
-  user("107"),
-  target("108"),
-  tutorial("109"),
-  attribute("110"),
-  shopCategory("111"),
-  magazine("112"),
-  insurance("113"),
-  learn("114"),
-  company("115"),
-  consultant("116"),
-  ad("117"),
-  dailyPrice("118"),
-  tender("119"),
-  chanel("120"),
-  group("121"),
-  auction("122"),
-  service("123"),
-  amnbekhar("124");
+  category(100),
+  yooNote(101),
+  specialty(102),
+  specializedArt(103),
+  colors(104),
+  brand(105),
+  tag(106),
+  user(107),
+  target(108),
+  tutorial(109),
+  attribute(110),
+  shopCategory(111),
+  magazine(112),
+  insurance(113),
+  learn(114),
+  company(115),
+  consultant(116),
+  ad(117),
+  dailyPrice(118),
+  tender(119),
+  chanel(120),
+  group(121),
+  auction(122),
+  service(123),
+  amnbekhar(124);
 
   const TagCategory(this.title);
 
   @override
   String toString() => name;
-  final String title;
+  final int title;
 }
 
 enum TagGender {
