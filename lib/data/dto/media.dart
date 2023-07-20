@@ -8,7 +8,6 @@ class MediaReadDto {
   String? useCase;
   MediaJsonDetail? mediaJsonDetail;
   String? url;
-  List<int>? tags;
   String? fileType;
 
   MediaReadDto({
@@ -19,7 +18,6 @@ class MediaReadDto {
     this.useCase,
     this.mediaJsonDetail,
     this.url,
-    this.tags,
     this.fileType,
   });
 
@@ -28,28 +26,26 @@ class MediaReadDto {
   String toJson() => json.encode(toMap());
 
   factory MediaReadDto.fromMap(dynamic json) => MediaReadDto(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    fileName: json["fileName"],
-    useCase: json["useCase"],
-    fileType: json["url"] == null ? '' : json["url"].toString().split('.').last,
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-    mediaJsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
-    url: json["url"],
-  );
+        id: json["id"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        fileName: json["fileName"],
+        useCase: json["useCase"],
+        fileType: json["url"] == null ? '' : json["url"].toString().split('.').last,
+        mediaJsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
+        url: json["url"],
+      );
 
   dynamic toMap() => {
-    "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "fileName": fileName,
-    "useCase": useCase,
-    "fileType": url?.split('.').last ?? '',
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-    "mediaJsonDetail": mediaJsonDetail?.toMap(),
-    "url": url,
-  };
+        "id": id,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "fileName": fileName,
+        "useCase": useCase,
+        "fileType": url?.split('.').last ?? '',
+        "mediaJsonDetail": mediaJsonDetail?.toMap(),
+        "url": url,
+      };
 }
 
 class MediaJsonDetail {

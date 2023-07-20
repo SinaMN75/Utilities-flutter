@@ -24,6 +24,8 @@ extension ProductReadDtoExtension on ProductReadDto {
           startDate: DateTime.now(),
           endDate: DateTime.now(),
         ),
+        type: "type",
+        useCase: "useCase",
         enabled: true,
         visitsCount: 100,
         price: 10000,
@@ -43,6 +45,8 @@ class ProductReadDto {
     this.title,
     this.subtitle,
     this.description,
+    this.useCase,
+    this.type,
     this.state,
     this.boosted,
     this.isSeen,
@@ -69,13 +73,13 @@ class ProductReadDto {
     this.jsonDetail,
     this.media,
     this.forms,
+    this.tags,
     this.comments,
     this.categories,
     this.productInsights,
     this.visitProducts,
     this.children,
     this.orders,
-    this.tags,
     this.successfulPurchase,
   });
 
@@ -89,6 +93,8 @@ class ProductReadDto {
         isSeen: json["isSeen"],
         subtitle: json["subtitle"],
         description: json["description"],
+        useCase: json["useCase"],
+        type: json["type"],
         score: json["score"],
         state: json["state"],
         boosted: json["boosted"] == null ? null : DateTime.parse(json["boosted"]),
@@ -108,11 +114,11 @@ class ProductReadDto {
         teams: json["teams"],
         parentId: json["parentId"],
         userId: json["userId"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         parent: json["parent"] == null ? null : ProductReadDto.fromMap(json["parent"]),
         product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
         jsonDetail: json["jsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["jsonDetail"]),
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<dynamic>().map(CommentReadDto.fromMap)).toList(),
         forms: json["forms"] == null ? <FormReadDto>[] : List<FormReadDto>.from(json["forms"].cast<dynamic>().map(FormReadDto.fromMap)).toList(),
@@ -129,6 +135,8 @@ class ProductReadDto {
   String? title;
   String? subtitle;
   String? description;
+  String? useCase;
+  String? type;
   String? state;
   DateTime? boosted;
   int? stock;
@@ -152,11 +160,11 @@ class ProductReadDto {
   String? parentId;
   String? userId;
   UserReadDto? user;
+  List<int>? tags;
   ProductJsonDetail? jsonDetail;
   List<CommentReadDto>? comments;
   List<MediaReadDto>? media;
   List<FormReadDto>? forms;
-  List<int>? tags;
   List<ProductReadDto>? children;
   List<CategoryReadDto>? categories;
   List<OrderReadDto>? orders;
@@ -173,7 +181,9 @@ class ProductReadDto {
         "title": title,
         "subtitle": subtitle,
         "description": description,
+        "useCase": useCase,
         "isSeen": isSeen,
+        "type": type,
         "state": state,
         "score": score,
         "boosted": boosted?.toIso8601String(),
@@ -197,7 +207,7 @@ class ProductReadDto {
         "jsonDetail": jsonDetail?.toMap(),
         "product": product?.toMap(),
         "parent": parent?.toMap(),
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final x) => x)),
         "media": media == null ? [] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
         "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductReadDto x) => x.toMap())),
@@ -347,9 +357,11 @@ class ProductCreateUpdateDto {
     this.link,
     this.website,
     this.email,
+    this.type,
     this.type1,
     this.type2,
     this.unit,
+    this.useCase,
     this.keyValue,
     this.state,
     this.latitude,
@@ -387,8 +399,8 @@ class ProductCreateUpdateDto {
     this.keyValues,
     this.categories,
     this.forms,
-    this.teams,
     this.tags,
+    this.teams,
     this.productInsight,
   });
 
@@ -403,9 +415,11 @@ class ProductCreateUpdateDto {
   final String? link;
   final String? website;
   final String? email;
+  final String? type;
   final String? type1;
   final String? type2;
   final String? unit;
+  final String? useCase;
   final String? keyValue;
   final String? state;
   final double? latitude;
@@ -438,12 +452,12 @@ class ProductCreateUpdateDto {
   final int? productState;
   final int? shippingTime;
   final int? shippingCost;
+  final List<int>? tags;
   final String? boosted;
   final String? parentId;
   final List<KeyValueViewModel>? keyValues;
   final List<String>? categories;
   final List<String>? teams;
-  final List<int>? tags;
   List<FormReadDto>? forms;
   final ProductInsight? productInsight;
 
@@ -462,9 +476,11 @@ class ProductCreateUpdateDto {
         "count": count,
         "website": website,
         "email": email,
+        "type": type,
         "type1": type1,
         "type2": type2,
         "unit": unit,
+        "useCase": useCase,
         "keyValue": keyValue,
         "state": state,
         "latitude": latitude,
@@ -501,6 +517,7 @@ class ProductCreateUpdateDto {
         "productInsight": productInsight?.toMap(),
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
+        // "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x.toMap())),
         "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
         "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final String x) => x)),
@@ -519,6 +536,7 @@ class ProductFilterDto {
     this.author,
     this.phoneNumber,
     this.email,
+    this.type,
     this.type1,
     this.type2,
     this.startPriceRange,
@@ -542,6 +560,7 @@ class ProductFilterDto {
     this.filterOrder,
     this.pageSize,
     this.pageNumber,
+    this.useCase,
     this.teams,
     this.minimal,
     this.isFollowing,
@@ -555,7 +574,6 @@ class ProductFilterDto {
     this.showExpired,
     this.userId,
     this.state,
-    this.ageCategory,
     this.orderByVotes,
     this.orderByVotesDecending,
     this.orderByAtoZ,
@@ -588,10 +606,10 @@ class ProductFilterDto {
     this.hasComment,
     this.hasOrder,
     this.categories,
+    this.tags,
     this.userIds,
     this.isMyBoughtList,
     this.categoriesAnd,
-    this.tags,
     this.query,
   });
 
@@ -609,6 +627,7 @@ class ProductFilterDto {
         author: json["author"],
         phoneNumber: json["phoneNumber"],
         email: json["email"],
+        type: json["type"],
         type2: json["type2"],
         userId: json["userId"],
         discountPercent: json["discountPercent"],
@@ -617,7 +636,6 @@ class ProductFilterDto {
         endPriceRange: json["endPriceRange"],
         enabled: json["enabled"],
         isForSale: json["isForSale"],
-        ageCategory: json["ageCategory"],
         isBookmarked: json["isBookmarked"],
         minimal: json["minimal"],
         isFollowing: json["isFollowing"],
@@ -636,6 +654,7 @@ class ProductFilterDto {
         filterOrder: json["filterOrder"],
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
+        useCase: json["useCase"],
         showCreator: json["showCreator"],
         showTeams: json["showTeams"],
         showVotes: json["showVotes"],
@@ -676,8 +695,8 @@ class ProductFilterDto {
         maxValue: json["maxValue"],
         hasComment: json["hasComment"],
         hasOrder: json["hasOrder"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final dynamic x) => x)),
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         categoriesAnd: json["categoriesAnd"] == null ? [] : List<String>.from(json["categoriesAnd"]!.map((final dynamic x) => x)),
         userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final dynamic x) => x)),
         query: json["query"],
@@ -693,6 +712,7 @@ class ProductFilterDto {
   final String? author;
   final String? phoneNumber;
   final String? email;
+  final String? type;
   final String? type1;
   final String? type2;
   final String? userId;
@@ -700,7 +720,6 @@ class ProductFilterDto {
   final int? endPriceRange;
   final int? discountPercent;
   final int? discountPrice;
-  final int? ageCategory;
   final bool? enabled;
   final bool? isForSale;
   final bool? isBookmarked;
@@ -731,6 +750,7 @@ class ProductFilterDto {
   final int? filterOrder;
   final int? pageSize;
   final int? pageNumber;
+  final String? useCase;
   final String? state;
   final bool? orderByVotesDecending;
   final bool? orderByVotes;
@@ -741,8 +761,8 @@ class ProductFilterDto {
   final bool? orderByCreatedDate;
   final bool? orderByCreaedDateDecending;
   final List<int>? locations;
-  final List<UserReadDto>? teams;
   List<int>? tags;
+  final List<UserReadDto>? teams;
   final String? subtitle;
   final String? keyValues1;
   final String? keyValues2;
@@ -782,6 +802,7 @@ class ProductFilterDto {
         "phoneNumber": phoneNumber,
         "email": email,
         "state": state,
+        "type": type,
         "type1": type1,
         "type2": type2,
         "userId": userId,
@@ -805,9 +826,9 @@ class ProductFilterDto {
         "startDate": startDate,
         "endDate": endDate,
         "filterOrder": filterOrder,
-        "ageCategory": ageCategory,
         "pageSize": pageSize,
         "pageNumber": pageNumber,
+        "useCase": useCase,
         "showCreator": showCreator,
         "showTeams": showTeams,
         "showVotes": showVotes,
@@ -850,10 +871,10 @@ class ProductFilterDto {
         "maxValue": maxValue,
         "hasComment": hasComment,
         "hasOrder": hasOrder,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "categoriesAnd": categoriesAnd == null ? [] : List<dynamic>.from(categoriesAnd!.map((final String x) => x)),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
         "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((final String x) => x)),
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "query": query,
       };
 }

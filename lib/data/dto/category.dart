@@ -8,6 +8,8 @@ class CategoryReadDto {
     this.titleTr1,
     this.titleTr2,
     this.color,
+    this.useCase,
+    this.type,
     this.price,
     this.stock,
     this.count,
@@ -19,7 +21,6 @@ class CategoryReadDto {
     this.parent,
     this.parentId,
     this.media,
-    this.tags,
   });
 
   factory CategoryReadDto.fromJson(final String str) => CategoryReadDto.fromMap(json.decode(str));
@@ -29,11 +30,12 @@ class CategoryReadDto {
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
         color: json["color"],
+        useCase: json["useCase"],
+        type: json["type"],
         count: json["count"],
         price: json["price"],
         stock: json["stock"],
         order: json["order"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         categoryJsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
         parent: json["parent"] == null ? null : CategoryReadDto.fromMap(json["parent"]),
         children: json["children"] == null ? [] : List<CategoryReadDto>.from(json["children"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
@@ -46,6 +48,8 @@ class CategoryReadDto {
   String? titleTr1;
   String? titleTr2;
   String? color;
+  String? useCase;
+  String? type;
   int? price;
   int? stock;
   int? count;
@@ -53,7 +57,6 @@ class CategoryReadDto {
   CategoryJsonDetail? categoryJsonDetail;
   CategoryReadDto? parent;
   List<CategoryReadDto>? children;
-  List<int>? tags;
   String? id;
   DateTime? updatedAt;
   String? parentId;
@@ -66,15 +69,16 @@ class CategoryReadDto {
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,
         "color": color,
+        "useCase": useCase,
+        "type": type,
         "price": price,
         "stock": stock,
         "count": count,
         "order": order,
         "categoryJsonDetail": categoryJsonDetail?.toMap(),
         "parent": parent?.toMap(),
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "children": children == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(children!.map((final CategoryReadDto x) => x.toMap())),
-        "media": media == null ? null : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
+        "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
         "id": id,
         "updatedAt": updatedAt?.toIso8601String(),
         "parentId": parentId,
@@ -138,13 +142,14 @@ class CategoryCreateUpdateDto {
     this.color,
     this.discountedPrice,
     this.link,
+    this.useCase,
+    this.type,
     this.latitude,
     this.longitude,
     this.price,
     this.value,
     this.stock,
     this.order,
-    this.tags,
     this.parentId,
     this.isUnique,
   });
@@ -159,7 +164,9 @@ class CategoryCreateUpdateDto {
         subtitle: json["subtitle"],
         color: json["color"],
         link: json["link"],
+        useCase: json["useCase"],
         discountedPrice: json["discountedPrice"],
+        type: json["type"],
         latitude: json["latitude"],
         longitude: json["longitude"],
         price: json["price"],
@@ -167,7 +174,6 @@ class CategoryCreateUpdateDto {
         stock: json["stock"],
         order: json["order"],
         parentId: json["parentId"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         isUnique: json["isUnique"],
       );
   String? id;
@@ -177,6 +183,8 @@ class CategoryCreateUpdateDto {
   String? subtitle;
   String? color;
   String? link;
+  String? useCase;
+  String? type;
   double? latitude;
   double? longitude;
   int? price;
@@ -184,7 +192,6 @@ class CategoryCreateUpdateDto {
   double? value;
   int? stock;
   int? order;
-  List<int>? tags;
   String? parentId;
   bool? isUnique;
 
@@ -198,6 +205,8 @@ class CategoryCreateUpdateDto {
         "subtitle": subtitle,
         "color": color,
         "link": link,
+        "useCase": useCase,
+        "type": type,
         "latitude": latitude,
         "longitude": longitude,
         "price": price,
@@ -207,7 +216,6 @@ class CategoryCreateUpdateDto {
         "order": order,
         "parentId": parentId,
         "isUnique": isUnique,
-        "tags": tags == null ? <int>[] : List<dynamic>.from(tags!.map((final int x) => x)),
       };
 }
 
@@ -216,12 +224,13 @@ class CategoryFilterDto {
     this.title,
     this.titleTr1,
     this.titleTr2,
+    this.useCase,
+    this.type,
     this.parentId,
     this.showMedia,
     this.orderByOrder,
     this.orderByOrderDescending,
     this.orderByCreatedAt,
-    this.tags,
     this.orderByCreatedAtDescending,
   });
 
@@ -231,23 +240,25 @@ class CategoryFilterDto {
         title: json["title"],
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
+        useCase: json["useCase"],
+        type: json["type"],
         parentId: json["parentId"],
         showMedia: json["showMedia"],
         orderByOrder: json["orderByOrder"],
         orderByOrderDescending: json["orderByOrderDescending"],
         orderByCreatedAt: json["orderByCreatedAt"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         orderByCreatedAtDescending: json["orderByCreatedAtDescending"],
       );
   String? title;
   String? titleTr1;
   String? titleTr2;
+  String? useCase;
+  String? type;
   String? parentId;
   bool? showMedia;
   bool? orderByOrder;
   bool? orderByOrderDescending;
   bool? orderByCreatedAt;
-  List<int>? tags;
   bool? orderByCreatedAtDescending;
 
   String toJson() => json.encode(toMap());
@@ -256,24 +267,41 @@ class CategoryFilterDto {
         "title": title,
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,
+        "useCase": useCase,
+        "type": type,
         "parentId": parentId,
         "showMedia": showMedia,
         "orderByOrder": orderByOrder,
         "orderByOrderDescending": orderByOrderDescending,
         "orderByCreatedAt": orderByCreatedAt,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "orderByCreatedAtDescending": orderByCreatedAtDescending,
       };
 }
 
 extension CategoryReadDtoExtension on List<CategoryReadDto>? {
-  List<CategoryReadDto> getByTags({required final List<int> tags}) {
-    final List<CategoryReadDto> lists = <CategoryReadDto>[];
-    for (int i = 0; i < tags.length; i++) {
-      final List<CategoryReadDto> lists2 = this!.where((final CategoryReadDto element) => (element.tags ?? <int>[]).contains(tags[i])).toList();
-      lists.addAll(lists2);
-    }
+  List<CategoryReadDto> getByTypeUseCase({required final String type, required final String useCase}) =>
+      this
+          ?.where(
+            (final CategoryReadDto e) => e.type == type && e.useCase == useCase,
+          )
+          .toList() ??
+      <CategoryReadDto>[];
 
-    return lists;
-  }
+  List<CategoryReadDto> getByType({required final type}) =>
+      this
+          ?.where(
+            (final CategoryReadDto e) => e.type == type,
+          )
+          .toList() ??
+      <CategoryReadDto>[];
+
+  List<CategoryReadDto> getByUseCase({required final useCase}) =>
+      this
+          ?.where(
+            (final CategoryReadDto e) => e.useCase == useCase,
+          )
+          .toList() ??
+      <CategoryReadDto>[];
+
+  CategoryReadDto firstIfNull() => (this ?? <CategoryReadDto>[]).isNotEmpty ? this!.first : CategoryReadDto();
 }
