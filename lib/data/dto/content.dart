@@ -12,6 +12,7 @@ class ContentReadDto {
     this.useCase,
     this.contactInformation,
     this.media,
+    this.tags,
   });
 
   final String? id;
@@ -24,6 +25,7 @@ class ContentReadDto {
   final String? useCase;
   final List<ContactInformationReadDto>? contactInformation;
   final List<MediaReadDto>? media;
+  final List<int>? tags;
 
   factory ContentReadDto.fromJson(String str) => ContentReadDto.fromMap(json.decode(str));
 
@@ -38,6 +40,7 @@ class ContentReadDto {
         subTitle: json["subTitle"],
         description: json["description"],
         useCase: json["useCase"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         contactInformation: json["contactInformation"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformation"].cast<dynamic>().map(ContactInformationReadDto.fromMap)).toList(),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
       );
@@ -51,6 +54,7 @@ class ContentReadDto {
         "subTitle": subTitle,
         "description": description,
         "useCase": useCase,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "contactInformation": contactInformation == null ? null : List<dynamic>.from(contactInformation!.map((x) => x.toMap())),
         "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
       };
@@ -64,6 +68,7 @@ class ContentCreateUpdateDto {
     this.description,
     this.useCase,
     this.approvalStatus,
+    this.tags,
     this.contactInformations,
   });
 
@@ -73,6 +78,7 @@ class ContentCreateUpdateDto {
   final String? description;
   final String? useCase;
   final int? approvalStatus;
+  final List<int>? tags;
   final List<ContactInformationReadDto>? contactInformations;
 
   factory ContentCreateUpdateDto.fromJson(String str) => ContentCreateUpdateDto.fromMap(json.decode(str));
@@ -86,6 +92,7 @@ class ContentCreateUpdateDto {
         description: json["description"],
         useCase: json["useCase"],
         approvalStatus: json["approvalStatus"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         contactInformations: json["contactInformations"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformations"].cast<dynamic>().map(ContactInformationReadDto.fromMap)).toList(),
       );
 
@@ -96,6 +103,7 @@ class ContentCreateUpdateDto {
         "description": description,
         "useCase": useCase,
         "approvalStatus": approvalStatus,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "contactInformations": contactInformations == null ? null : List<dynamic>.from(contactInformations!.map((x) => x.toMap())),
       };
 }

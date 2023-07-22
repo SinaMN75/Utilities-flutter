@@ -86,6 +86,19 @@ enum TagCategory {
   final int title;
 }
 
+enum TagContent {
+  content(100),
+  banner(101),
+  all(200);
+
+  const TagContent(this.title);
+
+  @override
+  String toString() => name;
+  final int title;
+}
+
+
 enum TagGender {
   male("100"),
   female("101"),
