@@ -25,9 +25,9 @@ extension ProductReadDtoExtension on ProductReadDto {
       startDate: DateTime.now(),
       endDate: DateTime.now(),
     ),
-    type: "type",
+    // type: "type",
     tagType: 110,
-    useCase: "useCase",
+    // useCase: "useCase",
     tagUseCase: 100,
     enabled: true,
     visitsCount: 100,
@@ -48,9 +48,9 @@ class ProductReadDto {
     this.title,
     this.subtitle,
     this.description,
-    this.useCase,
+    // this.useCase,
     this.tagUseCase,
-    this.type,
+    // this.type,
     this.tagType,
     this.state,
     this.boosted,
@@ -98,9 +98,9 @@ class ProductReadDto {
     isSeen: json["isSeen"],
     subtitle: json["subtitle"],
     description: json["description"],
-    useCase: json["useCase"],
+    // useCase: json["useCase"],
     tagUseCase: json["tagUseCase"],
-    type: json["type"],
+    // type: json["type"],
     tagType: json["tagType"],
     score: json["score"],
     state: json["state"],
@@ -142,9 +142,9 @@ class ProductReadDto {
   String? title;
   String? subtitle;
   String? description;
-  String? useCase;
+  // String? useCase;
   int? tagUseCase;
-  String? type;
+  // String? type;
   int? tagType;
   String? state;
   DateTime? boosted;
@@ -190,10 +190,10 @@ class ProductReadDto {
     "title": title,
     "subtitle": subtitle,
     "description": description,
-    "useCase": useCase,
+    // "useCase": useCase,
     "tagUseCase": tagUseCase,
     "isSeen": isSeen,
-    "type": type,
+    // "type": type,
     "tagType": tagType,
     "state": state,
     "score": score,
@@ -368,12 +368,12 @@ class ProductCreateUpdateDto {
     this.link,
     this.website,
     this.email,
-    this.type,
+    // this.type,
     this.tagType,
     this.type1,
     this.type2,
     this.unit,
-    this.useCase,
+    // this.useCase,
     this.tagUseCase,
     this.keyValue,
     this.state,
@@ -431,9 +431,9 @@ class ProductCreateUpdateDto {
   final String? type1;
   final String? type2;
   final String? unit;
-  final String? useCase;
+  // final String? useCase;
   final int? tagUseCase;
-  final String? type;
+  // final String? type;
   final int? tagType;
   final String? keyValue;
   final String? state;
@@ -491,13 +491,13 @@ class ProductCreateUpdateDto {
     "count": count,
     "website": website,
     "email": email,
-    "type": type,
-    "tagType": tagType,
     "type1": type1,
     "type2": type2,
     "unit": unit,
-    "useCase": useCase,
+    // "useCase": useCase,
     "tagUseCase": tagUseCase,
+    // "type": type,
+    "tagType": tagType,
     "keyValue": keyValue,
     "state": state,
     "latitude": latitude,
@@ -552,8 +552,6 @@ class ProductFilterDto {
     this.author,
     this.phoneNumber,
     this.email,
-    this.type,
-    this.tagType,
     this.type1,
     this.type2,
     this.startPriceRange,
@@ -577,8 +575,10 @@ class ProductFilterDto {
     this.filterOrder,
     this.pageSize,
     this.pageNumber,
-    this.useCase,
+    // this.useCase,
     this.tagUseCase,
+    // this.type,
+    this.tagType,
     this.teams,
     this.minimal,
     this.isFollowing,
@@ -646,8 +646,6 @@ class ProductFilterDto {
     author: json["author"],
     phoneNumber: json["phoneNumber"],
     email: json["email"],
-    type: json["type"],
-    tagType: json["tagType"],
     type2: json["type2"],
     userId: json["userId"],
     discountPercent: json["discountPercent"],
@@ -675,8 +673,10 @@ class ProductFilterDto {
     filterOrder: json["filterOrder"],
     pageSize: json["pageSize"],
     pageNumber: json["pageNumber"],
-    useCase: json["useCase"],
+    // useCase: json["useCase"],
     tagUseCase: json["tagUseCase"],
+    // type: json["type"],
+    tagType: json["tagType"],
     showCreator: json["showCreator"],
     showTeams: json["showTeams"],
     showVotes: json["showVotes"],
@@ -734,8 +734,6 @@ class ProductFilterDto {
   final String? author;
   final String? phoneNumber;
   final String? email;
-  final String? type;
-  final int? tagType;
   final String? type1;
   final String? type2;
   final String? userId;
@@ -774,8 +772,10 @@ class ProductFilterDto {
   final int? filterOrder;
   final int? pageSize;
   final int? pageNumber;
-  final String? useCase;
+  // final String? useCase;
   final int? tagUseCase;
+  // final String? type;
+  final int? tagType;
   final String? state;
   final bool? orderByVotesDecending;
   final bool? orderByVotes;
@@ -827,8 +827,6 @@ class ProductFilterDto {
     "phoneNumber": phoneNumber,
     "email": email,
     "state": state,
-    "type": type,
-    "tagType": tagType,
     "type1": type1,
     "type2": type2,
     "userId": userId,
@@ -855,8 +853,10 @@ class ProductFilterDto {
     "ageCategory": ageCategory,
     "pageSize": pageSize,
     "pageNumber": pageNumber,
-    "useCase": useCase,
+    // "useCase": useCase,
     "tagUseCase": tagUseCase,
+    // "type": type,
+    "tagType": tagType,
     "showCreator": showCreator,
     "showTeams": showTeams,
     "showVotes": showVotes,

@@ -26,7 +26,19 @@ enum TagProduct {
   tender(122),
   tutorial(123),
   blog(124),
-  magazine(125);
+  subBlog(125),
+  music(126),
+  podcast(127),
+  adEmployee(128),
+  magazine(128),
+  target(129),
+  app(130),
+  all(131),
+  text(132),
+  adProject(133),
+  adHiring(134),
+  highlight(135),
+  test(195);
 
   const TagProduct(this.title);
 
@@ -60,7 +72,12 @@ enum TagCategory {
   group(121),
   auction(122),
   service(123),
-  amnbekhar(124);
+  goods(124),
+  jobType(125),
+  jobPlace(126),
+  media(127),
+  userStatus(128),
+  amnbekhar(194);
 
   const TagCategory(this.title);
 
