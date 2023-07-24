@@ -77,6 +77,14 @@ enum TagCategory {
   jobPlace(126),
   media(127),
   userStatus(128),
+  podcast(129),
+  video(130),
+  image(131),
+  music(132),
+  pdf(133),
+  job(134),
+  app(135),
+  game(136),
   amnbekhar(194);
 
   const TagCategory(this.title);
