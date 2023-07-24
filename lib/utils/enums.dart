@@ -85,6 +85,9 @@ enum TagCategory {
   job(134),
   app(135),
   game(136),
+  explore(137),
+  digital(138),
+  physical(139),
   amnbekhar(194);
 
   const TagCategory(this.title);
