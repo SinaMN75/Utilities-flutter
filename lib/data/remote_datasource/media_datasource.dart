@@ -38,6 +38,7 @@ class MediaDataSource {
     final String? bookmarkId,
     final String? title,
     final String? notificationId,
+    final List<int>? tags,
     final String? size,
     final Duration? timeout,
   }) async {
@@ -61,6 +62,7 @@ class MediaDataSource {
           'UserId': userId,
           'PrivacyType': privacyType,
           'Time': time,
+          "tags": tags == null ? <int>[] : List<dynamic>.from(tags.map((final int x) => x)),
           'Artist': artist,
           'Album': album,
           'CommentId': commentId,
@@ -111,6 +113,7 @@ class MediaDataSource {
     final String? title,
     final String? notificationId,
     final String? size,
+    final List<int>? tags,
     final int? privacyType,
   }) async {
     final Dio dio = Dio();
@@ -134,6 +137,7 @@ class MediaDataSource {
         'Album': album,
         'CommentId': commentId,
         'BookmarkId': bookmarkId,
+        "tags": tags == null ? <int>[] : List<dynamic>.from(tags.map((final int x) => x)),
         'ChatId': chatId,
         'Title': title ?? fileName,
         'NotificationId': notificationId,
@@ -170,6 +174,7 @@ class MediaDataSource {
     final String? artist,
     final String? album,
     final String? notificationId,
+    final List<int>? tags,
     final String? size,
     final String? title,
   }) async {
@@ -271,6 +276,7 @@ class MediaDataSource {
     final String? album,
     final String? chatId,
     final String? notificationId,
+    final List<int>? tags,
     final String? size,
     final Duration? timeout,
   }) async {
@@ -294,6 +300,7 @@ class MediaDataSource {
           'Album': album,
           'UserId': userId,
           'ChatId': chatId,
+          "tags": tags == null ? <int>[] : List<dynamic>.from(tags.map((final int x) => x)),
           'NotificationId': notificationId,
           'Size': size,
         }),
@@ -317,6 +324,7 @@ class MediaDataSource {
     final String? title,
     final String? size,
     final String? useCase,
+    final List<int>? tags,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
