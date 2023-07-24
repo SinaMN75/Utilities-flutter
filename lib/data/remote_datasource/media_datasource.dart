@@ -213,7 +213,10 @@ class MediaDataSource {
         request.fields['Album'] = album;
       }
       if (tags != null) {
-        request.fields['tags'] =tags.map((e) => e).toList().toString();
+
+        for(int i = 0; i < tags.length; i++){
+          request.fields['tags[$i]'] = '${tags[i]}';
+        }
       }
 
       if (commentId != null) {
