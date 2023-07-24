@@ -123,28 +123,28 @@ enum TagGender {
 }
 
 enum TagMedia {
-  all("100"),
-  image("101"),
-  video("102"),
-  audio("103"),
-  pdf("104"),
-  apk("105"),
-  profile("106"),
-  document("107"),
-  license("108"),
-  zip("109"),
-  bio("110"),
-  cover("111"),
-  media("112"),
-  text("113"),
-  chat("114"),
-  post("115");
+  all(100),
+  image(101),
+  video(102),
+  audio(103),
+  pdf(104),
+  apk(105),
+  profile(106),
+  document(107),
+  license(108),
+  zip(109),
+  bio(110),
+  cover(111),
+  media(112),
+  text(113),
+  chat(114),
+  post(190);
 
   const TagMedia(this.title);
 
   @override
   String toString() => name;
-  final String title;
+  final int title;
 }
 
 enum TagBase {
