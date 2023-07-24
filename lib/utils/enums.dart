@@ -96,6 +96,20 @@ enum TagCategory {
   String toString() => name;
   final int title;
 }
+enum TagReaction {
+  none(100),
+  like(101),
+  disLike(102),
+  funny(103),
+  awful(104),
+  all(200);
+
+  const TagReaction(this.title);
+
+  @override
+  String toString() => name;
+  final int title;
+}
 
 enum TagContent {
   content(100),
