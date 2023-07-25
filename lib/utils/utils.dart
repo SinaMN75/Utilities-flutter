@@ -36,6 +36,15 @@ void validateForm({required final GlobalKey<FormState> key, required final VoidC
   if (key.currentState!.validate()) action();
 }
 
+bool isNumeric(final String? s) {
+  if(s == null) {
+    return false;
+  }
+  final int res = int.tryParse(s)??10000;
+  return res!=10000;
+}
+
+
 void shareText(final String text, {final String? subject}) => Share.share(text, subject: subject);
 
 void shareFile(final List<String> file, final String text) => Share.shareXFiles(file.map(XFile.new).toList());

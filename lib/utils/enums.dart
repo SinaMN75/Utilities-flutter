@@ -152,6 +152,7 @@ enum TagMedia {
   media(112),
   text(113),
   chat(114),
+  file(115),
   post(190);
 
   const TagMedia(this.title);

@@ -62,7 +62,7 @@ class MediaDataSource {
           'UserId': userId,
           'PrivacyType': privacyType,
           'Time': time,
-          "tags": tags == null ? <int>[] : List<dynamic>.from(tags.map((final int x) => x)),
+          // "tags": tags == null ? <int>[] : List<dynamic>.from(tags.map((final int x) => x)),
           'Artist': artist,
           'Album': album,
           'CommentId': commentId,
@@ -94,7 +94,7 @@ class MediaDataSource {
 
   Future<void> createSingle({
     required final File file,
-    required final String useCase,
+    required final int useCase,
     required final Function(ResponseMediaDto response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final ProgressCallback? onSendProgress,
@@ -137,7 +137,7 @@ class MediaDataSource {
         'Album': album,
         'CommentId': commentId,
         'BookmarkId': bookmarkId,
-        "tags": tags == null ? <int>[] : List<dynamic>.from(tags.map((final int x) => x)),
+        // "tags": tags == null ? <int>[] : List<dynamic>.from(tags.map((final int x) => x)),
         'ChatId': chatId,
         'Title': title ?? fileName,
         'NotificationId': notificationId,
@@ -158,7 +158,7 @@ class MediaDataSource {
 
   Future<void> createWeb({
     required final List<PlatformFile> files,
-    required final String useCase, //media
+    required final int useCase, //media
     required final VoidCallback action,
     final Function(int statusCode)? error,
     final String? categoryId,
@@ -186,7 +186,7 @@ class MediaDataSource {
       final List<int> _selectedFile = uint8list!;
       String fileName = platformFile.name;
       final http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse('$baseUrl/Media'));
-      request.fields['UseCase'] = useCase;
+      request.fields['UseCase'] = useCase.toString();
       if (categoryId != null) {
         request.fields['CategoryId'] = categoryId;
       }
