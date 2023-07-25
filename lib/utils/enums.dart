@@ -114,6 +114,7 @@ enum TagReaction {
 enum TagContent {
   content(100),
   banner(101),
+  yoohoo(199),
   all(200);
 
   const TagContent(this.title);
