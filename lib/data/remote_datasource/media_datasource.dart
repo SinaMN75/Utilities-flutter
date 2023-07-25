@@ -94,7 +94,7 @@ class MediaDataSource {
 
   Future<void> createSingle({
     required final File file,
-    required final int useCase,
+    required final String useCase,
     required final Function(ResponseMediaDto response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final ProgressCallback? onSendProgress,
@@ -158,7 +158,7 @@ class MediaDataSource {
 
   Future<void> createWeb({
     required final List<PlatformFile> files,
-    required final int useCase, //media
+    required final String useCase, //media
     required final VoidCallback action,
     final Function(int statusCode)? error,
     final String? categoryId,
@@ -266,7 +266,7 @@ class MediaDataSource {
 
   Future<void> createLink({
     required final List<String> links,
-    required final String useCase,
+    required final int useCase,
     required final VoidCallback action,
     required final Function(GenericResponse errorResponse) onError,
     final ProgressCallback? onSendProgress,
