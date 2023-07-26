@@ -219,53 +219,6 @@ class CreateOrUpdateGroupChat {
       };
 }
 
-class ResponseMediaDto {
-  ResponseMediaDto({
-    this.fileName,
-    this.tagUseCase,
-    this.url,
-    this.link,
-    this.id,
-    this.tags,
-    this.mediaJsonDetail,
-    this.createdAt,
-  });
-
-  final String? fileName;
-  final int? tagUseCase;
-  final String? url;
-  final String? link;
-  final String? id;
-  List<int>? tags;
-  MediaJsonDetail? mediaJsonDetail;
-  final DateTime? createdAt;
-
-  factory ResponseMediaDto.fromJson(String str) => ResponseMediaDto.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory ResponseMediaDto.fromMap(dynamic json) => ResponseMediaDto(
-        fileName: json["fileName"],
-        tagUseCase: json["tagUseCase"],
-        link: json["link"],
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        url: json["link"] ?? json["url"],
-        id: json["id"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        mediaJsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
-      );
-
-  dynamic toMap() => {
-        "fileName": fileName,
-        "tagUseCase": tagUseCase,
-        "url": url,
-        "link": url ?? link,
-        "id": id,
-        "tags": tags == null ? <int>[] : List<dynamic>.from(tags!.map((final int x) => x)),
-        "createdAt": createdAt?.toIso8601String(),
-        "mediaJsonDetail": mediaJsonDetail?.toMap(),
-      };
-}
 
 extension NullableMediaResponseExtension on List<MediaReadDto>? {
   List<MediaReadDto> getByUseCase({required final int tagUseCase, final int? exception}) {

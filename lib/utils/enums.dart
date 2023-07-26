@@ -38,6 +38,10 @@ enum TagProduct {
   adProject(133),
   adHiring(134),
   highlight(135),
+  auction(136),
+  physicalProduct(137),
+  digitalProduct(138),
+  project(140),
   test(195);
 
   const TagProduct(this.title);
@@ -88,6 +92,8 @@ enum TagCategory {
   explore(137),
   digital(138),
   physical(139),
+  reference(140),
+  project(141),
   amnbekhar(194);
 
   const TagCategory(this.title);
@@ -114,6 +120,12 @@ enum TagReaction {
 enum TagContent {
   content(100),
   banner(101),
+  aboutUs(102),
+  banner1(103),
+  banner2(104),
+  homeTop(105),
+  qa(106),
+  terms(107),
   yoohoo(199),
   all(200);
 

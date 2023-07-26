@@ -21,7 +21,7 @@ class MediaDataSource {
     required final VoidCallback action,
     required final Function(GenericResponse errorResponse) onError,
     final ProgressCallback? onSendProgress,
-    final Function(List<ResponseMediaDto> list)? onResponse,
+    final Function(List<MediaReadDto> list)? onResponse,
     final List<File>? files,
     final String? categoryId,
     final String? contentId,
@@ -43,7 +43,7 @@ class MediaDataSource {
     final Duration? timeout,
   }) async {
     Dio dio = Dio();
-    List<ResponseMediaDto> mediResponseList = <ResponseMediaDto>[];
+    List<MediaReadDto> mediResponseList = <MediaReadDto>[];
     for (int i = 0; i < files!.length; i++) {
       File file = files[i];
       String fileName = file.path.split('/')[file.path.split('/').length - 1];
@@ -78,15 +78,21 @@ class MediaDataSource {
       );
 
       if (response.isSuccessful()) {
-        List<ResponseMediaDto> l1 = List<ResponseMediaDto>.from(response.data['result'].cast<Map<String, dynamic>>().map(ResponseMediaDto.fromMap));
+        List<MediaReadDto> l1 = List<MediaReadDto>.from(response.data['result'].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap));
         mediResponseList.add(l1.first);
         if (i == files.length - 1) {
           action();
           if (onResponse != null) {
-            onResponse(mediResponseList);
+            await update(
+                mediaId: mediResponseList.first.id ?? '',
+                tags: tags,
+                onResponse: (final GenericResponse<MediaReadDto> response) {
+                  onResponse(mediResponseList);
+                },
+                onError: onError);
           }
         } else {
-          onError(GenericResponse.fromJson(response.data));
+          onError(GenericResponse<dynamic>.fromJson(response.data));
         }
       }
     }
@@ -95,7 +101,7 @@ class MediaDataSource {
   Future<void> createSingle({
     required final File file,
     required final String useCase,
-    required final Function(ResponseMediaDto response) onResponse,
+    required final Function(MediaReadDto response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final ProgressCallback? onSendProgress,
     final String? categoryId,
@@ -149,7 +155,7 @@ class MediaDataSource {
     );
 
     if (response.isSuccessful()) {
-      final List<ResponseMediaDto> l1 = List<ResponseMediaDto>.from(response.data['result'].cast<Map<String, dynamic>>().map(ResponseMediaDto.fromMap)).toList();
+      final List<MediaReadDto> l1 = List<MediaReadDto>.from(response.data['result'].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList();
       onResponse(l1.first);
     } else {
       onError(GenericResponse<dynamic>.fromJson(response.data));
@@ -213,8 +219,7 @@ class MediaDataSource {
         request.fields['Album'] = album;
       }
       if (tags != null) {
-
-        for(int i = 0; i < tags.length; i++){
+        for (int i = 0; i < tags.length; i++) {
           request.fields['tags[$i]'] = '${tags[i]}';
         }
       }
@@ -337,7 +342,7 @@ class MediaDataSource {
   }) async =>
       httpPut(
         url: "$baseUrl/Media/$mediaId",
-        body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tagUseCase: tagUseCase,tags:tags),
+        body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tagUseCase: tagUseCase, tags: tags),
         action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.data, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
