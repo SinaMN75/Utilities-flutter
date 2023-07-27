@@ -84,12 +84,18 @@ class MediaDataSource {
           action();
           if (onResponse != null) {
             await update(
-                mediaId: mediResponseList.first.id ?? '',
-                tags: tags,
-                onResponse: (final GenericResponse<MediaReadDto> response) {
-                  onResponse(mediResponseList);
-                },
-                onError: onError);
+              mediaId: mediResponseList.first.id ?? '',
+              tags: tags,
+              onResponse: (final GenericResponse<MediaReadDto> response) {
+                onResponse([response.result!]);
+              },
+              onError: (final GenericResponse errorResponse) {
+                debugPrint('Error');
+              },
+              failure: (error) {
+                debugPrint(error);
+              },
+            );
           }
         } else {
           onError(GenericResponse<dynamic>.fromJson(response.data));
