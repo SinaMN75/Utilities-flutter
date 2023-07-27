@@ -94,6 +94,8 @@ enum TagCategory {
   physical(139),
   reference(140),
   project(141),
+  file(140),
+  blog(141),
   amnbekhar(194);
 
   const TagCategory(this.title);
