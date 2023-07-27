@@ -42,7 +42,8 @@ enum TagProduct {
   physicalProduct(137),
   digitalProduct(138),
   project(140),
-  test(195);
+  consultant(141),
+  test(300);
 
   const TagProduct(this.title);
 
@@ -110,6 +111,11 @@ enum TagCategory {
   explore(137),
   reference(140),
   file(140),
+  model(141),
+  function(142),
+  country(143),
+  city(144),
+  province(145),
   amnbekhar(194);
 
   const TagCategory(this.title);

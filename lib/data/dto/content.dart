@@ -9,7 +9,7 @@ class ContentReadDto {
     this.title,
     this.subTitle,
     this.description,
-    this.useCase,
+    this.tagUseCase,
     this.contactInformation,
     this.media,
     this.tags,
@@ -22,7 +22,7 @@ class ContentReadDto {
   final String? title;
   final String? subTitle;
   final String? description;
-  final String? useCase;
+  final int? tagUseCase;
   final List<ContactInformationReadDto>? contactInformation;
   final List<MediaReadDto>? media;
   final List<int>? tags;
@@ -39,7 +39,7 @@ class ContentReadDto {
         title: json["title"],
         subTitle: json["subTitle"],
         description: json["description"],
-        useCase: json["useCase"],
+        tagUseCase: json["tagUseCase"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         contactInformation: json["contactInformation"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformation"].cast<dynamic>().map(ContactInformationReadDto.fromMap)).toList(),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
@@ -53,7 +53,7 @@ class ContentReadDto {
         "title": title,
         "subTitle": subTitle,
         "description": description,
-        "useCase": useCase,
+        "tagUseCase": tagUseCase,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "contactInformation": contactInformation == null ? null : List<dynamic>.from(contactInformation!.map((x) => x.toMap())),
         "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
@@ -66,7 +66,7 @@ class ContentCreateUpdateDto {
     this.title,
     this.subTitle,
     this.description,
-    this.useCase,
+    this.tagUseCase,
     this.approvalStatus,
     this.tags,
     this.contactInformations,
@@ -76,7 +76,7 @@ class ContentCreateUpdateDto {
   final String? title;
   final String? subTitle;
   final String? description;
-  final String? useCase;
+  final int? tagUseCase;
   final int? approvalStatus;
   final List<int>? tags;
   final List<ContactInformationReadDto>? contactInformations;
@@ -90,7 +90,7 @@ class ContentCreateUpdateDto {
         title: json["title"],
         subTitle: json["subTitle"],
         description: json["description"],
-        useCase: json["useCase"],
+        tagUseCase: json["tagUseCase"],
         approvalStatus: json["approvalStatus"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         contactInformations: json["contactInformations"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformations"].cast<dynamic>().map(ContactInformationReadDto.fromMap)).toList(),
@@ -101,7 +101,7 @@ class ContentCreateUpdateDto {
         "title": title,
         "subTitle": subTitle,
         "description": description,
-        "useCase": useCase,
+        "tagUseCase": tagUseCase,
         "approvalStatus": approvalStatus,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "contactInformations": contactInformations == null ? null : List<dynamic>.from(contactInformations!.map((x) => x.toMap())),

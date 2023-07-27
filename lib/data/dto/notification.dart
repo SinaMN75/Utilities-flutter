@@ -9,8 +9,9 @@ class NotificationReadDto {
     this.visited,
     this.link,
     this.seenStatus,
-    this.useCase,
+    this.tagUseCase,
     this.creatorUser,
+    this.tags,
     this.media,
   });
 
@@ -20,8 +21,9 @@ class NotificationReadDto {
   final String? createdAt;
   final bool? visited;
   final String? link;
-  final String? useCase;
+  final int? tagUseCase;
   final int? seenStatus;
+  List<int>? tags;
   final UserReadDto? creatorUser;
   final List<MediaReadDto>? media;
 
@@ -37,7 +39,8 @@ class NotificationReadDto {
         visited: json["visited"],
         link: json["link"],
         seenStatus: json["seenStatus"],
-        useCase: json["useCase"],
+        tagUseCase: json["tagUseCase"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         creatorUser: json["creatorUser"] == null ? null : UserReadDto.fromMap(json["creatorUser"]),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
       );
@@ -50,7 +53,8 @@ class NotificationReadDto {
         "visited": visited,
         "link": link,
         "seenStatus": seenStatus,
-        "useCase": useCase,
+        "tagUseCase": tagUseCase,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "creatorUser": creatorUser == null ? null : creatorUser!.toMap(),
         "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
       };
@@ -62,8 +66,9 @@ class NotificationFilterReadDto {
     this.userId,
     this.creatorUserId,
     this.message,
-    this.useCase,
+    this.tagUseCase,
     this.pageSize,
+    this.tags,
     this.pageNumber,
   });
 
@@ -71,8 +76,9 @@ class NotificationFilterReadDto {
   final String? userId;
   final String? creatorUserId;
   final String? message;
-  final String? useCase;
+  final int? tagUseCase;
   final int? pageSize;
+  List<int>? tags;
   final int? pageNumber;
 
   factory NotificationFilterReadDto.fromJson(String str) => NotificationFilterReadDto.fromMap(json.decode(str));
@@ -84,8 +90,9 @@ class NotificationFilterReadDto {
         userId: json["userId"],
         creatorUserId: json["creatorUserId"],
         message: json["message"],
-        useCase: json["useCase"],
+        tagUseCase: json["tagUseCase"],
         pageSize: json["pageSize"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         pageNumber: json["pageNumber"],
       );
 
@@ -94,8 +101,9 @@ class NotificationFilterReadDto {
         "userId": userId,
         "creatorUserId": creatorUserId,
         "message": message,
-        "useCase": useCase,
+        "tagUseCase": tagUseCase,
         "pageSize": pageSize,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "pageNumber": pageNumber,
       };
 }
