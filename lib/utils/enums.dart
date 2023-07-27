@@ -268,33 +268,33 @@ enum SortLists {
   final String title;
 }
 
-enum CategoryType {
-  brand("brand"),
-  reference("reference"),
-  company("company"),
-  category("category"),
-  function("function"),
-  country("country"),
-  city("city"),
-  province("province"),
-  model("model"),
-  insurance("insurance"),
-  active("active"),
-  archive("archive"),
-  image("image"),
-  video("video"),
-  music("music"),
-  pdf("pdf"),
-  commodity("commodity"),
-  job("job"),
-  speciality("speciality");
-
-  const CategoryType(this.title);
-
-  @override
-  String toString() => name;
-  final String title;
-}
+// enum CategoryType {
+//   brand("brand"),
+//   reference("reference"),
+//   company("company"),
+//   category("category"),
+//   function("function"),
+//   country("country"),
+//   city("city"),
+//   province("province"),
+//   model("model"),
+//   insurance("insurance"),
+//   active("active"),
+//   archive("archive"),
+//   image("image"),
+//   video("video"),
+//   music("music"),
+//   pdf("pdf"),
+//   commodity("commodity"),
+//   job("job"),
+//   speciality("speciality");
+//
+//   const CategoryType(this.title);
+//
+//   @override
+//   String toString() => name;
+//   final String title;
+// }
 
 enum Currency {
   rial("100"),
@@ -409,70 +409,70 @@ enum UseCasePaymentBime {
   final String title;
 }
 
-enum UseCaseProduct {
-  ad("ad"),
-  dailyPrice("dailyPrice"),
-  tender("tender"),
-  test("test"),
-  project("project"),
-  service("service"),
-  consultant("consultant"),
-  company("company"),
-  yooNote("yooNote"),
-  tutorial("tutorial"),
-  blog("blog"),
-  subBlog("subBlog"),
-  product("product"),
-  story("story"),
-  physicalProduct("physicalProduct"),
-  digitalProduct("digitalProduct"),
-  attribute("attribute"),
-  target("target"),
-  magazine("magazine"),
-  adHiring("hiringAd"),
-  adProject("adProject"),
-  adEmployee("adEmployee");
+// enum UseCaseProduct {
+//   ad("ad"),
+//   dailyPrice("dailyPrice"),
+//   tender("tender"),
+//   test("test"),
+//   project("project"),
+//   service("service"),
+//   consultant("consultant"),
+//   company("company"),
+//   yooNote("yooNote"),
+//   tutorial("tutorial"),
+//   blog("blog"),
+//   subBlog("subBlog"),
+//   product("product"),
+//   story("story"),
+//   physicalProduct("physicalProduct"),
+//   digitalProduct("digitalProduct"),
+//   attribute("attribute"),
+//   target("target"),
+//   magazine("magazine"),
+//   adHiring("hiringAd"),
+//   adProject("adProject"),
+//   adEmployee("adEmployee");
+//
+//   const UseCaseProduct(this.title);
+//
+//   final String title;
+// }
 
-  const UseCaseProduct(this.title);
-
-  final String title;
-}
-
-enum UseCaseCategory {
-  location("location"),
-  category("category"),
-  colors("colors"),
-  specialty("specialty"),
-  specializedArt("specializedArt"),
-  tag("tag"),
-  ad("ad"),
-  amnbekhar("amnbekhar"),
-  brand("brand"),
-  dailyPrice("dailyPrice"),
-  tender("tender"),
-  chanel("chanel"),
-  group("group"),
-  auction("auction"),
-  project("project"),
-  service("service"),
-  consultant("consultant"),
-  yooNote("yooNote"),
-  company("company"),
-  learn("learn"),
-  user("user"),
-  insurance("insurance"),
-  target("target"),
-  tutorial("tutorial"),
-  attribute("attribute"),
-  shopCategory("shopCategory"),
-  magazine("magazine");
-
-  const UseCaseCategory(this.title);
-
-  @override
-  String toString() => name;
-  final String title;
-}
+// enum UseCaseCategory {
+//   location("location"),
+//   category("category"),
+//   colors("colors"),
+//   specialty("specialty"),
+//   specializedArt("specializedArt"),
+//   tag("tag"),
+//   ad("ad"),
+//   amnbekhar("amnbekhar"),
+//   brand("brand"),
+//   dailyPrice("dailyPrice"),
+//   tender("tender"),
+//   chanel("chanel"),
+//   group("group"),
+//   auction("auction"),
+//   project("project"),
+//   service("service"),
+//   consultant("consultant"),
+//   yooNote("yooNote"),
+//   company("company"),
+//   learn("learn"),
+//   user("user"),
+//   insurance("insurance"),
+//   target("target"),
+//   tutorial("tutorial"),
+//   attribute("attribute"),
+//   shopCategory("shopCategory"),
+//   magazine("magazine");
+//
+//   const UseCaseCategory(this.title);
+//
+//   @override
+//   String toString() => name;
+//   final String title;
+// }
 
 enum TypeUser {
   hiring('hiring'),
@@ -581,29 +581,29 @@ enum PrivacyType {
   final int title;
 }
 
-enum UseCaseMedia {
-  image("image"),
-  all("all"),
-  audio("audio"),
-  video("video"),
-  media("media"),
-  cover("cover"),
-  apk("apk"),
-  profile("profile"),
-  document("document"),
-  license("license"),
-  chat("Chat"),
-  zip("zip"),
-  bio("bio"),
-  post("post"),
-  text("text");
-
-  const UseCaseMedia(this.title);
-
-  @override
-  String toString() => name;
-  final String title;
-}
+// enum UseCaseMedia {
+//   image("image"),
+//   all("all"),
+//   audio("audio"),
+//   video("video"),
+//   media("media"),
+//   cover("cover"),
+//   apk("apk"),
+//   profile("profile"),
+//   document("document"),
+//   license("license"),
+//   chat("Chat"),
+//   zip("zip"),
+//   bio("bio"),
+//   post("post"),
+//   text("text");
+//
+//   const UseCaseMedia(this.title);
+//
+//   @override
+//   String toString() => name;
+//   final String title;
+// }
 
 // enum UseCaseChat {
 //   group("group"),
@@ -644,35 +644,35 @@ enum TypeKindAd {
   final String titleTr1;
   final int status;
 }
-
-enum TypeCategory {
-  Explore('Explore'),
-  Digital('Digital'),
-  image("image"),
-  video("video"),
-  music("music"),
-  yooNote("yooNote"),
-  pdf("pdf"),
-  group("group"),
-  media("media"),
-  chanel("chanel"),
-  apk("apk"),
-  app("app"),
-  game("game"),
-  commodity("commodity"),
-  job("job"),
-  attribute("attribute"),
-  physical('physical'),
-  userStatus('userStatus'),
-  jobType('jobType'),
-  jobPlace('jobPlace');
-
-  const TypeCategory(this.title);
-
-  @override
-  String toString() => name;
-  final String title;
-}
+//
+// enum TypeCategory {
+//   Explore('Explore'),
+//   Digital('Digital'),
+//   image("image"),
+//   video("video"),
+//   music("music"),
+//   yooNote("yooNote"),
+//   pdf("pdf"),
+//   group("group"),
+//   media("media"),
+//   chanel("chanel"),
+//   apk("apk"),
+//   app("app"),
+//   game("game"),
+//   commodity("commodity"),
+//   job("job"),
+//   attribute("attribute"),
+//   physical('physical'),
+//   userStatus('userStatus'),
+//   jobType('jobType'),
+//   jobPlace('jobPlace');
+//
+//   const TypeCategory(this.title);
+//
+//   @override
+//   String toString() => name;
+//   final String title;
+// }
 
 enum UseCaseContent {
   news("news"),
