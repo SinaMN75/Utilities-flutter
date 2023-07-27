@@ -45,6 +45,9 @@ enum TagProduct {
   consultant(141),
   service(142),
   store(142),
+  artwork(143),
+  digitalEquipment(144),
+  toolsAndAccessories(144),
   test(300);
 
   const TagProduct(this.title);
