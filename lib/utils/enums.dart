@@ -48,6 +48,7 @@ enum TagProduct {
   artwork(147),
   digitalEquipment(148),
   toolsAndAccessories(149),
+  book(150),
   test(300);
 
   const TagProduct(this.title);
@@ -125,6 +126,7 @@ enum TagCategory {
   artwork(147),
   digitalEquipment(148),
   toolsAndAccessories(149),
+  book(150),
   amnbekhar(194);
 
   const TagCategory(this.title);
