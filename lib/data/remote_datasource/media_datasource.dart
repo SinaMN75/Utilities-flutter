@@ -17,7 +17,7 @@ class MediaDataSource {
   MediaDataSource({required this.baseUrl});
 
   Future<void> create({
-    required final String useCase,
+    required final int tagUseCase,
     required final VoidCallback action,
     required final Function(GenericResponse errorResponse) onError,
     final ProgressCallback? onSendProgress,
@@ -53,7 +53,7 @@ class MediaDataSource {
         onSendProgress: onSendProgress,
         data: FormData.fromMap({
           'Files': await MultipartFile.fromFile(file.path, filename: fileName),
-          'UseCase': useCase,
+          'tagUseCase': tagUseCase,
           'CategoryId': categoryId,
           'ContentId': contentId,
           'GroupChatId': groupChatId,
@@ -106,7 +106,7 @@ class MediaDataSource {
 
   Future<void> createSingle({
     required final File file,
-    required final String useCase,
+    required final int tagUseCase,
     required final Function(MediaReadDto response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final ProgressCallback? onSendProgress,
@@ -136,7 +136,7 @@ class MediaDataSource {
       onSendProgress: onSendProgress,
       data: FormData.fromMap(<String, dynamic>{
         'Files': await MultipartFile.fromFile(file.path, filename: fileName),
-        'UseCase': useCase,
+        'tagUseCase': tagUseCase,
         'CategoryId': categoryId,
         'ContentId': contentId,
         'GroupChatId': groupChatId,
@@ -170,7 +170,7 @@ class MediaDataSource {
 
   Future<void> createWeb({
     required final List<PlatformFile> files,
-    required final String useCase, //media
+    required final int tagUseCase, //media
     required final VoidCallback action,
     final Function(int statusCode)? error,
     final String? categoryId,
@@ -198,7 +198,7 @@ class MediaDataSource {
       final List<int> _selectedFile = uint8list!;
       String fileName = platformFile.name;
       final http.MultipartRequest request = http.MultipartRequest('POST', Uri.parse('$baseUrl/Media'));
-      request.fields['UseCase'] = useCase.toString();
+      request.fields['UseCase'] = tagUseCase.toString();
       if (categoryId != null) {
         request.fields['CategoryId'] = categoryId;
       }
@@ -277,7 +277,7 @@ class MediaDataSource {
 
   Future<void> createLink({
     required final List<String> links,
-    required final int useCase,
+    required final int tagUseCase,
     required final VoidCallback action,
     required final Function(GenericResponse errorResponse) onError,
     final ProgressCallback? onSendProgress,
@@ -305,7 +305,7 @@ class MediaDataSource {
         onSendProgress: onSendProgress,
         data: FormData.fromMap({
           'Links': <String>[link],
-          'UseCase': useCase,
+          'tagUseCase': tagUseCase,
           'CategoryId': categoryId,
           'ContentId': contentId,
           'CommentId': commentId,
