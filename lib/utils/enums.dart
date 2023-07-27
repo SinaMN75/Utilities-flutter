@@ -44,10 +44,10 @@ enum TagProduct {
   project(140),
   consultant(141),
   service(142),
-  store(142),
-  artwork(143),
-  digitalEquipment(144),
-  toolsAndAccessories(144),
+  store(146),
+  artwork(147),
+  digitalEquipment(148),
+  toolsAndAccessories(149),
   test(300);
 
   const TagProduct(this.title);
@@ -121,6 +121,10 @@ enum TagCategory {
   country(143),
   city(144),
   province(145),
+  store(146),
+  artwork(147),
+  digitalEquipment(148),
+  toolsAndAccessories(149),
   amnbekhar(194);
 
   const TagCategory(this.title);
