@@ -53,6 +53,8 @@ enum TagProduct {
   cinemaTheater(152),
   gathering(153),
   academyEducation(154),
+  event(155),
+  award(156),
   test(300);
 
   const TagProduct(this.title);
