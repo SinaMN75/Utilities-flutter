@@ -55,6 +55,9 @@ enum TagProduct {
   academyEducation(155),
   event(156),
   award(157),
+  adult(158),
+  teenager(159),
+  children(160),
   test(300);
 
   const TagProduct(this.title);
@@ -140,6 +143,9 @@ enum TagCategory {
   academyEducation(155),
   event(156),
   award(157),
+  adult(158),
+  teenager(159),
+  children(160),
   amnbekhar(194);
 
   const TagCategory(this.title);
