@@ -49,6 +49,10 @@ enum TagProduct {
   digitalEquipment(148),
   toolsAndAccessories(149),
   book(150),
+  concertFestival(151),
+  cinemaTheater(152),
+  gathering(153),
+  academyEducation(154),
   test(300);
 
   const TagProduct(this.title);

@@ -63,14 +63,14 @@ class ContentDataSource {
 
   Future<void> delete({
     required final String id,
-    required final Function(GenericResponse<ContentReadDto> response) onResponse,
+    required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
         url: "$baseUrl/Content/$id",
-        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.data, fromMap: ContentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.data, fromMap: ContentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
         failure: failure,
       );
 }
