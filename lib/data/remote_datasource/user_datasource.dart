@@ -20,7 +20,7 @@ class UserDataSource {
     final Function(String error)? failure,
   }) async =>
       httpPost(
-        url: "$baseUrl/user",
+        url: "$baseUrl/user/Register",
         body: dto,
         action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),

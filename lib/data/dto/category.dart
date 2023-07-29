@@ -323,10 +323,10 @@ extension CategoryReadDtoExtension on List<CategoryReadDto>? {
   //         .toList() ??
   //         <CategoryReadDto>[];
 
-  List<CategoryReadDto> getByTagTypeUseCase({required final int type, required final int useCase}) =>
+  List<CategoryReadDto> getByTagTypeUseCase({required final int type, required final int tagUseCase}) =>
       this
           ?.where(
-            (final CategoryReadDto e) => e.tags!.contains(type ) && e.tags!.contains( useCase),
+            (final CategoryReadDto e) => e.tags!.contains(type ) && e.tags!.contains( tagUseCase),
       )
           .toList() ??
           <CategoryReadDto>[];
@@ -357,10 +357,10 @@ extension CategoryReadDtoExtension on List<CategoryReadDto>? {
   //         <CategoryReadDto>[];
   //
   //
-  List<CategoryReadDto> getByTagUseCase({required final int useCase}) =>
+  List<CategoryReadDto> getByTagUseCase({required final int tagUseCase}) =>
       this
           ?.where(
-            (final CategoryReadDto e) => e.tags!.contains( useCase),
+            (final CategoryReadDto e) => e.tags!.contains( tagUseCase),
       )
           .toList() ??
           <CategoryReadDto>[];
