@@ -9,6 +9,7 @@ class FormFieldReadDto {
     this.optionList,
     this.type,
     this.categoryId,
+    this.tags,
     this.children,
   });
 
@@ -19,6 +20,7 @@ class FormFieldReadDto {
   final String? categoryId;
   final bool? isRequired;
   final int? type;
+  List<int>? tags;
   final List<FormFieldReadDto>? children;
 
   factory FormFieldReadDto.fromJson(String str) => FormFieldReadDto.fromMap(json.decode(str));
@@ -35,6 +37,7 @@ class FormFieldReadDto {
         "optionList": optionList,
         "type": type,
         "categoryId": categoryId,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "children": children == null ? null : List<dynamic>.from(children!.map((e) => e.toMap())),
       };
 }
