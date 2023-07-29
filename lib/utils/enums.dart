@@ -49,12 +49,12 @@ enum TagProduct {
   digitalEquipment(148),
   toolsAndAccessories(149),
   book(150),
-  concertFestival(151),
-  cinemaTheater(152),
-  gathering(153),
-  academyEducation(154),
-  event(155),
-  award(156),
+  concertFestival(152),
+  cinemaTheater(153),
+  gathering(154),
+  academyEducation(155),
+  event(156),
+  award(157),
   test(300);
 
   const TagProduct(this.title);
@@ -134,6 +134,12 @@ enum TagCategory {
   toolsAndAccessories(149),
   book(150),
   speciality(151),
+  concertFestival(152),
+  cinemaTheater(153),
+  gathering(154),
+  academyEducation(155),
+  event(156),
+  award(157),
   amnbekhar(194);
 
   const TagCategory(this.title);
