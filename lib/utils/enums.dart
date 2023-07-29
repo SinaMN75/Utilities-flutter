@@ -127,6 +127,7 @@ enum TagCategory {
   digitalEquipment(148),
   toolsAndAccessories(149),
   book(150),
+  speciality(151),
   amnbekhar(194);
 
   const TagCategory(this.title);
