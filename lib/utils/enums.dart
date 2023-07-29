@@ -58,6 +58,9 @@ enum TagProduct {
   adult(158),
   teenager(159),
   children(160),
+  recruitment(161),
+  freelancing(162),
+  cooperation(163),
   test(300);
 
   const TagProduct(this.title);
@@ -146,6 +149,9 @@ enum TagCategory {
   adult(158),
   teenager(159),
   children(160),
+  recruitment(161),
+  freelancing(162),
+  cooperation(163),
   amnbekhar(194);
 
   const TagCategory(this.title);
