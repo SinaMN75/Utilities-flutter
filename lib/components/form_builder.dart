@@ -264,7 +264,7 @@ class _FormBuilderState extends State<FormBuilder> {
     required final FormFieldReadDto field,
     final bool isChildren = true,
   }) {
-    final List<String> items = field.optionList!.split(",");
+    final List<String> items = field.optionList??<String>[];
     final List<String> selectedItems = <String>[];
     List<FormReadDto> children = forms.isNotEmpty ? forms.singleWhere((e) => e.id == field.id).children : [];
     String result = "";
@@ -390,59 +390,59 @@ class _FormBuilderState extends State<FormBuilder> {
     );
   }
 
-  Widget _groupButton({
-    required final FormFieldReadDto field,
-    final bool isChildren = true,
-  }) {
-    List<FormReadDto> children = forms.isNotEmpty ? forms.singleWhere((e) => e.id == field.id).children : [];
-    final GroupButtonController controller = GroupButtonController();
-    final List<String> items = field.optionList!.split(",");
-    final List<String> selectedItems = <String>[];
-    String result = "";
-    return iconTextVertical(
-        crossAxisAlignment: widget.crossAxisAlignment,
-        leading: Text(field.label!, style: widget.labelStyle),
-        trailing: GroupButton<String>(
-          controller: controller,
-          enableDeselect: true,
-          onSelected: (final String value, final int index, final bool isSelected) {
-            if (field.type! == 3) {
-              if (isSelected) {
-                selectedItems.clear();
-                selectedItems.add(value);
-              } else {
-                selectedItems.clear();
-              }
-            } else {
-              if (isSelected)
-                selectedItems.add(value);
-              else
-                selectedItems.remove(value);
-            }
-            result = selectedItems.join(",");
-            if (selectedItems.isNotEmpty) {
-              if (isChildren) {
-                children.removeWhere((final FormReadDto e) => e.id == field.id);
-                children.add(FormReadDto(id: field.id, title: result, formField: field));
-              } else {
-                forms.removeWhere((final FormReadDto e) => e.id == field.id);
-                forms.add(FormReadDto(id: field.id, title: result, formField: field));
-              }
-            } else {
-              if (isChildren) {
-                children.removeWhere((final FormReadDto e) => e.id == field.id);
-              } else {
-                forms.removeWhere((final FormReadDto e) => e.id == field.id);
-              }
-            }
-            forms.singleWhere((e) => e.id == field.id).children = children;
-            widget.onFormChanged(forms);
-          },
-          buttons: items,
-          isRadio: field.type! == 3 ? true : false,
-          options: widget.groupButtonOptions ?? const GroupButtonOptions(),
-        ));
-  }
+  // Widget _groupButton({
+  //   required final FormFieldReadDto field,
+  //   final bool isChildren = true,
+  // }) {
+  //   List<FormReadDto> children = forms.isNotEmpty ? forms.singleWhere((e) => e.id == field.id).children : [];
+  //   final GroupButtonController controller = GroupButtonController();
+  //   final List<String> items = field.optionList??<String>[];
+  //   final List<String> selectedItems = <String>[];
+  //   String result = "";
+  //   return iconTextVertical(
+  //       crossAxisAlignment: widget.crossAxisAlignment,
+  //       leading: Text(field.label!, style: widget.labelStyle),
+  //       trailing: GroupButton<String>(
+  //         controller: controller,
+  //         enableDeselect: true,
+  //         onSelected: (final String value, final int index, final bool isSelected) {
+  //           if (field.type! == 3) {
+  //             if (isSelected) {
+  //               selectedItems.clear();
+  //               selectedItems.add(value);
+  //             } else {
+  //               selectedItems.clear();
+  //             }
+  //           } else {
+  //             if (isSelected)
+  //               selectedItems.add(value);
+  //             else
+  //               selectedItems.remove(value);
+  //           }
+  //           result = selectedItems.join(",");
+  //           if (selectedItems.isNotEmpty) {
+  //             if (isChildren) {
+  //               children.removeWhere((final FormReadDto e) => e.id == field.id);
+  //               children.add(FormReadDto(id: field.id, title: result, formField: field));
+  //             } else {
+  //               forms.removeWhere((final FormReadDto e) => e.id == field.id);
+  //               forms.add(FormReadDto(id: field.id, title: result, formField: field));
+  //             }
+  //           } else {
+  //             if (isChildren) {
+  //               children.removeWhere((final FormReadDto e) => e.id == field.id);
+  //             } else {
+  //               forms.removeWhere((final FormReadDto e) => e.id == field.id);
+  //             }
+  //           }
+  //           forms.singleWhere((e) => e.id == field.id).children = children;
+  //           widget.onFormChanged(forms);
+  //         },
+  //         buttons: items,
+  //         isRadio: field.type! == 3 ? true : false,
+  //         options: widget.groupButtonOptions ?? const GroupButtonOptions(),
+  //       ));
+  // }
 
   Widget _textField({
     required final FormFieldReadDto field,
