@@ -65,6 +65,8 @@ enum TagProduct {
   fullTime(159),
   partTime(160),
   contractual(161),
+  free(162),
+  payment(163),
   test(900);
 
   const TagProduct(this.title);
@@ -305,7 +307,8 @@ enum ExploreType {
   shop("Shop", "فروشگاه"),
   reserve("Reserve", "رزرو"),
   adviser("Adviser", "مشاور"),
-  job("Job", "شغل");
+  job("Job", "شغل"),
+  award("Award", "مسابقه");
 
   const ExploreType(this.title, this.titleTr1);
 
