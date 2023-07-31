@@ -318,6 +318,22 @@ enum ExploreType {
   final String titleTr1;
 }
 
+
+enum JobType {
+  fullTime('Full time', "تمام وقت", 159),
+  partTime('Part time', "پاره وقت", 160),
+  project("Contractual/project", "قراردادی/پروژه ای", 161);
+
+  const JobType(this.title, this.titleTr1, this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
+
+
 enum BackResult {
   ok("ok"),
   error("error");
