@@ -65,7 +65,7 @@ enum TagProduct {
   fullTime(159),
   partTime(160),
   contractual(161),
-  test(300);
+  test(900);
 
   const TagProduct(this.title);
 
@@ -159,7 +159,9 @@ enum TagCategory {
   city(177),
   province(178),
   speciality(179),
-  test(300);
+  free(180),
+  payment(181),
+  test(900);
 
   const TagCategory(this.title);
 
@@ -337,6 +339,18 @@ enum SortLists {
 
   @override
   String toString() => name;
+  final String title;
+}
+enum AgeType2 {
+  teen("18-25", 200),
+  young("26-32",  201),
+  adult("33-40",  202);
+
+  const AgeType2(this.title,this.status);
+
+  @override
+  String toString() => name;
+  final int status;
   final String title;
 }
 
