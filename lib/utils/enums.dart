@@ -67,6 +67,7 @@ enum TagProduct {
   contractual(161),
   free(162),
   payment(163),
+  participants(164),
   test(900);
 
   const TagProduct(this.title);
@@ -235,6 +236,7 @@ enum TagMedia {
   text(113),
   chat(114),
   file(115),
+  participants(116),
   post(190);
 
   const TagMedia(this.title);
@@ -243,6 +245,8 @@ enum TagMedia {
   String toString() => name;
   final int title;
 }
+
+
 
 enum TagBase {
   category("100"),

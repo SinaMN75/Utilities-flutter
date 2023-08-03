@@ -131,8 +131,8 @@ class _FormBuilderState extends State<FormBuilder> {
               field.type == 11
                   ? dateText
                   : field.type == 12
-                      ? timeText
-                      : dateTimeText,
+                  ? timeText
+                  : dateTimeText,
               style: widget.labelStyle?.copyWith(color: widget.selectDateTimeTextColor),
             ),
           ),
@@ -186,15 +186,15 @@ class _FormBuilderState extends State<FormBuilder> {
         leading: Text(field.label!, style: widget.labelStyle),
         trailing: selectedFile == File("")
             ? GestureDetector(
-                onTap: () => showFilePicker(action: (final List<File> files) => selectedFile = files.first),
-                child: widget.uploadFileWidget ?? const Icon(Icons.add_circle, size: 30),
-              )
+          onTap: () => showFilePicker(action: (final List<File> files) => selectedFile = files.first),
+          child: widget.uploadFileWidget ?? const Icon(Icons.add_circle, size: 30),
+        )
             : Stack(
-                children: <Widget>[
-                  widget.selectedFileWidget ?? const Icon(Icons.file_copy, size: 30),
-                  const Icon(Icons.clear, size: 15).onTap(() => setter(() => selectedFile = File(""))),
-                ],
-              ),
+          children: <Widget>[
+            widget.selectedFileWidget ?? const Icon(Icons.file_copy, size: 30),
+            const Icon(Icons.clear, size: 15).onTap(() => setter(() => selectedFile = File(""))),
+          ],
+        ),
       ),
     );
   }
@@ -210,15 +210,15 @@ class _FormBuilderState extends State<FormBuilder> {
         leading: Text(field.label!, style: widget.labelStyle),
         trailing: selectedFile == File("")
             ? GestureDetector(
-                onTap: () => showFilePicker(action: (final List<File> files) => selectedFile = files.first),
-                child: widget.uploadImageWidget ?? const Icon(Icons.add_circle, size: 30),
-              )
+          onTap: () => showFilePicker(action: (final List<File> files) => selectedFile = files.first),
+          child: widget.uploadImageWidget ?? const Icon(Icons.add_circle, size: 30),
+        )
             : Stack(
-                children: <Widget>[
-                  imageFile(selectedFile, width: 70, height: 70, borderRadius: 7),
-                  const Icon(Icons.clear, size: 15).onTap(() => setter(() => selectedFile = File(""))),
-                ],
-              ),
+          children: <Widget>[
+            imageFile(selectedFile, width: 70, height: 70, borderRadius: 7),
+            const Icon(Icons.clear, size: 15).onTap(() => setter(() => selectedFile = File(""))),
+          ],
+        ),
       ),
     );
   }
@@ -230,7 +230,7 @@ class _FormBuilderState extends State<FormBuilder> {
     List<FormReadDto> children = forms.isNotEmpty ? forms.singleWhere((e) => e.id == field.id).children : [];
     final RxBool radioValue = false.obs;
     return Obx(
-      () => iconTextHorizontal(
+          () => iconTextHorizontal(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         leading: Text(field.label!, style: widget.labelStyle),
         trailing: Checkbox(
@@ -264,7 +264,8 @@ class _FormBuilderState extends State<FormBuilder> {
     required final FormFieldReadDto field,
     final bool isChildren = true,
   }) {
-    final List<String> items = field.optionList??<String>[];
+    // final List<String> items = field.optionList??<String>[];
+    final List<String> items = <String>[];
     final List<String> selectedItems = <String>[];
     List<FormReadDto> children = forms.isNotEmpty ? forms.singleWhere((e) => e.id == field.id).children : [];
     String result = "";
@@ -359,7 +360,7 @@ class _FormBuilderState extends State<FormBuilder> {
                   trailing: Icon(Icons.clear),
                 ),
               ).onTap(
-                () {
+                    () {
                   if (selectedItems.isNotEmpty) setter(() => selectedItems.removeAt(index));
                   // update forms:
                   result = selectedItems.join(",");
@@ -396,7 +397,8 @@ class _FormBuilderState extends State<FormBuilder> {
   // }) {
   //   List<FormReadDto> children = forms.isNotEmpty ? forms.singleWhere((e) => e.id == field.id).children : [];
   //   final GroupButtonController controller = GroupButtonController();
-  //   final List<String> items = field.optionList??<String>[];
+  //   // final List<String> items = field.optionList??<String>[];
+  //   final List<String> items = <String>[];
   //   final List<String> selectedItems = <String>[];
   //   String result = "";
   //   return iconTextVertical(
@@ -461,8 +463,8 @@ class _FormBuilderState extends State<FormBuilder> {
             keyboardType: field.type == 5
                 ? TextInputType.number
                 : field.type == 9
-                    ? TextInputType.phone
-                    : TextInputType.text,
+                ? TextInputType.phone
+                : TextInputType.text,
             validator: field.isRequired ?? false ? validateNotEmpty() : null,
             onChanged: (final String value) {
               if (value != "") {
@@ -503,15 +505,15 @@ class _FormBuilderState extends State<FormBuilder> {
         ),
         field.children != null && field.children!.isNotEmpty
             ? Text(
-                widget.childrenText,
-                style: widget.labelStyle,
-              )
+          widget.childrenText,
+          style: widget.labelStyle,
+        )
             : const SizedBox(),
         field.children != null && field.children!.isNotEmpty
             ? _itemSwitcher(
-                items: field.children!,
-                isChildren: true,
-              ).marginSymmetric(horizontal: 10)
+          items: field.children!,
+          isChildren: true,
+        ).marginSymmetric(horizontal: 10)
             : const SizedBox()
       ],
     );
@@ -522,7 +524,8 @@ class _FormBuilderState extends State<FormBuilder> {
   }
 
   FormFieldValidator<String> validateNotEmpty() => (final String? value) {
-        if (value!.isEmpty) return widget.requiredText;
-        return null;
-      };
+    if (value!.isEmpty) return widget.requiredText;
+    return null;
+  };
 }
+
