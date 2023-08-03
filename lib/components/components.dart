@@ -9,7 +9,6 @@ import 'package:flutter/gestures.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:rxdart/rxdart.dart' as rx;
-import 'package:syncfusion_flutter_maps/maps.dart';
 import 'package:utilities/data/dto/form_filed.dart';
 import 'package:utilities/utilities.dart';
 
@@ -20,6 +19,8 @@ part 'badges.dart';
 part 'barcode_qrcode.dart';
 
 part 'carousel_slider.dart';
+
+part 'chart.dart';
 
 part 'container.dart';
 
@@ -46,8 +47,6 @@ part 'otp_field.dart';
 part 'percent_indicator.dart';
 
 part 'plus_minus.dart';
-
-part 'radar_chart.dart';
 
 part 'rating_bar.dart';
 
