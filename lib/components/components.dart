@@ -9,8 +9,11 @@ import 'package:flutter/gestures.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:rxdart/rxdart.dart' as rx;
+import 'package:syncfusion_flutter_maps/maps.dart';
 import 'package:utilities/data/dto/form_filed.dart';
 import 'package:utilities/utilities.dart';
+
+part 'admin.dart';
 
 part 'badges.dart';
 
@@ -33,6 +36,8 @@ part 'grid.dart';
 part 'image.dart';
 
 part 'item_video.dart';
+
+part 'map.dart';
 
 part 'others.dart';
 

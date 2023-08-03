@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+part of 'components.dart';
 
 Widget adminListHeaderWidget({required final List<Widget> widgets}) => Card(
       child: Row(

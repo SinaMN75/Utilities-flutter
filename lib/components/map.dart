@@ -1,5 +1,4 @@
-import 'package:syncfusion_flutter_maps/maps.dart';
-import 'package:utilities/utilities.dart';
+part of 'components.dart';
 
 Widget sfMap({
   required final MapTileLayerController controller,
