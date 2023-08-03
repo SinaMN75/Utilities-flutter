@@ -1,7 +1,7 @@
 part of 'components.dart';
 
 Widget sfMap({
-  required final MapTileLayerController controller,
+  final MapTileLayerController? controller,
   final MapZoomPanBehavior? zoomPanBehavior,
   final List<UtilitiesMapMarker>? markers,
 }) {
