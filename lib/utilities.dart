@@ -23,6 +23,7 @@ export 'package:pin_code_fields/pin_code_fields.dart';
 export 'package:screenshot/screenshot.dart';
 export 'package:share_plus/share_plus.dart';
 export 'package:syncfusion_flutter_barcodes/barcodes.dart';
+export 'package:syncfusion_flutter_maps/maps.dart';
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:video_box/video_box.dart';
