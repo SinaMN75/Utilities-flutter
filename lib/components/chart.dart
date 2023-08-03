@@ -1,11 +1,11 @@
 part of 'components.dart';
 
 class UtilitiesPieChartData {
-  UtilitiesPieChartData(this.x, this.y, this.text);
+  UtilitiesPieChartData(this.title, this.value, this.valueText);
 
-  final String x;
-  final double y;
-  final String text;
+  final String title;
+  final double value;
+  final String valueText;
 }
 
 SfCircularChart doughnutChart({
@@ -23,9 +23,9 @@ SfCircularChart doughnutChart({
           animationDuration: 1000,
           enableTooltip: true,
           animationDelay: 1000,
-          xValueMapper: (final UtilitiesPieChartData data, final _) => data.x,
-          yValueMapper: (final UtilitiesPieChartData data, final _) => data.y,
-          dataLabelMapper: (final UtilitiesPieChartData data, final _) => data.text,
+          xValueMapper: (final UtilitiesPieChartData data, final _) => data.title,
+          yValueMapper: (final UtilitiesPieChartData data, final _) => data.value,
+          dataLabelMapper: (final UtilitiesPieChartData data, final _) => data.valueText,
           dataLabelSettings: const DataLabelSettings(isVisible: true),
         ),
       ],
