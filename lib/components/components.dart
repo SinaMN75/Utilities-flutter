@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:lottie/lottie.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:rxdart/rxdart.dart' as rx;
 import 'package:utilities/data/dto/form_filed.dart';
