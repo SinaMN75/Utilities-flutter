@@ -21,20 +21,20 @@ class FormReadDto {
   String toJson() => json.encode(toMap());
 
   factory FormReadDto.fromMap(dynamic json) => FormReadDto(
-        id: json["id"],
-        title: json["title"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        formField: json["formField"] == null ? null : FormFieldReadDto.fromMap(json["formField"]),
-        children: json["children"] == null ? [] : List<FormReadDto>.from(json["children"].cast<dynamic>().map(FormReadDto.fromMap)).toList(),
-      );
+    id: json["id"],
+    title: json["title"],
+    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+    formField: json["formField"] == null ? null : FormFieldReadDto.fromMap(json["formField"]),
+    children: json["children"] == null ? [] : List<FormReadDto>.from(json["children"].cast<dynamic>().map(FormReadDto.fromMap)).toList(),
+  );
 
   dynamic toMap() => {
-        "id": id,
-        "title": title,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-        "formField": formField == null ? null : formField!.toMap(),
-        "children": List<dynamic>.from(children.map((e) => e.toMap())),
-      };
+    "id": id,
+    "title": title,
+    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+    "formField": formField == null ? null : formField!.toMap(),
+    "children": List<dynamic>.from(children.map((e) => e.toMap())),
+  };
 }
 
 class FormCreateUpdateDto {
@@ -57,20 +57,20 @@ class FormCreateUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory FormCreateUpdateDto.fromMap(dynamic json) => FormCreateUpdateDto(
-        userId: json["userId"],
-        productId: json["productId"],
-        orderDetailId: json["orderDetailId"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        forms: json["form"] == null ? null : List<FormReadDto>.from(json["form"].cast<dynamic>().map(FormReadDto.fromMap)).toList(),
-      );
+    userId: json["userId"],
+    productId: json["productId"],
+    orderDetailId: json["orderDetailId"],
+    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+    forms: json["form"] == null ? null : List<FormReadDto>.from(json["form"].cast<dynamic>().map(FormReadDto.fromMap)).toList(),
+  );
 
   dynamic toMap() => {
-        "userId": userId,
-        "productId": productId,
-        "orderDetailId": orderDetailId,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-        "form": forms == null ? null : List<dynamic>.from(forms!.map((x) => x.toMap())),
-      };
+    "userId": userId,
+    "productId": productId,
+    "orderDetailId": orderDetailId,
+    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+    "form": forms == null ? null : List<dynamic>.from(forms!.map((x) => x.toMap())),
+  };
 }
 
 class FormFieldCreateUpdateDto {
@@ -89,9 +89,11 @@ class FormFieldCreateUpdateDto {
   final String? label;
   final String? title;
   final bool? isRequired;
-  final String? optionList;
+
+  // final String? optionList;
   final int? type;
   List<int>? tags;
+  List<String>? optionList;
   final String? categoryId;
 
   factory FormFieldCreateUpdateDto.fromJson(String str) => FormFieldCreateUpdateDto.fromMap(json.decode(str));
@@ -99,24 +101,26 @@ class FormFieldCreateUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory FormFieldCreateUpdateDto.fromMap(dynamic json) => FormFieldCreateUpdateDto(
-        id: json["id"],
-        label: json["label"],
-        title: json["title"],
-        isRequired: json["isRequired"],
-        optionList: json["optionList"],
-        type: json["type"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        categoryId: json["categoryId"],
-      );
+    id: json["id"],
+    label: json["label"],
+    title: json["title"],
+    isRequired: json["isRequired"],
+    // optionList: json["optionList"],
+    type: json["type"],
+    optionList: json["optionList"] == null ? <String>[] : List<String>.from(json["optionList"]!.map((final dynamic x) => x)),
+    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+    categoryId: json["categoryId"],
+  );
 
   dynamic toMap() => {
-        "id": id,
-        "label": label,
-        "title": title,
-        "isRequired": isRequired,
-        "optionList": optionList,
-        "type": type,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-        "categoryId": categoryId,
-      };
+    "id": id,
+    "label": label,
+    "title": title,
+    "isRequired": isRequired,
+    // "optionList": optionList,
+    "type": type,
+    "optionList": tags == null ? [] : List<dynamic>.from(optionList!.map((final String x) => x)),
+    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+    "categoryId": categoryId,
+  };
 }

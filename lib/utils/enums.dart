@@ -1,55 +1,74 @@
+import 'package:utilities/utilities.dart';
+
 enum AccountType { free, pro, unlimited, unknown }
+
 
 enum TagProduct {
   product(100),
   yooNote(101),
-  subProduct(102),
-  image(103),
-  video(104),
-  audio(105),
-  pdf(106),
-  apk(107),
-  game(108),
-  goods(109),
-  job(110),
-  attribute(111),
-  physical(112),
-  digital(113),
-  userStatus(114),
-  jobType(115),
-  jobPlace(116),
-  chanel(117),
-  story(118),
-  ad(119),
-  company(120),
-  dailyPrice(121),
-  tender(122),
-  tutorial(123),
-  blog(124),
-  subBlog(125),
-  music(126),
-  podcast(127),
-  adEmployee(128),
-  magazine(128),
-  target(129),
-  app(130),
-  all(131),
-  text(132),
-  adProject(133),
-  adHiring(134),
-  highlight(135),
-  auction(136),
-  physicalProduct(137),
-  digitalProduct(138),
-  project(140),
-  consultant(141),
-  service(142),
-  store(146),
-  artwork(147),
-  digitalEquipment(148),
-  toolsAndAccessories(149),
-  book(150),
-  test(300);
+  image(102),
+  video(103),
+  audio(104),
+  apk(106),
+  game(107),
+  goods(108),
+  job(109),
+  attribute(110),
+  physical(111),
+  digital(112),
+  userStatus(113),
+  jobType(114),
+  jobPlace(115),
+  chanel(116),
+  story(117),
+  blog(118),
+  subBlog(119),
+  music(120),
+  podcast(121),
+  adEmployee(122),
+  target(123),
+  app(124),
+  all(125),
+  text(126),
+  adProject(127),
+  adHiring(128),
+  highlight(129),
+  physicalProduct(130),
+  digitalProduct(131),
+  project(132),
+  children(133),
+  recruitment(134),
+  freelancing(135),
+  store(136),
+  artwork(137),
+  digitalEquipment(138),
+  toolsAndAccessories(139),
+  book(140),
+  cooperation(141),
+  concertFestival(142),
+  cinemaTheater(143),
+  gathering(144),
+  academyEducation(145),
+  event(146),
+  award(147),
+  adult(148),
+  teenager(149),
+  ad(150),
+  company(151),
+  dailyPrice(152),
+  tender(153),
+  tutorial(154),
+  auction(155),
+  magazine(156),
+  consultant(157),
+  service(158),
+  fullTime(159),
+  partTime(160),
+  contractual(161),
+  free(162),
+  payment(163),
+  participants(164),
+  test(900);
 
   const TagProduct(this.title);
 
@@ -58,7 +77,12 @@ enum TagProduct {
   final int title;
 }
 
+TagCategory getTagCategoryByTagProduct(final TagProduct tagProduct) => TagCategory.values.where((final TagCategory element) => element.name == tagProduct.name).toList().firstOrDefault(TagCategory.category);
+
+TagProduct getTagProductByTagCategory(final TagCategory tagCategory) => TagProduct.values.where((final TagProduct element) => element.name == tagCategory.name).toList().firstOrDefault(TagProduct.product);
+
 enum TagCategory {
+  category(100),
   yooNote(101),
   subProduct(102),
   image(103),
@@ -87,7 +111,6 @@ enum TagCategory {
   music(126),
   podcast(127),
   adEmployee(128),
-  magazine(128),
   target(129),
   app(130),
   all(131),
@@ -98,37 +121,50 @@ enum TagCategory {
   auction(136),
   physicalProduct(137),
   digitalProduct(138),
+  magazine(139),
   project(140),
-  test(195),
-  category(100),
-  specialty(102),
-  specializedArt(103),
-  colors(104),
-  brand(105),
-  tag(106),
-  user(107),
-  shopCategory(111),
-  insurance(113),
-  learn(114),
-  consultant(116),
-  group(121),
-  service(123),
-  media(127),
-  explore(137),
-  reference(140),
-  file(140),
-  model(141),
-  function(142),
-  country(143),
-  city(144),
-  province(145),
+  consultant(141),
+  service(142),
+  children(143),
+  recruitment(144),
+  freelancing(145),
   store(146),
   artwork(147),
   digitalEquipment(148),
   toolsAndAccessories(149),
   book(150),
-  speciality(151),
-  amnbekhar(194);
+  cooperation(151),
+  concertFestival(152),
+  cinemaTheater(153),
+  gathering(154),
+  academyEducation(155),
+  event(156),
+  award(157),
+  adult(158),
+  teenager(159),
+  specialty(160),
+  specializedArt(161),
+  colors(162),
+  brand(163),
+  tag(164),
+  user(165),
+  shopCategory(166),
+  insurance(167),
+  learn(168),
+  group(169),
+  media(170),
+  explore(171),
+  reference(172),
+  file(173),
+  model(174),
+  function(175),
+  country(176),
+  city(177),
+  province(178),
+  speciality(179),
+  free(180),
+  payment(181),
+  test(900);
 
   const TagCategory(this.title);
 
@@ -200,6 +236,7 @@ enum TagMedia {
   text(113),
   chat(114),
   file(115),
+  participants(116),
   post(190);
 
   const TagMedia(this.title);
@@ -208,6 +245,8 @@ enum TagMedia {
   String toString() => name;
   final int title;
 }
+
+
 
 enum TagBase {
   category("100"),
@@ -243,13 +282,37 @@ enum TagBase {
   final String title;
 }
 
+enum FormFieldType {
+  singleLineText(0),
+  multiLineText(1),
+  multiSelect(2),
+  singleSelect(3),
+  bool(4),
+  number(5),
+  file(6),
+  image(7),
+  carPlack(8),
+  phoneNumber(9),
+  password(10),
+  date(11),
+  time(12),
+  dateTime(13);
+
+  const FormFieldType(this.title);
+
+  @override
+  String toString() => name;
+  final int title;
+}
+
 enum ExploreType {
   donate("Donit", "دونیت"),
   yooNote("Yoonote", "یونوت"),
   shop("Shop", "فروشگاه"),
   reserve("Reserve", "رزرو"),
   adviser("Adviser", "مشاور"),
-  job("Job", "شغل");
+  job("Job", "شغل"),
+  award("Award", "مسابقه");
 
   const ExploreType(this.title, this.titleTr1);
 
@@ -258,6 +321,22 @@ enum ExploreType {
   final String title;
   final String titleTr1;
 }
+
+
+enum JobType {
+  fullTime('Full time', "تمام وقت", 159),
+  partTime('Part time', "پاره وقت", 160),
+  project("Contractual/project", "قراردادی/پروژه ای", 161);
+
+  const JobType(this.title, this.titleTr1, this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
+
 
 enum BackResult {
   ok("ok"),
@@ -283,6 +362,18 @@ enum SortLists {
 
   @override
   String toString() => name;
+  final String title;
+}
+enum AgeType2 {
+  teen("18-25", 200),
+  young("26-32",  201),
+  adult("33-40",  202);
+
+  const AgeType2(this.title,this.status);
+
+  @override
+  String toString() => name;
+  final int status;
   final String title;
 }
 
@@ -636,9 +727,9 @@ enum PrivacyType {
 // }
 
 enum TypeAd {
-  fullTime('Full time', "تمام وقت", 100),
-  partTime('Part time', "پاره وقت", 101),
-  image("Contractual/project", "قراردادی/پروژه ای", 102);
+  fullTime('Full time', "تمام وقت", 164),
+  partTime('Part time', "پاره وقت", 165),
+  project("Contractual/project", "قراردادی/پروژه ای", 140);
 
   const TypeAd(this.title, this.titleTr1, this.status);
 

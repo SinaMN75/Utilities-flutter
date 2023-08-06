@@ -29,7 +29,7 @@ Widget image(
         clipBehavior: clipBehavior,
       );
   } else {
-    if (source.contains("http://") || source.contains("https://"))
+    if (source.startsWith("http"))
       return imageNetwork(
         source,
         width: width,
@@ -43,6 +43,10 @@ Widget image(
         progressIndicatorBuilder: progressIndicatorBuilder,
         placeholder: placeholder,
       );
+    else if (source.startsWith("http") && source.endsWith(".json"))
+      return Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
+    else if (source.endsWith(".json"))
+      return Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
     else
       return imageAsset(
         source,
@@ -146,8 +150,8 @@ Widget imageNetwork(
                     placeholder,
                     width: width,
                     height: height,
-          // ignore: deprecated_member_use
-          color: color,
+                    // ignore: deprecated_member_use
+                    color: color,
                     fit: fit,
                     clipBehavior: clipBehavior,
                   )
