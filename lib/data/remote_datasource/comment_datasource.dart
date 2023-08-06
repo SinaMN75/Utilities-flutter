@@ -11,27 +11,27 @@ class CommentDataSource {
 
   Future<void> create({
     required final CommentCreateUpdateDto dto,
-    required final Function(GenericResponse<CommentReadDto> response) onResponse,
+    required final Function(GenericResponse<OrdersReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Comment",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
 
   Future<void> toggleLike({
     required final String commentId,
-    required final Function(GenericResponse<CommentReadDto> response) onResponse,
+    required final Function(GenericResponse<OrdersReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Comment/ToggleLikeComment/$commentId",
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
@@ -67,26 +67,26 @@ class CommentDataSource {
 
   Future<void> readById({
     required final String id,
-    required final Function(GenericResponse<CommentReadDto> response) onResponse,
+    required final Function(GenericResponse<OrdersReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
         url: "$baseUrl/Comment/$id",
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
 
   Future<void> readByProductId({
     required final String id,
-    required final Function(GenericResponse<CommentReadDto> response) onResponse,
+    required final Function(GenericResponse<OrdersReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
         url: "$baseUrl/Comment/ReadByProductId/$id",
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<OrdersReadDto>.fromJson(response.data, fromMap: OrdersReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.data)),
         failure: failure,
       );
