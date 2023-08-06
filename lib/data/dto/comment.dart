@@ -1,7 +1,7 @@
 import 'package:utilities/data/dto/reaction.dart';
 import 'package:utilities/utilities.dart';
 
-class CommentReadDto {
+class OrdersReadDto {
   String? id;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -10,14 +10,14 @@ class CommentReadDto {
   String? comment;
   int? status;
   String? parentId;
-  CommentReadDto? parent;
+  OrdersReadDto? parent;
   UserReadDto? user;
   String? userId;
   CommentJsonDetail? commentJsonDetail;
-  List<CommentReadDto>? children;
+  List<OrdersReadDto>? children;
   List<MediaReadDto>? media;
 
-  CommentReadDto({
+  OrdersReadDto({
     this.id,
     this.createdAt,
     this.updatedAt,
@@ -34,11 +34,11 @@ class CommentReadDto {
     this.media,
   });
 
-  factory CommentReadDto.fromJson(final String str) => CommentReadDto.fromMap(json.decode(str));
+  factory OrdersReadDto.fromJson(final String str) => OrdersReadDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory CommentReadDto.fromMap(final dynamic json) => CommentReadDto(
+  factory OrdersReadDto.fromMap(final dynamic json) => OrdersReadDto(
         id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -48,10 +48,10 @@ class CommentReadDto {
         status: json["status"],
         parentId: json["parentId"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-        parent: json["parent"] == null ? null : CommentReadDto.fromMap(json["parent"]),
+        parent: json["parent"] == null ? null : OrdersReadDto.fromMap(json["parent"]),
         userId: json["userId"],
         commentJsonDetail: json["jsonDetail"] == null ? null : CommentJsonDetail.fromMap(json["jsonDetail"]),
-        children: json["children"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["children"].cast<dynamic>().map(CommentReadDto.fromMap)).toList(),
+        children: json["children"] == null ? <OrdersReadDto>[] : List<OrdersReadDto>.from(json["children"].cast<dynamic>().map(OrdersReadDto.fromMap)).toList(),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
       );
 
