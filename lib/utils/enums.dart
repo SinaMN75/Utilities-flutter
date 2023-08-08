@@ -68,6 +68,7 @@ enum TagProduct {
   free(162),
   payment(163),
   participants(164),
+  directShod(165),
   test(900);
 
   const TagProduct(this.title);
@@ -164,6 +165,7 @@ enum TagCategory {
   speciality(179),
   free(180),
   payment(181),
+  directShod(182),
   test(900);
 
   const TagCategory(this.title);
@@ -246,7 +248,19 @@ enum TagMedia {
   final int title;
 }
 
+enum TagComment {
+  released('منتشر شده','Released',100),
+  inQueue('در حال بررسی','InQueue',101),
+  rejected('رد شده','Rejected',102);
 
+  const TagComment(this.title,this.titleTr1,this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
 
 enum TagBase {
   category("100"),
