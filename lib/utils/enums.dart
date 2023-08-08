@@ -68,7 +68,8 @@ enum TagProduct {
   free(162),
   payment(163),
   participants(164),
-  directShod(165),
+  file(165),
+  directShod(500),
   test(900);
 
   const TagProduct(this.title);
@@ -165,7 +166,8 @@ enum TagCategory {
   speciality(179),
   free(180),
   payment(181),
-  directShod(182),
+  favorites(182),
+  directShod(500),
   test(900);
 
   const TagCategory(this.title);
@@ -210,16 +212,20 @@ enum TagContent {
 }
 
 enum TagGender {
-  male("100"),
-  female("101"),
-  both("102");
+  man("Man", "مرد", 100),
+  woman("Woman", "زن", 101),
+  company("Company", "تجاری", 102);
+  // team("Team", "تیم", 103);
 
-  const TagGender(this.title);
+  const TagGender(this.title, this.titleTr1, this.status);
 
   @override
   String toString() => name;
   final String title;
+  final String titleTr1;
+  final int status;
 }
+
 
 enum TagMedia {
   all(100),
@@ -340,7 +346,7 @@ enum ExploreType {
 enum JobType {
   fullTime('Full time', "تمام وقت", 159),
   partTime('Part time', "پاره وقت", 160),
-  project("Contractual/project", "قراردادی/پروژه ای", 161);
+  project("Hybrid", "ترکیبی",161);
 
   const JobType(this.title, this.titleTr1, this.status);
 
