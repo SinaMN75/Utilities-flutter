@@ -68,6 +68,8 @@ enum TagProduct {
   free(162),
   payment(163),
   participants(164),
+  file(165),
+  directShod(500),
   test(900);
 
   const TagProduct(this.title);
@@ -164,6 +166,8 @@ enum TagCategory {
   speciality(179),
   free(180),
   payment(181),
+  favorites(182),
+  directShod(500),
   test(900);
 
   const TagCategory(this.title);
@@ -208,16 +212,20 @@ enum TagContent {
 }
 
 enum TagGender {
-  male("100"),
-  female("101"),
-  both("102");
+  man("Man", "مرد", 100),
+  woman("Woman", "زن", 101),
+  company("Company", "تجاری", 102);
+  // team("Team", "تیم", 103);
 
-  const TagGender(this.title);
+  const TagGender(this.title, this.titleTr1, this.status);
 
   @override
   String toString() => name;
   final String title;
+  final String titleTr1;
+  final int status;
 }
+
 
 enum TagMedia {
   all(100),
@@ -246,7 +254,19 @@ enum TagMedia {
   final int title;
 }
 
+enum TagComment {
+  released('منتشر شده','Released',100),
+  inQueue('در حال بررسی','InQueue',101),
+  rejected('رد شده','Rejected',102);
 
+  const TagComment(this.title,this.titleTr1,this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
 
 enum TagBase {
   category("100"),
@@ -326,7 +346,7 @@ enum ExploreType {
 enum JobType {
   fullTime('Full time', "تمام وقت", 159),
   partTime('Part time', "پاره وقت", 160),
-  project("Contractual/project", "قراردادی/پروژه ای", 161);
+  project("Hybrid", "ترکیبی",161);
 
   const JobType(this.title, this.titleTr1, this.status);
 
@@ -647,15 +667,15 @@ enum TypeProduct {
   final String title;
 }
 
-enum TypeChat {
-  Private(100),
-  PublicGroup(101),
-  PrivateGroup(102),
-  PublicChannel(103),
-  PrivateChannel(104),
-  GroupAndChannel(110);
+enum TagChat {
+  private(100),
+  publicGroup(101),
+  privateGroup(102),
+  publicChannel(103),
+  privateChannel(104),
+  groupAndChannel(110);
 
-  const TypeChat(this.title);
+  const TagChat(this.title);
 
   @override
   String toString() => name;

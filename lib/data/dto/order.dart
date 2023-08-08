@@ -238,6 +238,7 @@ class OrderDetail {
   String? orderId;
   String? productId;
   ProductReadDto? product;
+  int? price;
   int? finalPrice;
   String? id;
   DateTime? createdAt;
@@ -251,6 +252,7 @@ class OrderDetail {
     this.productId,
     this.product,
     this.finalPrice,
+    this.price,
     this.id,
     this.createdAt,
     this.updatedAt,
@@ -264,11 +266,12 @@ class OrderDetail {
         unitPrice: json["unitPrice"],
         count: json["count"],
         order: json["order"] == null ? null : OrderReadDto.fromMap(json["order"]),
-    product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
+        product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
         orderId: json["orderId"],
         productId: json["productId"],
         finalPrice: json["finalPrice"],
         id: json["id"],
+        price: json["price"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
       );
@@ -282,6 +285,7 @@ class OrderDetail {
         "productId": productId,
         "finalPrice": finalPrice,
         "id": id,
+        "price": price,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
       };
