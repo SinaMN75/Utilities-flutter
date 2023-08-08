@@ -35,11 +35,11 @@ class CartesianChartData {
 }
 
 class DoughnutChartData {
-  DoughnutChartData(this.title, this.value, this.valueText);
+  DoughnutChartData(this.title, this.value, {this.valueText});
 
   final String title;
   final double value;
-  final String valueText;
+  final String? valueText;
 }
 
 SfCircularChart doughnutChart({
@@ -59,7 +59,7 @@ SfCircularChart doughnutChart({
           animationDelay: 1000,
           xValueMapper: (final DoughnutChartData data, final _) => data.title,
           yValueMapper: (final DoughnutChartData data, final _) => data.value,
-          dataLabelMapper: (final DoughnutChartData data, final _) => data.valueText,
+          dataLabelMapper: (final DoughnutChartData data, final _) => data.valueText ?? data.title,
           dataLabelSettings: const DataLabelSettings(isVisible: true),
         ),
       ],
