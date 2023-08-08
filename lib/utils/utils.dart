@@ -37,33 +37,25 @@ void validateForm({required final GlobalKey<FormState> key, required final VoidC
 }
 
 bool isNumeric(final String? s) {
-  if(s == null) {
+  if (s == null) {
     return false;
   }
-  final int res = int.tryParse(s)??10000;
-  return res!=10000;
+  final int res = int.tryParse(s) ?? 10000;
+  return res != 10000;
 }
-
 
 void shareText(final String text, {final String? subject}) => Share.share(text, subject: subject);
 
 void shareFile(final List<String> file, final String text) => Share.shareXFiles(file.map(XFile.new).toList());
 
-Future<Uint8List> screenshot({required final Widget widget}) async => await ScreenshotController().captureFromWidget(widget);
-
-void shareWidget({
-  required final Widget widget,
-}) async =>
-    await ScreenshotController().capture(delay: const Duration(milliseconds: 10)).then((
-      final Uint8List? image,
-    ) async {
-      if (image != null) {
-        final Directory directory = await getApplicationDocumentsDirectory();
-        final File imagePath = await File('${directory.path}/image.png').create();
-        await imagePath.writeAsBytes(image);
-        shareFile(<String>[imagePath.path], "");
-      }
+void shareWidget({required final Widget widget}) async => await ScreenshotController().capture().then((final Uint8List? image) async {
+      final Directory directory = await getApplicationDocumentsDirectory();
+      final File imagePath = await File('${directory.path}/image.png').create();
+      await imagePath.writeAsBytes(image!);
+      shareFile(<String>[imagePath.path], "");
     });
+
+Future<Uint8List> screenshot({required final Widget widget}) => ScreenshotController().captureFromWidget(widget);
 
 Future<String> appName() async {
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -94,10 +86,7 @@ Future<void> showEasyError() => EasyLoading.showError("");
 bool isEasyLoadingShow() => EasyLoading.isShow;
 
 class MaskedTextInputFormatter extends TextInputFormatter {
-  MaskedTextInputFormatter({
-    required this.mask,
-    required this.separator,
-  });
+  MaskedTextInputFormatter({required this.mask, required this.separator});
 
   final String? mask;
   final String? separator;
@@ -107,14 +96,11 @@ class MaskedTextInputFormatter extends TextInputFormatter {
     if (newValue.text.isNotEmpty) {
       if (newValue.text.length > oldValue.text.length) {
         if (newValue.text.length > mask!.length) return oldValue;
-        if (newValue.text.length < mask!.length && mask![newValue.text.length - 1] == separator) {
+        if (newValue.text.length < mask!.length && mask![newValue.text.length - 1] == separator)
           return TextEditingValue(
             text: '${oldValue.text}$separator${newValue.text.substring(newValue.text.length - 1)}',
-            selection: TextSelection.collapsed(
-              offset: newValue.selection.end + 1,
-            ),
+            selection: TextSelection.collapsed(offset: newValue.selection.end + 1),
           );
-        }
       }
     }
     return newValue;
