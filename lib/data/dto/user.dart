@@ -306,6 +306,7 @@ class UserCreateUpdateDto {
     this.email,
     this.state,
     this.color,
+    this.meliCode,
     this.detail1,
     this.detail2,
   });
@@ -321,6 +322,7 @@ class UserCreateUpdateDto {
         lastName: json["lastName"],
         fullName: json["fullName"],
         bio: json["bio"],
+    meliCode: json["meliCode"],
         privacyType: json["privacyType"],
         badge: json["badge"],
         point: json["point"],
@@ -365,6 +367,7 @@ class UserCreateUpdateDto {
   final String? bio;
   final String? badge;
   final double? point;
+  final String? meliCode;
   final String? headline;
   final String? website;
   final String? instagram;
@@ -407,6 +410,7 @@ class UserCreateUpdateDto {
         "lastName": lastName,
         "fullName": fullName,
         "bio": bio,
+        "meliCode": meliCode,
         "badge": badge,
         "color": color,
         "point": point,

@@ -667,15 +667,15 @@ enum TypeProduct {
   final String title;
 }
 
-enum TypeChat {
-  Private(100),
-  PublicGroup(101),
-  PrivateGroup(102),
-  PublicChannel(103),
-  PrivateChannel(104),
-  GroupAndChannel(110);
+enum TagChat {
+  private(100),
+  publicGroup(101),
+  privateGroup(102),
+  publicChannel(103),
+  privateChannel(104),
+  groupAndChannel(110);
 
-  const TypeChat(this.title);
+  const TagChat(this.title);
 
   @override
   String toString() => name;
