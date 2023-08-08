@@ -59,7 +59,7 @@ SfCircularChart doughnutChart({
           animationDelay: 1000,
           xValueMapper: (final DoughnutChartData data, final _) => data.title,
           yValueMapper: (final DoughnutChartData data, final _) => data.value,
-          dataLabelMapper: (final DoughnutChartData data, final _) => data.valueText ?? data.title,
+          dataLabelMapper: (final DoughnutChartData data, final _) => data.valueText ?? data.value.toString(),
           dataLabelSettings: const DataLabelSettings(isVisible: true),
         ),
       ],
