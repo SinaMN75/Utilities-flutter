@@ -35,11 +35,11 @@ class CartesianChartData {
 }
 
 class DoughnutChartData {
-  DoughnutChartData(this.title, this.value, this.valueText);
+  DoughnutChartData(this.title, this.value, {this.valueText});
 
   final String title;
   final double value;
-  final String valueText;
+  final String? valueText;
 }
 
 SfCircularChart doughnutChart({
@@ -59,24 +59,29 @@ SfCircularChart doughnutChart({
           animationDelay: 1000,
           xValueMapper: (final DoughnutChartData data, final _) => data.title,
           yValueMapper: (final DoughnutChartData data, final _) => data.value,
-          dataLabelMapper: (final DoughnutChartData data, final _) => data.valueText,
+          dataLabelMapper: (final DoughnutChartData data, final _) => data.valueText ?? data.value.toString(),
           dataLabelSettings: const DataLabelSettings(isVisible: true),
         ),
       ],
     );
 
 SfCartesianChart cartesianChart({required final List<CartesianChartData> data}) => SfCartesianChart(
-      title: ChartTitle(),
       plotAreaBorderWidth: 0,
       primaryXAxis: CategoryAxis(majorGridLines: const MajorGridLines(width: 0)),
-      primaryYAxis: NumericAxis(minimum: 0, maximum: 80, isVisible: false, labelFormat: '{value}'),
+      primaryYAxis: NumericAxis(
+        minimum: 0,
+        maximum: data.reduce((final CartesianChartData x, final CartesianChartData y) => x.yValue! > y.yValue! ? x : y).yValue!.toDouble(),
+        isVisible: true,
+        labelFormat: '{value}',
+      ),
       series: <ColumnSeries<CartesianChartData, String>>[
         ColumnSeries<CartesianChartData, String>(
           dataSource: data,
-          xValueMapper: (final CartesianChartData data, final _) => data.x as String,
+          xValueMapper: (final CartesianChartData data, final _) => data.xValue as String,
           yValueMapper: (final CartesianChartData data, final _) => data.yValue,
           pointColorMapper: (final CartesianChartData data, final _) => data.pointColor,
           dataLabelSettings: const DataLabelSettings(isVisible: true),
-        )
+          width: 1,
+        ),
       ],
     );
