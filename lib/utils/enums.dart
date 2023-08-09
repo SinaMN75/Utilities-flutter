@@ -69,8 +69,8 @@ enum TagProduct {
   payment(163),
   participants(164),
   file(165),
-  directShod(500),
-  test(900);
+  directShod(900),
+  test(999);
 
   const TagProduct(this.title);
 
@@ -260,6 +260,19 @@ enum TagComment {
   rejected('رد شده','Rejected',102);
 
   const TagComment(this.title,this.titleTr1,this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
+enum TagStatusProduct {
+  released('منتشر شده','Released',800),
+  inQueue('در حال بررسی','InQueue',801),
+  rejected('رد شده','Rejected',802);
+
+  const TagStatusProduct(this.title,this.titleTr1,this.status);
 
   @override
   String toString() => name;
