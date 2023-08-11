@@ -3,6 +3,12 @@ import 'package:utilities/utilities.dart';
 enum AccountType { free, pro, unlimited, unknown }
 
 
+
+
+TagCategory getTagCategoryByTagProduct(final TagProduct tagProduct) => TagCategory.values.where((final TagCategory element) => element.name == tagProduct.name).toList().firstOrDefault(TagCategory.category);
+
+TagProduct getTagProductByTagCategory(final TagCategory tagCategory) => TagProduct.values.where((final TagProduct element) => element.name == tagCategory.name).toList().firstOrDefault(TagProduct.product);
+
 enum TagProduct {
   product(100),
   yooNote(101),
@@ -78,11 +84,6 @@ enum TagProduct {
   String toString() => name;
   final int title;
 }
-
-TagCategory getTagCategoryByTagProduct(final TagProduct tagProduct) => TagCategory.values.where((final TagCategory element) => element.name == tagProduct.name).toList().firstOrDefault(TagCategory.category);
-
-TagProduct getTagProductByTagCategory(final TagCategory tagCategory) => TagProduct.values.where((final TagProduct element) => element.name == tagCategory.name).toList().firstOrDefault(TagProduct.product);
-
 enum TagCategory {
   category(100),
   yooNote(101),
@@ -176,7 +177,6 @@ enum TagCategory {
   String toString() => name;
   final int title;
 }
-
 enum TagReaction {
   none(100),
   like(101),
@@ -191,7 +191,6 @@ enum TagReaction {
   String toString() => name;
   final int title;
 }
-
 enum TagContent {
   content(100),
   banner(101),
@@ -210,7 +209,6 @@ enum TagContent {
   String toString() => name;
   final int title;
 }
-
 enum TagGender {
   man("Man", "مرد", 100),
   woman("Woman", "زن", 101),
@@ -225,8 +223,6 @@ enum TagGender {
   final String titleTr1;
   final int status;
 }
-
-
 enum TagMedia {
   all(100),
   image(101),
@@ -253,7 +249,6 @@ enum TagMedia {
   String toString() => name;
   final int title;
 }
-
 enum TagComment {
   released('منتشر شده','Released',100),
   inQueue('در حال بررسی','InQueue',101),
@@ -270,7 +265,9 @@ enum TagComment {
 enum TagStatusProduct {
   released('منتشر شده','Released',800),
   inQueue('در حال بررسی','InQueue',801),
-  rejected('رد شده','Rejected',802);
+  rejected('رد شده','Rejected',802),
+  expired('منقضی شده','Expired',803),
+  deleted('حذف شده','Deleted',804);
 
   const TagStatusProduct(this.title,this.titleTr1,this.status);
 
