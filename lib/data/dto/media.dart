@@ -96,7 +96,6 @@ class MediaJsonDetail {
       };
 }
 
-
 class CreateMediaReadDto {
   String? filesPath;
   String? categoryId;
