@@ -1,17 +1,17 @@
 import 'package:utilities/utilities.dart';
 
-class AppSettingsDto {
-  AppSettingsDto({
+class AppSettingsReadDto {
+  AppSettingsReadDto({
     this.appSettings,
   });
 
   final AppSettings? appSettings;
 
-  factory AppSettingsDto.fromJson(final String str) => AppSettingsDto.fromMap(json.decode(str));
+  factory AppSettingsReadDto.fromJson(final String str) => AppSettingsReadDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory AppSettingsDto.fromMap(final dynamic json) => AppSettingsDto(
+  factory AppSettingsReadDto.fromMap(final dynamic json) => AppSettingsReadDto(
         appSettings: json["appSettings"] == null ? null : AppSettings.fromMap(json["appSettings"]),
       );
 
