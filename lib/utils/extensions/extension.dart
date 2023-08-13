@@ -25,6 +25,7 @@ part 'string_extension.dart';
 part 'text_extension.dart';
 
 part 'widget_extension.dart';
+part 'list_extension.dart';
 
 extension BoolExtensios on bool {
   bool toggle() => !this;
