@@ -20,16 +20,4 @@ class AppSettingsDataSource {
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data, fromMap: AppSettingsReadDto.fromMap)),
         failure: failure,
       );
-
-  Future<void> readLocation({
-    required final Function(GenericResponse<LocationReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpGet(
-        url: "$baseUrl/AppSettings/ReadLocation",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<LocationReadDto>.fromJson(response.data, fromMap: LocationReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data, fromMap: AppSettingsReadDto.fromMap)),
-        failure: failure,
-      );
 }
