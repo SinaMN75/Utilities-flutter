@@ -96,6 +96,79 @@ class MediaJsonDetail {
       };
 }
 
+
+class CreateMediaReadDto {
+  String? filesPath;
+  String? categoryId;
+  String? contentId;
+  String? groupChatId;
+  String? groupChatMessageId;
+  String? productId;
+  String? userId;
+  int? privacyType;
+  String? time;
+  String? artist;
+  String? album;
+  String? commentId;
+  String? bookmarkId;
+  String? chatId;
+  String? title;
+  String? notificationId;
+  String? size;
+
+  String? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? fileName;
+  int? tagUseCase;
+  MediaJsonDetail? mediaJsonDetail;
+  String? url;
+  List<int>? tags;
+  String? fileType;
+
+  CreateMediaReadDto({
+    this.filesPath,
+    this.categoryId,
+    this.contentId,
+    this.groupChatId,
+    this.groupChatMessageId,
+    this.productId,
+    this.userId,
+    this.privacyType,
+    this.time,
+    this.artist,
+    this.album,
+    this.commentId,
+    this.bookmarkId,
+    this.chatId,
+    this.title,
+    this.notificationId,
+    this.size,
+
+  });
+
+  String toJson() => json.encode(toMap());
+
+  dynamic toMap() => {
+    "filesPath": filesPath,
+    "CategoryId": categoryId,
+    "ContentId": contentId,
+    "GroupChatId": groupChatId,
+    "ProductId": productId,
+    "UserId": userId,
+    "PrivacyType": privacyType,
+    "Artist": artist,
+    'Album': album,
+    'CommentId': commentId,
+    'BookmarkId': bookmarkId,
+    'ChatId': chatId,
+    'Title': title ?? fileName,
+    'NotificationId': notificationId,
+    'Size': size,
+
+  };
+}
+
 class Chat {
   Chat({
     this.fromUserId,
