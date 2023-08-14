@@ -9,83 +9,9 @@ TagCategory getTagCategoryByTagProduct(final TagProduct tagProduct) => TagCatego
 
 TagProduct getTagProductByTagCategory(final TagCategory tagCategory) => TagProduct.values.where((final TagProduct element) => element.name == tagCategory.name).toList().firstOrDefault(TagProduct.product);
 
+
 enum TagProduct {
   product(100),
-  yooNote(101),
-  image(102),
-  video(103),
-  audio(104),
-  apk(106),
-  game(107),
-  goods(108),
-  job(109),
-  attribute(110),
-  physical(111),
-  digital(112),
-  userStatus(113),
-  jobType(114),
-  jobPlace(115),
-  chanel(116),
-  story(117),
-  blog(118),
-  subBlog(119),
-  music(120),
-  podcast(121),
-  adEmployee(122),
-  target(123),
-  app(124),
-  all(125),
-  text(126),
-  adProject(127),
-  adHiring(128),
-  highlight(129),
-  physicalProduct(130),
-  digitalProduct(131),
-  project(132),
-  children(133),
-  recruitment(134),
-  freelancing(135),
-  store(136),
-  artwork(137),
-  digitalEquipment(138),
-  toolsAndAccessories(139),
-  book(140),
-  cooperation(141),
-  concertFestival(142),
-  cinemaTheater(143),
-  gathering(144),
-  academyEducation(145),
-  event(146),
-  award(147),
-  adult(148),
-  teenager(149),
-  ad(150),
-  company(151),
-  dailyPrice(152),
-  tender(153),
-  tutorial(154),
-  auction(155),
-  magazine(156),
-  consultant(157),
-  service(158),
-  fullTime(159),
-  partTime(160),
-  contractual(161),
-  free(162),
-  payment(163),
-  participants(164),
-  file(165),
-  directShod(900),
-  test(999);
-
-  const TagProduct(this.title);
-
-  @override
-  String toString() => name;
-  final int title;
-}
-enum TagCategory {
-  category(100),
   yooNote(101),
   subProduct(102),
   image(103),
@@ -93,68 +19,154 @@ enum TagCategory {
   audio(105),
   pdf(106),
   apk(107),
-  game(108),
-  goods(109),
+  game(107),
+  goods(108),
   job(110),
   attribute(111),
   physical(112),
   digital(113),
-  userStatus(114),
-  jobType(115),
-  jobPlace(116),
-  chanel(117),
-  story(118),
-  ad(119),
+  userStatus(113),
+  jobType(114),
+  jobPlace(115),
+  chanel(116),
+  story(117),
+  ad(118),
   company(120),
   dailyPrice(121),
   tender(122),
   tutorial(123),
-  blog(124),
-  subBlog(125),
-  music(126),
-  podcast(127),
-  adEmployee(128),
-  target(129),
-  app(130),
-  all(131),
-  text(132),
-  adProject(133),
-  adHiring(134),
-  highlight(135),
-  auction(136),
+  magazine(124),
+  blog(125),
+  subBlog(126),
+  music(127),
+  podcast(128),
+  adEmployee(129),
+  target(130),
+  app(131),
+  all(132),
+  text(133),
+  adProject(134),
+  adHiring(135),
+  highlight(136),
   physicalProduct(137),
   digitalProduct(138),
-  magazine(139),
-  project(140),
-  consultant(141),
-  service(142),
-  children(143),
-  recruitment(144),
-  freelancing(145),
-  store(146),
-  artwork(147),
-  digitalEquipment(148),
-  toolsAndAccessories(149),
-  book(150),
-  cooperation(151),
-  concertFestival(152),
-  cinemaTheater(153),
-  gathering(154),
-  academyEducation(155),
-  event(156),
-  award(157),
-  adult(158),
-  teenager(159),
-  specialty(160),
-  specializedArt(161),
-  colors(162),
-  brand(163),
-  tag(164),
-  user(165),
-  shopCategory(166),
-  insurance(167),
-  learn(168),
-  group(169),
+  project(139),
+  children(140),
+  recruitment(141),
+  freelancing(142),
+  store(143),
+  artwork(144),
+  digitalEquipment(145),
+  toolsAndAccessories(146),
+  book(147),
+  cooperation(148),
+  concertFestival(149),
+  cinemaTheater(150),
+  gathering(151),
+  academyEducation(152),
+  event(153),
+  award(154),
+  adult(155),
+  teenager(156),
+  auction(157),
+  consultant(158),
+  service(159),
+  fullTime(160),
+  partTime(161),
+  contractual(162),
+  free(163),
+  payment(164),
+  participants(165),
+  file(166),
+  directShod(167),
+  news(201),
+  kindOfNew(202),
+  used(203),
+  released(301),
+  expired(302),
+  inQueue(303),
+  deleted(304),
+  notAccepted(305),
+  test(900);
+
+  const TagProduct(this.title);
+
+  @override
+  String toString() => name;
+  final int title;
+}
+
+enum TagCategory {
+  category(100),
+  yooNote(101),
+  specialty(102),
+  specializedArt(103),
+  colors(104),
+  brand(105),
+  tag(106),
+  user(107),
+  target(108),
+  tutorial(109),
+  attribute(110),
+  shopCategory(111),
+  magazine(112),
+  insurance(113),
+  learn(114),
+  company(115),
+  consultant(116),
+  ad(117),
+  dailyPrice(118),
+  tender(119),
+  chanel(120),
+  group(121),
+  auction(122),
+  service(123),
+  subProduct(124),
+  image(125),
+  video(126),
+  audio(127),
+  pdf(128),
+  apk(129),
+  game(130),
+  goods(131),
+  job(132),
+  physical(133),
+  digital(134),
+  userStatus(135),
+  jobType(136),
+  jobPlace(137),
+  story(138),
+  blog(139),
+  subBlog(140),
+  music(141),
+  podcast(142),
+  adEmployee(143),
+  app(144),
+  all(145),
+  text(146),
+  adProject(147),
+  adHiring(148),
+  highlight(149),
+  physicalProduct(150),
+  digitalProduct(151),
+  project(152),
+  children(153),
+  recruitment(154),
+  freelancing(155),
+  store(156),
+  artwork(157),
+  digitalEquipment(158),
+  toolsAndAccessories(159),
+  book(160),
+  cooperation(161),
+  concertFestival(162),
+  cinemaTheater(163),
+  gathering(164),
+  academyEducation(165),
+  event(166),
+  award(167),
+  adult(168),
+  teenager(169),
   media(170),
   explore(171),
   reference(172),
@@ -177,6 +189,40 @@ enum TagCategory {
   String toString() => name;
   final int title;
 }
+
+enum TagOrder {
+  physical(100),
+  digital(101),
+  donate(102),
+  pishtazDelivery(201),
+  sendTipaxDelivery(202),
+  customDelivery(203),
+  onlinePay(301),
+  onSitePay(302),
+  cashPay(303),
+  stripePay(304),
+  coinPay(305),
+  paypalPay(306),
+  pending(400),
+  canceled(401),
+  paid(402),
+  accept(403),
+  reject(404),
+  inProgress(405),
+  inProcess(406),
+  shipping(407),
+  refund(408),
+  refundComplete(409),
+  complete(410),
+  paidFail(412);
+
+  const TagOrder(this.title);
+
+  @override
+  String toString() => name;
+  final int title;
+}
+
 enum TagReaction {
   none(100),
   like(101),
@@ -191,17 +237,14 @@ enum TagReaction {
   String toString() => name;
   final int title;
 }
+
 enum TagContent {
-  content(100),
-  banner(101),
+  terms(101),
   aboutUs(102),
-  banner1(103),
-  banner2(104),
-  homeTop(105),
-  qa(106),
-  terms(107),
-  yoohoo(199),
-  all(200);
+  homeBanner1(103),
+  homeBanner2(104),
+  yoohoo(105),
+  banner(106);
 
   const TagContent(this.title);
 
@@ -209,20 +252,7 @@ enum TagContent {
   String toString() => name;
   final int title;
 }
-enum TagGender {
-  man("Man", "مرد", 100),
-  woman("Woman", "زن", 101),
-  company("Company", "تجاری", 102);
-  // team("Team", "تیم", 103);
 
-  const TagGender(this.title, this.titleTr1, this.status);
-
-  @override
-  String toString() => name;
-  final String title;
-  final String titleTr1;
-  final int status;
-}
 enum TagMedia {
   all(100),
   image(101),
@@ -239,9 +269,9 @@ enum TagMedia {
   media(112),
   text(113),
   chat(114),
-  file(115),
-  participants(116),
-  post(190);
+  post(115),
+  file(116),
+  participants(117);
 
   const TagMedia(this.title);
 
@@ -249,12 +279,13 @@ enum TagMedia {
   String toString() => name;
   final int title;
 }
-enum TagComment {
-  released('منتشر شده','Released',100),
-  inQueue('در حال بررسی','InQueue',101),
-  rejected('رد شده','Rejected',102);
 
-  const TagComment(this.title,this.titleTr1,this.status);
+enum TagComment {
+  released('منتشر شده', 'Released', 100),
+  inQueue('در حال بررسی', 'InQueue', 101),
+  rejected('رد شده', 'Rejected', 102);
+
+  const TagComment(this.title, this.titleTr1, this.status);
 
   @override
   String toString() => name;
@@ -262,14 +293,30 @@ enum TagComment {
   final String titleTr1;
   final int status;
 }
-enum TagStatusProduct {
-  released('منتشر شده','Released',800),
-  inQueue('در حال بررسی','InQueue',801),
-  rejected('رد شده','Rejected',802),
-  expired('منقضی شده','Expired',803),
-  deleted('حذف شده','Deleted',804);
 
-  const TagStatusProduct(this.title,this.titleTr1,this.status);
+enum TagGender {
+  man("Man", "مرد", 100),
+  woman("Woman", "زن", 101),
+  company("Company", "تجاری", 102);
+  // team("Team", "تیم", 103);
+
+  const TagGender(this.title, this.titleTr1, this.status);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int status;
+}
+
+enum TagStatusProduct {
+  released('منتشر شده', 'Released', 301),
+  expired('منقضی شده', 'Expired', 302),
+  inQueue('در حال بررسی', 'InQueue', 303),
+  deleted('حذف شده', 'Deleted', 304),
+  notAccepted('رد شده', 'Not Accepted', 305);
+
+  const TagStatusProduct(this.title, this.titleTr1, this.status);
 
   @override
   String toString() => name;
