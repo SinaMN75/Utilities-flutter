@@ -2,13 +2,9 @@ import 'package:utilities/utilities.dart';
 
 enum AccountType { free, pro, unlimited, unknown }
 
-
-
-
 TagCategory getTagCategoryByTagProduct(final TagProduct tagProduct) => TagCategory.values.where((final TagCategory element) => element.name == tagProduct.name).toList().firstOrDefault(TagCategory.category);
 
 TagProduct getTagProductByTagCategory(final TagCategory tagCategory) => TagProduct.values.where((final TagProduct element) => element.name == tagCategory.name).toList().firstOrDefault(TagProduct.product);
-
 
 enum TagProduct {
   product(100),
@@ -253,6 +249,14 @@ enum TagContent {
   final int title;
 }
 
+extension TagMediaExtension on List<TagMedia> {
+  List<int> getNumbers() => map((final TagMedia e) => e.number).toList();
+}
+
+extension NullableTagMediaExtension on List<TagMedia>? {
+  List<int> getNumbers() => (this ?? <TagMedia>[]).map((final TagMedia e) => e.number).toList();
+}
+
 enum TagMedia {
   all(100),
   image(101),
@@ -273,11 +277,11 @@ enum TagMedia {
   file(116),
   participants(117);
 
-  const TagMedia(this.title);
+  const TagMedia(this.number);
 
   @override
   String toString() => name;
-  final int title;
+  final int number;
 }
 
 enum TagComment {
@@ -399,11 +403,10 @@ enum ExploreType {
   final String titleTr1;
 }
 
-
 enum JobType {
   fullTime('Full time', "تمام وقت", 159),
   partTime('Part time', "پاره وقت", 160),
-  project("Hybrid", "ترکیبی",161);
+  project("Hybrid", "ترکیبی", 161);
 
   const JobType(this.title, this.titleTr1, this.status);
 
@@ -413,7 +416,6 @@ enum JobType {
   final String titleTr1;
   final int status;
 }
-
 
 enum BackResult {
   ok("ok"),
@@ -441,12 +443,13 @@ enum SortLists {
   String toString() => name;
   final String title;
 }
+
 enum AgeType2 {
   teen("18-25", 200),
-  young("26-32",  201),
-  adult("33-40",  202);
+  young("26-32", 201),
+  adult("33-40", 202);
 
-  const AgeType2(this.title,this.status);
+  const AgeType2(this.title, this.status);
 
   @override
   String toString() => name;

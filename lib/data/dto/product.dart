@@ -1,45 +1,6 @@
 import 'package:utilities/data/dto/order.dart';
 import 'package:utilities/utilities.dart';
 
-
-extension ProductReadDtoExtension on ProductReadDto {
-  ProductReadDto sample() => ProductReadDto(
-    id: "id",
-    userId: "userId",
-    title: "title",
-    subtitle: "subtitle",
-    description: "description",
-    jsonDetail: ProductJsonDetail(
-      details: "details",
-      address: "address",
-      author: "author",
-      phoneNumber: "phoneNumber",
-      link: "link",
-      website: "website",
-      email: "email",
-      unit: "unit",
-      latitude: 35,
-      longitude: 55,
-      minOrder: 10,
-      maxOrder: 1000,
-      startDate: DateTime.now(),
-      endDate: DateTime.now(),
-    ),
-    // type: "type",
-    tagType: 110,
-    // useCase: "useCase",
-    tagUseCase: 100,
-    enabled: true,
-    visitsCount: 100,
-    price: 10000,
-    createdAt: DateTime.now(),
-    updatedAt: DateTime.now(),
-    user: UserReadDto(),
-    status: 1,
-    media: <MediaReadDto>[MediaReadDto(url: Sample.loremPicsum)],
-  );
-}
-
 class ProductReadDto {
   ProductReadDto({
     this.id,
@@ -48,9 +9,7 @@ class ProductReadDto {
     this.title,
     this.subtitle,
     this.description,
-    // this.useCase,
     this.tagUseCase,
-    // this.type,
     this.tagType,
     this.state,
     this.boosted,
@@ -98,9 +57,7 @@ class ProductReadDto {
     isSeen: json["isSeen"],
     subtitle: json["subtitle"],
     description: json["description"],
-    // useCase: json["useCase"],
     tagUseCase: json["tagUseCase"],
-    // type: json["type"],
     tagType: json["tagType"],
     score: json["score"],
     state: json["state"],
@@ -142,9 +99,7 @@ class ProductReadDto {
   String? title;
   String? subtitle;
   String? description;
-  // String? useCase;
   int? tagUseCase;
-  // String? type;
   int? tagType;
   String? state;
   DateTime? boosted;
@@ -190,10 +145,8 @@ class ProductReadDto {
     "title": title,
     "subtitle": subtitle,
     "description": description,
-    // "useCase": useCase,
     "tagUseCase": tagUseCase,
     "isSeen": isSeen,
-    // "type": type,
     "tagType": tagType,
     "state": state,
     "score": score,

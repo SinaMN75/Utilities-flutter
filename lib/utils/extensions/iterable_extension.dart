@@ -1,7 +1,7 @@
 part of 'extension.dart';
 
 extension GenericIterableExtentions<T> on Iterable {
-  Iterable<E> mapIndexed<E, T>(E Function(int index, T item) f) sync* {
+  Iterable<E> mapIndexed<E, T>(final E Function(int index, T item) f) sync* {
     int index = 0;
     for (final T item in this) {
       yield f(index, item);
@@ -13,7 +13,7 @@ extension GenericIterableExtentions<T> on Iterable {
 
   T? getFirstIfExist() => isNullOrEmpty() ? null : first;
 
-  T? firstOrDefault(T defaultValue) => isNullOrEmpty() ? defaultValue : first;
+  T? firstOrDefault(final T defaultValue) => isNullOrEmpty() ? defaultValue : first;
 }
 
 extension IterableExtentions<T> on Iterable<T> {
@@ -36,7 +36,28 @@ extension NullableIterableExtentions on Iterable? {
   bool isNullOrEmpty() {
     if (this == null)
       return true;
-    else if (this!.length == 0) return true;
+    else if (this!.isEmpty) return true;
     return false;
+  }
+}
+
+extension ListExtensions<T> on List<T> {
+  List<T> alternative(final T main, final T replace) {
+    final List<T> list = this;
+    list.remove(main);
+    list.add(replace);
+    return list;
+  }
+
+  bool containsAll<T>(final List<T> list) {
+    final Set<T> setA = Set<T>.of(list);
+    return setA.containsAll(this);
+  }
+}
+
+extension NullableListExtensions<T> on List<T>? {
+  bool containsAll<T>(final List<T> list) {
+    final Set<T> setA = Set<T>.of(list);
+    return setA.containsAll(this ?? <T>[]);
   }
 }
