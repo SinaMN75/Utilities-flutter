@@ -329,7 +329,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
       )
       .toList();
 
-  List<String>? imagesUrl({final List<TagMedia>? tags}) => images(tags: tags)?.map((e) => e.url).toList();
+  List<String>? imagesUrl({final List<TagMedia>? tags}) => images(tags: tags)?.map((final MediaReadDto e) => e.url).toList();
 
   List<String> getImages({final int? tagUseCase}) =>
       this

@@ -13,7 +13,7 @@ extension GenericIterableExtentions<T> on Iterable {
 
   T? getFirstIfExist() => isNullOrEmpty() ? null : first;
 
-  T? firstOrDefault(final T defaultValue) => isNullOrEmpty() ? defaultValue : first;
+  T? firstOrDefault({final T? defaultValue}) => isNullOrEmpty() ? defaultValue : first;
 }
 
 extension IterableExtentions<T> on Iterable<T> {
