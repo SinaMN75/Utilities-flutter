@@ -2,9 +2,23 @@ import 'package:utilities/utilities.dart';
 
 enum AccountType { free, pro, unlimited, unknown }
 
-TagCategory getTagCategoryByTagProduct(final TagProduct tagProduct) => TagCategory.values.where((final TagCategory element) => element.name == tagProduct.name).toList().firstOrDefault(TagCategory.category);
+TagCategory getTagCategoryByTagProduct(final TagProduct tagProduct) => TagCategory.values
+    .where(
+      (final TagCategory element) => element.name == tagProduct.name,
+    )
+    .toList()
+    .firstOrDefault(
+      defaultValue: TagCategory.category,
+    );
 
-TagProduct getTagProductByTagCategory(final TagCategory tagCategory) => TagProduct.values.where((final TagProduct element) => element.name == tagCategory.name).toList().firstOrDefault(TagProduct.product);
+TagProduct getTagProductByTagCategory(final TagCategory tagCategory) => TagProduct.values
+    .where(
+      (final TagProduct element) => element.name == tagCategory.name,
+    )
+    .toList()
+    .firstOrDefault(
+      defaultValue: TagProduct.product,
+    );
 
 enum TagProduct {
   product(100),
