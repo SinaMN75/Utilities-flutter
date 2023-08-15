@@ -306,8 +306,6 @@ class ProductJsonDetail {
       };
 }
 
-///***********************************
-
 class ProductCreateUpdateDto {
   ProductCreateUpdateDto({
     this.id,
@@ -498,369 +496,172 @@ class ProductCreateUpdateDto {
 class ProductFilterDto {
   ProductFilterDto({
     this.title,
-    this.subTitle,
+    this.subtitle,
     this.description,
-    this.details,
-    this.link,
-    this.website,
-    this.address,
-    this.author,
-    this.phoneNumber,
-    this.email,
-    this.type1,
-    this.type2,
+    this.state,
     this.startPriceRange,
     this.endPriceRange,
-    this.enabled,
-    this.isForSale,
-    this.isBookmarked,
-    this.visitsCount,
-    this.length,
-    this.width,
-    this.height,
-    this.weight,
-    this.minOrder,
-    this.maxOrder,
-    this.unit,
-    this.status,
-    this.currency,
-    this.startDate,
-    this.endDate,
-    this.locations,
-    this.filterOrder,
-    this.pageSize,
-    this.pageNumber,
-    // this.useCase,
-    this.tagUseCase,
-    // this.type,
-    this.tagType,
-    this.teams,
-    this.minimal,
     this.isFollowing,
-    this.showCreator,
-    this.showCategories,
-    this.showUserCategories,
-    this.showCategoryMedia,
-    this.showChildren,
-    this.showMedia,
-    this.showTeams,
-    this.showExpired,
-    this.userId,
-    this.state,
-    this.ageCategory,
-    this.orderByVotes,
-    this.orderByVotesDecending,
-    this.orderByAtoZ,
-    this.orderByZtoA,
-    this.orderByPriceAccending,
-    this.orderByPriceDecending,
-    this.orderByCreatedDate,
-    this.orderByCreaedDateDecending,
-    this.showVotes,
-    this.subtitle,
-    this.keyValues1,
-    this.keyValues2,
-    this.maxPrice,
-    this.minPrice,
-    this.responseTime,
-    this.onTimeDelivery,
+    this.isBookmarked,
     this.hasDiscount,
-    this.discountPercent,
-    this.discountPrice,
+    this.showMedia,
     this.showForms,
     this.showFormFields,
-    this.showCategoriesFormFields,
-    this.showVoteFields,
+    this.showCategories,
     this.showVisitProducts,
-    this.showReports,
+    this.showCreator,
+    this.showCategoryMedia,
+    this.showChildren,
+    this.showChildrenParent,
+    this.showPostOfPrivateUser,
     this.showComments,
-    this.showOrders,
-    this.minValue,
-    this.maxValue,
-    this.hasComment,
-    this.hasOrder,
+    this.orderByVotes,
+    this.orderByVotesDescending,
+    this.orderByAtoZ,
+    this.orderByZtoA,
+    this.orderByPriceAscending,
+    this.orderByPriceDescending,
+    this.orderByCreatedDate,
+    this.orderByCreatedDateDescending,
+    this.orderByAgeCategory,
+    this.showCountOfComment,
+    this.pageSize,
+    this.pageNumber,
+    this.currency,
     this.categories,
-    this.userIds,
-    this.isMyBoughtList,
-    this.categoriesAnd,
     this.tags,
+    this.userIds,
     this.query,
+    this.showExpired,
+    this.boosted,
   });
 
-  factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
+  factory ProductFilterDto.fromJson(String str) => ProductFilterDto.fromMap(json.decode(str));
 
-  factory ProductFilterDto.fromMap(final dynamic json) => ProductFilterDto(
+  factory ProductFilterDto.fromMap(Map<String, dynamic> json) => ProductFilterDto(
         title: json["title"],
-        subTitle: json["subTitle"],
+        subtitle: json["subtitle"],
         description: json["description"],
-        details: json["details"],
-        link: json["link"],
         state: json["state"],
-        website: json["website"],
-        address: json["address"],
-        author: json["author"],
-        phoneNumber: json["phoneNumber"],
-        email: json["email"],
-        type2: json["type2"],
-        userId: json["userId"],
-        discountPercent: json["discountPercent"],
-        discountPrice: json["discountPrice"],
         startPriceRange: json["startPriceRange"],
         endPriceRange: json["endPriceRange"],
-        enabled: json["enabled"],
-        isForSale: json["isForSale"],
-        ageCategory: json["ageCategory"],
-        isBookmarked: json["isBookmarked"],
-        minimal: json["minimal"],
         isFollowing: json["isFollowing"],
-        visitsCount: json["visitsCount"],
-        length: json["length"],
-        width: json["width"],
-        height: json["height"],
-        weight: json["weight"],
-        minOrder: json["minOrder"],
-        maxOrder: json["maxOrder"],
-        unit: json["unit"],
-        status: json["status"],
-        currency: json["currency"],
-        startDate: json["startDate"],
-        endDate: json["endDate"],
-        filterOrder: json["filterOrder"],
-        pageSize: json["pageSize"],
-        pageNumber: json["pageNumber"],
-        // useCase: json["useCase"],
-        tagUseCase: json["tagUseCase"],
-        // type: json["type"],
-        tagType: json["tagType"],
-        showCreator: json["showCreator"],
-        showTeams: json["showTeams"],
-        showVotes: json["showVotes"],
-        showChildren: json["showChildren"],
-        showExpired: json["showExpired"],
-        showCategoryMedia: json["showCategoryMedia"],
-        showUserCategories: json["showUserCategories"],
-        showCategories: json["showCategories"],
-        isMyBoughtList: json["isMyBoughtList"],
-        showMedia: json["showMedia"],
-        orderByVotes: json["orderByVotes"],
-        orderByVotesDecending: json["orderByVotesDecending"],
-        orderByAtoZ: json["orderByAtoZ"],
-        orderByZtoA: json["orderByZtoA"],
-        orderByPriceAccending: json["orderByPriceAccending"],
-        orderByPriceDecending: json["orderByPriceDecending"],
-        orderByCreatedDate: json["orderByCreatedDate"],
-        orderByCreaedDateDecending: json["orderByCreaedDateDecending"],
-        locations: json["locations"],
-        teams: json["teams"] == null ? null : List<UserReadDto>.from(json["teams"].cast<dynamic>().map(UserReadDto.fromMap)).toList(),
-        subtitle: json["subtitle"],
-        keyValues1: json["keyValues1"],
-        keyValues2: json["keyValues2"],
-        maxPrice: json["maxPrice"],
-        minPrice: json["minPrice"],
-        responseTime: json["responseTime"],
-        onTimeDelivery: json["onTimeDelivery"],
+        isBookmarked: json["isBookmarked"],
         hasDiscount: json["hasDiscount"],
+        showMedia: json["showMedia"],
         showForms: json["showForms"],
         showFormFields: json["showFormFields"],
-        showCategoriesFormFields: json["showCategoriesFormFields"],
-        showVoteFields: json["showVoteFields"],
+        showCategories: json["showCategories"],
         showVisitProducts: json["showVisitProducts"],
-        showReports: json["showReports"],
+        showCreator: json["showCreator"],
+        showCategoryMedia: json["showCategoryMedia"],
+        showChildren: json["showChildren"],
+        showChildrenParent: json["showChildrenParent"],
+        showPostOfPrivateUser: json["showPostOfPrivateUser"],
         showComments: json["showComments"],
-        showOrders: json["showOrders"],
-        minValue: json["minValue"],
-        maxValue: json["maxValue"],
-        hasComment: json["hasComment"],
-        hasOrder: json["hasOrder"],
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final dynamic x) => x)),
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        categoriesAnd: json["categoriesAnd"] == null ? [] : List<String>.from(json["categoriesAnd"]!.map((final dynamic x) => x)),
-        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final dynamic x) => x)),
+        orderByVotes: json["orderByVotes"],
+        orderByVotesDescending: json["orderByVotesDescending"],
+        orderByAtoZ: json["orderByAtoZ"],
+        orderByZtoA: json["orderByZtoA"],
+        orderByPriceAscending: json["orderByPriceAscending"],
+        orderByPriceDescending: json["orderByPriceDescending"],
+        orderByCreatedDate: json["orderByCreatedDate"],
+        orderByCreatedDateDescending: json["orderByCreatedDateDescending"],
+        orderByAgeCategory: json["orderByAgeCategory"],
+        showCountOfComment: json["showCountOfComment"],
+        pageSize: json["pageSize"],
+        pageNumber: json["pageNumber"],
+        currency: json["currency"],
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
         query: json["query"],
+        showExpired: json["showExpired"],
+        boosted: json["boosted"],
       );
 
   final String? title;
-  final String? subTitle;
+  final String? subtitle;
   final String? description;
-  final String? details;
-  final String? link;
-  final String? website;
-  final String? address;
-  final String? author;
-  final String? phoneNumber;
-  final String? email;
-  final String? type1;
-  final String? type2;
-  final String? userId;
+  final String? state;
   final int? startPriceRange;
   final int? endPriceRange;
-  final int? discountPercent;
-  final int? discountPrice;
-  final int? ageCategory;
-  final bool? enabled;
-  final bool? isForSale;
-  final bool? isBookmarked;
-  final bool? minimal;
   final bool? isFollowing;
-  final bool? showCreator;
-  final bool? showTeams;
-  final bool? showCategories;
-  final bool? showMedia;
-  final bool? showVotes;
-  final bool? showExpired;
-  final bool? showCategoryMedia;
-  final bool? showUserCategories;
-  final bool? showChildren;
-  final bool? isMyBoughtList;
-  final int? visitsCount;
-  final double? length;
-  final double? width;
-  final double? height;
-  final int? weight;
-  final int? minOrder;
-  final int? maxOrder;
-  final String? unit;
-  final int? status;
-  final int? currency;
-  final String? startDate;
-  final String? endDate;
-  final int? filterOrder;
-  final int? pageSize;
-  final int? pageNumber;
-
-  // final String? useCase;
-  final int? tagUseCase;
-
-  // final String? type;
-  final int? tagType;
-  final String? state;
-  final bool? orderByVotesDecending;
-  final bool? orderByVotes;
-  final bool? orderByAtoZ;
-  final bool? orderByZtoA;
-  final bool? orderByPriceAccending;
-  final bool? orderByPriceDecending;
-  final bool? orderByCreatedDate;
-  final bool? orderByCreaedDateDecending;
-  final List<int>? locations;
-  final List<UserReadDto>? teams;
-  List<int>? tags;
-  final String? subtitle;
-  final String? keyValues1;
-  final String? keyValues2;
-  final int? maxPrice;
-  final int? minPrice;
-  final int? responseTime;
-  final int? onTimeDelivery;
+  final bool? isBookmarked;
   final bool? hasDiscount;
+  final bool? showMedia;
   final bool? showForms;
   final bool? showFormFields;
-  final bool? showCategoriesFormFields;
-  final bool? showVoteFields;
+  final bool? showCategories;
   final bool? showVisitProducts;
-  final bool? showReports;
+  final bool? showCreator;
+  final bool? showCategoryMedia;
+  final bool? showChildren;
+  final bool? showChildrenParent;
+  final bool? showPostOfPrivateUser;
   final bool? showComments;
-  final bool? showOrders;
-  final int? minValue;
-  final int? maxValue;
-  final bool? hasComment;
-  final bool? hasOrder;
+  final bool? orderByVotes;
+  final bool? orderByVotesDescending;
+  final bool? orderByAtoZ;
+  final bool? orderByZtoA;
+  final bool? orderByPriceAscending;
+  final bool? orderByPriceDescending;
+  final bool? orderByCreatedDate;
+  final bool? orderByCreatedDateDescending;
+  final bool? orderByAgeCategory;
+  final bool? showCountOfComment;
+  final int? pageSize;
+  final int? pageNumber;
+  final int? currency;
   final List<String>? categories;
-  final List<String>? categoriesAnd;
+  final List<int>? tags;
   final List<String>? userIds;
   final String? query;
+  final bool? showExpired;
+  final bool? boosted;
 
   String toJson() => json.encode(toMap());
 
-  dynamic toMap() => <String, dynamic>{
+  Map<String, dynamic> toMap() => {
         "title": title,
-        "subTitle": subTitle,
+        "subtitle": subtitle,
         "description": description,
-        "details": details,
-        "link": link,
-        "website": website,
-        "address": address,
-        "author": author,
-        "phoneNumber": phoneNumber,
-        "email": email,
         "state": state,
-        "type1": type1,
-        "type2": type2,
-        "userId": userId,
         "startPriceRange": startPriceRange,
         "endPriceRange": endPriceRange,
-        "enabled": enabled,
-        "isForSale": isForSale,
-        "isBookmarked": isBookmarked,
-        "minimal": minimal,
         "isFollowing": isFollowing,
-        "visitsCount": visitsCount,
-        "length": length,
-        "width": width,
-        "height": height,
-        "weight": weight,
-        "minOrder": minOrder,
-        "maxOrder": maxOrder,
-        "unit": unit,
-        "status": status,
-        "currency": currency,
-        "startDate": startDate,
-        "endDate": endDate,
-        "filterOrder": filterOrder,
-        "ageCategory": ageCategory,
-        "pageSize": pageSize,
-        "pageNumber": pageNumber,
-        // "useCase": useCase,
-        "tagUseCase": tagUseCase,
-        // "type": type,
-        "tagType": tagType,
-        "showCreator": showCreator,
-        "showTeams": showTeams,
-        "showVotes": showVotes,
-        "showExpired": showExpired,
-        "showChildren": showChildren,
-        "showCategoryMedia": showCategoryMedia,
-        "showUserCategories": showUserCategories,
-        "showCategories": showCategories,
-        "showMedia": showMedia,
-        "isMyBoughtList": isMyBoughtList,
-        "orderByVotes": orderByVotes,
-        "orderByVotesDecending": orderByVotesDecending,
-        "orderByAtoZ": orderByAtoZ,
-        "orderByZtoA": orderByZtoA,
-        "orderByPriceAccending": orderByPriceAccending,
-        "orderByPriceDecending": orderByPriceDecending,
-        "orderByCreatedDate": orderByCreatedDate,
-        "orderByCreaedDateDecending": orderByCreaedDateDecending,
-        "locations": locations,
-        "teams": teams == null ? null : List<dynamic>.from(teams!.map((final UserReadDto x) => x.toMap())),
-        "subtitle": subtitle,
-        "keyValues1": keyValues1,
-        "keyValues2": keyValues2,
-        "maxPrice": maxPrice,
-        "minPrice": minPrice,
-        "responseTime": responseTime,
-        "onTimeDelivery": onTimeDelivery,
+        "isBookmarked": isBookmarked,
         "hasDiscount": hasDiscount,
-        "discountPrice": discountPrice,
-        "discountPercent": discountPercent,
+        "showMedia": showMedia,
         "showForms": showForms,
         "showFormFields": showFormFields,
-        "showCategoriesFormFields": showCategoriesFormFields,
-        "showVoteFields": showVoteFields,
+        "showCategories": showCategories,
         "showVisitProducts": showVisitProducts,
-        "showReports": showReports,
+        "showCreator": showCreator,
+        "showCategoryMedia": showCategoryMedia,
+        "showChildren": showChildren,
+        "showChildrenParent": showChildrenParent,
+        "showPostOfPrivateUser": showPostOfPrivateUser,
         "showComments": showComments,
-        "showOrders": showOrders,
-        "minValue": minValue,
-        "maxValue": maxValue,
-        "hasComment": hasComment,
-        "hasOrder": hasOrder,
-        "categoriesAnd": categoriesAnd == null ? [] : List<dynamic>.from(categoriesAnd!.map((final String x) => x)),
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
-        "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((final String x) => x)),
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "orderByVotes": orderByVotes,
+        "orderByVotesDescending": orderByVotesDescending,
+        "orderByAtoZ": orderByAtoZ,
+        "orderByZtoA": orderByZtoA,
+        "orderByPriceAscending": orderByPriceAscending,
+        "orderByPriceDescending": orderByPriceDescending,
+        "orderByCreatedDate": orderByCreatedDate,
+        "orderByCreatedDateDescending": orderByCreatedDateDescending,
+        "orderByAgeCategory": orderByAgeCategory,
+        "showCountOfComment": showCountOfComment,
+        "pageSize": pageSize,
+        "pageNumber": pageNumber,
+        "currency": currency,
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+        "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((x) => x)),
         "query": query,
+        "showExpired": showExpired,
+        "boosted": boosted,
       };
 }
 
