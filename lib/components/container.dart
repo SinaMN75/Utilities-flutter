@@ -41,11 +41,13 @@ Widget scaffold({
 
 Widget smartRefresh({
   required final Widget child,
-  final RefreshController? controller,
+  required final RefreshController? controller,
+  final ScrollController? scrollController,
   final VoidCallback? onRefresh,
   final VoidCallback? onLoading,
 }) =>
     SmartRefresher(
+      scrollController: scrollController,
       header: const WaterDropHeader(),
       footer: CustomFooter(
         builder: (final BuildContext? context, final LoadStatus? mode) {
@@ -61,7 +63,7 @@ Widget smartRefresh({
           } else {
             body = const Text("No more Data");
           }
-          return Container(height: 55.0, child: Center(child: body));
+          return SizedBox(height: 55.0, child: Center(child: body));
         },
       ),
       controller: controller ?? RefreshController(),
