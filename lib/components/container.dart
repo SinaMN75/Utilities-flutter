@@ -39,6 +39,37 @@ Widget scaffold({
       ),
     );
 
+Widget smartRefresh({
+  required final Widget child,
+  required final RefreshController controller,
+  final VoidCallback? onRefresh,
+  final VoidCallback? onLoading,
+}) =>
+    SmartRefresher(
+      header: const WaterDropHeader(),
+      footer: CustomFooter(
+        builder: (final BuildContext? context, final LoadStatus? mode) {
+          Widget body;
+          if (mode == LoadStatus.idle) {
+            body = const Text("pull up load");
+          } else if (mode == LoadStatus.loading) {
+            body = const CupertinoActivityIndicator();
+          } else if (mode == LoadStatus.failed) {
+            body = const Text("Load Failed!Click retry!");
+          } else if (mode == LoadStatus.canLoading) {
+            body = const Text("release to load more");
+          } else {
+            body = const Text("No more Data");
+          }
+          return Container(height: 55.0, child: Center(child: body));
+        },
+      ),
+      controller: controller,
+      onRefresh: onRefresh,
+      onLoading: onLoading,
+      child: child,
+    );
+
 Widget radius({
   required final Widget child,
   final double? radius,
