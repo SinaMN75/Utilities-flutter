@@ -15,10 +15,12 @@ Widget scaffold({
   final FloatingActionButtonLocation floatingActionButtonLocation = FloatingActionButtonLocation.endFloat,
   final BoxConstraints? constraints,
   final Alignment? alignment,
+  final DrawerCallback? onDrawerChanged,
 }) =>
     GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: Scaffold(
+        onDrawerChanged: onDrawerChanged,
         key: key,
         backgroundColor: color,
         appBar: appBar,
@@ -29,7 +31,7 @@ Widget scaffold({
         floatingActionButtonLocation: floatingActionButtonLocation,
         bottomNavigationBar: bottomNavigationBar,
         body: Container(
-          constraints: constraints ?? BoxConstraints(maxWidth: 600),
+          constraints: constraints ?? const BoxConstraints(maxWidth: 600),
           decoration: decoration,
           padding: padding,
           child: body,
