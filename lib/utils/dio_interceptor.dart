@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:utilities/utils/constants.dart';
 import 'package:utilities/utils/http_interceptor.dart';
 import 'package:utilities/utils/local_storage.dart';
@@ -23,7 +24,7 @@ Future<void> request(
   if (headers != null) header.addAll(headers);
   final Dio dio = Dio();
 
-  Response response = Response(requestOptions: RequestOptions(path: '', headers: header));
+  Response response = Response(requestOptions: RequestOptions(headers: header));
   try {
     dynamic params;
     if (body != null) {
@@ -38,25 +39,15 @@ Future<void> request(
     if (httpMethod == EHttpMethod.put) response = await dio.put(url, data: params, options: Options(headers: header));
     if (httpMethod == EHttpMethod.patch) response = await dio.patch(url, data: params, options: Options(headers: header));
     if (httpMethod == EHttpMethod.delete) response = await dio.delete(url, options: Options(headers: header));
-    if (response.isSuccessful()) {
+    response.logRequest(params: params);
+    if (response.isSuccessful())
       action(response);
-    } else {
+    else
       error(response);
-    }
   } on Exception catch (error) {
-    if (failure != null) {
-      failure(error.toString());
-    }
+    if (failure != null) failure(error.toString());
   }
 
-  print("${DateTime.now().year}${DateTime.now().month}${DateTime.now().day}${DateTime.now().hour}${DateTime.now().minute}SinaMN75");
-  print("${httpMethod.toString()}\n$url\n${response.statusCode}");
-  try {
-    if (body != null) {
-      debugPrint(body.toJson());
-    }
-  } on Exception catch (_) {}
-  print(response.data);
 }
 
 Future<void> httpGet({
@@ -147,9 +138,9 @@ extension HTTP on Response<dynamic> {
 
   bool isServerError() => (statusCode ?? 0) >= 500 && (statusCode ?? 0) <= 599 ? true : false;
 
-  void log({final String params = ""}) {
-    print(
-      "${this.requestOptions.method} - ${this.requestOptions.path} - $statusCode \nPARAMS: $params \nRESPONSE: ${this.data}",
+  void logRequest({final String params = ""}) {
+    log(
+      "${requestOptions.method} - ${requestOptions.path} - $statusCode \nPARAMS: $params \nRESPONSE: $data",
     );
   }
 }
