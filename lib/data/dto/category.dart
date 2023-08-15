@@ -4,13 +4,12 @@ import 'package:utilities/data/dto/media.dart';
 
 class CategoryReadDto {
   CategoryReadDto({
+    required this.id,
     this.title,
     this.titleTr1,
     this.titleTr2,
     this.color,
-    // this.useCase,
     this.tagUseCase,
-    // this.type,
     this.tagType,
     this.price,
     this.stock,
@@ -18,7 +17,6 @@ class CategoryReadDto {
     this.order,
     this.categoryJsonDetail,
     this.children,
-    this.id,
     this.updatedAt,
     this.parent,
     this.parentId,
@@ -33,9 +31,7 @@ class CategoryReadDto {
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
         color: json["color"],
-        // useCase: json["useCase"],
         tagUseCase: json["tagUseCase"],
-        // type: json["type"],
         tagType: json["tagType"],
         count: json["count"],
         price: json["price"],
@@ -54,11 +50,7 @@ class CategoryReadDto {
   String? titleTr1;
   String? titleTr2;
   String? color;
-
-  // String? useCase;
   int? tagUseCase;
-
-  // String? type;
   int? tagType;
   int? price;
   int? stock;
@@ -68,7 +60,7 @@ class CategoryReadDto {
   CategoryReadDto? parent;
   List<CategoryReadDto>? children;
   List<int>? tags;
-  String? id;
+  String id;
   DateTime? updatedAt;
   String? parentId;
   final List<MediaReadDto>? media;
@@ -80,9 +72,7 @@ class CategoryReadDto {
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,
         "color": color,
-        // "useCase": useCase,
         "tagUseCase": tagUseCase,
-        // "type": type,
         "tagType": tagType,
         "price": price,
         "stock": stock,
@@ -156,9 +146,7 @@ class CategoryCreateUpdateDto {
     this.color,
     this.discountedPrice,
     this.link,
-    // this.useCase,
     this.tagUseCase,
-    // this.type,
     this.tagType,
     this.latitude,
     this.longitude,
@@ -181,10 +169,8 @@ class CategoryCreateUpdateDto {
         subtitle: json["subtitle"],
         color: json["color"],
         link: json["link"],
-        // useCase: json["useCase"],
         tagUseCase: json["tagUseCase"],
         discountedPrice: json["discountedPrice"],
-        // type: json["type"],
         tagType: json["tagType"],
         latitude: json["latitude"],
         longitude: json["longitude"],
@@ -203,11 +189,7 @@ class CategoryCreateUpdateDto {
   String? subtitle;
   String? color;
   String? link;
-
-  // String? useCase;
   int? tagUseCase;
-
-  // String? type;
   int? tagType;
   double? latitude;
   double? longitude;
@@ -252,9 +234,7 @@ class CategoryFilterDto {
     this.title,
     this.titleTr1,
     this.titleTr2,
-    // this.useCase,
     this.tagUseCase,
-    // this.type,
     this.tagType,
     this.parentId,
     this.showMedia,
@@ -271,9 +251,7 @@ class CategoryFilterDto {
         title: json["title"],
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
-        // useCase: json["useCase"],
         tagUseCase: json["tagUseCase"],
-        // type: json["type"],
         tagType: json["tagType"],
         parentId: json["parentId"],
         showMedia: json["showMedia"],
@@ -286,11 +264,7 @@ class CategoryFilterDto {
   String? title;
   String? titleTr1;
   String? titleTr2;
-
-  // String? useCase;
   int? tagUseCase;
-
-  // String? type;
   int? tagType;
   String? parentId;
   bool? showMedia;
@@ -306,9 +280,7 @@ class CategoryFilterDto {
         "title": title,
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,
-        // "useCase": useCase,
         "tagUseCase": tagUseCase,
-        // "type": type,
         "tagType": tagType,
         "parentId": parentId,
         "showMedia": showMedia,
@@ -321,14 +293,6 @@ class CategoryFilterDto {
 }
 
 extension CategoryReadDtoExtension on List<CategoryReadDto>? {
-  // List<CategoryReadDto> getByTypeUseCase({required final String type, required final String useCase}) =>
-  //     this
-  //         ?.where(
-  //           (final CategoryReadDto e) => e.type == type && e.useCase == useCase,
-  //     )
-  //         .toList() ??
-  //         <CategoryReadDto>[];
-
   List<CategoryReadDto> getByTagTypeUseCase({required final int type, required final int tagUseCase}) =>
       this
           ?.where((final CategoryReadDto e) => (e.tags ?? <int>[]).contains(type) && (e.tags ?? <int>[]).contains(tagUseCase)
@@ -336,14 +300,6 @@ extension CategoryReadDtoExtension on List<CategoryReadDto>? {
               )
           .toList() ??
       <CategoryReadDto>[];
-
-  // List<CategoryReadDto> getByType({required final String type}) =>
-  //     this
-  //         ?.where(
-  //           (final CategoryReadDto e) => e.type == type,
-  //     )
-  //         .toList() ??
-  //         <CategoryReadDto>[];
   List<CategoryReadDto> getByTagType({required final int type}) =>
       this
           ?.where(
@@ -351,16 +307,6 @@ extension CategoryReadDtoExtension on List<CategoryReadDto>? {
           )
           .toList() ??
       <CategoryReadDto>[];
-
-  // List<CategoryReadDto> getByUseCase({required final String useCase}) =>
-  //     this
-  //         ?.where(
-  //           (final CategoryReadDto e) => e.useCase == useCase,
-  //     )
-  //         .toList() ??
-  //         <CategoryReadDto>[];
-  //
-  //
   List<CategoryReadDto> getByTagUseCase({required final int tagUseCase}) =>
       this
           ?.where(
@@ -369,5 +315,5 @@ extension CategoryReadDtoExtension on List<CategoryReadDto>? {
           .toList() ??
       <CategoryReadDto>[];
 
-  CategoryReadDto firstIfNull() => (this ?? <CategoryReadDto>[]).isNotEmpty ? this!.first : CategoryReadDto();
+  CategoryReadDto firstIfNull() => (this ?? <CategoryReadDto>[]).isNotEmpty ? this!.first : CategoryReadDto(id: '');
 }
