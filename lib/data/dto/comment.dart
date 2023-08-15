@@ -41,40 +41,40 @@ class CommentReadDto {
   String toJson() => json.encode(toMap());
 
   factory CommentReadDto.fromMap(final dynamic json) => CommentReadDto(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    score: json["score"],
-    comment: json["comment"],
-    isLiked: json["isLiked"],
-    status: json["status"],
-    parentId: json["parentId"],
-    user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-    parent: json["parent"] == null ? null : CommentReadDto.fromMap(json["parent"]),
-    userId: json["userId"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-    commentJsonDetail: json["jsonDetail"] == null ? null : CommentJsonDetail.fromMap(json["jsonDetail"]),
-    children: json["children"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["children"].cast<dynamic>().map(CommentReadDto.fromMap)).toList(),
-    media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
-  );
+        id: json["id"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        score: json["score"],
+        comment: json["comment"],
+        isLiked: json["isLiked"],
+        status: json["status"],
+        parentId: json["parentId"],
+        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
+        parent: json["parent"] == null ? null : CommentReadDto.fromMap(json["parent"]),
+        userId: json["userId"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        commentJsonDetail: json["jsonDetail"] == null ? null : CommentJsonDetail.fromMap(json["jsonDetail"]),
+        children: json["children"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["children"].cast<dynamic>().map(CommentReadDto.fromMap)).toList(),
+        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
+      );
 
   dynamic toMap() => <String, dynamic>{
-    "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "score": score,
-    "comment": comment,
-    "isLiked": isLiked,
-    "status": status,
-    "parentId": parentId,
-    "parent": parent,
-    "user": user?.toMap(),
-    "userId": userId,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-    "commentJsonDetail": commentJsonDetail?.toMap(),
-    "children": children == null ? <String>[] : List<String>.from(children!.map((final x) => x)),
-    "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
-  };
+        "id": id,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "score": score,
+        "comment": comment,
+        "isLiked": isLiked,
+        "status": status,
+        "parentId": parentId,
+        "parent": parent,
+        "user": user?.toMap(),
+        "userId": userId,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "commentJsonDetail": commentJsonDetail?.toMap(),
+        "children": children == null ? <String>[] : List<String>.from(children!.map((final x) => x)),
+        "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
+      };
 }
 
 class CommentJsonDetail {
@@ -89,12 +89,12 @@ class CommentJsonDetail {
   String toJson() => json.encode(toMap());
 
   factory CommentJsonDetail.fromMap(final dynamic json) => CommentJsonDetail(
-    commentReacts: json["reacts"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reacts"].cast<dynamic>().map(ReactionReadDto.fromMap)).toList(),
-  );
+        commentReacts: json["reacts"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reacts"].cast<dynamic>().map(ReactionReadDto.fromMap)).toList(),
+      );
 
   dynamic toMap() => {
-    "reacts": commentReacts == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(commentReacts!.map((final x) => x.toMap())),
-  };
+        "reacts": commentReacts == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(commentReacts!.map((final x) => x.toMap())),
+      };
 }
 
 class CommentCreateUpdateDto {
@@ -117,20 +117,20 @@ class CommentCreateUpdateDto {
   String? toJson() => json.encode(toMap());
 
   factory CommentCreateUpdateDto.fromMap(final dynamic json) => CommentCreateUpdateDto(
-    parentId: json["parentId"],
-    score: json["score"],
-    comment: json["comment"],
-    productId: json["productId"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-  );
+        parentId: json["parentId"],
+        score: json["score"],
+        comment: json["comment"],
+        productId: json["productId"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+      );
 
   dynamic toMap() => {
-    "parentId": parentId,
-    "score": score,
-    "comment": comment,
-    "productId": productId,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-  };
+        "parentId": parentId,
+        "score": score,
+        "comment": comment,
+        "productId": productId,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+      };
 }
 
 class CommentFilterDto {
@@ -157,22 +157,22 @@ class CommentFilterDto {
   String? toJson() => json.encode(toMap());
 
   factory CommentFilterDto.fromMap(final dynamic json) => CommentFilterDto(
-    userId: json["userId"],
-    productOwnerId: json["productOwnerId"],
-    productId: json["comment"],
-    status: json["status"],
-    pageSize: json["pageSize"],
-    pageNumber: json["pageNumber"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-  );
+        userId: json["userId"],
+        productOwnerId: json["productOwnerId"],
+        productId: json["comment"],
+        status: json["status"],
+        pageSize: json["pageSize"],
+        pageNumber: json["pageNumber"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+      );
 
   dynamic toMap() => {
-    "userId": userId,
-    "productOwnerId": productOwnerId,
-    "productId": productId,
-    "status": status,
-    "pageNumber": pageNumber,
-    "pageSize": pageSize,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-  };
+        "userId": userId,
+        "productOwnerId": productOwnerId,
+        "productId": productId,
+        "status": status,
+        "pageNumber": pageNumber,
+        "pageSize": pageSize,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+      };
 }

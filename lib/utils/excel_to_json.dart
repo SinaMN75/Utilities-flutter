@@ -98,8 +98,8 @@ class ExcelToJson {
     }
   }
 }
-class ExcelToJson2 {
 
+class ExcelToJson2 {
   /// Use this method to convert the file to a json.
   Future<String?> categoryConvert({required final Function(List<CategoryReadDto> categories) result}) async {
     Excel? excel = await _getFile();
@@ -147,8 +147,6 @@ class ExcelToJson2 {
 
     return null;
   }
-
-
 
   Map<String, dynamic> _getRows(final List<Data?> keys, final List<Data?> row) {
     Map<String, dynamic> temp = {};

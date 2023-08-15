@@ -2,7 +2,6 @@
 //
 // import 'package:utilities/data/dto/dto.dart';
 
-
 // class OrderReadDto {
 //   int? orderType;
 //   int? totalPrice;
@@ -189,7 +188,6 @@
 //   };
 // }
 //
-
 
 // class OrderReadDto {
 //   OrderReadDto({
