@@ -41,7 +41,7 @@ Widget scaffold({
 
 Widget smartRefresh({
   required final Widget child,
-  required final RefreshController controller,
+  final RefreshController? controller,
   final VoidCallback? onRefresh,
   final VoidCallback? onLoading,
 }) =>
@@ -64,7 +64,7 @@ Widget smartRefresh({
           return Container(height: 55.0, child: Center(child: body));
         },
       ),
-      controller: controller,
+      controller: controller ?? RefreshController(),
       onRefresh: onRefresh,
       onLoading: onLoading,
       child: child,
