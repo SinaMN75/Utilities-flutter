@@ -1,6 +1,12 @@
 import 'package:utilities/data/dto/reaction.dart';
 import 'package:utilities/utilities.dart';
 
+extension CommentReadDtoExtension on List<CommentReadDto> {
+  List<CommentReadDto> getByTags({required final List<TagComment> tags}) => where(
+        (final CommentReadDto e) => e.tags.containsAll(tags.getNumbers()),
+      ).toList();
+}
+
 class CommentReadDto {
   String? id;
   String? createdAt;

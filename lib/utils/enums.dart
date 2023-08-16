@@ -1,4 +1,5 @@
 enum AccountType { free, pro, unlimited, unknown }
+
 enum TagProduct {
   product(100),
   yooNote(101),
@@ -287,6 +288,14 @@ extension NullableTagMediaExtension on List<TagMedia>? {
   List<int> getNumbers() => (this ?? <TagMedia>[]).map((final TagMedia e) => e.number).toList();
 }
 
+extension TagCommentExtension on List<TagComment> {
+  List<int> getNumbers() => map((final TagComment e) => e.status).toList();
+}
+
+extension NullableTagCommentExtension on List<TagComment>? {
+  List<int> getNumbers() => (this ?? <TagComment>[]).map((final TagComment e) => e.status).toList();
+}
+
 enum TagComment {
   released('منتشر شده', 'Released', 100),
   inQueue('در حال بررسی', 'InQueue', 101),
@@ -367,7 +376,6 @@ enum TagBase {
 }
 
 enum PerPrice {
-
   perDay("Price per day", "به ازای روز", 170),
   perPerson("Price per person", "به ازای نفر", 171),
   perPage("Price per page(240 words)", "به ازای صفحه(240 کلمه)", 172),
@@ -424,11 +432,10 @@ enum ExploreType {
   final String titleTr1;
 }
 
-
 enum JobType {
   fullTime('Full time', "تمام وقت", 159),
   partTime('Part time', "پاره وقت", 160),
-  project("Hybrid", "ترکیبی",161);
+  project("Hybrid", "ترکیبی", 161);
 
   const JobType(this.title, this.titleTr1, this.status);
 
@@ -438,7 +445,6 @@ enum JobType {
   final String titleTr1;
   final int status;
 }
-
 
 enum BackResult {
   ok("ok"),
@@ -466,12 +472,13 @@ enum SortLists {
   String toString() => name;
   final String title;
 }
+
 enum AgeType2 {
   teen("18-25", 200),
-  young("26-32",  201),
-  adult("33-40",  202);
+  young("26-32", 201),
+  adult("33-40", 202);
 
-  const AgeType2(this.title,this.status);
+  const AgeType2(this.title, this.status);
 
   @override
   String toString() => name;
