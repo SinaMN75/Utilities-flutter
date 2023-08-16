@@ -79,6 +79,14 @@ enum TagProduct {
   participants(165),
   file(166),
   directShod(167),
+  remote(168),
+  onSite(169),
+  pricePerDay(170),
+  pricePerPerson(171),
+  pricePerPage(172),
+  pricePerCount(173),
+  pricePerHour(174),
+  pricePerMinute(175),
   news(201),
   kindOfNew(202),
   used(203),
@@ -180,6 +188,9 @@ enum TagCategory {
   free(180),
   payment(181),
   favorites(182),
+  remote(183),
+  onSite(183),
+
   directShod(500),
   test(900);
 
@@ -189,6 +200,7 @@ enum TagCategory {
   String toString() => name;
   final int title;
 }
+
 
 enum TagOrder {
   physical(100),
@@ -324,7 +336,23 @@ enum TagStatusProduct {
   final String titleTr1;
   final int status;
 }
+enum PerPrice {
 
+  perDay("Price per day", "به ازای روز", 170),
+  perPerson("Price per person", "به ازای نفر", 171),
+  perPage("Price per page(240 words)", "به ازای صفحه(240 کلمه)", 172),
+  perCount("Price per number", "به ازای تعداد", 173),
+  perHour("Price per hour", "به ازای ساعت", 174),
+  perMinute("Price per minute", "به ازای دقیقه", 175);
+
+  const PerPrice(this.titleTr1, this.title, this.status);
+
+  @override
+  String toString() => name;
+  final int status;
+  final String titleTr1;
+  final String title;
+}
 enum TagBase {
   category("100"),
   fffffffffffffffffffffffyooNote("101"),
