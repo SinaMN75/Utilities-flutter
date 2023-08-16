@@ -42,7 +42,7 @@ class PusheDataSource {
         filter: PusheFilter(
           customId: userIds,
         ));
-    Response response = await dio.post('https:
+    Response response = await dio.post('https://api.pushe.co/v2/messaging/notifications/', data: dto.toJson(), options: Options(headers: header));
     if (response.isSuccessful()) {
       onResponse(PusheReadDto.fromMap(response.data));
     } else {
