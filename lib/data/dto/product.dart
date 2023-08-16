@@ -201,6 +201,7 @@ class ProductJsonDetail {
     this.type2,
     this.longitude,
     this.length,
+    this.color,
     this.width,
     this.height,
     this.weight,
@@ -233,6 +234,7 @@ class ProductJsonDetail {
         length: json["length"],
         width: json["width"],
         type1: json["type1"],
+        color: json["color"],
         type2: json["type2"],
         height: json["height"],
         weight: json["weight"],
@@ -256,6 +258,7 @@ class ProductJsonDetail {
   String? unit;
   String? type1;
   String? type2;
+  String? color;
   double? latitude;
   int? responseTime;
   int? onTimeDelivery;
