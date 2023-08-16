@@ -3,7 +3,7 @@ import 'package:utilities/utilities.dart';
 
 class ProductReadDto {
   ProductReadDto({
-    this.id,
+    required this.id,
     this.createdAt,
     this.updatedAt,
     this.title,
@@ -93,7 +93,7 @@ class ProductReadDto {
         visitProducts: json["visitProducts"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["visitProducts"].cast<dynamic>().map(ProductInsight.fromMap)).toList(),
         successfulPurchase: json["successfulPurchase"],
       );
-  String? id;
+  String id;
   DateTime? createdAt;
   DateTime? updatedAt;
   String? title;
