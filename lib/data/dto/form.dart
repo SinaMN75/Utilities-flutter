@@ -90,8 +90,7 @@ class FormFieldCreateUpdateDto {
   final String? title;
   final bool? isRequired;
 
-  // final String? optionList;
-  final int? type;
+    final int? type;
   List<int>? tags;
   List<String>? optionList;
   final String? categoryId;
@@ -105,8 +104,7 @@ class FormFieldCreateUpdateDto {
         label: json["label"],
         title: json["title"],
         isRequired: json["isRequired"],
-        // optionList: json["optionList"],
-        type: json["type"],
+                type: json["type"],
         optionList: json["optionList"] == null ? <String>[] : List<String>.from(json["optionList"]!.map((final dynamic x) => x)),
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         categoryId: json["categoryId"],
@@ -117,8 +115,7 @@ class FormFieldCreateUpdateDto {
         "label": label,
         "title": title,
         "isRequired": isRequired,
-        // "optionList": optionList,
-        "type": type,
+                "type": type,
         "optionList": tags == null ? [] : List<dynamic>.from(optionList!.map((final String x) => x)),
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "categoryId": categoryId,

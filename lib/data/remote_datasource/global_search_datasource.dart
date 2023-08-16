@@ -3,17 +3,4 @@ class GlobalSearchDataSource {
 
   GlobalSearchDataSource({required this.baseUrl});
 
-// Future<void> create({
-//   required final GlobalSearchCreateDto dto,
-//   required final Function(GenericResponse<GlobalSearchReadDto> response) onResponse,
-//   required final Function(GenericResponse errorResponse) onError,
-//   final Function(String error)? failure,
-// }) async =>
-//     httpPost(
-//       url: "$baseUrl/GlobalSearch",
-//       body: dto,
-//       action: (Response response) => onResponse(GenericResponse<GlobalSearchReadDto>.fromJson(response.data, fromMap: GlobalSearchReadDto.fromMap)),
-//       error: (Response response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
-//       failure: failure,
-//     );
 }

@@ -1,6 +1,3 @@
-// To parse this JSON data, do
-//
-//     final pusheCreateDto = pusheCreateDtoFromMap(jsonString);
 
 import 'dart:convert';
 

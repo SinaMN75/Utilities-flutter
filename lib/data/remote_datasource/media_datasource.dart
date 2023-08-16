@@ -62,8 +62,7 @@ class MediaDataSource {
           'UserId': userId,
           'PrivacyType': privacyType,
           'Time': time,
-          // "tags": tags == null ? <int>[] : List<dynamic>.from(tags.map((final int x) => x)),
-          'Artist': artist,
+                    'Artist': artist,
           'Album': album,
           'CommentId': commentId,
           'BookmarkId': bookmarkId,
@@ -149,8 +148,7 @@ class MediaDataSource {
         'Album': album,
         'CommentId': commentId,
         'BookmarkId': bookmarkId,
-        // "tags": tags == null ? <int>[] : List<dynamic>.from(tags.map((final int x) => x)),
-        'ChatId': chatId,
+                'ChatId': chatId,
         'Title': title ?? fileName,
         'NotificationId': notificationId,
         'Size': size,
@@ -170,16 +168,14 @@ class MediaDataSource {
 
   Future<void> createWeb({
     required final List<PlatformFile> files,
-    required final int tagUseCase, //media
-    required final VoidCallback action,
+    required final int tagUseCase,     required final VoidCallback action,
     final Function(int statusCode)? error,
     final String? categoryId,
     final String? contentId,
     final String? commentId,
     final String? groupChatMessageId,
     final String? groupChatId,
-    final String? productId, //8f11171f-c0a4-4a70-7fe2-08da91550c6f
-    final String? userId,
+    final String? productId,     final String? userId,
     final String? chatId,
     final int? privacyType,
     final String? time,
@@ -190,8 +186,7 @@ class MediaDataSource {
     final String? size,
     final String? title,
   }) async {
-    // int i = 0;
-
+    
     for (int i = 0; i < files.length; i++) {
       PlatformFile platformFile = files[i];
       Uint8List? uint8list = platformFile.bytes;

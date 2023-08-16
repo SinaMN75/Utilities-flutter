@@ -322,13 +322,11 @@ class ProductCreateUpdateDto {
     this.link,
     this.website,
     this.email,
-    // this.type,
-    this.tagType,
+        this.tagType,
     this.type1,
     this.type2,
     this.unit,
-    // this.useCase,
-    this.tagUseCase,
+        this.tagUseCase,
     this.keyValue,
     this.state,
     this.latitude,
@@ -386,11 +384,9 @@ class ProductCreateUpdateDto {
   final String? type2;
   final String? unit;
 
-  // final String? useCase;
-  final int? tagUseCase;
+    final int? tagUseCase;
 
-  // final String? type;
-  final int? tagType;
+    final int? tagType;
   final String? keyValue;
   final String? state;
   final double? latitude;
@@ -450,10 +446,8 @@ class ProductCreateUpdateDto {
         "type1": type1,
         "type2": type2,
         "unit": unit,
-        // "useCase": useCase,
-        "tagUseCase": tagUseCase,
-        // "type": type,
-        "tagType": tagType,
+                "tagUseCase": tagUseCase,
+                "tagType": tagType,
         "keyValue": keyValue,
         "state": state,
         "latitude": latitude,
