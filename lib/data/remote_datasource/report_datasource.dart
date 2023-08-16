@@ -1,12 +1,12 @@
-import 'package:dio/dio.dart';
+import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/data/dto/report.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+import 'package:utilities/utils/http_interceptor.dart';
 
 class ReportDataSource {
-  final String baseUrl;
-
   ReportDataSource({required this.baseUrl});
+
+  final String baseUrl;
 
   Future<void> create({
     required final ReportCreateUpdateDto dto,
@@ -17,9 +17,8 @@ class ReportDataSource {
       httpPost(
         url: "$baseUrl/Report",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
-        failure: failure,
+        action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   Future<void> delete({
@@ -30,9 +29,8 @@ class ReportDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/Report?id=$id",
-        action: (Response response) => onResponse(response.statusCode.toString()),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
-        failure: failure,
+        action: (final Response response) => onResponse(response.statusCode.toString()),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   Future<void> readById({
@@ -43,9 +41,8 @@ class ReportDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Report/$id",
-        action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
-        failure: failure,
+        action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   Future<void> filter({
@@ -57,8 +54,7 @@ class ReportDataSource {
       httpPost(
         url: "$baseUrl/Report/Filter",
         body: filter,
-        action: (Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.data, fromMap: ReportReadDto.fromMap)),
-        error: (Response response) {},
-        failure: failure,
+        action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
+        error: (final Response response) {},
       );
 }
