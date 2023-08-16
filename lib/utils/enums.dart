@@ -1,25 +1,4 @@
-import 'package:utilities/utilities.dart';
-
 enum AccountType { free, pro, unlimited, unknown }
-
-TagCategory getTagCategoryByTagProduct(final TagProduct tagProduct) => TagCategory.values
-    .where(
-      (final TagCategory element) => element.name == tagProduct.name,
-    )
-    .toList()
-    .firstOrDefault(
-      defaultValue: TagCategory.category,
-    );
-
-TagProduct getTagProductByTagCategory(final TagCategory tagCategory) => TagProduct.values
-    .where(
-      (final TagProduct element) => element.name == tagCategory.name,
-    )
-    .toList()
-    .firstOrDefault(
-      defaultValue: TagProduct.product,
-    );
-
 enum TagProduct {
   product(100),
   yooNote(101),
@@ -89,6 +68,14 @@ enum TagProduct {
   participants(165),
   file(166),
   directShod(167),
+  remote(168),
+  onSite(169),
+  pricePerDay(170),
+  pricePerPerson(171),
+  pricePerPage(172),
+  pricePerCount(173),
+  pricePerHour(174),
+  pricePerMinute(175),
   news(201),
   kindOfNew(202),
   used(203),
@@ -190,6 +177,8 @@ enum TagCategory {
   free(180),
   payment(181),
   favorites(182),
+  remote(183),
+  onSite(183),
   directShod(500),
   test(900);
 
@@ -263,14 +252,6 @@ enum TagContent {
   final int title;
 }
 
-extension TagMediaExtension on List<TagMedia> {
-  List<int> getNumbers() => map((final TagMedia e) => e.number).toList();
-}
-
-extension NullableTagMediaExtension on List<TagMedia>? {
-  List<int> getNumbers() => (this ?? <TagMedia>[]).map((final TagMedia e) => e.number).toList();
-}
-
 enum TagMedia {
   all(100),
   image(101),
@@ -291,11 +272,11 @@ enum TagMedia {
   file(116),
   participants(117);
 
-  const TagMedia(this.number);
+  const TagMedia(this.title);
 
   @override
   String toString() => name;
-  final int number;
+  final int title;
 }
 
 enum TagComment {
@@ -377,6 +358,24 @@ enum TagBase {
   final String title;
 }
 
+enum PerPrice {
+
+  perDay("Price per day", "به ازای روز", 170),
+  perPerson("Price per person", "به ازای نفر", 171),
+  perPage("Price per page(240 words)", "به ازای صفحه(240 کلمه)", 172),
+  perCount("Price per number", "به ازای تعداد", 173),
+  perHour("Price per hour", "به ازای ساعت", 174),
+  perMinute("Price per minute", "به ازای دقیقه", 175);
+
+  const PerPrice(this.titleTr1, this.title, this.status);
+
+  @override
+  String toString() => name;
+  final int status;
+  final String titleTr1;
+  final String title;
+}
+
 enum FormFieldType {
   singleLineText(0),
   multiLineText(1),
@@ -417,10 +416,11 @@ enum ExploreType {
   final String titleTr1;
 }
 
+
 enum JobType {
   fullTime('Full time', "تمام وقت", 159),
   partTime('Part time', "پاره وقت", 160),
-  project("Hybrid", "ترکیبی", 161);
+  project("Hybrid", "ترکیبی",161);
 
   const JobType(this.title, this.titleTr1, this.status);
 
@@ -430,6 +430,7 @@ enum JobType {
   final String titleTr1;
   final int status;
 }
+
 
 enum BackResult {
   ok("ok"),
@@ -457,13 +458,12 @@ enum SortLists {
   String toString() => name;
   final String title;
 }
-
 enum AgeType2 {
   teen("18-25", 200),
-  young("26-32", 201),
-  adult("33-40", 202);
+  young("26-32",  201),
+  adult("33-40",  202);
 
-  const AgeType2(this.title, this.status);
+  const AgeType2(this.title,this.status);
 
   @override
   String toString() => name;
