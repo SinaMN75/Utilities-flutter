@@ -10,14 +10,14 @@ class ReportDataSource {
 
   Future<void> create({
     required final ReportCreateUpdateDto dto,
-    required final Function(GenericResponse<ReportReadDto> response) onResponse,
+    required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Report",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
