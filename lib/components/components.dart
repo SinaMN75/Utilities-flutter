@@ -9,6 +9,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:lottie/lottie.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rxdart/rxdart.dart' as rx;
