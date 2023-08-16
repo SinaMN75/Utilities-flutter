@@ -236,12 +236,14 @@ Widget iconTextHorizontal({
   final CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
   final MainAxisSize mainAxisSize = MainAxisSize.min,
   final VoidCallback? onTap,
+  final BoxDecoration? decoration,
   final double? width,
   final double? height,
 }) =>
     GestureDetector(
       onTap: onTap,
       child: row(
+        decoration: decoration,
         width: width,
         height: height,
         mainAxisAlignment: mainAxisAlignment,
@@ -261,12 +263,14 @@ Widget iconTextVertical({
   final CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
   final MainAxisSize mainAxisSize = MainAxisSize.min,
   final VoidCallback? onTap,
+  final BoxDecoration? decoration,
   final double? width,
   final double? height,
 }) =>
     GestureDetector(
       onTap: onTap,
       child: column(
+        decoration: decoration,
         width: width,
         height: height,
         mainAxisAlignment: mainAxisAlignment,
