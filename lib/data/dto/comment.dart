@@ -3,8 +3,8 @@ import 'package:utilities/utilities.dart';
 
 class CommentReadDto {
   String? id;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  String? createdAt;
+  String? updatedAt;
   double? score;
   bool? isLiked;
   String? comment;
@@ -42,8 +42,8 @@ class CommentReadDto {
 
   factory CommentReadDto.fromMap(final dynamic json) => CommentReadDto(
         id: json["id"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"] == null ? null : json["createdAt"],
+        updatedAt: json["updatedAt"] == null ? null : json["updatedAt"],
         score: json["score"],
         comment: json["comment"],
         isLiked: json["isLiked"],
@@ -60,8 +60,8 @@ class CommentReadDto {
 
   dynamic toMap() => <String, dynamic>{
         "id": id,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
         "score": score,
         "comment": comment,
         "isLiked": isLiked,
