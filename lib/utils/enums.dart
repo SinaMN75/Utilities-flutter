@@ -1,3 +1,27 @@
+extension TagMediaExtension on List<TagMedia> {
+  List<int> getNumbers() => map((final TagMedia e) => e.number).toList();
+}
+
+extension NullableTagMediaExtension on List<TagMedia>? {
+  List<int> getNumbers() => (this ?? <TagMedia>[]).map((final TagMedia e) => e.number).toList();
+}
+
+extension TagCommentExtension on List<TagComment> {
+  List<int> getNumbers() => map((final TagComment e) => e.status).toList();
+}
+
+extension NullableTagCommentExtension on List<TagComment>? {
+  List<int> getNumbers() => (this ?? <TagComment>[]).map((final TagComment e) => e.status).toList();
+}
+
+extension TagContentExtension on List<TagContent> {
+  List<int> getNumbers() => map((final TagContent e) => e.title).toList();
+}
+
+extension NullableTagContentExtension on List<TagContent>? {
+  List<int> getNumbers() => (this ?? <TagContent>[]).map((final TagContent e) => e.title).toList();
+}
+
 enum AccountType { free, pro, unlimited, unknown }
 
 enum TagProduct {
@@ -278,22 +302,6 @@ enum TagMedia {
   @override
   String toString() => name;
   final int number;
-}
-
-extension TagMediaExtension on List<TagMedia> {
-  List<int> getNumbers() => map((final TagMedia e) => e.number).toList();
-}
-
-extension NullableTagMediaExtension on List<TagMedia>? {
-  List<int> getNumbers() => (this ?? <TagMedia>[]).map((final TagMedia e) => e.number).toList();
-}
-
-extension TagCommentExtension on List<TagComment> {
-  List<int> getNumbers() => map((final TagComment e) => e.status).toList();
-}
-
-extension NullableTagCommentExtension on List<TagComment>? {
-  List<int> getNumbers() => (this ?? <TagComment>[]).map((final TagComment e) => e.status).toList();
 }
 
 enum TagComment {
