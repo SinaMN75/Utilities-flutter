@@ -65,3 +65,5 @@ part 'sound_player.dart';
 part 'story_view.dart';
 
 part 'text_field_country.dart';
+
+part 'bottom_sheet.dart';
