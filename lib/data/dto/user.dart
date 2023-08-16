@@ -644,6 +644,10 @@ class VerifyMobileForLoginDto {
   VerifyMobileForLoginDto({
     required this.mobile,
     required this.verificationCode,
+    this.firstName,
+    this.lastName,
+    this.username,
+    this.instagram,
   });
 
   factory VerifyMobileForLoginDto.fromJson(final String str) => VerifyMobileForLoginDto.fromMap(json.decode(str));
@@ -651,16 +655,28 @@ class VerifyMobileForLoginDto {
   factory VerifyMobileForLoginDto.fromMap(final dynamic json) => VerifyMobileForLoginDto(
         mobile: json["mobile"],
         verificationCode: json["verificationCode"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        username: json["username"],
+        instagram: json["instagram"],
       );
 
   final String mobile;
   final String verificationCode;
+  final String? firstName;
+  final String? lastName;
+  final String? username;
+  final String? instagram;
 
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
         "mobile": mobile,
         "verificationCode": verificationCode,
+        "firstName": firstName,
+        "lastName": lastName,
+        "username": username,
+        "instagram": instagram,
       };
 }
 
