@@ -37,7 +37,6 @@ class CommentDataSource {
         failure: failure,
       );
 
-
   Future<void> toggleLike({
     required final String commentId,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,

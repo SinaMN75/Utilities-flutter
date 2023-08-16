@@ -143,7 +143,6 @@ class UserDataSource {
     );
   }
 
-
   Future<void> loginWithEmail({
     required final LoginWithEmail dto,
     required final Function(GenericResponse<String> response) onResponse,

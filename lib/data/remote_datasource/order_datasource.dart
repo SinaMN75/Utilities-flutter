@@ -104,7 +104,6 @@ class OrderDataSource {
         failure: failure,
       );
 
-
   Future<void> updateOrderDetail({
     required final OrderDetailCreateDto dto,
     required final Function(GenericResponse) onResponse,

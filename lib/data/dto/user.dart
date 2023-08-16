@@ -322,7 +322,7 @@ class UserCreateUpdateDto {
         lastName: json["lastName"],
         fullName: json["fullName"],
         bio: json["bio"],
-    meliCode: json["meliCode"],
+        meliCode: json["meliCode"],
         privacyType: json["privacyType"],
         badge: json["badge"],
         point: json["point"],

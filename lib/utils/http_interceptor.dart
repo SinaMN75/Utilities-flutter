@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:utilities/utilities.dart';
 
@@ -56,7 +58,7 @@ Future<void> request(
   if (kDebugMode)
     delay(
       100,
-      () => response.log(params: (body == null || !encodeBody) ? "" : body.toJson()),
+      () => response.logRaw(params: (body == null || !encodeBody) ? "" : body.toJson()),
     );
   //unAuthorize
   if (response.isSuccessful()) {
@@ -235,8 +237,8 @@ extension HTTP on Response<dynamic> {
 
   bool isServerError() => (statusCode ?? 0) >= 500 && (statusCode ?? 0) <= 599 ? true : false;
 
-  void log({final String params = ""}) {
-    print(
+  void logRaw({final String params = ""}) {
+    log(
       "${this.request?.method} - ${this.request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body",
     );
   }

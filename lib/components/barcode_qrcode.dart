@@ -52,6 +52,6 @@ Widget qrScanner({
     );
 
 Widget qrcodeScannerPage({required final Function(String? value) onResponse}) => scaffold(
-  appBar: AppBar(),
-  body: qrScanner(onResponse: onResponse),
-);
+      appBar: AppBar(),
+      body: qrScanner(onResponse: onResponse),
+    );

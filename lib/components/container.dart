@@ -15,10 +15,12 @@ Widget scaffold({
   final FloatingActionButtonLocation floatingActionButtonLocation = FloatingActionButtonLocation.endFloat,
   final BoxConstraints? constraints,
   final Alignment? alignment,
+  final DrawerCallback? onDrawerChanged,
 }) =>
     GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: Scaffold(
+        onDrawerChanged: onDrawerChanged,
         key: key,
         backgroundColor: color,
         appBar: appBar,
@@ -29,12 +31,45 @@ Widget scaffold({
         floatingActionButtonLocation: floatingActionButtonLocation,
         bottomNavigationBar: bottomNavigationBar,
         body: Container(
-          constraints: constraints ?? BoxConstraints(maxWidth: 600),
+          constraints: constraints ?? const BoxConstraints(maxWidth: 600),
           decoration: decoration,
           padding: padding,
           child: body,
         ).alignAtTopCenter(),
       ),
+    );
+
+Widget smartRefresh({
+  required final Widget child,
+  required final RefreshController? controller,
+  final ScrollController? scrollController,
+  final VoidCallback? onRefresh,
+  final VoidCallback? onLoading,
+}) =>
+    SmartRefresher(
+      scrollController: scrollController,
+      header: const WaterDropHeader(),
+      footer: CustomFooter(
+        builder: (final BuildContext? context, final LoadStatus? mode) {
+          Widget body;
+          if (mode == LoadStatus.idle) {
+            body = const Text("pull up load");
+          } else if (mode == LoadStatus.loading) {
+            body = const CupertinoActivityIndicator();
+          } else if (mode == LoadStatus.failed) {
+            body = const Text("Load Failed!Click retry!");
+          } else if (mode == LoadStatus.canLoading) {
+            body = const Text("release to load more");
+          } else {
+            body = const Text("No more Data");
+          }
+          return SizedBox(height: 55.0, child: Center(child: body));
+        },
+      ),
+      controller: controller ?? RefreshController(),
+      onRefresh: onRefresh,
+      onLoading: onLoading,
+      child: child,
     );
 
 Widget radius({
@@ -201,12 +236,14 @@ Widget iconTextHorizontal({
   final CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
   final MainAxisSize mainAxisSize = MainAxisSize.min,
   final VoidCallback? onTap,
+  final BoxDecoration? decoration,
   final double? width,
   final double? height,
 }) =>
     GestureDetector(
       onTap: onTap,
       child: row(
+        decoration: decoration,
         width: width,
         height: height,
         mainAxisAlignment: mainAxisAlignment,
@@ -226,12 +263,14 @@ Widget iconTextVertical({
   final CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
   final MainAxisSize mainAxisSize = MainAxisSize.min,
   final VoidCallback? onTap,
+  final BoxDecoration? decoration,
   final double? width,
   final double? height,
 }) =>
     GestureDetector(
       onTap: onTap,
       child: column(
+        decoration: decoration,
         width: width,
         height: height,
         mainAxisAlignment: mainAxisAlignment,

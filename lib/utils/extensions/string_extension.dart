@@ -17,6 +17,8 @@ extension OptionalStringExtension on String? {
 
   String toRialMoneyPersian({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "" : "-", "");
 
+  String toTomanMoneyPersian({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} تومان".trim().replaceAll(removeNegative ? "" : "-", "");
+
   String rialToTomanMoneyPersian() => "${((this ?? "0").toInt() / 10).toString().separateNumbers3By3()} تومان ".trim();
 
   String formatJalaliDateTime() {
@@ -34,6 +36,8 @@ extension StringExtensions on String {
 
   String toRialMoneyPersian() => "${separateNumbers3By3()} ریال ";
 
+  String toTomanMoneyPersian() => "${separateNumbers3By3()} تومان ";
+
   bool isTrue() => toLowerCase() == 'true';
 
   bool isFalse() => toLowerCase() == 'false';
@@ -43,10 +47,12 @@ extension StringExtensions on String {
   int toInt() => int.tryParse(this) ?? 0;
 
   String separateNumbers3By3() => replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
+
   String separateCharacters(final int number, final String separator) => replaceAllMapped(
-    RegExp('(\\d{1,$number})(?=(\\d{$number})+(?!\\d))'),
+        RegExp('(\\d{1,$number})(?=(\\d{$number})+(?!\\d))'),
         (final Match m) => '${m[1]}$separator',
-  );
+      );
+
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this)).formatFullDate();
 
   String append0() {
