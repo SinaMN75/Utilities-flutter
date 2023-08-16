@@ -272,11 +272,19 @@ enum TagMedia {
   file(116),
   participants(117);
 
-  const TagMedia(this.title);
+  const TagMedia(this.number);
 
   @override
   String toString() => name;
-  final int title;
+  final int number;
+}
+
+extension TagMediaExtension on List<TagMedia> {
+  List<int> getNumbers() => map((final TagMedia e) => e.number).toList();
+}
+
+extension NullableTagMediaExtension on List<TagMedia>? {
+  List<int> getNumbers() => (this ?? <TagMedia>[]).map((final TagMedia e) => e.number).toList();
 }
 
 enum TagComment {
