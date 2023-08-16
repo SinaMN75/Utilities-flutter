@@ -563,31 +563,21 @@ class UserFilterDto {
 }
 
 class GetMobileVerificationCodeForLoginDto {
-  GetMobileVerificationCodeForLoginDto({
-    this.mobile,
-    this.sendSms,
-    this.token,
-  });
+  GetMobileVerificationCodeForLoginDto({required this.mobile});
 
-  factory GetMobileVerificationCodeForLoginDto.fromJson(final String str) => GetMobileVerificationCodeForLoginDto.fromMap(json.decode(str));
+  factory GetMobileVerificationCodeForLoginDto.fromJson(final String str) => GetMobileVerificationCodeForLoginDto.fromMap(
+        json.decode(str),
+      );
 
   factory GetMobileVerificationCodeForLoginDto.fromMap(final dynamic json) => GetMobileVerificationCodeForLoginDto(
         mobile: json["mobile"],
-        sendSms: json["sendSMS"],
-        token: json["token"],
       );
 
-  final String? mobile;
-  final String? token;
-  final bool? sendSms;
+  final String mobile;
 
   String toJson() => json.encode(toMap());
 
-  dynamic toMap() => {
-        "mobile": mobile,
-        "sendSMS": sendSms,
-        "token": token,
-      };
+  dynamic toMap() => {"mobile": mobile};
 }
 
 class LoginWithEmail {
