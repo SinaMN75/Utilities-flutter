@@ -16,7 +16,6 @@ export 'package:image_cropper/image_cropper.dart';
 export 'package:just_audio/just_audio.dart';
 export 'package:local_auth/local_auth.dart';
 export 'package:location/location.dart';
-export 'package:lottie/lottie.dart';
 export 'package:mobile_scanner/mobile_scanner.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:persian_datetime_picker/persian_datetime_picker.dart';
