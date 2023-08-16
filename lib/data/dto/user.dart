@@ -642,8 +642,8 @@ class LoginWithPassword {
 
 class VerifyMobileForLoginDto {
   VerifyMobileForLoginDto({
-    this.mobile,
-    this.verificationCode,
+    required this.mobile,
+    required this.verificationCode,
   });
 
   factory VerifyMobileForLoginDto.fromJson(final String str) => VerifyMobileForLoginDto.fromMap(json.decode(str));
@@ -653,8 +653,8 @@ class VerifyMobileForLoginDto {
         verificationCode: json["verificationCode"],
       );
 
-  final String? mobile;
-  final String? verificationCode;
+  final String mobile;
+  final String verificationCode;
 
   String toJson() => json.encode(toMap());
 
