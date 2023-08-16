@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/data/dto/report.dart';
