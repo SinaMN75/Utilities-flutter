@@ -7,6 +7,7 @@ export 'package:cached_network_image/cached_network_image.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
+export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:get/get.dart';
@@ -32,6 +33,8 @@ export 'package:video_box/video_box.dart';
 export 'package:webviewx_plus/webviewx_plus.dart';
 
 export 'components/components.dart';
+export 'components/dotted_border.dart';
+export 'components/percent_indicator.dart';
 export 'data/data.dart';
 export 'data/dto/dto.dart';
 export 'utils/enums.dart';

@@ -44,9 +44,9 @@ Widget image(
         placeholder: placeholder,
       );
     else if (source.startsWith("http") && source.endsWith(".json"))
-      return Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
+      return lottie.Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
     else if (source.endsWith(".json"))
-      return Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
+      return lottie.Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
     else
       return imageAsset(
         source,

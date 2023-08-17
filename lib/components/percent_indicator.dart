@@ -1,4 +1,6 @@
-part of 'components.dart';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
 
 enum ArcType { HALF, FULL }
 
