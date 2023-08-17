@@ -82,29 +82,27 @@ Widget textFieldPersianDatePicker({
 }) {
   final Rx<Jalali> jalali = Jalali.now().obs;
   final TextEditingController controller = TextEditingController(text: jalali.value.formatCompactDate());
-  return Obx(
-    () => textField(
-      controller: controller,
-      margin: margin,
-      text: text,
-      fontSize: fontSize,
-      hintText: hintText,
-      textAlign: textAlign,
-      readOnly: true,
-      textHeight: textHeight,
-      onTap: () async {
-        jalali(
-          await showPersianDatePicker(
-            context: context,
-            initialDate: jalali.value,
-            firstDate: Jalali(1350),
-            lastDate: Jalali(1405),
-          ),
-        );
-        controller.text = jalali.value.formatCompactDate();
-        onChange(jalali.value.toDateTime(), jalali.value);
-      },
-    ),
+  return textField(
+    controller: controller,
+    margin: margin,
+    text: text,
+    fontSize: fontSize,
+    hintText: hintText,
+    textAlign: textAlign,
+    readOnly: true,
+    textHeight: textHeight,
+    onTap: () async {
+      jalali(
+        await showPersianDatePicker(
+          context: context,
+          initialDate: jalali.value,
+          firstDate: Jalali(1350),
+          lastDate: Jalali(1405),
+        ),
+      );
+      controller.text = jalali.value.formatCompactDate();
+      onChange(jalali.value.toDateTime(), jalali.value);
+    },
   );
 }
 
