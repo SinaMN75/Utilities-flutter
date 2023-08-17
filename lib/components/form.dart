@@ -68,6 +68,46 @@ Widget textField({
   );
 }
 
+Widget textFieldPersianDatePicker({
+  required final Function(DateTime, Jalali) onChange,
+  final String? text,
+  final double? fontSize,
+  final String? hintText,
+  final int lines = 1,
+  final Widget? prefix,
+  final Widget? suffix,
+  final EdgeInsets margin = EdgeInsets.zero,
+  final TextAlign textAlign = TextAlign.start,
+  final double? textHeight,
+}) {
+  final Rx<Jalali> jalali = Jalali.now().obs;
+  final TextEditingController controller = TextEditingController(text: jalali.value.formatCompactDate());
+  return Obx(
+    () => textField(
+      controller: controller,
+      margin: margin,
+      text: text,
+      fontSize: fontSize,
+      hintText: hintText,
+      textAlign: textAlign,
+      readOnly: true,
+      textHeight: textHeight,
+      onTap: () async {
+        jalali(
+          await showPersianDatePicker(
+            context: context,
+            initialDate: jalali.value,
+            firstDate: Jalali(1350),
+            lastDate: Jalali(1405),
+          ),
+        );
+        controller.text = jalali.value.formatCompactDate();
+        onChange(jalali.value.toDateTime(), jalali.value);
+      },
+    ),
+  );
+}
+
 Widget button({
   required final String title,
   final VoidCallback? onTap,

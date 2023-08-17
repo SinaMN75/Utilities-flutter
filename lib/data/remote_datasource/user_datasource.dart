@@ -94,19 +94,6 @@ class UserDataSource {
         error: (final Response response) => onError(),
       );
 
-  Future<void> activeMobile({
-    required final ActiveMobileDto dto,
-    required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPost(
-        url: "$baseUrl/user/ActiveMobile",
-        body: dto,
-        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
-
   Future<void> getVerificationCodeForLogin({
     required final GetMobileVerificationCodeForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
@@ -155,17 +142,6 @@ class UserDataSource {
       httpPost(
         url: "$baseUrl/user/VerifyCodeForLogin",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
-
-  Future<void> getProfile({
-    required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpGet(
-        url: "$baseUrl/user/GetProfile",
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
