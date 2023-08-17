@@ -203,7 +203,7 @@ enum TagCategory {
   payment(181),
   favorites(182),
   remote(183),
-  onSite(183),
+  onSite(184),
   directShod(500),
   test(900);
 
@@ -349,39 +349,6 @@ enum TagStatusProduct {
   final int status;
 }
 
-enum TagBase {
-  category("100"),
-  fffffffffffffffffffffffyooNote("101"),
-  fffffffffffffffffffffffsubProduct("102"),
-  fffffffffffffffffffffffimage("103"),
-  fffffffffffffffffffffffvideo("104"),
-  fffffffffffffffffffffffaudio("105"),
-  fffffffffffffffffffffffpdf("106"),
-  fffffffffffffffffffffffapk("107"),
-  fffffffffffffffffffffffgame("108"),
-  fffffffffffffffffffffffgoods("109"),
-  fffffffffffffffffffffffjob("110"),
-  fffffffffffffffffffffffattribute("111"),
-  fffffffffffffffffffffffphysical("112"),
-  fffffffffffffffffffffffdigital("113"),
-  fffffffffffffffffffffffuserStatus("114"),
-  fffffffffffffffffffffffjobType("115"),
-  fffffffffffffffffffffffjobPlace("116"),
-  fffffffffffffffffffffffchanel("117"),
-  fffffffffffffffffffffffstory("118"),
-  fffffffffffffffffffffffad("119"),
-  fffffffffffffffffffffffcompany("120"),
-  fffffffffffffffffffffffdailyPrice("121"),
-  ffffffffffffffffffffffftender("122"),
-  ffffffffffffffffffffffftutorial("123"),
-  magazine("124");
-
-  const TagBase(this.title);
-
-  @override
-  String toString() => name;
-  final String title;
-}
 
 enum PerPrice {
   perDay("Price per day", "به ازای روز", 170),

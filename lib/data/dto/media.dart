@@ -141,6 +141,7 @@ class CreateMediaReadDto {
     this.bookmarkId,
     this.chatId,
     this.title,
+    this.tags,
     this.notificationId,
     this.size,
   });
@@ -160,6 +161,7 @@ class CreateMediaReadDto {
         'CommentId': commentId,
         'BookmarkId': bookmarkId,
         'ChatId': chatId,
+        "Tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         'Title': title ?? fileName,
         'NotificationId': notificationId,
         'Size': size,

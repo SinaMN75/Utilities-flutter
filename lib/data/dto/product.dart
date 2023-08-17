@@ -9,8 +9,6 @@ class ProductReadDto {
     this.title,
     this.subtitle,
     this.description,
-    this.tagUseCase,
-    this.tagType,
     this.state,
     this.boosted,
     this.isSeen,
@@ -57,8 +55,6 @@ class ProductReadDto {
         isSeen: json["isSeen"],
         subtitle: json["subtitle"],
         description: json["description"],
-        tagUseCase: json["tagUseCase"],
-        tagType: json["tagType"],
         score: json["score"],
         state: json["state"],
         boosted: json["boosted"] == null ? null : DateTime.parse(json["boosted"]),
@@ -99,8 +95,6 @@ class ProductReadDto {
   String? title;
   String? subtitle;
   String? description;
-  int? tagUseCase;
-  int? tagType;
   String? state;
   DateTime? boosted;
   int? stock;
@@ -145,9 +139,7 @@ class ProductReadDto {
         "title": title,
         "subtitle": subtitle,
         "description": description,
-        "tagUseCase": tagUseCase,
         "isSeen": isSeen,
-        "tagType": tagType,
         "state": state,
         "score": score,
         "boosted": boosted?.toIso8601String(),
@@ -322,11 +314,9 @@ class ProductCreateUpdateDto {
     this.link,
     this.website,
     this.email,
-        this.tagType,
     this.type1,
     this.type2,
     this.unit,
-        this.tagUseCase,
     this.keyValue,
     this.state,
     this.latitude,
@@ -383,10 +373,6 @@ class ProductCreateUpdateDto {
   final String? type1;
   final String? type2;
   final String? unit;
-
-    final int? tagUseCase;
-
-    final int? tagType;
   final String? keyValue;
   final String? state;
   final double? latitude;
@@ -446,8 +432,6 @@ class ProductCreateUpdateDto {
         "type1": type1,
         "type2": type2,
         "unit": unit,
-                "tagUseCase": tagUseCase,
-                "tagType": tagType,
         "keyValue": keyValue,
         "state": state,
         "latitude": latitude,

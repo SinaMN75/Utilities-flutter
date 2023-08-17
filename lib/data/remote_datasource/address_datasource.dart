@@ -20,6 +20,24 @@ class AddressDataSource {
         failure: failure,
       );
 
+
+  Future<void> filter({
+    required final String userId,
+    required final Function(GenericResponse<AddressReadDto> response) onResponse,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/address/Filter",
+        body: {"userId":userId},
+        encodeBody: false,
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
+        failure: failure,
+      );
+
+
+
   Future<void> create({
     required final AddressCreateUpdateDto dto,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
