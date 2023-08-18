@@ -5,6 +5,7 @@ class Assets {
   static const String componentsAdmin = 'lib/components/admin.dart';
   static const String componentsBadges = 'lib/components/badges.dart';
   static const String componentsBarcodeQrcode = 'lib/components/barcode_qrcode.dart';
+  static const String componentsBottomSheet = 'lib/components/bottom_sheet.dart';
   static const String componentsCarouselSlider = 'lib/components/carousel_slider.dart';
   static const String componentsChart = 'lib/components/chart.dart';
   static const String componentsComponents = 'lib/components/components.dart';
@@ -12,6 +13,7 @@ class Assets {
   static const String componentsDottedBorder = 'lib/components/dotted_border.dart';
   static const String componentsDropDownTextfield = 'lib/components/drop_down_textfield.dart';
   static const String componentsFlipCard = 'lib/components/flip_card.dart';
+  static const String componentsForm = 'lib/components/form.dart';
   static const String componentsFormBuilder = 'lib/components/form_builder.dart';
   static const String componentsGrid = 'lib/components/grid.dart';
   static const String componentsImage = 'lib/components/image.dart';
@@ -52,7 +54,6 @@ class Assets {
   static const String dtoMedia = 'lib/data/dto/media.dart';
   static const String dtoNotification = 'lib/data/dto/notification.dart';
   static const String dtoOrder = 'lib/data/dto/order.dart';
-  static const String dtoOrder2 = 'lib/data/dto/order2.dart';
   static const String dtoPayment = 'lib/data/dto/payment.dart';
   static const String dtoProduct = 'lib/data/dto/product.dart';
   static const String dtoPromote = 'lib/data/dto/promote.dart';
@@ -61,6 +62,7 @@ class Assets {
   static const String dtoReport = 'lib/data/dto/report.dart';
   static const String dtoServerLocation = 'lib/data/dto/server_location.dart';
   static const String dtoShoppingCart = 'lib/data/dto/shopping_cart.dart';
+  static const String dtoSubscription = 'lib/data/dto/subscription.dart';
   static const String dtoTeam = 'lib/data/dto/team.dart';
   static const String dtoTransaction = 'lib/data/dto/transaction.dart';
   static const String dtoUser = 'lib/data/dto/user.dart';
@@ -70,7 +72,6 @@ class Assets {
   static const String extensionsExtension = 'lib/utils/extensions/extension.dart';
   static const String extensionsFileExtension = 'lib/utils/extensions/file_extension.dart';
   static const String extensionsIterableExtension = 'lib/utils/extensions/iterable_extension.dart';
-  static const String extensionsListExtension = 'lib/utils/extensions/list_extension.dart';
   static const String extensionsNumberExtension = 'lib/utils/extensions/number_extension.dart';
   static const String extensionsShimmerExtension = 'lib/utils/extensions/shimmer_extension.dart';
   static const String extensionsStringExtension = 'lib/utils/extensions/string_extension.dart';
@@ -78,6 +79,7 @@ class Assets {
   static const String extensionsWidgetExtension = 'lib/utils/extensions/widget_extension.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
   static const String libUtilities = 'lib/utilities.dart';
+  static const String libUtilities2 = 'lib/utilities2.dart';
   static const String localDatasourceLocalDatasource = 'lib/data/local_datasource/local_datasource.dart';
   static const String remoteDatasourceAddressDatasource = 'lib/data/remote_datasource/address_datasource.dart';
   static const String remoteDatasourceAppSettingsDatasource = 'lib/data/remote_datasource/app_settings_datasource.dart';
@@ -101,6 +103,7 @@ class Assets {
   static const String remoteDatasourcePusheDatasource = 'lib/data/remote_datasource/pushe_datasource.dart';
   static const String remoteDatasourceReportDatasource = 'lib/data/remote_datasource/report_datasource.dart';
   static const String remoteDatasourceShoppingCartDatasource = 'lib/data/remote_datasource/shopping_cart_datasource.dart';
+  static const String remoteDatasourceSubscriptionPaymentDatasource = 'lib/data/remote_datasource/subscription_payment_datasource.dart';
   static const String remoteDatasourceTransactionDatasource = 'lib/data/remote_datasource/transaction_datasource.dart';
   static const String remoteDatasourceUserDatasource = 'lib/data/remote_datasource/user_datasource.dart';
   static const String remoteDatasourceWithdrawDatasource = 'lib/data/remote_datasource/withdraw_datasource.dart';
@@ -120,4 +123,5 @@ class Assets {
   static const String viewModelsKeyValueViewModel = 'lib/view_models/key_value_view_model.dart';
   static const String viewModelsMediaViewModel = 'lib/view_models/media_view_model.dart';
   static const String viewModelsViewModels = 'lib/view_models/view_models.dart';
+
 }
