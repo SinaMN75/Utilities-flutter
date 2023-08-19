@@ -2,40 +2,36 @@ import 'package:utilities/utilities.dart';
 
 class UserReadDto {
   UserReadDto({
-    this.id,
-    this.userName,
-    this.email,
-    this.phoneNumber,
-    this.suspend,
+    required this.id,
     this.firstName,
     this.lastName,
     this.fullName,
-    this.meliCode,
-    this.shebaNumber,
     this.headline,
-    this.jobStatus,
     this.bio,
     this.appUserName,
     this.appPhoneNumber,
+    this.userName,
+    this.phoneNumber,
     this.appEmail,
-    this.useCase,
-    this.type,
-    this.accessLevel,
+    this.email,
     this.region,
     this.state,
+    this.badge,
+    this.jobStatus,
+    this.mutedChats,
     this.gender,
     this.wallet,
     this.point,
     this.birthdate,
     this.createdAt,
     this.updatedAt,
-    this.badge,
     this.isOnline,
-    this.mutedChats,
+    this.suspend,
+    this.isPrivate,
     this.expireUpgradeAccount,
     this.ageCategory,
-    this.userJsonDetail,
-    this.growthRate,
+    this.jsonDetail,
+    this.tags,
     this.media,
     this.categories,
     this.isFollowing,
@@ -47,130 +43,118 @@ class UserReadDto {
 
   factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
 
-  factory UserReadDto.fromMap(final dynamic json) => UserReadDto(
+  factory UserReadDto.fromMap(final Map<String, dynamic> json) => UserReadDto(
         id: json["id"],
-        userName: json["userName"],
-        email: json["email"],
-        phoneNumber: json["phoneNumber"],
-        suspend: json["suspend"],
         firstName: json["firstName"],
         lastName: json["lastName"],
         fullName: json["fullName"],
-        meliCode: json["meliCode"],
-        shebaNumber: json["shebaNumber"],
         headline: json["headline"],
         bio: json["bio"],
-        jobStatus: json["jobStatus"],
         appUserName: json["appUserName"],
         appPhoneNumber: json["appPhoneNumber"],
+        userName: json["userName"],
+        phoneNumber: json["phoneNumber"],
         appEmail: json["appEmail"],
-        useCase: json["useCase"],
-        type: json["type"],
-        accessLevel: json["accessLevel"],
+        email: json["email"],
         region: json["region"],
         state: json["state"],
+        badge: json["badge"],
+        jobStatus: json["jobStatus"],
+        mutedChats: json["mutedChats"],
         gender: json["gender"],
         wallet: json["wallet"],
         point: json["point"],
-        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        badge: json["badge"],
+        birthdate: json["birthdate"],
+        createdAt: json["createdAt"],
+        updatedAt: json["updatedAt"],
         isOnline: json["isOnline"],
-        mutedChats: json["mutedChats"],
-        expireUpgradeAccount: json["expireUpgradeAccount"] == null ? null : DateTime.parse(json["expireUpgradeAccount"]),
+        suspend: json["suspend"],
+        isPrivate: json["isPrivate"],
+        expireUpgradeAccount: json["expireUpgradeAccount"],
         ageCategory: json["ageCategory"],
-        userJsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
-        growthRate: json["growthRateReadDto"] == null ? null : GrowthRateReadDto.fromMap(json["growthRateReadDto"]),
-        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
-        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
+        jsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
+        media: json["media"] == null ? [] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
+        categories: json["categories"] == null ? [] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         isFollowing: json["isFollowing"],
         countProducts: json["countProducts"],
         countFollowers: json["countFollowers"],
         countFollowing: json["countFollowing"],
         token: json["token"],
       );
-  String? id;
-  String? userName;
-  String? email;
-  String? phoneNumber;
-  bool? suspend;
-  String? firstName;
-  String? lastName;
-  String? fullName;
-  String? meliCode;
-  String? shebaNumber;
-  String? headline;
-  String? bio;
-  String? appUserName;
-  String? appPhoneNumber;
-  String? appEmail;
-  String? useCase;
-  String? type;
-  String? jobStatus;
-  String? accessLevel;
-  String? region;
-  String? state;
-  int? gender;
-  int? wallet;
-  double? point;
-  DateTime? birthdate;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  String? badge;
-  bool? isOnline;
-  String? mutedChats;
-  DateTime? expireUpgradeAccount;
-  int? ageCategory;
-  UserJsonDetail? userJsonDetail;
-  GrowthRateReadDto? growthRate;
-  List<MediaReadDto>? media;
-  List<CategoryReadDto>? categories;
-  bool? isFollowing;
-  int? countProducts;
-  int? countFollowers;
-  int? countFollowing;
-  String? token;
+  final String id;
+  final String? firstName;
+  final String? lastName;
+  final String? fullName;
+  final String? headline;
+  final String? bio;
+  final String? appUserName;
+  final String? appPhoneNumber;
+  final String? userName;
+  final String? phoneNumber;
+  final String? appEmail;
+  final String? email;
+  final String? region;
+  final String? state;
+  final String? badge;
+  final String? jobStatus;
+  final String? mutedChats;
+  final int? gender;
+  final int? wallet;
+  final int? point;
+  final String? birthdate;
+  final String? createdAt;
+  final String? updatedAt;
+  final bool? isOnline;
+  final bool? suspend;
+  final bool? isPrivate;
+  final String? expireUpgradeAccount;
+  final int? ageCategory;
+  final UserJsonDetail? jsonDetail;
+  final List<int>? tags;
+  final List<MediaReadDto>? media;
+  final List<CategoryReadDto>? categories;
+  final bool? isFollowing;
+  final int? countProducts;
+  final int? countFollowers;
+  final int? countFollowing;
+  final String? token;
 
   String toJson() => json.encode(toMap());
 
-  dynamic toMap() => {
+  Map<String, dynamic> toMap() => {
         "id": id,
-        "userName": userName,
-        "email": email,
-        "phoneNumber": phoneNumber,
-        "suspend": suspend,
         "firstName": firstName,
         "lastName": lastName,
         "fullName": fullName,
-        "meliCode": meliCode,
-        "shebaNumber": shebaNumber,
         "headline": headline,
-        "jobStatus": jobStatus,
         "bio": bio,
         "appUserName": appUserName,
         "appPhoneNumber": appPhoneNumber,
+        "userName": userName,
+        "phoneNumber": phoneNumber,
         "appEmail": appEmail,
-        "useCase": useCase,
-        "type": type,
-        "accessLevel": accessLevel,
+        "email": email,
         "region": region,
         "state": state,
+        "badge": badge,
+        "jobStatus": jobStatus,
+        "mutedChats": mutedChats,
         "gender": gender,
         "wallet": wallet,
         "point": point,
-        "birthdate": birthdate?.toIso8601String(),
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        "badge": badge,
+        "birthdate": birthdate,
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
         "isOnline": isOnline,
-        "mutedChats": mutedChats,
-        "expireUpgradeAccount": expireUpgradeAccount?.toIso8601String(),
+        "suspend": suspend,
+        "isPrivate": isPrivate,
+        "expireUpgradeAccount": expireUpgradeAccount,
         "ageCategory": ageCategory,
-        "userJsonDetail": userJsonDetail?.toMap(),
-        "growthRate": growthRate?.toMap(),
-        "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final MediaReadDto x) => x.toMap())),
-        "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
+        "jsonDetail": jsonDetail?.toMap(),
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "media": media == null ? [] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "isFollowing": isFollowing,
         "countProducts": countProducts,
         "countFollowers": countFollowers,
@@ -188,27 +172,25 @@ class UserJsonDetail {
     this.dribble,
     this.soundCloud,
     this.pinterest,
-    this.color,
     this.website,
     this.activity,
-    this.showContactInfo,
-    this.privacyType,
-    this.meliCode,
+    this.color,
+    this.code,
     this.shebaNumber,
-    this.isAuthorize,
-    this.isForeigner,
-    this.detail1,
-    this.detail2,
+    this.boosted,
+    this.deliveryPrice1,
+    this.deliveryPrice2,
+    this.deliveryPrice3,
+    this.privacyType,
+    this.legalAuthenticationType,
+    this.nationalityType,
   });
 
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
 
-  factory UserJsonDetail.fromMap(final dynamic json) => UserJsonDetail(
+  factory UserJsonDetail.fromMap(final Map<String, dynamic> json) => UserJsonDetail(
         instagram: json["instagram"],
         telegram: json["telegram"],
-        color: json["color"],
-        detail1: json["detail1"],
-        detail2: json["detail2"],
         whatsApp: json["whatsApp"],
         linkedIn: json["linkedIn"],
         dribble: json["dribble"],
@@ -216,53 +198,59 @@ class UserJsonDetail {
         pinterest: json["pinterest"],
         website: json["website"],
         activity: json["activity"],
-        showContactInfo: json["showContactInfo"],
-        privacyType: json["privacyType"],
-        meliCode: json["meliCode"],
+        color: json["color"],
+        code: json["code"],
         shebaNumber: json["shebaNumber"],
-        isAuthorize: json["isAuthorize"],
-        isForeigner: json["isForeigner"],
+        boosted: json["boosted"],
+        deliveryPrice1: json["deliveryPrice1"],
+        deliveryPrice2: json["deliveryPrice2"],
+        deliveryPrice3: json["deliveryPrice3"],
+        privacyType: json["privacyType"],
+        legalAuthenticationType: json["legalAuthenticationType"],
+        nationalityType: json["nationalityType"],
       );
-  String? instagram;
-  String? telegram;
-  String? whatsApp;
-  String? linkedIn;
-  String? color;
-  String? detail1;
-  String? detail2;
-  String? dribble;
-  String? soundCloud;
-  String? pinterest;
-  String? website;
-  String? activity;
-  bool? showContactInfo;
-  int? privacyType;
-  String? meliCode;
-  String? shebaNumber;
-  bool? isAuthorize;
-  bool? isForeigner;
+  final String? instagram;
+  final String? telegram;
+  final String? whatsApp;
+  final String? linkedIn;
+  final String? dribble;
+  final String? soundCloud;
+  final String? pinterest;
+  final String? website;
+  final String? activity;
+  final String? color;
+  final String? code;
+  final String? shebaNumber;
+  final String? boosted;
+  final int? deliveryPrice1;
+  final int? deliveryPrice2;
+  final int? deliveryPrice3;
+  final int? privacyType;
+  final int? legalAuthenticationType;
+  final int? nationalityType;
 
   String toJson() => json.encode(toMap());
 
-  dynamic toMap() => {
+  Map<String, dynamic> toMap() => {
         "instagram": instagram,
         "telegram": telegram,
-        "color": color,
         "whatsApp": whatsApp,
         "linkedIn": linkedIn,
-        "detail1": detail1,
-        "detail2": detail2,
         "dribble": dribble,
         "soundCloud": soundCloud,
         "pinterest": pinterest,
         "website": website,
         "activity": activity,
-        "showContactInfo": showContactInfo,
-        "privacyType": privacyType,
-        "meliCode": meliCode,
+        "color": color,
+        "code": code,
         "shebaNumber": shebaNumber,
-        "isAuthorize": isAuthorize,
-        "isForeigner": isForeigner,
+        "boosted": boosted,
+        "deliveryPrice1": deliveryPrice1,
+        "deliveryPrice2": deliveryPrice2,
+        "deliveryPrice3": deliveryPrice3,
+        "privacyType": privacyType,
+        "legalAuthenticationType": legalAuthenticationType,
+        "nationalityType": nationalityType,
       };
 }
 
