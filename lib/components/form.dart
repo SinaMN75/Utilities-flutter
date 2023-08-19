@@ -184,14 +184,12 @@ Widget textFieldTypeAhead<T>({
             controller: controller,
             onChanged: onChanged,
             scrollPadding: const EdgeInsets.symmetric(vertical: 16),
-            style: textTheme.bodyLarge!.copyWith(color: context.theme.primaryColorDark),
             decoration: InputDecoration(prefixIcon: prefix?.paddingOnly(left: 8, right: 12), fillColor: fillColor, hintText: hint, helperText: text),
           ),
           hideKeyboard: hideKeyboard,
           suggestionsCallback: suggestionsCallback,
           itemBuilder: itemBuilder ??
               (final BuildContext context, final Object? suggestion) => Container(
-                    color: context.theme.highlightColor,
                     margin: const EdgeInsets.all(4),
                     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     child: Text(suggestion.toString()),
