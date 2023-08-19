@@ -162,8 +162,7 @@ Widget textFieldTypeAhead<T>({
   required final SuggestionsCallback<T> suggestionsCallback,
   final Widget Function(BuildContext context, T itemData)? itemBuilder,
   final String? text,
-  final String? hintText,
-  final String? helperText,
+  final String? hint,
   final Widget? prefix,
   final VoidCallback? onTap,
   final Color? fillColor,
@@ -177,22 +176,16 @@ Widget textFieldTypeAhead<T>({
         TypeAheadField<T>(
           textFieldConfiguration: TextFieldConfiguration(
             onTap: () {
-              if (controller!.selection == TextSelection.fromPosition(TextPosition(offset: controller.text.length - 1))) {
-                controller.selection = TextSelection.fromPosition(TextPosition(offset: controller.text.length));
-              }
+              if (controller!.selection == TextSelection.fromPosition(TextPosition(offset: controller.text.length - 1)))
+                controller.selection = TextSelection.fromPosition(
+                  TextPosition(offset: controller.text.length),
+                );
             },
             controller: controller,
             onChanged: onChanged,
             scrollPadding: const EdgeInsets.symmetric(vertical: 16),
             style: textTheme.bodyLarge!.copyWith(color: context.theme.primaryColorDark),
-            decoration: InputDecoration(
-              prefixIcon: prefix?.paddingOnly(left: 8, right: 12),
-              fillColor: fillColor ?? context.theme.scaffoldBackgroundColor,
-              hintText: hintText,
-              hintStyle: textTheme.bodyLarge!.copyWith(color: context.theme.hintColor),
-              helperText: helperText,
-              helperStyle: textTheme.bodySmall,
-            ),
+            decoration: InputDecoration(prefixIcon: prefix?.paddingOnly(left: 8, right: 12), fillColor: fillColor, hintText: hint, helperText: text),
           ),
           hideKeyboard: hideKeyboard,
           suggestionsCallback: suggestionsCallback,
