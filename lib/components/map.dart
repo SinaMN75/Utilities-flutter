@@ -5,9 +5,10 @@ Widget map({
   final LatLng center = const LatLng(35, 55),
   final double zoom = 10,
   final double minZoom = 5,
-  final double maxZoom = 30,
+  final double maxZoom = 18,
   final List<Marker>? markers,
   final Widget? centerWidget,
+  final bool zoomButtons = true,
   final Function(TapPosition tapPosition, LatLng point)? onTap,
   final Function(TapPosition tapPosition, LatLng point)? onLongPress,
   final Function(MapPosition position, bool hasGesture)? onPositionChanged,
@@ -25,6 +26,19 @@ Widget map({
         onPositionChanged: onPositionChanged,
       ),
       nonRotatedChildren: <Widget>[
+        if (zoomButtons)
+          iconTextVertical(
+            leading: FloatingActionButton(
+              mini: true,
+              child: const Icon(Icons.add),
+              onPressed: () => controller.move(controller.center, controller.zoom + 1),
+            ),
+            trailing: FloatingActionButton(
+              mini: true,
+              child: const Icon(Icons.remove),
+              onPressed: () => controller.move(controller.center, controller.zoom - 1),
+            ),
+          ).paddingAll(16).alignAtBottomRight(),
         if (centerWidget != null) Align(child: centerWidget),
       ],
       children: <Widget>[
@@ -69,4 +83,3 @@ Widget sfMap({
     ],
   );
 }
-
