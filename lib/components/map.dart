@@ -8,6 +8,7 @@ Widget map({
   final double maxZoom = 18,
   final List<Marker>? markers,
   final Widget? centerWidget,
+  final bool currentLocationButton = true,
   final bool zoomButtons = true,
   final Function(TapPosition tapPosition, LatLng point)? onTap,
   final Function(TapPosition tapPosition, LatLng point)? onLongPress,
@@ -26,6 +27,19 @@ Widget map({
         onPositionChanged: onPositionChanged,
       ),
       nonRotatedChildren: <Widget>[
+        if (currentLocationButton)
+          FloatingActionButton(
+            mini: true,
+            onPressed: () async {
+              try {
+                final LocationData? location = await getLocation();
+                controller.move(LatLng(location!.latitude!, location.longitude!), 15);
+              } catch (e) {
+                debugPrint("");
+              }
+            },
+            child: const Icon(Icons.my_location),
+          ).paddingAll(16).alignAtBottomLeft(),
         if (zoomButtons)
           iconTextVertical(
             leading: FloatingActionButton(
