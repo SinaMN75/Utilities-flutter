@@ -13,6 +13,7 @@ Widget map({
   final Function(TapPosition tapPosition, LatLng point)? onTap,
   final Function(TapPosition tapPosition, LatLng point)? onLongPress,
   final Function(MapPosition position, bool hasGesture)? onPositionChanged,
+  final Function(PointerUpEvent event, LatLng point)? onPointerUp,
 }) =>
     FlutterMap(
       mapController: controller,
@@ -25,6 +26,7 @@ Widget map({
         onLongPress: onLongPress,
         enableMultiFingerGestureRace: true,
         onPositionChanged: onPositionChanged,
+        onPointerUp: onPointerUp,
       ),
       nonRotatedChildren: <Widget>[
         if (currentLocationButton)

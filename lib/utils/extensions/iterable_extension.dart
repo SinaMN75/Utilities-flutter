@@ -53,6 +53,16 @@ extension ListExtensions<T> on List<T> {
     final Set<T> setA = Set<T>.of(list);
     return setA.containsAll(this);
   }
+
+  List<T> addAndReturn(final T t) {
+    add(t);
+    return this;
+  }
+
+  List<T> insertAndReturn(final int index, final T t) {
+    insert(index, t);
+    return this;
+  }
 }
 
 extension NullableListExtensions<T> on List<T>? {
