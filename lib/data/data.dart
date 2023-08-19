@@ -20,5 +20,6 @@ export 'remote_datasource/promote_datasource.dart';
 export 'remote_datasource/pushe_datasource.dart';
 export 'remote_datasource/report_datasource.dart';
 export 'remote_datasource/shopping_cart_datasource.dart';
+export 'remote_datasource/subscription_payment_datasource.dart';
 export 'remote_datasource/transaction_datasource.dart';
 export 'remote_datasource/user_datasource.dart';
