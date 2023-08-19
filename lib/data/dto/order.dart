@@ -10,6 +10,7 @@ class OrderFilterDto {
     this.sendType,
     this.payType,
     this.startDate,
+    this.tags,
     this.endDate,
     this.userId,
     this.productOwnerId,
@@ -30,6 +31,7 @@ class OrderFilterDto {
         userId: json["userId"],
         productOwnerId: json["productOwnerId"],
         pageSize: json["pageSize"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         pageNumber: json["pageNumber"],
       );
   final String? id;
@@ -39,6 +41,7 @@ class OrderFilterDto {
   final int? payType;
   final String? startDate;
   final String? endDate;
+  List<int>? tags;
   final String? userId;
   final String? productOwnerId;
   final int? pageSize;
@@ -57,6 +60,7 @@ class OrderFilterDto {
         "userId": userId,
         "productOwnerId": productOwnerId,
         "pageSize": pageSize,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final x) => x)),
         "pageNumber": pageNumber,
       };
 }
