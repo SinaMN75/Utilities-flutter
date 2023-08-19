@@ -169,8 +169,8 @@ class UserReadDto {
         "ageCategory": ageCategory,
         "userJsonDetail": userJsonDetail?.toMap(),
         "growthRate": growthRate?.toMap(),
-        "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
-        "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final x) => x.toMap())),
+        "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final MediaReadDto x) => x.toMap())),
+        "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "isFollowing": isFollowing,
         "countProducts": countProducts,
         "countFollowers": countFollowers,
@@ -269,180 +269,203 @@ class UserJsonDetail {
 class UserCreateUpdateDto {
   UserCreateUpdateDto({
     this.id,
-    this.phoneNumber,
-    this.userName,
+    this.email,
     this.firstName,
     this.lastName,
     this.fullName,
     this.bio,
     this.headline,
-    this.website,
-    this.instagram,
-    this.telegram,
-    this.whatsapp,
-    this.linkedIn,
-    this.password,
-    this.jobStatus,
     this.appUserName,
     this.appPhoneNumber,
     this.appEmail,
-    this.type,
     this.region,
-    this.activity,
-    this.nationalCode,
+    this.state,
     this.badge,
+    this.visitedProducts,
+    this.bookmarkedProducts,
+    this.followedUsers,
+    this.followingUsers,
+    this.blockedUsers,
+    this.wallet,
+    this.deliveryPrice1,
+    this.deliveryPrice2,
+    this.deliveryPrice3,
     this.point,
     this.suspend,
-    this.wallet,
-    this.showContactInfo,
-    this.birthDate,
-    this.gender,
-    this.categories,
-    this.locations,
-    this.pinterest,
-    this.soundcloud,
-    this.privacyType,
+    this.instagram,
+    this.telegram,
+    this.jobStatus,
+    this.whatsApp,
+    this.linkedIn,
     this.dribble,
-    this.email,
-    this.state,
+    this.soundCloud,
+    this.pinterest,
+    this.website,
+    this.activity,
     this.color,
-    this.meliCode,
-    this.detail1,
-    this.detail2,
+    this.gender,
+    this.legalAuthenticationType,
+    this.nationalityType,
+    this.privacyType,
+    this.isOnline,
+    this.ageCategory,
+    this.birthDate,
+    this.expireUpgradeAccount,
+    this.categories,
+    this.code,
+    this.shebaNumber,
+    this.tags,
   });
 
   factory UserCreateUpdateDto.fromJson(final String str) => UserCreateUpdateDto.fromMap(json.decode(str));
 
-  factory UserCreateUpdateDto.fromMap(final dynamic json) => UserCreateUpdateDto(
+  factory UserCreateUpdateDto.fromMap(final Map<String, dynamic> json) => UserCreateUpdateDto(
         id: json["id"],
-        phoneNumber: json["phoneNumber"],
-        userName: json["userName"],
         email: json["email"],
         firstName: json["firstName"],
         lastName: json["lastName"],
         fullName: json["fullName"],
         bio: json["bio"],
-        meliCode: json["meliCode"],
-        privacyType: json["privacyType"],
-        badge: json["badge"],
-        point: json["point"],
         headline: json["headline"],
-        website: json["website"],
-        instagram: json["instagram"],
-        telegram: json["telegram"],
-        whatsapp: json["whatsApp"],
-        linkedIn: json["linkedIn"],
-        jobStatus: json["jobStatus"],
-        soundcloud: json["soundCloud"],
-        dribble: json["dribble"],
-        pinterest: json["pinterest"],
-        password: json["password"],
-        nationalCode: json["nationalCode"],
         appUserName: json["appUserName"],
         appPhoneNumber: json["appPhoneNumber"],
         appEmail: json["appEmail"],
-        type: json["type"],
-        state: json["state"],
         region: json["region"],
-        activity: json["activity"],
-        suspend: json["suspend"],
+        state: json["state"],
+        badge: json["badge"],
+        visitedProducts: json["visitedProducts"],
+        bookmarkedProducts: json["bookmarkedProducts"],
+        followedUsers: json["followedUsers"],
+        followingUsers: json["followingUsers"],
+        blockedUsers: json["blockedUsers"],
         wallet: json["wallet"],
-        showContactInfo: json["showContactInfo"],
-        birthDate: json["birthDate"],
-        gender: json["gender"],
+        deliveryPrice1: json["deliveryPrice1"],
+        deliveryPrice2: json["deliveryPrice2"],
+        deliveryPrice3: json["deliveryPrice3"],
+        point: json["point"],
+        suspend: json["suspend"],
+        instagram: json["instagram"],
+        telegram: json["telegram"],
+        jobStatus: json["jobStatus"],
+        whatsApp: json["whatsApp"],
+        linkedIn: json["linkedIn"],
+        dribble: json["dribble"],
+        soundCloud: json["soundCloud"],
+        pinterest: json["pinterest"],
+        website: json["website"],
+        activity: json["activity"],
         color: json["color"],
-        detail1: json["detail1"],
-        detail2: json["detail2"],
-        categories: json["categories"] == null ? null : List<String>.from(json["categories"].cast<dynamic>().map((final x) => x)),
-        locations: json["locations"] == null ? null : List<int>.from(json["locations"].cast<dynamic>().map((final x) => x)),
+        gender: json["gender"],
+        legalAuthenticationType: json["legalAuthenticationType"],
+        nationalityType: json["nationalityType"],
+        privacyType: json["privacyType"],
+        isOnline: json["isOnline"],
+        ageCategory: json["ageCategory"],
+        birthDate: json["birthDate"],
+        expireUpgradeAccount: json["expireUpgradeAccount"],
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
+        code: json["code"],
+        shebaNumber: json["shebaNumber"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
       );
-
   final String? id;
-  final String? phoneNumber;
-  final String? userName;
   final String? email;
   final String? firstName;
   final String? lastName;
   final String? fullName;
   final String? bio;
-  final String? badge;
-  final double? point;
-  final String? meliCode;
   final String? headline;
-  final String? website;
-  final String? instagram;
-  final String? telegram;
-  final String? jobStatus;
-  final String? whatsapp;
-  final String? linkedIn;
-  final String? soundcloud;
-  final String? pinterest;
-  final String? dribble;
-  final String? password;
   final String? appUserName;
   final String? appPhoneNumber;
   final String? appEmail;
-  final String? type;
   final String? region;
-  final String? nationalCode;
-  final String? activity;
   final String? state;
-  final bool? suspend;
-  final int? privacyType;
+  final String? badge;
+  final String? visitedProducts;
+  final String? bookmarkedProducts;
+  final String? followedUsers;
+  final String? followingUsers;
+  final String? blockedUsers;
   final int? wallet;
-  final bool? showContactInfo;
-  final String? birthDate;
-  final int? gender;
+  final int? deliveryPrice1;
+  final int? deliveryPrice2;
+  final int? deliveryPrice3;
+  final int? point;
+  final bool? suspend;
+  final String? instagram;
+  final String? telegram;
+  final String? jobStatus;
+  final String? whatsApp;
+  final String? linkedIn;
+  final String? dribble;
+  final String? soundCloud;
+  final String? pinterest;
+  final String? website;
+  final String? activity;
   final String? color;
-  final String? detail1;
-  final String? detail2;
+  final int? gender;
+  final int? legalAuthenticationType;
+  final int? nationalityType;
+  final int? privacyType;
+  final bool? isOnline;
+  final int? ageCategory;
+  final String? birthDate;
+  final String? expireUpgradeAccount;
   final List<String>? categories;
-  final List<int>? locations;
+  final String? code;
+  final String? shebaNumber;
+  final List<int>? tags;
 
   String toJson() => json.encode(toMap());
 
-  dynamic toMap() => {
+  Map<String, dynamic> toMap() => {
         "id": id,
-        "phoneNumber": phoneNumber,
-        "userName": userName,
         "email": email,
         "firstName": firstName,
         "lastName": lastName,
         "fullName": fullName,
         "bio": bio,
-        "meliCode": meliCode,
-        "badge": badge,
-        "color": color,
-        "point": point,
         "headline": headline,
-        "website": website,
-        "instagram": instagram,
-        "telegram": telegram,
-        "whatsApp": whatsapp,
-        "jobStatus": jobStatus,
-        "linkedIn": linkedIn,
-        "privacyType": privacyType,
-        "soundCloud": soundcloud,
-        "pinterest": pinterest,
-        "dribble": dribble,
-        "password": password,
         "appUserName": appUserName,
         "appPhoneNumber": appPhoneNumber,
         "appEmail": appEmail,
-        "type": type,
-        "state": state,
         "region": region,
-        "nationalCode": nationalCode,
-        "activity": activity,
-        "suspend": suspend,
+        "state": state,
+        "badge": badge,
+        "visitedProducts": visitedProducts,
+        "bookmarkedProducts": bookmarkedProducts,
+        "followedUsers": followedUsers,
+        "followingUsers": followingUsers,
+        "blockedUsers": blockedUsers,
         "wallet": wallet,
-        "showContactInfo": showContactInfo,
-        "birthDate": birthDate,
+        "deliveryPrice1": deliveryPrice1,
+        "deliveryPrice2": deliveryPrice2,
+        "deliveryPrice3": deliveryPrice3,
+        "point": point,
+        "suspend": suspend,
+        "instagram": instagram,
+        "telegram": telegram,
+        "jobStatus": jobStatus,
+        "whatsApp": whatsApp,
+        "linkedIn": linkedIn,
+        "dribble": dribble,
+        "soundCloud": soundCloud,
+        "pinterest": pinterest,
+        "website": website,
+        "activity": activity,
+        "color": color,
         "gender": gender,
-        "detail1": detail1,
-        "detail2": detail2,
-        "categories": categories == null ? null : List<dynamic>.from(categories!.map((final x) => x)),
-        "locations": locations == null ? null : List<dynamic>.from(locations!.map((final x) => x)),
+        "legalAuthenticationType": legalAuthenticationType,
+        "nationalityType": nationalityType,
+        "privacyType": privacyType,
+        "isOnline": isOnline,
+        "ageCategory": ageCategory,
+        "birthDate": birthDate,
+        "expireUpgradeAccount": expireUpgradeAccount,
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
+        "code": code,
+        "shebaNumber": shebaNumber,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
       };
 }
 
@@ -557,8 +580,8 @@ class UserFilterDto {
         "pageNumber": pageNumber,
         "detail1": detail1,
         "detail2": detail2,
-        "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((final x) => x)),
-        "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((final x) => x)),
+        "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((final String x) => x)),
+        "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((final String x) => x)),
       };
 }
 

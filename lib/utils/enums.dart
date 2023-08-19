@@ -887,16 +887,17 @@ enum UseCaseContent {
 }
 
 enum GenderType {
-  male("male"),
-  female("female"),
-  unknown("unknown"),
-  both("both");
+  male("male", 200),
+  female("female", 201),
+  unknown("unknown", 202),
+  both("legal", 203);
 
-  const GenderType(this.title);
+  const GenderType(this.title, this.number);
 
   @override
   String toString() => name;
   final String title;
+  final int number;
 }
 
 enum AgeType {
