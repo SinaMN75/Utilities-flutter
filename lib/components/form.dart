@@ -152,7 +152,10 @@ Widget button({
   if (buttonType == ButtonType.text)
     return TextButton(
       onPressed: onTap,
-      child: SizedBox(width: width ?? context.width, child: Text(title, textAlign: TextAlign.center).bodyLarge(color: context.theme.colorScheme.secondary).fit()),
+      child: SizedBox(
+        width: width ?? context.width,
+        child: Text(title, textAlign: TextAlign.center).bodyLarge(color: context.theme.colorScheme.secondary).fit(),
+      ),
     );
   return const SizedBox();
 }
@@ -173,6 +176,7 @@ Widget textFieldTypeAhead<T>({
     column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        if (text != null) Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
         TypeAheadField<T>(
           textFieldConfiguration: TextFieldConfiguration(
             onTap: () {
@@ -184,7 +188,7 @@ Widget textFieldTypeAhead<T>({
             controller: controller,
             onChanged: onChanged,
             scrollPadding: const EdgeInsets.symmetric(vertical: 16),
-            decoration: InputDecoration(prefixIcon: prefix?.paddingOnly(left: 8, right: 12), fillColor: fillColor, hintText: hint, helperText: text),
+            decoration: InputDecoration(prefixIcon: prefix?.paddingOnly(left: 8, right: 12), fillColor: fillColor, hintText: hint),
           ),
           hideKeyboard: hideKeyboard,
           suggestionsCallback: suggestionsCallback,
