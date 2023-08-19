@@ -239,7 +239,7 @@ extension HTTP on Response<dynamic> {
 
   void logRaw({final String params = ""}) {
     log(
-      "${this.request?.method} - ${this.request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body",
+      "${this.request?.method} - ${this.request?.url} - $statusCode \nPARAMS: $params\n HEADERS: ${this.request?.headers} \nRESPONSE: $body",
     );
   }
 
