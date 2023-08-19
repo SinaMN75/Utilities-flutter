@@ -169,19 +169,6 @@ class UserDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
-  Future<void> updateProfile({
-    required final UserCreateUpdateDto dto,
-    required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPut(
-        url: "$baseUrl/user/UpdateProfile",
-        body: dto,
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
-
   Future<void> filter({
     required final UserFilterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
