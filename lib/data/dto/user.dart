@@ -222,9 +222,9 @@ class UserJsonDetail {
   final String? code;
   final String? shebaNumber;
   final String? boosted;
-  final double? deliveryPrice1;
-  final double? deliveryPrice2;
-  final double? deliveryPrice3;
+  final int? deliveryPrice1;
+  final int? deliveryPrice2;
+  final int? deliveryPrice3;
   final int? privacyType;
   final int? legalAuthenticationType;
   final int? nationalityType;
@@ -374,10 +374,10 @@ class UserCreateUpdateDto {
   final String? followedUsers;
   final String? followingUsers;
   final String? blockedUsers;
-  final double? wallet;
-  final double? deliveryPrice1;
-  final double? deliveryPrice2;
-  final double? deliveryPrice3;
+  final int? wallet;
+  final int? deliveryPrice1;
+  final int? deliveryPrice2;
+  final int? deliveryPrice3;
   final double? point;
   final bool? suspend;
   final String? instagram;
