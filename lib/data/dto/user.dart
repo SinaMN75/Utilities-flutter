@@ -100,7 +100,7 @@ class UserReadDto {
   final String? jobStatus;
   final String? mutedChats;
   final int? gender;
-  final double? wallet;
+  final int? wallet;
   final double? point;
   final String? birthdate;
   final String? createdAt;
