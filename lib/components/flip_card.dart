@@ -39,8 +39,6 @@ typedef void BoolCallback(bool isFront);
 class FlipCard extends StatefulWidget {
   final Widget front;
   final Widget back;
-
-  /// The amount of milliseconds a turn animation will take.
   final int speed;
   final FlipDirection direction;
   final VoidCallback? onFlip;
@@ -156,7 +154,6 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
       ],
     );
 
-    /// if we need to flip the card on taps, wrap the content
     if (widget.flipOnTouch) {
       return GestureDetector(
         behavior: HitTestBehavior.translucent,

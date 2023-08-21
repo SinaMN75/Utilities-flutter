@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:utilities/data/dto/category.dart';
 
 class ExcelToJson {
-  /// Use this method to convert the file to a json.
   Future<String?> convert() async {
     Excel? excel = await _getFile();
 
@@ -100,18 +99,16 @@ class ExcelToJson {
 }
 
 class ExcelToJson2 {
-  /// Use this method to convert the file to a json.
   Future<String?> categoryConvert({required final Function(List<CategoryReadDto> categories) result}) async {
     Excel? excel = await _getFile();
 
     if (excel != null) {
       final List<String> cc = <String>[];
-      // List<cc>=<<String>>[];
       excel.setDefaultSheet('Sheet1');
 
       final CellStyle cellStyle = CellStyle(fontColorHex: '#000000', fontFamily: getFontFamily(FontFamily.Calibri));
 
-      cellStyle.underline = Underline.Single; // or Underline.Double
+      cellStyle.underline = Underline.Single;
 
       for (String table in excel.tables.keys) {
         final List<List<Data?>> ggg = excel.tables[table]!.rows;

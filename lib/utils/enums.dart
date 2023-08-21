@@ -322,7 +322,6 @@ enum TagGender {
   man("Man", "مرد", 100),
   woman("Woman", "زن", 101),
   company("Company", "تجاری", 102);
-  // team("Team", "تیم", 103);
 
   const TagGender(this.title, this.titleTr1, this.status);
 
@@ -461,34 +460,6 @@ enum AgeType2 {
   final String title;
 }
 
-// enum CategoryType {
-//   brand("brand"),
-//   reference("reference"),
-//   company("company"),
-//   category("category"),
-//   function("function"),
-//   country("country"),
-//   city("city"),
-//   province("province"),
-//   model("model"),
-//   insurance("insurance"),
-//   active("active"),
-//   archive("archive"),
-//   image("image"),
-//   video("video"),
-//   music("music"),
-//   pdf("pdf"),
-//   commodity("commodity"),
-//   job("job"),
-//   speciality("speciality");
-//
-//   const CategoryType(this.title);
-//
-//   @override
-//   String toString() => name;
-//   final String title;
-// }
-
 enum Currency {
   rial("100"),
   dolor("101"),
@@ -602,71 +573,6 @@ enum UseCasePaymentBime {
   final String title;
 }
 
-// enum UseCaseProduct {
-//   ad("ad"),
-//   dailyPrice("dailyPrice"),
-//   tender("tender"),
-//   test("test"),
-//   project("project"),
-//   service("service"),
-//   consultant("consultant"),
-//   company("company"),
-//   yooNote("yooNote"),
-//   tutorial("tutorial"),
-//   blog("blog"),
-//   subBlog("subBlog"),
-//   product("product"),
-//   story("story"),
-//   physicalProduct("physicalProduct"),
-//   digitalProduct("digitalProduct"),
-//   attribute("attribute"),
-//   target("target"),
-//   magazine("magazine"),
-//   adHiring("hiringAd"),
-//   adProject("adProject"),
-//   adEmployee("adEmployee");
-//
-//   const UseCaseProduct(this.title);
-//
-//   final String title;
-// }
-
-// enum UseCaseCategory {
-//   location("location"),
-//   category("category"),
-//   colors("colors"),
-//   specialty("specialty"),
-//   specializedArt("specializedArt"),
-//   tag("tag"),
-//   ad("ad"),
-//   amnbekhar("amnbekhar"),
-//   brand("brand"),
-//   dailyPrice("dailyPrice"),
-//   tender("tender"),
-//   chanel("chanel"),
-//   group("group"),
-//   auction("auction"),
-//   project("project"),
-//   service("service"),
-//   consultant("consultant"),
-//   yooNote("yooNote"),
-//   company("company"),
-//   learn("learn"),
-//   user("user"),
-//   insurance("insurance"),
-//   target("target"),
-//   tutorial("tutorial"),
-//   attribute("attribute"),
-//   shopCategory("shopCategory"),
-//   magazine("magazine");
-//
-//   const UseCaseCategory(this.title);
-//
-//   @override
-//   String toString() => name;
-//   final String title;
-// }
-
 enum TypeUser {
   hiring('hiring'),
   openToWork('openToWork');
@@ -750,7 +656,6 @@ enum TypeGender {
   man("Man", "مرد", 100),
   woman("Woman", "زن", 101),
   company("Company", "تجاری", 102);
-  // team("Team", "تیم", 103);
 
   const TypeGender(this.title, this.titleTr1, this.status);
 
@@ -773,42 +678,6 @@ enum PrivacyType {
   String toString() => name;
   final int title;
 }
-
-// enum UseCaseMedia {
-//   image("image"),
-//   all("all"),
-//   audio("audio"),
-//   video("video"),
-//   media("media"),
-//   cover("cover"),
-//   apk("apk"),
-//   profile("profile"),
-//   document("document"),
-//   license("license"),
-//   chat("Chat"),
-//   zip("zip"),
-//   bio("bio"),
-//   post("post"),
-//   text("text");
-//
-//   const UseCaseMedia(this.title);
-//
-//   @override
-//   String toString() => name;
-//   final String title;
-// }
-
-// enum UseCaseChat {
-//   group("group"),
-//   chat("chat"),
-//   chanel("chanel");
-//
-//   const UseCaseChat(this.title);
-//
-//   @override
-//   String toString() => name;
-//   final String title;
-// }
 
 enum TypeAd {
   fullTime('Full time', "تمام وقت", 164),
@@ -837,35 +706,6 @@ enum TypeKindAd {
   final String titleTr1;
   final int status;
 }
-//
-// enum TypeCategory {
-//   Explore('Explore'),
-//   Digital('Digital'),
-//   image("image"),
-//   video("video"),
-//   music("music"),
-//   yooNote("yooNote"),
-//   pdf("pdf"),
-//   group("group"),
-//   media("media"),
-//   chanel("chanel"),
-//   apk("apk"),
-//   app("app"),
-//   game("game"),
-//   commodity("commodity"),
-//   job("job"),
-//   attribute("attribute"),
-//   physical('physical'),
-//   userStatus('userStatus'),
-//   jobType('jobType'),
-//   jobPlace('jobPlace');
-//
-//   const TypeCategory(this.title);
-//
-//   @override
-//   String toString() => name;
-//   final String title;
-// }
 
 enum UseCaseContent {
   news("news"),
@@ -953,27 +793,6 @@ enum OrderStatus {
   final String title;
   final String titleTr1;
 }
-
-// enum OrderStatus {
-//   Pending(StatusModel("Pending", "در انتظار", 100)),
-//   Canceled("Canceled", "لغو شده", 101),
-//   Paid("Paid", "پرداخت شده", 102),
-//   Accept("Accept", "قبول شده", 103),
-//   Reject("Reject", "رد شده", 104),
-//   InProgress("InProgress", "در حال انجام", 105),
-//   InProcess("InProcess", "در حال انجام", 106),
-//   Shipping("Shipping", "در حال ارسال", 107),
-//   Refund("Refund", "بازپرداخت", 108),
-//   RefundComplete("RefundComplete", "بازپرداخت کامل", 109),
-//   Complete("Complete", "تکمیل شده", 110),
-//   PaidFail("PaidFail", "پرداخت ناموفق", 112);
-//
-//   const OrderStatus(this.statusModel);
-//
-//   @override
-//   String toString() => name;
-//   final StatusModel statusModel;
-// }
 
 class StatusModel {
   StatusModel(

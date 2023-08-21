@@ -33,37 +33,15 @@ class ReadMoreText extends StatefulWidget {
     this.onLinkPressed,
     this.linkTextStyle,
   }) : super(key: key);
-
-  /// Used on TrimMode.Length
   final int trimLength;
-
-  /// Used on TrimMode.Lines
   final int trimLines;
-
-  /// Determines the type of trim. TrimMode.Length takes into account
-  /// the number of letters, while TrimMode.Lines takes into account
-  /// the number of lines
   final TrimMode trimMode;
-
-  /// TextStyle for expanded text
   final TextStyle? moreStyle;
-
-  /// TextStyle for compressed text
   final TextStyle? lessStyle;
-
-  /// Textspan used before the data any heading or somthing
   final String? preDataText;
-
-  /// Textspan used after the data end or before the more/less
   final String? postDataText;
-
-  /// Textspan used before the data any heading or somthing
   final TextStyle? preDataTextStyle;
-
-  /// Textspan used after the data end or before the more/less
   final TextStyle? postDataTextStyle;
-
-  ///Called when state change between expanded/compress
   final Function(bool val)? callback;
 
   final ValueChanged<String>? onLinkPressed;
@@ -153,13 +131,9 @@ class ReadMoreTextState extends State<ReadMoreText> {
             text: " " + widget.postDataText!,
             style: widget.postDataTextStyle ?? effectiveTextStyle,
           );
-
-        // Create a TextSpan with data
         final text = TextSpan(
           children: [if (preTextSpan != null) preTextSpan, TextSpan(text: widget.data, style: effectiveTextStyle), if (postTextSpan != null) postTextSpan],
         );
-
-        // Layout and measure link
         TextPainter textPainter = TextPainter(
           text: link,
           textAlign: textAlign,
@@ -171,18 +145,12 @@ class ReadMoreTextState extends State<ReadMoreText> {
         );
         textPainter.layout(minWidth: 0, maxWidth: maxWidth);
         final linkSize = textPainter.size;
-
-        // Layout and measure delimiter
         textPainter.text = _delimiter;
         textPainter.layout(minWidth: 0, maxWidth: maxWidth);
         final delimiterSize = textPainter.size;
-
-        // Layout and measure text
         textPainter.text = text;
         textPainter.layout(minWidth: constraints.minWidth, maxWidth: maxWidth);
         final textSize = textPainter.size;
-
-        // Get the endIndex of data
         bool linkLongerThanLine = false;
         int endIndex;
 

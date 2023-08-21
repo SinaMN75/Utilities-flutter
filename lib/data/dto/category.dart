@@ -9,8 +9,6 @@ class CategoryReadDto {
     this.titleTr1,
     this.titleTr2,
     this.color,
-    // this.tagUseCase,
-    // this.tagType,
     this.price,
     this.stock,
     this.count,
@@ -31,8 +29,6 @@ class CategoryReadDto {
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
         color: json["color"],
-        // tagUseCase: json["tagUseCase"],
-        // tagType: json["tagType"],
         count: json["count"],
         price: json["price"],
         stock: json["stock"],
@@ -50,9 +46,6 @@ class CategoryReadDto {
   String? titleTr1;
   String? titleTr2;
   String? color;
-
-  // int? tagUseCase;
-  // int? tagType;
   int? price;
   int? stock;
   int? count;
@@ -73,8 +66,6 @@ class CategoryReadDto {
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,
         "color": color,
-        // "tagUseCase": tagUseCase,
-        // "tagType": tagType,
         "price": price,
         "stock": stock,
         "count": count,
@@ -147,8 +138,6 @@ class CategoryCreateUpdateDto {
     this.color,
     this.discountedPrice,
     this.link,
-    // this.tagUseCase,
-    // this.tagType,
     this.latitude,
     this.longitude,
     this.price,
@@ -170,8 +159,6 @@ class CategoryCreateUpdateDto {
         subtitle: json["subtitle"],
         color: json["color"],
         link: json["link"],
-        // tagUseCase: json["tagUseCase"],
-        // tagType: json["tagType"],
         discountedPrice: json["discountedPrice"],
         latitude: json["latitude"],
         longitude: json["longitude"],
@@ -190,9 +177,6 @@ class CategoryCreateUpdateDto {
   String? subtitle;
   String? color;
   String? link;
-
-  // int? tagUseCase;
-  // int? tagType;
   double? latitude;
   double? longitude;
   int? price;
@@ -214,8 +198,6 @@ class CategoryCreateUpdateDto {
         "subtitle": subtitle,
         "color": color,
         "link": link,
-        // "tagUseCase": tagUseCase,
-        // "tagType": tagType,
         "latitude": latitude,
         "longitude": longitude,
         "price": price,
@@ -234,8 +216,6 @@ class CategoryFilterDto {
     this.title,
     this.titleTr1,
     this.titleTr2,
-    // this.tagUseCase,
-    // this.tagType,
     this.parentId,
     this.showMedia,
     this.orderByOrder,
@@ -251,8 +231,6 @@ class CategoryFilterDto {
         title: json["title"],
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
-        // tagUseCase: json["tagUseCase"],
-        // tagType: json["tagType"],
         parentId: json["parentId"],
         showMedia: json["showMedia"],
         orderByOrder: json["orderByOrder"],
@@ -264,9 +242,6 @@ class CategoryFilterDto {
   String? title;
   String? titleTr1;
   String? titleTr2;
-
-  // int? tagUseCase;
-  // int? tagType;
   String? parentId;
   bool? showMedia;
   bool? orderByOrder;
@@ -281,8 +256,6 @@ class CategoryFilterDto {
         "title": title,
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,
-        // "tagUseCase": tagUseCase,
-        // "tagType": tagType,
         "parentId": parentId,
         "showMedia": showMedia,
         "orderByOrder": orderByOrder,

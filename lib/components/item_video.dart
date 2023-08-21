@@ -57,13 +57,3 @@ class _ItemVideoState extends State<ItemVideo> {
   }
 }
 
-//
-// Widget rrr(){
-//
-//   return FutureBuilder(
-//     future:   , builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-//
-//
-//   },
-//   );
-// }

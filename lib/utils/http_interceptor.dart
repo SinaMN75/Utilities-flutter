@@ -60,7 +60,6 @@ Future<void> request(
       100,
       () => response.logRaw(params: (body == null || !encodeBody) ? "" : body.toJson()),
     );
-  //unAuthorize
   if (response.isSuccessful()) {
     action(response);
   } else {
