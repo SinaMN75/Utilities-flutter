@@ -58,19 +58,6 @@ class OrderDataSource {
         error: (Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
-  Future<void> createOrderDetail({
-    required final OrderDetailCreateUpdateDto dto,
-    required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPost(
-        url: "$baseUrl/Order/CreateOrderDetail",
-        body: dto,
-        action: (final Response response) => onResponse(GenericResponse.fromJson(response.body)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
-
   Future<void> createUpdateOrderDetail({
     required final OrderDetailCreateUpdateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
@@ -81,19 +68,6 @@ class OrderDataSource {
         url: "$baseUrl/Order/CreateUpdateOrderDetail",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
-
-  Future<void> updateOrderDetail({
-    required final OrderDetailCreateUpdateDto dto,
-    required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPut(
-        url: "$baseUrl/Order/UpdateOrderDetail",
-        body: dto,
-        action: (final Response response) => onResponse(GenericResponse.fromJson(response.body)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
