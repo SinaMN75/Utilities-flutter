@@ -1,42 +1,25 @@
-import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:utilities/data/dto/address.dart';
 import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+import 'package:utilities/utils/http_interceptor.dart';
 
 class AddressDataSource {
   AddressDataSource({required this.baseUrl});
 
   final String baseUrl;
 
-  Future<void> readMyAddresses({
-    required final Function(GenericResponse<AddressReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpGet(
-        url: "$baseUrl/address/ReadMyAddresses",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
-        failure: failure,
-      );
-
-
   Future<void> filter({
-    required final String userId,
+    required final AddressFilterDto dto,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/address/Filter",
-        body: {"userId":userId},
-        encodeBody: false,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
-        failure: failure,
+        body: dto,
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
-
-
 
   Future<void> create({
     required final AddressCreateUpdateDto dto,
@@ -47,9 +30,8 @@ class AddressDataSource {
       httpPost(
         url: "$baseUrl/address",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
-        failure: failure,
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   Future<void> update({
@@ -61,9 +43,8 @@ class AddressDataSource {
       httpPut(
         url: "$baseUrl/address",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
-        failure: failure,
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   Future<void> delete({
@@ -74,8 +55,7 @@ class AddressDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/address/$id",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.data, fromMap: AddressReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
-        failure: failure,
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 }

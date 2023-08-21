@@ -105,3 +105,31 @@ class AddressCreateUpdateDto {
   final String? postalCode;
   final bool? isDefault;
 }
+
+class AddressFilterDto {
+  AddressFilterDto({
+    this.userId,
+    this.pageSize,
+    this.pageNumber,
+  });
+
+  factory AddressFilterDto.fromJson(final String str) => AddressFilterDto.fromMap(json.decode(str));
+
+  factory AddressFilterDto.fromMap(final dynamic json) => AddressFilterDto(
+    userId: json["userId"],
+    pageSize: json["pageSize"],
+    pageNumber: json["pageNumber"],
+  );
+
+  String toJson() => json.encode(toMap());
+
+  dynamic toMap() => <String, dynamic>{
+    "userId": userId,
+    "pageSize": pageSize,
+    "pageNumber": pageNumber,
+  };
+
+  final String? userId;
+  final String? pageSize;
+  final String? pageNumber;
+}
