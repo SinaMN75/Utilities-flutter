@@ -91,7 +91,7 @@ class OrderCreateUpdateDto {
         payType: json["payType"],
         sendType: json["sendType"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        orderDetails: json["orderDetails"] == null ? [] : List<OrderDetailCreateDto>.from(json["orderDetails"]!.map(OrderDetailCreateDto.fromMap)),
+        orderDetails: json["orderDetails"] == null ? [] : List<OrderDetailCreateUpdateDto>.from(json["orderDetails"]!.map(OrderDetailCreateUpdateDto.fromMap)),
       );
   final String? id;
   final String? description;
@@ -102,7 +102,7 @@ class OrderCreateUpdateDto {
   final int? payType;
   final int? sendType;
   List<int>? tags;
-  final List<OrderDetailCreateDto>? orderDetails;
+  final List<OrderDetailCreateUpdateDto>? orderDetails;
 
   String toJson() => json.encode(toMap());
 
@@ -120,46 +120,26 @@ class OrderCreateUpdateDto {
       };
 }
 
-class OrderDetailCreateDto {
-  OrderDetailCreateDto({
-    this.orderId,
-    this.orderDetailId,
+class OrderDetailCreateUpdateDto {
+  OrderDetailCreateUpdateDto({
     this.productId,
     this.count,
-    this.category,
-    this.categoryId,
-    this.price,
   });
 
-  factory OrderDetailCreateDto.fromJson(final String str) => OrderDetailCreateDto.fromMap(json.decode(str));
+  factory OrderDetailCreateUpdateDto.fromJson(final String str) => OrderDetailCreateUpdateDto.fromMap(json.decode(str));
 
-  factory OrderDetailCreateDto.fromMap(final dynamic json) => OrderDetailCreateDto(
-        orderId: json["orderId"],
+  factory OrderDetailCreateUpdateDto.fromMap(final dynamic json) => OrderDetailCreateUpdateDto(
         productId: json["productId"],
-        price: json["price"],
         count: json["count"],
-        category: json["category"],
-        categoryId: json["categoryId"],
-        orderDetailId: json["orderDetailId"],
       );
-  final String? orderId;
   final String? productId;
-  final int? price;
   final int? count;
-  final String? category;
-  final String? categoryId;
-  final String? orderDetailId;
 
   String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
-        "orderId": orderId,
         "productId": productId,
-        "price": price,
         "count": count,
-        "category": category,
-        "categoryId": categoryId,
-        "orderDetailId": orderDetailId,
       };
 }
 

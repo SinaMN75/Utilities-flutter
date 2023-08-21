@@ -8,19 +8,6 @@ class OrderDataSource {
 
   final String baseUrl;
 
-  Future<void> create({
-    required final OrderCreateUpdateDto dto,
-    required final Function(GenericResponse<OrderReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPost(
-        url: "$baseUrl/Order",
-        body: dto,
-        action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
-
   Future<void> update({
     required final OrderCreateUpdateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
@@ -72,7 +59,7 @@ class OrderDataSource {
       );
 
   Future<void> createOrderDetail({
-    required final OrderDetailCreateDto dto,
+    required final OrderDetailCreateUpdateDto dto,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
@@ -85,7 +72,7 @@ class OrderDataSource {
       );
 
   Future<void> createUpdateOrderDetail({
-    required final OrderDetailCreateDto dto,
+    required final OrderDetailCreateUpdateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
@@ -98,7 +85,7 @@ class OrderDataSource {
       );
 
   Future<void> updateOrderDetail({
-    required final OrderDetailCreateDto dto,
+    required final OrderDetailCreateUpdateDto dto,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
