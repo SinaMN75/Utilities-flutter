@@ -218,6 +218,8 @@ enum TagOrder {
   physical(100),
   digital(101),
   donate(102),
+  shop(103),
+  job(104),
   pishtazDelivery(201),
   sendTipaxDelivery(202),
   customDelivery(203),
