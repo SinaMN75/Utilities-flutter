@@ -256,3 +256,26 @@ void snackbarRed({
       titleText: titleText,
       userInputForm: userInputForm,
     );
+
+void alertDialog({
+  required final String title,
+  required final String subtitle,
+  required final (String, VoidCallback) action1,
+  final (String, VoidCallback)? action2,
+  final (String, VoidCallback)? action3,
+  final VoidCallback? onDismiss,
+  final bool barrierDismissible = true,
+}) =>
+    dialog(
+      AlertDialog(
+        title: Text(title),
+        content: Text(subtitle),
+        actions: <Widget>[
+          TextButton(onPressed: action1.$2, child: Text(action1.$1)),
+          if (action2 != null) TextButton(onPressed: action2.$2, child: Text(action2.$1)),
+          if (action3 != null) TextButton(onPressed: action3.$2, child: Text(action3.$1)),
+        ],
+      ),
+      barrierDismissible: barrierDismissible,
+      onDismiss: onDismiss,
+    );
