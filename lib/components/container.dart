@@ -45,9 +45,11 @@ Widget smartRefresh({
   final ScrollController? scrollController,
   final VoidCallback? onRefresh,
   final VoidCallback? onLoading,
+  final bool enablePullUp = false,
 }) =>
     SmartRefresher(
       scrollController: scrollController,
+      enablePullUp: enablePullUp,
       header: const WaterDropHeader(),
       footer: CustomFooter(
         builder: (final BuildContext? context, final LoadStatus? mode) {
