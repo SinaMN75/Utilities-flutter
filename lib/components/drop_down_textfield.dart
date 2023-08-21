@@ -364,7 +364,7 @@ class _DropDownTextFieldState extends State<DropDownTextField> with TickerProvid
         }
       }
 
-      _listTileTextStyle = (widget.listTextStyle ?? Theme.of(context).textTheme.subtitle1)!;
+      _listTileTextStyle = (widget.listTextStyle ?? Theme.of(context).textTheme.bodyMedium)!;
       _listTileHeight = _textWidgetSize("dummy Text", _listTileTextStyle).height + _listPadding.top + _listPadding.bottom;
       _maxListItem = widget.dropDownItemCount;
 
@@ -1119,6 +1119,7 @@ class _KeyboardVisibilityBuilderState extends State<KeyboardVisibilityBuilder> w
 
   @override
   void didChangeMetrics() {
+    // ignore: deprecated_member_use
     final double bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
     final bool newValue = bottomInset > 0.0;
     if (newValue != _isKeyboardVisible) {
@@ -1261,7 +1262,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               widget.msg,
-                              style: Theme.of(context).textTheme.subtitle1,
+                              style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ),
                           const SizedBox(
@@ -1269,7 +1270,7 @@ class _ToolTipWidgetState extends State<ToolTipWidget> {
                           ),
                           MaterialButton(
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                             color: Colors.lightBlueAccent,
                             onPressed: closeOverlay,

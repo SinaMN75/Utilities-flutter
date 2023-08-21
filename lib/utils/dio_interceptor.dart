@@ -39,7 +39,9 @@ Future<void> request(
     if (httpMethod == EHttpMethod.put) response = await dio.put(url, data: params, options: Options(headers: header));
     if (httpMethod == EHttpMethod.patch) response = await dio.patch(url, data: params, options: Options(headers: header));
     if (httpMethod == EHttpMethod.delete) response = await dio.delete(url, options: Options(headers: header));
-    response.logRequest(params: params);
+    if (params != null) {
+      response.logRequest(params: params);
+    }
     if (response.isSuccessful())
       action(response);
     else
@@ -47,7 +49,6 @@ Future<void> request(
   } on Exception catch (error) {
     if (failure != null) failure(error.toString());
   }
-
 }
 
 Future<void> httpGet({
