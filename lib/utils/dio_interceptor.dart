@@ -40,7 +40,7 @@ Future<void> request(
     if (httpMethod == EHttpMethod.patch) response = await dio.patch(url, data: params, options: Options(headers: header));
     if (httpMethod == EHttpMethod.delete) response = await dio.delete(url, options: Options(headers: header));
     if (params != null) {
-      response.logRequest(params: params);
+      response.logRequest(params: params.toString());
     }
     if (response.isSuccessful())
       action(response);
