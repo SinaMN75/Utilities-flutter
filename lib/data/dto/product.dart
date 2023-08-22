@@ -469,7 +469,7 @@ class ProductCreateUpdateDto {
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
         "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.where((final String element) => element!='').map((final String x) => x)),
         "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final String x) => x)),
       };
 }
@@ -517,9 +517,9 @@ class ProductFilterDto {
     this.boosted,
   });
 
-  factory ProductFilterDto.fromJson(String str) => ProductFilterDto.fromMap(json.decode(str));
+  factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
 
-  factory ProductFilterDto.fromMap(Map<String, dynamic> json) => ProductFilterDto(
+  factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
         title: json["title"],
         subtitle: json["subtitle"],
         description: json["description"],
@@ -553,9 +553,9 @@ class ProductFilterDto {
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
         currency: json["currency"],
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
+        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final x) => x)),
         query: json["query"],
         showExpired: json["showExpired"],
         boosted: json["boosted"],
@@ -637,9 +637,9 @@ class ProductFilterDto {
         "pageSize": pageSize,
         "pageNumber": pageNumber,
         "currency": currency,
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-        "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((x) => x)),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((final String x) => x)),
         "query": query,
         "showExpired": showExpired,
         "boosted": boosted,
