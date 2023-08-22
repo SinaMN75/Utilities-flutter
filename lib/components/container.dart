@@ -197,15 +197,8 @@ Widget row({
             ),
     );
 
-class TabBarViewModel {
-  final Tab tab;
-  final Widget view;
-
-  TabBarViewModel({required final this.tab, required final this.view});
-}
-
 Widget defaultTabBar({
-  required final List<TabBarViewModel> tabs,
+  required final List<Widget> children,
   required final Widget tabBar,
   final double? width,
   final double? height = 500,
@@ -213,17 +206,14 @@ Widget defaultTabBar({
 }) =>
     DefaultTabController(
       initialIndex: initialIndex,
-      length: tabs.length,
+      length: children.length,
       child: Column(
         children: <Widget>[
           tabBar,
           SizedBox(
             width: width ?? screenWidth,
             height: height,
-            child: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: tabs.map((final TabBarViewModel view) => view.view).toList(),
-            ),
+            child: TabBarView(physics: const NeverScrollableScrollPhysics(), children: children),
           )
         ],
       ),
