@@ -19,6 +19,7 @@ class OrderDataSource {
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        failure: failure,
       );
 
   Future<void> filter({
@@ -32,6 +33,7 @@ class OrderDataSource {
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        failure: failure,
       );
 
   Future<void> readById({
@@ -44,6 +46,7 @@ class OrderDataSource {
         url: "$baseUrl/Order/$id",
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        failure: failure,
       );
 
   Future<void> delete({
@@ -56,6 +59,7 @@ class OrderDataSource {
         url: "$baseUrl/Order/$id",
         action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        failure: failure,
       );
 
   Future<void> createUpdateOrderDetail({
@@ -69,6 +73,7 @@ class OrderDataSource {
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        failure: failure,
       );
 
   Future<void> deleteOrderDetail({
@@ -81,5 +86,6 @@ class OrderDataSource {
         url: "$baseUrl/Order/DeleteOrderDetail/$id",
         action: (final Response response) => onResponse(GenericResponse.fromJson(response.body)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        failure: failure,
       );
 }
