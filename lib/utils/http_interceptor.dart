@@ -8,6 +8,7 @@ Future<void> request(
   final EHttpMethod httpMethod,
   final Function(Response<dynamic> response) action,
   final Function(Response<dynamic> response) error, {
+      final Function(String error)? failure,
   final String? queryOrMutation,
   final dynamic body,
   final bool encodeBody = true,
@@ -53,6 +54,7 @@ Future<void> request(
     if (httpMethod == EHttpMethod.delete) response = await connect.delete(url, headers: header);
   } catch (e) {
     error(response);
+    if (failure != null) failure(error.toString());
   }
 
   if (kDebugMode)
@@ -71,6 +73,7 @@ Future<void> httpGet({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
+  final Function(String error)? failure,
   final Map<String, String>? headers,
   final String userAgent = 'SinaMN75',
   final bool followRedirects = true,
@@ -95,12 +98,14 @@ Future<void> httpGet({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
+      failure: failure,
     );
 
 Future<void> httpPost({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
+  final Function(String error)? failure,
   final Map<String, String>? headers,
   final dynamic body,
   final bool encodeBody = true,
@@ -129,12 +134,14 @@ Future<void> httpPost({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
+      failure: failure,
     );
 
 Future<void> httpPut({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
+  final Function(String error)? failure,
   final Map<String, String>? headers,
   final dynamic body,
   final bool encodeBody = true,
@@ -163,12 +170,14 @@ Future<void> httpPut({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
+      failure: failure,
     );
 
 Future<void> patch({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
+  final Function(String error)? failure,
   final Map<String, String>? headers,
   final dynamic body,
   final bool encodeBody = true,
@@ -197,12 +206,14 @@ Future<void> patch({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
+      failure: failure,
     );
 
 Future<void> httpDelete({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
+  final Function(String error)? failure,
   final Map<String, String>? headers,
   final String userAgent = 'SinaMN75',
   final bool followRedirects = true,
@@ -227,6 +238,7 @@ Future<void> httpDelete({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
+      failure: failure,
     );
 
 enum EHttpMethod { get, post, put, patch, delete }

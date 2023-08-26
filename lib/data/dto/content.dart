@@ -50,8 +50,8 @@ class ContentReadDto {
         tagUseCase: json["tagUseCase"],
         jsonDetail: json["jsonDetail"] == null ? null : ContentJsonDetail.fromMap(json["jsonDetail"]),
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        contactInformation: json["contactInformation"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformation"].cast<dynamic>().map(ContactInformationReadDto.fromMap)).toList(),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
+        contactInformation: json["contactInformation"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformation"].cast<Map<String, dynamic>>().map(ContactInformationReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
       );
 
   dynamic toMap() => {
@@ -106,7 +106,7 @@ class ContentCreateUpdateDto {
         dribble: json["dribble"],
         approvalStatus: json["approvalStatus"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        contactInformations: json["contactInformations"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformations"].cast<dynamic>().map(ContactInformationReadDto.fromMap)).toList(),
+        contactInformations: json["contactInformations"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformations"].cast<Map<String, dynamic>>().map(ContactInformationReadDto.fromMap)).toList(),
       );
 
   dynamic toMap() => {

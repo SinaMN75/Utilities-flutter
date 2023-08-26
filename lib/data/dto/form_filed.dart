@@ -38,7 +38,7 @@ class FormFieldReadDto {
         children: json["children"] == null
             ? null
             : List<FormFieldReadDto>.from(
-                json["children"].cast<dynamic>().map(
+                json["children"].cast<Map<String, dynamic>>().map(
                       (e) => FormFieldReadDto.fromMap(e),
                     ),
               ),

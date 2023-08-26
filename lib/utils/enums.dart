@@ -101,6 +101,8 @@ enum TagProduct {
   pricePerCount(173),
   pricePerHour(174),
   pricePerMinute(175),
+  reserve(176),
+  microBlog(177),
   news(201),
   kindOfNew(202),
   used(203),
@@ -204,6 +206,8 @@ enum TagCategory {
   favorites(182),
   remote(183),
   onSite(184),
+  reserve(185),
+  microBlog(186),
   directShod(500),
   test(900);
 
@@ -350,24 +354,6 @@ enum TagStatusProduct {
   final int status;
 }
 
-
-enum PerPrice {
-  perDay("Price per day", "به ازای روز", 170),
-  perPerson("Price per person", "به ازای نفر", 171),
-  perPage("Price per page(240 words)", "به ازای صفحه(240 کلمه)", 172),
-  perCount("Price per number", "به ازای تعداد", 173),
-  perHour("Price per hour", "به ازای ساعت", 174),
-  perMinute("Price per minute", "به ازای دقیقه", 175);
-
-  const PerPrice(this.titleTr1, this.title, this.status);
-
-  @override
-  String toString() => name;
-  final int status;
-  final String titleTr1;
-  final String title;
-}
-
 enum FormFieldType {
   singleLineText(0),
   multiLineText(1),
@@ -389,37 +375,6 @@ enum FormFieldType {
   @override
   String toString() => name;
   final int title;
-}
-
-enum ExploreType {
-  donate("Donit", "دونیت"),
-  yooNote("Yoonote", "یونوت"),
-  shop("Shop", "فروشگاه"),
-  reserve("Reserve", "رزرو"),
-  adviser("Adviser", "مشاور"),
-  job("Job", "شغل"),
-  award("Award", "مسابقه");
-
-  const ExploreType(this.title, this.titleTr1);
-
-  @override
-  String toString() => name;
-  final String title;
-  final String titleTr1;
-}
-
-enum JobType {
-  fullTime('Full time', "تمام وقت", 159),
-  partTime('Part time', "پاره وقت", 160),
-  project("Hybrid", "ترکیبی", 161);
-
-  const JobType(this.title, this.titleTr1, this.status);
-
-  @override
-  String toString() => name;
-  final String title;
-  final String titleTr1;
-  final int status;
 }
 
 enum BackResult {
@@ -449,18 +404,6 @@ enum SortLists {
   final String title;
 }
 
-enum AgeType2 {
-  teen("18-25", 200),
-  young("26-32", 201),
-  adult("33-40", 202);
-
-  const AgeType2(this.title, this.status);
-
-  @override
-  String toString() => name;
-  final int status;
-  final String title;
-}
 
 enum Currency {
   rial("100"),
@@ -530,20 +473,6 @@ enum TenderType {
   final String title;
 }
 
-enum PostMediaType {
-  all("all"),
-  image("image"),
-  audio("audio"),
-  video("video"),
-  pdf("pdf"),
-  text("text");
-
-  const PostMediaType(this.title);
-
-  @override
-  String toString() => name;
-  final String title;
-}
 
 enum UseCaseBime {
   bime("bime");
@@ -580,36 +509,6 @@ enum TypeUser {
   openToWork('openToWork');
 
   const TypeUser(this.title);
-
-  @override
-  String toString() => name;
-  final String title;
-}
-
-enum TypePost {
-  all('all'),
-  explore('Explore'),
-  digital('Digital'),
-  image("image"),
-  video("video"),
-  audio("audio"),
-  music("music"),
-  podcast("podcast"),
-  pdf("pdf"),
-  podCasts("podCasts"),
-  app("app"),
-  game("game"),
-  text("text"),
-  blog("blog"),
-  commodity("commodity"),
-  job("job"),
-  yooNote("yooNote"),
-  physical('Physical'),
-  adHiring("hiringAd"),
-  adProject("adProject"),
-  adEmployee("adEmployee");
-
-  const TypePost(this.title);
 
   @override
   String toString() => name;
@@ -681,34 +580,6 @@ enum PrivacyType {
   final int title;
 }
 
-enum TypeAd {
-  fullTime('Full time', "تمام وقت", 164),
-  partTime('Part time', "پاره وقت", 165),
-  project("Contractual/project", "قراردادی/پروژه ای", 140);
-
-  const TypeAd(this.title, this.titleTr1, this.status);
-
-  @override
-  String toString() => name;
-  final String title;
-  final String titleTr1;
-  final int status;
-}
-
-enum TypeKindAd {
-  inWork('In work', "حضوری", 100),
-  freelancer('Freelancer', "دورکاری", 101),
-  inWorkFreelancer("In work/Freelancer", "حضوری/دورکاری", 102);
-
-  const TypeKindAd(this.title, this.titleTr1, this.status);
-
-  @override
-  String toString() => name;
-  final String title;
-  final String titleTr1;
-  final int status;
-}
-
 enum UseCaseContent {
   news("news"),
   onBoarding("onBoarding"),
@@ -740,23 +611,6 @@ enum GenderType {
   String toString() => name;
   final String title;
   final int number;
-}
-
-enum AgeType {
-  all("all", "همه", 100),
-  kids("kids", "خردسال", 101),
-  teen("teen", "نوجوان", 102),
-  young("young", "بزرگسال", 103),
-  adult("adult", "میانسال", 104),
-  elder("elder", "کهن سال", 105);
-
-  const AgeType(this.title, this.titleTr1, this.status);
-
-  @override
-  String toString() => name;
-  final int status;
-  final String title;
-  final String titleTr1;
 }
 
 enum ProductStatus {
