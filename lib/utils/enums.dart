@@ -208,6 +208,7 @@ enum TagCategory {
   onSite(184),
   reserve(185),
   microBlog(186),
+  account(187),
   directShod(500),
   test(900);
 
