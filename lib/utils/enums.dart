@@ -242,11 +242,11 @@ enum TagOrder {
   complete(410),
   paidFail(412);
 
-  const TagOrder(this.title);
+  const TagOrder(this.number);
 
   @override
   String toString() => name;
-  final int title;
+  final int number;
 }
 
 enum TagReaction {
