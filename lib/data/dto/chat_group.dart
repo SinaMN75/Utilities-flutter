@@ -43,11 +43,11 @@ class ChatGroupReadDto {
         creatorUserId: json["creatorUserId"],
         type: json["type"],
         groupChatJsonDetail: json["jsonDetail"] == null ? null : GroupChatJsonDetail.fromMap(json["jsonDetail"]),
-        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
-        users: json["users"] == null ? <UserReadDto>[] : List<UserReadDto>.from(json["users"].cast<dynamic>().map(UserReadDto.fromMap)).toList(),
-        products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<dynamic>().map(ProductReadDto.fromMap)).toList(),
-        groupChatMessage: json["groupChatMessage"] == null ? <ChatGroupMessageReadDto>[] : List<ChatGroupMessageReadDto>.from(json["groupChatMessage"].cast<dynamic>().map(ChatGroupMessageReadDto.fromMap)).toList(),
-        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<dynamic>().map(CategoryReadDto.fromMap)).toList(),
+        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+        users: json["users"] == null ? <UserReadDto>[] : List<UserReadDto>.from(json["users"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),
+        products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
+        groupChatMessage: json["groupChatMessage"] == null ? <ChatGroupMessageReadDto>[] : List<ChatGroupMessageReadDto>.from(json["groupChatMessage"].cast<Map<String, dynamic>>().map(ChatGroupMessageReadDto.fromMap)).toList(),
+        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         countOfUnreadMessages: json["countOfUnreadMessages"],
       );
 
@@ -339,9 +339,9 @@ class ChatGroupMessageReadDto {
         seenUsers: json["seenUsers"] == null ? null : SeenUsers.fromMap(json["seenUsers"]),
         parent: json["parent"] == null ? null : ChatGroupMessageReadDto.fromMap(json["parent"]),
         seenUsersId: json["seenUsersId"],
-        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
-        products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<dynamic>().map(ProductReadDto.fromMap)).toList(),
-        messageSeenBy: json["messageSeenBy"] == null ? <UserReadDto>[] : List<UserReadDto>.from(json["messageSeenBy"].cast<dynamic>().map(UserReadDto.fromMap)).toList(),
+        media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+        products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
+        messageSeenBy: json["messageSeenBy"] == null ? <UserReadDto>[] : List<UserReadDto>.from(json["messageSeenBy"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),
       );
 
   dynamic toMap() => {

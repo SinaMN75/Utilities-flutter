@@ -101,6 +101,8 @@ enum TagProduct {
   pricePerCount(173),
   pricePerHour(174),
   pricePerMinute(175),
+  reserve(176),
+  microBlog(177),
   news(201),
   kindOfNew(202),
   used(203),
@@ -204,6 +206,8 @@ enum TagCategory {
   favorites(182),
   remote(183),
   onSite(184),
+  reserve(185),
+  microBlog(186),
   directShod(500),
   test(900);
 

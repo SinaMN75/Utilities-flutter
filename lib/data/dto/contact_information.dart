@@ -42,7 +42,7 @@ class ContactInformationReadDto {
         useCase: json["useCase"],
         parentId: json["parentId"],
         parent: json["parent"] == null ? null : ContactInformationReadDto.fromMap(json["parent"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<dynamic>().map(MediaReadDto.fromMap)).toList(),
+        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
       );
 
   dynamic toMap() => {
