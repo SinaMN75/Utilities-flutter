@@ -313,6 +313,7 @@ class ProductCreateUpdateDto {
     this.phoneNumber,
     this.link,
     this.website,
+    this.color,
     this.email,
     this.type1,
     this.type2,
@@ -369,6 +370,7 @@ class ProductCreateUpdateDto {
   final String? phoneNumber;
   final String? link;
   final String? website;
+  final String? color;
   final String? email;
   final String? type1;
   final String? type2;
@@ -432,6 +434,7 @@ class ProductCreateUpdateDto {
         "type1": type1,
         "type2": type2,
         "unit": unit,
+        "color": color,
         "keyValue": keyValue,
         "state": state,
         "latitude": latitude,
@@ -469,7 +472,7 @@ class ProductCreateUpdateDto {
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
         "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.where((final String element) => element!='').map((final String x) => x)),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.where((final String element) => element != '').map((final String x) => x)),
         "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final String x) => x)),
       };
 }

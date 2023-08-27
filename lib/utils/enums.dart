@@ -275,7 +275,10 @@ enum TagContent {
   homeBanner1(103),
   homeBanner2(104),
   yoohoo(105),
-  banner(106);
+  banner(106),
+  homeTop(107),
+  qa(108)
+  ;
 
   const TagContent(this.title);
 
@@ -405,7 +408,6 @@ enum SortLists {
   final String title;
 }
 
-
 enum Currency {
   rial("100"),
   dolor("101"),
@@ -473,7 +475,6 @@ enum TenderType {
   String toString() => name;
   final String title;
 }
-
 
 enum UseCaseBime {
   bime("bime");

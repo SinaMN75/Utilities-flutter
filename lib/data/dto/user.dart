@@ -379,7 +379,7 @@ class UserCreateUpdateDto {
   final int? deliveryPrice2;
   final int? deliveryPrice3;
   final double? point;
-  final bool? suspend;
+   bool? suspend;
   final String? instagram;
   final String? telegram;
   final String? jobStatus;
