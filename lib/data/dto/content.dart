@@ -124,9 +124,11 @@ class ContentCreateUpdateDto {
 
 class ContentJsonDetail {
   String? dribble;
+  String? website;
 
   ContentJsonDetail({
     this.dribble,
+    this.website,
   });
 
   factory ContentJsonDetail.fromJson(String str) => ContentJsonDetail.fromMap(json.decode(str));
@@ -135,9 +137,11 @@ class ContentJsonDetail {
 
   factory ContentJsonDetail.fromMap(Map<String, dynamic> json) => ContentJsonDetail(
         dribble: json["dribble"],
+    website: json["website"],
       );
 
   Map<String, dynamic> toMap() => {
         "dribble": dribble,
+        "website": website,
       };
 }
