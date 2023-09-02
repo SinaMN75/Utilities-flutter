@@ -499,6 +499,7 @@ class ProductFilterDto {
     this.showChildrenParent,
     this.showPostOfPrivateUser,
     this.showComments,
+    this.showWithChildren,
     this.orderByVotes,
     this.orderByVotesDescending,
     this.orderByAtoZ,
@@ -543,6 +544,7 @@ class ProductFilterDto {
         showChildrenParent: json["showChildrenParent"],
         showPostOfPrivateUser: json["showPostOfPrivateUser"],
         showComments: json["showComments"],
+    showWithChildren: json["showWithChildren"],
         orderByVotes: json["orderByVotes"],
         orderByVotesDescending: json["orderByVotesDescending"],
         orderByAtoZ: json["orderByAtoZ"],
@@ -584,6 +586,7 @@ class ProductFilterDto {
   final bool? showChildrenParent;
   final bool? showPostOfPrivateUser;
   final bool? showComments;
+  final bool? showWithChildren;
   final bool? orderByVotes;
   final bool? orderByVotesDescending;
   final bool? orderByAtoZ;
@@ -627,6 +630,7 @@ class ProductFilterDto {
         "showChildrenParent": showChildrenParent,
         "showPostOfPrivateUser": showPostOfPrivateUser,
         "showComments": showComments,
+        "showWithChildren": showWithChildren,
         "orderByVotes": orderByVotes,
         "orderByVotesDescending": orderByVotesDescending,
         "orderByAtoZ": orderByAtoZ,
