@@ -330,8 +330,7 @@ enum TagComment {
 
 enum TagGender {
   man("Man", "مرد", 100),
-  woman("Woman", "زن", 101),
-  company("Company", "تجاری", 102);
+  woman("Woman", "زن", 101);
 
   const TagGender(this.title, this.titleTr1, this.status);
 

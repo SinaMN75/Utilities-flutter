@@ -106,7 +106,7 @@ class UserReadDto {
   final String? createdAt;
   final String? updatedAt;
   final bool? isOnline;
-  final bool? suspend;
+   bool? suspend;
   final bool? isPrivate;
   final String? expireUpgradeAccount;
   final int? ageCategory;
