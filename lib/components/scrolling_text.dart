@@ -125,7 +125,7 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
             : Text(
                 widget.text,
                 style: widget.textStyle,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
               ),
       );
 }
