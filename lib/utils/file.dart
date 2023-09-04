@@ -97,6 +97,10 @@ Future<CroppedFile?> cropImage({
   final AndroidUiSettings? androidUiSettings,
   final WebUiSettings? webUiSettings,
   final IOSUiSettings? iOSUiSettings,
+  final Color? activeControlsWidgetColor,
+  final Color? statusBarColor,
+  final Color? toolbarColor,
+  final Color? toolbarWidgetColor,
   final List<CropAspectRatioPreset> aspectRatioPresets = const <CropAspectRatioPreset>[
     CropAspectRatioPreset.original,
     CropAspectRatioPreset.square,
@@ -121,10 +125,10 @@ Future<CroppedFile?> cropImage({
             hideBottomControls: false,
             lockAspectRatio: true,
             initAspectRatio: CropAspectRatioPreset.square,
-            activeControlsWidgetColor: context.theme.primaryColor,
-            statusBarColor: context.theme.primaryColor,
-            toolbarColor: context.theme.primaryColor,
-            toolbarWidgetColor: context.theme.cardColor,
+            activeControlsWidgetColor:activeControlsWidgetColor?? context.theme.primaryColor,
+            statusBarColor:statusBarColor?? context.theme.primaryColor,
+            toolbarColor:toolbarColor?? context.theme.primaryColor,
+            toolbarWidgetColor:toolbarWidgetColor?? context.theme.cardColor,
           ),
       iOSUiSettings ??
           IOSUiSettings(
