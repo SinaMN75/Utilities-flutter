@@ -6,6 +6,7 @@ class MediaReadDto {
   DateTime? updatedAt;
   String? fileName;
   int? tagUseCase;
+  int? order;
   MediaJsonDetail? mediaJsonDetail;
   String url;
   List<int>? tags;
@@ -18,6 +19,7 @@ class MediaReadDto {
     this.updatedAt,
     this.fileName,
     this.tagUseCase,
+    this.order,
     this.mediaJsonDetail,
     this.tags,
     this.fileType,
@@ -33,6 +35,7 @@ class MediaReadDto {
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         fileName: json["fileName"],
         tagUseCase: json["tagUseCase"],
+        order: json["order"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         fileType: json["url"] == null ? '' : json["url"].toString().split('.').last,
         mediaJsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
@@ -45,6 +48,7 @@ class MediaReadDto {
         "updatedAt": updatedAt?.toIso8601String(),
         "fileName": fileName,
         "tagUseCase": tagUseCase,
+        "order": order,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "fileType": url.split('.').last,
         "mediaJsonDetail": mediaJsonDetail?.toMap(),
@@ -105,6 +109,7 @@ class CreateMediaReadDto {
   String? productId;
   String? userId;
   int? privacyType;
+  int? order;
   String? time;
   String? artist;
   String? album;
@@ -136,6 +141,7 @@ class CreateMediaReadDto {
     this.privacyType,
     this.time,
     this.artist,
+    this.order,
     this.album,
     this.commentId,
     this.bookmarkId,
@@ -155,6 +161,7 @@ class CreateMediaReadDto {
         "GroupChatId": groupChatId,
         "ProductId": productId,
         "UserId": userId,
+        "order": order,
         "PrivacyType": privacyType,
         "Artist": artist,
         'Album': album,

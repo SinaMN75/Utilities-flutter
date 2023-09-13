@@ -3,7 +3,7 @@ import 'package:utilities/utilities.dart';
 extension ContentReadDtoExtension on List<ContentReadDto> {
   List<ContentReadDto> getByTags({required final List<TagContent> tags}) => where(
         (final ContentReadDto e) => e.tags.containsAll(tags.getNumbers()),
-  ).toList();
+      ).toList();
 }
 
 class ContentReadDto {
@@ -77,6 +77,7 @@ class ContentCreateUpdateDto {
     this.subTitle,
     this.description,
     this.tagUseCase,
+    this.website,
     this.approvalStatus,
     this.dribble,
     this.tags,
@@ -87,6 +88,7 @@ class ContentCreateUpdateDto {
   final String? title;
   final String? subTitle;
   final String? description;
+  final String? website;
   final String? dribble;
   final int? tagUseCase;
   final int? approvalStatus;
@@ -102,6 +104,7 @@ class ContentCreateUpdateDto {
         title: json["title"],
         subTitle: json["subTitle"],
         description: json["description"],
+        website: json["website"],
         tagUseCase: json["tagUseCase"],
         dribble: json["dribble"],
         approvalStatus: json["approvalStatus"],
@@ -114,6 +117,7 @@ class ContentCreateUpdateDto {
         "title": title,
         "subTitle": subTitle,
         "description": description,
+        "website": website,
         "tagUseCase": tagUseCase,
         "dribble": dribble,
         "approvalStatus": approvalStatus,
@@ -137,7 +141,7 @@ class ContentJsonDetail {
 
   factory ContentJsonDetail.fromMap(Map<String, dynamic> json) => ContentJsonDetail(
         dribble: json["dribble"],
-    website: json["website"],
+        website: json["website"],
       );
 
   Map<String, dynamic> toMap() => {
