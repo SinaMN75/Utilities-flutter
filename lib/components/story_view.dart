@@ -30,22 +30,22 @@ class _StoryViewState extends State<StoryView> {
           items: widget.data.map((final MediaViewModel item) {
             Widget result = Container();
             switch (item.type) {
-              case MediaType.svg:
+              case TypeMedia.svg:
                 result = _showImage(context, item.link);
                 break;
-              case MediaType.video:
+              case TypeMedia.video:
                 result = VideoPlayerScreen(url: item.link);
                 break;
-              case MediaType.pdf:
+              case TypeMedia.pdf:
                 result = _showPdf(context, item.link);
                 break;
-              case MediaType.voice:
+              case TypeMedia.voice:
                 result = ShowVoice(url: item.link);
                 break;
-              case MediaType.link:
+              case TypeMedia.link:
                 result = _showWeb(context, item.link);
                 break;
-              case MediaType.image:
+              case TypeMedia.image:
                 result = _showImage(context, item.link);
                 break;
             }
@@ -53,7 +53,7 @@ class _StoryViewState extends State<StoryView> {
               children: <Widget>[
                 result,
                 Positioned(top: 0, left: 0, right: 0, child: widget.header ?? Container()),
-                item.type != MediaType.link
+                item.type != TypeMedia.link
                     ? Positioned(
                         bottom: 0,
                         left: 0,
@@ -163,6 +163,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   void initState() {
     super.initState();
+    // ignore: deprecated_member_use
     _controller = VideoPlayerController.network(widget.url);
     _initializeVideoPlayerFuture = _controller.initialize();
     _controller.play();
