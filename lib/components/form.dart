@@ -11,6 +11,7 @@ Widget textField({
   final bool obscureText = false,
   final int lines = 1,
   final VoidCallback? onTap,
+  final bool hasClearButton = false,
   final String? Function(String?)? validator,
   final Widget? prefix,
   final Widget? suffix,

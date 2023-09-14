@@ -137,7 +137,8 @@ void snackbarGreen({
   final Color? colorText,
   final Duration? duration = const Duration(seconds: 3),
   final bool instantInit = true,
-}) =>
+}) {
+  if (!Get.isSnackbarOpen)
     Get.snackbar(
       title,
       subtitle,
@@ -177,6 +178,7 @@ void snackbarGreen({
       titleText: titleText,
       userInputForm: userInputForm,
     );
+}
 
 void snackbarRed({
   required final String title,
@@ -216,7 +218,8 @@ void snackbarRed({
   final Color? colorText,
   final Duration? duration = const Duration(seconds: 3),
   final bool instantInit = true,
-}) =>
+}) {
+  if (!Get.isSnackbarOpen)
     Get.snackbar(
       title,
       subtitle,
@@ -256,6 +259,7 @@ void snackbarRed({
       titleText: titleText,
       userInputForm: userInputForm,
     );
+}
 
 void alertDialog({
   required final String title,
