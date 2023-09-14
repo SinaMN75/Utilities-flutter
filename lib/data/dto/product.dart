@@ -15,7 +15,6 @@ class ProductReadDto {
     this.stock,
     this.voteCount,
     this.discountPercent,
-    this.visitsCount,
     this.enabled,
     this.discountPrice,
     this.price,
@@ -61,7 +60,6 @@ class ProductReadDto {
         stock: json["stock"],
         voteCount: json["voteCount"],
         discountPercent: json["discountPercent"],
-        visitsCount: json["visitsCount"],
         enabled: json["enabled"],
         discountPrice: json["discountPrice"],
         price: json["price"],
@@ -100,7 +98,6 @@ class ProductReadDto {
   int? stock;
   int? voteCount;
   int? discountPercent;
-  int? visitsCount;
   bool? enabled;
   bool? isSeen;
   double? score;
@@ -146,7 +143,6 @@ class ProductReadDto {
         "stock": stock,
         "voteCount": voteCount,
         "discountPercent": discountPercent,
-        "visitsCount": visitsCount,
         "enabled": enabled,
         "discountPrice": discountPrice,
         "price": price,
