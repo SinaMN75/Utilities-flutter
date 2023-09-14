@@ -2,6 +2,7 @@ part of 'components.dart';
 
 void bottomSheet({
   required final Widget child,
+  final EdgeInsets padding = const EdgeInsets.all(20),
   final bool isDismissible = true,
 }) =>
     Get.bottomSheet(
@@ -9,7 +10,7 @@ void bottomSheet({
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(color: context.theme.colorScheme.background, borderRadius: BorderRadius.circular(20)),
         constraints: BoxConstraints(maxHeight: context.height - 100),
-        padding: const EdgeInsets.all(20),
+        padding: padding,
         child: SingleChildScrollView(child: child),
       ),
       backgroundColor: context.theme.colorScheme.background,
