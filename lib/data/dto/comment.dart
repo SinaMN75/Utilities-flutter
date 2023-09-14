@@ -151,7 +151,7 @@ class CommentFilterDto {
   });
 
   final String? userId;
-  final double? productOwnerId;
+  final String? productOwnerId;
   final String? productId;
   final String? status;
   final int? pageSize;
