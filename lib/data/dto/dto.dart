@@ -3,7 +3,7 @@ import 'dart:convert';
 export 'address.dart';
 export 'category.dart';
 export 'chat.dart';
-export 'chat_group.dart';
+export 'group_chat.dart';
 export 'comment.dart';
 export 'contact_information.dart';
 export 'content.dart';

@@ -37,7 +37,7 @@ class Assets {
   static const String dtoBlock = 'lib/data/dto/block.dart';
   static const String dtoCategory = 'lib/data/dto/category.dart';
   static const String dtoChat = 'lib/data/dto/chat.dart';
-  static const String dtoChatGroup = 'lib/data/dto/chat_group.dart';
+  static const String dtoChatGroup = 'lib/data/dto/group_chat.dart';
   static const String dtoComment = 'lib/data/dto/comment.dart';
   static const String dtoContactInformation = 'lib/data/dto/contact_information.dart';
   static const String dtoContent = 'lib/data/dto/content.dart';
@@ -86,7 +86,7 @@ class Assets {
   static const String remoteDatasourceBlockDatasource = 'lib/data/remote_datasource/block_datasource.dart';
   static const String remoteDatasourceCategoryDatasource = 'lib/data/remote_datasource/category_datasource.dart';
   static const String remoteDatasourceChatDatasource = 'lib/data/remote_datasource/chat_datasource.dart';
-  static const String remoteDatasourceChatGroupDatasource = 'lib/data/remote_datasource/chat_group_datasource.dart';
+  static const String remoteDatasourceChatGroupDatasource = 'lib/data/remote_datasource/group_chat_datasource.dart';
   static const String remoteDatasourceCommentDatasource = 'lib/data/remote_datasource/comment_datasource.dart';
   static const String remoteDatasourceContentDatasource = 'lib/data/remote_datasource/content_datasource.dart';
   static const String remoteDatasourceDiscounteDatasource = 'lib/data/remote_datasource/discounte_datasource.dart';
