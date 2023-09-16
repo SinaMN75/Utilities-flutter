@@ -274,10 +274,11 @@ enum TagContent {
   aboutUs(102),
   homeBanner1(103),
   homeBanner2(104),
-  yoohoo(105),
-  banner(106),
-  homeTop(107),
-  qa(108)
+  info1(105),
+  faq(106),
+  homeBannerSmall1(107),
+  homeBannerSmall2(108),
+  contactInfo(109)
   ;
 
   const TagContent(this.title);
@@ -652,11 +653,9 @@ enum OrderStatus {
 }
 
 class StatusModel {
-  StatusModel(
-    this.title,
-    this.titleTr1,
-    this.status,
-  );
+  StatusModel(this.title,
+      this.titleTr1,
+      this.status,);
 
   final String title;
   final String titleTr1;
