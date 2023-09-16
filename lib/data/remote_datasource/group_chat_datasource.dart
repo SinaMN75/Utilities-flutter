@@ -104,12 +104,12 @@ class GroupChatDataSource {
     required final String groupId,
     required final Function(GenericResponse<GroupChatMessageReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final int? pageSize,
-    final int? pageNumber,
+    final int pageSize = 100,
+    final int pageNumber = 1,
     final Function(String error)? failure,
   }) async =>
       httpGet(
-        url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId?pageSize=${pageSize ?? 10000}&pageNumber=$pageNumber",
+        url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId?pageSize=$pageSize&pageNumber=$pageNumber",
         action: (final Response response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
