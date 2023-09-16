@@ -7,7 +7,7 @@ class GroupChatDataSource {
 
   final String baseUrl;
 
-  Future<void> readMyGroups({
+  Future<void> readMyGroupChats({
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
