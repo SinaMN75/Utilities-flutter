@@ -3,7 +3,6 @@ export 'remote_datasource/address_datasource.dart';
 export 'remote_datasource/app_settings_datasource.dart';
 export 'remote_datasource/block_datasource.dart';
 export 'remote_datasource/category_datasource.dart';
-export 'remote_datasource/chat_datasource.dart';
 export 'remote_datasource/group_chat_datasource.dart';
 export 'remote_datasource/comment_datasource.dart';
 export 'remote_datasource/content_datasource.dart';
