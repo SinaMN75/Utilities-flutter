@@ -115,8 +115,8 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> createMessage({
-    required final CreateGroupChatMessage dto,
+  Future<void> createGroupChatMessage({
+    required final GroupChatMessageCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatMessageReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
@@ -130,7 +130,7 @@ class GroupChatDataSource {
       );
 
   Future<void> updateMessage({
-    required final CreateGroupChatMessage dto,
+    required final GroupChatMessageCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatMessageReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,

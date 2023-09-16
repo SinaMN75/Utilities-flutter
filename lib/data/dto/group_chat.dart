@@ -442,8 +442,8 @@ class SeenUsers {
       };
 }
 
-class CreateGroupChatMessage {
-  CreateGroupChatMessage({
+class GroupChatMessageCreateUpdateDto {
+  GroupChatMessageCreateUpdateDto({
     this.id,
     this.message,
     this.products,
@@ -455,9 +455,9 @@ class CreateGroupChatMessage {
     this.groupChatId,
   });
 
-  factory CreateGroupChatMessage.fromJson(final String str) => CreateGroupChatMessage.fromMap(json.decode(str));
+  factory GroupChatMessageCreateUpdateDto.fromJson(final String str) => GroupChatMessageCreateUpdateDto.fromMap(json.decode(str));
 
-  factory CreateGroupChatMessage.fromMap(final dynamic json) => CreateGroupChatMessage(
+  factory GroupChatMessageCreateUpdateDto.fromMap(final dynamic json) => GroupChatMessageCreateUpdateDto(
         id: json["id"],
         message: json["message"],
         type: json["type"],
