@@ -10,6 +10,7 @@ class ProductReadDto {
     this.subtitle,
     this.description,
     this.state,
+    this.visitsCount,
     this.boosted,
     this.isSeen,
     this.stock,
@@ -51,6 +52,7 @@ class ProductReadDto {
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         title: json["title"],
+        visitsCount: json["visitsCount"],
         isSeen: json["isSeen"],
         subtitle: json["subtitle"],
         description: json["description"],
@@ -95,6 +97,7 @@ class ProductReadDto {
   String? description;
   String? state;
   DateTime? boosted;
+  int? visitsCount;
   int? stock;
   int? voteCount;
   int? discountPercent;
@@ -136,6 +139,7 @@ class ProductReadDto {
         "title": title,
         "subtitle": subtitle,
         "description": description,
+        "visitsCount": visitsCount,
         "isSeen": isSeen,
         "state": state,
         "score": score,
@@ -540,7 +544,7 @@ class ProductFilterDto {
         showChildrenParent: json["showChildrenParent"],
         showPostOfPrivateUser: json["showPostOfPrivateUser"],
         showComments: json["showComments"],
-    showWithChildren: json["showWithChildren"],
+        showWithChildren: json["showWithChildren"],
         orderByVotes: json["orderByVotes"],
         orderByVotesDescending: json["orderByVotesDescending"],
         orderByAtoZ: json["orderByAtoZ"],
