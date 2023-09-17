@@ -1,7 +1,7 @@
 part of 'view_models.dart';
 
 class KeyValueViewModel {
-  const KeyValueViewModel(this.key, this.value, {this.id});
+  KeyValueViewModel(this.key, this.value, {this.id});
 
   factory KeyValueViewModel.fromJson(final String str) => KeyValueViewModel.fromMap(json.decode(str));
 
@@ -11,7 +11,7 @@ class KeyValueViewModel {
 
   Map<String, dynamic> toMap() => <String, dynamic>{"id": id, "key": key, "value": value};
 
-  final String? id;
-  final String key;
-  final String value;
+  String? id;
+  String key;
+  String value;
 }

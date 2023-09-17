@@ -1,21 +1,7 @@
 import 'package:utilities/utilities.dart';
 
-class ChatGroupReadDto {
-  String? id;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  String? title;
-  String? creatorUserId;
-  int? type;
-  GroupChatJsonDetail? groupChatJsonDetail;
-  List<MediaReadDto>? media;
-  List<UserReadDto>? users;
-  List<ProductReadDto>? products;
-  List<ChatGroupMessageReadDto>? groupChatMessage;
-  List<CategoryReadDto>? categories;
-  int? countOfUnreadMessages;
-
-  ChatGroupReadDto({
+class GroupChatReadDto {
+  GroupChatReadDto({
     this.id,
     this.createdAt,
     this.updatedAt,
@@ -31,11 +17,9 @@ class ChatGroupReadDto {
     this.countOfUnreadMessages,
   });
 
-  factory ChatGroupReadDto.fromJson(final String str) => ChatGroupReadDto.fromMap(json.decode(str));
+  factory GroupChatReadDto.fromJson(final String str) => GroupChatReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
-  factory ChatGroupReadDto.fromMap(final dynamic json) => ChatGroupReadDto(
+  factory GroupChatReadDto.fromMap(final dynamic json) => GroupChatReadDto(
         id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -46,10 +30,25 @@ class ChatGroupReadDto {
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         users: json["users"] == null ? <UserReadDto>[] : List<UserReadDto>.from(json["users"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),
         products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
-        groupChatMessage: json["groupChatMessage"] == null ? <ChatGroupMessageReadDto>[] : List<ChatGroupMessageReadDto>.from(json["groupChatMessage"].cast<Map<String, dynamic>>().map(ChatGroupMessageReadDto.fromMap)).toList(),
+        groupChatMessage: json["groupChatMessage"] == null ? <GroupChatMessageReadDto>[] : List<GroupChatMessageReadDto>.from(json["groupChatMessage"].cast<Map<String, dynamic>>().map(GroupChatMessageReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         countOfUnreadMessages: json["countOfUnreadMessages"],
       );
+  String? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? title;
+  String? creatorUserId;
+  int? type;
+  GroupChatJsonDetail? groupChatJsonDetail;
+  List<MediaReadDto>? media;
+  List<UserReadDto>? users;
+  List<ProductReadDto>? products;
+  List<GroupChatMessageReadDto>? groupChatMessage;
+  List<CategoryReadDto>? categories;
+  int? countOfUnreadMessages;
+
+  String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
         "id": id,
@@ -62,20 +61,13 @@ class ChatGroupReadDto {
         "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
         "users": users == null ? <UserReadDto>[] : List<UserReadDto>.from(users!.map((final x) => x.toMap())),
         "products": products == null ? <ProductReadDto>[] : List<ProductReadDto>.from(products!.map((final x) => x.toMap())),
-        "groupChatMessage": groupChatMessage == null ? <ChatGroupMessageReadDto>[] : List<dynamic>.from(groupChatMessage!.map((final x) => x.toMap())),
+        "groupChatMessage": groupChatMessage == null ? <GroupChatMessageReadDto>[] : List<dynamic>.from(groupChatMessage!.map((final x) => x.toMap())),
         "categories": categories == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(categories!.map((final x) => x.toMap())),
         "countOfUnreadMessages": countOfUnreadMessages,
       };
 }
 
 class GroupChatJsonDetail {
-  String? description;
-  String? value;
-  String? department;
-  int? chatStatus;
-  int? priority;
-  DateTime? boosted;
-
   GroupChatJsonDetail({
     this.description,
     this.value,
@@ -87,8 +79,6 @@ class GroupChatJsonDetail {
 
   factory GroupChatJsonDetail.fromJson(final String str) => GroupChatJsonDetail.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory GroupChatJsonDetail.fromMap(final dynamic json) => GroupChatJsonDetail(
         description: json["description"],
         value: json["value"],
@@ -97,6 +87,14 @@ class GroupChatJsonDetail {
         priority: json["priority"],
         boosted: json["boosted"] == null ? null : DateTime.parse(json["boosted"]),
       );
+  String? description;
+  String? value;
+  String? department;
+  int? chatStatus;
+  int? priority;
+  DateTime? boosted;
+
+  String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
         "description": description,
@@ -108,8 +106,8 @@ class GroupChatJsonDetail {
       };
 }
 
-class ChatGroupCreateUpdateDto {
-  ChatGroupCreateUpdateDto({
+class GroupChatCreateUpdateDto {
+  GroupChatCreateUpdateDto({
     this.id,
     this.title,
     this.description,
@@ -126,26 +124,9 @@ class ChatGroupCreateUpdateDto {
     this.productIds,
   });
 
-  final String? id;
-  final String? title;
-  final String? description;
-  final String? value;
-  final int? typeChat;
-  final String? department;
-  final bool? readIfExist;
-  final bool? isPrivateChat;
-  final int? chatStatus;
-  final int? priority;
-  final List<String>? userIds;
-  final List<int>? tags;
-  final List<String>? categories;
-  final List<String>? productIds;
+  factory GroupChatCreateUpdateDto.fromJson(final String str) => GroupChatCreateUpdateDto.fromMap(json.decode(str));
 
-  factory ChatGroupCreateUpdateDto.fromJson(final String str) => ChatGroupCreateUpdateDto.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory ChatGroupCreateUpdateDto.fromMap(final dynamic json) => ChatGroupCreateUpdateDto(
+  factory GroupChatCreateUpdateDto.fromMap(final dynamic json) => GroupChatCreateUpdateDto(
         id: json["id"],
         title: json["title"],
         description: json["description"],
@@ -161,6 +142,23 @@ class ChatGroupCreateUpdateDto {
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
         productIds: json["productIds"] == null ? [] : List<String>.from(json["productIds"]!.map((final x) => x)),
       );
+
+  final String? id;
+  final String? title;
+  final String? description;
+  final String? value;
+  final int? typeChat;
+  final String? department;
+  final bool? readIfExist;
+  final bool? isPrivateChat;
+  final int? chatStatus;
+  final int? priority;
+  final List<String>? userIds;
+  final List<int>? tags;
+  final List<String>? categories;
+  final List<String>? productIds;
+
+  String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
         "id": id,
@@ -180,28 +178,8 @@ class ChatGroupCreateUpdateDto {
       };
 }
 
-class ChatGroupFilterDto {
-  final List<String>? usersIds;
-  final List<String>? productsIds;
-  final List<int>? tags;
-  final String? title;
-  final String? description;
-  final String? value;
-  final String? department;
-  final int? chatStatus;
-  final int? type;
-  final int? priority;
-  final String? showUsers;
-  final String? showProducts;
-  final String? showCategories;
-  final String? orderByAtoZ;
-  final String? orderByZtoA;
-  final String? orderByCreatedDate;
-  final bool? orderByCreaedDateDecending;
-  final int? pageSize;
-  final int? pageNumber;
-
-  ChatGroupFilterDto({
+class GroupChatFilterDto {
+  GroupChatFilterDto({
     this.usersIds,
     this.productsIds,
     this.title,
@@ -223,11 +201,9 @@ class ChatGroupFilterDto {
     this.pageNumber,
   });
 
-  factory ChatGroupFilterDto.fromJson(final String str) => ChatGroupFilterDto.fromMap(json.decode(str));
+  factory GroupChatFilterDto.fromJson(final String str) => GroupChatFilterDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
-  factory ChatGroupFilterDto.fromMap(final dynamic json) => ChatGroupFilterDto(
+  factory GroupChatFilterDto.fromMap(final dynamic json) => GroupChatFilterDto(
         usersIds: json["usersIds"] == null ? [] : List<String>.from(json["usersIds"]!.map((final x) => x)),
         productsIds: json["productsIds"] == null ? [] : List<String>.from(json["productsIds"]!.map((final x) => x)),
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
@@ -248,6 +224,27 @@ class ChatGroupFilterDto {
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
       );
+  final List<String>? usersIds;
+  final List<String>? productsIds;
+  final List<int>? tags;
+  final String? title;
+  final String? description;
+  final String? value;
+  final String? department;
+  final int? chatStatus;
+  final int? type;
+  final int? priority;
+  final String? showUsers;
+  final String? showProducts;
+  final String? showCategories;
+  final String? orderByAtoZ;
+  final String? orderByZtoA;
+  final String? orderByCreatedDate;
+  final bool? orderByCreaedDateDecending;
+  final int? pageSize;
+  final int? pageNumber;
+
+  String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
         "usersIds": usersIds == null ? [] : List<dynamic>.from(usersIds!.map((final x) => x)),
@@ -272,29 +269,8 @@ class ChatGroupFilterDto {
       };
 }
 
-class ChatGroupMessageReadDto {
-  String? id;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  String? message;
-  String? type;
-  String? useCase;
-  ChatGroupReadDto? groupChat;
-  String? groupChatId;
-  UserReadDto? user;
-  String? userId;
-  ChatGroupMessageReadDto? forwardedMessage;
-  String? forwardedMessageId;
-  ChatGroupMessageReadDto? parent;
-  String? parentId;
-  SeenUsers? seenUsers;
-  String? seenUsersId;
-  List<MediaReadDto>? media;
-  List<int>? tags;
-  List<ProductReadDto>? products;
-  List<UserReadDto>? messageSeenBy;
-
-  ChatGroupMessageReadDto({
+class GroupChatMessageReadDto {
+  GroupChatMessageReadDto({
     this.id,
     this.createdAt,
     this.updatedAt,
@@ -317,32 +293,52 @@ class ChatGroupMessageReadDto {
     this.messageSeenBy,
   });
 
-  factory ChatGroupMessageReadDto.fromJson(final String str) => ChatGroupMessageReadDto.fromMap(json.decode(str));
+  factory GroupChatMessageReadDto.fromJson(final String str) => GroupChatMessageReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
-  factory ChatGroupMessageReadDto.fromMap(final dynamic json) => ChatGroupMessageReadDto(
+  factory GroupChatMessageReadDto.fromMap(final dynamic json) => GroupChatMessageReadDto(
         id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         message: json["message"],
         type: json["type"],
         useCase: json["useCase"],
-        groupChat: json["groupChat"] == null ? null : ChatGroupReadDto.fromMap(json["groupChat"]),
+        groupChat: json["groupChat"] == null ? null : GroupChatReadDto.fromMap(json["groupChat"]),
         groupChatId: json["groupChatId"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         userId: json["userId"],
-        forwardedMessage: json["forwardedMessage"] == null ? null : ChatGroupMessageReadDto.fromMap(json["forwardedMessage"]),
+        forwardedMessage: json["forwardedMessage"] == null ? null : GroupChatMessageReadDto.fromMap(json["forwardedMessage"]),
         forwardedMessageId: json["forwardedMessageId"],
         parentId: json["parentId"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         seenUsers: json["seenUsers"] == null ? null : SeenUsers.fromMap(json["seenUsers"]),
-        parent: json["parent"] == null ? null : ChatGroupMessageReadDto.fromMap(json["parent"]),
+        parent: json["parent"] == null ? null : GroupChatMessageReadDto.fromMap(json["parent"]),
         seenUsersId: json["seenUsersId"],
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
         messageSeenBy: json["messageSeenBy"] == null ? <UserReadDto>[] : List<UserReadDto>.from(json["messageSeenBy"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),
       );
+  String? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? message;
+  String? type;
+  String? useCase;
+  GroupChatReadDto? groupChat;
+  String? groupChatId;
+  UserReadDto? user;
+  String? userId;
+  GroupChatMessageReadDto? forwardedMessage;
+  String? forwardedMessageId;
+  GroupChatMessageReadDto? parent;
+  String? parentId;
+  SeenUsers? seenUsers;
+  String? seenUsersId;
+  List<MediaReadDto>? media;
+  List<int>? tags;
+  List<ProductReadDto>? products;
+  List<UserReadDto>? messageSeenBy;
+
+  String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
         "id": id,
@@ -369,13 +365,6 @@ class ChatGroupMessageReadDto {
 }
 
 class GroupChatMessageJsonDetail {
-  String? description;
-  String? value;
-  String? department;
-  int? chatStatus;
-  int? priority;
-  DateTime? boosted;
-
   GroupChatMessageJsonDetail({
     this.description,
     this.value,
@@ -387,8 +376,6 @@ class GroupChatMessageJsonDetail {
 
   factory GroupChatMessageJsonDetail.fromJson(final String str) => GroupChatMessageJsonDetail.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory GroupChatMessageJsonDetail.fromMap(final dynamic json) => GroupChatMessageJsonDetail(
         description: json["description"],
         value: json["value"],
@@ -397,6 +384,14 @@ class GroupChatMessageJsonDetail {
         priority: json["priority"],
         boosted: json["boosted"] == null ? null : DateTime.parse(json["boosted"]),
       );
+  String? description;
+  String? value;
+  String? department;
+  int? chatStatus;
+  int? priority;
+  DateTime? boosted;
+
+  String toJson() => json.encode(toMap());
 
   dynamic toMap() => <String, dynamic>{
         "description": description,
@@ -409,13 +404,6 @@ class GroupChatMessageJsonDetail {
 }
 
 class SeenUsers {
-  String? id;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  String? fkGroupChat;
-  String? fkUserId;
-  String? fkGroupChatMessage;
-
   SeenUsers({
     this.id,
     this.createdAt,
@@ -427,8 +415,6 @@ class SeenUsers {
 
   factory SeenUsers.fromJson(final String str) => SeenUsers.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory SeenUsers.fromMap(final dynamic json) => SeenUsers(
         id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
@@ -437,6 +423,14 @@ class SeenUsers {
         fkUserId: json["fk_UserId"],
         fkGroupChatMessage: json["fk_GroupChatMessage"],
       );
+  String? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? fkGroupChat;
+  String? fkUserId;
+  String? fkGroupChatMessage;
+
+  String toJson() => json.encode(toMap());
 
   dynamic toMap() => <String, dynamic>{
         "id": id,
@@ -448,8 +442,8 @@ class SeenUsers {
       };
 }
 
-class CreateGroupMessage {
-  CreateGroupMessage({
+class GroupChatMessageCreateUpdateDto {
+  GroupChatMessageCreateUpdateDto({
     this.id,
     this.message,
     this.products,
@@ -461,21 +455,9 @@ class CreateGroupMessage {
     this.groupChatId,
   });
 
-  final String? id;
-  final String? message;
-  final String? type;
-  final String? useCase;
-  final String? parentId;
-  final String? groupChatId;
-  final String? forwardedMessageId;
-  final List<String>? products;
-  final List<int>? tags;
+  factory GroupChatMessageCreateUpdateDto.fromJson(final String str) => GroupChatMessageCreateUpdateDto.fromMap(json.decode(str));
 
-  factory CreateGroupMessage.fromJson(final String str) => CreateGroupMessage.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory CreateGroupMessage.fromMap(final dynamic json) => CreateGroupMessage(
+  factory GroupChatMessageCreateUpdateDto.fromMap(final dynamic json) => GroupChatMessageCreateUpdateDto(
         id: json["id"],
         message: json["message"],
         type: json["type"],
@@ -486,6 +468,18 @@ class CreateGroupMessage {
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         groupChatId: json["groupChatId"],
       );
+
+  final String? id;
+  final String? message;
+  final String? type;
+  final String? useCase;
+  final String? parentId;
+  final String? groupChatId;
+  final String? forwardedMessageId;
+  final List<String>? products;
+  final List<int>? tags;
+
+  String toJson() => json.encode(toMap());
 
   dynamic toMap() => {
         "id": id,
