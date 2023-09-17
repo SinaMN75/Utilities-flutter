@@ -37,7 +37,6 @@ class Assets {
   static const String dtoBlock = 'lib/data/dto/block.dart';
   static const String dtoCategory = 'lib/data/dto/category.dart';
   static const String dtoChat = 'lib/data/dto/chat.dart';
-  static const String dtoChatGroup = 'lib/data/dto/group_chat.dart';
   static const String dtoComment = 'lib/data/dto/comment.dart';
   static const String dtoContactInformation = 'lib/data/dto/contact_information.dart';
   static const String dtoContent = 'lib/data/dto/content.dart';
@@ -49,6 +48,7 @@ class Assets {
   static const String dtoGender = 'lib/data/dto/gender.dart';
   static const String dtoGenericResponse = 'lib/data/dto/generic_response.dart';
   static const String dtoGlobalSearch = 'lib/data/dto/global_search.dart';
+  static const String dtoGroupChat = 'lib/data/dto/group_chat.dart';
   static const String dtoLocation = 'lib/data/dto/location.dart';
   static const String dtoMailSmsNotification = 'lib/data/dto/mail_sms_notification.dart';
   static const String dtoMedia = 'lib/data/dto/media.dart';
@@ -59,6 +59,7 @@ class Assets {
   static const String dtoPromote = 'lib/data/dto/promote.dart';
   static const String dtoPushe = 'lib/data/dto/pushe.dart';
   static const String dtoReaction = 'lib/data/dto/reaction.dart';
+  static const String dtoReactionProduct = 'lib/data/dto/reaction_product.dart';
   static const String dtoReport = 'lib/data/dto/report.dart';
   static const String dtoServerLocation = 'lib/data/dto/server_location.dart';
   static const String dtoShoppingCart = 'lib/data/dto/shopping_cart.dart';
@@ -68,6 +69,7 @@ class Assets {
   static const String dtoUser = 'lib/data/dto/user.dart';
   static const String dtoWithdraw = 'lib/data/dto/withdraw.dart';
   static const String extensionsAlignExtension = 'lib/utils/extensions/align_extension.dart';
+  static const String extensionsColorExtension = 'lib/utils/extensions/color_extension.dart';
   static const String extensionsDateExtension = 'lib/utils/extensions/date_extension.dart';
   static const String extensionsExtension = 'lib/utils/extensions/extension.dart';
   static const String extensionsFileExtension = 'lib/utils/extensions/file_extension.dart';
@@ -85,14 +87,13 @@ class Assets {
   static const String remoteDatasourceAppSettingsDatasource = 'lib/data/remote_datasource/app_settings_datasource.dart';
   static const String remoteDatasourceBlockDatasource = 'lib/data/remote_datasource/block_datasource.dart';
   static const String remoteDatasourceCategoryDatasource = 'lib/data/remote_datasource/category_datasource.dart';
-  static const String remoteDatasourceChatDatasource = 'lib/data/remote_datasource/chat_datasource.dart';
-  static const String remoteDatasourceChatGroupDatasource = 'lib/data/remote_datasource/group_chat_datasource.dart';
   static const String remoteDatasourceCommentDatasource = 'lib/data/remote_datasource/comment_datasource.dart';
   static const String remoteDatasourceContentDatasource = 'lib/data/remote_datasource/content_datasource.dart';
   static const String remoteDatasourceDiscounteDatasource = 'lib/data/remote_datasource/discounte_datasource.dart';
   static const String remoteDatasourceFollowBookmarkDatasource = 'lib/data/remote_datasource/follow_bookmark_datasource.dart';
   static const String remoteDatasourceFormDatasource = 'lib/data/remote_datasource/form_datasource.dart';
   static const String remoteDatasourceGlobalSearchDatasource = 'lib/data/remote_datasource/global_search_datasource.dart';
+  static const String remoteDatasourceGroupChatDatasource = 'lib/data/remote_datasource/group_chat_datasource.dart';
   static const String remoteDatasourceMailSmsNotificationDatasource = 'lib/data/remote_datasource/mail_sms_notification_datasource.dart';
   static const String remoteDatasourceMediaDatasource = 'lib/data/remote_datasource/media_datasource.dart';
   static const String remoteDatasourceNotificationDatasource = 'lib/data/remote_datasource/notification_datasource.dart';
@@ -101,6 +102,7 @@ class Assets {
   static const String remoteDatasourceProductDatasource = 'lib/data/remote_datasource/product_datasource.dart';
   static const String remoteDatasourcePromoteDatasource = 'lib/data/remote_datasource/promote_datasource.dart';
   static const String remoteDatasourcePusheDatasource = 'lib/data/remote_datasource/pushe_datasource.dart';
+  static const String remoteDatasourceReactionDatasource = 'lib/data/remote_datasource/reaction_datasource.dart';
   static const String remoteDatasourceReportDatasource = 'lib/data/remote_datasource/report_datasource.dart';
   static const String remoteDatasourceShoppingCartDatasource = 'lib/data/remote_datasource/shopping_cart_datasource.dart';
   static const String remoteDatasourceSubscriptionPaymentDatasource = 'lib/data/remote_datasource/subscription_payment_datasource.dart';
