@@ -121,7 +121,7 @@ class UserDataSource {
       );
 
   Future<void> loginWithPassword({
-    required final LoginWithPassword dto,
+    required final LoginWithPasswordDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorerrorResponse) onError,
     final Function(String error)? failure,

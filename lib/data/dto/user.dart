@@ -623,16 +623,16 @@ class LoginWithEmail {
       };
 }
 
-class LoginWithPassword {
-  LoginWithPassword({
+class LoginWithPasswordDto {
+  LoginWithPasswordDto({
     this.email,
     this.userName,
     this.password,
   });
 
-  factory LoginWithPassword.fromJson(final String str) => LoginWithPassword.fromMap(json.decode(str));
+  factory LoginWithPasswordDto.fromJson(final String str) => LoginWithPasswordDto.fromMap(json.decode(str));
 
-  factory LoginWithPassword.fromMap(final dynamic json) => LoginWithPassword(
+  factory LoginWithPasswordDto.fromMap(final dynamic json) => LoginWithPasswordDto(
         email: json["email"],
         userName: json["userName"],
         password: json["password"],
