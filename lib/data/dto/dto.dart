@@ -2,8 +2,6 @@ import 'dart:convert';
 
 export 'address.dart';
 export 'category.dart';
-export 'chat.dart';
-export 'group_chat.dart';
 export 'comment.dart';
 export 'contact_information.dart';
 export 'content.dart';
@@ -11,6 +9,7 @@ export 'follow_bookmark.dart';
 export 'form.dart';
 export 'gender.dart';
 export 'generic_response.dart';
+export 'group_chat.dart';
 export 'location.dart';
 export 'mail_sms_notification.dart';
 export 'media.dart';

@@ -68,7 +68,7 @@ class GroupChatDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/Chat/DeleteGroupChat/$groupId",
-        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: ChatReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
@@ -95,7 +95,7 @@ class GroupChatDataSource {
   }) async =>
       httpPost(
         url: "$baseUrl/Chat/ExitFromGroup/$groupId",
-        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: ChatReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
@@ -151,7 +151,7 @@ class GroupChatDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/Chat/DeleteGroupChatMessage/$chatId",
-        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: ChatReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
