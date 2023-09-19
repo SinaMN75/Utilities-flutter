@@ -14,6 +14,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  universal_io: ^2.2.2
   url_launcher: ^6.1.12
   get: ^4.6.5
   get_storage: ^2.1.1

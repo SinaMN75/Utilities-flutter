@@ -1,18 +1,17 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:universal_io/io.dart';
 import 'package:utilities/utilities.dart';
 
 void showFilePicker({
   final Function(List<File> file)? action,
   final Function(List<PlatformFile>? file)? onFilesPicked,
-  final FileType fileType = FileType.image,
+  final FileType fileType = FileType.any,
   final bool allowMultiple = false,
   final String? initialDirectory,
   final String? dialogTitle,
   final bool allowCompression = true,
-  final bool withData = false,
   final bool withReadStream = false,
   final bool lockParentWindow = false,
   final List<String>? allowedExtensions,
@@ -22,7 +21,6 @@ void showFilePicker({
     dialogTitle: dialogTitle,
     initialDirectory: initialDirectory,
     allowCompression: allowCompression,
-    withData: withData,
     withReadStream: withReadStream,
     lockParentWindow: lockParentWindow,
     allowMultiple: allowMultiple,
