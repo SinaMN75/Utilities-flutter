@@ -1,8 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:utilities/data/dto/category.dart';
 import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+import 'package:utilities/utils/http_interceptor.dart';
 
 class CategoryDataSource {
   final String baseUrl;
@@ -18,8 +18,8 @@ class CategoryDataSource {
       httpPost(
         url: "$baseUrl/Category",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.data, fromMap: CategoryReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -32,8 +32,8 @@ class CategoryDataSource {
       httpPost(
         url: "$baseUrl/Category/BulkCreate",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.data, fromMap: CategoryReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -46,8 +46,8 @@ class CategoryDataSource {
       httpPut(
         url: "$baseUrl/Category",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.data, fromMap: CategoryReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -60,8 +60,8 @@ class CategoryDataSource {
       httpPost(
         url: "$baseUrl/Category/Filter",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.data, fromMap: CategoryReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -74,7 +74,7 @@ class CategoryDataSource {
       httpDelete(
         url: "$baseUrl/Category/$id",
         action: (Response response) => onResponse(),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }
