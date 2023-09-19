@@ -1,11 +1,12 @@
 import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:utilities/utilities.dart';
 
 void showFilePicker({
   required final Function(List<File> file) action,
+  final Function(List<PlatformFile>? file)? onFilesPicked,
   final FileType fileType = FileType.image,
   final bool allowMultiple = false,
   final String? initialDirectory,
@@ -28,19 +29,23 @@ void showFilePicker({
     allowedExtensions: allowedExtensions,
   );
 
-  if (result != null) {
-    if (allowMultiple) {
-      final List<File> files = <File>[];
-      result.files.forEach((final PlatformFile i) {
-        if (i.path != null) files.add(File(i.path!));
-      });
-      action(files);
-    } else {
-      File file = File("--");
-      if (result.files.single.path != null) {
-        file = File(result.files.single.path!);
+  if (onFilesPicked != null)
+    onFilesPicked(result?.files);
+  else {
+    if (result != null) {
+      if (allowMultiple) {
+        final List<File> files = <File>[];
+        result.files.forEach((final PlatformFile i) {
+          if (i.path != null) files.add(File(i.path!));
+        });
+        action(files);
+      } else {
+        File file = File("--");
+        if (result.files.single.path != null) {
+          file = File(result.files.single.path!);
+        }
+        action(<File>[file]);
       }
-      action(<File>[file]);
     }
   }
 }
@@ -125,10 +130,10 @@ Future<CroppedFile?> cropImage({
             hideBottomControls: false,
             lockAspectRatio: true,
             initAspectRatio: CropAspectRatioPreset.square,
-            activeControlsWidgetColor:activeControlsWidgetColor?? context.theme.primaryColor,
-            statusBarColor:statusBarColor?? context.theme.primaryColor,
-            toolbarColor:toolbarColor?? context.theme.primaryColor,
-            toolbarWidgetColor:toolbarWidgetColor?? context.theme.cardColor,
+            activeControlsWidgetColor: activeControlsWidgetColor ?? context.theme.primaryColor,
+            statusBarColor: statusBarColor ?? context.theme.primaryColor,
+            toolbarColor: toolbarColor ?? context.theme.primaryColor,
+            toolbarWidgetColor: toolbarWidgetColor ?? context.theme.cardColor,
           ),
       iOSUiSettings ??
           IOSUiSettings(
