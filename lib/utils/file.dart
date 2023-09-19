@@ -1,12 +1,13 @@
-import 'dart:typed_data';
+import 'dart:math';
 
+import 'package:file_saver/file_saver.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:utilities/utilities2.dart';
 import 'package:utilities/utilities.dart';
+import 'package:utilities/utilities2.dart';
 
 void showFilePicker({
-  final Function(List<File> file)? action,
-  final Function(List<PlatformFile>? file)? onFilesPicked,
+  required final Function(List<File> file) action,
   final FileType fileType = FileType.any,
   final bool allowMultiple = false,
   final String? initialDirectory,
@@ -26,26 +27,31 @@ void showFilePicker({
     allowMultiple: allowMultiple,
     allowedExtensions: allowedExtensions,
   );
+  final List<File> files = <File>[];
 
-  if (onFilesPicked != null)
-    onFilesPicked(result?.files);
-  else {
-    if (result != null) {
+  if (result != null) {
+    if (kIsWeb) {
+      String path = await FileSaver.instance.saveFile(
+          name: "File",
+          bytes: result.files.single.bytes!,
+          ext: result.files.single.name.split(".").last,
+      );
+
+      files.add(File(path));
+      action(files);
+    } else {
       if (allowMultiple) {
-        final List<File> files = <File>[];
-        result.files.forEach((final PlatformFile i) {
-          if (i.path != null) files.add(File(i.path!));
-        });
-        action!(files);
-      } else {
-        File file = File("--");
-        if (result.files.single.path != null) {
-          file = File(result.files.single.path!);
-        }
-        action!(<File>[file]);
-      }
+        result.files.forEach((final PlatformFile i) async => files.add(File(i.path!)));
+        action(files);
+      } else
+        action(<File>[File(result.files.single.path!)]);
     }
   }
+}
+
+Future<File> writeToFile(final Uint8List data) async {
+  final Directory tempDir = await getTemporaryDirectory();
+  return File('${tempDir.path}/${Random.secure().nextInt(10000)}.tmp').writeAsBytes(data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
 }
 
 void showMultiFilePicker({
