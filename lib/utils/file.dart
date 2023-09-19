@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:file_saver/file_saver.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:utilities/utilities.dart';
@@ -31,14 +30,7 @@ void showFilePicker({
 
   if (result != null) {
     if (kIsWeb) {
-      String path = await FileSaver.instance.saveFile(
-          name: "File",
-          bytes: result.files.single.bytes!,
-          ext: result.files.single.name.split(".").last,
-      );
-
-      files.add(File(path));
-      action(files);
+      throw Exception("FUCK");
     } else {
       if (allowMultiple) {
         result.files.forEach((final PlatformFile i) async => files.add(File(i.path!)));
