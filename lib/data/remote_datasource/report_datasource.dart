@@ -46,14 +46,14 @@ class ReportDataSource {
       );
 
   Future<void> filter({
-    required final ReportFilterDto filter,
+    required final ReportFilterDto dto,
     required final Function(GenericResponse<ReportReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Report/Filter",
-        body: filter,
+        body: dto,
         action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
         error: (final Response response) {},
       );
