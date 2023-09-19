@@ -5,7 +5,7 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:utilities/utilities.dart';
 
 void showFilePicker({
-  required final Function(List<File> file) action,
+  final Function(List<File> file)? action,
   final Function(List<PlatformFile>? file)? onFilesPicked,
   final FileType fileType = FileType.image,
   final bool allowMultiple = false,
@@ -38,13 +38,13 @@ void showFilePicker({
         result.files.forEach((final PlatformFile i) {
           if (i.path != null) files.add(File(i.path!));
         });
-        action(files);
+        action!(files);
       } else {
         File file = File("--");
         if (result.files.single.path != null) {
           file = File(result.files.single.path!);
         }
-        action(<File>[file]);
+        action!(<File>[file]);
       }
     }
   }
