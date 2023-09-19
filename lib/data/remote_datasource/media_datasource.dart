@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/data/dto/media.dart';
+import 'package:utilities/utilities2.dart';
 import 'package:utilities/utils/constants.dart';
 import 'package:utilities/utils/dio_interceptor.dart';
 import 'package:utilities/utils/local_storage.dart';

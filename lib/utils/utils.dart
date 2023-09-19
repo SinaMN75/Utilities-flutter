@@ -1,9 +1,9 @@
-import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:utilities/utilities.dart';
+import 'package:utilities/utilities2.dart';
 
 export 'constants.dart';
 export 'dio_interceptor.dart';

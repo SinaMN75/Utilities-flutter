@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:universal_io/io.dart';
+import 'package:utilities/utilities2.dart';
 import 'package:utilities/utilities.dart';
 
 void showFilePicker({
