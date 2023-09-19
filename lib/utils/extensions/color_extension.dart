@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:utilities/utilities.dart';
 
 extension HexColor on Color {
@@ -13,4 +15,8 @@ extension HexColor on Color {
       '${red.toRadixString(16).padLeft(2, '0')}'
       '${green.toRadixString(16).padLeft(2, '0')}'
       '${blue.toRadixString(16).padLeft(2, '0')}';
+
+  static Color random() => Color((Random().nextDouble() * 0xFFFFFF).toInt());
+
 }
+
