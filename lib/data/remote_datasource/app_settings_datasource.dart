@@ -27,7 +27,7 @@ class AppSettingsDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/AppSettings/ReadDashboardData",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<DashboardDataReadDto>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<DashboardDataReadDto>.fromJson(response.body, fromMap: DashboardDataReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
       );
 }
