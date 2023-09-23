@@ -10,6 +10,7 @@ class UserReadDto {
     this.bio,
     this.appUserName,
     this.appPhoneNumber,
+    this.userAgent,
     this.userName,
     this.phoneNumber,
     this.appEmail,
@@ -55,6 +56,7 @@ class UserReadDto {
         userName: json["userName"],
         phoneNumber: json["phoneNumber"],
         appEmail: json["appEmail"],
+    userAgent: json["userAgent"],
         email: json["email"],
         region: json["region"],
         state: json["state"],
@@ -92,6 +94,7 @@ class UserReadDto {
   final String? appPhoneNumber;
   final String? userName;
   final String? phoneNumber;
+  final String? userAgent;
   final String? appEmail;
   final String? email;
   final String? region;
@@ -136,6 +139,7 @@ class UserReadDto {
         "appEmail": appEmail,
         "email": email,
         "region": region,
+        "userAgent": userAgent,
         "state": state,
         "badge": badge,
         "jobStatus": jobStatus,
