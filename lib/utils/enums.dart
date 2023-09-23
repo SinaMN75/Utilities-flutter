@@ -24,11 +24,11 @@ extension NullableTagCommentExtension on List<TagComment>? {
 }
 
 extension TagContentExtension on List<TagContent> {
-  List<int> getNumbers() => map((final TagContent e) => e.title).toList();
+  List<int> getNumbers() => map((final TagContent e) => e.number).toList();
 }
 
 extension NullableTagContentExtension on List<TagContent>? {
-  List<int> getNumbers() => (this ?? <TagContent>[]).map((final TagContent e) => e.title).toList();
+  List<int> getNumbers() => (this ?? <TagContent>[]).map((final TagContent e) => e.number).toList();
 }
 
 enum AccountType { free, pro, unlimited, unknown }
@@ -290,11 +290,11 @@ enum TagContent {
   homeBannerSmall2(108),
   contactInfo(109);
 
-  const TagContent(this.title);
+  const TagContent(this.number);
 
   @override
   String toString() => name;
-  final int title;
+  final int number;
 }
 
 enum TagMedia {
