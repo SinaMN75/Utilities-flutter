@@ -6,10 +6,10 @@ class Pagination extends StatefulWidget {
     required this.selectedPage,
     required this.pagesVisible,
     required this.onPageChanged,
-    required this.activeTextStyle,
-    required this.activeBtnStyle,
-    required this.inactiveTextStyle,
-    required this.inactiveBtnStyle,
+    this.activeTextStyle,
+    this.activeBtnStyle,
+    this.inactiveTextStyle,
+    this.inactiveBtnStyle,
     this.previousIcon,
     this.nextIcon,
     this.spacing,
@@ -20,10 +20,10 @@ class Pagination extends StatefulWidget {
   final int selectedPage;
   final int pagesVisible;
   final Function onPageChanged;
-  final TextStyle activeTextStyle;
-  final ButtonStyle activeBtnStyle;
-  final TextStyle inactiveTextStyle;
-  final ButtonStyle inactiveBtnStyle;
+  final TextStyle? activeTextStyle;
+  final ButtonStyle? activeBtnStyle;
+  final TextStyle? inactiveTextStyle;
+  final ButtonStyle? inactiveBtnStyle;
   final Icon? previousIcon;
   final Icon? nextIcon;
   final double? spacing;
