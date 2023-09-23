@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:utilities/utilities.dart';
 
 class Pagination extends StatefulWidget {
   const Pagination({
@@ -82,7 +83,7 @@ class _PaginationState extends State<Pagination> {
                 style: i == widget.selectedPage ? widget.activeBtnStyle : widget.inactiveBtnStyle,
                 onPressed: () => widget.onPageChanged(i),
                 child: Text('$i', style: i == widget.selectedPage ? widget.activeTextStyle : widget.inactiveTextStyle),
-              ),
+              ).container(radius: 100, backgroundColor: i == widget.selectedPage ? context.theme.primaryColor.withOpacity(0.5) : Colors.transparent),
             ),
           SizedBox(width: widget.spacing ?? 0),
           IconButton(
