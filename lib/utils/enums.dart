@@ -1,3 +1,12 @@
+class UtilitiesTagUtils {
+  String tagProductTitleFromTagList(final List<int> tags) {
+    if (tags.contains(TagProduct.inQueue.number)) return TagProduct.inQueue.title;
+    if (tags.contains(TagProduct.released.number)) return TagProduct.released.title;
+    if (tags.contains(TagProduct.notAccepted.number)) return TagProduct.notAccepted.title;
+    return "";
+  }
+}
+
 extension TagMediaExtension on List<TagMedia> {
   List<int> getNumbers() => map((final TagMedia e) => e.number).toList();
 }
