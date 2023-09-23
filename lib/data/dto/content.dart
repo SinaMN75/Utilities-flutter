@@ -108,7 +108,7 @@ class ContentCreateUpdateDto {
         tagUseCase: json["tagUseCase"],
         dribble: json["dribble"],
         approvalStatus: json["approvalStatus"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags: json["tags"] == null ? null : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         contactInformations: json["contactInformations"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformations"].cast<Map<String, dynamic>>().map(ContactInformationReadDto.fromMap)).toList(),
       );
 
@@ -121,7 +121,7 @@ class ContentCreateUpdateDto {
         "tagUseCase": tagUseCase,
         "dribble": dribble,
         "approvalStatus": approvalStatus,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": tags == null ? null : List<dynamic>.from(tags!.map((final int x) => x)),
         "contactInformations": contactInformations == null ? null : List<dynamic>.from(contactInformations!.map((x) => x.toMap())),
       };
 }
