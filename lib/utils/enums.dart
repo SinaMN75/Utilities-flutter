@@ -222,11 +222,11 @@ enum TagCategory {
   directShod(500),
   test(900);
 
-  const TagCategory(this.title);
+  const TagCategory(this.number);
 
   @override
   String toString() => name;
-  final int title;
+  final int number;
 }
 
 enum TagOrder {
