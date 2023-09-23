@@ -1,5 +1,5 @@
 class UtilitiesTagUtils {
-  String tagProductTitleFromTagList(final List<int> tags) {
+  static String tagProductTitleFromTagList(final List<int> tags) {
     if (tags.contains(TagProduct.inQueue.number)) return TagProduct.inQueue.title;
     if (tags.contains(TagProduct.released.number)) return TagProduct.released.title;
     if (tags.contains(TagProduct.notAccepted.number)) return TagProduct.notAccepted.title;
