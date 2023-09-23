@@ -49,7 +49,7 @@ class ContentReadDto {
         description: json["description"],
         tagUseCase: json["tagUseCase"],
         jsonDetail: json["jsonDetail"] == null ? null : ContentJsonDetail.fromMap(json["jsonDetail"]),
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags: json["tags"] == null ? null : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         contactInformation: json["contactInformation"] == null ? null : List<ContactInformationReadDto>.from(json["contactInformation"].cast<Map<String, dynamic>>().map(ContactInformationReadDto.fromMap)).toList(),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
       );
@@ -64,7 +64,7 @@ class ContentReadDto {
         "description": description,
         "tagUseCase": tagUseCase,
         "jsonDetail": jsonDetail?.toMap(),
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": tags == null ? null : List<dynamic>.from(tags!.map((final int x) => x)),
         "contactInformation": contactInformation == null ? null : List<dynamic>.from(contactInformation!.map((x) => x.toMap())),
         "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
       };
