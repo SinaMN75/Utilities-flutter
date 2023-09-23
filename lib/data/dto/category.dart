@@ -223,6 +223,8 @@ class CategoryFilterDto {
     this.orderByCreatedAt,
     this.tags,
     this.orderByCreatedAtDescending,
+    this.pageSize,
+    this.pageNumber,
   });
 
   factory CategoryFilterDto.fromJson(final String str) => CategoryFilterDto.fromMap(json.decode(str));
@@ -238,6 +240,8 @@ class CategoryFilterDto {
         orderByCreatedAt: json["orderByCreatedAt"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         orderByCreatedAtDescending: json["orderByCreatedAtDescending"],
+    pageSize: json["pageSize"],
+    pageNumber: json["pageNumber"],
       );
   String? title;
   String? titleTr1;
@@ -249,6 +253,8 @@ class CategoryFilterDto {
   bool? orderByCreatedAt;
   List<int>? tags;
   bool? orderByCreatedAtDescending;
+  int? pageSize;
+  int? pageNumber;
 
   String toJson() => json.encode(toMap());
 
@@ -263,6 +269,8 @@ class CategoryFilterDto {
         "orderByCreatedAt": orderByCreatedAt,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "orderByCreatedAtDescending": orderByCreatedAtDescending,
+        "pageSize": pageSize,
+        "pageNumber": pageNumber,
       };
 }
 
