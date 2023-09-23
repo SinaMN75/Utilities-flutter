@@ -1,10 +1,8 @@
-import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/data/dto/transaction.dart';
-import 'package:utilities/utils/constants.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+import 'package:utilities/utils/http_interceptor.dart';
 
-import '../../utils/local_storage.dart';
 
 class TransactionDataSource {
   final String baseUrl;
@@ -18,11 +16,8 @@ class TransactionDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Transaction",
-        headers: <String, String>{
-          "Authorization": "${getString(UtilitiesConstants.token)}",
-        },
-        action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.data, fromMap: TransactionReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }
