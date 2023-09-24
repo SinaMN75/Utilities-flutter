@@ -3,21 +3,16 @@ import 'package:utilities/utilities.dart';
 
 Widget customImageCropper({
   required Function(List<CroppedFile> cropFiles) result,
-  int? compressQuality,
-  int? boundaryWidth,
-  int? boundaryHeight,
-  double imageWidth = 128,
 }) {
   RxList<CroppedFile> cropperFiles = <CroppedFile>[].obs;
   Widget _items({required CroppedFile param, required int index}) => Stack(
         children: [
-          Image.network(param.path, width: imageWidth),
-          Container(
-            width: 32,
-            height: 32,
-            decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(50)),
-            child: Center(child: Icon(Icons.close_outlined, size: 32, color: Colors.white)),
-          ).onTap(() {
+          Image.network(param.path, width: 128),
+          Icon(
+            Icons.close_outlined,
+            size: 32,
+            color: Colors.white,
+          ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).alignAtCenter().onTap(() {
             cropperFiles.removeAt(index);
             result(cropperFiles);
           }),
@@ -39,9 +34,6 @@ Widget customImageCropper({
             child: Center(child: Icon(Icons.add, size: 44, color: Colors.white)),
           ).onTap(() {
             cropImageCrop(
-              compressQuality: compressQuality,
-              boundaryWidth: boundaryWidth,
-              boundaryHeight: boundaryHeight,
               result: (cropped) {
                 cropperFiles.add(cropped);
                 result(cropperFiles);
