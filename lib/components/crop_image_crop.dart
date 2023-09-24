@@ -3,65 +3,40 @@ import 'package:utilities/utilities.dart';
 
 Widget customImageCropper({
   required Function(List<CroppedFile> cropFiles) result,
-  double? aspect,
   int? compressQuality,
   int? boundaryWidth,
   int? boundaryHeight,
-  double? imageWidth,
+  double imageWidth = 128,
 }) {
   RxList<CroppedFile> cropperFiles = <CroppedFile>[].obs;
   Widget _items({required CroppedFile param, required int index}) => Stack(
-    children: [
-      Image.network(
-        param.path,
-        width: imageWidth ?? 128,
-      ),
-      Container(
-        width: 32,
-        height: 32,
-        decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: Center(
-          child: Icon(
-            Icons.close_outlined,
-            size: 32,
-            color: Colors.white,
-          ),
-        ),
-      ).onTap(() {
-        cropperFiles.removeAt(index);
-        result(cropperFiles);
-      }),
-    ],
-  ).marginSymmetric(horizontal: 4);
+        children: [
+          Image.network(param.path, width: imageWidth),
+          Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(50)),
+            child: Center(child: Icon(Icons.close_outlined, size: 32, color: Colors.white)),
+          ).onTap(() {
+            cropperFiles.removeAt(index);
+            result(cropperFiles);
+          }),
+        ],
+      ).marginSymmetric(horizontal: 4);
 
-  return StatefulBuilder(
-    builder: (context, setState) => SizedBox(
+  return SizedBox(
       height: 250,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            Obx(() => Row(
-              children: cropperFiles.mapIndexed((index, item) => _items(param: cropperFiles[index], index: index)).toList(),
-            )),
+            Obx(() => Row(children: cropperFiles.mapIndexed((index, item) => _items(param: cropperFiles[index], index: index)).toList())),
             SizedBox(width: 8),
             Container(
               width: 48,
               height: 48,
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.add,
-                  size: 44,
-                  color: Colors.white,
-                ),
-              ),
+              decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(50)),
+              child: Center(child: Icon(Icons.add, size: 44, color: Colors.white)),
             ).onTap(() {
               cropImageCrop(
                 compressQuality: compressQuality,
@@ -69,7 +44,6 @@ Widget customImageCropper({
                 boundaryHeight: boundaryHeight,
                 result: (cropped) {
                   cropperFiles.add(cropped);
-
                   result(cropperFiles);
                 },
               );
@@ -77,7 +51,6 @@ Widget customImageCropper({
           ],
         ),
       ),
-    ),
   );
 }
 
@@ -92,7 +65,6 @@ Future<void> cropImageCrop({
   if (pickedFile != null) {
     final blobUrl = pickedFile.path;
     debugPrint('picked blob: $blobUrl');
-
     WebUiSettings settings;
     settings = WebUiSettings(
       context: context,
