@@ -47,3 +47,35 @@ class ReactionReadDto {
         "reaction": reaction,
       };
 }
+
+class ReactionFilterDto {
+  ReactionFilterDto({
+    this.productId,
+    this.reaction,
+    this.pageSize,
+    this.pageNumber,
+  });
+
+  final String? productId;
+  final int? reaction;
+  final int? pageSize;
+  final int? pageNumber;
+
+  factory ReactionFilterDto.fromJson(String str) => ReactionFilterDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ReactionFilterDto.fromMap(dynamic json) => ReactionFilterDto(
+    productId: json["productId"],
+    reaction: json["reaction"],
+    pageSize: json["pageSize"],
+    pageNumber: json["pageNumber"],
+  );
+
+  dynamic toMap() => {
+    "productId": productId,
+    "reaction": reaction,
+    "pageSize": pageSize,
+    "pageNumber": pageNumber,
+  };
+}

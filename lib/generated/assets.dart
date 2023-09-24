@@ -10,6 +10,7 @@ class Assets {
   static const String componentsChart = 'lib/components/chart.dart';
   static const String componentsComponents = 'lib/components/components.dart';
   static const String componentsContainer = 'lib/components/container.dart';
+  static const String componentsCropImageCrop = 'lib/components/crop_image_crop.dart';
   static const String componentsDottedBorder = 'lib/components/dotted_border.dart';
   static const String componentsDropDownTextfield = 'lib/components/drop_down_textfield.dart';
   static const String componentsFlipCard = 'lib/components/flip_card.dart';
@@ -36,11 +37,10 @@ class Assets {
   static const String dtoAppSettings = 'lib/data/dto/app_settings.dart';
   static const String dtoBlock = 'lib/data/dto/block.dart';
   static const String dtoCategory = 'lib/data/dto/category.dart';
-  static const String dtoChat = 'lib/data/dto/chat.dart';
-  static const String dtoChatGroup = 'lib/data/dto/chat_group.dart';
   static const String dtoComment = 'lib/data/dto/comment.dart';
   static const String dtoContactInformation = 'lib/data/dto/contact_information.dart';
   static const String dtoContent = 'lib/data/dto/content.dart';
+  static const String dtoDashboardData = 'lib/data/dto/dashboard_data.dart';
   static const String dtoDiscount = 'lib/data/dto/discount.dart';
   static const String dtoDto = 'lib/data/dto/dto.dart';
   static const String dtoFollowBookmark = 'lib/data/dto/follow_bookmark.dart';
@@ -88,7 +88,6 @@ class Assets {
   static const String remoteDatasourceAppSettingsDatasource = 'lib/data/remote_datasource/app_settings_datasource.dart';
   static const String remoteDatasourceBlockDatasource = 'lib/data/remote_datasource/block_datasource.dart';
   static const String remoteDatasourceCategoryDatasource = 'lib/data/remote_datasource/category_datasource.dart';
-  static const String remoteDatasourceChatGroupDatasource = 'lib/data/remote_datasource/chat_group_datasource.dart';
   static const String remoteDatasourceCommentDatasource = 'lib/data/remote_datasource/comment_datasource.dart';
   static const String remoteDatasourceContentDatasource = 'lib/data/remote_datasource/content_datasource.dart';
   static const String remoteDatasourceDiscounteDatasource = 'lib/data/remote_datasource/discounte_datasource.dart';
