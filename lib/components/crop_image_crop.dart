@@ -25,32 +25,32 @@ Widget customImageCropper({
       ).marginSymmetric(horizontal: 4);
 
   return SizedBox(
-      height: 250,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            Obx(() => Row(children: cropperFiles.mapIndexed((index, item) => _items(param: cropperFiles[index], index: index)).toList())),
-            SizedBox(width: 8),
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(50)),
-              child: Center(child: Icon(Icons.add, size: 44, color: Colors.white)),
-            ).onTap(() {
-              cropImageCrop(
-                compressQuality: compressQuality,
-                boundaryWidth: boundaryWidth,
-                boundaryHeight: boundaryHeight,
-                result: (cropped) {
-                  cropperFiles.add(cropped);
-                  result(cropperFiles);
-                },
-              );
-            }),
-          ],
-        ),
+    height: 250,
+    child: SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          Obx(() => Row(children: cropperFiles.mapIndexed((index, item) => _items(param: cropperFiles[index], index: index)).toList())),
+          SizedBox(width: 8),
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(50)),
+            child: Center(child: Icon(Icons.add, size: 44, color: Colors.white)),
+          ).onTap(() {
+            cropImageCrop(
+              compressQuality: compressQuality,
+              boundaryWidth: boundaryWidth,
+              boundaryHeight: boundaryHeight,
+              result: (cropped) {
+                cropperFiles.add(cropped);
+                result(cropperFiles);
+              },
+            );
+          }),
+        ],
       ),
+    ),
   );
 }
 
@@ -65,24 +65,22 @@ Future<void> cropImageCrop({
   if (pickedFile != null) {
     final blobUrl = pickedFile.path;
     debugPrint('picked blob: $blobUrl');
-    WebUiSettings settings;
-    settings = WebUiSettings(
-      context: context,
-      presentStyle: CropperPresentStyle.dialog,
-      translations: webTranslations,
-      boundary: CroppieBoundary(width: boundaryWidth, height: boundaryHeight),
-      viewPort: CroppieViewPort(width: boundaryWidth, height: boundaryHeight),
-      enforceBoundary: true,
-      enableExif: true,
-      enableZoom: true,
-      showZoomer: true,
-    );
     final croppedFile = await ImageCropper().cropImage(
       sourcePath: blobUrl,
-      compressFormat: ImageCompressFormat.jpg,
-      compressQuality: compressQuality ?? 100,
       aspectRatio: const CropAspectRatio(ratioX: 9, ratioY: 16),
-      uiSettings: [settings],
+      uiSettings: [
+        WebUiSettings(
+          context: context,
+          presentStyle: CropperPresentStyle.dialog,
+          translations: webTranslations,
+          boundary: CroppieBoundary(width: boundaryWidth, height: boundaryHeight),
+          viewPort: CroppieViewPort(width: boundaryWidth, height: boundaryHeight),
+          enforceBoundary: true,
+          enableExif: true,
+          enableZoom: true,
+          showZoomer: true,
+        ),
+      ],
     );
     if (croppedFile != null) {
       result(croppedFile);
