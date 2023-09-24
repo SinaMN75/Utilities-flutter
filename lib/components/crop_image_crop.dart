@@ -11,20 +11,31 @@ Widget customImageCropper({
 }) {
   RxList<CroppedFile> cropperFiles = <CroppedFile>[].obs;
   Widget _items({required CroppedFile param, required int index}) => Stack(
-        children: [
-          Image.network(
-            param.path,
-            width: imageWidth ?? 128,
-          ),
-          const Icon(
-            Icons.close_fullscreen,
+    children: [
+      Image.network(
+        param.path,
+        width: imageWidth ?? 128,
+      ),
+      Container(
+        width: 32,
+        height: 32,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Center(
+          child: Icon(
+            Icons.close_outlined,
             size: 32,
-          ).onTap(() {
-            cropperFiles.removeAt(index);
-            result(cropperFiles);
-          }),
-        ],
-      ).marginSymmetric(horizontal: 4);
+            color: Colors.white,
+          ),
+        ),
+      ).onTap(() {
+        cropperFiles.removeAt(index);
+        result(cropperFiles);
+      }),
+    ],
+  ).marginSymmetric(horizontal: 4);
 
   return StatefulBuilder(
     builder: (context, setState) => SizedBox(
@@ -34,9 +45,24 @@ Widget customImageCropper({
         child: Row(
           children: [
             Obx(() => Row(
-                  children: cropperFiles.mapIndexed((index, item) => _items(param: cropperFiles[index], index: index)).toList(),
-                )),
-            const Icon(Icons.add).onTap(() {
+              children: cropperFiles.mapIndexed((index, item) => _items(param: cropperFiles[index], index: index)).toList(),
+            )),
+            SizedBox(width: 8),
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.add,
+                  size: 44,
+                  color: Colors.white,
+                ),
+              ),
+            ).onTap(() {
               cropImageCrop(
                 compressQuality: compressQuality,
                 boundaryWidth: boundaryWidth,
