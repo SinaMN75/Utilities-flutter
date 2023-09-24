@@ -13,7 +13,8 @@ void showColorPickerBottomSheet({
           onColorChanged: (final Color selectedColor) {
             color = selectedColor;
           },
-        ),
+        ).fit(),
+        SizedBox(height: 8),
         button(
             title: "ثبت",
             onTap: () {
