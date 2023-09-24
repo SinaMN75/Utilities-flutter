@@ -33,6 +33,7 @@ export 'package:video_box/video_box.dart';
 export 'package:webviewx_plus/webviewx_plus.dart';
 export 'package:flutter_colorpicker/flutter_colorpicker.dart';
 export 'package:persian_fonts/persian_fonts.dart';
+export 'package:flutter_contacts/contact.dart';
 
 export 'components/components.dart';
 export 'components/dotted_border.dart';

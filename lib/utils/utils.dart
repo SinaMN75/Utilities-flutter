@@ -14,6 +14,7 @@ export 'file.dart';
 export 'get.dart';
 export 'launch.dart';
 export 'local_storage.dart';
+export 'contacts.dart';
 
 void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
       Duration(milliseconds: milliseconds),
