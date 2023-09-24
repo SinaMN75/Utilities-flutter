@@ -1,22 +1,20 @@
 import 'dart:math';
 
-import 'package:utilities/utilities2.dart';
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:lottie/lottie.dart' as lottie;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rxdart/rxdart.dart' as rx;
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:utilities/data/dto/form_filed.dart';
 import 'package:utilities/utilities.dart';
+import 'package:utilities/utilities2.dart';
 import 'package:utilities/utils/location.dart';
 
 part 'admin.dart';
@@ -25,11 +23,15 @@ part 'badges.dart';
 
 part 'barcode_qrcode.dart';
 
+part 'bottom_sheet.dart';
+
 part 'carousel_slider.dart';
 
 part 'chart.dart';
 
 part 'container.dart';
+
+part 'color_picker.dart';
 
 part 'drop_down_textfield.dart';
 
@@ -64,5 +66,3 @@ part 'sound_player.dart';
 part 'story_view.dart';
 
 part 'text_field_country.dart';
-
-part 'bottom_sheet.dart';
