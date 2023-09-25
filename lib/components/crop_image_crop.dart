@@ -53,7 +53,7 @@ Future<void> cropImageCrop({
   int? boundaryHeight,
   WebTranslations? webTranslations,
 }) async {
-  final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+  final XFile? pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedFile != null) {
     final blobUrl = pickedFile.path;
     debugPrint('picked blob: $blobUrl');
