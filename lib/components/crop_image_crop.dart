@@ -55,10 +55,8 @@ Future<void> cropImageCrop({
 }) async {
   final XFile? pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedFile != null) {
-    final blobUrl = pickedFile.path;
-    debugPrint('picked blob: $blobUrl');
     final croppedFile = await ImageCropper().cropImage(
-      sourcePath: blobUrl,
+      sourcePath: pickedFile.path,
       aspectRatio: const CropAspectRatio(ratioX: 9, ratioY: 16),
       uiSettings: [
         WebUiSettings(
