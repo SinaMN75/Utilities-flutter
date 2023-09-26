@@ -1,10 +1,7 @@
-import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:utilities/data/dto/generic_response.dart';
 import 'package:utilities/data/dto/payment.dart';
-import 'package:utilities/utils/constants.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
-
-import '../../utils/local_storage.dart';
+import 'package:utilities/utils/http_interceptor.dart';
 
 class PaymentDataSource {
   final String baseUrl;
@@ -19,11 +16,8 @@ class PaymentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/IncreaseWalletBalance/$amount",
-        headers: <String, String>{
-          "Authorization": "${getString(UtilitiesConstants.token)}",
-        },
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: PaymentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -35,11 +29,8 @@ class PaymentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/PayOrderZarinPal/$orderId",
-        headers: <String, String>{
-          "Authorization": "${getString(UtilitiesConstants.token)}",
-        },
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: PaymentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
   Future<void> paySubscriptionZarinPal({
@@ -50,11 +41,8 @@ class PaymentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/PaySubscriptionZarinPal/$subscriptionId",
-        headers: <String, String>{
-          "Authorization": "${getString(UtilitiesConstants.token)}",
-        },
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: PaymentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -66,11 +54,8 @@ class PaymentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Payment/BuyProduct/$productId",
-        headers: <String, String>{
-          "Authorization": "${getString(UtilitiesConstants.token)}",
-        },
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: PaymentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }
