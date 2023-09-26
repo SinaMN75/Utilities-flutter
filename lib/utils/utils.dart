@@ -29,7 +29,7 @@ Color hexStringToColor(final String hexString) {
   return Color(int.parse(buffer.toString(), radix: 16));
 }
 
-String colorToHexColor(final Color color) => '#${color.value.toRadixString(16)}';
+String colorToHexColor(final Color color) => color.value.toRadixString(16);
 
 void copyToClipboard(final String text) async => await Clipboard.setData(ClipboardData(text: text));
 
