@@ -80,9 +80,9 @@ Widget textFieldPersianDatePicker({
   final EdgeInsets margin = EdgeInsets.zero,
   final TextAlign textAlign = TextAlign.start,
   final double? textHeight,
+  final TextEditingController? controller,
 }) {
   final Rx<Jalali> jalali = Jalali.now().obs;
-  final TextEditingController controller = TextEditingController(text: jalali.value.formatCompactDate());
   return textField(
     controller: controller,
     margin: margin,
@@ -101,7 +101,6 @@ Widget textFieldPersianDatePicker({
           lastDate: Jalali(1405),
         ),
       );
-      controller.text = jalali.value.formatCompactDate();
       onChange(jalali.value.toDateTime(), jalali.value);
     },
   );
