@@ -7,13 +7,14 @@ void showColorPickerBottomSheet({
   Color color = pickerColor;
   bottomSheet(
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         ColorPicker(
           pickerColor: pickerColor,
           onColorChanged: (final Color selectedColor) {
             color = selectedColor;
           },
-        ).fit(),
+        ),
         SizedBox(height: 8),
         button(
             title: "ثبت",
