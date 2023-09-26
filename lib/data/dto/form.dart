@@ -18,7 +18,7 @@ class FormReadDto {
 
   factory FormReadDto.fromJson(String str) => FormReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory FormReadDto.fromMap(dynamic json) => FormReadDto(
         id: json["id"],
@@ -54,7 +54,7 @@ class FormCreateUpdateDto {
 
   factory FormCreateUpdateDto.fromJson(String str) => FormCreateUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory FormCreateUpdateDto.fromMap(dynamic json) => FormCreateUpdateDto(
         userId: json["userId"],
@@ -97,7 +97,7 @@ class FormFieldCreateUpdateDto {
 
   factory FormFieldCreateUpdateDto.fromJson(String str) => FormFieldCreateUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory FormFieldCreateUpdateDto.fromMap(dynamic json) => FormFieldCreateUpdateDto(
         id: json["id"],

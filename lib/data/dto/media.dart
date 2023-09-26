@@ -27,7 +27,7 @@ class MediaReadDto {
 
   factory MediaReadDto.fromJson(String str) => MediaReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory MediaReadDto.fromMap(dynamic json) => MediaReadDto(
         id: json["id"],
@@ -77,7 +77,7 @@ class MediaJsonDetail {
 
   factory MediaJsonDetail.fromJson(String str) => MediaJsonDetail.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory MediaJsonDetail.fromMap(dynamic json) => MediaJsonDetail(
         link: json["link"],
@@ -152,7 +152,7 @@ class CreateMediaReadDto {
     this.size,
   });
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "filesPath": filesPath,

@@ -25,7 +25,7 @@ class DiscountReadDto {
 
   factory DiscountReadDto.fromJson(String str) => DiscountReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory DiscountReadDto.fromMap(dynamic json) => DiscountReadDto(
         id: json["id"],
@@ -77,7 +77,7 @@ class DiscountFilterDto {
 
   factory DiscountFilterDto.fromJson(String str) => DiscountFilterDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory DiscountFilterDto.fromMap(dynamic json) => DiscountFilterDto(
         createdAt: json["createdAt"],

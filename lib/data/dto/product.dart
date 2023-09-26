@@ -130,7 +130,7 @@ class ProductReadDto {
   List<ProductInsight>? visitProducts;
   int? successfulPurchase;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,
@@ -269,7 +269,7 @@ class ProductJsonDetail {
   DateTime? endDate;
   List<KeyValueViewModel>? keyValues;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "details": details,
@@ -418,7 +418,7 @@ class ProductCreateUpdateDto {
   List<ProductCreateUpdateDto>? children;
   ProductInsight? productInsight;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,
@@ -610,7 +610,7 @@ class ProductFilterDto {
   bool? showExpired;
   bool? boosted;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   Map<String, dynamic> toMap() => {
         "title": title,
@@ -672,7 +672,7 @@ class ProductInsight {
   final int? reaction;
   final String? userId;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
         "reaction": reaction,
@@ -717,7 +717,7 @@ class ProductInsightDto {
   final String? productEntity;
   final String? productId;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
         "id": id,

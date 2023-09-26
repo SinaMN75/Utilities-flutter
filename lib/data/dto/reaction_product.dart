@@ -21,7 +21,7 @@ class ReactionProductReadDto {
 
   factory ReactionProductReadDto.fromJson(String str) => ReactionProductReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReactionProductReadDto.fromMap(dynamic json) => ReactionProductReadDto(
         reaction: json["reaction"],

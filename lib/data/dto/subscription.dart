@@ -27,7 +27,7 @@ class SubscriptionPaymentReadDto {
 
   factory SubscriptionPaymentReadDto.fromJson(String str) => SubscriptionPaymentReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory SubscriptionPaymentReadDto.fromMap(Map<String, dynamic> json) => SubscriptionPaymentReadDto(
         subscriptionType: json["subscriptionType"],
@@ -81,7 +81,7 @@ class SubscriptionPaymentCreateUpdateDto {
   final int? amount;
   final String? description;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,

@@ -23,7 +23,7 @@ class CreateMailSmsNotificationDto {
 
   factory CreateMailSmsNotificationDto.fromJson(String str) => CreateMailSmsNotificationDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory CreateMailSmsNotificationDto.fromMap(dynamic json) => CreateMailSmsNotificationDto(
         userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),

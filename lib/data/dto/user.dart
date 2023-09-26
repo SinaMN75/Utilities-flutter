@@ -123,7 +123,7 @@ class UserReadDto {
   final int? countFollowing;
   final String? token;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   Map<String, dynamic> toMap() => {
         "id": id,
@@ -233,7 +233,7 @@ class UserJsonDetail {
   final int? legalAuthenticationType;
   final int? nationalityType;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   Map<String, dynamic> toMap() => {
         "instagram": instagram,
@@ -408,7 +408,7 @@ class UserCreateUpdateDto {
   final String? shebaNumber;
   final List<int>? tags;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   Map<String, dynamic> toMap() => {
         "id": id,
@@ -546,7 +546,7 @@ class UserFilterDto {
   final List<String>? userIds;
   final List<String>? categories;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "userId": userId,
@@ -590,7 +590,7 @@ class GetMobileVerificationCodeForLoginDto {
 
   final String mobile;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {"mobile": mobile};
 }
@@ -617,7 +617,7 @@ class LoginWithEmail {
   final String? returnUrl;
   final bool? keep;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "email": email,
@@ -646,7 +646,7 @@ class LoginWithPasswordDto {
   final String? password;
   final String? userName;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "email": email,
@@ -683,7 +683,7 @@ class VerifyMobileForLoginDto {
   final String? username;
   final String? instagram;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "mobile": mobile,
@@ -711,7 +711,7 @@ class ActiveMobileDto {
   final String? code;
   final String? mobile;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "code": code,
@@ -780,7 +780,7 @@ class GrowthRateReadDto {
   final int? totalInterActive;
   final int? totalFeedback;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,
@@ -819,7 +819,7 @@ class BookmarkFolder {
   final String? id;
   final String? title;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,
@@ -846,7 +846,7 @@ class AuthenticateDto {
   final String? code;
   final String? shebaNumber;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "code": code,

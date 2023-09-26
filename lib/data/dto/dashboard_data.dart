@@ -33,7 +33,7 @@ class DashboardDataReadDto {
   final int? address;
   final int? reports;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   Map<String, dynamic> toMap() => {
     "categories": categories,

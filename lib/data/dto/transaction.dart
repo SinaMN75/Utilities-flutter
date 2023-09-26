@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'package:utilities/utilities.dart';
 
 class TransactionReadDto {
   TransactionReadDto({
@@ -23,7 +23,7 @@ class TransactionReadDto {
 
   factory TransactionReadDto.fromJson(String str) => TransactionReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory TransactionReadDto.fromMap(dynamic json) => TransactionReadDto(
         id: json["id"],

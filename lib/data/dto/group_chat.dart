@@ -48,7 +48,7 @@ class GroupChatReadDto {
   List<CategoryReadDto>? categories;
   int? countOfUnreadMessages;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,
@@ -94,7 +94,7 @@ class GroupChatJsonDetail {
   int? priority;
   DateTime? boosted;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "description": description,
@@ -158,7 +158,7 @@ class GroupChatCreateUpdateDto {
   final List<String>? categories;
   final List<String>? productIds;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,
@@ -244,7 +244,7 @@ class GroupChatFilterDto {
   final int? pageSize;
   final int? pageNumber;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "usersIds": usersIds == null ? [] : List<dynamic>.from(usersIds!.map((final x) => x)),
@@ -338,7 +338,7 @@ class GroupChatMessageReadDto {
   List<ProductReadDto>? products;
   List<UserReadDto>? messageSeenBy;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,
@@ -391,7 +391,7 @@ class GroupChatMessageJsonDetail {
   int? priority;
   DateTime? boosted;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
         "description": description,
@@ -430,7 +430,7 @@ class SeenUsers {
   String? fkUserId;
   String? fkGroupChatMessage;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
         "id": id,
@@ -479,7 +479,7 @@ class GroupChatMessageCreateUpdateDto {
   final List<String>? products;
   final List<int>? tags;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,

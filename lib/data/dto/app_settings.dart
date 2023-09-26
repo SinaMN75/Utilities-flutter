@@ -9,7 +9,7 @@ class AppSettingsReadDto {
 
   factory AppSettingsReadDto.fromJson(final String str) => AppSettingsReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory AppSettingsReadDto.fromMap(final dynamic json) => AppSettingsReadDto(
         appSettings: json["appSettings"] == null ? null : AppSettings.fromMap(json["appSettings"]),
@@ -47,7 +47,7 @@ class AppSettings {
 
   factory AppSettings.fromJson(final String str) => AppSettings.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory AppSettings.fromMap(final dynamic json) => AppSettings(
         smsPanelSettings: json["smsPanelSettings"] == null ? null : SmsPanelSettings.fromMap(json["smsPanelSettings"]),
@@ -95,7 +95,7 @@ class SmsPanelSettings {
 
   factory SmsPanelSettings.fromJson(final String str) => SmsPanelSettings.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory SmsPanelSettings.fromMap(final dynamic json) => SmsPanelSettings(
         userName: json["userName"],
@@ -127,7 +127,7 @@ class FormFieldTypeDto {
 
   factory FormFieldTypeDto.fromJson(String str) => FormFieldTypeDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory FormFieldTypeDto.fromMap(Map<String, dynamic> json) => FormFieldTypeDto(
         id: json["id"],

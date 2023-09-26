@@ -29,7 +29,7 @@ class ContactInformationReadDto {
 
   factory ContactInformationReadDto.fromJson(String str) => ContactInformationReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ContactInformationReadDto.fromMap(dynamic json) => ContactInformationReadDto(
         id: json["id"],

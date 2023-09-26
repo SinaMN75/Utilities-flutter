@@ -11,7 +11,7 @@ class TeamReadDto {
 
   factory TeamReadDto.fromJson(String str) => TeamReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory TeamReadDto.fromMap(dynamic json) => TeamReadDto(
         id: json["id"],

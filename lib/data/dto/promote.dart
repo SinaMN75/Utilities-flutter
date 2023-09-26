@@ -34,7 +34,7 @@ class PromoteCreateUpdateDto {
   final String? productId;
   final String? groupChatId;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,
@@ -70,7 +70,7 @@ class PromoteReadDto {
   final List<KeyValueViewModel>? skillPerUsers;
   final List<KeyValueViewModel>? ageCategoryPerUsers;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "totalSeen": totalSeen,

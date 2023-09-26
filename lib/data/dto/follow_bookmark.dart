@@ -17,7 +17,7 @@ class BookmarkReadDto {
 
   factory BookmarkReadDto.fromJson(String str) => BookmarkReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory BookmarkReadDto.fromMap(dynamic json) => BookmarkReadDto(
         folderName: json["folderName"],
@@ -49,7 +49,7 @@ class ToggleBookmark {
 
   factory ToggleBookmark.fromJson(String str) => ToggleBookmark.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ToggleBookmark.fromMap(dynamic json) => ToggleBookmark(
         productId: json["productId"],
@@ -73,7 +73,7 @@ class ToggleFollow {
 
   factory ToggleFollow.fromJson(String str) => ToggleFollow.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ToggleFollow.fromMap(dynamic json) => ToggleFollow(
         userId: json["userId"],

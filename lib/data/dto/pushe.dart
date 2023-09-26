@@ -1,5 +1,4 @@
-
-import 'dart:convert';
+import 'package:utilities/utilities.dart';
 
 class PusheCreateDto {
   PusheCreateDto({
@@ -16,7 +15,7 @@ class PusheCreateDto {
 
   factory PusheCreateDto.fromJson(String str) => PusheCreateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PusheCreateDto.fromMap(dynamic json) => PusheCreateDto(
         appIds: json["app_ids"],
@@ -52,7 +51,7 @@ class PusheData {
 
   factory PusheData.fromJson(String str) => PusheData.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PusheData.fromMap(dynamic json) => PusheData(
         title: json["title"],
@@ -84,7 +83,7 @@ class PusheAction {
 
   factory PusheAction.fromJson(String str) => PusheAction.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PusheAction.fromMap(dynamic json) => PusheAction(
         actionType: json["action_type"],
@@ -106,7 +105,7 @@ class PusheFilter {
 
   factory PusheFilter.fromJson(String str) => PusheFilter.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PusheFilter.fromMap(dynamic json) => PusheFilter(
         customId: json["custom_id"] == null ? [] : List<String>.from(json["custom_id"]!.map((x) => x)),
@@ -188,7 +187,7 @@ class PusheReadDto {
 
   factory PusheReadDto.fromJson(String str) => PusheReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PusheReadDto.fromMap(dynamic json) => PusheReadDto(
         wrapperId: json["wrapper_id"],
@@ -266,7 +265,7 @@ class CustomContent {
 
   factory CustomContent.fromJson(String str) => CustomContent.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory CustomContent.fromMap(dynamic json) => CustomContent();
 
@@ -282,7 +281,7 @@ class Filters {
 
   factory Filters.fromJson(String str) => Filters.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory Filters.fromMap(dynamic json) => Filters(
         customId: json["custom_id"] == null ? [] : List<String>.from(json["custom_id"]!.map((x) => x)),
@@ -316,7 +315,7 @@ class Statistics {
 
   factory Statistics.fromJson(String str) => Statistics.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory Statistics.fromMap(dynamic json) => Statistics(
         recipientCount: json["recipient_count"],

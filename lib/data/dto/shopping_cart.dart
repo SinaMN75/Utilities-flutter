@@ -19,7 +19,7 @@ class ShoppingCartReadDto {
 
   factory ShoppingCartReadDto.fromJson(String str) => ShoppingCartReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ShoppingCartReadDto.fromMap(dynamic json) => ShoppingCartReadDto(
         id: json["id"],
@@ -79,7 +79,7 @@ class ShoppingCartItem {
 
   factory ShoppingCartItem.fromJson(String str) => ShoppingCartItem.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ShoppingCartItem.fromMap(dynamic json) => ShoppingCartItem(
         id: json["id"],

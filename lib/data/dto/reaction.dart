@@ -23,7 +23,7 @@ class ReactionReadDto {
 
   factory ReactionReadDto.fromJson(String str) => ReactionReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReactionReadDto.fromMap(dynamic json) => ReactionReadDto(
         id: json["id"],
@@ -63,7 +63,7 @@ class ReactionFilterDto {
 
   factory ReactionFilterDto.fromJson(String str) => ReactionFilterDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReactionFilterDto.fromMap(dynamic json) => ReactionFilterDto(
     productId: json["productId"],

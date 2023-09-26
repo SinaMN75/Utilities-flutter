@@ -29,7 +29,7 @@ class NotificationReadDto {
 
   factory NotificationReadDto.fromJson(String str) => NotificationReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NotificationReadDto.fromMap(dynamic json) => NotificationReadDto(
         id: json["id"],
@@ -83,7 +83,7 @@ class NotificationFilterReadDto {
 
   factory NotificationFilterReadDto.fromJson(String str) => NotificationFilterReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NotificationFilterReadDto.fromMap(dynamic json) => NotificationFilterReadDto(
         title: json["title"],

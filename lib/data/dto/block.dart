@@ -9,7 +9,7 @@ class BlockCreateUpdateDto {
 
   factory BlockCreateUpdateDto.fromJson(String str) => BlockCreateUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory BlockCreateUpdateDto.fromMap(dynamic json) => BlockCreateUpdateDto(
         userId: json["userId"] == null ? null : json["userId"],

@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:utilities/data/dto/media.dart';
+import 'package:utilities/utilities.dart';
 
 class CategoryReadDto {
   CategoryReadDto({
@@ -59,7 +57,7 @@ class CategoryReadDto {
   String? parentId;
   final List<MediaReadDto>? media;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
         "title": title,
@@ -114,7 +112,7 @@ class CategoryJsonDetail {
   DateTime? date1;
   DateTime? date2;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "subtitle": subtitle,
@@ -188,7 +186,7 @@ class CategoryCreateUpdateDto {
   String? parentId;
   bool? isUnique;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
         "id": id,
@@ -256,7 +254,7 @@ class CategoryFilterDto {
   int? pageSize;
   int? pageNumber;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "title": title,

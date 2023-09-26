@@ -13,7 +13,7 @@ class Gender {
 
   factory Gender.fromJson(String str) => Gender.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory Gender.fromMap(dynamic json) => Gender(
         id: json["id"],

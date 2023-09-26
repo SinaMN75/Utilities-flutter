@@ -20,6 +20,20 @@ export 'shopping_cart.dart';
 export 'transaction.dart';
 export 'user.dart';
 
+T? removeNullEntries<T>(T? json) {
+  if (json == null) return null;
+
+  if (json is List) {
+    json.removeWhere((e) => e == null);
+    json.forEach(removeNullEntries);
+  } else if (json is Map) {
+    json.removeWhere((key, value) => key == null || value == null);
+    json.values.forEach(removeNullEntries);
+  }
+
+  return json;
+}
+
 class EmptyObjectDto {
   EmptyObjectDto({this.o});
 
@@ -28,7 +42,7 @@ class EmptyObjectDto {
   factory EmptyObjectDto.fromMap(final Map<String, dynamic> json) => EmptyObjectDto(o: json["o"]);
   final String? o;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   Map<String, dynamic> toMap() => <String, dynamic>{"o": o};
 }

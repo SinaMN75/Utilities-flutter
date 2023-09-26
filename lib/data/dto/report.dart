@@ -23,7 +23,7 @@ class ReportCreateUpdateDto {
 
   factory ReportCreateUpdateDto.fromJson(String str) => ReportCreateUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReportCreateUpdateDto.fromMap(dynamic json) => ReportCreateUpdateDto(
         title: json["title"],
@@ -62,7 +62,7 @@ class ReportReadDto {
 
   factory ReportReadDto.fromJson(String str) => ReportReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReportReadDto.fromMap(dynamic json) => ReportReadDto(
         id: json["id"],
@@ -100,7 +100,7 @@ class Report {
 
   factory Report.fromJson(String str) => Report.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory Report.fromMap(dynamic json) => Report(
         title: json["title"],
@@ -140,7 +140,7 @@ class ReportFilterDto {
 
   factory ReportFilterDto.fromJson(String str) => ReportFilterDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReportFilterDto.fromMap(dynamic json) => ReportFilterDto(
         user: json["user"],

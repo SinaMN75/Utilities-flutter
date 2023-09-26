@@ -37,7 +37,7 @@ class ContentReadDto {
 
   factory ContentReadDto.fromJson(String str) => ContentReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ContentReadDto.fromMap(dynamic json) => ContentReadDto(
         id: json["id"],
@@ -97,7 +97,7 @@ class ContentCreateUpdateDto {
 
   factory ContentCreateUpdateDto.fromJson(String str) => ContentCreateUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ContentCreateUpdateDto.fromMap(dynamic json) => ContentCreateUpdateDto(
         id: json["id"],
@@ -137,7 +137,7 @@ class ContentJsonDetail {
 
   factory ContentJsonDetail.fromJson(String str) => ContentJsonDetail.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ContentJsonDetail.fromMap(Map<String, dynamic> json) => ContentJsonDetail(
         dribble: json["dribble"],

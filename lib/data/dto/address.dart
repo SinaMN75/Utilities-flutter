@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:utilities/utilities.dart';
+
 class AddressReadDto {
   AddressReadDto({
     this.id,
@@ -30,7 +32,7 @@ class AddressReadDto {
         isDefault: json["isDefault"],
       );
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
         "id": id,
@@ -83,7 +85,7 @@ class AddressCreateUpdateDto {
         isDefault: json["isDefault"],
       );
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
         "id": id,
@@ -121,7 +123,7 @@ class AddressFilterDto {
     pageNumber: json["pageNumber"],
   );
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
     "userId": userId,

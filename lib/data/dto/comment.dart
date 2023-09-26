@@ -44,7 +44,7 @@ class CommentReadDto {
 
   factory CommentReadDto.fromJson(final String str) => CommentReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory CommentReadDto.fromMap(final dynamic json) => CommentReadDto(
         id: json["id"],
@@ -92,7 +92,7 @@ class CommentJsonDetail {
 
   factory CommentJsonDetail.fromJson(final String str) => CommentJsonDetail.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory CommentJsonDetail.fromMap(final dynamic json) => CommentJsonDetail(
         commentReacts: json["reacts"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reacts"].cast<Map<String, dynamic>>().map(ReactionReadDto.fromMap)).toList(),
@@ -120,7 +120,7 @@ class CommentCreateUpdateDto {
 
   factory CommentCreateUpdateDto.fromJson(final String? str) => CommentCreateUpdateDto.fromMap(json.decode(str!));
 
-  String? toJson() => json.encode(toMap());
+  String? toJson() => json.encode(removeNullEntries(toMap()));
 
   factory CommentCreateUpdateDto.fromMap(final dynamic json) => CommentCreateUpdateDto(
         parentId: json["parentId"],
@@ -160,7 +160,7 @@ class CommentFilterDto {
 
   factory CommentFilterDto.fromJson(final String? str) => CommentFilterDto.fromMap(json.decode(str!));
 
-  String? toJson() => json.encode(toMap());
+  String? toJson() => json.encode(removeNullEntries(toMap()));
 
   factory CommentFilterDto.fromMap(final dynamic json) => CommentFilterDto(
         userId: json["userId"],

@@ -13,7 +13,7 @@ class PaymentReadDto {
 
   factory PaymentReadDto.fromJson(String str) => PaymentReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PaymentReadDto.fromMap(dynamic json) => PaymentReadDto(
         result: json["result"],

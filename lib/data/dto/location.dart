@@ -22,7 +22,7 @@ class IranLocationReadDto {
   final String? slug;
   final int? provinceId;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,

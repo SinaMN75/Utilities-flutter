@@ -37,7 +37,7 @@ class GlobalSearchCreateDto {
 
   factory GlobalSearchCreateDto.fromJson(String str) => GlobalSearchCreateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory GlobalSearchCreateDto.fromMap(dynamic json) => GlobalSearchCreateDto(
         title: json["title"],
@@ -85,7 +85,7 @@ class GlobalSearchReadDto {
 
   factory GlobalSearchReadDto.fromJson(String str) => GlobalSearchReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory GlobalSearchReadDto.fromMap(dynamic json) => GlobalSearchReadDto(
         users: json["users"] == null ? null : List<UserReadDto>.from(json["users"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),

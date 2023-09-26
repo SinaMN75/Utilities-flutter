@@ -21,7 +21,7 @@ class ServerLocationReadDto {
 
   factory ServerLocationReadDto.fromJson(String str) => ServerLocationReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ServerLocationReadDto.fromMap(dynamic json) => ServerLocationReadDto(
         i: json["i"],
