@@ -93,7 +93,7 @@ void showFilePickerWeb({
 }
 
 Future<CroppedFile?> cropImage({
-  required final File file,
+  required final String filePath,
   final Function(CroppedFile file)? action,
   final int? maxWidth,
   final int? maxHeight,
@@ -116,7 +116,7 @@ Future<CroppedFile?> cropImage({
   ],
 }) async {
   final CroppedFile? result = await ImageCropper().cropImage(
-    sourcePath: file.path,
+    sourcePath: filePath,
     maxWidth: maxWidth,
     maxHeight: maxHeight,
     aspectRatio: cropAspectRatio,
