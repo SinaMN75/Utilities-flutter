@@ -126,5 +126,4 @@ class Assets {
   static const String viewModelsKeyValueViewModel = 'lib/view_models/key_value_view_model.dart';
   static const String viewModelsMediaViewModel = 'lib/view_models/media_view_model.dart';
   static const String viewModelsViewModels = 'lib/view_models/view_models.dart';
-
 }

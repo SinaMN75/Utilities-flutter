@@ -1,6 +1,4 @@
-import 'package:utilities/utilities.dart';
-
-import 'dart:convert';
+part of '../data.dart';
 
 class SubscriptionPaymentReadDto {
   int? subscriptionType;

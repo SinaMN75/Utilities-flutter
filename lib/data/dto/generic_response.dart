@@ -1,3 +1,5 @@
+part of '../data.dart';
+
 class GenericResponse<T> {
   GenericResponse({
     this.result,

@@ -1,7 +1,4 @@
-import 'package:get/get.dart';
-import 'package:utilities/data/dto/content.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/utils/http_interceptor.dart';
+part of '../data.dart';
 
 class ContentDataSource {
   final String baseUrl;

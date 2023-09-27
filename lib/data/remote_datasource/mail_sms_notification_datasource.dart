@@ -1,7 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/mail_sms_notification.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+part of '../data.dart';
 
 class MailSmsNotificationDataSource {
   final String baseUrl;
@@ -17,8 +14,8 @@ class MailSmsNotificationDataSource {
       httpPost(
         url: "$baseUrl/MailSmsNotification/SendNotification",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.data, fromMap: CreateMailSmsNotificationDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: CreateMailSmsNotificationDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }

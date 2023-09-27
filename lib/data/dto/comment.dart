@@ -1,5 +1,4 @@
-import 'package:utilities/data/dto/reaction.dart';
-import 'package:utilities/utilities.dart';
+part of '../data.dart';
 
 extension CommentReadDtoExtension on List<CommentReadDto> {
   List<CommentReadDto> getByTags({required final List<TagComment> tags}) => where(

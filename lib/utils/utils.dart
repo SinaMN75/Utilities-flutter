@@ -1,4 +1,3 @@
-
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -6,15 +5,15 @@ import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
 
 export 'constants.dart';
-export 'dio_interceptor.dart';
+export 'contacts.dart';
 export 'enums.dart';
 export 'excel_to_json.dart';
 export 'extensions/extension.dart';
 export 'file.dart';
 export 'get.dart';
+export 'http_interceptor.dart';
 export 'launch.dart';
 export 'local_storage.dart';
-export 'contacts.dart';
 
 void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
       Duration(milliseconds: milliseconds),

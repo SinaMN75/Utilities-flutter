@@ -1,6 +1,4 @@
-import 'package:get/get.dart';
-import 'package:utilities/data/dto/dto.dart';
-import 'package:utilities/utils/http_interceptor.dart';
+part of '../data.dart';
 
 class GroupChatDataSource {
   GroupChatDataSource({required this.baseUrl});

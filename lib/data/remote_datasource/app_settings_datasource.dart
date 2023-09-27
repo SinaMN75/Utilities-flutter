@@ -1,8 +1,4 @@
-import 'package:get/get.dart';
-import 'package:utilities/data/dto/app_settings.dart';
-import 'package:utilities/data/dto/dashboard_data.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/utils/http_interceptor.dart';
+part of '../data.dart';
 
 class AppSettingsDataSource {
   AppSettingsDataSource({required this.baseUrl});

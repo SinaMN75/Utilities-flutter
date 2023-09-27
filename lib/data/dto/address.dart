@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:utilities/utilities.dart';
+part of '../data.dart';
 
 class AddressReadDto {
   AddressReadDto({
@@ -118,18 +116,18 @@ class AddressFilterDto {
   factory AddressFilterDto.fromJson(final String str) => AddressFilterDto.fromMap(json.decode(str));
 
   factory AddressFilterDto.fromMap(final dynamic json) => AddressFilterDto(
-    userId: json["userId"],
-    pageSize: json["pageSize"],
-    pageNumber: json["pageNumber"],
-  );
+        userId: json["userId"],
+        pageSize: json["pageSize"],
+        pageNumber: json["pageNumber"],
+      );
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => <String, dynamic>{
-    "userId": userId,
-    "pageSize": pageSize,
-    "pageNumber": pageNumber,
-  };
+        "userId": userId,
+        "pageSize": pageSize,
+        "pageNumber": pageNumber,
+      };
 
   final String? userId;
   final String? pageSize;

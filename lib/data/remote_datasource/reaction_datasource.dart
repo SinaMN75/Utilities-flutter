@@ -1,8 +1,4 @@
-import 'package:get/get_connect/http/src/response/response.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/reaction.dart';
-import 'package:utilities/data/dto/reaction_product.dart';
-import 'package:utilities/utils/http_interceptor.dart';
+part of '../data.dart';
 
 class ReactionDataSource {
   ReactionDataSource({required this.baseUrl});
@@ -52,8 +48,4 @@ class ReactionDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
-
-
 }
-
-

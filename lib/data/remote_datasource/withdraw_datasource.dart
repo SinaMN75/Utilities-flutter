@@ -1,7 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/withdraw.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+part of '../data.dart';
 
 class WithdrawDataSource {
   WithdrawDataSource({required this.baseUrl});
@@ -17,8 +14,8 @@ class WithdrawDataSource {
       httpPost(
         url: "$baseUrl/withdraw/WalletWithdrawal",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<dynamic>.fromJson(response.data)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -32,9 +29,7 @@ class WithdrawDataSource {
 //       url: "$baseUrl/ProductV2/Filter",
 //       body: Map<String,dynamic>{"withdrawState":withdrawState},
 //       encodeBody: false,
-//       action: (Response response) => onResponse(GenericResponse<WithdrawReadDto>.fromJson(response.data, fromMap: WithdrawReadDto.fromMap)),
-//       error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+//       action: (Response response) => onResponse(GenericResponse<WithdrawReadDto>.fromJson(response.body, fromMap: WithdrawReadDto.fromMap)),
+//       error: (Response response) => onError(GenericResponse.fromJson(response.body)),
 //     );
-
-
 }

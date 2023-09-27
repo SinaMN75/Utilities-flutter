@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+part of '../data.dart';
 
 class CreateMailSmsNotificationDto {
   CreateMailSmsNotificationDto({

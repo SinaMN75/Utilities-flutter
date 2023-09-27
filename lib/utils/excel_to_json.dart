@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:excel_facility/excel_facility.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
-import 'package:utilities/data/dto/category.dart';
+import 'package:utilities/data/data.dart';
 
 class ExcelToJson {
   Future<String?> convert() async {

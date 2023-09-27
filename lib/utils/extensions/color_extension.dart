@@ -17,6 +17,4 @@ extension HexColor on Color {
       '${blue.toRadixString(16).padLeft(2, '0')}';
 
   static Color random() => Color((Random().nextDouble() * 0xFFFFFF).toInt());
-
 }
-

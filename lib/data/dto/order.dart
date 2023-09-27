@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:utilities/data/dto/dto.dart';
+part of '../data.dart';
 
 class OrderFilterDto {
   OrderFilterDto({

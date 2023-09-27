@@ -1,9 +1,4 @@
-import 'package:flutter/animation.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/user.dart';
-import 'package:utilities/utils/http_interceptor.dart';
+part of '../data.dart';
 
 class UserDataSource {
   final String baseUrl;

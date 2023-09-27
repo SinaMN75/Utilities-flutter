@@ -1,13 +1,9 @@
-import 'package:dio/dio.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/subscription.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+part of '../data.dart';
 
 class SubscriptionPaymentDataSource {
   final String baseUrl;
 
   SubscriptionPaymentDataSource({required this.baseUrl});
-
 
   Future<void> create({
     required final SubscriptionPaymentCreateUpdateDto dto,
@@ -18,11 +14,8 @@ class SubscriptionPaymentDataSource {
       httpPost(
         url: "$baseUrl/SubscriptionPayment",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<SubscriptionPaymentReadDto>.fromJson(response.data, fromMap: SubscriptionPaymentReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (final Response response) => onResponse(GenericResponse<SubscriptionPaymentReadDto>.fromJson(response.body, fromMap: SubscriptionPaymentReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
-
-
-
 }

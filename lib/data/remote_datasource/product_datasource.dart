@@ -1,11 +1,8 @@
-import 'package:get/get.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/product.dart';
-import 'package:utilities/utils/http_interceptor.dart';
+part of '../data.dart';
 
 class ProductDataSource {
-
   ProductDataSource({required this.baseUrl});
+
   final String baseUrl;
 
   Future<void> create({

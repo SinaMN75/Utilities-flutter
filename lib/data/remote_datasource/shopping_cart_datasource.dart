@@ -1,7 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/shopping_cart.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+part of '../data.dart';
 
 class ShoppingCartDataSource {
   final String baseUrl;
@@ -17,8 +14,8 @@ class ShoppingCartDataSource {
       httpPost(
         url: "$baseUrl/ShoppingCart",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.data, fromMap: ShoppingCartReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -31,8 +28,8 @@ class ShoppingCartDataSource {
       httpPut(
         url: "$baseUrl/ShoppingCart",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.data, fromMap: ShoppingCartReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -43,8 +40,8 @@ class ShoppingCartDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/ShoppingCart",
-        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.data, fromMap: ShoppingCartReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -56,8 +53,8 @@ class ShoppingCartDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/ShoppingCart/$id",
-        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.data, fromMap: ShoppingCartReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -70,8 +67,8 @@ class ShoppingCartDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/ShoppingCart/$id/$itemId",
-        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.data, fromMap: ShoppingCartReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }

@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+part of '../data.dart';
 
 class UserReadDto {
   UserReadDto({
@@ -56,7 +56,7 @@ class UserReadDto {
         userName: json["userName"],
         phoneNumber: json["phoneNumber"],
         appEmail: json["appEmail"],
-    userAgent: json["userAgent"],
+        userAgent: json["userAgent"],
         email: json["email"],
         region: json["region"],
         state: json["state"],
@@ -109,7 +109,7 @@ class UserReadDto {
   final String? createdAt;
   final String? updatedAt;
   final bool? isOnline;
-   bool? suspend;
+  bool? suspend;
   final bool? isPrivate;
   final String? expireUpgradeAccount;
   final int? ageCategory;
@@ -383,7 +383,7 @@ class UserCreateUpdateDto {
   final int? deliveryPrice2;
   final int? deliveryPrice3;
   final double? point;
-   bool? suspend;
+  bool? suspend;
   final String? instagram;
   final String? telegram;
   final String? jobStatus;

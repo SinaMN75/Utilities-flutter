@@ -1,5 +1,4 @@
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:utilities/utilities.dart';
+part of '../data.dart';
 
 class LocalDataSource {
   Future<List<IranLocationReadDto>> getIranLocations() async {

@@ -1,9 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:utilities/data/dto/form.dart';
-import 'package:utilities/data/dto/form_filed.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+part of '../data.dart';
 
 class FormDataSource {
   final String baseUrl;
@@ -19,8 +14,8 @@ class FormDataSource {
       httpPost(
         url: "$baseUrl/Form",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<FormReadDto>.fromJson(response.data, fromMap: FormReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<FormReadDto>.fromJson(response.body, fromMap: FormReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -32,8 +27,8 @@ class FormDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Form/$categoryId",
-        action: (Response response) => onResponse(GenericResponse<FormFieldReadDto>.fromJson(response.data, fromMap: FormFieldReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<FormFieldReadDto>.fromJson(response.body, fromMap: FormFieldReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -46,7 +41,7 @@ class FormDataSource {
       httpDelete(
         url: "$baseUrl/Form/$id",
         action: (Response response) => onResponse(),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -59,8 +54,8 @@ class FormDataSource {
       httpPost(
         url: "$baseUrl/Form/CreateFormField",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<FormReadDto>.fromJson(response.data, fromMap: FormReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<FormReadDto>.fromJson(response.body, fromMap: FormReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -74,7 +69,7 @@ class FormDataSource {
         url: "$baseUrl/Form/UpdateFormField",
         body: dto,
         action: (Response response) => onResponse(),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -87,7 +82,7 @@ class FormDataSource {
       httpDelete(
         url: "$baseUrl/Form/DeleteFormField/$id",
         action: (Response response) => onResponse(),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }

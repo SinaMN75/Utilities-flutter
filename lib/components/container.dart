@@ -86,11 +86,11 @@ Widget radius({
       borderRadius: radius != null
           ? BorderRadius.circular(radius)
           : BorderRadius.only(
-        topLeft: Radius.circular(topLeft),
-        topRight: Radius.circular(topRight),
-        bottomLeft: Radius.circular(bottomLeft),
-        bottomRight: Radius.circular(bottomRight),
-      ),
+              topLeft: Radius.circular(topLeft),
+              topRight: Radius.circular(topRight),
+              bottomLeft: Radius.circular(bottomLeft),
+              bottomRight: Radius.circular(bottomRight),
+            ),
       child: child,
     );
 
@@ -117,26 +117,26 @@ Widget column({
       margin: margin,
       child: isScrollable
           ? SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        controller: scrollController,
-        child: Column(
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-          verticalDirection: verticalDirection,
-          children: children,
-        ),
-      )
+              physics: const BouncingScrollPhysics(),
+              controller: scrollController,
+              child: Column(
+                mainAxisAlignment: mainAxisAlignment,
+                mainAxisSize: mainAxisSize,
+                crossAxisAlignment: crossAxisAlignment,
+                verticalDirection: verticalDirection,
+                children: children,
+              ),
+            )
           : GestureDetector(
-        onTap: onTap,
-        child: Column(
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-          verticalDirection: verticalDirection,
-          children: children,
-        ),
-      ),
+              onTap: onTap,
+              child: Column(
+                mainAxisAlignment: mainAxisAlignment,
+                mainAxisSize: mainAxisSize,
+                crossAxisAlignment: crossAxisAlignment,
+                verticalDirection: verticalDirection,
+                children: children,
+              ),
+            ),
     );
 
 Widget row({
@@ -163,38 +163,38 @@ Widget row({
       margin: margin,
       child: isScrollable
           ? count != null
-          ? ListView.builder(
-        itemCount: count,
-        physics: physics,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (final BuildContext context, final int index) => Row(
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-          verticalDirection: verticalDirection,
-          children: children,
-        ),
-      )
-          : SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-          verticalDirection: verticalDirection,
-          children: children,
-        ),
-      )
+              ? ListView.builder(
+                  itemCount: count,
+                  physics: physics,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (final BuildContext context, final int index) => Row(
+                    mainAxisAlignment: mainAxisAlignment,
+                    mainAxisSize: mainAxisSize,
+                    crossAxisAlignment: crossAxisAlignment,
+                    verticalDirection: verticalDirection,
+                    children: children,
+                  ),
+                )
+              : SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: mainAxisAlignment,
+                    mainAxisSize: mainAxisSize,
+                    crossAxisAlignment: crossAxisAlignment,
+                    verticalDirection: verticalDirection,
+                    children: children,
+                  ),
+                )
           : GestureDetector(
-        onTap: onTap,
-        child: Row(
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-          verticalDirection: verticalDirection,
-          children: children,
-        ),
-      ),
+              onTap: onTap,
+              child: Row(
+                mainAxisAlignment: mainAxisAlignment,
+                mainAxisSize: mainAxisSize,
+                crossAxisAlignment: crossAxisAlignment,
+                verticalDirection: verticalDirection,
+                children: children,
+              ),
+            ),
     );
 
 Widget defaultTabBar({

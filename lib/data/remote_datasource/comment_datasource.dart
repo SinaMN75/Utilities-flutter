@@ -1,8 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:utilities/data/dto/comment.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+part of '../data.dart';
 
 class CommentDataSource {
   final String baseUrl;
@@ -18,8 +14,8 @@ class CommentDataSource {
       httpPost(
         url: "$baseUrl/Comment",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -32,8 +28,8 @@ class CommentDataSource {
       httpPost(
         url: "$baseUrl/Comment/Filter",
         body: filter,
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -45,8 +41,8 @@ class CommentDataSource {
   }) async =>
       httpPost(
         url: "$baseUrl/Comment/ToggleLikeComment/$commentId",
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -60,7 +56,7 @@ class CommentDataSource {
       httpPost(
         url: "$baseUrl/Comment/AddReactionToComment/$commentId/$reactionCode",
         action: (Response response) => onResponse(),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -75,7 +71,7 @@ class CommentDataSource {
         url: "$baseUrl/Comment?id=$id",
         body: dto,
         action: (Response response) => onResponse(response.statusCode.toString()),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -87,8 +83,8 @@ class CommentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Comment/$id",
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -100,8 +96,8 @@ class CommentDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/Comment/ReadByProductId/$id",
-        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.data, fromMap: CommentReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -114,7 +110,7 @@ class CommentDataSource {
       httpDelete(
         url: "$baseUrl/Comment?id=$id",
         action: (Response response) => onResponse(response.statusCode.toString()),
-        error: (Response response) => onError(GenericResponse.fromJson(response.data)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }

@@ -8,7 +8,7 @@ Future<void> request(
   final EHttpMethod httpMethod,
   final Function(Response<dynamic> response) action,
   final Function(Response<dynamic> response) error, {
-      final Function(String error)? failure,
+  final Function(String error)? failure,
   final String? queryOrMutation,
   final dynamic body,
   final bool encodeBody = true,

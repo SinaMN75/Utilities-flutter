@@ -1,5 +1,4 @@
-import 'package:utilities/data/dto/order.dart';
-import 'package:utilities/utilities.dart';
+part of '../data.dart';
 
 class ProductReadDto {
   ProductReadDto({

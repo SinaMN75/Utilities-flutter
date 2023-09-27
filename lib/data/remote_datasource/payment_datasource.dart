@@ -1,7 +1,4 @@
-import 'package:get/get.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/payment.dart';
-import 'package:utilities/utils/http_interceptor.dart';
+part of '../data.dart';
 
 class PaymentDataSource {
   final String baseUrl;
@@ -33,6 +30,7 @@ class PaymentDataSource {
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
+
   Future<void> paySubscriptionZarinPal({
     required final String subscriptionId,
     required final Function(GenericResponse) onResponse,

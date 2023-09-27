@@ -1,7 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/promote.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+part of '../data.dart';
 
 class PromoteDataSource {
   PromoteDataSource({required this.baseUrl});
@@ -16,8 +13,8 @@ class PromoteDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/promotion/$id",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<PromoteReadDto>.fromJson(response.data, fromMap: PromoteReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<PromoteReadDto>.fromJson(response.body, fromMap: PromoteReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -30,8 +27,8 @@ class PromoteDataSource {
       httpPost(
         url: "$baseUrl/promotion",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse.fromJson(response.data)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.data)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse.fromJson(response.body)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 }

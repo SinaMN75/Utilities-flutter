@@ -1,5 +1,4 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:utilities/utils/constants.dart';
 
 void setData(final String key, final dynamic value) => GetStorage().write(key, value);
 

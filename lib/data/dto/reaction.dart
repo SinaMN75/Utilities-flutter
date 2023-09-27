@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+part of '../data.dart';
 
 class ReactionReadDto {
   ReactionReadDto({
@@ -66,16 +66,16 @@ class ReactionFilterDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReactionFilterDto.fromMap(dynamic json) => ReactionFilterDto(
-    productId: json["productId"],
-    reaction: json["reaction"],
-    pageSize: json["pageSize"],
-    pageNumber: json["pageNumber"],
-  );
+        productId: json["productId"],
+        reaction: json["reaction"],
+        pageSize: json["pageSize"],
+        pageNumber: json["pageNumber"],
+      );
 
   dynamic toMap() => {
-    "productId": productId,
-    "reaction": reaction,
-    "pageSize": pageSize,
-    "pageNumber": pageNumber,
-  };
+        "productId": productId,
+        "reaction": reaction,
+        "pageSize": pageSize,
+        "pageNumber": pageNumber,
+      };
 }

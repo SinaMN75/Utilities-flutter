@@ -1,8 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:utilities/data/dto/category.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/utils/http_interceptor.dart';
+part of '../data.dart';
 
 class CategoryDataSource {
   final String baseUrl;

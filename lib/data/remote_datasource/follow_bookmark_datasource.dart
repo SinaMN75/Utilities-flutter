@@ -1,8 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:utilities/data/dto/follow_bookmark.dart';
-import 'package:utilities/data/dto/generic_response.dart';
-import 'package:utilities/data/dto/user.dart';
-import 'package:utilities/utils/dio_interceptor.dart';
+part of '../data.dart';
 
 class FollowBookmarkDataSource {
   final String baseUrl;
@@ -18,8 +14,8 @@ class FollowBookmarkDataSource {
   }) async =>
       httpGet(
         url: "$baseUrl/FollowBookmark/ReadBookmarksByFolderName?userId=$userId&folderName=$folderName",
-        action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.data, fromMap: BookmarkReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -31,8 +27,8 @@ class FollowBookmarkDataSource {
   }) async =>
       httpPost(
         url: userId != null ? "$baseUrl/FollowBookmark/ReadBookmarks?userId=$userId" : "$baseUrl/FollowBookmark/ReadBookmarks",
-        action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.data, fromMap: BookmarkReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.data)),
+        action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -44,7 +40,7 @@ class FollowBookmarkDataSource {
   }) async =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowers/$userId",
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse()),
         failure: failure,
       );
@@ -57,7 +53,7 @@ class FollowBookmarkDataSource {
   }) async =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowings/$userId",
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.data, fromMap: UserReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse()),
         failure: failure,
       );
@@ -85,7 +81,7 @@ class FollowBookmarkDataSource {
       httpPost(
         url: "$baseUrl/FollowBookmark/ToggleBookmark",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.data, fromMap: BookmarkReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse()),
         failure: failure,
       );

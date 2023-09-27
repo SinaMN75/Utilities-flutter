@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+part of '../data.dart';
 
 class CategoryReadDto {
   CategoryReadDto({
@@ -238,8 +238,8 @@ class CategoryFilterDto {
         orderByCreatedAt: json["orderByCreatedAt"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         orderByCreatedAtDescending: json["orderByCreatedAtDescending"],
-    pageSize: json["pageSize"],
-    pageNumber: json["pageNumber"],
+        pageSize: json["pageSize"],
+        pageNumber: json["pageNumber"],
       );
   String? title;
   String? titleTr1;
