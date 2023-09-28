@@ -22,12 +22,17 @@ void scrollableBottomSheet({
   final List<Widget>? children,
   final Widget? child,
   final bool isDismissible = true,
+  final bool expand = false,
+  final double maxChildSize = 1.0,
+  final double minChildSize = 0.25,
 }) =>
     Get.bottomSheet(
       Container(
         padding: const EdgeInsets.all(20),
         child: DraggableScrollableSheet(
-          expand: false,
+          expand: expand,
+          maxChildSize: maxChildSize,
+          minChildSize: minChildSize,
           builder: (final BuildContext context, final ScrollController controller) =>
               child ??
               ListView(
