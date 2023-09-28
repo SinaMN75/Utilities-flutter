@@ -58,6 +58,7 @@ part 'remote_datasource/subscription_payment_datasource.dart';
 part 'remote_datasource/transaction_datasource.dart';
 part 'remote_datasource/user_datasource.dart';
 part 'remote_datasource/withdraw_datasource.dart';
+part 'remote_datasource/media_datasource.dart';
 
 T? removeNullEntries<T>(T? json) {
   if (json == null) return null;
