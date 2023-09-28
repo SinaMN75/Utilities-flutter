@@ -31,6 +31,7 @@ void scrollableBottomSheet({
         padding: const EdgeInsets.all(20),
         child: DraggableScrollableSheet(
           expand: expand,
+          initialChildSize: minChildSize,
           maxChildSize: maxChildSize,
           minChildSize: minChildSize,
           builder: (final BuildContext context, final ScrollController controller) =>
