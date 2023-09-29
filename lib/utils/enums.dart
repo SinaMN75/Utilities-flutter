@@ -245,17 +245,11 @@ enum TagOrder {
   coinPay(305),
   paypalPay(306),
   pending(400),
-  canceled(401),
   paid(402),
   accept(403),
-  reject(404),
-  inProgress(405),
   inProcess(406),
   shipping(407),
-  refund(408),
-  refundComplete(409),
-  complete(410),
-  paidFail(412);
+  complete(410);
 
   const TagOrder(this.number);
 
