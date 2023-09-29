@@ -246,7 +246,6 @@ enum TagOrder {
   paypalPay(306),
   pending(400),
   paid(402),
-  accept(403),
   inProcess(406),
   shipping(407),
   complete(410);
