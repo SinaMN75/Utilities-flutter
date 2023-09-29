@@ -13,6 +13,7 @@ class TransactionReadDto {
     this.user,
     this.order,
     this.orderId,
+    this.refId,
   });
 
   final String? id;
@@ -26,6 +27,7 @@ class TransactionReadDto {
   final UserReadDto? user;
   final OrderReadDto? order;
   final String? orderId;
+  final int? refId;
 
   factory TransactionReadDto.fromJson(String str) => TransactionReadDto.fromMap(json.decode(str));
 
@@ -40,6 +42,7 @@ class TransactionReadDto {
         paymentId: json["paymentId"],
         createdAt: json["createdAt"],
         orderId: json["orderId"],
+        refId: json["refId"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         order: json["order"] == null ? null : OrderReadDto.fromMap(json["order"]),
       );
@@ -53,6 +56,7 @@ class TransactionReadDto {
         "paymentId": paymentId,
         "createdAt": createdAt,
         "updatedAt": updatedAt,
+        "refId": refId,
       };
 }
 
