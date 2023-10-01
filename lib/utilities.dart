@@ -34,7 +34,7 @@ export 'package:video_box/video_box.dart';
 export 'package:webviewx_plus/webviewx_plus.dart';
 
 export 'components/components.dart';
-export 'components/dotted_border.dart';
+export 'components/fdottedline.dart';
 export 'components/percent_indicator.dart';
 export 'data/data.dart';
 export 'utils/enums.dart';
