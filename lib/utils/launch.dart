@@ -4,6 +4,10 @@ Future<void> launchURL(final String url, {final LaunchMode mode = LaunchMode.pla
 
 void launchWhatsApp(final String number) async => await launchURL("https://api.whatsapp.com/send?phone=$number");
 
+void launchMap(final double latitude, final double longitude) async => await launchURL(
+      Uri(scheme: 'geo', queryParameters: <String, String>{'q': '$latitude,$longitude'}).toString(),
+    );
+
 void launchTelegram(final String id) async => await launchURL("https://t.me/$id");
 
 void launchInstagram(final String username) async => await launchURL("https://instagram.com/$username");
