@@ -1,6 +1,4 @@
-import 'dart:math';
-
-import 'package:utilities/utilities.dart';
+part of '../utils.dart';
 
 extension HexColor on Color {
   static Color fromHex(final String hexString) {

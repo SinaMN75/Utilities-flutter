@@ -1,10 +1,4 @@
-import 'dart:math';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:utilities/utilities.dart';
-import 'package:utilities/utilities2.dart';
+part of 'utils.dart';
 
 void showFilePicker({
   required final Function(List<File> file) action,

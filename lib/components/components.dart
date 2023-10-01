@@ -14,7 +14,6 @@ import 'package:rxdart/rxdart.dart' as rx;
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
-import 'package:utilities/utils/location.dart';
 
 part 'admin.dart';
 part 'badges.dart';

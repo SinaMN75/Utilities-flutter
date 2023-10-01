@@ -1,4 +1,4 @@
-import 'package:location/location.dart';
+part of 'utils.dart';
 
 Future<LocationData?> getLocation() async => (await checkAndGetLocationPermission() ?? false) ? Location().getLocation() : null;
 

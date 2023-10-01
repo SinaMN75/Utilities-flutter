@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+part of 'utils.dart';
 
 final LocalAuthentication auth = LocalAuthentication();
 

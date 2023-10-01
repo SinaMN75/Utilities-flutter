@@ -1,4 +1,4 @@
-part of 'extension.dart';
+part of '../utils.dart';
 
 extension TextEditingControllerExtension on TextEditingController {
   String numberString() => text.replaceAll(RegExp('[^0-9]'), '');
@@ -82,7 +82,7 @@ extension StringExtensions on String {
 
   String toTimeAgo({final bool numericDates = false, final bool persian = false}) {
     try {
-      final Duration difference = DateTime.now().difference(DateFormat("yyyy-MM-ddThh:mm:sss").parse(this));
+      final Duration difference = DateTime.now().difference(intl.DateFormat("yyyy-MM-ddThh:mm:sss").parse(this));
       if (difference.inDays > 8)
         return this.substring(0, 10);
       else if ((difference.inDays / 7).floor() >= 1)

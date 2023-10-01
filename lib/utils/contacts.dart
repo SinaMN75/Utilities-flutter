@@ -6,7 +6,7 @@
 ///     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 ///     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
 
-import 'package:flutter_contacts/flutter_contacts.dart';
+part of 'utils.dart';
 
 Future<List<Contact>> readContacts() async {
   if (await FlutterContacts.requestPermission()) {

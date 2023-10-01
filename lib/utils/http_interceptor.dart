@@ -1,7 +1,4 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
-import 'package:utilities/utilities.dart';
+part of 'utils.dart';
 
 Future<void> request(
   final String url,
@@ -249,7 +246,7 @@ extension HTTP on Response<dynamic> {
   bool isServerError() => (statusCode ?? 0) >= 500 && (statusCode ?? 0) <= 599 ? true : false;
 
   void logRaw({final String params = ""}) {
-    log(
+    developer.log(
       "${this.request?.method} - ${this.request?.url} - $statusCode \nPARAMS: $params\n HEADERS: ${this.request?.headers} \nRESPONSE: $body",
     );
   }

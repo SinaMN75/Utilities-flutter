@@ -1,5 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:utilities/utilities.dart';
+part of 'utils.dart';
 
 bool isAndroid = GetPlatform.isAndroid;
 bool isIos = GetPlatform.isIOS;

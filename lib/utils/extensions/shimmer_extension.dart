@@ -1,4 +1,4 @@
-part of 'extension.dart';
+part of '../utils.dart';
 
 extension ShimmerEffect on Widget {
   Widget applyShimmer({final bool enable = true, final Color? baseColor, final Color? highlightColor}) {
@@ -26,24 +26,24 @@ class Shimmer extends StatefulWidget {
   final bool enabled;
 
   const Shimmer({
-    required final this.child,
-    required final this.gradient,
+    required this.child,
+    required this.gradient,
     final Key? key,
-    final this.direction = ShimmerDirection.ltr,
-    final this.period = const Duration(milliseconds: 1500),
-    final this.loop = 0,
-    final this.enabled = true,
+    this.direction = ShimmerDirection.ltr,
+    this.period = const Duration(milliseconds: 1500),
+    this.loop = 0,
+    this.enabled = true,
   }) : super(key: key);
 
   Shimmer.fromColors({
-    required final this.child,
+    required this.child,
     required final Color baseColor,
     required final Color highlightColor,
     final Key? key,
-    final this.period = const Duration(milliseconds: 1500),
-    final this.direction = ShimmerDirection.ltr,
-    final this.loop = 0,
-    final this.enabled = true,
+    this.period = const Duration(milliseconds: 1500),
+    this.direction = ShimmerDirection.ltr,
+    this.loop = 0,
+    this.enabled = true,
   })  : gradient = LinearGradient(
           begin: Alignment.topLeft,
           colors: <Color>[baseColor, baseColor, highlightColor, baseColor, baseColor],
@@ -125,9 +125,9 @@ class _Shimmer extends SingleChildRenderObjectWidget {
   final Gradient gradient;
 
   const _Shimmer({
-    required final this.percent,
-    required final this.direction,
-    required final this.gradient,
+    required this.percent,
+    required this.direction,
+    required this.gradient,
     final Widget? child,
   }) : super(child: child);
 

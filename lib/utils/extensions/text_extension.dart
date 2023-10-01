@@ -1,4 +1,4 @@
-part of 'extension.dart';
+part of '../utils.dart';
 
 class Separate3By3Formatter extends TextInputFormatter {
   @override

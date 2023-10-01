@@ -1,5 +1,4 @@
-import 'package:utilities/utilities.dart';
-import 'package:utilities/utilities2.dart';
+part of 'utils.dart';
 
 Future<bool> isConnectedToNetwork() async => InternetConnectionChecker().hasConnection;
 

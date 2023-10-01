@@ -37,8 +37,8 @@ export 'components/components.dart';
 export 'components/fdottedline.dart';
 export 'components/percent_indicator.dart';
 export 'data/data.dart';
-export 'utils/enums.dart';
 export 'utils/utils.dart';
+export 'utils/excel_to_json.dart';
 export 'view_models/view_models.dart';
 
 void initUtilities() async {

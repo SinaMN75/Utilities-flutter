@@ -1,4 +1,4 @@
-part of 'extension.dart';
+part of '../utils.dart';
 
 extension IntExtesion on int {
   String toKMB() {

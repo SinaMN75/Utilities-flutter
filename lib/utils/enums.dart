@@ -1,3 +1,5 @@
+part of 'utils.dart';
+
 class UtilitiesTagUtils {
   static String tagProductTitleFromTagList(final List<int> tags) {
     if (tags.contains(TagProduct.inQueue.number)) return TagProduct.inQueue.title;
@@ -8,7 +10,7 @@ class UtilitiesTagUtils {
 }
 
 extension TagMediaExtension on List<TagMedia> {
-  List<int> getNumbers() => map((final TagMedia e) => e.number).toList();
+  List<int> getNumbers() => this.map((final TagMedia e) => e.number).toList();
 }
 
 extension NullableTagMediaExtension on List<TagMedia>? {
@@ -16,7 +18,7 @@ extension NullableTagMediaExtension on List<TagMedia>? {
 }
 
 extension TagCommentExtension on List<TagComment> {
-  List<int> getNumbers() => map((final TagComment e) => e.status).toList();
+  List<int> getNumbers() => this.map((final TagComment e) => e.status).toList();
 }
 
 extension NullableTagCommentExtension on List<TagComment>? {
@@ -24,7 +26,7 @@ extension NullableTagCommentExtension on List<TagComment>? {
 }
 
 extension TagContentExtension on List<TagContent> {
-  List<int> getNumbers() => map((final TagContent e) => e.number).toList();
+  List<int> getNumbers() => this.map((final TagContent e) => e.number).toList();
 }
 
 extension NullableTagContentExtension on List<TagContent>? {

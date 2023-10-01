@@ -1,7 +1,7 @@
-part of 'extension.dart';
+part of '../utils.dart';
 
 extension DateTimeExtensions on DateTime {
-  String formatDate(final String dateFormat) => DateFormat(dateFormat).format(this);
+  String formatDate(final String dateFormat) => intl.DateFormat(dateFormat).format(this);
 
   String toTimeAgo({final bool numericDates = false, final bool persian = false}) {
     try {

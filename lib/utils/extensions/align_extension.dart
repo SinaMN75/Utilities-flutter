@@ -1,4 +1,4 @@
-part of 'extension.dart';
+part of '../utils.dart';
 
 extension AlignExtensions on Widget {
   Align alignAtBottomCenter({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(

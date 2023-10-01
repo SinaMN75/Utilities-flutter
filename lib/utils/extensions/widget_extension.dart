@@ -1,4 +1,4 @@
-part of 'extension.dart';
+part of '../utils.dart';
 
 extension WidgetsExtension on Widget {
   Widget withTooltip(
@@ -43,9 +43,9 @@ extension WidgetsExtension on Widget {
 
   Widget onDoubleTap(final GestureTapCallback? onPressed) => GestureDetector(onDoubleTap: onPressed, child: this);
 
-  Widget ltr() => Directionality(textDirection: ui.TextDirection.ltr, child: this);
+  Widget ltr() => Directionality(textDirection: TextDirection.ltr, child: this);
 
-  Widget rtl() => Directionality(textDirection: ui.TextDirection.rtl, child: this);
+  Widget rtl() => Directionality(textDirection: TextDirection.rtl, child: this);
 
   Widget scale(final double scale) => Transform.scale(scale: scale, child: this);
 
