@@ -65,7 +65,11 @@ SfCircularChart doughnutChart({
       ],
     );
 
-SfCartesianChart cartesianChart({required final List<CartesianChartData> data}) => SfCartesianChart(
+SfCartesianChart cartesianChart({
+  required final List<CartesianChartData> data,
+  TextStyle? textStyle,
+}) =>
+    SfCartesianChart(
       plotAreaBorderWidth: 0,
       primaryXAxis: CategoryAxis(majorGridLines: const MajorGridLines(width: 0)),
       primaryYAxis: NumericAxis(
@@ -80,7 +84,7 @@ SfCartesianChart cartesianChart({required final List<CartesianChartData> data}) 
           xValueMapper: (final CartesianChartData data, final _) => data.xValue as String,
           yValueMapper: (final CartesianChartData data, final _) => data.yValue,
           pointColorMapper: (final CartesianChartData data, final _) => data.pointColor,
-          dataLabelSettings: const DataLabelSettings(isVisible: true),
+          dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: textStyle),
           width: 1,
         ),
       ],
