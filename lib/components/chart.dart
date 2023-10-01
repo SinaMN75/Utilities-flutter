@@ -71,7 +71,7 @@ SfCartesianChart cartesianChart({
 }) =>
     SfCartesianChart(
       plotAreaBorderWidth: 0,
-      primaryXAxis: CategoryAxis(majorGridLines: const MajorGridLines(width: 0)),
+      primaryXAxis: CategoryAxis(majorGridLines: const MajorGridLines(width: 0), labelStyle: textStyle),
       primaryYAxis: NumericAxis(
         labelStyle: textStyle,
         minimum: 0,
