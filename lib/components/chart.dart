@@ -73,6 +73,7 @@ SfCartesianChart cartesianChart({
       plotAreaBorderWidth: 0,
       primaryXAxis: CategoryAxis(majorGridLines: const MajorGridLines(width: 0)),
       primaryYAxis: NumericAxis(
+        labelStyle: textStyle,
         minimum: 0,
         maximum: data.reduce((final CartesianChartData x, final CartesianChartData y) => x.yValue! > y.yValue! ? x : y).yValue!.toDouble(),
         isVisible: true,
