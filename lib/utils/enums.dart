@@ -553,11 +553,11 @@ enum TagChat {
   privateChannel(104),
   groupAndChannel(110);
 
-  const TagChat(this.title);
+  const TagChat(this.number);
 
   @override
   String toString() => name;
-  final int title;
+  final int number;
 }
 
 enum TypeGender {
