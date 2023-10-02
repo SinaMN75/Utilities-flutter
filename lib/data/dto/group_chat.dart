@@ -112,16 +112,13 @@ class GroupChatCreateUpdateDto {
     this.title,
     this.description,
     this.value,
-    this.typeChat,
     this.department,
-    this.readIfExist,
-    this.isPrivateChat,
     this.chatStatus,
     this.priority,
     this.userIds,
     this.categories,
     this.tags,
-    this.productIds,
+    this.products,
   });
 
   factory GroupChatCreateUpdateDto.fromJson(final String str) => GroupChatCreateUpdateDto.fromMap(json.decode(str));
@@ -131,32 +128,26 @@ class GroupChatCreateUpdateDto {
         title: json["title"],
         description: json["description"],
         value: json["value"],
-        typeChat: json["type"],
         department: json["department"],
-        readIfExist: json["readIfExist"],
-        isPrivateChat: json["IsPrivateChat"],
         chatStatus: json["chatStatus"],
         priority: json["priority"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final x) => x)),
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-        productIds: json["productIds"] == null ? [] : List<String>.from(json["productIds"]!.map((final x) => x)),
+        products: json["products"] == null ? [] : List<String>.from(json["products"]!.map((final x) => x)),
       );
 
   final String? id;
   final String? title;
   final String? description;
   final String? value;
-  final int? typeChat;
   final String? department;
-  final bool? readIfExist;
-  final bool? isPrivateChat;
   final int? chatStatus;
   final int? priority;
   final List<String>? userIds;
   final List<int>? tags;
   final List<String>? categories;
-  final List<String>? productIds;
+  final List<String>? products;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -165,16 +156,13 @@ class GroupChatCreateUpdateDto {
         "title": title,
         "description": description,
         "value": value,
-        "type": typeChat,
         "department": department,
-        "readIfExist": readIfExist,
-        "IsPrivateChat": isPrivateChat,
         "chatStatus": chatStatus,
         "priority": priority,
         "tags": tags == null ? [] : List<int>.from(tags!.map((final x) => x)),
         "userIds": userIds == null ? [] : List<String>.from(userIds!.map((final x) => x)),
         "categories": categories == null ? [] : List<String>.from(categories!.map((final x) => x)),
-        "productIds": productIds == null ? [] : List<String>.from(productIds!.map((final x) => x)),
+        "products": products == null ? [] : List<String>.from(products!.map((final x) => x)),
       };
 }
 
