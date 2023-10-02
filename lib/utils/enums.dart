@@ -250,6 +250,7 @@ enum TagOrder {
   paid(402),
   inProcess(406),
   shipping(407),
+  sent(408),
   complete(410);
 
   const TagOrder(this.number);
