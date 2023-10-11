@@ -19,17 +19,16 @@ class WithdrawDataSource {
         failure: failure,
       );
 
-// Future<void> filter({
-//   required final int withdrawState,
-//   required final Function(GenericResponse<WithdrawReadDto> response) onResponse,
-//   required final Function(GenericResponse errorResponse) onError,
-//   final Function(String error)? failure,
-// }) async =>
-//     httpPost(
-//       url: "$baseUrl/ProductV2/Filter",
-//       body: Map<String,dynamic>{"withdrawState":withdrawState},
-//       encodeBody: false,
-//       action: (Response response) => onResponse(GenericResponse<WithdrawReadDto>.fromJson(response.body, fromMap: WithdrawReadDto.fromMap)),
-//       error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-//     );
+  Future<void> filter({
+    required final WithdrawFilterDto dto,
+    required final Function(GenericResponse<WithdrawReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/ProductV2/Filter",
+        body: dto,
+        action: (Response response) => onResponse(GenericResponse<WithdrawReadDto>.fromJson(response.body, fromMap: WithdrawReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+      );
 }

@@ -67,3 +67,17 @@ class WithdrawCreateUpdateDto {
   final String? shebaNumber;
   final int? amount;
 }
+
+class WithdrawFilterDto {
+  WithdrawFilterDto({this.withdrawState});
+
+  factory WithdrawFilterDto.fromJson(final String str) => WithdrawFilterDto.fromMap(json.decode(str));
+
+  factory WithdrawFilterDto.fromMap(final dynamic json) => WithdrawFilterDto(withdrawState: json["withdrawState"]);
+
+  String toJson() => json.encode(removeNullEntries(toMap()));
+
+  dynamic toMap() => <String, dynamic>{"withdrawState": withdrawState};
+
+  final int? withdrawState;
+}
