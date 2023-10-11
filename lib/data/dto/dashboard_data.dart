@@ -10,6 +10,9 @@ class DashboardDataReadDto {
     this.transactions,
     this.address,
     this.reports,
+    this.releasedProducts,
+    this.inQueueProducts,
+    this.notAcceptedProducts,
   });
 
   factory DashboardDataReadDto.fromJson(final String str) => DashboardDataReadDto.fromMap(json.decode(str));
@@ -23,6 +26,9 @@ class DashboardDataReadDto {
         transactions: json["transactions"],
         address: json["address"],
         reports: json["reports"],
+        releasedProducts: json["releasedProducts"],
+        inQueueProducts: json["inQueueProducts"],
+        notAcceptedProducts: json["notAcceptedProducts"],
       );
   final int? categories;
   final int? products;
@@ -32,6 +38,9 @@ class DashboardDataReadDto {
   final int? transactions;
   final int? address;
   final int? reports;
+  final int? releasedProducts;
+  final int? inQueueProducts;
+  final int? notAcceptedProducts;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -44,5 +53,8 @@ class DashboardDataReadDto {
         "transactions": transactions,
         "address": address,
         "reports": reports,
+        "releasedProducts": releasedProducts,
+        "inQueueProducts": inQueueProducts,
+        "notAcceptedProducts": notAcceptedProducts,
       };
 }
