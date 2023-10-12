@@ -1,8 +1,6 @@
 part of 'components.dart';
 
-Widget customImageCropper({
-  required Function(List<CroppedFile> cropFiles) result,
-}) {
+Widget customImageCropper({required Function(List<CroppedFile> cropFiles) result}) {
   RxList<CroppedFile> cropperFiles = <CroppedFile>[].obs;
   Widget _items({required CroppedFile param, required int index}) => Stack(
         children: [
@@ -26,7 +24,7 @@ Widget customImageCropper({
         children: [
           Obx(() => Row(children: cropperFiles.mapIndexed((index, item) => _items(param: cropperFiles[index], index: index)).toList())),
           SizedBox(width: 8),
-          Icon(Icons.add, size: 44, color: Colors.white)
+          Icon(Icons.add, size: 60, color: context.theme.dividerColor)
               .container(
                 radius: 10,
                 borderColor: context.theme.dividerColor,
