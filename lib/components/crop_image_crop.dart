@@ -26,19 +26,21 @@ Widget customImageCropper({
         children: [
           Obx(() => Row(children: cropperFiles.mapIndexed((index, item) => _items(param: cropperFiles[index], index: index)).toList())),
           SizedBox(width: 8),
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(50)),
-            child: Center(child: Icon(Icons.add, size: 44, color: Colors.white)),
-          ).onTap(() {
-            cropImageCrop(
-              result: (cropped) {
-                cropperFiles.add(cropped);
-                result(cropperFiles);
-              },
-            );
-          }),
+          Icon(Icons.add, size: 44, color: Colors.white)
+              .container(
+                radius: 10,
+                borderColor: context.theme.dividerColor,
+                width: 100,
+                height: 100,
+              )
+              .onTap(
+                () => cropImageCrop(
+                  result: (cropped) {
+                    cropperFiles.add(cropped);
+                    result(cropperFiles);
+                  },
+                ),
+              ),
         ],
       ),
     ),
