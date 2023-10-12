@@ -1,5 +1,4 @@
-import 'package:image_picker/image_picker.dart';
-import 'package:utilities/utilities.dart';
+part of 'components.dart';
 
 Widget customImageCropper({
   required Function(List<CroppedFile> cropFiles) result,
