@@ -275,6 +275,37 @@ enum TagReaction {
   final int title;
 }
 
+enum TagUser {
+  Authorized(100, ""),
+  private(101, ""),
+  public(102, ""),
+  male(200, ""),
+  female(201, ""),
+  unknown(202, ""),
+  legal(203, ""),
+  adminCategoryRead(300, ""),
+  adminCategoryUpdate(301, ""),
+  adminProductRead(302, ""),
+  adminProductUpdate(303, ""),
+  adminUserRead(304, ""),
+  adminUserUpdate(305, ""),
+  adminReportRead(306, ""),
+  adminReportUpdate(307, ""),
+  adminTransactionRead(308, ""),
+  adminTransactionUpdate(309, ""),
+  adminOrderRead(310, ""),
+  adminOrderUpdate(311, ""),
+  adminContentRead(312, ""),
+  adminContentUpdate(313, "");
+
+  const TagUser(this.number, this.title);
+
+  @override
+  String toString() => name;
+  final int number;
+  final String title;
+}
+
 enum TagContent {
   terms(101),
   aboutUs(102),
