@@ -276,7 +276,7 @@ enum TagReaction {
 }
 
 enum TagUser {
-  Authorized(100, ""),
+  authorized(100, ""),
   private(101, ""),
   public(102, ""),
   male(200, ""),
@@ -299,6 +299,31 @@ enum TagUser {
   adminContentUpdate(313, "تغییر محتوا");
 
   const TagUser(this.number, this.title);
+
+  static TagUser byNumber(final int number) {
+    if (number == 100) return TagUser.authorized;
+    if (number == 101) return TagUser.private;
+    if (number == 102) return TagUser.public;
+    if (number == 200) return TagUser.male;
+    if (number == 201) return TagUser.female;
+    if (number == 202) return TagUser.unknown;
+    if (number == 203) return TagUser.legal;
+    if (number == 300) return TagUser.adminCategoryRead;
+    if (number == 301) return TagUser.adminCategoryUpdate;
+    if (number == 302) return TagUser.adminProductRead;
+    if (number == 303) return TagUser.adminProductUpdate;
+    if (number == 304) return TagUser.adminUserRead;
+    if (number == 305) return TagUser.adminUserUpdate;
+    if (number == 306) return TagUser.adminReportRead;
+    if (number == 307) return TagUser.adminReportUpdate;
+    if (number == 308) return TagUser.adminTransactionRead;
+    if (number == 309) return TagUser.adminTransactionUpdate;
+    if (number == 310) return TagUser.adminOrderRead;
+    if (number == 311) return TagUser.adminOrderUpdate;
+    if (number == 312) return TagUser.adminContentRead;
+    if (number == 313) return TagUser.adminContentUpdate;
+    return TagUser.adminContentUpdate;
+  }
 
   @override
   String toString() => name;
@@ -690,10 +715,10 @@ enum OrderStatus {
 
 class StatusModel {
   StatusModel(
-    this.title,
-    this.titleTr1,
-    this.status,
-  );
+      this.title,
+      this.titleTr1,
+      this.status,
+      );
 
   final String title;
   final String titleTr1;
