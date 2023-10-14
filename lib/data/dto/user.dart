@@ -307,6 +307,7 @@ class UserCreateUpdateDto {
     this.code,
     this.shebaNumber,
     this.tags,
+    this.password,
   });
 
   factory UserCreateUpdateDto.fromJson(final String str) => UserCreateUpdateDto.fromMap(json.decode(str));
@@ -325,6 +326,7 @@ class UserCreateUpdateDto {
         region: json["region"],
         state: json["state"],
         badge: json["badge"],
+        password: json["password"],
         visitedProducts: json["visitedProducts"],
         bookmarkedProducts: json["bookmarkedProducts"],
         followedUsers: json["followedUsers"],
@@ -374,6 +376,7 @@ class UserCreateUpdateDto {
   final String? state;
   final String? badge;
   final String? visitedProducts;
+  final String? password;
   final String? bookmarkedProducts;
   final String? followedUsers;
   final String? followingUsers;
@@ -428,6 +431,7 @@ class UserCreateUpdateDto {
         "bookmarkedProducts": bookmarkedProducts,
         "followedUsers": followedUsers,
         "followingUsers": followingUsers,
+        "password": password,
         "blockedUsers": blockedUsers,
         "wallet": wallet,
         "deliveryPrice1": deliveryPrice1,
