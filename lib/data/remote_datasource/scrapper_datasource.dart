@@ -10,10 +10,8 @@ class ScrapperDataSource {
     required final Function(InstaPostReadDto response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
-      httpGet(
-        url: "$baseUrl/GetInstaPostRapidApi/$username",
-        action: (Response response) => onResponse(InstaPostReadDto.fromJson(response.bodyString ?? "")),
-        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
+  }) async {
+    final Response i = await GetConnect().get("$baseUrl/GetInstaPostRapidApi/$username");
+    onResponse(InstaPostReadDto.fromJson(i.bodyString ?? "{}"));
+  }
 }
