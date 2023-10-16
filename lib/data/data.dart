@@ -5,6 +5,7 @@ part 'dto/address.dart';
 part 'dto/app_settings.dart';
 part 'dto/block.dart';
 part 'dto/category.dart';
+part 'dto/insta_post_dto.dart';
 part 'dto/comment.dart';
 part 'dto/contact_information.dart';
 part 'dto/content.dart';
@@ -58,6 +59,7 @@ part 'remote_datasource/subscription_payment_datasource.dart';
 part 'remote_datasource/transaction_datasource.dart';
 part 'remote_datasource/user_datasource.dart';
 part 'remote_datasource/withdraw_datasource.dart';
+part 'remote_datasource/scrapper_datasource.dart';
 part 'remote_datasource/media_datasource.dart';
 
 T? removeNullEntries<T>(T? json) {
