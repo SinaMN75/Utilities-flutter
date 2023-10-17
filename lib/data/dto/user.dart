@@ -495,7 +495,7 @@ class UserFilterDto {
   final bool? noneOfMyFollowing;
   final bool? noneOfMyFollower;
   final List<String>? userIds;
-  final List<String>? phoneNumbers;
+  // final List<String>? phoneNumbers;
   final List<String>? categories;
   final List<int>? tags;
 
@@ -529,7 +529,7 @@ class UserFilterDto {
     this.noneOfMyFollowing,
     this.noneOfMyFollower,
     this.userIds,
-    this.phoneNumbers,
+    // this.phoneNumbers,
     this.categories,
     this.tags,
   });
@@ -568,7 +568,7 @@ class UserFilterDto {
         noneOfMyFollowing: json["noneOfMyFollowing"],
         noneOfMyFollower: json["noneOfMyFollower"],
         userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
-        phoneNumbers: json["phoneNumbers"] == null ? [] : List<String>.from(json["phoneNumbers"]!.map((x) => x)),
+        // phoneNumbers: json["phoneNumbers"] == null ? [] : List<String>.from(json["phoneNumbers"]!.map((x) => x)),
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
       );
@@ -603,7 +603,7 @@ class UserFilterDto {
         "noneOfMyFollowing": noneOfMyFollowing,
         "noneOfMyFollower": noneOfMyFollower,
         "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((x) => x)),
-        "phoneNumbers": phoneNumbers == null ? [] : List<dynamic>.from(phoneNumbers!.map((x) => x)),
+        // "phoneNumbers": phoneNumbers == null ? [] : List<dynamic>.from(phoneNumbers!.map((x) => x)),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
       };
