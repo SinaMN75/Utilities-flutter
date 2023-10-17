@@ -72,8 +72,8 @@ extension WidgetsExtension on Widget {
     final double borderWidth = 1,
     final double radius = 1,
     final Color borderColor = Colors.transparent,
-    final EdgeInsets padding = EdgeInsets.zero,
-    final EdgeInsets margin = EdgeInsets.zero,
+    final EdgeInsets? padding,
+    final EdgeInsets? margin,
   }) =>
       Container(
         width: width,
