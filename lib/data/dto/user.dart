@@ -466,118 +466,146 @@ class UserCreateUpdateDto {
 }
 
 class UserFilterDto {
+  final String? userId;
+  final String? userName;
+  final String? userNameExact;
+  final String? query;
+  final String? phoneNumber;
+  final String? email;
+  final String? firstName;
+  final String? lastName;
+  final String? fullName;
+  final String? bio;
+  final String? headline;
+  final String? jobStatus;
+  final String? appUserName;
+  final String? appPhoneNumber;
+  final String? appEmail;
+  final int? gender;
+  final String? region;
+  final String? state;
+  final String? badge;
+  final int? pageSize;
+  final int? pageNumber;
+  final bool? showMedia;
+  final bool? showCategories;
+  final bool? showSuspend;
+  final bool? showMyCustomers;
+  final bool? orderByUserName;
+  final bool? noneOfMyFollowing;
+  final bool? noneOfMyFollower;
+  final List<String>? userIds;
+  final List<String>? phoneNumbers;
+  final List<String>? categories;
+  final List<int>? tags;
+
   UserFilterDto({
     this.userId,
     this.userName,
     this.userNameExact,
     this.query,
     this.phoneNumber,
-    this.showCategories,
-    this.showFollowings,
-    this.showForms,
-    this.badge,
+    this.email,
+    this.firstName,
+    this.lastName,
+    this.fullName,
+    this.bio,
+    this.headline,
     this.jobStatus,
-    this.privacyType,
-    this.showGender,
-    this.showLocations,
-    this.showMedia,
-    this.nationalCode,
-    this.state,
     this.appUserName,
-    this.showProducts,
-    this.showTransactions,
+    this.appPhoneNumber,
+    this.appEmail,
+    this.gender,
+    this.region,
+    this.state,
+    this.badge,
     this.pageSize,
-    this.userIds,
     this.pageNumber,
+    this.showMedia,
+    this.showCategories,
+    this.showSuspend,
+    this.showMyCustomers,
+    this.orderByUserName,
+    this.noneOfMyFollowing,
+    this.noneOfMyFollower,
+    this.userIds,
+    this.phoneNumbers,
     this.categories,
-    this.detail1,
-    this.detail2,
+    this.tags,
   });
 
-  factory UserFilterDto.fromJson(final String str) => UserFilterDto.fromMap(json.decode(str));
+  factory UserFilterDto.fromJson(String str) => UserFilterDto.fromMap(json.decode(str));
 
-  factory UserFilterDto.fromMap(final dynamic json) => UserFilterDto(
+  String toJson() => json.encode(toMap());
+
+  factory UserFilterDto.fromMap(Map<String, dynamic> json) => UserFilterDto(
         userId: json["userId"],
         userName: json["userName"],
-        badge: json["badge"],
         userNameExact: json["userNameExact"],
         query: json["query"],
-        jobStatus: json["jobStatus"],
         phoneNumber: json["phoneNumber"],
-        showGender: json["showGender"],
+        email: json["email"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        fullName: json["fullName"],
+        bio: json["bio"],
+        headline: json["headline"],
+        jobStatus: json["jobStatus"],
         appUserName: json["appUserName"],
-        nationalCode: json["nationalCode"],
-        privacyType: json["privacyType"],
+        appPhoneNumber: json["appPhoneNumber"],
+        appEmail: json["appEmail"],
+        gender: json["gender"],
+        region: json["region"],
+        state: json["state"],
+        badge: json["badge"],
+        pageSize: json["pageSize"],
+        pageNumber: json["pageNumber"],
         showMedia: json["showMedia"],
         showCategories: json["showCategories"],
-        showLocations: json["showLocations"],
-        showForms: json["showForms"],
-        showProducts: json["showProducts"],
-        showTransactions: json["showTransactions"],
-        showFollowings: json["showFollowings"],
-        pageSize: json["pageSize"],
-        state: json["state"],
-        pageNumber: json["pageNumber"],
-        detail1: json["detail1"],
-        detail2: json["detail2"],
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-        userIds: json["userIds"] == null ? null : List<String>.from(json["userIds"].cast<Map<String, dynamic>>().map((final x) => x)),
+        showSuspend: json["showSuspend"],
+        showMyCustomers: json["showMyCustomers"],
+        orderByUserName: json["orderByUserName"],
+        noneOfMyFollowing: json["noneOfMyFollowing"],
+        noneOfMyFollower: json["noneOfMyFollower"],
+        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
+        phoneNumbers: json["phoneNumbers"] == null ? [] : List<String>.from(json["phoneNumbers"]!.map((x) => x)),
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
       );
 
-  final String? userId;
-  final String? userName;
-  final String? userNameExact;
-  final String? query;
-  final String? phoneNumber;
-  final String? badge;
-  final String? appUserName;
-  final String? nationalCode;
-  final String? jobStatus;
-  final int? privacyType;
-  final bool? showGender;
-  final bool? showMedia;
-  final bool? showCategories;
-  final bool? showLocations;
-  final bool? showForms;
-  final bool? showProducts;
-  final bool? showTransactions;
-  final bool? showFollowings;
-  final int? pageSize;
-  final String? state;
-  final String? detail1;
-  final String? detail2;
-  final int? pageNumber;
-  final List<String>? userIds;
-  final List<String>? categories;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  dynamic toMap() => {
+  Map<String, dynamic> toMap() => {
         "userId": userId,
         "userName": userName,
         "userNameExact": userNameExact,
         "query": query,
-        "badge": badge,
-        "privacyType": privacyType,
         "phoneNumber": phoneNumber,
-        "showGender": showGender,
+        "email": email,
+        "firstName": firstName,
+        "lastName": lastName,
+        "fullName": fullName,
+        "bio": bio,
+        "headline": headline,
+        "jobStatus": jobStatus,
         "appUserName": appUserName,
+        "appPhoneNumber": appPhoneNumber,
+        "appEmail": appEmail,
+        "gender": gender,
+        "region": region,
+        "state": state,
+        "badge": badge,
+        "pageSize": pageSize,
+        "pageNumber": pageNumber,
         "showMedia": showMedia,
         "showCategories": showCategories,
-        "jobStatus": jobStatus,
-        "showLocations": showLocations,
-        "showForms": showForms,
-        "nationalCode": nationalCode,
-        "showProducts": showProducts,
-        "showTransactions": showTransactions,
-        "showFollowings": showFollowings,
-        "pageSize": pageSize,
-        "state": state,
-        "pageNumber": pageNumber,
-        "detail1": detail1,
-        "detail2": detail2,
-        "categories": categories == null ? <String>[] : List<dynamic>.from(categories!.map((final String x) => x)),
-        "userIds": userIds == null ? null : List<dynamic>.from(userIds!.map((final String x) => x)),
+        "showSuspend": showSuspend,
+        "showMyCustomers": showMyCustomers,
+        "orderByUserName": orderByUserName,
+        "noneOfMyFollowing": noneOfMyFollowing,
+        "noneOfMyFollower": noneOfMyFollower,
+        "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((x) => x)),
+        "phoneNumbers": phoneNumbers == null ? [] : List<dynamic>.from(phoneNumbers!.map((x) => x)),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
       };
 }
 
