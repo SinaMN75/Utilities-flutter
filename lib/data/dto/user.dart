@@ -536,7 +536,7 @@ class UserFilterDto {
 
   factory UserFilterDto.fromJson(String str) => UserFilterDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserFilterDto.fromMap(Map<String, dynamic> json) => UserFilterDto(
         userId: json["userId"],
