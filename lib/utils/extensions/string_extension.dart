@@ -11,6 +11,8 @@ extension OptionalStringExtension on String? {
 
   int number() => (this ?? "0").replaceAll(RegExp('[^0-9]'), '').toInt();
 
+  String? nullIfEmpty() => (this ?? "").isEmpty ? null : this;
+
   String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatFullDate();
@@ -33,6 +35,8 @@ extension StringExtensions on String {
   String numberString() => replaceAll(RegExp('[^0-9]'), '');
 
   int number() => replaceAll(RegExp('[^0-9]'), '').toInt();
+
+  String? nullIfEmpty() => this.isEmpty ? null : this;
 
   String toRialMoneyPersian() => "${separateNumbers3By3()} ریال ";
 
