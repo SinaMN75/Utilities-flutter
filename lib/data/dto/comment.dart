@@ -105,6 +105,7 @@ class CommentJsonDetail {
 class CommentCreateUpdateDto {
   CommentCreateUpdateDto({
     this.parentId,
+    this.id,
     this.score,
     this.comment,
     this.productId,
@@ -112,6 +113,7 @@ class CommentCreateUpdateDto {
   });
 
   final String? parentId;
+  final String? id;
   final double? score;
   final String? comment;
   final String? productId;
@@ -122,6 +124,7 @@ class CommentCreateUpdateDto {
   String? toJson() => json.encode(removeNullEntries(toMap()));
 
   factory CommentCreateUpdateDto.fromMap(final dynamic json) => CommentCreateUpdateDto(
+        id: json["id"],
         parentId: json["parentId"],
         score: json["score"],
         comment: json["comment"],
@@ -130,6 +133,7 @@ class CommentCreateUpdateDto {
       );
 
   dynamic toMap() => {
+        "id": id,
         "parentId": parentId,
         "score": score,
         "comment": comment,
