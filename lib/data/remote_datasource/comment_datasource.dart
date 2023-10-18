@@ -27,7 +27,6 @@ class CommentDataSource {
         body: dto,
         action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   Future<void> toggleLike({
