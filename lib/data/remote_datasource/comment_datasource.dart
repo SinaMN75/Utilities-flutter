@@ -20,14 +20,14 @@ class CommentDataSource {
       );
 
   Future<void> filter({
-    required final CommentFilterDto filter,
+    required final CommentFilterDto dto,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Comment/Filter",
-        body: filter,
+        body: dto,
         action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
