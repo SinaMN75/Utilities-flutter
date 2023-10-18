@@ -103,13 +103,13 @@ class CommentDataSource {
 
   Future<void> delete({
     required final String id,
-    required final Function(String) onResponse,
+    required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
         url: "$baseUrl/Comment?id=$id",
-        action: (Response response) => onResponse(response.statusCode.toString()),
+        action: (Response response) => onResponse(GenericResponse.fromJson(response.body)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
