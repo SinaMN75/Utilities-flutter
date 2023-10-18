@@ -379,6 +379,7 @@ enum TagMedia {
 }
 
 enum TagComment {
+  all('همه', 'All', 0),
   released('منتشر شده', 'Released', 100),
   inQueue('در حال بررسی', 'InQueue', 101),
   rejected('رد شده', 'Rejected', 102);
