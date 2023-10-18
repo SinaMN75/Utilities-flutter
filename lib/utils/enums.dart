@@ -18,11 +18,11 @@ extension NullableTagMediaExtension on List<TagMedia>? {
 }
 
 extension TagCommentExtension on List<TagComment> {
-  List<int> getNumbers() => this.map((final TagComment e) => e.status).toList();
+  List<int> getNumbers() => this.map((final TagComment e) => e.number).toList();
 }
 
 extension NullableTagCommentExtension on List<TagComment>? {
-  List<int> getNumbers() => (this ?? <TagComment>[]).map((final TagComment e) => e.status).toList();
+  List<int> getNumbers() => (this ?? <TagComment>[]).map((final TagComment e) => e.number).toList();
 }
 
 extension TagContentExtension on List<TagContent> {
@@ -384,13 +384,13 @@ enum TagComment {
   inQueue('در حال بررسی', 'InQueue', 101),
   rejected('رد شده', 'Rejected', 102);
 
-  const TagComment(this.title, this.titleTr1, this.status);
+  const TagComment(this.title, this.titleTr1, this.number);
 
   @override
   String toString() => name;
   final String title;
   final String titleTr1;
-  final int status;
+  final int number;
 }
 
 enum TagGender {
