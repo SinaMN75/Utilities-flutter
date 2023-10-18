@@ -128,3 +128,14 @@ class MaskedTextInputFormatter extends TextInputFormatter {
     return newValue;
   }
 }
+
+Future<bool> backToHomeWhenIndexIsNot0({required final int currentBottomNavigationIndex, required final VoidCallback action}) {
+  final RxInt currentIndex = currentBottomNavigationIndex.obs;
+  if (currentIndex.value == 0) {
+    return Future<bool>.value(true);
+  } else {
+    currentIndex(0);
+    action();
+    return Future<bool>.value(false);
+  }
+}
