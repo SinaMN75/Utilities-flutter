@@ -214,7 +214,7 @@ Widget defaultTabBar({
             width: width ?? context.width,
             height: height ?? context.height,
             child: TabBarView(physics: const NeverScrollableScrollPhysics(), children: children),
-          )
+          ).expanded()
         ],
       ),
     );
