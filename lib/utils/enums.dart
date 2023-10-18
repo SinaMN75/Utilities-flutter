@@ -7,6 +7,13 @@ class UtilitiesTagUtils {
     if (tags.contains(TagProduct.notAccepted.number)) return TagProduct.notAccepted.title;
     return "";
   }
+
+  static String tagCommentsTitleFromTagList(final List<int> tags) {
+    if (tags.contains(TagComment.inQueue.number)) return TagComment.inQueue.title;
+    if (tags.contains(TagComment.released.number)) return TagComment.released.title;
+    if (tags.contains(TagComment.rejected.number)) return TagComment.rejected.title;
+    return "";
+  }
 }
 
 extension TagMediaExtension on List<TagMedia> {
@@ -718,10 +725,10 @@ enum OrderStatus {
 
 class StatusModel {
   StatusModel(
-      this.title,
-      this.titleTr1,
-      this.status,
-      );
+    this.title,
+    this.titleTr1,
+    this.status,
+  );
 
   final String title;
   final String titleTr1;
