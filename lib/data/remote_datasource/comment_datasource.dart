@@ -9,21 +9,18 @@ class CommentDataSource {
     required final CommentCreateUpdateDto dto,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Comment",
         body: dto,
         action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   Future<void> filter({
     required final CommentFilterDto dto,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Comment/Filter",
@@ -37,13 +34,11 @@ class CommentDataSource {
     required final String commentId,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Comment/ToggleLikeComment/$commentId",
         action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   Future<void> addReaction({
@@ -51,66 +46,56 @@ class CommentDataSource {
     required final int reactionCode,
     required final VoidCallback onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Comment/AddReactionToComment/$commentId/$reactionCode",
         action: (Response response) => onResponse(),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   Future<void> update({
     required final String id,
     required final CommentCreateUpdateDto dto,
-    required final Function(String) onResponse,
+    required final Function(GenericResponse<CommentReadDto> errorResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
   }) async =>
       httpPut(
         url: "$baseUrl/Comment?id=$id",
         body: dto,
-        action: (Response response) => onResponse(response.statusCode.toString()),
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   Future<void> readById({
     required final String id,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
   }) async =>
       httpGet(
         url: "$baseUrl/Comment/$id",
         action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   Future<void> readByProductId({
     required final String id,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
   }) async =>
       httpGet(
         url: "$baseUrl/Comment/ReadByProductId/$id",
         action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   Future<void> delete({
     required final String id,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
   }) async =>
       httpDelete(
         url: "$baseUrl/Comment?id=$id",
         action: (Response response) => onResponse(GenericResponse.fromJson(response.body)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 }
