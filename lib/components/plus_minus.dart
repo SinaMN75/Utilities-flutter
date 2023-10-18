@@ -4,6 +4,9 @@ Widget plusMinus({
   required final Function(int) onChanged,
   final int range = 1,
   final int defaultValue = 0,
+  final int max = 99999,
+  final Color? maximumColor,
+  final Color? minimumColor,
   final Widget? addWidget,
   final Widget? minusWidget,
   final double spaceBetween = 10,
@@ -18,8 +21,10 @@ Widget plusMinus({
   String mathFunc(final Match match) => '${match[1]},';
 
   void increaseAmount() {
-    currentAmount.value = currentAmount.value + range;
-    onChanged(currentAmount.value);
+    if (currentAmount.value < max) {
+      currentAmount.value = currentAmount.value + range;
+      onChanged(currentAmount.value);
+    }
   }
 
   void decreaseAmount() {
@@ -39,13 +44,13 @@ Widget plusMinus({
   }
 
   return Obx(
-    () => Row(
+        () => Row(
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       children: <Widget>[
-        GestureDetector(onTap: increaseAmount, child: addWidget ?? Icon(Icons.add_circle, size: 30)),
+        GestureDetector(onTap: increaseAmount, child: addWidget ?? Icon(Icons.add_circle, size: 30, color: currentAmount.value == max ? maximumColor : null)),
         Text(amountString(), style: textStyle).marginSymmetric(horizontal: spaceBetween),
-        GestureDetector(onTap: decreaseAmount, child: minusWidget ?? Icon(Icons.remove_circle, size: 30)),
+        GestureDetector(onTap: decreaseAmount, child: minusWidget ?? Icon(Icons.remove_circle, size: 30,color: minimumColor,)),
       ],
     ),
   );
