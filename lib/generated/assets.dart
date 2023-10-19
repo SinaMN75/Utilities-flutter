@@ -73,7 +73,6 @@ class Assets {
   static const String extensionsColorExtension = 'lib/utils/extensions/color_extension.dart';
   static const String extensionsDateExtension = 'lib/utils/extensions/date_extension.dart';
   static const String extensionsFileExtension = 'lib/utils/extensions/file_extension.dart';
-  static const String extensionsIntExtension = 'lib/utils/extensions/int_extension.dart';
   static const String extensionsIterableExtension = 'lib/utils/extensions/iterable_extension.dart';
   static const String extensionsNumberExtension = 'lib/utils/extensions/number_extension.dart';
   static const String extensionsShimmerExtension = 'lib/utils/extensions/shimmer_extension.dart';
