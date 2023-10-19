@@ -105,6 +105,7 @@ Widget column({
   final BoxDecoration? decoration,
   final double? width,
   final double? height,
+  final EdgeInsets? scrollPadding,
   final bool isScrollable = false,
   final VoidCallback? onTap,
   final ScrollController? scrollController,
@@ -117,26 +118,29 @@ Widget column({
       margin: margin,
       child: isScrollable
           ? SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              controller: scrollController,
-              child: Column(
-                mainAxisAlignment: mainAxisAlignment,
-                mainAxisSize: mainAxisSize,
-                crossAxisAlignment: crossAxisAlignment,
-                verticalDirection: verticalDirection,
-                children: children,
-              ),
-            )
+        physics: const BouncingScrollPhysics(),
+        controller: scrollController,
+        child: Padding(
+          padding:scrollPadding??EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Column(
+            mainAxisAlignment: mainAxisAlignment,
+            mainAxisSize: mainAxisSize,
+            crossAxisAlignment: crossAxisAlignment,
+            verticalDirection: verticalDirection,
+            children: children,
+          ),
+        ),
+      )
           : GestureDetector(
-              onTap: onTap,
-              child: Column(
-                mainAxisAlignment: mainAxisAlignment,
-                mainAxisSize: mainAxisSize,
-                crossAxisAlignment: crossAxisAlignment,
-                verticalDirection: verticalDirection,
-                children: children,
-              ),
-            ),
+        onTap: onTap,
+        child: Column(
+          mainAxisAlignment: mainAxisAlignment,
+          mainAxisSize: mainAxisSize,
+          crossAxisAlignment: crossAxisAlignment,
+          verticalDirection: verticalDirection,
+          children: children,
+        ),
+      ),
     );
 
 Widget row({

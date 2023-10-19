@@ -122,7 +122,7 @@ Future<void> cropImageCrop({
   if (pickedFile != null) {
     final CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: pickedFile.path,
-      aspectRatio:aspectRatio?? const CropAspectRatio(ratioX: 9, ratioY: 16),
+      aspectRatio:const CropAspectRatio(ratioX: 4, ratioY: 3),
       uiSettings: <PlatformUiSettings>[
         WebUiSettings(
           context: context,

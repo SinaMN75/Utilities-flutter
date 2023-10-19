@@ -32,7 +32,7 @@ Widget textField({
       margin: margin,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (text != null) Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
+        if (text != null) Text(text, style: textTheme.titleSmall).marginOnly(bottom: 8),
         TextFormField(
           textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : TextDirection.rtl,
           inputFormatters: formatters,
