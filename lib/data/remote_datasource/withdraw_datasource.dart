@@ -12,7 +12,7 @@ class WithdrawDataSource {
     final Function(String error)? failure,
   }) async =>
       httpPost(
-        url: "$baseUrl/withdraw/WalletWithdrawal",
+        url: "$baseUrl/withdraw",
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
