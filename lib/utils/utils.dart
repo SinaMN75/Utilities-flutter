@@ -33,6 +33,7 @@ part 'extensions/iterable_extension.dart';
 part 'extensions/number_extension.dart';
 part 'extensions/shimmer_extension.dart';
 part 'extensions/string_extension.dart';
+part 'extensions/int_extension.dart';
 part 'extensions/text_extension.dart';
 part 'extensions/widget_extension.dart';
 part 'extensions/color_extension.dart';
