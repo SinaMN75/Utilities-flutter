@@ -258,8 +258,8 @@ enum TagOrder {
   paid(402,'پرداخت شده'),
   inProcess(406,'در حال پردازش'),
   shipping(407,'در حال ارسال'),
-  sent(408,'تکمیل شده'),
-  complete(410,'');
+  sent(408,'ارسال شده'),
+  complete(410,'تکمیل شده');
 
   const TagOrder(this.number,this.title);
 

@@ -21,6 +21,7 @@ Widget textField({
   final String? initialValue,
   final bool? readOnly,
   final double? textHeight,
+  final EdgeInsetsGeometry? contentPadding,
   final ValueChanged<String>? onChanged,
   final ValueChanged<String>? onFieldSubmitted,
   final int? maxLength,
@@ -54,12 +55,13 @@ Widget textField({
           decoration: InputDecoration(
             helperStyle: const TextStyle(fontSize: 0),
             hintText: hintText,
+            contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
             suffixIcon: obscureText
                 ? IconButton(
-                    splashRadius: 1,
-                    onPressed: () => setState(() => obscure = !obscure),
-                    icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
-                  )
+              splashRadius: 1,
+              onPressed: () => setState(() => obscure = !obscure),
+              icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+            )
                 : suffix,
             prefixIcon: prefix,
           ),
