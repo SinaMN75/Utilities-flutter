@@ -107,7 +107,8 @@ Widget textFieldPersianDatePicker({
 }
 
 Widget button({
-  required final String title,
+  final String? title,
+  final Widget? titleWidget,
   final VoidCallback? onTap,
   final IconData? icon,
   final double? width,
@@ -120,14 +121,14 @@ Widget button({
   final Rx<PageState> buttonState = state.obs;
   if (buttonType == ButtonType.elevated)
     return Obx(
-      () {
+          () {
         if (buttonState.value == PageState.initial)
           return ElevatedButton(
             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundColor)),
             onPressed: onTap,
             child: SizedBox(
               width: width ?? context.width,
-              child: Text(title, textAlign: TextAlign.center).fit(),
+              child:Center(child: titleWidget?? Text(title??'', textAlign: TextAlign.center).fit(),),
             ),
           );
         else if (buttonState.value == PageState.loading)
@@ -147,18 +148,19 @@ Widget button({
   if (buttonType == ButtonType.outlined)
     return OutlinedButton(
       onPressed: onTap,
-      child: SizedBox(width: width ?? context.width, child: Text(title, textAlign: TextAlign.center)).fit(),
+      child: SizedBox(width: width ?? context.width, child: Text(title??'', textAlign: TextAlign.center)).fit(),
     );
   if (buttonType == ButtonType.text)
     return TextButton(
       onPressed: onTap,
       child: SizedBox(
         width: width ?? context.width,
-        child: Text(title, textAlign: TextAlign.center).bodyLarge(color: context.theme.colorScheme.secondary).fit(),
+        child: Text(title??'', textAlign: TextAlign.center).bodyLarge(color: context.theme.colorScheme.secondary).fit(),
       ),
     );
   return const SizedBox();
 }
+
 
 Widget textFieldTypeAhead<T>({
   required final void Function(T) onSuggestionSelected,
