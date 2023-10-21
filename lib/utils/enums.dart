@@ -239,32 +239,33 @@ enum TagCategory {
 }
 
 enum TagOrder {
-  physical(100),
-  digital(101),
-  donate(102),
-  shop(103),
-  job(104),
-  pishtazDelivery(201),
-  sendTipaxDelivery(202),
-  customDelivery(203),
-  onlinePay(301),
-  onSitePay(302),
-  cashPay(303),
-  stripePay(304),
-  coinPay(305),
-  paypalPay(306),
-  pending(400),
-  paid(402),
-  inQueue(402),
-  inProcess(406),
-  shipping(407),
-  sent(408),
-  complete(410);
+  physical(100,''),
+  digital(101,''),
+  donate(102,''),
+  shop(103,''),
+  job(104,''),
+  pishtazDelivery(201,''),
+  sendTipaxDelivery(202,''),
+  customDelivery(203,''),
+  onlinePay(301,''),
+  onSitePay(302,''),
+  cashPay(303,''),
+  stripePay(304,''),
+  coinPay(305,''),
+  paypalPay(306,''),
+  pending(400,''),
+  inQueue(401,'در صف انتشار'),
+  paid(402,'پرداخت شده'),
+  inProcess(406,'در حال پردازش'),
+  shipping(407,'در حال ارسال'),
+  sent(408,'تکمیل شده'),
+  complete(410,'');
 
-  const TagOrder(this.number);
+  const TagOrder(this.number,this.title);
 
   @override
   String toString() => name;
+  final String title;
   final int number;
 }
 
