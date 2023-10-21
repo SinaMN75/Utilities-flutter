@@ -29,7 +29,7 @@ Widget directionality({required final bool rtl, required final Widget child}) =>
       textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
       child: child,
     );
-Widget willPopScope({required final Widget child, required final int currentIndex,required final  String message, required final VoidCallback goTo0Index, final String? title}) {
+Widget willPopScope({required final Widget child, required final int currentIndex,final  String? message, required final VoidCallback goTo0Index, final String? title}) {
   DateTime? currentBackPressTime;
   int _currentIndex = currentIndex;
   return StatefulBuilder(
@@ -39,7 +39,7 @@ Widget willPopScope({required final Widget child, required final int currentInde
         if (_currentIndex == 0) {
           final DateTime now = DateTime.now();
           if (currentBackPressTime == null || now.difference(currentBackPressTime!) > const Duration(seconds: 3)) {
-            snackbarRed(title:title?? "خروج", subtitle:message);
+            snackbarRed(title:title?? "خروج", subtitle:message??'برای حروج دوباره دکمه بازگشت را فشار دهید');
             currentBackPressTime = now;
             return Future<bool>.value(false);
           }
