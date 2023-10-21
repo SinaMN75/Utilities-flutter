@@ -67,8 +67,8 @@ class UserReadDto {
         wallet: json["wallet"],
         point: json["point"],
         birthdate: json["birthdate"],
-        createdAt: json["createdAt"],
-        updatedAt: json["updatedAt"],
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         isOnline: json["isOnline"],
         suspend: json["suspend"],
         isPrivate: json["isPrivate"],
@@ -106,8 +106,8 @@ class UserReadDto {
   final int? wallet;
   final double? point;
   final String? birthdate;
-  final String? createdAt;
-  final String? updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final bool? isOnline;
   bool? suspend;
   final bool? isPrivate;
@@ -148,8 +148,8 @@ class UserReadDto {
         "wallet": wallet,
         "point": point,
         "birthdate": birthdate,
-        "createdAt": createdAt,
-        "updatedAt": updatedAt,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
         "isOnline": isOnline,
         "suspend": suspend,
         "isPrivate": isPrivate,
@@ -495,6 +495,7 @@ class UserFilterDto {
   final bool? noneOfMyFollowing;
   final bool? noneOfMyFollower;
   final List<String>? userIds;
+
   // final List<String>? phoneNumbers;
   final List<String>? categories;
   final List<int>? tags;
