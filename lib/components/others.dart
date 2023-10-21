@@ -29,3 +29,27 @@ Widget directionality({required final bool rtl, required final Widget child}) =>
       textDirection: rtl ? TextDirection.rtl : TextDirection.ltr,
       child: child,
     );
+Widget willPopScope({required final Widget child, required final int currentIndex,required final  String message, required final VoidCallback goTo0Index, final String? title}) {
+  DateTime? currentBackPressTime;
+  int _currentIndex = currentIndex;
+  return StatefulBuilder(
+    builder: (final BuildContext context, final Function setState) => WillPopScope(
+      child: child,
+      onWillPop: () {
+        if (_currentIndex == 0) {
+          final DateTime now = DateTime.now();
+          if (currentBackPressTime == null || now.difference(currentBackPressTime!) > const Duration(seconds: 3)) {
+            snackbarRed(title:title?? "خروج", subtitle:message);
+            currentBackPressTime = now;
+            return Future<bool>.value(false);
+          }
+          return Future<bool>.value(true);
+        } else {
+          _currentIndex = 0;
+          goTo0Index();
+          return Future<bool>.value(false);
+        }
+      },
+    ),
+  );
+}
