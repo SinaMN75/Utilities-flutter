@@ -519,6 +519,8 @@ class ProductFilterDto {
     this.tags,
     this.userIds,
     this.query,
+    this.shuffle1,
+    this.shuffle2,
     this.showExpired,
     this.boosted,
   });
@@ -564,6 +566,8 @@ class ProductFilterDto {
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final x) => x)),
         query: json["query"],
+        shuffle1: json["shuffle1"],
+        shuffle2: json["shuffle2"],
         showExpired: json["showExpired"],
         boosted: json["boosted"],
       );
@@ -606,6 +610,8 @@ class ProductFilterDto {
   List<int>? tags;
   List<String>? userIds;
   String? query;
+  bool? shuffle1;
+  bool? shuffle2;
   bool? showExpired;
   bool? boosted;
 
@@ -650,6 +656,8 @@ class ProductFilterDto {
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((final String x) => x)),
         "query": query,
+        "shuffle1": shuffle1,
+        "shuffle2": shuffle2,
         "showExpired": showExpired,
         "boosted": boosted,
       };

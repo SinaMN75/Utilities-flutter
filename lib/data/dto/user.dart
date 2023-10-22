@@ -114,7 +114,7 @@ class UserReadDto {
   final String? expireUpgradeAccount;
   final int? ageCategory;
   final UserJsonDetail? jsonDetail;
-  final List<int>? tags;
+   List<int>? tags;
   final List<MediaReadDto>? media;
   final List<CategoryReadDto>? categories;
   final bool? isFollowing;

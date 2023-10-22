@@ -17,6 +17,28 @@ class UserDataSource {
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
+  Future<void> toggleBlock({
+    required final String id,
+    required final Function(GenericResponse) onResponse,
+    required final Function(GenericResponse errorerrorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/user/ToggleBlock/$id",
+        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+      );
+  Future<void> readMyBlockList({
+    required final Function(GenericResponse<UserReadDto> response) onResponse,
+    required final Function(GenericResponse errorerrorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpGet(
+        url: "$baseUrl/user/ReadMyBlockList",
+        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+      );
+
 
   Future<void> update({
     required final UserCreateUpdateDto dto,
