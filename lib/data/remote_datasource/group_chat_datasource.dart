@@ -44,6 +44,21 @@ class GroupChatDataSource {
         failure: failure,
       );
 
+  Future<void> filterAllGroupChat({
+    required final GroupChatFilterDto filter,
+    required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/Chat/FilterAllGroupChat",
+        body: filter,
+        action: (final Response response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        failure: failure,
+      );
+
+
   Future<void> createGroup({
     required final GroupChatCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
