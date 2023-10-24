@@ -291,11 +291,11 @@ enum TagReaction {
   awful(104),
   all(200);
 
-  const TagReaction(this.title);
+  const TagReaction(this.number);
 
   @override
   String toString() => name;
-  final int title;
+  final int number;
 }
 
 enum TagUser {
