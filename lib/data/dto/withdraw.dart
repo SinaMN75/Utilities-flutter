@@ -2,12 +2,12 @@ part of '../data.dart';
 
 class WithdrawReadDto {
   WithdrawReadDto({
-    this.id,
-    this.shebaNumber,
-    this.amount,
-    this.withdrawState,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.shebaNumber,
+    required this.amount,
+    required this.withdrawState,
+    required this.createdAt,
+    required this.updatedAt,
     this.user,
   });
 
@@ -15,8 +15,8 @@ class WithdrawReadDto {
 
   factory WithdrawReadDto.fromMap(final dynamic json) => WithdrawReadDto(
         id: json["id"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"],
+        updatedAt: json["updatedAt"],
         shebaNumber: json["shebaNumber"],
         amount: json["amount"],
         withdrawState: json["withdrawState"],
@@ -30,17 +30,17 @@ class WithdrawReadDto {
         "shebaNumber": shebaNumber,
         "amount": amount,
         "withdrawState": withdrawState,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
         "user": user?.toMap(),
       };
 
-  final String? id;
-  final String? shebaNumber;
-  final int? withdrawState;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final int? amount;
+  final String id;
+  final String shebaNumber;
+  final int withdrawState;
+  final String createdAt;
+  final String updatedAt;
+  final int amount;
   final UserReadDto? user;
 }
 
