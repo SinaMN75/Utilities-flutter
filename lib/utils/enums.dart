@@ -271,15 +271,16 @@ enum TagOrder {
 }
 
 enum WithdrawState {
-  requested(101),
-  accepted(102),
-  rejected(103);
+  requested(101, "درحال بررسی"),
+  accepted(102, "تایید شده"),
+  rejected(103, "رد شده");
 
-  const WithdrawState(this.number);
+  const WithdrawState(this.number, this.title);
 
   @override
   String toString() => name;
   final int number;
+  final String title;
 }
 
 enum TagReaction {
