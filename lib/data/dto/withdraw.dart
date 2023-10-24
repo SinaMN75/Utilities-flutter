@@ -88,5 +88,5 @@ class WithdrawFilterDto {
       };
 
   final int? withdrawState;
-  final String? userId;
+  final bool? userId;
 }
