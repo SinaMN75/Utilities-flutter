@@ -72,12 +72,14 @@ class WithdrawFilterDto {
   WithdrawFilterDto({
     this.withdrawState,
     this.userId,
+    this.showUser,
   });
 
   factory WithdrawFilterDto.fromJson(final String str) => WithdrawFilterDto.fromMap(json.decode(str));
 
   factory WithdrawFilterDto.fromMap(final dynamic json) => WithdrawFilterDto(
         userId: json["userId"],
+        showUser: json["showUser"],
       );
 
   String toJson() => json.encode(removeNullEntries(toMap()));
@@ -85,8 +87,10 @@ class WithdrawFilterDto {
   dynamic toMap() => <String, dynamic>{
         "withdrawState": withdrawState,
         "userId": userId,
+        "showUser": showUser,
       };
 
   final int? withdrawState;
-  final bool? userId;
+  final String? userId;
+  final bool? showUser;
 }
