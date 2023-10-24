@@ -44,15 +44,15 @@ class WithdrawReadDto {
   final UserReadDto? user;
 }
 
-class WithdrawCreateUpdateDto {
-  WithdrawCreateUpdateDto({
-    this.shebaNumber,
-    this.amount,
+class WithdrawCreateDto {
+  WithdrawCreateDto({
+    required this.shebaNumber,
+    required this.amount,
   });
 
-  factory WithdrawCreateUpdateDto.fromJson(final String str) => WithdrawCreateUpdateDto.fromMap(json.decode(str));
+  factory WithdrawCreateDto.fromJson(final String str) => WithdrawCreateDto.fromMap(json.decode(str));
 
-  factory WithdrawCreateUpdateDto.fromMap(final dynamic json) => WithdrawCreateUpdateDto(
+  factory WithdrawCreateDto.fromMap(final dynamic json) => WithdrawCreateDto(
         shebaNumber: json["shebaNumber"],
         amount: json["amount"],
       );
@@ -64,8 +64,36 @@ class WithdrawCreateUpdateDto {
         "amount": amount,
       };
 
-  final String? shebaNumber;
-  final int? amount;
+  final String shebaNumber;
+  final int amount;
+}
+
+class WithdrawUpdateDto {
+  WithdrawUpdateDto({
+    required this.id,
+    this.adminMessage,
+    this.state,
+  });
+
+  factory WithdrawUpdateDto.fromJson(final String str) => WithdrawUpdateDto.fromMap(json.decode(str));
+
+  factory WithdrawUpdateDto.fromMap(final dynamic json) => WithdrawUpdateDto(
+        id: json["id"],
+        adminMessage: json["adminMessage"],
+        state: json["state"],
+      );
+
+  String toJson() => json.encode(removeNullEntries(toMap()));
+
+  dynamic toMap() => <String, dynamic>{
+        "id": id,
+        "adminMessage": adminMessage,
+        "state": state,
+      };
+
+  final String id;
+  final int? state;
+  final String? adminMessage;
 }
 
 class WithdrawFilterDto {

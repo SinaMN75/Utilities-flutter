@@ -5,8 +5,8 @@ class WithdrawDataSource {
 
   final String baseUrl;
 
-  Future<void> withdraw({
-    required final WithdrawCreateUpdateDto dto,
+  Future<void> create({
+    required final WithdrawCreateDto dto,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
@@ -26,7 +26,20 @@ class WithdrawDataSource {
     final Function(String error)? failure,
   }) async =>
       httpPost(
-        url: "$baseUrl/ProductV2/Filter",
+        url: "$baseUrl/withdraw/Filter",
+        body: dto,
+        action: (Response response) => onResponse(GenericResponse<WithdrawReadDto>.fromJson(response.body, fromMap: WithdrawReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+      );
+
+  Future<void> update({
+    required final WithdrawUpdateDto dto,
+    required final Function(GenericResponse<WithdrawReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPut(
+        url: "$baseUrl/withdraw",
         body: dto,
         action: (Response response) => onResponse(GenericResponse<WithdrawReadDto>.fromJson(response.body, fromMap: WithdrawReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
