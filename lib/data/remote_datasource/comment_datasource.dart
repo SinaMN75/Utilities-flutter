@@ -86,7 +86,18 @@ class CommentDataSource {
         action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
-
+  Future<void> readByUserId({
+    required final String id,
+    required final Function(GenericResponse<CommentReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpGet(
+        url: "$baseUrl/Comment/ReadByUserId/$id",
+        action: (Response response) => onResponse(GenericResponse<CommentReadDto>.fromJson(response.body, fromMap: CommentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+        failure: failure,
+      );
   Future<void> delete({
     required final String id,
     required final Function(GenericResponse response) onResponse,

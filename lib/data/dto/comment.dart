@@ -105,6 +105,7 @@ class CommentJsonDetail {
 class CommentCreateUpdateDto {
   CommentCreateUpdateDto({
     this.parentId,
+    this.userId,
     this.id,
     this.score,
     this.comment,
@@ -113,6 +114,7 @@ class CommentCreateUpdateDto {
   });
 
   final String? parentId;
+  final String? userId;
   final String? id;
   final double? score;
   final String? comment;
@@ -126,6 +128,7 @@ class CommentCreateUpdateDto {
   factory CommentCreateUpdateDto.fromMap(final dynamic json) => CommentCreateUpdateDto(
         id: json["id"],
         parentId: json["parentId"],
+    userId: json["userId"],
         score: json["score"],
         comment: json["comment"],
         productId: json["productId"],
@@ -135,6 +138,7 @@ class CommentCreateUpdateDto {
   dynamic toMap() => {
         "id": id,
         "parentId": parentId,
+        "userId": userId,
         "score": score,
         "comment": comment,
         "productId": productId,

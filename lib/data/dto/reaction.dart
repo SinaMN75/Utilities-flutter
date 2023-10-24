@@ -79,3 +79,6 @@ class ReactionFilterDto {
         "pageNumber": pageNumber,
       };
 }
+extension ReactsExtension on List<ReactionReadDto> {
+  ReactionReadDto? reactionByUserId(String userId) => this.where((element) => element.userId == userId).toList().firstOrNull;
+}
