@@ -39,6 +39,11 @@ extension WidgetsExtension on Widget {
 
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
+  Widget copyTextToClipboardOnTap(final String text, {final VoidCallback? action}) => onTap(() {
+    copyToClipboard(text);
+    if (action != null) action();
+  });
+
   Widget onLongPress(final GestureTapCallback? onPressed) => GestureDetector(onLongPress: onPressed, child: this);
 
   Widget onDoubleTap(final GestureTapCallback? onPressed) => GestureDetector(onDoubleTap: onPressed, child: this);
