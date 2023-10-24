@@ -98,6 +98,12 @@ void off(final Widget page) => Get.off(() => page);
 
 void back() => Get.back();
 
+void snackbarDone({final String title = "انجام شد", final String subtitle = ""}) => snackbarGreen(
+      title: title,
+      subtitle: subtitle,
+      duration: Duration(milliseconds: 500),
+    );
+
 void snackbarGreen({
   required final String title,
   required final String subtitle,
