@@ -5,92 +5,155 @@ class MediaDataSource {
 
   MediaDataSource({required this.baseUrl});
 
-  // Future<void> create({
-  //   required final int tagUseCase,
-  //   required final VoidCallback action,
-  //   required final Function(GenericResponse errorResponse) onError,
-  //   final ProgressCallback? onSendProgress,
-  //   final Function(List<MediaReadDto> list)? onResponse,
-  //   final List<File>? files,
-  //   final String? categoryId,
-  //   final String? contentId,
-  //   final String? productId,
-  //   final String? userId,
-  //   final String? commentId,
-  //   final String? chatId,
-  //   final String? time,
-  //   final String? artist,
-  //   final int? privacyType,
-  //   final String? album,
-  //   final String? groupChatId,
-  //   final String? groupChatMessageId,
-  //   final String? bookmarkId,
-  //   final String? title,
-  //   final String? notificationId,
-  //   final List<int>? tags,
-  //   final String? size,
-  //   final Duration? timeout,
-  // }) async {
-  //   Dio dio = Dio();
-  //   List<MediaReadDto> mediResponseList = <MediaReadDto>[];
-  //   for (int i = 0; i < files!.length; i++) {
-  //     File file = files[i];
-  //     String fileName = file.path.split('/')[file.path.split('/').length - 1];
-  //
-  //     final Response<dynamic> response = await dio.post(
-  //       '$baseUrl/Media',
-  //       onSendProgress: onSendProgress,
-  //       data: FormData.fromMap({
-  //         'Files': await MultipartFile.fromFile(file.path, filename: fileName),
-  //         'tagUseCase': tagUseCase,
-  //         'CategoryId': categoryId,
-  //         'ContentId': contentId,
-  //         'GroupChatId': groupChatId,
-  //         'GroupChatMessageId': groupChatMessageId,
-  //         'ProductId': productId,
-  //         'UserId': userId,
-  //         'PrivacyType': privacyType,
-  //         'Time': time,
-  //                   'Artist': artist,
-  //         'Album': album,
-  //         'CommentId': commentId,
-  //         'BookmarkId': bookmarkId,
-  //         'ChatId': chatId,
-  //         'Title': title ?? fileName,
-  //         'NotificationId': notificationId,
-  //         'Size': size,
-  //       }),
-  //       options: Options(headers: <String, String>{
-  //         "Authorization": getString(UtilitiesConstants.token) ?? "",
-  //       }),
-  //     );
-  //
-  //     if (response.isSuccessful()) {
-  //       List<MediaReadDto> l1 = List<MediaReadDto>.from(response.body['result'].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap));
-  //       mediResponseList.add(l1.first);
-  //       if (i == files.length - 1) {
-  //         action();
-  //         if (onResponse != null) {
-  //           await update(
-  //             mediaId: mediResponseList.first.id ?? '',
-  //             tags: tags,
-  //             onResponse: (final GenericResponse<MediaReadDto> response) {
-  //               onResponse([response.result!]);
-  //             },
-  //             onError: (final GenericResponse errorResponse) {
-  //               debugPrint('Error');
-  //             },
-  //             failure: (error) {
-  //               debugPrint(error);
-  //             },
-  //           );
-  //         }
-  //       } else {
-  //         onError(GenericResponse<dynamic>.fromJson(response.body));
-  //       }
-  //     }
-  //   }
-  // }
+  Future<void> create({
+    required final List<File> files,
+    required final int tagUseCase,
+    required final VoidCallback action,
+    required final Function(GenericResponse errorResponse) onError,
+    final ProgressCallback? onSendProgress,
+    final Function(List<MediaReadDto> list)? onResponse,
+    final String? categoryId,
+    final String? contentId,
+    final String? productId,
+    final String? userId,
+    final String? commentId,
+    final String? chatId,
+    final String? time,
+    final String? artist,
+    final int? privacyType,
+    final String? album,
+    final String? groupChatId,
+    final String? groupChatMessageId,
+    final String? bookmarkId,
+    final String? title,
+    final String? notificationId,
+    final List<int>? tags,
+    final String? size,
+    final Duration? timeout,
+  }) async {
+    int index = 0;
+
+    List<MediaReadDto> mediaResponseList = <MediaReadDto>[];
+    files.forEach((final File element) async {
+      dynamic data = null;
+      String fileName = 'file';
+      if (isWeb) {
+        data = element.readAsBytesSync();
+      } else {
+        data = element.path;
+        fileName = element.path.split('/').last;
+      }
+
+      FormData forms = FormData(<String, dynamic>{
+        'Files': MultipartFile(await data, filename: fileName),
+        'tagUseCase': tagUseCase,
+        'CategoryId': categoryId,
+        'ContentId': contentId,
+        'GroupChatId': groupChatId,
+        'GroupChatMessageId': groupChatMessageId,
+        'ProductId': productId,
+        'UserId': userId,
+        'PrivacyType': privacyType,
+        'Time': time,
+        'Artist': artist,
+        'Album': album,
+        'CommentId': commentId,
+        'BookmarkId': bookmarkId,
+        'ChatId': chatId,
+        'Title': title ?? fileName,
+        'NotificationId': notificationId,
+        'Size': size,
+      });
+
+      if (tags != null) {
+        for (int i = 0; i < tags.length; i++) {
+          forms.fields.add(MapEntry('tags[$i]', '${tags[i]}'));
+        }
+      }
+
+      Response response = await GetConnect().post(
+        '$baseUrl/Media',
+        forms,
+        headers: <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""},
+        contentType: "multipart/form-data",
+      );
+      List<MediaReadDto> l1 = List<MediaReadDto>.from(response.body['result'].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap));
+      mediaResponseList.add(l1.first);
+      index++;
+      if (index == files.length) {
+        action();
+        onResponse?.call(l1);
+      }
+    });
+
+    // Dio dio = Dio();
+    // for (int i = 0; i < files!.length; i++) {
+    //   File file = files[i];
+    //   String fileName = file.path.split('/')[file.path.split('/').length - 1];
+    //
+    //   FormData forms = FormData.fromMap({
+    //     'Files': await MultipartFile.fromFile(file.path, filename: fileName),
+    //     'tagUseCase': tagUseCase,
+    //     'CategoryId': categoryId,
+    //     'ContentId': contentId,
+    //     'GroupChatId': groupChatId,
+    //     'GroupChatMessageId': groupChatMessageId,
+    //     'ProductId': productId,
+    //     'UserId': userId,
+    //     'PrivacyType': privacyType,
+    //     'Time': time,
+    //     'Artist': artist,
+    //     'Album': album,
+    //     'CommentId': commentId,
+    //     'BookmarkId': bookmarkId,
+    //     'ChatId': chatId,
+    //     'Title': title ?? fileName,
+    //     'NotificationId': notificationId,
+    //     'Size': size,
+    //   });
+    //
+    //   //     if (tags != null) {
+    //   //       for (int i = 0; i < tags.length; i++) {
+    //   //         request.fields['tags[$i]'] = '${tags[i]}';
+    //   //       }
+    //   //     }
+    //
+    //   final Response<dynamic> response = await dio.post(
+    //     '$baseUrl/Media',
+    //     onSendProgress: onSendProgress,
+    //     data: forms,
+    //     options: Options(headers: <String, String>{
+    //       "Authorization": getString(UtilitiesConstants.token) ?? "",
+    //     }),
+    //   );
+    //
+    //   if (response.isSuccessful()) {
+    //     List<MediaReadDto> l1 = List<MediaReadDto>.from(response.body['result'].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap));
+    //     mediResponseList.add(l1.first);
+    //     if (i == files.length - 1) {
+    //       action();
+    //       if (onResponse != null) {
+    //         await update(
+    //           mediaId: mediResponseList.first.id ?? '',
+    //           tags: tags,
+    //           onResponse: (final GenericResponse<MediaReadDto> response) {
+    //             onResponse([response.result!]);
+    //           },
+    //           onError: (final GenericResponse errorResponse) {
+    //             debugPrint('Error');
+    //           },
+    //           failure: (error) {
+    //             debugPrint(error);
+    //           },
+    //         );
+    //       }
+    //     } else {
+    //       onError(GenericResponse<dynamic>.fromJson(response.body));
+    //     }
+    //   }
+    // }
+  }
+
   //
   // Future<void> createSingle({
   //   required final File file,

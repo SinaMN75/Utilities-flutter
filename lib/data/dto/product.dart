@@ -358,6 +358,8 @@ class ProductCreateUpdateDto {
     this.tags,
     this.productInsight,
     this.children,
+    this.daysAvailable,
+    this.daysReservedAvailable,
   });
 
   String? id;
@@ -416,6 +418,8 @@ class ProductCreateUpdateDto {
   List<FormReadDto>? forms;
   List<ProductCreateUpdateDto>? children;
   ProductInsight? productInsight;
+  List<DaysAvailable>? daysAvailable;
+  List<DaysAvailable>? daysReservedAvailable;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -476,6 +480,8 @@ class ProductCreateUpdateDto {
         "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductCreateUpdateDto x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.where((final String element) => element != '').map((final String x) => x)),
         "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final String x) => x)),
+        "daysAvailable": daysAvailable == null ? [] : List<dynamic>.from(daysAvailable!.map((x) => x.toMap())),
+        "daysReservedAvailable": daysReservedAvailable == null ? [] : List<dynamic>.from(daysReservedAvailable!.map((x) => x.toMap())),
       };
 }
 
@@ -738,3 +744,79 @@ class ProductInsightDto {
         "productId": productId,
       };
 }
+class DaysAvailable {
+  DateTime? dateFrom;
+  DateTime? dateTo;
+  List<Time>? times;
+  int? price;
+  int? priceForAnyExtra;
+  int? maxMemberAllowed;
+  int? maxExtraMemberAllowed;
+
+  DaysAvailable({
+    this.dateFrom,
+    this.dateTo,
+    this.times,
+    this.price,
+    this.priceForAnyExtra,
+    this.maxMemberAllowed,
+    this.maxExtraMemberAllowed,
+  });
+
+  factory DaysAvailable.fromJson(String str) => DaysAvailable.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory DaysAvailable.fromMap(Map<String, dynamic> json) => DaysAvailable(
+    dateFrom: json["dateFrom"] == null ? null : DateTime.parse(json["dateFrom"]),
+    dateTo: json["dateTo"] == null ? null : DateTime.parse(json["dateTo"]),
+    times: json["times"] == null ? [] : List<Time>.from(json["times"]!.map((x) => Time.fromMap(x))),
+    price: json["price"],
+    priceForAnyExtra: json["priceForAnyExtra"],
+    maxMemberAllowed: json["maxMemberAllowed"],
+    maxExtraMemberAllowed: json["maxExtraMemberAllowed"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "dateFrom": dateFrom?.toIso8601String(),
+    "dateTo": dateTo?.toIso8601String(),
+    "times": times == null ? [] : List<dynamic>.from(times!.map((x) => x.toMap())),
+    "price": price,
+    "priceForAnyExtra": priceForAnyExtra,
+    "maxMemberAllowed": maxMemberAllowed,
+    "maxExtraMemberAllowed": maxExtraMemberAllowed,
+  };
+}
+
+class Time {
+  DateTime? timeFrom;
+  DateTime? timeTo;
+  String? reservedByUserId;
+  String? reservedByUserName;
+
+  Time({
+    this.timeFrom,
+    this.timeTo,
+    this.reservedByUserId,
+    this.reservedByUserName,
+  });
+
+  factory Time.fromJson(String str) => Time.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Time.fromMap(Map<String, dynamic> json) => Time(
+    timeFrom: json["timeFrom"] == null ? null : DateTime.parse(json["timeFrom"]),
+    timeTo: json["timeTo"] == null ? null : DateTime.parse(json["timeTo"]),
+    reservedByUserId: json["reservedByUserId"],
+    reservedByUserName: json["reservedByUserName"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "timeFrom": timeFrom?.toIso8601String(),
+    "timeTo": timeTo?.toIso8601String(),
+    "reservedByUserId": reservedByUserId,
+    "reservedByUserName": reservedByUserName,
+  };
+}
+
