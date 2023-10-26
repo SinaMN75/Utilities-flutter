@@ -141,6 +141,88 @@ class OrderDetailCreateUpdateDto {
       };
 }
 
+
+class ReservationOrderCreateDto {
+  String? productId;
+  List<ReserveDto>? reserveDto;
+
+  ReservationOrderCreateDto({
+    this.productId,
+    this.reserveDto,
+  });
+
+  factory ReservationOrderCreateDto.fromJson(String str) => ReservationOrderCreateDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ReservationOrderCreateDto.fromMap(Map<String, dynamic> json) => ReservationOrderCreateDto(
+    productId: json["productId"],
+    reserveDto: json["reserveDto"] == null ? [] : List<ReserveDto>.from(json["reserveDto"]!.map((x) => ReserveDto.fromMap(x))),
+  );
+
+  Map<String, dynamic> toMap() => {
+    "productId": productId,
+    "reserveDto": reserveDto == null ? [] : List<dynamic>.from(reserveDto!.map((x) => x.toMap())),
+  };
+}
+
+class ReserveDto {
+  DateTime? dateFrom;
+  DateTime? dateTo;
+  DateTime? timeFrom;
+  DateTime? timeTo;
+  String? userId;
+  String? userName;
+  int? memberCount;
+  int? extraMemberCount;
+  int? price;
+  int? priceForAnyExtra;
+
+  ReserveDto({
+    this.dateFrom,
+    this.dateTo,
+    this.timeFrom,
+    this.timeTo,
+    this.userId,
+    this.userName,
+    this.memberCount,
+    this.extraMemberCount,
+    this.price,
+    this.priceForAnyExtra,
+  });
+
+  factory ReserveDto.fromJson(String str) => ReserveDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ReserveDto.fromMap(Map<String, dynamic> json) => ReserveDto(
+    dateFrom: json["dateFrom"] == null ? null : DateTime.parse(json["dateFrom"]),
+    dateTo: json["dateTo"] == null ? null : DateTime.parse(json["dateTo"]),
+    timeFrom: json["timeFrom"] == null ? null : DateTime.parse(json["timeFrom"]),
+    timeTo: json["timeTo"] == null ? null : DateTime.parse(json["timeTo"]),
+    userId: json["userId"],
+    userName: json["userName"],
+    memberCount: json["memberCount"],
+    extraMemberCount: json["extraMemberCount"],
+    price: json["price"],
+    priceForAnyExtra: json["priceForAnyExtra"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "dateFrom": dateFrom?.toIso8601String(),
+    "dateTo": dateTo?.toIso8601String(),
+    "timeFrom": timeFrom?.toIso8601String(),
+    "timeTo": timeTo?.toIso8601String(),
+    "userId": userId,
+    "userName": userName,
+    "memberCount": memberCount,
+    "extraMemberCount": extraMemberCount,
+    "price": price,
+    "priceForAnyExtra": priceForAnyExtra,
+  };
+}
+
+
 class OrderReadDto {
   int? orderType;
   int? totalPrice;

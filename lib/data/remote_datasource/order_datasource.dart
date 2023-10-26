@@ -72,6 +72,19 @@ class OrderDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
+  Future<void> CreateReservationOrderDetail({
+    required final OrderDetailCreateUpdateDto dto,
+    required final Function(GenericResponse<OrderReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/Order/CreateReservationOrder",
+        body: dto,
+        action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        failure: failure,
+      );
 
   Future<void> deleteOrderDetail({
     required final String id,
