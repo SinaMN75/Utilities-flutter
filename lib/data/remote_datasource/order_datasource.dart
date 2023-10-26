@@ -72,7 +72,7 @@ class OrderDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
-  Future<void> CreateReservationOrderDetail({
+  Future<void> createReservationOrderDetail({
     required final OrderReservationCreateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
