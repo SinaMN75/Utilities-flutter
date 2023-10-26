@@ -260,6 +260,7 @@ enum TagOrder {
   inProcess(406, 'در حال پردازش'),
   shipping(407, 'در حال ارسال'),
   sent(408, 'ارسال شده'),
+  conflict(409, 'اختلاف'),
   complete(410, 'تکمیل شده');
 
   const TagOrder(this.number, this.title);

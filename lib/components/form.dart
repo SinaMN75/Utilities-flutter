@@ -58,10 +58,10 @@ Widget textField({
             contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
             suffixIcon: obscureText
                 ? IconButton(
-              splashRadius: 1,
-              onPressed: () => setState(() => obscure = !obscure),
-              icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
-            )
+                    splashRadius: 1,
+                    onPressed: () => setState(() => obscure = !obscure),
+                    icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                  )
                 : suffix,
             prefixIcon: prefix,
           ),
@@ -117,20 +117,23 @@ Widget button({
   final TextStyle? textStyle,
   final Color? backgroundColor,
   final ButtonType buttonType = ButtonType.elevated,
+  final EdgeInsets? padding,
   final PageState state = PageState.initial,
   final int countDownSeconds = 120,
 }) {
   final Rx<PageState> buttonState = state.obs;
   if (buttonType == ButtonType.elevated)
     return Obx(
-          () {
+      () {
         if (buttonState.value == PageState.initial)
           return ElevatedButton(
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundColor)),
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundColor), padding: MaterialStateProperty.all(padding)),
             onPressed: onTap,
             child: SizedBox(
               width: width ?? context.width,
-              child:Center(child: titleWidget?? Text(title??'', textAlign: TextAlign.center).fit(),),
+              child: Center(
+                child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center).fit(),
+              ),
             ),
           );
         else if (buttonState.value == PageState.loading)
@@ -150,19 +153,18 @@ Widget button({
   if (buttonType == ButtonType.outlined)
     return OutlinedButton(
       onPressed: onTap,
-      child: SizedBox(width: width ?? context.width, child: Text(title??'', textAlign: TextAlign.center)).fit(),
+      child: SizedBox(width: width ?? context.width, child: Text(title ?? '', textAlign: TextAlign.center)).fit(),
     );
   if (buttonType == ButtonType.text)
     return TextButton(
       onPressed: onTap,
       child: SizedBox(
         width: width ?? context.width,
-        child: Text(title??'', textAlign: TextAlign.center).bodyLarge(color: context.theme.colorScheme.secondary).fit(),
+        child: Text(title ?? '', textAlign: TextAlign.center).bodyLarge(color: context.theme.colorScheme.secondary).fit(),
       ),
     );
   return const SizedBox();
 }
-
 
 Widget textFieldTypeAhead<T>({
   required final void Function(T) onSuggestionSelected,
