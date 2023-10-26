@@ -73,7 +73,7 @@ class OrderDataSource {
         failure: failure,
       );
   Future<void> CreateReservationOrderDetail({
-    required final OrderDetailCreateUpdateDto dto,
+    required final OrderReservationCreateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,

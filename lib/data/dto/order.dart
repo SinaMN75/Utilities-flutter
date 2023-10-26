@@ -142,20 +142,20 @@ class OrderDetailCreateUpdateDto {
 }
 
 
-class ReservationOrderCreateDto {
+class OrderReservationCreateDto {
   String? productId;
   List<ReserveDto>? reserveDto;
 
-  ReservationOrderCreateDto({
+  OrderReservationCreateDto({
     this.productId,
     this.reserveDto,
   });
 
-  factory ReservationOrderCreateDto.fromJson(String str) => ReservationOrderCreateDto.fromMap(json.decode(str));
+  factory OrderReservationCreateDto.fromJson(String str) => OrderReservationCreateDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ReservationOrderCreateDto.fromMap(Map<String, dynamic> json) => ReservationOrderCreateDto(
+  factory OrderReservationCreateDto.fromMap(Map<String, dynamic> json) => OrderReservationCreateDto(
     productId: json["productId"],
     reserveDto: json["reserveDto"] == null ? [] : List<ReserveDto>.from(json["reserveDto"]!.map((x) => ReserveDto.fromMap(x))),
   );
@@ -221,6 +221,7 @@ class ReserveDto {
     "priceForAnyExtra": priceForAnyExtra,
   };
 }
+
 
 
 class OrderReadDto {
