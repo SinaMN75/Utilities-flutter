@@ -37,7 +37,6 @@ part 'dto/subscription.dart';
 part 'dto/team.dart';
 part 'dto/transaction.dart';
 part 'dto/user.dart';
-part 'dto/withdraw.dart';
 part 'local_datasource/local_datasource.dart';
 part 'remote_datasource/address_datasource.dart';
 part 'remote_datasource/app_settings_datasource.dart';
@@ -61,7 +60,6 @@ part 'remote_datasource/shopping_cart_datasource.dart';
 part 'remote_datasource/subscription_payment_datasource.dart';
 part 'remote_datasource/transaction_datasource.dart';
 part 'remote_datasource/user_datasource.dart';
-part 'remote_datasource/withdraw_datasource.dart';
 part 'remote_datasource/scrapper_datasource.dart';
 part 'remote_datasource/media_datasource.dart';
 
