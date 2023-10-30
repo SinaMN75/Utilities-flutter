@@ -130,6 +130,7 @@ Widget button({
             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundColor), padding: MaterialStateProperty.all(padding)),
             onPressed: onTap,
             child: SizedBox(
+              height: 20,
               width: width ?? context.width,
               child: Center(
                 child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center).fit(),
@@ -153,12 +154,17 @@ Widget button({
   if (buttonType == ButtonType.outlined)
     return OutlinedButton(
       onPressed: onTap,
-      child: SizedBox(width: width ?? context.width, child: Text(title ?? '', textAlign: TextAlign.center)).fit(),
+      child: SizedBox(
+        height: 20,
+        width: width ?? context.width,
+        child: Text(title ?? '', textAlign: TextAlign.center),
+      ).fit(),
     );
   if (buttonType == ButtonType.text)
     return TextButton(
       onPressed: onTap,
       child: SizedBox(
+        height: 20,
         width: width ?? context.width,
         child: Text(title ?? '', textAlign: TextAlign.center).bodyLarge(color: context.theme.colorScheme.secondary).fit(),
       ),
