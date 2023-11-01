@@ -26,6 +26,7 @@ Widget textField({
   final ValueChanged<String>? onFieldSubmitted,
   final int? maxLength,
   final List<TextInputFormatter>? formatters,
+  final List<String>? autoFillHints,
 }) {
   bool obscure = obscureText;
   return StatefulBuilder(
@@ -35,6 +36,7 @@ Widget textField({
       children: <Widget>[
         if (text != null) Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
         TextFormField(
+          autofillHints: autoFillHints,
           textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : TextDirection.rtl,
           inputFormatters: formatters,
           style: TextStyle(fontSize: fontSize),
