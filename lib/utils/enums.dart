@@ -261,7 +261,8 @@ enum TagOrder {
   shipping(407, 'در حال ارسال'),
   sent(408, 'ارسال شده'),
   conflict(409, 'اختلاف'),
-  complete(410, 'تکمیل شده');
+  complete(410, 'تکمیل شده'),
+  all(900, 'همه');
 
   const TagOrder(this.number, this.title);
 

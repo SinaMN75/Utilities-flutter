@@ -68,7 +68,6 @@ class Assets {
   static const String dtoTeam = 'lib/data/dto/team.dart';
   static const String dtoTransaction = 'lib/data/dto/transaction.dart';
   static const String dtoUser = 'lib/data/dto/user.dart';
-  static const String dtoWithdraw = 'lib/data/dto/withdraw.dart';
   static const String extensionsAlignExtension = 'lib/utils/extensions/align_extension.dart';
   static const String extensionsColorExtension = 'lib/utils/extensions/color_extension.dart';
   static const String extensionsCommentExtension = 'lib/utils/extensions/comment_extension.dart';
@@ -109,7 +108,6 @@ class Assets {
   static const String remoteDatasourceSubscriptionPaymentDatasource = 'lib/data/remote_datasource/subscription_payment_datasource.dart';
   static const String remoteDatasourceTransactionDatasource = 'lib/data/remote_datasource/transaction_datasource.dart';
   static const String remoteDatasourceUserDatasource = 'lib/data/remote_datasource/user_datasource.dart';
-  static const String remoteDatasourceWithdrawDatasource = 'lib/data/remote_datasource/withdraw_datasource.dart';
   static const String utilsConstants = 'lib/utils/constants.dart';
   static const String utilsContacts = 'lib/utils/contacts.dart';
   static const String utilsEnums = 'lib/utils/enums.dart';
