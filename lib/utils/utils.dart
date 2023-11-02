@@ -37,6 +37,7 @@ part 'extensions/text_extension.dart';
 part 'extensions/widget_extension.dart';
 part 'extensions/color_extension.dart';
 part 'extensions/comment_extension.dart';
+part 'extensions/enums_extension.dart';
 
 void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
       Duration(milliseconds: milliseconds),
