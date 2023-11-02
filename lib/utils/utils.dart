@@ -14,7 +14,6 @@ import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
 import 'package:intl/intl.dart' as intl;
 import 'dart:convert';
-import 'package:intl/intl.dart';
 
 part 'constants.dart';
 part 'contacts.dart';
