@@ -13,6 +13,8 @@ extension OptionalStringExtension on String? {
 
   String? nullIfEmpty() => (this ?? "").isEmpty ? null : this;
 
+  String getPrice()=> NumberFormat('###,###,###,###,000').format(this);
+
   String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatFullDate();
