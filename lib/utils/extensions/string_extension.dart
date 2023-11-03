@@ -14,7 +14,11 @@ extension OptionalStringExtension on String? {
   String? nullIfEmpty() => (this ?? "").isEmpty ? null : this;
 
 
-  String getPrice()=> intl.NumberFormat('###,###,###,###,000').format(this);
+  String getPrice(){
+    // final int ff=int.parse(this);
+    final int nums=this!.toInt();
+    return nums>0 ?intl.NumberFormat('###,###,###,###,000').format(nums):'0';
+  }
 
 
   String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
