@@ -225,6 +225,7 @@ class ReserveDto {
 
 
 class OrderReadDto {
+  int? orderNumber;
   int? orderType;
   int? totalPrice;
   UserReadDto? user;
@@ -241,6 +242,7 @@ class OrderReadDto {
   String? productOwnerId;
 
   OrderReadDto({
+    this.orderNumber,
     this.orderType,
     this.totalPrice,
     this.user,
@@ -262,6 +264,7 @@ class OrderReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory OrderReadDto.fromMap(final dynamic json) => OrderReadDto(
+    orderNumber: json["orderNumber"],
         orderType: json["orderType"],
         totalPrice: json["totalPrice"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
@@ -279,6 +282,7 @@ class OrderReadDto {
       );
 
   Map<String, dynamic> toMap() => {
+        "orderNumber": orderNumber,
         "orderType": orderType,
         "totalPrice": totalPrice,
         "user": user?.toMap(),
