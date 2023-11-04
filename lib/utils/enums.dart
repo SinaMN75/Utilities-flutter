@@ -50,7 +50,7 @@ enum TagProduct {
   video(104, "",""),
   audio(105, "",""),
   pdf(106, "",""),
-  apk(107, "",""),
+  boxOffice(107, "گیشه","Box office"),
   game(107, "",""),
   goods(108, "",""),
   job(110, "",""),
@@ -230,6 +230,7 @@ enum TagCategory {
   reserve(185),
   microBlog(186),
   account(187),
+  boxOffice(188),
   directShod(500),
   test(900);
 
