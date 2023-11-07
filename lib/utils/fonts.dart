@@ -1,12 +1,12 @@
 part of 'utils.dart';
 
 class Fonts extends TextStyle {
-  static const Vazir = TextStyle(fontFamily: 'Vazir');
-  static const Samim = TextStyle(fontFamily: 'Samim');
-  static const Shabnam = TextStyle(fontFamily: 'Shabnam');
-  static const Sahel = TextStyle(fontFamily: 'Sahel');
-  static const Yekan = TextStyle(fontFamily: 'Yekan');
-  static const IranSansFaNum = TextStyle(fontFamily: 'IranSansFaNum');
+  static const Vazir = TextStyle(fontFamily: 'Vazir', package: "utilities");
+  static const Samim = TextStyle(fontFamily: 'Samim', package: "utilities");
+  static const Shabnam = TextStyle(fontFamily: 'Shabnam', package: "utilities");
+  static const Sahel = TextStyle(fontFamily: 'Sahel', package: "utilities");
+  static const Yekan = TextStyle(fontFamily: 'Yekan', package: "utilities");
+  static const IranSansFaNum = TextStyle(fontFamily: 'IranSansFaNum', package: "utilities");
 
   static TextTheme vazirTextTheme = TextTheme(
     displayLarge: Fonts.Vazir,
@@ -97,7 +97,7 @@ class Fonts extends TextStyle {
     labelMedium: Fonts.Yekan,
     labelSmall: Fonts.Yekan,
   );
-  
+
   static TextTheme iranSansFaNumTextTheme = TextTheme(
     displayLarge: Fonts.IranSansFaNum,
     displayMedium: Fonts.IranSansFaNum,
