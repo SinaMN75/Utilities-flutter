@@ -72,19 +72,19 @@ flutter:
   fonts:
     - family: Vazir
       fonts:
-        - asset: lib/fonts/Vazir.ttf
+        - asset: lib/assets/fonts/Vazir.ttf
     - family: Samim
       fonts:
-        - asset: lib/fonts/Samim.ttf
+        - asset: lib/assets/fonts/Samim.ttf
     - family: Shabnam
       fonts:
-        - asset: lib/fonts/Shabnam.ttf
+        - asset: lib/assets/fonts/Shabnam.ttf
     - family: Sahel
       fonts:
-        - asset: lib/fonts/Sahel.ttf
+        - asset: lib/assets/fonts/Sahel.ttf
     - family: Yekan
       fonts:
-        - asset: lib/fonts/Yekan.ttf
+        - asset: lib/assets/fonts/Yekan.ttf
     - family: IranSansFaNum
       fonts:
-        - asset: lib/fonts/IranSansFaNum.ttf
+        - asset: lib/assets/fonts/IranSansFaNum.ttf
