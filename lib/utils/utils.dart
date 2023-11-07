@@ -13,9 +13,9 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
 import 'package:intl/intl.dart' as intl;
-import 'dart:convert';
 
 part 'constants.dart';
+part 'fonts.dart';
 part 'contacts.dart';
 part 'enums.dart';
 part 'file.dart';

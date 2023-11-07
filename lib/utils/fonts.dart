@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'utils.dart';
 
 class PersianFonts extends TextStyle {
   static const Vazir = TextStyle(fontFamily: 'Vazir');
