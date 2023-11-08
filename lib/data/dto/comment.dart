@@ -17,6 +17,7 @@ class CommentReadDto {
   String? parentId;
   CommentReadDto? parent;
   UserReadDto? user;
+  ProductReadDto? product;
   String? userId;
   CommentJsonDetail? commentJsonDetail;
   List<CommentReadDto>? children;
@@ -34,6 +35,7 @@ class CommentReadDto {
     this.parentId,
     this.parent,
     this.user,
+    this.product,
     this.userId,
     this.commentJsonDetail,
     this.children,
@@ -55,6 +57,7 @@ class CommentReadDto {
         status: json["status"],
         parentId: json["parentId"],
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
+        product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
         parent: json["parent"] == null ? null : CommentReadDto.fromMap(json["parent"]),
         userId: json["userId"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
@@ -74,6 +77,7 @@ class CommentReadDto {
         "parentId": parentId,
         "parent": parent,
         "user": user?.toMap(),
+        "product": product?.toMap(),
         "userId": userId,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "commentJsonDetail": commentJsonDetail?.toMap(),
@@ -128,7 +132,7 @@ class CommentCreateUpdateDto {
   factory CommentCreateUpdateDto.fromMap(final dynamic json) => CommentCreateUpdateDto(
         id: json["id"],
         parentId: json["parentId"],
-    userId: json["userId"],
+        userId: json["userId"],
         score: json["score"],
         comment: json["comment"],
         productId: json["productId"],
