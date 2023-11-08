@@ -247,24 +247,12 @@ enum TagOrder {
   donate(102, ''),
   shop(103, ''),
   job(104, ''),
-  pishtazDelivery(201, ''),
-  sendTipaxDelivery(202, ''),
-  customDelivery(203, ''),
-  onlinePay(301, ''),
-  onSitePay(302, ''),
-  cashPay(303, ''),
-  stripePay(304, ''),
-  coinPay(305, ''),
-  paypalPay(306, ''),
   pending(400, ''),
-  inQueue(401, 'در صف انتشار'),
   paid(402, 'پرداخت شده'),
   inProcess(406, 'در حال پردازش'),
-  shipping(407, 'در حال ارسال'),
-  sent(408, 'ارسال شده'),
+  shipping(407, 'ارسال شده'),
   conflict(409, 'اختلاف'),
-  complete(410, 'تکمیل شده'),
-  all(900, 'همه');
+  complete(410, 'تکمیل شده');
 
   const TagOrder(this.number, this.title);
 
