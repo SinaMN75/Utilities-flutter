@@ -28,6 +28,7 @@ Widget textField({
   final int? maxLength,
   final List<TextInputFormatter>? formatters,
   final List<String>? autoFillHints,
+  final bool required = false,
 }) {
   bool obscure = obscureText;
   return StatefulBuilder(
@@ -35,7 +36,12 @@ Widget textField({
       margin: margin,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (text != null) Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
+        if (text != null) Row(
+          children: <Widget>[
+            Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
+            if (required )const Text("*").bodyMedium(color: Colors.red),
+          ],
+        ),
         TextFormField(
           autofillHints: autoFillHints,
           textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : TextDirection.rtl,
@@ -62,10 +68,10 @@ Widget textField({
             contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
             suffixIcon: obscureText
                 ? IconButton(
-                    splashRadius: 1,
-                    onPressed: () => setState(() => obscure = !obscure),
-                    icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
-                  )
+              splashRadius: 1,
+              onPressed: () => setState(() => obscure = !obscure),
+              icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+            )
                 : suffix,
             prefixIcon: prefix,
           ),
@@ -128,7 +134,7 @@ Widget button({
   final Rx<PageState> buttonState = state.obs;
   if (buttonType == ButtonType.elevated)
     return Obx(
-      () {
+          () {
         if (buttonState.value == PageState.initial)
           return ElevatedButton(
             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundColor), padding: MaterialStateProperty.all(padding)),
@@ -209,11 +215,11 @@ Widget textFieldTypeAhead<T>({
           hideKeyboard: hideKeyboard,
           suggestionsCallback: suggestionsCallback,
           itemBuilder: itemBuilder ??
-              (final BuildContext context, final Object? suggestion) => Container(
-                    margin: const EdgeInsets.all(4),
-                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    child: Text(suggestion.toString()),
-                  ),
+                  (final BuildContext context, final Object? suggestion) => Container(
+                margin: const EdgeInsets.all(4),
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                child: Text(suggestion.toString()),
+              ),
           onSuggestionSelected: onSuggestionSelected,
         ),
       ],
