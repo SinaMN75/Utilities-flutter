@@ -7,6 +7,7 @@ class OrderFilterDto {
     this.status,
     this.sendType,
     this.payType,
+    this.payNumber,
     this.startDate,
     this.tags,
     this.endDate,
@@ -23,6 +24,7 @@ class OrderFilterDto {
         showProducts: json["showProducts"],
         status: json["status"],
         sendType: json["sendType"],
+    payNumber: json["payNumber"],
         payType: json["payType"],
         startDate: json["startDate"],
         endDate: json["endDate"],
@@ -38,6 +40,7 @@ class OrderFilterDto {
   final int? sendType;
   final int? payType;
   final String? startDate;
+  final String? payNumber;
   final String? endDate;
   List<int>? tags;
   final String? userId;
@@ -53,6 +56,7 @@ class OrderFilterDto {
         "status": status,
         "sendType": sendType,
         "payType": payType,
+        "payNumber": payNumber,
         "startDate": startDate,
         "endDate": endDate,
         "userId": userId,

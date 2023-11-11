@@ -45,7 +45,7 @@ class UserReadDto {
   factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
 
   factory UserReadDto.fromMap(final Map<String, dynamic> json) => UserReadDto(
-        id: json["id"],
+        id: json["id"]??'',
         firstName: json["firstName"],
         lastName: json["lastName"],
         fullName: json["fullName"],
