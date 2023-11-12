@@ -4,7 +4,6 @@ enum ButtonType { elevated, text, outlined }
 
 Widget textField({
   final String? text,
-  final String? labelText,
   final double? fontSize,
   final TextEditingController? controller,
   final TextInputType? keyboardType = TextInputType.text,
@@ -28,7 +27,6 @@ Widget textField({
   final int? maxLength,
   final List<TextInputFormatter>? formatters,
   final List<String>? autoFillHints,
-  final bool required = false,
 }) {
   bool obscure = obscureText;
   return StatefulBuilder(
@@ -36,12 +34,7 @@ Widget textField({
       margin: margin,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (text != null) Row(
-          children: <Widget>[
-            Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
-            if (required )const Text("*").bodyMedium(color: Colors.red),
-          ],
-        ),
+        if (text != null) Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
         TextFormField(
           autofillHints: autoFillHints,
           textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : TextDirection.rtl,
@@ -64,7 +57,6 @@ Widget textField({
           decoration: InputDecoration(
             helperStyle: const TextStyle(fontSize: 0),
             hintText: hintText,
-            labelText: labelText,
             contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
             suffixIcon: obscureText
                 ? IconButton(
@@ -230,12 +222,14 @@ Widget radioListTile<T>({
   required final T groupValue,
   required final String title,
   required final String subTitle,
-  required final Function(T?) onChanged,
+  required final Function(T?)? onChanged,
+  final bool toggleable = true,
 }) =>
     RadioListTile<T>(
+      toggleable: toggleable,
       controlAffinity: ListTileControlAffinity.leading,
       title: Text(title),
-      subtitle: Text(subTitle).fit(),
+      subtitle: FittedBox(alignment: Alignment.centerRight, fit: BoxFit.scaleDown, child: Text(subTitle)),
       groupValue: groupValue,
       value: value,
       onChanged: onChanged,
