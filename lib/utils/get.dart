@@ -66,13 +66,12 @@ Future<dynamic> pushReturn(
 
 Future<void> dialog(
   final Widget page, {
-  final bool dialog = false,
   final bool barrierDismissible = true,
+  final bool useSafeArea = false,
   final VoidCallback? onDismiss,
 }) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
-
-  await Get.dialog(_page, useSafeArea: true, barrierDismissible: barrierDismissible).then((final _) => onDismiss != null ? onDismiss() : null);
+  await Get.dialog(_page, useSafeArea: useSafeArea, barrierDismissible: barrierDismissible).then((final _) => onDismiss != null ? onDismiss() : null);
 }
 
 Future<void> offAll(
