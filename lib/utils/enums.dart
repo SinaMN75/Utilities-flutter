@@ -241,10 +241,10 @@ enum TagCategory {
   final int number;
 }
 enum TagReservationChair {
-  blank(101, "", ""),
-  notAvailable(102, "", ""),
-  free(103, "", ""),
-  reserved(104, "", "");
+  blank(101, "غیر فعال", "Blank"),
+  notAvailable(102, "غیر قایل انتخاب", "Not available"),
+  free(103, "آزاد", "Free"),
+  reserved(104, "رزرو شده", "Reserved");
 
   const TagReservationChair(this.number, this.title, this.titleTr1,);
 
