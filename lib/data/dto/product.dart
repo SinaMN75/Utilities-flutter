@@ -830,12 +830,12 @@ class Time {
 class VisitCount {
   final String? visitId;
   final String? userId;
-  final int? count;
+  final int count;
 
   VisitCount({
     this.visitId,
     this.userId,
-    this.count,
+    this.count = 0,
   });
 
   factory VisitCount.fromJson(String str) => VisitCount.fromMap(json.decode(str));
