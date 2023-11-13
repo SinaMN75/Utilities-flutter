@@ -29,6 +29,7 @@ part 'drop_down_textfield.dart';
 part 'flip_card.dart';
 part 'form.dart';
 part 'grid.dart';
+part 'slider.dart';
 part 'image.dart';
 part 'item_video.dart';
 part 'map.dart';
