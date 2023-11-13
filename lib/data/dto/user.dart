@@ -170,6 +170,7 @@ class UserReadDto {
 class UserJsonDetail {
   UserJsonDetail({
     this.instagram,
+    this.address,
     this.telegram,
     this.whatsApp,
     this.linkedIn,
@@ -194,6 +195,7 @@ class UserJsonDetail {
 
   factory UserJsonDetail.fromMap(final Map<String, dynamic> json) => UserJsonDetail(
         instagram: json["instagram"],
+        address: json["address"],
         telegram: json["telegram"],
         whatsApp: json["whatsApp"],
         linkedIn: json["linkedIn"],
@@ -214,6 +216,7 @@ class UserJsonDetail {
         nationalityType: json["nationalityType"],
       );
   final String? instagram;
+  final String? address;
   final String? telegram;
   final String? whatsApp;
   final String? linkedIn;
@@ -237,6 +240,7 @@ class UserJsonDetail {
 
   Map<String, dynamic> toMap() => {
         "instagram": instagram,
+        "address": address,
         "telegram": telegram,
         "whatsApp": whatsApp,
         "linkedIn": linkedIn,
@@ -261,6 +265,7 @@ class UserJsonDetail {
 class UserCreateUpdateDto {
   UserCreateUpdateDto({
     this.id,
+    this.address,
     this.email,
     this.firstName,
     this.lastName,
@@ -315,6 +320,7 @@ class UserCreateUpdateDto {
   factory UserCreateUpdateDto.fromMap(final Map<String, dynamic> json) => UserCreateUpdateDto(
         id: json["id"],
         email: json["email"],
+    address: json["address"],
         firstName: json["firstName"],
         lastName: json["lastName"],
         fullName: json["fullName"],
@@ -364,6 +370,7 @@ class UserCreateUpdateDto {
       );
   final String? id;
   final String? email;
+  final String? address;
   final String? firstName;
   final String? lastName;
   final String? fullName;
@@ -416,6 +423,7 @@ class UserCreateUpdateDto {
   Map<String, dynamic> toMap() => {
         "id": id,
         "email": email,
+        "address": address,
         "firstName": firstName,
         "lastName": lastName,
         "fullName": fullName,
