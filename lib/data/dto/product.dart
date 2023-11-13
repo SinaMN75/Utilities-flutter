@@ -33,7 +33,6 @@ class ProductReadDto {
     this.parent,
     this.jsonDetail,
     this.media,
-    this.forms,
     this.comments,
     this.categories,
     this.productInsights,
@@ -80,7 +79,6 @@ class ProductReadDto {
         jsonDetail: json["jsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["jsonDetail"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
-        forms: json["forms"] == null ? <FormReadDto>[] : List<FormReadDto>.from(json["forms"].cast<Map<String, dynamic>>().map(FormReadDto.fromMap)).toList(),
         children: json["children"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         productInsights: json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
@@ -120,7 +118,6 @@ class ProductReadDto {
   ProductJsonDetail? jsonDetail;
   List<CommentReadDto>? comments;
   List<MediaReadDto>? media;
-  List<FormReadDto>? forms;
   List<int>? tags;
   List<ProductReadDto>? children;
   List<CategoryReadDto>? categories;
@@ -164,7 +161,6 @@ class ProductReadDto {
         "parent": parent?.toMap(),
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "media": media == null ? [] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
-        "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
         "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductReadDto x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "comments": comments == null ? [] : List<CommentReadDto>.from(comments!.map((final CommentReadDto x) => x.toMap())),
@@ -361,7 +357,6 @@ class ProductCreateUpdateDto {
     this.parentId,
     this.keyValues,
     this.categories,
-    this.forms,
     this.teams,
     this.tags,
     this.productInsight,
@@ -422,7 +417,6 @@ class ProductCreateUpdateDto {
   List<String>? categories;
   List<String>? teams;
   List<int>? tags;
-  List<FormReadDto>? forms;
   List<ProductCreateUpdateDto>? children;
   ProductInsight? productInsight;
   List<ReservationTimes>? reservationTimes;
@@ -482,7 +476,6 @@ class ProductCreateUpdateDto {
         "productInsight": productInsight?.toMap(),
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
-        "forms": forms == null ? [] : List<dynamic>.from(forms!.map((final FormReadDto x) => x.toMap())),
         "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductCreateUpdateDto x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.where((final String element) => element != '').map((final String x) => x)),
         "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final String x) => x)),

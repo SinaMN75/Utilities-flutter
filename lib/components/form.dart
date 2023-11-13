@@ -4,6 +4,7 @@ enum ButtonType { elevated, text, outlined }
 
 Widget textField({
   final String? text,
+  final String? labelText,
   final double? fontSize,
   final TextEditingController? controller,
   final TextInputType? keyboardType = TextInputType.text,
@@ -55,6 +56,7 @@ Widget textField({
           onFieldSubmitted: onFieldSubmitted,
           maxLines: lines == 1 ? 1 : 20,
           decoration: InputDecoration(
+            labelText: labelText,
             helperStyle: const TextStyle(fontSize: 0),
             hintText: hintText,
             contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
