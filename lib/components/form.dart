@@ -13,6 +13,7 @@ Widget textField({
   final int lines = 1,
   final VoidCallback? onTap,
   final bool hasClearButton = false,
+  final bool required = false,
   final String? Function(String?)? validator,
   final Widget? prefix,
   final Widget? suffix,
@@ -35,7 +36,11 @@ Widget textField({
       margin: margin,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (text != null) Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
+        if (text != null)
+          iconTextHorizontal(
+            leading: Text(text, style: textTheme.titleSmall),
+            trailing: required ? Text("*").bodyMedium(color: context.theme.colorScheme.error) : SizedBox(),
+          ).paddingSymmetric(vertical: 8),
         TextFormField(
           autofillHints: autoFillHints,
           textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : TextDirection.rtl,
