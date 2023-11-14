@@ -118,29 +118,29 @@ Widget column({
       margin: margin,
       child: isScrollable
           ? SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        controller: scrollController,
-        child: Padding(
-          padding:scrollPadding??EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Column(
-            mainAxisAlignment: mainAxisAlignment,
-            mainAxisSize: mainAxisSize,
-            crossAxisAlignment: crossAxisAlignment,
-            verticalDirection: verticalDirection,
-            children: children,
-          ),
-        ),
-      )
+              physics: const BouncingScrollPhysics(),
+              controller: scrollController,
+              child: Padding(
+                padding: scrollPadding ?? EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: Column(
+                  mainAxisAlignment: mainAxisAlignment,
+                  mainAxisSize: mainAxisSize,
+                  crossAxisAlignment: crossAxisAlignment,
+                  verticalDirection: verticalDirection,
+                  children: children,
+                ),
+              ),
+            )
           : GestureDetector(
-        onTap: onTap,
-        child: Column(
-          mainAxisAlignment: mainAxisAlignment,
-          mainAxisSize: mainAxisSize,
-          crossAxisAlignment: crossAxisAlignment,
-          verticalDirection: verticalDirection,
-          children: children,
-        ),
-      ),
+              onTap: onTap,
+              child: Column(
+                mainAxisAlignment: mainAxisAlignment,
+                mainAxisSize: mainAxisSize,
+                crossAxisAlignment: crossAxisAlignment,
+                verticalDirection: verticalDirection,
+                children: children,
+              ),
+            ),
     );
 
 Widget row({
@@ -207,6 +207,7 @@ Widget defaultTabBar({
   final double? width,
   final double? height,
   final int initialIndex = 0,
+  final TabController? controller
 }) =>
     DefaultTabController(
       initialIndex: initialIndex,
@@ -217,7 +218,11 @@ Widget defaultTabBar({
           SizedBox(
             width: width ?? context.width,
             height: height ?? context.height,
-            child: TabBarView(physics: const NeverScrollableScrollPhysics(), children: children),
+            child: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
+              children: children,
+              controller: controller,
+            ),
           ).expanded()
         ],
       ),
