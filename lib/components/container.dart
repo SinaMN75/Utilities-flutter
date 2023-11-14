@@ -207,7 +207,8 @@ Widget defaultTabBar({
   final double? width,
   final double? height,
   final int initialIndex = 0,
-  final TabController? controller
+  final TabController? controller,
+  final ScrollPhysics? physics,
 }) =>
     DefaultTabController(
       initialIndex: initialIndex,
@@ -219,7 +220,7 @@ Widget defaultTabBar({
             width: width ?? context.width,
             height: height ?? context.height,
             child: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
+              physics: physics,
               children: children,
               controller: controller,
             ),
