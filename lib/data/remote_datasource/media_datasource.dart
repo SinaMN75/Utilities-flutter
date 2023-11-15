@@ -6,11 +6,10 @@ class MediaDataSource {
   MediaDataSource({required this.baseUrl});
 
   Future<void> create({
-    required final List<File> files,
+    required final File file,
     required final List<int> tags,
-    required final VoidCallback action,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(List<MediaReadDto> list)? onResponse,
+    required final VoidCallback onResponse,
+    required final VoidCallback onError,
     final String? categoryId,
     final String? contentId,
     final String? productId,
@@ -29,15 +28,13 @@ class MediaDataSource {
     final String? size,
     final Duration? timeout,
   }) async {
-    files.forEach(
-      (final File i) async {
         dynamic data = null;
-        String fileName = 'file';
+        String fileName = 'file.png';
         if (isWeb) {
-          data = i.readAsBytesSync();
+          data = file.readAsBytesSync();
         } else {
-          data = i.path;
-          fileName = i.path.split('/').last;
+          data = file.path;
+          fileName = file.path.split('/').last;
         }
 
         FormData form = FormData(
@@ -63,14 +60,17 @@ class MediaDataSource {
           },
         );
 
-        await GetConnect().post(
-          '$baseUrl/Media',
-          form,
-          headers: <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""},
-          contentType: "multipart/form-data",
-        );
-      },
-    );
+        try {
+          await GetConnect().post(
+            '$baseUrl/Media',
+            form,
+            headers: <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""},
+            contentType: "multipart/form-data",
+          );
+          onResponse();
+        } catch (e) {
+          onError();
+        }
   }
 
   Future<void> update({
