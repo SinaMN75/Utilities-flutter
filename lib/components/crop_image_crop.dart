@@ -6,49 +6,49 @@ Widget customImageCropper({
   final int maxImages = 5,
 }) {
   final RxList<CroppedFile> cropperFiles = <CroppedFile>[].obs;
-  Widget _items({required final CroppedFile param, required final int index}) => Stack(
-        alignment: Alignment.bottomLeft,
-        children: <Widget>[
-          imageFile(File(param.path), width: 128, height: 128),
-          const Icon(
-            Icons.close_outlined,
-            size: 32,
-            color: Colors.white,
-          ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).onTap(() {
-            cropperFiles.removeAt(index);
-            result(cropperFiles);
-          }),
-        ],
-      ).marginSymmetric(horizontal: 4);
+  Widget _items({required final CroppedFile file, required final int index}) => Stack(
+    alignment: Alignment.bottomLeft,
+    children: <Widget>[
+      Image.network(file.path, width: 128, height: 128),
+      const Icon(
+        Icons.close_outlined,
+        size: 32,
+        color: Colors.white,
+      ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).onTap(() {
+        cropperFiles.removeAt(index);
+        result(cropperFiles);
+      }),
+    ],
+  ).marginSymmetric(horizontal: 4);
 
   return SizedBox(
     height: 110,
     child: SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Obx(
-        () => Row(
+            () => Row(
           children: <Widget>[
             Row(
-              children: cropperFiles.mapIndexed((final int index, final CroppedFile item) => _items(param: cropperFiles[index], index: index)).toList(),
+              children: cropperFiles.mapIndexed((final int index, final CroppedFile item) => _items(file: cropperFiles[index], index: index)).toList(),
             ),
             const SizedBox(width: 8),
             if (cropperFiles.length < maxImages)
               Icon(Icons.add, size: 60, color: context.theme.dividerColor)
                   .container(
-                    radius: 10,
-                    borderColor: context.theme.dividerColor,
-                    width: 100,
-                    height: 100,
-                  )
+                radius: 10,
+                borderColor: context.theme.dividerColor,
+                width: 100,
+                height: 100,
+              )
                   .onTap(
                     () => cropImageCrop(
-                      aspectRatio: aspectRatio,
-                      result: (final CroppedFile cropped) {
-                        cropperFiles.add(cropped);
-                        result(cropperFiles);
-                      },
-                    ),
-                  ),
+                  aspectRatio: aspectRatio,
+                  result: (final CroppedFile cropped) {
+                    cropperFiles.add(cropped);
+                    result(cropperFiles);
+                  },
+                ),
+              ),
           ],
         ),
       ),
@@ -63,26 +63,26 @@ Widget customWebImageCropper({
 }) {
   final RxList<CroppedFile> cropperFiles = <CroppedFile>[].obs;
   Widget _items({required final CroppedFile param, required final int index}) => Stack(
-        alignment: Alignment.bottomLeft,
-        children: <Widget>[
-          Image.network(param.path, width: 128, height: 128),
-          const Icon(
-            Icons.close_outlined,
-            size: 32,
-            color: Colors.white,
-          ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).onTap(() {
-            cropperFiles.removeAt(index);
-            result(cropperFiles);
-          }),
-        ],
-      ).marginSymmetric(horizontal: 4);
+    alignment: Alignment.bottomLeft,
+    children: <Widget>[
+      Image.network(param.path, width: 128, height: 128),
+      const Icon(
+        Icons.close_outlined,
+        size: 32,
+        color: Colors.white,
+      ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).onTap(() {
+        cropperFiles.removeAt(index);
+        result(cropperFiles);
+      }),
+    ],
+  ).marginSymmetric(horizontal: 4);
 
   return SizedBox(
     height: 110,
     child: SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Obx(
-        () => Row(
+            () => Row(
           children: <Widget>[
             Row(
               children: cropperFiles.mapIndexed((final int index, final CroppedFile item) => _items(param: cropperFiles[index], index: index)).toList(),
@@ -91,20 +91,20 @@ Widget customWebImageCropper({
             if (cropperFiles.length < maxImages)
               Icon(Icons.add, size: 60, color: context.theme.dividerColor)
                   .container(
-                    radius: 10,
-                    borderColor: context.theme.dividerColor,
-                    width: 100,
-                    height: 100,
-                  )
+                radius: 10,
+                borderColor: context.theme.dividerColor,
+                width: 100,
+                height: 100,
+              )
                   .onTap(
                     () => cropImageCrop(
-                      aspectRatio: aspectRatio,
-                      result: (final CroppedFile cropped) {
-                        cropperFiles.add(cropped);
-                        result(cropperFiles);
-                      },
-                    ),
-                  ),
+                  aspectRatio: aspectRatio,
+                  result: (final CroppedFile cropped) {
+                    cropperFiles.add(cropped);
+                    result(cropperFiles);
+                  },
+                ),
+              ),
           ],
         ),
       ),
