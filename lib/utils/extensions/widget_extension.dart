@@ -60,6 +60,8 @@ extension WidgetsExtension on Widget {
 
   Widget safeArea() => SafeArea(child: this);
 
+  Widget scrollable() => SingleChildScrollView(child: this);
+
   Widget cornerRadius({
     final double? all,
     final double topLeft = 0,
