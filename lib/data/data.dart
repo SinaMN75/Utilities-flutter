@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/services.dart';
 import 'package:utilities/utilities.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 part 'dto/address.dart';
 part 'dto/app_settings.dart';
@@ -10,7 +7,6 @@ part 'dto/block.dart';
 part 'dto/category.dart';
 part 'dto/insta_post_dto.dart';
 part 'dto/comment.dart';
-part 'dto/contact_information.dart';
 part 'dto/content.dart';
 part 'dto/dashboard_data.dart';
 part 'dto/discount.dart';
