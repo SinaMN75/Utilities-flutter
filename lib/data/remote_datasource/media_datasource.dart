@@ -6,7 +6,8 @@ class MediaDataSource {
   MediaDataSource({required this.baseUrl});
 
   Future<void> create({
-    required final File file,
+    required final Uint8List byte,
+    required final String fileExtension,
     required final List<int> tags,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
@@ -28,18 +29,9 @@ class MediaDataSource {
     final String? size,
     final Duration? timeout,
   }) async {
-        dynamic data = null;
-        String fileName = 'file.png';
-        if (isWeb) {
-          data = file.readAsBytesSync();
-        } else {
-          data = file.path;
-          fileName = file.path.split('/').last;
-        }
-
         FormData form = FormData(
           <String, dynamic>{
-            'Files': MultipartFile(await data, filename: fileName),
+            'Files': MultipartFile(await byte, filename: ":).$fileExtension"),
             'Tags': tags,
             'CategoryId': categoryId,
             'ContentId': contentId,
@@ -54,7 +46,7 @@ class MediaDataSource {
             'CommentId': commentId,
             'BookmarkId': bookmarkId,
             'ChatId': chatId,
-            'Title': title ?? fileName,
+            'Title': title,
             'NotificationId': notificationId,
             'Size': size,
           },
