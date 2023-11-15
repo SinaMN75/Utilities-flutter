@@ -93,7 +93,7 @@ class ProductDataSource {
 
   Future<void> createReaction({
     required final ReactionCreateUpdateDto dto,
-    required final Function(String) onResponse,
+    required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
@@ -101,7 +101,7 @@ class ProductDataSource {
         url: "$baseUrl/ProductV2/CreateReaction",
         body: dto,
         encodeBody: false,
-        action: (final Response response) => onResponse(response.statusCode.toString()),
+        action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
