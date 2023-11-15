@@ -3,7 +3,7 @@ part of '../data.dart';
 extension ContentReadDtoExtension on List<ContentReadDto> {
   List<ContentReadDto> getByTags({required final List<TagContent> tags}) => where(
         (final ContentReadDto e) => e.tags.containsAll(tags.getNumbers()),
-      ).toList();
+  ).toList();
 }
 
 class ContentReadDto {
@@ -139,6 +139,7 @@ class ContentJsonDetail {
 }
 
 class ContentCreateUpdateDto {
+  final String? id;
   final String? title;
   final String? subTitle;
   final String? description;
@@ -160,6 +161,7 @@ class ContentCreateUpdateDto {
   final List<int>? tags;
 
   ContentCreateUpdateDto({
+    this.id,
     this.title,
     this.subTitle,
     this.description,
@@ -186,6 +188,7 @@ class ContentCreateUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory ContentCreateUpdateDto.fromMap(Map<String, dynamic> json) => ContentCreateUpdateDto(
+    id: json["id"],
     title: json["title"],
     subTitle: json["subTitle"],
     description: json["description"],
@@ -208,6 +211,7 @@ class ContentCreateUpdateDto {
   );
 
   Map<String, dynamic> toMap() => {
+    "id": id,
     "title": title,
     "subTitle": subTitle,
     "description": description,
