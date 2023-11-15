@@ -65,11 +65,11 @@ Future<dynamic> pushReturn(
 }
 
 Future<void> dialog(
-    final Widget page, {
-      final bool barrierDismissible = true,
-      final bool useSafeArea = false,
-      final VoidCallback? onDismiss,
-    }) async {
+  final Widget page, {
+  final bool barrierDismissible = true,
+  final bool useSafeArea = false,
+  final VoidCallback? onDismiss,
+}) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
   await Get.dialog(_page, useSafeArea: useSafeArea, barrierDismissible: barrierDismissible).then((final _) => onDismiss != null ? onDismiss() : null);
 }
@@ -78,6 +78,10 @@ Future<void> dialogAlert(
   final Widget page, {
   final bool barrierDismissible = true,
   final bool useSafeArea = false,
+  final Clip clipBehavior = Clip.hardEdge,
+  final bool scrollable = false,
+  final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+  final EdgeInsetsGeometry? contentPadding = EdgeInsets.zero,
   final VoidCallback? onDismiss,
   final Widget? icon,
   final EdgeInsetsGeometry? iconPadding,
@@ -85,8 +89,6 @@ Future<void> dialogAlert(
   final Widget? title,
   final EdgeInsetsGeometry? titlePadding,
   final TextStyle? titleTextStyle,
-  final Widget? content,
-  final EdgeInsetsGeometry? contentPadding,
   final TextStyle? contentTextStyle,
   final List<Widget>? actions,
   final EdgeInsetsGeometry? actionsPadding,
@@ -100,11 +102,8 @@ Future<void> dialogAlert(
   final Color? shadowColor,
   final Color? surfaceTintColor,
   final String? semanticLabel,
-  final Clip clipBehavior = Clip.hardEdge,
-  final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
   final ShapeBorder? shape,
   final AlignmentGeometry? alignment,
-  final bool scrollable = false,
   final ScrollController? scrollController,
   final ScrollController? actionScrollController,
   final Duration? insetAnimationDuration,
