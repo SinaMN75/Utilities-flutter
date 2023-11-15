@@ -109,7 +109,7 @@ class ProductDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
-  Future<void> reaction({
+  Future<void> createReaction({
     required final int reaction,
     required final String productId,
     required final Function(String) onResponse,
