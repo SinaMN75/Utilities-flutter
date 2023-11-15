@@ -51,7 +51,6 @@ part 'remote_datasource/order_datasource.dart';
 part 'remote_datasource/payment_datasource.dart';
 part 'remote_datasource/product_datasource.dart';
 part 'remote_datasource/promote_datasource.dart';
-part 'remote_datasource/reaction_datasource.dart';
 part 'remote_datasource/report_datasource.dart';
 part 'remote_datasource/shopping_cart_datasource.dart';
 part 'remote_datasource/subscription_payment_datasource.dart';
