@@ -100,7 +100,6 @@ class ProductDataSource {
       httpPost(
         url: "$baseUrl/ProductV2/CreateReaction",
         body: dto,
-        encodeBody: false,
         action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
