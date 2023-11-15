@@ -18,24 +18,6 @@ class ProductDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
-  Future<void> simpleSell({
-    required final String buyerUserId,
-    required final String productId,
-    required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
-  }) async =>
-      httpPost(
-        url: "$baseUrl/ProductV2/SimpleSell",
-        body: <String, dynamic>{
-          'buyerUserId': buyerUserId,
-          "productId": productId,
-        },
-        encodeBody: false,
-        action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
-
   Future<void> update({
     required final ProductCreateUpdateDto dto,
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
@@ -110,31 +92,27 @@ class ProductDataSource {
       );
 
   Future<void> createReaction({
-    required final int reaction,
-    required final String productId,
+    required final ReactionCreateUpdateDto dto,
     required final Function(String) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/ProductV2/CreateReaction",
-        body: <String, dynamic>{
-          "reaction": reaction,
-          "productId": productId,
-        },
+        body: dto,
         encodeBody: false,
         action: (final Response response) => onResponse(response.statusCode.toString()),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   Future<void> filterReaction({
-    required final ReactionFilterDto filter,
+    required final ReactionFilterDto dto,
     required final Function(GenericResponse<ReactionProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
-        body: filter,
+        body: dto,
         url: "$baseUrl/ProductV2/FilterReaction",
         action: (final Response response) => onResponse(GenericResponse<ReactionProductReadDto>.fromJson(response.body, fromMap: ReactionProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),

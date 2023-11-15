@@ -233,9 +233,10 @@ class ProductJsonDetail {
         minPrice: json["minPrice"],
         shippingCost: json["shippingCost"],
         shippingTime: json["shippingTime"],
-    visitCounts: json["visitCounts"] == null ? [] : List<VisitCount>.from(json["visitCounts"]!.map((x) => VisitCount.fromMap(x))),
-    keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
-        reservationTimes: json["reservationTimes"] == null ? <ReservationTimes>[] : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
+        visitCounts: json["visitCounts"] == null ? [] : List<VisitCount>.from(json["visitCounts"]!.map((x) => VisitCount.fromMap(x))),
+        keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
+        reservationTimes:
+            json["reservationTimes"] == null ? <ReservationTimes>[] : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
       );
@@ -297,8 +298,8 @@ class ProductJsonDetail {
         "minPrice": minPrice,
         "shippingCost": shippingCost,
         "shippingTime": shippingTime,
-    "visitCounts": visitCounts == null ? [] : List<dynamic>.from(visitCounts!.map((x) => x.toMap())),
-    "reservationTimes": reservationTimes == null ? [] : List<dynamic>.from(reservationTimes!.map((x) => x.toMap())),
+        "visitCounts": visitCounts == null ? [] : List<dynamic>.from(visitCounts!.map((x) => x.toMap())),
+        "reservationTimes": reservationTimes == null ? [] : List<dynamic>.from(reservationTimes!.map((x) => x.toMap())),
         "startDate": startDate?.toIso8601String(),
         "endDate": endDate?.toIso8601String(),
       };
@@ -843,14 +844,38 @@ class VisitCount {
   String toJson() => json.encode(toMap());
 
   factory VisitCount.fromMap(Map<String, dynamic> json) => VisitCount(
-    visitId: json["visitId"],
-    userId: json["userId"],
-    count: json["count"],
-  );
+        visitId: json["visitId"],
+        userId: json["userId"],
+        count: json["count"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "visitId": visitId,
-    "userId": userId,
-    "count": count,
-  };
+        "visitId": visitId,
+        "userId": userId,
+        "count": count,
+      };
+}
+
+class ReactionCreateUpdateDto {
+  final int? reaction;
+  final String? productId;
+
+  ReactionCreateUpdateDto({
+    this.reaction,
+    this.productId,
+  });
+
+  factory ReactionCreateUpdateDto.fromJson(String str) => ReactionCreateUpdateDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ReactionCreateUpdateDto.fromMap(Map<String, dynamic> json) => ReactionCreateUpdateDto(
+        reaction: json["reaction"],
+        productId: json["productId"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "reaction": reaction,
+        "productId": productId,
+      };
 }
