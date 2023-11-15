@@ -171,7 +171,7 @@ Future<void> offAll(
 
 void off(final Widget page) => Get.off(() => page);
 
-void back() => Get.back();
+void back() => Get.back(closeOverlays: true);
 
 void snackbarDone({final String title = "انجام شد", final String subtitle = ""}) => snackbarGreen(
       title: title,
