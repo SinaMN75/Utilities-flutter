@@ -108,11 +108,15 @@ Future<void> dialogAlert(
   final ScrollController? actionScrollController,
   final Duration? insetAnimationDuration,
   final Curve? insetAnimationCurve,
+  final double minWidth = 0,
+  final double maxWidth = 1000,
+  final double minHeight = 0,
+  final double maxHeight = 1000,
 }) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
   await Get.dialog(
     AlertDialog(
-      content: _page,
+      content: _page.container(constraints: BoxConstraints(maxWidth: maxWidth, maxHeight: maxHeight, minHeight: minHeight, minWidth: minWidth)),
       title: title,
       contentPadding: contentPadding,
       alignment: alignment,

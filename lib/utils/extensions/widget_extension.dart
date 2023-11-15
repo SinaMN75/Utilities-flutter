@@ -79,8 +79,10 @@ extension WidgetsExtension on Widget {
     final Color borderColor = Colors.transparent,
     final EdgeInsets? padding,
     final EdgeInsets? margin,
+    final BoxConstraints? constraints,
   }) =>
       Container(
+        constraints: constraints,
         width: width,
         height: height,
         padding: padding,
