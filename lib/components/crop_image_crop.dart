@@ -2,6 +2,7 @@ part of 'components.dart';
 
 Widget customImageCropper({
   required final Function(List<CroppedFile> cropFiles) result,
+  final List<String>? images,
   final CropAspectRatio? aspectRatio,
   final int maxImages = 5,
 }) {
@@ -29,63 +30,15 @@ Widget customImageCropper({
             () => Row(
           children: <Widget>[
             Row(
-              children: cropperFiles.mapIndexed((final int index, final CroppedFile item) => _items(file: cropperFiles[index], index: index)).toList(),
-            ),
-            const SizedBox(width: 8),
-            if (cropperFiles.length < maxImages)
-              Icon(Icons.add, size: 60, color: context.theme.dividerColor)
-                  .container(
-                radius: 10,
-                borderColor: context.theme.dividerColor,
-                width: 100,
-                height: 100,
-              )
-                  .onTap(
-                    () => cropImageCrop(
-                  aspectRatio: aspectRatio,
-                  result: (final CroppedFile cropped) {
-                    cropperFiles.add(cropped);
-                    result(cropperFiles);
-                  },
-                ),
-              ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
-
-Widget customWebImageCropper({
-  required final Function(List<CroppedFile> cropFiles) result,
-  final CropAspectRatio? aspectRatio,
-  final int maxImages = 5,
-}) {
-  final RxList<CroppedFile> cropperFiles = <CroppedFile>[].obs;
-  Widget _items({required final CroppedFile param, required final int index}) => Stack(
-    alignment: Alignment.bottomLeft,
-    children: <Widget>[
-      Image.network(param.path, width: 128, height: 128),
-      const Icon(
-        Icons.close_outlined,
-        size: 32,
-        color: Colors.white,
-      ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).onTap(() {
-        cropperFiles.removeAt(index);
-        result(cropperFiles);
-      }),
-    ],
-  ).marginSymmetric(horizontal: 4);
-
-  return SizedBox(
-    height: 110,
-    child: SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Obx(
-            () => Row(
-          children: <Widget>[
-            Row(
-              children: cropperFiles.mapIndexed((final int index, final CroppedFile item) => _items(param: cropperFiles[index], index: index)).toList(),
+              children: <Widget>[
+                if (images != null)
+                  ...images.map((final String file) => image(file, width: 110, height: 110)).toList(),
+                ...cropperFiles
+                    .mapIndexed(
+                      (final int index, final CroppedFile item) => _items(file: cropperFiles[index], index: index),
+                )
+                    .toList()
+              ],
             ),
             const SizedBox(width: 8),
             if (cropperFiles.length < maxImages)
