@@ -16,7 +16,7 @@ class UtilitiesTagUtils {
   }
 
   static TagContent tagContentFromIntList(final List<int> tags) {
-    late TagContent tagContent;
+    TagContent tagContent = TagContent.none;
     TagContent.values.forEach((final TagContent i) {
       if (tags.contains(i)) tagContent = i;
     });
@@ -382,6 +382,7 @@ enum TagUser {
 }
 
 enum TagContent {
+  none(0, "null"),
   terms(101, "قوانین و مقررات"),
   aboutUs(102, "درباره ما"),
   homeBanner1(103, "بنر ۱"),
