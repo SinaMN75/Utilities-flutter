@@ -374,23 +374,23 @@ enum TagUser {
 }
 
 enum TagContent {
-  terms(101),
-  aboutUs(102),
-  homeBanner1(103),
-  homeBanner2(104),
-  info1(105),
-  faq(106),
-  homeBannerSmall1(107),
-  homeBannerSmall2(108),
-  contactInfo(109),
-  SmallDetail1(110),
-  SmallDetail2(111);
+  terms(101, "قوانین و مقررات"),
+  aboutUs(102, "درباره ما"),
+  homeBanner1(103, "بنر ۱"),
+  homeBanner2(104, "بنر ۲"),
+  faq(106, "سوالات متداول"),
+  homeBannerSmall1(107, "بنر کوچک ۱"),
+  homeBannerSmall2(108, "بنر کوچک ۲"),
+  contactInfo(109, "اطلاعات تماس"),
+  SmallDetail1(110, "اطلاعات ۱"),
+  SmallDetail2(111, "اطلاعات ۲");
 
-  const TagContent(this.number);
+  const TagContent(this.number, this.title);
 
   @override
   String toString() => name;
   final int number;
+  final String title;
 }
 
 enum TagMedia {
