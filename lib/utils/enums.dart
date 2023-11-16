@@ -15,12 +15,12 @@ class UtilitiesTagUtils {
     return "";
   }
 
-  static String tagContentTitleFromTagList(final List<int> tags) {
-    String title = "";
+  static TagContent tagContentFromIntList(final List<int> tags) {
+    late TagContent tagContent;
     TagContent.values.forEach((final TagContent i) {
-      if (tags.contains(i)) title = i.title;
+      if (tags.contains(i)) tagContent = i;
     });
-    return title;
+    return tagContent;
   }
 }
 
