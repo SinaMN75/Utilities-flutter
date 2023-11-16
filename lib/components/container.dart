@@ -14,6 +14,8 @@ Widget scaffold({
   final bool extendBodyBehindAppBar = false,
   final FloatingActionButtonLocation floatingActionButtonLocation = FloatingActionButtonLocation.endFloat,
   final BoxConstraints? constraints,
+  final double? width,
+  final double? height,
   final DrawerCallback? onDrawerChanged,
 }) =>
     GestureDetector(
@@ -30,6 +32,8 @@ Widget scaffold({
         floatingActionButtonLocation: floatingActionButtonLocation,
         bottomNavigationBar: bottomNavigationBar,
         body: Container(
+          width: width,
+          height: height,
           constraints: constraints ?? const BoxConstraints(maxWidth: 600),
           decoration: decoration,
           padding: padding,
