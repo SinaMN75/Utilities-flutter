@@ -18,7 +18,7 @@ class UtilitiesTagUtils {
   static TagContent tagContentFromIntList(final List<int> tags) {
     TagContent tagContent = TagContent.none;
     TagContent.values.forEach((final TagContent i) {
-      if (tags.contains(i)) tagContent = i;
+      if (tags.contains(i.number)) tagContent = i;
     });
     return tagContent;
   }
