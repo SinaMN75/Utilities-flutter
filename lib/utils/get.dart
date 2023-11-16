@@ -131,7 +131,7 @@ Future<void> dialogAlert(
       contentTextStyle: contentTextStyle,
       icon: defaultCloseButton
           ? IconButton(
-              onPressed: () {},
+              onPressed: back,
               icon: Icon(Icons.close, color: context.theme.colorScheme.error),
             ).alignAtCenterRight()
           : icon,
