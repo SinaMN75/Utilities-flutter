@@ -108,7 +108,7 @@ Widget textFieldPersianDatePicker({
         await showPersianDatePicker(
           context: context,
           initialDate: jalali.value,
-          firstDate: Jalali(1350),
+          firstDate: Jalali(1320),
           lastDate: Jalali(1405),
         ),
       );
