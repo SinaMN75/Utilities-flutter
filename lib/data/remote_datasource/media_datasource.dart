@@ -11,7 +11,7 @@ class MediaDataSource {
     required final VoidCallback onResponse,
     required final VoidCallback onError,
     final Uint8List? byte,
-    final File? file,
+    final String? filePath,
     final String? categoryId,
     final String? contentId,
     final String? productId,
@@ -32,7 +32,7 @@ class MediaDataSource {
   }) async {
     FormData form = FormData(
       <String, dynamic>{
-        'Files': MultipartFile(byte ?? file?.path, filename: ":).$fileExtension"),
+        'Files': MultipartFile(byte ?? filePath, filename: ":).$fileExtension"),
         'Tags': tags,
         'CategoryId': categoryId,
         'ContentId': contentId,
