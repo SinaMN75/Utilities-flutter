@@ -8,10 +8,16 @@ class ScrapperDataSource {
   Future<void> readByUserName({
     required final String username,
     required final Function(InstaPostReadDto response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    required final Function() onError,
   }) async {
-    final Response i = await GetConnect().get("$baseUrl/Scrapper/GetInstaPostRapidApi/$username");
-    onResponse(InstaPostReadDto.fromJson(i.bodyString ?? "{}"));
+    httpGet(
+      url: "$baseUrl/Scrapper/GetInstaPostRapidApi/$username",
+      action: (final Response response) {
+        onResponse(InstaPostReadDto.fromJson(response.bodyString ?? "{}"));
+      },
+      error: (final Response response) {
+        onError();
+      },
+    );
   }
 }
