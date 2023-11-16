@@ -82,6 +82,7 @@ Future<void> dialogAlert(
   final bool scrollable = false,
   final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
   final EdgeInsetsGeometry? contentPadding = EdgeInsets.zero,
+  final bool defaultCloseButton = false,
   final VoidCallback? onDismiss,
   final Widget? icon,
   final EdgeInsetsGeometry? iconPadding,
@@ -128,7 +129,12 @@ Future<void> dialogAlert(
       buttonPadding: buttonPadding,
       clipBehavior: clipBehavior,
       contentTextStyle: contentTextStyle,
-      icon: icon,
+      icon: defaultCloseButton
+          ? IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.close, color: context.theme.colorScheme.error),
+            ).alignAtCenterRight()
+          : icon,
       iconColor: iconColor,
       iconPadding: iconPadding,
       insetPadding: insetPadding,
