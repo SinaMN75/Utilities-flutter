@@ -382,7 +382,9 @@ enum TagContent {
   faq(106),
   homeBannerSmall1(107),
   homeBannerSmall2(108),
-  contactInfo(109);
+  contactInfo(109),
+  SmallDetail1(110),
+  SmallDetail2(111);
 
   const TagContent(this.number);
 
