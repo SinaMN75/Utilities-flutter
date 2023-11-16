@@ -40,9 +40,9 @@ extension WidgetsExtension on Widget {
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
   Widget copyTextToClipboardOnTap(final String text, {final VoidCallback? action}) => onTap(() {
-    copyToClipboard(text);
-    if (action != null) action();
-  });
+        copyToClipboard(text);
+        if (action != null) action();
+      });
 
   Widget onLongPress(final GestureTapCallback? onPressed) => GestureDetector(onLongPress: onPressed, child: this);
 
@@ -60,7 +60,10 @@ extension WidgetsExtension on Widget {
 
   Widget safeArea() => SafeArea(child: this);
 
-  Widget scrollable() => SingleChildScrollView(child: this);
+  Widget scrollable({final Axis scrollDirection = Axis.vertical}) => SingleChildScrollView(
+        child: this,
+        scrollDirection: scrollDirection,
+      );
 
   Widget cornerRadius({
     final double? all,
