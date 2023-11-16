@@ -14,6 +14,14 @@ class UtilitiesTagUtils {
     if (tags.contains(TagComment.rejected.number)) return TagComment.rejected.title;
     return "";
   }
+
+  static String tagContentTitleFromTagList(final List<int> tags) {
+    String title = "";
+    TagContent.values.forEach((final TagContent i) {
+      if (tags.contains(i)) title = i.title;
+    });
+    return title;
+  }
 }
 
 extension TagMediaExtension on List<TagMedia> {
