@@ -20,7 +20,7 @@ void showColorPickerBottomSheet({
             title: "ثبت",
             onTap: () {
               onColorChanged(color);
-              back();
+              back(closeOverlays: false);
             }),
       ],
     ),
