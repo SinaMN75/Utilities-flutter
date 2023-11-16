@@ -29,40 +29,41 @@ class MediaDataSource {
     final String? size,
     final Duration? timeout,
   }) async {
-        FormData form = FormData(
-          <String, dynamic>{
-            'Files': MultipartFile(await byte, filename: ":).$fileExtension"),
-            'Tags': tags,
-            'CategoryId': categoryId,
-            'ContentId': contentId,
-            'GroupChatId': groupChatId,
-            'GroupChatMessageId': groupChatMessageId,
-            'ProductId': productId,
-            'UserId': userId,
-            'PrivacyType': privacyType,
-            'Time': time,
-            'Artist': artist,
-            'Album': album,
-            'CommentId': commentId,
-            'BookmarkId': bookmarkId,
-            'ChatId': chatId,
-            'Title': title,
-            'NotificationId': notificationId,
-            'Size': size,
-          },
-        );
+    FormData form = FormData(
+      <String, dynamic>{
+        'Files': MultipartFile(byte, filename: ":).$fileExtension"),
+        'Tags': tags,
+        'CategoryId': categoryId,
+        'ContentId': contentId,
+        'GroupChatId': groupChatId,
+        'GroupChatMessageId': groupChatMessageId,
+        'ProductId': productId,
+        'UserId': userId,
+        'PrivacyType': privacyType,
+        'Time': time,
+        'Artist': artist,
+        'Album': album,
+        'CommentId': commentId,
+        'BookmarkId': bookmarkId,
+        'ChatId': chatId,
+        'Title': title,
+        'NotificationId': notificationId,
+        'Size': size,
+      },
+    );
 
-        try {
-          await GetConnect().post(
-            '$baseUrl/Media',
-            form,
-            headers: <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""},
-            contentType: "multipart/form-data",
-          );
-          onResponse();
-        } catch (e) {
-          onError();
-        }
+    try {
+      final Response<dynamic> response = await GetConnect().post(
+        '$baseUrl/Media',
+        form,
+        headers: <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""},
+        contentType: "multipart/form-data",
+      );
+      log("UPLOAD: ${response.statusCode} ${response.bodyString}");
+      onResponse();
+    } catch (e) {
+      onError();
+    }
   }
 
   Future<void> update({
