@@ -22,6 +22,10 @@ ColorScheme colorScheme = context.theme.colorScheme;
 Locale? currentLocale = Get.locale;
 bool isDebugMode = kDebugMode;
 
+bool isMobileSize() => context.width < 850;
+bool isTabletSize() => context.width < 1100 && context.width >= 850;
+bool isDesktopSize() => context.width >= 1100;
+
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
 
 Future<dynamic> push(
