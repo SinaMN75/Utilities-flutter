@@ -172,7 +172,7 @@ void back() => Get.back(closeOverlays: true);
 void snackbarDone({final String title = "انجام شد", final String subtitle = ""}) => snackbarGreen(
       title: title,
       subtitle: subtitle,
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 2000),
     );
 
 void snackbarGreen({
