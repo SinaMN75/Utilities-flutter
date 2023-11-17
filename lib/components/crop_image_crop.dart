@@ -1,35 +1,42 @@
 part of 'components.dart';
 
+class CroppedImageResult {
+  CroppedImageResult({required this.path, required this.bytes});
+
+  final String path;
+  final Uint8List bytes;
+}
+
 Widget customImageCropper({
-  required final Function(List<(String, Uint8List)> cropFiles) result,
+  required final Function(List<CroppedImageResult> cropFiles) result,
   final List<MediaReadDto>? images,
   final Function(MediaReadDto dto)? onMediaDelete,
   final CropAspectRatio? aspectRatio,
   final int maxImages = 5,
 }) {
   final RxList<MediaReadDto> media = (images ?? <MediaReadDto>[]).obs;
-  final RxList<(String, Uint8List)> cropperFiles = <(String, Uint8List)>[].obs;
-  Widget _items({required final (String, Uint8List) file, required final int index}) => Stack(
-    alignment: Alignment.bottomLeft,
-    children: <Widget>[
-      Image.network(file.$1, width: 128, height: 128),
-      const Icon(
-        Icons.close_outlined,
-        size: 32,
-        color: Colors.white,
-      ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).onTap(() {
-        cropperFiles.removeAt(index);
-        result(cropperFiles);
-      }),
-    ],
-  ).marginSymmetric(horizontal: 4);
+  final RxList<CroppedImageResult> cropperFiles = <CroppedImageResult>[].obs;
+  Widget _items({required final CroppedImageResult file, required final int index}) => Stack(
+        alignment: Alignment.bottomLeft,
+        children: <Widget>[
+          Image.network(file.path, width: 128, height: 128),
+          const Icon(
+            Icons.close_outlined,
+            size: 32,
+            color: Colors.white,
+          ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).onTap(() {
+            cropperFiles.removeAt(index);
+            result(cropperFiles);
+          }),
+        ],
+      ).marginSymmetric(horizontal: 4);
 
   return SizedBox(
     height: 110,
     child: SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Obx(
-            () => Row(
+        () => Row(
           children: <Widget>[
             Row(
               children: <Widget>[
@@ -37,36 +44,36 @@ Widget customImageCropper({
                   ...media
                       .map(
                         (final MediaReadDto i) => Stack(
-                      children: <Widget>[
-                        image(i.url, width: 110, height: 110, fit: BoxFit.cover),
-                        if (onMediaDelete != null)
-                          Icon(Icons.close, color: context.theme.colorScheme.background)
-                              .container(
-                            backgroundColor: context.theme.colorScheme.error,
-                            radius: 100,
-                          )
-                              .onTap(
-                                () => alertDialog(
-                              title: "حذف تصویر",
-                              subtitle: "آیا از حذف تصویر اطمینان دارید؟",
-                              action1: (
-                              "بله",
-                                  () {
-                                media.remove(i);
-                                onMediaDelete(i);
-                                back();
-                              }
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  )
+                          children: <Widget>[
+                            image(i.url, width: 110, height: 110, fit: BoxFit.cover),
+                            if (onMediaDelete != null)
+                              Icon(Icons.close, color: context.theme.colorScheme.background)
+                                  .container(
+                                    backgroundColor: context.theme.colorScheme.error,
+                                    radius: 100,
+                                  )
+                                  .onTap(
+                                    () => alertDialog(
+                                      title: "حذف تصویر",
+                                      subtitle: "آیا از حذف تصویر اطمینان دارید؟",
+                                      action1: (
+                                        "بله",
+                                        () {
+                                          media.remove(i);
+                                          onMediaDelete(i);
+                                          back();
+                                        }
+                                      ),
+                                    ),
+                                  ),
+                          ],
+                        ),
+                      )
                       .toList(),
                 ...cropperFiles
                     .mapIndexed(
-                      (final int index, final (String, Uint8List) item) => _items(file: cropperFiles[index], index: index),
-                )
+                      (final int index, final CroppedImageResult item) => _items(file: cropperFiles[index], index: index),
+                    )
                     .toList()
               ],
             ),
@@ -74,20 +81,20 @@ Widget customImageCropper({
             if (cropperFiles.length < maxImages)
               Icon(Icons.add, size: 60, color: context.theme.dividerColor)
                   .container(
-                radius: 10,
-                borderColor: context.theme.dividerColor,
-                width: 100,
-                height: 100,
-              )
+                    radius: 10,
+                    borderColor: context.theme.dividerColor,
+                    width: 100,
+                    height: 100,
+                  )
                   .onTap(
                     () => cropImageCrop(
-                  aspectRatio: aspectRatio,
-                  result: (final (String, Uint8List) cropped) {
-                    cropperFiles.add(cropped);
-                    result(cropperFiles);
-                  },
-                ),
-              ),
+                      aspectRatio: aspectRatio,
+                      result: (final CroppedImageResult cropped) {
+                        cropperFiles.add(cropped);
+                        result(cropperFiles);
+                      },
+                    ),
+                  ),
           ],
         ),
       ),
@@ -96,7 +103,7 @@ Widget customImageCropper({
 }
 
 Future<void> cropImageCrop({
-  required final Function((String, Uint8List) croppedFile) result,
+  required final Function(CroppedImageResult croppedFile) result,
   final int? compressQuality,
   final int? boundaryWidth,
   final int? boundaryHeight,
@@ -122,8 +129,6 @@ Future<void> cropImageCrop({
         ),
       ],
     );
-    if (croppedFile != null) {
-      result((croppedFile.path, await croppedFile.readAsBytes()));
-    }
+    if (croppedFile != null) result(CroppedImageResult(path: croppedFile.path, bytes: await croppedFile.readAsBytes()));
   }
 }
