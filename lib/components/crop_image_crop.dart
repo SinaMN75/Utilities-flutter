@@ -1,18 +1,18 @@
 part of 'components.dart';
 
 Widget customImageCropper({
-  required final Function(List<CroppedFile> cropFiles) result,
+  required final Function(List<(String, Uint8List)> cropFiles) result,
   final List<MediaReadDto>? images,
   final Function(MediaReadDto dto)? onMediaDelete,
   final CropAspectRatio? aspectRatio,
   final int maxImages = 5,
 }) {
   final RxList<MediaReadDto> media = (images ?? <MediaReadDto>[]).obs;
-  final RxList<CroppedFile> cropperFiles = <CroppedFile>[].obs;
-  Widget _items({required final CroppedFile file, required final int index}) => Stack(
+  final RxList<(String, Uint8List)> cropperFiles = <(String, Uint8List)>[].obs;
+  Widget _items({required final (String, Uint8List) file, required final int index}) => Stack(
     alignment: Alignment.bottomLeft,
     children: <Widget>[
-      Image.network(file.path, width: 128, height: 128),
+      Image.network(file.$1, width: 128, height: 128),
       const Icon(
         Icons.close_outlined,
         size: 32,
@@ -65,7 +65,7 @@ Widget customImageCropper({
                       .toList(),
                 ...cropperFiles
                     .mapIndexed(
-                      (final int index, final CroppedFile item) => _items(file: cropperFiles[index], index: index),
+                      (final int index, final (String, Uint8List) item) => _items(file: cropperFiles[index], index: index),
                 )
                     .toList()
               ],
@@ -82,7 +82,7 @@ Widget customImageCropper({
                   .onTap(
                     () => cropImageCrop(
                   aspectRatio: aspectRatio,
-                  result: (final CroppedFile cropped) {
+                  result: (final (String, Uint8List) cropped) {
                     cropperFiles.add(cropped);
                     result(cropperFiles);
                   },
@@ -96,7 +96,7 @@ Widget customImageCropper({
 }
 
 Future<void> cropImageCrop({
-  required final Function(CroppedFile croppedFile) result,
+  required final Function((String, Uint8List) croppedFile) result,
   final int? compressQuality,
   final int? boundaryWidth,
   final int? boundaryHeight,
@@ -123,7 +123,7 @@ Future<void> cropImageCrop({
       ],
     );
     if (croppedFile != null) {
-      result(croppedFile);
+      result((croppedFile.path, await croppedFile.readAsBytes()));
     }
   }
 }
