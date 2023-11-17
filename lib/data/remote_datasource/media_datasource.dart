@@ -6,12 +6,11 @@ class MediaDataSource {
   MediaDataSource({required this.baseUrl});
 
   Future<void> create({
+    required final FileData fileData,
     required final String fileExtension,
     required final List<int> tags,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
-    final Uint8List? byte,
-    final String? filePath,
     final String? categoryId,
     final String? contentId,
     final String? productId,
@@ -32,7 +31,7 @@ class MediaDataSource {
   }) async {
     FormData form = FormData(
       <String, dynamic>{
-        'Files': MultipartFile(byte ?? filePath, filename: ":).$fileExtension"),
+        'Files': MultipartFile(fileData.path ?? fileData.bytes, filename: ":).$fileExtension"),
         'Tags': tags,
         'CategoryId': categoryId,
         'ContentId': contentId,

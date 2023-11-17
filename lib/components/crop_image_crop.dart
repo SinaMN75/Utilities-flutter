@@ -1,25 +1,25 @@
 part of 'components.dart';
 
-class CroppedImageResult {
-  CroppedImageResult({required this.path, required this.bytes});
+class FileData {
+  FileData({this.path, this.bytes});
 
-  final String path;
-  final Uint8List bytes;
+  final String? path;
+  final Uint8List? bytes;
 }
 
 Widget customImageCropper({
-  required final Function(List<CroppedImageResult> cropFiles) result,
+  required final Function(List<FileData> cropFiles) result,
   final List<MediaReadDto>? images,
   final Function(MediaReadDto dto)? onMediaDelete,
   final CropAspectRatio? aspectRatio,
   final int maxImages = 5,
 }) {
   final RxList<MediaReadDto> media = (images ?? <MediaReadDto>[]).obs;
-  final RxList<CroppedImageResult> cropperFiles = <CroppedImageResult>[].obs;
-  Widget _items({required final CroppedImageResult file, required final int index}) => Stack(
+  final RxList<FileData> cropperFiles = <FileData>[].obs;
+  Widget _items({required final FileData file, required final int index}) => Stack(
         alignment: Alignment.bottomLeft,
         children: <Widget>[
-          Image.network(file.path, width: 128, height: 128),
+          Image.network(file.path!, width: 128, height: 128),
           const Icon(
             Icons.close_outlined,
             size: 32,
@@ -72,7 +72,7 @@ Widget customImageCropper({
                       .toList(),
                 ...cropperFiles
                     .mapIndexed(
-                      (final int index, final CroppedImageResult item) => _items(file: cropperFiles[index], index: index),
+                      (final int index, final FileData item) => _items(file: cropperFiles[index], index: index),
                     )
                     .toList()
               ],
@@ -89,7 +89,7 @@ Widget customImageCropper({
                   .onTap(
                     () => cropImageCrop(
                       aspectRatio: aspectRatio,
-                      result: (final CroppedImageResult cropped) {
+                      result: (final FileData cropped) {
                         cropperFiles.add(cropped);
                         result(cropperFiles);
                       },
@@ -103,7 +103,7 @@ Widget customImageCropper({
 }
 
 Future<void> cropImageCrop({
-  required final Function(CroppedImageResult croppedFile) result,
+  required final Function(FileData croppedFile) result,
   final int? compressQuality,
   final int? boundaryWidth,
   final int? boundaryHeight,
@@ -129,6 +129,6 @@ Future<void> cropImageCrop({
         ),
       ],
     );
-    if (croppedFile != null) result(CroppedImageResult(path: croppedFile.path, bytes: await croppedFile.readAsBytes()));
+    if (croppedFile != null) result(FileData(path: croppedFile.path, bytes: await croppedFile.readAsBytes()));
   }
 }
