@@ -7,57 +7,66 @@ Widget customImageCropper({
   final CropAspectRatio? aspectRatio,
   final int maxImages = 5,
 }) {
+  final RxList<MediaReadDto> media = (images ?? <MediaReadDto>[]).obs;
   final RxList<CroppedFile> cropperFiles = <CroppedFile>[].obs;
   Widget _items({required final CroppedFile file, required final int index}) => Stack(
-        alignment: Alignment.bottomLeft,
-        children: <Widget>[
-          Image.network(file.path, width: 128, height: 128),
-          const Icon(
-            Icons.close_outlined,
-            size: 32,
-            color: Colors.white,
-          ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).onTap(() {
-            cropperFiles.removeAt(index);
-            result(cropperFiles);
-          }),
-        ],
-      ).marginSymmetric(horizontal: 4);
+    alignment: Alignment.bottomLeft,
+    children: <Widget>[
+      Image.network(file.path, width: 128, height: 128),
+      const Icon(
+        Icons.close_outlined,
+        size: 32,
+        color: Colors.white,
+      ).container(width: 32, height: 32, backgroundColor: Colors.red, radius: 50).onTap(() {
+        cropperFiles.removeAt(index);
+        result(cropperFiles);
+      }),
+    ],
+  ).marginSymmetric(horizontal: 4);
 
   return SizedBox(
     height: 110,
     child: SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Obx(
-        () => Row(
+            () => Row(
           children: <Widget>[
             Row(
               children: <Widget>[
                 if (images != null)
-                  ...images
+                  ...media
                       .map(
                         (final MediaReadDto i) => Stack(
-                          children: [
-                            image(i.url, width: 110, height: 110),
-                            if (onMediaDelete != null)
-                              IconButton(
-                                onPressed: () => alertDialog(
-                                  title: "حذف تصویر",
-                                  subtitle: "آیا از حذف تصویر اطمینان دارید؟",
-                                  action1: ("", () => onMediaDelete(i)),
-                                ),
-                                icon: Icon(Icons.close),
-                              ).container(
-                                backgroundColor: context.theme.colorScheme.error,
-                                radius: 100,
+                      children: <Widget>[
+                        image(i.url, width: 110, height: 110, fit: BoxFit.cover),
+                        if (onMediaDelete != null)
+                          Icon(Icons.close, color: context.theme.colorScheme.background)
+                              .container(
+                            backgroundColor: context.theme.colorScheme.error,
+                            radius: 100,
+                          )
+                              .onTap(
+                                () => alertDialog(
+                              title: "حذف تصویر",
+                              subtitle: "آیا از حذف تصویر اطمینان دارید؟",
+                              action1: (
+                              "بله",
+                                  () {
+                                media.remove(i);
+                                onMediaDelete(i);
+                                back();
+                              }
                               ),
-                          ],
-                        ),
-                      )
+                            ),
+                          ),
+                      ],
+                    ),
+                  )
                       .toList(),
                 ...cropperFiles
                     .mapIndexed(
                       (final int index, final CroppedFile item) => _items(file: cropperFiles[index], index: index),
-                    )
+                )
                     .toList()
               ],
             ),
@@ -65,20 +74,20 @@ Widget customImageCropper({
             if (cropperFiles.length < maxImages)
               Icon(Icons.add, size: 60, color: context.theme.dividerColor)
                   .container(
-                    radius: 10,
-                    borderColor: context.theme.dividerColor,
-                    width: 100,
-                    height: 100,
-                  )
+                radius: 10,
+                borderColor: context.theme.dividerColor,
+                width: 100,
+                height: 100,
+              )
                   .onTap(
                     () => cropImageCrop(
-                      aspectRatio: aspectRatio,
-                      result: (final CroppedFile cropped) {
-                        cropperFiles.add(cropped);
-                        result(cropperFiles);
-                      },
-                    ),
-                  ),
+                  aspectRatio: aspectRatio,
+                  result: (final CroppedFile cropped) {
+                    cropperFiles.add(cropped);
+                    result(cropperFiles);
+                  },
+                ),
+              ),
           ],
         ),
       ),
