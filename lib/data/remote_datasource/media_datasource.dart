@@ -31,7 +31,7 @@ class MediaDataSource {
   }) async {
     FormData form = FormData(
       <String, dynamic>{
-        'Files': MultipartFile(isWeb ? fileData.bytes : fileData.path, filename: ":).$fileExtension"),
+        'Files': MultipartFile(kIsWeb ? fileData.bytes : fileData.path, filename: ":).$fileExtension"),
         'Tags': tags,
         'CategoryId': categoryId,
         'ContentId': contentId,
