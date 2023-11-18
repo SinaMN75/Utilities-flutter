@@ -1,7 +1,7 @@
 part of 'utils.dart';
 
 void showFilePicker({
-  required final Function(List<File> file) action,
+  required final Function(List<FileData> file) action,
   final FileType fileType = FileType.any,
   final bool allowMultiple = false,
   final String? initialDirectory,
@@ -21,24 +21,24 @@ void showFilePicker({
     allowMultiple: allowMultiple,
     allowedExtensions: allowedExtensions,
   );
-  final List<File> files = <File>[];
+  final List<FileData> files = <FileData>[];
 
   if (result != null) {
     if (kIsWeb) {
       throw Exception("FUCK");
     } else {
       if (allowMultiple) {
-        result.files.forEach((final PlatformFile i) async => files.add(File(i.path!)));
+        result.files.forEach((final PlatformFile i) async => files.add(FileData(path: i.path, bytes: i.bytes)));
         action(files);
       } else
-        action(<File>[File(result.files.single.path!)]);
+        action(<FileData>[FileData(path: result.files.single.path, bytes: result.files.single.bytes)]);
     }
   }
 }
 
-Future<List<XFile>> multiImagePicker() async => await ImagePicker().pickMultiImage();
+Future<List<XFile>> multiImagePicker() => ImagePicker().pickMultiImage();
 
-Future<XFile?> imagePicker() async => await ImagePicker().pickImage(source: ImageSource.gallery);
+Future<XFile?> imagePicker() => ImagePicker().pickImage(source: ImageSource.gallery);
 
 Future<File> writeToFile(final Uint8List data) async {
   final Directory tempDir = await getTemporaryDirectory();
@@ -69,26 +69,9 @@ void showMultiFilePicker({
   }
 }
 
-void showFilePickerWeb({
-  required final Function(PlatformFile file) action,
-  final FileType fileType = FileType.image,
-  final bool allowMultiple = false,
-  final List<String>? allowedExtensions,
-}) async {
-  final FilePickerResult? result = await FilePicker.platform.pickFiles(
-    type: fileType,
-    allowMultiple: allowMultiple,
-    allowedExtensions: allowedExtensions,
-  );
-  if (result != null) {
-    final PlatformFile file = await result.files[0];
-    action(file);
-  }
-}
-
-Future<CroppedFile?> cropImage({
+Future<FileData?> cropImage({
   required final String filePath,
-  final Function(CroppedFile file)? action,
+  final Function(FileData file)? action,
   final int? maxWidth,
   final int? maxHeight,
   final CropStyle cropStyle = CropStyle.rectangle,
@@ -151,8 +134,9 @@ Future<CroppedFile?> cropImage({
           ),
     ],
   );
-  if (action != null) action(result!);
-  return result;
+  final FileData fileData = FileData(path: result?.path, bytes: await result?.readAsBytes());
+  if (action != null) action(FileData(path: result?.path, bytes: await result?.readAsBytes()));
+  return fileData;
 }
 
 Future<XFile> getCompressImageFile({
@@ -178,7 +162,6 @@ Future<Uint8List> getCompressImageFileWeb({
   final int quality = 70,
   final bool advanceCompress = true,
 }) async {
-  final int advanceQuality = 20;
-  final Uint8List result = await FlutterImageCompress.compressWithList(bytes, quality: advanceCompress ? advanceQuality : quality);
+  final Uint8List result = await FlutterImageCompress.compressWithList(bytes, quality: advanceCompress ? 20 : quality);
   return result;
 }
