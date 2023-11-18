@@ -9,16 +9,9 @@
 part of 'utils.dart';
 
 Future<List<Contact>> readContacts() async {
-  if (await FlutterContacts.requestPermission()) {
-    return await FlutterContacts.getContacts(
-      withAccounts: true,
-      withGroups: true,
-      sorted: true,
-      withPhoto: true,
-      withProperties: true,
-      withThumbnail: true,
-      deduplicateProperties: true,
-    );
-  }
-  return <Contact>[];
+  final bool hasPermission = await FlutterContacts.requestPermission(readonly: true);
+  if (hasPermission)
+    return FlutterContacts.getContacts(withAccounts: true, withGroups: true, withPhoto: true, withProperties: true, withThumbnail: true);
+  else
+    return <Contact>[];
 }
