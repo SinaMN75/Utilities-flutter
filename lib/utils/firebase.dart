@@ -1,6 +1,4 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:utilities/utilities2.dart';
-import 'package:utilities/utils/utils.dart';
+part of 'utils.dart';
 
 class FireBaseApi {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
@@ -16,7 +14,7 @@ class FireBaseApi {
   Future<String?> getFcmToken() async {
     await _firebaseMessaging.requestPermission(announcement: true, carPlay: true, criticalAlert: true, provisional: true);
     final String? fcmToken = await _firebaseMessaging.getToken();
-    log("FCM Token: $fcmToken");
+    developer.log("FCM Token: $fcmToken");
     return fcmToken;
   }
 }

@@ -2,14 +2,12 @@ import 'dart:developer' as developer;
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:package_info_plus/package_info_plus.dart';
@@ -49,6 +47,8 @@ part 'extensions/text_extension.dart';
 part 'extensions/widget_extension.dart';
 
 part 'file.dart';
+
+part 'firebase.dart';
 
 part 'fonts.dart';
 
