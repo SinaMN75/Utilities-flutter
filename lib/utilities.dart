@@ -35,6 +35,7 @@ export 'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_messaging/firebase_messaging.dart';
 export 'package:firebase_analytics/firebase_analytics.dart';
 export 'package:firebase_crashlytics/firebase_crashlytics.dart';
+export 'package:google_sign_in/google_sign_in.dart';
 
 export 'components/components.dart';
 export 'components/fdottedline.dart';
