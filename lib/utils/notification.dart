@@ -3,7 +3,7 @@ part of 'utils.dart';
 void showNotification({
   required final String title,
   required final String message,
-  required final VoidCallback onNotificationTap,
+  required final Function(NotificationResponse) onNotificationTap,
   final String channelId = "channelId",
   final String channelName = "channelName",
   final String channelDescription = "channelDescription",
@@ -13,14 +13,14 @@ void showNotification({
   flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestPermission();
   final InitializationSettings initializationSettings = InitializationSettings(
     android: const AndroidInitializationSettings('@mipmap/launcher_icon'),
-    iOS: DarwinInitializationSettings(
-      onDidReceiveLocalNotification: (final int? id, final String? title, final String? body, final String? payload) => onNotificationTap,
-    ),
-    linux: const LinuxInitializationSettings(defaultActionName: 'Open notification'),
+    iOS: DarwinInitializationSettings(),
+    linux: const LinuxInitializationSettings(defaultActionName: ''),
+    macOS: DarwinInitializationSettings(),
   );
   flutterLocalNotificationsPlugin.initialize(
     initializationSettings,
-    onDidReceiveNotificationResponse: (final NotificationResponse notificationResponse) => onNotificationTap,
+    onDidReceiveNotificationResponse: onNotificationTap,
+    onDidReceiveBackgroundNotificationResponse: onNotificationTap,
   );
   flutterLocalNotificationsPlugin.show(
     0,
