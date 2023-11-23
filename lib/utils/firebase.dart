@@ -5,9 +5,9 @@ class FireBaseApi {
 
   Future<void> initNotifications({required final Function(RemoteMessage? message) onMessageReceived}) async {
     if (isAndroid) {
-      getFcmToken();
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) => onMessageReceived(message));
-      FirebaseMessaging.onBackgroundMessage((RemoteMessage message) => onMessageReceived(message));
+      await getFcmToken();
+      FirebaseMessaging.onMessage.listen(onMessageReceived);
+      FirebaseMessaging.onBackgroundMessage(onMessageReceived as BackgroundMessageHandler);
     }
   }
 
