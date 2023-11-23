@@ -37,6 +37,7 @@ export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:video_box/video_box.dart';
 export 'package:firebase_core/firebase_core.dart';
+export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:webviewx_plus/webviewx_plus.dart';
 
 export 'components/components.dart';
