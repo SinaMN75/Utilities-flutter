@@ -45,7 +45,7 @@ class UserReadDto {
   factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
 
   factory UserReadDto.fromMap(final Map<String, dynamic> json) => UserReadDto(
-        id: json["id"]??'',
+        id: json["id"] ?? '',
         firstName: json["firstName"],
         lastName: json["lastName"],
         fullName: json["fullName"],
@@ -114,7 +114,7 @@ class UserReadDto {
   final String? expireUpgradeAccount;
   final int? ageCategory;
   final UserJsonDetail? jsonDetail;
-   List<int>? tags;
+  List<int>? tags;
   final List<MediaReadDto>? media;
   final List<CategoryReadDto>? categories;
   final bool? isFollowing;
@@ -173,6 +173,7 @@ class UserJsonDetail {
     this.address,
     this.telegram,
     this.whatsApp,
+    this.fcmToken,
     this.linkedIn,
     this.dribble,
     this.soundCloud,
@@ -197,6 +198,7 @@ class UserJsonDetail {
         instagram: json["instagram"],
         address: json["address"],
         telegram: json["telegram"],
+        fcmToken: json["fcmToken"],
         whatsApp: json["whatsApp"],
         linkedIn: json["linkedIn"],
         dribble: json["dribble"],
@@ -219,6 +221,7 @@ class UserJsonDetail {
   final String? address;
   final String? telegram;
   final String? whatsApp;
+  final String? fcmToken;
   final String? linkedIn;
   final String? dribble;
   final String? soundCloud;
@@ -244,6 +247,7 @@ class UserJsonDetail {
         "telegram": telegram,
         "whatsApp": whatsApp,
         "linkedIn": linkedIn,
+        "fcmToken": fcmToken,
         "dribble": dribble,
         "soundCloud": soundCloud,
         "pinterest": pinterest,
@@ -275,6 +279,7 @@ class UserCreateUpdateDto {
     this.appUserName,
     this.appPhoneNumber,
     this.appEmail,
+    this.fcmToken,
     this.region,
     this.state,
     this.badge,
@@ -320,11 +325,12 @@ class UserCreateUpdateDto {
   factory UserCreateUpdateDto.fromMap(final Map<String, dynamic> json) => UserCreateUpdateDto(
         id: json["id"],
         email: json["email"],
-    address: json["address"],
+        address: json["address"],
         firstName: json["firstName"],
         lastName: json["lastName"],
         fullName: json["fullName"],
         bio: json["bio"],
+        fcmToken: json["fcmToken"],
         headline: json["headline"],
         appUserName: json["appUserName"],
         appPhoneNumber: json["appPhoneNumber"],
@@ -374,6 +380,7 @@ class UserCreateUpdateDto {
   final String? firstName;
   final String? lastName;
   final String? fullName;
+  final String? fcmToken;
   final String? bio;
   final String? headline;
   final String? appUserName;
@@ -430,6 +437,7 @@ class UserCreateUpdateDto {
         "bio": bio,
         "headline": headline,
         "appUserName": appUserName,
+        "fcmToken": fcmToken,
         "appPhoneNumber": appPhoneNumber,
         "appEmail": appEmail,
         "region": region,
