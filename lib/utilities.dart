@@ -36,6 +36,7 @@ export 'package:syncfusion_flutter_charts/charts.dart';
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:video_box/video_box.dart';
+export 'package:firebase_core/firebase_core.dart';
 export 'package:webviewx_plus/webviewx_plus.dart';
 
 export 'components/components.dart';
@@ -46,8 +47,9 @@ export 'utils/excel_to_json.dart';
 export 'utils/utils.dart';
 export 'view_models/view_models.dart';
 
-void initUtilities({FirebaseOptions? firebaseOptions}) async {
+Future<void> initUtilities({final FirebaseOptions? firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   if (firebaseOptions != null) await Firebase.initializeApp(options: firebaseOptions);
+  return;
 }
