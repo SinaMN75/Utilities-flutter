@@ -903,3 +903,151 @@ class AuthenticateDto {
         "isForeigner": isForeigner,
       };
 }
+
+class RegisterDto {
+  final String? userName;
+  final String? firstName;
+  final String? lastName;
+  final String? email;
+  final String? phoneNumber;
+  final String? password;
+  final bool? sendSms;
+  final JsonDetail? jsonDetail;
+
+  RegisterDto({
+    this.userName,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.phoneNumber,
+    this.password,
+    this.sendSms,
+    this.jsonDetail,
+  });
+
+  factory RegisterDto.fromJson(String str) => RegisterDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory RegisterDto.fromMap(Map<String, dynamic> json) => RegisterDto(
+        userName: json["userName"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        email: json["email"],
+        phoneNumber: json["phoneNumber"],
+        password: json["password"],
+        sendSms: json["sendSms"],
+        jsonDetail: json["jsonDetail"] == null ? null : JsonDetail.fromMap(json["jsonDetail"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "userName": userName,
+        "firstName": firstName,
+        "lastName": lastName,
+        "email": email,
+        "phoneNumber": phoneNumber,
+        "password": password,
+        "sendSms": sendSms,
+        "jsonDetail": jsonDetail?.toMap(),
+      };
+}
+
+class JsonDetail {
+  final String? instagram;
+  final String? telegram;
+  final String? whatsApp;
+  final String? linkedIn;
+  final String? dribble;
+  final String? soundCloud;
+  final String? pinterest;
+  final String? website;
+  final String? activity;
+  final String? color;
+  final String? code;
+  final String? shebaNumber;
+  final String? address;
+  final String? fcmToken;
+  final String? boosted;
+  final int? deliveryPrice1;
+  final int? deliveryPrice2;
+  final int? deliveryPrice3;
+  final int? privacyType;
+  final int? legalAuthenticationType;
+  final int? nationalityType;
+
+  JsonDetail({
+    this.instagram,
+    this.telegram,
+    this.whatsApp,
+    this.linkedIn,
+    this.dribble,
+    this.soundCloud,
+    this.pinterest,
+    this.website,
+    this.activity,
+    this.color,
+    this.code,
+    this.shebaNumber,
+    this.address,
+    this.fcmToken,
+    this.boosted,
+    this.deliveryPrice1,
+    this.deliveryPrice2,
+    this.deliveryPrice3,
+    this.privacyType,
+    this.legalAuthenticationType,
+    this.nationalityType,
+  });
+
+  factory JsonDetail.fromJson(String str) => JsonDetail.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory JsonDetail.fromMap(Map<String, dynamic> json) => JsonDetail(
+        instagram: json["instagram"],
+        telegram: json["telegram"],
+        whatsApp: json["whatsApp"],
+        linkedIn: json["linkedIn"],
+        dribble: json["dribble"],
+        soundCloud: json["soundCloud"],
+        pinterest: json["pinterest"],
+        website: json["website"],
+        activity: json["activity"],
+        color: json["color"],
+        code: json["code"],
+        shebaNumber: json["shebaNumber"],
+        address: json["address"],
+        fcmToken: json["fcmToken"],
+        boosted: json["boosted"],
+        deliveryPrice1: json["deliveryPrice1"],
+        deliveryPrice2: json["deliveryPrice2"],
+        deliveryPrice3: json["deliveryPrice3"],
+        privacyType: json["privacyType"],
+        legalAuthenticationType: json["legalAuthenticationType"],
+        nationalityType: json["nationalityType"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "instagram": instagram,
+        "telegram": telegram,
+        "whatsApp": whatsApp,
+        "linkedIn": linkedIn,
+        "dribble": dribble,
+        "soundCloud": soundCloud,
+        "pinterest": pinterest,
+        "website": website,
+        "activity": activity,
+        "color": color,
+        "code": code,
+        "shebaNumber": shebaNumber,
+        "address": address,
+        "fcmToken": fcmToken,
+        "boosted": boosted,
+        "deliveryPrice1": deliveryPrice1,
+        "deliveryPrice2": deliveryPrice2,
+        "deliveryPrice3": deliveryPrice3,
+        "privacyType": privacyType,
+        "legalAuthenticationType": legalAuthenticationType,
+        "nationalityType": nationalityType,
+      };
+}
