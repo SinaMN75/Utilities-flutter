@@ -6,7 +6,7 @@ class UserDataSource {
   UserDataSource({required this.baseUrl});
 
   Future<void> create({
-    required final UserCreateUpdateDto dto,
+    required final RegisterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorerrorResponse) onError,
     final Function(String error)? failure,
