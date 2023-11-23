@@ -152,7 +152,7 @@ Widget button({
           return SlideCountdown(
             separatorStyle: TextStyle(color: context.theme.colorScheme.onBackground),
             decoration: const BoxDecoration(),
-            textStyle: context.theme.textTheme.bodyMedium!,
+            style: context.theme.textTheme.bodyMedium!,
             duration: Duration(seconds: countDownSeconds),
             onDone: () => buttonState(PageState.initial),
           ).alignAtCenter();

@@ -10,7 +10,7 @@ void showNotification({
   final String? payload,
 }) {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestPermission();
+  flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
   final InitializationSettings initializationSettings = InitializationSettings(
     android: const AndroidInitializationSettings('@mipmap/launcher_icon'),
     iOS: DarwinInitializationSettings(),
