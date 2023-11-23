@@ -1,8 +1,13 @@
 part of 'utils.dart';
 
 void showNotification({
-  required final VoidCallback onNotificationTap,
+  required final String title,
   required final String message,
+  required final VoidCallback onNotificationTap,
+  final String channelId = "channelId",
+  final String channelName = "channelName",
+  final String channelDescription = "channelDescription",
+  final String? payload,
 }) {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestPermission();
@@ -19,13 +24,14 @@ void showNotification({
   );
   flutterLocalNotificationsPlugin.show(
     0,
-    'پورشیا',
+    title,
     message,
-    const NotificationDetails(
+    payload: payload,
+    NotificationDetails(
       android: AndroidNotificationDetails(
-        'your channel id',
-        'your channel name',
-        channelDescription: 'your channel description',
+        channelId,
+        channelName,
+        channelDescription: channelDescription,
         importance: Importance.max,
         priority: Priority.high,
         ticker: 'ticker',
@@ -33,6 +39,5 @@ void showNotification({
         colorized: true,
       ),
     ),
-    payload: 'item x',
   );
 }
