@@ -1,5 +1,5 @@
-import 'dart:math';
 import 'dart:developer' as developer;
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
@@ -9,35 +9,60 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
-import 'package:intl/intl.dart' as intl;
 
 part 'constants.dart';
-part 'fonts.dart';
+
 part 'contacts.dart';
+
 part 'enums.dart';
-part 'file.dart';
-part 'get.dart';
-part 'internet_connection_checker.dart';
-part 'http_interceptor.dart';
-part 'launch.dart';
-part 'local_storage.dart';
-part 'local_auth.dart';
-part 'location.dart';
+
 part 'extensions/align_extension.dart';
-part 'extensions/date_extension.dart';
-part 'extensions/file_extension.dart';
-part 'extensions/iterable_extension.dart';
-part 'extensions/number_extension.dart';
-part 'extensions/shimmer_extension.dart';
-part 'extensions/string_extension.dart';
-part 'extensions/text_extension.dart';
-part 'extensions/widget_extension.dart';
+
 part 'extensions/color_extension.dart';
+
 part 'extensions/comment_extension.dart';
+
+part 'extensions/date_extension.dart';
+
 part 'extensions/enums_extension.dart';
+
+part 'extensions/file_extension.dart';
+
+part 'extensions/iterable_extension.dart';
+
+part 'extensions/number_extension.dart';
+
+part 'extensions/shimmer_extension.dart';
+
+part 'extensions/string_extension.dart';
+
+part 'extensions/text_extension.dart';
+
+part 'extensions/widget_extension.dart';
+
+part 'file.dart';
+
+part 'fonts.dart';
+
+part 'get.dart';
+
+part 'http_interceptor.dart';
+
+part 'internet_connection_checker.dart';
+
+part 'launch.dart';
+
+part 'local_auth.dart';
+
+part 'local_storage.dart';
+
+part 'location.dart';
+
+part 'notification.dart';
 
 void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
       Duration(milliseconds: milliseconds),

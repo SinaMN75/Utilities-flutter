@@ -1,6 +1,4 @@
-import 'dart:html';
-
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+part of 'utils.dart';
 
 void showNotification({
   required final VoidCallback onNotificationTap,
