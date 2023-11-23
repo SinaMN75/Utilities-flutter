@@ -31,6 +31,10 @@ export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:video_box/video_box.dart';
 export 'package:webviewx_plus/webviewx_plus.dart';
+export 'package:firebase_auth/firebase_auth.dart';
+export 'package:firebase_messaging/firebase_messaging.dart';
+export 'package:firebase_analytics/firebase_analytics.dart';
+export 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 export 'components/components.dart';
 export 'components/fdottedline.dart';
