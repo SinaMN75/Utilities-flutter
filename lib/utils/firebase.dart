@@ -19,5 +19,5 @@ class UtilitiesFirebase {
     return fcmToken;
   }
 
-  void deleteFcmToken() => _firebaseMessaging.deleteToken();
+  static void deleteFcmToken() => _firebaseMessaging.deleteToken();
 }
