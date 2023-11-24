@@ -1,31 +1,22 @@
 part of '../data.dart';
 
 class FirebaseDataSource {
+  final String authorization;
+
+  FirebaseDataSource({required this.authorization});
 
   Future<void> sendPushNotification({
     required final String fcmToken,
     required final String title,
     required final String body,
   }) async =>
-      httpPost(
-        url: "https://fcm.googleapis.com/fcm/send",
-        body: """
-        {
-    "to": "$fcmToken",
-    "notification": {
-        "title": "$title",
-        "body": "$body",
-        "mutable_content": true,
-        "sound": "Tri-tone"
-    },
-    "data": {
-        "url": "Hello",
-        "dl": "<deeplink action on tap of notification>"
-    }
-}
-        """,
-        encodeBody: false,
-        action: (Response response) {},
-        error: (Response response) {},
+      await GetConnect().post(
+        "https://fcm.googleapis.com/fcm/send",
+        <String, dynamic>{
+          "to": fcmToken,
+          "notification": <String, dynamic>{"title": title, "body": body, "mutable_content": true, "sound": "Tri-tone"},
+          "data": <String, String>{"url": "hello"}
+        },
+        headers: <String, String>{"Authorization": authorization},
       );
 }
