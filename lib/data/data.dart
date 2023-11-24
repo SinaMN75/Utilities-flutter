@@ -36,6 +36,7 @@ part 'dto/transaction.dart';
 part 'dto/user.dart';
 part 'local_datasource/local_datasource.dart';
 part 'remote_datasource/address_datasource.dart';
+part 'remote_datasource/firebase_datasource.dart';
 part 'remote_datasource/app_settings_datasource.dart';
 part 'remote_datasource/block_datasource.dart';
 part 'remote_datasource/category_datasource.dart';
