@@ -9,14 +9,16 @@ class UtilitiesFirebase {
       await getFcmToken();
       FirebaseMessaging.onMessage.listen(onMessageReceived);
       FirebaseMessaging.onBackgroundMessage(onMessageReceived as BackgroundMessageHandler);
-    }
+    } else return;
   }
 
   static Future<String?> getFcmToken() async {
-    await _firebaseMessaging.requestPermission(announcement: true, carPlay: true, criticalAlert: true, provisional: true);
-    final String? fcmToken = await _firebaseMessaging.getToken();
-    developer.log("FCM Token: $fcmToken");
-    return fcmToken;
+    if (isAndroid) {
+      await _firebaseMessaging.requestPermission(announcement: true, carPlay: true, criticalAlert: true, provisional: true);
+      final String? fcmToken = await _firebaseMessaging.getToken();
+      developer.log("FCM Token: $fcmToken");
+      return fcmToken;
+    } else return null;
   }
 
   static void deleteFcmToken() => _firebaseMessaging.deleteToken();
