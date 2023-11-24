@@ -48,20 +48,16 @@ export 'utils/excel_to_json.dart';
 export 'utils/utils.dart';
 export 'view_models/view_models.dart';
 
-Future<void> initUtilities({final FirebaseOptions? firebaseOptions, final Function(FirebaseAnalytics)? onFirebaseInitialized}) async {
+Future<void> initUtilities({final FirebaseOptions? firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   if (firebaseOptions != null) {
     await Firebase.initializeApp(options: firebaseOptions);
-
-    final FirebaseAnalytics instance = FirebaseAnalytics.instance;
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     PlatformDispatcher.instance.onError = (final Object error, final StackTrace stack) {
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       return true;
     };
-
-    if (onFirebaseInitialized != null) onFirebaseInitialized(instance);
   }
   return;
 }
