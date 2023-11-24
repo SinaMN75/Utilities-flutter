@@ -17,4 +17,6 @@ class FireBaseApi {
     developer.log("FCM Token: $fcmToken");
     return fcmToken;
   }
+
+  void deleteFcmToken() => _firebaseMessaging.deleteToken();
 }
