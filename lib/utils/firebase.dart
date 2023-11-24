@@ -1,6 +1,6 @@
 part of 'utils.dart';
 
-class FireBaseApi {
+class UtilitiesFirebase {
   static final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   static final FirebaseAnalytics instance = FirebaseAnalytics.instance;
 
