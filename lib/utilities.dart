@@ -55,7 +55,7 @@ Future<void> initUtilities({final FirebaseOptions? firebaseOptions}) async {
     await Firebase.initializeApp(options: firebaseOptions);
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
     PlatformDispatcher.instance.onError = (final Object error, final StackTrace stack) {
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      FirebaseCrashlytics.instance.recordError(error, stack);
       return true;
     };
   }
