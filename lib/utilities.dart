@@ -1,4 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:utilities/utilities.dart';
 
 export 'dart:async';
@@ -8,11 +8,13 @@ export 'package:cached_network_image/cached_network_image.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:firebase_analytics/firebase_analytics.dart';
 export 'package:firebase_auth/firebase_auth.dart';
+export 'package:firebase_core/firebase_core.dart';
 export 'package:firebase_crashlytics/firebase_crashlytics.dart';
 export 'package:firebase_messaging/firebase_messaging.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_colorpicker/flutter_colorpicker.dart';
 export 'package:flutter_contacts/contact.dart';
+export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_svg/flutter_svg.dart';
@@ -36,8 +38,6 @@ export 'package:syncfusion_flutter_charts/charts.dart';
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:video_box/video_box.dart';
-export 'package:firebase_core/firebase_core.dart';
-export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:webviewx_plus/webviewx_plus.dart';
 
 export 'components/components.dart';
@@ -48,9 +48,20 @@ export 'utils/excel_to_json.dart';
 export 'utils/utils.dart';
 export 'view_models/view_models.dart';
 
-Future<void> initUtilities({final FirebaseOptions? firebaseOptions}) async {
+Future<void> initUtilities({final FirebaseOptions? firebaseOptions, final Function(FirebaseAnalytics)? onFirebaseInitialized}) async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  if (firebaseOptions != null) await Firebase.initializeApp(options: firebaseOptions);
+  if (firebaseOptions != null) {
+    await Firebase.initializeApp(options: firebaseOptions);
+
+    final FirebaseAnalytics instance = FirebaseAnalytics.instance;
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    PlatformDispatcher.instance.onError = (final Object error, final StackTrace stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
+
+    if (onFirebaseInitialized != null) onFirebaseInitialized(instance);
+  }
   return;
 }
