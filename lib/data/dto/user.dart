@@ -712,6 +712,7 @@ class VerifyMobileForLoginDto {
     this.lastName,
     this.username,
     this.instagram,
+    this.fcmToken,
   });
 
   factory VerifyMobileForLoginDto.fromJson(final String str) => VerifyMobileForLoginDto.fromMap(json.decode(str));
@@ -723,6 +724,7 @@ class VerifyMobileForLoginDto {
         lastName: json["lastName"],
         username: json["username"],
         instagram: json["instagram"],
+        fcmToken: json["fcmToken"],
       );
 
   final String mobile;
@@ -731,6 +733,7 @@ class VerifyMobileForLoginDto {
   final String? lastName;
   final String? username;
   final String? instagram;
+  final String? fcmToken;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -741,6 +744,7 @@ class VerifyMobileForLoginDto {
         "lastName": lastName,
         "username": username,
         "instagram": instagram,
+        "fcmToken": fcmToken,
       };
 }
 
