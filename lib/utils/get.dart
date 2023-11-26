@@ -349,8 +349,9 @@ void snackbarRed({
 
 void alertDialog({
   required final String title,
-  required final String subtitle,
   required final (String, VoidCallback) action1,
+  final String? subtitle,
+  final Widget? content,
   final (String, VoidCallback)? action2,
   final (String, VoidCallback)? action3,
   final VoidCallback? onDismiss,
@@ -359,7 +360,7 @@ void alertDialog({
     dialog(
       AlertDialog(
         title: Text(title),
-        content: Text(subtitle),
+        content: content ?? Text(subtitle!),
         actions: <Widget>[
           TextButton(onPressed: action1.$2, child: Text(action1.$1)),
           if (action2 != null) TextButton(onPressed: action2.$2, child: Text(action2.$1)),
