@@ -359,7 +359,7 @@ void alertDialog({
 }) =>
     dialog(
       AlertDialog(
-        title: Text(title),
+        title: Text(title).bodyLarge(),
         content: content ?? Text(subtitle!),
         actions: <Widget>[
           TextButton(onPressed: action1.$2, child: Text(action1.$1)),
