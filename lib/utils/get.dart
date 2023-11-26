@@ -23,7 +23,9 @@ Locale? currentLocale = Get.locale;
 bool isDebugMode = kDebugMode;
 
 bool isMobileSize() => context.width < 850;
+
 bool isTabletSize() => context.width < 1100 && context.width >= 850;
+
 bool isDesktopSize() => context.width >= 1100;
 
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
@@ -358,8 +360,8 @@ void alertDialog({
   final bool barrierDismissible = true,
 }) =>
     dialog(
-      AlertDialog(
-        title: Text(title).bodyLarge(),
+      CupertinoAlertDialog(
+        title: Text(title).bodyLarge().fit(),
         content: content ?? Text(subtitle!),
         actions: <Widget>[
           TextButton(onPressed: action1.$2, child: Text(action1.$1)),
