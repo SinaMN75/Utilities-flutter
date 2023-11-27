@@ -12,7 +12,7 @@ Future<void> request(
   final Map<String, String>? headers,
   final String userAgent = 'SinaMN75',
   final bool followRedirects = true,
-  final Duration timeout = const Duration(minutes: 60),
+  final Duration timeout = const Duration(seconds: 30),
   final int maxRedirects = 5,
   final bool allowAutoSignedCert = false,
   final bool sendUserAgent = false,
