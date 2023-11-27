@@ -8,9 +8,11 @@ class AppSettingsDataSource {
   Future<void> readAppSettings({
     required final Function(GenericResponse<AppSettingsReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
+    final int timeoutInSeconds = 10,
     final Function(String error)? failure,
   }) async =>
       httpGet(
+        timeout: Duration(seconds: timeoutInSeconds),
         url: "$baseUrl/AppSettings",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AppSettingsReadDto>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
