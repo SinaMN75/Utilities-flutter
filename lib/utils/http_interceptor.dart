@@ -19,12 +19,12 @@ Future<void> request(
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
 }) async {
-  final Map<String, String> header = <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""};
-
-  if (headers != null) header.addAll(headers);
-
-  Response<dynamic> response = const Response<dynamic>();
   try {
+    final Map<String, String> header = <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""};
+
+    if (headers != null) header.addAll(headers);
+
+    Response<dynamic> response = const Response<dynamic>();
     dynamic params;
     if (body != null) {
       if (encodeBody)
@@ -49,20 +49,20 @@ Future<void> request(
     if (httpMethod == EHttpMethod.put) response = await connect.put(url, params, headers: header);
     if (httpMethod == EHttpMethod.patch) response = await connect.patch(url, params, headers: header);
     if (httpMethod == EHttpMethod.delete) response = await connect.delete(url, headers: header);
-  } catch (e) {
-    error(response);
-    if (failure != null) failure(error.toString());
-  }
 
-  if (kDebugMode)
-    delay(
-      100,
-      () => response.logRaw(params: (body == null || !encodeBody) ? "" : body.toJson()),
-    );
-  if (response.isSuccessful()) {
-    action(response);
-  } else {
-    error(response);
+    if (kDebugMode)
+      delay(
+        100,
+        () => response.logRaw(params: (body == null || !encodeBody) ? "" : body.toJson()),
+      );
+    if (response.isSuccessful()) {
+      action(response);
+    } else {
+      error(response);
+    }
+  } catch (e) {
+    error(Response(statusCode: 999));
+    if (failure != null) failure(error.toString());
   }
 }
 
