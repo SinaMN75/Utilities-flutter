@@ -66,6 +66,19 @@ class MediaDataSource {
     }
   }
 
+  Future<void> filter({
+    required final MediaFilterDto dto,
+    required final Function(GenericResponse<MediaReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(String error)? failure,
+  }) async =>
+      httpPost(
+        url: "$baseUrl/Media/Filter",
+        body: dto,
+        action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+      );
+
   Future<void> update({
     required final String mediaId,
     final String? title,

@@ -175,6 +175,31 @@ class CreateMediaReadDto {
       };
 }
 
+
+class MediaFilterDto {
+  MediaFilterDto({
+    this.pageSize,
+    this.pageNumber,
+  });
+
+  factory MediaFilterDto.fromJson(final String str) => MediaFilterDto.fromMap(json.decode(str));
+
+  factory MediaFilterDto.fromMap(final dynamic json) => MediaFilterDto(
+    pageSize: json["pageSize"],
+    pageNumber: json["pageNumber"],
+  );
+
+  int? pageSize;
+  int? pageNumber;
+
+  String toJson() => json.encode(removeNullEntries(toMap()));
+
+  dynamic toMap() => {
+    "pageSize": pageSize,
+    "pageNumber": pageNumber,
+  };
+}
+
 extension NullableMediaResponseExtension on List<MediaReadDto>? {
   List<MediaReadDto> getByUseCase({required final int tagUseCase, final int? exception}) {
     List<MediaReadDto> list = this
