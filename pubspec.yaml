@@ -21,7 +21,6 @@ dependencies:
   webviewx_plus: ^0.3.3    # webview_universal:
   group_button: ^5.3.0     # choice:
   video_box: ^0.17.0       # video_player:
-  excel_facility: ^1.0.1   # excel:
   location: ^5.0.3         # geolocator:
 
   # POPULAR
