@@ -19,7 +19,28 @@ class CategoryDataSource {
         failure: failure,
       );
 
-  Future<void> createFromExcel({
+  Future<void> importFromExcel({
+    required final FileData fileData,
+    required final VoidCallback onResponse,
+    required final VoidCallback onError,
+  }) async {
+    FormData form = FormData(<String, dynamic>{'file': MultipartFile(kIsWeb ? fileData.bytes : fileData.path, filename: ":).xlsx")});
+
+    try {
+      final Response<dynamic> response = await GetConnect().post(
+        '$baseUrl/Category/ImportFromExcel',
+        form,
+        headers: <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""},
+        contentType: "multipart/form-data",
+      );
+      log("UPLOAD: ${response.statusCode} ${response.bodyString}");
+      onResponse();
+    } catch (e) {
+      onError();
+    }
+  }
+
+  Future<void> bulkCreate({
     required final String dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
