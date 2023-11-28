@@ -75,7 +75,7 @@ class MediaDataSource {
       httpPost(
         url: "$baseUrl/Media/Filter",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
