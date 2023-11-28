@@ -26,6 +26,7 @@ Widget scaffold({
         backgroundColor: color,
         appBar: appBar,
         drawer: drawer,
+        endDrawer: drawer,
         extendBodyBehindAppBar: extendBodyBehindAppBar,
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         floatingActionButton: floatingActionButton,
