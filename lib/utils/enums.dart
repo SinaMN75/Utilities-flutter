@@ -112,17 +112,17 @@ enum TagProduct {
   call(167, "Call", ''),
   videoCall(168, "video call", ''),
   textMessage(169, "text message", ''),
-  flight(170, "پرواز",'Flight'),
-  bus(171, "اتوبوس",'Bus'),
-  train(172, "قطار",'Train'),
-  car(173, "خودرو",'Car'),
-  ship(174, "کشتی",'Ship'),
+  flight(170, "پرواز", 'Flight'),
+  bus(171, "اتوبوس", 'Bus'),
+  train(172, "قطار", 'Train'),
+  car(173, "خودرو", 'Car'),
+  ship(174, "کشتی", 'Ship'),
   reserve(176, "", ""),
   microBlog(177, "", ""),
   deliveryCost(178, "", ""),
   appointment(179, "", ""),
-  internal(180, "",''),
-  foreign(181, "",''),
+  internal(180, "", ''),
+  foreign(181, "", ''),
   news(201, "", ""),
   kindOfNew(202, "", ""),
   used(203, "", ""),
@@ -243,13 +243,18 @@ enum TagCategory {
   String toString() => name;
   final int number;
 }
+
 enum TagReservationChair {
   blank(101, "غیر فعال", "Blank"),
   notAvailable(102, "غیر قایل انتخاب", "Not available"),
   free(103, "آزاد", "Free"),
   reserved(104, "رزرو شده", "Reserved");
 
-  const TagReservationChair(this.number, this.title, this.titleTr1,);
+  const TagReservationChair(
+    this.number,
+    this.title,
+    this.titleTr1,
+  );
 
   @override
   String toString() => name;
@@ -257,6 +262,7 @@ enum TagReservationChair {
   final String titleTr1;
   final int number;
 }
+
 enum TagOrder {
   physical(100, ''),
   digital(101, ''),
@@ -280,17 +286,27 @@ enum TagOrder {
   final int number;
 }
 
-enum WithdrawState {
-  requested(101, "درحال بررسی"),
-  accepted(102, "تایید شده"),
-  rejected(103, "رد شده");
+enum TagTransaction {
+  depositToWallet(101, ''),
+  WithdrawFromTheWallet(102, ''),
+  buy(103, ''),
+  sell(104, ''),
+  recharge(105, ''),
+  walletToWallet(106, ''),
+  pending(200, 'پرداخت شده'),
+  fail(201, 'در حال پردازش'),
+  success(202, 'ارسال شده'),
+  withdrawAccepted(301, 'اختلاف'),
+  withdrawRejected(302, 'تکمیل شده'),
+  withdrawRequested(303, "کنسل شده"),
+  all(900, 'همه');
 
-  const WithdrawState(this.number, this.title);
+  const TagTransaction(this.number, this.title);
 
   @override
   String toString() => name;
-  final int number;
   final String title;
+  final int number;
 }
 
 enum TagReaction {
@@ -762,9 +778,11 @@ enum OrderStatus {
 }
 
 class StatusModel {
-  StatusModel(this.title,
-      this.titleTr1,
-      this.status,);
+  StatusModel(
+    this.title,
+    this.titleTr1,
+    this.status,
+  );
 
   final String title;
   final String titleTr1;
