@@ -59,17 +59,16 @@ Widget smartRefresh({
       footer: CustomFooter(
         builder: (final BuildContext? context, final LoadStatus? mode) {
           Widget body;
-          if (mode == LoadStatus.idle) {
+          if (mode == LoadStatus.idle)
             body = const Text("pull up load");
-          } else if (mode == LoadStatus.loading) {
+          else if (mode == LoadStatus.loading)
             body = const CupertinoActivityIndicator();
-          } else if (mode == LoadStatus.failed) {
+          else if (mode == LoadStatus.failed)
             body = const Text("Load Failed!Click retry!");
-          } else if (mode == LoadStatus.canLoading) {
+          else if (mode == LoadStatus.canLoading)
             body = const Text("release to load more");
-          } else {
+          else
             body = const Text("No more Data");
-          }
           return SizedBox(height: 55.0, child: Center(child: body));
         },
       ),
