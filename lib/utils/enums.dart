@@ -293,6 +293,7 @@ enum TagTransaction {
   sell(104, ''),
   recharge(105, ''),
   walletToWallet(106, ''),
+  return0(107, ''),
   pending(200, 'پرداخت شده'),
   fail(201, 'در حال پردازش'),
   success(202, 'ارسال شده'),
