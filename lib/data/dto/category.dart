@@ -216,6 +216,7 @@ class CategoryFilterDto {
     this.titleTr2,
     this.parentId,
     this.showMedia,
+    this.showByChildren,
     this.orderByOrder,
     this.orderByOrderDescending,
     this.orderByCreatedAt,
@@ -233,6 +234,7 @@ class CategoryFilterDto {
         titleTr2: json["titleTr2"],
         parentId: json["parentId"],
         showMedia: json["showMedia"],
+        showByChildren: json["showByChildren"],
         orderByOrder: json["orderByOrder"],
         orderByOrderDescending: json["orderByOrderDescending"],
         orderByCreatedAt: json["orderByCreatedAt"],
@@ -246,6 +248,7 @@ class CategoryFilterDto {
   String? titleTr2;
   String? parentId;
   bool? showMedia;
+  bool? showByChildren;
   bool? orderByOrder;
   bool? orderByOrderDescending;
   bool? orderByCreatedAt;
@@ -262,6 +265,7 @@ class CategoryFilterDto {
         "titleTr2": titleTr2,
         "parentId": parentId,
         "showMedia": showMedia,
+        "showByChildren": showByChildren,
         "orderByOrder": orderByOrder,
         "orderByOrderDescending": orderByOrderDescending,
         "orderByCreatedAt": orderByCreatedAt,

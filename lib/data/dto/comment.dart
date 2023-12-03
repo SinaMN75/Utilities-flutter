@@ -154,6 +154,7 @@ class CommentFilterDto {
   CommentFilterDto({
     this.userId,
     this.productOwnerId,
+    this.targetUserId,
     this.productId,
     this.status,
     this.tags,
@@ -164,6 +165,7 @@ class CommentFilterDto {
   final String? userId;
   final String? productOwnerId;
   final String? productId;
+  final String? targetUserId;
   final String? status;
   final int? pageSize;
   final int? pageNumber;
@@ -175,6 +177,7 @@ class CommentFilterDto {
 
   factory CommentFilterDto.fromMap(final dynamic json) => CommentFilterDto(
         userId: json["userId"],
+        targetUserId: json["targetUserId"],
         productOwnerId: json["productOwnerId"],
         productId: json["comment"],
         status: json["status"],
@@ -185,6 +188,7 @@ class CommentFilterDto {
 
   dynamic toMap() => {
         "userId": userId,
+        "targetUserId": targetUserId,
         "productOwnerId": productOwnerId,
         "productId": productId,
         "status": status,
