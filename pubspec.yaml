@@ -54,7 +54,7 @@ dependencies:
   syncfusion_flutter_charts: ^23.1.38
   syncfusion_flutter_sliders: ^23.1.38
   syncfusion_flutter_barcodes: ^23.1.38
-  syncfusion_flutter_pdfviewer: ^23.2.4
+  syncfusion_flutter_pdfviewer: ^23.1.38
 
   pin_code_fields: ^8.0.1
   slide_countdown: ^1.3.2
