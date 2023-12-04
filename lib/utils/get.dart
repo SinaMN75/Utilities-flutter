@@ -355,6 +355,7 @@ void alertDialog({
   required final (String, VoidCallback) action1,
   final String? subtitle,
   final Widget? content,
+  final Color? buttonColor,
   final (String, VoidCallback)? action2,
   final (String, VoidCallback)? action3,
   final VoidCallback? onDismiss,
@@ -366,8 +367,8 @@ void alertDialog({
         content: content ?? Text(subtitle!),
         actions: <Widget>[
           TextButton(onPressed: action1.$2, child: Text(action1.$1)),
-          if (action2 != null) TextButton(onPressed: action2.$2, child: Text(action2.$1)),
-          if (action3 != null) TextButton(onPressed: action3.$2, child: Text(action3.$1)),
+          if (action2 != null) TextButton(onPressed: action2.$2, child: Text(action2.$1).bodySmall(color: buttonColor)),
+          if (action3 != null) TextButton(onPressed: action3.$2, child: Text(action3.$1).bodySmall(color: buttonColor)),
         ],
       ),
       barrierDismissible: barrierDismissible,
