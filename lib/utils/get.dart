@@ -350,9 +350,11 @@ void snackbarRed({
 }
 
 void alertDialog({
-  required final String title,
+  final String? title,
+  final Widget? titleWidget,
   required final (String, VoidCallback) action1,
   final String? subtitle,
+  final String? icon,
   final Widget? content,
   final (String, VoidCallback)? action2,
   final (String, VoidCallback)? action3,
@@ -361,7 +363,7 @@ void alertDialog({
 }) =>
     dialog(
       CupertinoAlertDialog(
-        title: Text(title).bodyLarge().fit(),
+        title:titleWidget??  Text(title??'').bodyLarge().fit(),
         content: content ?? Text(subtitle!),
         actions: <Widget>[
           TextButton(onPressed: action1.$2, child: Text(action1.$1)),
@@ -372,3 +374,4 @@ void alertDialog({
       barrierDismissible: barrierDismissible,
       onDismiss: onDismiss,
     );
+
