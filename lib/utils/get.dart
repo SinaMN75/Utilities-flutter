@@ -354,7 +354,6 @@ void alertDialog({
   final Widget? titleWidget,
   required final (String, VoidCallback) action1,
   final String? subtitle,
-  final String? icon,
   final Widget? content,
   final (String, VoidCallback)? action2,
   final (String, VoidCallback)? action3,
