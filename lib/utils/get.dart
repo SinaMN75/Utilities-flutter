@@ -361,14 +361,17 @@ void alertDialog({
   final bool barrierDismissible = true,
 }) =>
     dialog(
-      CupertinoAlertDialog(
-        title:titleWidget??  Text(title??'').bodyLarge().fit(),
-        content: content ?? Text(subtitle!),
-        actions: <Widget>[
-          TextButton(onPressed: action1.$2, child: Text(action1.$1)),
-          if (action2 != null) TextButton(onPressed: action2.$2, child: Text(action2.$1)),
-          if (action3 != null) TextButton(onPressed: action3.$2, child: Text(action3.$1)),
-        ],
+      Theme(
+        data:Get.isDarkMode? ThemeData.dark():ThemeData.light(),
+        child: CupertinoAlertDialog(
+          title:titleWidget??  Text(title??'').bodyLarge().fit(),
+          content: content ?? Text(subtitle!),
+          actions: <Widget>[
+            TextButton(onPressed: action1.$2, child: Text(action1.$1)),
+            if (action2 != null) TextButton(onPressed: action2.$2, child: Text(action2.$1)),
+            if (action3 != null) TextButton(onPressed: action3.$2, child: Text(action3.$1)),
+          ],
+        ),
       ),
       barrierDismissible: barrierDismissible,
       onDismiss: onDismiss,
