@@ -19,7 +19,7 @@ Widget customImageCropper({
   Widget _items({required final FileData file, required final int index}) => Stack(
         alignment: Alignment.bottomLeft,
         children: <Widget>[
-          Image.network(file.path!, width: 128, height: 128),
+          Image.network(file.path!, width: 110, height: 110, fit: BoxFit.cover).cornerRadius(all: 10),
           const Icon(
             Icons.close_outlined,
             size: 32,
@@ -37,6 +37,7 @@ Widget customImageCropper({
       scrollDirection: Axis.horizontal,
       child: Obx(
         () => Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Row(
               children: <Widget>[
