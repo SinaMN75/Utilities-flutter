@@ -83,7 +83,6 @@ class MediaDataSource {
     required final String mediaId,
     final String? title,
     final String? size,
-    final int? tagUseCase,
     final List<int>? tags,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
@@ -91,7 +90,7 @@ class MediaDataSource {
   }) async =>
       httpPut(
         url: "$baseUrl/Media/$mediaId",
-        body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tagUseCase: tagUseCase, tags: tags, url: ""),
+        body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
         action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
