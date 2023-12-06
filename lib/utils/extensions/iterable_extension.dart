@@ -30,6 +30,16 @@ extension IterableExtentions<T> on Iterable<T> {
     else
       return first;
   }
+
+  bool isNullOrEmpty() {
+    if (this.isEmpty) return true;
+    return false;
+  }
+
+  bool isNotNullOrEmpty() {
+    if (this.isNotEmpty) return true;
+    return false;
+  }
 }
 
 extension NullableIterableExtentions on Iterable? {
