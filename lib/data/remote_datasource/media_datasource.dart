@@ -19,7 +19,6 @@ class MediaDataSource {
     final String? chatId,
     final String? time,
     final String? artist,
-    final int? privacyType,
     final String? album,
     final String? groupChatId,
     final String? groupChatMessageId,
@@ -31,7 +30,7 @@ class MediaDataSource {
   }) async {
     FormData form = FormData(
       <String, dynamic>{
-        'Files': MultipartFile(kIsWeb ? fileData.bytes : fileData.path, filename: ":).$fileExtension"),
+        'Files': <MultipartFile>[MultipartFile(kIsWeb ? fileData.bytes : fileData.path, filename: ":).$fileExtension")],
         'Tags': tags,
         'CategoryId': categoryId,
         'ContentId': contentId,
@@ -39,7 +38,6 @@ class MediaDataSource {
         'GroupChatMessageId': groupChatMessageId,
         'ProductId': productId,
         'UserId': userId,
-        'PrivacyType': privacyType,
         'Time': time,
         'Artist': artist,
         'Album': album,
@@ -109,3 +107,4 @@ class MediaDataSource {
         failure: failure,
       );
 }
+
