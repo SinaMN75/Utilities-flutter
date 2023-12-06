@@ -3,6 +3,10 @@ part of '../utils.dart';
 extension DateTimeExtensions on DateTime {
   String formatDate(final String dateFormat) => intl.DateFormat(dateFormat).format(this);
 
+  static DateTime utcNow() => DateTime.now().toUtc();
+
+  static String utcNowIso() => DateTime.now().toUtc().toIso8601String();
+
   String toTimeAgo({final bool numericDates = false, final bool persian = false}) {
     try {
       final Duration difference = DateTime.now().difference(this);
