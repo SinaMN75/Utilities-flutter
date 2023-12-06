@@ -287,29 +287,29 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
           .toList() ??
       <String>[];
 
-  String getFile() {
+  String? getFile() {
     List<String> list = this!
         .where((final MediaReadDto e) => e.url.isImageFileName && (((e.tags ?? <int>[]).contains('file'))))
         .map(
           (final MediaReadDto e) => e.url,
         )
         .toList();
-    return list.isNotEmpty ? list.first : "--";
+    return list.isNotEmpty ? list.first : null;
   }
 
-  String getCover() => getImages(tagUseCase: TagMedia.cover.number).getFirstIfExist() ?? getImages(tagUseCase: TagMedia.post.number).getFirstIfExist() ?? "--";
+  String? getCover() => getImages(tagUseCase: TagMedia.cover.number).getFirstIfExist() ?? getImages(tagUseCase: TagMedia.post.number).getFirstIfExist();
 
-  String getImage({final int? tagUseCase}) => getImages(tagUseCase: tagUseCase).getFirstIfExist() ?? "--";
+  String? getImage({final int? tagUseCase}) => getImages(tagUseCase: tagUseCase).getFirstIfExist();
 
-  String getVideo({final int? tagUseCase}) => getVideos(tagUseCase: tagUseCase).getFirstIfExist() ?? "--";
+  String? getVideo({final int? tagUseCase}) => getVideos(tagUseCase: tagUseCase).getFirstIfExist();
 
-  String getFirst({final int? tagUseCase}) => getAll(tagUseCase: tagUseCase).getFirstIfExist() ?? "--";
+  String? getFirst({final int? tagUseCase}) => getAll(tagUseCase: tagUseCase).getFirstIfExist();
 
-  String getDoc({final int? tagUseCase}) => getDocs(tagUseCase: tagUseCase).getFirstIfExist() ?? "--";
+  String? getDoc({final int? tagUseCase}) => getDocs(tagUseCase: tagUseCase).getFirstIfExist();
 
-  String getPdf({final int? tagUseCase}) => getPdfs(tagUseCase: tagUseCase).getFirstIfExist() ?? "--";
+  String? getPdf({final int? tagUseCase}) => getPdfs(tagUseCase: tagUseCase).getFirstIfExist();
 
-  String getAudio({final int? tagUseCase}) => getAudios(tagUseCase: tagUseCase).getFirstIfExist() ?? "--";
+  String? getAudio({final int? tagUseCase}) => getAudios(tagUseCase: tagUseCase).getFirstIfExist();
 }
 
 extension MediaResponseExtension on List<MediaReadDto> {
