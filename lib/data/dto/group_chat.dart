@@ -30,7 +30,9 @@ class GroupChatReadDto {
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         users: json["users"] == null ? <UserReadDto>[] : List<UserReadDto>.from(json["users"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),
         products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
-        groupChatMessage: json["groupChatMessage"] == null ? <GroupChatMessageReadDto>[] : List<GroupChatMessageReadDto>.from(json["groupChatMessage"].cast<Map<String, dynamic>>().map(GroupChatMessageReadDto.fromMap)).toList(),
+        groupChatMessage: json["groupChatMessage"] == null
+            ? <GroupChatMessageReadDto>[]
+            : List<GroupChatMessageReadDto>.from(json["groupChatMessage"].cast<Map<String, dynamic>>().map(GroupChatMessageReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         countOfUnreadMessages: json["countOfUnreadMessages"],
       );
@@ -107,6 +109,18 @@ class GroupChatJsonDetail {
 }
 
 class GroupChatCreateUpdateDto {
+  final String? id;
+  final String? title;
+  final String? description;
+  final String? value;
+  final String? department;
+  final int? chatStatus;
+  final int? type;
+  final int? priority;
+  final List<String>? userIds;
+  final List<String>? products;
+  final List<String>? categories;
+
   GroupChatCreateUpdateDto({
     this.id,
     this.title,
@@ -114,55 +128,43 @@ class GroupChatCreateUpdateDto {
     this.value,
     this.department,
     this.chatStatus,
+    this.type,
     this.priority,
     this.userIds,
-    this.categories,
-    this.tags,
     this.products,
+    this.categories,
   });
 
-  factory GroupChatCreateUpdateDto.fromJson(final String str) => GroupChatCreateUpdateDto.fromMap(json.decode(str));
+  factory GroupChatCreateUpdateDto.fromJson(String str) => GroupChatCreateUpdateDto.fromMap(json.decode(str));
 
-  factory GroupChatCreateUpdateDto.fromMap(final dynamic json) => GroupChatCreateUpdateDto(
+  String toJson() => json.encode(toMap());
+
+  factory GroupChatCreateUpdateDto.fromMap(Map<String, dynamic> json) => GroupChatCreateUpdateDto(
         id: json["id"],
         title: json["title"],
         description: json["description"],
         value: json["value"],
         department: json["department"],
         chatStatus: json["chatStatus"],
+        type: json["type"],
         priority: json["priority"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
-        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final x) => x)),
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-        products: json["products"] == null ? [] : List<String>.from(json["products"]!.map((final x) => x)),
+        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((x) => x)),
+        products: json["products"] == null ? [] : List<String>.from(json["products"]!.map((x) => x)),
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
       );
 
-  final String? id;
-  final String? title;
-  final String? description;
-  final String? value;
-  final String? department;
-  final int? chatStatus;
-  final int? priority;
-  final List<String>? userIds;
-  final List<int>? tags;
-  final List<String>? categories;
-  final List<String>? products;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  dynamic toMap() => {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,
         "description": description,
         "value": value,
         "department": department,
         "chatStatus": chatStatus,
+        "type": type,
         "priority": priority,
-        "tags": tags == null ? [] : List<int>.from(tags!.map((final x) => x)),
-        "userIds": userIds == null ? [] : List<String>.from(userIds!.map((final x) => x)),
-        "categories": categories == null ? [] : List<String>.from(categories!.map((final x) => x)),
-        "products": products == null ? [] : List<String>.from(products!.map((final x) => x)),
+        "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((x) => x)),
+        "products": products == null ? [] : List<dynamic>.from(products!.map((x) => x)),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
       };
 }
 

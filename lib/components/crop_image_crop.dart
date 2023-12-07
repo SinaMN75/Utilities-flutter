@@ -46,7 +46,7 @@ Widget customImageCropper({
                       .map(
                         (final MediaReadDto i) => Stack(
                           children: <Widget>[
-                            image(i.url, width: 110, height: 110, fit: BoxFit.cover),
+                            image(i.url, width: 110, height: 110, fit: BoxFit.cover, borderRadius: 10),
                             if (onMediaDelete != null)
                               Icon(Icons.close, color: context.theme.colorScheme.background)
                                   .container(
