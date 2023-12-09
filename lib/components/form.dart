@@ -92,6 +92,8 @@ Widget textFieldPersianDatePicker({
   final TextAlign textAlign = TextAlign.start,
   final double? textHeight,
   final TextEditingController? controller,
+  final Jalali? startDate,
+  final Jalali? endDate,
 }) {
   final Rx<Jalali> jalali = Jalali.now().obs;
   return textField(
@@ -108,8 +110,8 @@ Widget textFieldPersianDatePicker({
         await showPersianDatePicker(
           context: context,
           initialDate: jalali.value,
-          firstDate: Jalali(1320),
-          lastDate: Jalali(1405),
+          firstDate: startDate ?? Jalali(1320),
+          lastDate: endDate ?? Jalali(1405),
         ),
       );
       onChange(jalali.value.toDateTime(), jalali.value);
