@@ -47,3 +47,39 @@ class CreateMailSmsNotificationDto {
         "showForeground": showForeground,
       };
 }
+
+class SendOtpSmsDto {
+  final String? mobileNumber;
+  final String? param1;
+  final String? template;
+  final String? param2;
+  final String? param3;
+
+  SendOtpSmsDto({
+    this.mobileNumber,
+    this.param1,
+    this.template,
+    this.param2,
+    this.param3,
+  });
+
+  factory SendOtpSmsDto.fromJson(String str) => SendOtpSmsDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory SendOtpSmsDto.fromMap(Map<String, dynamic> json) => SendOtpSmsDto(
+    mobileNumber: json["mobileNumber"],
+    param1: json["param1"],
+    template: json["template"],
+    param2: json["param2"],
+    param3: json["param3"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "mobileNumber": mobileNumber,
+    "param1": param1,
+    "template": template,
+    "param2": param2,
+    "param3": param3,
+  };
+}
