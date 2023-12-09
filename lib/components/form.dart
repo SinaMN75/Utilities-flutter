@@ -92,10 +92,11 @@ Widget textFieldPersianDatePicker({
   final TextAlign textAlign = TextAlign.start,
   final double? textHeight,
   final TextEditingController? controller,
+  final Jalali? initialDate,
   final Jalali? startDate,
   final Jalali? endDate,
 }) {
-  final Rx<Jalali> jalali = Jalali.now().obs;
+  final Rx<Jalali> jalali = (initialDate ?? Jalali.now()).obs;
   return textField(
     controller: controller,
     margin: margin,
