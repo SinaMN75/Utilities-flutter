@@ -44,10 +44,12 @@ class DoughnutChartData {
 
 SfCircularChart doughnutChart({
   required final List<DoughnutChartData> data,
+  final LegendPosition legendPosition = LegendPosition.left,
+  final LegendItemOverflowMode overflowMode = LegendItemOverflowMode.wrap,
   final Widget? center,
 }) =>
     SfCircularChart(
-      legend: const Legend(isVisible: true, overflowMode: LegendItemOverflowMode.scroll, position: LegendPosition.left),
+      legend: Legend(isVisible: true, overflowMode: LegendItemOverflowMode.wrap, position: legendPosition),
       annotations: <CircularChartAnnotation>[CircularChartAnnotation(widget: center)],
       series: <DoughnutSeries<DoughnutChartData, String>>[
         DoughnutSeries<DoughnutChartData, String>(
