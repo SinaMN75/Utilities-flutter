@@ -8,7 +8,7 @@ class UserDataSource {
   Future<void> create({
     required final RegisterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -21,7 +21,7 @@ class UserDataSource {
   Future<void> toggleBlock({
     required final String id,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -32,7 +32,7 @@ class UserDataSource {
 
   Future<void> readMyBlockList({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -44,7 +44,7 @@ class UserDataSource {
   Future<void> update({
     required final UserCreateUpdateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
@@ -56,7 +56,7 @@ class UserDataSource {
 
   Future<void> read({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -67,7 +67,7 @@ class UserDataSource {
 
   Future<void> logout({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
@@ -79,7 +79,7 @@ class UserDataSource {
   Future<void> readById({
     required final String id,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -91,7 +91,7 @@ class UserDataSource {
   Future<void> delete({
     required final String id,
     required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpDelete(
@@ -115,7 +115,7 @@ class UserDataSource {
   Future<void> getVerificationCodeForLogin({
     required final GetMobileVerificationCodeForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -128,7 +128,7 @@ class UserDataSource {
   Future<void> loginWithEmail({
     required final LoginWithEmail dto,
     required final Function(GenericResponse<String> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -141,7 +141,7 @@ class UserDataSource {
   Future<void> loginWithPassword({
     required final LoginWithPasswordDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -154,7 +154,7 @@ class UserDataSource {
   Future<void> verifyCodeForLogin({
     required final VerifyMobileForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -166,7 +166,7 @@ class UserDataSource {
 
   Future<void> getGrowthRate({
     required final Function(GenericResponse<GrowthRateReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -178,7 +178,7 @@ class UserDataSource {
   Future<void> getProfileByUserName({
     required final String userName,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpGet(
@@ -190,7 +190,7 @@ class UserDataSource {
   Future<void> filter({
     required final UserFilterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -203,7 +203,7 @@ class UserDataSource {
   Future<void> authenticate({
     required final AuthenticateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -216,7 +216,7 @@ class UserDataSource {
   Future<void> getTokenForTest({
     required final String mobile,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorerrorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
