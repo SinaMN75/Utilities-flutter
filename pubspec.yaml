@@ -32,18 +32,18 @@ dependencies:
   local_auth: ^2.1.7
   get: ^4.6.6
   get_storage: ^2.1.1
-  flutter_map: ^6.0.1
-  flutter_svg: ^2.0.7
-  lottie: ^2.5.0
+  flutter_map: ^6.1.0
+  flutter_svg: ^2.0.9
+  lottie: ^2.7.0
   file_picker: ^6.1.1
   google_sign_in: ^6.1.6
   flutter_easyloading: ^3.0.5
   flutter_local_notifications: ^16.1.0
   mobile_scanner: ^3.5.2
-  just_audio: ^0.9.35
+  just_audio: ^0.9.36
   flutter_typeahead: ^4.8.0
   cached_network_image: ^3.3.0
-  image_cropper: ^5.0.0
+  image_cropper: ^5.0.1
   persian_tools: ^1.0.3
   flutter_contacts: ^1.1.7+1
   firebase_core: ^2.23.0
