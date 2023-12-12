@@ -28,9 +28,13 @@ class MediaDataSource {
     final String? size,
     final Duration? timeout,
   }) async {
-    FormData form = FormData(
+
+
+
+
+    final FormData form = FormData(
       <String, dynamic>{
-        'Files': <MultipartFile>[MultipartFile(kIsWeb ? fileData.bytes : fileData.path, filename: ":).$fileExtension")],
+        'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: ":).$fileExtension"),
         'Tags': tags,
         'CategoryId': categoryId,
         'ContentId': contentId,
@@ -49,6 +53,7 @@ class MediaDataSource {
         'Size': size,
       },
     );
+
 
     try {
       final Response<dynamic> response = await GetConnect().post(

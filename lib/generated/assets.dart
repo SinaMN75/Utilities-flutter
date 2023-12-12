@@ -16,7 +16,6 @@ class Assets {
   static const String componentsFdottedline = 'lib/components/fdottedline.dart';
   static const String componentsFlipCard = 'lib/components/flip_card.dart';
   static const String componentsForm = 'lib/components/form.dart';
-  static const String componentsFormBuilder = 'lib/components/form_builder.dart';
   static const String componentsGrid = 'lib/components/grid.dart';
   static const String componentsImage = 'lib/components/image.dart';
   static const String componentsItemVideo = 'lib/components/item_video.dart';
@@ -29,6 +28,7 @@ class Assets {
   static const String componentsRatingBar = 'lib/components/rating_bar.dart';
   static const String componentsReadmore = 'lib/components/readmore.dart';
   static const String componentsScrollingText = 'lib/components/scrolling_text.dart';
+  static const String componentsSlider = 'lib/components/slider.dart';
   static const String componentsSoundPlayer = 'lib/components/sound_player.dart';
   static const String componentsStoryView = 'lib/components/story_view.dart';
   static const String componentsTextFieldCountry = 'lib/components/text_field_country.dart';
@@ -40,13 +40,10 @@ class Assets {
   static const String dtoBlock = 'lib/data/dto/block.dart';
   static const String dtoCategory = 'lib/data/dto/category.dart';
   static const String dtoComment = 'lib/data/dto/comment.dart';
-  static const String dtoContactInformation = 'lib/data/dto/contact_information.dart';
   static const String dtoContent = 'lib/data/dto/content.dart';
   static const String dtoDashboardData = 'lib/data/dto/dashboard_data.dart';
   static const String dtoDiscount = 'lib/data/dto/discount.dart';
   static const String dtoFollowBookmark = 'lib/data/dto/follow_bookmark.dart';
-  static const String dtoForm = 'lib/data/dto/form.dart';
-  static const String dtoFormFiled = 'lib/data/dto/form_filed.dart';
   static const String dtoGender = 'lib/data/dto/gender.dart';
   static const String dtoGenericResponse = 'lib/data/dto/generic_response.dart';
   static const String dtoGroupChat = 'lib/data/dto/group_chat.dart';
@@ -80,6 +77,12 @@ class Assets {
   static const String extensionsStringExtension = 'lib/utils/extensions/string_extension.dart';
   static const String extensionsTextExtension = 'lib/utils/extensions/text_extension.dart';
   static const String extensionsWidgetExtension = 'lib/utils/extensions/widget_extension.dart';
+  static const String fontsIranSansFaNum = 'lib/assets/fonts/IranSansFaNum.ttf';
+  static const String fontsSahel = 'lib/assets/fonts/Sahel.ttf';
+  static const String fontsSamim = 'lib/assets/fonts/Samim.ttf';
+  static const String fontsShabnam = 'lib/assets/fonts/Shabnam.ttf';
+  static const String fontsVazir = 'lib/assets/fonts/Vazir.ttf';
+  static const String fontsYekan = 'lib/assets/fonts/Yekan.ttf';
   static const String generatedAssets = 'lib/generated/assets.dart';
   static const String libUtilities = 'lib/utilities.dart';
   static const String libUtilities2 = 'lib/utilities2.dart';
@@ -91,8 +94,8 @@ class Assets {
   static const String remoteDatasourceCommentDatasource = 'lib/data/remote_datasource/comment_datasource.dart';
   static const String remoteDatasourceContentDatasource = 'lib/data/remote_datasource/content_datasource.dart';
   static const String remoteDatasourceDiscounteDatasource = 'lib/data/remote_datasource/discounte_datasource.dart';
+  static const String remoteDatasourceFirebaseDatasource = 'lib/data/remote_datasource/firebase_datasource.dart';
   static const String remoteDatasourceFollowBookmarkDatasource = 'lib/data/remote_datasource/follow_bookmark_datasource.dart';
-  static const String remoteDatasourceFormDatasource = 'lib/data/remote_datasource/form_datasource.dart';
   static const String remoteDatasourceGroupChatDatasource = 'lib/data/remote_datasource/group_chat_datasource.dart';
   static const String remoteDatasourceMailSmsNotificationDatasource = 'lib/data/remote_datasource/mail_sms_notification_datasource.dart';
   static const String remoteDatasourceMediaDatasource = 'lib/data/remote_datasource/media_datasource.dart';
@@ -102,18 +105,19 @@ class Assets {
   static const String remoteDatasourceProductDatasource = 'lib/data/remote_datasource/product_datasource.dart';
   static const String remoteDatasourcePromoteDatasource = 'lib/data/remote_datasource/promote_datasource.dart';
   static const String remoteDatasourcePusheDatasource = 'lib/data/remote_datasource/pushe_datasource.dart';
-  static const String remoteDatasourceReactionDatasource = 'lib/data/remote_datasource/reaction_datasource.dart';
   static const String remoteDatasourceReportDatasource = 'lib/data/remote_datasource/report_datasource.dart';
   static const String remoteDatasourceScrapperDatasource = 'lib/data/remote_datasource/scrapper_datasource.dart';
   static const String remoteDatasourceShoppingCartDatasource = 'lib/data/remote_datasource/shopping_cart_datasource.dart';
   static const String remoteDatasourceSubscriptionPaymentDatasource = 'lib/data/remote_datasource/subscription_payment_datasource.dart';
   static const String remoteDatasourceTransactionDatasource = 'lib/data/remote_datasource/transaction_datasource.dart';
   static const String remoteDatasourceUserDatasource = 'lib/data/remote_datasource/user_datasource.dart';
+  static const String utilsAuth = 'lib/utils/auth.dart';
   static const String utilsConstants = 'lib/utils/constants.dart';
   static const String utilsContacts = 'lib/utils/contacts.dart';
   static const String utilsEnums = 'lib/utils/enums.dart';
-  static const String utilsExcelToJson = 'lib/utils/excel_to_json.dart';
   static const String utilsFile = 'lib/utils/file.dart';
+  static const String utilsFirebase = 'lib/utils/firebase.dart';
+  static const String utilsFonts = 'lib/utils/fonts.dart';
   static const String utilsGet = 'lib/utils/get.dart';
   static const String utilsHttpInterceptor = 'lib/utils/http_interceptor.dart';
   static const String utilsInternetConnectionChecker = 'lib/utils/internet_connection_checker.dart';
@@ -121,9 +125,8 @@ class Assets {
   static const String utilsLocalAuth = 'lib/utils/local_auth.dart';
   static const String utilsLocalStorage = 'lib/utils/local_storage.dart';
   static const String utilsLocation = 'lib/utils/location.dart';
+  static const String utilsNotification = 'lib/utils/notification.dart';
   static const String utilsUtils = 'lib/utils/utils.dart';
-  static const String viewModelsKeyValueViewModel = 'lib/view_models/key_value_view_model.dart';
-  static const String viewModelsMediaViewModel = 'lib/view_models/media_view_model.dart';
-  static const String viewModelsViewModels = 'lib/view_models/view_models.dart';
+  static const String utilsViewModels = 'lib/utils/view_models.dart';
 
 }
