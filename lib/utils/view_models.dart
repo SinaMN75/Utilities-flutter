@@ -1,5 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:utilities/utilities.dart';
+part of 'utils.dart';
 
 class FileData {
   FileData({this.path, this.bytes});

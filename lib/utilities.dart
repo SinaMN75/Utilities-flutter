@@ -22,6 +22,7 @@ export 'package:get/get.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:google_sign_in/google_sign_in.dart';
 export 'package:group_button/group_button.dart';
+export 'package:image_cropper/image_cropper.dart';
 export 'package:just_audio/just_audio.dart';
 export 'package:local_auth/local_auth.dart';
 export 'package:location/location.dart';
@@ -44,7 +45,6 @@ export 'components/fdottedline.dart';
 export 'components/percent_indicator.dart';
 export 'data/data.dart';
 export 'utils/utils.dart';
-export 'utils/view_models.dart';
 
 Future<void> initUtilities({final FirebaseOptions? firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();

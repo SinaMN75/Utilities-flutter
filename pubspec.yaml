@@ -35,6 +35,7 @@ dependencies:
   flutter_map: ^6.1.0
   flutter_svg: ^2.0.9
   lottie: ^2.7.0
+  image_cropper: ^5.0.1
   file_picker: ^6.1.1
   google_sign_in: ^6.1.6
   flutter_easyloading: ^3.0.5
