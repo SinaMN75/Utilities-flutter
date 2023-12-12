@@ -43,7 +43,6 @@ dependencies:
   just_audio: ^0.9.36
   flutter_typeahead: ^4.8.0
   cached_network_image: ^3.3.0
-  image_cropper: ^5.0.1
   persian_tools: ^1.0.3
   flutter_contacts: ^1.1.7+1
   firebase_core: ^2.23.0
