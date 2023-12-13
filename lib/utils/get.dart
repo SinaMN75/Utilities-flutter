@@ -182,13 +182,13 @@ void off(final Widget page) => Get.off(() => page);
 
 void back({final bool closeOverlays = false}) => Get.back(closeOverlays: closeOverlays);
 
-void snackBarDone({final String title = "انجام شد", final String subtitle = ""}) => snackBarGreen(
+void snackbarDone({final String title = "انجام شد", final String subtitle = ""}) => snackbarGreen(
   title: title,
   subtitle: subtitle,
   duration: const Duration(milliseconds: 2000),
 );
 
-void snackBarGreen({
+void snackbarGreen({
   required final String title,
   required final String subtitle,
   final SnackPosition? snackPosition,
@@ -220,7 +220,7 @@ void snackBarGreen({
   final Duration? animationDuration,
   final double? barBlur,
   final double? overlayBlur,
-  final SnackbarStatusCallback? snackbarStatus,
+  final SnackbarStatusCallback? snackBarStatus,
   final Color? overlayColor,
   final Form? userInputForm,
   final Color? colorText,
@@ -262,14 +262,14 @@ void snackBarGreen({
       reverseAnimationCurve: reverseAnimationCurve,
       shouldIconPulse: shouldIconPulse,
       showProgressIndicator: showProgressIndicator,
-      snackbarStatus: snackbarStatus,
+      snackbarStatus: snackBarStatus,
       snackStyle: snackStyle,
       titleText: titleText,
       userInputForm: userInputForm,
     );
 }
 
-void snackBarRed({
+void snackbarRed({
   required final String title,
   required final String subtitle,
   final SnackPosition? snackPosition,
