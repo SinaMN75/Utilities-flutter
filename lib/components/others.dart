@@ -39,7 +39,7 @@ Widget willPopScope({required final Widget child, required final int currentInde
         if (_currentIndex == 0) {
           final DateTime now = DateTime.now();
           if (currentBackPressTime == null || now.difference(currentBackPressTime!) > const Duration(seconds: 3)) {
-            snackbarRed(title:title?? "خروج", subtitle:message??'برای خروج دوباره دکمه بازگشت را فشار دهید');
+            snackBarRed(title:title?? "خروج", subtitle:message??'برای خروج دوباره دکمه بازگشت را فشار دهید');
             currentBackPressTime = now;
             return Future<bool>.value(false);
           }

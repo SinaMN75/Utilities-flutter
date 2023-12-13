@@ -31,18 +31,18 @@ bool isDesktopSize() => context.width >= 1100;
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
 
 Future<dynamic> push(
-  final Widget page, {
-  final bool dialog = false,
-  final Transition transition = Transition.cupertino,
-  final bool backFirst = false,
-  final bool preventDuplicates = true,
-  final int milliSecondDelay = 1,
-}) async {
+    final Widget page, {
+      final bool dialog = false,
+      final Transition transition = Transition.cupertino,
+      final bool backFirst = false,
+      final bool preventDuplicates = true,
+      final int milliSecondDelay = 1,
+    }) async {
   if (backFirst) back();
   final Widget _page = await Future<Widget>.microtask(() => page);
   delay(
     milliSecondDelay,
-    () async => await Get.to(
+        () async => await Get.to(
       _page,
       fullscreenDialog: dialog,
       popGesture: true,
@@ -54,11 +54,11 @@ Future<dynamic> push(
 }
 
 Future<dynamic> pushReturn(
-  final Widget page, {
-  final bool dialog = false,
-  final Transition transition = Transition.cupertino,
-  final bool preventDuplicates = true,
-}) async {
+    final Widget page, {
+      final bool dialog = false,
+      final Transition transition = Transition.cupertino,
+      final bool preventDuplicates = true,
+    }) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
   return await Get.to(
     _page,
@@ -71,51 +71,51 @@ Future<dynamic> pushReturn(
 }
 
 Future<void> dialog(
-  final Widget page, {
-  final bool barrierDismissible = true,
-  final bool useSafeArea = false,
-  final VoidCallback? onDismiss,
-}) async {
+    final Widget page, {
+      final bool barrierDismissible = true,
+      final bool useSafeArea = false,
+      final VoidCallback? onDismiss,
+    }) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
   await Get.dialog(_page, useSafeArea: useSafeArea, barrierDismissible: barrierDismissible).then((final _) => onDismiss != null ? onDismiss() : null);
 }
 
 Future<void> dialogAlert(
-  final Widget page, {
-  final bool barrierDismissible = true,
-  final bool useSafeArea = false,
-  final Clip clipBehavior = Clip.hardEdge,
-  final bool scrollable = false,
-  final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
-  final EdgeInsetsGeometry? contentPadding = EdgeInsets.zero,
-  final bool defaultCloseButton = false,
-  final VoidCallback? onDismiss,
-  final Widget? icon,
-  final EdgeInsetsGeometry? iconPadding,
-  final Color? iconColor,
-  final Widget? title,
-  final EdgeInsetsGeometry? titlePadding,
-  final TextStyle? titleTextStyle,
-  final TextStyle? contentTextStyle,
-  final List<Widget>? actions,
-  final EdgeInsetsGeometry? actionsPadding,
-  final MainAxisAlignment? actionsAlignment,
-  final OverflowBarAlignment? actionsOverflowAlignment,
-  final VerticalDirection? actionsOverflowDirection,
-  final double? actionsOverflowButtonSpacing,
-  final EdgeInsetsGeometry? buttonPadding,
-  final Color? backgroundColor,
-  final double? elevation,
-  final Color? shadowColor,
-  final Color? surfaceTintColor,
-  final String? semanticLabel,
-  final ShapeBorder? shape,
-  final AlignmentGeometry? alignment,
-  final ScrollController? scrollController,
-  final ScrollController? actionScrollController,
-  final Duration? insetAnimationDuration,
-  final Curve? insetAnimationCurve,
-}) async {
+    final Widget page, {
+      final bool barrierDismissible = true,
+      final bool useSafeArea = false,
+      final Clip clipBehavior = Clip.hardEdge,
+      final bool scrollable = false,
+      final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
+      final EdgeInsetsGeometry? contentPadding = EdgeInsets.zero,
+      final bool defaultCloseButton = false,
+      final VoidCallback? onDismiss,
+      final Widget? icon,
+      final EdgeInsetsGeometry? iconPadding,
+      final Color? iconColor,
+      final Widget? title,
+      final EdgeInsetsGeometry? titlePadding,
+      final TextStyle? titleTextStyle,
+      final TextStyle? contentTextStyle,
+      final List<Widget>? actions,
+      final EdgeInsetsGeometry? actionsPadding,
+      final MainAxisAlignment? actionsAlignment,
+      final OverflowBarAlignment? actionsOverflowAlignment,
+      final VerticalDirection? actionsOverflowDirection,
+      final double? actionsOverflowButtonSpacing,
+      final EdgeInsetsGeometry? buttonPadding,
+      final Color? backgroundColor,
+      final double? elevation,
+      final Color? shadowColor,
+      final Color? surfaceTintColor,
+      final String? semanticLabel,
+      final ShapeBorder? shape,
+      final AlignmentGeometry? alignment,
+      final ScrollController? scrollController,
+      final ScrollController? actionScrollController,
+      final Duration? insetAnimationDuration,
+      final Curve? insetAnimationCurve,
+    }) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
   await Get.dialog(
     AlertDialog(
@@ -137,9 +137,10 @@ Future<void> dialogAlert(
       contentTextStyle: contentTextStyle,
       icon: defaultCloseButton
           ? IconButton(
-              onPressed: back,
-              icon: Icon(Icons.close, color: context.theme.colorScheme.error),
-            ).alignAtCenterRight()
+        onPressed: back,
+        // ignore: use_build_context_synchronously
+        icon: Icon(Icons.close, color: context.theme.colorScheme.error),
+      ).alignAtCenterRight()
           : icon,
       iconColor: iconColor,
       iconPadding: iconPadding,
@@ -154,21 +155,21 @@ Future<void> dialogAlert(
     useSafeArea: useSafeArea,
     barrierDismissible: barrierDismissible,
   ).then(
-    (final _) => onDismiss != null ? onDismiss() : null,
+        (final _) => onDismiss != null ? onDismiss() : null,
   );
 }
 
 Future<void> offAll(
-  final Widget page, {
-  final bool dialog = false,
-  final Transition transition = Transition.cupertino,
-  final int milliSecondDelay = 1,
-}) async {
+    final Widget page, {
+      final bool dialog = false,
+      final Transition transition = Transition.cupertino,
+      final int milliSecondDelay = 1,
+    }) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
   delay(
     milliSecondDelay,
-    () => Get.offAll(
-      () => _page,
+        () => Get.offAll(
+          () => _page,
       fullscreenDialog: dialog,
       popGesture: true,
       opaque: dialog ? false : true,
@@ -181,13 +182,13 @@ void off(final Widget page) => Get.off(() => page);
 
 void back({final bool closeOverlays = false}) => Get.back(closeOverlays: closeOverlays);
 
-void snackbarDone({final String title = "انجام شد", final String subtitle = ""}) => snackbarGreen(
-      title: title,
-      subtitle: subtitle,
-      duration: Duration(milliseconds: 2000),
-    );
+void snackBarDone({final String title = "انجام شد", final String subtitle = ""}) => snackBarGreen(
+  title: title,
+  subtitle: subtitle,
+  duration: const Duration(milliseconds: 2000),
+);
 
-void snackbarGreen({
+void snackBarGreen({
   required final String title,
   required final String subtitle,
   final SnackPosition? snackPosition,
@@ -268,7 +269,7 @@ void snackbarGreen({
     );
 }
 
-void snackbarRed({
+void snackBarRed({
   required final String title,
   required final String subtitle,
   final SnackPosition? snackPosition,
@@ -350,9 +351,8 @@ void snackbarRed({
 }
 
 void alertDialog({
-  final String? title,
+  required final (String, VoidCallback) action1, final String? title,
   final Widget? titleWidget,
-  required final (String, VoidCallback) action1,
   final String? subtitle,
   final Widget? content,
   final (String, VoidCallback)? action2,
@@ -373,4 +373,3 @@ void alertDialog({
       barrierDismissible: barrierDismissible,
       onDismiss: onDismiss,
     );
-
