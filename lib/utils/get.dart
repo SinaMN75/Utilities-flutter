@@ -269,7 +269,7 @@ void snackbarGreen({
     );
 }
 
-void snackbarRed({
+void snackBarRed({
   required final String title,
   required final String subtitle,
   final SnackPosition? snackPosition,
