@@ -82,33 +82,33 @@ Future<void> dialog(
 
 Future<void> dialogAlert(
     final Widget page, {
-      final bool barrierDismissible = true,
-      final bool useSafeArea = false,
-      final Clip clipBehavior = Clip.hardEdge,
-      final bool scrollable = false,
-      final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
-      final EdgeInsetsGeometry? contentPadding = EdgeInsets.zero,
-      final bool defaultCloseButton = false,
-      final VoidCallback? onDismiss,
-      final Widget? icon,
-      final EdgeInsetsGeometry? iconPadding,
-      final Color? iconColor,
-      final Widget? title,
-      final EdgeInsetsGeometry? titlePadding,
-      final TextStyle? titleTextStyle,
-      final TextStyle? contentTextStyle,
-      final List<Widget>? actions,
-      final EdgeInsetsGeometry? actionsPadding,
-      final MainAxisAlignment? actionsAlignment,
-      final OverflowBarAlignment? actionsOverflowAlignment,
-      final VerticalDirection? actionsOverflowDirection,
-      final double? actionsOverflowButtonSpacing,
-      final EdgeInsetsGeometry? buttonPadding,
-      final Color? backgroundColor,
-      final double? elevation,
-      final Color? shadowColor,
-      final Color? surfaceTintColor,
-      final String? semanticLabel,
+  final bool barrierDismissible = true,
+  final bool useSafeArea = false,
+  final Clip clipBehavior = Clip.hardEdge,
+  final bool scrollable = false,
+  final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+  final EdgeInsetsGeometry? contentPadding = EdgeInsets.zero,
+  final bool defaultCloseButton = false,
+  final VoidCallback? onDismiss,
+  final Widget? icon,
+  final EdgeInsetsGeometry? iconPadding,
+  final Color? iconColor,
+  final Widget? title,
+  final EdgeInsetsGeometry? titlePadding,
+  final TextStyle? titleTextStyle,
+  final TextStyle? contentTextStyle,
+  final List<Widget>? actions,
+  final EdgeInsetsGeometry? actionsPadding,
+  final MainAxisAlignment? actionsAlignment,
+  final OverflowBarAlignment? actionsOverflowAlignment,
+  final VerticalDirection? actionsOverflowDirection,
+  final double? actionsOverflowButtonSpacing,
+  final EdgeInsetsGeometry? buttonPadding,
+  final Color? backgroundColor,
+  final double? elevation,
+  final Color? shadowColor,
+  final Color? surfaceTintColor,
+  final String? semanticLabel,
       final ShapeBorder? shape,
       final AlignmentGeometry? alignment,
       final ScrollController? scrollController,
@@ -138,7 +138,6 @@ Future<void> dialogAlert(
       icon: defaultCloseButton
           ? IconButton(
         onPressed: back,
-        // ignore: use_build_context_synchronously
         icon: Icon(Icons.close, color: context.theme.colorScheme.error),
       ).alignAtCenterRight()
           : icon,
@@ -183,10 +182,10 @@ void off(final Widget page) => Get.off(() => page);
 void back({final bool closeOverlays = false}) => Get.back(closeOverlays: closeOverlays);
 
 void snackbarDone({final String title = "انجام شد", final String subtitle = ""}) => snackbarGreen(
-  title: title,
-  subtitle: subtitle,
-  duration: const Duration(milliseconds: 2000),
-);
+      title: title,
+      subtitle: subtitle,
+      duration: Duration(milliseconds: 2000),
+    );
 
 void snackbarGreen({
   required final String title,
@@ -220,7 +219,7 @@ void snackbarGreen({
   final Duration? animationDuration,
   final double? barBlur,
   final double? overlayBlur,
-  final SnackbarStatusCallback? snackBarStatus,
+  final SnackbarStatusCallback? snackbarStatus,
   final Color? overlayColor,
   final Form? userInputForm,
   final Color? colorText,
@@ -262,14 +261,14 @@ void snackbarGreen({
       reverseAnimationCurve: reverseAnimationCurve,
       shouldIconPulse: shouldIconPulse,
       showProgressIndicator: showProgressIndicator,
-      snackbarStatus: snackBarStatus,
+      snackbarStatus: snackbarStatus,
       snackStyle: snackStyle,
       titleText: titleText,
       userInputForm: userInputForm,
     );
 }
 
-void snackBarRed({
+void snackbarRed({
   required final String title,
   required final String subtitle,
   final SnackPosition? snackPosition,
@@ -351,8 +350,9 @@ void snackBarRed({
 }
 
 void alertDialog({
-  required final (String, VoidCallback) action1, final String? title,
+  final String? title,
   final Widget? titleWidget,
+  required final (String, VoidCallback) action1,
   final String? subtitle,
   final Widget? content,
   final (String, VoidCallback)? action2,
@@ -373,3 +373,4 @@ void alertDialog({
       barrierDismissible: barrierDismissible,
       onDismiss: onDismiss,
     );
+
