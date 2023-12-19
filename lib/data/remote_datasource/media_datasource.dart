@@ -28,10 +28,6 @@ class MediaDataSource {
     final String? size,
     final Duration? timeout,
   }) async {
-
-
-
-
     final FormData form = FormData(
       <String, dynamic>{
         'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: ":).$fileExtension"),
@@ -54,14 +50,25 @@ class MediaDataSource {
       },
     );
 
-
     try {
-      final Response<dynamic> response = await GetConnect().post(
-        '$baseUrl/Media',
-        form,
-        headers: <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""},
-        contentType: "multipart/form-data",
+      GetConnect connect = GetConnect(
+        timeout: Duration(seconds: 200),
+        maxAuthRetries: 10,
+        maxRedirects: 10,
       );
+
+      final Response<dynamic> response = await connect
+          .post(
+            '$baseUrl/Media',
+            form,
+            headers: <String, String>{
+              "Authorization": getString(UtilitiesConstants.token) ?? "",
+              // 'Content-Type': "multipart/form-data",
+              // 'Content-Type': "multipart/form-data",
+            },
+            contentType: "multipart/form-data",
+          )
+          .timeout(Duration(seconds: 200));
       log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
     } catch (e) {
@@ -94,7 +101,8 @@ class MediaDataSource {
       httpPut(
         url: "$baseUrl/Media/$mediaId",
         body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
-        action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        action: (final Response response) =>
+            onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
@@ -112,4 +120,3 @@ class MediaDataSource {
         failure: failure,
       );
 }
-
