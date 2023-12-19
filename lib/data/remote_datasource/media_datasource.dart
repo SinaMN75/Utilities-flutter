@@ -63,8 +63,6 @@ class MediaDataSource {
             form,
             headers: <String, String>{
               "Authorization": getString(UtilitiesConstants.token) ?? "",
-              // 'Content-Type': "multipart/form-data",
-              // 'Content-Type': "multipart/form-data",
             },
             contentType: "multipart/form-data",
           )
