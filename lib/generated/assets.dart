@@ -11,7 +11,6 @@ class Assets {
   static const String componentsColorPicker = 'lib/components/color_picker.dart';
   static const String componentsComponents = 'lib/components/components.dart';
   static const String componentsContainer = 'lib/components/container.dart';
-  static const String componentsCropImageCrop = 'lib/components/crop_image_crop.dart';
   static const String componentsDropDownTextfield = 'lib/components/drop_down_textfield.dart';
   static const String componentsFdottedline = 'lib/components/fdottedline.dart';
   static const String componentsFlipCard = 'lib/components/flip_card.dart';

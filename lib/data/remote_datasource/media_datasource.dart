@@ -28,10 +28,11 @@ class MediaDataSource {
     final String? size,
     final Duration? timeout,
   }) async {
-    final FormData form = FormData(
+    String fileName = fileData.path!.split('/').last;
+    FormData form = FormData(
       <String, dynamic>{
-        'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: ":).$fileExtension"),
-        'Tags': tags,
+        'File': await MultipartFile(File(fileData.path!), filename: fileName),
+        // 'Tags': tags,
         'CategoryId': categoryId,
         'ContentId': contentId,
         'GroupChatId': groupChatId,
@@ -51,24 +52,33 @@ class MediaDataSource {
     );
 
     try {
-      GetConnect connect = GetConnect(
+
+      GetConnect connect=GetConnect(
         timeout: Duration(seconds: 200),
         maxAuthRetries: 10,
         maxRedirects: 10,
+
+
       );
 
-      final Response<dynamic> response = await connect
+      final Response<dynamic> response =await connect
           .post(
-            '$baseUrl/Media',
-            form,
-            headers: <String, String>{
-              "Authorization": getString(UtilitiesConstants.token) ?? "",
-            },
-            contentType: "multipart/form-data",
-          )
+        '$baseUrl/Media',
+        form,
+
+        headers: <String, String>{
+          "Authorization": getString(UtilitiesConstants.token) ?? "",
+          // 'Content-Type': "multipart/form-data",
+          // 'Content-Type': "multipart/form-data",
+        },
+        contentType: "multipart/form-data",
+      )
           .timeout(Duration(seconds: 200));
       log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
+    } on TimeoutException catch (_) {
+      // catch timeout here..
+      onError();
     } catch (e) {
       onError();
     }
