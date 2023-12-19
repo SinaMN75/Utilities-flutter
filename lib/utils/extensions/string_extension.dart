@@ -65,6 +65,8 @@ extension StringExtensions on String {
         (final Match m) => '${m[1]}$separator',
       );
 
+  String toJalaliCompactDateString() => Jalali.fromDateTime(DateTime.parse(this)).formatCompactDate();
+
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this)).formatFullDate();
 
   String append0() {
