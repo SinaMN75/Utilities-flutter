@@ -20,7 +20,6 @@ extension OptionalStringExtension on String? {
     return nums>0 ?intl.NumberFormat('###,###,###,###,000').format(nums):'0';
   }
 
-
   String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatFullDate();
@@ -31,8 +30,8 @@ extension OptionalStringExtension on String? {
 
   String rialToTomanMoneyPersian() => "${((this ?? "0").toInt() / 10).toString().separateNumbers3By3()} تومان ".trim();
 
-  String formatJalaliDateTime() {
-    final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString());
+  String formatJalaliDateTime({bool toLocal = false}) {
+    final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString()).toLocal();
     final Jalali jalali = Jalali.fromDateTime(dateTime);
     if (dateTime.hour == 0 && dateTime.minute == 0) return '${jalali.year}/${jalali.month}/${jalali.day}';
     return '${dateTime.hour}:${dateTime.minute}:${dateTime.second} ${jalali.year}/${jalali.month}/${jalali.day}';
