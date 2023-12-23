@@ -5,7 +5,7 @@ class ScrapperDataSource {
 
   ScrapperDataSource({required this.baseUrl});
 
-  Future<void> readByUserName({
+  void readByUserName({
     required final String username,
     required final Function(InstaPostReadDto response) onResponse,
     required final Function() onError,

@@ -32,12 +32,12 @@ extension IterableExtentions<T> on Iterable<T> {
   }
 
   bool isNullOrEmpty() {
-    if (this.isEmpty) return true;
+    if (isEmpty) return true;
     return false;
   }
 
   bool isNotNullOrEmpty() {
-    if (this.isNotEmpty) return true;
+    if (isNotEmpty) return true;
     return false;
   }
 }
@@ -49,6 +49,8 @@ extension NullableIterableExtentions on Iterable? {
     else if (this!.isEmpty) return true;
     return false;
   }
+
+  bool containsAll<T>(final List<T> list) => (this ?? <T>[]).toSet().containsAll(this ?? <T>[]);
 }
 
 extension ListExtensions<T> on List<T> {
@@ -75,9 +77,3 @@ extension ListExtensions<T> on List<T> {
   }
 }
 
-extension NullableListExtensions<T> on List<T>? {
-  bool containsAll<T>(final List<T> list) {
-    final Set<T> setA = Set<T>.of(list);
-    return setA.containsAll(this ?? <T>[]);
-  }
-}

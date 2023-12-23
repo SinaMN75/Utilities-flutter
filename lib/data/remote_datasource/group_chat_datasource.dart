@@ -5,11 +5,11 @@ class GroupChatDataSource {
 
   final String baseUrl;
 
-  Future<void> readMyGroupChats({
+  void readMyGroupChats({
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpGet(
         url: "$baseUrl/Chat/ReadMyGroupChats",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
@@ -17,12 +17,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> readGroupById({
+  void readGroupById({
     required final String groupId,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpGet(
         url: "$baseUrl/Chat/ReadGroupChatById/$groupId",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
@@ -30,12 +30,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> filterGroupChat({
+  void filterGroupChat({
     required final GroupChatFilterDto filter,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Chat/FilterGroupChat",
         body: filter,
@@ -44,12 +44,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> filterAllGroupChat({
+  void filterAllGroupChat({
     required final GroupChatFilterDto filter,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Chat/FilterAllGroupChat",
         body: filter,
@@ -58,12 +58,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> createGroup({
+  void createGroup({
     required final GroupChatCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Chat/CreateGroupChat",
         body: dto,
@@ -72,12 +72,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> deleteGroup({
+  void deleteGroup({
     required final String groupId,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpDelete(
         url: "$baseUrl/Chat/DeleteGroupChat/$groupId",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body)),
@@ -85,12 +85,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> updateGroup({
+  void updateGroup({
     required final GroupChatCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPut(
         url: "$baseUrl/Chat/UpdateGroupChat",
         body: dto,
@@ -99,12 +99,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> exitFromGroup({
+  void exitFromGroup({
     required final String groupId,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Chat/ExitFromGroup/$groupId",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body)),
@@ -112,14 +112,14 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> readGroupMessages({
+  void readGroupMessages({
     required final String groupId,
     required final Function(GenericResponse<GroupChatMessageReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final int pageSize = 100,
     final int pageNumber = 1,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpGet(
         url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId?pageSize=$pageSize&pageNumber=$pageNumber",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
@@ -127,12 +127,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> createGroupChatMessage({
+  void createGroupChatMessage({
     required final GroupChatMessageCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatMessageReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Chat/CreateGroupChatMessage",
         body: dto,
@@ -141,12 +141,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> updateMessage({
+  void updateMessage({
     required final GroupChatMessageCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatMessageReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPut(
         url: "$baseUrl/Chat/UpdateGroupChatMessage",
         body: dto,
@@ -155,12 +155,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> deleteMessage({
+  void deleteMessage({
     required final String chatId,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpDelete(
         url: "$baseUrl/Chat/DeleteGroupChatMessage/$chatId",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body)),
@@ -168,12 +168,12 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  Future<void> seenGroupChatMessage({
+  void seenGroupChatMessage({
     required final String id,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Chat/SeenGroupChatMessage/$id",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),

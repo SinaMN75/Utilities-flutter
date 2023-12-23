@@ -5,12 +5,12 @@ class SubscriptionPaymentDataSource {
 
   SubscriptionPaymentDataSource({required this.baseUrl});
 
-  Future<void> create({
+  void create({
     required final SubscriptionPaymentCreateUpdateDto dto,
     required final Function(GenericResponse<SubscriptionPaymentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/SubscriptionPayment",
         body: dto,

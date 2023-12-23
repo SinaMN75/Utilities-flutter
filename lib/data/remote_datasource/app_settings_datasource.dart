@@ -5,12 +5,12 @@ class AppSettingsDataSource {
 
   final String baseUrl;
 
-  Future<void> readAppSettings({
+   void readAppSettings({
     required final Function(GenericResponse<AppSettingsReadDto> response) onResponse,
     required final VoidCallback onError,
     final int timeoutInSeconds = 10,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpGet(
         timeout: Duration(seconds: timeoutInSeconds),
         url: "$baseUrl/AppSettings",
@@ -18,11 +18,11 @@ class AppSettingsDataSource {
         error: (final Response<dynamic> response) => onError(),
       );
 
-  Future<void> readDashboardData({
+  void readDashboardData({
     required final Function(GenericResponse<DashboardDataReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpGet(
         url: "$baseUrl/AppSettings/ReadDashboardData",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<DashboardDataReadDto>.fromJson(response.body, fromMap: DashboardDataReadDto.fromMap)),
