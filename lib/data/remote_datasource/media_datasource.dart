@@ -30,7 +30,7 @@ class MediaDataSource {
     final Duration? timeout,
   }) async {
     try {
-      final Map<String, String> header = <String, String>{"Authorization": await getString(UtilitiesConstants.token) ?? token ?? ""};
+      final Map<String, String> header = <String, String>{"Authorization":token ?? await getString(UtilitiesConstants.token) ??  ""};
 
       final FormData form = await FormData(
         <String, dynamic>{
