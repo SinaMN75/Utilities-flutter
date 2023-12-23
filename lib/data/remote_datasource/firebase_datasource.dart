@@ -5,12 +5,7 @@ class FirebaseDataSource {
 
   FirebaseDataSource({required this.authorization});
 
-  Future<void> sendPushNotification({
-    required final String fcmToken,
-    required final String title,
-    required final String body,
-  }) async =>
-      await GetConnect().post(
+  void sendPushNotification({required final String fcmToken, required final String title, required final String body}) async => await GetConnect().post(
         "https://fcm.googleapis.com/fcm/send",
         <String, dynamic>{
           "to": fcmToken,

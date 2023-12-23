@@ -5,12 +5,12 @@ class PromoteDataSource {
 
   final String baseUrl;
 
-  Future<void> readById({
+  void readById({
     required final String id,
     required final Function(GenericResponse<PromoteReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpGet(
         url: "$baseUrl/promotion/$id",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<PromoteReadDto>.fromJson(response.body, fromMap: PromoteReadDto.fromMap)),
@@ -18,12 +18,12 @@ class PromoteDataSource {
         failure: failure,
       );
 
-  Future<void> create({
+  void create({
     required final PromoteCreateUpdateDto dto,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/promotion",
         body: dto,

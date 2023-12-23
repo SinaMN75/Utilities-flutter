@@ -5,7 +5,7 @@ class MediaDataSource {
 
   MediaDataSource({required this.baseUrl});
 
-  Future<void> create({
+  void create({
     required final FileData fileData,
     required final String fileExtension,
     required final List<int> tags,
@@ -74,12 +74,12 @@ class MediaDataSource {
     }
   }
 
-  Future<void> filter({
+  void filter({
     required final MediaFilterDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Media/Filter",
         body: dto,
@@ -87,7 +87,7 @@ class MediaDataSource {
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
-  Future<void> update({
+  void update({
     required final String mediaId,
     final String? title,
     final String? size,
@@ -95,22 +95,21 @@ class MediaDataSource {
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPut(
         url: "$baseUrl/Media/$mediaId",
         body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
-        action: (final Response response) =>
-            onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
-  Future<void> delete({
+  void delete({
     required final String id,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpDelete(
         url: "$baseUrl/Media/$id",
         action: (final Response response) => onResponse(),

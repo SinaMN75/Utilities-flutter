@@ -5,12 +5,12 @@ class OrderDataSource {
 
   final String baseUrl;
 
-  Future<void> update({
+  void update({
     required final OrderCreateUpdateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPut(
         url: "$baseUrl/Order",
         body: dto,
@@ -19,12 +19,12 @@ class OrderDataSource {
         failure: failure,
       );
 
-  Future<void> filter({
+  void filter({
     required final OrderFilterDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Order/Filter",
         body: dto,
@@ -33,12 +33,12 @@ class OrderDataSource {
         failure: failure,
       );
 
-  Future<void> readById({
+  void readById({
     required final String id,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpGet(
         url: "$baseUrl/Order/$id",
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
@@ -46,12 +46,12 @@ class OrderDataSource {
         failure: failure,
       );
 
-  Future<void> delete({
+  void delete({
     required final String id,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpDelete(
         url: "$baseUrl/Order/$id",
         action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
@@ -59,12 +59,12 @@ class OrderDataSource {
         failure: failure,
       );
 
-  Future<void> createUpdateOrderDetail({
+  void createUpdateOrderDetail({
     required final OrderDetailCreateUpdateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Order/CreateUpdateOrderDetail",
         body: dto,
@@ -72,12 +72,13 @@ class OrderDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
-  Future<void> createReservationOrderDetail({
+
+  void createReservationOrderDetail({
     required final OrderReservationCreateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Order/CreateReservationOrder",
         body: dto,
@@ -86,12 +87,12 @@ class OrderDataSource {
         failure: failure,
       );
 
-  Future<void> deleteOrderDetail({
+  void deleteOrderDetail({
     required final String id,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpDelete(
         url: "$baseUrl/Order/DeleteOrderDetail/$id",
         action: (final Response response) => onResponse(GenericResponse.fromJson(response.body)),

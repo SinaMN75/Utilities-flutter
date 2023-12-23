@@ -5,12 +5,12 @@ class DiscountDataSource {
 
   DiscountDataSource({required this.baseUrl});
 
-  Future<void> read({
+  void read({
     required final String code,
     required final Function(GenericResponse<DiscountReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpGet(
         url: "$baseUrl/Discount/$code",
         action: (Response response) => onResponse(GenericResponse<DiscountReadDto>.fromJson(response.body, fromMap: DiscountReadDto.fromMap)),

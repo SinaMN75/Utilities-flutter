@@ -8,7 +8,7 @@
 // class PusheDataSource {
 //   PusheDataSource();
 //
-//   Future<void> create({
+//   void create({
 //     required final String token,
 //     required final String appIds,
 //     required final String title,
