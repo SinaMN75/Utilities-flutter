@@ -5,6 +5,7 @@ Widget customImageCropper({
   final List<MediaReadDto>? images,
   final Function(MediaReadDto dto)? onMediaDelete,
   final CropAspectRatio? aspectRatio,
+  final bool useCropper = true,
   final int maxImages = 5,
 }) {
   final RxList<MediaReadDto> media = (images ?? <MediaReadDto>[]).obs;
@@ -83,6 +84,7 @@ Widget customImageCropper({
                   .onTap(
                     () => cropImageCrop(
                       aspectRatio: aspectRatio,
+                      useCropper: useCropper,
                       result: (final FileData cropped) {
                         cropperFiles.add(cropped);
                         result(cropperFiles);
