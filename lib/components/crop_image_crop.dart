@@ -72,7 +72,7 @@ Widget customImageCropper({
               ],
             ),
             const SizedBox(width: 8),
-            if (cropperFiles.length < maxImages)
+            if (cropperFiles.length <= maxImages)
               Icon(Icons.add, size: 60, color: context.theme.dividerColor)
                   .container(
                     radius: 10,
