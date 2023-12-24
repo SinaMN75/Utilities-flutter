@@ -27,6 +27,7 @@ class MediaDataSource {
     final String? notificationId,
     final String? size,
     final String? token,
+    final Function( double percent)? uploadProgress,
     final Duration? timeout,
   }) async {
     try {
@@ -64,6 +65,7 @@ class MediaDataSource {
         '$baseUrl/Media',
         form,
         headers: header,
+        uploadProgress: uploadProgress,
       );
       log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
