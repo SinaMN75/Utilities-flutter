@@ -29,7 +29,7 @@ Widget customImageCropper({
     child: SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Obx(
-        () => Row(
+            () => Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Row(
@@ -67,7 +67,7 @@ Widget customImageCropper({
                 ...cropperFiles
                     .mapIndexed(
                       (final int index, final FileData item) => _items(file: cropperFiles[index], index: index),
-                    )
+                )
                     .toList()
               ],
             ),
@@ -99,6 +99,7 @@ Widget customImageCropper({
 Future<void> cropImageCrop({
   required final Function(FileData croppedFile) result,
   final int? compressQuality,
+  final bool useCropper = true,
   final int? boundaryWidth,
   final int? boundaryHeight,
   final CropAspectRatio? aspectRatio,
@@ -106,23 +107,28 @@ Future<void> cropImageCrop({
 }) async {
   final XFile? pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
   if (pickedFile != null) {
-    final CroppedFile? croppedFile = await ImageCropper().cropImage(
-      sourcePath: pickedFile.path,
-      aspectRatio: aspectRatio ?? const CropAspectRatio(ratioX: 4, ratioY: 3),
-      uiSettings: <PlatformUiSettings>[
-        WebUiSettings(
-          context: context,
-          presentStyle: CropperPresentStyle.dialog,
-          translations: webTranslations,
-          boundary: CroppieBoundary(width: boundaryWidth, height: boundaryHeight),
-          viewPort: CroppieViewPort(width: boundaryWidth, height: boundaryHeight),
-          enforceBoundary: true,
-          enableExif: true,
-          enableZoom: true,
-          showZoomer: true,
-        ),
-      ],
-    );
-    if (croppedFile != null) result(FileData(path: croppedFile.path, bytes: await croppedFile.readAsBytes()));
+    if (!useCropper) {
+      result(FileData(path: pickedFile.path, bytes: await pickedFile.readAsBytes()));
+    } else {
+      final CroppedFile? croppedFile = await ImageCropper().cropImage(
+        sourcePath: pickedFile.path,
+        aspectRatio: aspectRatio ?? const CropAspectRatio(ratioX: 4, ratioY: 3),
+        compressFormat: ImageCompressFormat.png,
+        uiSettings: <PlatformUiSettings>[
+          WebUiSettings(
+            context: context,
+            presentStyle: CropperPresentStyle.dialog,
+            translations: webTranslations,
+            boundary: CroppieBoundary(width: boundaryWidth, height: boundaryHeight),
+            viewPort: CroppieViewPort(width: boundaryWidth, height: boundaryHeight),
+            enforceBoundary: true,
+            enableExif: true,
+            enableZoom: true,
+            showZoomer: true,
+          ),
+        ],
+      );
+      if (croppedFile != null) result(FileData(path: croppedFile.path, bytes: await croppedFile.readAsBytes()));
+    }
   }
 }
