@@ -14,6 +14,7 @@ class Assets {
   static const String componentsDropDownTextfield = 'lib/components/drop_down_textfield.dart';
   static const String componentsFdottedline = 'lib/components/fdottedline.dart';
   static const String componentsFlipCard = 'lib/components/flip_card.dart';
+  static const String componentsFlutterTree = 'lib/components/flutter_tree.dart';
   static const String componentsForm = 'lib/components/form.dart';
   static const String componentsGrid = 'lib/components/grid.dart';
   static const String componentsImage = 'lib/components/image.dart';
