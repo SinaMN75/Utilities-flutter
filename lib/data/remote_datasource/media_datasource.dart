@@ -1,9 +1,9 @@
 part of '../data.dart';
 
 class MediaDataSource {
-  final String baseUrl;
-
   MediaDataSource({required this.baseUrl});
+
+  final String baseUrl;
 
   Future<void> create({
     required final FileData fileData,
@@ -30,11 +30,11 @@ class MediaDataSource {
     final Duration? timeout,
   }) async {
     try {
-      final Map<String, String> header = <String, String>{"Authorization": token ?? await getString(UtilitiesConstants.token) ?? ""};
+      final Map<String, String> header = <String, String>{"Authorization": token ?? getString(UtilitiesConstants.token) ?? ""};
 
-      final FormData form = await FormData(
+      final FormData form = FormData(
         <String, dynamic>{
-          'File': await MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: fileData.path!.split('/').last),
+          'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: fileData.path!.split('/').last),
           'Tags': tags,
           'CategoryId': categoryId,
           'ContentId': contentId,
@@ -54,8 +54,8 @@ class MediaDataSource {
         },
       );
 
-      GetConnect connect = GetConnect(
-        timeout: Duration(seconds: 20000),
+      final GetConnect connect = GetConnect(
+        timeout: const Duration(seconds: 20000),
         maxAuthRetries: 3,
         withCredentials: true,
       );
@@ -67,7 +67,7 @@ class MediaDataSource {
       );
       log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
-    } catch (e) {
+    } on Exception catch (_) {
       onError();
     }
   }
@@ -75,31 +75,32 @@ class MediaDataSource {
   Future<void> filter({
     required final MediaFilterDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
         url: "$baseUrl/Media/Filter",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (final Response<dynamic> response) =>
+            onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   Future<void> update({
     required final String mediaId,
+    required final Function(GenericResponse<MediaReadDto> response) onResponse,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final String? title,
     final String? size,
     final List<int>? tags,
-    required final Function(GenericResponse<MediaReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPut(
         url: "$baseUrl/Media/$mediaId",
         body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
-        action: (final Response response) =>
+        action: (final Response<dynamic> response) =>
             onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -111,8 +112,8 @@ class MediaDataSource {
   }) async =>
       httpDelete(
         url: "$baseUrl/Media/$id",
-        action: (final Response response) => onResponse(),
-        error: (final Response response) => onError(),
+        action: (final Response<dynamic> response) => onResponse(),
+        error: (final Response<dynamic> response) => onError(),
         failure: failure,
       );
 }
