@@ -60,14 +60,14 @@ part 'remote_datasource/user_datasource.dart';
 part 'remote_datasource/scrapper_datasource.dart';
 part 'remote_datasource/media_datasource.dart';
 
-T? removeNullEntries<T>(T? json) {
+T? removeNullEntries<T>(final T? json) {
   if (json == null) return null;
 
   if (json is List) {
-    json.removeWhere((e) => e == null);
+    json.removeWhere((final dynamic e) => e == null);
     json.forEach(removeNullEntries);
   } else if (json is Map) {
-    json.removeWhere((key, value) => key == null || value == null);
+    json.removeWhere((final dynamic key, final dynamic value) => key == null || value == null);
     json.values.forEach(removeNullEntries);
   }
 
@@ -86,3 +86,4 @@ class EmptyObjectDto {
 
   Map<String, dynamic> toMap() => <String, dynamic>{"o": o};
 }
+
