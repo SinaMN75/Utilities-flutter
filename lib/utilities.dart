@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
+import 'package:safe_device/safe_device.dart';
+import 'package:screen_protector/screen_protector.dart';
 import 'package:utilities/utilities.dart';
 
 export 'dart:async';
@@ -46,7 +50,12 @@ export 'components/percent_indicator.dart';
 export 'data/data.dart';
 export 'utils/utils.dart';
 
-Future<void> initUtilities({final FirebaseOptions? firebaseOptions}) async {
+Future<void> initUtilities({
+  final FirebaseOptions? firebaseOptions,
+  final bool safeDevice = false,
+  final bool protectDataLeaking = false,
+  final bool preventScreenShot = false,
+}) async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   if (firebaseOptions != null) {
@@ -57,5 +66,8 @@ Future<void> initUtilities({final FirebaseOptions? firebaseOptions}) async {
       return true;
     };
   }
+  if (safeDevice && await SafeDevice.isSafeDevice) exit(0);
+  if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
+  if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
   return;
 }
