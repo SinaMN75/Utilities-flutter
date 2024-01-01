@@ -18,11 +18,13 @@ Widget scaffold({
   final double? width,
   final double? height,
   final DrawerCallback? onDrawerChanged,
+  final DrawerCallback? onEndDrawerChanged,
 }) =>
     GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
       child: Scaffold(
         onDrawerChanged: onDrawerChanged,
+        onEndDrawerChanged: onEndDrawerChanged,
         key: key,
         backgroundColor: color,
         appBar: appBar,
