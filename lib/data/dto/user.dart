@@ -75,9 +75,10 @@ class UserReadDto {
         expireUpgradeAccount: json["expireUpgradeAccount"],
         ageCategory: json["ageCategory"],
         jsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final int x) => x)),
+        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
-        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
+        categories:
+            json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         isFollowing: json["isFollowing"],
         countProducts: json["countProducts"],
         countFollowers: json["countFollowers"],
@@ -372,7 +373,7 @@ class UserCreateUpdateDto {
         categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((final String x) => x)),
         code: json["code"],
         shebaNumber: json["shebaNumber"],
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final int x) => x)),
+        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
       );
   final String? id;
   final String? email;
@@ -427,7 +428,7 @@ class UserCreateUpdateDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() => <String,dynamic >{
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
         "email": email,
         "address": address,
@@ -482,7 +483,6 @@ class UserCreateUpdateDto {
 }
 
 class UserFilterDto {
-
   UserFilterDto({
     this.userId,
     this.userName,
@@ -550,7 +550,7 @@ class UserFilterDto {
         userIds: json["userIds"] == null ? <String>[] : List<String>.from(json["userIds"]!.map((final String x) => x)),
         phoneNumbers: json["phoneNumbers"] == null ? <String>[] : List<String>.from(json["phoneNumbers"]!.map((final String x) => x)),
         categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((final String x) => x)),
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final int x) => x)),
+        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
       );
 
   factory UserFilterDto.fromJson(final String str) => UserFilterDto.fromMap(json.decode(str));
@@ -909,7 +909,6 @@ class AuthenticateDto {
 }
 
 class RegisterDto {
-
   RegisterDto({
     this.userName,
     this.firstName,
@@ -944,7 +943,7 @@ class RegisterDto {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String,dynamic>{
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "userName": userName,
         "firstName": firstName,
         "lastName": lastName,
@@ -957,7 +956,6 @@ class RegisterDto {
 }
 
 class JsonDetail {
-
   JsonDetail({
     this.instagram,
     this.telegram,
