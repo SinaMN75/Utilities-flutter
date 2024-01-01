@@ -288,7 +288,7 @@ enum TagOrder {
 
 enum TagTransaction {
   depositToWallet(101, ''),
-  WithdrawFromTheWallet(102, ''),
+  withdrawFromTheWallet(102, ''),
   buy(103, ''),
   sell(104, ''),
   recharge(105, ''),
