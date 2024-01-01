@@ -31,10 +31,10 @@ class CategoryReadDto {
         price: json["price"],
         stock: json["stock"],
         order: json["order"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         categoryJsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
         parent: json["parent"] == null ? null : CategoryReadDto.fromMap(json["parent"]),
-        children: json["children"] == null ? [] : List<CategoryReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
+        children: json["children"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         id: json["id"],
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -70,9 +70,9 @@ class CategoryReadDto {
         "order": order,
         "categoryJsonDetail": categoryJsonDetail?.toMap(),
         "parent": parent?.toMap(),
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
         "children": children == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(children!.map((final CategoryReadDto x) => x.toMap())),
-        "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
+        "media": media == null ? null : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "id": id,
         "updatedAt": updatedAt?.toIso8601String(),
         "parentId": parentId,
@@ -114,7 +114,7 @@ class CategoryJsonDetail {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() => {
+  dynamic toMap() => <String, Object?>{
         "subtitle": subtitle,
         "link": link,
         "latitude": latitude,
@@ -165,7 +165,7 @@ class CategoryCreateUpdateDto {
         stock: json["stock"],
         order: json["order"],
         parentId: json["parentId"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         isUnique: json["isUnique"],
       );
   String? id;
@@ -205,7 +205,7 @@ class CategoryCreateUpdateDto {
         "order": order,
         "parentId": parentId,
         "isUnique": isUnique,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
       };
 }
 
@@ -238,7 +238,7 @@ class CategoryFilterDto {
         orderByOrder: json["orderByOrder"],
         orderByOrderDescending: json["orderByOrderDescending"],
         orderByCreatedAt: json["orderByCreatedAt"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         orderByCreatedAtDescending: json["orderByCreatedAtDescending"],
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
@@ -259,7 +259,7 @@ class CategoryFilterDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() => {
+  dynamic toMap() => <String, Object?>{
         "title": title,
         "titleTr1": titleTr1,
         "titleTr2": titleTr2,
@@ -269,7 +269,7 @@ class CategoryFilterDto {
         "orderByOrder": orderByOrder,
         "orderByOrderDescending": orderByOrderDescending,
         "orderByCreatedAt": orderByCreatedAt,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
         "orderByCreatedAtDescending": orderByCreatedAtDescending,
         "pageSize": pageSize,
         "pageNumber": pageNumber,
