@@ -224,7 +224,7 @@ class GroupChatFilterDto {
   final int? chatStatus;
   final int? type;
   final int? priority;
-  final String? showUsers;
+  final bool? showUsers;
   final String? showProducts;
   final String? showCategories;
   final String? orderByAtoZ;
