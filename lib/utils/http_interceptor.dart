@@ -61,7 +61,7 @@ Future<void> request(
       error(response);
     }
   } catch (e) {
-    error(Response(statusCode: 999));
+    error(const Response<dynamic>(statusCode: 999));
     if (failure != null) failure(error.toString());
   }
 }
