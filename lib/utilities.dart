@@ -34,7 +34,6 @@ export 'package:mobile_scanner/mobile_scanner.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:persian_datetime_picker/persian_datetime_picker.dart';
 export 'package:persian_tools/persian_tools.dart';
-export 'package:pin_code_fields/pin_code_fields.dart';
 export 'package:screenshot/screenshot.dart';
 export 'package:share_plus/share_plus.dart';
 export 'package:syncfusion_flutter_barcodes/barcodes.dart';

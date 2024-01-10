@@ -26,7 +26,6 @@ Widget otpTextField({
       autoFocus: autoFocus,
       mainAxisAlignment: mainAxisAlignment,
       hintCharacter: hintCharacter,
-      animationType: AnimationType.fade,
       pinTheme: PinTheme(
         shape: shape,
         fieldOuterPadding: fieldOuterPadding,

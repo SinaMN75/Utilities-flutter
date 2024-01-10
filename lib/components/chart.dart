@@ -50,7 +50,7 @@ SfCircularChart doughnutChart({
 }) =>
     SfCircularChart(
       legend: Legend(isVisible: true, overflowMode: LegendItemOverflowMode.wrap, position: legendPosition, height: "100"),
-      annotations: <CircularChartAnnotation>[CircularChartAnnotation(widget: center)],
+      annotations: <CircularChartAnnotation>[CircularChartAnnotation(widget: center ?? SizedBox())],
       series: <DoughnutSeries<DoughnutChartData, String>>[
         DoughnutSeries<DoughnutChartData, String>(
           radius: '100%',
