@@ -40,18 +40,18 @@ Widget barcode(
 /// <key>NSPhotoLibraryUsageDescription</key>
 /// <string>This app needs photos access to get QR code from photo library</string>
 
-Widget qrScanner({
-  required final Function(String? value) onResponse,
-  final MobileScannerController? controller,
-}) =>
-    MobileScanner(
-      controller: controller,
-      onDetect: (final BarcodeCapture capture) {
-        for (final Barcode barcode in capture.barcodes) onResponse(barcode.rawValue);
-      },
-    );
-
-Widget qrcodeScannerPage({required final Function(String? value) onResponse}) => scaffold(
-      appBar: AppBar(),
-      body: qrScanner(onResponse: onResponse),
-    );
+// Widget qrScanner({
+//   required final Function(String? value) onResponse,
+//   final MobileScannerController? controller,
+// }) =>
+//     MobileScanner(
+//       controller: controller,
+//       onDetect: (final BarcodeCapture capture) {
+//         for (final Barcode barcode in capture.barcodes) onResponse(barcode.rawValue);
+//       },
+//     );
+//
+// Widget qrcodeScannerPage({required final Function(String? value) onResponse}) => scaffold(
+//       appBar: AppBar(),
+//       body: qrScanner(onResponse: onResponse),
+//     );

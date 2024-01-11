@@ -40,7 +40,7 @@ dependencies:
   google_sign_in: ^6.1.6
   flutter_easyloading: ^3.0.5
   flutter_local_notifications: ^16.1.0
-  mobile_scanner: ^3.5.2
+#  mobile_scanner: ^3.5.2
   just_audio: ^0.9.36
   flutter_typeahead: ^4.8.0
   cached_network_image: ^3.3.0
