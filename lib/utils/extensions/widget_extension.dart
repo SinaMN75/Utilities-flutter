@@ -44,6 +44,21 @@ extension WidgetsExtension on Widget {
         if (action != null) action();
       });
 
+  Widget showMenus( final List<PopupMenuEntry<int>> items) => GestureDetector(
+      onTapDown: (details) async {
+        final screenSize = MediaQuery.of(context).size;
+        double left = details.globalPosition.dx;
+        double top = details.globalPosition.dy;
+        double right = screenSize.width - details.globalPosition.dx;
+        double bottom = screenSize.height - details.globalPosition.dy;
+        await showMenu<int>(
+          context: context,
+          position: RelativeRect.fromLTRB(left, top, right, bottom),
+          items: items,
+        );
+      },
+      child: this);
+
   Widget onLongPress(final GestureTapCallback? onPressed) => GestureDetector(onLongPress: onPressed, child: this);
 
   Widget onDoubleTap(final GestureTapCallback? onPressed) => GestureDetector(onDoubleTap: onPressed, child: this);
