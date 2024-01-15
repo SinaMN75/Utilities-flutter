@@ -186,7 +186,7 @@ Widget button({
 
 Widget textFieldTypeAhead<T>({
   required final void Function(T) onSuggestionSelected,
-  required final SuggestionsCallback<T> suggestionsCallback,
+  required final FutureOr<List<T>> Function(String search) suggestionsCallback,
   final Widget Function(BuildContext context, T itemData)? itemBuilder,
   final String? text,
   final String? hint,
@@ -202,27 +202,27 @@ Widget textFieldTypeAhead<T>({
       children: <Widget>[
         if (text != null) Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
         TypeAheadField<T>(
-          textFieldConfiguration: TextFieldConfiguration(
-            onTap: () {
-              if (controller!.selection == TextSelection.fromPosition(TextPosition(offset: controller.text.length - 1)))
-                controller.selection = TextSelection.fromPosition(
-                  TextPosition(offset: controller.text.length),
-                );
-            },
-            controller: controller,
-            onChanged: onChanged,
-            scrollPadding: const EdgeInsets.symmetric(vertical: 16),
-            decoration: InputDecoration(prefixIcon: prefix?.paddingOnly(left: 8, right: 12), fillColor: fillColor, hintText: hint),
-          ),
-          hideKeyboard: hideKeyboard,
+          // textFieldConfiguration: TextFieldConfiguration(
+          //   onTap: () {
+          //     if (controller!.selection == TextSelection.fromPosition(TextPosition(offset: controller.text.length - 1)))
+          //       controller.selection = TextSelection.fromPosition(
+          //         TextPosition(offset: controller.text.length),
+          //       );
+          //   },
+          //   controller: controller,
+          //   onChanged: onChanged,
+          //   scrollPadding: const EdgeInsets.symmetric(vertical: 16),
+          //   decoration: InputDecoration(prefixIcon: prefix?.paddingOnly(left: 8, right: 12), fillColor: fillColor, hintText: hint),
+          // ),
+          hideWithKeyboard: hideKeyboard,
           suggestionsCallback: suggestionsCallback,
           itemBuilder: itemBuilder ??
-                  (final BuildContext context, final Object? suggestion) => Container(
-                margin: const EdgeInsets.all(4),
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                child: Text(suggestion.toString()),
-              ),
-          onSuggestionSelected: onSuggestionSelected,
+              (final BuildContext context, final Object? suggestion) => Container(
+                    margin: const EdgeInsets.all(4),
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    child: Text(suggestion.toString()),
+                  ),
+          onSelected: onSuggestionSelected,
         ),
       ],
     );
