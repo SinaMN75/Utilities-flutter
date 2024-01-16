@@ -195,7 +195,7 @@ Widget textFieldTypeAhead<T>({
   final Color? fillColor,
   final TextEditingController? controller,
   final bool hideKeyboard = false,
-  final Function(String)? onChanged,
+  final Function(String)? onChanged,//
 }) =>
     column(
       crossAxisAlignment: CrossAxisAlignment.start,
