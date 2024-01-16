@@ -78,7 +78,7 @@ class UserReadDto {
         jsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
-        stories: json["stories"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["stories"]!.map(MediaReadDto.fromMap)),
+        stories: json["stories"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["stories"]!.map(ProductReadDto.fromMap)),
         categories:
             json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         isFollowing: json["isFollowing"],
@@ -119,7 +119,7 @@ class UserReadDto {
   final UserJsonDetail? jsonDetail;
   List<int>? tags;
   final List<MediaReadDto>? media;
-  final List<MediaReadDto>? stories;
+  final List<ProductReadDto>? stories;
   final List<CategoryReadDto>? categories;
   final bool? isFollowing;
   final int? countProducts;
@@ -162,7 +162,7 @@ class UserReadDto {
         "jsonDetail": jsonDetail?.toMap(),
         "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
         "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
-        "stories": stories == null ? <dynamic>[] : List<dynamic>.from(stories!.map((final MediaReadDto x) => x.toMap())),
+        "stories": stories == null ? <dynamic>[] : List<dynamic>.from(stories!.map((final ProductReadDto x) => x.toMap())),
         "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "isFollowing": isFollowing,
         "countProducts": countProducts,
