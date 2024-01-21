@@ -39,18 +39,20 @@ extension WidgetsExtension on Widget {
 
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
-  Widget showMenus( final List<PopupMenuEntry<int>> items) => GestureDetector(
+  Widget showMenus(final List<PopupMenuEntry<int>> items, {bool? isActive}) => GestureDetector(
       onTapDown: (details) async {
-        final screenSize = MediaQuery.of(context).size;
-        double left = details.globalPosition.dx;
-        double top = details.globalPosition.dy;
-        double right = screenSize.width - details.globalPosition.dx;
-        double bottom = screenSize.height - details.globalPosition.dy;
-        await showMenu<int>(
-          context: context,
-          position: RelativeRect.fromLTRB(left, top, right, bottom),
-          items: items,
-        );
+        if (isActive ?? true) {
+          final screenSize = MediaQuery.of(context).size;
+          double left = details.globalPosition.dx; //
+          double top = details.globalPosition.dy;
+          double right = screenSize.width - details.globalPosition.dx;
+          double bottom = screenSize.height - details.globalPosition.dy;
+          await showMenu<int>(
+            context: context,
+            position: RelativeRect.fromLTRB(left, top, right, bottom),
+            items: items,
+          );
+        }
       },
       child: this);
 
@@ -60,20 +62,6 @@ extension WidgetsExtension on Widget {
         if (action != null) action();
       });
 
-  Widget showMenus( final List<PopupMenuEntry<int>> items) => GestureDetector(
-      onTapDown: (details) async {
-        final screenSize = MediaQuery.of(context).size;
-        double left = details.globalPosition.dx;
-        double top = details.globalPosition.dy;
-        double right = screenSize.width - details.globalPosition.dx;
-        double bottom = screenSize.height - details.globalPosition.dy;
-        await showMenu<int>(
-          context: context,
-          position: RelativeRect.fromLTRB(left, top, right, bottom),
-          items: items,
-        );
-      },
-      child: this);
 
   Widget onLongPress(final GestureTapCallback? onPressed) => GestureDetector(onLongPress: onPressed, child: this);
 

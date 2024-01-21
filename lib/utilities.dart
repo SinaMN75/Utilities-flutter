@@ -23,6 +23,7 @@ export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:get/get.dart';
+export 'package:syncfusion_flutter_maps/maps.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:google_sign_in/google_sign_in.dart';
 export 'package:group_button/group_button.dart';

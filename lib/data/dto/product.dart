@@ -14,6 +14,8 @@ class ProductReadDto {
     this.isSeen,
     this.stock,
     this.voteCount,
+    this.latitude,
+    this.longitude,
     this.discountPercent,
     this.enabled,
     this.discountPrice,
@@ -52,6 +54,8 @@ class ProductReadDto {
         title: json["title"],
         visitsCount: json["visitsCount"],
         isSeen: json["isSeen"],
+        latitude: json["latitude"],
+        longitude: json["longitude"],
         subtitle: json["subtitle"],
         description: json["description"],
         score: json["score"],
@@ -81,9 +85,11 @@ class ProductReadDto {
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
         children: json["children"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
-        productInsights: json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
+        productInsights:
+            json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
         orders: json["orders"] == null ? <OrderReadDto>[] : List<OrderReadDto>.from(json["orders"].cast<Map<String, dynamic>>().map(OrderReadDto.fromMap)).toList(),
-        visitProducts: json["visitProducts"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["visitProducts"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
+        visitProducts:
+            json["visitProducts"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["visitProducts"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
         successfulPurchase: json["successfulPurchase"],
       );
   String id;
@@ -93,6 +99,8 @@ class ProductReadDto {
   String? subtitle;
   String? description;
   String? state;
+  double? latitude;
+  double? longitude;
   DateTime? boosted;
   int? visitsCount;
   int? stock;
@@ -134,6 +142,8 @@ class ProductReadDto {
         "updatedAt": updatedAt?.toIso8601String(),
         "title": title,
         "subtitle": subtitle,
+        "latitude": latitude,
+        "longitude": longitude,
         "description": description,
         "visitsCount": visitsCount,
         "isSeen": isSeen,
@@ -235,8 +245,9 @@ class ProductJsonDetail {
         shippingTime: json["shippingTime"],
         visitCounts: json["visitCounts"] == null ? [] : List<VisitCount>.from(json["visitCounts"]!.map((x) => VisitCount.fromMap(x))),
         keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
-        reservationTimes:
-            json["reservationTimes"] == null ? <ReservationTimes>[] : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
+        reservationTimes: json["reservationTimes"] == null
+            ? <ReservationTimes>[]
+            : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
       );
