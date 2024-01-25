@@ -104,14 +104,18 @@ class TransactionFilterDto {
   final int? amount;
   final String? refId;
   final List<int>? tags;
-  final String? userId;
+  final String? sellerId;
+  final String? buyerId;
+  final String? code;
   final String? orderId;
 
   TransactionFilterDto({
     this.amount,
     this.refId,
     this.tags,
-    this.userId,
+    this.buyerId,
+    this.sellerId,
+    this.code,
     this.orderId,
   });
 
@@ -120,18 +124,23 @@ class TransactionFilterDto {
   String toJson() => json.encode(toMap());
 
   factory TransactionFilterDto.fromMap(Map<String, dynamic> json) => TransactionFilterDto(
-        amount: json["amount"],
+    amount: json["amount"],
         refId: json["refId"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-        userId: json["userId"],
+        buyerId: json["buyerId"],
+        sellerId: json["sellerId"],
+        code: json["code"],
         orderId: json["orderId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() =>
+      {
         "amount": amount,
         "refId": refId,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-        "userId": userId,
+        "buyerId": buyerId,
+        "sellerId": sellerId,
+        "code": code,
         "orderId": orderId,
       };
 }
