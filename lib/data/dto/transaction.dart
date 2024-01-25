@@ -25,7 +25,7 @@ class TransactionCreateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory TransactionCreateDto.fromMap(Map<String, dynamic> json) => TransactionCreateDto(
+  factory TransactionCreateDto.fromMap(dynamic json) => TransactionCreateDto(
         amount: json["amount"],
         descriptions: json["descriptions"],
         refId: json["refId"],
@@ -36,7 +36,7 @@ class TransactionCreateDto {
         subscriptionId: json["subscriptionId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "amount": amount,
         "descriptions": descriptions,
         "refId": refId,
@@ -75,7 +75,7 @@ class TransactionUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory TransactionUpdateDto.fromMap(Map<String, dynamic> json) => TransactionUpdateDto(
+  factory TransactionUpdateDto.fromMap(dynamic json) => TransactionUpdateDto(
         id: json["id"],
         amount: json["amount"],
         descriptions: json["descriptions"],
@@ -87,7 +87,7 @@ class TransactionUpdateDto {
         subscriptionId: json["subscriptionId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "amount": amount,
         "descriptions": descriptions,
@@ -123,8 +123,8 @@ class TransactionFilterDto {
 
   String toJson() => json.encode(toMap());
 
-  factory TransactionFilterDto.fromMap(Map<String, dynamic> json) => TransactionFilterDto(
-    amount: json["amount"],
+  factory TransactionFilterDto.fromMap(dynamic json) => TransactionFilterDto(
+        amount: json["amount"],
         refId: json["refId"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
         buyerId: json["buyerId"],
@@ -133,8 +133,7 @@ class TransactionFilterDto {
         orderId: json["orderId"],
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  dynamic toMap() => {
         "amount": amount,
         "refId": refId,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
@@ -188,8 +187,8 @@ class TransactionReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory TransactionReadDto.fromMap(Map<String, dynamic> json) => TransactionReadDto(
-    id: json["id"],
+  factory TransactionReadDto.fromMap(dynamic json) => TransactionReadDto(
+        id: json["id"],
         code: json["code"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
@@ -208,8 +207,7 @@ class TransactionReadDto {
         subscriptionId: json["subscriptionId"],
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  dynamic toMap() => {
         "id": id,
         "code": code,
         "createdAt": createdAt,
