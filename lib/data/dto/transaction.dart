@@ -199,7 +199,7 @@ class TransactionReadDto {
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
         buyer: json["buyer"] == null ? null : UserReadDto.fromMap(json["buyer"]),
         buyerId: json["buyerId"],
-        seller: json["sellerId"] == null ? null : UserReadDto.fromMap(json["sellerId"]),
+        seller: json["seller"] == null ? null : UserReadDto.fromMap(json["seller"]),
         sellerId: json["sellerId"],
         order: json["order"] == null ? null : OrderReadDto.fromMap(json["order"]),
         orderId: json["orderId"],
