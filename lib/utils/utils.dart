@@ -64,6 +64,80 @@ void validateForm({required final GlobalKey<FormState> key, required final VoidC
   if (key.currentState!.validate()) action();
 }
 
+String getPrice(final int i) => intl.NumberFormat('###,###,###,###,000').format(i);
+
+bool hasMatch(final String? value, final String pattern) => (value == null) ? false : RegExp(pattern).hasMatch(value);
+
+void logout({required final VoidCallback onLoggedOut}) => showYesCancelDialog(
+      title: "خروج از سیستم",
+      description: "آیا از خروج از سیستم اطمینان دارید؟",
+      onYesButtonTap: () => onLoggedOut(),
+    );
+
+FormFieldValidator<String> validateNotEmpty() => (final String? value) {
+      if (value!.isEmpty) return "فیلد الزامی است";
+      return null;
+    };
+
+FormFieldValidator<String> validateEmail() => (final String? value) {
+      if (value!.isEmpty) return "فیلد الزامی است";
+      if (!value.isEmail) return "ایمیل وارد شده صحیح نیست";
+      return null;
+    };
+
+FormFieldValidator<String> validatePhone() => (final String? value) {
+      if (value!.isEmpty) return "فیلد الزامی است";
+      if (!isPhoneNumber(value)) return "شماره موبایل وارد شده صحیح نیست";
+      return null;
+    };
+
+FormFieldValidator<String> validateNumber() => (final String? value) {
+      if (value!.isEmpty) return "فیلد الزامی است";
+      if (!GetUtils.isNumericOnly(value)) return "شماره وارد شده صحیح نیست";
+      return null;
+    };
+
+void showYesCancelDialog({
+  required final String title,
+  required final String description,
+  required final VoidCallback onYesButtonTap,
+  final VoidCallback? onCancelButtonTap,
+  final String? yesButtonTitle,
+}) =>
+    showDialog(
+      context: context,
+      builder: (final BuildContext context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        title: Text(title).headlineLarge(),
+        content: Text(description).bodyLarge(),
+        actionsAlignment: MainAxisAlignment.center,
+        actions: <Widget>[
+          SizedBox(
+              child: button(
+            width: screenWidth / 4,
+            backgroundColor: context.theme.primaryColorDark,
+            onTap: onCancelButtonTap ?? back,
+            title: 'انصراف',
+            textStyle: context.textTheme.bodyMedium,
+          )),
+          SizedBox(
+              child: button(
+            width: screenWidth / 4,
+            onTap: onYesButtonTap,
+            title: yesButtonTitle ?? "بله",
+            textStyle: context.textTheme.bodyMedium,
+          )),
+        ],
+      ),
+    );
+
+bool isLoggedIn() => getString(UtilitiesConstants.token) == null ? false : true;
+
+bool isPhoneNumber(final String s) {
+  if (s.length > 16 || s.length < 9) return false;
+  return hasMatch(s, r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$');
+}
+
 bool isNumeric(final String? s) {
   if (s == null) {
     return false;
