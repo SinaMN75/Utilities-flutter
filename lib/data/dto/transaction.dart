@@ -108,8 +108,8 @@ class TransactionFilterDto {
   final String? buyerId;
   final String? code;
   final String? orderId;
-  final DateTime? dateTimeStart;
-  final DateTime? dateTimeEnd;
+  final String? dateTimeStart;
+  final String? dateTimeEnd;
 
   TransactionFilterDto({
     this.amount,
