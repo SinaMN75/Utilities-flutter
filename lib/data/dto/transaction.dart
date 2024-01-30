@@ -108,6 +108,8 @@ class TransactionFilterDto {
   final String? buyerId;
   final String? code;
   final String? orderId;
+  final DateTime? dateTimeStart;
+  final DateTime? dateTimeEnd;
 
   TransactionFilterDto({
     this.amount,
@@ -117,6 +119,8 @@ class TransactionFilterDto {
     this.sellerId,
     this.code,
     this.orderId,
+    this.dateTimeStart,
+    this.dateTimeEnd,
   });
 
   factory TransactionFilterDto.fromJson(String str) => TransactionFilterDto.fromMap(json.decode(str));
@@ -124,16 +128,19 @@ class TransactionFilterDto {
   String toJson() => json.encode(toMap());
 
   factory TransactionFilterDto.fromMap(dynamic json) => TransactionFilterDto(
-        amount: json["amount"],
+    amount: json["amount"],
         refId: json["refId"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
         buyerId: json["buyerId"],
         sellerId: json["sellerId"],
         code: json["code"],
         orderId: json["orderId"],
+        dateTimeStart: json["dateTimeStart"],
+        dateTimeEnd: json["dateTimeEnd"],
       );
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "amount": amount,
         "refId": refId,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
@@ -141,6 +148,8 @@ class TransactionFilterDto {
         "sellerId": sellerId,
         "code": code,
         "orderId": orderId,
+        "dateTimeEnd": dateTimeEnd,
+        "dateTimeStart": dateTimeStart,
       };
 }
 
