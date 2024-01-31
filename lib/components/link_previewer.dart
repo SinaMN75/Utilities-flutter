@@ -22,5 +22,4 @@ Widget linkPreviewer({required final String link}) => AnyLinkPreview(
       borderRadius: 12,
       urlLaunchMode: LaunchMode.externalApplication,
       boxShadow: const <BoxShadow>[BoxShadow(blurRadius: 3, color: Colors.grey)],
-      onTap: () {}, // This disables tap event
     );
