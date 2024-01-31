@@ -25,7 +25,7 @@ class TransactionCreateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory TransactionCreateDto.fromMap(Map<String, dynamic> json) => TransactionCreateDto(
+  factory TransactionCreateDto.fromMap(dynamic json) => TransactionCreateDto(
         amount: json["amount"],
         descriptions: json["descriptions"],
         refId: json["refId"],
@@ -36,7 +36,7 @@ class TransactionCreateDto {
         subscriptionId: json["subscriptionId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "amount": amount,
         "descriptions": descriptions,
         "refId": refId,
@@ -75,7 +75,7 @@ class TransactionUpdateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory TransactionUpdateDto.fromMap(Map<String, dynamic> json) => TransactionUpdateDto(
+  factory TransactionUpdateDto.fromMap(dynamic json) => TransactionUpdateDto(
         id: json["id"],
         amount: json["amount"],
         descriptions: json["descriptions"],
@@ -87,7 +87,7 @@ class TransactionUpdateDto {
         subscriptionId: json["subscriptionId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "amount": amount,
         "descriptions": descriptions,
@@ -104,40 +104,58 @@ class TransactionFilterDto {
   final int? amount;
   final String? refId;
   final List<int>? tags;
-  final String? userId;
+  final String? sellerId;
+  final String? buyerId;
+  final String? code;
   final String? orderId;
+  final String? dateTimeStart;
+  final String? dateTimeEnd;
 
   TransactionFilterDto({
     this.amount,
     this.refId,
     this.tags,
-    this.userId,
+    this.buyerId,
+    this.sellerId,
+    this.code,
     this.orderId,
+    this.dateTimeStart,
+    this.dateTimeEnd,
   });
 
   factory TransactionFilterDto.fromJson(String str) => TransactionFilterDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory TransactionFilterDto.fromMap(Map<String, dynamic> json) => TransactionFilterDto(
-        amount: json["amount"],
+  factory TransactionFilterDto.fromMap(dynamic json) => TransactionFilterDto(
+    amount: json["amount"],
         refId: json["refId"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-        userId: json["userId"],
+        buyerId: json["buyerId"],
+        sellerId: json["sellerId"],
+        code: json["code"],
         orderId: json["orderId"],
+        dateTimeStart: json["dateTimeStart"],
+        dateTimeEnd: json["dateTimeEnd"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() =>
+      {
         "amount": amount,
         "refId": refId,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-        "userId": userId,
+        "buyerId": buyerId,
+        "sellerId": sellerId,
+        "code": code,
         "orderId": orderId,
+        "dateTimeEnd": dateTimeEnd,
+        "dateTimeStart": dateTimeStart,
       };
 }
 
 class TransactionReadDto {
   final String? id;
+  final String? code;
   final String? createdAt;
   final String? updatedAt;
   final int? amount;
@@ -145,8 +163,10 @@ class TransactionReadDto {
   final String? refId;
   final String? cardNumber;
   final List<int>? tags;
-  final UserReadDto? user;
-  final String? userId;
+  final UserReadDto? buyer;
+  final String? buyerId;
+  final UserReadDto? seller;
+  final String? sellerId;
   final OrderReadDto? order;
   final String? orderId;
   final SubscriptionPaymentReadDto? subscriptionPayment;
@@ -154,6 +174,7 @@ class TransactionReadDto {
 
   TransactionReadDto({
     this.id,
+    this.code,
     this.createdAt,
     this.updatedAt,
     this.amount,
@@ -161,8 +182,10 @@ class TransactionReadDto {
     this.refId,
     this.cardNumber,
     this.tags,
-    this.user,
-    this.userId,
+    this.buyer,
+    this.buyerId,
+    this.seller,
+    this.sellerId,
     this.order,
     this.orderId,
     this.subscriptionPayment,
@@ -173,8 +196,9 @@ class TransactionReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory TransactionReadDto.fromMap(Map<String, dynamic> json) => TransactionReadDto(
+  factory TransactionReadDto.fromMap(dynamic json) => TransactionReadDto(
         id: json["id"],
+        code: json["code"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
         amount: json["amount"],
@@ -182,16 +206,19 @@ class TransactionReadDto {
         refId: json["refId"],
         cardNumber: json["cardNumber"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-        userId: json["userId"],
+        buyer: json["buyer"] == null ? null : UserReadDto.fromMap(json["buyer"]),
+        buyerId: json["buyerId"],
+        seller: json["seller"] == null ? null : UserReadDto.fromMap(json["seller"]),
+        sellerId: json["sellerId"],
         order: json["order"] == null ? null : OrderReadDto.fromMap(json["order"]),
         orderId: json["orderId"],
         subscriptionPayment: json["subscriptionPayment"] == null ? null : SubscriptionPaymentReadDto.fromMap(json["subscriptionPayment"]),
         subscriptionId: json["subscriptionId"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
+        "code": code,
         "createdAt": createdAt,
         "updatedAt": updatedAt,
         "amount": amount,
@@ -199,8 +226,10 @@ class TransactionReadDto {
         "refId": refId,
         "cardNumber": cardNumber,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-        "user": user?.toMap(),
-        "userId": userId,
+        "buyer": buyer?.toMap(),
+        "buyerId": buyerId,
+        "seller": seller?.toMap(),
+        "sellerId": sellerId,
         "order": order?.toMap(),
         "orderId": orderId,
         "subscriptionPayment": subscriptionPayment?.toMap(),
