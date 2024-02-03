@@ -100,6 +100,28 @@ class UserDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
+  void transferWalletToWallet({
+    required final String fromUserId,
+    required final String toUserId,
+    required final String amount,
+    required final VoidCallback onResponse,
+    required final VoidCallback onError,
+    final Function(String error)? failure,
+  }) =>
+      httpPost(
+        url: "$baseUrl/user/TransferWalletToWallet",
+        body: <String, dynamic>{
+          "fromUserId": fromUserId,
+          "toUserId": toUserId,
+          "amount": amount,
+        },
+        encodeBody: false,
+        action: (final Response<dynamic> response) => onResponse(),
+        error: (final Response<dynamic> response) => onError(),
+        failure: failure,
+      );
+
+
   void deleteFromTeam({
     required final String teamId,
     required final VoidCallback onResponse,
