@@ -187,7 +187,7 @@ class UserDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
-  void filter({
+  Future<void> filter({
     required final UserFilterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
