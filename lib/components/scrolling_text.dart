@@ -10,7 +10,6 @@ class ScrollingText extends StatefulWidget {
     this.height,
     this.width,
     this.textAlign,
-    this.width,
     this.scrollAxis = Axis.horizontal,
     this.ratioOfBlankToScreen = 0.25,
   });
