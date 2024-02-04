@@ -8,6 +8,7 @@ class ScrollingText extends StatefulWidget {
     this.maxLengthForScrolling = 10,
     this.color,
     this.height,
+    this.textAlign,
     this.scrollAxis = Axis.horizontal,
     this.ratioOfBlankToScreen = 0.25,
   });
@@ -16,6 +17,7 @@ class ScrollingText extends StatefulWidget {
   final TextStyle? textStyle;
   final int maxLengthForScrolling;
   final Axis scrollAxis;
+  final TextAlign? textAlign;
   final Color? color;
   final double? height;
   final double ratioOfBlankToScreen;
@@ -79,15 +81,12 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
         child: Text(
           newString,
           style: widget.textStyle,
-          textAlign: TextAlign.center,
+          textAlign: widget.textAlign ?? TextAlign.center,
         ),
       );
     }
-    return Center(
-        child: Text(
-      widget.text,
-      style: widget.textStyle,
-    ));
+    return Center(child: Text(widget.text, style: widget.textStyle, textAlign: widget.textAlign ?? TextAlign.center));
+
   }
 
   Widget getCenterChild() {
@@ -125,7 +124,7 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
             : Text(
                 widget.text,
                 style: widget.textStyle,
-                textAlign: TextAlign.start,
+          textAlign: widget.textAlign ?? TextAlign.start,
               ),
       );
 }
