@@ -126,6 +126,7 @@ Widget button({
   final VoidCallback? onTap,
   final IconData? icon,
   final double? width,
+  final double? height,
   final TextStyle? textStyle,
   final Color? backgroundColor,
   final ButtonType buttonType = ButtonType.elevated,
@@ -142,7 +143,7 @@ Widget button({
             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundColor), padding: MaterialStateProperty.all(padding)),
             onPressed: onTap,
             child: SizedBox(
-              height: 20,
+              height:height?? 20,
               width: width ?? context.width,
               child: Center(
                 child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center).fit(),

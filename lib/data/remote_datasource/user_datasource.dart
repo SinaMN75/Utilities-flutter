@@ -223,7 +223,7 @@ class UserDataSource {
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
-  void filter({
+  Future<void> filter({
     required final UserFilterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
