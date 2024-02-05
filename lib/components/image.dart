@@ -5,6 +5,7 @@ Widget image(
   final Color? color,
   final double? width,
   final double? height,
+  final double? size,
   final BoxFit fit = BoxFit.contain,
   final Clip clipBehavior = Clip.hardEdge,
   final double borderRadius = 1,
@@ -19,8 +20,8 @@ Widget image(
     else
       return imageAsset(
         placeholder,
-        width: width,
-        height: height,
+        width:size?? width,
+        height:size?? height,
         borderRadius: borderRadius,
         color: color,
         margin: margin,
@@ -32,8 +33,8 @@ Widget image(
     if (source.startsWith("http"))
       return imageNetwork(
         source,
-        width: width,
-        height: height,
+        width:size?? width,
+        height:size?? height,
         fit: fit,
         clipBehavior: clipBehavior,
         margin: margin,
@@ -50,8 +51,8 @@ Widget image(
     else
       return imageAsset(
         source,
-        width: width,
-        height: height,
+        width:size?? width,
+        height:size?? height,
         fit: fit,
         clipBehavior: clipBehavior,
         margin: margin,
