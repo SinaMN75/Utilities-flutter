@@ -62,14 +62,14 @@ class TransactionDataSource {
 
   void generateReport({
     required final TransactionFilterDto dto,
-    required final Function(GenericResponse<String> response) onResponse,
+    required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) =>
       httpPost(
         body: dto,
         url: "$baseUrl/Transaction/GenerateReport",
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
