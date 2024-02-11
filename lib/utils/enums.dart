@@ -123,6 +123,8 @@ enum TagProduct {
   appointment(179, "", ""),
   internal(180, "", ''),
   foreign(181, "", ''),
+  journal(182, "", ''),
+  link(183, "", ''),
   news(201, "", ""),
   kindOfNew(202, "", ""),
   used(203, "", ""),
