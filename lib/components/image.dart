@@ -2,6 +2,7 @@ part of 'components.dart';
 
 Widget image(
   final String source, {
+  final FileData? fileData,
   final Color? color,
   final double? width,
   final double? height,
@@ -14,14 +15,40 @@ Widget image(
   final ProgressIndicatorBuilder? progressIndicatorBuilder,
   final VoidCallback? onTap,
 }) {
+  if (fileData != null) {
+    if (isWeb)
+      return imageMemory(
+        fileData.bytes!,
+        width: size ?? width,
+        height: size ?? height,
+        borderRadius: borderRadius,
+        color: color,
+        margin: margin,
+        onTap: onTap,
+        fit: fit,
+        clipBehavior: clipBehavior,
+      );
+    else
+      return imageFile(
+        File(fileData.path!),
+        width: size ?? width,
+        height: size ?? height,
+        borderRadius: borderRadius,
+        color: color,
+        margin: margin,
+        onTap: onTap,
+        fit: fit,
+        clipBehavior: clipBehavior,
+      );
+  }
   if (source.length <= 10) {
     if (placeholder == null)
       return SizedBox(width: width, height: height);
     else
       return imageAsset(
         placeholder,
-        width:size?? width,
-        height:size?? height,
+        width: size ?? width,
+        height: size ?? height,
         borderRadius: borderRadius,
         color: color,
         margin: margin,
@@ -33,8 +60,8 @@ Widget image(
     if (source.startsWith("http"))
       return imageNetwork(
         source,
-        width:size?? width,
-        height:size?? height,
+        width: size ?? width,
+        height: size ?? height,
         fit: fit,
         clipBehavior: clipBehavior,
         margin: margin,
@@ -51,8 +78,8 @@ Widget image(
     else
       return imageAsset(
         source,
-        width:size?? width,
-        height:size?? height,
+        width: size ?? width,
+        height: size ?? height,
         fit: fit,
         clipBehavior: clipBehavior,
         margin: margin,
