@@ -28,7 +28,16 @@ void showFilePicker({
       throw Exception("FUCK");
     } else {
       if (allowMultiple) {
-        result.files.forEach((final PlatformFile i) async => files.add(FileData(path: i.path, bytes: i.bytes)));
+        FileDataType type = FileDataType.image;
+        if ((allowedExtensions ?? <String>[]).contains("pdf")) type = FileDataType.pdf;
+        if ((allowedExtensions ?? <String>[]).containsAny(<String>["mp4", "mkv"])) type = FileDataType.pdf;
+        result.files.forEach(
+          (final PlatformFile i) async {
+            files.add(
+              FileData(path: i.path, bytes: i.bytes, fileType: type),
+            );
+          },
+        );
         action(files);
       } else
         action(<FileData>[FileData(path: result.files.single.path, bytes: result.files.single.bytes)]);

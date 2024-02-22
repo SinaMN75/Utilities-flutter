@@ -66,6 +66,11 @@ extension ListExtensions<T> on List<T> {
     return setA.containsAll(this);
   }
 
+  bool containsAny<T>(final List<T> list) {
+    final Set<T> setA = Set<T>.of(list);
+    return setA.any(this.contains);
+  }
+
   List<T> addAndReturn(final T t) {
     add(t);
     return this;
