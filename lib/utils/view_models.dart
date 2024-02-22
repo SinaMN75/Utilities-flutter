@@ -1,10 +1,11 @@
 part of 'utils.dart';
 
 class FileData {
-  FileData({this.path, this.bytes});
+  FileData({this.path, this.bytes, this.url});
 
   final String? path;
   final Uint8List? bytes;
+  final String? url;
 }
 
 class MediaViewModel {
