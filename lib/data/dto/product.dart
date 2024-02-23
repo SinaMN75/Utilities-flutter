@@ -421,7 +421,7 @@ class ProductCreateUpdateDto {
   List<KeyValueViewModel>? keyValues;
   List<String>? categories;
   List<String>? teams;
-  List<int> tags;
+  List<int>? tags;
   List<ProductCreateUpdateDto>? children;
   ProductInsight? productInsight;
   List<ReservationTimes>? reservationTimes;
@@ -479,7 +479,7 @@ class ProductCreateUpdateDto {
         "boosted": boosted,
         "parentId": parentId,
         "productInsight": productInsight?.toMap(),
-        "tags": List<dynamic>.from(tags.map((final int x) => x)),
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
         "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductCreateUpdateDto x) => x.toMap())),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.where((final String element) => element != '').map((final String x) => x)),
@@ -525,7 +525,7 @@ class ProductFilterDto {
     this.pageNumber,
     this.currency,
     this.categories,
-    required this.tags,
+    this.tags,
     this.userIds,
     this.query,
     this.shuffle1,
@@ -572,7 +572,7 @@ class ProductFilterDto {
         pageNumber: json["pageNumber"],
         currency: json["currency"],
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-        tags: List<int>.from(json["tags"]!.map((final x) => x)),
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final x) => x)),
         query: json["query"],
         shuffle1: json["shuffle1"],
@@ -616,7 +616,7 @@ class ProductFilterDto {
   int? pageNumber;
   int? currency;
   List<String>? categories;
-  List<int> tags;
+  List<int>? tags;
   List<String>? userIds;
   String? query;
   bool? shuffle1;
@@ -662,7 +662,7 @@ class ProductFilterDto {
         "pageNumber": pageNumber,
         "currency": currency,
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
-        "tags": List<dynamic>.from(tags.map((final int x) => x)),
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((final String x) => x)),
         "query": query,
         "shuffle1": shuffle1,
