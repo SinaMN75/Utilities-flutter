@@ -7,7 +7,7 @@ class MediaReadDto {
   String? fileName;
   int? tag;
   int? order;
-  MediaJsonDetail? mediaJsonDetail;
+  MediaJsonDetail? jsonDetail;
   String url;
   List<int>? tags;
   String? fileType;
@@ -20,7 +20,7 @@ class MediaReadDto {
     this.fileName,
     this.tag,
     this.order,
-    this.mediaJsonDetail,
+    this.jsonDetail,
     this.tags,
     this.fileType,
   });
@@ -30,7 +30,7 @@ class MediaReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory MediaReadDto.fromMap(dynamic json) => MediaReadDto(
-        id: json["id"],
+    id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         fileName: json["fileName"],
@@ -38,11 +38,12 @@ class MediaReadDto {
         order: json["order"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         fileType: json["url"] == null ? '' : json["url"].toString().split('.').last,
-        mediaJsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
+        jsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
         url: json["url"],
       );
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "id": id,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
@@ -51,7 +52,7 @@ class MediaReadDto {
         "order": order,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "fileType": url.split('.').last,
-        "mediaJsonDetail": mediaJsonDetail?.toMap(),
+        "mediaJsonDetail": jsonDetail?.toMap(),
         "url": url,
       };
 }

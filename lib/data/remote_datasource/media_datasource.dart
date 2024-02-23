@@ -98,7 +98,7 @@ class MediaDataSource {
   }) =>
       httpPut(
         url: "$baseUrl/Media/$mediaId",
-        body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
+        body: MediaReadDto(jsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
         action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
