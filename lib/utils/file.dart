@@ -29,7 +29,7 @@ void showFilePicker({
       if ((allowedExtensions ?? <String>[]).contains("pdf")) type = FileDataType.pdf;
       if ((allowedExtensions ?? <String>[]).containsAny(<String>["mp4", "mkv"])) type = FileDataType.pdf;
       result.files.forEach(
-        (final PlatformFile i) async {
+            (final PlatformFile i) async {
           files.add(
             FileData(path: isWeb ? null : i.path, bytes: i.bytes, fileType: type),
           );
@@ -47,7 +47,9 @@ Future<XFile?> imagePicker() => ImagePicker().pickImage(source: ImageSource.gall
 
 Future<File> writeToFile(final Uint8List data) async {
   final Directory tempDir = await getTemporaryDirectory();
-  return File('${tempDir.path}/${Random.secure().nextInt(10000)}.tmp').writeAsBytes(data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+  return File('${tempDir.path}/${Random.secure().nextInt(10000)}.tmp').writeAsBytes(
+    data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
+  );
 }
 
 Future<FileData?> cropImage({
@@ -167,7 +169,10 @@ Future<Uint8List> getCompressImageFileWeb({
   final int quality = 70,
   final bool advanceCompress = true,
 }) async {
-  final Uint8List result = await FlutterImageCompress.compressWithList(bytes, quality: advanceCompress ? 20 : quality);
+  final Uint8List result = await FlutterImageCompress.compressWithList(
+    bytes,
+    quality: advanceCompress ? 20 : quality,
+  );
   return result;
 }
 
@@ -182,6 +187,71 @@ Widget filePickerList({
   final RxList<FileData> oldFiles = files.obs;
   final RxList<FileData> addedFiles = <FileData>[].obs;
   final RxList<FileData> deletedFiles = <FileData>[].obs;
+
+  Widget menu({
+    required final VoidCallback onDelete,
+    required final VoidCallback onEdit,
+  }) =>
+      PopupMenuButton<int>(
+        onSelected: (final int index) {
+          if (index == 0) onDelete();
+          if (index == 1) onEdit();
+        },
+        itemBuilder: (final BuildContext context) => <PopupMenuEntry<int>>[
+          const PopupMenuItem<int>(value: 0, child: Text('حذف')),
+          const PopupMenuItem<int>(value: 1, child: Text('ویرایش')),
+        ],
+        child: const Icon(Icons.more_vert, color: Colors.black).container(
+          backgroundColor: Colors.white,
+          radius: 100,
+        ),
+      );
+
+  Widget fileIcon({
+    required final IconData icon,
+    required final Color color,
+  }) =>
+      Icon(icon, color: color, size: 50).container(
+        radius: 12,
+        width: 100,
+        height: 100,
+        borderWidth: 4,
+        borderColor: color,
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+      );
+
+  void edit({
+    required final FileData? dto,
+    required final Function(FileData fileData) onSubmit,
+  }) {
+    final TextEditingController controllerTitle = TextEditingController(text: dto?.jsonDetail?.title ?? "");
+    final TextEditingController controllerDescription = TextEditingController(text: dto?.jsonDetail?.description ?? "");
+    dialogAlert(
+      Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          textField(labelText: "عنوان", controller: controllerTitle).paddingSymmetric(vertical: 8),
+          textField(labelText: "توضیحات", controller: controllerDescription).paddingSymmetric(vertical: 8),
+          button(
+            title: "ثبت",
+            onTap: () => onSubmit(
+              FileData(
+                id: dto?.id,
+                bytes: dto?.bytes,
+                order: dto?.order,
+                tags: dto?.tags,
+                url: dto?.url,
+                fileType: dto?.fileType,
+                path: dto?.path,
+                jsonDetail: dto?.jsonDetail,
+              ),
+            ),
+          ).paddingSymmetric(vertical: 20),
+        ],
+      ).container(width: context.width / 2),
+    );
+  }
+
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -201,29 +271,24 @@ Widget filePickerList({
                         borderRadius: 12,
                         fit: BoxFit.cover,
                       ).paddingSymmetric(horizontal: 8),
-                      const Icon(
-                        Icons.close,
-                        color: Colors.white,
-                        size: 24,
-                      )
-                          .container(
-                        backgroundColor: context.theme.colorScheme.error,
-                        radius: 100,
-                      )
-                          .onTap(
-                        () {
+                      menu(
+                        onDelete: () {
                           oldFiles.remove(i);
                           deletedFiles.add(i);
                           onFileDeleted(deletedFiles);
                         },
+                        onEdit: () => edit(
+                          dto: i,
+                          onSubmit: (final FileData fileData) => oldFiles[index] = fileData,
+                        ),
                       ),
                     ],
-                      ),
+                  ),
                 )
-                    .toList(),
-                ...addedFiles
-                    .mapIndexed(
-                      (final int index, final FileData i) => Stack(
+                .toList(),
+            ...addedFiles
+                .mapIndexed(
+                  (final int index, final FileData i) => Stack(
                     children: <Widget>[
                       if (i.fileType == FileDataType.image)
                         image(
@@ -235,47 +300,39 @@ Widget filePickerList({
                           fit: BoxFit.cover,
                         ).paddingSymmetric(horizontal: 8),
                       if (i.fileType == FileDataType.pdf)
-                        const Icon(Icons.picture_as_pdf_outlined, color: Colors.red, size: 50).container(
-                          radius: 12,
-                          width: 100,
-                          height: 100,
-                          borderWidth: 4,
-                          borderColor: context.theme.colorScheme.onBackground,
-                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                        fileIcon(
+                          icon: Icons.picture_as_pdf_outlined,
+                          color: Colors.red,
                         ),
-                      const Icon(Icons.close, color: Colors.white, size: 24)
-                          .container(
-                        backgroundColor: context.theme.colorScheme.error,
-                        radius: 100,
-                      )
-                          .onTap(() {
-                        addedFiles.removeAt(index);
-                      }),
+                      if (i.fileType == FileDataType.video)
+                        fileIcon(
+                          icon: Icons.videocam_outlined,
+                          color: Colors.red,
+                        ),
+                      menu(
+                        onDelete: () => addedFiles.removeAt(index),
+                        onEdit: () => edit(
+                          dto: i,
+                          onSubmit: (final FileData fileData) => addedFiles[index] = fileData,
+                        ),
+                      ),
                     ],
                   ),
                 )
-                    .toList(),
-                const Icon(Icons.add, size: 60)
-                    .container(
-                  width: 100,
-                  height: 100,
-                  borderWidth: 4,
-                  borderColor: context.theme.colorScheme.primary,
-                  radius: 12,
-                )
-                    .onTap(
-                      () => showFilePicker(
-                    fileType: fileType,
-                    allowMultiple: true,
-                    allowedExtensions: allowedExt,
-                    action: (final List<FileData> files) {
-                      addedFiles.addAll(files);
-                      onFileSelected(addedFiles);
-                    },
-                  ),
-                ),
-              ],
+                .toList(),
+            fileIcon(icon: Icons.add, color: context.theme.colorScheme.primary).onTap(
+              () => showFilePicker(
+                fileType: fileType,
+                allowMultiple: true,
+                allowedExtensions: allowedExt,
+                action: (final List<FileData> files) {
+                  addedFiles.addAll(files);
+                  onFileSelected(addedFiles);
+                },
+              ),
             ),
+          ],
+        ),
       ),
     ],
   );
