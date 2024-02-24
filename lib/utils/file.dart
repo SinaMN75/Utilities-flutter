@@ -175,10 +175,11 @@ Widget filePickerList({
   required final String title,
   required final Function(List<FileData> fileData) onFileSelected,
   required final Function(List<FileData> fileData) onFileDeleted,
-  final List<FileData>? files,
+  final List<FileData> files = const <FileData>[],
   final List<String>? allowedExt,
   final FileType fileType = FileType.image,
 }) {
+  final RxList<FileData> oldFiles = files.obs;
   final RxList<FileData> addedFiles = <FileData>[].obs;
   final RxList<FileData> deletedFiles = <FileData>[].obs;
   return Column(
@@ -189,7 +190,7 @@ Widget filePickerList({
       Obx(
         () => Row(
           children: <Widget>[
-            ...(files ?? <FileData>[])
+            ...oldFiles
                 .mapIndexed(
                   (final int index, final FileData i) => Stack(
                     children: <Widget>[
@@ -209,17 +210,20 @@ Widget filePickerList({
                         backgroundColor: context.theme.colorScheme.error,
                         radius: 100,
                       )
-                          .onTap(() {
-                        deletedFiles.add(i);
-                        onFileDeleted(deletedFiles);
-                      }),
+                          .onTap(
+                        () {
+                          oldFiles.remove(i);
+                          deletedFiles.add(i);
+                          onFileDeleted(deletedFiles);
+                        },
+                      ),
                     ],
-                  ),
+                      ),
                 )
-                .toList(),
-            ...addedFiles
-                .mapIndexed(
-                  (final int index, final FileData i) => Stack(
+                    .toList(),
+                ...addedFiles
+                    .mapIndexed(
+                      (final int index, final FileData i) => Stack(
                     children: <Widget>[
                       if (i.fileType == FileDataType.image)
                         image(
@@ -250,17 +254,17 @@ Widget filePickerList({
                     ],
                   ),
                 )
-                .toList(),
-            const Icon(Icons.add, size: 60)
-                .container(
+                    .toList(),
+                const Icon(Icons.add, size: 60)
+                    .container(
                   width: 100,
                   height: 100,
                   borderWidth: 4,
                   borderColor: context.theme.colorScheme.primary,
                   radius: 12,
                 )
-                .onTap(
-                  () => showFilePicker(
+                    .onTap(
+                      () => showFilePicker(
                     fileType: fileType,
                     allowMultiple: true,
                     allowedExtensions: allowedExt,
@@ -270,8 +274,8 @@ Widget filePickerList({
                     },
                   ),
                 ),
-          ],
-        ),
+              ],
+            ),
       ),
     ],
   );
