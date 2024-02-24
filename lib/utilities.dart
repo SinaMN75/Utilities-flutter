@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:safe_device/safe_device.dart';
 import 'package:screen_protector/screen_protector.dart';
 import 'package:utilities/utilities.dart';
@@ -54,8 +55,10 @@ Future<void> initUtilities({
   final bool safeDevice = false,
   final bool protectDataLeaking = false,
   final bool preventScreenShot = false,
+  final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(deviceOrientations);
   await GetStorage.init();
   if (firebaseOptions != null) {
     await Firebase.initializeApp(options: firebaseOptions);
