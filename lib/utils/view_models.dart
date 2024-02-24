@@ -9,6 +9,13 @@ class FileData {
   final Uint8List? bytes;
   final String? url;
   final FileDataType? fileType;
+  String? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? fileName;
+  int? order;
+  MediaJsonDetail? jsonDetail;
+  List<int>? tags;
 }
 
 class MediaViewModel {
