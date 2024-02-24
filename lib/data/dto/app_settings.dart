@@ -343,7 +343,7 @@ class ReadEverythingDto {
 
   factory ReadEverythingDto.fromMap(Map<String, dynamic> json) => ReadEverythingDto(
     categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
-        products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
+        products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
         contents: json["contents"] == null ? <ContentReadDto>[] : List<ContentReadDto>.from(json["contents"].cast<Map<String, dynamic>>().map(ContentReadDto.fromMap)).toList(),
         appSettings: json["appSettings"] == null ? null : AppSettingsReadDto.fromMap(json["appSettings"]),
       );
