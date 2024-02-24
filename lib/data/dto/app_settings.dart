@@ -323,3 +323,31 @@ class UsageRules {
         "maxChatPerDay": maxChatPerDay,
       };
 }
+
+class ReadEverythingDto {
+  final List<CategoryReadDto>? categories;
+  final List<ContentReadDto>? contents;
+  final AppSettingsReadDto? appSettings;
+
+  ReadEverythingDto({
+    this.categories,
+    this.appSettings,
+    this.contents,
+  });
+
+  factory ReadEverythingDto.fromJson(String str) => ReadEverythingDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ReadEverythingDto.fromMap(Map<String, dynamic> json) => ReadEverythingDto(
+        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
+        contents: json["contents"] == null ? <ContentReadDto>[] : List<ContentReadDto>.from(json["contents"].cast<Map<String, dynamic>>().map(ContentReadDto.fromMap)).toList(),
+        appSettings: json["appSettings"] == null ? null : AppSettingsReadDto.fromMap(json["appSettings"]),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
+        "contents": contents == null ? [] : List<dynamic>.from(contents!.map((final ContentReadDto x) => x.toMap())),
+        "appSettings": appSettings?.toMap(),
+      };
+}

@@ -5,7 +5,7 @@ class AppSettingsDataSource {
 
   final String baseUrl;
 
-   void readAppSettings({
+  void readAppSettings({
     required final Function(GenericResponse<AppSettingsReadDto> response) onResponse,
     required final VoidCallback onError,
     final int timeoutInSeconds = 10,
@@ -15,6 +15,17 @@ class AppSettingsDataSource {
         timeout: Duration(seconds: timeoutInSeconds),
         url: "$baseUrl/AppSettings",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AppSettingsReadDto>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(),
+      );
+
+  void readEverything({
+    required final Function(GenericResponse<ReadEverythingDto> response) onResponse,
+    required final VoidCallback onError,
+    final Function(String error)? failure,
+  }) =>
+      httpGet(
+        url: "$baseUrl/AppSettings",
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<ReadEverythingDto>.fromJson(response.body, fromMap: ReadEverythingDto.fromMap)),
         error: (final Response<dynamic> response) => onError(),
       );
 
