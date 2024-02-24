@@ -11,6 +11,9 @@ class MediaReadDto {
   String url;
   List<int>? tags;
   String? fileType;
+  MediaReadDto? parent;
+  String? parentId;
+  List<MediaReadDto>? children;
 
   MediaReadDto({
     required this.url,
@@ -23,6 +26,9 @@ class MediaReadDto {
     this.jsonDetail,
     this.tags,
     this.fileType,
+    this.children,
+    this.parent,
+    this.parentId,
   });
 
   factory MediaReadDto.fromJson(String str) => MediaReadDto.fromMap(json.decode(str));
@@ -30,7 +36,7 @@ class MediaReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory MediaReadDto.fromMap(dynamic json) => MediaReadDto(
-        id: json["id"],
+    id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         fileName: json["fileName"],
@@ -40,6 +46,9 @@ class MediaReadDto {
         fileType: json["url"] == null ? '' : json["url"].toString().split('.').last,
         jsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
         url: json["url"],
+        parent: json["parent"] == null ? null : MediaReadDto.fromMap(json["parent"]),
+        parentId: json["parentId"],
+        children: json["children"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
       );
 
   dynamic toMap() => {
@@ -53,6 +62,9 @@ class MediaReadDto {
         "fileType": url.split('.').last,
         "mediaJsonDetail": jsonDetail?.toMap(),
         "url": url,
+        "parent": parent?.toMap(),
+        "children": children == null ? <MediaReadDto>[] : List<MediaReadDto>.from(children!.map((final MediaReadDto x) => x.toMap())),
+        "parentId": parentId,
       };
 }
 
@@ -64,6 +76,9 @@ class MediaJsonDetail {
   String? time;
   String? artist;
   String? album;
+  String? link1;
+  String? link2;
+  String? link3;
   int? isPrivate;
 
   MediaJsonDetail({
@@ -75,6 +90,9 @@ class MediaJsonDetail {
     this.artist,
     this.album,
     this.isPrivate,
+    this.link1,
+    this.link2,
+    this.link3,
   });
 
   factory MediaJsonDetail.fromJson(String str) => MediaJsonDetail.fromMap(json.decode(str));
@@ -82,7 +100,10 @@ class MediaJsonDetail {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory MediaJsonDetail.fromMap(dynamic json) => MediaJsonDetail(
-    link: json["link"],
+        link: json["link"],
+        link1: json["link1"],
+        link2: json["link2"],
+        link3: json["link3"],
         title: json["title"],
         description: json["description"],
         size: json["size"],
@@ -92,9 +113,11 @@ class MediaJsonDetail {
         isPrivate: json["isPrivate"],
       );
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "link": link,
+        "link1": link1,
+        "link2": link2,
+        "link3": link3,
         "title": title,
         "description": description,
         "size": size,
@@ -160,8 +183,7 @@ class CreateMediaReadDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "filesPath": filesPath,
         "CategoryId": categoryId,
         "ContentId": contentId,
