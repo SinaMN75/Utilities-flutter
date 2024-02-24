@@ -24,7 +24,7 @@ class AppSettingsDataSource {
     final Function(String error)? failure,
   }) =>
       httpGet(
-        url: "$baseUrl/AppSettings",
+        url: "$baseUrl/AppSettings/ReadEverything",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<ReadEverythingDto>.fromJson(response.body, fromMap: ReadEverythingDto.fromMap)),
         error: (final Response<dynamic> response) => onError(),
       );
