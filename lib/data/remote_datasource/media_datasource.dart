@@ -1,11 +1,11 @@
 part of '../data.dart';
 
 class MediaDataSource {
-  MediaDataSource({required this.baseUrl});
-
   final String baseUrl;
 
-  Future<void> create({
+  MediaDataSource({required this.baseUrl});
+
+  void create({
     required final FileData fileData,
     required final String fileExtension,
     required final List<int> tags,
@@ -26,8 +26,6 @@ class MediaDataSource {
     final String? title,
     final String? notificationId,
     final String? size,
-    final String? token,
-    final Function( double percent)? uploadProgress,
     final Duration? timeout,
   }) async {
     try {
@@ -77,7 +75,7 @@ class MediaDataSource {
   Future<void> filter({
     required final MediaFilterDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) async =>
       httpPost(
@@ -99,6 +97,9 @@ class MediaDataSource {
   }) async =>
       httpPut(
         url: "$baseUrl/Media/$mediaId",
+        body: MediaReadDto(jsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
+        action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
         action: (final Response<dynamic> response) =>
             onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
