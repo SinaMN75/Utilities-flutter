@@ -30,7 +30,7 @@ class MediaReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory MediaReadDto.fromMap(dynamic json) => MediaReadDto(
-    id: json["id"],
+        id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         fileName: json["fileName"],
@@ -42,8 +42,7 @@ class MediaReadDto {
         url: json["url"],
       );
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "id": id,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
@@ -60,6 +59,7 @@ class MediaReadDto {
 class MediaJsonDetail {
   String? link;
   String? title;
+  String? description;
   String? size;
   String? time;
   String? artist;
@@ -69,6 +69,7 @@ class MediaJsonDetail {
   MediaJsonDetail({
     this.link,
     this.title,
+    this.description,
     this.size,
     this.time,
     this.artist,
@@ -81,8 +82,9 @@ class MediaJsonDetail {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory MediaJsonDetail.fromMap(dynamic json) => MediaJsonDetail(
-        link: json["link"],
+    link: json["link"],
         title: json["title"],
+        description: json["description"],
         size: json["size"],
         time: json["time"],
         artist: json["artist"],
@@ -90,9 +92,11 @@ class MediaJsonDetail {
         isPrivate: json["isPrivate"],
       );
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "link": link,
         "title": title,
+        "description": description,
         "size": size,
         "time": time,
         "artist": artist,
@@ -118,9 +122,9 @@ class CreateMediaReadDto {
   String? bookmarkId;
   String? chatId;
   String? title;
+  String? description;
   String? notificationId;
   String? size;
-
   String? id;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -136,6 +140,7 @@ class CreateMediaReadDto {
     this.categoryId,
     this.contentId,
     this.groupChatId,
+    this.description,
     this.groupChatMessageId,
     this.productId,
     this.userId,
@@ -155,11 +160,13 @@ class CreateMediaReadDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "filesPath": filesPath,
         "CategoryId": categoryId,
         "ContentId": contentId,
         "GroupChatId": groupChatId,
+        "description": description,
         "ProductId": productId,
         "UserId": userId,
         "order": order,
