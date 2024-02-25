@@ -129,6 +129,7 @@ class MediaJsonDetail {
 }
 
 class MediaUpdateDto {
+  final String? id;
   final String? title;
   final String? description;
   final String? size;
@@ -144,6 +145,7 @@ class MediaUpdateDto {
   final List<int>? addTags;
 
   MediaUpdateDto({
+    this.id,
     this.title,
     this.description,
     this.size,
@@ -164,6 +166,7 @@ class MediaUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory MediaUpdateDto.fromMap(Map<String, dynamic> json) => MediaUpdateDto(
+    id: json["id"],
         title: json["title"],
         description: json["description"],
         size: json["size"],
@@ -175,11 +178,13 @@ class MediaUpdateDto {
         link2: json["link2"],
         link3: json["link3"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-        removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
-        addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
-      );
+    removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
+    addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
+  );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() =>
+      {
+        "id": id,
         "title": title,
         "description": description,
         "size": size,
