@@ -26,6 +26,7 @@ class MediaDataSource {
     final String? title,
     final String? notificationId,
     final String? size,
+    final String? token,
     final Duration? timeout,
   }) async {
     try {
@@ -63,7 +64,6 @@ class MediaDataSource {
         '$baseUrl/Media',
         form,
         headers: header,
-        uploadProgress: uploadProgress,
       );
       log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
@@ -81,8 +81,7 @@ class MediaDataSource {
       httpPost(
         url: "$baseUrl/Media/Filter",
         body: dto,
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
@@ -98,11 +97,7 @@ class MediaDataSource {
       httpPut(
         url: "$baseUrl/Media/$mediaId",
         body: MediaReadDto(jsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
-        action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-        body: MediaReadDto(mediaJsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
