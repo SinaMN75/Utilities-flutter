@@ -11,9 +11,9 @@ class CategoryReadDto {
     this.stock,
     this.count,
     this.order,
-    this.categoryJsonDetail,
-    this.children,
+    this.jsonDetail,
     this.updatedAt,
+    this.children,
     this.parent,
     this.parentId,
     this.media,
@@ -23,7 +23,7 @@ class CategoryReadDto {
   factory CategoryReadDto.fromJson(final String str) => CategoryReadDto.fromMap(json.decode(str));
 
   factory CategoryReadDto.fromMap(final dynamic json) => CategoryReadDto(
-        title: json["title"],
+    title: json["title"],
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
         color: json["color"],
@@ -32,13 +32,13 @@ class CategoryReadDto {
         stock: json["stock"],
         order: json["order"],
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        categoryJsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
+        jsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
         parent: json["parent"] == null ? null : CategoryReadDto.fromMap(json["parent"]),
+        parentId: json["parentId"],
         children: json["children"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         id: json["id"],
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        parentId: json["parentId"],
       );
   String? title;
   String? titleTr1;
@@ -48,13 +48,13 @@ class CategoryReadDto {
   int? stock;
   int? count;
   int? order;
-  CategoryJsonDetail? categoryJsonDetail;
+  CategoryJsonDetail? jsonDetail;
   CategoryReadDto? parent;
+  String? parentId;
   List<CategoryReadDto>? children;
   List<int>? tags;
   String id;
   DateTime? updatedAt;
-  String? parentId;
   final List<MediaReadDto>? media;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
@@ -68,14 +68,14 @@ class CategoryReadDto {
         "stock": stock,
         "count": count,
         "order": order,
-        "categoryJsonDetail": categoryJsonDetail?.toMap(),
+        "categoryJsonDetail": jsonDetail?.toMap(),
         "parent": parent?.toMap(),
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
         "children": children == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(children!.map((final CategoryReadDto x) => x.toMap())),
+        "parentId": parentId,
+        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
         "media": media == null ? null : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "id": id,
         "updatedAt": updatedAt?.toIso8601String(),
-        "parentId": parentId,
       };
 }
 
