@@ -31,7 +31,26 @@ void showFilePicker({
       result.files.forEach(
             (final PlatformFile i) async {
           files.add(
-            FileData(path: isWeb ? null : i.path, bytes: i.bytes, fileType: type),
+            FileData(
+                path: isWeb ? null : i.path,
+                bytes: i.bytes,
+                fileType: type,
+                jsonDetail: MediaJsonDetail(
+                  title:i.name,
+                  size: i.size.toString(),
+                  // description: controllerDescription.text,
+                  // link: dto?.jsonDetail?.link,
+                  // artist: dto?.jsonDetail?.artist,
+                  // album: dto?.jsonDetail?.album,
+                  // isPrivate: dto?.jsonDetail?.isPrivate,
+                  // size: dto?.jsonDetail?.size,
+                  // time: dto?.jsonDetail?.time,
+                  // link1: dto?.jsonDetail?.link1,
+                  // link2: dto?.jsonDetail?.link2,
+                  // link3: dto?.jsonDetail?.link3,
+                )
+
+            ),
           );
         },
       );

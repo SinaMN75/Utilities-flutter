@@ -30,25 +30,26 @@ class MediaDataSource {
   }) async {
     final FormData form = FormData(
       <String, dynamic>{
-        'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: ":).$fileExtension"),
-        'Tags': tags,
+        'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: fileData.path!.split('/').last),
         'CategoryId': categoryId,
         'ContentId': contentId,
         'GroupChatId': groupChatId,
+        'NotificationId': notificationId,
         'GroupChatMessageId': groupChatMessageId,
         'ProductId': productId,
-        'UserId': userId,
-        'Time': time,
-        'Artist': artist,
-        'Album': album,
         'CommentId': commentId,
         'BookmarkId': bookmarkId,
         'ChatId': chatId,
-        'Title': title,
-        'NotificationId': notificationId,
-        'Size': size,
+        'UserId': userId,
+        'Tags':fileData.tags?? tags,
+        'Time':fileData.jsonDetail?.time?? time,
+        'Artist':fileData.jsonDetail?.artist?? artist,
+        'Album':fileData.jsonDetail?.album?? album,
+        'Title':fileData.jsonDetail?.title?? title,
+        'Size':fileData.jsonDetail?.size?? size,
       },
     );
+
 
     try {
       GetConnect connect = GetConnect(
