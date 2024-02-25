@@ -26,92 +26,95 @@ class MediaDataSource {
     final String? title,
     final String? notificationId,
     final String? size,
-    final String? token,
     final Duration? timeout,
   }) async {
+    final FormData form = FormData(
+      <String, dynamic>{
+        'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: fileData.path!.split('/').last),
+        'CategoryId': categoryId,
+        'ContentId': contentId,
+        'GroupChatId': groupChatId,
+        'NotificationId': notificationId,
+        'GroupChatMessageId': groupChatMessageId,
+        'ProductId': productId,
+        'CommentId': commentId,
+        'BookmarkId': bookmarkId,
+        'ChatId': chatId,
+        'UserId': userId,
+        'Tags':fileData.tags?? tags,
+        'Time':fileData.jsonDetail?.time?? time,
+        'Artist':fileData.jsonDetail?.artist?? artist,
+        'Album':fileData.jsonDetail?.album?? album,
+        'Title':fileData.jsonDetail?.title?? title,
+        'Size':fileData.jsonDetail?.size?? size,
+      },
+    );
+
+
     try {
-      final Map<String, String> header = <String, String>{"Authorization": token ?? getString(UtilitiesConstants.token) ?? ""};
-
-      final FormData form = FormData(
-        <String, dynamic>{
-          'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: fileData.path!.split('/').last),
-          'CategoryId': categoryId,
-          'ContentId': contentId,
-          'GroupChatId': groupChatId,
-          'NotificationId': notificationId,
-          'GroupChatMessageId': groupChatMessageId,
-          'ProductId': productId,
-          'CommentId': commentId,
-          'BookmarkId': bookmarkId,
-          'ChatId': chatId,
-          'UserId': userId,
-          'Tags':fileData.tags?? tags,
-          'Time':fileData.jsonDetail?.time?? time,
-          'Artist':fileData.jsonDetail?.artist?? artist,
-          'Album':fileData.jsonDetail?.album?? album,
-          'Title':fileData.jsonDetail?.title?? title,
-          'Size':fileData.jsonDetail?.size?? size,
-        },
+      GetConnect connect = GetConnect(
+        timeout: Duration(seconds: 200),
+        maxAuthRetries: 10,
+        maxRedirects: 10,
       );
 
-      final GetConnect connect = GetConnect(
-        timeout: const Duration(seconds: 20000),
-        maxAuthRetries: 3,
-        withCredentials: true,
-      );
-
-      final Response<dynamic> response = await connect.post(
-        '$baseUrl/Media',
-        form,
-        headers: header,
-      );
+      final Response<dynamic> response = await connect
+          .post(
+            '$baseUrl/Media',
+            form,
+            headers: <String, String>{
+              "Authorization": getString(UtilitiesConstants.token) ?? "",
+            },
+            contentType: "multipart/form-data",
+          )
+          .timeout(Duration(seconds: 200));
       log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
-    } on Exception catch (_) {
+    } catch (e) {
       onError();
     }
   }
 
-  Future<void> filter({
+  void filter({
     required final MediaFilterDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPost(
         url: "$baseUrl/Media/Filter",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
-  Future<void> update({
+  void update({
     required final String mediaId,
-    required final Function(GenericResponse<MediaReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final String? title,
     final String? size,
     final List<int>? tags,
+    required final Function(GenericResponse<MediaReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpPut(
         url: "$baseUrl/Media/$mediaId",
         body: MediaReadDto(jsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
-  Future<void> delete({
+  void delete({
     required final String id,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
     final Function(String error)? failure,
-  }) async =>
+  }) =>
       httpDelete(
         url: "$baseUrl/Media/$id",
-        action: (final Response<dynamic> response) => onResponse(),
-        error: (final Response<dynamic> response) => onError(),
+        action: (final Response response) => onResponse(),
+        error: (final Response response) => onError(),
         failure: failure,
       );
 }

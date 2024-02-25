@@ -31,27 +31,26 @@ void showFilePicker({
       result.files.forEach(
             (final PlatformFile i) async {
           files.add(
-              FileData(
-                  path: isWeb ? null : i.path,
-                  bytes: i.bytes,
-                  fileType: type,
-                  jsonDetail: MediaJsonDetail(
-                    title:i.name,
-                    size: i.size.toString(),
-                    // description: controllerDescription.text,
-                    // link: dto?.jsonDetail?.link,
-                    // artist: dto?.jsonDetail?.artist,
-                    // album: dto?.jsonDetail?.album,
-                    // isPrivate: dto?.jsonDetail?.isPrivate,
-                    // size: dto?.jsonDetail?.size,
-                    // time: dto?.jsonDetail?.time,
-                    // link1: dto?.jsonDetail?.link1,
-                    // link2: dto?.jsonDetail?.link2,
-                    // link3: dto?.jsonDetail?.link3,
-                  )
+            FileData(
+                path: isWeb ? null : i.path,
+                bytes: i.bytes,
+                fileType: type,
+                jsonDetail: MediaJsonDetail(
+                  title:i.name,
+                  size: i.size.toString(),
+                  // description: controllerDescription.text,
+                  // link: dto?.jsonDetail?.link,
+                  // artist: dto?.jsonDetail?.artist,
+                  // album: dto?.jsonDetail?.album,
+                  // isPrivate: dto?.jsonDetail?.isPrivate,
+                  // size: dto?.jsonDetail?.size,
+                  // time: dto?.jsonDetail?.time,
+                  // link1: dto?.jsonDetail?.link1,
+                  // link2: dto?.jsonDetail?.link2,
+                  // link3: dto?.jsonDetail?.link3,
+                )
 
-              ),
-
+            ),
           );
         },
       );
@@ -70,6 +69,76 @@ Future<File> writeToFile(final Uint8List data) async {
   return File('${tempDir.path}/${Random.secure().nextInt(10000)}.tmp').writeAsBytes(
     data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
   );
+}
+
+Future<FileData?> cropImage({
+  required final String filePath,
+  final Function(FileData file)? action,
+  final int? maxWidth,
+  final int? maxHeight,
+  final CropStyle cropStyle = CropStyle.rectangle,
+  final CropAspectRatio cropAspectRatio = const CropAspectRatio(ratioX: 3, ratioY: 1.2),
+  final ImageCompressFormat imageCompressFormat = ImageCompressFormat.png,
+  final AndroidUiSettings? androidUiSettings,
+  final WebUiSettings? webUiSettings,
+  final IOSUiSettings? iOSUiSettings,
+  final Color? activeControlsWidgetColor,
+  final Color? statusBarColor,
+  final Color? toolbarColor,
+  final Color? toolbarWidgetColor,
+  final List<CropAspectRatioPreset> aspectRatioPresets = const <CropAspectRatioPreset>[
+    CropAspectRatioPreset.original,
+    CropAspectRatioPreset.square,
+    CropAspectRatioPreset.ratio3x2,
+    CropAspectRatioPreset.ratio4x3,
+    CropAspectRatioPreset.ratio16x9,
+  ],
+}) async {
+  final CroppedFile? result = await ImageCropper().cropImage(
+    sourcePath: filePath,
+    maxWidth: maxWidth,
+    maxHeight: maxHeight,
+    aspectRatio: cropAspectRatio,
+    compressFormat: imageCompressFormat,
+    cropStyle: cropStyle,
+    aspectRatioPresets: aspectRatioPresets,
+    uiSettings: <PlatformUiSettings>[
+      androidUiSettings ??
+          AndroidUiSettings(
+            toolbarTitle: 'Crop Your Image',
+            showCropGrid: true,
+            hideBottomControls: false,
+            lockAspectRatio: true,
+            initAspectRatio: CropAspectRatioPreset.square,
+            activeControlsWidgetColor: activeControlsWidgetColor ?? context.theme.primaryColor,
+            statusBarColor: statusBarColor ?? context.theme.primaryColor,
+            toolbarColor: toolbarColor ?? context.theme.primaryColor,
+            toolbarWidgetColor: toolbarWidgetColor ?? context.theme.cardColor,
+          ),
+      iOSUiSettings ??
+          IOSUiSettings(
+            resetAspectRatioEnabled: false,
+            minimumAspectRatio: 1,
+            aspectRatioPickerButtonHidden: true,
+            title: 'Crop Your Image',
+            aspectRatioLockDimensionSwapEnabled: true,
+            aspectRatioLockEnabled: true,
+            hidesNavigationBar: true,
+          ),
+      webUiSettings ??
+          WebUiSettings(
+            context: context,
+            enableZoom: true,
+            enableResize: true,
+            enforceBoundary: true,
+            showZoomer: false,
+            presentStyle: CropperPresentStyle.page,
+          ),
+    ],
+  );
+  final FileData fileData = FileData(path: result?.path, bytes: await result?.readAsBytes());
+  if (action != null) action(FileData(path: result?.path, bytes: await result?.readAsBytes()));
+  return fileData;
 }
 
 void showMultiFilePicker({
