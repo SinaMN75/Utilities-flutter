@@ -166,7 +166,7 @@ class MediaUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory MediaUpdateDto.fromMap(Map<String, dynamic> json) => MediaUpdateDto(
-    id: json["id"],
+        id: json["id"],
         title: json["title"],
         description: json["description"],
         size: json["size"],

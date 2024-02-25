@@ -249,9 +249,19 @@ Widget filePickerList({
                   url: dto.url,
                   fileType: dto.fileType,
                   path: dto.path,
-                  jsonDetail: dto.jsonDetail
-                    ?..title = controllerTitle.text
-                    ..description = controllerDescription.text,
+                  jsonDetail: MediaJsonDetail(
+                    title: controllerTitle.text,
+                    description: controllerDescription.text,
+                    album: dto.jsonDetail?.album,
+                    link3: dto.jsonDetail?.link3,
+                    link2: dto.jsonDetail?.link2,
+                    link1: dto.jsonDetail?.link1,
+                    artist: dto.jsonDetail?.artist,
+                    size: dto.jsonDetail?.size,
+                    time: dto.jsonDetail?.time,
+                    link: dto.jsonDetail?.link,
+                    isPrivate: dto.jsonDetail?.isPrivate,
+                  ),
                 ),
               );
               onFileEdited(<FileData>[dto]);
@@ -335,7 +345,11 @@ Widget filePickerList({
                         onDelete: () => addedFiles.removeAt(index),
                         onEdit: () => edit(
                           dto: i,
-                          onSubmit: (final FileData fileData) => addedFiles[index] = fileData,
+                          onSubmit: (final FileData fileData) {
+                            print(fileData.jsonDetail?.title);
+                            print(fileData.jsonDetail?.description);
+                            addedFiles[index] = fileData;
+                          },
                         ),
                       ),
                     ],
