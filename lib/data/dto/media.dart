@@ -129,20 +129,20 @@ class MediaJsonDetail {
 }
 
 class MediaUpdateDto {
-  final String? id;
-  final String? title;
-  final String? description;
-  final String? size;
-  final String? time;
-  final String? artist;
-  final String? album;
-  final int? order;
-  final String? link1;
-  final String? link2;
-  final String? link3;
-  final List<int>? tags;
-  final List<int>? removeTags;
-  final List<int>? addTags;
+  String? id;
+  String? title;
+  String? description;
+  String? size;
+  String? time;
+  String? artist;
+  String? album;
+  int? order;
+  String? link1;
+  String? link2;
+  String? link3;
+  List<int>? tags;
+  List<int>? removeTags;
+  List<int>? addTags;
 
   MediaUpdateDto({
     this.id,
@@ -178,12 +178,11 @@ class MediaUpdateDto {
         link2: json["link2"],
         link3: json["link3"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-    removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
-    addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
-  );
+        removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
+        addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
+      );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,
         "description": description,

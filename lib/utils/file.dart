@@ -29,7 +29,7 @@ void showFilePicker({
       if ((allowedExtensions ?? <String>[]).contains("pdf")) type = FileDataType.pdf;
       if ((allowedExtensions ?? <String>[]).containsAny(<String>["mp4", "mkv"])) type = FileDataType.pdf;
       result.files.forEach(
-            (final PlatformFile i) async {
+        (final PlatformFile i) async {
           files.add(
             FileData(path: isWeb ? null : i.path, bytes: i.bytes, fileType: type),
           );
@@ -249,7 +249,9 @@ Widget filePickerList({
                   url: dto.url,
                   fileType: dto.fileType,
                   path: dto.path,
-                  jsonDetail: dto.jsonDetail,
+                  jsonDetail: dto.jsonDetail
+                    ?..title = controllerTitle.text
+                    ..description = controllerDescription.text,
                 ),
               );
               onFileEdited(<FileData>[dto]);
@@ -267,52 +269,48 @@ Widget filePickerList({
       Text(title).titleMedium(),
       const SizedBox(height: 8),
       Obx(
-            () =>
-            Row(
-              children: <Widget>[
-                ...oldFiles
-                    .mapIndexed(
-                      (final int index, final FileData i) =>
-                      Stack(
-                        children: <Widget>[
-                          if (i.fileType == FileDataType.image)
-                            image(
-                              i.url!,
-                              width: 100,
-                              height: 100,
-                              borderRadius: 12,
-                              fit: BoxFit.cover,
-                            ).paddingSymmetric(horizontal: 8),
-                          if (i.fileType == FileDataType.pdf)
-                            fileIcon(
-                              icon: Icons.picture_as_pdf_outlined,
-                              color: Colors.red,
-                            ),
-                          if (i.fileType == FileDataType.video)
-                            fileIcon(
-                              icon: Icons.videocam_outlined,
-                              color: Colors.red,
-                            ),
-                          menu(
-                            onDelete: () {
-                              oldFiles.remove(i);
-                              deletedFiles.add(i);
-                              onFileDeleted(deletedFiles);
-                            },
-                            onEdit: () =>
-                                edit(
-                                  dto: i,
-                                  onSubmit: (final FileData fileData) => oldFiles[index] = fileData,
-                                ),
-                          ),
-                        ],
+        () => Row(
+          children: <Widget>[
+            ...oldFiles
+                .mapIndexed(
+                  (final int index, final FileData i) => Stack(
+                    children: <Widget>[
+                      if (i.fileType == FileDataType.image)
+                        image(
+                          i.url!,
+                          width: 100,
+                          height: 100,
+                          borderRadius: 12,
+                          fit: BoxFit.cover,
+                        ).paddingSymmetric(horizontal: 8),
+                      if (i.fileType == FileDataType.pdf)
+                        fileIcon(
+                          icon: Icons.picture_as_pdf_outlined,
+                          color: Colors.red,
+                        ),
+                      if (i.fileType == FileDataType.video)
+                        fileIcon(
+                          icon: Icons.videocam_outlined,
+                          color: Colors.red,
+                        ),
+                      menu(
+                        onDelete: () {
+                          oldFiles.remove(i);
+                          deletedFiles.add(i);
+                          onFileDeleted(deletedFiles);
+                        },
+                        onEdit: () => edit(
+                          dto: i,
+                          onSubmit: (final FileData fileData) => oldFiles[index] = fileData,
+                        ),
                       ),
+                    ],
+                  ),
                 )
                 .toList(),
             ...addedFiles
                 .mapIndexed(
-                  (final int index, final FileData i) =>
-                  Stack(
+                  (final int index, final FileData i) => Stack(
                     children: <Widget>[
                       if (i.fileType == FileDataType.image)
                         image(
@@ -335,27 +333,25 @@ Widget filePickerList({
                         ),
                       menu(
                         onDelete: () => addedFiles.removeAt(index),
-                        onEdit: () =>
-                            edit(
-                              dto: i,
-                              onSubmit: (final FileData fileData) => addedFiles[index] = fileData,
-                            ),
+                        onEdit: () => edit(
+                          dto: i,
+                          onSubmit: (final FileData fileData) => addedFiles[index] = fileData,
+                        ),
                       ),
                     ],
                   ),
-            )
+                )
                 .toList(),
             fileIcon(icon: Icons.add, color: context.theme.colorScheme.primary).onTap(
-                  () =>
-                  showFilePicker(
-                    fileType: fileType,
-                    allowMultiple: true,
-                    allowedExtensions: allowedExt,
-                    action: (final List<FileData> files) {
-                      addedFiles.addAll(files);
-                      onFileSelected(addedFiles);
-                    },
-                  ),
+              () => showFilePicker(
+                fileType: fileType,
+                allowMultiple: true,
+                allowedExtensions: allowedExt,
+                action: (final List<FileData> files) {
+                  addedFiles.addAll(files);
+                  onFileSelected(addedFiles);
+                },
+              ),
             ),
           ],
         ),
