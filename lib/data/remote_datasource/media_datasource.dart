@@ -89,17 +89,14 @@ class MediaDataSource {
       );
 
   void update({
-    required final String mediaId,
-    final String? title,
-    final String? size,
-    final List<int>? tags,
+    required final MediaUpdateDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) =>
       httpPut(
-        url: "$baseUrl/Media/$mediaId",
-        body: MediaReadDto(jsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
+        url: "$baseUrl/Media",
+        body: dto,
         action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,

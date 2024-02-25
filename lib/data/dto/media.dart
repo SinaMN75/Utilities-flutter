@@ -36,7 +36,7 @@ class MediaReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory MediaReadDto.fromMap(dynamic json) => MediaReadDto(
-    id: json["id"],
+        id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         fileName: json["fileName"],
@@ -128,80 +128,71 @@ class MediaJsonDetail {
       };
 }
 
-class CreateMediaReadDto {
-  String? filesPath;
-  String? categoryId;
-  String? contentId;
-  String? groupChatId;
-  String? groupChatMessageId;
-  String? productId;
-  String? userId;
-  int? privacyType;
-  int? order;
-  String? time;
-  String? artist;
-  String? album;
-  String? commentId;
-  String? bookmarkId;
-  String? chatId;
-  String? title;
-  String? description;
-  String? notificationId;
-  String? size;
-  String? id;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  String? fileName;
-  int? tag;
-  MediaJsonDetail? mediaJsonDetail;
-  String? url;
-  List<int>? tags;
-  String? fileType;
+class MediaUpdateDto {
+  final String? title;
+  final String? description;
+  final String? size;
+  final String? time;
+  final String? artist;
+  final String? album;
+  final int? order;
+  final String? link1;
+  final String? link2;
+  final String? link3;
+  final List<int>? tags;
+  final List<int>? removeTags;
+  final List<int>? addTags;
 
-  CreateMediaReadDto({
-    this.filesPath,
-    this.categoryId,
-    this.contentId,
-    this.groupChatId,
+  MediaUpdateDto({
+    this.title,
     this.description,
-    this.groupChatMessageId,
-    this.productId,
-    this.userId,
-    this.privacyType,
+    this.size,
     this.time,
     this.artist,
-    this.order,
     this.album,
-    this.commentId,
-    this.bookmarkId,
-    this.chatId,
-    this.title,
+    this.order,
+    this.link1,
+    this.link2,
+    this.link3,
     this.tags,
-    this.notificationId,
-    this.size,
+    this.removeTags,
+    this.addTags,
   });
 
-  String toJson() => json.encode(removeNullEntries(toMap()));
+  factory MediaUpdateDto.fromJson(String str) => MediaUpdateDto.fromMap(json.decode(str));
 
-  dynamic toMap() => {
-        "filesPath": filesPath,
-        "CategoryId": categoryId,
-        "ContentId": contentId,
-        "GroupChatId": groupChatId,
+  String toJson() => json.encode(toMap());
+
+  factory MediaUpdateDto.fromMap(Map<String, dynamic> json) => MediaUpdateDto(
+        title: json["title"],
+        description: json["description"],
+        size: json["size"],
+        time: json["time"],
+        artist: json["artist"],
+        album: json["album"],
+        order: json["order"],
+        link1: json["link1"],
+        link2: json["link2"],
+        link3: json["link3"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+        removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
+        addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
+      );
+
+  Map<String, dynamic> toMap() => {
+        "title": title,
         "description": description,
-        "ProductId": productId,
-        "UserId": userId,
+        "size": size,
+        "time": time,
+        "artist": artist,
+        "album": album,
         "order": order,
-        "PrivacyType": privacyType,
-        "Artist": artist,
-        'Album': album,
-        'CommentId': commentId,
-        'BookmarkId': bookmarkId,
-        'ChatId': chatId,
-        "Tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-        'Title': title ?? fileName,
-        'NotificationId': notificationId,
-        'Size': size,
+        "link1": link1,
+        "link2": link2,
+        "link3": link3,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+        "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
+        "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
       };
 }
 
