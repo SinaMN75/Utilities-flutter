@@ -12,6 +12,8 @@ class FileData {
     this.order,
     this.jsonDetail,
     this.tags,
+    this.parentId,
+    this.children,
   });
 
   final String? path;
@@ -19,9 +21,11 @@ class FileData {
   final String? url;
   final FileDataType? fileType;
   String? id;
+  String? parentId;
   int? order;
   MediaJsonDetail? jsonDetail;
   List<int>? tags;
+  List<FileData>? children;
 }
 
 class MediaViewModel {

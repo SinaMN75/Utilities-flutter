@@ -184,6 +184,7 @@ Widget filePickerList({
   final List<FileData> files = const <FileData>[],
   final List<String>? allowedExt,
   final FileType fileType = FileType.image,
+  final String? parentId,
 }) {
   final RxList<FileData> oldFiles = files.obs;
   final RxList<FileData> addedFiles = <FileData>[].obs;
@@ -237,6 +238,16 @@ Widget filePickerList({
         children: <Widget>[
           textField(labelText: "عنوان", controller: controllerTitle).paddingSymmetric(vertical: 8),
           textField(labelText: "توضیحات", controller: controllerDescription).paddingSymmetric(vertical: 8),
+          filePickerList(
+            title: "زیر مجموعه",
+            files: dto.children ?? <FileData>[],
+            fileType: fileType,
+            allowedExt: allowedExt,
+            parentId: dto.id,
+            onFileSelected: onFileSelected,
+            onFileDeleted: onFileDeleted,
+            onFileEdited: onFileEdited,
+          ),
           button(
             title: "ثبت",
             onTap: () {
@@ -249,6 +260,7 @@ Widget filePickerList({
                   url: dto.url,
                   fileType: dto.fileType,
                   path: dto.path,
+                  parentId: dto.parentId,
                   jsonDetail: MediaJsonDetail(
                     title: controllerTitle.text,
                     description: controllerDescription.text,
@@ -264,7 +276,6 @@ Widget filePickerList({
                   ),
                 ),
               );
-              onFileEdited(<FileData>[dto]);
               back();
             },
           ).paddingSymmetric(vertical: 20),
@@ -311,7 +322,10 @@ Widget filePickerList({
                         },
                         onEdit: () => edit(
                           dto: i,
-                          onSubmit: (final FileData fileData) => oldFiles[index] = fileData,
+                          onSubmit: (final FileData fileData) {
+                            oldFiles[index] = fileData;
+                            onFileEdited(oldFiles);
+                          },
                         ),
                       ),
                     ],
@@ -346,8 +360,6 @@ Widget filePickerList({
                         onEdit: () => edit(
                           dto: i,
                           onSubmit: (final FileData fileData) {
-                            print(fileData.jsonDetail?.title);
-                            print(fileData.jsonDetail?.description);
                             addedFiles[index] = fileData;
                           },
                         ),
@@ -362,7 +374,7 @@ Widget filePickerList({
                 allowMultiple: true,
                 allowedExtensions: allowedExt,
                 action: (final List<FileData> files) {
-                  addedFiles.addAll(files);
+                  addedFiles.addAll(files.map((final FileData e) => e..parentId = parentId).toList());
                   onFileSelected(addedFiles);
                 },
               ),
