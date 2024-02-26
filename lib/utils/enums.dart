@@ -405,7 +405,8 @@ enum TagContent {
   homeBannerSmall2(108, "بنر کوچک ۲"),
   contactInfo(109, "اطلاعات تماس"),
   smallDetail1(110, "اطلاعات ۱"),
-  smallDetail2(111, "اطلاعات ۲");
+  smallDetail2(111, "اطلاعات ۲"),
+  news(112, "اخبار");
 
   const TagContent(this.number, this.title);
 
