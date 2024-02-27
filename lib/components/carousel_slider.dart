@@ -4,7 +4,7 @@ Widget mediaReadDtoImageSlider({
   required final Iterable<MediaReadDto>? list,
   final double height = 300,
   final bool autoPlay = true,
-  final int autoPlayAnimationDuration = 7,
+  final int autoPlayAnimationDuration = 1,
   final int autoPlayInterval = 7,
 }) =>
     list.isNullOrEmpty()
