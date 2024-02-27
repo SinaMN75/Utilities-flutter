@@ -32,7 +32,7 @@ class ProductReadDto {
     this.user,
     this.product,
     this.parent,
-    this.jsonDetail,
+    required this.jsonDetail,
     this.media,
     this.comments,
     this.categories,
@@ -78,7 +78,7 @@ class ProductReadDto {
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
         parent: json["parent"] == null ? null : ProductReadDto.fromMap(json["parent"]),
         product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
-        jsonDetail: json["jsonDetail"] == null ? null : ProductJsonDetail.fromMap(json["jsonDetail"]),
+        jsonDetail: ProductJsonDetail.fromMap(json["jsonDetail"]),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
         children: json["children"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
@@ -118,7 +118,7 @@ class ProductReadDto {
   String? parentId;
   String? userId;
   UserReadDto? user;
-  ProductJsonDetail? jsonDetail;
+  ProductJsonDetail jsonDetail;
   List<CommentReadDto>? comments;
   List<MediaReadDto>? media;
   List<int> tags;

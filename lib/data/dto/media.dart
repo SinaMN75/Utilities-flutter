@@ -7,7 +7,7 @@ class MediaReadDto {
   String? fileName;
   int? tag;
   int? order;
-  MediaJsonDetail? jsonDetail;
+  MediaJsonDetail jsonDetail;
   String url;
   List<int>? tags;
   String? fileType;
@@ -23,7 +23,7 @@ class MediaReadDto {
     this.fileName,
     this.tag,
     this.order,
-    this.jsonDetail,
+    required this.jsonDetail,
     this.tags,
     this.fileType,
     this.children,
@@ -44,7 +44,7 @@ class MediaReadDto {
         order: json["order"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         fileType: json["url"] == null ? '' : json["url"].toString().split('.').last,
-        jsonDetail: json["jsonDetail"] == null ? null : MediaJsonDetail.fromMap(json["jsonDetail"]),
+        jsonDetail: MediaJsonDetail.fromMap(json["jsonDetail"]),
         url: json["url"],
         parent: json["parent"] == null ? null : MediaReadDto.fromMap(json["parent"]),
         parentId: json["parentId"],

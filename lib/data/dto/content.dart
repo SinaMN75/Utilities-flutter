@@ -15,7 +15,7 @@ class ContentReadDto {
   final String? description;
   final String? deletedAt;
   final List<int>? tags;
-  final ContentJsonDetail? jsonDetail;
+  final ContentJsonDetail jsonDetail;
   final List<MediaReadDto>? media;
 
   ContentReadDto({
@@ -27,7 +27,7 @@ class ContentReadDto {
     this.description,
     this.deletedAt,
     this.tags,
-    this.jsonDetail,
+    required this.jsonDetail,
     this.media,
   });
 
@@ -44,7 +44,7 @@ class ContentReadDto {
     description: json["description"],
     deletedAt: json["deletedAt"],
     tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-    jsonDetail: json["jsonDetail"] == null ? null : ContentJsonDetail.fromMap(json["jsonDetail"]),
+    jsonDetail: ContentJsonDetail.fromMap(json["jsonDetail"]),
     media: json["media"] == null ? [] : List<MediaReadDto>.from(json["media"]!.map((x) => MediaReadDto.fromMap(x))),
   );
 

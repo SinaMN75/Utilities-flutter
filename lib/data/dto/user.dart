@@ -31,7 +31,7 @@ class UserReadDto {
     this.isPrivate,
     this.expireUpgradeAccount,
     this.ageCategory,
-    this.jsonDetail,
+    required this.jsonDetail,
     this.tags,
     this.media,
     this.categories,
@@ -74,7 +74,7 @@ class UserReadDto {
         isPrivate: json["isPrivate"],
         expireUpgradeAccount: json["expireUpgradeAccount"],
         ageCategory: json["ageCategory"],
-        jsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
+        jsonDetail: UserJsonDetail.fromMap(json["jsonDetail"]),
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
         categories:
@@ -114,7 +114,7 @@ class UserReadDto {
   final bool? isPrivate;
   final String? expireUpgradeAccount;
   final int? ageCategory;
-  final UserJsonDetail? jsonDetail;
+  final UserJsonDetail jsonDetail;
   List<int>? tags;
   final List<MediaReadDto>? media;
   final List<CategoryReadDto>? categories;
