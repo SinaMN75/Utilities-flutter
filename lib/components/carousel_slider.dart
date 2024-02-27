@@ -1,5 +1,29 @@
 part of 'components.dart';
 
+Widget mediaReadDtoSlider({
+  required final Iterable<MediaReadDto> list,
+  final double height = 300,
+  final bool autoPlay = true,
+  final int autoPlayAnimationDuration = 7,
+  final int autoPlayInterval = 7,
+}) =>
+    CarouselSlider(
+      items: list
+          .map((final MediaReadDto e) => image(
+                e.url,
+                fit: BoxFit.cover,
+                width: context.width,
+                borderRadius: 8,
+              ).paddingSymmetric(horizontal: 8))
+          .toList(),
+      options: CarouselOptions(
+        height: height,
+        autoPlay: autoPlay,
+        autoPlayAnimationDuration: Duration(seconds: autoPlayAnimationDuration),
+        autoPlayInterval: Duration(seconds: autoPlayInterval),
+      ),
+    );
+
 int getRealIndex(int position, int base, int? length) {
   final int offset = position - base;
   return remainder(offset, length);
@@ -13,19 +37,12 @@ int remainder(int input, int? source) {
 
 class CarouselState {
   CarouselOptions options;
-
   PageController? pageController;
-
   int realPage = 10000;
-
   int initialPage = 0;
-
   int? itemCount;
-
   Function onResetTimer;
-
   Function onResumeTimer;
-
   Function(CarouselPageChangedReason) changeMode;
 
   CarouselState(this.options, this.onResetTimer, this.onResumeTimer, this.changeMode);
@@ -35,13 +52,9 @@ typedef Widget ExtendedIndexedWidgetBuilder(BuildContext context, int index, int
 
 class CarouselSlider extends StatefulWidget {
   final CarouselOptions options;
-
   final List<Widget>? items;
-
   final ExtendedIndexedWidgetBuilder? itemBuilder;
-
   final CarouselControllerImpl _carouselController;
-
   final int? itemCount;
 
   CarouselSlider({required this.items, required this.options, CarouselController? carouselController, Key? key})
@@ -64,28 +77,20 @@ class CarouselSliderState extends State<CarouselSlider> with TickerProviderState
   Timer? timer;
 
   CarouselOptions get options => widget.options;
-
   CarouselState? carouselState;
-
   PageController? pageController;
-
   CarouselPageChangedReason mode = CarouselPageChangedReason.controller;
 
   CarouselSliderState(this.carouselController);
 
-  void changeMode(CarouselPageChangedReason _mode) {
-    mode = _mode;
-  }
+  void changeMode(CarouselPageChangedReason _mode) => mode = _mode;
 
   @override
   void didUpdateWidget(CarouselSlider oldWidget) {
     carouselState!.options = options;
     carouselState!.itemCount = widget.itemCount;
 
-    pageController = PageController(
-      viewportFraction: options.viewportFraction,
-      initialPage: carouselState!.realPage,
-    );
+    pageController = PageController(viewportFraction: options.viewportFraction, initialPage: carouselState!.realPage);
     carouselState!.pageController = pageController;
 
     handleAutoPlay();
@@ -479,7 +484,32 @@ class CarouselOptions {
     this.clipBehavior = Clip.hardEdge,
   });
 
-  CarouselOptions copyWith({double? height, double? aspectRatio, double? viewportFraction, int? initialPage, bool? enableInfiniteScroll, bool? reverse, bool? autoPlay, Duration? autoPlayInterval, Duration? autoPlayAnimationDuration, Curve? autoPlayCurve, bool? enlargeCenterPage, Function(int index, CarouselPageChangedReason reason)? onPageChanged, ValueChanged<double?>? onScrolled, ScrollPhysics? scrollPhysics, bool? pageSnapping, Axis? scrollDirection, bool? pauseAutoPlayOnTouch, bool? pauseAutoPlayOnManualNavigate, bool? pauseAutoPlayInFiniteScroll, PageStorageKey? pageViewKey, CenterPageEnlargeStrategy? enlargeStrategy, bool? disableCenter, Clip? clipBehavior, bool? padEnds}) => CarouselOptions(
+  CarouselOptions copyWith(
+          {double? height,
+          double? aspectRatio,
+          double? viewportFraction,
+          int? initialPage,
+          bool? enableInfiniteScroll,
+          bool? reverse,
+          bool? autoPlay,
+          Duration? autoPlayInterval,
+          Duration? autoPlayAnimationDuration,
+          Curve? autoPlayCurve,
+          bool? enlargeCenterPage,
+          Function(int index, CarouselPageChangedReason reason)? onPageChanged,
+          ValueChanged<double?>? onScrolled,
+          ScrollPhysics? scrollPhysics,
+          bool? pageSnapping,
+          Axis? scrollDirection,
+          bool? pauseAutoPlayOnTouch,
+          bool? pauseAutoPlayOnManualNavigate,
+          bool? pauseAutoPlayInFiniteScroll,
+          PageStorageKey? pageViewKey,
+          CenterPageEnlargeStrategy? enlargeStrategy,
+          bool? disableCenter,
+          Clip? clipBehavior,
+          bool? padEnds}) =>
+      CarouselOptions(
         height: height ?? this.height,
         aspectRatio: aspectRatio ?? this.aspectRatio,
         viewportFraction: viewportFraction ?? this.viewportFraction,
