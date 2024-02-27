@@ -48,8 +48,6 @@ part 'grid.dart';
 
 part 'image.dart';
 
-part 'item_video.dart';
-
 part 'link_previewer.dart';
 
 part 'map.dart';
@@ -69,7 +67,5 @@ part 'scrolling_text.dart';
 part 'slider.dart';
 
 part 'sound_player.dart';
-
-part 'story_view.dart';
 
 part 'text_field_country.dart';

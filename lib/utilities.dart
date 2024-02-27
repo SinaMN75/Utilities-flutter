@@ -10,6 +10,7 @@ export 'dart:async';
 export 'dart:convert';
 
 export 'package:cached_network_image/cached_network_image.dart';
+export 'package:chewie/chewie.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:firebase_analytics/firebase_analytics.dart';
 export 'package:firebase_auth/firebase_auth.dart';
@@ -41,7 +42,7 @@ export 'package:syncfusion_flutter_barcodes/barcodes.dart';
 export 'package:syncfusion_flutter_charts/charts.dart';
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
-export 'package:video_box/video_box.dart';
+export 'package:video_player/video_player.dart';
 export 'package:webviewx_plus/webviewx_plus.dart';
 
 export 'components/components.dart';
