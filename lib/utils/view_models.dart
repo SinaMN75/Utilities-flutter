@@ -1,13 +1,11 @@
 part of 'utils.dart';
 
-enum FileDataType { image, pdf, video }
-
 class FileData {
   FileData({
     this.path,
     this.bytes,
+    this.extension,
     this.url,
-    this.fileType,
     this.id,
     this.order,
     this.jsonDetail,
@@ -17,9 +15,9 @@ class FileData {
   });
 
   final String? path;
+  final String? extension;
   final Uint8List? bytes;
   final String? url;
-  final FileDataType? fileType;
   String? id;
   String? parentId;
   int? order;

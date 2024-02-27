@@ -25,19 +25,28 @@ void showFilePicker({
 
   if (result != null) {
     if (allowMultiple) {
-      FileDataType type = FileDataType.image;
-      if ((allowedExtensions ?? <String>[]).contains("pdf")) type = FileDataType.pdf;
-      if ((allowedExtensions ?? <String>[]).containsAny(<String>["mp4", "mkv"])) type = FileDataType.pdf;
       result.files.forEach(
-        (final PlatformFile i) async {
+            (final PlatformFile i) async {
           files.add(
-            FileData(path: isWeb ? null : i.path, bytes: i.bytes, fileType: type),
+            FileData(
+              path: isWeb ? null : i.path,
+              bytes: i.bytes,
+              extension: ".${i.extension}",
+            ),
           );
         },
       );
       action(files);
     } else
-      action(<FileData>[FileData(path: result.files.single.path, bytes: result.files.single.bytes)]);
+      action(
+        <FileData>[
+          FileData(
+            path: result.files.single.path,
+            bytes: result.files.single.bytes,
+            extension: result.files.single.extension,
+          ),
+        ],
+      );
   }
 }
 
@@ -182,8 +191,6 @@ Widget filePickerList({
   required final Function(List<FileData> fileData) onFileDeleted,
   required final Function(List<FileData> fileData) onFileEdited,
   final List<FileData> files = const <FileData>[],
-  final List<String>? allowedExt,
-  final FileType fileType = FileType.image,
   final String? parentId,
 }) {
   final RxList<FileData> oldFiles = files.obs;
@@ -241,8 +248,6 @@ Widget filePickerList({
           filePickerList(
             title: "زیر مجموعه",
             files: dto.children ?? <FileData>[],
-            fileType: fileType,
-            allowedExt: allowedExt,
             parentId: dto.id,
             onFileSelected: onFileSelected,
             onFileDeleted: onFileDeleted,
@@ -257,8 +262,8 @@ Widget filePickerList({
                   bytes: dto.bytes,
                   order: dto.order,
                   tags: dto.tags,
+                  extension: dto.extension,
                   url: dto.url,
-                  fileType: dto.fileType,
                   path: dto.path,
                   parentId: dto.parentId,
                   jsonDetail: MediaJsonDetail(
@@ -290,13 +295,13 @@ Widget filePickerList({
       Text(title).titleMedium(),
       const SizedBox(height: 8),
       Obx(
-        () => Row(
+            () => Row(
           children: <Widget>[
             ...oldFiles
                 .mapIndexed(
                   (final int index, final FileData i) => Stack(
                     children: <Widget>[
-                      if (i.fileType == FileDataType.image)
+                      if (i.url!.isImageFileName)
                         image(
                           i.url!,
                           width: 100,
@@ -304,16 +309,8 @@ Widget filePickerList({
                           borderRadius: 12,
                           fit: BoxFit.cover,
                         ).paddingSymmetric(horizontal: 8),
-                      if (i.fileType == FileDataType.pdf)
-                        fileIcon(
-                          icon: Icons.picture_as_pdf_outlined,
-                          color: Colors.red,
-                        ),
-                      if (i.fileType == FileDataType.video)
-                        fileIcon(
-                          icon: Icons.videocam_outlined,
-                          color: Colors.red,
-                        ),
+                      if (i.url!.isPDFFileName) fileIcon(icon: Icons.picture_as_pdf_outlined, color: Colors.red),
+                      if (i.url!.isVideoFileName) fileIcon(icon: Icons.videocam_outlined, color: Colors.red),
                       menu(
                         onDelete: () {
                           oldFiles.remove(i);
@@ -336,7 +333,7 @@ Widget filePickerList({
                 .mapIndexed(
                   (final int index, final FileData i) => Stack(
                     children: <Widget>[
-                      if (i.fileType == FileDataType.image)
+                      if (i.extension!.isImageFileName)
                         image(
                           "",
                           fileData: i,
@@ -345,12 +342,12 @@ Widget filePickerList({
                           borderRadius: 12,
                           fit: BoxFit.cover,
                         ).paddingSymmetric(horizontal: 8),
-                      if (i.fileType == FileDataType.pdf)
+                      if (i.extension!.isPDFFileName)
                         fileIcon(
                           icon: Icons.picture_as_pdf_outlined,
                           color: Colors.red,
                         ),
-                      if (i.fileType == FileDataType.video)
+                      if (i.extension!.isVideoFileName)
                         fileIcon(
                           icon: Icons.videocam_outlined,
                           color: Colors.red,
@@ -369,13 +366,12 @@ Widget filePickerList({
                 )
                 .toList(),
             fileIcon(icon: Icons.add, color: context.theme.colorScheme.primary).onTap(
-              () => showFilePicker(
-                fileType: fileType,
+                  () => showFilePicker(
                 allowMultiple: true,
-                allowedExtensions: allowedExt,
                 action: (final List<FileData> files) {
                   addedFiles.addAll(files.map((final FileData e) => e..parentId = parentId).toList());
                   onFileSelected(addedFiles);
+                  print(files.length);
                 },
               ),
             ),
