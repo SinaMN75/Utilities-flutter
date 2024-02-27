@@ -1,23 +1,25 @@
 part of 'components.dart';
 
 Widget mediaReadDtoImageSlider({
-  required final Iterable<MediaReadDto> list,
+  required final Iterable<MediaReadDto>? list,
   final double height = 300,
   final bool autoPlay = true,
   final int autoPlayAnimationDuration = 7,
   final int autoPlayInterval = 7,
 }) =>
-    CarouselSlider(
-      items: list
-          .where((MediaReadDto e) => e.url.isImageFileName)
-          .map((final MediaReadDto e) => image(
-                e.url,
-                fit: BoxFit.cover,
-                width: context.width,
-                borderRadius: 8,
-              ).paddingSymmetric(horizontal: 8))
-          .toList(),
-      options: CarouselOptions(
+    list.isNullOrEmpty()
+        ? SizedBox()
+        : CarouselSlider(
+            items: list!
+                .where((MediaReadDto e) => e.url.isImageFileName)
+                .map((final MediaReadDto e) => image(
+                      e.url,
+                      fit: BoxFit.cover,
+                      width: context.width,
+                      borderRadius: 8,
+                    ).paddingSymmetric(horizontal: 8))
+                .toList(),
+            options: CarouselOptions(
         height: height,
         autoPlay: autoPlay,
         autoPlayAnimationDuration: Duration(seconds: autoPlayAnimationDuration),
