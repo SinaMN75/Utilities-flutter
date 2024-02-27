@@ -1,6 +1,6 @@
 part of 'components.dart';
 
-Widget mediaReadDtoSlider({
+Widget mediaReadDtoImageSlider({
   required final Iterable<MediaReadDto> list,
   final double height = 300,
   final bool autoPlay = true,
@@ -9,6 +9,7 @@ Widget mediaReadDtoSlider({
 }) =>
     CarouselSlider(
       items: list
+          .where((MediaReadDto e) => e.url.isImageFileName)
           .map((final MediaReadDto e) => image(
                 e.url,
                 fit: BoxFit.cover,
