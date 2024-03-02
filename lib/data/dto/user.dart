@@ -513,7 +513,7 @@ class UserFilterDto {
     this.noneOfMyFollower,
     this.userIds,
     this.phoneNumbers,
-    this.premiumExpireDate,
+    this.showPremiums,
     this.categories,
     this.tags,
   });
@@ -522,7 +522,7 @@ class UserFilterDto {
     userId: json["userId"],
         userName: json["userName"],
         userNameExact: json["userNameExact"],
-        premiumExpireDate: json["premiumExpireDate"],
+        showPremiums: json["showPremiums"],
         query: json["query"],
         phoneNumber: json["phoneNumber"],
         email: json["email"],
@@ -556,7 +556,7 @@ class UserFilterDto {
 
   factory UserFilterDto.fromJson(final String str) => UserFilterDto.fromMap(json.decode(str));
   final String? userId;
-  final DateTime? premiumExpireDate;
+  final bool? showPremiums;
   final String? userName;
   final String? userNameExact;
   final String? query;
@@ -595,7 +595,7 @@ class UserFilterDto {
       <String, dynamic>{
         "userId": userId,
         "userName": userName,
-        "premiumExpireDate": premiumExpireDate,
+        "showPremiums": showPremiums,
         "userNameExact": userNameExact,
         "query": query,
         "phoneNumber": phoneNumber,
