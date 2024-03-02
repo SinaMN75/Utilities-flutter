@@ -124,6 +124,7 @@ enum TagProduct {
   internal(180, "", ''),
   foreign(181, "", ''),
   journal(182, "", ''),
+  link(183, "", ''),
   premium1Month(184, "", ''),
   premium3Month(185, "", ''),
   premium6Month(186, "", ''),
