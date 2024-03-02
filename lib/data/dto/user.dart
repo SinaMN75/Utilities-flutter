@@ -513,14 +513,16 @@ class UserFilterDto {
     this.noneOfMyFollower,
     this.userIds,
     this.phoneNumbers,
+    this.premiumExpireDate,
     this.categories,
     this.tags,
   });
 
   factory UserFilterDto.fromMap(final Map<String, dynamic> json) => UserFilterDto(
-        userId: json["userId"],
+    userId: json["userId"],
         userName: json["userName"],
         userNameExact: json["userNameExact"],
+        premiumExpireDate: json["premiumExpireDate"],
         query: json["query"],
         phoneNumber: json["phoneNumber"],
         email: json["email"],
@@ -554,6 +556,7 @@ class UserFilterDto {
 
   factory UserFilterDto.fromJson(final String str) => UserFilterDto.fromMap(json.decode(str));
   final String? userId;
+  final DateTime? premiumExpireDate;
   final String? userName;
   final String? userNameExact;
   final String? query;
@@ -582,16 +585,17 @@ class UserFilterDto {
   final bool? noneOfMyFollowing;
   final bool? noneOfMyFollower;
   final List<String>? userIds;
-
   final List<String>? phoneNumbers;
   final List<String>? categories;
   final List<int>? tags;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
         "userId": userId,
         "userName": userName,
+        "premiumExpireDate": premiumExpireDate,
         "userNameExact": userNameExact,
         "query": query,
         "phoneNumber": phoneNumber,
