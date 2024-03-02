@@ -6,26 +6,29 @@ Widget mediaReadDtoImageSlider({
   final bool autoPlay = true,
   final int autoPlayAnimationDuration = 1,
   final int autoPlayInterval = 7,
+  final Function(MediaReadDto)? onTap,
 }) =>
     list.isNullOrEmpty()
         ? SizedBox()
         : CarouselSlider(
             items: list!
                 .where((MediaReadDto e) => e.url.isImageFileName)
-                .map((final MediaReadDto e) => image(
-                      e.url,
-                      fit: BoxFit.cover,
-                      width: context.width,
-                      borderRadius: 8,
-                    ).paddingSymmetric(horizontal: 8))
+                .map(
+                  (final MediaReadDto e) => image(
+                    e.url,
+                    fit: BoxFit.cover,
+                    width: context.width,
+                    borderRadius: 8,
+                  ).paddingSymmetric(horizontal: 8).onTap(() => onTap == null ? () {} : onTap(e)),
+                )
                 .toList(),
             options: CarouselOptions(
-        height: height,
-        autoPlay: autoPlay,
-        autoPlayAnimationDuration: Duration(seconds: autoPlayAnimationDuration),
-        autoPlayInterval: Duration(seconds: autoPlayInterval),
-      ),
-    );
+              height: height,
+              autoPlay: autoPlay,
+              autoPlayAnimationDuration: Duration(seconds: autoPlayAnimationDuration),
+              autoPlayInterval: Duration(seconds: autoPlayInterval),
+            ),
+          );
 
 int getRealIndex(int position, int base, int? length) {
   final int offset = position - base;
