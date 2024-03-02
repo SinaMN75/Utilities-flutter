@@ -1,6 +1,5 @@
 import 'dart:developer' as developer;
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -74,6 +73,11 @@ void logout({required final VoidCallback onLoggedOut}) => showYesCancelDialog(
       description: "آیا از خروج از سیستم اطمینان دارید؟",
       onYesButtonTap: () => onLoggedOut(),
     );
+
+FormFieldValidator<String> validateMinLength(final int minLength) => (final String? value) {
+      if (value!.length < minLength) return "مقدار وارد شده صحیح نیست";
+      return null;
+    };
 
 FormFieldValidator<String> validateNotEmpty() => (final String? value) {
       if (value!.isEmpty) return "فیلد الزامی است";
