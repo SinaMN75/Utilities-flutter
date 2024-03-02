@@ -29,7 +29,7 @@ class UserReadDto {
     this.isOnline,
     this.suspend,
     this.isPrivate,
-    this.expireUpgradeAccount,
+    this.premiumExpireDate,
     this.ageCategory,
     required this.jsonDetail,
     this.tags,
@@ -72,13 +72,12 @@ class UserReadDto {
         isOnline: json["isOnline"],
         suspend: json["suspend"],
         isPrivate: json["isPrivate"],
-        expireUpgradeAccount: json["expireUpgradeAccount"],
+        premiumExpireDate: json["premiumExpireDate"],
         ageCategory: json["ageCategory"],
         jsonDetail: UserJsonDetail.fromMap(json["jsonDetail"]),
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
-        categories:
-            json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
+        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         isFollowing: json["isFollowing"],
         countProducts: json["countProducts"],
         countFollowers: json["countFollowers"],
@@ -112,7 +111,7 @@ class UserReadDto {
   final bool? isOnline;
   bool? suspend;
   final bool? isPrivate;
-  final String? expireUpgradeAccount;
+  final String? premiumExpireDate;
   final int? ageCategory;
   final UserJsonDetail jsonDetail;
   List<int>? tags;
@@ -154,9 +153,9 @@ class UserReadDto {
         "isOnline": isOnline,
         "suspend": suspend,
         "isPrivate": isPrivate,
-        "expireUpgradeAccount": expireUpgradeAccount,
+        "premiumExpireDate": premiumExpireDate,
         "ageCategory": ageCategory,
-        "jsonDetail": jsonDetail?.toMap(),
+        "jsonDetail": jsonDetail.toMap(),
         "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
         "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
