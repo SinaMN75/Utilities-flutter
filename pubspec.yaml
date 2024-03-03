@@ -20,10 +20,10 @@ dependencies:
   # TO BE REPLACED
   webviewx_plus: ^0.4.1    # webview_universal:
   group_button: ^5.3.4     # choice:
-  video_box: ^0.17.0       # video_player:
   location: ^5.0.3         # geolocator:
 
   # POPULAR
+  chewie: ^1.7.5
   url_launcher: ^6.1.14
   package_info_plus: ^5.0.1
   share_plus: ^7.1.0

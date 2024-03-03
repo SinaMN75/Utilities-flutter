@@ -67,10 +67,10 @@ Widget textField({
             contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
             suffixIcon: obscureText
                 ? IconButton(
-              splashRadius: 1,
-              onPressed: () => setState(() => obscure = !obscure),
-              icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
-            )
+                    splashRadius: 1,
+                    onPressed: () => setState(() => obscure = !obscure),
+                    icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                  )
                 : suffix,
             prefixIcon: prefix,
           ),
@@ -143,7 +143,7 @@ Widget button({
             style: ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundColor), padding: MaterialStateProperty.all(padding)),
             onPressed: onTap,
             child: SizedBox(
-              height:height?? 20,
+              height: height ?? 20,
               width: width ?? context.width,
               child: Center(
                 child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
@@ -168,18 +168,22 @@ Widget button({
     return OutlinedButton(
       onPressed: onTap,
       child: SizedBox(
-        height: 20,
+        height: height ?? 20,
         width: width ?? context.width,
-        child: Text(title ?? '', textAlign: TextAlign.center),
-      ).fit(),
+        child: Center(
+          child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
+        ),
+      ),
     );
   if (buttonType == ButtonType.text)
     return TextButton(
       onPressed: onTap,
       child: SizedBox(
-        height: 20,
+        height: height ?? 20,
         width: width ?? context.width,
-        child: Text(title ?? '', textAlign: TextAlign.center).bodyLarge(color: context.theme.colorScheme.secondary).fit(),
+        child: Center(
+          child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
+        ),
       ),
     );
   return const SizedBox();

@@ -29,10 +29,10 @@ class UserReadDto {
     this.isOnline,
     this.suspend,
     this.isPrivate,
-    this.expireUpgradeAccount,
+    this.premiumExpireDate,
     this.ageCategory,
-    this.jsonDetail,
-    this.tags,
+    required this.jsonDetail,
+    required this.tags,
     this.media,
     this.stories,
     this.categories,
@@ -73,14 +73,15 @@ class UserReadDto {
         isOnline: json["isOnline"],
         suspend: json["suspend"],
         isPrivate: json["isPrivate"],
-        expireUpgradeAccount: json["expireUpgradeAccount"],
+        premiumExpireDate: json["premiumExpireDate"],
         ageCategory: json["ageCategory"],
-        jsonDetail: json["jsonDetail"] == null ? null : UserJsonDetail.fromMap(json["jsonDetail"]),
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        jsonDetail: UserJsonDetail.fromMap(json["jsonDetail"]),
+        tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
         stories: json["stories"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["stories"]!.map(ProductReadDto.fromMap)),
         categories:
             json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
+        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         isFollowing: json["isFollowing"],
         countProducts: json["countProducts"],
         countFollowers: json["countFollowers"],
@@ -114,10 +115,10 @@ class UserReadDto {
   final bool? isOnline;
   bool? suspend;
   final bool? isPrivate;
-  final String? expireUpgradeAccount;
+  final String? premiumExpireDate;
   final int? ageCategory;
-  final UserJsonDetail? jsonDetail;
-  List<int>? tags;
+  final UserJsonDetail jsonDetail;
+  List<int> tags;
   final List<MediaReadDto>? media;
   final List<ProductReadDto>? stories;
   final List<CategoryReadDto>? categories;
@@ -157,10 +158,10 @@ class UserReadDto {
         "isOnline": isOnline,
         "suspend": suspend,
         "isPrivate": isPrivate,
-        "expireUpgradeAccount": expireUpgradeAccount,
+        "premiumExpireDate": premiumExpireDate,
         "ageCategory": ageCategory,
-        "jsonDetail": jsonDetail?.toMap(),
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "jsonDetail": jsonDetail.toMap(),
+        "tags": List<dynamic>.from(tags.map((final int x) => x)),
         "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "stories": stories == null ? <dynamic>[] : List<dynamic>.from(stories!.map((final ProductReadDto x) => x.toMap())),
         "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
@@ -518,14 +519,16 @@ class UserFilterDto {
     this.noneOfMyFollower,
     this.userIds,
     this.phoneNumbers,
+    this.showPremiums,
     this.categories,
     this.tags,
   });
 
   factory UserFilterDto.fromMap(final Map<String, dynamic> json) => UserFilterDto(
-        userId: json["userId"],
+    userId: json["userId"],
         userName: json["userName"],
         userNameExact: json["userNameExact"],
+        showPremiums: json["showPremiums"],
         query: json["query"],
         phoneNumber: json["phoneNumber"],
         email: json["email"],
@@ -559,6 +562,7 @@ class UserFilterDto {
 
   factory UserFilterDto.fromJson(final String str) => UserFilterDto.fromMap(json.decode(str));
   final String? userId;
+  final bool? showPremiums;
   final String? userName;
   final String? userNameExact;
   final String? query;
@@ -587,16 +591,17 @@ class UserFilterDto {
   final bool? noneOfMyFollowing;
   final bool? noneOfMyFollower;
   final List<String>? userIds;
-
   final List<String>? phoneNumbers;
   final List<String>? categories;
   final List<int>? tags;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
         "userId": userId,
         "userName": userName,
+        "showPremiums": showPremiums,
         "userNameExact": userNameExact,
         "query": query,
         "phoneNumber": phoneNumber,

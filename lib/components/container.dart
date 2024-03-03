@@ -38,7 +38,7 @@ Widget scaffold({
         body: Container(
           width: width,
           height: height,
-          constraints: constraints ?? const BoxConstraints(maxWidth: 600),
+          constraints: constraints ?? const BoxConstraints(maxWidth: 800),
           decoration: decoration,
           padding: padding,
           child: body,

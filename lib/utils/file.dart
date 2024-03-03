@@ -25,38 +25,28 @@ void showFilePicker({
 
   if (result != null) {
     if (allowMultiple) {
-      FileDataType type = FileDataType.image;
-      if ((allowedExtensions ?? <String>[]).contains("pdf")) type = FileDataType.pdf;
-      if ((allowedExtensions ?? <String>[]).containsAny(<String>["mp4", "mkv"])) type = FileDataType.pdf;
       result.files.forEach(
             (final PlatformFile i) async {
           files.add(
             FileData(
-                path: isWeb ? null : i.path,
-                bytes: i.bytes,
-                fileType: type,
-                jsonDetail: MediaJsonDetail(
-                  title:i.name,
-                  size: i.size.toString(),
-                  // description: controllerDescription.text,
-                  // link: dto?.jsonDetail?.link,
-                  // artist: dto?.jsonDetail?.artist,
-                  // album: dto?.jsonDetail?.album,
-                  // isPrivate: dto?.jsonDetail?.isPrivate,
-                  // size: dto?.jsonDetail?.size,
-                  // time: dto?.jsonDetail?.time,
-                  // link1: dto?.jsonDetail?.link1,
-                  // link2: dto?.jsonDetail?.link2,
-                  // link3: dto?.jsonDetail?.link3,
-                )
-
+              path: isWeb ? null : i.path,
+              bytes: i.bytes,
+              extension: ".${i.extension}",
             ),
           );
         },
       );
       action(files);
     } else
-      action(<FileData>[FileData(path: result.files.single.path, bytes: result.files.single.bytes)]);
+      action(
+        <FileData>[
+          FileData(
+            path: result.files.single.path,
+            bytes: result.files.single.bytes,
+            extension: result.files.single.extension,
+          ),
+        ],
+      );
   }
 }
 
@@ -129,9 +119,9 @@ Widget filePickerList({
   required final String title,
   required final Function(List<FileData> fileData) onFileSelected,
   required final Function(List<FileData> fileData) onFileDeleted,
+  required final Function(List<FileData> fileData) onFileEdited,
   final List<FileData> files = const <FileData>[],
-  final List<String>? allowedExt,
-  final FileType fileType = FileType.image,
+  final String? parentId,
 }) {
   final RxList<FileData> oldFiles = files.obs;
   final RxList<FileData> addedFiles = <FileData>[].obs;
@@ -170,31 +160,59 @@ Widget filePickerList({
       );
 
   void edit({
-    required final FileData? dto,
+    required final FileData dto,
     required final Function(FileData fileData) onSubmit,
   }) {
-    final TextEditingController controllerTitle = TextEditingController(text: dto?.jsonDetail?.title ?? "");
-    final TextEditingController controllerDescription = TextEditingController(text: dto?.jsonDetail?.description ?? "");
+    final TextEditingController controllerTitle = TextEditingController(
+      text: dto.jsonDetail?.title ?? "",
+    );
+    final TextEditingController controllerDescription = TextEditingController(
+      text: dto.jsonDetail?.description ?? "",
+    );
     dialogAlert(
       Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           textField(labelText: "عنوان", controller: controllerTitle).paddingSymmetric(vertical: 8),
           textField(labelText: "توضیحات", controller: controllerDescription).paddingSymmetric(vertical: 8),
+          filePickerList(
+            title: "زیر مجموعه",
+            files: dto.children ?? <FileData>[],
+            parentId: dto.id,
+            onFileSelected: onFileSelected,
+            onFileDeleted: onFileDeleted,
+            onFileEdited: onFileEdited,
+          ),
           button(
             title: "ثبت",
-            onTap: () => onSubmit(
-              FileData(
-                id: dto?.id,
-                bytes: dto?.bytes,
-                order: dto?.order,
-                tags: dto?.tags,
-                url: dto?.url,
-                fileType: dto?.fileType,
-                path: dto?.path,
-                jsonDetail: dto?.jsonDetail,
-              ),
-            ),
+            onTap: () {
+              onSubmit(
+                FileData(
+                  id: dto.id,
+                  bytes: dto.bytes,
+                  order: dto.order,
+                  tags: dto.tags,
+                  extension: dto.extension,
+                  url: dto.url,
+                  path: dto.path,
+                  parentId: dto.parentId,
+                  jsonDetail: MediaJsonDetail(
+                    title: controllerTitle.text,
+                    description: controllerDescription.text,
+                    album: dto.jsonDetail?.album,
+                    link3: dto.jsonDetail?.link3,
+                    link2: dto.jsonDetail?.link2,
+                    link1: dto.jsonDetail?.link1,
+                    artist: dto.jsonDetail?.artist,
+                    size: dto.jsonDetail?.size,
+                    time: dto.jsonDetail?.time,
+                    link: dto.jsonDetail?.link,
+                    isPrivate: dto.jsonDetail?.isPrivate,
+                  ),
+                ),
+              );
+              back();
+            },
           ).paddingSymmetric(vertical: 20),
         ],
       ).container(width: context.width / 2),
@@ -207,19 +225,22 @@ Widget filePickerList({
       Text(title).titleMedium(),
       const SizedBox(height: 8),
       Obx(
-        () => Row(
+            () => Row(
           children: <Widget>[
             ...oldFiles
                 .mapIndexed(
                   (final int index, final FileData i) => Stack(
                     children: <Widget>[
-                      image(
-                        i.url ?? "",
-                        width: 100,
-                        height: 100,
-                        borderRadius: 12,
-                        fit: BoxFit.cover,
-                      ).paddingSymmetric(horizontal: 8),
+                      if (i.url!.isImageFileName)
+                        image(
+                          i.url!,
+                          width: 100,
+                          height: 100,
+                          borderRadius: 12,
+                          fit: BoxFit.cover,
+                        ).paddingSymmetric(horizontal: 8),
+                      if (i.url!.isPDFFileName) fileIcon(icon: Icons.picture_as_pdf_outlined, color: Colors.red),
+                      if (i.url!.isVideoFileName) fileIcon(icon: Icons.videocam_outlined, color: Colors.red),
                       menu(
                         onDelete: () {
                           oldFiles.remove(i);
@@ -228,7 +249,10 @@ Widget filePickerList({
                         },
                         onEdit: () => edit(
                           dto: i,
-                          onSubmit: (final FileData fileData) => oldFiles[index] = fileData,
+                          onSubmit: (final FileData fileData) {
+                            oldFiles[index] = fileData;
+                            onFileEdited(oldFiles);
+                          },
                         ),
                       ),
                     ],
@@ -239,7 +263,7 @@ Widget filePickerList({
                 .mapIndexed(
                   (final int index, final FileData i) => Stack(
                     children: <Widget>[
-                      if (i.fileType == FileDataType.image)
+                      if (i.extension!.isImageFileName)
                         image(
                           "",
                           fileData: i,
@@ -248,12 +272,12 @@ Widget filePickerList({
                           borderRadius: 12,
                           fit: BoxFit.cover,
                         ).paddingSymmetric(horizontal: 8),
-                      if (i.fileType == FileDataType.pdf)
+                      if (i.extension!.isPDFFileName)
                         fileIcon(
                           icon: Icons.picture_as_pdf_outlined,
                           color: Colors.red,
                         ),
-                      if (i.fileType == FileDataType.video)
+                      if (i.extension!.isVideoFileName)
                         fileIcon(
                           icon: Icons.videocam_outlined,
                           color: Colors.red,
@@ -262,7 +286,9 @@ Widget filePickerList({
                         onDelete: () => addedFiles.removeAt(index),
                         onEdit: () => edit(
                           dto: i,
-                          onSubmit: (final FileData fileData) => addedFiles[index] = fileData,
+                          onSubmit: (final FileData fileData) {
+                            addedFiles[index] = fileData;
+                          },
                         ),
                       ),
                     ],
@@ -270,13 +296,12 @@ Widget filePickerList({
                 )
                 .toList(),
             fileIcon(icon: Icons.add, color: context.theme.colorScheme.primary).onTap(
-              () => showFilePicker(
-                fileType: fileType,
+                  () => showFilePicker(
                 allowMultiple: true,
-                allowedExtensions: allowedExt,
                 action: (final List<FileData> files) {
-                  addedFiles.addAll(files);
+                  addedFiles.addAll(files.map((final FileData e) => e..parentId = parentId).toList());
                   onFileSelected(addedFiles);
+                  print(files.length);
                 },
               ),
             ),

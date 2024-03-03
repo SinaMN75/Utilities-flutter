@@ -1,27 +1,29 @@
 part of 'utils.dart';
 
-enum FileDataType { image, pdf, video }
-
 class FileData {
   FileData({
     this.path,
     this.bytes,
+    this.extension,
     this.url,
-    this.fileType,
     this.id,
     this.order,
     this.jsonDetail,
     this.tags,
+    this.parentId,
+    this.children,
   });
 
   final String? path;
+  final String? extension;
   final Uint8List? bytes;
   final String? url;
-  final FileDataType? fileType;
   String? id;
+  String? parentId;
   int? order;
   MediaJsonDetail? jsonDetail;
   List<int>? tags;
+  List<FileData>? children;
 }
 
 class MediaViewModel {

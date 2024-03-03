@@ -125,6 +125,11 @@ enum TagProduct {
   foreign(181, "", ''),
   journal(182, "", ''),
   link(183, "", ''),
+  premium1Month(184, "", ''),
+  premium3Month(185, "", ''),
+  premium6Month(186, "", ''),
+  premium12Month(187, "", ''),
+  post(189, "", ''),
   news(201, "", ""),
   kindOfNew(202, "", ""),
   used(203, "", ""),
@@ -147,7 +152,7 @@ enum TagProduct {
 enum TagCategory {
   category(100),
   yooNote(101),
-  specialty(102),
+  speciality(102),
   specializedArt(103),
   colors(104),
   brand(105),
@@ -224,7 +229,6 @@ enum TagCategory {
   country(176),
   city(177),
   province(178),
-  speciality(179),
   free(180),
   payment(181),
   favorites(182),
@@ -296,6 +300,7 @@ enum TagTransaction {
   recharge(105, ''),
   walletToWallet(106, ''),
   return0(107, ''),
+  premium(108, ''),
   pending(200, 'پرداخت شده'),
   fail(201, 'در حال پردازش'),
   success(202, 'ارسال شده'),
@@ -405,7 +410,9 @@ enum TagContent {
   homeBannerSmall2(108, "بنر کوچک ۲"),
   contactInfo(109, "اطلاعات تماس"),
   smallDetail1(110, "اطلاعات ۱"),
-  smallDetail2(111, "اطلاعات ۲");
+  smallDetail2(111, "اطلاعات ۲"),
+  news(112, "اخبار"),
+  premium(113, "پریمیوم");
 
   const TagContent(this.number, this.title);
 

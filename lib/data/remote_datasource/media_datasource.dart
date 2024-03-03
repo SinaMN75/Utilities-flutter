@@ -17,16 +17,11 @@ class MediaDataSource {
     final String? userId,
     final String? commentId,
     final String? chatId,
-    final String? time,
-    final String? artist,
-    final String? album,
+    final String? parentId,
     final String? groupChatId,
     final String? groupChatMessageId,
     final String? bookmarkId,
-    final String? title,
     final String? notificationId,
-    final String? size,
-    final Duration? timeout,
   }) async {
     final FormData form = FormData(
       <String, dynamic>{
@@ -41,15 +36,19 @@ class MediaDataSource {
         'BookmarkId': bookmarkId,
         'ChatId': chatId,
         'UserId': userId,
-        'Tags':fileData.tags?? tags,
-        'Time':fileData.jsonDetail?.time?? time,
-        'Artist':fileData.jsonDetail?.artist?? artist,
-        'Album':fileData.jsonDetail?.album?? album,
-        'Title':fileData.jsonDetail?.title?? title,
-        'Size':fileData.jsonDetail?.size?? size,
+        'ParentId': parentId,
+        'Tags': fileData.tags ?? tags,
+        'Time': fileData.jsonDetail?.time,
+        'Artist': fileData.jsonDetail?.artist,
+        'Album': fileData.jsonDetail?.album,
+        'Title': fileData.jsonDetail?.title,
+        'Size': fileData.jsonDetail?.size,
+        'Description': fileData.jsonDetail?.description,
+        'Link1': fileData.jsonDetail?.link1,
+        'Link2': fileData.jsonDetail?.link2,
+        'Link3': fileData.jsonDetail?.link3,
       },
     );
-
 
     try {
       GetConnect connect = GetConnect(
@@ -89,17 +88,14 @@ class MediaDataSource {
       );
 
   void update({
-    required final String mediaId,
-    final String? title,
-    final String? size,
-    final List<int>? tags,
+    required final MediaUpdateDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(String error)? failure,
   }) =>
       httpPut(
-        url: "$baseUrl/Media/$mediaId",
-        body: MediaReadDto(jsonDetail: MediaJsonDetail(title: title, size: size), tags: tags, url: ""),
+        url: "$baseUrl/Media",
+        body: dto,
         action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
