@@ -151,7 +151,7 @@ enum TagProduct {
 enum TagCategory {
   category(100),
   yooNote(101),
-  specialty(102),
+  speciality(102),
   specializedArt(103),
   colors(104),
   brand(105),
@@ -228,7 +228,6 @@ enum TagCategory {
   country(176),
   city(177),
   province(178),
-  speciality(179),
   free(180),
   payment(181),
   favorites(182),
