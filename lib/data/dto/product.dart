@@ -34,7 +34,7 @@ class ProductReadDto {
     this.user,
     this.product,
     this.parent,
-    required this.jsonDetail,
+    this.jsonDetail,
     this.media,
     this.comments,
     this.categories,
@@ -135,7 +135,7 @@ class ProductReadDto {
   String? parentId;
   String? userId;
   UserReadDto? user;
-  ProductJsonDetail jsonDetail;
+  ProductJsonDetail? jsonDetail;
   List<CommentReadDto>? comments;
   List<MediaReadDto>? media;
   List<int> tags;

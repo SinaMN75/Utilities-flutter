@@ -11,7 +11,7 @@ class CategoryReadDto {
     this.stock,
     this.count,
     this.order,
-    required this.jsonDetail,
+    this.jsonDetail,
     this.updatedAt,
     this.children,
     this.parent,
@@ -48,7 +48,7 @@ class CategoryReadDto {
   int? stock;
   int? count;
   int? order;
-  CategoryJsonDetail jsonDetail;
+  CategoryJsonDetail? jsonDetail;
   CategoryReadDto? parent;
   String? parentId;
   List<CategoryReadDto>? children;
@@ -68,7 +68,7 @@ class CategoryReadDto {
         "stock": stock,
         "count": count,
         "order": order,
-        "categoryJsonDetail": jsonDetail.toMap(),
+        "categoryJsonDetail": jsonDetail?.toMap(),
         "parent": parent?.toMap(),
         "children": List<CategoryReadDto>.from(children!.map((final CategoryReadDto x) => x.toMap())),
         "parentId": parentId,

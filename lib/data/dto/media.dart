@@ -3,7 +3,7 @@ part of '../data.dart';
 class MediaReadDto {
   MediaReadDto({
     required this.url,
-    required this.jsonDetail,
+    this.jsonDetail,
     required this.tags,
     this.id,
     this.createdAt,
@@ -41,7 +41,7 @@ class MediaReadDto {
   DateTime? updatedAt;
   String? fileName;
   int? order;
-  MediaJsonDetail jsonDetail;
+  MediaJsonDetail? jsonDetail;
   String url;
   List<int> tags;
   String? fileType;
@@ -59,7 +59,7 @@ class MediaReadDto {
         "order": order,
         "tags": List<dynamic>.from(tags.map((final int x) => x)),
         "fileType": url.split('.').last,
-        "mediaJsonDetail": jsonDetail.toMap(),
+        "mediaJsonDetail": jsonDetail?.toMap(),
         "url": url,
         "parent": parent?.toMap(),
         "children": children == null ? <MediaReadDto>[] : List<MediaReadDto>.from(children!.map((final MediaReadDto x) => x.toMap())),
@@ -196,7 +196,80 @@ class MediaUpdateDto {
         "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((final x) => x)),
       };
 }
+class CreateMediaReadDto {
+  String? filesPath;
+  String? categoryId;
+  String? contentId;
+  String? groupChatId;
+  String? groupChatMessageId;
+  String? productId;
+  String? userId;
+  int? privacyType;
+  int? order;
+  String? time;
+  String? artist;
+  String? album;
+  String? commentId;
+  String? bookmarkId;
+  String? chatId;
+  String? title;
+  String? notificationId;
+  String? size;
 
+  String? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  String? fileName;
+  int? tag;
+  MediaJsonDetail? mediaJsonDetail;
+  String? url;
+  List<int>? tags;
+  String? fileType;
+
+  CreateMediaReadDto({
+    this.filesPath,
+    this.categoryId,
+    this.contentId,
+    this.groupChatId,
+    this.groupChatMessageId,
+    this.productId,
+    this.userId,
+    this.privacyType,
+    this.time,
+    this.artist,
+    this.order,
+    this.album,
+    this.commentId,
+    this.bookmarkId,
+    this.chatId,
+    this.title,
+    this.tags,
+    this.notificationId,
+    this.size,
+  });
+
+  String toJson() => json.encode(removeNullEntries(toMap()));
+
+  dynamic toMap() => {
+    "filesPath": filesPath,
+    "CategoryId": categoryId,
+    "ContentId": contentId,
+    "GroupChatId": groupChatId,
+    "ProductId": productId,
+    "UserId": userId,
+    "order": order,
+    "PrivacyType": privacyType,
+    "Artist": artist,
+    'Album': album,
+    'CommentId': commentId,
+    'BookmarkId': bookmarkId,
+    'ChatId': chatId,
+    "Tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+    'Title': title ?? fileName,
+    'NotificationId': notificationId,
+    'Size': size,
+  };
+}
 class MediaFilterDto {
   MediaFilterDto({
     this.pageSize,

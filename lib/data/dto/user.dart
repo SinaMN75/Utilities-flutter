@@ -31,7 +31,7 @@ class UserReadDto {
     this.isPrivate,
     this.premiumExpireDate,
     this.ageCategory,
-    required this.jsonDetail,
+    this.jsonDetail,
     required this.tags,
     this.media,
     this.stories,
@@ -115,7 +115,7 @@ class UserReadDto {
   final bool? isPrivate;
   final String? premiumExpireDate;
   final int? ageCategory;
-  final UserJsonDetail jsonDetail;
+  final UserJsonDetail? jsonDetail;
   List<int> tags;
   final List<MediaReadDto>? media;
   final List<ProductReadDto>? stories;
@@ -158,7 +158,7 @@ class UserReadDto {
         "isPrivate": isPrivate,
         "premiumExpireDate": premiumExpireDate,
         "ageCategory": ageCategory,
-        "jsonDetail": jsonDetail.toMap(),
+        "jsonDetail": jsonDetail?.toMap(),
         "tags": List<dynamic>.from(tags.map((final int x) => x)),
         "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "stories": stories == null ? <dynamic>[] : List<dynamic>.from(stories!.map((final ProductReadDto x) => x.toMap())),
