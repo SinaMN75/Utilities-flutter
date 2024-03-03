@@ -5,11 +5,10 @@ class MediaReadDto {
   DateTime? createdAt;
   DateTime? updatedAt;
   String? fileName;
-  int? tag;
   int? order;
   MediaJsonDetail jsonDetail;
   String url;
-  List<int>? tags;
+  List<int> tags;
   String? fileType;
   MediaReadDto? parent;
   String? parentId;
@@ -21,10 +20,9 @@ class MediaReadDto {
     this.createdAt,
     this.updatedAt,
     this.fileName,
-    this.tag,
     this.order,
     required this.jsonDetail,
-    this.tags,
+    required this.tags,
     this.fileType,
     this.children,
     this.parent,
@@ -36,13 +34,12 @@ class MediaReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory MediaReadDto.fromMap(dynamic json) => MediaReadDto(
-        id: json["id"],
+    id: json["id"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         fileName: json["fileName"],
-        tag: json["tag"],
         order: json["order"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         fileType: json["url"] == null ? '' : json["url"].toString().split('.').last,
         jsonDetail: MediaJsonDetail.fromMap(json["jsonDetail"]),
         url: json["url"],
@@ -56,11 +53,10 @@ class MediaReadDto {
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "fileName": fileName,
-        "tag": tag,
         "order": order,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": List<dynamic>.from(tags.map((final int x) => x)),
         "fileType": url.split('.').last,
-        "mediaJsonDetail": jsonDetail?.toMap(),
+        "mediaJsonDetail": jsonDetail.toMap(),
         "url": url,
         "parent": parent?.toMap(),
         "children": children == null ? <MediaReadDto>[] : List<MediaReadDto>.from(children!.map((final MediaReadDto x) => x.toMap())),
@@ -227,7 +223,7 @@ class MediaFilterDto {
 extension NullableMediaResponseExtension on List<MediaReadDto>? {
   List<MediaReadDto> getByUseCase({required final int tag, final int? exception}) {
     List<MediaReadDto> list = this
-            ?.where((final MediaReadDto e) => (e.tags ?? <int>[]).contains(tag))
+            ?.where((final MediaReadDto e) => (e.tags).contains(tag))
             .map(
               (final MediaReadDto e) => e,
             )
@@ -236,7 +232,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
 
     if (exception != null) {
       list = this
-              ?.where((final MediaReadDto e) => (e.tags ?? <int>[]).contains(exception))
+              ?.where((final MediaReadDto e) => (e.tags).contains(exception))
               .map(
                 (final MediaReadDto e) => e,
               )
@@ -249,7 +245,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
 
   List<String> getAll({final int? tag}) =>
       this
-          ?.where((final MediaReadDto e) => (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+          ?.where((final MediaReadDto e) => (tag != null ? ((e.tags).contains(tag)) : true))
           .map(
             (final MediaReadDto e) => e.url,
           )
@@ -268,7 +264,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
 
   List<String> getImages({final int? tag}) =>
       this
-          ?.where((final MediaReadDto e) => (e.url.isImageFileName || e.url.isVectorFileName) && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+          ?.where((final MediaReadDto e) => (e.url.isImageFileName || e.url.isVectorFileName) && (tag != null ? ((e.tags).contains(tag)) : true))
           .map(
             (final MediaReadDto e) => e.url,
           )
@@ -277,7 +273,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
 
   List<String> getAudios({final int? tag}) =>
       this
-          ?.where((final MediaReadDto e) => e.url.isAudioFileName && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+          ?.where((final MediaReadDto e) => e.url.isAudioFileName && (tag != null ? ((e.tags).contains(tag)) : true))
           .map(
             (final MediaReadDto e) => e.url,
           )
@@ -286,7 +282,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
 
   List<String> getVideos({final int? tag}) =>
       this
-          ?.where((final MediaReadDto e) => e.url.isVideoFileName && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+          ?.where((final MediaReadDto e) => e.url.isVideoFileName && (tag != null ? ((e.tags).contains(tag)) : true))
           .map(
             (final MediaReadDto e) => e.url,
           )
@@ -295,7 +291,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
 
   List<String> getPdfs({final int? tag}) =>
       this
-          ?.where((final MediaReadDto e) => e.url.isPDFFileName && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+          ?.where((final MediaReadDto e) => e.url.isPDFFileName && (tag != null ? ((e.tags).contains(tag)) : true))
           .map(
             (final MediaReadDto e) => e.url,
           )
@@ -305,7 +301,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
   List<String> getDocs({final int? tag}) =>
       this
           ?.where(
-            (final MediaReadDto e) => e.url.isDocumentFileName && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true),
+            (final MediaReadDto e) => e.url.isDocumentFileName && (tag != null ? ((e.tags).contains(tag)) : true),
           )
           .map((final MediaReadDto e) => e.url)
           .toList() ??
@@ -313,7 +309,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
 
   String? getFile() {
     List<String> list = this!
-        .where((final MediaReadDto e) => e.url.isImageFileName && (((e.tags ?? <int>[]).contains('file'))))
+        .where((final MediaReadDto e) => e.url.isImageFileName && (((e.tags).contains('file'))))
         .map(
           (final MediaReadDto e) => e.url,
         )
@@ -336,14 +332,14 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
 
 extension MediaResponseExtension on List<MediaReadDto> {
   List<MediaReadDto> getByUseCase({required final int tag, final int? exception}) {
-    List<MediaReadDto> list = where((final MediaReadDto e) => (e.tags ?? <int>[]).contains(tag))
+    List<MediaReadDto> list = where((final MediaReadDto e) => (e.tags).contains(tag))
         .map(
           (final MediaReadDto e) => e,
         )
         .toList();
 
     if (exception != null) {
-      list = where((final MediaReadDto e) => !(e.tags ?? <int>[]).contains(exception))
+      list = where((final MediaReadDto e) => !(e.tags).contains(exception))
           .map(
             (final MediaReadDto e) => e,
           )
@@ -353,44 +349,44 @@ extension MediaResponseExtension on List<MediaReadDto> {
     return list;
   }
 
-  List<String> getAll({final int? tag}) => where((final MediaReadDto e) => (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+  List<String> getAll({final int? tag}) => where((final MediaReadDto e) => (tag != null ? ((e.tags).contains(tag)) : true))
       .map(
         (final MediaReadDto e) => e.url,
       )
       .toList();
 
-  List<String> getImages({final int? tag}) => where((final MediaReadDto e) => ((e.url.isImageFileName || e.url.isVectorFileName)) && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+  List<String> getImages({final int? tag}) => where((final MediaReadDto e) => ((e.url.isImageFileName || e.url.isVectorFileName)) && (tag != null ? ((e.tags).contains(tag)) : true))
       .map(
         (final MediaReadDto e) => e.url,
       )
       .toList();
 
-  List<String> getAudios({final int? tag}) => where((final MediaReadDto e) => e.url.isAudioFileName && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+  List<String> getAudios({final int? tag}) => where((final MediaReadDto e) => e.url.isAudioFileName && (tag != null ? ((e.tags).contains(tag)) : true))
       .map(
         (final MediaReadDto e) => e.url,
       )
       .toList();
 
-  List<String> getVideos({final int? tag}) => where((final MediaReadDto e) => e.url.isVideoFileName && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+  List<String> getVideos({final int? tag}) => where((final MediaReadDto e) => e.url.isVideoFileName && (tag != null ? ((e.tags).contains(tag)) : true))
       .map(
         (final MediaReadDto e) => e.url,
       )
       .toList();
 
-  List<String> getPdfs({final int? tag}) => where((final MediaReadDto e) => e.url.isPDFFileName && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+  List<String> getPdfs({final int? tag}) => where((final MediaReadDto e) => e.url.isPDFFileName && (tag != null ? ((e.tags).contains(tag)) : true))
       .map(
         (final MediaReadDto e) => e.url,
       )
       .toList();
 
-  List<String> getDocs({final int? tag}) => where((final MediaReadDto e) => e.url.isDocumentFileName && (tag != null ? ((e.tags ?? <int>[]).contains(tag)) : true))
+  List<String> getDocs({final int? tag}) => where((final MediaReadDto e) => e.url.isDocumentFileName && (tag != null ? ((e.tags).contains(tag)) : true))
       .map(
         (final MediaReadDto e) => e.url,
       )
       .toList();
 
   String getFile() {
-    List<String> list = where((final MediaReadDto e) => e.url.isImageFileName && (((e.tags ?? <int>[]).contains('file'))))
+    List<String> list = where((final MediaReadDto e) => e.url.isImageFileName && (((e.tags).contains('file'))))
         .map(
           (final MediaReadDto e) => e.url,
         )
