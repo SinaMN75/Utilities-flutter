@@ -3,7 +3,7 @@ part of '../data.dart';
 extension ContentReadDtoExtension on List<ContentReadDto> {
   List<ContentReadDto> getByTags({required final List<TagContent> tags}) => where(
         (final ContentReadDto e) => e.tags.containsAll(tags.getNumbers()),
-  ).toList();
+      ).toList();
 }
 
 class ContentReadDto {
@@ -14,7 +14,7 @@ class ContentReadDto {
   final String? subTitle;
   final String? description;
   final String? deletedAt;
-  final List<int>? tags;
+  final List<int> tags;
   final ContentJsonDetail jsonDetail;
   final List<MediaReadDto>? media;
 
@@ -26,7 +26,7 @@ class ContentReadDto {
     this.subTitle,
     this.description,
     this.deletedAt,
-    this.tags,
+    required this.tags,
     required this.jsonDetail,
     this.media,
   });
@@ -36,30 +36,30 @@ class ContentReadDto {
   String toJson() => json.encode(toMap());
 
   factory ContentReadDto.fromMap(Map<String, dynamic> json) => ContentReadDto(
-    id: json["id"],
-    createdAt: json["createdAt"],
-    updatedAt: json["updatedAt"],
-    title: json["title"],
-    subTitle: json["subTitle"],
-    description: json["description"],
-    deletedAt: json["deletedAt"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-    jsonDetail: ContentJsonDetail.fromMap(json["jsonDetail"]),
-    media: json["media"] == null ? [] : List<MediaReadDto>.from(json["media"]!.map((x) => MediaReadDto.fromMap(x))),
-  );
+        id: json["id"],
+        createdAt: json["createdAt"],
+        updatedAt: json["updatedAt"],
+        title: json["title"],
+        subTitle: json["subTitle"],
+        description: json["description"],
+        deletedAt: json["deletedAt"],
+        tags: List<int>.from(json["tags"]!.map((x) => x)),
+        jsonDetail: ContentJsonDetail.fromMap(json["jsonDetail"]),
+        media: json["media"] == null ? [] : List<MediaReadDto>.from(json["media"]!.map((x) => MediaReadDto.fromMap(x))),
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "createdAt": createdAt,
-    "updatedAt": updatedAt,
-    "title": title,
-    "subTitle": subTitle,
-    "description": description,
-    "deletedAt": deletedAt,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-    "jsonDetail": jsonDetail?.toMap(),
-    "media": media == null ? [] : List<dynamic>.from(media!.map((x) => x.toMap())),
-  };
+        "id": id,
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
+        "title": title,
+        "subTitle": subTitle,
+        "description": description,
+        "deletedAt": deletedAt,
+        "tags": List<dynamic>.from(tags.map((x) => x)),
+        "jsonDetail": jsonDetail.toMap(),
+        "media": media == null ? [] : List<dynamic>.from(media!.map((x) => x.toMap())),
+      };
 }
 
 class ContentJsonDetail {
@@ -102,40 +102,40 @@ class ContentJsonDetail {
   String toJson() => json.encode(toMap());
 
   factory ContentJsonDetail.fromMap(Map<String, dynamic> json) => ContentJsonDetail(
-    instagram: json["instagram"],
-    telegram: json["telegram"],
-    whatsApp: json["whatsApp"],
-    linkedIn: json["linkedIn"],
-    dribble: json["dribble"],
-    soundCloud: json["soundCloud"],
-    pinterest: json["pinterest"],
-    website: json["website"],
-    phoneNumber1: json["phoneNumber1"],
-    phoneNumber2: json["phoneNumber2"],
-    email1: json["email1"],
-    email2: json["email2"],
-    address1: json["address1"],
-    address2: json["address2"],
-    address3: json["address3"],
-  );
+        instagram: json["instagram"],
+        telegram: json["telegram"],
+        whatsApp: json["whatsApp"],
+        linkedIn: json["linkedIn"],
+        dribble: json["dribble"],
+        soundCloud: json["soundCloud"],
+        pinterest: json["pinterest"],
+        website: json["website"],
+        phoneNumber1: json["phoneNumber1"],
+        phoneNumber2: json["phoneNumber2"],
+        email1: json["email1"],
+        email2: json["email2"],
+        address1: json["address1"],
+        address2: json["address2"],
+        address3: json["address3"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "instagram": instagram,
-    "telegram": telegram,
-    "whatsApp": whatsApp,
-    "linkedIn": linkedIn,
-    "dribble": dribble,
-    "soundCloud": soundCloud,
-    "pinterest": pinterest,
-    "website": website,
-    "phoneNumber1": phoneNumber1,
-    "phoneNumber2": phoneNumber2,
-    "email1": email1,
-    "email2": email2,
-    "address1": address1,
-    "address2": address2,
-    "address3": address3,
-  };
+        "instagram": instagram,
+        "telegram": telegram,
+        "whatsApp": whatsApp,
+        "linkedIn": linkedIn,
+        "dribble": dribble,
+        "soundCloud": soundCloud,
+        "pinterest": pinterest,
+        "website": website,
+        "phoneNumber1": phoneNumber1,
+        "phoneNumber2": phoneNumber2,
+        "email1": email1,
+        "email2": email2,
+        "address1": address1,
+        "address2": address2,
+        "address3": address3,
+      };
 }
 
 class ContentCreateUpdateDto {
@@ -188,48 +188,48 @@ class ContentCreateUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory ContentCreateUpdateDto.fromMap(Map<String, dynamic> json) => ContentCreateUpdateDto(
-    id: json["id"],
-    title: json["title"],
-    subTitle: json["subTitle"],
-    description: json["description"],
-    instagram: json["instagram"],
-    telegram: json["telegram"],
-    whatsApp: json["whatsApp"],
-    linkedIn: json["linkedIn"],
-    dribble: json["dribble"],
-    soundCloud: json["soundCloud"],
-    pinterest: json["pinterest"],
-    website: json["website"],
-    phoneNumber1: json["phoneNumber1"],
-    phoneNumber2: json["phoneNumber2"],
-    email1: json["email1"],
-    email2: json["email2"],
-    address1: json["address1"],
-    address2: json["address2"],
-    address3: json["address3"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-  );
+        id: json["id"],
+        title: json["title"],
+        subTitle: json["subTitle"],
+        description: json["description"],
+        instagram: json["instagram"],
+        telegram: json["telegram"],
+        whatsApp: json["whatsApp"],
+        linkedIn: json["linkedIn"],
+        dribble: json["dribble"],
+        soundCloud: json["soundCloud"],
+        pinterest: json["pinterest"],
+        website: json["website"],
+        phoneNumber1: json["phoneNumber1"],
+        phoneNumber2: json["phoneNumber2"],
+        email1: json["email1"],
+        email2: json["email2"],
+        address1: json["address1"],
+        address2: json["address2"],
+        address3: json["address3"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "title": title,
-    "subTitle": subTitle,
-    "description": description,
-    "instagram": instagram,
-    "telegram": telegram,
-    "whatsApp": whatsApp,
-    "linkedIn": linkedIn,
-    "dribble": dribble,
-    "soundCloud": soundCloud,
-    "pinterest": pinterest,
-    "website": website,
-    "phoneNumber1": phoneNumber1,
-    "phoneNumber2": phoneNumber2,
-    "email1": email1,
-    "email2": email2,
-    "address1": address1,
-    "address2": address2,
-    "address3": address3,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-  };
+        "id": id,
+        "title": title,
+        "subTitle": subTitle,
+        "description": description,
+        "instagram": instagram,
+        "telegram": telegram,
+        "whatsApp": whatsApp,
+        "linkedIn": linkedIn,
+        "dribble": dribble,
+        "soundCloud": soundCloud,
+        "pinterest": pinterest,
+        "website": website,
+        "phoneNumber1": phoneNumber1,
+        "phoneNumber2": phoneNumber2,
+        "email1": email1,
+        "email2": email2,
+        "address1": address1,
+        "address2": address2,
+        "address3": address3,
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+      };
 }

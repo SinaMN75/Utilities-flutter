@@ -62,6 +62,7 @@ extension ListExtensions<T> on List<T> {
   }
 
   bool containsAll<T>(final List<T> list) {
+    if (list.isEmpty) return true;
     final Set<T> setA = Set<T>.of(list);
     return setA.containsAll(this);
   }
@@ -81,4 +82,3 @@ extension ListExtensions<T> on List<T> {
     return this;
   }
 }
-
