@@ -79,8 +79,8 @@ class CommentReadDto {
         "user": user?.toMap(),
         "product": product?.toMap(),
         "userId": userId,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-        "commentJsonDetail": commentJsonDetail?.toMap(),
+        "tags": List<dynamic>.from(tags.map((final int x) => x)),
+        "commentJsonDetail": commentJsonDetail.toMap(),
         "children": children == null ? <String>[] : List<String>.from(children!.map((final x) => x)),
         "media": media == null ? <MediaReadDto>[] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
       };
@@ -114,7 +114,7 @@ class CommentCreateUpdateDto {
     this.score,
     this.comment,
     this.productId,
-    this.tags,
+    required this.tags,
   });
 
   final String? parentId;
@@ -123,7 +123,7 @@ class CommentCreateUpdateDto {
   final double? score;
   final String? comment;
   final String? productId;
-  List<int>? tags;
+  List<int> tags;
 
   factory CommentCreateUpdateDto.fromJson(final String? str) => CommentCreateUpdateDto.fromMap(json.decode(str!));
 
@@ -136,7 +136,7 @@ class CommentCreateUpdateDto {
         score: json["score"],
         comment: json["comment"],
         productId: json["productId"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
       );
 
   dynamic toMap() => {
@@ -146,7 +146,7 @@ class CommentCreateUpdateDto {
         "score": score,
         "comment": comment,
         "productId": productId,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": List<dynamic>.from(tags.map((final int x) => x)),
       };
 }
 
