@@ -11,13 +11,13 @@ class CategoryReadDto {
     this.stock,
     this.count,
     this.order,
-    this.jsonDetail,
+    required this.jsonDetail,
     this.updatedAt,
     this.children,
     this.parent,
     this.parentId,
     this.media,
-    this.tags,
+    required this.tags,
   });
 
   factory CategoryReadDto.fromJson(final String str) => CategoryReadDto.fromMap(json.decode(str));
@@ -31,8 +31,8 @@ class CategoryReadDto {
         price: json["price"],
         stock: json["stock"],
         order: json["order"],
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        jsonDetail: json["jsonDetail"] == null ? null : CategoryJsonDetail.fromMap(json["jsonDetail"]),
+        tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        jsonDetail: CategoryJsonDetail.fromMap(json["jsonDetail"]),
         parent: json["parent"] == null ? null : CategoryReadDto.fromMap(json["parent"]),
         parentId: json["parentId"],
         children: json["children"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
@@ -48,11 +48,11 @@ class CategoryReadDto {
   int? stock;
   int? count;
   int? order;
-  CategoryJsonDetail? jsonDetail;
+  CategoryJsonDetail jsonDetail;
   CategoryReadDto? parent;
   String? parentId;
   List<CategoryReadDto>? children;
-  List<int>? tags;
+  List<int> tags;
   String id;
   DateTime? updatedAt;
   final List<MediaReadDto>? media;
@@ -68,11 +68,11 @@ class CategoryReadDto {
         "stock": stock,
         "count": count,
         "order": order,
-        "categoryJsonDetail": jsonDetail?.toMap(),
+        "categoryJsonDetail": jsonDetail.toMap(),
         "parent": parent?.toMap(),
-        "children": children == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(children!.map((final CategoryReadDto x) => x.toMap())),
+        "children": List<CategoryReadDto>.from(children!.map((final CategoryReadDto x) => x.toMap())),
         "parentId": parentId,
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": List<dynamic>.from(tags.map((final int x) => x)),
         "media": media == null ? null : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "id": id,
         "updatedAt": updatedAt?.toIso8601String(),
@@ -277,12 +277,13 @@ class CategoryFilterDto {
 }
 
 extension CategoryReadDtoExtension on List<CategoryReadDto>? {
-  List<CategoryReadDto> getByTagTypeUseCase({required final int type, required final int tagUseCase}) => this?.where((final CategoryReadDto e) => (e.tags ?? <int>[]).contains(type) && (e.tags ?? <int>[]).contains(tagUseCase)).toList() ?? <CategoryReadDto>[];
+  List<CategoryReadDto> getByTagTypeUseCase({required final int type, required final int tagUseCase}) =>
+      this?.where((final CategoryReadDto e) => e.tags.contains(type) && e.tags.contains(tagUseCase)).toList() ?? <CategoryReadDto>[];
 
   List<CategoryReadDto> getByTagType({required final int type}) =>
       this
           ?.where(
-            (final CategoryReadDto e) => (e.tags ?? <int>[]).contains(type),
+            (final CategoryReadDto e) => e.tags.contains(type),
           )
           .toList() ??
       <CategoryReadDto>[];
@@ -290,10 +291,8 @@ extension CategoryReadDtoExtension on List<CategoryReadDto>? {
   List<CategoryReadDto> getByTagUseCase({required final int tagUseCase}) =>
       this
           ?.where(
-            (final CategoryReadDto e) => (e.tags ?? <int>[]).contains(tagUseCase),
+            (final CategoryReadDto e) => e.tags.contains(tagUseCase),
           )
           .toList() ??
       <CategoryReadDto>[];
-
-  CategoryReadDto firstIfNull() => (this ?? <CategoryReadDto>[]).isNotEmpty ? this!.first : CategoryReadDto(id: '');
 }
