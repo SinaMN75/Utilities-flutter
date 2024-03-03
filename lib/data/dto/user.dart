@@ -79,8 +79,6 @@ class UserReadDto {
         tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
         stories: json["stories"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["stories"]!.map(ProductReadDto.fromMap)),
-        categories:
-            json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         isFollowing: json["isFollowing"],
         countProducts: json["countProducts"],
