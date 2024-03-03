@@ -32,7 +32,7 @@ class UserReadDto {
     this.premiumExpireDate,
     this.ageCategory,
     required this.jsonDetail,
-    this.tags,
+    required this.tags,
     this.media,
     this.categories,
     this.isFollowing,
@@ -75,7 +75,7 @@ class UserReadDto {
         premiumExpireDate: json["premiumExpireDate"],
         ageCategory: json["ageCategory"],
         jsonDetail: UserJsonDetail.fromMap(json["jsonDetail"]),
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         isFollowing: json["isFollowing"],
@@ -114,7 +114,7 @@ class UserReadDto {
   final String? premiumExpireDate;
   final int? ageCategory;
   final UserJsonDetail jsonDetail;
-  List<int>? tags;
+  List<int> tags;
   final List<MediaReadDto>? media;
   final List<CategoryReadDto>? categories;
   final bool? isFollowing;
@@ -156,7 +156,7 @@ class UserReadDto {
         "premiumExpireDate": premiumExpireDate,
         "ageCategory": ageCategory,
         "jsonDetail": jsonDetail.toMap(),
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags": List<dynamic>.from(tags.map((final int x) => x)),
         "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "isFollowing": isFollowing,
