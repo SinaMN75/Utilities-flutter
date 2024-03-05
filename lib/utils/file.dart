@@ -191,6 +191,7 @@ Widget filePickerList({
   required final Function(List<FileData> fileData) onFileDeleted,
   required final Function(List<FileData> fileData) onFileEdited,
   final List<FileData> files = const <FileData>[],
+  final FileType? fileType,
   final String? parentId,
 }) {
   final RxList<FileData> oldFiles = files.obs;
@@ -365,15 +366,35 @@ Widget filePickerList({
                   ),
                 )
                 .toList(),
-            fileIcon(icon: Icons.add, color: context.theme.colorScheme.primary).onTap(
-                  () => showFilePicker(
-                allowMultiple: true,
-                action: (final List<FileData> files) {
-                  addedFiles.addAll(files.map((final FileData e) => e..parentId = parentId).toList());
-                  onFileSelected(addedFiles);
-                  print(files.length);
-                },
-              ),
+            PopupMenuButton<int>(
+              onSelected: (final int index) {
+                if (index == 0)
+                  showFilePicker(
+                    allowMultiple: true,
+                    fileType: FileType.image,
+                    action: (final List<FileData> files) {
+                      addedFiles.addAll(
+                        files.map((final FileData e) => e..parentId = parentId).toList(),
+                      );
+                      onFileSelected(addedFiles);
+                    },
+                  );
+                if (index == 1)
+                  showFilePicker(
+                    allowMultiple: true,
+                    action: (final List<FileData> files) {
+                      addedFiles.addAll(
+                        files.map((final FileData e) => e..parentId = parentId).toList(),
+                      );
+                      onFileSelected(addedFiles);
+                    },
+                  );
+              },
+              itemBuilder: (final BuildContext context) => <PopupMenuEntry<int>>[
+                const PopupMenuItem<int>(value: 0, child: Text('تصویر')),
+                const PopupMenuItem<int>(value: 1, child: Text('فایل')),
+              ],
+              child: fileIcon(icon: Icons.add, color: context.theme.colorScheme.primary),
             ),
           ],
         ),
