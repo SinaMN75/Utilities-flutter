@@ -5,12 +5,13 @@ class MediaDataSource {
 
   MediaDataSource({required this.baseUrl});
 
-  void create({
+  Future<void> create({
     required final FileData fileData,
     required final String fileExtension,
     required final List<int> tags,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
+    final String? id,
     final String? categoryId,
     final String? contentId,
     final String? productId,
@@ -25,6 +26,7 @@ class MediaDataSource {
   }) async {
     final FormData form = FormData(
       <String, dynamic>{
+        'Id': id,
         'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: fileData.path!.split('/').last),
         'CategoryId': categoryId,
         'ContentId': contentId,
@@ -69,8 +71,10 @@ class MediaDataSource {
           .timeout(Duration(seconds: 200));
       log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
+      return;
     } catch (e) {
       onError();
+      return;
     }
   }
 

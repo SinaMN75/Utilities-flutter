@@ -296,7 +296,7 @@ Widget filePickerList({
       Text(title).titleMedium(),
       const SizedBox(height: 8),
       Obx(
-            () => Row(
+        () => Row(
           children: <Widget>[
             ...oldFiles
                 .mapIndexed(
@@ -374,7 +374,13 @@ Widget filePickerList({
                     fileType: FileType.image,
                     action: (final List<FileData> files) {
                       addedFiles.addAll(
-                        files.map((final FileData e) => e..parentId = parentId).toList(),
+                        files
+                            .map(
+                              (final FileData e) => e
+                                ..parentId = parentId
+                                ..id = generateUUID(),
+                            )
+                            .toList(),
                       );
                       onFileSelected(addedFiles);
                     },
@@ -392,6 +398,7 @@ Widget filePickerList({
                             )
                             .toList(),
                       );
+
                       onFileSelected(addedFiles);
                     },
                   );
