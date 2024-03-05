@@ -26,7 +26,7 @@ void showFilePicker({
   if (result != null) {
     if (allowMultiple) {
       result.files.forEach(
-            (final PlatformFile i) async {
+        (final PlatformFile i) async {
           files.add(
             FileData(
               path: isWeb ? null : i.path,
@@ -384,7 +384,13 @@ Widget filePickerList({
                     allowMultiple: true,
                     action: (final List<FileData> files) {
                       addedFiles.addAll(
-                        files.map((final FileData e) => e..parentId = parentId).toList(),
+                        files
+                            .map(
+                              (final FileData e) => e
+                                ..parentId = parentId
+                                ..id = generateUUID(),
+                            )
+                            .toList(),
                       );
                       onFileSelected(addedFiles);
                     },
