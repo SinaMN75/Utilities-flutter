@@ -41,6 +41,7 @@ part 'local_auth.dart';
 part 'local_storage.dart';
 part 'location.dart';
 part 'notification.dart';
+part 'uuid.dart';
 part 'view_models.dart';
 
 void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
