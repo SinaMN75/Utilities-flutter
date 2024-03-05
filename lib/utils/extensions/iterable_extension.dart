@@ -11,6 +11,12 @@ extension GenericIterableExtentions<T> on Iterable {
 
   Iterable takeIfPossible(final int range) => range < length ? take(length) : take(range);
 
+  List addReturn<T>(final T item) {
+    List list = this.toList();
+    list.add(item);
+    return list;
+  }
+
   T? getFirstIfExist() => isNullOrEmpty() ? null : first;
 
   T? firstOrDefault({final T? defaultValue}) => isNullOrEmpty() ? defaultValue : first;
