@@ -11,9 +11,9 @@ extension GenericIterableExtentions<T> on Iterable {
 
   Iterable takeIfPossible(final int range) => range < length ? take(length) : take(range);
 
-  List addReturn<T>(final T item) {
+  List insertFirstReturn<T>(final T item) {
     List list = this.toList();
-    list.add(item);
+    list.insert(0, item);
     return list;
   }
 
