@@ -25,7 +25,7 @@ void scrollableBottomSheet({
   final EdgeInsets padding = const EdgeInsets.all(20),
   final bool expand = false,
   final double maxChildSize = 1.0,
-  final double minChildSize = 0.25,
+  final double minChildSize = 0.4,
 }) =>
     Get.bottomSheet(
       Container(
