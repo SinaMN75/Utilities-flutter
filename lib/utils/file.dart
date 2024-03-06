@@ -378,7 +378,7 @@ Widget filePickerList({
                             .map(
                               (final FileData e) => e
                                 ..parentId = parentId
-                                ..id = generateUUID(),
+                                ..id = parentId != null ? null : generateUUID(),
                             )
                             .toList(),
                       );
@@ -394,7 +394,7 @@ Widget filePickerList({
                             .map(
                               (final FileData e) => e
                                 ..parentId = parentId
-                                ..id = parentId == null ? null : generateUUID(),
+                                ..id = parentId != null ? null : generateUUID(),
                             )
                             .toList(),
                       );
