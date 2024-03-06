@@ -312,7 +312,7 @@ class UserCreateUpdateDto {
     this.isOnline,
     this.ageCategory,
     this.birthDate,
-    this.expireUpgradeAccount,
+    this.premiumExpireDate,
     this.categories,
     this.code,
     this.shebaNumber,
@@ -368,7 +368,7 @@ class UserCreateUpdateDto {
         isOnline: json["isOnline"],
         ageCategory: json["ageCategory"],
         birthDate: json["birthDate"],
-        expireUpgradeAccount: json["expireUpgradeAccount"],
+        premiumExpireDate: json["premiumExpireDate"],
         categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((final String x) => x)),
         code: json["code"],
         shebaNumber: json["shebaNumber"],
@@ -419,7 +419,7 @@ class UserCreateUpdateDto {
   final bool? isOnline;
   final int? ageCategory;
   final String? birthDate;
-  final String? expireUpgradeAccount;
+  final String? premiumExpireDate;
   final List<String>? categories;
   final String? code;
   final String? shebaNumber;
@@ -473,7 +473,7 @@ class UserCreateUpdateDto {
         "isOnline": isOnline,
         "ageCategory": ageCategory,
         "birthDate": birthDate,
-        "expireUpgradeAccount": expireUpgradeAccount,
+        "premiumExpireDate": premiumExpireDate,
         "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((final String x) => x)),
         "code": code,
         "shebaNumber": shebaNumber,
