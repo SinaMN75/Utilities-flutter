@@ -179,7 +179,7 @@ enum TagCategory {
   video(126),
   audio(127),
   pdf(128),
-  apk(129),
+  specialty(129),
   game(130),
   goods(131),
   job(132),
