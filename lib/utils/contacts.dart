@@ -22,8 +22,8 @@ Future<void> createContact({
   required final String number,
 }) async {
   final bool hasPermission = await contact.FlutterContacts.requestPermission();
-  if (hasPermission) {
-    contact.FlutterContacts.insertContact(
+  if (hasPermission)
+    await contact.FlutterContacts.insertContact(
       Contact(
         displayName: firstName + " " + lastName,
         phones: <contact.Phone>[contact.Phone(number)],
@@ -34,5 +34,5 @@ Future<void> createContact({
         ),
       ),
     );
-  }
+  return;
 }

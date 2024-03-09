@@ -254,12 +254,7 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
       <String>[];
 
   List<MediaReadDto>? images({final List<TagMedia> tags = const <TagMedia>[]}) => this
-      ?.where((final MediaReadDto e) {
-        print("MMMMM");
-        print(e.tags);
-        print(tags.getNumbers());
-        return e.tags.containsAll(tags.getNumbers());
-      })
+      ?.where((final MediaReadDto e) => e.tags.containsAll(tags.getNumbers()))
       .toList()
       .where(
         (final MediaReadDto e) => e.url.isImageFileName,
