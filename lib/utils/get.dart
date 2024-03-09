@@ -184,7 +184,7 @@ void back({final bool closeOverlays = false}) => Get.back(closeOverlays: closeOv
 void snackbarDone({final String title = "انجام شد", final String subtitle = ""}) => snackbarGreen(
       title: title,
       subtitle: subtitle,
-      duration: Duration(milliseconds: 2000),
+      duration: 2,
     );
 
 void snackbarGreen({
@@ -223,7 +223,7 @@ void snackbarGreen({
   final Color? overlayColor,
   final Form? userInputForm,
   final Color? colorText,
-  final Duration? duration = const Duration(seconds: 5),
+  final int duration = 5,
   final bool instantInit = true,
 }) {
   if (!Get.isSnackbarOpen)
@@ -245,7 +245,7 @@ void snackbarGreen({
       borderWidth: borderWidth,
       boxShadows: boxShadows,
       dismissDirection: dismissDirection,
-      duration: duration,
+      duration: Duration(seconds: duration),
       forwardAnimationCurve: forwardAnimationCurve,
       icon: icon,
       instantInit: instantInit,
@@ -304,7 +304,7 @@ void snackbarRed({
   final Color? overlayColor,
   final Form? userInputForm,
   final Color? colorText,
-  final Duration? duration = const Duration(seconds: 5),
+  final int duration = 5,
   final bool instantInit = true,
 }) {
   if (!Get.isSnackbarOpen)
@@ -326,7 +326,7 @@ void snackbarRed({
       borderWidth: borderWidth,
       boxShadows: boxShadows,
       dismissDirection: dismissDirection,
-      duration: duration,
+      duration: Duration(seconds: duration),
       forwardAnimationCurve: forwardAnimationCurve,
       icon: icon,
       instantInit: instantInit,
