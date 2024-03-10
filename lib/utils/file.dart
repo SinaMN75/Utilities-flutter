@@ -241,12 +241,20 @@ Widget filePickerList({
     final TextEditingController controllerDescription = TextEditingController(
       text: dto.jsonDetail?.description ?? "",
     );
+    final TextEditingController controllerLink1 = TextEditingController(
+      text: dto.jsonDetail?.link1 ?? "",
+    );
+    final TextEditingController controllerLink2 = TextEditingController(
+      text: dto.jsonDetail?.link2 ?? "",
+    );
     dialogAlert(
       Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           textField(labelText: "عنوان", controller: controllerTitle).paddingSymmetric(vertical: 8),
           textField(labelText: "توضیحات", controller: controllerDescription).paddingSymmetric(vertical: 8),
+          textField(labelText: "لینک ۱", controller: controllerLink1).paddingSymmetric(vertical: 8),
+          textField(labelText: "لینک ۲", controller: controllerLink2).paddingSymmetric(vertical: 8),
           filePickerList(
             title: "زیر مجموعه",
             files: dto.children ?? <FileData>[],
@@ -273,8 +281,8 @@ Widget filePickerList({
                     description: controllerDescription.text,
                     album: dto.jsonDetail?.album,
                     link3: dto.jsonDetail?.link3,
-                    link2: dto.jsonDetail?.link2,
-                    link1: dto.jsonDetail?.link1,
+                    link2: controllerLink2.text,
+                    link1: controllerLink1.text,
                     artist: dto.jsonDetail?.artist,
                     size: dto.jsonDetail?.size,
                     time: dto.jsonDetail?.time,
