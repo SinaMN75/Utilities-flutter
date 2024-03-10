@@ -32,7 +32,6 @@ part 'extensions/widget_extension.dart';
 part 'file.dart';
 part 'firebase.dart';
 part 'fonts.dart';
-part 'force_update.dart';
 part 'get.dart';
 part 'http_interceptor.dart';
 part 'internet_connection_checker.dart';
