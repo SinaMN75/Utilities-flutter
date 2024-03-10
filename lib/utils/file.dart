@@ -32,6 +32,7 @@ void showFilePicker({
               path: isWeb ? null : i.path,
               bytes: i.bytes,
               extension: ".${i.extension}",
+              jsonDetail: MediaJsonDetail(title: i.name),
             ),
           );
         },
