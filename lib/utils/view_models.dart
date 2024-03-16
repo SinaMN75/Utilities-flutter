@@ -1,7 +1,5 @@
 part of 'utils.dart';
 
-enum FileDataType { nothing, toAdd, toDelete }
-
 class FileData {
   FileData({
     this.path,
@@ -14,11 +12,9 @@ class FileData {
     this.tags,
     this.parentId,
     this.children,
-    this.type,
   });
 
   final String? path;
-  final FileDataType? type;
   final String? extension;
   final Uint8List? bytes;
   final String? url;

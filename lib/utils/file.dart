@@ -31,7 +31,6 @@ void showFilePicker({
             FileData(
               path: isWeb ? null : i.path,
               bytes: i.bytes,
-              type: FileDataType.toAdd,
               extension: ".${i.extension}",
               jsonDetail: MediaJsonDetail(title: i.name),
             ),
@@ -46,7 +45,6 @@ void showFilePicker({
             path: result.files.single.path,
             bytes: result.files.single.bytes,
             extension: result.files.single.extension,
-            type: FileDataType.toAdd,
             jsonDetail: MediaJsonDetail(title: result.files[0].name),
           ),
         ],
