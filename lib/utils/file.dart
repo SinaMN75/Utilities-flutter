@@ -215,7 +215,6 @@ Widget filePickerList({
     required final FileData data,
     required final Function(FileData i) onFileDeleted,
     required final Function(FileData i) onFileEdited,
-    // final bool isChildren = false,
   }) =>
       Column(
         children: <Widget>[
@@ -326,9 +325,9 @@ Widget filePickerList({
                   ),
                 ],
               ).paddingOnly(
-                top: data.parentId != null ? 8 : 20,
-                bottom: data.parentId != null ? 8 : 20,
-                right: data.parentId != null ? 60 : 0,
+                top: data.parentId == null ? 20 : 8,
+                bottom: data.parentId == null ? 20 : 8,
+                right: data.parentId == null ? 0 : 60,
               ),
               ...(data.children ?? <FileData>[])
                   .map(
@@ -339,7 +338,7 @@ Widget filePickerList({
                     ),
                   )
                   .toList(),
-              if (data.parentId != null) const Divider() else const Divider(thickness: 4, color: Colors.blue),
+              if (data.parentId == null) const Divider(thickness: 4, color: Colors.blue) else const Divider(),
             ],
           ),
         ],
