@@ -188,10 +188,10 @@ Future<Uint8List> getCompressImageFileWeb({
 }
 
 Widget filePickerList({
-  required final String title,
   required final Function(List<FileData> fileData) onFileSelected,
   required final Function(List<FileData> fileData) onFileDeleted,
   required final Function(List<FileData> fileData) onFileEdited,
+  final String? title,
   final List<FileData> files = const <FileData>[],
   final FileType? fileType,
   final String? parentId,
@@ -200,224 +200,188 @@ Widget filePickerList({
   final RxList<FileData> addedFiles = <FileData>[].obs;
   final RxList<FileData> deletedFiles = <FileData>[].obs;
 
-  Widget menu({
-    required final VoidCallback onDelete,
-    required final VoidCallback onEdit,
-  }) =>
-      PopupMenuButton<int>(
-        onSelected: (final int index) {
-          if (index == 0) onDelete();
-          if (index == 1) onEdit();
-        },
-        itemBuilder: (final BuildContext context) => <PopupMenuEntry<int>>[
-          const PopupMenuItem<int>(value: 0, child: Text('حذف')),
-          const PopupMenuItem<int>(value: 1, child: Text('ویرایش')),
-        ],
-        child: const Icon(Icons.more_vert, color: Colors.black).container(
-          backgroundColor: Colors.white,
-          radius: 100,
-        ),
-      );
+  Widget addIcon({required final VoidCallback onTap}) => const Icon(Icons.add, color: Colors.blue, size: 50)
+      .container(
+        radius: 12,
+        width: 150,
+        height: 150,
+        borderWidth: 4,
+        borderColor: Colors.blue,
+        margin: const EdgeInsets.all(12),
+      )
+      .onTap(onTap);
 
   Widget fileIcon({
-    required final IconData icon,
-    required final Color color,
+    required final FileData data,
+    required final Function(FileData i) onFileDeleted,
+    required final Function(FileData i) onFileEdited,
+    // final bool isChildren = false,
   }) =>
-      Icon(icon, color: color, size: 50).container(
-        radius: 12,
-        width: 100,
-        height: 100,
-        borderWidth: 4,
-        borderColor: color,
-        margin: const EdgeInsets.symmetric(horizontal: 8),
-      );
-
-  void edit({
-    required final FileData dto,
-    required final Function(FileData fileData) onSubmit,
-  }) {
-    final TextEditingController controllerTitle = TextEditingController(
-      text: dto.jsonDetail?.title ?? "",
-    );
-    final TextEditingController controllerDescription = TextEditingController(
-      text: dto.jsonDetail?.description ?? "",
-    );
-    final TextEditingController controllerLink1 = TextEditingController(
-      text: dto.jsonDetail?.link1 ?? "",
-    );
-    final TextEditingController controllerLink2 = TextEditingController(
-      text: dto.jsonDetail?.link2 ?? "",
-    );
-    dialogAlert(
       Column(
-        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          textField(labelText: "عنوان", controller: controllerTitle).paddingSymmetric(vertical: 8),
-          textField(labelText: "توضیحات", controller: controllerDescription).paddingSymmetric(vertical: 8),
-          textField(labelText: "لینک ۱", controller: controllerLink1).paddingSymmetric(vertical: 8),
-          textField(labelText: "لینک ۲", controller: controllerLink2).paddingSymmetric(vertical: 8),
-          filePickerList(
-            title: "زیر مجموعه",
-            files: dto.children ?? <FileData>[],
-            parentId: dto.id,
-            onFileSelected: onFileSelected,
-            onFileDeleted: onFileDeleted,
-            onFileEdited: onFileEdited,
-          ),
-          button(
-            title: "ثبت",
-            onTap: () {
-              onSubmit(
-                FileData(
-                  id: dto.id,
-                  bytes: dto.bytes,
-                  order: dto.order,
-                  tags: dto.tags,
-                  extension: dto.extension,
-                  url: dto.url,
-                  path: dto.path,
-                  parentId: dto.parentId,
-                  jsonDetail: MediaJsonDetail(
-                    title: controllerTitle.text,
-                    description: controllerDescription.text,
-                    album: dto.jsonDetail?.album,
-                    link3: dto.jsonDetail?.link3,
-                    link2: controllerLink2.text,
-                    link1: controllerLink1.text,
-                    artist: dto.jsonDetail?.artist,
-                    size: dto.jsonDetail?.size,
-                    time: dto.jsonDetail?.time,
-                    link: dto.jsonDetail?.link,
-                    isPrivate: dto.jsonDetail?.isPrivate,
+          Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  if (data.url != null && data.url!.isImageFileName)
+                    image(
+                      data.url!,
+                      width: 150,
+                      height: 150,
+                      borderRadius: 12,
+                      fit: BoxFit.cover,
+                    ).paddingAll(12)
+                  else if (data.url != null && !data.url!.isImageFileName)
+                    Icon(
+                      data.url!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
+                      color: Colors.red,
+                      size: 50,
+                    ).container(
+                      radius: 12,
+                      width: 150,
+                      height: 150,
+                      borderWidth: 4,
+                      borderColor: Colors.red,
+                      margin: const EdgeInsets.all(12),
+                    )
+                  else if (data.extension!.isImageFileName)
+                    image(
+                      "",
+                      fileData: data,
+                      width: 150,
+                      height: 150,
+                      borderRadius: 12,
+                      fit: BoxFit.cover,
+                    ).paddingAll(12)
+                  else if (!data.extension!.isImageFileName)
+                    Icon(
+                      data.extension!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
+                      color: Colors.red,
+                      size: 50,
+                    ).container(
+                      radius: 12,
+                      width: 150,
+                      height: 150,
+                      borderWidth: 4,
+                      borderColor: Colors.red,
+                      margin: const EdgeInsets.all(12),
+                    ),
+                  Column(
+                    children: <Widget>[
+                      textField(
+                        labelText: "عنوان",
+                        initialValue: data.jsonDetail?.title,
+                        onChanged: (final String value) {
+                          data.jsonDetail?.title = value;
+                          onFileEdited(data);
+                        },
+                      ).paddingAll(8),
+                      textField(
+                        labelText: "توضیحات",
+                        initialValue: data.jsonDetail?.description,
+                        onChanged: (final String value) {
+                          data.jsonDetail?.description = value;
+                          onFileEdited(data);
+                        },
+                      ).paddingAll(8),
+                      Row(
+                        children: <Widget>[
+                          textField(
+                            labelText: "لینک ۱",
+                            initialValue: data.jsonDetail?.link1,
+                            onChanged: (final String value) {
+                              data.jsonDetail?.link1 = value;
+                              onFileEdited(data);
+                            },
+                          ).paddingAll(8).expanded(),
+                          textField(
+                            labelText: "لینک ۲",
+                            initialValue: data.jsonDetail?.link2,
+                            onChanged: (final String value) {
+                              data.jsonDetail?.link2 = value;
+                              onFileEdited(data);
+                            },
+                          ).paddingAll(8).expanded(),
+                        ],
+                      ),
+                    ],
+                  ).expanded(),
+                  if (data.parentId == null)
+                    addIcon(
+                      onTap: () {
+                        showFilePicker(
+                          allowMultiple: true,
+                          action: (final List<FileData> files) {
+                            addedFiles.addAll(
+                              files.map((final FileData e) => e..parentId = data.id).toList(),
+                            );
+                            onFileSelected(addedFiles);
+                          },
+                        );
+                      },
+                    ),
+                  IconButton(
+                    onPressed: () => onFileDeleted(data),
+                    icon: const Icon(Icons.delete, color: Colors.red),
                   ),
-                ),
-              );
-              back();
-            },
-          ).paddingSymmetric(vertical: 20),
+                ],
+              ).paddingOnly(
+                top: data.parentId != null ? 8 : 20,
+                bottom: data.parentId != null ? 8 : 20,
+                right: data.parentId != null ? 60 : 0,
+              ),
+              ...(data.children ?? <FileData>[])
+                  .map(
+                    (final FileData e) => fileIcon(
+                      data: e,
+                      onFileDeleted: onFileDeleted,
+                      onFileEdited: (final FileData i) {},
+                    ),
+                  )
+                  .toList(),
+              if (data.parentId != null) const Divider() else const Divider(thickness: 4, color: Colors.blue),
+            ],
+          ),
         ],
-      ).container(width: context.width / 2),
-    );
-  }
+      );
 
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Text(title).titleMedium(),
+      if (title != null) Text(title).titleMedium(),
       const SizedBox(height: 8),
       Obx(
-        () => Row(
+        () => Column(
           children: <Widget>[
             ...oldFiles
                 .mapIndexed(
-                  (final int index, final FileData i) => Stack(
-                    children: <Widget>[
-                      if (i.url!.isImageFileName)
-                        image(
-                          i.url!,
-                          width: 100,
-                          height: 100,
-                          borderRadius: 12,
-                          fit: BoxFit.cover,
-                        ).paddingSymmetric(horizontal: 8),
-                      if (i.url!.isPDFFileName) fileIcon(icon: Icons.picture_as_pdf_outlined, color: Colors.red),
-                      if (i.url!.isVideoFileName) fileIcon(icon: Icons.videocam_outlined, color: Colors.red),
-                      menu(
-                        onDelete: () {
-                          oldFiles.remove(i);
-                          deletedFiles.add(i);
-                          onFileDeleted(deletedFiles);
-                        },
-                        onEdit: () => edit(
-                          dto: i,
-                          onSubmit: (final FileData fileData) {
-                            oldFiles[index] = fileData;
-                            onFileEdited(oldFiles);
-                          },
-                        ),
-                      ),
-                    ],
+                  (final int index, final FileData i) => fileIcon(
+                    data: i,
+                    onFileDeleted: (final FileData data) {
+                      deletedFiles.add(data);
+                      onFileDeleted(deletedFiles);
+                    },
+                    onFileEdited: (final FileData i) => oldFiles[index] = i,
                   ),
                 )
                 .toList(),
             ...addedFiles
                 .mapIndexed(
-                  (final int index, final FileData i) => Stack(
-                    children: <Widget>[
-                      if (i.extension!.isImageFileName)
-                        image(
-                          "",
-                          fileData: i,
-                          width: 100,
-                          height: 100,
-                          borderRadius: 12,
-                          fit: BoxFit.cover,
-                        ).paddingSymmetric(horizontal: 8),
-                      if (i.extension!.isPDFFileName)
-                        fileIcon(
-                          icon: Icons.picture_as_pdf_outlined,
-                          color: Colors.red,
-                        ),
-                      if (i.extension!.isVideoFileName)
-                        fileIcon(
-                          icon: Icons.videocam_outlined,
-                          color: Colors.red,
-                        ),
-                      menu(
-                        onDelete: () => addedFiles.removeAt(index),
-                        onEdit: () => edit(
-                          dto: i,
-                          onSubmit: (final FileData fileData) {
-                            addedFiles[index] = fileData;
-                          },
-                        ),
-                      ),
-                    ],
+                  (final int index, final FileData i) => fileIcon(
+                    data: i,
+                    onFileDeleted: addedFiles.remove,
+                    onFileEdited: (final FileData i) => addedFiles[index] = i,
                   ),
                 )
                 .toList(),
-            PopupMenuButton<int>(
-              onSelected: (final int index) {
-                if (index == 0)
-                  showFilePicker(
-                    allowMultiple: true,
-                    fileType: FileType.image,
-                    action: (final List<FileData> files) {
-                      addedFiles.addAll(
-                        files
-                            .map(
-                              (final FileData e) => e
-                                ..parentId = parentId
-                                ..id = parentId != null ? null : generateUUID(),
-                            )
-                            .toList(),
-                      );
-                      onFileSelected(addedFiles);
-                    },
-                  );
-                if (index == 1)
-                  showFilePicker(
-                    allowMultiple: true,
-                    action: (final List<FileData> files) {
-                      addedFiles.addAll(
-                        files
-                            .map(
-                              (final FileData e) => e
-                                ..parentId = parentId
-                                ..id = parentId != null ? null : generateUUID(),
-                            )
-                            .toList(),
-                      );
-
-                      onFileSelected(addedFiles);
-                    },
-                  );
-              },
-              itemBuilder: (final BuildContext context) => <PopupMenuEntry<int>>[
-                const PopupMenuItem<int>(value: 0, child: Text('تصویر')),
-                const PopupMenuItem<int>(value: 1, child: Text('فایل')),
-              ],
-              child: fileIcon(icon: Icons.add, color: context.theme.colorScheme.primary),
+            addIcon(
+              onTap: () => showFilePicker(
+                allowMultiple: true,
+                action: (final List<FileData> files) {
+                  addedFiles.addAll(files.map((final FileData e) => e..id = generateUUID()).toList());
+                  onFileSelected(addedFiles);
+                },
+              ),
             ),
           ],
         ),
