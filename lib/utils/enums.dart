@@ -401,6 +401,7 @@ enum TagUser {
 }
 
 enum TagContent {
+  all(100, "همه"),
   terms(101, "قوانین و مقررات"),
   aboutUs(102, "درباره ما"),
   homeBanner1(103, "بنر ۱"),
