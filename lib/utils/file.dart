@@ -360,7 +360,10 @@ Widget filePickerList({
                       deletedFiles.add(data);
                       onFileDeleted(deletedFiles);
                     },
-                    onFileEdited: (final FileData i) => oldFiles[index] = i,
+                    onFileEdited: (final FileData i) {
+                      oldFiles[index] = i;
+                      onFileEdited(oldFiles);
+                    },
                   ),
                 )
                 .toList(),
