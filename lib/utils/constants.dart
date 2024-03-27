@@ -63,6 +63,10 @@ abstract class Sample {
   static const String profileImageUrl = "https://www.himalmag.com/wp-content/uploads/2019/07/sample-profile-picture.png";
   static const String videoUrl = "https://abolfazlnezami.ir/file/video.mp4";
   static const String sampleName1 = "سینا محمدزاده نوری";
-  static String loremPicsum({final int width = 1000, final int height = 1000}) => "https://picsum.photos/id/${Random.secure().nextInt(300)}/$width/$height";
+  static String loremPicsum({
+    final double width = 1000,
+    final double height = 1000,
+  }) =>
+      "https://picsum.photos/id/${Random.secure().nextInt(300)}/$width/$height";
   static const String timeElapse = "۳۵ دقیقه پیش";
 }
