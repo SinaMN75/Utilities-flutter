@@ -67,6 +67,6 @@ abstract class Sample {
     final double width = 1000,
     final double height = 1000,
   }) =>
-      "https://picsum.photos/id/${Random.secure().nextInt(300)}/$width/$height";
+      "https://picsum.photos/id/${Random.secure().nextInt(300)}/${width.toInt()}/${height.toInt()}";
   static const String timeElapse = "۳۵ دقیقه پیش";
 }
