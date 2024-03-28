@@ -26,7 +26,7 @@ void showFilePicker({
   if (result != null) {
     if (allowMultiple) {
       result.files.forEach(
-        (final PlatformFile i) async {
+            (final PlatformFile i) async {
           files.add(
             FileData(
               path: isWeb ? null : i.path,
@@ -220,124 +220,128 @@ Widget filePickerList({
         children: <Widget>[
           Column(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  if (data.url != null && data.url!.isImageFileName)
-                    image(
-                      data.url!,
-                      width: 150,
-                      height: 150,
-                      borderRadius: 12,
-                      fit: BoxFit.cover,
-                    ).paddingAll(12)
-                  else if (data.url != null && !data.url!.isImageFileName)
-                    Icon(
-                      data.url!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
-                      color: Colors.red,
-                      size: 50,
-                    ).container(
-                      radius: 12,
-                      width: 150,
-                      height: 150,
-                      borderWidth: 4,
-                      borderColor: Colors.red,
-                      margin: const EdgeInsets.all(12),
-                    )
-                  else if (data.extension!.isImageFileName)
-                    image(
-                      "",
-                      fileData: data,
-                      width: 150,
-                      height: 150,
-                      borderRadius: 12,
-                      fit: BoxFit.cover,
-                    ).paddingAll(12)
-                  else if (!data.extension!.isImageFileName)
-                    Icon(
-                      data.extension!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
-                      color: Colors.red,
-                      size: 50,
-                    ).container(
-                      radius: 12,
-                      width: 150,
-                      height: 150,
-                      borderWidth: 4,
-                      borderColor: Colors.red,
-                      margin: const EdgeInsets.all(12),
-                    ),
-                  Column(
-                    children: <Widget>[
-                      textField(
-                        labelText: "عنوان",
-                        initialValue: data.jsonDetail?.title,
-                        onChanged: (final String value) {
-                          data.jsonDetail?.title = value;
-                          onFileEdited(data);
-                        },
-                      ).paddingAll(8),
-                      textField(
-                        labelText: "توضیحات",
-                        initialValue: data.jsonDetail?.description,
-                        onChanged: (final String value) {
-                          data.jsonDetail?.description = value;
-                          onFileEdited(data);
-                        },
-                      ).paddingAll(8),
-                      Row(
-                        children: <Widget>[
-                          textField(
-                            labelText: "لینک ۱",
-                            initialValue: data.jsonDetail?.link1,
-                            onChanged: (final String value) {
-                              data.jsonDetail?.link1 = value;
-                              onFileEdited(data);
-                            },
-                          ).paddingAll(8).expanded(),
-                          textField(
-                            labelText: "لینک ۲",
-                            initialValue: data.jsonDetail?.link2,
-                            onChanged: (final String value) {
-                              data.jsonDetail?.link2 = value;
-                              onFileEdited(data);
-                            },
-                          ).paddingAll(8).expanded(),
-                        ],
+              ExpansionTile(
+                title: Row(
+                  children: <Widget>[
+                    if (data.url != null && data.url!.isImageFileName)
+                      image(
+                        data.url!,
+                        width: 150,
+                        height: 150,
+                        borderRadius: 12,
+                        fit: BoxFit.cover,
+                      ).paddingAll(12)
+                    else if (data.url != null && !data.url!.isImageFileName)
+                      Icon(
+                        data.url!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
+                        color: Colors.red,
+                        size: 50,
+                      ).container(
+                        radius: 12,
+                        width: 150,
+                        height: 150,
+                        borderWidth: 4,
+                        borderColor: Colors.red,
+                        margin: const EdgeInsets.all(12),
+                      )
+                    else if (data.extension!.isImageFileName)
+                      image(
+                        "",
+                        fileData: data,
+                        width: 150,
+                        height: 150,
+                        borderRadius: 12,
+                        fit: BoxFit.cover,
+                      ).paddingAll(12)
+                    else if (!data.extension!.isImageFileName)
+                      Icon(
+                        data.extension!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
+                        color: Colors.red,
+                        size: 50,
+                      ).container(
+                        radius: 12,
+                        width: 150,
+                        height: 150,
+                        borderWidth: 4,
+                        borderColor: Colors.red,
+                        margin: const EdgeInsets.all(12),
                       ),
-                    ],
-                  ).expanded(),
-                  if (data.parentId == null)
-                    addIcon(
-                      onTap: () {
-                        showFilePicker(
-                          allowMultiple: true,
-                          action: (final List<FileData> files) {
-                            addedFiles.addAll(
-                              files.map((final FileData e) => e..parentId = data.id).toList(),
-                            );
-                            onFileSelected(addedFiles);
+                    Column(
+                      children: <Widget>[
+                        textField(
+                          labelText: "عنوان",
+                          initialValue: data.jsonDetail?.title,
+                          onChanged: (final String value) {
+                            data.jsonDetail?.title = value;
+                            onFileEdited(data);
                           },
-                        );
-                      },
+                        ).paddingAll(8),
+                        textField(
+                          labelText: "توضیحات",
+                          initialValue: data.jsonDetail?.description,
+                          onChanged: (final String value) {
+                            data.jsonDetail?.description = value;
+                            onFileEdited(data);
+                          },
+                        ).paddingAll(8),
+                        Row(
+                          children: <Widget>[
+                            textField(
+                              labelText: "لینک ۱",
+                              initialValue: data.jsonDetail?.link1,
+                              onChanged: (final String value) {
+                                data.jsonDetail?.link1 = value;
+                                onFileEdited(data);
+                              },
+                            ).paddingAll(8).expanded(),
+                            textField(
+                              labelText: "لینک ۲",
+                              initialValue: data.jsonDetail?.link2,
+                              onChanged: (final String value) {
+                                data.jsonDetail?.link2 = value;
+                                onFileEdited(data);
+                              },
+                            ).paddingAll(8).expanded(),
+                          ],
+                        ),
+                      ],
+                    ).expanded(),
+                    if (data.parentId == null)
+                      addIcon(
+                        onTap: () {
+                          showFilePicker(
+                            allowMultiple: true,
+                            action: (final List<FileData> files) {
+                              addedFiles.addAll(
+                                files.map((final FileData e) => e..parentId = data.id).toList(),
+                              );
+                              onFileSelected(addedFiles);
+                            },
+                          );
+                        },
+                      ),
+                    IconButton(
+                      onPressed: () => onFileDeleted(data),
+                      icon: const Icon(Icons.delete, color: Colors.red),
                     ),
-                  IconButton(
-                    onPressed: () => onFileDeleted(data),
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                  ),
+                  ],
+                ).paddingOnly(
+                  top: data.parentId == null ? 20 : 8,
+                  bottom: data.parentId == null ? 20 : 8,
+                  right: data.parentId == null ? 0 : 60,
+                ),
+                children: <Widget>[
+                  ...(data.children ?? <FileData>[])
+                      .map(
+                        (final FileData e) => fileIcon(
+                          data: e,
+                          onFileDeleted: onFileDeleted,
+                          onFileEdited: (final FileData i) {},
+                        ),
+                      )
+                      .toList(),
                 ],
-              ).paddingOnly(
-                top: data.parentId == null ? 20 : 8,
-                bottom: data.parentId == null ? 20 : 8,
-                right: data.parentId == null ? 0 : 60,
               ),
-              ...(data.children ?? <FileData>[])
-                  .map(
-                    (final FileData e) => fileIcon(
-                      data: e,
-                      onFileDeleted: onFileDeleted,
-                      onFileEdited: (final FileData i) {},
-                    ),
-                  )
-                  .toList(),
               if (data.parentId == null) const Divider(thickness: 4, color: Colors.blue) else const Divider(),
             ],
           ),
@@ -350,7 +354,7 @@ Widget filePickerList({
       if (title != null) Text(title).titleMedium(),
       const SizedBox(height: 8),
       Obx(
-        () => Column(
+            () => Column(
           children: <Widget>[
             ...oldFiles
                 .mapIndexed(
