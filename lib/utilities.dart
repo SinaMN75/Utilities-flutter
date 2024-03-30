@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:safe_device/safe_device.dart';
 import 'package:screen_protector/screen_protector.dart';
 import 'package:utilities/utilities.dart';
 
@@ -73,7 +70,6 @@ Future<void> initUtilities({
       return true;
     };
   }
-  if (safeDevice && await SafeDevice.isSafeDevice) exit(0);
   if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
   if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
   return;
