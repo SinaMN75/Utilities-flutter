@@ -193,8 +193,8 @@ Widget filePickerList({
   required final Function(List<FileData> fileData) onFileEdited,
   final String? title,
   final List<FileData> files = const <FileData>[],
-  final FileType? fileType,
   final String? parentId,
+  bool withChildren = true,
 }) {
   final RxList<FileData> oldFiles = files.obs;
   final RxList<FileData> addedFiles = <FileData>[].obs;
@@ -217,8 +217,10 @@ Widget filePickerList({
     required final Function(FileData i) onFileEdited,
   }) =>
       Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ExpansionTile(
                 title: Row(
@@ -245,27 +247,27 @@ Widget filePickerList({
                         margin: const EdgeInsets.all(12),
                       )
                     else if (data.extension!.isImageFileName)
-                      image(
-                        "",
-                        fileData: data,
-                        width: 150,
-                        height: 150,
-                        borderRadius: 12,
-                        fit: BoxFit.cover,
-                      ).paddingAll(12)
-                    else if (!data.extension!.isImageFileName)
-                      Icon(
-                        data.extension!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
-                        color: Colors.red,
-                        size: 50,
-                      ).container(
-                        radius: 12,
-                        width: 150,
-                        height: 150,
-                        borderWidth: 4,
-                        borderColor: Colors.red,
-                        margin: const EdgeInsets.all(12),
-                      ),
+                        image(
+                          "",
+                          fileData: data,
+                          width: 150,
+                          height: 150,
+                          borderRadius: 12,
+                          fit: BoxFit.cover,
+                        ).paddingAll(12)
+                      else if (!data.extension!.isImageFileName)
+                          Icon(
+                            data.extension!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
+                            color: Colors.red,
+                            size: 50,
+                          ).container(
+                            radius: 12,
+                            width: 150,
+                            height: 150,
+                            borderWidth: 4,
+                            borderColor: Colors.red,
+                            margin: const EdgeInsets.all(12),
+                          ),
                     Column(
                       children: <Widget>[
                         textField(
@@ -306,7 +308,7 @@ Widget filePickerList({
                         ),
                       ],
                     ).expanded(),
-                    if (data.parentId == null)
+                    if (data.parentId == null && withChildren)
                       addIcon(
                         onTap: () {
                           showFilePicker(
@@ -334,11 +336,11 @@ Widget filePickerList({
                   ...(data.children ?? <FileData>[])
                       .map(
                         (final FileData e) => fileIcon(
-                          data: e,
-                          onFileDeleted: onFileDeleted,
-                          onFileEdited: (final FileData i) {},
-                        ),
-                      )
+                      data: e,
+                      onFileDeleted: onFileDeleted,
+                      onFileEdited: (final FileData i) {},
+                    ),
+                  )
                       .toList(),
                 ],
               ),
