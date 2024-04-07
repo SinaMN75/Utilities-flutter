@@ -26,7 +26,7 @@ void showFilePicker({
   if (result != null) {
     if (allowMultiple) {
       result.files.forEach(
-            (final PlatformFile i) async {
+        (final PlatformFile i) async {
           files.add(
             FileData(
               path: isWeb ? null : i.path,
@@ -193,8 +193,8 @@ Widget filePickerList({
   required final Function(List<FileData> fileData) onFileEdited,
   final String? title,
   final List<FileData> files = const <FileData>[],
+  final FileType? fileType,
   final String? parentId,
-  bool withChildren = true,
 }) {
   final RxList<FileData> oldFiles = files.obs;
   final RxList<FileData> addedFiles = <FileData>[].obs;
@@ -217,10 +217,8 @@ Widget filePickerList({
     required final Function(FileData i) onFileEdited,
   }) =>
       Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ExpansionTile(
                 title: Row(
@@ -247,27 +245,27 @@ Widget filePickerList({
                         margin: const EdgeInsets.all(12),
                       )
                     else if (data.extension!.isImageFileName)
-                        image(
-                          "",
-                          fileData: data,
-                          width: 150,
-                          height: 150,
-                          borderRadius: 12,
-                          fit: BoxFit.cover,
-                        ).paddingAll(12)
-                      else if (!data.extension!.isImageFileName)
-                          Icon(
-                            data.extension!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
-                            color: Colors.red,
-                            size: 50,
-                          ).container(
-                            radius: 12,
-                            width: 150,
-                            height: 150,
-                            borderWidth: 4,
-                            borderColor: Colors.red,
-                            margin: const EdgeInsets.all(12),
-                          ),
+                      image(
+                        "",
+                        fileData: data,
+                        width: 150,
+                        height: 150,
+                        borderRadius: 12,
+                        fit: BoxFit.cover,
+                      ).paddingAll(12)
+                    else if (!data.extension!.isImageFileName)
+                      Icon(
+                        data.extension!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
+                        color: Colors.red,
+                        size: 50,
+                      ).container(
+                        radius: 12,
+                        width: 150,
+                        height: 150,
+                        borderWidth: 4,
+                        borderColor: Colors.red,
+                        margin: const EdgeInsets.all(12),
+                      ),
                     Column(
                       children: <Widget>[
                         textField(
@@ -308,7 +306,7 @@ Widget filePickerList({
                         ),
                       ],
                     ).expanded(),
-                    if (data.parentId == null && withChildren)
+                    if (data.parentId == null)
                       addIcon(
                         onTap: () {
                           showFilePicker(
@@ -376,8 +374,12 @@ Widget filePickerList({
             ...addedFiles
                 .mapIndexed(
                   (final int index, final FileData i) => fileIcon(
-                    data: i,
-                    onFileDeleted: addedFiles.remove,
+                data: i,
+                    onFileDeleted: (final FileData i) {
+                      addedFiles.remove(i);
+                      deletedFiles.add(i);
+                      onFileDeleted(deletedFiles);
+                    },
                     onFileEdited: (final FileData i) => addedFiles[index] = i,
                   ),
                 )
