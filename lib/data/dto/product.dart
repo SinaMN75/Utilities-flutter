@@ -85,8 +85,7 @@ class ProductReadDto {
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
         children: json["children"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
-        relatedProducts:
-            json["relatedProducts"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["relatedProducts"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
+        relatedProducts: json["relatedProducts"] == null ? [] : List<String>.from(json["relatedProducts"]!.map((final x) => x)),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         productInsights:
             json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
@@ -141,8 +140,8 @@ class ProductReadDto {
   List<MediaReadDto>? media;
   List<int> tags;
   List<ProductReadDto>? children;
-  List<ProductReadDto>? relatedProducts;
   List<CategoryReadDto>? categories;
+  List<String>? relatedProducts;
   List<OrderReadDto>? orders;
   List<ProductInsight>? productInsights;
   List<ProductInsight>? visitProducts;
@@ -186,7 +185,7 @@ class ProductReadDto {
         "tags": List<dynamic>.from(tags.map((final int x) => x)),
         "media": media == null ? [] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductReadDto x) => x.toMap())),
-        "relatedProducts": relatedProducts == null ? [] : List<dynamic>.from(relatedProducts!.map((final ProductReadDto x) => x.toMap())),
+        "relatedProducts": relatedProducts == null ? [] : List<dynamic>.from(relatedProducts!.map((final String x) => x)),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "comments": comments == null ? [] : List<CommentReadDto>.from(comments!.map((final CommentReadDto x) => x.toMap())),
         "orders": orders == null ? [] : List<OrderReadDto>.from(orders!.map((final OrderReadDto x) => x.toMap())),
@@ -598,7 +597,7 @@ class ProductFilterDto {
         pageNumber: json["pageNumber"],
         currency: json["currency"],
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-    relatedProducts: json["relatedProducts"] == null ? [] : List<String>.from(json["relatedProducts"]!.map((final x) => x)),
+        relatedProducts: json["relatedProducts"] == null ? [] : List<String>.from(json["relatedProducts"]!.map((final x) => x)),
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final x) => x)),
         query: json["query"],
