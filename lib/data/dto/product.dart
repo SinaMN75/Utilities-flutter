@@ -549,7 +549,7 @@ class ProductFilterDto {
     this.pageNumber,
     this.currency,
     this.categories,
-    this.relatedProducts,
+    this.ids,
     this.tags,
     this.userIds,
     this.query,
@@ -597,7 +597,7 @@ class ProductFilterDto {
         pageNumber: json["pageNumber"],
         currency: json["currency"],
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-        relatedProducts: json["relatedProducts"] == null ? [] : List<String>.from(json["relatedProducts"]!.map((final x) => x)),
+    ids: json["ids"] == null ? [] : List<String>.from(json["ids"]!.map((final x) => x)),
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
         userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final x) => x)),
         query: json["query"],
@@ -642,7 +642,7 @@ class ProductFilterDto {
   int? pageNumber;
   int? currency;
   List<String>? categories;
-  List<String>? relatedProducts;
+  List<String>? ids;
   List<int>? tags;
   List<String>? userIds;
   String? query;
@@ -689,7 +689,7 @@ class ProductFilterDto {
         "pageNumber": pageNumber,
         "currency": currency,
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final String x) => x)),
-        "relatedProducts": relatedProducts == null ? [] : List<dynamic>.from(relatedProducts!.map((final String x) => x)),
+        "ids": ids == null ? [] : List<dynamic>.from(ids!.map((final String x) => x)),
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "userIds": userIds == null ? [] : List<dynamic>.from(userIds!.map((final String x) => x)),
         "query": query,
