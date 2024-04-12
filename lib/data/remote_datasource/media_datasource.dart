@@ -54,7 +54,7 @@ class MediaDataSource {
 
     try {
       GetConnect connect = GetConnect(
-        timeout: Duration(seconds: 200),
+        timeout: Duration(minutes: 60),
         maxAuthRetries: 10,
         maxRedirects: 10,
       );
@@ -68,7 +68,7 @@ class MediaDataSource {
             },
             contentType: "multipart/form-data",
           )
-          .timeout(Duration(seconds: 200));
+          .timeout(Duration(minutes: 60));
       log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
       return;
