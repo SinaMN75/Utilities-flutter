@@ -21,7 +21,6 @@ class ProductReadDto {
     this.enabled,
     this.discountPrice,
     this.price,
-    this.score,
     this.currency,
     this.status,
     this.ageCategory,
@@ -59,7 +58,6 @@ class ProductReadDto {
         longitude: json["longitude"],
         subtitle: json["subtitle"],
         description: json["description"],
-        score: json["score"],
         state: json["state"],
         boosted: json["boosted"] == null ? null : DateTime.parse(json["boosted"]),
         code: json["code"],
@@ -120,7 +118,6 @@ class ProductReadDto {
   int? discountPercent;
   bool? enabled;
   bool? isSeen;
-  double? score;
   int? discountPrice;
   int? price;
   int? currency;
@@ -161,7 +158,6 @@ class ProductReadDto {
         "visitsCount": visitsCount,
         "isSeen": isSeen,
         "state": state,
-        "score": score,
         "boosted": boosted?.toIso8601String(),
         "stock": stock,
         "voteCount": voteCount,
@@ -179,7 +175,7 @@ class ProductReadDto {
         "parentId": parentId,
         "userId": userId,
         "user": user?.toMap(),
-        "jsonDetail": jsonDetail?.toMap(),
+        "jsonDetail": jsonDetail.toMap(),
         "product": product?.toMap(),
         "parent": parent?.toMap(),
         "tags": List<dynamic>.from(tags.map((final int x) => x)),

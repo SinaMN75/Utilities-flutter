@@ -14,9 +14,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  # TO BE IMPLEMENTED
-  #  video_compress: ^3.1.2
-
   # TO BE REPLACED
   webviewx_plus: ^0.4.1    # webview_universal:
   group_button: ^5.3.4     # choice:
@@ -67,7 +64,6 @@ dependencies:
   screenshot: ^2.1.0
   pull_to_refresh: ^2.0.0
   flutter_colorpicker: ^1.0.3
-  safe_device: ^1.1.4
   screen_protector: ^1.4.2
 #  any_link_preview: ^3.0.1
 
@@ -82,6 +78,7 @@ flutter:
   assets:
     - lib/assets/data/
     - lib/assets/fonts/
+    - lib/assets/images/
   fonts:
     - family: Vazir
       fonts:

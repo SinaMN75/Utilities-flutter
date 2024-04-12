@@ -83,6 +83,11 @@ extension ListExtensions<T> on List<T> {
     return this;
   }
 
+  List<T> addAllAndReturn(final List<T> t) {
+    addAll(t);
+    return this;
+  }
+
   List<T> insertAndReturn(final int index, final T t) {
     insert(index, t);
     return this;

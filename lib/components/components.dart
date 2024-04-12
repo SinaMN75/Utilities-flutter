@@ -45,3 +45,4 @@ part 'scrolling_text.dart';
 part 'slider.dart';
 part 'sound_player.dart';
 part 'text_field_country.dart';
+part 'upgraded.dart';
