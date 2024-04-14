@@ -334,11 +334,11 @@ Widget filePickerList({
                   ...(data.children ?? <FileData>[])
                       .map(
                         (final FileData e) => fileIcon(
-                      data: e,
-                      onFileDeleted: onFileDeleted,
-                      onFileEdited: (final FileData i) {},
-                    ),
-                  )
+                          data: e,
+                          onFileDeleted: onFileDeleted,
+                          onFileEdited: (final FileData i) {},
+                        ),
+                      )
                       .toList(),
                 ],
               ),
@@ -361,6 +361,7 @@ Widget filePickerList({
                   (final int index, final FileData i) => fileIcon(
                     data: i,
                     onFileDeleted: (final FileData data) {
+                      oldFiles.remove(data);
                       deletedFiles.add(data);
                       onFileDeleted(deletedFiles);
                     },
