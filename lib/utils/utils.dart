@@ -12,7 +12,6 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
 
-part 'auth.dart';
 part 'constants.dart';
 part 'contacts.dart';
 part 'enums.dart';
