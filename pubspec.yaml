@@ -15,16 +15,16 @@ dependencies:
     sdk: flutter
 
   # TO BE REPLACED
-  webviewx_plus: ^0.4.1    # webview_universal:
+  webviewx_plus: ^0.5.0    # webview_universal:
   group_button: ^5.3.4     # choice:
-  location: ^5.0.3         # geolocator:
+  location: ^6.0.1         # geolocator:
 
   # POPULAR
-  uuid: ^4.3.3
+  uuid: ^4.4.0
   chewie: ^1.7.5
   url_launcher: ^6.1.14
-  package_info_plus: ^5.0.1
-  share_plus: ^7.1.0
+  package_info_plus: ^7.0.0
+  share_plus: ^8.0.3
   image_picker: ^1.0.7
   webview_flutter: ^4.3.0
   local_auth: ^2.1.8
@@ -32,13 +32,13 @@ dependencies:
   get_storage: ^2.1.1
   flutter_map: ^6.1.0
   flutter_svg: ^2.0.9
-  lottie: ^2.7.0
+  lottie: ^3.1.0
   image_cropper: ^5.0.1
-  file_picker: ^6.1.1
+  file_picker: ^8.0.0+1
   google_sign_in: ^6.1.6
   flutter_easyloading: ^3.0.5
-  flutter_local_notifications: ^16.1.0
-  mobile_scanner: ^3.5.6
+  flutter_local_notifications: ^17.0.1
+  mobile_scanner: ^4.0.1
   just_audio: ^0.9.36
   flutter_typeahead: ^4.8.0
   cached_network_image: ^3.3.1
