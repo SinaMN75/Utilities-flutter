@@ -157,36 +157,6 @@ void showMultiFilePicker({
   }
 }
 
-Future<XFile> getCompressImageFile({
-  required final File file,
-  final int quality = 70,
-  final bool advanceCompress = true,
-}) async {
-  int advanceQuality = 20;
-  advanceQuality = (100 - ((file.lengthSync() / 1000000) * 0.85)).toInt();
-  final Directory dir = Directory.systemTemp;
-  final String targetPath = "${dir.absolute.path}/temp.jpg";
-  final XFile? result = await FlutterImageCompress.compressAndGetFile(
-    file.absolute.path,
-    targetPath,
-    quality: advanceCompress ? advanceQuality : quality,
-  );
-
-  return result ?? XFile("--");
-}
-
-Future<Uint8List> getCompressImageFileWeb({
-  required final Uint8List bytes,
-  final int quality = 70,
-  final bool advanceCompress = true,
-}) async {
-  final Uint8List result = await FlutterImageCompress.compressWithList(
-    bytes,
-    quality: advanceCompress ? 20 : quality,
-  );
-  return result;
-}
-
 Widget filePickerList({
   required final Function(List<FileData> fileData) onFileSelected,
   required final Function(List<FileData> fileData) onFileDeleted,
