@@ -52,10 +52,6 @@ void showFilePicker({
   }
 }
 
-Future<List<XFile>> multiImagePicker() => ImagePicker().pickMultiImage();
-
-Future<XFile?> imagePicker() => ImagePicker().pickImage(source: ImageSource.gallery);
-
 Future<File> writeToFile(final Uint8List data) async {
   final Directory tempDir = await getTemporaryDirectory();
   return File('${tempDir.path}/${Random.secure().nextInt(10000)}.tmp').writeAsBytes(
