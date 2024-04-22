@@ -27,8 +27,6 @@ part 'dto/payment.dart';
 part 'dto/product.dart';
 part 'dto/promote.dart';
 part 'dto/pushe.dart';
-part 'dto/reaction.dart';
-part 'dto/reaction_product.dart';
 part 'dto/report.dart';
 part 'dto/shopping_cart.dart';
 part 'dto/subscription.dart';

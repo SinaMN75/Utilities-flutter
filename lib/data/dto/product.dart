@@ -35,12 +35,11 @@ class ProductReadDto {
     this.media,
     this.comments,
     this.categories,
-    this.productInsights,
-    this.visitProducts,
     this.children,
     this.orders,
     required this.tags,
     this.successfulPurchase,
+    this.reactions,
   });
 
   factory ProductReadDto.fromJson(final String str) => ProductReadDto.fromMap(json.decode(str));
@@ -81,9 +80,8 @@ class ProductReadDto {
         comments: json["comments"] == null ? <CommentReadDto>[] : List<CommentReadDto>.from(json["comments"].cast<Map<String, dynamic>>().map(CommentReadDto.fromMap)).toList(),
         children: json["children"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["children"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
-        productInsights: json["productInsights"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["productInsights"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
         orders: json["orders"] == null ? <OrderReadDto>[] : List<OrderReadDto>.from(json["orders"].cast<Map<String, dynamic>>().map(OrderReadDto.fromMap)).toList(),
-        visitProducts: json["visitProducts"] == null ? <ProductInsight>[] : List<ProductInsight>.from(json["visitProducts"].cast<Map<String, dynamic>>().map(ProductInsight.fromMap)).toList(),
+        reactions: json["reactions"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reactions"].cast<Map<String, dynamic>>().map(ReactionReadDto.fromMap)).toList(),
         successfulPurchase: json["successfulPurchase"],
       );
   String id;
@@ -122,9 +120,8 @@ class ProductReadDto {
   List<ProductReadDto>? children;
   List<CategoryReadDto>? categories;
   List<OrderReadDto>? orders;
-  List<ProductInsight>? productInsights;
-  List<ProductInsight>? visitProducts;
   int? successfulPurchase;
+  List<ReactionReadDto>? reactions;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -165,8 +162,6 @@ class ProductReadDto {
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "comments": comments == null ? [] : List<CommentReadDto>.from(comments!.map((final CommentReadDto x) => x.toMap())),
         "orders": orders == null ? [] : List<OrderReadDto>.from(orders!.map((final OrderReadDto x) => x.toMap())),
-        "productInsights": productInsights == null ? [] : List<dynamic>.from(productInsights!.map((final ProductInsight x) => x.toMap())),
-        "visitProducts": visitProducts == null ? [] : List<dynamic>.from(visitProducts!.map((final ProductInsight x) => x.toMap())),
         "successfulPurchase": successfulPurchase,
       };
 }
@@ -360,7 +355,6 @@ class ProductCreateUpdateDto {
     this.categories,
     this.teams,
     required this.tags,
-    this.productInsight,
     this.children,
     this.reservationTimes,
   });
@@ -419,7 +413,6 @@ class ProductCreateUpdateDto {
   List<String>? teams;
   List<int>? tags;
   List<ProductCreateUpdateDto>? children;
-  ProductInsight? productInsight;
   List<ReservationTimes>? reservationTimes;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
@@ -474,7 +467,6 @@ class ProductCreateUpdateDto {
         "shippingCost": shippingCost,
         "boosted": boosted,
         "parentId": parentId,
-        "productInsight": productInsight?.toMap(),
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
         "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
         "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductCreateUpdateDto x) => x.toMap())),
@@ -668,82 +660,6 @@ class ProductFilterDto {
       };
 }
 
-class ProductInsight {
-  ProductInsight({
-    this.reaction,
-    this.userId,
-  });
-
-  factory ProductInsight.fromJson(final String str) => ProductInsight.fromMap(json.decode(str));
-
-  factory ProductInsight.fromMap(final dynamic json) => ProductInsight(
-        reaction: json["reaction"],
-        userId: json["userId"],
-      );
-
-  final int? reaction;
-  final String? userId;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  dynamic toMap() => <String, dynamic>{
-        "reaction": reaction,
-        "userId": userId,
-      };
-}
-
-class ProductInsightDto {
-  ProductInsightDto({
-    this.id,
-    this.createdAt,
-    this.updatedAt,
-    this.deletedAt,
-    this.reaction,
-    this.user,
-    this.userId,
-    this.productEntity,
-    this.productId,
-  });
-
-  factory ProductInsightDto.fromJson(final String str) => ProductInsightDto.fromMap(json.decode(str));
-
-  factory ProductInsightDto.fromMap(final dynamic json) => ProductInsightDto(
-        id: json["id"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-        deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
-        reaction: json["reaction"],
-        user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
-        userId: json["userId"],
-        productEntity: json["productEntity"],
-        productId: json["productId"],
-      );
-
-  final String? id;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final DateTime? deletedAt;
-  final int? reaction;
-  final UserReadDto? user;
-  final String? userId;
-  final String? productEntity;
-  final String? productId;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  dynamic toMap() => <String, dynamic>{
-        "id": id,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
-        "deletedAt": deletedAt?.toIso8601String(),
-        "reaction": reaction,
-        "user": user?.toMap(),
-        "userId": userId,
-        "productEntity": productEntity,
-        "productId": productId,
-      };
-}
-
 class ReservationTimes {
   String? reserveId;
   DateTime? dateFrom;
@@ -853,6 +769,30 @@ class VisitCount {
         "visitId": visitId,
         "userId": userId,
         "count": count,
+      };
+}
+
+class ReactionReadDto {
+  final int? reaction;
+  final String? userId;
+
+  ReactionReadDto({
+    this.reaction,
+    this.userId,
+  });
+
+  factory ReactionReadDto.fromJson(String str) => ReactionReadDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ReactionReadDto.fromMap(Map<String, dynamic> json) => ReactionReadDto(
+        reaction: json["reaction"],
+        userId: json["userId"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "reaction": reaction,
+        "userId": userId,
       };
 }
 
