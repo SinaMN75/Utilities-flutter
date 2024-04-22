@@ -240,6 +240,8 @@ enum TagCategory {
   appointment(188),
   boxOffice(189),
   ticket(190),
+  donate(191),
+  travel(192),
   directShod(500),
   test(900);
 
