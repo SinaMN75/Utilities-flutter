@@ -35,13 +35,15 @@ Widget scaffold({
         floatingActionButton: floatingActionButton,
         floatingActionButtonLocation: floatingActionButtonLocation,
         bottomNavigationBar: bottomNavigationBar,
-        body: Container(
-          width: width,
-          height: height,
-          constraints: constraints ?? const BoxConstraints(maxWidth: 800),
-          decoration: decoration,
-          padding: padding,
-          child: body,
+        body: Align(
+          child: Container(
+            width: width,
+            height: height,
+            constraints: constraints ?? const BoxConstraints(maxWidth: 800),
+            decoration: decoration,
+            padding: padding,
+            child: body,
+          ),
         ),
       ),
     );

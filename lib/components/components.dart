@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:any_link_preview/any_link_preview.dart';
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,5 +45,3 @@ part 'readmore.dart';
 part 'scrolling_text.dart';
 part 'slider.dart';
 part 'sound_player.dart';
-part 'text_field_country.dart';
-part 'upgraded.dart';

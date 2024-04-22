@@ -52,10 +52,6 @@ void showFilePicker({
   }
 }
 
-Future<List<XFile>> multiImagePicker() => ImagePicker().pickMultiImage();
-
-Future<XFile?> imagePicker() => ImagePicker().pickImage(source: ImageSource.gallery);
-
 Future<File> writeToFile(final Uint8List data) async {
   final Directory tempDir = await getTemporaryDirectory();
   return File('${tempDir.path}/${Random.secure().nextInt(10000)}.tmp').writeAsBytes(
@@ -85,36 +81,6 @@ void showMultiFilePicker({
       action(<File>[file]);
     }
   }
-}
-
-Future<XFile> getCompressImageFile({
-  required final File file,
-  final int quality = 70,
-  final bool advanceCompress = true,
-}) async {
-  int advanceQuality = 20;
-  advanceQuality = (100 - ((file.lengthSync() / 1000000) * 0.85)).toInt();
-  final Directory dir = Directory.systemTemp;
-  final String targetPath = "${dir.absolute.path}/temp.jpg";
-  final XFile? result = await FlutterImageCompress.compressAndGetFile(
-    file.absolute.path,
-    targetPath,
-    quality: advanceCompress ? advanceQuality : quality,
-  );
-
-  return result ?? XFile("--");
-}
-
-Future<Uint8List> getCompressImageFileWeb({
-  required final Uint8List bytes,
-  final int quality = 70,
-  final bool advanceCompress = true,
-}) async {
-  final Uint8List result = await FlutterImageCompress.compressWithList(
-    bytes,
-    quality: advanceCompress ? 20 : quality,
-  );
-  return result;
 }
 
 Widget filePickerList({
@@ -264,11 +230,11 @@ Widget filePickerList({
                   ...(data.children ?? <FileData>[])
                       .map(
                         (final FileData e) => fileIcon(
-                      data: e,
-                      onFileDeleted: onFileDeleted,
-                      onFileEdited: (final FileData i) {},
-                    ),
-                  )
+                          data: e,
+                          onFileDeleted: onFileDeleted,
+                          onFileEdited: (final FileData i) {},
+                        ),
+                      )
                       .toList(),
                 ],
               ),
@@ -291,6 +257,7 @@ Widget filePickerList({
                   (final int index, final FileData i) => fileIcon(
                     data: i,
                     onFileDeleted: (final FileData data) {
+                      oldFiles.remove(data);
                       deletedFiles.add(data);
                       onFileDeleted(deletedFiles);
                     },
