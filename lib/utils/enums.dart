@@ -151,13 +151,13 @@ enum TagProduct {
 
 enum TagCategory {
   category(100),
+  skills(101),
   colors(104),
   auction(122),
   specialty(129),
   service(123),
   story(138),
   store(156),
-  skills(157),
   reserve(185),
   appointment(188),
   ticket(190),
