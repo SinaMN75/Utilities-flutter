@@ -207,6 +207,7 @@ class ProductJsonDetail {
     this.relatedProducts,
     this.keyValues,
     this.reservationTimes,
+    this.usersReactions,
     this.visitCounts,
   });
 
@@ -244,6 +245,8 @@ class ProductJsonDetail {
         reservationTimes: json["reservationTimes"] == null
             ? <ReservationTimes>[]
             : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
+        usersReactions:
+            json["usersReactions"] == null ? <UsersReaction>[] : List<UsersReaction>.from(json["usersReactions"].cast<Map<String, dynamic>>().map(UsersReaction.fromMap)).toList(),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
       );
@@ -278,6 +281,7 @@ class ProductJsonDetail {
   List<KeyValueViewModel>? keyValues;
   List<ReservationTimes>? reservationTimes;
   List<VisitCount>? visitCounts;
+  List<UsersReaction>? usersReactions;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -309,8 +313,33 @@ class ProductJsonDetail {
         "relatedProducts": relatedProducts == null ? [] : List<dynamic>.from(relatedProducts!.map((final String x) => x)),
         "visitCounts": visitCounts == null ? [] : List<dynamic>.from(visitCounts!.map((x) => x.toMap())),
         "reservationTimes": reservationTimes == null ? [] : List<dynamic>.from(reservationTimes!.map((x) => x.toMap())),
+        "usersReactions": usersReactions == null ? [] : List<dynamic>.from(usersReactions!.map((x) => x.toMap())),
         "startDate": startDate?.toIso8601String(),
         "endDate": endDate?.toIso8601String(),
+      };
+}
+
+class UsersReaction {
+  String? userId;
+  int? reaction;
+
+  UsersReaction({
+    this.userId,
+    this.reaction,
+  });
+
+  factory UsersReaction.fromJson(String str) => UsersReaction.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UsersReaction.fromMap(Map<String, dynamic> json) => UsersReaction(
+        userId: json["userId"],
+        reaction: json["reaction"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "userId": userId,
+        "reaction": reaction,
       };
 }
 
