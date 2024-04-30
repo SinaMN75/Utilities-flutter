@@ -702,6 +702,7 @@ enum TagChat {
 }
 
 enum TypeGender {
+  all("All", "همه", 0),
   man("Man", "مرد", 100),
   woman("Woman", "زن", 101),
   company("Company", "تجاری", 102);
