@@ -252,6 +252,8 @@ enum TagCategory {
   final int number;
 }
 
+
+
 enum TagReservationChair {
   blank(101, "غیر فعال", "Blank"),
   notAvailable(102, "غیر قایل انتخاب", "Not available"),
@@ -705,6 +707,9 @@ enum TypeGender {
   final String title;
   final String titleTr1;
   final int status;
+}
+extension CategoryExtensions on TypeGender? {
+  String getTitle() => (Get.locale == const Locale("fa")) ? (this?.titleTr1 ?? '') : (this?.title ?? '');
 }
 
 enum PrivacyType {
