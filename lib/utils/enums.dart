@@ -62,11 +62,11 @@ enum TagProduct {
   news(201, "", ""),
   kindOfNew(202, "", ""),
   used(203, "", ""),
-  released(301, "منتشر شده", ""),
-  expired(302, "منقضی شده", ""),
-  inQueue(303, "در صف انتشار", ""),
-  deleted(304, "حذف شده", ""),
-  notAccepted(305, "رد شده", ""),
+  released(301, "", "منتشر شده"),
+  expired(302, "", "منقضی شده"),
+  inQueue(303, "", "در صف انتشار"),
+  deleted(304, "", "حذف شده"),
+  notAccepted(305, "", "رد شده"),
   // yooNote(101, "", ""),
   // subProduct(102, "", ""),
   // image(103, "", ""),
@@ -150,19 +150,19 @@ enum TagProduct {
 }
 
 enum TagCategory {
-  category(100),
-  skills(101),
-  colors(104),
-  auction(122),
-  specialty(129),
-  service(123),
-  story(138),
-  store(156),
-  reserve(185),
-  appointment(188),
-  ticket(190),
-  donate(191),
-  travel(192),
+  category(100, "", ""),
+  skills(101, "مهارت ها", ""),
+  colors(104, "رنگ ها", ""),
+  auction(122, "", ""),
+  specialty(129, "", ""),
+  service(123, "", ""),
+  story(138, "", ""),
+  store(156, "", ""),
+  reserve(185, "", ""),
+  appointment(188, "", ""),
+  ticket(190, "", ""),
+  donate(191, "", ""),
+  travel(192, "", ""),
   // yooNote(101),
   // speciality(102),
   // specializedArt(103),
@@ -243,16 +243,22 @@ enum TagCategory {
   // account(187),
   // boxOffice(189),
   // directShod(500),
-  test(900);
+  test(900, '', '');
 
-  const TagCategory(this.number);
+  const TagCategory(this.number, this.title, this.titleTr1);
 
   @override
   String toString() => name;
+  final String title;
+  final String titleTr1;
   final int number;
+
+  // const TagCategory(this.number);
+  //
+  // @override
+  // String toString() => name;
+  // final int number;
 }
-
-
 
 enum TagReservationChair {
   blank(101, "غیر فعال", "Blank"),
@@ -708,6 +714,7 @@ enum TypeGender {
   final String titleTr1;
   final int status;
 }
+
 extension CategoryExtensions on TypeGender? {
   String getTitle() => (Get.locale == const Locale("fa")) ? (this?.titleTr1 ?? '') : (this?.title ?? '');
 }
