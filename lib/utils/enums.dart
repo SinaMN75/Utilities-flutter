@@ -716,9 +716,6 @@ enum TypeGender {
   final int status;
 }
 
-extension CategoryExtensions on TypeGender? {
-  String getTitle() => (Get.locale == const Locale("fa")) ? (this?.titleTr1 ?? '') : (this?.title ?? '');
-}
 
 enum PrivacyType {
   private(100),
