@@ -34,8 +34,8 @@ Widget map({
             mini: true,
             onPressed: () async {
               try {
-                final LocationData? location = await getLocation();
-                controller.move(LatLng(location!.latitude!, location.longitude!), 15);
+                // final LocationData? location = await getLocation();
+                // controller.move(LatLng(location!.latitude!, location.longitude!), 15);
               } catch (e) {
                 debugPrint("");
               }
