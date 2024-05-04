@@ -19,6 +19,7 @@ export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_svg/flutter_svg.dart';
+export 'package:location/location.dart';
 export 'package:get/get.dart';
 export 'package:syncfusion_flutter_maps/maps.dart';
 export 'package:get_storage/get_storage.dart';
