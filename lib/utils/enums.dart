@@ -260,6 +260,24 @@ enum TagCategory {
   // final int number;
 }
 
+enum TagNotification {
+  receivedComment(101, "ReceivedComment", "دریافت کامنت"),
+  notAvailable(102, "ReceivedChat", "پیام"),
+  followed(103, "Followed", "فالو شده"),
+  receivedReactionOnProduct(104, "ReceivedReactionOnProduct", "دیافت لایک");
+
+  const TagNotification(
+    this.number,
+    this.title,
+    this.titleTr1,
+  );
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int number;
+}
 enum TagReservationChair {
   blank(101, "غیر فعال", "Blank"),
   notAvailable(102, "غیر قایل انتخاب", "Not available"),
