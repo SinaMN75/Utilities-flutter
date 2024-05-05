@@ -70,8 +70,22 @@ class NotificationFilterReadDto {
     this.pageSize,
     this.tags,
     this.pageNumber,
+    this.showMedia,
+    this.showProduct,
+    this.showComment,
+    this.showCreator,
+    this.showUser,
+    this.showChatMessage,
+    this.showGroupChat,
   });
 
+  final bool? showMedia;
+  final bool? showProduct;
+  final bool? showComment;
+  final bool? showCreator;
+  final bool? showUser;
+  final bool? showChatMessage;
+  final bool? showGroupChat;
   final String? title;
   final String? userId;
   final String? creatorUserId;
@@ -86,24 +100,37 @@ class NotificationFilterReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NotificationFilterReadDto.fromMap(dynamic json) => NotificationFilterReadDto(
-        title: json["title"],
-        userId: json["userId"],
-        creatorUserId: json["creatorUserId"],
-        message: json["message"],
-        tagUseCase: json["tagUseCase"],
-        pageSize: json["pageSize"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        pageNumber: json["pageNumber"],
-      );
+    title: json["title"],
+    userId: json["userId"],
+    creatorUserId: json["creatorUserId"],
+    message: json["message"],
+    tagUseCase: json["tagUseCase"],
+    pageSize: json["pageSize"],
+    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+    pageNumber: json["pageNumber"],
+    showMedia: json["showMedia"],
+    showProduct: json["showProduct"],
+    showComment: json["showComment"],
+    showCreator: json["showCreator"],
+    showUser: json["showUser"],
+    showChatMessage: json["showChatMessage"],
+    showGroupChat: json["showGroupChat"],
+  );
 
   dynamic toMap() => {
-        "title": title,
-        "userId": userId,
-        "creatorUserId": creatorUserId,
-        "message": message,
-        "tagUseCase": tagUseCase,
-        "pageSize": pageSize,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-        "pageNumber": pageNumber,
-      };
+    "title": title,
+    "userId": userId,
+    "creatorUserId": creatorUserId,
+    "message": message,
+    "tagUseCase": tagUseCase,
+    "pageSize": pageSize,
+    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+    "pageNumber": pageNumber,
+    "showMedia": showMedia,
+    "showProduct": showProduct,
+    "showCreator": showCreator,
+    "showUser": showUser,
+    "showChatMessage": showChatMessage,
+    "showGroupChat": showGroupChat,
+  };
 }
