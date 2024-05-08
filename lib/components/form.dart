@@ -146,7 +146,7 @@ Widget button({
               height: height ?? 20,
               width: width ?? context.width,
               child: Center(
-                child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
+                child: titleWidget ?? Text(title ?? '',style: textStyle??context.textTheme.bodyMedium, textAlign: TextAlign.center),
               ),
             ),
           );

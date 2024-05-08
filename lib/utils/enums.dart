@@ -142,7 +142,7 @@ enum TagMedia {
 
 enum TagNotification {
   receivedComment(101, "ReceivedComment", "دریافت کامنت"),
-  notAvailable(102, "ReceivedChat", "پیام"),
+  receivedChat(102, "ReceivedChat", "پیام"),
   followed(103, "Followed", "فالو شده"),
   receivedReactionOnProduct(104, "ReceivedReactionOnProduct", "دیافت لایک");
 

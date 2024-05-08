@@ -11,6 +11,7 @@ class NotificationReadDto {
     this.seenStatus,
     this.tagUseCase,
     this.creatorUser,
+    this.product,
     this.tags,
     this.media,
   });
@@ -25,6 +26,7 @@ class NotificationReadDto {
   final int? seenStatus;
   List<int>? tags;
   final UserReadDto? creatorUser;
+  final ProductReadDto? product;
   final List<MediaReadDto>? media;
 
   factory NotificationReadDto.fromJson(String str) => NotificationReadDto.fromMap(json.decode(str));
@@ -32,32 +34,34 @@ class NotificationReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NotificationReadDto.fromMap(dynamic json) => NotificationReadDto(
-        id: json["id"],
-        title: json["title"],
-        message: json["message"],
-        createdAt: json["createdAt"],
-        visited: json["visited"],
-        link: json["link"],
-        seenStatus: json["seenStatus"],
-        tagUseCase: json["tagUseCase"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-        creatorUser: json["creatorUser"] == null ? null : UserReadDto.fromMap(json["creatorUser"]),
-        media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
-      );
+    id: json["id"],
+    title: json["title"],
+    message: json["message"],
+    createdAt: json["createdAt"],
+    visited: json["visited"],
+    link: json["link"],
+    seenStatus: json["seenStatus"],
+    tagUseCase: json["tagUseCase"],
+    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+    product: json["product"] == null ? null : ProductReadDto.fromMap(json["product"]),
+    creatorUser: json["creatorUser"] == null ? null : UserReadDto.fromMap(json["creatorUser"]),
+    media: json["media"] == null ? null : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
+  );
 
   dynamic toMap() => {
-        "id": id,
-        "title": title,
-        "message": message,
-        "createdAt": createdAt,
-        "visited": visited,
-        "link": link,
-        "seenStatus": seenStatus,
-        "tagUseCase": tagUseCase,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-        "creatorUser": creatorUser == null ? null : creatorUser!.toMap(),
-        "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
-      };
+    "id": id,
+    "title": title,
+    "message": message,
+    "createdAt": createdAt,
+    "visited": visited,
+    "link": link,
+    "seenStatus": seenStatus,
+    "tagUseCase": tagUseCase,
+    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
+    "product": product == null ? null : product!.toMap(),
+    "creatorUser": creatorUser == null ? null : creatorUser!.toMap(),
+    "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
+  };
 }
 
 class NotificationFilterReadDto {
