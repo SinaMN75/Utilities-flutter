@@ -67,6 +67,7 @@ enum TagProduct {
   auction(113, "", ""),
   ticket(114, "", ""),
   travel(115, "", ""),
+  business(116, "", ""),
   news(201, "", ""),
   kindOfNew(202, "", ""),
   used(203, "", ""),
