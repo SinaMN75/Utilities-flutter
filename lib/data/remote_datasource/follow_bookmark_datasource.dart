@@ -10,7 +10,7 @@ class FollowBookmarkDataSource {
     required final Function(GenericResponse errorResponse) onError,
     required final String folderName,
     required final String userId,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/FollowBookmark/ReadBookmarksByFolderName?userId=$userId&folderName=$folderName",
@@ -23,7 +23,7 @@ class FollowBookmarkDataSource {
     required final Function(GenericResponse<BookmarkReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final String? userId,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: userId != null ? "$baseUrl/FollowBookmark/ReadBookmarks?userId=$userId" : "$baseUrl/FollowBookmark/ReadBookmarks",
@@ -36,7 +36,7 @@ class FollowBookmarkDataSource {
     required final String userId,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowers/$userId",
@@ -49,7 +49,7 @@ class FollowBookmarkDataSource {
     required final String userId,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowings/$userId",
@@ -62,7 +62,7 @@ class FollowBookmarkDataSource {
     required final ToggleFollow dto,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/RemoveFollowing",
@@ -76,7 +76,7 @@ class FollowBookmarkDataSource {
     required final ToggleBookmark dto,
     required final Function(GenericResponse<BookmarkReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ToggleBookmark",
@@ -90,7 +90,7 @@ class FollowBookmarkDataSource {
     required final ToggleFollow dto,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ToggleFolllow",

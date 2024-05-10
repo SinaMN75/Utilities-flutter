@@ -9,7 +9,7 @@ class UserDataSource {
     required final RegisterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/Register",
@@ -22,7 +22,7 @@ class UserDataSource {
     required final String id,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/ToggleBlock/$id",
@@ -33,7 +33,7 @@ class UserDataSource {
   void readMyBlockList({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/ReadMyBlockList",
@@ -45,7 +45,7 @@ class UserDataSource {
     required final UserCreateUpdateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/user",
@@ -57,7 +57,7 @@ class UserDataSource {
   void read({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user",
@@ -68,7 +68,7 @@ class UserDataSource {
   void logout({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/user/Logout",
@@ -80,7 +80,7 @@ class UserDataSource {
     required final String id,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/$id",
@@ -92,7 +92,7 @@ class UserDataSource {
     required final String id,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/user/$id",
@@ -106,7 +106,7 @@ class UserDataSource {
     required final String amount,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/TransferWalletToWallet",
@@ -126,7 +126,7 @@ class UserDataSource {
     required final String teamId,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/user/DeleteFromTeam/$teamId",
@@ -138,7 +138,7 @@ class UserDataSource {
     required final GetMobileVerificationCodeForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/GetVerificationCodeForLogin",
@@ -151,7 +151,7 @@ class UserDataSource {
     required final LoginWithEmail dto,
     required final Function(GenericResponse<String> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/LoginWithEmail",
@@ -164,7 +164,7 @@ class UserDataSource {
     required final LoginWithPasswordDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/LoginWithPassword",
@@ -177,7 +177,7 @@ class UserDataSource {
     required final VerifyMobileForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/VerifyCodeForLogin",
@@ -189,7 +189,7 @@ class UserDataSource {
   void getGrowthRate({
     required final Function(GenericResponse<GrowthRateReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/GrowthRate",
@@ -201,7 +201,7 @@ class UserDataSource {
     required final String userName,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/GetProfileByUsername/$userName",
@@ -213,7 +213,7 @@ class UserDataSource {
     required final UserFilterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/Filter",
@@ -226,7 +226,7 @@ class UserDataSource {
     required final AuthenticateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/authenticate",
@@ -239,7 +239,7 @@ class UserDataSource {
     required final String mobile,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/GetTokenForTest/$mobile",

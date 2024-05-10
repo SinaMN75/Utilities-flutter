@@ -8,7 +8,7 @@ class NotificationDataSource {
   void read({
     required final Function(GenericResponse<NotificationReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Notification",
@@ -21,7 +21,7 @@ class NotificationDataSource {
     required final String id,
     required final Function(GenericResponse<NotificationReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Notification/$id",
@@ -34,7 +34,7 @@ class NotificationDataSource {
     required final NotificationFilterReadDto filter,
     required final Function(GenericResponse<NotificationReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Notification/Filter",
@@ -49,7 +49,7 @@ class NotificationDataSource {
     required final int status,
     required final VoidCallback onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         encodeBody: false,

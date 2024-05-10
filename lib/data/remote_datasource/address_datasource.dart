@@ -9,7 +9,7 @@ class AddressDataSource {
     required final AddressFilterDto dto,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/address/Filter",
@@ -22,7 +22,7 @@ class AddressDataSource {
     required final AddressCreateUpdateDto dto,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/address",
@@ -35,7 +35,7 @@ class AddressDataSource {
     required final AddressCreateUpdateDto dto,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/address",
@@ -48,7 +48,7 @@ class AddressDataSource {
     required final String id,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/address/$id",

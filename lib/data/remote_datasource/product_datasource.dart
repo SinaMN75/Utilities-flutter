@@ -9,7 +9,7 @@ class ProductDataSource {
     required final ProductCreateUpdateDto dto,
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/ProductV2",
@@ -22,7 +22,7 @@ class ProductDataSource {
     required final ProductCreateUpdateDto dto,
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/ProductV2",
@@ -34,7 +34,7 @@ class ProductDataSource {
   void read({
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/ProductV2",
@@ -46,7 +46,7 @@ class ProductDataSource {
     required final String id,
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/ProductV2/$id",
@@ -58,7 +58,7 @@ class ProductDataSource {
     required final String id,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/ProductV2/$id",
@@ -70,7 +70,7 @@ class ProductDataSource {
     required final ProductFilterDto dto,
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/ProductV2/Filter",
@@ -83,7 +83,7 @@ class ProductDataSource {
     required final ReactionCreateUpdateDto dto,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/ProductV2/CreateReaction",

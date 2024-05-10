@@ -9,7 +9,7 @@ class TransactionDataSource {
     required final TransactionCreateDto dto,
     required final Function(GenericResponse<TransactionReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         body: dto,
@@ -23,7 +23,7 @@ class TransactionDataSource {
     required final TransactionUpdateDto dto,
     required final Function(GenericResponse<TransactionReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         body: dto,
@@ -37,7 +37,7 @@ class TransactionDataSource {
     required final String id,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Transaction/$id}",
@@ -50,7 +50,7 @@ class TransactionDataSource {
     required final TransactionFilterDto dto,
     required final Function(GenericResponse<TransactionReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         body: dto,
@@ -64,7 +64,7 @@ class TransactionDataSource {
     required final TransactionFilterDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         body: dto,

@@ -9,7 +9,7 @@ class PaymentDataSource {
     required final String amount,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/IncreaseWalletBalance/$amount",
@@ -22,7 +22,7 @@ class PaymentDataSource {
     required final String orderId,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/PayOrderZarinPal/$orderId",
@@ -35,7 +35,7 @@ class PaymentDataSource {
     required final String subscriptionId,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/PaySubscriptionZarinPal/$subscriptionId",
@@ -48,7 +48,7 @@ class PaymentDataSource {
     required final String productId,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Payment/BuyProduct/$productId",

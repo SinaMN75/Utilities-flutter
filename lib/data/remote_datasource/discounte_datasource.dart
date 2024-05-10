@@ -9,7 +9,7 @@ class DiscountDataSource {
     required final String code,
     required final Function(GenericResponse<DiscountReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Discount/$code",

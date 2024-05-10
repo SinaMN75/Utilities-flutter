@@ -9,7 +9,7 @@ class SubscriptionPaymentDataSource {
     required final SubscriptionPaymentCreateUpdateDto dto,
     required final Function(GenericResponse<SubscriptionPaymentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/SubscriptionPayment",

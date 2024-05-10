@@ -9,7 +9,7 @@ class MailSmsNotificationDataSource {
     required final CreateMailSmsNotificationDto dto,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/MailSmsNotification/SendNotification",
@@ -23,7 +23,7 @@ class MailSmsNotificationDataSource {
     required final SendOtpSmsDto dto,
     final Function(GenericResponse response)? onResponse,
     final Function(GenericResponse errorResponse)? onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/MailSmsNotification/SendOtpSms",

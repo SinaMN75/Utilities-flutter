@@ -8,7 +8,7 @@ class GroupChatDataSource {
   void readMyGroupChats({
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Chat/ReadMyGroupChats",
@@ -21,7 +21,7 @@ class GroupChatDataSource {
     required final String groupId,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Chat/ReadGroupChatById/$groupId",
@@ -34,7 +34,7 @@ class GroupChatDataSource {
     required final GroupChatFilterDto filter,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Chat/FilterGroupChat",
@@ -48,7 +48,7 @@ class GroupChatDataSource {
     required final GroupChatFilterDto filter,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Chat/FilterAllGroupChat",
@@ -62,7 +62,7 @@ class GroupChatDataSource {
     required final GroupChatCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Chat/CreateGroupChat",
@@ -76,7 +76,7 @@ class GroupChatDataSource {
     required final String groupId,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Chat/DeleteGroupChat/$groupId",
@@ -89,7 +89,7 @@ class GroupChatDataSource {
     required final GroupChatCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/Chat/UpdateGroupChat",
@@ -103,7 +103,7 @@ class GroupChatDataSource {
     required final String groupId,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Chat/ExitFromGroup/$groupId",
@@ -118,7 +118,7 @@ class GroupChatDataSource {
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final int pageSize = 100,
     final int pageNumber = 1,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId?pageSize=$pageSize&pageNumber=$pageNumber",
@@ -131,7 +131,7 @@ class GroupChatDataSource {
     required final GroupChatMessageCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatMessageReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Chat/CreateGroupChatMessage",
@@ -145,7 +145,7 @@ class GroupChatDataSource {
     required final GroupChatMessageCreateUpdateDto dto,
     required final Function(GenericResponse<GroupChatMessageReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/Chat/UpdateGroupChatMessage",
@@ -159,7 +159,7 @@ class GroupChatDataSource {
     required final String chatId,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Chat/DeleteGroupChatMessage/$chatId",
@@ -172,7 +172,7 @@ class GroupChatDataSource {
     required final String id,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Chat/SeenGroupChatMessage/$id",

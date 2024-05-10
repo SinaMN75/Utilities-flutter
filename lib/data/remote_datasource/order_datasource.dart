@@ -9,7 +9,7 @@ class OrderDataSource {
     required final OrderCreateUpdateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/Order",
@@ -23,7 +23,7 @@ class OrderDataSource {
     required final OrderFilterDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Order/Filter",
@@ -37,7 +37,7 @@ class OrderDataSource {
     required final String id,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Order/$id",
@@ -50,7 +50,7 @@ class OrderDataSource {
     required final String id,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Order/$id",
@@ -63,7 +63,7 @@ class OrderDataSource {
     required final OrderDetailCreateUpdateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Order/CreateUpdateOrderDetail",
@@ -77,7 +77,7 @@ class OrderDataSource {
     required final OrderReservationCreateDto dto,
     required final Function(GenericResponse<OrderReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Order/CreateReservationOrder",
@@ -91,7 +91,7 @@ class OrderDataSource {
     required final String id,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Order/DeleteOrderDetail/$id",

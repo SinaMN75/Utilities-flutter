@@ -9,7 +9,7 @@ class CategoryDataSource {
     required final CategoryCreateUpdateDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Category",
@@ -44,7 +44,7 @@ class CategoryDataSource {
     required final String dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Category/BulkCreate",
@@ -58,7 +58,7 @@ class CategoryDataSource {
     required final CategoryCreateUpdateDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/Category",
@@ -72,7 +72,7 @@ class CategoryDataSource {
     required final CategoryFilterDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Category/Filter",
@@ -86,7 +86,7 @@ class CategoryDataSource {
     required final String id,
     required final VoidCallback onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Category/$id",

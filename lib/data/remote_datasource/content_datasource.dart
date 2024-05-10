@@ -9,7 +9,7 @@ class ContentDataSource {
     required final ContentCreateUpdateDto dto,
     required final Function(GenericResponse<ContentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Content",
@@ -22,7 +22,7 @@ class ContentDataSource {
     required final ContentCreateUpdateDto dto,
     required final Function(GenericResponse<ContentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/Content",
@@ -34,7 +34,7 @@ class ContentDataSource {
   void read({
     required final Function(GenericResponse<ContentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Content",
@@ -46,7 +46,7 @@ class ContentDataSource {
     required final String id,
     required final Function(GenericResponse<ContentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Content/$id",
@@ -58,7 +58,7 @@ class ContentDataSource {
     required final String id,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Content/$id",
