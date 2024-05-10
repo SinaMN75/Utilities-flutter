@@ -10,8 +10,6 @@ class CategoryDataSource {
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Category",
@@ -46,8 +44,6 @@ class CategoryDataSource {
     required final String dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
@@ -61,10 +57,8 @@ class CategoryDataSource {
   void update({
     required final CategoryCreateUpdateDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/Category",
@@ -77,9 +71,7 @@ class CategoryDataSource {
   void filter({
     required final CategoryFilterDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
+    required final Function(GenericResponse<dynamic>  errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
@@ -93,9 +85,7 @@ class CategoryDataSource {
   void delete({
     required final String id,
     required final VoidCallback onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
+    required final Function(GenericResponse<dynamic>  errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpDelete(

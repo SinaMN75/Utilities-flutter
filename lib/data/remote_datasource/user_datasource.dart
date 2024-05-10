@@ -1,8 +1,6 @@
 part of '../data.dart';
 
 class UserDataSource {
-  final String baseUrl;
-
   UserDataSource({required this.baseUrl});
 
   final String baseUrl;
@@ -11,15 +9,12 @@ class UserDataSource {
     required final RegisterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/Register",
         body: dto,
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
@@ -28,87 +23,68 @@ class UserDataSource {
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
-    required final Function(GenericResponse<dynamic> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/ToggleBlock/$id",
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void readMyBlockList({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/ReadMyBlockList",
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void update({
     required final UserCreateUpdateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/user",
         body: dto,
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void read({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user",
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void logout({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/user/Logout",
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void readById({
     required final String id,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/$id",
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
@@ -116,15 +92,11 @@ class UserDataSource {
     required final String id,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/user/$id",
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
@@ -149,7 +121,6 @@ class UserDataSource {
         failure: failure,
       );
 
-
   void deleteFromTeam({
     required final String teamId,
     required final VoidCallback onResponse,
@@ -165,16 +136,13 @@ class UserDataSource {
   void getVerificationCodeForLogin({
     required final GetMobileVerificationCodeForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
+    required final Function(GenericResponse<dynamic>  errorResponse) onError,
     final Function(dynamic error)? failure,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/GetVerificationCodeForLogin",
         body: dto,
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
@@ -182,31 +150,25 @@ class UserDataSource {
     required final LoginWithEmail dto,
     required final Function(GenericResponse<String> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/LoginWithEmail",
         body: dto,
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void loginWithPassword({
     required final LoginWithPasswordDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
     required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/LoginWithPassword",
         body: dto,
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
@@ -214,29 +176,23 @@ class UserDataSource {
     required final VerifyMobileForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/VerifyCodeForLogin",
         body: dto,
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void getGrowthRate({
     required final Function(GenericResponse<GrowthRateReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/GrowthRate",
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<GrowthRateReadDto>.fromJson(response.body, fromMap: GrowthRateReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<GrowthRateReadDto>.fromJson(response.body, fromMap: GrowthRateReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
@@ -244,30 +200,24 @@ class UserDataSource {
     required final String userName,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/GetProfileByUsername/$userName",
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   Future<void> filter({
     required final UserFilterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/Filter",
         body: dto,
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
@@ -275,15 +225,12 @@ class UserDataSource {
     required final AuthenticateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/authenticate",
         body: dto,
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
@@ -291,14 +238,11 @@ class UserDataSource {
     required final String mobile,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
-    required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/GetTokenForTest/$mobile",
-        action: (final Response<dynamic> response) =>
-            onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 }
