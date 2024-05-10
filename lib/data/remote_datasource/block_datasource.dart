@@ -10,6 +10,8 @@ class BlockDataSource {
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Block?userId=$userId",
@@ -22,6 +24,8 @@ class BlockDataSource {
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Block",
@@ -33,6 +37,8 @@ class BlockDataSource {
 
   void readMine({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) =>

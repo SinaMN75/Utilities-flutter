@@ -8,6 +8,8 @@ class CategoryDataSource {
   void create({
     required final CategoryCreateUpdateDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) =>
@@ -45,6 +47,8 @@ class CategoryDataSource {
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Category/BulkCreate",
@@ -57,6 +61,8 @@ class CategoryDataSource {
   void update({
     required final CategoryCreateUpdateDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) =>
@@ -73,6 +79,8 @@ class CategoryDataSource {
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Category/Filter",
@@ -87,6 +95,8 @@ class CategoryDataSource {
     required final VoidCallback onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Category/$id",

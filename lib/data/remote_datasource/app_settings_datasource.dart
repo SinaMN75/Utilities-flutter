@@ -9,7 +9,7 @@ class AppSettingsDataSource {
     required final Function(GenericResponse<AppSettingsReadDto> response) onResponse,
     required final VoidCallback onError,
     final int timeoutInSeconds = 10,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         timeout: Duration(seconds: timeoutInSeconds),
@@ -21,7 +21,7 @@ class AppSettingsDataSource {
   void readEverything({
     required final Function(GenericResponse<ReadEverythingDto> response) onResponse,
     required final VoidCallback onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/AppSettings/ReadEverything",
@@ -32,7 +32,7 @@ class AppSettingsDataSource {
   void readDashboardData({
     required final Function(GenericResponse<DashboardDataReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/AppSettings/ReadDashboardData",

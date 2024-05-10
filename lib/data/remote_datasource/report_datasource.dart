@@ -9,7 +9,7 @@ class ReportDataSource {
     required final ReportCreateUpdateDto dto,
     required final Function(GenericResponse<ReportReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Report",
@@ -22,7 +22,7 @@ class ReportDataSource {
     required final String id,
     required final Function(String) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Report?id=$id",
@@ -34,7 +34,7 @@ class ReportDataSource {
     required final String id,
     required final Function(GenericResponse<ReportReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Report/$id",
@@ -46,7 +46,7 @@ class ReportDataSource {
     required final ReportFilterDto dto,
     required final Function(GenericResponse<ReportReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Report/Filter",

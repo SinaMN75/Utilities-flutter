@@ -5,7 +5,7 @@ Future<void> request(
   final EHttpMethod httpMethod,
   final Function(Response<dynamic> response) action,
   final Function(Response<dynamic> response) error, {
-  final Function(String error)? failure,
+  final Function(dynamic error)? failure,
   final String? queryOrMutation,
   final dynamic body,
   final bool encodeBody = true,
@@ -62,7 +62,7 @@ Future<void> request(
     }
   } catch (e) {
     error(const Response<dynamic>(statusCode: 999));
-    if (failure != null) failure(error.toString());
+    if (failure != null) failure(error);
   }
 }
 
@@ -70,7 +70,7 @@ Future<void> httpGet({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
-  final Function(String error)? failure,
+  final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final String userAgent = 'SinaMN75',
   final bool followRedirects = true,
@@ -102,7 +102,7 @@ Future<void> httpPost({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
-  final Function(String error)? failure,
+  final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final dynamic body,
   final bool encodeBody = true,
@@ -138,7 +138,7 @@ Future<void> httpPut({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
-  final Function(String error)? failure,
+  final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final dynamic body,
   final bool encodeBody = true,
@@ -174,7 +174,7 @@ Future<void> patch({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
-  final Function(String error)? failure,
+  final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final dynamic body,
   final bool encodeBody = true,
@@ -210,7 +210,7 @@ Future<void> httpDelete({
   required final String url,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
-  final Function(String error)? failure,
+  final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final String userAgent = 'SinaMN75',
   final bool followRedirects = true,

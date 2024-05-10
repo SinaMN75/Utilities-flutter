@@ -1,6 +1,8 @@
 part of '../data.dart';
 
 class UserDataSource {
+  final String baseUrl;
+
   UserDataSource({required this.baseUrl});
 
   final String baseUrl;
@@ -10,6 +12,8 @@ class UserDataSource {
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/Register",
@@ -21,6 +25,9 @@ class UserDataSource {
 
   void toggleBlock({
     required final String id,
+    required final Function(GenericResponse) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
@@ -36,6 +43,8 @@ class UserDataSource {
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/ReadMyBlockList",
@@ -47,6 +56,8 @@ class UserDataSource {
   void update({
     required final UserCreateUpdateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) =>
@@ -62,6 +73,8 @@ class UserDataSource {
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user",
@@ -72,6 +85,8 @@ class UserDataSource {
 
   void logout({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) =>
@@ -85,6 +100,8 @@ class UserDataSource {
   void readById({
     required final String id,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) =>
@@ -100,6 +117,9 @@ class UserDataSource {
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/user/$id",
@@ -114,7 +134,7 @@ class UserDataSource {
     required final String amount,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/TransferWalletToWallet",
@@ -134,7 +154,7 @@ class UserDataSource {
     required final String teamId,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/user/DeleteFromTeam/$teamId",
@@ -145,6 +165,8 @@ class UserDataSource {
   void getVerificationCodeForLogin({
     required final GetMobileVerificationCodeForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) =>
@@ -161,6 +183,8 @@ class UserDataSource {
     required final Function(GenericResponse<String> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/LoginWithEmail",
@@ -175,6 +199,8 @@ class UserDataSource {
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/LoginWithPassword",
@@ -189,6 +215,8 @@ class UserDataSource {
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/VerifyCodeForLogin",
@@ -202,6 +230,8 @@ class UserDataSource {
     required final Function(GenericResponse<GrowthRateReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/GrowthRate",
@@ -215,6 +245,8 @@ class UserDataSource {
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/user/GetProfileByUsername/$userName",
@@ -226,6 +258,8 @@ class UserDataSource {
   Future<void> filter({
     required final UserFilterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
   }) =>
@@ -242,6 +276,8 @@ class UserDataSource {
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/authenticate",
@@ -256,6 +292,8 @@ class UserDataSource {
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(String error)? failure,
+    required final Function(GenericResponse errorResponse) onError,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/GetTokenForTest/$mobile",

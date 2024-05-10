@@ -82,7 +82,7 @@ class MediaDataSource {
     required final MediaFilterDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Media/Filter",
@@ -95,7 +95,7 @@ class MediaDataSource {
     required final MediaUpdateDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/Media",
@@ -109,7 +109,7 @@ class MediaDataSource {
     required final String id,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Media/$id",

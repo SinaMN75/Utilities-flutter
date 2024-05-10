@@ -9,7 +9,7 @@ class PromoteDataSource {
     required final String id,
     required final Function(GenericResponse<PromoteReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/promotion/$id",
@@ -22,7 +22,7 @@ class PromoteDataSource {
     required final PromoteCreateUpdateDto dto,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/promotion",

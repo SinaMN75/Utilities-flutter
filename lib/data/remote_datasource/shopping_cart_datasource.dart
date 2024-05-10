@@ -9,7 +9,7 @@ class ShoppingCartDataSource {
     required final ShoppingCartReadDto dto,
     required final Function(GenericResponse<ShoppingCartReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/ShoppingCart",
@@ -23,7 +23,7 @@ class ShoppingCartDataSource {
     required final ShoppingCartReadDto dto,
     required final Function(GenericResponse<ShoppingCartReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/ShoppingCart",
@@ -36,7 +36,7 @@ class ShoppingCartDataSource {
   void read({
     required final Function(GenericResponse<ShoppingCartReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/ShoppingCart",
@@ -49,7 +49,7 @@ class ShoppingCartDataSource {
     required final String id,
     required final Function(GenericResponse<ShoppingCartReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/ShoppingCart/$id",
@@ -63,7 +63,7 @@ class ShoppingCartDataSource {
     required final String itemId,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(String error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/ShoppingCart/$id/$itemId",
