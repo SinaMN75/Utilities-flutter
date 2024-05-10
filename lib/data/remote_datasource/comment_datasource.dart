@@ -9,7 +9,7 @@ class CommentDataSource {
     required final CommentCreateUpdateDto dto,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    required final Function(dynamic error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Comment",
@@ -23,7 +23,7 @@ class CommentDataSource {
     required final CommentFilterDto dto,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    required final Function(dynamic error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Comment/Filter",
@@ -37,7 +37,7 @@ class CommentDataSource {
     required final String commentId,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    required final Function(dynamic error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Comment/ToggleLikeComment/$commentId",
@@ -51,7 +51,7 @@ class CommentDataSource {
     required final int reactionCode,
     required final VoidCallback onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    required final Function(dynamic error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/Comment/AddReactionToComment/$commentId/$reactionCode",
@@ -65,7 +65,7 @@ class CommentDataSource {
     required final CommentCreateUpdateDto dto,
     required final Function(GenericResponse<CommentReadDto> errorResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    required final Function(dynamic error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpPut(
         url: "$baseUrl/Comment?id=$id",
@@ -79,7 +79,7 @@ class CommentDataSource {
     required final String id,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    required final Function(dynamic error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Comment/$id",
@@ -92,7 +92,7 @@ class CommentDataSource {
     required final String id,
     required final Function(GenericResponse<CommentReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    required final Function(dynamic error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpGet(
         url: "$baseUrl/Comment/ReadByProductId/$id",
@@ -118,7 +118,7 @@ class CommentDataSource {
     required final String id,
     required final Function(GenericResponse response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    required final Function(dynamic error)? failure,
+    final Function(dynamic error)? failure,
   }) =>
       httpDelete(
         url: "$baseUrl/Comment?id=$id",
