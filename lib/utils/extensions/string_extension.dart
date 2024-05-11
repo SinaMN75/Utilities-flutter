@@ -13,16 +13,20 @@ extension OptionalStringExtension on String? {
 
   String? nullIfEmpty() => (this ?? "").isEmpty ? null : this;
 
-
-  String getPrice(){
+  String getPrice() {
     // final int ff=int.parse(this);
-    final int nums=this!.toInt();
-    return nums>0 ?intl.NumberFormat('###,###,###,###,000').format(nums):'0';
+    final int nums = this!.toInt();
+    return nums > 0 ? intl.NumberFormat('###,###,###,###,000').format(nums) : '0';
   }
 
   String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatFullDate();
+
+  String toJalaliDateTimeFull() {
+    DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString());
+    return Jalali.fromDateTime(dateTime).formatCompactDate() + " " + dateTime.hour.toString() + ":" + dateTime.minute.toString();
+  }
 
   String toRialMoneyPersian({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "" : "-", "");
 
