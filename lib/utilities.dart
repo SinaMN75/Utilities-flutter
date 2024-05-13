@@ -57,17 +57,25 @@ Future<void> initUtilities({
   ],
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(deviceOrientations);
-  await GetStorage.init();
+  try {
+    await SystemChrome.setPreferredOrientations(deviceOrientations);
+  } catch (e) {}
+  try {
+    await GetStorage.init();
+  } catch (e) {}
   if (firebaseOptions != null) {
-    await Firebase.initializeApp(options: firebaseOptions);
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-    PlatformDispatcher.instance.onError = (final Object error, final StackTrace stack) {
-      FirebaseCrashlytics.instance.recordError(error, stack);
-      return true;
-    };
+    try {
+      await Firebase.initializeApp(options: firebaseOptions);
+      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+      PlatformDispatcher.instance.onError = (final Object error, final StackTrace stack) {
+        FirebaseCrashlytics.instance.recordError(error, stack);
+        return true;
+      };
+    } catch (e) {}
   }
-  if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
-  if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
+  try {
+    if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
+    if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
+  } catch (e) {}
   return;
 }
