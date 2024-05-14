@@ -102,6 +102,7 @@ enum TagCategory {
   ticket(110, "", ""),
   donate(111, "", ""),
   travel(112, "", ""),
+  business(113, "", ""),
   test(900, '', '');
 
   const TagCategory(this.number, this.title, this.titleTr1);
