@@ -516,6 +516,10 @@ class UserFilterDto {
     this.noneOfMyFollowing,
     this.noneOfMyFollower,
     this.userIds,
+    this.orderByCreatedAt,
+    this.orderByCreatedAtDesc,
+    this.orderByUpdatedAt,
+    this.orderByUpdatedAtDesc,
     this.phoneNumbers,
     this.showPremiums,
     this.categories,
@@ -550,6 +554,10 @@ class UserFilterDto {
         showSuspend: json["showSuspend"],
         showMyCustomers: json["showMyCustomers"],
         orderByUserName: json["orderByUserName"],
+        orderByCreatedAt: json["orderByCreatedAt"],
+        orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
+        orderByUpdatedAt: json["orderByUpdatedAt"],
+        orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
         noneOfMyFollowing: json["noneOfMyFollowing"],
         noneOfMyFollower: json["noneOfMyFollower"],
         userIds: json["userIds"] == null ? <String>[] : List<String>.from(json["userIds"]!.map((final String x) => x)),
@@ -586,6 +594,10 @@ class UserFilterDto {
   final bool? showSuspend;
   final bool? showMyCustomers;
   final bool? orderByUserName;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByUpdatedAt;
+  final bool? orderByUpdatedAtDesc;
   final bool? noneOfMyFollowing;
   final bool? noneOfMyFollower;
   final List<String>? userIds;
@@ -595,8 +607,7 @@ class UserFilterDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "userId": userId,
         "userName": userName,
         "showPremiums": showPremiums,
@@ -624,6 +635,10 @@ class UserFilterDto {
         "showSuspend": showSuspend,
         "showMyCustomers": showMyCustomers,
         "orderByUserName": orderByUserName,
+        "orderByUpdatedAt": orderByUpdatedAt,
+        "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
+        "orderByCreatedAtDesc": orderByCreatedAtDesc,
+        "orderByCreatedAt": orderByCreatedAt,
         "noneOfMyFollowing": noneOfMyFollowing,
         "noneOfMyFollower": noneOfMyFollower,
         "userIds": userIds == null ? <dynamic>[] : List<dynamic>.from(userIds!.map((final String x) => x)),
