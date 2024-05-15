@@ -19,7 +19,6 @@ part 'barcode_qrcode.dart';
 part 'bottom_sheet.dart';
 part 'carousel_slider.dart';
 part 'chart.dart';
-part 'color_picker.dart';
 part 'container.dart';
 part 'flip_card.dart';
 part 'flutter_tree.dart';
