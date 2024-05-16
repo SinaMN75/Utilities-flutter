@@ -15,7 +15,6 @@ import 'package:utilities/utilities2.dart';
 
 part 'admin.dart';
 part 'badges.dart';
-part 'barcode_qrcode.dart';
 part 'bottom_sheet.dart';
 part 'carousel_slider.dart';
 part 'chart.dart';

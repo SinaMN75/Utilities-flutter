@@ -28,19 +28,19 @@ dependencies:
   flutter_svg: ^2.0.9
   lottie: ^3.1.0
   image_cropper: ^5.0.1
-  file_picker: ^8.0.0+1
+  #  file_picker: ^8.0.0+1
   flutter_easyloading: ^3.0.5
   flutter_local_notifications: ^17.0.1
-  mobile_scanner: ^5.1.1
+  #  mobile_scanner: ^5.1.1
   just_audio: ^0.9.36
   flutter_typeahead: ^4.8.0
   cached_network_image: ^3.3.1
   persian_tools: ^1.0.3
   flutter_contacts: ^1.1.7+1
-  firebase_core: ^2.23.0
-  firebase_messaging: ^14.7.10
-  firebase_analytics: ^10.8.0
-  firebase_crashlytics: ^3.4.9
+  #  firebase_core: ^2.23.0
+  #  firebase_messaging: ^14.7.10
+  #  firebase_analytics: ^10.8.0
+  #  firebase_crashlytics: ^3.4.9
   syncfusion_flutter_charts: ^24.1.45
   syncfusion_flutter_sliders: ^24.1.45
   syncfusion_flutter_barcodes: ^24.1.45
