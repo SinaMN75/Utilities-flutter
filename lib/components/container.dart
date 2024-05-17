@@ -19,6 +19,7 @@ Widget scaffold({
   final double? height,
   final DrawerCallback? onDrawerChanged,
   final DrawerCallback? onEndDrawerChanged,
+  final Alignment alignment = Alignment.center,
 }) =>
     GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
@@ -36,6 +37,7 @@ Widget scaffold({
         floatingActionButtonLocation: floatingActionButtonLocation,
         bottomNavigationBar: bottomNavigationBar,
         body: Align(
+          alignment: alignment,
           child: Container(
             width: width,
             height: height,
