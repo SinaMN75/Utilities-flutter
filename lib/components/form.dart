@@ -14,6 +14,7 @@ Widget textField({
   final VoidCallback? onTap,
   final bool hasClearButton = false,
   final bool required = false,
+  final bool isDense = false,
   final String? Function(String?)? validator,
   final Widget? prefix,
   final Widget? suffix,
@@ -39,11 +40,11 @@ Widget textField({
         if (text != null)
           iconTextHorizontal(
             leading: Text(text, style: textTheme.titleSmall),
-            trailing: required ? Text("*").bodyMedium(color: context.theme.colorScheme.error) : SizedBox(),
+            trailing: required ? const Text("*").bodyMedium(color: context.theme.colorScheme.error) : SizedBox(),
           ).paddingSymmetric(vertical: 8),
         TextFormField(
           autofillHints: autoFillHints,
-          textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : TextDirection.rtl,
+          textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : null,
           inputFormatters: formatters,
           style: TextStyle(fontSize: fontSize),
           maxLength: maxLength,
@@ -62,6 +63,7 @@ Widget textField({
           maxLines: lines == 1 ? 1 : 20,
           decoration: InputDecoration(
             labelText: labelText,
+            isDense: isDense,
             helperStyle: const TextStyle(fontSize: 0),
             hintText: hintText,
             contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -140,7 +142,7 @@ Widget button({
           () {
         if (buttonState.value == PageState.initial)
           return ElevatedButton(
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundColor), padding: MaterialStateProperty.all(padding)),
+            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(backgroundColor), padding: WidgetStateProperty.all(padding)),
             onPressed: onTap,
             child: SizedBox(
               height: height ?? 20,
@@ -154,7 +156,7 @@ Widget button({
           return const CircularProgressIndicator().alignAtCenter();
         else if (buttonState.value == PageState.paging)
           return SlideCountdown(
-            separatorStyle: TextStyle(color: context.theme.colorScheme.onBackground),
+            separatorStyle: TextStyle(color: context.theme.colorScheme.onSurface),
             decoration: const BoxDecoration(),
             style: context.theme.textTheme.bodyMedium!,
             duration: Duration(seconds: countDownSeconds),
@@ -248,4 +250,4 @@ Widget radioListTile<T>({
       groupValue: groupValue,
       value: value,
       onChanged: onChanged,
-    ).container(radius: 20, borderColor: context.theme.colorScheme.onBackground.withOpacity(0.2)).paddingSymmetric(horizontal: 20);
+    ).container(radius: 20, borderColor: context.theme.colorScheme.onSurface.withOpacity(0.2)).paddingSymmetric(horizontal: 20);
