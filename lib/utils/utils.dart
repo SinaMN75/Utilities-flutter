@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_contacts/flutter_contacts.dart' as contact;
 import 'package:intl/intl.dart' as intl;
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:utilities/generated/l10n.dart';
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
 
@@ -77,7 +78,7 @@ FormFieldValidator<String> validateMinLength(final int minLength) => (final Stri
     };
 
 FormFieldValidator<String> validateNotEmpty() => (final String? value) {
-      if (value!.isEmpty) return "فیلد الزامی است";
+  if (value!.isEmpty) return S.of(context).validatorRequired;
       return null;
     };
 
