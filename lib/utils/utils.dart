@@ -66,9 +66,9 @@ String getPrice(final int i) => intl.NumberFormat('###,###,###,###,000').format(
 bool hasMatch(final String? value, final String pattern) => (value == null) ? false : RegExp(pattern).hasMatch(value);
 
 void logout({required final VoidCallback onLoggedOut}) => showYesCancelDialog(
-      title: "خروج از سیستم",
+  title: "خروج از سیستم",
       description: "آیا از خروج از سیستم اطمینان دارید؟",
-      onYesButtonTap: () => onLoggedOut(),
+      onYesButtonTap: onLoggedOut,
     );
 
 FormFieldValidator<String> validateMinLength(
@@ -80,39 +80,39 @@ FormFieldValidator<String> validateMinLength(
       return null;
     };
 
-FormFieldValidator<String> validateNotEmpty() => (
-      final String? value, {
-      final String requiredMessage = "مقدار وارد شده صحیح نیست",
-    }) {
+FormFieldValidator<String> validateNotEmpty({
+  final String requiredMessage = "مقدار وارد شده صحیح نیست",
+}) =>
+    (final String? value) {
       if (value!.isEmpty) return requiredMessage;
       return null;
     };
 
-FormFieldValidator<String> validateEmail() => (
-      final String? value, {
-      final String requiredMessage = "مقدار وارد شده صحیح نیست",
-      final String notEmailMessage = "ایمیل وارد شده صحیح نیست",
-    }) {
+FormFieldValidator<String> validateEmail({
+  final String requiredMessage = "مقدار وارد شده صحیح نیست",
+  final String notEmailMessage = "ایمیل وارد شده صحیح نیست",
+}) =>
+    (final String? value) {
       if (value!.isEmpty) return requiredMessage;
       if (!value.isEmail) return notEmailMessage;
       return null;
     };
 
-FormFieldValidator<String> validatePhone() => (
-      final String? value, {
-      final String requiredMessage = "مقدار وارد شده صحیح نیست",
-      final String notMobileMessage = "شماره موبایل وارد شده صحیح نیست",
-    }) {
+FormFieldValidator<String> validatePhone({
+  final String requiredMessage = "مقدار وارد شده صحیح نیست",
+  final String notMobileMessage = "شماره موبایل وارد شده صحیح نیست",
+}) =>
+    (final String? value) {
       if (value!.isEmpty) return requiredMessage;
       if (!isPhoneNumber(value)) return notMobileMessage;
       return null;
     };
 
-FormFieldValidator<String> validateNumber() => (
-      final String? value, {
-      final String requiredMessage = "مقدار وارد شده صحیح نیست",
-      final String notMobileMessage = "شماره موبایل وارد شده صحیح نیست",
-    }) {
+FormFieldValidator<String> validateNumber({
+  final String requiredMessage = "مقدار وارد شده صحیح نیست",
+  final String notMobileMessage = "شماره موبایل وارد شده صحیح نیست",
+}) =>
+    (final String? value) {
       if (value!.isEmpty) return requiredMessage;
       if (!GetUtils.isNumericOnly(value)) return notMobileMessage;
       return null;
