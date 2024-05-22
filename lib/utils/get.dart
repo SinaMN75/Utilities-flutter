@@ -31,18 +31,18 @@ bool isDesktopSize() => context.width >= 1100;
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
 
 Future<dynamic> push(
-    final Widget page, {
-      final bool dialog = false,
-      final Transition transition = Transition.cupertino,
-      final bool backFirst = false,
-      final bool preventDuplicates = true,
-      final int milliSecondDelay = 1,
-    }) async {
+  final Widget page, {
+  final bool dialog = false,
+  final Transition transition = Transition.cupertino,
+  final bool backFirst = false,
+  final bool preventDuplicates = true,
+  final int milliSecondDelay = 1,
+}) async {
   if (backFirst) back();
   final Widget _page = await Future<Widget>.microtask(() => page);
   delay(
     milliSecondDelay,
-        () async => await Get.to(
+    () async => await Get.to(
       _page,
       fullscreenDialog: dialog,
       popGesture: true,
@@ -54,11 +54,11 @@ Future<dynamic> push(
 }
 
 Future<dynamic> pushReturn(
-    final Widget page, {
-      final bool dialog = false,
-      final Transition transition = Transition.cupertino,
-      final bool preventDuplicates = true,
-    }) async {
+  final Widget page, {
+  final bool dialog = false,
+  final Transition transition = Transition.cupertino,
+  final bool preventDuplicates = true,
+}) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
   return await Get.to(
     _page,
@@ -71,17 +71,17 @@ Future<dynamic> pushReturn(
 }
 
 Future<void> dialog(
-    final Widget page, {
-      final bool barrierDismissible = true,
-      final bool useSafeArea = false,
-      final VoidCallback? onDismiss,
-    }) async {
+  final Widget page, {
+  final bool barrierDismissible = true,
+  final bool useSafeArea = false,
+  final VoidCallback? onDismiss,
+}) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
   await Get.dialog(_page, useSafeArea: useSafeArea, barrierDismissible: barrierDismissible).then((final _) => onDismiss != null ? onDismiss() : null);
 }
 
 Future<void> dialogAlert(
-    final Widget page, {
+  final Widget page, {
   final bool barrierDismissible = true,
   final bool useSafeArea = false,
   final Clip clipBehavior = Clip.hardEdge,
@@ -109,13 +109,13 @@ Future<void> dialogAlert(
   final Color? shadowColor,
   final Color? surfaceTintColor,
   final String? semanticLabel,
-      final ShapeBorder? shape,
-      final AlignmentGeometry? alignment,
-      final ScrollController? scrollController,
-      final ScrollController? actionScrollController,
-      final Duration? insetAnimationDuration,
-      final Curve? insetAnimationCurve,
-    }) async {
+  final ShapeBorder? shape,
+  final AlignmentGeometry? alignment,
+  final ScrollController? scrollController,
+  final ScrollController? actionScrollController,
+  final Duration? insetAnimationDuration,
+  final Curve? insetAnimationCurve,
+}) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
   await Get.dialog(
     AlertDialog(
@@ -137,9 +137,9 @@ Future<void> dialogAlert(
       contentTextStyle: contentTextStyle,
       icon: defaultCloseButton
           ? IconButton(
-        onPressed: back,
-        icon: Icon(Icons.close, color: context.theme.colorScheme.error),
-      ).alignAtCenterRight()
+              onPressed: back,
+              icon: Icon(Icons.close, color: context.theme.colorScheme.error),
+            ).alignAtCenterRight()
           : icon,
       iconColor: iconColor,
       iconPadding: iconPadding,
@@ -159,23 +159,18 @@ Future<void> dialogAlert(
 }
 
 Future<void> offAll(
-    final Widget page, {
-      final bool dialog = false,
-      final Transition transition = Transition.cupertino,
-      final int milliSecondDelay = 1,
-    }) async {
-  final Widget _page = await Future<Widget>.microtask(() => page);
-  delay(
-    milliSecondDelay,
-        () => Get.offAll(
-          () => _page,
+  final Widget page, {
+  final bool dialog = false,
+  final Transition transition = Transition.cupertino,
+  final int milliSecondDelay = 1,
+}) async =>
+    Get.offAll(
+      page,
       fullscreenDialog: dialog,
       popGesture: true,
       opaque: dialog ? false : true,
       transition: transition,
-    ),
-  );
-}
+    );
 
 void off(final Widget page) => Get.off(() => page);
 
@@ -362,7 +357,7 @@ void alertDialog({
 }) =>
     dialog(
       CupertinoAlertDialog(
-        title:titleWidget??  Text(title??'').bodyLarge().fit(),
+        title: titleWidget ?? Text(title ?? '').bodyLarge().fit(),
         content: content ?? Text(subtitle!),
         actions: <Widget>[
           TextButton(onPressed: action1.$2, child: Text(action1.$1)),
@@ -373,4 +368,3 @@ void alertDialog({
       barrierDismissible: barrierDismissible,
       onDismiss: onDismiss,
     );
-
