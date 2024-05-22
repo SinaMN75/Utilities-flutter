@@ -142,7 +142,7 @@ Widget button({
           () {
         if (buttonState.value == PageState.initial)
           return ElevatedButton(
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(backgroundColor), padding: WidgetStateProperty.all(padding)),
+            // style: ButtonStyle(backgroundColor: WidgetStateProperty.all(backgroundColor), padding: WidgetStateProperty.all(padding)),
             onPressed: onTap,
             child: SizedBox(
               height: height ?? 20,
