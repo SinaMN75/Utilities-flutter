@@ -30,7 +30,7 @@ Widget scaffold({
         backgroundColor: color,
         appBar: appBar,
         drawer: drawer,
-        extendBody: true,
+        extendBody: resizeToAvoidBottomInset ? true : false,
         endDrawer: endDrawer,
         extendBodyBehindAppBar: extendBodyBehindAppBar,
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
