@@ -193,6 +193,9 @@ class ProductJsonDetail {
     this.minPrice,
     this.shippingCost,
     this.shippingTime,
+    this.maximumMembers,
+    this.clubName,
+    this.policies,
     this.startDate,
     this.endDate,
     this.keyValues,
@@ -219,6 +222,9 @@ class ProductJsonDetail {
         width: json["width"],
         type1: json["type1"],
         color: json["color"],
+        clubName: json["clubName"],
+        maximumMembers: json["maximumMembers"],
+        policies: json["policies"],
         type2: json["type2"],
         height: json["height"],
         weight: json["weight"],
@@ -242,6 +248,9 @@ class ProductJsonDetail {
   String? link;
   String? website;
   String? email;
+  String? clubName;
+  String? maximumMembers;
+  List<String>? policies;
   String? unit;
   String? type1;
   String? type2;
@@ -279,6 +288,9 @@ class ProductJsonDetail {
         "type1": type1,
         "type2": type2,
         "unit": unit,
+        "policies": policies,
+        "clubName": clubName,
+        "maximumMembers": maximumMembers,
         "latitude": latitude,
         "responseTime": responseTime,
         "onTimeDelivery": onTimeDelivery,
@@ -343,6 +355,9 @@ class ProductCreateUpdateDto {
     this.startDate,
     this.endDate,
     this.expireDate,
+    this.maximumMembers,
+    this.clubName,
+    this.policies,
     this.status,
     this.currency,
     this.ageCategory,
@@ -408,6 +423,9 @@ class ProductCreateUpdateDto {
   int? shippingCost;
   String? boosted;
   String? parentId;
+  String? clubName;
+  String? maximumMembers;
+  List<String>? policies;
   List<KeyValueViewModel>? keyValues;
   List<String>? categories;
   List<String>? teams;
@@ -446,6 +464,9 @@ class ProductCreateUpdateDto {
         "minOrder": minOrder,
         "maxOrder": maxOrder,
         "maxPrice": maxPrice,
+        "policies": policies,
+        "clubName": clubName,
+        "maximumMembers": maximumMembers,
         "minPrice": minPrice,
         "scorePlus": scorePlus,
         "scoreMinus": scoreMinus,
