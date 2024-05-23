@@ -6,13 +6,13 @@ class UserDataSource {
   UserDataSource({required this.baseUrl});
 
   void create({
-    required final RegisterDto dto,
+    required final UserCreateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
-        url: "$baseUrl/user/Register",
+        url: "$baseUrl/user",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
