@@ -127,8 +127,7 @@ class ProductReadDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "id": id,
         "code": code,
         "region": region,
@@ -228,7 +227,7 @@ class ProductJsonDetail {
         color: json["color"],
         clubName: json["clubName"],
         maximumMembers: json["maximumMembers"],
-        policies: json["policies"],
+        policies: json["policies"] == null ? [] : List<String>.from(json["policies"]!.map((x) => x)),
         type2: json["type2"],
         height: json["height"],
         weight: json["weight"],
@@ -441,8 +440,7 @@ class ProductCreateUpdateDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "id": id,
         "title": title,
         "subtitle": subtitle,
@@ -472,7 +470,7 @@ class ProductCreateUpdateDto {
         "minOrder": minOrder,
         "maxOrder": maxOrder,
         "maxPrice": maxPrice,
-        "policies": policies,
+        "policies": policies == null ? [] : List<dynamic>.from(policies!.map((x) => x)),
         "clubName": clubName,
         "maximumMembers": maximumMembers,
         "minPrice": minPrice,
