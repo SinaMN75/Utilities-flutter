@@ -19,12 +19,15 @@ class AppSettingsDataSource {
       );
 
   void readEverything({
+    final bool? showProducts = true,
+    final bool? showCategories = true,
+    final bool? showContents = true,
     required final Function(GenericResponse<ReadEverythingDto> response) onResponse,
     required final VoidCallback onError,
     final Function(dynamic error)? failure,
   }) =>
       httpGet(
-        url: "$baseUrl/AppSettings/ReadEverything",
+        url: "$baseUrl/AppSettings/ReadEverything?showProducts=$showProducts&showCategories=$showCategories&showContents=$showContents",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<ReadEverythingDto>.fromJson(response.body, fromMap: ReadEverythingDto.fromMap)),
         error: (final Response<dynamic> response) => onError(),
       );
