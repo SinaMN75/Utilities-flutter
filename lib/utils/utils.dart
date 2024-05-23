@@ -135,13 +135,13 @@ void showYesCancelDialog({
       context: context,
       builder: (final BuildContext context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        title: Text(title).headlineLarge(),
-        content: Text(description).bodyLarge(),
+        title: Text(title).bodyLarge(),
+        content: Text(description).bodyMedium(),
         actionsAlignment: MainAxisAlignment.center,
         actions: <Widget>[
           SizedBox(
               child: button(
-                width: screenWidth / 4,
+            width: screenWidth / 4,
             backgroundColor: context.theme.primaryColorDark,
             onTap: onCancelButtonTap ?? back,
             title: cancelButtonTitle,
