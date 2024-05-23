@@ -249,7 +249,7 @@ class ProductJsonDetail {
   String? website;
   String? email;
   String? clubName;
-  String? maximumMembers;
+  int? maximumMembers;
   List<String>? policies;
   String? unit;
   String? type1;
@@ -424,7 +424,7 @@ class ProductCreateUpdateDto {
   String? boosted;
   String? parentId;
   String? clubName;
-  String? maximumMembers;
+  int? maximumMembers;
   List<String>? policies;
   List<KeyValueViewModel>? keyValues;
   List<String>? categories;
