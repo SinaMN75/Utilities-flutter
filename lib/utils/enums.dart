@@ -170,7 +170,7 @@ enum TagCategory {
   ad(117),
   dailyPrice(118),
   tender(119),
-  chanel(120),
+  channel(120),
   group(121),
   auction(122),
   service(123),
@@ -232,16 +232,9 @@ enum TagCategory {
   free(180),
   payment(181),
   favorites(182),
-  remote(183),
-  onSite(184),
-  reserve(185),
-  microBlog(186),
-  account(187),
-  appointment(188),
-  boxOffice(189),
-  ticket(190),
-  directShod(500),
-  test(900);
+  special(183),
+  recommended(184),
+  sport(185);
 
   const TagCategory(this.number);
 
