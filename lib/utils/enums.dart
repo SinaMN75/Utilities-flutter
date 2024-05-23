@@ -130,6 +130,7 @@ enum TagProduct {
   premium6Month(186, "", ''),
   premium12Month(187, "", ''),
   post(189, "", ''),
+  tournament(190, "", ''),
   news(201, "", ""),
   kindOfNew(202, "", ""),
   used(203, "", ""),
