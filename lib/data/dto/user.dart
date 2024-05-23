@@ -662,38 +662,6 @@ class GetMobileVerificationCodeForLoginDto {
   dynamic toMap() => <String, String>{"mobile": mobile};
 }
 
-class LoginWithEmail {
-  LoginWithEmail({
-    this.email,
-    this.password,
-    this.returnUrl,
-    this.keep,
-  });
-
-  factory LoginWithEmail.fromJson(final String str) => LoginWithEmail.fromMap(json.decode(str));
-
-  factory LoginWithEmail.fromMap(final dynamic json) => LoginWithEmail(
-        email: json["email"],
-        password: json["password"],
-        returnUrl: json["returnUrl"],
-        keep: json["keep"],
-      );
-
-  final String? email;
-  final String? password;
-  final String? returnUrl;
-  final bool? keep;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  dynamic toMap() => <String, Object?>{
-        "email": email,
-        "password": password,
-        "returnUrl": returnUrl,
-        "keep": keep,
-      };
-}
-
 class LoginWithPasswordDto {
   LoginWithPasswordDto({
     this.email,
