@@ -6,7 +6,7 @@ class UserDataSource {
   UserDataSource({required this.baseUrl});
 
   void create({
-    required final UserCreateDto dto,
+    required final UserCreateUpdateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,

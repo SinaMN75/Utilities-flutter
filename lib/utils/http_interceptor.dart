@@ -252,7 +252,7 @@ extension HTTP on Response<dynamic> {
   }
 
   void prettyLog({final String params = ""}) {
-    print(
+    developer.log(
       "${this.request?.method} - ${this.request?.url} - $statusCode \nPARAMS: ${const JsonEncoder.withIndent(" ").convert(params)} \nRESPONSE: ${const JsonEncoder.withIndent(" ").convert(body)}",
     );
   }

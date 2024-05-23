@@ -266,221 +266,6 @@ class UserJsonDetail {
       };
 }
 
-class UserCreateUpdateDto {
-  UserCreateUpdateDto({
-    this.id,
-    this.address,
-    this.email,
-    this.firstName,
-    this.lastName,
-    this.fullName,
-    this.bio,
-    this.headline,
-    this.appUserName,
-    this.appPhoneNumber,
-    this.appEmail,
-    this.fcmToken,
-    this.region,
-    this.state,
-    this.badge,
-    this.visitedProducts,
-    this.bookmarkedProducts,
-    this.followedUsers,
-    this.followingUsers,
-    this.blockedUsers,
-    this.wallet,
-    this.deliveryPrice1,
-    this.deliveryPrice2,
-    this.deliveryPrice3,
-    this.point,
-    this.suspend,
-    this.instagram,
-    this.telegram,
-    this.jobStatus,
-    this.whatsApp,
-    this.linkedIn,
-    this.dribble,
-    this.soundCloud,
-    this.pinterest,
-    this.website,
-    this.activity,
-    this.color,
-    this.gender,
-    this.legalAuthenticationType,
-    this.nationalityType,
-    this.privacyType,
-    this.isOnline,
-    this.ageCategory,
-    this.birthDate,
-    this.premiumExpireDate,
-    this.categories,
-    this.code,
-    this.shebaNumber,
-    this.tags,
-    this.password,
-  });
-
-  factory UserCreateUpdateDto.fromJson(final String str) => UserCreateUpdateDto.fromMap(json.decode(str));
-
-  factory UserCreateUpdateDto.fromMap(final Map<String, dynamic> json) => UserCreateUpdateDto(
-        id: json["id"],
-        email: json["email"],
-        address: json["address"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        fullName: json["fullName"],
-        bio: json["bio"],
-        fcmToken: json["fcmToken"],
-        headline: json["headline"],
-        appUserName: json["appUserName"],
-        appPhoneNumber: json["appPhoneNumber"],
-        appEmail: json["appEmail"],
-        region: json["region"],
-        state: json["state"],
-        badge: json["badge"],
-        password: json["password"],
-        visitedProducts: json["visitedProducts"],
-        bookmarkedProducts: json["bookmarkedProducts"],
-        followedUsers: json["followedUsers"],
-        followingUsers: json["followingUsers"],
-        blockedUsers: json["blockedUsers"],
-        wallet: json["wallet"],
-        deliveryPrice1: json["deliveryPrice1"],
-        deliveryPrice2: json["deliveryPrice2"],
-        deliveryPrice3: json["deliveryPrice3"],
-        point: json["point"],
-        suspend: json["suspend"],
-        instagram: json["instagram"],
-        telegram: json["telegram"],
-        jobStatus: json["jobStatus"],
-        whatsApp: json["whatsApp"],
-        linkedIn: json["linkedIn"],
-        dribble: json["dribble"],
-        soundCloud: json["soundCloud"],
-        pinterest: json["pinterest"],
-        website: json["website"],
-        activity: json["activity"],
-        color: json["color"],
-        gender: json["gender"],
-        legalAuthenticationType: json["legalAuthenticationType"],
-        nationalityType: json["nationalityType"],
-        privacyType: json["privacyType"],
-        isOnline: json["isOnline"],
-        ageCategory: json["ageCategory"],
-        birthDate: json["birthDate"],
-        premiumExpireDate: json["premiumExpireDate"],
-        categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((final String x) => x)),
-        code: json["code"],
-        shebaNumber: json["shebaNumber"],
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-      );
-  final String? id;
-  final String? email;
-  final String? address;
-  final String? firstName;
-  final String? lastName;
-  final String? fullName;
-  final String? fcmToken;
-  final String? bio;
-  final String? headline;
-  final String? appUserName;
-  final String? appPhoneNumber;
-  final String? appEmail;
-  final String? region;
-  final String? state;
-  final String? badge;
-  final String? visitedProducts;
-  final String? password;
-  final String? bookmarkedProducts;
-  final String? followedUsers;
-  final String? followingUsers;
-  final String? blockedUsers;
-  final int? wallet;
-  final int? deliveryPrice1;
-  final int? deliveryPrice2;
-  final int? deliveryPrice3;
-  final double? point;
-  bool? suspend;
-  final String? instagram;
-  final String? telegram;
-  final String? jobStatus;
-  final String? whatsApp;
-  final String? linkedIn;
-  final String? dribble;
-  final String? soundCloud;
-  final String? pinterest;
-  final String? website;
-  final String? activity;
-  final String? color;
-  final int? gender;
-  final int? legalAuthenticationType;
-  final int? nationalityType;
-  final int? privacyType;
-  final bool? isOnline;
-  final int? ageCategory;
-  final String? birthDate;
-  final String? premiumExpireDate;
-  final List<String>? categories;
-  final String? code;
-  final String? shebaNumber;
-  final List<int>? tags;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-        "id": id,
-        "email": email,
-        "address": address,
-        "firstName": firstName,
-        "lastName": lastName,
-        "fullName": fullName,
-        "bio": bio,
-        "headline": headline,
-        "appUserName": appUserName,
-        "fcmToken": fcmToken,
-        "appPhoneNumber": appPhoneNumber,
-        "appEmail": appEmail,
-        "region": region,
-        "state": state,
-        "badge": badge,
-        "visitedProducts": visitedProducts,
-        "bookmarkedProducts": bookmarkedProducts,
-        "followedUsers": followedUsers,
-        "followingUsers": followingUsers,
-        "password": password,
-        "blockedUsers": blockedUsers,
-        "wallet": wallet,
-        "deliveryPrice1": deliveryPrice1,
-        "deliveryPrice2": deliveryPrice2,
-        "deliveryPrice3": deliveryPrice3,
-        "point": point,
-        "suspend": suspend,
-        "instagram": instagram,
-        "telegram": telegram,
-        "jobStatus": jobStatus,
-        "whatsApp": whatsApp,
-        "linkedIn": linkedIn,
-        "dribble": dribble,
-        "soundCloud": soundCloud,
-        "pinterest": pinterest,
-        "website": website,
-        "activity": activity,
-        "color": color,
-        "gender": gender,
-        "legalAuthenticationType": legalAuthenticationType,
-        "nationalityType": nationalityType,
-        "privacyType": privacyType,
-        "isOnline": isOnline,
-        "ageCategory": ageCategory,
-        "birthDate": birthDate,
-        "premiumExpireDate": premiumExpireDate,
-        "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((final String x) => x)),
-        "code": code,
-        "shebaNumber": shebaNumber,
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
-      };
-}
-
 class UserFilterDto {
   UserFilterDto({
     this.userId,
@@ -894,7 +679,7 @@ class AuthenticateDto {
       };
 }
 
-class UserCreateDto {
+class UserCreateUpdateDto {
   final String? id;
   final String? email;
   final String? firstName;
@@ -948,7 +733,7 @@ class UserCreateDto {
   final List<int>? removeTags;
   final List<int>? addTags;
 
-  UserCreateDto({
+  UserCreateUpdateDto({
     this.id,
     this.email,
     this.firstName,
@@ -1003,12 +788,11 @@ class UserCreateDto {
     this.addTags,
   });
 
-  factory UserCreateDto.fromJson(String str) => UserCreateDto.fromMap(json.decode(str));
+  factory UserCreateUpdateDto.fromJson(String str) => UserCreateUpdateDto.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory UserCreateDto.fromMap(Map<String, dynamic> json) =>
-      UserCreateDto(
+  factory UserCreateUpdateDto.fromMap(Map<String, dynamic> json) => UserCreateUpdateDto(
         id: json["id"],
         email: json["email"],
         firstName: json["firstName"],

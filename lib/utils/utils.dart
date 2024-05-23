@@ -69,11 +69,17 @@ void logout({
   required final VoidCallback onLoggedOut,
   final String title = "خروج از سیستم",
   final String description = "آیا از خروج از سیستم اطمینان دارید؟",
+  final VoidCallback? onCancelButtonTap,
+  final String? yesButtonTitle = "بله",
+  final String? cancelButtonTitle = 'انصراف',
 }) =>
     showYesCancelDialog(
       title: title,
       description: description,
       onYesButtonTap: onLoggedOut,
+      cancelButtonTitle: cancelButtonTitle,
+      onCancelButtonTap: onCancelButtonTap,
+      yesButtonTitle: yesButtonTitle,
     );
 
 FormFieldValidator<String> validateMinLength(
@@ -140,20 +146,22 @@ void showYesCancelDialog({
         actionsAlignment: MainAxisAlignment.center,
         actions: <Widget>[
           SizedBox(
-              child: button(
-            width: screenWidth / 4,
-            backgroundColor: context.theme.primaryColorDark,
-            onTap: onCancelButtonTap ?? back,
-            title: cancelButtonTitle,
-            textStyle: context.textTheme.bodyMedium,
-          )),
+            child: button(
+              width: screenWidth / 4,
+              backgroundColor: context.theme.primaryColorDark,
+              onTap: onCancelButtonTap ?? back,
+              title: cancelButtonTitle,
+              textStyle: context.textTheme.bodyMedium,
+            ),
+          ),
           SizedBox(
-              child: button(
-                width: screenWidth / 4,
-            onTap: onYesButtonTap,
-            title: yesButtonTitle,
-            textStyle: context.textTheme.bodyMedium,
-          )),
+            child: button(
+              width: screenWidth / 4,
+              onTap: onYesButtonTap,
+              title: yesButtonTitle,
+              textStyle: context.textTheme.bodyMedium,
+            ),
+          ),
         ],
       ),
     );
