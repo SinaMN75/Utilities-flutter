@@ -5,6 +5,7 @@ class ProductReadDto {
     required this.id,
     this.createdAt,
     this.updatedAt,
+    this.region,
     this.title,
     this.code,
     this.subtitle,
@@ -90,6 +91,7 @@ class ProductReadDto {
   DateTime? updatedAt;
   String? title;
   String? subtitle;
+  String? region;
   String? description;
   String? state;
   DateTime? boosted;
@@ -125,9 +127,11 @@ class ProductReadDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "id": id,
         "code": code,
+        "region": region,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "title": title,
@@ -320,6 +324,7 @@ class ProductCreateUpdateDto {
     this.description,
     this.details,
     this.address,
+    this.region,
     this.author,
     this.phoneNumber,
     this.link,
@@ -385,6 +390,7 @@ class ProductCreateUpdateDto {
   String? link;
   String? website;
   String? color;
+  String? region;
   String? email;
   String? type1;
   String? type2;
@@ -435,13 +441,15 @@ class ProductCreateUpdateDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "id": id,
         "title": title,
         "subtitle": subtitle,
         "description": description,
         "details": details,
         "address": address,
+        "region": region,
         "author": author,
         "phoneNumber": phoneNumber,
         "link": link,
@@ -501,6 +509,7 @@ class ProductFilterDto {
   ProductFilterDto({
     this.title,
     this.subtitle,
+    this.region,
     this.description,
     this.state,
     this.startPriceRange,
@@ -546,8 +555,9 @@ class ProductFilterDto {
   factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
 
   factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
-        title: json["title"],
+    title: json["title"],
         subtitle: json["subtitle"],
+        region: json["region"],
         description: json["description"],
         state: json["state"],
         startPriceRange: json["startPriceRange"],
@@ -593,6 +603,7 @@ class ProductFilterDto {
   String? title;
   String? subtitle;
   String? description;
+  String? region;
   String? state;
   int? startPriceRange;
   int? endPriceRange;
