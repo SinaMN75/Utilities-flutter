@@ -210,6 +210,7 @@ class ProductJsonDetail {
     this.keyValues,
     this.reservationTimes,
     this.visitCounts,
+    this.seats,
   });
 
   factory ProductJsonDetail.fromJson(final String str) => ProductJsonDetail.fromMap(json.decode(str));
@@ -247,6 +248,7 @@ class ProductJsonDetail {
             json["reservationTimes"] == null ? <ReservationTimes>[] : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+        seats: json["seats"] == null ? [] : List<Seat>.from(json["seats"]!.map((x) => Seat.fromMap(x))),
       );
   String? details;
   String? address;
@@ -279,6 +281,7 @@ class ProductJsonDetail {
   List<KeyValueViewModel>? keyValues;
   List<ReservationTimes>? reservationTimes;
   List<VisitCount>? visitCounts;
+  final List<Seat>? seats;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -312,11 +315,13 @@ class ProductJsonDetail {
         "reservationTimes": reservationTimes == null ? [] : List<dynamic>.from(reservationTimes!.map((x) => x.toMap())),
         "startDate": startDate?.toIso8601String(),
         "endDate": endDate?.toIso8601String(),
+        "seats": seats == null ? [] : List<dynamic>.from(seats!.map((x) => x.toMap())),
       };
 }
 
 class ProductCreateUpdateDto {
   ProductCreateUpdateDto({
+    this.seats,
     this.id,
     this.title,
     this.subtitle,
@@ -437,10 +442,12 @@ class ProductCreateUpdateDto {
   List<int>? tags;
   List<ProductCreateUpdateDto>? children;
   List<ReservationTimes>? reservationTimes;
+  List<Seat>? seats;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
+        "seats": seats == null ? [] : List<dynamic>.from(seats!.map((x) => x.toMap())),
         "id": id,
         "title": title,
         "subtitle": subtitle,
@@ -847,5 +854,73 @@ class ReactionCreateUpdateDto {
   Map<String, dynamic> toMap() => {
         "reaction": reaction,
         "productId": productId,
+      };
+}
+
+class Seat {
+  final String? chairId;
+  final String? title;
+  final String? description;
+  final String? date;
+  final String? sans;
+  final String? salon;
+  final int? row;
+  final int? column;
+  final int? price;
+  final int? gender;
+  final String? reservedByUserId;
+  final String? reservedByUserName;
+  final int? tag;
+
+  Seat({
+    this.chairId,
+    this.title,
+    this.description,
+    this.date,
+    this.sans,
+    this.salon,
+    this.row,
+    this.column,
+    this.price,
+    this.gender,
+    this.reservedByUserId,
+    this.reservedByUserName,
+    this.tag,
+  });
+
+  factory Seat.fromJson(String str) => Seat.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Seat.fromMap(Map<String, dynamic> json) => Seat(
+        chairId: json["chairId"],
+        title: json["title"],
+        description: json["description"],
+        date: json["date"],
+        sans: json["sans"],
+        salon: json["salon"],
+        row: json["row"],
+        column: json["column"],
+        price: json["price"],
+        gender: json["gender"],
+        reservedByUserId: json["reservedByUserId"],
+        reservedByUserName: json["reservedByUserName"],
+        tag: json["tag"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "chairId": chairId,
+        "title": title,
+        "description": description,
+        "date": date,
+        "sans": sans,
+        "salon": salon,
+        "row": row,
+        "column": column,
+        "price": price,
+        "gender": gender,
+        "reservedByUserId": reservedByUserId,
+        "reservedByUserName": reservedByUserName,
+        "tag": tag,
       };
 }
