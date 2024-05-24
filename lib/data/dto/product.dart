@@ -35,6 +35,8 @@ class ProductReadDto {
     required this.jsonDetail,
     this.media,
     this.comments,
+    this.latitude,
+    this.longitude,
     this.categories,
     this.children,
     this.orders,
@@ -71,6 +73,8 @@ class ProductReadDto {
         seenUsers: json["seenUsers"],
         teams: json["teams"],
         parentId: json["parentId"],
+        latitude: json["latitude"],
+        longitude: json["longitude"],
         userId: json["userId"],
         tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
@@ -107,6 +111,8 @@ class ProductReadDto {
   int? status;
   int? ageCategory;
   int? productState;
+  double? latitude;
+  double? longitude;
   DateTime? expireDate;
   String? seenUsers;
   String? teams;
@@ -138,6 +144,8 @@ class ProductReadDto {
         "description": description,
         "visitsCount": visitsCount,
         "isSeen": isSeen,
+        "latitude": latitude,
+        "longitude": longitude,
         "state": state,
         "boosted": boosted?.toIso8601String(),
         "stock": stock,
@@ -179,12 +187,10 @@ class ProductJsonDetail {
     this.website,
     this.email,
     this.unit,
-    this.latitude,
     this.responseTime,
     this.onTimeDelivery,
     this.type1,
     this.type2,
-    this.longitude,
     this.length,
     this.color,
     this.width,
@@ -209,7 +215,7 @@ class ProductJsonDetail {
   factory ProductJsonDetail.fromJson(final String str) => ProductJsonDetail.fromMap(json.decode(str));
 
   factory ProductJsonDetail.fromMap(final dynamic json) => ProductJsonDetail(
-        details: json["details"],
+    details: json["details"],
         address: json["address"],
         author: json["author"],
         phoneNumber: json["phoneNumber"],
@@ -217,10 +223,8 @@ class ProductJsonDetail {
         website: json["website"],
         email: json["email"],
         unit: json["unit"],
-        latitude: json["latitude"],
         responseTime: json["responseTime"],
         onTimeDelivery: json["onTimeDelivery"],
-        longitude: json["longitude"],
         length: json["length"],
         width: json["width"],
         type1: json["type1"],
@@ -258,10 +262,8 @@ class ProductJsonDetail {
   String? type1;
   String? type2;
   String? color;
-  double? latitude;
   int? responseTime;
   int? onTimeDelivery;
-  double? longitude;
   int? length;
   double? width;
   double? height;
@@ -294,10 +296,8 @@ class ProductJsonDetail {
         "policies": policies,
         "clubName": clubName,
         "maximumMembers": maximumMembers,
-        "latitude": latitude,
         "responseTime": responseTime,
         "onTimeDelivery": onTimeDelivery,
-        "longitude": longitude,
         "length": length,
         "width": width,
         "height": height,
