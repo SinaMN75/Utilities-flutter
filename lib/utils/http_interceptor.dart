@@ -63,6 +63,7 @@ Future<void> request(
   } catch (e) {
     error(const Response<dynamic>(statusCode: 999));
     if (failure != null) failure(e);
+    await dismissEasyLoading();
   }
 }
 

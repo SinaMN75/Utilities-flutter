@@ -76,7 +76,7 @@ class UserDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
-  void readById({
+  Future<void> readById({
     required final String id,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,

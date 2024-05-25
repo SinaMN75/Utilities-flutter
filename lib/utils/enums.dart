@@ -150,6 +150,20 @@ enum TagProduct {
   final int number;
 }
 
+enum TagSeat {
+  blank(101, ''),
+  notAvailable(102, ''),
+  free(103, ''),
+  reserved(104, '');
+
+  const TagSeat(this.number, this.title);
+
+  @override
+  String toString() => name;
+  final String title;
+  final int number;
+}
+
 enum TagCategory {
   category(100),
   yooNote(101),

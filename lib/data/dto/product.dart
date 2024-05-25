@@ -216,7 +216,7 @@ class ProductJsonDetail {
   factory ProductJsonDetail.fromJson(final String str) => ProductJsonDetail.fromMap(json.decode(str));
 
   factory ProductJsonDetail.fromMap(final dynamic json) => ProductJsonDetail(
-    details: json["details"],
+        details: json["details"],
         address: json["address"],
         author: json["author"],
         phoneNumber: json["phoneNumber"],
@@ -858,19 +858,20 @@ class ReactionCreateUpdateDto {
 }
 
 class Seat {
-  final String? chairId;
-  final String? title;
-  final String? description;
-  final String? date;
-  final String? sans;
-  final String? salon;
-  final int? row;
-  final int? column;
-  final int? price;
-  final int? gender;
-  final String? reservedByUserId;
-  final String? reservedByUserName;
-  final int? tag;
+  String? chairId;
+  String? title;
+  String? description;
+  String? date;
+  String? sans;
+  String? salon;
+  int? row;
+  int? column;
+  int? price;
+  int? gender;
+  String? reservedByUserId;
+  String? reservedByUserName;
+  int? tag;
+  UserReadDto? user;
 
   Seat({
     this.chairId,
@@ -886,6 +887,7 @@ class Seat {
     this.reservedByUserId,
     this.reservedByUserName,
     this.tag,
+    this.user,
   });
 
   factory Seat.fromJson(String str) => Seat.fromMap(json.decode(str));
