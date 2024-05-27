@@ -186,14 +186,6 @@ void shareText(final String text, {final String? subject}) => Share.share(text, 
 
 void shareFile(final List<String> file, final String text) => Share.shareXFiles(file.map(XFile.new).toList());
 
-void shareWidget({required final Widget widget}) async => await ScreenshotController().capture().then((final Uint8List? image) async {
-      final Directory directory = await getApplicationDocumentsDirectory();
-      final File imagePath = await File('${directory.path}/image.png').create();
-      await imagePath.writeAsBytes(image!);
-      shareFile(<String>[imagePath.path], "");
-    });
-
-Future<Uint8List> screenshot({required final Widget widget}) => ScreenshotController().captureFromWidget(widget);
 
 Future<String> appName() async {
   final PackageInfo packageInfo = await PackageInfo.fromPlatform();

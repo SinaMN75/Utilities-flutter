@@ -59,7 +59,6 @@ class ProductReadDto {
         description: json["description"],
         state: json["state"],
         boosted: json["boosted"] == null ? null : DateTime.parse(json["boosted"]),
-        code: json["code"],
         stock: json["stock"],
         voteCount: json["voteCount"],
         discountPercent: json["discountPercent"],
@@ -898,4 +897,73 @@ class ReactionCreateUpdateDto {
         "reaction": reaction,
         "productId": productId,
       };
+}
+class Seat {
+  String? chairId;
+  String? title;
+  String? description;
+  String? date;
+  String? sans;
+  String? salon;
+  int? row;
+  int? column;
+  int? price;
+  int? gender;
+  String? reservedByUserId;
+  String? reservedByUserName;
+  int? tag;
+  UserReadDto? user;
+
+  Seat({
+    this.chairId,
+    this.title,
+    this.description,
+    this.date,
+    this.sans,
+    this.salon,
+    this.row,
+    this.column,
+    this.price,
+    this.gender,
+    this.reservedByUserId,
+    this.reservedByUserName,
+    this.tag,
+    this.user,
+  });
+
+  factory Seat.fromJson(String str) => Seat.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Seat.fromMap(Map<String, dynamic> json) => Seat(
+    chairId: json["chairId"],
+    title: json["title"],
+    description: json["description"],
+    date: json["date"],
+    sans: json["sans"],
+    salon: json["salon"],
+    row: json["row"],
+    column: json["column"],
+    price: json["price"],
+    gender: json["gender"],
+    reservedByUserId: json["reservedByUserId"],
+    reservedByUserName: json["reservedByUserName"],
+    tag: json["tag"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "chairId": chairId,
+    "title": title,
+    "description": description,
+    "date": date,
+    "sans": sans,
+    "salon": salon,
+    "row": row,
+    "column": column,
+    "price": price,
+    "gender": gender,
+    "reservedByUserId": reservedByUserId,
+    "reservedByUserName": reservedByUserName,
+    "tag": tag,
+  };
 }

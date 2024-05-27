@@ -146,18 +146,18 @@ class UserDataSource {
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
-  void loginWithEmail({
-    required final LoginWithEmail dto,
-    required final Function(GenericResponse<String> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
-  }) =>
-      httpPost(
-        url: "$baseUrl/user/LoginWithEmail",
-        body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
-      );
+  // void loginWithEmail({
+  //   required final LoginWithEmail dto,
+  //   required final Function(GenericResponse<String> response) onResponse,
+  //   required final Function(GenericResponse<dynamic> errorResponse) onError,
+  //   final Function(dynamic error)? failure,
+  // }) =>
+  //     httpPost(
+  //       url: "$baseUrl/user/LoginWithEmail",
+  //       body: dto,
+  //       action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+  //       error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+  //     );
 
   void loginWithPassword({
     required final LoginWithPasswordDto dto,
