@@ -143,7 +143,6 @@ class AppSettings {
   final UsageRules? usageRules;
   final int? withdrawalLimit;
   final int? withdrawalTimeLimit;
-  final bool? isForceUpdate;
   final String? androidMinimumVersion;
   final String? androidLatestVersion;
   final String? iosMinimumVersion;
@@ -158,7 +157,6 @@ class AppSettings {
     this.paymentSettings,
     this.pushNotificationSetting,
     this.usageRules,
-    this.isForceUpdate,
     this.withdrawalLimit,
     this.withdrawalTimeLimit,
     this.androidMinimumVersion,
@@ -181,7 +179,6 @@ class AppSettings {
         pushNotificationSetting: json["pushNotificationSetting"] == null ? null : PushNotificationSetting.fromMap(json["pushNotificationSetting"]),
         usageRules: json["usageRules"] == null ? null : UsageRules.fromMap(json["usageRules"]),
         withdrawalLimit: json["withdrawalLimit"],
-        isForceUpdate: json["isForceUpdate"],
         withdrawalTimeLimit: json["withdrawalTimeLimit"],
         androidMinimumVersion: json["androidMinimumVersion"],
         androidLatestVersion: json["androidLatestVersion"],
@@ -199,7 +196,6 @@ class AppSettings {
         "pushNotificationSetting": pushNotificationSetting?.toMap(),
         "usageRules": usageRules?.toMap(),
         "withdrawalLimit": withdrawalLimit,
-        "isForceUpdate": isForceUpdate,
         "withdrawalTimeLimit": withdrawalTimeLimit,
         "androidMinimumVersion": androidMinimumVersion,
         "androidLatestVersion": androidLatestVersion,

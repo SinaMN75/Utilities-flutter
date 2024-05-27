@@ -5,6 +5,7 @@ class ProductReadDto {
     required this.id,
     this.createdAt,
     this.updatedAt,
+    this.region,
     this.title,
     this.code,
     this.subtitle,
@@ -48,13 +49,12 @@ class ProductReadDto {
 
   factory ProductReadDto.fromMap(final dynamic json) => ProductReadDto(
         id: json["id"],
+        code: json["code"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         title: json["title"],
         visitsCount: json["visitsCount"],
         isSeen: json["isSeen"],
-        latitude: json["latitude"],
-        longitude: json["longitude"],
         subtitle: json["subtitle"],
         description: json["description"],
         state: json["state"],
@@ -74,6 +74,8 @@ class ProductReadDto {
         seenUsers: json["seenUsers"],
         teams: json["teams"],
         parentId: json["parentId"],
+        latitude: json["latitude"],
+        longitude: json["longitude"],
         userId: json["userId"],
         tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         user: json["user"] == null ? null : UserReadDto.fromMap(json["user"]),
@@ -95,10 +97,9 @@ class ProductReadDto {
   DateTime? updatedAt;
   String? title;
   String? subtitle;
+  String? region;
   String? description;
   String? state;
-  double? latitude;
-  double? longitude;
   DateTime? boosted;
   int? visitsCount;
   int? stock;
@@ -112,6 +113,8 @@ class ProductReadDto {
   int? status;
   int? ageCategory;
   int? productState;
+  double? latitude;
+  double? longitude;
   DateTime? expireDate;
   String? seenUsers;
   String? teams;
@@ -135,15 +138,16 @@ class ProductReadDto {
   dynamic toMap() => {
         "id": id,
         "code": code,
+        "region": region,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "title": title,
         "subtitle": subtitle,
-        "latitude": latitude,
-        "longitude": longitude,
         "description": description,
         "visitsCount": visitsCount,
         "isSeen": isSeen,
+        "latitude": latitude,
+        "longitude": longitude,
         "state": state,
         "boosted": boosted?.toIso8601String(),
         "stock": stock,
@@ -185,12 +189,10 @@ class ProductJsonDetail {
     this.website,
     this.email,
     this.unit,
-    this.latitude,
     this.responseTime,
     this.onTimeDelivery,
     this.type1,
     this.type2,
-    this.longitude,
     this.length,
     this.color,
     this.width,
@@ -202,6 +204,9 @@ class ProductJsonDetail {
     this.minPrice,
     this.shippingCost,
     this.shippingTime,
+    this.maximumMembers,
+    this.clubName,
+    this.policies,
     this.startDate,
     this.endDate,
     this.relatedProducts,
@@ -209,6 +214,7 @@ class ProductJsonDetail {
     this.reservationTimes,
     this.usersReactions,
     this.visitCounts,
+    this.seats,
   });
 
   factory ProductJsonDetail.fromJson(final String str) => ProductJsonDetail.fromMap(json.decode(str));
@@ -222,14 +228,15 @@ class ProductJsonDetail {
         website: json["website"],
         email: json["email"],
         unit: json["unit"],
-        latitude: json["latitude"],
         responseTime: json["responseTime"],
         onTimeDelivery: json["onTimeDelivery"],
-        longitude: json["longitude"],
         length: json["length"],
         width: json["width"],
         type1: json["type1"],
         color: json["color"],
+        clubName: json["clubName"],
+        maximumMembers: json["maximumMembers"],
+        policies: json["policies"] == null ? [] : List<String>.from(json["policies"]!.map((x) => x)),
         type2: json["type2"],
         height: json["height"],
         weight: json["weight"],
@@ -249,6 +256,7 @@ class ProductJsonDetail {
             json["usersReactions"] == null ? <UsersReaction>[] : List<UsersReaction>.from(json["usersReactions"].cast<Map<String, dynamic>>().map(UsersReaction.fromMap)).toList(),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+        seats: json["seats"] == null ? [] : List<Seat>.from(json["seats"]!.map((x) => Seat.fromMap(x))),
       );
   String? details;
   String? address;
@@ -257,14 +265,15 @@ class ProductJsonDetail {
   String? link;
   String? website;
   String? email;
+  String? clubName;
+  int? maximumMembers;
+  List<String>? policies;
   String? unit;
   String? type1;
   String? type2;
   String? color;
-  double? latitude;
   int? responseTime;
   int? onTimeDelivery;
-  double? longitude;
   int? length;
   double? width;
   double? height;
@@ -282,6 +291,7 @@ class ProductJsonDetail {
   List<ReservationTimes>? reservationTimes;
   List<VisitCount>? visitCounts;
   List<UsersReaction>? usersReactions;
+  final List<Seat>? seats;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -296,10 +306,11 @@ class ProductJsonDetail {
         "type1": type1,
         "type2": type2,
         "unit": unit,
-        "latitude": latitude,
+        "policies": policies,
+        "clubName": clubName,
+        "maximumMembers": maximumMembers,
         "responseTime": responseTime,
         "onTimeDelivery": onTimeDelivery,
-        "longitude": longitude,
         "length": length,
         "width": width,
         "height": height,
@@ -316,6 +327,7 @@ class ProductJsonDetail {
         "usersReactions": usersReactions == null ? [] : List<dynamic>.from(usersReactions!.map((x) => x.toMap())),
         "startDate": startDate?.toIso8601String(),
         "endDate": endDate?.toIso8601String(),
+        "seats": seats == null ? [] : List<dynamic>.from(seats!.map((x) => x.toMap())),
       };
 }
 
@@ -345,12 +357,14 @@ class UsersReaction {
 
 class ProductCreateUpdateDto {
   ProductCreateUpdateDto({
+    this.seats,
     this.id,
     this.title,
     this.subtitle,
     this.description,
     this.details,
     this.address,
+    this.region,
     this.author,
     this.phoneNumber,
     this.link,
@@ -386,6 +400,9 @@ class ProductCreateUpdateDto {
     this.startDate,
     this.endDate,
     this.expireDate,
+    this.maximumMembers,
+    this.clubName,
+    this.policies,
     this.status,
     this.currency,
     this.ageCategory,
@@ -414,6 +431,7 @@ class ProductCreateUpdateDto {
   String? link;
   String? website;
   String? color;
+  String? region;
   String? email;
   String? type1;
   String? type2;
@@ -452,6 +470,9 @@ class ProductCreateUpdateDto {
   int? shippingCost;
   String? boosted;
   String? parentId;
+  String? clubName;
+  int? maximumMembers;
+  List<String>? policies;
   List<KeyValueViewModel>? keyValues;
   List<String>? categories;
   List<String>? relatedProducts;
@@ -459,16 +480,19 @@ class ProductCreateUpdateDto {
   List<int>? tags;
   List<ProductCreateUpdateDto>? children;
   List<ReservationTimes>? reservationTimes;
+  List<Seat>? seats;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
+        "seats": seats == null ? [] : List<dynamic>.from(seats!.map((x) => x.toMap())),
         "id": id,
         "title": title,
         "subtitle": subtitle,
         "description": description,
         "details": details,
         "address": address,
+        "region": region,
         "author": author,
         "phoneNumber": phoneNumber,
         "link": link,
@@ -491,6 +515,9 @@ class ProductCreateUpdateDto {
         "minOrder": minOrder,
         "maxOrder": maxOrder,
         "maxPrice": maxPrice,
+        "policies": policies == null ? [] : List<dynamic>.from(policies!.map((x) => x)),
+        "clubName": clubName,
+        "maximumMembers": maximumMembers,
         "minPrice": minPrice,
         "scorePlus": scorePlus,
         "scoreMinus": scoreMinus,
@@ -526,6 +553,7 @@ class ProductFilterDto {
   ProductFilterDto({
     this.title,
     this.subtitle,
+    this.region,
     this.description,
     this.state,
     this.startPriceRange,
@@ -572,8 +600,9 @@ class ProductFilterDto {
   factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
 
   factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
-        title: json["title"],
+    title: json["title"],
         subtitle: json["subtitle"],
+        region: json["region"],
         description: json["description"],
         state: json["state"],
         startPriceRange: json["startPriceRange"],
@@ -620,6 +649,7 @@ class ProductFilterDto {
   String? title;
   String? subtitle;
   String? description;
+  String? region;
   String? state;
   int? startPriceRange;
   int? endPriceRange;

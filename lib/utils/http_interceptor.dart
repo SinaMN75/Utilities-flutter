@@ -63,6 +63,7 @@ Future<void> request(
   } catch (e) {
     error(const Response<dynamic>(statusCode: 999));
     if (failure != null) failure(e);
+    await dismissEasyLoading();
   }
 }
 
@@ -252,7 +253,7 @@ extension HTTP on Response<dynamic> {
   }
 
   void prettyLog({final String params = ""}) {
-    print(
+    developer.log(
       "${this.request?.method} - ${this.request?.url} - $statusCode \nPARAMS: ${const JsonEncoder.withIndent(" ").convert(params)} \nRESPONSE: ${const JsonEncoder.withIndent(" ").convert(body)}",
     );
   }

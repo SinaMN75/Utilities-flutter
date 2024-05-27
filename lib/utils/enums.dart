@@ -71,12 +71,11 @@ enum TagProduct {
   news(201, "", ""),
   kindOfNew(202, "", ""),
   used(203, "", ""),
-  released(301, "", "منتشر شده"),
-  expired(302, "", "منقضی شده"),
-  inQueue(303, "", "در صف انتشار"),
-  deleted(304, "", "حذف شده"),
-  notAccepted(305, "", "رد شده"),
-
+  released(301, "منتشر شده", ""),
+  expired(302, "منقضی شده", ""),
+  inQueue(303, "در صف انتشار", ""),
+  deleted(304, "حذف شده", ""),
+  notAccepted(305, "رد شده", ""),
   test(900, "", "");
 
   const TagProduct(this.number, this.title, this.titleTr1);
@@ -160,6 +159,7 @@ enum TagNotification {
   final String titleTr1;
   final int number;
 }
+
 enum TagReservationChair {
   blank(101, "غیر فعال", "Blank"),
   notAvailable(102, "غیر قایل انتخاب", "Not available"),
@@ -576,7 +576,6 @@ enum TagChat {
 }
 
 enum TypeGender {
-  all("All", "همه", 0),
   man("Man", "مرد", 100),
   woman("Woman", "زن", 101),
   company("Company", "تجاری", 102);
@@ -589,7 +588,6 @@ enum TypeGender {
   final String titleTr1;
   final int status;
 }
-
 
 enum PrivacyType {
   private(100),

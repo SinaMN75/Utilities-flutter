@@ -8,12 +8,15 @@ void bottomSheet({
     Get.bottomSheet(
       Container(
         clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(color: context.theme.colorScheme.background, borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(
+          color: context.theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(20),
+        ),
         constraints: BoxConstraints(maxHeight: context.height - 100),
         padding: padding,
         child: SingleChildScrollView(child: child),
       ),
-      backgroundColor: context.theme.colorScheme.background,
+      backgroundColor: context.theme.colorScheme.surface,
       isDismissible: isDismissible,
       isScrollControlled: true,
     );
@@ -26,9 +29,11 @@ void scrollableBottomSheet({
   final bool expand = false,
   final double maxChildSize = 1.0,
   final double minChildSize = 0.4,
+  final VoidCallback? onDismiss,
 }) =>
-    Get.bottomSheet(
-      Container(
+    showModalBottomSheet(
+      context: context,
+      builder: (final BuildContext context) => Container(
         padding: padding,
         child: DraggableScrollableSheet(
           expand: expand,
@@ -44,7 +49,7 @@ void scrollableBottomSheet({
               ),
         ),
       ),
-      backgroundColor: context.theme.colorScheme.background,
+      backgroundColor: context.theme.colorScheme.surface,
       isDismissible: isDismissible,
       isScrollControlled: true,
-    );
+    ).whenComplete(onDismiss ?? () {});

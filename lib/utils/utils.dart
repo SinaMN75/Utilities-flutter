@@ -66,10 +66,21 @@ String getPrice(final int i) => intl.NumberFormat('###,###,###,###,000').format(
 
 bool hasMatch(final String? value, final String pattern) => (value == null) ? false : RegExp(pattern).hasMatch(value);
 
-void logout({required final VoidCallback onLoggedOut}) => showYesCancelDialog(
-  title: "خروج از سیستم",
-      description: "آیا از خروج از سیستم اطمینان دارید؟",
+void logout({
+  required final VoidCallback onLoggedOut,
+  final String title = "خروج از سیستم",
+  final String description = "آیا از خروج از سیستم اطمینان دارید؟",
+  final VoidCallback? onCancelButtonTap,
+  final String? yesButtonTitle = "بله",
+  final String? cancelButtonTitle = 'انصراف',
+}) =>
+    showYesCancelDialog(
+      title: title,
+      description: description,
       onYesButtonTap: onLoggedOut,
+      cancelButtonTitle: cancelButtonTitle,
+      onCancelButtonTap: onCancelButtonTap,
+      yesButtonTitle: yesButtonTitle,
     );
 
 FormFieldValidator<String> validateMinLength(
@@ -124,31 +135,34 @@ void showYesCancelDialog({
   required final String description,
   required final VoidCallback onYesButtonTap,
   final VoidCallback? onCancelButtonTap,
-  final String? yesButtonTitle,
+  final String? yesButtonTitle = "بله",
+  final String? cancelButtonTitle = 'انصراف',
 }) =>
     showDialog(
       context: context,
       builder: (final BuildContext context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        title: Text(title).headlineLarge(),
-        content: Text(description).bodyLarge(),
+        title: Text(title).bodyLarge(),
+        content: Text(description).bodyMedium(),
         actionsAlignment: MainAxisAlignment.center,
         actions: <Widget>[
           SizedBox(
-              child: button(
-            width: screenWidth / 4,
-            backgroundColor: context.theme.primaryColorDark,
-            onTap: onCancelButtonTap ?? back,
-            title: 'انصراف',
-            textStyle: context.textTheme.bodyMedium,
-          )),
+            child: button(
+              width: screenWidth / 4,
+              backgroundColor: context.theme.primaryColorDark,
+              onTap: onCancelButtonTap ?? back,
+              title: cancelButtonTitle,
+              textStyle: context.textTheme.bodyMedium,
+            ),
+          ),
           SizedBox(
-              child: button(
-            width: screenWidth / 4,
-            onTap: onYesButtonTap,
-            title: yesButtonTitle ?? "بله",
-            textStyle: context.textTheme.bodyMedium,
-          )),
+            child: button(
+              width: screenWidth / 4,
+              onTap: onYesButtonTap,
+              title: yesButtonTitle,
+              textStyle: context.textTheme.bodyMedium,
+            ),
+          ),
         ],
       ),
     );

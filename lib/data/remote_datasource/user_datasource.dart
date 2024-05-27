@@ -6,13 +6,13 @@ class UserDataSource {
   final String baseUrl;
 
   void create({
-    required final RegisterDto dto,
+    required final UserCreateUpdateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
-        url: "$baseUrl/user/Register",
+        url: "$baseUrl/user",
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -76,7 +76,7 @@ class UserDataSource {
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
-  void readById({
+  Future<void> readById({
     required final String id,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
