@@ -38,7 +38,7 @@ export 'package:utilities/persian_date_picker/persian_datetime_picker.dart';
 export 'package:utilities/persian_date_picker/src/date/shamsi_date.dart';
 export 'package:uuid/uuid.dart';
 export 'package:video_player/video_player.dart';
-export 'package:webviewx_plus/webviewx_plus.dart';
+export 'package:webview_flutter/webview_flutter.dart';
 
 export 'components/components.dart';
 export 'components/fdottedline.dart';

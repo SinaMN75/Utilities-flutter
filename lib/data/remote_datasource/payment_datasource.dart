@@ -49,7 +49,8 @@ class PaymentDataSource {
     required final Function(GenericResponse<PayNgReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
   }) =>
-      httpGet(
+      httpPost(
+        body: dto,
         url: "$baseUrl/payment/payNg",
         action: (Response response) => onResponse(GenericResponse<PayNgReadDto>.fromJson(response.body, fromMap: PayNgReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -61,7 +62,7 @@ class PaymentDataSource {
     required final Function(GenericResponse<VerifyNgReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
   }) =>
-      httpGet(
+      httpPost(
         url: "$baseUrl/payment/verifyNG/$outlet/$id",
         action: (Response response) => onResponse(GenericResponse<VerifyNgReadDto>.fromJson(response.body, fromMap: VerifyNgReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
