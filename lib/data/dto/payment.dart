@@ -21,7 +21,7 @@ class PayNgCreateDto {
 
   String toJson() => json.encode(toMap());
 
-  factory PayNgCreateDto.fromMap(Map<String, dynamic> json) => PayNgCreateDto(
+  factory PayNgCreateDto.fromMap(dynamic json) => PayNgCreateDto(
         action: json["action"],
         emailAddress: json["emailAddress"],
         outlet: json["outlet"],
@@ -30,7 +30,7 @@ class PayNgCreateDto {
         amount: json["amount"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "action": action,
         "emailAddress": emailAddress,
         "outlet": outlet,
@@ -83,9 +83,9 @@ class PayNgReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory PayNgReadDto.fromMap(Map<String, dynamic> json) => PayNgReadDto(
+  factory PayNgReadDto.fromMap(dynamic json) => PayNgReadDto(
         id: json["id"],
-        links: json["links"] == null ? null : NgResultLinks.fromMap(json["links"]),
+        links: json["_links"] == null ? null : NgResultLinks.fromMap(json["_links"]),
         type: json["type"],
         merchantDefinedData: json["merchantDefinedData"] == null ? null : NgFormattedOrderSummary.fromMap(json["merchantDefinedData"]),
         action: json["action"],
@@ -100,10 +100,10 @@ class PayNgReadDto {
         referrer: json["referrer"],
         formattedOrderSummary: json["formattedOrderSummary"] == null ? null : NgFormattedOrderSummary.fromMap(json["formattedOrderSummary"]),
         formattedAmount: json["formattedAmount"],
-        embedded: json["embedded"] == null ? null : NgEmbedded.fromMap(json["embedded"]),
+        embedded: json["_embedded"] == null ? null : NgEmbedded.fromMap(json["_embedded"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "links": links?.toMap(),
         "type": type,
@@ -137,12 +137,12 @@ class NgAmount {
 
   String toJson() => json.encode(toMap());
 
-  factory NgAmount.fromMap(Map<String, dynamic> json) => NgAmount(
+  factory NgAmount.fromMap(dynamic json) => NgAmount(
         currencyCode: json["currencyCode"],
         value: json["value"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "currencyCode": currencyCode,
         "value": value,
       };
@@ -159,11 +159,11 @@ class NgEmbedded {
 
   String toJson() => json.encode(toMap());
 
-  factory NgEmbedded.fromMap(Map<String, dynamic> json) => NgEmbedded(
+  factory NgEmbedded.fromMap(dynamic json) => NgEmbedded(
         payment: json["payment"] == null ? [] : List<NgPayment>.from(json["payment"]!.map((x) => NgPayment.fromMap(x))),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "payment": payment == null ? [] : List<dynamic>.from(payment!.map((x) => x.toMap())),
       };
 }
@@ -193,7 +193,7 @@ class NgPayment {
 
   String toJson() => json.encode(toMap());
 
-  factory NgPayment.fromMap(Map<String, dynamic> json) => NgPayment(
+  factory NgPayment.fromMap(dynamic json) => NgPayment(
         id: json["id"],
         links: json["links"] == null ? null : NgPaymentLinks.fromMap(json["links"]),
         reference: json["reference"],
@@ -204,7 +204,7 @@ class NgPayment {
         orderReference: json["orderReference"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "links": links?.toMap(),
         "reference": reference,
@@ -233,14 +233,14 @@ class NgPaymentLinks {
 
   String toJson() => json.encode(toMap());
 
-  factory NgPaymentLinks.fromMap(Map<String, dynamic> json) => NgPaymentLinks(
+  factory NgPaymentLinks.fromMap(dynamic json) => NgPaymentLinks(
         self: json["self"] == null ? null : NgLink.fromMap(json["self"]),
         paymentCard: json["paymentCard"] == null ? null : NgLink.fromMap(json["paymentCard"]),
         paymentSavedCard: json["paymentSavedCard"] == null ? null : NgLink.fromMap(json["paymentSavedCard"]),
         curies: json["curies"] == null ? [] : List<NgLink>.from(json["curies"]!.map((x) => NgLink.fromMap(x))),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "self": self?.toMap(),
         "paymentCard": paymentCard?.toMap(),
         "paymentSavedCard": paymentSavedCard?.toMap(),
@@ -263,13 +263,13 @@ class NgLink {
 
   String toJson() => json.encode(toMap());
 
-  factory NgLink.fromMap(Map<String, dynamic> json) => NgLink(
+  factory NgLink.fromMap(dynamic json) => NgLink(
         name: json["name"],
         href: json["href"],
         templated: json["templated"],
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "name": name,
         "href": href,
         "templated": templated,
@@ -283,9 +283,9 @@ class NgFormattedOrderSummary {
 
   String toJson() => json.encode(toMap());
 
-  factory NgFormattedOrderSummary.fromMap(Map<String, dynamic> json) => NgFormattedOrderSummary();
+  factory NgFormattedOrderSummary.fromMap(dynamic json) => NgFormattedOrderSummary();
 
-  Map<String, dynamic> toMap() => {};
+  dynamic toMap() => {};
 }
 
 class NgResultLinks {
@@ -311,7 +311,7 @@ class NgResultLinks {
 
   String toJson() => json.encode(toMap());
 
-  factory NgResultLinks.fromMap(Map<String, dynamic> json) => NgResultLinks(
+  factory NgResultLinks.fromMap(dynamic json) => NgResultLinks(
         cancel: json["cancel"] == null ? null : NgLink.fromMap(json["cancel"]),
         cnpPaymentLink: json["cnpPaymentLink"] == null ? null : NgLink.fromMap(json["cnpPaymentLink"]),
         paymentAuthorization: json["paymentAuthorization"] == null ? null : NgLink.fromMap(json["paymentAuthorization"]),
@@ -321,7 +321,7 @@ class NgResultLinks {
         merchantBrand: json["merchantBrand"] == null ? null : NgLink.fromMap(json["merchantBrand"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "cancel": cancel?.toMap(),
         "cnpPaymentLink": cnpPaymentLink?.toMap(),
         "paymentAuthorization": paymentAuthorization?.toMap(),
@@ -343,11 +343,11 @@ class NgPaymentMethods {
 
   String toJson() => json.encode(toMap());
 
-  factory NgPaymentMethods.fromMap(Map<String, dynamic> json) => NgPaymentMethods(
+  factory NgPaymentMethods.fromMap(dynamic json) => NgPaymentMethods(
         card: json["card"] == null ? [] : List<String>.from(json["card"]!.map((x) => x)),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "card": card == null ? [] : List<dynamic>.from(card!.map((x) => x)),
       };
 }
@@ -395,7 +395,7 @@ class VerifyNgReadDto {
 
   String toJson() => json.encode(toMap());
 
-  factory VerifyNgReadDto.fromMap(Map<String, dynamic> json) => VerifyNgReadDto(
+  factory VerifyNgReadDto.fromMap(dynamic json) => VerifyNgReadDto(
         id: json["id"],
         links: json["links"] == null ? null : NgResultLinks.fromMap(json["links"]),
         type: json["type"],
@@ -415,7 +415,7 @@ class VerifyNgReadDto {
         embedded: json["embedded"] == null ? null : NgEmbedded.fromMap(json["embedded"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  dynamic toMap() => {
         "id": id,
         "links": links?.toMap(),
         "type": type,

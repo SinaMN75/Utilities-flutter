@@ -139,6 +139,7 @@ enum TagProduct {
   inQueue(303, "در صف انتشار", ""),
   deleted(304, "حذف شده", ""),
   notAccepted(305, "رد شده", ""),
+  awaitingPayment(305, "در انتظار پرداخت", "Awaiting Payment"),
   test(900, "", "");
 
   const TagProduct(this.number, this.title, this.titleTr1);
@@ -478,22 +479,6 @@ enum TagGender {
   woman("Woman", "زن", 101);
 
   const TagGender(this.title, this.titleTr1, this.status);
-
-  @override
-  String toString() => name;
-  final String title;
-  final String titleTr1;
-  final int status;
-}
-
-enum TagStatusProduct {
-  released('منتشر شده', 'Released', 301),
-  expired('منقضی شده', 'Expired', 302),
-  inQueue('در حال بررسی', 'InQueue', 303),
-  deleted('حذف شده', 'Deleted', 304),
-  notAccepted('رد شده', 'Not Accepted', 305);
-
-  const TagStatusProduct(this.title, this.titleTr1, this.status);
 
   @override
   String toString() => name;

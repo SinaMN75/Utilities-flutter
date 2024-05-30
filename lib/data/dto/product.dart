@@ -191,6 +191,7 @@ class ProductJsonDetail {
     this.onTimeDelivery,
     this.type1,
     this.type2,
+    this.paymentRefId,
     this.length,
     this.color,
     this.width,
@@ -216,9 +217,10 @@ class ProductJsonDetail {
   factory ProductJsonDetail.fromJson(final String str) => ProductJsonDetail.fromMap(json.decode(str));
 
   factory ProductJsonDetail.fromMap(final dynamic json) => ProductJsonDetail(
-        details: json["details"],
+    details: json["details"],
         address: json["address"],
         author: json["author"],
+        paymentRefId: json["paymentRefId"],
         phoneNumber: json["phoneNumber"],
         link: json["link"],
         website: json["website"],
@@ -254,6 +256,7 @@ class ProductJsonDetail {
   String? address;
   String? author;
   String? phoneNumber;
+  String? paymentRefId;
   String? link;
   String? website;
   String? email;
@@ -285,12 +288,14 @@ class ProductJsonDetail {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "details": details,
         "address": address,
         "author": author,
         "phoneNumber": phoneNumber,
         "link": link,
+        "paymentRefId": paymentRefId,
         "website": website,
         "email": email,
         "type1": type1,
