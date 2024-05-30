@@ -13,7 +13,7 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/IncreaseWalletBalance/$amount",
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
@@ -26,7 +26,7 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/PayOrderZarinPal/$orderId",
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
@@ -39,21 +39,31 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/PaySubscriptionZarinPal/$subscriptionId",
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
-  void buyProduct({
-    required final String productId,
-    required final Function(GenericResponse response) onResponse,
+  void payNg({
+    required final PayNgCreateDto dto,
+    required final Function(GenericResponse<PayNgReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
       httpGet(
-        url: "$baseUrl/Payment/BuyProduct/$productId",
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
+        url: "$baseUrl/payment/payNg",
+        action: (Response response) => onResponse(GenericResponse<PayNgReadDto>.fromJson(response.body, fromMap: PayNgReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
+      );
+
+  void verifyNg({
+    required final String outlet,
+    required final String id,
+    required final Function(GenericResponse<VerifyNgReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+  }) =>
+      httpGet(
+        url: "$baseUrl/payment/verifyNG/$outlet/$id",
+        action: (Response response) => onResponse(GenericResponse<VerifyNgReadDto>.fromJson(response.body, fromMap: VerifyNgReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 }
