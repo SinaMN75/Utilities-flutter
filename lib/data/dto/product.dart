@@ -217,7 +217,7 @@ class ProductJsonDetail {
   factory ProductJsonDetail.fromJson(final String str) => ProductJsonDetail.fromMap(json.decode(str));
 
   factory ProductJsonDetail.fromMap(final dynamic json) => ProductJsonDetail(
-    details: json["details"],
+        details: json["details"],
         address: json["address"],
         author: json["author"],
         paymentRefId: json["paymentRefId"],
@@ -288,8 +288,7 @@ class ProductJsonDetail {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "details": details,
         "address": address,
         "author": author,
@@ -383,6 +382,7 @@ class ProductCreateUpdateDto {
     this.keyValues,
     this.categories,
     this.teams,
+    this.paymentRefId,
     required this.tags,
     this.children,
     this.reservationTimes,
@@ -392,6 +392,7 @@ class ProductCreateUpdateDto {
   String? title;
   String? subtitle;
   String? description;
+  String? paymentRefId;
   String? details;
   String? address;
   String? author;
@@ -451,7 +452,8 @@ class ProductCreateUpdateDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "seats": seats == null ? [] : List<dynamic>.from(seats!.map((x) => x.toMap())),
         "id": id,
         "title": title,
@@ -459,6 +461,7 @@ class ProductCreateUpdateDto {
         "description": description,
         "details": details,
         "address": address,
+        "paymentRefId": paymentRefId,
         "region": region,
         "author": author,
         "phoneNumber": phoneNumber,
