@@ -115,7 +115,7 @@ FormFieldValidator<String> validatePhone({
 }) =>
     (final String? value) {
       if (value!.isEmpty) return requiredMessage;
-      if (!isPhoneNumber(value)) return notMobileMessage;
+      if (!isPhoneNumber(value.englishNumber())) return notMobileMessage;
       return null;
     };
 
@@ -125,7 +125,7 @@ FormFieldValidator<String> validateNumber({
 }) =>
     (final String? value) {
       if (value!.isEmpty) return requiredMessage;
-      if (!GetUtils.isNumericOnly(value)) return notMobileMessage;
+      if (!GetUtils.isNumericOnly(value.englishNumber())) return notMobileMessage;
       return null;
     };
 
