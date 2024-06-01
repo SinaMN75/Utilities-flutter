@@ -27,7 +27,6 @@ part 'extensions/string_extension.dart';
 part 'extensions/text_extension.dart';
 part 'extensions/widget_extension.dart';
 part 'file.dart';
-part 'firebase.dart';
 part 'fonts.dart';
 part 'get.dart';
 part 'http_interceptor.dart';

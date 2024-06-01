@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:screen_protector/screen_protector.dart';
 import 'package:utilities/utilities.dart';
@@ -9,10 +8,6 @@ export 'dart:convert';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:chewie/chewie.dart';
 export 'package:file_picker/file_picker.dart';
-export 'package:firebase_analytics/firebase_analytics.dart';
-export 'package:firebase_core/firebase_core.dart';
-export 'package:firebase_crashlytics/firebase_crashlytics.dart';
-export 'package:firebase_messaging/firebase_messaging.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_contacts/contact.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -47,7 +42,6 @@ export 'data/data.dart';
 export 'utils/utils.dart';
 
 Future<void> initUtilities({
-  final FirebaseOptions? firebaseOptions,
   final bool safeDevice = false,
   final bool protectDataLeaking = false,
   final bool preventScreenShot = false,
@@ -63,16 +57,6 @@ Future<void> initUtilities({
   try {
     await GetStorage.init();
   } catch (e) {}
-  if (firebaseOptions != null) {
-    try {
-      await Firebase.initializeApp(options: firebaseOptions);
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-      PlatformDispatcher.instance.onError = (final Object error, final StackTrace stack) {
-        FirebaseCrashlytics.instance.recordError(error, stack);
-        return true;
-      };
-    } catch (e) {}
-  }
   try {
     if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
     if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
