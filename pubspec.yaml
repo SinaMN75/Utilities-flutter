@@ -31,8 +31,6 @@ dependencies:
   file_picker: ^8.0.0+1
   flutter_easyloading: ^3.0.5
   flutter_local_notifications: ^17.0.1
-  mobile_scanner: ^5.1.1
-  just_audio: ^0.9.36
   flutter_typeahead: ^4.8.0
   cached_network_image: ^3.3.1
   persian_tools: ^1.0.3
