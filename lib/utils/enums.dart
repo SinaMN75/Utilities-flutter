@@ -422,7 +422,11 @@ enum TagContent {
   smallDetail1(110, "اطلاعات ۱"),
   smallDetail2(111, "اطلاعات ۲"),
   news(112, "اخبار"),
-  premium(113, "پریمیوم");
+  premium(113, "پریمیوم"),
+  premium1Month(114, "1 Month"),
+  premium3Month(115, "3 Months"),
+  premium6Month(116, "6 Months"),
+  premium12Month(117, "12 Months");
 
   const TagContent(this.number, this.title);
 
