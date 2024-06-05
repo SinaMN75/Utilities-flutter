@@ -79,6 +79,7 @@ class ContentJsonDetail {
   final String? address2;
   final String? address3;
   final int? days;
+  List<KeyValueViewModel>? keyValues;
   final int? price;
 
   ContentJsonDetail({
@@ -96,6 +97,7 @@ class ContentJsonDetail {
     this.email2,
     this.address1,
     this.address2,
+    this.keyValues,
     this.address3,
     this.days,
     this.price,
@@ -106,7 +108,7 @@ class ContentJsonDetail {
   String toJson() => json.encode(toMap());
 
   factory ContentJsonDetail.fromMap(Map<String, dynamic> json) => ContentJsonDetail(
-        instagram: json["instagram"],
+    instagram: json["instagram"],
         telegram: json["telegram"],
         whatsApp: json["whatsApp"],
         linkedIn: json["linkedIn"],
@@ -114,6 +116,7 @@ class ContentJsonDetail {
         soundCloud: json["soundCloud"],
         pinterest: json["pinterest"],
         website: json["website"],
+        keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
         phoneNumber1: json["phoneNumber1"],
         phoneNumber2: json["phoneNumber2"],
         email1: json["email1"],
@@ -169,8 +172,10 @@ class ContentCreateUpdateDto {
   final List<int>? tags;
   final int? days;
   final int? price;
+  List<KeyValueViewModel>? keyValues;
 
   ContentCreateUpdateDto({
+    this.keyValues,
     this.id,
     this.title,
     this.subTitle,
@@ -200,12 +205,13 @@ class ContentCreateUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory ContentCreateUpdateDto.fromMap(Map<String, dynamic> json) => ContentCreateUpdateDto(
-        id: json["id"],
+    id: json["id"],
         title: json["title"],
         subTitle: json["subTitle"],
         description: json["description"],
         instagram: json["instagram"],
         telegram: json["telegram"],
+        keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
         whatsApp: json["whatsApp"],
         linkedIn: json["linkedIn"],
         dribble: json["dribble"],
@@ -224,8 +230,7 @@ class ContentCreateUpdateDto {
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "days": days,
         "price": price,
         "id": id,
@@ -247,6 +252,7 @@ class ContentCreateUpdateDto {
         "address1": address1,
         "address2": address2,
         "address3": address3,
+        "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
       };
 }
