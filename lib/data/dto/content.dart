@@ -78,6 +78,8 @@ class ContentJsonDetail {
   final String? address1;
   final String? address2;
   final String? address3;
+  final int? days;
+  final int? price;
 
   ContentJsonDetail({
     this.instagram,
@@ -95,6 +97,8 @@ class ContentJsonDetail {
     this.address1,
     this.address2,
     this.address3,
+    this.days,
+    this.price,
   });
 
   factory ContentJsonDetail.fromJson(String str) => ContentJsonDetail.fromMap(json.decode(str));
@@ -117,6 +121,8 @@ class ContentJsonDetail {
         address1: json["address1"],
         address2: json["address2"],
         address3: json["address3"],
+        price: json["price"],
+        days: json["days"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -135,6 +141,8 @@ class ContentJsonDetail {
         "address1": address1,
         "address2": address2,
         "address3": address3,
+        "days": days,
+        "price": price,
       };
 }
 
@@ -159,6 +167,8 @@ class ContentCreateUpdateDto {
   final String? address2;
   final String? address3;
   final List<int>? tags;
+  final int? days;
+  final int? price;
 
   ContentCreateUpdateDto({
     this.id,
@@ -181,6 +191,8 @@ class ContentCreateUpdateDto {
     this.address2,
     this.address3,
     this.tags,
+    this.days,
+    this.price,
   });
 
   factory ContentCreateUpdateDto.fromJson(String str) => ContentCreateUpdateDto.fromMap(json.decode(str));
@@ -207,10 +219,15 @@ class ContentCreateUpdateDto {
         address1: json["address1"],
         address2: json["address2"],
         address3: json["address3"],
+        price: json["price"],
+        days: json["days"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() =>
+      {
+        "days": days,
+        "price": price,
         "id": id,
         "title": title,
         "subTitle": subTitle,
