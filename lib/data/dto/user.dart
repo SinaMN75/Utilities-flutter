@@ -190,6 +190,7 @@ class UserJsonDetail {
     this.privacyType,
     this.legalAuthenticationType,
     this.nationalityType,
+    this.userSubscriptions,
   });
 
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
@@ -216,6 +217,7 @@ class UserJsonDetail {
         privacyType: json["privacyType"],
         legalAuthenticationType: json["legalAuthenticationType"],
         nationalityType: json["nationalityType"],
+        userSubscriptions: json["userSubscriptions"] == null ? [] : List<UserSubscriptions>.from(json["userSubscriptions"]!.map((x) => UserSubscriptions.fromMap(x))),
       );
   final String? instagram;
   final String? address;
@@ -238,6 +240,7 @@ class UserJsonDetail {
   final int? privacyType;
   final int? legalAuthenticationType;
   final int? nationalityType;
+  final List<UserSubscriptions>? userSubscriptions;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -263,6 +266,58 @@ class UserJsonDetail {
         "privacyType": privacyType,
         "legalAuthenticationType": legalAuthenticationType,
         "nationalityType": nationalityType,
+      };
+}
+
+class UserSubscriptions {
+  final String? contentId;
+  final String? title;
+  final String? subTitle;
+  final String? description;
+  final int? days;
+  final List<KeyValueViewModel>? keyValues;
+  final int? price;
+  final String? transactionRefId;
+  final String? expiresIn;
+
+  UserSubscriptions({
+    this.contentId,
+    this.title,
+    this.subTitle,
+    this.description,
+    this.days,
+    this.keyValues,
+    this.price,
+    this.transactionRefId,
+    this.expiresIn,
+  });
+
+  factory UserSubscriptions.fromJson(String str) => UserSubscriptions.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UserSubscriptions.fromMap(Map<String, dynamic> json) => UserSubscriptions(
+        contentId: json["contentId"],
+        title: json["title"],
+        subTitle: json["subTitle"],
+        description: json["description"],
+        days: json["days"],
+        keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map((x) => KeyValueViewModel.fromMap(x))),
+        price: json["price"],
+        transactionRefId: json["transactionRefId"],
+        expiresIn: json["expiresIn"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "contentId": contentId,
+        "title": title,
+        "subTitle": subTitle,
+        "description": description,
+        "days": days,
+        "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((x) => x.toMap())),
+        "price": price,
+        "transactionRefId": transactionRefId,
+        "expiresIn": expiresIn,
       };
 }
 
@@ -847,8 +902,7 @@ class UserCreateUpdateDto {
         addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "email": email,
         "firstName": firstName,

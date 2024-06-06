@@ -222,15 +222,17 @@ class UserDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
-  void getTokenForTest({
-    required final String mobile,
-    required final Function(GenericResponse<UserReadDto> response) onResponse,
+  void subscribe({
+    required final String contentId,
+    required final String userId,
+    required final String transactionRefId,
+    required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
-        url: "$baseUrl/user/GetTokenForTest/$mobile",
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        url: "$baseUrl/user/Subscribe?userId=$userId&contentId=$contentId&transactionRefId=$transactionRefId",
+        action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 }
