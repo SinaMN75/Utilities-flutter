@@ -7,6 +7,7 @@ class PayNgCreateDto {
   final String? currency;
   final String? redirectUrl;
   final int? amount;
+  final bool? skipConfirmationPage;
 
   PayNgCreateDto({
     this.action,
@@ -15,6 +16,7 @@ class PayNgCreateDto {
     this.currency,
     this.redirectUrl,
     this.amount,
+    this.skipConfirmationPage,
   });
 
   factory PayNgCreateDto.fromJson(String str) => PayNgCreateDto.fromMap(json.decode(str));
@@ -22,21 +24,24 @@ class PayNgCreateDto {
   String toJson() => json.encode(toMap());
 
   factory PayNgCreateDto.fromMap(dynamic json) => PayNgCreateDto(
-        action: json["action"],
+    action: json["action"],
         emailAddress: json["emailAddress"],
         outlet: json["outlet"],
         currency: json["currency"],
         redirectUrl: json["redirectUrl"],
         amount: json["amount"],
+        skipConfirmationPage: json["skipConfirmationPage"],
       );
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "action": action,
         "emailAddress": emailAddress,
         "outlet": outlet,
         "currency": currency,
         "redirectUrl": redirectUrl,
         "amount": amount,
+        "skipConfirmationPage": skipConfirmationPage,
       };
 }
 
@@ -84,7 +89,7 @@ class PayNgReadDto {
   String toJson() => json.encode(toMap());
 
   factory PayNgReadDto.fromMap(dynamic json) => PayNgReadDto(
-        id: json["id"],
+    id: json["_id"],
         links: json["_links"] == null ? null : NgResultLinks.fromMap(json["_links"]),
         type: json["type"],
         merchantDefinedData: json["merchantDefinedData"] == null ? null : NgFormattedOrderSummary.fromMap(json["merchantDefinedData"]),
