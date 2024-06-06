@@ -349,6 +349,7 @@ enum TagUser {
   female(201, ""),
   unknown(202, ""),
   legal(203, ""),
+  guest(204, ""),
   adminCategoryRead(300, "خواندن دسته‌بندی‌ها"),
   adminCategoryUpdate(301, "تغییر دسته‌بندی‌ها"),
   adminProductRead(302, "خواندن محصولات"),

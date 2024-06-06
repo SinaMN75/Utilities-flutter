@@ -24,7 +24,7 @@ class PayNgCreateDto {
   String toJson() => json.encode(toMap());
 
   factory PayNgCreateDto.fromMap(dynamic json) => PayNgCreateDto(
-    action: json["action"],
+        action: json["action"],
         emailAddress: json["emailAddress"],
         outlet: json["outlet"],
         currency: json["currency"],
@@ -33,8 +33,7 @@ class PayNgCreateDto {
         skipConfirmationPage: json["skipConfirmationPage"],
       );
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "action": action,
         "emailAddress": emailAddress,
         "outlet": outlet,
