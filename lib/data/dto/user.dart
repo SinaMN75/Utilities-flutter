@@ -279,6 +279,7 @@ class UserSubscriptions {
   final int? price;
   final String? transactionRefId;
   final String? expiresIn;
+  final List<int>? tags;
 
   UserSubscriptions({
     this.contentId,
@@ -290,6 +291,7 @@ class UserSubscriptions {
     this.price,
     this.transactionRefId,
     this.expiresIn,
+    this.tags,
   });
 
   factory UserSubscriptions.fromJson(String str) => UserSubscriptions.fromMap(json.decode(str));
@@ -297,7 +299,7 @@ class UserSubscriptions {
   String toJson() => json.encode(toMap());
 
   factory UserSubscriptions.fromMap(Map<String, dynamic> json) => UserSubscriptions(
-        contentId: json["contentId"],
+    contentId: json["contentId"],
         title: json["title"],
         subTitle: json["subTitle"],
         description: json["description"],
@@ -306,6 +308,7 @@ class UserSubscriptions {
         price: json["price"],
         transactionRefId: json["transactionRefId"],
         expiresIn: json["expiresIn"],
+        tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
       );
 
   Map<String, dynamic> toMap() => {
