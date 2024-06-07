@@ -452,9 +452,8 @@ class ProductCreateUpdateDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
-        "seats": seats == null ? [] : List<dynamic>.from(seats!.map((x) => x.toMap())),
+  dynamic toMap() => {
+        "seats": seats == null ? null : List<dynamic>.from(seats!.map((x) => x.toMap())),
         "id": id,
         "title": title,
         "subtitle": subtitle,
@@ -485,7 +484,7 @@ class ProductCreateUpdateDto {
         "minOrder": minOrder,
         "maxOrder": maxOrder,
         "maxPrice": maxPrice,
-        "policies": policies == null ? [] : List<dynamic>.from(policies!.map((x) => x)),
+        "policies": policies == null ? null : List<dynamic>.from(policies!.map((x) => x)),
         "clubName": clubName,
         "maximumMembers": maximumMembers,
         "minPrice": minPrice,
@@ -509,12 +508,12 @@ class ProductCreateUpdateDto {
         "shippingCost": shippingCost,
         "boosted": boosted,
         "parentId": parentId,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-        "keyValues": keyValues == null ? [] : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
-        "children": children == null ? [] : List<dynamic>.from(children!.map((final ProductCreateUpdateDto x) => x.toMap())),
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.where((final String element) => element != '').map((final String x) => x)),
-        "teams": teams == null ? [] : List<dynamic>.from(teams!.map((final String x) => x)),
-        "reservationTimes": reservationTimes == null ? [] : List<dynamic>.from(reservationTimes!.map((x) => x.toMap())),
+        "tags": tags == null ? null : List<dynamic>.from(tags!.map((final int x) => x)),
+        "keyValues": keyValues == null ? null : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
+        "children": children == null ? null : List<dynamic>.from(children!.map((final ProductCreateUpdateDto x) => x.toMap())),
+        "categories": categories == null ? null : List<dynamic>.from(categories!.where((final String element) => element != '').map((final String x) => x)),
+        "teams": teams == null ? null : List<dynamic>.from(teams!.map((final String x) => x)),
+        "reservationTimes": reservationTimes == null ? null : List<dynamic>.from(reservationTimes!.map((x) => x.toMap())),
       };
 }
 
