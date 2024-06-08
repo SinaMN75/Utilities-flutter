@@ -563,6 +563,8 @@ class ProductFilterDto {
     this.shuffle2,
     this.showExpired,
     this.boosted,
+    this.startDate,
+    this.endDate,
   });
 
   factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
@@ -610,6 +612,8 @@ class ProductFilterDto {
         query: json["query"],
         shuffle1: json["shuffle1"],
         shuffle2: json["shuffle2"],
+        startDate: json["startDate"],
+        endDate: json["endDate"],
         showExpired: json["showExpired"],
         boosted: json["boosted"],
       );
@@ -620,6 +624,8 @@ class ProductFilterDto {
   String? description;
   String? region;
   String? state;
+  String? startDate;
+  String? endDate;
   int? startPriceRange;
   int? endPriceRange;
   bool? isFollowing;
@@ -666,6 +672,8 @@ class ProductFilterDto {
         "title": title,
         "subtitle": subtitle,
         "description": description,
+        "startDate": startDate,
+        "endDate": endDate,
         "stateRegion": stateRegion,
         "state": state,
         "startPriceRange": startPriceRange,
