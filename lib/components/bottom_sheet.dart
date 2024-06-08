@@ -40,13 +40,13 @@ void scrollableBottomSheet({
           initialChildSize: minChildSize,
           maxChildSize: maxChildSize,
           minChildSize: minChildSize,
-          builder: (final BuildContext context, final ScrollController controller) =>
-              child ??
-              ListView(
-                padding: EdgeInsets.zero,
-                controller: controller,
-                children: children!,
-              ),
+          builder: (final BuildContext _, final ScrollController c) => SingleChildScrollView(
+            controller: c,
+            child: child ??
+                Column(
+                  children: children!,
+                ),
+          ),
         ),
       ),
       backgroundColor: context.theme.colorScheme.surface,

@@ -524,6 +524,7 @@ class ProductFilterDto {
     this.region,
     this.description,
     this.state,
+    this.stateRegion,
     this.startPriceRange,
     this.endPriceRange,
     this.isFollowing,
@@ -569,6 +570,7 @@ class ProductFilterDto {
   factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
     title: json["title"],
         subtitle: json["subtitle"],
+        stateRegion: json["stateRegion"],
         region: json["region"],
         description: json["description"],
         state: json["state"],
@@ -613,6 +615,7 @@ class ProductFilterDto {
       );
 
   String? title;
+  String? stateRegion;
   String? subtitle;
   String? description;
   String? region;
@@ -658,10 +661,12 @@ class ProductFilterDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() =>
+      {
         "title": title,
         "subtitle": subtitle,
         "description": description,
+        "stateRegion": stateRegion,
         "state": state,
         "startPriceRange": startPriceRange,
         "endPriceRange": endPriceRange,
