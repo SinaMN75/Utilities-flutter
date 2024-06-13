@@ -273,7 +273,7 @@ class _RatingBarState extends State<RatingBar> {
 
   void _onDragUpdate(DragUpdateDetails dragDetails) {
     if (!widget.tapOnlyMode) {
-      final box = context.findRenderObject() as RenderBox?;
+      final box = context().findRenderObject() as RenderBox?;
       if (box == null) return;
 
       final _pos = box.globalToLocal(dragDetails.globalPosition);
@@ -496,7 +496,7 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
       widget.itemCount,
       (index) {
         if (widget.textDirection != null) {
-          if (widget.textDirection == TextDirection.rtl && Directionality.of(context) != TextDirection.rtl) {
+          if (widget.textDirection == TextDirection.rtl && Directionality.of(context()) != TextDirection.rtl) {
             return Transform(
               transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
               alignment: Alignment.center,
@@ -522,13 +522,13 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
             FittedBox(
               fit: BoxFit.contain,
               child: index + 1 < _ratingNumber
-                  ? widget.itemBuilder(context, index)
+                  ? widget.itemBuilder(context(), index)
                   : ColorFiltered(
                       colorFilter: ColorFilter.mode(
-                        widget.unratedColor ?? Theme.of(context).disabledColor,
+                        widget.unratedColor ?? Theme.of(context()).disabledColor,
                         BlendMode.srcIn,
                       ),
-                      child: widget.itemBuilder(context, index),
+                      child: widget.itemBuilder(context(), index),
                     ),
             ),
             if (index + 1 == _ratingNumber)
@@ -540,7 +540,7 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
                       ratingFraction: _ratingFraction,
                       rtlMode: _isRTL,
                     ),
-                    child: widget.itemBuilder(context, index),
+                    child: widget.itemBuilder(context(), index),
                   ),
                 )
               else
@@ -550,7 +550,7 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
                     clipper: _IndicatorClipper(
                       ratingFraction: _ratingFraction,
                     ),
-                    child: widget.itemBuilder(context, index),
+                    child: widget.itemBuilder(context(), index),
                   ),
                 ),
           ],

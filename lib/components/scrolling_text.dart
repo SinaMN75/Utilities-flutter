@@ -72,8 +72,8 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    screenWidth = MediaQuery.of(context).size.width;
-    screenHeight = MediaQuery.of(context).size.height;
+    screenWidth = MediaQuery.of(context()).size.width;
+    screenHeight = MediaQuery.of(context()).size.height;
   }
 
   Widget getBothEndsChild() {

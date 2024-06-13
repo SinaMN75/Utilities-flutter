@@ -9,7 +9,7 @@ Widget linkPreviewer({required final String link}) => AnyLinkPreview(
         link,
         style: TextStyle(
           fontSize: 12,
-          color: context.isDarkMode ? Colors.white : Colors.black,
+          color: context().isDarkMode ? Colors.white : Colors.black,
         ),
       ).onTap(() => launchURL(link)),
       bodyStyle: const TextStyle(

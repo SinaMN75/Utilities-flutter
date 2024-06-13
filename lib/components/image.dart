@@ -16,7 +16,7 @@ Widget image(
   final VoidCallback? onTap,
 }) {
   if (fileData != null) {
-    if (isWeb)
+    if (isWeb())
       return imageMemory(
         fileData.bytes!,
         width: size ?? width,
@@ -105,7 +105,7 @@ Widget iconPrimary(
 }) =>
     image(
       source,
-      color: color ?? colorScheme.primary,
+      color: color ?? colorScheme().primary,
       width: width,
       height: height,
       fit: fit,
@@ -141,7 +141,6 @@ Widget imageAsset(
                 asset,
                 width: width,
                 height: height,
-                color: color,
                 fit: fit,
                 clipBehavior: clipBehavior,
               )
@@ -186,7 +185,6 @@ Widget imageNetwork(
                     url,
                     width: width,
                     height: height,
-                    color: color,
                     fit: fit,
                     placeholderBuilder: placeholder == null
                         ? null

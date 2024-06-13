@@ -1,32 +1,52 @@
 part of 'utils.dart';
 
-bool isAndroid = GetPlatform.isAndroid && !kIsWeb;
-bool isIos = GetPlatform.isIOS && !kIsWeb;
-bool isMacOs = GetPlatform.isMacOS && !kIsWeb;
-bool isWindows = GetPlatform.isWindows && !kIsWeb;
-bool isLinux = GetPlatform.isLinux && !kIsWeb;
-bool isFuchsia = GetPlatform.isFuchsia && !kIsWeb;
-bool isMobile = GetPlatform.isMobile && !kIsWeb;
-bool isWeb = GetPlatform.isWeb && kIsWeb;
-bool isDesktop = GetPlatform.isDesktop && !kIsWeb;
-bool isLandScape = context.isLandscape;
-bool isPortrait = context.isPortrait;
-bool isTablet = context.isTablet && !kIsWeb;
-bool isPhone = context.isPhone && !kIsWeb;
-BuildContext context = Get.context!;
-double screenHeight = context.height;
-double screenWidth = context.width;
-ThemeData theme = context.theme;
-TextTheme textTheme = context.textTheme;
-ColorScheme colorScheme = context.theme.colorScheme;
-Locale? currentLocale = Get.locale;
-bool isDebugMode = kDebugMode;
+bool isAndroid() => GetPlatform.isAndroid && !kIsWeb;
 
-bool isMobileSize() => context.width < 850;
+bool isIos() => GetPlatform.isIOS && !kIsWeb;
 
-bool isTabletSize() => context.width < 1100 && context.width >= 850;
+bool isMacOs() => GetPlatform.isMacOS && !kIsWeb;
 
-bool isDesktopSize() => context.width >= 1100;
+bool isWindows() => GetPlatform.isWindows && !kIsWeb;
+
+bool isLinux() => GetPlatform.isLinux && !kIsWeb;
+
+bool isFuchsia() => GetPlatform.isFuchsia && !kIsWeb;
+
+bool isMobile() => GetPlatform.isMobile && !kIsWeb;
+
+bool isWeb() => GetPlatform.isWeb && kIsWeb;
+
+bool isDesktop() => GetPlatform.isDesktop && !kIsWeb;
+
+bool isLandScape() => context().isLandscape;
+
+bool isPortrait() => context().isPortrait;
+
+bool isTablet() => context().isTablet && !kIsWeb;
+
+bool isPhone() => context().isPhone && !kIsWeb;
+
+BuildContext context() => Get.context!;
+
+double screenHeight() => context().height;
+
+double screenWidth() => context().width;
+
+ThemeData theme() => context().theme;
+
+TextTheme textTheme() => context().textTheme;
+
+ColorScheme colorScheme() => context().theme.colorScheme;
+
+Locale? currentLocale() => Get.locale;
+
+bool isDebugMode() => kDebugMode;
+
+bool isMobileSize() => context().width < 850;
+
+bool isTabletSize() => context().width < 1100 && context().width >= 850;
+
+bool isDesktopSize() => context().width >= 1100;
 
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
 
@@ -138,7 +158,7 @@ Future<void> dialogAlert(
       icon: defaultCloseButton
           ? IconButton(
               onPressed: back,
-              icon: Icon(Icons.close, color: context.theme.colorScheme.error),
+              icon: Icon(Icons.close, color: context().theme.colorScheme.error),
             ).alignAtCenterRight()
           : icon,
       iconColor: iconColor,

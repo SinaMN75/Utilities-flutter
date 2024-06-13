@@ -27,7 +27,10 @@ class MediaDataSource {
     final FormData form = FormData(
       <String, dynamic>{
         'Id': id,
-        'File': MultipartFile(kIsWeb ? fileData.bytes : File(fileData.path!), filename: isWeb ? ":).${fileData.extension}" : fileData.path!.split('/').last),
+        'File': MultipartFile(
+          kIsWeb ? fileData.bytes : File(fileData.path!),
+          filename: isWeb() ? ":).${fileData.extension}" : fileData.path!.split('/').last,
+        ),
         'CategoryId': categoryId,
         'ContentId': contentId,
         'GroupChatId': groupChatId,

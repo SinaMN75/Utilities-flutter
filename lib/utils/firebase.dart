@@ -8,7 +8,7 @@ class UtilitiesFirebase {
     required final Function(RemoteMessage? message) onMessage,
     required final Function(RemoteMessage? message) onBackgroundMessage,
   }) async {
-    if (isAndroid) {
+    if (isAndroid()) {
       FirebaseMessaging.onMessage.listen(onMessage);
       FirebaseMessaging.onBackgroundMessage(onBackgroundMessage as BackgroundMessageHandler);
     } else
@@ -16,7 +16,7 @@ class UtilitiesFirebase {
   }
 
   static Future<String?> getFcmToken() async {
-    if (isAndroid) {
+    if (isAndroid()) {
       await _firebaseMessaging.requestPermission(announcement: true, carPlay: true, criticalAlert: true, provisional: true);
       final String? fcmToken = await _firebaseMessaging.getToken();
       developer.log("FCM Token: $fcmToken");

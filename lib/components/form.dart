@@ -39,8 +39,8 @@ Widget textField({
       children: <Widget>[
         if (text != null)
           iconTextHorizontal(
-            leading: Text(text, style: textTheme.titleSmall),
-            trailing: required ? const Text("*").bodyMedium(color: context.theme.colorScheme.error) : const SizedBox(),
+            leading: Text(text, style: textTheme().titleSmall),
+            trailing: required ? const Text("*").bodyMedium(color: theme().colorScheme.error) : const SizedBox(),
           ).paddingSymmetric(vertical: 8),
         TextFormField(
           autofillHints: autoFillHints,
@@ -111,7 +111,7 @@ Widget textFieldPersianDatePicker({
     onTap: () async {
       jalali(
         await showPersianDatePicker(
-          context: context,
+          context: context(),
           initialDate: jalali.value,
           firstDate: startDate ?? Jalali(1320),
           lastDate: endDate ?? Jalali(1405),
@@ -146,7 +146,7 @@ Widget button({
             onPressed: onTap,
             child: SizedBox(
               height: height ?? 20,
-              width: width ?? context.width,
+              width: width ?? context().width,
               child: Center(
                 child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
               ),
@@ -156,9 +156,9 @@ Widget button({
           return const CircularProgressIndicator().alignAtCenter();
         else if (buttonState.value == PageState.paging)
           return SlideCountdown(
-            separatorStyle: TextStyle(color: context.theme.colorScheme.onSurface),
+            separatorStyle: TextStyle(color: context().theme.colorScheme.onSurface),
             decoration: const BoxDecoration(),
-            style: context.theme.textTheme.bodyMedium!,
+            style: context().theme.textTheme.bodyMedium!,
             duration: Duration(seconds: countDownSeconds),
             onDone: () => buttonState(PageState.initial),
           ).alignAtCenter();
@@ -171,7 +171,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? context.width,
+        width: width ?? context().width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -182,7 +182,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? context.width,
+        width: width ?? context().width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -212,7 +212,7 @@ Widget textFieldTypeAhead<T>({
     column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (text != null) Text(text, style: textTheme.titleSmall).paddingSymmetric(vertical: 8),
+        if (text != null) Text(text, style: textTheme().titleSmall).paddingSymmetric(vertical: 8),
         TypeAheadField<T>(
           textFieldConfiguration: TextFieldConfiguration(
             onTap: () {
@@ -263,4 +263,4 @@ Widget radioListTile<T>({
       groupValue: groupValue,
       value: value,
       onChanged: onChanged,
-    ).container(radius: 20, borderColor: context.theme.colorScheme.onSurface.withOpacity(0.2)).paddingSymmetric(horizontal: 20);
+    ).container(radius: 20, borderColor: context().theme.colorScheme.onSurface.withOpacity(0.2)).paddingSymmetric(horizontal: 20);

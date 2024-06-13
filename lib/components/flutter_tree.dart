@@ -159,7 +159,7 @@ class _FlutterTreeProState extends State<FlutterTreePro> {
         GestureDetector(
           onTap: () => onOpenNode(sourceTreeMap),
           child: Container(
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context()).size.width,
             padding: EdgeInsets.only(left: 20, top: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,7 +213,7 @@ class _FlutterTreeProState extends State<FlutterTreePro> {
         return GestureDetector(
           onTap: () => onOpenNode(e),
           child: Container(
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context()).size.width,
             padding: EdgeInsets.only(left: 20, top: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

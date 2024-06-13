@@ -138,7 +138,7 @@ void showYesCancelDialog({
   final String? cancelButtonTitle = 'انصراف',
 }) =>
     showDialog(
-      context: context,
+      context: context(),
       builder: (final BuildContext context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         title: Text(title).bodyLarge(),
@@ -147,7 +147,7 @@ void showYesCancelDialog({
         actions: <Widget>[
           SizedBox(
             child: button(
-              width: screenWidth / 4,
+              width: screenWidth() / 4,
               backgroundColor: context.theme.primaryColorDark,
               onTap: onCancelButtonTap ?? back,
               title: cancelButtonTitle,
@@ -156,7 +156,7 @@ void showYesCancelDialog({
           ),
           SizedBox(
             child: button(
-              width: screenWidth / 4,
+              width: screenWidth() / 4,
               onTap: onYesButtonTap,
               title: yesButtonTitle,
               textStyle: context.textTheme.bodyMedium,
