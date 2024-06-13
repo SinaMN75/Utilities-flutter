@@ -26,7 +26,7 @@ bool isTablet() => context().isTablet && !kIsWeb;
 
 bool isPhone() => context().isPhone && !kIsWeb;
 
-BuildContext context() => Get.context!;
+BuildContext context() => Get.key.currentContext!;
 
 double screenHeight() => context().height;
 
