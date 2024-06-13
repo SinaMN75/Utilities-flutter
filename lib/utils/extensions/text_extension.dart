@@ -63,7 +63,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.displayLarge!.copyWith(
+        style: getContext().textTheme.displayLarge!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -132,7 +132,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.displayMedium!.copyWith(
+        style: getContext().textTheme.displayMedium!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -201,7 +201,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.displaySmall!.copyWith(
+        style: getContext().textTheme.displaySmall!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -270,7 +270,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.headlineLarge!.copyWith(
+        style: getContext().textTheme.headlineLarge!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -339,7 +339,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.headlineMedium!.copyWith(
+        style: getContext().textTheme.headlineMedium!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -408,7 +408,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.headlineSmall!.copyWith(
+        style: getContext().textTheme.headlineSmall!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -477,7 +477,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.titleLarge!.copyWith(
+        style: getContext().textTheme.titleLarge!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -546,7 +546,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.titleMedium!.copyWith(
+        style: getContext().textTheme.titleMedium!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -615,7 +615,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.titleSmall!.copyWith(
+        style: getContext().textTheme.titleSmall!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -684,7 +684,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.bodyLarge!.copyWith(
+        style: getContext().textTheme.bodyLarge!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -753,7 +753,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.bodyMedium!.copyWith(
+        style: getContext().textTheme.bodyMedium!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -822,7 +822,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.bodySmall!.copyWith(
+        style: getContext().textTheme.bodySmall!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -891,7 +891,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.labelLarge!.copyWith(
+        style: getContext().textTheme.labelLarge!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -960,7 +960,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.labelMedium!.copyWith(
+        style: getContext().textTheme.labelMedium!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
@@ -1029,7 +1029,7 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: context().textTheme.labelSmall!.copyWith(
+        style: getContext().textTheme.labelSmall!.copyWith(
               package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,

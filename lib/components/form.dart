@@ -111,7 +111,7 @@ Widget textFieldPersianDatePicker({
     onTap: () async {
       jalali(
         await showPersianDatePicker(
-          context: context(),
+          context: getContext(),
           initialDate: jalali.value,
           firstDate: startDate ?? Jalali(1320),
           lastDate: endDate ?? Jalali(1405),
@@ -146,7 +146,7 @@ Widget button({
             onPressed: onTap,
             child: SizedBox(
               height: height ?? 20,
-              width: width ?? context().width,
+              width: width ?? getContext().width,
               child: Center(
                 child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
               ),
@@ -156,9 +156,9 @@ Widget button({
           return const CircularProgressIndicator().alignAtCenter();
         else if (buttonState.value == PageState.paging)
           return SlideCountdown(
-            separatorStyle: TextStyle(color: context().theme.colorScheme.onSurface),
+            separatorStyle: TextStyle(color: getContext().theme.colorScheme.onSurface),
             decoration: const BoxDecoration(),
-            style: context().theme.textTheme.bodyMedium!,
+            style: getContext().theme.textTheme.bodyMedium!,
             duration: Duration(seconds: countDownSeconds),
             onDone: () => buttonState(PageState.initial),
           ).alignAtCenter();
@@ -171,7 +171,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? context().width,
+        width: width ?? getContext().width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -182,7 +182,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? context().width,
+        width: width ?? getContext().width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -263,4 +263,4 @@ Widget radioListTile<T>({
       groupValue: groupValue,
       value: value,
       onChanged: onChanged,
-    ).container(radius: 20, borderColor: context().theme.colorScheme.onSurface.withOpacity(0.2)).paddingSymmetric(horizontal: 20);
+    ).container(radius: 20, borderColor: getContext().theme.colorScheme.onSurface.withOpacity(0.2)).paddingSymmetric(horizontal: 20);

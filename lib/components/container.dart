@@ -132,7 +132,7 @@ Widget column({
               physics: const BouncingScrollPhysics(),
               controller: scrollController,
               child: Padding(
-                padding: scrollPadding ?? EdgeInsets.only(bottom: MediaQuery.of(context()).viewInsets.bottom),
+                padding: scrollPadding ?? EdgeInsets.only(bottom: MediaQuery.of(getContext()).viewInsets.bottom),
                 child: Column(
                   mainAxisAlignment: mainAxisAlignment,
                   mainAxisSize: mainAxisSize,
@@ -228,8 +228,8 @@ Widget defaultTabBar({
         children: <Widget>[
           tabBar,
           SizedBox(
-            width: width ?? context().width,
-            height: height ?? context().height,
+            width: width ?? getContext().width,
+            height: height ?? getContext().height,
             child: TabBarView(
               physics: physics,
               children: children,

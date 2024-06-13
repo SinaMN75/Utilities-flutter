@@ -9,14 +9,14 @@ void bottomSheet({
       Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: context().theme.colorScheme.surface,
+          color: getContext().theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(20),
         ),
-        constraints: BoxConstraints(maxHeight: context().height - 100),
+        constraints: BoxConstraints(maxHeight: getContext().height - 100),
         padding: padding,
         child: SingleChildScrollView(child: child),
       ),
-      backgroundColor: context().theme.colorScheme.surface,
+      backgroundColor: getContext().theme.colorScheme.surface,
       isDismissible: isDismissible,
       isScrollControlled: true,
     );
@@ -32,24 +32,26 @@ void scrollableBottomSheet({
   final VoidCallback? onDismiss,
 }) =>
     showModalBottomSheet(
-      context: context(),
-      builder: (final BuildContext context) => Container(
-        padding: padding,
-        child: DraggableScrollableSheet(
-          expand: expand,
-          initialChildSize: minChildSize,
-          maxChildSize: maxChildSize,
-          minChildSize: minChildSize,
-          builder: (final BuildContext _, final ScrollController c) => SingleChildScrollView(
-            controller: c,
-            child: child ??
-                Column(
-                  children: children!,
-                ),
+      context: getContext(),
+      builder: (final BuildContext context) =>
+          Container(
+            padding: padding,
+            child: DraggableScrollableSheet(
+              expand: expand,
+              initialChildSize: minChildSize,
+              maxChildSize: maxChildSize,
+              minChildSize: minChildSize,
+              builder: (final BuildContext _, final ScrollController c) =>
+                  SingleChildScrollView(
+                    controller: c,
+                    child: child ??
+                        Column(
+                          children: children!,
+                        ),
+                  ),
+            ),
           ),
-        ),
-      ),
-      backgroundColor: context().theme.colorScheme.surface,
+      backgroundColor: getContext().theme.colorScheme.surface,
       isDismissible: isDismissible,
       isScrollControlled: true,
     ).whenComplete(onDismiss ?? () {});

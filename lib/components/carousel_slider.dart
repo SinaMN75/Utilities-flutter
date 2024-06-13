@@ -17,7 +17,7 @@ Widget mediaReadDtoImageSlider({
                   (final MediaReadDto e) => image(
                     e.url,
                     fit: BoxFit.cover,
-                    width: context().width,
+                    width: getContext().width,
                     borderRadius: 8,
                   ).paddingSymmetric(horizontal: 8).onTap(() => onTap == null ? () {} : onTap(e)),
                 )
@@ -125,7 +125,7 @@ class CarouselSliderState extends State<CarouselSlider> with TickerProviderState
 
   Timer? getTimer() => widget.options.autoPlay
       ? Timer.periodic(widget.options.autoPlayInterval, (_) {
-    final ModalRoute<Object?>? route = ModalRoute.of(context());
+    final ModalRoute<Object?>? route = ModalRoute.of(getContext());
           if (route?.isCurrent == false) {
             return;
           }
