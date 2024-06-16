@@ -113,6 +113,22 @@ enum TagCategory {
   final int number;
 
 }
+enum TagSeenStatus {
+  unSeen(100, "UnSeen", ""),
+  seen(101, "Seen", ""),
+  seenDetail(102, "SeenDetail", ""),
+  ignored(103, "Ignored", ""),
+  deleted(104, "Deleted", "");
+
+  const TagSeenStatus(this.number, this.title, this.titleTr1);
+
+  @override
+  String toString() => name;
+  final String title;
+  final String titleTr1;
+  final int number;
+
+}
 enum TagMedia {
   all(100),
   image(101),
