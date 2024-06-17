@@ -37,16 +37,14 @@ Widget scaffold({
         floatingActionButton: floatingActionButton,
         floatingActionButtonLocation: floatingActionButtonLocation,
         bottomNavigationBar: bottomNavigationBar,
-        body: Align(
+        body: Container(
+          width: width,
+          height: height,
+          constraints: constraints,
+          decoration: decoration,
+          padding: padding,
+          child: body,
           alignment: alignment,
-          child: Container(
-            width: width,
-            height: height,
-            constraints: constraints ?? const BoxConstraints(maxWidth: 800),
-            decoration: decoration,
-            padding: padding,
-            child: body,
-          ),
         ),
       ),
     );
