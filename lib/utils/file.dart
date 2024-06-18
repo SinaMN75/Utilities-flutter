@@ -88,11 +88,11 @@ Future<FileData?> cropImage({
     maxHeight: maxHeight,
     aspectRatio: cropAspectRatio,
     compressFormat: imageCompressFormat,
-    cropStyle: cropStyle,
-    aspectRatioPresets: aspectRatioPresets,
     uiSettings: <PlatformUiSettings>[
       androidUiSettings ??
           AndroidUiSettings(
+            aspectRatioPresets: aspectRatioPresets,
+            cropStyle: cropStyle,
             toolbarTitle: 'Crop Your Image',
             showCropGrid: true,
             hideBottomControls: false,
@@ -105,6 +105,8 @@ Future<FileData?> cropImage({
           ),
       iOSUiSettings ??
           IOSUiSettings(
+            aspectRatioPresets: aspectRatioPresets,
+            cropStyle: cropStyle,
             resetAspectRatioEnabled: false,
             minimumAspectRatio: 1,
             aspectRatioPickerButtonHidden: true,
@@ -116,11 +118,18 @@ Future<FileData?> cropImage({
       webUiSettings ??
           WebUiSettings(
             context: getContext(),
-            enableZoom: true,
-            enableResize: true,
-            enforceBoundary: true,
-            showZoomer: false,
-            presentStyle: CropperPresentStyle.page,
+            cropBoxMovable: true,
+            background: true,
+            center: true,
+            checkCrossOrigin: true,
+            checkOrientation: true,
+            cropBoxResizable: true,
+            guides: true,
+            highlight: true,
+            rotatable: true,
+            zoomable: true,
+            zoomOnTouch: true,
+            zoomOnWheel: true,
           ),
     ],
   );
