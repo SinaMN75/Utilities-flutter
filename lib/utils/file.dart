@@ -133,8 +133,12 @@ Future<FileData?> cropImage({
           ),
     ],
   );
-  final FileData fileData = FileData(path: result?.path, bytes: await result?.readAsBytes());
-  if (action != null) action(FileData(path: result?.path, bytes: await result?.readAsBytes()));
+  final FileData fileData = FileData(
+    path: result?.path,
+    bytes: await result?.readAsBytes(),
+    extension: result?.path.split(".").last,
+  );
+  if (action != null) action(fileData);
   return fileData;
 }
 
