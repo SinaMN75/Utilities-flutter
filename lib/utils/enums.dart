@@ -250,7 +250,8 @@ enum TagCategory {
   favorites(182),
   special(183),
   recommended(184),
-  sport(185);
+  sport(185),
+  enabled(201);
 
   const TagCategory(this.number);
 
