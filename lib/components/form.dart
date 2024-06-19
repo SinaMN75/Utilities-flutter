@@ -20,7 +20,6 @@ Widget textField({
   final Widget? prefix,
   final Widget? suffix,
   final Function(String? value)? onSave,
-  final EdgeInsets margin = EdgeInsets.zero,
   final TextAlign textAlign = TextAlign.start,
   final String? initialValue,
   final bool? readOnly,
@@ -33,8 +32,7 @@ Widget textField({
 }) {
   bool obscure = obscureText;
   return StatefulBuilder(
-    builder: (final BuildContext context, final StateSetter setState) => column(
-      margin: margin,
+    builder: (final BuildContext context, final StateSetter setState) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         if (text != null)
@@ -91,7 +89,6 @@ Widget textFieldPersianDatePicker({
   final int lines = 1,
   final Widget? prefix,
   final Widget? suffix,
-  final EdgeInsets margin = EdgeInsets.zero,
   final TextAlign textAlign = TextAlign.start,
   final double? textHeight,
   final TextEditingController? controller,
@@ -102,7 +99,6 @@ Widget textFieldPersianDatePicker({
   final Rx<Jalali> jalali = (initialDate ?? Jalali.now()).obs;
   return textField(
     controller: controller,
-    margin: margin,
     text: text,
     labelText: labelText,
     fontSize: fontSize,
@@ -211,7 +207,7 @@ Widget textFieldTypeAhead<T>({
   final bool hideKeyboard = false,
   final Function(String)? onChanged,
 }) =>
-    column(
+    Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         if (text != null) Text(text, style: textTheme().titleSmall).paddingSymmetric(vertical: 8),
