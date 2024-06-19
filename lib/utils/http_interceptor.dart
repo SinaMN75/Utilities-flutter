@@ -20,7 +20,10 @@ Future<void> request(
   final bool withCredentials = false,
 }) async {
   try {
-    final Map<String, String> header = <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""};
+    final Map<String, String> header = <String, String>{
+      "Authorization": getString(UtilitiesConstants.token) ?? "",
+      "X-API-KEY": "hello",
+    };
 
     if (headers != null) header.addAll(headers);
 
