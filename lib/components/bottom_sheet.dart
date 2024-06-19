@@ -5,8 +5,8 @@ void bottomSheet({
   final EdgeInsets padding = const EdgeInsets.all(20),
   final bool isDismissible = true,
 }) =>
-    Get.bottomSheet(
-      Container(
+    showModalBottomSheet(
+      builder: (final BuildContext context) => Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           color: getContext().theme.colorScheme.surface,
@@ -19,6 +19,7 @@ void bottomSheet({
       backgroundColor: getContext().theme.colorScheme.surface,
       isDismissible: isDismissible,
       isScrollControlled: true,
+      context: getContext(),
     );
 
 void scrollableBottomSheet({

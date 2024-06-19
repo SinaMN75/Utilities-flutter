@@ -1,33 +1,68 @@
 part of 'components.dart';
 
-enum BarcodeQrCodeType { qrcode, dataMatrix, code128, code128A, code128B, code128C, code39, code39Extended, code93, ean8, ean13, upca, upce }
+class UBarcode extends StatefulWidget {
+  const UBarcode(
+    this.value, {
+    super.key,
+    this.color,
+    this.backgroundColor,
+    this.showValue = false,
+  });
 
-Widget barcode(
-  final String value, {
-  final BarcodeQrCodeType type = BarcodeQrCodeType.qrcode,
-  final Color? color,
-  final Color? backgroundColor,
-  final bool showValue = false,
-}) {
+  final String value;
+  final UBarcodeQrCodeType type = UBarcodeQrCodeType.qrcode;
+  final Color? color;
+  final Color? backgroundColor;
+  final bool showValue;
+
+  @override
+  State<UBarcode> createState() => _UBarcodeState();
+}
+
+class _UBarcodeState extends State<UBarcode> {
   Symbology symbology = QRCode();
-  if (type == BarcodeQrCodeType.qrcode) symbology = QRCode();
-  if (type == BarcodeQrCodeType.dataMatrix) symbology = DataMatrix();
-  if (type == BarcodeQrCodeType.code128) symbology = Code128();
-  if (type == BarcodeQrCodeType.code128A) symbology = Code128A();
-  if (type == BarcodeQrCodeType.code128B) symbology = Code128B();
-  if (type == BarcodeQrCodeType.code128C) symbology = Code128C();
-  if (type == BarcodeQrCodeType.code39) symbology = Code39();
-  if (type == BarcodeQrCodeType.code39Extended) symbology = Code39Extended();
-  if (type == BarcodeQrCodeType.code93) symbology = Code93();
-  if (type == BarcodeQrCodeType.ean8) symbology = EAN8();
-  if (type == BarcodeQrCodeType.ean13) symbology = EAN13();
-  if (type == BarcodeQrCodeType.upca) symbology = UPCA();
-  if (type == BarcodeQrCodeType.upce) symbology = UPCE();
-  return SfBarcodeGenerator(
-    value: value,
-    symbology: symbology,
-    barColor: color,
-    backgroundColor: backgroundColor,
-    showValue: showValue,
-  );
+
+  @override
+  void initState() {
+    if (widget.type == UBarcodeQrCodeType.qrcode) symbology = QRCode();
+    if (widget.type == UBarcodeQrCodeType.dataMatrix) symbology = DataMatrix();
+    if (widget.type == UBarcodeQrCodeType.code128) symbology = Code128();
+    if (widget.type == UBarcodeQrCodeType.code128A) symbology = Code128A();
+    if (widget.type == UBarcodeQrCodeType.code128B) symbology = Code128B();
+    if (widget.type == UBarcodeQrCodeType.code128C) symbology = Code128C();
+    if (widget.type == UBarcodeQrCodeType.code39) symbology = Code39();
+    if (widget.type == UBarcodeQrCodeType.code39Extended) symbology = Code39Extended();
+    if (widget.type == UBarcodeQrCodeType.code93) symbology = Code93();
+    if (widget.type == UBarcodeQrCodeType.ean8) symbology = EAN8();
+    if (widget.type == UBarcodeQrCodeType.ean13) symbology = EAN13();
+    if (widget.type == UBarcodeQrCodeType.upca) symbology = UPCA();
+    if (widget.type == UBarcodeQrCodeType.upce) symbology = UPCE();
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) => SfBarcodeGenerator(
+        value: widget.value,
+        symbology: symbology,
+        barColor: widget.color,
+        backgroundColor: widget.backgroundColor,
+        showValue: widget.showValue,
+      );
+}
+
+enum UBarcodeQrCodeType {
+  qrcode,
+  dataMatrix,
+  code128,
+  code128A,
+  code128B,
+  code128C,
+  code39,
+  code39Extended,
+  code93,
+  ean8,
+  ean13,
+  upca,
+  upce,
 }
