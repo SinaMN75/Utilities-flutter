@@ -114,20 +114,17 @@ enum TagCategory {
 
 }
 enum TagSeenStatus {
-  unSeen(100, "UnSeen", ""),
-  seen(101, "Seen", ""),
-  seenDetail(102, "SeenDetail", ""),
-  ignored(103, "Ignored", ""),
-  deleted(104, "Deleted", "");
-
+  unSeen(100, "UnSeen", "دیده نشده"),
+  seen(101, "Seen", "دیده شده"),
+  seenDetail(102, "SeenDetail", "جزئیات دیده شده"),
+  ignored(103, "Ignored", "نادیده گرفته شده"),
+  deleted(104, "Deleted", "حذف شده");
   const TagSeenStatus(this.number, this.title, this.titleTr1);
-
   @override
   String toString() => name;
   final String title;
   final String titleTr1;
   final int number;
-
 }
 enum TagMedia {
   all(100),
