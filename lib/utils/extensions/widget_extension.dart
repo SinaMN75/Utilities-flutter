@@ -80,15 +80,6 @@ extension WidgetsExtension on Widget {
         scrollDirection: scrollDirection,
       );
 
-  Widget cornerRadius({
-    final double? all,
-    final double topLeft = 0,
-    final double topRight = 0,
-    final double bottomLeft = 0,
-    final double bottomRight = 0,
-  }) =>
-      radius(child: this, radius: all, bottomRight: bottomRight, bottomLeft: bottomLeft, topRight: topRight, topLeft: topLeft);
-
   Widget container({
     final double? width,
     final double? height,
