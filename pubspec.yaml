@@ -31,14 +31,14 @@ dependencies:
   file_picker: ^8.0.3
   flutter_easyloading: ^3.0.5
   flutter_local_notifications: ^17.1.2
-  flutter_typeahead: ^4.8.0
+  flutter_typeahead: ^5.2.0
   cached_network_image: ^3.3.1
   persian_tools: ^1.0.3
   flutter_contacts: ^1.1.8
-  firebase_core: ^2.32.0
-  firebase_messaging: ^14.9.4
-  firebase_analytics: ^10.10.7
-  firebase_crashlytics: ^3.5.7
+  firebase_core: ^3.1.0
+  firebase_messaging: ^15.0.1
+  firebase_analytics: ^11.0.1
+  firebase_crashlytics: ^4.0.1
   syncfusion_flutter_charts: ^26.1.38
   syncfusion_flutter_barcodes: ^26.1.38
   syncfusion_flutter_pdfviewer: ^26.1.38

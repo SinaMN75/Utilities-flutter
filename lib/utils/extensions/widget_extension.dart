@@ -93,6 +93,7 @@ extension WidgetsExtension on Widget {
     final BoxConstraints? constraints,
   }) =>
       Container(
+        clipBehavior: Clip.hardEdge,
         constraints: constraints,
         width: width,
         height: height,

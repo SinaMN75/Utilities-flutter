@@ -137,7 +137,7 @@ Widget button({
   final Rx<PageState> buttonState = state.obs;
   if (buttonType == ButtonType.elevated)
     return Obx(
-          () {
+      () {
         if (buttonState.value == PageState.initial)
           return ElevatedButton(
             style: ButtonStyle(backgroundColor: WidgetStateProperty.all(backgroundColor), padding: WidgetStateProperty.all(padding)),
@@ -191,13 +191,11 @@ Widget button({
 
 Widget textFieldTypeAhead<T>({
   required final void Function(T) onSuggestionSelected,
-  required final SuggestionsCallback<T> suggestionsCallback,
+  required FutureOr<List<T>?> suggestionsCallback,
   final Widget Function(BuildContext context, T itemData)? itemBuilder,
   final String? text,
-  final String? hint,
   final Widget? prefix,
   final VoidCallback? onTap,
-  final Color? fillColor,
   final bool isDense = false,
   final Widget? suffix,
   final String? labelText,
@@ -205,6 +203,7 @@ Widget textFieldTypeAhead<T>({
   final EdgeInsetsGeometry? contentPadding,
   final TextEditingController? controller,
   final bool hideKeyboard = false,
+  final String? Function(String?)? validator,
   final Function(String)? onChanged,
 }) =>
     Column(
@@ -212,35 +211,28 @@ Widget textFieldTypeAhead<T>({
       children: <Widget>[
         if (text != null) Text(text, style: textTheme().titleSmall).paddingSymmetric(vertical: 8),
         TypeAheadField<T>(
-          textFieldConfiguration: TextFieldConfiguration(
-            onTap: () {
-              if (controller!.selection == TextSelection.fromPosition(TextPosition(offset: controller.text.length - 1)))
-                controller.selection = TextSelection.fromPosition(
-                  TextPosition(offset: controller.text.length),
-                );
-            },
-            controller: controller,
+          hideKeyboardOnDrag: hideKeyboard,
+          suggestionsCallback: (String search) => suggestionsCallback,
+          builder: (context, c, focusNode) => textField(
+            onTap: onTap,
+            validator: validator,
+            prefix: prefix,
+            isDense: isDense,
+            contentPadding: contentPadding,
             onChanged: onChanged,
-            scrollPadding: const EdgeInsets.symmetric(vertical: 16),
-            decoration: InputDecoration(
-              labelText: labelText,
-              isDense: isDense,
-              helperStyle: const TextStyle(fontSize: 0),
-              hintText: hintText,
-              contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              suffixIcon: suffix,
-              prefixIcon: prefix,
-            ),
+            text: text,
+            hintText: hintText,
+            labelText: labelText,
+            suffix: suffix,
+            controller: controller,
           ),
-          hideKeyboard: hideKeyboard,
-          suggestionsCallback: suggestionsCallback,
           itemBuilder: itemBuilder ??
               (final BuildContext context, final Object? suggestion) => Container(
                     margin: const EdgeInsets.all(4),
                     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     child: Text(suggestion.toString()),
                   ),
-          onSuggestionSelected: onSuggestionSelected,
+          onSelected: (city) {},
         ),
       ],
     );
