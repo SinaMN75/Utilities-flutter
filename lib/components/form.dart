@@ -140,7 +140,10 @@ Widget button({
       () {
         if (buttonState.value == PageState.initial)
           return ElevatedButton(
-            style: ButtonStyle(backgroundColor: WidgetStateProperty.all(backgroundColor), padding: WidgetStateProperty.all(padding)),
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(backgroundColor),
+              padding: WidgetStateProperty.all(padding),
+            ),
             onPressed: onTap,
             child: SizedBox(
               height: height ?? 20,
@@ -191,7 +194,7 @@ Widget button({
 
 Widget textFieldTypeAhead<T>({
   required final void Function(T) onSuggestionSelected,
-  required FutureOr<List<T>?> suggestionsCallback,
+  required final FutureOr<List<T>?> Function(String) suggestionsCallback,
   final Widget Function(BuildContext context, T itemData)? itemBuilder,
   final String? text,
   final Widget? prefix,
@@ -212,8 +215,8 @@ Widget textFieldTypeAhead<T>({
         if (text != null) Text(text, style: textTheme().titleSmall).paddingSymmetric(vertical: 8),
         TypeAheadField<T>(
           hideKeyboardOnDrag: hideKeyboard,
-          suggestionsCallback: (String search) => suggestionsCallback,
-          builder: (context, c, focusNode) => textField(
+          suggestionsCallback: suggestionsCallback,
+          builder: (final BuildContext _, final TextEditingController __, final FocusNode ___) => textField(
             onTap: onTap,
             validator: validator,
             prefix: prefix,
@@ -232,7 +235,7 @@ Widget textFieldTypeAhead<T>({
                     padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     child: Text(suggestion.toString()),
                   ),
-          onSelected: (city) {},
+          onSelected: onSuggestionSelected,
         ),
       ],
     );
@@ -253,4 +256,8 @@ Widget radioListTile<T>({
       groupValue: groupValue,
       value: value,
       onChanged: onChanged,
-    ).container(radius: 20, borderColor: getContext().theme.colorScheme.onSurface.withOpacity(0.2)).paddingSymmetric(horizontal: 20);
+    ).container(
+      radius: 20,
+      borderColor: getContext().theme.colorScheme.onSurface.withOpacity(0.2),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+    );

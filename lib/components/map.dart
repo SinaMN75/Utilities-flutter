@@ -55,14 +55,9 @@ class UMap extends StatelessWidget {
               if (currentLocationLayer)
                 CurrentLocationLayer(
                   alignDirectionOnUpdate: AlignOnUpdate.always,
-                  style: LocationMarkerStyle(
-                    marker: const DefaultLocationMarker(
-                      child: Icon(Icons.navigation, color: Colors.white),
-                    ),
-                    markerSize: const Size(40, 40),
+                  style: const LocationMarkerStyle(
+                    markerSize: Size(16, 16),
                     markerDirection: MarkerDirection.heading,
-                    showAccuracyCircle: true,
-                    showHeadingSector: true,
                   ),
                 ),
             ],
