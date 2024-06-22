@@ -164,14 +164,19 @@ Future<void> offAll(
   final bool dialog = false,
   final Transition transition = Transition.cupertino,
   final int milliSecondDelay = 1,
-}) async =>
-    Get.offAll(
-      page,
+}) async {
+  final Widget _page = await Future<Widget>.microtask(() => page);
+  delay(
+    milliSecondDelay,
+    () => Get.offAll(
+      () => _page,
       fullscreenDialog: dialog,
       popGesture: true,
       opaque: dialog ? false : true,
       transition: transition,
-    );
+    ),
+  );
+}
 
 void off(final Widget page) => Get.off(() => page);
 
