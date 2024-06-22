@@ -75,7 +75,7 @@ class UMap extends StatelessWidget {
               child: const Icon(Icons.my_location),
             ).paddingAll(16).alignAtBottomLeft(),
           if (zoomButtons)
-            iconTextVertical(
+            UIconTextVertical(
               leading: FloatingActionButton(
                 mini: true,
                 child: const Icon(Icons.add),

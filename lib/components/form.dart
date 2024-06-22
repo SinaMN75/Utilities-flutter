@@ -36,7 +36,7 @@ Widget textField({
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         if (text != null)
-          iconTextHorizontal(
+          UIconTextHorizontal(
             leading: Text(text, style: textTheme().titleSmall),
             trailing: required ? const Text("*").bodyMedium(color: theme().colorScheme.error) : const SizedBox(),
           ).paddingSymmetric(vertical: 8),

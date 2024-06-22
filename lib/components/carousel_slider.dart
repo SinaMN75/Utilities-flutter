@@ -1,34 +1,46 @@
 part of 'components.dart';
 
-Widget mediaReadDtoImageSlider({
-  required final Iterable<MediaReadDto>? list,
-  final double height = 300,
-  final bool autoPlay = true,
-  final int autoPlayAnimationDuration = 1,
-  final int autoPlayInterval = 7,
-  final Function(MediaReadDto)? onTap,
-}) =>
-    list.isNullOrEmpty()
-        ? SizedBox()
-        : CarouselSlider(
-            items: list!
-                .where((MediaReadDto e) => e.url.isImageFileName)
-                .map(
-                  (final MediaReadDto e) => image(
-                    e.url,
-                    fit: BoxFit.cover,
-                    width: getContext().width,
-                    borderRadius: 8,
-                  ).paddingSymmetric(horizontal: 8).onTap(() => onTap == null ? () {} : onTap(e)),
-                )
-                .toList(),
-            options: CarouselOptions(
-              height: height,
-              autoPlay: autoPlay,
-              autoPlayAnimationDuration: Duration(seconds: autoPlayAnimationDuration),
-              autoPlayInterval: Duration(seconds: autoPlayInterval),
-            ),
-          );
+class UMediaReadDtoImageSlider extends StatelessWidget {
+  const UMediaReadDtoImageSlider({
+    required this.list,
+    this.height = 300,
+    this.autoPlay = true,
+    this.autoPlayAnimationDuration = 1,
+    this.autoPlayInterval = 7,
+    this.onTap,
+    super.key,
+  });
+
+  final Iterable<MediaReadDto>? list;
+  final double height;
+  final bool autoPlay;
+  final int autoPlayAnimationDuration;
+  final int autoPlayInterval;
+  final Function(MediaReadDto)? onTap;
+
+  @override
+  Widget build(BuildContext context) => list.isNullOrEmpty()
+      ? SizedBox()
+      : CarouselSlider(
+          items: list!
+              .where((MediaReadDto e) => e.url.isImageFileName)
+              .map(
+                (final MediaReadDto e) => image(
+                  e.url,
+                  fit: BoxFit.cover,
+                  width: getContext().width,
+                  borderRadius: 8,
+                ).paddingSymmetric(horizontal: 8).onTap(() => onTap == null ? () {} : onTap!(e)),
+              )
+              .toList(),
+          options: CarouselOptions(
+            height: height,
+            autoPlay: autoPlay,
+            autoPlayAnimationDuration: Duration(seconds: autoPlayAnimationDuration),
+            autoPlayInterval: Duration(seconds: autoPlayInterval),
+          ),
+        );
+}
 
 int getRealIndex(int position, int base, int? length) {
   final int offset = position - base;
