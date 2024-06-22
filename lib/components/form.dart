@@ -129,13 +129,11 @@ Widget button({
   final double? height,
   final TextStyle? textStyle,
   final Color? backgroundColor,
-  final ButtonType buttonType = ButtonType.elevated,
   final EdgeInsets? padding,
   final PageState state = PageState.initial,
   final int countDownSeconds = 120,
 }) {
   final Rx<PageState> buttonState = state.obs;
-  if (buttonType == ButtonType.elevated)
     return Obx(
       () {
         if (buttonState.value == PageState.initial)
@@ -167,29 +165,6 @@ Widget button({
           return const SizedBox();
       },
     );
-  if (buttonType == ButtonType.outlined)
-    return OutlinedButton(
-      onPressed: onTap,
-      child: SizedBox(
-        height: height ?? 20,
-        width: width ?? getContext().width,
-        child: Center(
-          child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
-        ),
-      ),
-    );
-  if (buttonType == ButtonType.text)
-    return TextButton(
-      onPressed: onTap,
-      child: SizedBox(
-        height: height ?? 20,
-        width: width ?? getContext().width,
-        child: Center(
-          child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
-        ),
-      ),
-    );
-  return const SizedBox();
 }
 
 Widget textFieldTypeAhead<T>({
