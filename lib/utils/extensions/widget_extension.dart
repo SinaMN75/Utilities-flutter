@@ -23,7 +23,12 @@ extension WidgetsExtension on Widget {
         child: this,
       );
 
-  Widget fit() => FittedBox(key: key, fit: BoxFit.scaleDown, child: this);
+  Widget fit({final Alignment alignment = Alignment.center}) => FittedBox(
+        key: key,
+        alignment: alignment,
+        fit: BoxFit.scaleDown,
+        child: this,
+      );
 
   Widget expanded({final int flex = 1}) => Expanded(flex: flex, child: this);
 
@@ -44,7 +49,7 @@ extension WidgetsExtension on Widget {
         if (action != null) action();
       });
 
-  Widget showMenus( final List<PopupMenuEntry<int>> items) => GestureDetector(
+  Widget showMenus(final List<PopupMenuEntry<int>> items) => GestureDetector(
       onTapDown: (details) async {
         final screenSize = MediaQuery.of(getContext()).size;
         double left = details.globalPosition.dx;
