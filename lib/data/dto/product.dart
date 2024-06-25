@@ -248,11 +248,8 @@ class ProductJsonDetail {
         relatedProducts: json["relatedProducts"] == null ? [] : List<String>.from(json["relatedProducts"]!.map((final x) => x)),
         visitCounts: json["visitCounts"] == null ? [] : List<VisitCount>.from(json["visitCounts"]!.map((x) => VisitCount.fromMap(x))),
         keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
-        reservationTimes: json["reservationTimes"] == null
-            ? <ReservationTimes>[]
-            : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
-        usersReactions:
-            json["usersReactions"] == null ? <UsersReaction>[] : List<UsersReaction>.from(json["usersReactions"].cast<Map<String, dynamic>>().map(UsersReaction.fromMap)).toList(),
+        reservationTimes: json["reservationTimes"] == null ? <ReservationTimes>[] : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
+        usersReactions: json["usersReactions"] == null ? <UsersReaction>[] : List<UsersReaction>.from(json["usersReactions"].cast<Map<String, dynamic>>().map(UsersReaction.fromMap)).toList(),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
         seats: json["seats"] == null ? [] : List<Seat>.from(json["seats"]!.map((x) => Seat.fromMap(x))),
@@ -594,12 +591,14 @@ class ProductFilterDto {
     this.shuffle2,
     this.showExpired,
     this.boosted,
+    this.startDate,
+    this.endDate,
   });
 
   factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
 
   factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
-    title: json["title"],
+        title: json["title"],
         subtitle: json["subtitle"],
         region: json["region"],
         description: json["description"],
@@ -641,6 +640,8 @@ class ProductFilterDto {
         query: json["query"],
         shuffle1: json["shuffle1"],
         shuffle2: json["shuffle2"],
+        startDate: json["startDate"],
+        endDate: json["endDate"],
         showExpired: json["showExpired"],
         boosted: json["boosted"],
       );
@@ -680,6 +681,8 @@ class ProductFilterDto {
   int? pageSize;
   int? pageNumber;
   int? currency;
+  String? startDate;
+  String? endDate;
   List<String>? categories;
   List<String>? ids;
   List<int>? tags;
@@ -697,6 +700,8 @@ class ProductFilterDto {
         "subtitle": subtitle,
         "description": description,
         "state": state,
+        "startDate": startDate,
+        "endDate": endDate,
         "startPriceRange": startPriceRange,
         "endPriceRange": endPriceRange,
         "isFollowing": isFollowing,
@@ -898,6 +903,7 @@ class ReactionCreateUpdateDto {
         "productId": productId,
       };
 }
+
 class Seat {
   String? chairId;
   String? title;
@@ -936,34 +942,34 @@ class Seat {
   String toJson() => json.encode(toMap());
 
   factory Seat.fromMap(Map<String, dynamic> json) => Seat(
-    chairId: json["chairId"],
-    title: json["title"],
-    description: json["description"],
-    date: json["date"],
-    sans: json["sans"],
-    salon: json["salon"],
-    row: json["row"],
-    column: json["column"],
-    price: json["price"],
-    gender: json["gender"],
-    reservedByUserId: json["reservedByUserId"],
-    reservedByUserName: json["reservedByUserName"],
-    tag: json["tag"],
-  );
+        chairId: json["chairId"],
+        title: json["title"],
+        description: json["description"],
+        date: json["date"],
+        sans: json["sans"],
+        salon: json["salon"],
+        row: json["row"],
+        column: json["column"],
+        price: json["price"],
+        gender: json["gender"],
+        reservedByUserId: json["reservedByUserId"],
+        reservedByUserName: json["reservedByUserName"],
+        tag: json["tag"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "chairId": chairId,
-    "title": title,
-    "description": description,
-    "date": date,
-    "sans": sans,
-    "salon": salon,
-    "row": row,
-    "column": column,
-    "price": price,
-    "gender": gender,
-    "reservedByUserId": reservedByUserId,
-    "reservedByUserName": reservedByUserName,
-    "tag": tag,
-  };
+        "chairId": chairId,
+        "title": title,
+        "description": description,
+        "date": date,
+        "sans": sans,
+        "salon": salon,
+        "row": row,
+        "column": column,
+        "price": price,
+        "gender": gender,
+        "reservedByUserId": reservedByUserId,
+        "reservedByUserName": reservedByUserName,
+        "tag": tag,
+      };
 }
