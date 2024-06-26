@@ -131,6 +131,7 @@ enum TagProduct {
   premium12Month(187, "", "12 Months"),
   post(189, "", ''),
   tournament(190, "", ''),
+  couch(191, "", ''),
   news(201, "", ""),
   kindOfNew(202, "", ""),
   used(203, "", ""),
@@ -251,6 +252,7 @@ enum TagCategory {
   special(183),
   recommended(184),
   sport(185),
+  couch(186),
   enabled(201);
 
   const TagCategory(this.number);
