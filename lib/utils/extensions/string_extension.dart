@@ -61,6 +61,8 @@ extension StringExtensions on String {
 
   int toInt() => int.tryParse(this) ?? 0;
 
+  double toDouble() => double.tryParse(this) ?? 0;
+
   String separateNumbers3By3() => replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
 
   String separateCharacters(final int number, final String separator) => replaceAllMapped(
