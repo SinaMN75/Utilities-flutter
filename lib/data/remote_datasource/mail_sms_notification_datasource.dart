@@ -14,8 +14,8 @@ class MailSmsNotificationDataSource {
       httpPost(
         url: "$baseUrl/MailSmsNotification/SendNotification",
         body: dto,
-        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: CreateMailSmsNotificationDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: CreateMailSmsNotificationDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -28,8 +28,8 @@ class MailSmsNotificationDataSource {
       httpPost(
         url: "$baseUrl/MailSmsNotification/SendOtpSms",
         body: dto,
-        action: (Response response) => onResponse == null ? () {} : onResponse(GenericResponse<String>.fromJson(response.body)),
-        error: (Response response) => onError == null ? () {} : onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse == null ? () {} : onResponse(GenericResponse<String>.fromJson(response.body)),
+        error: (http.Response response) => onError == null ? () {} : onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }

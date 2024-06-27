@@ -14,8 +14,8 @@ class AppSettingsDataSource {
       httpGet(
         timeout: Duration(seconds: timeoutInSeconds),
         url: "$baseUrl/AppSettings",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<AppSettingsReadDto>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(),
+        action: (final http.Response response) => onResponse(GenericResponse<AppSettingsReadDto>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
+        error: (final http.Response response) => onError(),
       );
 
   void readEverything({
@@ -28,8 +28,8 @@ class AppSettingsDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/AppSettings/ReadEverything?showProducts=$showProducts&showCategories=$showCategories&showContents=$showContents",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<ReadEverythingDto>.fromJson(response.body, fromMap: ReadEverythingDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(),
+        action: (final http.Response response) => onResponse(GenericResponse<ReadEverythingDto>.fromJson(response.body, fromMap: ReadEverythingDto.fromMap)),
+        error: (final http.Response response) => onError(),
       );
 
   void readDashboardData({
@@ -39,7 +39,7 @@ class AppSettingsDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/AppSettings/ReadDashboardData",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<DashboardDataReadDto>.fromJson(response.body, fromMap: DashboardDataReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
+        action: (final http.Response response) => onResponse(GenericResponse<DashboardDataReadDto>.fromJson(response.body, fromMap: DashboardDataReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
       );
 }

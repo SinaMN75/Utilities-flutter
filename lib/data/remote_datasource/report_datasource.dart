@@ -14,8 +14,8 @@ class ReportDataSource {
       httpPost(
         url: "$baseUrl/Report",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void delete({
@@ -26,8 +26,8 @@ class ReportDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Report?id=$id",
-        action: (final Response response) => onResponse(response.statusCode.toString()),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(response.statusCode.toString()),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void readById({
@@ -38,8 +38,8 @@ class ReportDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Report/$id",
-        action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void filter({
@@ -51,7 +51,7 @@ class ReportDataSource {
       httpPost(
         url: "$baseUrl/Report/Filter",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
-        error: (final Response response) {},
+        action: (http.Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
+        error: (http.Response response) {},
       );
 }

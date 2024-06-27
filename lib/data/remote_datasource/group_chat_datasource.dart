@@ -12,8 +12,8 @@ class GroupChatDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Chat/ReadMyGroupChats",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -25,8 +25,8 @@ class GroupChatDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Chat/ReadGroupChatById/$groupId",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -39,8 +39,8 @@ class GroupChatDataSource {
       httpPost(
         url: "$baseUrl/Chat/FilterGroupChat",
         body: filter,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -53,8 +53,8 @@ class GroupChatDataSource {
       httpPost(
         url: "$baseUrl/Chat/FilterAllGroupChat",
         body: filter,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -67,8 +67,8 @@ class GroupChatDataSource {
       httpPost(
         url: "$baseUrl/Chat/CreateGroupChat",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -80,8 +80,8 @@ class GroupChatDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Chat/DeleteGroupChat/$groupId",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -94,8 +94,8 @@ class GroupChatDataSource {
       httpPut(
         url: "$baseUrl/Chat/UpdateGroupChat",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -107,8 +107,8 @@ class GroupChatDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Chat/ExitFromGroup/$groupId",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -122,8 +122,8 @@ class GroupChatDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId?pageSize=$pageSize&pageNumber=$pageNumber",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -136,8 +136,8 @@ class GroupChatDataSource {
       httpPost(
         url: "$baseUrl/Chat/CreateGroupChatMessage",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -150,8 +150,8 @@ class GroupChatDataSource {
       httpPut(
         url: "$baseUrl/Chat/UpdateGroupChatMessage",
         body: dto,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -163,8 +163,8 @@ class GroupChatDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Chat/DeleteGroupChatMessage/$chatId",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 
@@ -176,8 +176,8 @@ class GroupChatDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Chat/SeenGroupChatMessage/$id",
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
+        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
       );
 }

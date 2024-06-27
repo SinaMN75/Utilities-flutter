@@ -14,8 +14,8 @@ class TransactionDataSource {
       httpPost(
         body: dto,
         url: "$baseUrl/Transaction",
-        action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -28,8 +28,8 @@ class TransactionDataSource {
       httpPut(
         body: dto,
         url: "$baseUrl/Transaction",
-        action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -41,8 +41,8 @@ class TransactionDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Transaction/$id}",
-        action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -55,8 +55,8 @@ class TransactionDataSource {
       httpPost(
         body: dto,
         url: "$baseUrl/Transaction/Filter",
-        action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -69,8 +69,8 @@ class TransactionDataSource {
       httpPost(
         body: dto,
         url: "$baseUrl/Transaction/GenerateReport",
-        action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
-        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }

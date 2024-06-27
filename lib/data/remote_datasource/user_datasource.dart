@@ -14,8 +14,8 @@ class UserDataSource {
       httpPost(
         url: "$baseUrl/user",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void toggleBlock({
@@ -26,8 +26,8 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user/ToggleBlock/$id",
-        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void readMyBlockList({
@@ -37,8 +37,8 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user/ReadMyBlockList",
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void update({
@@ -50,8 +50,8 @@ class UserDataSource {
       httpPut(
         url: "$baseUrl/user",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void read({
@@ -61,8 +61,8 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user",
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void logout({
@@ -72,8 +72,8 @@ class UserDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/user/Logout",
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   Future<void> readById({
@@ -84,8 +84,8 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user/$id",
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void delete({
@@ -96,8 +96,8 @@ class UserDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/user/$id",
-        action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void transferWalletToWallet({
@@ -116,8 +116,8 @@ class UserDataSource {
           "amount": amount,
         },
         encodeBody: false,
-        action: (final Response<dynamic> response) => onResponse(),
-        error: (final Response<dynamic> response) => onError(),
+        action: (final http.Response response) => onResponse(),
+        error: (final http.Response response) => onError(),
         failure: failure,
       );
 
@@ -130,8 +130,8 @@ class UserDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/user/DeleteFromTeam/$teamId",
-        action: (final Response response) => onResponse(),
-        error: (final Response response) => onError(),
+        action: (http.Response response) => onResponse(),
+        error: (http.Response response) => onError(),
       );
 
   void getVerificationCodeForLogin({
@@ -143,8 +143,8 @@ class UserDataSource {
       httpPost(
         url: "$baseUrl/user/GetVerificationCodeForLogin",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void loginWithPassword({
@@ -156,8 +156,8 @@ class UserDataSource {
       httpPost(
         url: "$baseUrl/user/LoginWithPassword",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void verifyCodeForLogin({
@@ -169,8 +169,8 @@ class UserDataSource {
       httpPost(
         url: "$baseUrl/user/VerifyCodeForLogin",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void getGrowthRate({
@@ -180,8 +180,8 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user/GrowthRate",
-        action: (final Response response) => onResponse(GenericResponse<GrowthRateReadDto>.fromJson(response.body, fromMap: GrowthRateReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<GrowthRateReadDto>.fromJson(response.body, fromMap: GrowthRateReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void getProfileByUserName({
@@ -192,8 +192,8 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user/GetProfileByUsername/$userName",
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   Future<void> filter({
@@ -205,8 +205,8 @@ class UserDataSource {
       httpPost(
         url: "$baseUrl/user/Filter",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void authenticate({
@@ -218,8 +218,8 @@ class UserDataSource {
       httpPost(
         url: "$baseUrl/user/authenticate",
         body: dto,
-        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void subscribe({
@@ -232,7 +232,7 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user/Subscribe?userId=$userId&contentId=$contentId&transactionRefId=$transactionRefId",
-        action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (http.Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
+        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 }

@@ -3,9 +3,8 @@ part of 'utils.dart';
 Future<void> request(
   final String url,
   final EHttpMethod httpMethod,
-  final Function(Response<dynamic> response) action,
-  final Function(Response<dynamic> response) error, {
-  final Function(dynamic error)? failure,
+  final Function(http.Response response) action,
+  final Function(http.Response response) error, {
   final String? queryOrMutation,
   final dynamic body,
   final bool encodeBody = true,
@@ -24,7 +23,7 @@ Future<void> request(
 
     if (headers != null) header.addAll(headers);
 
-    Response<dynamic> response = const Response<dynamic>();
+    late http.Response response;
     dynamic params;
     if (body != null) {
       if (encodeBody)
@@ -33,22 +32,11 @@ Future<void> request(
         params = body;
     }
 
-    final GetConnect connect = GetConnect(
-      userAgent: userAgent,
-      followRedirects: followRedirects,
-      timeout: timeout,
-      maxRedirects: maxRedirects,
-      allowAutoSignedCert: allowAutoSignedCert,
-      sendUserAgent: sendUserAgent,
-      maxAuthRetries: maxAuthRetries,
-      withCredentials: withCredentials,
-    );
-
-    if (httpMethod == EHttpMethod.get) response = await connect.get(url, headers: header);
-    if (httpMethod == EHttpMethod.post) response = await connect.post(url, params, headers: header);
-    if (httpMethod == EHttpMethod.put) response = await connect.put(url, params, headers: header);
-    if (httpMethod == EHttpMethod.patch) response = await connect.patch(url, params, headers: header);
-    if (httpMethod == EHttpMethod.delete) response = await connect.delete(url, headers: header);
+    if (httpMethod == EHttpMethod.get) response = await http.get(Uri.parse(url), headers: header);
+    if (httpMethod == EHttpMethod.post) response = await http.post(Uri.parse(url), body: params, headers: header);
+    if (httpMethod == EHttpMethod.put) response = await http.put(Uri.parse(url), body: params, headers: header);
+    if (httpMethod == EHttpMethod.patch) response = await http.patch(Uri.parse(url), body: params, headers: header);
+    if (httpMethod == EHttpMethod.delete) response = await http.delete(Uri.parse(url), headers: header);
 
     if (kDebugMode)
       delay(
@@ -61,16 +49,15 @@ Future<void> request(
       error(response);
     }
   } catch (e) {
-    error(const Response<dynamic>(statusCode: 999));
-    if (failure != null) failure(e);
+    error(http.Response("", 999));
     await dismissEasyLoading();
   }
 }
 
 Future<void> httpGet({
   required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
+  required final Function(http.Response response) action,
+  required final Function(http.Response response) error,
   final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final String userAgent = 'SinaMN75',
@@ -96,13 +83,12 @@ Future<void> httpGet({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
-      failure: failure,
     );
 
 Future<void> httpPost({
   required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
+  required final Function(http.Response response) action,
+  required final Function(http.Response response) error,
   final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final dynamic body,
@@ -132,13 +118,12 @@ Future<void> httpPost({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
-      failure: failure,
     );
 
 Future<void> httpPut({
   required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
+  required final Function(http.Response response) action,
+  required final Function(http.Response response) error,
   final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final dynamic body,
@@ -168,13 +153,12 @@ Future<void> httpPut({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
-      failure: failure,
     );
 
 Future<void> patch({
   required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
+  required final Function(http.Response response) action,
+  required final Function(http.Response response) error,
   final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final dynamic body,
@@ -204,13 +188,12 @@ Future<void> patch({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
-      failure: failure,
     );
 
 Future<void> httpDelete({
   required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
+  required final Function(http.Response response) action,
+  required final Function(http.Response response) error,
   final Function(dynamic error)? failure,
   final Map<String, String>? headers,
   final String userAgent = 'SinaMN75',
@@ -236,15 +219,14 @@ Future<void> httpDelete({
       sendUserAgent: sendUserAgent,
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
-      failure: failure,
     );
 
 enum EHttpMethod { get, post, put, patch, delete }
 
-extension HTTP on Response<dynamic> {
-  bool isSuccessful() => (statusCode ?? 0) >= 200 && (statusCode ?? 0) <= 299 ? true : false;
+extension HTTP on http.Response {
+  bool isSuccessful() => (statusCode) >= 200 && (statusCode ?? 0) <= 299 ? true : false;
 
-  bool isServerError() => (statusCode ?? 0) >= 500 && (statusCode ?? 0) <= 599 ? true : false;
+  bool isServerError() => (statusCode) >= 500 && (statusCode ?? 0) <= 599 ? true : false;
 
   void logRaw({final String params = ""}) {
     developer.log(
