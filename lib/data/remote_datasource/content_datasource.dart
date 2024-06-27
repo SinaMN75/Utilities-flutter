@@ -14,8 +14,8 @@ class ContentDataSource {
       httpPost(
         url: "$baseUrl/Content",
         body: dto,
-        action: (http.Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void update({
@@ -27,8 +27,8 @@ class ContentDataSource {
       httpPut(
         url: "$baseUrl/Content",
         body: dto,
-        action: (http.Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void read({
@@ -38,8 +38,8 @@ class ContentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Content",
-        action: (http.Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void readById({
@@ -50,8 +50,8 @@ class ContentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Content/$id",
-        action: (http.Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void delete({
@@ -62,7 +62,7 @@ class ContentDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Content/$id",
-        action: (http.Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 }

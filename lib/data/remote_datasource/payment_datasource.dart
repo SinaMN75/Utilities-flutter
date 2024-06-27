@@ -13,8 +13,8 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/IncreaseWalletBalance/$amount",
-        action: (http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -26,8 +26,8 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/PayOrderZarinPal/$orderId",
-        action: (http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -39,8 +39,8 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/PaySubscriptionZarinPal/$subscriptionId",
-        action: (http.Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -52,8 +52,8 @@ class PaymentDataSource {
       httpPost(
         body: dto,
         url: "$baseUrl/payment/payNg",
-        action: (http.Response response) => onResponse(GenericResponse<PayNgReadDto>.fromJson(response.body, fromMap: PayNgReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<PayNgReadDto>.fromJson(response.body, fromMap: PayNgReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void verifyNg({
@@ -64,7 +64,7 @@ class PaymentDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/payment/verifyNG/$outlet/$id",
-        action: (http.Response response) => onResponse(GenericResponse<VerifyNgReadDto>.fromJson(response.body, fromMap: VerifyNgReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<VerifyNgReadDto>.fromJson(response.body, fromMap: VerifyNgReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 }

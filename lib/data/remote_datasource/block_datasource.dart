@@ -13,8 +13,8 @@ class BlockDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Block?userId=$userId",
-        action: (http.Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
-        error: (http.Response response) => onError(GenericResponse()),
+        action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
+        error: (Response response) => onError(GenericResponse()),
         failure: failure,
       );
 
@@ -25,8 +25,8 @@ class BlockDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Block",
-        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -37,8 +37,8 @@ class BlockDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Block/ReadMine",
-        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }

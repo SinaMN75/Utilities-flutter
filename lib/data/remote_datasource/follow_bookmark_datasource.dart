@@ -14,8 +14,8 @@ class FollowBookmarkDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/FollowBookmark/ReadBookmarksByFolderName?userId=$userId&folderName=$folderName",
-        action: (http.Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -27,8 +27,8 @@ class FollowBookmarkDataSource {
   }) =>
       httpPost(
         url: userId != null ? "$baseUrl/FollowBookmark/ReadBookmarks?userId=$userId" : "$baseUrl/FollowBookmark/ReadBookmarks",
-        action: (http.Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -40,8 +40,8 @@ class FollowBookmarkDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowers/$userId",
-        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse()),
+        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse()),
         failure: failure,
       );
 
@@ -53,8 +53,8 @@ class FollowBookmarkDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowings/$userId",
-        action: (http.Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse()),
+        action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse()),
         failure: failure,
       );
 
@@ -67,8 +67,8 @@ class FollowBookmarkDataSource {
       httpPost(
         url: "$baseUrl/FollowBookmark/RemoveFollowing",
         body: dto,
-        action: (http.Response response) => onResponse(GenericResponse<String>()),
-        error: (http.Response response) => onError(GenericResponse()),
+        action: (final Response response) => onResponse(GenericResponse<String>()),
+        error: (final Response response) => onError(GenericResponse()),
         failure: failure,
       );
 
@@ -81,8 +81,8 @@ class FollowBookmarkDataSource {
       httpPost(
         url: "$baseUrl/FollowBookmark/ToggleBookmark",
         body: dto,
-        action: (http.Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse()),
+        action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse()),
         failure: failure,
       );
 
@@ -95,8 +95,8 @@ class FollowBookmarkDataSource {
       httpPost(
         url: "$baseUrl/FollowBookmark/ToggleFolllow",
         body: dto,
-        action: (http.Response response) => onResponse(GenericResponse<String>()),
-        error: (http.Response response) => onError(GenericResponse()),
+        action: (final Response response) => onResponse(GenericResponse<String>()),
+        error: (final Response response) => onError(GenericResponse()),
         failure: failure,
       );
 }

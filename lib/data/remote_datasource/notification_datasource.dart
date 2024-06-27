@@ -12,8 +12,8 @@ class NotificationDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Notification",
-        action: (http.Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -25,8 +25,8 @@ class NotificationDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Notification/$id",
-        action: (http.Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -39,8 +39,8 @@ class NotificationDataSource {
       httpPost(
         url: "$baseUrl/Notification/Filter",
         body: filter,
-        action: (http.Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -55,8 +55,8 @@ class NotificationDataSource {
         encodeBody: false,
         url: "$baseUrl/Notification/UpdateSeenStatus?seenStatus=$status",
         body: notificationIds,
-        action: (http.Response response) => onResponse(),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }

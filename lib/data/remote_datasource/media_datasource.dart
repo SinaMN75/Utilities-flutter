@@ -90,8 +90,8 @@ class MediaDataSource {
       httpPost(
         url: "$baseUrl/Media/Filter",
         body: dto,
-        action: (http.Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
   void update({
@@ -103,8 +103,8 @@ class MediaDataSource {
       httpPut(
         url: "$baseUrl/Media",
         body: dto,
-        action: (http.Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 
@@ -116,8 +116,8 @@ class MediaDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Media/$id",
-        action: (http.Response response) => onResponse(),
-        error: (http.Response response) => onError(),
+        action: (final Response response) => onResponse(),
+        error: (final Response response) => onError(),
         failure: failure,
       );
 }

@@ -12,10 +12,10 @@ class ScrapperDataSource {
   }) async {
     httpGet(
       url: "$baseUrl/Scrapper/GetInstaPostRapidApi/$username",
-      action: (http.Response response) {
-        onResponse(InstaPostReadDto.fromJson(response.body));
+      action: (final Response response) {
+        onResponse(InstaPostReadDto.fromJson(response.bodyString ?? "{}"));
       },
-      error: (http.Response response) {
+      error: (final Response response) {
         onError();
       },
     );

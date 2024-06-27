@@ -14,8 +14,8 @@ class AddressDataSource {
       httpPost(
         url: "$baseUrl/address/Filter",
         body: dto,
-        action: (final http.Response response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
-        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void create({
@@ -27,8 +27,8 @@ class AddressDataSource {
       httpPost(
         url: "$baseUrl/address",
         body: dto,
-        action: (final http.Response response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
-        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void update({
@@ -40,8 +40,8 @@ class AddressDataSource {
       httpPut(
         url: "$baseUrl/address",
         body: dto,
-        action: (final http.Response response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
-        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 
   void delete({
@@ -52,7 +52,7 @@ class AddressDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/address/$id",
-        action: (final http.Response response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
-        error: (final http.Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
+        action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
+        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
 }

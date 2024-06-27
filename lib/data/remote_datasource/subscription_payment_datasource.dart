@@ -14,8 +14,8 @@ class SubscriptionPaymentDataSource {
       httpPost(
         url: "$baseUrl/SubscriptionPayment",
         body: dto,
-        action: (http.Response response) => onResponse(GenericResponse<SubscriptionPaymentReadDto>.fromJson(response.body, fromMap: SubscriptionPaymentReadDto.fromMap)),
-        error: (http.Response response) => onError(GenericResponse.fromJson(response.body)),
+        action: (final Response response) => onResponse(GenericResponse<SubscriptionPaymentReadDto>.fromJson(response.body, fromMap: SubscriptionPaymentReadDto.fromMap)),
+        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
       );
 }
