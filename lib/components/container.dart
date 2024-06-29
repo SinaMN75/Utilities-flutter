@@ -212,6 +212,6 @@ class UIconTextVertical extends StatelessWidget {
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
         mainAxisSize: mainAxisSize,
-        children: <Widget>[leading, SizedBox(width: spaceBetween), trailing],
+        children: <Widget>[leading, SizedBox(height: spaceBetween), trailing],
       );
 }
