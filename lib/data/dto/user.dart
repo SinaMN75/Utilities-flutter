@@ -191,6 +191,14 @@ class UserJsonDetail {
     this.legalAuthenticationType,
     this.nationalityType,
     this.userSubscriptions,
+    this.weight,
+    this.height,
+    this.fatherName,
+    this.foodAllergies,
+    this.schoolName,
+    this.sickness,
+    this.usedDrugs,
+    this.nationalCode,
   });
 
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
@@ -207,17 +215,25 @@ class UserJsonDetail {
         pinterest: json["pinterest"],
         website: json["website"],
         activity: json["activity"],
-        color: json["color"],
-        code: json["code"],
-        shebaNumber: json["shebaNumber"],
-        boosted: json["boosted"],
-        deliveryPrice1: json["deliveryPrice1"],
-        deliveryPrice2: json["deliveryPrice2"],
-        deliveryPrice3: json["deliveryPrice3"],
-        privacyType: json["privacyType"],
-        legalAuthenticationType: json["legalAuthenticationType"],
-        nationalityType: json["nationalityType"],
-        userSubscriptions: json["userSubscriptions"] == null ? [] : List<UserSubscriptions>.from(json["userSubscriptions"]!.map((x) => UserSubscriptions.fromMap(x))),
+    color: json["color"],
+    code: json["code"],
+    shebaNumber: json["shebaNumber"],
+    boosted: json["boosted"],
+    deliveryPrice1: json["deliveryPrice1"],
+    deliveryPrice2: json["deliveryPrice2"],
+    deliveryPrice3: json["deliveryPrice3"],
+    privacyType: json["privacyType"],
+    legalAuthenticationType: json["legalAuthenticationType"],
+    nationalityType: json["nationalityType"],
+    nationalCode: json["nationalCode"],
+    usedDrugs: json["usedDrugs"],
+    sickness: json["sickness"],
+    schoolName: json["schoolName"],
+    foodAllergies: json["foodAllergies"],
+    fatherName: json["fatherName"],
+    height: json["height"],
+    weight: json["weight"],
+    userSubscriptions: json["userSubscriptions"] == null ? [] : List<UserSubscriptions>.from(json["userSubscriptions"]!.map((x) => UserSubscriptions.fromMap(x))),
       );
   final String? instagram;
   final String? address;
@@ -234,6 +250,14 @@ class UserJsonDetail {
   final String? code;
   final String? shebaNumber;
   final String? boosted;
+  final String? fatherName;
+  final String? nationalCode;
+  final String? schoolName;
+  final String? height;
+  final String? weight;
+  final String? foodAllergies;
+  final String? sickness;
+  final String? usedDrugs;
   final int? deliveryPrice1;
   final int? deliveryPrice2;
   final int? deliveryPrice3;
@@ -256,17 +280,25 @@ class UserJsonDetail {
         "pinterest": pinterest,
         "website": website,
         "activity": activity,
-        "color": color,
-        "code": code,
-        "shebaNumber": shebaNumber,
-        "boosted": boosted,
-        "deliveryPrice1": deliveryPrice1,
-        "deliveryPrice2": deliveryPrice2,
-        "deliveryPrice3": deliveryPrice3,
-        "privacyType": privacyType,
-        "legalAuthenticationType": legalAuthenticationType,
-        "nationalityType": nationalityType,
-      };
+    "color": color,
+    "code": code,
+    "shebaNumber": shebaNumber,
+    "boosted": boosted,
+    "deliveryPrice1": deliveryPrice1,
+    "deliveryPrice2": deliveryPrice2,
+    "deliveryPrice3": deliveryPrice3,
+    "privacyType": privacyType,
+    "legalAuthenticationType": legalAuthenticationType,
+    "nationalityType": nationalityType,
+    "weight": weight,
+    "height": height,
+    "fatherName": fatherName,
+    "foodAllergies": foodAllergies,
+    "usedDrugs": usedDrugs,
+    "sickness": sickness,
+    "schoolName": schoolName,
+    "nationalCode": nationalCode,
+  };
 }
 
 class UserSubscriptions {
@@ -300,15 +332,15 @@ class UserSubscriptions {
 
   factory UserSubscriptions.fromMap(Map<String, dynamic> json) => UserSubscriptions(
     contentId: json["contentId"],
-        title: json["title"],
-        subTitle: json["subTitle"],
-        description: json["description"],
-        days: json["days"],
-        keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map((x) => KeyValueViewModel.fromMap(x))),
-        price: json["price"],
-        transactionRefId: json["transactionRefId"],
-        expiresIn: json["expiresIn"],
-        tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+    title: json["title"],
+    subTitle: json["subTitle"],
+    description: json["description"],
+    days: json["days"],
+    keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map((x) => KeyValueViewModel.fromMap(x))),
+    price: json["price"],
+    transactionRefId: json["transactionRefId"],
+    expiresIn: json["expiresIn"],
+    tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
       );
 
   Map<String, dynamic> toMap() => {
@@ -601,90 +633,6 @@ class ActiveMobileDto {
       };
 }
 
-class GrowthRateReadDto {
-  GrowthRateReadDto({
-    this.id,
-    this.interActive1,
-    this.interActive2,
-    this.interActive3,
-    this.interActive4,
-    this.interActive5,
-    this.interActive6,
-    this.interActive7,
-    this.feedback1,
-    this.feedback2,
-    this.feedback3,
-    this.feedback4,
-    this.feedback5,
-    this.feedback6,
-    this.feedback7,
-    this.totalInterActive,
-    this.totalFeedback,
-  });
-
-  factory GrowthRateReadDto.fromJson(final String str) => GrowthRateReadDto.fromMap(json.decode(str));
-
-  factory GrowthRateReadDto.fromMap(final dynamic json) => GrowthRateReadDto(
-        id: json["id"],
-        interActive1: json["interActive1"],
-        interActive2: json["interActive2"],
-        interActive3: json["interActive3"],
-        interActive4: json["interActive4"],
-        interActive5: json["interActive5"],
-        interActive6: json["interActive6"],
-        interActive7: json["interActive7"],
-        feedback1: json["feedback1"],
-        feedback2: json["feedback2"],
-        feedback3: json["feedback3"],
-        feedback4: json["feedback4"],
-        feedback5: json["feedback5"],
-        feedback6: json["feedback6"],
-        feedback7: json["feedback7"],
-        totalInterActive: json["totalInterActive"],
-        totalFeedback: json["totalFeedback"],
-      );
-
-  final String? id;
-  final int? interActive1;
-  final int? interActive2;
-  final int? interActive3;
-  final int? interActive4;
-  final int? interActive5;
-  final int? interActive6;
-  final int? interActive7;
-  final int? feedback1;
-  final int? feedback2;
-  final int? feedback3;
-  final int? feedback4;
-  final int? feedback5;
-  final int? feedback6;
-  final int? feedback7;
-  final int? totalInterActive;
-  final int? totalFeedback;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  dynamic toMap() => <String, Object?>{
-        "id": id,
-        "interActive1": interActive1,
-        "interActive2": interActive2,
-        "interActive3": interActive3,
-        "interActive4": interActive4,
-        "interActive5": interActive5,
-        "interActive6": interActive6,
-        "interActive7": interActive7,
-        "feedback1": feedback1,
-        "feedback2": feedback2,
-        "feedback3": feedback3,
-        "feedback4": feedback4,
-        "feedback5": feedback5,
-        "feedback6": feedback6,
-        "feedback7": feedback7,
-        "totalInterActive": totalInterActive,
-        "totalFeedback": totalFeedback,
-      };
-}
-
 class BookmarkFolder {
   BookmarkFolder({
     this.id,
@@ -777,6 +725,14 @@ class UserCreateUpdateDto {
   final String? activity;
   final String? color;
   final String? password;
+  final String? fatherName;
+  final String? nationalCode;
+  final String? schoolName;
+  final String? height;
+  final String? weight;
+  final String? foodAllergies;
+  final String? sickness;
+  final String? usedDrugs;
   final int? gender;
   final int? legalAuthenticationType;
   final int? nationalityType;
@@ -844,6 +800,14 @@ class UserCreateUpdateDto {
     this.tags,
     this.removeTags,
     this.addTags,
+    this.weight,
+    this.height,
+    this.fatherName,
+    this.foodAllergies,
+    this.schoolName,
+    this.sickness,
+    this.usedDrugs,
+    this.nationalCode,
   });
 
   factory UserCreateUpdateDto.fromJson(String str) => UserCreateUpdateDto.fromMap(json.decode(str));
@@ -886,23 +850,31 @@ class UserCreateUpdateDto {
         dribble: json["dribble"],
         soundCloud: json["soundCloud"],
         pinterest: json["pinterest"],
-        website: json["website"],
-        activity: json["activity"],
-        color: json["color"],
-        password: json["password"],
-        gender: json["gender"],
-        legalAuthenticationType: json["legalAuthenticationType"],
-        nationalityType: json["nationalityType"],
-        privacyType: json["privacyType"],
-        birthDate: json["birthDate"],
-        premiumExpireDate: json["premiumExpireDate"],
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-        code: json["code"],
-        shebaNumber: json["shebaNumber"],
-        address: json["address"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-        removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
-        addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
+    website: json["website"],
+    activity: json["activity"],
+    color: json["color"],
+    password: json["password"],
+    gender: json["gender"],
+    legalAuthenticationType: json["legalAuthenticationType"],
+    nationalityType: json["nationalityType"],
+    privacyType: json["privacyType"],
+    birthDate: json["birthDate"],
+    premiumExpireDate: json["premiumExpireDate"],
+    nationalCode: json["nationalCode"],
+    usedDrugs: json["usedDrugs"],
+    sickness: json["sickness"],
+    schoolName: json["schoolName"],
+    foodAllergies: json["foodAllergies"],
+    fatherName: json["fatherName"],
+    height: json["height"],
+    weight: json["weight"],
+    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+    code: json["code"],
+    shebaNumber: json["shebaNumber"],
+    address: json["address"],
+    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+    removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
+    addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
       );
 
   Map<String, dynamic> toMap() => {
@@ -941,24 +913,32 @@ class UserCreateUpdateDto {
         "dribble": dribble,
         "soundCloud": soundCloud,
         "pinterest": pinterest,
-        "website": website,
-        "activity": activity,
-        "color": color,
-        "password": password,
-        "gender": gender,
-        "legalAuthenticationType": legalAuthenticationType,
-        "nationalityType": nationalityType,
-        "privacyType": privacyType,
-        "birthDate": birthDate,
-        "premiumExpireDate": premiumExpireDate,
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
-        "code": code,
-        "shebaNumber": shebaNumber,
-        "address": address,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-        "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
-        "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
-      };
+    "website": website,
+    "activity": activity,
+    "color": color,
+    "password": password,
+    "gender": gender,
+    "legalAuthenticationType": legalAuthenticationType,
+    "nationalityType": nationalityType,
+    "privacyType": privacyType,
+    "birthDate": birthDate,
+    "premiumExpireDate": premiumExpireDate,
+    "weight": weight,
+    "height": height,
+    "fatherName": fatherName,
+    "foodAllergies": foodAllergies,
+    "usedDrugs": usedDrugs,
+    "sickness": sickness,
+    "schoolName": schoolName,
+    "nationalCode": nationalCode,
+    "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
+    "code": code,
+    "shebaNumber": shebaNumber,
+    "address": address,
+    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+    "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
+    "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
+  };
 }
 
 class JsonDetail {

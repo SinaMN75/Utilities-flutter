@@ -353,6 +353,8 @@ enum TagUser {
   unknown(202, ""),
   legal(203, ""),
   guest(204, ""),
+  teacher(205, ""),
+  student(206, ""),
   adminCategoryRead(300, "خواندن دسته‌بندی‌ها"),
   adminCategoryUpdate(301, "تغییر دسته‌بندی‌ها"),
   adminProductRead(302, "خواندن محصولات"),
@@ -430,7 +432,8 @@ enum TagContent {
   premium1Month(114, "1 Month"),
   premium3Month(115, "3 Months"),
   premium6Month(116, "6 Months"),
-  premium12Month(117, "12 Months");
+  premium12Month(117, "12 Months"),
+  questionnaire(118, "Questionnaire");
 
   const TagContent(this.number, this.title);
 

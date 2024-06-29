@@ -173,17 +173,6 @@ class UserDataSource {
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
 
-  void getGrowthRate({
-    required final Function(GenericResponse<GrowthRateReadDto> response) onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
-  }) =>
-      httpGet(
-        url: "$baseUrl/user/GrowthRate",
-        action: (final Response response) => onResponse(GenericResponse<GrowthRateReadDto>.fromJson(response.body, fromMap: GrowthRateReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
-
   void getProfileByUserName({
     required final String userName,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
