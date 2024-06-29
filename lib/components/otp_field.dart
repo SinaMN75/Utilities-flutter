@@ -16,6 +16,7 @@ Widget otpTextField({
   final Color? borderColor,
   final Color? cursorColor,
   final Function? onTap,
+  final String? Function(String?)? validator,
 }) =>
     PinCodeTextField(
       controller: controller,
@@ -26,6 +27,7 @@ Widget otpTextField({
       autoFocus: autoFocus,
       mainAxisAlignment: mainAxisAlignment,
       hintCharacter: hintCharacter,
+      validator: validator,
       pinTheme: PinTheme(
         shape: shape,
         fieldOuterPadding: fieldOuterPadding,
