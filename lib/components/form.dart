@@ -169,6 +169,10 @@ Widget button({
     );
   if (buttonType == ButtonType.outlined)
     return OutlinedButton(
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.all(backgroundColor),
+        padding: WidgetStateProperty.all(padding),
+      ),
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
@@ -180,6 +184,10 @@ Widget button({
     );
   if (buttonType == ButtonType.text)
     return TextButton(
+      style: ButtonStyle(
+        backgroundColor: WidgetStateProperty.all(backgroundColor),
+        padding: WidgetStateProperty.all(padding),
+      ),
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
