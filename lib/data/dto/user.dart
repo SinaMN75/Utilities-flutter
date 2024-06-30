@@ -613,30 +613,6 @@ class VerifyMobileForLoginDto {
       };
 }
 
-class ActiveMobileDto {
-  ActiveMobileDto({
-    this.code,
-    this.mobile,
-  });
-
-  factory ActiveMobileDto.fromJson(final String str) => ActiveMobileDto.fromMap(json.decode(str));
-
-  factory ActiveMobileDto.fromMap(final dynamic json) => ActiveMobileDto(
-        code: json["code"],
-        mobile: json["mobile"],
-      );
-
-  final String? code;
-  final String? mobile;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  dynamic toMap() => <String, String?>{
-        "code": code,
-        "mobile": mobile,
-      };
-}
-
 class BookmarkFolder {
   BookmarkFolder({
     this.id,
@@ -750,6 +726,7 @@ class UserCreateUpdateDto {
   final List<int>? tags;
   final List<int>? removeTags;
   final List<int>? addTags;
+  final List<KeyValueViewModel>? keyValues1;
 
   UserCreateUpdateDto({
     this.id,
@@ -812,6 +789,7 @@ class UserCreateUpdateDto {
     this.sickness,
     this.usedDrugs,
     this.nationalCode,
+    this.keyValues1,
   });
 
   factory UserCreateUpdateDto.fromJson(String str) => UserCreateUpdateDto.fromMap(json.decode(str));
@@ -879,6 +857,7 @@ class UserCreateUpdateDto {
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
         removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
         addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
+        keyValues1: json["keyValues1"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues1"]!.map((x) => KeyValueViewModel.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -942,6 +921,7 @@ class UserCreateUpdateDto {
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
         "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
         "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
+        "keyValues1": keyValues1 == null ? [] : List<dynamic>.from(keyValues1!.map((x) => x.toMap())),
       };
 }
 
