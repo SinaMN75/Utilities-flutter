@@ -549,17 +549,19 @@ enum SortLists {
 }
 
 enum Currency {
-  rial("100"),
-  dolor("101"),
-  lira("102"),
-  euro("103"),
-  btc("200");
+  rial(100, "IRR", "ریال"),
+  dolor(101, "USD", "دلار"),
+  lira(102, "TL", "لیر"),
+  euro(103, "EUR", "یورو"),
+  btc(200, "BTC", "بیت‌کوین");
 
-  const Currency(this.title);
+  const Currency(this.number, this.title, this.titlePersian);
 
   @override
   String toString() => name;
   final String title;
+  final int number;
+  final String titlePersian;
 }
 
 enum CreateProductStatus {
