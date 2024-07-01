@@ -553,6 +553,7 @@ enum Currency {
   dolor(101, "USD", "دلار"),
   lira(102, "TL", "لیر"),
   euro(103, "EUR", "یورو"),
+  aed(104, "AED", "دینار عمارات"),
   btc(200, "BTC", "بیت‌کوین");
 
   const Currency(this.number, this.title, this.titlePersian);
