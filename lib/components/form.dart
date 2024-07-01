@@ -141,6 +141,7 @@ Widget button({
         if (buttonState.value == PageState.initial)
           return ElevatedButton(
             style: ButtonStyle(
+              textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle),
               backgroundColor: WidgetStateProperty.all(backgroundColor),
               padding: WidgetStateProperty.all(padding),
             ),
@@ -170,6 +171,7 @@ Widget button({
   if (buttonType == ButtonType.outlined)
     return OutlinedButton(
       style: ButtonStyle(
+        textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle),
         backgroundColor: WidgetStateProperty.all(backgroundColor),
         padding: WidgetStateProperty.all(padding),
       ),
@@ -185,6 +187,7 @@ Widget button({
   if (buttonType == ButtonType.text)
     return TextButton(
       style: ButtonStyle(
+        textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle),
         backgroundColor: WidgetStateProperty.all(backgroundColor),
         padding: WidgetStateProperty.all(padding),
       ),
