@@ -18,9 +18,14 @@ Future<void> request(
   final bool sendUserAgent = false,
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
+  final bool clearHeaders = false,
 }) async {
   try {
-    final Map<String, String> header = <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""};
+    final Map<String, String> header = <String, String>{
+      "Authorization": getString(UtilitiesConstants.token) ?? "",
+    };
+
+    if (clearHeaders) header.clear();
 
     if (headers != null) header.addAll(headers);
 
@@ -81,6 +86,7 @@ Future<void> httpGet({
   final bool sendUserAgent = false,
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
+  final bool clearHeaders = false,
 }) async =>
     request(
       url,
@@ -97,6 +103,7 @@ Future<void> httpGet({
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
       failure: failure,
+      clearHeaders: clearHeaders,
     );
 
 Future<void> httpPost({
@@ -115,6 +122,7 @@ Future<void> httpPost({
   final bool sendUserAgent = false,
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
+  final bool clearHeaders = false,
 }) async =>
     request(
       url,
@@ -133,6 +141,7 @@ Future<void> httpPost({
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
       failure: failure,
+      clearHeaders: clearHeaders,
     );
 
 Future<void> httpPut({
@@ -151,6 +160,7 @@ Future<void> httpPut({
   final bool sendUserAgent = false,
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
+  final bool clearHeaders = false,
 }) async =>
     request(
       url,
@@ -169,42 +179,7 @@ Future<void> httpPut({
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
       failure: failure,
-    );
-
-Future<void> patch({
-  required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
-  final Function(dynamic error)? failure,
-  final Map<String, String>? headers,
-  final dynamic body,
-  final bool encodeBody = true,
-  final String userAgent = 'SinaMN75',
-  final bool followRedirects = true,
-  final Duration timeout = const Duration(minutes: 60),
-  final int maxRedirects = 5,
-  final bool allowAutoSignedCert = false,
-  final bool sendUserAgent = false,
-  final int maxAuthRetries = 1,
-  final bool withCredentials = false,
-}) async =>
-    request(
-      url,
-      EHttpMethod.patch,
-      action,
-      error,
-      body: body,
-      encodeBody: encodeBody,
-      headers: headers,
-      userAgent: userAgent,
-      followRedirects: followRedirects,
-      timeout: timeout,
-      maxRedirects: maxRedirects,
-      allowAutoSignedCert: allowAutoSignedCert,
-      sendUserAgent: sendUserAgent,
-      maxAuthRetries: maxAuthRetries,
-      withCredentials: withCredentials,
-      failure: failure,
+      clearHeaders: clearHeaders,
     );
 
 Future<void> httpDelete({
@@ -221,6 +196,7 @@ Future<void> httpDelete({
   final bool sendUserAgent = false,
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
+  final bool clearHeaders = false,
 }) async =>
     request(
       url,
@@ -237,6 +213,7 @@ Future<void> httpDelete({
       maxAuthRetries: maxAuthRetries,
       withCredentials: withCredentials,
       failure: failure,
+      clearHeaders: clearHeaders,
     );
 
 enum EHttpMethod { get, post, put, patch, delete }
