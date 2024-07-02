@@ -206,7 +206,7 @@ class UserJsonDetail {
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
 
   factory UserJsonDetail.fromMap(final Map<String, dynamic> json) => UserJsonDetail(
-    instagram: json["instagram"],
+        instagram: json["instagram"],
         degree: json["degree"],
         address: json["address"],
         telegram: json["telegram"],
@@ -274,8 +274,7 @@ class UserJsonDetail {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "instagram": instagram,
         "degree": degree,
         "address": address,
@@ -404,6 +403,7 @@ class UserFilterDto {
     this.showPremiums,
     this.categories,
     this.tags,
+    this.institute,
   });
 
   factory UserFilterDto.fromMap(final Map<String, dynamic> json) => UserFilterDto(
@@ -433,6 +433,7 @@ class UserFilterDto {
         showCategories: json["showCategories"],
         showSuspend: json["showSuspend"],
         showMyCustomers: json["showMyCustomers"],
+        institute: json["institute"],
         orderByUserName: json["orderByUserName"],
         orderByCreatedAt: json["orderByCreatedAt"],
         orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
@@ -463,6 +464,7 @@ class UserFilterDto {
   final String? appUserName;
   final String? appPhoneNumber;
   final String? appEmail;
+  final String? institute;
   final int? gender;
   final String? region;
   final String? state;
@@ -487,7 +489,8 @@ class UserFilterDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
         "userId": userId,
         "userName": userName,
         "showPremiums": showPremiums,
@@ -495,6 +498,7 @@ class UserFilterDto {
         "query": query,
         "phoneNumber": phoneNumber,
         "email": email,
+        "institute": institute,
         "firstName": firstName,
         "lastName": lastName,
         "fullName": fullName,
@@ -729,6 +733,7 @@ class UserCreateUpdateDto {
   final String? code;
   final String? shebaNumber;
   final String? address;
+  final String? institute;
   final List<int>? tags;
   final List<int>? removeTags;
   final List<int>? addTags;
@@ -797,6 +802,7 @@ class UserCreateUpdateDto {
     this.usedDrugs,
     this.nationalCode,
     this.keyValues1,
+    this.institute,
   });
 
   factory UserCreateUpdateDto.fromJson(String str) => UserCreateUpdateDto.fromMap(json.decode(str));
@@ -862,14 +868,14 @@ class UserCreateUpdateDto {
         code: json["code"],
         shebaNumber: json["shebaNumber"],
         address: json["address"],
+        institute: json["institute"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
         removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
         addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
         keyValues1: json["keyValues1"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues1"]!.map((x) => KeyValueViewModel.fromMap(x))),
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "degree": degree,
         "email": email,
@@ -923,6 +929,7 @@ class UserCreateUpdateDto {
         "usedDrugs": usedDrugs,
         "sickness": sickness,
         "schoolName": schoolName,
+        "institute": institute,
         "nationalCode": nationalCode,
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
         "code": code,
