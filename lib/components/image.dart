@@ -17,57 +17,47 @@ Widget image(
 }) {
   if (fileData != null) {
     if (isWeb())
-      return imageMemory(
+      return UImageMemory(
         fileData.bytes!,
         width: size ?? width,
         height: size ?? height,
         borderRadius: borderRadius,
         color: color,
-        margin: margin,
-        onTap: onTap,
         fit: fit,
-        clipBehavior: clipBehavior,
       );
     else
-      return imageFile(
+      return UImageFile(
         File(fileData.path!),
         width: size ?? width,
         height: size ?? height,
         borderRadius: borderRadius,
         color: color,
-        margin: margin,
-        onTap: onTap,
         fit: fit,
-        clipBehavior: clipBehavior,
       );
   }
   if (source.length <= 10) {
     if (placeholder == null)
       return SizedBox(width: width, height: height);
     else
-      return imageAsset(
+      return UImageAsset(
         placeholder,
         width: size ?? width,
         height: size ?? height,
         borderRadius: borderRadius,
         color: color,
-        margin: margin,
-        onTap: onTap,
         fit: fit,
         clipBehavior: clipBehavior,
       );
   } else {
     if (source.startsWith("http"))
-      return imageNetwork(
+      return UImageNetwork(
         source,
         width: size ?? width,
         height: size ?? height,
         fit: fit,
         clipBehavior: clipBehavior,
-        margin: margin,
         borderRadius: borderRadius,
         color: color,
-        onTap: onTap,
         progressIndicatorBuilder: progressIndicatorBuilder,
         placeholder: placeholder,
       );
@@ -76,16 +66,14 @@ Widget image(
     else if (source.endsWith(".json"))
       return lottie.Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
     else
-      return imageAsset(
+      return UImageAsset(
         source,
         width: size ?? width,
         height: size ?? height,
         fit: fit,
         clipBehavior: clipBehavior,
-        margin: margin,
         borderRadius: borderRadius,
         color: color,
-        onTap: onTap,
       );
   }
 }
@@ -117,68 +105,73 @@ Widget iconPrimary(
       onTap: onTap,
     );
 
-Widget imageAsset(
-  final String asset, {
-  final Color? color,
-  final double? width,
-  final double? height,
-  final BoxFit fit = BoxFit.contain,
-  final Clip clipBehavior = Clip.hardEdge,
-  final double borderRadius = 1,
-  final EdgeInsets margin = EdgeInsets.zero,
-  final VoidCallback? onTap,
-}) =>
-    GestureDetector(
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(borderRadius)),
-        margin: margin,
-        width: width,
-        height: height,
-        child: asset.substring(asset.length - 3).toLowerCase() == "svg"
-            ? SvgPicture.asset(
-                asset,
-                width: width,
-                height: height,
-                fit: fit,
-                clipBehavior: clipBehavior,
-              )
-            : Image.asset(asset, color: color, width: width, height: height, fit: fit),
-      ),
-    );
+class UImageAsset extends StatelessWidget {
+  const UImageAsset(
+    this.path, {
+    this.color,
+    this.width,
+    this.height,
+    this.fit = BoxFit.contain,
+    this.clipBehavior = Clip.hardEdge,
+    this.borderRadius = 1,
+    super.key,
+  });
 
-Widget imageNetwork(
-  final String url, {
-  final Color? color,
-  final double? width,
-  final double? height,
-  final BoxFit fit = BoxFit.contain,
-  final Clip clipBehavior = Clip.hardEdge,
-  final double borderRadius = 1,
-  final EdgeInsets margin = EdgeInsets.zero,
-  final VoidCallback? onTap,
-  final String? placeholder,
-  final ProgressIndicatorBuilder? progressIndicatorBuilder,
-}) =>
-    GestureDetector(
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(borderRadius)),
-        margin: margin,
+  final String path;
+  final Color? color;
+  final double? width;
+  final double? height;
+  final BoxFit fit;
+  final Clip clipBehavior;
+  final double borderRadius;
+
+  @override
+  Widget build(BuildContext context) => Image.asset(
+        path,
+        color: color,
         width: width,
         height: height,
-        child: url.length <= 10
+        fit: fit,
+      ).container(radius: borderRadius);
+}
+
+class UImageNetwork extends StatelessWidget {
+  const UImageNetwork(
+    this.url, {
+    this.color,
+    this.width,
+    this.height,
+    this.fit = BoxFit.contain,
+    this.clipBehavior = Clip.hardEdge,
+    this.borderRadius = 1,
+    this.placeholder,
+    this.progressIndicatorBuilder,
+    super.key,
+  });
+
+  final String url;
+  final Color? color;
+  final double? width;
+  final double? height;
+  final BoxFit fit;
+  final Clip clipBehavior;
+  final double borderRadius;
+  final String? placeholder;
+  final ProgressIndicatorBuilder? progressIndicatorBuilder;
+
+  @override
+  Widget build(BuildContext context) => Builder(
+        builder: (final BuildContext context) => url.length <= 10
             ? placeholder == null
-                ? const SizedBox()
-                : imageAsset(
-                    placeholder,
+                ? SizedBox(width: width, height: height)
+                : UImageAsset(
+                    placeholder!,
                     width: width,
                     height: height,
                     color: color,
                     fit: fit,
                     clipBehavior: clipBehavior,
+                    borderRadius: borderRadius,
                   )
             : url.substring(url.length - 3) == "svg"
                 ? SvgPicture.network(
@@ -188,12 +181,13 @@ Widget imageNetwork(
                     fit: fit,
                     placeholderBuilder: placeholder == null
                         ? null
-                        : (final _) => imageAsset(
-                              placeholder,
+                        : (final _) => UImageAsset(
+                              placeholder!,
                               width: width,
                               height: height,
                               fit: fit,
                               clipBehavior: clipBehavior,
+                              borderRadius: borderRadius,
                             ),
                   )
                 : CachedNetworkImage(
@@ -206,7 +200,7 @@ Widget imageNetwork(
                     errorWidget: placeholder == null
                         ? null
                         : (final _, final __, final ___) => image(
-                              placeholder,
+                      placeholder!,
                               color: color,
                               width: width,
                               height: height,
@@ -216,7 +210,7 @@ Widget imageNetwork(
                     placeholder: placeholder == null
                         ? null
                         : (final _, final __) => image(
-                              placeholder,
+                              placeholder!,
                               color: color,
                               width: width,
                               height: height,
@@ -224,51 +218,61 @@ Widget imageNetwork(
                               clipBehavior: clipBehavior,
                             ),
                   ),
-      ),
-    );
+      ).container(radius: borderRadius);
+}
 
-Widget imageFile(
-  final File file, {
-  final Color? color,
-  final double? width,
-  final double? height,
-  final BoxFit fit = BoxFit.contain,
-  final Clip clipBehavior = Clip.hardEdge,
-  final double borderRadius = 1,
-  final EdgeInsets margin = EdgeInsets.zero,
-  final VoidCallback? onTap,
-}) =>
-    GestureDetector(
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(borderRadius)),
-        margin: margin,
+class UImageFile extends StatelessWidget {
+  const UImageFile(
+    this.file, {
+    this.color,
+    this.width,
+    this.height,
+    this.fit = BoxFit.contain,
+    this.borderRadius = 1,
+    super.key,
+  });
+
+  final File file;
+  final Color? color;
+  final double? width;
+  final double? height;
+  final BoxFit fit;
+  final double borderRadius;
+
+  @override
+  Widget build(BuildContext context) => Image.file(
+        file,
+        color: color,
         width: width,
         height: height,
-        child: Image.file(file, color: color, width: width, height: height, fit: fit),
-      ),
-    );
+        fit: fit,
+      ).container(radius: borderRadius);
+}
 
-Widget imageMemory(
-  final Uint8List file, {
-  final Color? color,
-  final double? width,
-  final double? height,
-  final BoxFit fit = BoxFit.contain,
-  final Clip clipBehavior = Clip.hardEdge,
-  final double borderRadius = 1,
-  final EdgeInsets margin = EdgeInsets.zero,
-  final VoidCallback? onTap,
-}) =>
-    GestureDetector(
-      onTap: onTap,
-      child: Container(
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(borderRadius)),
-        margin: margin,
+class UImageMemory extends StatelessWidget {
+  const UImageMemory(
+    this.file, {
+    this.color,
+    this.width,
+    this.height,
+    this.fit = BoxFit.contain,
+    this.borderRadius = 1,
+    super.key,
+  });
+
+  final Uint8List file;
+  final Color? color;
+  final double? width;
+  final double? height;
+  final BoxFit fit;
+  final double borderRadius;
+
+  @override
+  Widget build(BuildContext context) => Image.memory(
+        file,
+        color: color,
         width: width,
         height: height,
-        child: Image.memory(file, color: color, width: width, height: height, fit: fit),
-      ),
-    );
+        fit: fit,
+      ).container(radius: borderRadius);
+}
