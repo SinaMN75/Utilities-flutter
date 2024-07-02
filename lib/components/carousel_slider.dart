@@ -25,7 +25,7 @@ class UMediaReadDtoImageSlider extends StatelessWidget {
           items: list!
               .where((MediaReadDto e) => e.url.isImageFileName)
               .map(
-                (final MediaReadDto e) => image(
+                (final MediaReadDto e) => UImage(
                   e.url,
                   fit: BoxFit.cover,
                   width: getContext().width,

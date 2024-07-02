@@ -203,7 +203,7 @@ Widget filePickerList({
                 title: Row(
                   children: <Widget>[
                     if (data.url != null && data.url!.isImageFileName)
-                      image(
+                      UImage(
                         data.url!,
                         width: 150,
                         height: 150,
@@ -224,7 +224,7 @@ Widget filePickerList({
                         margin: const EdgeInsets.all(12),
                       )
                     else if (data.extension!.isImageFileName)
-                      image(
+                        UImage(
                         "",
                         fileData: data,
                         width: 150,
