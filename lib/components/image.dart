@@ -8,7 +8,6 @@ class UImage extends StatelessWidget {
     this.color,
     this.width,
     this.height,
-    this.size,
     this.placeholder,
     this.progressIndicatorBuilder,
     this.fit = BoxFit.contain,
@@ -20,7 +19,6 @@ class UImage extends StatelessWidget {
   final Color? color;
   final double? width;
   final double? height;
-  final double? size;
   final BoxFit fit;
   final double borderRadius;
   final String? placeholder;
@@ -34,8 +32,8 @@ class UImage extends StatelessWidget {
           if (isWeb())
             return UImageMemory(
               fileData!.bytes!,
-              width: size ?? width,
-              height: size ?? height,
+              width: width,
+              height: height,
               borderRadius: borderRadius,
               color: color,
               fit: fit,
@@ -43,8 +41,8 @@ class UImage extends StatelessWidget {
           else
             return UImageFile(
               File(fileData!.path!),
-              width: size ?? width,
-              height: size ?? height,
+              width: width,
+              height: height,
               borderRadius: borderRadius,
               color: color,
               fit: fit,
@@ -56,8 +54,8 @@ class UImage extends StatelessWidget {
           else
             return UImageAsset(
               placeholder!,
-              width: size ?? width,
-              height: size ?? height,
+              width: width,
+              height: height,
               borderRadius: borderRadius,
               color: color,
               fit: fit,
@@ -66,8 +64,8 @@ class UImage extends StatelessWidget {
           if (source.startsWith("http"))
             return UImageNetwork(
               source,
-              width: size ?? width,
-              height: size ?? height,
+              width: width,
+              height: height,
               fit: fit,
               borderRadius: borderRadius,
               color: color,
@@ -81,8 +79,8 @@ class UImage extends StatelessWidget {
           else
             return UImageAsset(
               source,
-              width: size ?? width,
-              height: size ?? height,
+              width: width,
+              height: height,
               fit: fit,
               borderRadius: borderRadius,
               color: color,
@@ -93,82 +91,39 @@ class UImage extends StatelessWidget {
   }
 }
 
-Widget image(
-  final String source, {
-  final FileData? fileData,
-  final Color? color,
-  final double? width,
-  final double? height,
-  final double? size,
-  final BoxFit fit = BoxFit.contain,
-  final Clip clipBehavior = Clip.hardEdge,
-  final double borderRadius = 1,
-  final EdgeInsets margin = EdgeInsets.zero,
-  final String? placeholder,
-  final ProgressIndicatorBuilder? progressIndicatorBuilder,
-  final VoidCallback? onTap,
-}) {
-  if (fileData != null) {
-    if (isWeb())
-      return UImageMemory(
-        fileData.bytes!,
-        width: size ?? width,
-        height: size ?? height,
-        borderRadius: borderRadius,
-        color: color,
-        fit: fit,
-      );
-    else
-      return UImageFile(
-        File(fileData.path!),
-        width: size ?? width,
-        height: size ?? height,
-        borderRadius: borderRadius,
-        color: color,
-        fit: fit,
-      );
-  }
-  if (source.length <= 10) {
-    if (placeholder == null)
-      return SizedBox(width: width, height: height);
-    else
-      return UImageAsset(
-        placeholder,
-        width: size ?? width,
-        height: size ?? height,
-        borderRadius: borderRadius,
-        color: color,
-        fit: fit,
-        clipBehavior: clipBehavior,
-      );
-  } else {
-    if (source.startsWith("http"))
-      return UImageNetwork(
+class UIconPrimary extends StatelessWidget {
+  const UIconPrimary(
+    this.source, {
+    super.key,
+    this.color,
+    this.width,
+    this.height,
+    this.placeholder,
+    this.progressIndicatorBuilder,
+    this.fit = BoxFit.contain,
+    this.borderRadius = 1,
+  });
+
+  final String source;
+  final Color? color;
+  final double? width;
+  final double? height;
+  final BoxFit fit;
+  final double borderRadius;
+  final String? placeholder;
+  final ProgressIndicatorBuilder? progressIndicatorBuilder;
+
+  @override
+  Widget build(BuildContext context) => UImage(
         source,
-        width: size ?? width,
-        height: size ?? height,
+        color: color ?? colorScheme().primary,
+        width: width,
+        height: height,
         fit: fit,
-        clipBehavior: clipBehavior,
         borderRadius: borderRadius,
-        color: color,
-        progressIndicatorBuilder: progressIndicatorBuilder,
         placeholder: placeholder,
+        progressIndicatorBuilder: progressIndicatorBuilder,
       );
-    else if (source.startsWith("http") && source.endsWith(".json"))
-      return lottie.Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
-    else if (source.endsWith(".json"))
-      return lottie.Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
-    else
-      return UImageAsset(
-        source,
-        width: size ?? width,
-        height: size ?? height,
-        fit: fit,
-        clipBehavior: clipBehavior,
-        borderRadius: borderRadius,
-        color: color,
-      );
-  }
 }
 
 Widget iconPrimary(
@@ -184,18 +139,15 @@ Widget iconPrimary(
   final ProgressIndicatorBuilder? progressIndicatorBuilder,
   final VoidCallback? onTap,
 }) =>
-    image(
+    UImage(
       source,
       color: color ?? colorScheme().primary,
       width: width,
       height: height,
       fit: fit,
-      clipBehavior: clipBehavior,
       borderRadius: borderRadius,
-      margin: margin,
       placeholder: placeholder,
       progressIndicatorBuilder: progressIndicatorBuilder,
-      onTap: onTap,
     );
 
 class UImageAsset extends StatelessWidget {
@@ -292,23 +244,21 @@ class UImageNetwork extends StatelessWidget {
                     progressIndicatorBuilder: progressIndicatorBuilder,
                     errorWidget: placeholder == null
                         ? null
-                        : (final _, final __, final ___) => image(
-                      placeholder!,
-                              color: color,
-                              width: width,
-                              height: height,
-                              fit: fit,
-                              clipBehavior: clipBehavior,
-                            ),
-                    placeholder: placeholder == null
-                        ? null
-                        : (final _, final __) => image(
+                        : (final _, final __, final ___) => UImage(
                               placeholder!,
                               color: color,
                               width: width,
                               height: height,
                               fit: fit,
-                              clipBehavior: clipBehavior,
+                            ),
+                    placeholder: placeholder == null
+                        ? null
+                        : (final _, final __) => UImage(
+                              placeholder!,
+                              color: color,
+                              width: width,
+                              height: height,
+                              fit: fit,
                             ),
                   ),
       ).container(radius: borderRadius);
