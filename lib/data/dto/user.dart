@@ -200,12 +200,14 @@ class UserJsonDetail {
     this.sickness,
     this.usedDrugs,
     this.nationalCode,
+    this.degree,
   });
 
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
 
   factory UserJsonDetail.fromMap(final Map<String, dynamic> json) => UserJsonDetail(
-        instagram: json["instagram"],
+    instagram: json["instagram"],
+        degree: json["degree"],
         address: json["address"],
         telegram: json["telegram"],
         fcmToken: json["fcmToken"],
@@ -238,6 +240,7 @@ class UserJsonDetail {
         userSubscriptions: json["userSubscriptions"] == null ? [] : List<UserSubscriptions>.from(json["userSubscriptions"]!.map((x) => UserSubscriptions.fromMap(x))),
       );
   final String? instagram;
+  final String? degree;
   final String? address;
   final String? telegram;
   final String? whatsApp;
@@ -271,8 +274,10 @@ class UserJsonDetail {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
         "instagram": instagram,
+        "degree": degree,
         "address": address,
         "telegram": telegram,
         "whatsApp": whatsApp,
@@ -667,6 +672,7 @@ class AuthenticateDto {
 
 class UserCreateUpdateDto {
   final String? id;
+  final String? degree;
   final String? email;
   final String? firstName;
   final String? userName;
@@ -730,6 +736,7 @@ class UserCreateUpdateDto {
 
   UserCreateUpdateDto({
     this.id,
+    this.degree,
     this.email,
     this.firstName,
     this.userName,
@@ -797,7 +804,8 @@ class UserCreateUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory UserCreateUpdateDto.fromMap(Map<String, dynamic> json) => UserCreateUpdateDto(
-        id: json["id"],
+    id: json["id"],
+        degree: json["degree"],
         email: json["email"],
         firstName: json["firstName"],
         userName: json["userName"],
@@ -860,8 +868,10 @@ class UserCreateUpdateDto {
         keyValues1: json["keyValues1"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues1"]!.map((x) => KeyValueViewModel.fromMap(x))),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() =>
+      {
         "id": id,
+        "degree": degree,
         "email": email,
         "firstName": firstName,
         "userName": userName,
@@ -922,104 +932,5 @@ class UserCreateUpdateDto {
         "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
         "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
         "keyValues1": keyValues1 == null ? [] : List<dynamic>.from(keyValues1!.map((x) => x.toMap())),
-      };
-}
-
-class JsonDetail {
-  JsonDetail({
-    this.instagram,
-    this.telegram,
-    this.whatsApp,
-    this.linkedIn,
-    this.dribble,
-    this.soundCloud,
-    this.pinterest,
-    this.website,
-    this.activity,
-    this.color,
-    this.code,
-    this.shebaNumber,
-    this.address,
-    this.fcmToken,
-    this.boosted,
-    this.deliveryPrice1,
-    this.deliveryPrice2,
-    this.deliveryPrice3,
-    this.privacyType,
-    this.legalAuthenticationType,
-    this.nationalityType,
-  });
-
-  factory JsonDetail.fromJson(final String str) => JsonDetail.fromMap(json.decode(str));
-
-  factory JsonDetail.fromMap(final Map<String, dynamic> json) => JsonDetail(
-        instagram: json["instagram"],
-        telegram: json["telegram"],
-        whatsApp: json["whatsApp"],
-        linkedIn: json["linkedIn"],
-        dribble: json["dribble"],
-        soundCloud: json["soundCloud"],
-        pinterest: json["pinterest"],
-        website: json["website"],
-        activity: json["activity"],
-        color: json["color"],
-        code: json["code"],
-        shebaNumber: json["shebaNumber"],
-        address: json["address"],
-        fcmToken: json["fcmToken"],
-        boosted: json["boosted"],
-        deliveryPrice1: json["deliveryPrice1"],
-        deliveryPrice2: json["deliveryPrice2"],
-        deliveryPrice3: json["deliveryPrice3"],
-        privacyType: json["privacyType"],
-        legalAuthenticationType: json["legalAuthenticationType"],
-        nationalityType: json["nationalityType"],
-      );
-  final String? instagram;
-  final String? telegram;
-  final String? whatsApp;
-  final String? linkedIn;
-  final String? dribble;
-  final String? soundCloud;
-  final String? pinterest;
-  final String? website;
-  final String? activity;
-  final String? color;
-  final String? code;
-  final String? shebaNumber;
-  final String? address;
-  final String? fcmToken;
-  final String? boosted;
-  final int? deliveryPrice1;
-  final int? deliveryPrice2;
-  final int? deliveryPrice3;
-  final int? privacyType;
-  final int? legalAuthenticationType;
-  final int? nationalityType;
-
-  String toJson() => json.encode(toMap());
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-        "instagram": instagram,
-        "telegram": telegram,
-        "whatsApp": whatsApp,
-        "linkedIn": linkedIn,
-        "dribble": dribble,
-        "soundCloud": soundCloud,
-        "pinterest": pinterest,
-        "website": website,
-        "activity": activity,
-        "color": color,
-        "code": code,
-        "shebaNumber": shebaNumber,
-        "address": address,
-        "fcmToken": fcmToken,
-        "boosted": boosted,
-        "deliveryPrice1": deliveryPrice1,
-        "deliveryPrice2": deliveryPrice2,
-        "deliveryPrice3": deliveryPrice3,
-        "privacyType": privacyType,
-        "legalAuthenticationType": legalAuthenticationType,
-        "nationalityType": nationalityType,
       };
 }
