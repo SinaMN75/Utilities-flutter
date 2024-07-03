@@ -20,6 +20,8 @@ class ProductReadDto {
     this.enabled,
     this.discountPrice,
     this.price,
+    this.price1,
+    this.price2,
     this.currency,
     this.status,
     this.ageCategory,
@@ -48,8 +50,10 @@ class ProductReadDto {
   factory ProductReadDto.fromJson(final String str) => ProductReadDto.fromMap(json.decode(str));
 
   factory ProductReadDto.fromMap(final dynamic json) => ProductReadDto(
-        id: json["id"],
+    id: json["id"],
         code: json["code"],
+        price1: json["price1"],
+        price2: json["price2"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         title: json["title"],
@@ -103,6 +107,8 @@ class ProductReadDto {
   int? stock;
   int? voteCount;
   int? discountPercent;
+  int? price1;
+  int? price2;
   bool? enabled;
   bool? isSeen;
   int? discountPrice;
@@ -133,7 +139,8 @@ class ProductReadDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() => {
+  dynamic toMap() =>
+      {
         "id": id,
         "code": code,
         "region": region,
@@ -143,6 +150,8 @@ class ProductReadDto {
         "subtitle": subtitle,
         "description": description,
         "visitsCount": visitsCount,
+        "price1": price1,
+        "price2": price2,
         "isSeen": isSeen,
         "latitude": latitude,
         "longitude": longitude,
@@ -328,6 +337,8 @@ class ProductCreateUpdateDto {
     this.seats,
     this.id,
     this.title,
+    this.price1,
+    this.price2,
     this.subtitle,
     this.description,
     this.details,
@@ -399,6 +410,8 @@ class ProductCreateUpdateDto {
   String? phoneNumber;
   String? link;
   String? website;
+  int? price1;
+  int? price2;
   String? color;
   String? region;
   String? email;
@@ -507,6 +520,8 @@ class ProductCreateUpdateDto {
         "shippingTime": shippingTime,
         "shippingCost": shippingCost,
         "boosted": boosted,
+        "price1": price1,
+        "price2": price2,
         "parentId": parentId,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((final int x) => x)),
         "keyValues": keyValues == null ? null : List<dynamic>.from(keyValues!.map((final KeyValueViewModel x) => x.toMap())),
@@ -667,8 +682,7 @@ class ProductFilterDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "title": title,
         "subtitle": subtitle,
         "description": description,
