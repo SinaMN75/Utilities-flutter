@@ -8,6 +8,7 @@ class UtilitiesTagUtils {
     if (tags.contains(Currency.euro.number)) return Currency.euro.title;
     if (tags.contains(Currency.lira.number)) return Currency.lira.title;
     if (tags.contains(Currency.rial.number)) return Currency.rial.title;
+    if (tags.contains(Currency.gpb.number)) return Currency.gpb.title;
     return "";
   }
 
@@ -564,6 +565,7 @@ enum Currency {
   lira(102, "TL", "لیر"),
   euro(103, "EUR", "یورو"),
   aed(104, "AED", "دینار عمارات"),
+  gpb(105, "GPB", ""),
   btc(200, "BTC", "بیت‌کوین");
 
   const Currency(this.number, this.title, this.titlePersian);
