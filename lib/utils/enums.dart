@@ -1,6 +1,16 @@
 part of 'utils.dart';
 
 class UtilitiesTagUtils {
+  static String tagCurrencyTitleFromTagList(final List<int> tags) {
+    if (tags.contains(Currency.dolor.number)) return Currency.dolor.title;
+    if (tags.contains(Currency.aed.number)) return Currency.aed.title;
+    if (tags.contains(Currency.btc.number)) return Currency.btc.title;
+    if (tags.contains(Currency.euro.number)) return Currency.euro.title;
+    if (tags.contains(Currency.lira.number)) return Currency.lira.title;
+    if (tags.contains(Currency.rial.number)) return Currency.rial.title;
+    return "";
+  }
+
   static String tagProductTitleFromTagList(final List<int> tags) {
     if (tags.contains(TagProduct.inQueue.number)) return TagProduct.inQueue.title;
     if (tags.contains(TagProduct.released.number)) return TagProduct.released.title;
