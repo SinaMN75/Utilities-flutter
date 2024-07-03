@@ -25,70 +25,67 @@ class UImage extends StatelessWidget {
   final ProgressIndicatorBuilder? progressIndicatorBuilder;
 
   @override
-  Widget build(BuildContext context) {
-    return Builder(
-      builder: (final BuildContext context) {
-        if (fileData != null) {
-          if (isWeb())
-            return UImageMemory(
-              fileData!.bytes!,
-              width: width,
-              height: height,
-              borderRadius: borderRadius,
-              color: color,
-              fit: fit,
-            );
-          else
-            return UImageFile(
-              File(fileData!.path!),
-              width: width,
-              height: height,
-              borderRadius: borderRadius,
-              color: color,
-              fit: fit,
-            );
-        }
-        if (source.length <= 10) {
-          if (placeholder == null)
-            return SizedBox(width: width, height: height);
-          else
-            return UImageAsset(
-              placeholder!,
-              width: width,
-              height: height,
-              borderRadius: borderRadius,
-              color: color,
-              fit: fit,
-            );
-        } else {
-          if (source.startsWith("http"))
-            return UImageNetwork(
-              source,
-              width: width,
-              height: height,
-              fit: fit,
-              borderRadius: borderRadius,
-              color: color,
-              progressIndicatorBuilder: progressIndicatorBuilder,
-              placeholder: placeholder,
-            );
-          else if (source.startsWith("http") && source.endsWith(".json"))
-            return lottie.Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
-          else if (source.endsWith(".json"))
-            return lottie.Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
-          else
-            return UImageAsset(
-              source,
-              width: width,
-              height: height,
-              fit: fit,
-              borderRadius: borderRadius,
-              color: color,
-            );
-        }
-      },
-    );
-  }
+  Widget build(final BuildContext context) => Builder(
+        builder: (final BuildContext context) {
+          if (fileData != null) {
+            if (isWeb())
+              return UImageMemory(
+                fileData!.bytes!,
+                width: width,
+                height: height,
+                borderRadius: borderRadius,
+                color: color,
+                fit: fit,
+              );
+            else
+              return UImageFile(
+                File(fileData!.path!),
+                width: width,
+                height: height,
+                borderRadius: borderRadius,
+                color: color,
+                fit: fit,
+              );
+          } else if (source.length <= 5) {
+            if (placeholder == null)
+              return SizedBox(width: width, height: height);
+            else
+              return UImageAsset(
+                placeholder!,
+                width: width,
+                height: height,
+                borderRadius: borderRadius,
+                color: color,
+                fit: fit,
+              );
+          } else {
+            if (source.startsWith("http"))
+              return UImageNetwork(
+                source,
+                width: width,
+                height: height,
+                fit: fit,
+                borderRadius: borderRadius,
+                color: color,
+                progressIndicatorBuilder: progressIndicatorBuilder,
+                placeholder: placeholder,
+              );
+            else if (source.startsWith("http") && source.endsWith(".json"))
+              return lottie.Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
+            else if (source.endsWith(".json"))
+              return lottie.Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
+            else
+              return UImageAsset(
+                source,
+                width: width,
+                height: height,
+                fit: fit,
+                borderRadius: borderRadius,
+                color: color,
+              );
+          }
+        },
+      );
 }
 
 class UIconPrimary extends StatelessWidget {
@@ -114,7 +111,7 @@ class UIconPrimary extends StatelessWidget {
   final ProgressIndicatorBuilder? progressIndicatorBuilder;
 
   @override
-  Widget build(BuildContext context) => UImage(
+  Widget build(final BuildContext context) => UImage(
         source,
         color: color ?? colorScheme().primary,
         width: width,
@@ -171,13 +168,20 @@ class UImageAsset extends StatelessWidget {
   final double borderRadius;
 
   @override
-  Widget build(BuildContext context) => Image.asset(
-        path,
-        color: color,
-        width: width,
-        height: height,
-        fit: fit,
-      ).container(radius: borderRadius);
+  Widget build(final BuildContext context) => path.endsWith("svg")
+      ? SvgPicture.asset(
+          path,
+          width: width,
+          height: height,
+          fit: fit,
+        ).container(radius: borderRadius)
+      : Image.asset(
+          path,
+          color: color,
+          width: width,
+          height: height,
+          fit: fit,
+        ).container(radius: borderRadius);
 }
 
 class UImageNetwork extends StatelessWidget {
@@ -205,7 +209,7 @@ class UImageNetwork extends StatelessWidget {
   final ProgressIndicatorBuilder? progressIndicatorBuilder;
 
   @override
-  Widget build(BuildContext context) => Builder(
+  Widget build(final BuildContext context) => Builder(
         builder: (final BuildContext context) => url.length <= 10
             ? placeholder == null
                 ? SizedBox(width: width, height: height)
@@ -283,7 +287,7 @@ class UImageFile extends StatelessWidget {
   final double borderRadius;
 
   @override
-  Widget build(BuildContext context) => Image.file(
+  Widget build(final BuildContext context) => Image.file(
         file,
         color: color,
         width: width,
@@ -311,7 +315,7 @@ class UImageMemory extends StatelessWidget {
   final double borderRadius;
 
   @override
-  Widget build(BuildContext context) => Image.memory(
+  Widget build(final BuildContext context) => Image.memory(
         file,
         color: color,
         width: width,
