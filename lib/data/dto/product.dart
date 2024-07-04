@@ -45,6 +45,8 @@ class ProductReadDto {
     required this.tags,
     this.successfulPurchase,
     this.reactions,
+    this.startDate,
+    this.endDate,
   });
 
   factory ProductReadDto.fromJson(final String str) => ProductReadDto.fromMap(json.decode(str));
@@ -92,6 +94,8 @@ class ProductReadDto {
         orders: json["orders"] == null ? <OrderReadDto>[] : List<OrderReadDto>.from(json["orders"].cast<Map<String, dynamic>>().map(OrderReadDto.fromMap)).toList(),
         reactions: json["reactions"] == null ? <ReactionReadDto>[] : List<ReactionReadDto>.from(json["reactions"].cast<Map<String, dynamic>>().map(ReactionReadDto.fromMap)).toList(),
         successfulPurchase: json["successfulPurchase"],
+        startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
+        endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
       );
   String id;
   String? code;
@@ -136,11 +140,12 @@ class ProductReadDto {
   List<OrderReadDto>? orders;
   int? successfulPurchase;
   List<ReactionReadDto>? reactions;
+  DateTime? startDate;
+  DateTime? endDate;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "id": id,
         "code": code,
         "region": region,
@@ -183,6 +188,8 @@ class ProductReadDto {
         "comments": comments == null ? [] : List<CommentReadDto>.from(comments!.map((final CommentReadDto x) => x.toMap())),
         "orders": orders == null ? [] : List<OrderReadDto>.from(orders!.map((final OrderReadDto x) => x.toMap())),
         "successfulPurchase": successfulPurchase,
+        "startDate": startDate?.toIso8601String(),
+        "endDate": endDate?.toIso8601String(),
       };
 }
 
