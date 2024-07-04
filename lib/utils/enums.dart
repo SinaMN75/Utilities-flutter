@@ -143,6 +143,7 @@ enum TagProduct {
   post(189, "", ''),
   tournament(190, "", ''),
   couch(191, "", ''),
+  match(192, "", ''),
   news(201, "", ""),
   kindOfNew(202, "", ""),
   used(203, "", ""),
