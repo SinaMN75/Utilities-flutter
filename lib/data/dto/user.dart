@@ -5,6 +5,8 @@ class UserReadDto {
     required this.id,
     this.firstName,
     this.lastName,
+    this.title,
+    this.subtitle,
     this.fullName,
     this.headline,
     this.bio,
@@ -45,8 +47,10 @@ class UserReadDto {
   factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
 
   factory UserReadDto.fromMap(final Map<String, dynamic> json) => UserReadDto(
-        id: json["id"] ?? '',
+    id: json["id"] ?? '',
         firstName: json["firstName"],
+        title: json["title"],
+        subtitle: json["subtitle"],
         lastName: json["lastName"],
         fullName: json["fullName"],
         headline: json["headline"],
@@ -88,6 +92,8 @@ class UserReadDto {
   final String? firstName;
   final String? lastName;
   final String? fullName;
+  final String? title;
+  final String? subtitle;
   final String? headline;
   final String? bio;
   final String? appUserName;
@@ -125,9 +131,12 @@ class UserReadDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
         "id": id,
         "firstName": firstName,
+        "title": title,
+        "subtitle": subtitle,
         "lastName": lastName,
         "fullName": fullName,
         "headline": headline,
@@ -737,6 +746,8 @@ class UserCreateUpdateDto {
   final List<int>? tags;
   final List<int>? removeTags;
   final List<int>? addTags;
+  final String? title;
+  final String? subtitle;
   final List<KeyValueViewModel>? keyValues1;
 
   UserCreateUpdateDto({
@@ -755,6 +766,8 @@ class UserCreateUpdateDto {
     this.appEmail,
     this.region,
     this.state,
+    this.title,
+    this.subtitle,
     this.badge,
     this.visitedProducts,
     this.bookmarkedProducts,
@@ -816,6 +829,8 @@ class UserCreateUpdateDto {
         firstName: json["firstName"],
         userName: json["userName"],
         phoneNumber: json["phoneNumber"],
+        title: json["title"],
+        subtitle: json["subtitle"],
         lastName: json["lastName"],
         fullName: json["fullName"],
         bio: json["bio"],
@@ -875,7 +890,8 @@ class UserCreateUpdateDto {
         keyValues1: json["keyValues1"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues1"]!.map((x) => KeyValueViewModel.fromMap(x))),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() =>
+      {
         "id": id,
         "degree": degree,
         "email": email,
@@ -883,6 +899,8 @@ class UserCreateUpdateDto {
         "userName": userName,
         "phoneNumber": phoneNumber,
         "lastName": lastName,
+        "title": title,
+        "subtitle": subtitle,
         "fullName": fullName,
         "bio": bio,
         "headline": headline,
