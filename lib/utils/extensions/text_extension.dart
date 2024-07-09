@@ -1163,3 +1163,24 @@ extension TextStyleExtension on TextStyle {
 
   TextStyle get w100 => TextStyle(fontSize: fontSize, fontFamily: fontFamily, fontWeight: FontWeight.w100);
 }
+
+
+extension FixedFontSizeText on Text {
+  Text fixedFontSize() {
+    return Text(
+      this.data!,
+      key: this.key,
+      style: this.style,
+      strutStyle: this.strutStyle,
+      textAlign: this.textAlign,
+      textDirection: this.textDirection,
+      locale: this.locale,
+      softWrap: this.softWrap,
+      overflow: this.overflow,
+      textScaler: TextScaler.linear(1.0), // Fixes the text scale factor
+      maxLines: this.maxLines,
+      semanticsLabel: this.semanticsLabel,
+      textWidthBasis: this.textWidthBasis,
+    );
+  }
+}
