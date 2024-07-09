@@ -52,13 +52,14 @@ class ProductReadDto {
   factory ProductReadDto.fromJson(final String str) => ProductReadDto.fromMap(json.decode(str));
 
   factory ProductReadDto.fromMap(final dynamic json) => ProductReadDto(
-    id: json["id"],
+        id: json["id"],
         code: json["code"],
         price1: json["price1"],
         price2: json["price2"],
         createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
         title: json["title"],
+        region: json["region"],
         visitsCount: json["visitsCount"],
         isSeen: json["isSeen"],
         subtitle: json["subtitle"],
