@@ -102,6 +102,8 @@ enum TagCategory {
   donate(111, "", ""),
   travel(112, "", ""),
   business(113, "", ""),
+  estate(114, "", ""),
+  rent(115, "", ""),
   test(900, '', '');
 
   const TagCategory(this.number, this.title, this.titleTr1);
@@ -111,8 +113,8 @@ enum TagCategory {
   final String title;
   final String titleTr1;
   final int number;
-
 }
+
 enum TagSeenStatus {
   unSeen(100, "UnSeen", "دیده نشده"),
   seen(101, "Seen", "دیده شده"),
@@ -362,11 +364,13 @@ enum TagComment {
   final int number;
 }
 
-enum TagGender {
+enum TypeGender {
+  all("All", "همه", 0),
   man("Man", "مرد", 100),
-  woman("Woman", "زن", 101);
+  woman("Woman", "زن", 101),
+  company("Company", "تجاری", 102);
 
-  const TagGender(this.title, this.titleTr1, this.status);
+  const TypeGender(this.title, this.titleTr1, this.status);
 
   @override
   String toString() => name;
@@ -588,19 +592,6 @@ enum TagChat {
   final int number;
 }
 
-enum TypeGender {
-  man("Man", "مرد", 100),
-  woman("Woman", "زن", 101),
-  company("Company", "تجاری", 102);
-
-  const TypeGender(this.title, this.titleTr1, this.status);
-
-  @override
-  String toString() => name;
-  final String title;
-  final String titleTr1;
-  final int status;
-}
 
 enum PrivacyType {
   private(100),
