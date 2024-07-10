@@ -19,6 +19,8 @@ Future<void> request(
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
   final bool clearHeaders = false,
+  final bool? cache,
+  final DateTime? cacheExpireDate,
 }) async {
   try {
     final Map<String, String> header = <String, String>{
@@ -49,7 +51,21 @@ Future<void> request(
       withCredentials: withCredentials,
     );
 
-    if (httpMethod == EHttpMethod.get) response = await connect.get(url, headers: header);
+    if (httpMethod == EHttpMethod.get) {
+      if (cache == true) {
+        if (getString(url) == null) {
+          response = await connect.get(url, headers: header);
+          setData(url, response.bodyString);
+          setData(url + "___ExpireDate", DateTime.now().toIso8601String());
+        } else {
+          if (DateTime.parse(getString(url + "___ExpireDate")!).isAfter(DateTime.now())) {
+            response = await connect.get(url, headers: header);
+          }
+          response = Response(statusCode: 200, bodyString: getString(url));
+        }
+      } else
+        response = await connect.get(url, headers: header);
+    }
     if (httpMethod == EHttpMethod.post) response = await connect.post(url, params, headers: header);
     if (httpMethod == EHttpMethod.put) response = await connect.put(url, params, headers: header);
     if (httpMethod == EHttpMethod.patch) response = await connect.patch(url, params, headers: header);
@@ -87,6 +103,8 @@ Future<void> httpGet({
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
   final bool clearHeaders = false,
+  final bool? cache,
+  final DateTime? cacheExpireDate,
 }) async =>
     request(
       url,
@@ -104,6 +122,8 @@ Future<void> httpGet({
       withCredentials: withCredentials,
       failure: failure,
       clearHeaders: clearHeaders,
+      cache: cache,
+      cacheExpireDate: cacheExpireDate,
     );
 
 Future<void> httpPost({
@@ -123,6 +143,8 @@ Future<void> httpPost({
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
   final bool clearHeaders = false,
+  final bool? cache,
+  final DateTime? cacheExpireDate,
 }) async =>
     request(
       url,
@@ -142,6 +164,8 @@ Future<void> httpPost({
       withCredentials: withCredentials,
       failure: failure,
       clearHeaders: clearHeaders,
+      cache: cache,
+      cacheExpireDate: cacheExpireDate,
     );
 
 Future<void> httpPut({
@@ -161,6 +185,8 @@ Future<void> httpPut({
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
   final bool clearHeaders = false,
+  final bool? cache,
+  final DateTime? cacheExpireDate,
 }) async =>
     request(
       url,
@@ -180,6 +206,8 @@ Future<void> httpPut({
       withCredentials: withCredentials,
       failure: failure,
       clearHeaders: clearHeaders,
+      cache: cache,
+      cacheExpireDate: cacheExpireDate,
     );
 
 Future<void> httpDelete({
@@ -197,6 +225,8 @@ Future<void> httpDelete({
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
   final bool clearHeaders = false,
+  final bool? cache,
+  final DateTime? cacheExpireDate,
 }) async =>
     request(
       url,
@@ -214,6 +244,8 @@ Future<void> httpDelete({
       withCredentials: withCredentials,
       failure: failure,
       clearHeaders: clearHeaders,
+      cache: cache,
+      cacheExpireDate: cacheExpireDate,
     );
 
 enum EHttpMethod { get, post, put, patch, delete }
