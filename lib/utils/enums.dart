@@ -265,6 +265,7 @@ enum TagCategory {
   recommended(184),
   sport(185),
   couch(186),
+  questionnaire(187),
   enabled(201);
 
   const TagCategory(this.number);
