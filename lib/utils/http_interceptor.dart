@@ -52,16 +52,23 @@ Future<void> request(
     );
 
     if (httpMethod == EHttpMethod.get) {
-      if (cache == true) {
+      if (cache ?? false) {
         if (getString(url) == null) {
           response = await connect.get(url, headers: header);
           setData(url, response.bodyString);
-          setData(url + "___ExpireDate", DateTime.now().toIso8601String());
+          setData("${url}___ExpireDate", DateTime.now().toIso8601String());
         } else {
-          if (DateTime.parse(getString(url + "___ExpireDate")!).isAfter(DateTime.now())) {
+          if (DateTime.parse(getString("${url}___ExpireDate")!).isAfter(DateTime.now())) {
             response = await connect.get(url, headers: header);
+          } else {
+            action(
+              Response<dynamic>(
+                statusCode: 200,
+                bodyString: getString(url),
+              ),
+            );
+            return;
           }
-          response = Response(statusCode: 200, bodyString: getString(url));
         }
       } else
         response = await connect.get(url, headers: header);
@@ -82,6 +89,7 @@ Future<void> request(
       error(response);
     }
   } catch (e) {
+    developer.log(e.toString());
     error(const Response<dynamic>(statusCode: 999));
     if (failure != null) failure(e);
     await dismissEasyLoading();
