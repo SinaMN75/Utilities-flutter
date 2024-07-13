@@ -6,18 +6,6 @@ class GroupChatDataSource {
   final String baseUrl;
   final String apiKey;
 
-  void readMyGroupChats({
-    required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
-  }) =>
-      httpGet(
-        url: "$baseUrl/Chat/ReadMyGroupChats",
-        apiKey: apiKey,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
-        failure: failure,
-      );
 
   void readGroupById({
     required final String groupId,
@@ -121,21 +109,6 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  void readGroupMessages({
-    required final String groupId,
-    required final Function(GenericResponse<GroupChatMessageReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final int pageSize = 100,
-    final int pageNumber = 1,
-    final Function(dynamic error)? failure,
-  }) =>
-      httpGet(
-        url: "$baseUrl/Chat/ReadGroupChatMessages/$groupId?pageSize=$pageSize&pageNumber=$pageNumber",
-        apiKey: apiKey,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
-        failure: failure,
-      );
 
   void filterGroupChatMessages({
     required final GroupChatMessageFilterDto filter,
