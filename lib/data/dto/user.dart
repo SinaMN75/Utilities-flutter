@@ -47,7 +47,7 @@ class UserReadDto {
   factory UserReadDto.fromJson(final String str) => UserReadDto.fromMap(json.decode(str));
 
   factory UserReadDto.fromMap(final Map<String, dynamic> json) => UserReadDto(
-    id: json["id"] ?? '',
+        id: json["id"] ?? '',
         firstName: json["firstName"],
         title: json["title"],
         subtitle: json["subtitle"],
@@ -131,8 +131,7 @@ class UserReadDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
         "firstName": firstName,
         "title": title,
@@ -216,8 +215,8 @@ class UserJsonDetail {
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
 
   factory UserJsonDetail.fromMap(final Map<String, dynamic> json) => UserJsonDetail(
-    instagram: json["instagram"],
-        stringList: json["stringList"],
+        instagram: json["instagram"],
+        stringList: json["stringList"] == null ? [] : List<String>.from(json["stringList"]!.map((x) => x)),
         degree: json["degree"],
         address: json["address"],
         telegram: json["telegram"],
@@ -251,7 +250,7 @@ class UserJsonDetail {
         userSubscriptions: json["userSubscriptions"] == null ? [] : List<UserSubscriptions>.from(json["userSubscriptions"]!.map((x) => UserSubscriptions.fromMap(x))),
       );
   final String? instagram;
-  final String? stringList;
+  final List<String>? stringList;
   final String? degree;
   final String? address;
   final String? telegram;
@@ -286,11 +285,10 @@ class UserJsonDetail {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "instagram": instagram,
         "degree": degree,
-        "stringList": stringList,
+        "stringList": stringList == null ? [] : List<dynamic>.from(stringList!.map((x) => x)),
         "address": address,
         "telegram": telegram,
         "whatsApp": whatsApp,
@@ -503,8 +501,7 @@ class UserFilterDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "userId": userId,
         "userName": userName,
         "showPremiums": showPremiums,
@@ -689,7 +686,7 @@ class AuthenticateDto {
 }
 
 class UserCreateUpdateDto {
-  final String? stringList;
+  final List<String>? stringList;
   final String? id;
   final String? degree;
   final String? email;
@@ -832,7 +829,7 @@ class UserCreateUpdateDto {
   factory UserCreateUpdateDto.fromMap(Map<String, dynamic> json) => UserCreateUpdateDto(
     id: json["id"],
         degree: json["degree"],
-        stringList: json["stringList"],
+        stringList: json["stringList"] == null ? [] : List<String>.from(json["stringList"]!.map((x) => x)),
         email: json["email"],
         firstName: json["firstName"],
         userName: json["userName"],
@@ -844,64 +841,63 @@ class UserCreateUpdateDto {
         bio: json["bio"],
         headline: json["headline"],
         appUserName: json["appUserName"],
-    appPhoneNumber: json["appPhoneNumber"],
-    appEmail: json["appEmail"],
-    region: json["region"],
-    state: json["state"],
-    badge: json["badge"],
-    visitedProducts: json["visitedProducts"],
-    bookmarkedProducts: json["bookmarkedProducts"],
-    followedUsers: json["followedUsers"],
-    followingUsers: json["followingUsers"],
-    fcmToken: json["fcmToken"],
-    blockedUsers: json["blockedUsers"],
-    wallet: json["wallet"],
-    deliveryPrice1: json["deliveryPrice1"],
-    deliveryPrice2: json["deliveryPrice2"],
-    deliveryPrice3: json["deliveryPrice3"],
-    point: json["point"],
-    suspend: json["suspend"],
-    instagram: json["instagram"],
-    telegram: json["telegram"],
-    jobStatus: json["jobStatus"],
-    whatsApp: json["whatsApp"],
-    linkedIn: json["linkedIn"],
-    dribble: json["dribble"],
-    soundCloud: json["soundCloud"],
-    pinterest: json["pinterest"],
-    website: json["website"],
-    activity: json["activity"],
-    color: json["color"],
-    password: json["password"],
-    gender: json["gender"],
-    legalAuthenticationType: json["legalAuthenticationType"],
-    nationalityType: json["nationalityType"],
-    privacyType: json["privacyType"],
-    birthDate: json["birthDate"],
-    premiumExpireDate: json["premiumExpireDate"],
-    nationalCode: json["nationalCode"],
-    usedDrugs: json["usedDrugs"],
-    sickness: json["sickness"],
-    schoolName: json["schoolName"],
-    foodAllergies: json["foodAllergies"],
-    fatherName: json["fatherName"],
-    height: json["height"],
-    weight: json["weight"],
-    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-    code: json["code"],
-    shebaNumber: json["shebaNumber"],
-    address: json["address"],
-    institute: json["institute"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-    removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
-    addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
-    keyValues1: json["keyValues1"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues1"]!.map((x) => KeyValueViewModel.fromMap(x))),
-  );
+        appPhoneNumber: json["appPhoneNumber"],
+        appEmail: json["appEmail"],
+        region: json["region"],
+        state: json["state"],
+        badge: json["badge"],
+        visitedProducts: json["visitedProducts"],
+        bookmarkedProducts: json["bookmarkedProducts"],
+        followedUsers: json["followedUsers"],
+        followingUsers: json["followingUsers"],
+        fcmToken: json["fcmToken"],
+        blockedUsers: json["blockedUsers"],
+        wallet: json["wallet"],
+        deliveryPrice1: json["deliveryPrice1"],
+        deliveryPrice2: json["deliveryPrice2"],
+        deliveryPrice3: json["deliveryPrice3"],
+        point: json["point"],
+        suspend: json["suspend"],
+        instagram: json["instagram"],
+        telegram: json["telegram"],
+        jobStatus: json["jobStatus"],
+        whatsApp: json["whatsApp"],
+        linkedIn: json["linkedIn"],
+        dribble: json["dribble"],
+        soundCloud: json["soundCloud"],
+        pinterest: json["pinterest"],
+        website: json["website"],
+        activity: json["activity"],
+        color: json["color"],
+        password: json["password"],
+        gender: json["gender"],
+        legalAuthenticationType: json["legalAuthenticationType"],
+        nationalityType: json["nationalityType"],
+        privacyType: json["privacyType"],
+        birthDate: json["birthDate"],
+        premiumExpireDate: json["premiumExpireDate"],
+        nationalCode: json["nationalCode"],
+        usedDrugs: json["usedDrugs"],
+        sickness: json["sickness"],
+        schoolName: json["schoolName"],
+        foodAllergies: json["foodAllergies"],
+        fatherName: json["fatherName"],
+        height: json["height"],
+        weight: json["weight"],
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+        code: json["code"],
+        shebaNumber: json["shebaNumber"],
+        address: json["address"],
+        institute: json["institute"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+        removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
+        addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
+        keyValues1: json["keyValues1"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues1"]!.map((x) => KeyValueViewModel.fromMap(x))),
+      );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "id": id,
-        "stringList": stringList,
+        "stringList": stringList == null ? [] : List<dynamic>.from(stringList!.map((x) => x)),
         "degree": degree,
         "email": email,
         "firstName": firstName,
