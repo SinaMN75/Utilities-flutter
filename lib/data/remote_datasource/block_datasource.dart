@@ -1,9 +1,10 @@
 part of '../data.dart';
 
 class BlockDataSource {
-  BlockDataSource({required this.baseUrl});
+  BlockDataSource({required this.baseUrl,required this.apiKey});
 
   final String baseUrl;
+  final String apiKey;
 
   void create({
     required final String userId,
@@ -13,6 +14,7 @@ class BlockDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Block?userId=$userId",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
@@ -25,6 +27,7 @@ class BlockDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Block",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) =>
             onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -38,6 +41,7 @@ class BlockDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Block/ReadMine",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) =>
             onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),

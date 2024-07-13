@@ -1,9 +1,11 @@
 part of '../data.dart';
 
 class PaymentDataSource {
-  final String baseUrl;
 
-  PaymentDataSource({required this.baseUrl});
+  PaymentDataSource({required this.baseUrl,required this.apiKey});
+
+  final String baseUrl;
+  final String apiKey;
 
   void increaseWalletBalance({
     required final String amount,
@@ -13,6 +15,7 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/IncreaseWalletBalance/$amount",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -26,6 +29,7 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/PayOrderZarinPal/$orderId",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -39,6 +43,7 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/PaySubscriptionZarinPal/$subscriptionId",
+  apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -52,6 +57,7 @@ class PaymentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Payment/BuyProduct/$productId",
+  apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: PaymentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,

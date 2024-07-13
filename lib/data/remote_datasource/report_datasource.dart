@@ -1,9 +1,10 @@
 part of '../data.dart';
 
 class ReportDataSource {
-  ReportDataSource({required this.baseUrl});
+  ReportDataSource({required this.baseUrl,required this.apiKey});
 
   final String baseUrl;
+  final String apiKey;
 
   void create({
     required final ReportCreateUpdateDto dto,
@@ -13,6 +14,7 @@ class ReportDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Report",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -26,6 +28,7 @@ class ReportDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Report?id=$id",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(response.statusCode.toString()),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
@@ -38,6 +41,7 @@ class ReportDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Report/$id",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
@@ -50,6 +54,7 @@ class ReportDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Report/Filter",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<ReportReadDto>.fromJson(response.body, fromMap: ReportReadDto.fromMap)),
         error: (final Response response) {},

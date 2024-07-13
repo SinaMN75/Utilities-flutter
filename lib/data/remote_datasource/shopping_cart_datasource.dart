@@ -1,9 +1,11 @@
 part of '../data.dart';
 
 class ShoppingCartDataSource {
-  final String baseUrl;
 
-  ShoppingCartDataSource({required this.baseUrl});
+  ShoppingCartDataSource({required this.baseUrl,required this.apiKey});
+
+  final String baseUrl;
+  final String apiKey;
 
   void create({
     required final ShoppingCartReadDto dto,
@@ -13,6 +15,7 @@ class ShoppingCartDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/ShoppingCart",
+        apiKey: apiKey,
         body: dto,
         action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -27,6 +30,7 @@ class ShoppingCartDataSource {
   }) =>
       httpPut(
         url: "$baseUrl/ShoppingCart",
+        apiKey: apiKey,
         body: dto,
         action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -40,6 +44,7 @@ class ShoppingCartDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/ShoppingCart",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -53,6 +58,7 @@ class ShoppingCartDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/ShoppingCart/$id",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -67,6 +73,7 @@ class ShoppingCartDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/ShoppingCart/$id/$itemId",
+  apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<ShoppingCartReadDto>.fromJson(response.body, fromMap: ShoppingCartReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,

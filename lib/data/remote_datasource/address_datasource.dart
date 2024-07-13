@@ -1,9 +1,10 @@
 part of '../data.dart';
 
 class AddressDataSource {
-  AddressDataSource({required this.baseUrl});
+  AddressDataSource({required this.baseUrl,required this.apiKey});
 
   final String baseUrl;
+  final String apiKey;
 
   void filter({
     required final AddressFilterDto dto,
@@ -13,6 +14,7 @@ class AddressDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/address/Filter",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -26,6 +28,7 @@ class AddressDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/address",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -39,6 +42,7 @@ class AddressDataSource {
   }) =>
       httpPut(
         url: "$baseUrl/address",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -52,6 +56,7 @@ class AddressDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/address/$id",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );

@@ -1,9 +1,10 @@
 part of '../data.dart';
 
 class PromoteDataSource {
-  PromoteDataSource({required this.baseUrl});
+  PromoteDataSource({required this.baseUrl,required this.apiKey});
 
   final String baseUrl;
+  final String apiKey;
 
   void readById({
     required final String id,
@@ -13,6 +14,7 @@ class PromoteDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/promotion/$id",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<PromoteReadDto>.fromJson(response.body, fromMap: PromoteReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
@@ -26,6 +28,7 @@ class PromoteDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/promotion",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse.fromJson(response.body)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),

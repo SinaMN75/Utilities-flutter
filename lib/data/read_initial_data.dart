@@ -2,21 +2,22 @@ part of 'data.dart';
 
 void readInitialData({
   required final String baseUrl,
+  required final String apiKey,
   required Function(List<ContentReadDto>) onReadContents,
   required Function(List<CategoryReadDto>) onReadCategories,
   required Function(AppSettingsReadDto) onReadAppSettings,
   required VoidCallback onError,
   required VoidCallback onDone,
 }) {
-  ContentDataSource(baseUrl: baseUrl).read(
+  ContentDataSource(baseUrl: baseUrl,apiKey: apiKey).read(
     onResponse: (final GenericResponse<ContentReadDto> response) => onReadContents(response.resultList!),
     onError: (final GenericResponse<dynamic> response) {},
   );
-  AppSettingsDataSource(baseUrl: baseUrl).readAppSettings(
+  AppSettingsDataSource(baseUrl: baseUrl,apiKey: apiKey).readAppSettings(
     onResponse: (final GenericResponse<AppSettingsReadDto> response) => onReadAppSettings(response.result!),
     onError: onError,
   );
-  CategoryDataSource(baseUrl: baseUrl).filter(
+  CategoryDataSource(baseUrl: baseUrl,apiKey: apiKey).filter(
     dto: CategoryFilterDto(tags: <int>[TagCategory.category.number], showMedia: true),
     onResponse: (final GenericResponse<CategoryReadDto> response) {
       onReadCategories(response.resultList!);

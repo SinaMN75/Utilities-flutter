@@ -1,9 +1,10 @@
 part of '../data.dart';
 
 class ProductDataSource {
-  ProductDataSource({required this.baseUrl});
+  ProductDataSource({required this.baseUrl,required this.apiKey});
 
   final String baseUrl;
+  final String apiKey;
 
   void create({
     required final ProductCreateUpdateDto dto,
@@ -13,6 +14,7 @@ class ProductDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/ProductV2",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -26,6 +28,7 @@ class ProductDataSource {
   }) =>
       httpPut(
         url: "$baseUrl/ProductV2",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -38,6 +41,7 @@ class ProductDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/ProductV2",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
@@ -50,6 +54,7 @@ class ProductDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/ProductV2/$id",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
       );
@@ -62,6 +67,7 @@ class ProductDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/ProductV2/$id",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
@@ -74,6 +80,7 @@ class ProductDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/ProductV2/Filter",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -87,6 +94,7 @@ class ProductDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/ProductV2/CreateReaction",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),

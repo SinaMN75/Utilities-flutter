@@ -1,9 +1,11 @@
 part of '../data.dart';
 
 class NotificationDataSource {
-  final String baseUrl;
 
-  NotificationDataSource({required this.baseUrl});
+  NotificationDataSource({required this.baseUrl,required this.apiKey});
+
+  final String baseUrl;
+  final String apiKey;
 
   void read({
     required final Function(GenericResponse<NotificationReadDto> response) onResponse,
@@ -12,6 +14,7 @@ class NotificationDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Notification",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -25,6 +28,7 @@ class NotificationDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Notification/$id",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -38,6 +42,7 @@ class NotificationDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Notification/Filter",
+        apiKey: apiKey,
         body: filter,
         action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -54,6 +59,7 @@ class NotificationDataSource {
       httpPost(
         encodeBody: false,
         url: "$baseUrl/Notification/UpdateSeenStatus?seenStatus=$status",
+        apiKey: apiKey,
         body: notificationIds,
         action: (Response response) => onResponse(),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),

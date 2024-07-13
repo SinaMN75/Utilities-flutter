@@ -1,9 +1,11 @@
 part of '../data.dart';
 
 class MailSmsNotificationDataSource {
-  final String baseUrl;
 
-  MailSmsNotificationDataSource({required this.baseUrl});
+  MailSmsNotificationDataSource({required this.baseUrl,required this.apiKey});
+
+  final String baseUrl;
+  final String apiKey;
 
   void create({
     required final CreateMailSmsNotificationDto dto,
@@ -13,6 +15,7 @@ class MailSmsNotificationDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/MailSmsNotification/SendNotification",
+        apiKey: apiKey,
         body: dto,
         action: (Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: CreateMailSmsNotificationDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -27,6 +30,7 @@ class MailSmsNotificationDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/MailSmsNotification/SendOtpSms",
+        apiKey: apiKey,
         body: dto,
         action: (Response response) => onResponse == null ? () {} : onResponse(GenericResponse<String>.fromJson(response.body)),
         error: (Response response) => onError == null ? () {} : onError(GenericResponse.fromJson(response.body)),

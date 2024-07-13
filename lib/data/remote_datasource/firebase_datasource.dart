@@ -1,9 +1,9 @@
 part of '../data.dart';
 
 class FirebaseDataSource {
-  final String authorization;
 
   FirebaseDataSource({required this.authorization});
+  final String authorization;
 
   void sendPushNotification({required final String fcmToken, required final String title, required final String body}) async => await GetConnect().post(
         "https://fcm.googleapis.com/fcm/send",

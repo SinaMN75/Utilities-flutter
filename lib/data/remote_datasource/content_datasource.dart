@@ -1,10 +1,11 @@
 part of '../data.dart';
 
 class ContentDataSource {
+
+  ContentDataSource({required this.baseUrl,required this.apiKey});
+
   final String baseUrl;
-
-  ContentDataSource({required this.baseUrl});
-
+  final String apiKey;
   void create({
     required final ContentCreateUpdateDto dto,
     required final Function(GenericResponse<ContentReadDto> response) onResponse,
@@ -13,6 +14,7 @@ class ContentDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Content",
+        apiKey: apiKey,
         body: dto,
         action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -26,6 +28,7 @@ class ContentDataSource {
   }) =>
       httpPut(
         url: "$baseUrl/Content",
+        apiKey: apiKey,
         body: dto,
         action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -38,6 +41,7 @@ class ContentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Content",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
@@ -50,6 +54,7 @@ class ContentDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Content/$id",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<ContentReadDto>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
@@ -62,6 +67,7 @@ class ContentDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Content/$id",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ContentReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );

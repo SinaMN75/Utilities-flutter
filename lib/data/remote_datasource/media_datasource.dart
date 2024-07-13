@@ -1,9 +1,11 @@
 part of '../data.dart';
 
 class MediaDataSource {
-  final String baseUrl;
 
-  MediaDataSource({required this.baseUrl});
+  MediaDataSource({required this.baseUrl,required this.apiKey});
+
+  final String baseUrl;
+  final String apiKey;
 
   Future<void> create({
     required final FileData fileData,
@@ -86,6 +88,7 @@ class MediaDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Media/Filter",
+        apiKey: apiKey,
         body: dto,
         action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -99,6 +102,7 @@ class MediaDataSource {
   }) =>
       httpPut(
         url: "$baseUrl/Media",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -113,6 +117,7 @@ class MediaDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Media/$id",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(),
         error: (final Response response) => onError(),
         failure: failure,

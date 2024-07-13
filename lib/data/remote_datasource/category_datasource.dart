@@ -1,9 +1,10 @@
 part of '../data.dart';
 
 class CategoryDataSource {
-  CategoryDataSource({required this.baseUrl});
-  final String baseUrl;
+  CategoryDataSource({required this.baseUrl,required this.apiKey});
 
+  final String baseUrl;
+  final String apiKey;
 
   void create({
     required final CategoryCreateUpdateDto dto,
@@ -13,6 +14,7 @@ class CategoryDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Category",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -48,6 +50,7 @@ class CategoryDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Category/BulkCreate",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -62,6 +65,7 @@ class CategoryDataSource {
   }) =>
       httpPut(
         url: "$baseUrl/Category",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -76,6 +80,7 @@ class CategoryDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Category/Filter",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -89,6 +94,7 @@ class CategoryDataSource {
     final Function(dynamic error)? failure,
   }) =>
       httpDelete(
+        apiKey: apiKey,
         url: "$baseUrl/Category/$id",
         action: (final Response<dynamic> response) => onResponse(),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),

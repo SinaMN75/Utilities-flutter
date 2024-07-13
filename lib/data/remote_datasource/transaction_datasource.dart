@@ -1,9 +1,11 @@
 part of '../data.dart';
 
 class TransactionDataSource {
-  final String baseUrl;
 
-  TransactionDataSource({required this.baseUrl});
+  TransactionDataSource({required this.baseUrl,required this.apiKey});
+
+  final String baseUrl;
+  final String apiKey;
 
   void create({
     required final TransactionCreateDto dto,
@@ -14,6 +16,7 @@ class TransactionDataSource {
       httpPost(
         body: dto,
         url: "$baseUrl/Transaction",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -28,6 +31,7 @@ class TransactionDataSource {
       httpPut(
         body: dto,
         url: "$baseUrl/Transaction",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -41,6 +45,7 @@ class TransactionDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Transaction/$id}",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -55,6 +60,7 @@ class TransactionDataSource {
       httpPost(
         body: dto,
         url: "$baseUrl/Transaction/Filter",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<TransactionReadDto>.fromJson(response.body, fromMap: TransactionReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -69,6 +75,7 @@ class TransactionDataSource {
       httpPost(
         body: dto,
         url: "$baseUrl/Transaction/GenerateReport",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,

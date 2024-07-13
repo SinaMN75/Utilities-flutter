@@ -30,9 +30,7 @@ class GroupChatReadDto {
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"].cast<Map<String, dynamic>>().map(MediaReadDto.fromMap)).toList(),
         users: json["users"] == null ? <UserReadDto>[] : List<UserReadDto>.from(json["users"].cast<Map<String, dynamic>>().map(UserReadDto.fromMap)).toList(),
         products: json["products"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["products"].cast<Map<String, dynamic>>().map(ProductReadDto.fromMap)).toList(),
-        groupChatMessage: json["groupChatMessage"] == null
-            ? <GroupChatMessageReadDto>[]
-            : List<GroupChatMessageReadDto>.from(json["groupChatMessage"].cast<Map<String, dynamic>>().map(GroupChatMessageReadDto.fromMap)).toList(),
+        groupChatMessage: json["groupChatMessage"] == null ? <GroupChatMessageReadDto>[] : List<GroupChatMessageReadDto>.from(json["groupChatMessage"].cast<Map<String, dynamic>>().map(GroupChatMessageReadDto.fromMap)).toList(),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),
         countOfUnreadMessages: json["countOfUnreadMessages"],
       );
@@ -351,6 +349,34 @@ class GroupChatMessageReadDto {
         "media": media == null ? [] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
         "products": products == null ? <ProductReadDto>[] : List<ProductReadDto>.from(products!.map((final x) => x.toMap())),
         "messageSeenBy": messageSeenBy == null ? <UserReadDto>[] : List<UserReadDto>.from(messageSeenBy!.map((final x) => x.toMap())),
+      };
+}
+
+class GroupChatMessageFilterDto {
+  GroupChatMessageFilterDto({
+    this.pageSize,
+    this.pageNumber,
+    this.groupChatId,
+    this.startDate,
+    this.endDate,
+  });
+
+  int? pageSize;
+  int? pageNumber;
+  String? groupChatId;
+  String? message;
+  DateTime? startDate;
+  DateTime? endDate;
+
+  String toJson() => json.encode(removeNullEntries(toMap()));
+
+  dynamic toMap() => {
+        "pageSize": pageSize,
+        "pageNumber": pageNumber,
+        "groupChatId": groupChatId,
+        "message": message,
+        "startDate": startDate?.toIso8601String(),
+        "endDate": endDate?.toIso8601String(),
       };
 }
 

@@ -2,6 +2,7 @@ part of 'utils.dart';
 
 Future<void> request(
   final String url,
+  final String apiKey,
   final EHttpMethod httpMethod,
   final Function(Response<dynamic> response) action,
   final Function(Response<dynamic> response) error, {
@@ -22,7 +23,7 @@ Future<void> request(
   try {
     final Map<String, String> header = <String, String>{
       "Authorization": getString(UtilitiesConstants.token) ?? "",
-      "X-API-KEY": "hello",
+      "X-API-KEY": apiKey,
     };
 
     if (headers != null) header.addAll(headers);
@@ -71,7 +72,8 @@ Future<void> request(
 }
 
 Future<void> httpGet({
-  required final String url,
+    required final String url,
+  required final String apiKey,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
   final Function(dynamic error)? failure,
@@ -87,6 +89,7 @@ Future<void> httpGet({
 }) async =>
     request(
       url,
+      apiKey,
       EHttpMethod.get,
       action,
       error,
@@ -103,7 +106,8 @@ Future<void> httpGet({
     );
 
 Future<void> httpPost({
-  required final String url,
+    required final String url,
+  required final String apiKey,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
   final Function(dynamic error)? failure,
@@ -121,6 +125,7 @@ Future<void> httpPost({
 }) async =>
     request(
       url,
+      apiKey,
       EHttpMethod.post,
       action,
       error,
@@ -139,7 +144,8 @@ Future<void> httpPost({
     );
 
 Future<void> httpPut({
-  required final String url,
+    required final String url,
+  required final String apiKey,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
   final Function(dynamic error)? failure,
@@ -157,6 +163,7 @@ Future<void> httpPut({
 }) async =>
     request(
       url,
+      apiKey,
       EHttpMethod.put,
       action,
       error,
@@ -175,7 +182,8 @@ Future<void> httpPut({
     );
 
 Future<void> patch({
-  required final String url,
+    required final String url,
+  required final String apiKey,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
   final Function(dynamic error)? failure,
@@ -193,6 +201,7 @@ Future<void> patch({
 }) async =>
     request(
       url,
+      apiKey,
       EHttpMethod.patch,
       action,
       error,
@@ -211,7 +220,8 @@ Future<void> patch({
     );
 
 Future<void> httpDelete({
-  required final String url,
+    required final String url,
+  required final String apiKey,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
   final Function(dynamic error)? failure,
@@ -227,6 +237,7 @@ Future<void> httpDelete({
 }) async =>
     request(
       url,
+      apiKey,
       EHttpMethod.delete,
       action,
       error,

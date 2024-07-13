@@ -1,9 +1,10 @@
 part of '../data.dart';
 
 class AppSettingsDataSource {
-  AppSettingsDataSource({required this.baseUrl});
+  AppSettingsDataSource({required this.baseUrl,required this.apiKey});
 
   final String baseUrl;
+  final String apiKey;
 
   void readAppSettings({
     required final Function(GenericResponse<AppSettingsReadDto> response) onResponse,
@@ -13,6 +14,7 @@ class AppSettingsDataSource {
   }) =>
       httpGet(
         timeout: Duration(seconds: timeoutInSeconds),
+        apiKey: apiKey,
         url: "$baseUrl/AppSettings",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AppSettingsReadDto>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(),
@@ -28,6 +30,7 @@ class AppSettingsDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/AppSettings/ReadEverything?showProducts=$showProducts&showCategories=$showCategories&showContents=$showContents",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<ReadEverythingDto>.fromJson(response.body, fromMap: ReadEverythingDto.fromMap)),
         error: (final Response<dynamic> response) => onError(),
       );
@@ -39,6 +42,7 @@ class AppSettingsDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/AppSettings/ReadDashboardData",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<DashboardDataReadDto>.fromJson(response.body, fromMap: DashboardDataReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
       );

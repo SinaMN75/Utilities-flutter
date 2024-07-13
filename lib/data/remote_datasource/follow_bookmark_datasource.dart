@@ -1,9 +1,11 @@
 part of '../data.dart';
 
 class FollowBookmarkDataSource {
-  final String baseUrl;
 
-  FollowBookmarkDataSource({required this.baseUrl});
+  FollowBookmarkDataSource({required this.baseUrl,required this.apiKey});
+
+  final String baseUrl;
+  final String apiKey;
 
   void readBookmarksByFolderName({
     required final Function(GenericResponse<BookmarkReadDto> response) onResponse,
@@ -14,6 +16,7 @@ class FollowBookmarkDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/FollowBookmark/ReadBookmarksByFolderName?userId=$userId&folderName=$folderName",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -27,6 +30,7 @@ class FollowBookmarkDataSource {
   }) =>
       httpPost(
         url: userId != null ? "$baseUrl/FollowBookmark/ReadBookmarks?userId=$userId" : "$baseUrl/FollowBookmark/ReadBookmarks",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -40,6 +44,7 @@ class FollowBookmarkDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowers/$userId",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse()),
         failure: failure,
@@ -53,6 +58,7 @@ class FollowBookmarkDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ReadFollowings/$userId",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse()),
         failure: failure,
@@ -66,6 +72,7 @@ class FollowBookmarkDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/RemoveFollowing",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<String>()),
         error: (final Response response) => onError(GenericResponse()),
@@ -80,6 +87,7 @@ class FollowBookmarkDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ToggleBookmark",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<BookmarkReadDto>.fromJson(response.body, fromMap: BookmarkReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse()),
@@ -94,6 +102,7 @@ class FollowBookmarkDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/FollowBookmark/ToggleFolllow",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<String>()),
         error: (final Response response) => onError(GenericResponse()),

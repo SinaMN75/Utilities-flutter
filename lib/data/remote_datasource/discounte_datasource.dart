@@ -1,9 +1,11 @@
 part of '../data.dart';
 
 class DiscountDataSource {
-  final String baseUrl;
 
-  DiscountDataSource({required this.baseUrl});
+  DiscountDataSource({required this.baseUrl,required this.apiKey});
+
+  final String baseUrl;
+  final String apiKey;
 
   void read({
     required final String code,
@@ -13,6 +15,7 @@ class DiscountDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Discount/$code",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<DiscountReadDto>.fromJson(response.body, fromMap: DiscountReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,

@@ -1,9 +1,10 @@
 part of '../data.dart';
 
 class OrderDataSource {
-  OrderDataSource({required this.baseUrl});
+  OrderDataSource({required this.baseUrl,required this.apiKey});
 
   final String baseUrl;
+  final String apiKey;
 
   void update({
     required final OrderCreateUpdateDto dto,
@@ -13,6 +14,7 @@ class OrderDataSource {
   }) =>
       httpPut(
         url: "$baseUrl/Order",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -27,6 +29,7 @@ class OrderDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Order/Filter",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -41,6 +44,7 @@ class OrderDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/Order/$id",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,
@@ -54,6 +58,7 @@ class OrderDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Order/$id",
+        apiKey: apiKey,
         action: (Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,
@@ -67,6 +72,7 @@ class OrderDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Order/CreateUpdateOrderDetail",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -81,6 +87,7 @@ class OrderDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/Order/CreateReservationOrder",
+        apiKey: apiKey,
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<OrderReadDto>.fromJson(response.body, fromMap: OrderReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -95,6 +102,7 @@ class OrderDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/Order/DeleteOrderDetail/$id",
+        apiKey: apiKey,
         action: (final Response response) => onResponse(GenericResponse.fromJson(response.body)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
         failure: failure,

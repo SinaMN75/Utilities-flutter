@@ -1,9 +1,10 @@
 part of '../data.dart';
 
 class UserDataSource {
-  UserDataSource({required this.baseUrl});
+  UserDataSource({required this.baseUrl, required this.apiKey});
 
   final String baseUrl;
+  final String apiKey;
 
   void create({
     required final UserCreateUpdateDto dto,
@@ -13,6 +14,7 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -26,6 +28,7 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user/ToggleBlock/$id",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
@@ -37,6 +40,7 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user/ReadMyBlockList",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
@@ -49,6 +53,7 @@ class UserDataSource {
   }) =>
       httpPut(
         url: "$baseUrl/user",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -61,6 +66,7 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
@@ -72,6 +78,7 @@ class UserDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/user/Logout",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
@@ -84,6 +91,7 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user/$id",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
@@ -96,6 +104,7 @@ class UserDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/user/$id",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
@@ -110,6 +119,7 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user/TransferWalletToWallet",
+        apiKey: apiKey,
         body: <String, dynamic>{
           "fromUserId": fromUserId,
           "toUserId": toUserId,
@@ -129,6 +139,7 @@ class UserDataSource {
   }) =>
       httpDelete(
         url: "$baseUrl/user/DeleteFromTeam/$teamId",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(),
         error: (final Response<dynamic> response) => onError(),
       );
@@ -136,11 +147,12 @@ class UserDataSource {
   void getVerificationCodeForLogin({
     required final GetMobileVerificationCodeForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic>  errorResponse) onError,
+    required final Function(GenericResponse<dynamic> errorResponse) onError,
     final Function(dynamic error)? failure,
   }) =>
       httpPost(
         url: "$baseUrl/user/GetVerificationCodeForLogin",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -167,6 +179,7 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user/LoginWithPassword",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -180,6 +193,7 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user/VerifyCodeForLogin",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -192,6 +206,7 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user/GrowthRate",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<GrowthRateReadDto>.fromJson(response.body, fromMap: GrowthRateReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
@@ -204,6 +219,7 @@ class UserDataSource {
   }) =>
       httpGet(
         url: "$baseUrl/user/GetProfileByUsername/$userName",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );
@@ -216,6 +232,7 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user/Filter",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -229,6 +246,7 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user/authenticate",
+        apiKey: apiKey,
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -242,6 +260,7 @@ class UserDataSource {
   }) =>
       httpPost(
         url: "$baseUrl/user/GetTokenForTest/$mobile",
+        apiKey: apiKey,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
       );

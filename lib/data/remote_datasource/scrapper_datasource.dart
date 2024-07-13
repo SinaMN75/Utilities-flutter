@@ -1,9 +1,11 @@
 part of '../data.dart';
 
 class ScrapperDataSource {
-  final String baseUrl;
 
-  ScrapperDataSource({required this.baseUrl});
+  ScrapperDataSource({required this.baseUrl,required this.apiKey});
+
+  final String baseUrl;
+  final String apiKey;
 
   void readByUserName({
     required final String username,
@@ -12,6 +14,7 @@ class ScrapperDataSource {
   }) async {
     httpGet(
       url: "$baseUrl/Scrapper/GetInstaPostRapidApi/$username",
+      apiKey: apiKey,
       action: (final Response response) {
         onResponse(InstaPostReadDto.fromJson(response.bodyString ?? "{}"));
       },
