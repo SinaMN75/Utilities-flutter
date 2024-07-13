@@ -67,6 +67,7 @@ class MediaDataSource {
             form,
             headers: <String, String>{
               "Authorization": getString(UtilitiesConstants.token) ?? "",
+              "X-API-KEY": apiKey,
             },
             contentType: "multipart/form-data",
           )
