@@ -44,8 +44,13 @@ export 'components/percent_indicator.dart';
 export 'data/data.dart';
 export 'utils/utils.dart';
 
+abstract class UtilitiesCore {
+  static late String apiKey;
+}
+
 Future<void> initUtilities({
   final FirebaseOptions? firebaseOptions,
+  required final String apiKey,
   final bool safeDevice = false,
   final bool protectDataLeaking = false,
   final bool preventScreenShot = false,
