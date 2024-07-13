@@ -80,5 +80,7 @@ Future<void> initUtilities({
     if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
     if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
   } catch (e) {}
+
+  UtilitiesCore.apiKey = apiKey;
   return;
 }
