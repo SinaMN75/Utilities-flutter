@@ -261,6 +261,7 @@ enum TagUser {
   authorized(100, ""),
   private(101, ""),
   public(102, ""),
+  awaitAuthorization(102, ""),
   male(200, ""),
   female(201, ""),
   unknown(202, ""),
