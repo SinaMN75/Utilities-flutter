@@ -25,7 +25,7 @@ Future<void> request(
   try {
     final Map<String, String> header = <String, String>{
       "Authorization": getString(UtilitiesConstants.token) ?? "",
-      "X-API-Key": UtilitiesCore.apiKey,
+      "X-API-Key": getString("ApiKey") ?? "",
     };
 
     if (clearHeaders) header.clear();

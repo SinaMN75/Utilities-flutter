@@ -81,6 +81,6 @@ Future<void> initUtilities({
     if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
   } catch (e) {}
 
-  UtilitiesCore.apiKey = apiKey;
+  setData("ApiKey", apiKey);
   return;
 }
