@@ -17,7 +17,8 @@ class UserReadDto {
     this.phoneNumber,
     this.appEmail,
     this.email,
-    this.region,
+    this.country,
+    this.city,
     this.state,
     this.badge,
     this.jobStatus,
@@ -62,7 +63,8 @@ class UserReadDto {
         appEmail: json["appEmail"],
         userAgent: json["userAgent"],
         email: json["email"],
-        region: json["region"],
+        country: json["country"],
+        city: json["city"],
         state: json["state"],
         badge: json["badge"],
         jobStatus: json["jobStatus"],
@@ -103,7 +105,8 @@ class UserReadDto {
   final String? userAgent;
   final String? appEmail;
   final String? email;
-  final String? region;
+  final String? country;
+  final String? city;
   final String? state;
   final String? badge;
   final String? jobStatus;
@@ -146,9 +149,10 @@ class UserReadDto {
         "phoneNumber": phoneNumber,
         "appEmail": appEmail,
         "email": email,
-        "region": region,
-        "userAgent": userAgent,
+        "country": country,
+        "city": city,
         "state": state,
+        "userAgent": userAgent,
         "badge": badge,
         "jobStatus": jobStatus,
         "mutedChats": mutedChats,
@@ -383,6 +387,9 @@ class UserFilterDto {
     this.userNameExact,
     this.query,
     this.phoneNumber,
+    this.country,
+    this.city,
+    this.state,
     this.email,
     this.firstName,
     this.lastName,
@@ -394,8 +401,6 @@ class UserFilterDto {
     this.appPhoneNumber,
     this.appEmail,
     this.gender,
-    this.region,
-    this.state,
     this.badge,
     this.pageSize,
     this.pageNumber,
@@ -436,7 +441,8 @@ class UserFilterDto {
         appPhoneNumber: json["appPhoneNumber"],
         appEmail: json["appEmail"],
         gender: json["gender"],
-        region: json["region"],
+        country: json["country"],
+        city: json["city"],
         state: json["state"],
         badge: json["badge"],
         pageSize: json["pageSize"],
@@ -470,6 +476,9 @@ class UserFilterDto {
   final String? firstName;
   final String? lastName;
   final String? fullName;
+  final String? country;
+  final String? city;
+  final String? state;
   final String? bio;
   final String? headline;
   final String? jobStatus;
@@ -478,8 +487,6 @@ class UserFilterDto {
   final String? appEmail;
   final String? institute;
   final int? gender;
-  final String? region;
-  final String? state;
   final String? badge;
   final int? pageSize;
   final int? pageNumber;
@@ -520,7 +527,8 @@ class UserFilterDto {
         "appPhoneNumber": appPhoneNumber,
         "appEmail": appEmail,
         "gender": gender,
-        "region": region,
+        "country": country,
+        "city": city,
         "state": state,
         "badge": badge,
         "pageSize": pageSize,
@@ -700,9 +708,10 @@ class UserCreateUpdateDto {
   final String? appUserName;
   final String? appPhoneNumber;
   final String? appEmail;
-  final String? region;
-  final String? state;
   final String? badge;
+  final String? state;
+  final String? country;
+  final String? city;
   final String? visitedProducts;
   final String? bookmarkedProducts;
   final String? followedUsers;
@@ -768,7 +777,8 @@ class UserCreateUpdateDto {
     this.appUserName,
     this.appPhoneNumber,
     this.appEmail,
-    this.region,
+    this.country,
+    this.city,
     this.state,
     this.title,
     this.subtitle,
@@ -843,7 +853,8 @@ class UserCreateUpdateDto {
         appUserName: json["appUserName"],
         appPhoneNumber: json["appPhoneNumber"],
         appEmail: json["appEmail"],
-        region: json["region"],
+        country: json["country"],
+        city: json["city"],
         state: json["state"],
         badge: json["badge"],
         visitedProducts: json["visitedProducts"],
@@ -912,7 +923,8 @@ class UserCreateUpdateDto {
         "appUserName": appUserName,
         "appPhoneNumber": appPhoneNumber,
         "appEmail": appEmail,
-        "region": region,
+        "country": country,
+        "city": city,
         "state": state,
         "badge": badge,
         "visitedProducts": visitedProducts,
