@@ -1,6 +1,6 @@
 part of 'components.dart';
 
-class UMap extends StatelessWidget {
+class UMap extends StatefulWidget {
   const UMap({
     required this.controller,
     super.key,
@@ -13,6 +13,7 @@ class UMap extends StatelessWidget {
     this.zoomButtons = true,
     this.currentLocationLayer = true,
     this.myLocationButton = true,
+    this.initOnUserLocation = true,
     this.onTap,
     this.onLongPress,
     this.onPositionChanged,
@@ -29,31 +30,47 @@ class UMap extends StatelessWidget {
   final bool zoomButtons;
   final bool currentLocationLayer;
   final bool myLocationButton;
+  final bool initOnUserLocation;
   final Function(TapPosition tapPosition, LatLng point)? onTap;
   final Function(TapPosition tapPosition, LatLng point)? onLongPress;
   final Function(MapCamera position, bool hasGesture)? onPositionChanged;
   final Function(PointerUpEvent event, LatLng point)? onPointerUp;
 
   @override
-  Widget build(final BuildContext context) =>
-      Stack(
+  State<UMap> createState() => _UMapState();
+}
+
+class _UMapState extends State<UMap> {
+  @override
+  void initState() {
+    if (widget.initOnUserLocation)
+      getUserLocation(
+        onUserLocationFound: (final dynamic location) {
+          widget.controller.move(LatLng(location.latitude, location.longitude), widget.controller.camera.zoom);
+        },
+      );
+    super.initState();
+  }
+
+  @override
+  Widget build(final BuildContext context) => Stack(
         children: <Widget>[
           FlutterMap(
-            mapController: controller,
+            mapController: widget.controller,
             options: MapOptions(
-              initialCenter: center,
-              initialZoom: zoom,
-              onTap: onTap,
-              maxZoom: maxZoom,
-              minZoom: minZoom,
-              onLongPress: onLongPress,
-              onPositionChanged: onPositionChanged,
-              onPointerUp: onPointerUp,
+              initialCenter: widget.center,
+              initialZoom: widget.zoom,
+              onTap: widget.onTap,
+              maxZoom: widget.maxZoom,
+              minZoom: widget.minZoom,
+              onLongPress: widget.onLongPress,
+              onPositionChanged: widget.onPositionChanged,
+              onPointerUp: widget.onPointerUp,
             ),
             children: <Widget>[
               TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
-              MarkerLayer(markers: markers ?? <Marker>[]),
-              if (currentLocationLayer)
+              MarkerLayer(markers: widget.markers ?? <Marker>[]),
+              if (widget.currentLocationLayer)
                 CurrentLocationLayer(
                   alignDirectionOnUpdate: AlignOnUpdate.always,
                   style: const LocationMarkerStyle(
@@ -63,37 +80,36 @@ class UMap extends StatelessWidget {
                 ),
             ],
           ),
-          if (myLocationButton)
+          if (widget.myLocationButton)
             FloatingActionButton(
               mini: true,
-              onPressed: () async =>
-                  getUserLocation(
-                    onUserLocationFound: (final dynamic location) {
-                      controller.move(LatLng(location.latitude, location.longitude), controller.camera.zoom);
-                    },
-                  ),
+              onPressed: () async => getUserLocation(
+                onUserLocationFound: (final dynamic location) {
+                  widget.controller.move(LatLng(location.latitude, location.longitude), widget.controller.camera.zoom);
+                },
+              ),
               child: const Icon(Icons.my_location),
             ).paddingAll(16).alignAtBottomLeft(),
-          if (zoomButtons)
+          if (widget.zoomButtons)
             UIconTextVertical(
               leading: FloatingActionButton(
                 mini: true,
                 child: const Icon(Icons.add),
-                onPressed: () => controller.move(
-                  controller.camera.center,
-                  controller.camera.zoom + 1,
+                onPressed: () => widget.controller.move(
+                  widget.controller.camera.center,
+                  widget.controller.camera.zoom + 1,
                 ),
               ),
               trailing: FloatingActionButton(
                 mini: true,
                 child: const Icon(Icons.remove),
-                onPressed: () => controller.move(
-                  controller.camera.center,
-                  controller.camera.zoom - 1,
+                onPressed: () => widget.controller.move(
+                  widget.controller.camera.center,
+                  widget.controller.camera.zoom - 1,
                 ),
               ),
             ).paddingAll(16).alignAtBottomRight(),
-          if (centerWidget != null) Align(child: centerWidget),
+          if (widget.centerWidget != null) Align(child: widget.centerWidget),
         ],
       );
 }
