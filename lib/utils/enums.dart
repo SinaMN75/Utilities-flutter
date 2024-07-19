@@ -498,19 +498,6 @@ enum TagComment {
   final int number;
 }
 
-enum TagGender {
-  man("Man", "مرد", 100),
-  woman("Woman", "زن", 101);
-
-  const TagGender(this.title, this.titleTr1, this.status);
-
-  @override
-  String toString() => name;
-  final String title;
-  final String titleTr1;
-  final int status;
-}
-
 enum FormFieldType {
   singleLineText(0),
   multiLineText(1),
@@ -756,6 +743,18 @@ enum UseCaseContent {
   @override
   String toString() => name;
   final String title;
+}
+
+enum GenderType {
+  male("male", 100),
+  female("female", 101);
+
+  const GenderType(this.title, this.number);
+
+  @override
+  String toString() => name;
+  final String title;
+  final int number;
 }
 
 enum ProductStatus {
