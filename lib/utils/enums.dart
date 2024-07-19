@@ -758,20 +758,6 @@ enum UseCaseContent {
   final String title;
 }
 
-enum GenderType {
-  male("male", 200),
-  female("female", 201),
-  unknown("unknown", 202),
-  both("legal", 203);
-
-  const GenderType(this.title, this.number);
-
-  @override
-  String toString() => name;
-  final String title;
-  final int number;
-}
-
 enum ProductStatus {
   isNew("New", "نو", 100),
   isWorked("Worked", "کارکرده", 101),
