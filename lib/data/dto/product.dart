@@ -591,6 +591,7 @@ class ProductFilterDto {
     this.isBookmarked,
     this.hasDiscount,
     this.showMedia,
+    this.minMedia,
     this.showForms,
     this.showFormFields,
     this.showCategories,
@@ -637,6 +638,7 @@ class ProductFilterDto {
     description: json["description"],
     state: json["state"],
     city: json["city"],
+    minMedia: json["minMedia"],
     startPriceRange: json["startPriceRange"],
     endPriceRange: json["endPriceRange"],
     isFollowing: json["isFollowing"],
@@ -688,6 +690,7 @@ class ProductFilterDto {
   String? city;
   int? startPriceRange;
   int? endPriceRange;
+  int? minMedia;
   bool? isFollowing;
   bool? isBookmarked;
   bool? hasDiscount;
@@ -737,6 +740,7 @@ class ProductFilterDto {
     "country": country,
     "state": state,
     "city": city,
+    "minMedia": minMedia,
     "startDate": startDate,
     "endDate": endDate,
     "startPriceRange": startPriceRange,
