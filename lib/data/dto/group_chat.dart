@@ -345,10 +345,10 @@ class GroupChatMessageReadDto {
         "parentId": parentId,
         "seenUsers": seenUsers?.toMap(),
         "seenUsersId": seenUsersId,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final x) => x)),
-        "media": media == null ? [] : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
-        "products": products == null ? <ProductReadDto>[] : List<ProductReadDto>.from(products!.map((final x) => x.toMap())),
-        "messageSeenBy": messageSeenBy == null ? <UserReadDto>[] : List<UserReadDto>.from(messageSeenBy!.map((final x) => x.toMap())),
+        "tags": tags == null ? null : List<dynamic>.from(tags!.map((final x) => x)),
+        "media": media == null ? null : List<MediaReadDto>.from(media!.map((final x) => x.toMap())),
+        "products": products == null ? null : List<ProductReadDto>.from(products!.map((final x) => x.toMap())),
+        "messageSeenBy": messageSeenBy == null ? null : List<UserReadDto>.from(messageSeenBy!.map((final x) => x.toMap())),
       };
 }
 
@@ -462,13 +462,10 @@ class GroupChatMessageCreateUpdateDto {
   GroupChatMessageCreateUpdateDto({
     this.id,
     this.message,
-    this.products,
-    this.type,
-    this.parentId,
     this.forwardedMessageId,
-    this.useCase,
-    this.tags,
     this.groupChatId,
+    this.parentId,
+    this.products,
   });
 
   factory GroupChatMessageCreateUpdateDto.fromJson(final String str) => GroupChatMessageCreateUpdateDto.fromMap(json.decode(str));
@@ -476,36 +473,27 @@ class GroupChatMessageCreateUpdateDto {
   factory GroupChatMessageCreateUpdateDto.fromMap(final dynamic json) => GroupChatMessageCreateUpdateDto(
         id: json["id"],
         message: json["message"],
-        type: json["type"],
-        useCase: json["useCase"],
+        forwardedMessageId: json["forwardedMessageId"],
+        groupChatId: json["groupChatId"],
         parentId: json["parentId"],
         products: json["products"],
-        forwardedMessageId: json["forwardedMessageId"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
-        groupChatId: json["groupChatId"],
       );
 
   final String? id;
   final String? message;
-  final String? type;
-  final String? useCase;
-  final String? parentId;
-  final String? groupChatId;
   final String? forwardedMessageId;
+  final String? groupChatId;
+  final String? parentId;
   final List<String>? products;
-  final List<int>? tags;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   dynamic toMap() => {
         "id": id,
         "message": message,
-        "type": type,
-        "useCase": useCase,
+        "forwardedMessageId": forwardedMessageId,
+        "groupChatId": groupChatId,
         "parentId": parentId,
         "products": products,
-        "forwardedMessageId": forwardedMessageId,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final x) => x)),
-        "groupChatId": groupChatId,
       };
 }

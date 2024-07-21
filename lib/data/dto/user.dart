@@ -15,8 +15,9 @@ class UserReadDto {
     this.phoneNumber,
     this.appEmail,
     this.email,
-    this.region,
+    this.country,
     this.state,
+    this.city,
     this.badge,
     this.jobStatus,
     this.mutedChats,
@@ -59,8 +60,9 @@ class UserReadDto {
         appEmail: json["appEmail"],
         userAgent: json["userAgent"],
         email: json["email"],
-        region: json["region"],
+        country: json["country"],
         state: json["state"],
+        city: json["city"],
         badge: json["badge"],
         jobStatus: json["jobStatus"],
         mutedChats: json["mutedChats"],
@@ -79,7 +81,8 @@ class UserReadDto {
         tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
         stories: json["stories"] == null ? <ProductReadDto>[] : List<ProductReadDto>.from(json["stories"]!.map(ProductReadDto.fromMap)),
-        categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
+        categories:
+            json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         isFollowing: json["isFollowing"],
         countProducts: json["countProducts"],
         countFollowers: json["countFollowers"],
@@ -99,8 +102,9 @@ class UserReadDto {
   final String? userAgent;
   final String? appEmail;
   final String? email;
-  final String? region;
+  final String? country;
   final String? state;
+  final String? city;
   final String? badge;
   final String? jobStatus;
   final String? mutedChats;
@@ -141,9 +145,10 @@ class UserReadDto {
         "phoneNumber": phoneNumber,
         "appEmail": appEmail,
         "email": email,
-        "region": region,
+        "country": country,
         "userAgent": userAgent,
         "state": state,
+        "city": city,
         "badge": badge,
         "jobStatus": jobStatus,
         "mutedChats": mutedChats,
@@ -194,6 +199,13 @@ class UserJsonDetail {
     this.privacyType,
     this.legalAuthenticationType,
     this.nationalityType,
+    this.nationalCode,
+    this.uniqueId,
+    this.householdNumber,
+    this.passportNumber,
+    this.registrationNumber,
+    this.postalCode,
+    this.landlinePhone,
   });
 
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
@@ -220,6 +232,13 @@ class UserJsonDetail {
         privacyType: json["privacyType"],
         legalAuthenticationType: json["legalAuthenticationType"],
         nationalityType: json["nationalityType"],
+        nationalCode: json["nationalCode"],
+        uniqueId: json["uniqueId"],
+        householdNumber: json["householdNumber"],
+        passportNumber: json["passportNumber"],
+        registrationNumber: json["registrationNumber"],
+        postalCode: json["postalCode"],
+        landlinePhone: json["landlinePhone"],
       );
   final String? instagram;
   final String? address;
@@ -242,6 +261,13 @@ class UserJsonDetail {
   final int? privacyType;
   final int? legalAuthenticationType;
   final int? nationalityType;
+  final String? nationalCode;
+  final String? uniqueId;
+  final String? householdNumber;
+  final String? passportNumber;
+  final String? registrationNumber;
+  final String? postalCode;
+  final String? landlinePhone;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -267,6 +293,13 @@ class UserJsonDetail {
         "privacyType": privacyType,
         "legalAuthenticationType": legalAuthenticationType,
         "nationalityType": nationalityType,
+        "nationalCode": nationalCode,
+        "uniqueId": uniqueId,
+        "householdNumber": householdNumber,
+        "passportNumber": passportNumber,
+        "registrationNumber": registrationNumber,
+        "postalCode": postalCode,
+        "landlinePhone": landlinePhone,
       };
 }
 
@@ -288,8 +321,9 @@ class UserFilterDto {
     this.appPhoneNumber,
     this.appEmail,
     this.gender,
-    this.region,
+    this.country,
     this.state,
+    this.city,
     this.badge,
     this.pageSize,
     this.pageNumber,
@@ -329,8 +363,9 @@ class UserFilterDto {
         appPhoneNumber: json["appPhoneNumber"],
         appEmail: json["appEmail"],
         gender: json["gender"],
-        region: json["region"],
+        country: json["country"],
         state: json["state"],
+        city: json["city"],
         badge: json["badge"],
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
@@ -369,8 +404,9 @@ class UserFilterDto {
   final String? appPhoneNumber;
   final String? appEmail;
   final int? gender;
-  final String? region;
+  final String? country;
   final String? state;
+  final String? city;
   final String? badge;
   final int? pageSize;
   final int? pageNumber;
@@ -410,8 +446,9 @@ class UserFilterDto {
         "appPhoneNumber": appPhoneNumber,
         "appEmail": appEmail,
         "gender": gender,
-        "region": region,
+        "country": country,
         "state": state,
+        "city": city,
         "badge": badge,
         "pageSize": pageSize,
         "pageNumber": pageNumber,
@@ -688,6 +725,9 @@ class UserCreateUpdateDto {
   final String? uniqueId;
   final String? householdNumber;
   final String? passportNumber;
+  final String? registrationNumber;
+  final String? postalCode;
+  final String? landlinePhone;
   final String? id;
   final String? email;
   final String? firstName;
@@ -700,8 +740,9 @@ class UserCreateUpdateDto {
   final String? appUserName;
   final String? appPhoneNumber;
   final String? appEmail;
-  final String? region;
+  final String? country;
   final String? state;
+  final String? city;
   final String? badge;
   final String? visitedProducts;
   final String? bookmarkedProducts;
@@ -747,6 +788,9 @@ class UserCreateUpdateDto {
     this.uniqueId,
     this.householdNumber,
     this.passportNumber,
+    this.registrationNumber,
+    this.postalCode,
+    this.landlinePhone,
     this.email,
     this.firstName,
     this.userName,
@@ -758,8 +802,9 @@ class UserCreateUpdateDto {
     this.appUserName,
     this.appPhoneNumber,
     this.appEmail,
-    this.region,
+    this.country,
     this.state,
+    this.city,
     this.badge,
     this.visitedProducts,
     this.bookmarkedProducts,
@@ -805,122 +850,130 @@ class UserCreateUpdateDto {
   String toJson() => json.encode(toMap());
 
   factory UserCreateUpdateDto.fromMap(Map<String, dynamic> json) => UserCreateUpdateDto(
-    id: json["id"],
-    nationalCode: json["nationalCode"],
-    uniqueId: json["uniqueId"],
-    householdNumber: json["householdNumber"],
-    passportNumber: json["passportNumber"],
-    email: json["email"],
-    firstName: json["firstName"],
-    userName: json["userName"],
-    phoneNumber: json["phoneNumber"],
-    lastName: json["lastName"],
-    fullName: json["fullName"],
-    bio: json["bio"],
-    headline: json["headline"],
-    appUserName: json["appUserName"],
-    appPhoneNumber: json["appPhoneNumber"],
-    appEmail: json["appEmail"],
-    region: json["region"],
-    state: json["state"],
-    badge: json["badge"],
-    visitedProducts: json["visitedProducts"],
-    bookmarkedProducts: json["bookmarkedProducts"],
-    followedUsers: json["followedUsers"],
-    followingUsers: json["followingUsers"],
-    fcmToken: json["fcmToken"],
-    blockedUsers: json["blockedUsers"],
-    wallet: json["wallet"],
-    deliveryPrice1: json["deliveryPrice1"],
-    deliveryPrice2: json["deliveryPrice2"],
-    deliveryPrice3: json["deliveryPrice3"],
-    point: json["point"],
-    suspend: json["suspend"],
-    instagram: json["instagram"],
-    telegram: json["telegram"],
-    jobStatus: json["jobStatus"],
-    whatsApp: json["whatsApp"],
-    linkedIn: json["linkedIn"],
-    dribble: json["dribble"],
-    soundCloud: json["soundCloud"],
-    pinterest: json["pinterest"],
-    website: json["website"],
-    activity: json["activity"],
-    color: json["color"],
-    password: json["password"],
-    gender: json["gender"],
-    legalAuthenticationType: json["legalAuthenticationType"],
-    nationalityType: json["nationalityType"],
-    privacyType: json["privacyType"],
-    birthDate: json["birthDate"],
-    premiumExpireDate: json["premiumExpireDate"],
-    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-    code: json["code"],
-    shebaNumber: json["shebaNumber"],
-    address: json["address"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-    removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
-    addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
-  );
+        id: json["id"],
+        nationalCode: json["nationalCode"],
+        uniqueId: json["uniqueId"],
+        householdNumber: json["householdNumber"],
+        passportNumber: json["passportNumber"],
+        registrationNumber: json["registrationNumber"],
+        postalCode: json["postalCode"],
+        landlinePhone: json["landlinePhone"],
+        email: json["email"],
+        firstName: json["firstName"],
+        userName: json["userName"],
+        phoneNumber: json["phoneNumber"],
+        lastName: json["lastName"],
+        fullName: json["fullName"],
+        bio: json["bio"],
+        headline: json["headline"],
+        appUserName: json["appUserName"],
+        appPhoneNumber: json["appPhoneNumber"],
+        appEmail: json["appEmail"],
+        country: json["country"],
+        state: json["state"],
+        city: json["city"],
+        badge: json["badge"],
+        visitedProducts: json["visitedProducts"],
+        bookmarkedProducts: json["bookmarkedProducts"],
+        followedUsers: json["followedUsers"],
+        followingUsers: json["followingUsers"],
+        fcmToken: json["fcmToken"],
+        blockedUsers: json["blockedUsers"],
+        wallet: json["wallet"],
+        deliveryPrice1: json["deliveryPrice1"],
+        deliveryPrice2: json["deliveryPrice2"],
+        deliveryPrice3: json["deliveryPrice3"],
+        point: json["point"],
+        suspend: json["suspend"],
+        instagram: json["instagram"],
+        telegram: json["telegram"],
+        jobStatus: json["jobStatus"],
+        whatsApp: json["whatsApp"],
+        linkedIn: json["linkedIn"],
+        dribble: json["dribble"],
+        soundCloud: json["soundCloud"],
+        pinterest: json["pinterest"],
+        website: json["website"],
+        activity: json["activity"],
+        color: json["color"],
+        password: json["password"],
+        gender: json["gender"],
+        legalAuthenticationType: json["legalAuthenticationType"],
+        nationalityType: json["nationalityType"],
+        privacyType: json["privacyType"],
+        birthDate: json["birthDate"],
+        premiumExpireDate: json["premiumExpireDate"],
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+        code: json["code"],
+        shebaNumber: json["shebaNumber"],
+        address: json["address"],
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+        removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
+        addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "nationalCode": nationalCode,
-    "uniqueId": uniqueId,
-    "householdNumber": householdNumber,
-    "passportNumber": passportNumber,
-    "email": email,
-    "firstName": firstName,
-    "userName": userName,
-    "phoneNumber": phoneNumber,
-    "lastName": lastName,
-    "fullName": fullName,
-    "bio": bio,
-    "headline": headline,
-    "appUserName": appUserName,
-    "appPhoneNumber": appPhoneNumber,
-    "appEmail": appEmail,
-    "region": region,
-    "state": state,
-    "badge": badge,
-    "visitedProducts": visitedProducts,
-    "bookmarkedProducts": bookmarkedProducts,
-    "followedUsers": followedUsers,
-    "followingUsers": followingUsers,
-    "fcmToken": fcmToken,
-    "blockedUsers": blockedUsers,
-    "wallet": wallet,
-    "deliveryPrice1": deliveryPrice1,
-    "deliveryPrice2": deliveryPrice2,
-    "deliveryPrice3": deliveryPrice3,
-    "point": point,
-    "suspend": suspend,
-    "instagram": instagram,
-    "telegram": telegram,
-    "jobStatus": jobStatus,
-    "whatsApp": whatsApp,
-    "linkedIn": linkedIn,
-    "dribble": dribble,
-    "soundCloud": soundCloud,
-    "pinterest": pinterest,
-    "website": website,
-    "activity": activity,
-    "color": color,
-    "password": password,
-    "gender": gender,
-    "legalAuthenticationType": legalAuthenticationType,
-    "nationalityType": nationalityType,
-    "privacyType": privacyType,
-    "birthDate": birthDate,
-    "premiumExpireDate": premiumExpireDate,
-    "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
-    "code": code,
-    "shebaNumber": shebaNumber,
-    "address": address,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-    "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
-    "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
-  };
+        "id": id,
+        "nationalCode": nationalCode,
+        "uniqueId": uniqueId,
+        "householdNumber": householdNumber,
+        "passportNumber": passportNumber,
+        "registrationNumber": registrationNumber,
+        "postalCode": postalCode,
+        "landlinePhone": landlinePhone,
+        "email": email,
+        "firstName": firstName,
+        "userName": userName,
+        "phoneNumber": phoneNumber,
+        "lastName": lastName,
+        "fullName": fullName,
+        "bio": bio,
+        "headline": headline,
+        "appUserName": appUserName,
+        "appPhoneNumber": appPhoneNumber,
+        "appEmail": appEmail,
+        "country": country,
+        "state": state,
+        "city": city,
+        "badge": badge,
+        "visitedProducts": visitedProducts,
+        "bookmarkedProducts": bookmarkedProducts,
+        "followedUsers": followedUsers,
+        "followingUsers": followingUsers,
+        "fcmToken": fcmToken,
+        "blockedUsers": blockedUsers,
+        "wallet": wallet,
+        "deliveryPrice1": deliveryPrice1,
+        "deliveryPrice2": deliveryPrice2,
+        "deliveryPrice3": deliveryPrice3,
+        "point": point,
+        "suspend": suspend,
+        "instagram": instagram,
+        "telegram": telegram,
+        "jobStatus": jobStatus,
+        "whatsApp": whatsApp,
+        "linkedIn": linkedIn,
+        "dribble": dribble,
+        "soundCloud": soundCloud,
+        "pinterest": pinterest,
+        "website": website,
+        "activity": activity,
+        "color": color,
+        "password": password,
+        "gender": gender,
+        "legalAuthenticationType": legalAuthenticationType,
+        "nationalityType": nationalityType,
+        "privacyType": privacyType,
+        "birthDate": birthDate,
+        "premiumExpireDate": premiumExpireDate,
+        "categories": categories == null ? null : List<dynamic>.from(categories!.map((x) => x)),
+        "code": code,
+        "shebaNumber": shebaNumber,
+        "address": address,
+        "tags": tags == null ? null : List<dynamic>.from(tags!.map((x) => x)),
+        "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((x) => x)),
+        "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((x) => x)),
+      };
 }
 
 class JsonDetail {
@@ -946,6 +999,13 @@ class JsonDetail {
     this.privacyType,
     this.legalAuthenticationType,
     this.nationalityType,
+    this.nationalCode,
+    this.uniqueId,
+    this.householdNumber,
+    this.passportNumber,
+    this.registrationNumber,
+    this.postalCode,
+    this.landlinePhone,
   });
 
   factory JsonDetail.fromJson(final String str) => JsonDetail.fromMap(json.decode(str));
@@ -972,6 +1032,13 @@ class JsonDetail {
         privacyType: json["privacyType"],
         legalAuthenticationType: json["legalAuthenticationType"],
         nationalityType: json["nationalityType"],
+        nationalCode: json["nationalCode"],
+        uniqueId: json["uniqueId"],
+        householdNumber: json["householdNumber"],
+        passportNumber: json["passportNumber"],
+        registrationNumber: json["registrationNumber"],
+        postalCode: json["postalCode"],
+        landlinePhone: json["landlinePhone"],
       );
   final String? instagram;
   final String? telegram;
@@ -994,6 +1061,13 @@ class JsonDetail {
   final int? privacyType;
   final int? legalAuthenticationType;
   final int? nationalityType;
+  final String? nationalCode;
+  final String? uniqueId;
+  final String? householdNumber;
+  final String? passportNumber;
+  final String? registrationNumber;
+  final String? postalCode;
+  final String? landlinePhone;
 
   String toJson() => json.encode(toMap());
 
@@ -1019,5 +1093,12 @@ class JsonDetail {
         "privacyType": privacyType,
         "legalAuthenticationType": legalAuthenticationType,
         "nationalityType": nationalityType,
+        "nationalCode": nationalCode,
+        "uniqueId": uniqueId,
+        "householdNumber": householdNumber,
+        "passportNumber": passportNumber,
+        "registrationNumber": registrationNumber,
+        "postalCode": postalCode,
+        "landlinePhone": landlinePhone,
       };
 }

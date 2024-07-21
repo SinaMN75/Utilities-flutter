@@ -1,8 +1,8 @@
 part of '../data.dart';
 
 class FirebaseDataSource {
-  FirebaseDataSource({required this.authorization});
 
+  FirebaseDataSource({required this.authorization});
   final String authorization;
 
   void sendPushNotification({required final String fcmToken, required final String title, required final String body}) async => await GetConnect().post(
@@ -12,8 +12,6 @@ class FirebaseDataSource {
           "notification": <String, dynamic>{"title": title, "body": body, "mutable_content": true, "sound": "Tri-tone"},
           "data": <String, String>{"url": "hello"}
         },
-        headers: <String, String>{
-          "Authorization": authorization,
-        },
+        headers: <String, String>{"Authorization": authorization},
       );
 }

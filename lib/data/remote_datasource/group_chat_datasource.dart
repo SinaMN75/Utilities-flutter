@@ -33,20 +33,6 @@ class GroupChatDataSource {
         failure: failure,
       );
 
-  void filterGroupChat({
-    required final GroupChatFilterDto filter,
-    required final Function(GenericResponse<GroupChatReadDto> response) onResponse,
-    required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
-  }) =>
-      httpPost(
-        url: "$baseUrl/Chat/FilterGroupChat",
-        apiKey: apiKey,
-        body: filter,
-        action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatReadDto>.fromJson(response.body, fromMap: GroupChatReadDto.fromMap)),
-        error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
-        failure: failure,
-      );
 
   void filterAllGroupChat({
     required final GroupChatFilterDto filter,
@@ -148,6 +134,7 @@ class GroupChatDataSource {
       httpPost(
         url: "$baseUrl/Chat/FilterGroupChatMessages",
         apiKey: apiKey,
+        body: filter,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<GroupChatMessageReadDto>.fromJson(response.body, fromMap: GroupChatMessageReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
         failure: failure,

@@ -5,12 +5,14 @@ class ProductReadDto {
     required this.id,
     this.createdAt,
     this.updatedAt,
-    this.region,
+    this.country,
+    this.state,
+    this.city,
+    this.isLiked,
     this.title,
     this.code,
     this.subtitle,
     this.description,
-    this.state,
     this.visitsCount,
     this.boosted,
     this.isSeen,
@@ -59,7 +61,9 @@ class ProductReadDto {
     isSeen: json["isSeen"],
     subtitle: json["subtitle"],
     description: json["description"],
+    country: json["country"],
     state: json["state"],
+    city: json["city"],
     boosted: json["boosted"] == null ? null : DateTime.parse(json["boosted"]),
     stock: json["stock"],
     voteCount: json["voteCount"],
@@ -100,9 +104,11 @@ class ProductReadDto {
   DateTime? updatedAt;
   String? title;
   String? subtitle;
-  String? region;
+  String? country;
+  bool? isLiked;
   String? description;
   String? state;
+  String? city;
   DateTime? boosted;
   int? visitsCount;
   int? stock;
@@ -143,7 +149,7 @@ class ProductReadDto {
   dynamic toMap() => {
     "id": id,
     "code": code,
-    "region": region,
+    "country": country,
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "title": title,
@@ -154,6 +160,7 @@ class ProductReadDto {
     "latitude": latitude,
     "longitude": longitude,
     "state": state,
+    "city": city,
     "boosted": boosted?.toIso8601String(),
     "stock": stock,
     "voteCount": voteCount,
@@ -376,7 +383,9 @@ class ProductCreateUpdateDto {
     this.description,
     this.details,
     this.address,
-    this.region,
+    this.country,
+    this.state,
+    this.city,
     this.author,
     this.phoneNumber,
     this.link,
@@ -387,7 +396,6 @@ class ProductCreateUpdateDto {
     this.type2,
     this.unit,
     this.keyValue,
-    this.state,
     this.latitude,
     this.longitude,
     this.price,
@@ -445,13 +453,14 @@ class ProductCreateUpdateDto {
   String? link;
   String? website;
   String? color;
-  String? region;
+  String? country;
+  String? state;
+  String? city;
   String? email;
   String? type1;
   String? type2;
   String? unit;
   String? keyValue;
-  String? state;
   double? latitude;
   double? longitude;
   int? price;
@@ -508,7 +517,7 @@ class ProductCreateUpdateDto {
     "description": description,
     "details": details,
     "address": address,
-    "region": region,
+    "country": country,
     "author": author,
     "phoneNumber": phoneNumber,
     "link": link,
@@ -521,6 +530,7 @@ class ProductCreateUpdateDto {
     "color": color,
     "keyValue": keyValue,
     "state": state,
+    "city": city,
     "latitude": latitude,
     "longitude": longitude,
     "price": price,
@@ -571,9 +581,10 @@ class ProductFilterDto {
   ProductFilterDto({
     this.title,
     this.subtitle,
-    this.region,
+    this.country,
     this.description,
     this.state,
+    this.city,
     this.startPriceRange,
     this.endPriceRange,
     this.isFollowing,
@@ -622,9 +633,10 @@ class ProductFilterDto {
   factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
     title: json["title"],
     subtitle: json["subtitle"],
-    region: json["region"],
+    country: json["country"],
     description: json["description"],
     state: json["state"],
+    city: json["city"],
     startPriceRange: json["startPriceRange"],
     endPriceRange: json["endPriceRange"],
     isFollowing: json["isFollowing"],
@@ -671,8 +683,9 @@ class ProductFilterDto {
   String? title;
   String? subtitle;
   String? description;
-  String? region;
+  String? country;
   String? state;
+  String? city;
   int? startPriceRange;
   int? endPriceRange;
   bool? isFollowing;
@@ -721,7 +734,9 @@ class ProductFilterDto {
     "title": title,
     "subtitle": subtitle,
     "description": description,
+    "country": country,
     "state": state,
+    "city": city,
     "startDate": startDate,
     "endDate": endDate,
     "startPriceRange": startPriceRange,
