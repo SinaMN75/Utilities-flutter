@@ -22,7 +22,7 @@ class IranLocationReadDto {
   final String? name;
   final String? slug;
   final int? provinceId;
-  final IranLocationReadDto? parent;
+  IranLocationReadDto? parent;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
