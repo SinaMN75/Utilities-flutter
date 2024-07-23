@@ -360,12 +360,12 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
 
   List<String> getVideos({final int? tag}) =>
       this
-          ?.where((final MediaReadDto e) => e.url.isVideoFileName && (tag != null ? (e.tags.contains(tag)) : true))
+          ?.where((final MediaReadDto e) => (e.url.isVideoFileName || e.url.split('.').last.toLowerCase()=='mov') && (tag != null ? (e.tags.contains(tag)) : true))
           .map(
             (final MediaReadDto e) => e.url,
-          )
+      )
           .toList() ??
-      <String>[];
+          <String>[];
 
   List<String> getPdfs({final int? tag}) =>
       this

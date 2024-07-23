@@ -6,6 +6,7 @@ class IranLocationReadDto {
     this.name,
     this.slug,
     this.provinceId,
+    this.parent,
   });
 
   factory IranLocationReadDto.fromJson(final String str) => IranLocationReadDto.fromMap(json.decode(str));
@@ -21,6 +22,7 @@ class IranLocationReadDto {
   final String? name;
   final String? slug;
   final int? provinceId;
+  final IranLocationReadDto? parent;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
