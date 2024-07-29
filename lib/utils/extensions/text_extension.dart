@@ -91,7 +91,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text displayMedium({
     final Color? color,
@@ -161,7 +161,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text displaySmall({
     final Color? color,
@@ -231,7 +231,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text headlineLarge({
     final Color? color,
@@ -301,7 +301,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text headlineMedium({
     final Color? color,
@@ -371,7 +371,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text headlineSmall({
     final Color? color,
@@ -441,7 +441,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text titleLarge({
     final Color? color,
@@ -511,7 +511,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text titleMedium({
     final Color? color,
@@ -581,7 +581,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text titleSmall({
     final Color? color,
@@ -651,7 +651,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text bodyLarge({
     final Color? color,
@@ -721,7 +721,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text bodyMedium({
     final Color? color,
@@ -791,7 +791,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text bodySmall({
     final Color? color,
@@ -861,7 +861,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text labelLarge({
     final Color? color,
@@ -931,7 +931,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text labelMedium({
     final Color? color,
@@ -1001,7 +1001,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 
   Text labelSmall({
     final Color? color,
@@ -1071,7 +1071,7 @@ extension TextExtension on Text {
           textBaseline: textBaseline,
           shadows: shadows,
         ),
-      );
+      ).fixedFontSize();
 }
 
 extension StyledText<T extends Text> on T {
@@ -1100,7 +1100,7 @@ extension StyledText<T extends Text> on T {
         softWrap: softWrap ?? this.softWrap,
         textScaleFactor: textScaleFactor ?? this.textScaleFactor,
         textWidthBasis: textWidthBasis ?? this.textWidthBasis,
-      );
+      ).fixedFontSize();
 
   T textScale(final double scaleFactor) => copyWith(textScaleFactor: scaleFactor) as T;
 
@@ -1177,7 +1177,7 @@ extension FixedFontSizeText on Text {
       locale: this.locale,
       softWrap: this.softWrap,
       overflow: this.overflow,
-      textScaler: TextScaler.linear(1.0), // Fixes the text scale factor
+      textScaler: TextScaler.linear(0.86), // Fixes the text scale factor
       maxLines: this.maxLines,
       semanticsLabel: this.semanticsLabel,
       textWidthBasis: this.textWidthBasis,

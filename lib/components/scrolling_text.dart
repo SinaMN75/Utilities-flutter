@@ -82,12 +82,12 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
       return Center(
         child: Text(
           newString,
-          style: widget.textStyle,
+          style: widget.textStyle ?? context.textTheme.bodyMedium,
           textAlign: widget.textAlign ?? TextAlign.center,
         ),
       );
     }
-    return Center(child: Text(widget.text, style: widget.textStyle, textAlign: widget.textAlign ?? TextAlign.center));
+    return Center(child: Text(widget.text, style: widget.textStyle ?? context.textTheme.bodyMedium, textAlign: widget.textAlign ?? TextAlign.center));
   }
 
   Widget getCenterChild() {
@@ -125,7 +125,7 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
               )
             : Text(
                 widget.text,
-                style: widget.textStyle,
+                style: widget.textStyle ?? context.textTheme.bodyMedium,
                 textAlign: widget.textAlign ?? TextAlign.start,
               ),
       );
