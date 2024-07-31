@@ -104,6 +104,8 @@ enum TagCategory {
   business(113, "", ""),
   rent(114, "", ""),
   estate(115, "", ""),
+  businessSkills(117, "", ""),
+  personalSkills(118, "", ""),
   test(900, '', '');
 
   const TagCategory(this.number, this.title, this.titleTr1);
