@@ -16,6 +16,7 @@ Widget textField({
   final bool hasClearButton = false,
   final bool required = false,
   final bool isDense = false,
+  final double? width ,
   final String? Function(String?)? validator,
   final Widget? prefix,
   final Widget? suffix,
@@ -25,6 +26,7 @@ Widget textField({
   final String? initialValue,
   final bool? readOnly,
   final double? textHeight,
+  final Color? textColor,
   final ValueChanged<String>? onChanged,
   final ValueChanged<String>? onFieldSubmitted,
   final int? maxLength,
@@ -33,51 +35,54 @@ Widget textField({
 }) {
   bool obscure = obscureText;
   return StatefulBuilder(
-    builder: (final BuildContext context, final StateSetter setState) => column(
-      margin: margin,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        if (text != null)
-          iconTextHorizontal(
-            leading: Text(text, style: textTheme.titleSmall),
-            trailing: required ? const Text("*").bodyMedium(color: context.theme.colorScheme.error) : const SizedBox(),
-          ).paddingSymmetric(vertical: 8),
-        TextFormField(
-          autofillHints: autoFillHints,
-          textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : null,
-          inputFormatters: formatters,
-          style: TextStyle(fontSize: fontSize),
-          maxLength: maxLength,
-          onChanged: onChanged,
-          readOnly: readOnly ?? false,
-          initialValue: initialValue,
-          textAlign: textAlign,
-          onSaved: onSave,
-          onTap: onTap,
-          controller: controller,
-          keyboardType: keyboardType,
-          obscureText: obscure,
-          validator: validator,
-          minLines: lines,
-          onFieldSubmitted: onFieldSubmitted,
-          maxLines: lines == 1 ? 1 : 20,
-          decoration: InputDecoration(
-            labelText: labelText,
-            isDense: isDense,
-            helperStyle: const TextStyle(fontSize: 0),
-            hintText: hintText,
-            contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
-            suffixIcon: obscureText
-                ? IconButton(
-                    splashRadius: 1,
-                    onPressed: () => setState(() => obscure = !obscure),
-                    icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
-                  )
-                : suffix,
-            prefixIcon: prefix,
+    builder: (final BuildContext context, final StateSetter setState) => SizedBox(
+      width:width,
+      child: column(
+        margin: margin,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          if (text != null)
+            iconTextHorizontal(
+              leading: Text(text, style: textTheme.titleSmall),
+              trailing: required ? const Text("*").bodyMedium(color: context.theme.colorScheme.error) : const SizedBox(),
+            ).paddingSymmetric(vertical: 8),
+          TextFormField(
+            autofillHints: autoFillHints,
+            textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : null,
+            inputFormatters: formatters,
+            style: TextStyle(fontSize: fontSize),
+            maxLength: maxLength,
+            onChanged: onChanged,
+            readOnly: readOnly ?? false,
+            initialValue: initialValue,
+            textAlign: textAlign,
+            onSaved: onSave,
+            onTap: onTap,
+            controller: controller,
+            keyboardType: keyboardType,
+            obscureText: obscure,
+            validator: validator,
+            minLines: lines,
+            onFieldSubmitted: onFieldSubmitted,
+            maxLines: lines == 1 ? 1 : 20,
+            decoration: InputDecoration(
+              labelText: labelText,
+              isDense: isDense,
+              helperStyle: const TextStyle(fontSize: 0),
+              hintText: hintText,
+              contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              suffixIcon: obscureText
+                  ? IconButton(
+                      splashRadius: 1,
+                      onPressed: () => setState(() => obscure = !obscure),
+                      icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                    )
+                  : suffix,
+              prefixIcon: prefix,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
