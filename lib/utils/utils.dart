@@ -5,14 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_contacts/flutter_contacts.dart' as contact;
 import 'package:intl/intl.dart' as intl;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
 
 part 'constants.dart';
-part 'contacts.dart';
 part 'enums.dart';
 part 'extensions/align_extension.dart';
 part 'extensions/color_extension.dart';
