@@ -15,34 +15,34 @@ dependencies:
     sdk: flutter
 
   group_button: ^5.3.4
-  uuid: ^4.4.0
-  chewie: ^1.8.1
-  url_launcher: ^6.2.6
-  package_info_plus: ^8.0.0
-  share_plus: ^9.0.0
+  uuid: ^4.4.2
+  chewie: ^1.8.2
+  url_launcher: ^6.3.0
+  package_info_plus: ^8.0.1
+  share_plus: ^10.0.0
   webview_flutter: ^4.8.0
   local_auth: ^2.2.0
   get: ^4.6.6
   get_storage: ^2.1.1
-  flutter_map: ^7.0.0
+  flutter_map: ^7.0.2
   flutter_map_location_marker: ^9.0.0
   flutter_svg: ^2.0.10+1
   lottie: ^3.1.2
-  image_cropper: ^7.0.5
-  file_picker: ^8.0.3
+  image_cropper: ^8.0.1
+  file_picker: ^8.0.6
   flutter_easyloading: ^3.0.5
-  flutter_local_notifications: ^17.1.2
+  flutter_local_notifications: ^17.2.1+2
   flutter_typeahead: ^5.2.0
   cached_network_image: ^3.3.1
   persian_tools: ^1.0.3
   flutter_contacts: ^1.1.9+1
-  firebase_core: ^3.1.0
-  firebase_messaging: ^15.0.1
-  firebase_analytics: ^11.0.1
-  firebase_crashlytics: ^4.0.1
-  syncfusion_flutter_charts: ^26.1.38
-  syncfusion_flutter_barcodes: ^26.1.38
-  syncfusion_flutter_pdfviewer: ^26.1.38
+  firebase_core: ^3.3.0
+  firebase_messaging: ^15.0.4
+  firebase_analytics: ^11.2.1
+  firebase_crashlytics: ^4.0.4
+  syncfusion_flutter_charts: ^26.2.7
+  syncfusion_flutter_barcodes: ^26.2.7
+  syncfusion_flutter_pdfviewer: ^26.2.7
   pin_code_fields: ^8.0.1
   slide_countdown: ^1.6.1
   screenshot: ^3.0.0
