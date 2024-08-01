@@ -19,7 +19,7 @@ dependencies:
   chewie: ^1.8.1
   url_launcher: ^6.2.6
   package_info_plus: ^8.0.0
-  share_plus: ^10.0.0
+  share_plus: ^9.0.0
   webview_flutter: ^4.8.0
   local_auth: ^2.2.0
   get: ^4.6.6
