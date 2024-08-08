@@ -89,7 +89,7 @@ enum TagProduct {
   subBlog(126, "", ""),
   adEmployee(129, "", ""),
   target(130, "", ""),
-  all(132, "", ""),
+  all(132, "", "All"),
   text(133, "", ""),
   adProject(134, "", ""),
   highlight(136, "", ""),
