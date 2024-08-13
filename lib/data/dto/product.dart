@@ -918,6 +918,7 @@ class ReactionCreateUpdateDto {
 class Seat {
   String? chairId;
   String? title;
+  String? subtitle;
   String? description;
   String? date;
   String? sans;
@@ -934,6 +935,7 @@ class Seat {
   Seat({
     this.chairId,
     this.title,
+    this.subtitle,
     this.description,
     this.date,
     this.sans,
@@ -955,6 +957,7 @@ class Seat {
   factory Seat.fromMap(Map<String, dynamic> json) => Seat(
         chairId: json["chairId"],
         title: json["title"],
+        subtitle: json["subtitle"],
         description: json["description"],
         date: json["date"],
         sans: json["sans"],
@@ -971,6 +974,7 @@ class Seat {
   Map<String, dynamic> toMap() => {
         "chairId": chairId,
         "title": title,
+        "subtitle": subtitle,
         "description": description,
         "date": date,
         "sans": sans,
