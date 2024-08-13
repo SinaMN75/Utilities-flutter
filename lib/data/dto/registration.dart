@@ -2,6 +2,7 @@ part of '../data.dart';
 
 class RegistrationCreateDto {
   final String? title;
+  final String? subtitle;
   final int? row;
   final int? column;
   final String? userId;
@@ -9,6 +10,7 @@ class RegistrationCreateDto {
 
   RegistrationCreateDto({
     this.title,
+    this.subtitle,
     this.row,
     this.column,
     this.userId,
@@ -21,6 +23,7 @@ class RegistrationCreateDto {
 
   factory RegistrationCreateDto.fromMap(Map<String, dynamic> json) => RegistrationCreateDto(
         title: json["title"],
+        subtitle: json["subtitle"],
         row: json["row"],
         column: json["column"],
         userId: json["userId"],
@@ -29,6 +32,7 @@ class RegistrationCreateDto {
 
   Map<String, dynamic> toMap() => {
         "title": title,
+        "subtitle": subtitle,
         "row": row,
         "column": column,
         "userId": userId,
@@ -39,12 +43,14 @@ class RegistrationCreateDto {
 class RegistrationUpdateDto {
   final String? id;
   final String? title;
+  final String? subtitle;
   final int? row;
   final int? column;
 
   RegistrationUpdateDto({
     this.id,
     this.title,
+    this.subtitle,
     this.row,
     this.column,
   });
@@ -56,6 +62,7 @@ class RegistrationUpdateDto {
   factory RegistrationUpdateDto.fromMap(Map<String, dynamic> json) => RegistrationUpdateDto(
         id: json["id"],
         title: json["title"],
+        subtitle: json["subtitle"],
         row: json["row"],
         column: json["column"],
       );
@@ -63,6 +70,7 @@ class RegistrationUpdateDto {
   Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,
+        "subtitle": subtitle,
         "row": row,
         "column": column,
       };
@@ -70,6 +78,7 @@ class RegistrationUpdateDto {
 
 class RegistrationReadDto {
   final String? title;
+  final String? subtitle;
   final int? row;
   final int? column;
   final String? userId;
@@ -79,6 +88,7 @@ class RegistrationReadDto {
 
   RegistrationReadDto({
     this.title,
+    this.subtitle,
     this.row,
     this.column,
     this.userId,
@@ -93,6 +103,7 @@ class RegistrationReadDto {
 
   factory RegistrationReadDto.fromMap(Map<String, dynamic> json) => RegistrationReadDto(
         title: json["title"],
+        subtitle: json["subtitle"],
         row: json["row"],
         column: json["column"],
         userId: json["userId"],
@@ -103,6 +114,7 @@ class RegistrationReadDto {
 
   Map<String, dynamic> toMap() => {
         "title": title,
+        "subtitle": subtitle,
         "row": row,
         "column": column,
         "userId": userId,
