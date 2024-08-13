@@ -169,7 +169,6 @@ class TransactionReadDto {
   final String? sellerId;
   final OrderReadDto? order;
   final String? orderId;
-  final SubscriptionPaymentReadDto? subscriptionPayment;
   final String? subscriptionId;
 
   TransactionReadDto({
@@ -188,7 +187,6 @@ class TransactionReadDto {
     this.sellerId,
     this.order,
     this.orderId,
-    this.subscriptionPayment,
     this.subscriptionId,
   });
 
@@ -212,7 +210,6 @@ class TransactionReadDto {
         sellerId: json["sellerId"],
         order: json["order"] == null ? null : OrderReadDto.fromMap(json["order"]),
         orderId: json["orderId"],
-        subscriptionPayment: json["subscriptionPayment"] == null ? null : SubscriptionPaymentReadDto.fromMap(json["subscriptionPayment"]),
         subscriptionId: json["subscriptionId"],
       );
 
@@ -232,7 +229,6 @@ class TransactionReadDto {
         "sellerId": sellerId,
         "order": order?.toMap(),
         "orderId": orderId,
-        "subscriptionPayment": subscriptionPayment?.toMap(),
         "subscriptionId": subscriptionId,
       };
 }
