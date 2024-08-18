@@ -7,6 +7,7 @@ export 'dart:async';
 export 'dart:convert';
 
 export 'package:cached_network_image/cached_network_image.dart';
+export 'package:carousel_slider/carousel_slider.dart';
 export 'package:chewie/chewie.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:firebase_analytics/firebase_analytics.dart';
