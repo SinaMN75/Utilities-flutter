@@ -20,6 +20,7 @@ class UDoughnutChart extends StatelessWidget {
         annotations: <CircularChartAnnotation>[CircularChartAnnotation(widget: center ?? SizedBox())],
         series: <DoughnutSeries<DoughnutChartData, String>>[
           DoughnutSeries<DoughnutChartData, String>(
+            pointColorMapper: (final DoughnutChartData data, final _) => data.color,
             radius: '100%',
             dataSource: data,
             explode: true,
@@ -100,9 +101,10 @@ class CartesianChartData {
 }
 
 class DoughnutChartData {
-  DoughnutChartData(this.title, this.value, {this.valueText});
+  DoughnutChartData(this.title, this.value, {this.valueText, this.color});
 
   final String title;
   final double value;
   final String? valueText;
+  final Color? color;
 }
