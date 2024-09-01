@@ -55,6 +55,7 @@ class UCartesianChart extends StatelessWidget {
         ),
         series: <ColumnSeries<CartesianChartData, String>>[
           ColumnSeries<CartesianChartData, String>(
+            spacing: 0.5,
             dataSource: data,
             xValueMapper: (final CartesianChartData data, final _) => data.xValue as String,
             yValueMapper: (final CartesianChartData data, final _) => data.yValue,
