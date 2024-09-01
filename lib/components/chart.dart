@@ -15,9 +15,9 @@ class UDoughnutChart extends StatelessWidget {
   final Widget? center;
 
   @override
-  Widget build(BuildContext context) => SfCircularChart(
+  Widget build(final BuildContext context) => SfCircularChart(
         legend: Legend(isVisible: true, overflowMode: LegendItemOverflowMode.wrap, position: legendPosition, height: "100"),
-        annotations: <CircularChartAnnotation>[CircularChartAnnotation(widget: center ?? SizedBox())],
+        annotations: <CircularChartAnnotation>[CircularChartAnnotation(widget: center ?? const SizedBox())],
         series: <DoughnutSeries<DoughnutChartData, String>>[
           DoughnutSeries<DoughnutChartData, String>(
             pointColorMapper: (final DoughnutChartData data, final _) => data.color,
@@ -25,7 +25,6 @@ class UDoughnutChart extends StatelessWidget {
             dataSource: data,
             explode: true,
             animationDuration: 1000,
-            enableTooltip: true,
             animationDelay: 1000,
             xValueMapper: (final DoughnutChartData data, final _) => data.title,
             yValueMapper: (final DoughnutChartData data, final _) => data.value,
@@ -37,20 +36,18 @@ class UDoughnutChart extends StatelessWidget {
 }
 
 class UCartesianChart extends StatelessWidget {
-  const UCartesianChart({super.key, required this.data, this.textStyle});
+  const UCartesianChart({required this.data, super.key, this.textStyle});
 
   final List<CartesianChartData> data;
   final TextStyle? textStyle;
 
   @override
-  Widget build(BuildContext context) => SfCartesianChart(
+  Widget build(final BuildContext context) => SfCartesianChart(
         plotAreaBorderWidth: 0,
-        primaryXAxis: CategoryAxis(majorGridLines: const MajorGridLines(width: 0), labelStyle: textStyle),
+        primaryXAxis: const CategoryAxis(majorGridLines: MajorGridLines(width: 0)),
         primaryYAxis: NumericAxis(
-          labelStyle: textStyle,
           minimum: 0,
-          maximum: data.reduce((final CartesianChartData x, final CartesianChartData y) => x.yValue! > y.yValue! ? x : y).yValue!.toDouble(),
-          isVisible: true,
+          maximum: data.reduce((final CartesianChartData x, final CartesianChartData y) => x.yValue > y.yValue ? x : y).yValue.toDouble(),
           labelFormat: '{value}',
         ),
         series: <ColumnSeries<CartesianChartData, String>>[
@@ -69,10 +66,10 @@ class UCartesianChart extends StatelessWidget {
 
 class CartesianChartData {
   CartesianChartData({
+    required this.yValue,
     this.x,
     this.y,
     this.xValue,
-    this.yValue,
     this.secondSeriesYValue,
     this.thirdSeriesYValue,
     this.pointColor,
@@ -88,7 +85,7 @@ class CartesianChartData {
   final dynamic x;
   final num? y;
   final dynamic xValue;
-  final num? yValue;
+  int yValue;
   final num? secondSeriesYValue;
   final num? thirdSeriesYValue;
   final Color? pointColor;
