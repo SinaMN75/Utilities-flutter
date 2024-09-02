@@ -1,10 +1,10 @@
 part of 'utils.dart';
 
-Future<void> request(
-  final String url,
-  final EHttpMethod httpMethod,
-  final Function(Response<dynamic> response) action,
-  final Function(Response<dynamic> response) error, {
+Future<void> httpRequest({
+  required final String url,
+  required final EHttpMethod httpMethod,
+  required final Function(Response<dynamic> response) action,
+  required final Function(Response<dynamic> response) error,
   final Function(dynamic error)? failure,
   final String? queryOrMutation,
   final dynamic body,
@@ -115,11 +115,11 @@ Future<void> httpGet({
   final bool? cache,
   final DateTime? cacheExpireDate,
 }) async =>
-    request(
-      url,
-      EHttpMethod.get,
-      action,
-      error,
+    httpRequest(
+      url: url,
+      httpMethod: EHttpMethod.get,
+      action: action,
+      error: error,
       headers: headers,
       userAgent: userAgent,
       followRedirects: followRedirects,
@@ -155,11 +155,11 @@ Future<void> httpPost({
   final bool? cache,
   final DateTime? cacheExpireDate,
 }) async =>
-    request(
-      url,
-      EHttpMethod.post,
-      action,
-      error,
+    httpRequest(
+      url: url,
+      httpMethod: EHttpMethod.post,
+      action: action,
+      error: error,
       body: body,
       encodeBody: encodeBody,
       headers: headers,
@@ -197,11 +197,11 @@ Future<void> httpPut({
   final bool? cache,
   final DateTime? cacheExpireDate,
 }) async =>
-    request(
-      url,
-      EHttpMethod.put,
-      action,
-      error,
+    httpRequest(
+      url: url,
+      httpMethod: EHttpMethod.put,
+      action: action,
+      error: error,
       body: body,
       encodeBody: encodeBody,
       headers: headers,
@@ -237,11 +237,11 @@ Future<void> httpDelete({
   final bool? cache,
   final DateTime? cacheExpireDate,
 }) async =>
-    request(
-      url,
-      EHttpMethod.delete,
-      action,
-      error,
+    httpRequest(
+      url: url,
+      httpMethod: EHttpMethod.delete,
+      action: action,
+      error: error,
       headers: headers,
       userAgent: userAgent,
       followRedirects: followRedirects,
@@ -266,13 +266,13 @@ extension HTTP on Response<dynamic> {
 
   void logRaw({final String params = ""}) {
     developer.log(
-      "${this.request?.method} - ${this.request?.url} - $statusCode \nPARAMS: $params\n HEADERS: ${this.request?.headers} \nRESPONSE: $body",
+      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params\n HEADERS: ${request?.headers} \nRESPONSE: $body",
     );
   }
 
   void prettyLog({final String params = ""}) {
     developer.log(
-      "${this.request?.method} - ${this.request?.url} - $statusCode \nPARAMS: ${const JsonEncoder.withIndent(" ").convert(params)} \nRESPONSE: ${const JsonEncoder.withIndent(" ").convert(body)}",
+      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: ${const JsonEncoder.withIndent(" ").convert(params)} \nRESPONSE: ${const JsonEncoder.withIndent(" ").convert(body)}",
     );
   }
 }
