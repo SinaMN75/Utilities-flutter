@@ -19,13 +19,12 @@ Future<void> httpRequest({
   final int maxAuthRetries = 1,
   final bool withCredentials = false,
   final bool clearHeaders = false,
-  final bool? cache,
   final DateTime? cacheExpireDate,
 }) async {
   try {
     final Map<String, String> header = <String, String>{
       "Authorization": getString(UtilitiesConstants.token) ?? "",
-      "X-API-Key": getString("ApiKey") ?? "",
+      "X-API-Key": UtilitiesCore.apiKey,
     };
 
     if (clearHeaders) header.clear();
@@ -53,21 +52,35 @@ Future<void> httpRequest({
     );
 
     if (httpMethod == EHttpMethod.get) {
-      if (cache ?? false) {
+      if (cacheExpireDate != null) {
         if (getString(url) == null) {
           response = await connect.get(url, headers: header);
           setData(url, response.bodyString);
-          setData("${url}___ExpireDate", DateTime.now().toIso8601String());
+          setData("${url}___ExpireDate", cacheExpireDate.toIso8601String());
         } else {
-          if (DateTime.parse(getString("${url}___ExpireDate")!).isAfter(DateTime.now())) {
-            response = await connect.get(url, headers: header);
-          } else {
-            action(
-              Response<dynamic>(
-                statusCode: 200,
-                bodyString: getString(url),
-              ),
+          if (DateTime.parse(getString("${url}___ExpireDate")!).isBefore(DateTime.now())) {
+            setData(url, null);
+            setData("${url}___ExpireDate", null);
+            await httpRequest(
+              url: url,
+              httpMethod: EHttpMethod.get,
+              action: action,
+              error: error,
+              headers: headers,
+              userAgent: userAgent,
+              followRedirects: followRedirects,
+              timeout: timeout,
+              maxRedirects: maxRedirects,
+              allowAutoSignedCert: allowAutoSignedCert,
+              sendUserAgent: sendUserAgent,
+              maxAuthRetries: maxAuthRetries,
+              withCredentials: withCredentials,
+              failure: failure,
+              clearHeaders: clearHeaders,
+              cacheExpireDate: cacheExpireDate,
             );
+          } else {
+            action(Response<dynamic>(statusCode: 200, bodyString: getString(url)));
             return;
           }
         }
@@ -131,8 +144,6 @@ Future<void> httpGet({
       withCredentials: withCredentials,
       failure: failure,
       clearHeaders: clearHeaders,
-      cache: cache,
-      cacheExpireDate: cacheExpireDate,
     );
 
 Future<void> httpPost({
@@ -173,8 +184,6 @@ Future<void> httpPost({
       withCredentials: withCredentials,
       failure: failure,
       clearHeaders: clearHeaders,
-      cache: cache,
-      cacheExpireDate: cacheExpireDate,
     );
 
 Future<void> httpPut({
@@ -215,8 +224,6 @@ Future<void> httpPut({
       withCredentials: withCredentials,
       failure: failure,
       clearHeaders: clearHeaders,
-      cache: cache,
-      cacheExpireDate: cacheExpireDate,
     );
 
 Future<void> httpDelete({
@@ -253,8 +260,6 @@ Future<void> httpDelete({
       withCredentials: withCredentials,
       failure: failure,
       clearHeaders: clearHeaders,
-      cache: cache,
-      cacheExpireDate: cacheExpireDate,
     );
 
 enum EHttpMethod { get, post, put, patch, delete }
