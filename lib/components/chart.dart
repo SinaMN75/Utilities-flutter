@@ -46,6 +46,7 @@ class UCartesianChart extends StatelessWidget {
         plotAreaBorderWidth: 0,
         primaryXAxis: const CategoryAxis(majorGridLines: MajorGridLines(width: 0)),
         primaryYAxis: NumericAxis(
+          interval: 1,
           minimum: 0,
           maximum: data.reduce((final CartesianChartData x, final CartesianChartData y) => x.yValue > y.yValue ? x : y).yValue.toDouble(),
           labelFormat: '{value}',
@@ -57,7 +58,7 @@ class UCartesianChart extends StatelessWidget {
             xValueMapper: (final CartesianChartData data, final _) => data.xValue as String,
             yValueMapper: (final CartesianChartData data, final _) => data.yValue,
             pointColorMapper: (final CartesianChartData data, final _) => data.pointColor,
-            dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: textStyle),
+            dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: textStyle, labelAlignment: ChartDataLabelAlignment.top),
             width: 1,
           ),
         ],
