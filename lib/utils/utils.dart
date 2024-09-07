@@ -14,7 +14,6 @@ part 'constants.dart';
 part 'enums.dart';
 part 'extensions/align_extension.dart';
 part 'extensions/color_extension.dart';
-part 'extensions/comment_extension.dart';
 part 'extensions/date_extension.dart';
 part 'extensions/enums_extension.dart';
 part 'extensions/file_extension.dart';
