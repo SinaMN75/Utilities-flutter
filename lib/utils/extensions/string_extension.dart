@@ -43,7 +43,7 @@ extension OptionalStringExtension on String? {
 }
 
 extension StringExtensions on String {
-  String subStringIfExist() => length > 30 ? substring(0, 30) : this;
+  String subStringIfExist(final int start, final int end) => length > end ? substring(start, end) : this;
 
   String numberString() => replaceAll(RegExp('[^0-9]'), '');
 
