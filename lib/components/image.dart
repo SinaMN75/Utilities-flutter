@@ -12,6 +12,7 @@ class UImage extends StatelessWidget {
     this.progressIndicatorBuilder,
     this.fit = BoxFit.contain,
     this.borderRadius = 1,
+    this.border,
   });
 
   final String source;
@@ -22,69 +23,76 @@ class UImage extends StatelessWidget {
   final BoxFit fit;
   final double borderRadius;
   final String? placeholder;
+  final BoxBorder? border;
   final ProgressIndicatorBuilder? progressIndicatorBuilder;
 
   @override
-  Widget build(final BuildContext context) => Builder(
-        builder: (final BuildContext context) {
-          if (fileData != null) {
-            if (isWeb())
-              return UImageMemory(
-                fileData!.bytes!,
-                width: width,
-                height: height,
-                borderRadius: borderRadius,
-                color: color,
-                fit: fit,
-              );
-            else
-              return UImageFile(
-                File(fileData!.path!),
-                width: width,
-                height: height,
-                borderRadius: borderRadius,
-                color: color,
-                fit: fit,
-              );
-          } else if (source.length <= 5) {
-            if (placeholder == null)
-              return SizedBox(width: width, height: height);
-            else
-              return UImageAsset(
-                placeholder!,
-                width: width,
-                height: height,
-                borderRadius: borderRadius,
-                color: color,
-                fit: fit,
-              );
-          } else {
-            if (source.startsWith("http"))
-              return UImageNetwork(
-                source,
-                width: width,
-                height: height,
-                fit: fit,
-                borderRadius: borderRadius,
-                color: color,
-                progressIndicatorBuilder: progressIndicatorBuilder,
-                placeholder: placeholder,
-              );
-            else if (source.startsWith("http") && source.endsWith(".json"))
-              return lottie.Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
-            else if (source.endsWith(".json"))
-              return lottie.Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
-            else
-              return UImageAsset(
-                source,
-                width: width,
-                height: height,
-                fit: fit,
-                borderRadius: borderRadius,
-                color: color,
-              );
-          }
-        },
+  Widget build(final BuildContext context) => DecoratedBox(
+        decoration: BoxDecoration(
+          border: border,
+          borderRadius: BorderRadius.circular(borderRadius),
+        ),
+        child: Builder(
+          builder: (final BuildContext context) {
+            if (fileData != null) {
+              if (isWeb())
+                return UImageMemory(
+                  fileData!.bytes!,
+                  width: width,
+                  height: height,
+                  borderRadius: borderRadius,
+                  color: color,
+                  fit: fit,
+                );
+              else
+                return UImageFile(
+                  File(fileData!.path!),
+                  width: width,
+                  height: height,
+                  borderRadius: borderRadius,
+                  color: color,
+                  fit: fit,
+                );
+            } else if (source.length <= 5) {
+              if (placeholder == null)
+                return SizedBox(width: width, height: height);
+              else
+                return UImageAsset(
+                  placeholder!,
+                  width: width,
+                  height: height,
+                  borderRadius: borderRadius,
+                  color: color,
+                  fit: fit,
+                );
+            } else {
+              if (source.startsWith("http"))
+                return UImageNetwork(
+                  source,
+                  width: width,
+                  height: height,
+                  fit: fit,
+                  borderRadius: borderRadius,
+                  color: color,
+                  progressIndicatorBuilder: progressIndicatorBuilder,
+                  placeholder: placeholder,
+                );
+              else if (source.startsWith("http") && source.endsWith(".json"))
+                return lottie.Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
+              else if (source.endsWith(".json"))
+                return lottie.Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
+              else
+                return UImageAsset(
+                  source,
+                  width: width,
+                  height: height,
+                  fit: fit,
+                  borderRadius: borderRadius,
+                  color: color,
+                );
+            }
+          },
+        ),
       );
 }
 

@@ -40,6 +40,10 @@ extension OptionalStringExtension on String? {
     if (dateTime.hour == 0 && dateTime.minute == 0) return '${jalali.year}/${jalali.month}/${jalali.day}';
     return '${dateTime.hour}:${dateTime.minute}:${dateTime.second} ${jalali.year}/${jalali.month}/${jalali.day}';
   }
+
+  bool isNullOrEmpty() => this == null || this == "";
+
+  bool isNotNullOrEmpty() => this != null || this != "";
 }
 
 extension StringExtensions on String {
