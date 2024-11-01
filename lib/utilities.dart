@@ -16,8 +16,7 @@ export 'package:firebase_crashlytics/firebase_crashlytics.dart';
 export 'package:firebase_messaging/firebase_messaging.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
-
-// export 'package:flutter_local_notifications/flutter_local_notifications.dart';
+export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:geolocator/geolocator.dart';

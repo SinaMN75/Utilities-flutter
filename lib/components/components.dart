@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:logger/logger.dart';
 import 'package:lottie/lottie.dart' as lottie;
