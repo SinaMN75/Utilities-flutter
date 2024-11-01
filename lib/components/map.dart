@@ -70,14 +70,14 @@ class _UMapState extends State<UMap> {
             children: <Widget>[
               TileLayer(urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'),
               MarkerLayer(markers: widget.markers ?? <Marker>[]),
-              if (widget.currentLocationLayer)
-                CurrentLocationLayer(
-                  alignDirectionOnUpdate: AlignOnUpdate.always,
-                  style: const LocationMarkerStyle(
-                    markerSize: Size(16, 16),
-                    markerDirection: MarkerDirection.heading,
-                  ),
-                ),
+              // if (widget.currentLocationLayer)
+              //   CurrentLocationLayer(
+              //     alignDirectionOnUpdate: AlignOnUpdate.always,
+              //     style: const LocationMarkerStyle(
+              //       markerSize: Size(16, 16),
+              //       markerDirection: MarkerDirection.heading,
+              //     ),
+              //   ),
             ],
           ),
           if (widget.myLocationButton)
