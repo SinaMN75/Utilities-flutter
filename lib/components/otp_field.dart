@@ -20,7 +20,7 @@ Widget otpTextField({
 }) =>
     PinCodeTextField(
       controller: controller,
-      appContext: navigatorKey.currentState!.context,
+      appContext: navigatorKey.currentContext!,
       length: length,
       cursorColor: cursorColor,
       onTap: onTap,

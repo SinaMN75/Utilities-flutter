@@ -9,17 +9,17 @@ void bottomSheet({
       builder: (final BuildContext context) => Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: navigatorKey.currentState!.context.theme.colorScheme.surface,
+          color: navigatorKey.currentContext!.theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(20),
         ),
-        constraints: BoxConstraints(maxHeight: navigatorKey.currentState!.context.height - 100),
+        constraints: BoxConstraints(maxHeight: navigatorKey.currentContext!.height - 100),
         padding: padding,
         child: SingleChildScrollView(child: child),
       ),
-      backgroundColor: navigatorKey.currentState!.context.theme.colorScheme.surface,
+      backgroundColor: navigatorKey.currentContext!.theme.colorScheme.surface,
       isDismissible: isDismissible,
       isScrollControlled: true,
-      context: navigatorKey.currentState!.context,
+      context: navigatorKey.currentContext!,
     );
 
 void scrollableBottomSheet({
@@ -33,7 +33,7 @@ void scrollableBottomSheet({
   final VoidCallback? onDismiss,
 }) =>
     showModalBottomSheet(
-      context: navigatorKey.currentState!.context,
+      context: navigatorKey.currentContext!,
       builder: (final BuildContext context) =>
           Container(
             padding: padding,
@@ -52,7 +52,7 @@ void scrollableBottomSheet({
                   ),
             ),
           ),
-      backgroundColor: navigatorKey.currentState!.context.theme.colorScheme.surface,
+      backgroundColor: navigatorKey.currentContext!.theme.colorScheme.surface,
       isDismissible: isDismissible,
       isScrollControlled: true,
     ).whenComplete(onDismiss ?? () {});

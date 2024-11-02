@@ -37,8 +37,8 @@ Widget textField({
       children: <Widget>[
         if (text != null)
           UIconTextHorizontal(
-            leading: Text(text, style: textTheme().titleSmall),
-            trailing: required ? const Text("*").bodyMedium(color: theme().colorScheme.error) : const SizedBox(),
+            leading: Text(text, style: Theme.of(context).textTheme.titleSmall),
+            trailing: required ? const Text("*").bodyMedium(color: Theme.of(context).colorScheme.error) : const SizedBox(),
           ).paddingSymmetric(vertical: 8),
         TextFormField(
           autofillHints: autoFillHints,
@@ -109,7 +109,7 @@ Widget textFieldPersianDatePicker({
     onTap: () async {
       jalali(
         await showPersianDatePicker(
-          context: navigatorKey.currentState!.context,
+          context: navigatorKey.currentContext!,
           initialDate: jalali.value,
           firstDate: startDate ?? Jalali(1320),
           lastDate: endDate ?? Jalali(1405),
@@ -148,7 +148,7 @@ Widget button({
             onPressed: onTap,
             child: SizedBox(
               height: height ?? 20,
-              width: width ?? navigatorKey.currentState!.context.width,
+              width: width ?? navigatorKey.currentContext!.width,
               child: Center(
                 child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
               ),
@@ -158,9 +158,9 @@ Widget button({
           return const CircularProgressIndicator().alignAtCenter();
         else if (buttonState.value == PageState.paging)
           return SlideCountdown(
-            separatorStyle: TextStyle(color: navigatorKey.currentState!.context.theme.colorScheme.onSurface),
+            separatorStyle: TextStyle(color: navigatorKey.currentContext!.theme.colorScheme.onSurface),
             decoration: const BoxDecoration(),
-            style: navigatorKey.currentState!.context.theme.textTheme.bodyMedium!,
+            style: navigatorKey.currentContext!.theme.textTheme.bodyMedium!,
             duration: Duration(seconds: countDownSeconds),
             onDone: () => buttonState(PageState.initial),
           ).alignAtCenter();
@@ -178,7 +178,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? navigatorKey.currentState!.context.width,
+        width: width ?? navigatorKey.currentContext!.width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -194,7 +194,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? navigatorKey.currentState!.context.width,
+        width: width ?? navigatorKey.currentContext!.width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -223,7 +223,7 @@ Widget textFieldTypeAhead<T>({
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (text != null) Text(text, style: textTheme().titleSmall).paddingSymmetric(vertical: 8),
+        if (text != null) Text(text, style: Theme.of(navigatorKey.currentContext!).textTheme.titleSmall).paddingSymmetric(vertical: 8),
         TypeAheadField<T>(
           hideKeyboardOnDrag: hideKeyboard,
           suggestionsCallback: suggestionsCallback,
@@ -269,6 +269,6 @@ Widget radioListTile<T>({
       onChanged: onChanged,
     ).container(
       radius: 20,
-      borderColor: navigatorKey.currentState!.context.theme.colorScheme.onSurface.withOpacity(0.2),
+      borderColor: navigatorKey.currentContext!.theme.colorScheme.onSurface.withOpacity(0.2),
       margin: const EdgeInsets.symmetric(horizontal: 20),
     );

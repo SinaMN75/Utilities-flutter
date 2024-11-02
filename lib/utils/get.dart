@@ -18,33 +18,19 @@ bool isWeb() => GetPlatform.isWeb && kIsWeb;
 
 bool isDesktop() => GetPlatform.isDesktop && !kIsWeb;
 
-bool isLandScape() => navigatorKey.currentState!.context.isLandscape;
+bool isLandScape() => navigatorKey.currentContext!.isLandscape;
 
 bool isPortrait() => navigatorKey.currentContext!.isPortrait;
 
-bool isTablet() => navigatorKey.currentState!.context.isTablet && !kIsWeb;
+bool isTablet() => navigatorKey.currentContext!.isTablet && !kIsWeb;
 
-bool isPhone() => navigatorKey.currentState!.context.isPhone && !kIsWeb;
+bool isPhone() => navigatorKey.currentContext!.isPhone && !kIsWeb;
 
-double screenHeight() => navigatorKey.currentState!.context.height;
+bool isMobileSize() => navigatorKey.currentContext!.width < 850;
 
-double screenWidth() => navigatorKey.currentState!.context.width;
+bool isTabletSize() => navigatorKey.currentContext!.width < 1100 && navigatorKey.currentContext!.width >= 850;
 
-ThemeData theme() => navigatorKey.currentState!.context.theme;
-
-TextTheme textTheme() => navigatorKey.currentState!.context.textTheme;
-
-ColorScheme colorScheme() => navigatorKey.currentState!.context.theme.colorScheme;
-
-Locale? currentLocale() => Get.locale;
-
-bool isDebugMode() => kDebugMode;
-
-bool isMobileSize() => navigatorKey.currentState!.context.width < 850;
-
-bool isTabletSize() => navigatorKey.currentState!.context.width < 1100 && navigatorKey.currentState!.context.width >= 850;
-
-bool isDesktopSize() => navigatorKey.currentState!.context.width >= 1100;
+bool isDesktopSize() => navigatorKey.currentContext!.width >= 1100;
 
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
 
@@ -137,7 +123,7 @@ Future<void> dialogAlert(
       icon: defaultCloseButton
           ? IconButton(
               onPressed: back,
-              icon: Icon(Icons.close, color: navigatorKey.currentState!.context.theme.colorScheme.error),
+              icon: Icon(Icons.close, color: navigatorKey.currentContext!.theme.colorScheme.error),
             ).alignAtCenterRight()
           : icon,
       iconColor: iconColor,

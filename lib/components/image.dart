@@ -121,7 +121,7 @@ class UIconPrimary extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => UImage(
         source,
-        color: color ?? colorScheme().primary,
+        color: color ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
         width: width,
         height: height,
         fit: fit,
@@ -146,7 +146,7 @@ Widget iconPrimary(
 }) =>
     UImage(
       source,
-      color: color ?? colorScheme().primary,
+      color: color ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
       width: width,
       height: height,
       fit: fit,

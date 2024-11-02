@@ -51,13 +51,13 @@ extension WidgetsExtension on Widget {
 
   Widget showMenus(final List<PopupMenuEntry<int>> items) => GestureDetector(
       onTapDown: (details) async {
-        final screenSize = MediaQuery.of(navigatorKey.currentState!.context).size;
+        final screenSize = MediaQuery.of(navigatorKey.currentContext!).size;
         double left = details.globalPosition.dx;
         double top = details.globalPosition.dy;
         double right = screenSize.width - details.globalPosition.dx;
         double bottom = screenSize.height - details.globalPosition.dy;
         await showMenu<int>(
-          context: navigatorKey.currentState!.context,
+          context: navigatorKey.currentContext!,
           position: RelativeRect.fromLTRB(left, top, right, bottom),
           items: items,
         );
