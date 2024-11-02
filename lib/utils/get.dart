@@ -18,35 +18,33 @@ bool isWeb() => GetPlatform.isWeb && kIsWeb;
 
 bool isDesktop() => GetPlatform.isDesktop && !kIsWeb;
 
-bool isLandScape() => getContext().isLandscape;
+bool isLandScape() => navigatorKey.currentState!.context.isLandscape;
 
-bool isPortrait() => getContext().isPortrait;
+bool isPortrait() => navigatorKey.currentContext!.isPortrait;
 
-bool isTablet() => getContext().isTablet && !kIsWeb;
+bool isTablet() => navigatorKey.currentState!.context.isTablet && !kIsWeb;
 
-bool isPhone() => getContext().isPhone && !kIsWeb;
+bool isPhone() => navigatorKey.currentState!.context.isPhone && !kIsWeb;
 
-BuildContext getContext() => Get.key.currentContext!;
+double screenHeight() => navigatorKey.currentState!.context.height;
 
-double screenHeight() => getContext().height;
+double screenWidth() => navigatorKey.currentState!.context.width;
 
-double screenWidth() => getContext().width;
+ThemeData theme() => navigatorKey.currentState!.context.theme;
 
-ThemeData theme() => getContext().theme;
+TextTheme textTheme() => navigatorKey.currentState!.context.textTheme;
 
-TextTheme textTheme() => getContext().textTheme;
-
-ColorScheme colorScheme() => getContext().theme.colorScheme;
+ColorScheme colorScheme() => navigatorKey.currentState!.context.theme.colorScheme;
 
 Locale? currentLocale() => Get.locale;
 
 bool isDebugMode() => kDebugMode;
 
-bool isMobileSize() => getContext().width < 850;
+bool isMobileSize() => navigatorKey.currentState!.context.width < 850;
 
-bool isTabletSize() => getContext().width < 1100 && getContext().width >= 850;
+bool isTabletSize() => navigatorKey.currentState!.context.width < 1100 && navigatorKey.currentState!.context.width >= 850;
 
-bool isDesktopSize() => getContext().width >= 1100;
+bool isDesktopSize() => navigatorKey.currentState!.context.width >= 1100;
 
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
 
@@ -139,7 +137,7 @@ Future<void> dialogAlert(
       icon: defaultCloseButton
           ? IconButton(
               onPressed: back,
-              icon: Icon(Icons.close, color: getContext().theme.colorScheme.error),
+              icon: Icon(Icons.close, color: navigatorKey.currentState!.context.theme.colorScheme.error),
             ).alignAtCenterRight()
           : icon,
       iconColor: iconColor,

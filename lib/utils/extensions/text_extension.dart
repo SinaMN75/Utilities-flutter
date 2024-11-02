@@ -63,8 +63,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.displayLarge!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.displayLarge!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -132,8 +132,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.displayMedium!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.displayMedium!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -201,8 +201,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.displaySmall!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.displaySmall!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -270,8 +270,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.headlineLarge!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.headlineLarge!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -339,8 +339,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.headlineMedium!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.headlineMedium!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -408,8 +408,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.headlineSmall!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.headlineSmall!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -477,8 +477,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.titleLarge!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.titleLarge!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -546,8 +546,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.titleMedium!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.titleMedium!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -615,8 +615,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.titleSmall!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.titleSmall!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -684,8 +684,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.bodyLarge!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.bodyLarge!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -753,8 +753,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.bodyMedium!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.bodyMedium!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -822,8 +822,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.bodySmall!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.bodySmall!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -891,8 +891,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.labelLarge!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.labelLarge!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -960,8 +960,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.labelMedium!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.labelMedium!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,
@@ -1029,8 +1029,8 @@ extension TextExtension on Text {
         strutStyle: strutStyle,
         textHeightBehavior: textHeightBehavior,
         textWidthBasis: textWidthBasis,
-        style: getContext().textTheme.labelSmall!.copyWith(
-              package: package,
+        style: navigatorKey.currentState!.context.textTheme.labelSmall!.copyWith(
+          package: package,
               locale: locale,
               leadingDistribution: leadingDistribution,
               inherit: inherit,

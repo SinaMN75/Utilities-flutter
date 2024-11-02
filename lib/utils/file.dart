@@ -98,10 +98,10 @@ Future<FileData?> cropImage({
             hideBottomControls: false,
             lockAspectRatio: true,
             initAspectRatio: CropAspectRatioPreset.square,
-            activeControlsWidgetColor: activeControlsWidgetColor ?? getContext().theme.primaryColor,
-            statusBarColor: statusBarColor ?? getContext().theme.primaryColor,
-            toolbarColor: toolbarColor ?? getContext().theme.primaryColor,
-            toolbarWidgetColor: toolbarWidgetColor ?? getContext().theme.cardColor,
+            activeControlsWidgetColor: activeControlsWidgetColor ?? navigatorKey.currentState!.context.theme.primaryColor,
+            statusBarColor: statusBarColor ?? navigatorKey.currentState!.context.theme.primaryColor,
+            toolbarColor: toolbarColor ?? navigatorKey.currentState!.context.theme.primaryColor,
+            toolbarWidgetColor: toolbarWidgetColor ?? navigatorKey.currentState!.context.theme.cardColor,
           ),
       iOSUiSettings ??
           IOSUiSettings(
@@ -117,7 +117,7 @@ Future<FileData?> cropImage({
           ),
       webUiSettings ??
           WebUiSettings(
-            context: getContext(),
+            context: navigatorKey.currentState!.context,
             cropBoxMovable: true,
             background: true,
             center: true,

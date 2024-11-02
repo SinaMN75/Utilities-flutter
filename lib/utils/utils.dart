@@ -135,7 +135,7 @@ void showYesCancelDialog({
   final String? cancelButtonTitle = 'انصراف',
 }) =>
     showDialog(
-      context: getContext(),
+      context: navigatorKey.currentState!.context,
       builder: (final BuildContext context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         title: Text(title).bodyLarge(),

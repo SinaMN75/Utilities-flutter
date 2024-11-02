@@ -109,7 +109,7 @@ Widget textFieldPersianDatePicker({
     onTap: () async {
       jalali(
         await showPersianDatePicker(
-          context: getContext(),
+          context: navigatorKey.currentState!.context,
           initialDate: jalali.value,
           firstDate: startDate ?? Jalali(1320),
           lastDate: endDate ?? Jalali(1405),
@@ -148,7 +148,7 @@ Widget button({
             onPressed: onTap,
             child: SizedBox(
               height: height ?? 20,
-              width: width ?? getContext().width,
+              width: width ?? navigatorKey.currentState!.context.width,
               child: Center(
                 child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
               ),
@@ -158,9 +158,9 @@ Widget button({
           return const CircularProgressIndicator().alignAtCenter();
         else if (buttonState.value == PageState.paging)
           return SlideCountdown(
-            separatorStyle: TextStyle(color: getContext().theme.colorScheme.onSurface),
+            separatorStyle: TextStyle(color: navigatorKey.currentState!.context.theme.colorScheme.onSurface),
             decoration: const BoxDecoration(),
-            style: getContext().theme.textTheme.bodyMedium!,
+            style: navigatorKey.currentState!.context.theme.textTheme.bodyMedium!,
             duration: Duration(seconds: countDownSeconds),
             onDone: () => buttonState(PageState.initial),
           ).alignAtCenter();
@@ -178,7 +178,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? getContext().width,
+        width: width ?? navigatorKey.currentState!.context.width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -194,7 +194,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? getContext().width,
+        width: width ?? navigatorKey.currentState!.context.width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -269,6 +269,6 @@ Widget radioListTile<T>({
       onChanged: onChanged,
     ).container(
       radius: 20,
-      borderColor: getContext().theme.colorScheme.onSurface.withOpacity(0.2),
+      borderColor: navigatorKey.currentState!.context.theme.colorScheme.onSurface.withOpacity(0.2),
       margin: const EdgeInsets.symmetric(horizontal: 20),
     );
