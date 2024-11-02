@@ -39,7 +39,7 @@ Widget textField({
           UIconTextHorizontal(
             leading: Text(text, style: Theme.of(context).textTheme.titleSmall),
             trailing: required ? const Text("*").bodyMedium(color: Theme.of(context).colorScheme.error) : const SizedBox(),
-          ).paddingSymmetric(vertical: 8),
+          ).pSymmetric(vertical: 8),
         TextFormField(
           autofillHints: autoFillHints,
           textDirection: keyboardType == TextInputType.number ? TextDirection.ltr : null,
@@ -223,7 +223,7 @@ Widget textFieldTypeAhead<T>({
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        if (text != null) Text(text, style: Theme.of(navigatorKey.currentContext!).textTheme.titleSmall).paddingSymmetric(vertical: 8),
+        if (text != null) Text(text, style: Theme.of(navigatorKey.currentContext!).textTheme.titleSmall).pSymmetric(vertical: 8),
         TypeAheadField<T>(
           hideKeyboardOnDrag: hideKeyboard,
           suggestionsCallback: suggestionsCallback,

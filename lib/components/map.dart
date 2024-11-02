@@ -89,7 +89,7 @@ class _UMapState extends State<UMap> {
                 },
               ),
               child: const Icon(Icons.my_location),
-            ).paddingAll(16).alignAtBottomLeft(),
+            ).pAll(16).alignAtBottomLeft(),
           if (widget.zoomButtons)
             UIconTextVertical(
               leading: FloatingActionButton(
@@ -108,7 +108,7 @@ class _UMapState extends State<UMap> {
                   widget.controller.camera.zoom - 1,
                 ),
               ),
-            ).paddingAll(16).alignAtBottomRight(),
+            ).pAll(16).alignAtBottomRight(),
           if (widget.centerWidget != null) Align(child: widget.centerWidget),
         ],
       );

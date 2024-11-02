@@ -209,7 +209,7 @@ Widget filePickerList({
                         height: 150,
                         borderRadius: 12,
                         fit: BoxFit.cover,
-                      ).paddingAll(12)
+                      ).pAll(12)
                     else if (data.url != null && !data.url!.isImageFileName)
                       Icon(
                         data.url!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
@@ -231,7 +231,7 @@ Widget filePickerList({
                         height: 150,
                         borderRadius: 12,
                         fit: BoxFit.cover,
-                      ).paddingAll(12)
+                        ).pAll(12)
                     else if (!data.extension!.isImageFileName)
                       Icon(
                         data.extension!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
@@ -254,7 +254,7 @@ Widget filePickerList({
                             data.jsonDetail?.title = value;
                             onFileEdited(data);
                           },
-                        ).paddingAll(8),
+                        ).pAll(8),
                         textField(
                           labelText: "توضیحات",
                           initialValue: data.jsonDetail?.description,
@@ -262,7 +262,7 @@ Widget filePickerList({
                             data.jsonDetail?.description = value;
                             onFileEdited(data);
                           },
-                        ).paddingAll(8),
+                        ).pAll(8),
                         Row(
                           children: <Widget>[
                             textField(
@@ -272,7 +272,7 @@ Widget filePickerList({
                                 data.jsonDetail?.link1 = value;
                                 onFileEdited(data);
                               },
-                            ).paddingAll(8).expanded(),
+                            ).pAll(8).expanded(),
                             textField(
                               labelText: "لینک ۲",
                               initialValue: data.jsonDetail?.link2,
@@ -280,7 +280,7 @@ Widget filePickerList({
                                 data.jsonDetail?.link2 = value;
                                 onFileEdited(data);
                               },
-                            ).paddingAll(8).expanded(),
+                            ).pAll(8).expanded(),
                           ],
                         ),
                       ],
@@ -304,7 +304,7 @@ Widget filePickerList({
                       icon: const Icon(Icons.delete, color: Colors.red),
                     ),
                   ],
-                ).paddingOnly(
+                ).pOnly(
                   top: data.parentId == null ? 20 : 8,
                   bottom: data.parentId == null ? 20 : 8,
                   right: data.parentId == null ? 0 : 60,
