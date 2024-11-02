@@ -39,31 +39,28 @@ Future<dynamic> push(
   final bool dialog = false,
   final Transition transition = Transition.cupertino,
   final bool preventDuplicates = true,
-  final int milliSecondDelay = 1,
-}) async {
-  final Widget _page = await Future<Widget>.microtask(() => page);
-  delay(
-    milliSecondDelay,
-    () async => await Get.to(
-      _page,
-      fullscreenDialog: dialog,
-      popGesture: true,
-      opaque: dialog ? false : true,
-      transition: transition,
-      preventDuplicates: preventDuplicates,
-    ),
-  );
-}
+    }) async =>
+    Navigator.push(
+      navigatorKey.currentContext!,
+      MaterialPageRoute(
+        builder: (final BuildContext context) => page,
+        fullscreenDialog: dialog,
+      ),
+    );
 
 Future<void> dialog(
   final Widget page, {
   final bool barrierDismissible = true,
   final bool useSafeArea = false,
   final VoidCallback? onDismiss,
-}) async {
-  final Widget _page = await Future<Widget>.microtask(() => page);
-  await Get.dialog(_page, useSafeArea: useSafeArea, barrierDismissible: barrierDismissible).then((final _) => onDismiss != null ? onDismiss() : null);
-}
+  final int milliSecondDelay = 1,
+}) async =>
+    await showDialog(
+      context: navigatorKey.currentContext!,
+      builder: (final BuildContext context) => page,
+      barrierDismissible: barrierDismissible,
+      useSafeArea: useSafeArea,
+    ).then((final _) => onDismiss != null ? onDismiss() : null);
 
 Future<void> dialogAlert(
   final Widget page, {
@@ -102,7 +99,7 @@ Future<void> dialogAlert(
   final Curve? insetAnimationCurve,
 }) async {
   final Widget _page = await Future<Widget>.microtask(() => page);
-  await Get.dialog(
+  await dialog(
     AlertDialog(
       content: _page,
       title: title,
@@ -138,9 +135,7 @@ Future<void> dialogAlert(
     ),
     useSafeArea: useSafeArea,
     barrierDismissible: barrierDismissible,
-  ).then(
-        (final _) => onDismiss != null ? onDismiss() : null,
-  );
+  ).then((final _) => onDismiss != null ? onDismiss() : null);
 }
 
 Future<void> offAll(
@@ -164,7 +159,7 @@ Future<void> offAll(
 
 void off(final Widget page) => Get.off(() => page);
 
-void back({final bool closeOverlays = false}) => Get.back(closeOverlays: closeOverlays);
+void back({final bool closeOverlays = false}) => Navigator.pop(navigatorKey.currentContext!, closeOverlays);
 
 void snackbarDone({final String title = "انجام شد", final String subtitle = ""}) => snackbarGreen(
       title: title,
