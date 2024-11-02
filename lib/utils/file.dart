@@ -98,10 +98,10 @@ Future<FileData?> cropImage({
             hideBottomControls: false,
             lockAspectRatio: true,
             initAspectRatio: CropAspectRatioPreset.square,
-            activeControlsWidgetColor: activeControlsWidgetColor ?? navigatorKey.currentContext!.theme.primaryColor,
-            statusBarColor: statusBarColor ?? navigatorKey.currentContext!.theme.primaryColor,
-            toolbarColor: toolbarColor ?? navigatorKey.currentContext!.theme.primaryColor,
-            toolbarWidgetColor: toolbarWidgetColor ?? navigatorKey.currentContext!.theme.cardColor,
+            activeControlsWidgetColor: activeControlsWidgetColor ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
+            statusBarColor: statusBarColor ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
+            toolbarColor: toolbarColor ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
+            toolbarWidgetColor: toolbarWidgetColor ?? Theme.of(navigatorKey.currentContext!).cardColor,
           ),
       iOSUiSettings ??
           IOSUiSettings(

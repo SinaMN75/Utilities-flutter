@@ -4,8 +4,8 @@ extension ShimmerEffect on Widget {
   Widget applyShimmer({final bool enable = true, final Color? baseColor, final Color? highlightColor}) {
     if (enable)
       return Shimmer.fromColors(
-        baseColor: baseColor == null ? navigatorKey.currentContext!.theme.cardColor : baseColor,
-        highlightColor: highlightColor == null ? navigatorKey.currentContext!.theme.primaryColor : highlightColor,
+        baseColor: baseColor == null ? Theme.of(navigatorKey.currentContext!).cardColor : baseColor,
+        highlightColor: highlightColor == null ? Theme.of(navigatorKey.currentContext!).highlightColor : highlightColor,
         enabled: enable,
         child: this,
       );

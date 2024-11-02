@@ -9,14 +9,19 @@ void bottomSheet({
       builder: (final BuildContext context) => Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: navigatorKey.currentContext!.theme.colorScheme.surface,
+          color: Theme.of(navigatorKey.currentContext!).colorScheme.surface,
           borderRadius: BorderRadius.circular(20),
         ),
-        constraints: BoxConstraints(maxHeight: navigatorKey.currentContext!.height - 100),
+        constraints: BoxConstraints(maxHeight: MediaQuery
+            .sizeOf(navigatorKey.currentContext!)
+            .height - 100),
         padding: padding,
         child: SingleChildScrollView(child: child),
       ),
-      backgroundColor: navigatorKey.currentContext!.theme.colorScheme.surface,
+      backgroundColor: Theme
+          .of(navigatorKey.currentContext!)
+          .colorScheme
+          .surface,
       isDismissible: isDismissible,
       isScrollControlled: true,
       context: navigatorKey.currentContext!,
@@ -52,7 +57,10 @@ void scrollableBottomSheet({
                   ),
             ),
           ),
-      backgroundColor: navigatorKey.currentContext!.theme.colorScheme.surface,
+      backgroundColor: Theme
+          .of(navigatorKey.currentContext!)
+          .colorScheme
+          .surface,
       isDismissible: isDismissible,
       isScrollControlled: true,
     ).whenComplete(onDismiss ?? () {});

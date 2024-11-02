@@ -145,10 +145,10 @@ void showYesCancelDialog({
           SizedBox(
             child: button(
               width: MediaQuery.sizeOf(navigatorKey.currentContext!).width / 4,
-              backgroundColor: context.theme.primaryColorDark,
+              backgroundColor: Theme.of(navigatorKey.currentContext!).primaryColorDark,
               onTap: onCancelButtonTap ?? back,
               title: cancelButtonTitle,
-              textStyle: context.textTheme.bodyMedium,
+              textStyle: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium,
             ),
           ),
           SizedBox(
@@ -156,7 +156,7 @@ void showYesCancelDialog({
               width: MediaQuery.sizeOf(navigatorKey.currentContext!).width / 4,
               onTap: onYesButtonTap,
               title: yesButtonTitle,
-              textStyle: context.textTheme.bodyMedium,
+              textStyle: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium,
             ),
           ),
         ],

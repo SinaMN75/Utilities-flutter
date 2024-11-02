@@ -148,7 +148,7 @@ Widget button({
             onPressed: onTap,
             child: SizedBox(
               height: height ?? 20,
-              width: width ?? navigatorKey.currentContext!.width,
+              width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
               child: Center(
                 child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
               ),
@@ -158,9 +158,9 @@ Widget button({
           return const CircularProgressIndicator().alignAtCenter();
         else if (buttonState.value == PageState.paging)
           return SlideCountdown(
-            separatorStyle: TextStyle(color: navigatorKey.currentContext!.theme.colorScheme.onSurface),
+            separatorStyle: TextStyle(color: Theme.of(navigatorKey.currentContext!).colorScheme.onSurface),
             decoration: const BoxDecoration(),
-            style: navigatorKey.currentContext!.theme.textTheme.bodyMedium!,
+            style: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium!,
             duration: Duration(seconds: countDownSeconds),
             onDone: () => buttonState(PageState.initial),
           ).alignAtCenter();
@@ -178,7 +178,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? navigatorKey.currentContext!.width,
+        width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -194,7 +194,7 @@ Widget button({
       onPressed: onTap,
       child: SizedBox(
         height: height ?? 20,
-        width: width ?? navigatorKey.currentContext!.width,
+        width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
         child: Center(
           child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
         ),
@@ -269,6 +269,6 @@ Widget radioListTile<T>({
       onChanged: onChanged,
     ).container(
       radius: 20,
-      borderColor: navigatorKey.currentContext!.theme.colorScheme.onSurface.withOpacity(0.2),
+      borderColor: Theme.of(navigatorKey.currentContext!).colorScheme.onSurface.withOpacity(0.2),
       margin: const EdgeInsets.symmetric(horizontal: 20),
     );

@@ -149,8 +149,8 @@ class UDefaultTabBar extends StatelessWidget {
           children: <Widget>[
             tabBar,
             SizedBox(
-              width: width ?? navigatorKey.currentContext!.width,
-              height: height ?? navigatorKey.currentContext!.height,
+              width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
+              height: height ?? MediaQuery.sizeOf(navigatorKey.currentContext!).height,
               child: TabBarView(
                 physics: physics,
                 children: children,
