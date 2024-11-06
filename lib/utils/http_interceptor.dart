@@ -108,6 +108,7 @@ Future<void> httpRequest({
     if (failure != null) failure(e);
     await dismissEasyLoading();
   }
+  await dismissEasyLoading();
 }
 
 Future<void> httpGet({
