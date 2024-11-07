@@ -368,7 +368,7 @@ enum TagUser {
   guest(204, ""),
   teacher(205, ""),
   student(206, ""),
-  MofidTeacher(207, ""),
+  mofidTeacher(207, ""),
   adminCategoryRead(300, "خواندن دسته‌بندی‌ها"),
   adminCategoryUpdate(301, "تغییر دسته‌بندی‌ها"),
   adminProductRead(302, "خواندن محصولات"),
