@@ -1,5 +1,19 @@
 part of '../data.dart';
 
+extension CategoryReadDtoListExtension on Iterable<CategoryReadDto> {
+  List<CategoryReadDto> whereByTag(final TagCategory tag) => where(
+        (final CategoryReadDto i) => i.tags.contains(tag),
+      ).toList();
+}
+
+extension OptionalCategoryReadDtoListExtension on Iterable<CategoryReadDto>? {
+  List<CategoryReadDto> whereByTag(final TagCategory tag) => (this ?? <CategoryReadDto>[])
+      .where(
+        (final CategoryReadDto i) => i.tags.contains(tag),
+      )
+      .toList();
+}
+
 class CategoryReadDto {
   CategoryReadDto({
     required this.id,
@@ -23,7 +37,7 @@ class CategoryReadDto {
   factory CategoryReadDto.fromJson(final String str) => CategoryReadDto.fromMap(json.decode(str));
 
   factory CategoryReadDto.fromMap(final dynamic json) => CategoryReadDto(
-    title: json["title"],
+        title: json["title"],
         titleTr1: json["titleTr1"],
         titleTr2: json["titleTr2"],
         color: json["color"],
@@ -277,8 +291,7 @@ class CategoryFilterDto {
 }
 
 extension CategoryReadDtoExtension on List<CategoryReadDto>? {
-  List<CategoryReadDto> getByTagTypeUseCase({required final int type, required final int tagUseCase}) =>
-      this?.where((final CategoryReadDto e) => e.tags.contains(type) && e.tags.contains(tagUseCase)).toList() ?? <CategoryReadDto>[];
+  List<CategoryReadDto> getByTagTypeUseCase({required final int type, required final int tagUseCase}) => this?.where((final CategoryReadDto e) => e.tags.contains(type) && e.tags.contains(tagUseCase)).toList() ?? <CategoryReadDto>[];
 
   List<CategoryReadDto> getByTagType({required final int type}) =>
       this
