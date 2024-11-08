@@ -26,7 +26,6 @@ export 'package:group_button/group_button.dart';
 export 'package:image_cropper/image_cropper.dart';
 export 'package:local_auth/local_auth.dart';
 export 'package:path_provider/path_provider.dart';
-export 'package:persian_tools/persian_tools.dart';
 export 'package:screenshot/screenshot.dart';
 export 'package:share_plus/share_plus.dart';
 export 'package:syncfusion_flutter_barcodes/barcodes.dart';
