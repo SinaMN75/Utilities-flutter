@@ -82,6 +82,7 @@ class _UMapState extends State<UMap> {
           ),
           if (widget.myLocationButton)
             FloatingActionButton(
+              heroTag: "UMapFab1",
               mini: true,
               onPressed: () async => getUserLocation(
                 onUserLocationFound: (final dynamic location) {
@@ -93,6 +94,7 @@ class _UMapState extends State<UMap> {
           if (widget.zoomButtons)
             UIconTextVertical(
               leading: FloatingActionButton(
+                heroTag: "UMapFab2",
                 mini: true,
                 child: const Icon(Icons.add),
                 onPressed: () => widget.controller.move(
@@ -101,6 +103,7 @@ class _UMapState extends State<UMap> {
                 ),
               ),
               trailing: FloatingActionButton(
+                heroTag: "UMapFab3",
                 mini: true,
                 child: const Icon(Icons.remove),
                 onPressed: () => widget.controller.move(
