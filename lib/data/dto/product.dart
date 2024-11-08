@@ -1,5 +1,19 @@
 part of '../data.dart';
 
+extension ProductReadDtoListExtension on Iterable<ProductReadDto> {
+  List<ProductReadDto> whereByTag(final TagProduct tag) => where(
+        (final ProductReadDto i) => i.tags.contains(tag),
+      ).toList();
+}
+
+extension OptionalProductReadDtoListExtension on Iterable<ProductReadDto>? {
+  List<ProductReadDto> whereByTag(final TagProduct tag) => (this ?? <ProductReadDto>[])
+      .where(
+        (final ProductReadDto i) => i.tags.contains(tag),
+      )
+      .toList();
+}
+
 class ProductReadDto {
   ProductReadDto({
     required this.id,
@@ -53,7 +67,7 @@ class ProductReadDto {
   factory ProductReadDto.fromJson(final String str) => ProductReadDto.fromMap(json.decode(str));
 
   factory ProductReadDto.fromMap(final dynamic json) => ProductReadDto(
-    id: json["id"],
+        id: json["id"],
         code: json["code"],
         price1: json["price1"],
         price2: json["price2"],
@@ -269,8 +283,7 @@ class ProductJsonDetail {
         shippingTime: json["shippingTime"],
         visitCounts: json["visitCounts"] == null ? [] : List<VisitCount>.from(json["visitCounts"]!.map((x) => VisitCount.fromMap(x))),
         keyValues: json["keyValues"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues"]!.map(KeyValueViewModel.fromMap)),
-        reservationTimes:
-            json["reservationTimes"] == null ? <ReservationTimes>[] : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
+        reservationTimes: json["reservationTimes"] == null ? <ReservationTimes>[] : List<ReservationTimes>.from(json["reservationTimes"].cast<Map<String, dynamic>>().map(ReservationTimes.fromMap)).toList(),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
         seats: json["seats"] == null ? [] : List<Seat>.from(json["seats"]!.map((x) => Seat.fromMap(x))),
@@ -481,8 +494,7 @@ class ProductCreateUpdateDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "seats": seats == null ? null : List<dynamic>.from(seats!.map((x) => x.toMap())),
         "id": id,
         "title": title,
@@ -604,7 +616,7 @@ class ProductFilterDto {
   factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
 
   factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
-    title: json["title"],
+        title: json["title"],
         subtitle: json["subtitle"],
         stateRegion: json["stateRegion"],
         country: json["country"],
@@ -703,8 +715,7 @@ class ProductFilterDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "title": title,
         "subtitle": subtitle,
         "description": description,
