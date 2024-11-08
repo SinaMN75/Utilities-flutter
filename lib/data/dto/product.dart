@@ -2,14 +2,14 @@ part of '../data.dart';
 
 extension ProductReadDtoListExtension on Iterable<ProductReadDto> {
   List<ProductReadDto> whereByTag(final TagProduct tag) => where(
-        (final ProductReadDto i) => i.tags.contains(tag),
+        (final ProductReadDto i) => i.tags.contains(tag.number),
       ).toList();
 }
 
 extension OptionalProductReadDtoListExtension on Iterable<ProductReadDto>? {
   List<ProductReadDto> whereByTag(final TagProduct tag) => (this ?? <ProductReadDto>[])
       .where(
-        (final ProductReadDto i) => i.tags.contains(tag),
+        (final ProductReadDto i) => i.tags.contains(tag.number),
       )
       .toList();
 }
