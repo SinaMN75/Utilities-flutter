@@ -49,82 +49,6 @@ class PersianToolsBank {
     Bank(name: 'بانک خاورمیانه', initCode: '585947'),
   ];
 
-  Bank? getBankNameFromCardNumber(String cardNumber) {
-    if (cardNumber.length == 16) {
-      final initCode = cardNumber.substring(0, 6);
-
-      final findBank = bankInformation.firstWhere(
-        (element) => element?.initCode == initCode,
-        orElse: () => null,
-      );
-
-      if (findBank != null) return findBank;
-    }
-    return null;
-  }
-
-  bool validateCardNumber(String cardNumber) {
-    if (cardNumber.length < 16 || int.parse(cardNumber.substring(1, 11)) == 0 || int.parse(cardNumber.substring(10)) == 0) return false;
-    int sum = 0, even, subDigit;
-    for (var i = 0; i < 16; i++) {
-      even = i % 2 == 0 ? 2 : 1;
-      subDigit = int.parse(cardNumber[i]) * even;
-      sum += subDigit > 9 ? subDigit - 9 : subDigit;
-    }
-    return sum % 10 == 0;
-  }
-}
-
-class AccountNumberModel {
-  final String accountNumber, formattedAccountNumber;
-
-  const AccountNumberModel({
-    required this.accountNumber,
-    required this.formattedAccountNumber,
-  });
-}
-
-class BankInformation {
-  final String nickname, name, persianName, code;
-  final bool isAccountNumberAvailable;
-  AccountNumberModel Function(String)? process;
-  String? accountNumber, formattedAccountNumber;
-
-  BankInformation({
-    required this.nickname,
-    required this.name,
-    required this.persianName,
-    required this.code,
-    required this.isAccountNumberAvailable,
-    this.process,
-    this.accountNumber,
-    this.formattedAccountNumber,
-  });
-
-  @override
-  int get hashCode => Object.hash(
-        nickname,
-        name,
-        [
-          persianName,
-          code,
-          isAccountNumberAvailable,
-          accountNumber,
-          formattedAccountNumber,
-          process,
-        ],
-      );
-
-  @override
-  bool operator ==(Object other) {
-    other = other as BankInformation;
-    return nickname == other.nickname && name == other.name && persianName == other.persianName && code == other.code && isAccountNumberAvailable == other.isAccountNumberAvailable && accountNumber == other.accountNumber && formattedAccountNumber == other.formattedAccountNumber && process == other.process;
-  }
-}
-
-class Sheba {
-  static const shebaRegExp = r'IR[0-9]{24}';
-  static const bankCodeRegExp = r'IR[0-9]{2}([0-9]{3})[0-9]{19}';
   var _banksInfo = <BankInformation>[
     BankInformation(nickname: 'central-bank', name: 'Central Bank of Iran', persianName: 'بانک مرکزی جمهوری اسلامی ایران', code: '010', isAccountNumberAvailable: false),
     BankInformation(nickname: 'sanat-o-madan', name: 'Sanat O Madan Bank', persianName: 'بانک صنعت و معدن', code: '011', isAccountNumberAvailable: false),
@@ -197,11 +121,30 @@ class Sheba {
     ),
   ];
 
-  final String _shebaCode;
-  final pattern = RegExp(shebaRegExp);
-  final patternCode = RegExp(bankCodeRegExp);
+  Bank? getBankNameFromCardNumber(String cardNumber) {
+    if (cardNumber.length == 16) {
+      final initCode = cardNumber.substring(0, 6);
 
-  Sheba(this._shebaCode);
+      final findBank = bankInformation.firstWhere(
+        (element) => element?.initCode == initCode,
+        orElse: () => null,
+      );
+
+      if (findBank != null) return findBank;
+    }
+    return null;
+  }
+
+  bool validateCardNumber(String cardNumber) {
+    if (cardNumber.length < 16 || int.parse(cardNumber.substring(1, 11)) == 0 || int.parse(cardNumber.substring(10)) == 0) return false;
+    int sum = 0, even, subDigit;
+    for (var i = 0; i < 16; i++) {
+      even = i % 2 == 0 ? 2 : 1;
+      subDigit = int.parse(cardNumber[i]) * even;
+      sum += subDigit > 9 ? subDigit - 9 : subDigit;
+    }
+    return sum % 10 == 0;
+  }
 
   int _iso7064Mod97_10(String iban) {
     String remainder = iban, block;
@@ -216,26 +159,24 @@ class Sheba {
     return int.parse(remainder) % 97;
   }
 
-  bool get isValid {
-    final shebaCode = _shebaCode;
-    if (shebaCode.length != 26) return false;
-    if (!pattern.hasMatch(shebaCode)) return false;
-    final d1 = shebaCode.codeUnitAt(0) - 65 + 10;
-    final d2 = shebaCode.codeUnitAt(1) - 65 + 10;
-    var iban = shebaCode.substring(4);
-    iban += '$d1$d2${shebaCode.substring(2, 4)}';
+  bool isShebaValid(String sheba) {
+    if (sheba.length != 26) return false;
+    if (!RegExp(r'IR[0-9]{24}').hasMatch(sheba)) return false;
+    final d1 = sheba.codeUnitAt(0) - 65 + 10;
+    final d2 = sheba.codeUnitAt(1) - 65 + 10;
+    var iban = sheba.substring(4);
+    iban += '$d1$d2${sheba.substring(2, 4)}';
     final remainder = _iso7064Mod97_10(iban);
     return remainder != 1 ? false : true;
   }
 
-  BankInformation? call() {
-    final shebaCode = _shebaCode;
-    if (!isValid) return null;
-    final bankCode = patternCode.firstMatch(shebaCode)?[1] ?? '';
+  BankInformation? call(String sheba) {
+    if (!isShebaValid(sheba)) return null;
+    final bankCode = RegExp(r'IR[0-9]{2}([0-9]{3})[0-9]{19}').firstMatch(sheba)?[1] ?? '';
     var bank = {for (var bank in _banksInfo) bank.code: bank}[bankCode];
     if (bank == null) return null;
     if (bank.isAccountNumberAvailable) {
-      final data = bank.process!(shebaCode);
+      final data = bank.process!(sheba);
       bank.accountNumber = data.accountNumber;
       bank.formattedAccountNumber = data.formattedAccountNumber;
     }
@@ -244,23 +185,49 @@ class Sheba {
   }
 }
 
+class AccountNumberModel {
+  final String accountNumber, formattedAccountNumber;
+
+  const AccountNumberModel({
+    required this.accountNumber,
+    required this.formattedAccountNumber,
+  });
+}
+
+class BankInformation {
+  final String nickname, name, persianName, code;
+  final bool isAccountNumberAvailable;
+  AccountNumberModel Function(String)? process;
+  String? accountNumber, formattedAccountNumber;
+
+  BankInformation({
+    required this.nickname,
+    required this.name,
+    required this.persianName,
+    required this.code,
+    required this.isAccountNumberAvailable,
+    this.process,
+    this.accountNumber,
+    this.formattedAccountNumber,
+  });
+
+  @override
+  int get hashCode => Object.hash(nickname, name, [persianName, code, isAccountNumberAvailable, accountNumber, formattedAccountNumber, process]);
+
+  @override
+  bool operator ==(Object other) {
+    other = other as BankInformation;
+    return nickname == other.nickname && name == other.name && persianName == other.persianName && code == other.code && isAccountNumberAvailable == other.isAccountNumberAvailable && accountNumber == other.accountNumber && formattedAccountNumber == other.formattedAccountNumber && process == other.process;
+  }
+}
+
 class Bank {
   const Bank({this.name, this.initCode});
 
-  /// Bank name
   final String? name;
-
-  /// Refers to the first six digits of the card number
   final String? initCode;
 
-  Bank copyWith({
-    String? name,
-    String? initCode,
-  }) =>
-      Bank(
-        name: name ?? this.name,
-        initCode: initCode ?? this.initCode,
-      );
+  Bank copyWith({String? name, String? initCode}) => Bank(name: name ?? this.name, initCode: initCode ?? this.initCode);
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is Bank && runtimeType == other.runtimeType && name == other.name && initCode == other.initCode;
@@ -269,7 +236,5 @@ class Bank {
   int get hashCode => name.hashCode ^ initCode.hashCode;
 
   @override
-  String toString() {
-    return 'Bank{name: $name, initCode: $initCode}';
-  }
+  String toString() => 'Bank{name: $name, initCode: $initCode}';
 }
