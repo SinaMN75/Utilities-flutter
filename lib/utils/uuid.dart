@@ -1,3 +1,7 @@
 part of 'utils.dart';
 
-String generateUUID() => Uuid().v4();
+class UUIDGenerator {
+  String uuidV4() => Uuid().v4();
+
+  String uuidV1() => Uuid().v1();
+}

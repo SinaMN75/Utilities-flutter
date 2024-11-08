@@ -368,7 +368,7 @@ Widget filePickerList({
               onTap: () => showFilePicker(
                 allowMultiple: true,
                 action: (final List<FileData> files) {
-                  addedFiles.addAll(files.map((final FileData e) => e..id = generateUUID()).toList());
+                  addedFiles.addAll(files.map((final FileData e) => e..id = UUIDGenerator().uuidV4()).toList());
                   onFileSelected(addedFiles);
                 },
               ),

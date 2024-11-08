@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:utilities/utilities.dart';
@@ -238,16 +239,5 @@ class MaskedTextInputFormatter extends TextInputFormatter {
       }
     }
     return newValue;
-  }
-}
-
-Future<bool> backToHomeWhenIndexIsNot0({required final int currentBottomNavigationIndex, required final VoidCallback action}) {
-  final RxInt currentIndex = currentBottomNavigationIndex.obs;
-  if (currentIndex.value == 0) {
-    return Future<bool>.value(true);
-  } else {
-    currentIndex(0);
-    action();
-    return Future<bool>.value(false);
   }
 }
