@@ -1,35 +1,34 @@
-/// persian_tools is main lib
-library persian_tools;
+class PersianTools {
+  static const faAlphabet = 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی';
+  static const faNumber = '۰۱۲۳۴۵۶۷۸۹';
+  static const faShortVowels = 'َُِ';
+  static const faOthers = '‌آاً';
+  static const faMixedWithArabic = 'ًٌٍَُِّْٰٔءك‌ةۀأإيـئؤ،';
+  static const faText = faAlphabet + faNumber + faShortVowels + faOthers;
+  static const faComplexText = faText + faMixedWithArabic;
+  static const trimPatternRegExp = '["' r"'-+()؟\s.]";
 
-// exports [addOrdinalSuffix] method and [AddOrdinalSuffix] extension
-export 'src/core/add_ordinal_suffix/add_ordinal_suffix.dart';
-// exports [Bill] class
-export 'src/core/bill/bill.dart';
-// exports [addCommas] and [removeCommas] methods
-export 'src/core/commas/commas.dart';
-// exports [digits]
-export 'src/core/digits/digits.dart';
-// exports [getBankNameFromCardNumber] method and extension
-export 'src/core/get_bank_name_from_card_number/get_bank_name_from_card_number.dart';
-// exports [getPlaceByNationalId] method and extension
-export 'src/core/get_place_by_national_id/get_place_by_national_id.dart';
-// exports isPersian/methods
-export 'src/core/is_persian/is_persian.dart';
-// exports [NationalId] extension and
-export 'src/core/national_id/national_id.dart';
-// exports [numberToWords] method
-export 'src/core/number_to_words/number_to_words.dart';
-// exports [phoneNumber]
-export 'src/core/phone_number/phone_number.dart';
-// exports [removeOrdinalSuffix] method and [RemoveOrdinalSuffix] extension
-export 'src/core/remove_ordinal_suffix/remove_ordinal_suffix.dart';
-// exports [sheba]
-export 'src/core/sheba/sheba.dart';
-// exports [urlFix] method
-export 'src/core/url_fix/url_fix.dart';
-// exports [validateCardNumber]
-export 'src/core/validate_card_number/validate_card_number.dart';
-// exports [Plate] class
-export 'src/core/vehicle_plate/vehicle_plate.dart';
-// exports [wordsToNumber] method
-export 'src/core/words_to_number/words_to_number.dart';
+  bool isPersian(String input, [bool isComplex = false, Pattern? trimPattern]) {
+    trimPattern ??= RegExp(trimPatternRegExp);
+    var rawText = input.replaceAll(trimPattern, '');
+    var faRegExp = isComplex ? faComplexText : faText;
+    return RegExp('^[$faRegExp]+\$').hasMatch(rawText);
+  }
+
+  bool hasPersian(String input, [bool isComplex = false]) {
+    var faRegExp = isComplex ? faComplexText : faText;
+    return RegExp('[$faRegExp]').hasMatch(input);
+  }
+
+  static String trim(String string) => string.replaceAll(RegExp(r'^\s+|\s+$'), '');
+
+  final arabicContextualForms = RegExp(r'/[ي|ﻱ|ﻲ|ﻚ|ك|ﻚ|ﺔ|ﺓ|ة]/g');
+
+  static String replaceMapValue(String string, Map<String, String> mapPattern) {
+    var regexp = RegExp(mapPattern.keys.join('|'), caseSensitive: false);
+    return string.replaceAllMapped(
+      regexp,
+      (match) => mapPattern[match.group(0)]!,
+    );
+  }
+}
