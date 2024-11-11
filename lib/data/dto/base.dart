@@ -2,9 +2,9 @@ part of '../data.dart';
 
 class BaseFilterDto {
   BaseFilterDto({
-    required this.pageSize,
-    required this.pageNumber,
-    required this.fromDate,
+    this.pageSize,
+    this.pageNumber,
+    this.fromDate,
   });
 
   factory BaseFilterDto.fromJson(final String str) => BaseFilterDto.fromMap(json.decode(str));
@@ -15,9 +15,9 @@ class BaseFilterDto {
         fromDate: json["fromDate"],
       );
 
-  int pageSize;
-  int pageNumber;
-  String fromDate;
+  int? pageSize;
+  int? pageNumber;
+  String? fromDate;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 

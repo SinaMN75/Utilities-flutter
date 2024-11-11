@@ -609,9 +609,9 @@ class ProductFilterDto extends BaseFilterDto {
     this.boosted,
     this.startDate,
     this.endDate,
-    required super.fromDate,
-    required super.pageSize,
-    required super.pageNumber,
+    super.fromDate,
+    super.pageSize,
+    super.pageNumber,
   });
 
   String? title;
