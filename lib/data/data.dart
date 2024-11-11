@@ -7,6 +7,7 @@ import 'package:utilities/utilities.dart';
 
 part 'dto/address.dart';
 part 'dto/app_settings.dart';
+part 'dto/base.dart';
 part 'dto/category.dart';
 part 'dto/comment.dart';
 part 'dto/content.dart';
@@ -23,10 +24,9 @@ part 'dto/notification.dart';
 part 'dto/order.dart';
 part 'dto/payment.dart';
 part 'dto/product.dart';
+part 'dto/registration.dart';
 part 'dto/report.dart';
 part 'dto/transaction.dart';
-
-part 'dto/registration.dart';
 part 'dto/user.dart';
 part 'local_datasource/local_datasource.dart';
 part 'read_initial_data.dart';
@@ -46,12 +46,11 @@ part 'remote_datasource/notification_datasource.dart';
 part 'remote_datasource/order_datasource.dart';
 part 'remote_datasource/payment_datasource.dart';
 part 'remote_datasource/product_datasource.dart';
+part 'remote_datasource/registration_datasource.dart';
 part 'remote_datasource/report_datasource.dart';
 part 'remote_datasource/scrapper_datasource.dart';
 part 'remote_datasource/transaction_datasource.dart';
 part 'remote_datasource/user_datasource.dart';
-
-part 'remote_datasource/registration_datasource.dart';
 
 T? removeNullEntries<T>(T? json) {
   if (json == null) return null;

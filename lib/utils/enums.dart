@@ -384,17 +384,7 @@ enum TagUser {
   adminContentRead(312, "خواندن محتوا"),
   adminContentUpdate(313, "تغییر محتوا"),
   adminCommentRead(314, "خواندن نظرات"),
-  adminCommentUpdate(315, "تغییر نظرات"),
-  productPublic(401, ""),
-  buysPublic(402, ""),
-  sellsPublic(403, ""),
-  followingsPublic(404, ""),
-  followersPublic(405, ""),
-  productPrivate(406, ""),
-  buysPrivate(407, ""),
-  sellsPrivate(408, ""),
-  followingsPrivate(409, ""),
-  followersPrivate(410, "");
+  adminCommentUpdate(315, "تغییر نظرات");
 
   const TagUser(this.number, this.title);
 

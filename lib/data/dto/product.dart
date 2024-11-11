@@ -562,7 +562,7 @@ class ProductCreateUpdateDto {
       };
 }
 
-class ProductFilterDto {
+class ProductFilterDto extends BaseFilterDto {
   ProductFilterDto({
     this.title,
     this.subtitle,
@@ -598,8 +598,6 @@ class ProductFilterDto {
     this.orderByCreatedDateDescending,
     this.orderByAgeCategory,
     this.showCountOfComment,
-    this.pageSize,
-    this.pageNumber,
     this.currency,
     this.categories,
     this.tags,
@@ -611,59 +609,10 @@ class ProductFilterDto {
     this.boosted,
     this.startDate,
     this.endDate,
+    required super.fromDate,
+    required super.pageSize,
+    required super.pageNumber,
   });
-
-  factory ProductFilterDto.fromJson(final String str) => ProductFilterDto.fromMap(json.decode(str));
-
-  factory ProductFilterDto.fromMap(final Map<String, dynamic> json) => ProductFilterDto(
-        title: json["title"],
-        subtitle: json["subtitle"],
-        stateRegion: json["stateRegion"],
-        country: json["country"],
-        city: json["city"],
-        state: json["state"],
-        description: json["description"],
-        startPriceRange: json["startPriceRange"],
-        endPriceRange: json["endPriceRange"],
-        isFollowing: json["isFollowing"],
-        isBookmarked: json["isBookmarked"],
-        hasDiscount: json["hasDiscount"],
-        showMedia: json["showMedia"],
-        showForms: json["showForms"],
-        showFormFields: json["showFormFields"],
-        showCategories: json["showCategories"],
-        showVisitProducts: json["showVisitProducts"],
-        showCreator: json["showCreator"],
-        showCategoryMedia: json["showCategoryMedia"],
-        showChildren: json["showChildren"],
-        showChildrenParent: json["showChildrenParent"],
-        showPostOfPrivateUser: json["showPostOfPrivateUser"],
-        showComments: json["showComments"],
-        showWithChildren: json["showWithChildren"],
-        orderByVotes: json["orderByVotes"],
-        orderByVotesDescending: json["orderByVotesDescending"],
-        orderByAtoZ: json["orderByAtoZ"],
-        orderByZtoA: json["orderByZtoA"],
-        orderByPriceAscending: json["orderByPriceAscending"],
-        orderByPriceDescending: json["orderByPriceDescending"],
-        orderByCreatedDate: json["orderByCreatedDate"],
-        orderByCreatedDateDescending: json["orderByCreatedDateDescending"],
-        orderByAgeCategory: json["orderByAgeCategory"],
-        showCountOfComment: json["showCountOfComment"],
-        pageSize: json["pageSize"],
-        pageNumber: json["pageNumber"],
-        currency: json["currency"],
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((final x) => x)),
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((final x) => x)),
-        userIds: json["userIds"] == null ? [] : List<String>.from(json["userIds"]!.map((final x) => x)),
-        query: json["query"],
-        shuffle1: json["shuffle1"],
-        shuffle2: json["shuffle2"],
-        startDate: json["startDate"],
-        endDate: json["endDate"],
-        showExpired: json["showExpired"],
-        boosted: json["boosted"],
-      );
 
   String? title;
   String? stateRegion;
@@ -701,8 +650,6 @@ class ProductFilterDto {
   bool? orderByCreatedDateDescending;
   bool? orderByAgeCategory;
   bool? showCountOfComment;
-  int? pageSize;
-  int? pageNumber;
   int? currency;
   List<String>? categories;
   List<int>? tags;
@@ -763,6 +710,7 @@ class ProductFilterDto {
         "shuffle2": shuffle2,
         "showExpired": showExpired,
         "boosted": boosted,
+        "fromDate": fromDate,
       };
 }
 
