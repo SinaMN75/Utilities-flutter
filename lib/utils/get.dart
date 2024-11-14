@@ -40,28 +40,27 @@ void push(
   final Transition transition = Transition.cupertino,
   final bool preventDuplicates = true,
   final int milliSecondDelay = 1,
-}) async {
-  Get.to(
-    page,
+    }) async =>
+    Get.to(
+      page,
     fullscreenDialog: dialog,
     popGesture: true,
     opaque: dialog ? false : true,
     transition: transition,
     preventDuplicates: preventDuplicates,
   );
-}
 
-Future<void> dialog(
+void dialog(
   final Widget page, {
   final bool barrierDismissible = true,
   final bool useSafeArea = false,
   final VoidCallback? onDismiss,
-    }) async {
-  final Widget _page = await Future<Widget>.microtask(() => page);
-  await Get.dialog(_page, useSafeArea: useSafeArea, barrierDismissible: barrierDismissible).then((final _) => onDismiss != null ? onDismiss() : null);
-}
+    }) async =>
+    Get.dialog(page, useSafeArea: useSafeArea, barrierDismissible: barrierDismissible).then(
+      (final _) => onDismiss != null ? onDismiss() : null,
+    );
 
-Future<void> dialogAlert(
+void dialogAlert(
   final Widget page, {
   final bool barrierDismissible = true,
   final bool useSafeArea = false,
@@ -96,48 +95,46 @@ Future<void> dialogAlert(
   final ScrollController? actionScrollController,
   final Duration? insetAnimationDuration,
   final Curve? insetAnimationCurve,
-}) async {
-  final Widget _page = await Future<Widget>.microtask(() => page);
-  await Get.dialog(
-    AlertDialog(
-      content: _page,
-      title: title,
-      contentPadding: contentPadding,
-      alignment: alignment,
-      backgroundColor: backgroundColor,
-      shadowColor: shadowColor,
-      elevation: elevation,
-      actions: actions,
-      actionsAlignment: actionsAlignment,
-      actionsOverflowAlignment: actionsOverflowAlignment,
-      actionsOverflowButtonSpacing: actionsOverflowButtonSpacing,
-      actionsOverflowDirection: actionsOverflowDirection,
-      actionsPadding: actionsPadding,
-      buttonPadding: buttonPadding,
-      clipBehavior: clipBehavior,
-      contentTextStyle: contentTextStyle,
-      icon: defaultCloseButton
-          ? IconButton(
-              onPressed: back,
-              icon: Icon(Icons.close, color: navigatorKey.currentContext!.theme.colorScheme.error),
-            ).alignAtCenterRight()
-          : icon,
-      iconColor: iconColor,
-      iconPadding: iconPadding,
-      insetPadding: insetPadding,
-      scrollable: scrollable,
-      semanticLabel: semanticLabel,
-      shape: shape,
-      surfaceTintColor: surfaceTintColor,
-      titlePadding: titlePadding,
-      titleTextStyle: titleTextStyle,
-    ),
-    useSafeArea: useSafeArea,
-    barrierDismissible: barrierDismissible,
-  ).then(
-    (final _) => onDismiss != null ? onDismiss() : null,
-  );
-}
+    }) async =>
+    Get.dialog(
+      AlertDialog(
+        content: page,
+        title: title,
+        contentPadding: contentPadding,
+        alignment: alignment,
+        backgroundColor: backgroundColor,
+        shadowColor: shadowColor,
+        elevation: elevation,
+        actions: actions,
+        actionsAlignment: actionsAlignment,
+        actionsOverflowAlignment: actionsOverflowAlignment,
+        actionsOverflowButtonSpacing: actionsOverflowButtonSpacing,
+        actionsOverflowDirection: actionsOverflowDirection,
+        actionsPadding: actionsPadding,
+        buttonPadding: buttonPadding,
+        clipBehavior: clipBehavior,
+        contentTextStyle: contentTextStyle,
+        icon: defaultCloseButton
+            ? IconButton(
+                onPressed: back,
+                icon: Icon(Icons.close, color: navigatorKey.currentContext!.theme.colorScheme.error),
+              ).alignAtCenterRight()
+            : icon,
+        iconColor: iconColor,
+        iconPadding: iconPadding,
+        insetPadding: insetPadding,
+        scrollable: scrollable,
+        semanticLabel: semanticLabel,
+        shape: shape,
+        surfaceTintColor: surfaceTintColor,
+        titlePadding: titlePadding,
+        titleTextStyle: titleTextStyle,
+      ),
+      useSafeArea: useSafeArea,
+      barrierDismissible: barrierDismissible,
+    ).then(
+      (final _) => onDismiss != null ? onDismiss() : null,
+    );
 
 Future<void> offAll(
   final Widget page, {
