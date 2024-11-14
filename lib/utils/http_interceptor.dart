@@ -5,19 +5,10 @@ Future<void> httpRequest({
   required final EHttpMethod httpMethod,
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
-  final Function(dynamic error)? failure,
-  final String? queryOrMutation,
   final dynamic body,
   final bool encodeBody = true,
   final Map<String, String>? headers,
-  final String userAgent = 'SinaMN75',
-  final bool followRedirects = true,
   final Duration timeout = const Duration(seconds: 30),
-  final int maxRedirects = 5,
-  final bool allowAutoSignedCert = false,
-  final bool sendUserAgent = false,
-  final int maxAuthRetries = 1,
-  final bool withCredentials = false,
   final bool clearHeaders = false,
   final DateTime? cacheExpireDate,
 }) async {
@@ -28,7 +19,6 @@ Future<void> httpRequest({
     };
 
     if (clearHeaders) header.clear();
-
     if (headers != null) header.addAll(headers);
 
     Response<dynamic> response = const Response<dynamic>();
@@ -40,20 +30,11 @@ Future<void> httpRequest({
         params = body;
     }
 
-    final GetConnect connect = GetConnect(
-      userAgent: userAgent,
-      followRedirects: followRedirects,
-      timeout: timeout,
-      maxRedirects: maxRedirects,
-      allowAutoSignedCert: allowAutoSignedCert,
-      sendUserAgent: sendUserAgent,
-      maxAuthRetries: maxAuthRetries,
-      withCredentials: withCredentials,
-    );
+    final GetConnect connect = GetConnect(timeout: timeout);
 
     if (httpMethod == EHttpMethod.get) {
       if (cacheExpireDate != null) {
-        if (getString(url) == null) {
+        if (getString(url).isNullOrEmpty() || (getString(url) ?? "").length <= 10) {
           response = await connect.get(url, headers: header);
           setData(url, response.bodyString);
           setData("${url}___ExpireDate", cacheExpireDate.toIso8601String());
@@ -67,15 +48,7 @@ Future<void> httpRequest({
               action: action,
               error: error,
               headers: headers,
-              userAgent: userAgent,
-              followRedirects: followRedirects,
               timeout: timeout,
-              maxRedirects: maxRedirects,
-              allowAutoSignedCert: allowAutoSignedCert,
-              sendUserAgent: sendUserAgent,
-              maxAuthRetries: maxAuthRetries,
-              withCredentials: withCredentials,
-              failure: failure,
               clearHeaders: clearHeaders,
               cacheExpireDate: cacheExpireDate,
             );
@@ -92,11 +65,7 @@ Future<void> httpRequest({
     if (httpMethod == EHttpMethod.patch) response = await connect.patch(url, params, headers: header);
     if (httpMethod == EHttpMethod.delete) response = await connect.delete(url, headers: header);
 
-    if (kDebugMode)
-      delay(
-        100,
-        () => response.logRaw(params: (body == null || !encodeBody) ? "" : body.toJson()),
-      );
+    if (kDebugMode) response.logRaw(params: (body == null || !encodeBody) ? "" : body.toJson());
     if (response.isSuccessful()) {
       action(response);
     } else {
@@ -105,7 +74,6 @@ Future<void> httpRequest({
   } catch (e) {
     developer.log(e.toString());
     error(const Response<dynamic>(statusCode: 999));
-    if (failure != null) failure(e);
     await dismissEasyLoading();
   }
   await dismissEasyLoading();
@@ -135,15 +103,7 @@ Future<void> httpGet({
       action: action,
       error: error,
       headers: headers,
-      userAgent: userAgent,
-      followRedirects: followRedirects,
       timeout: timeout,
-      maxRedirects: maxRedirects,
-      allowAutoSignedCert: allowAutoSignedCert,
-      sendUserAgent: sendUserAgent,
-      maxAuthRetries: maxAuthRetries,
-      withCredentials: withCredentials,
-      failure: failure,
       clearHeaders: clearHeaders,
     );
 
@@ -175,15 +135,7 @@ Future<void> httpPost({
       body: body,
       encodeBody: encodeBody,
       headers: headers,
-      userAgent: userAgent,
-      followRedirects: followRedirects,
       timeout: timeout,
-      maxRedirects: maxRedirects,
-      allowAutoSignedCert: allowAutoSignedCert,
-      sendUserAgent: sendUserAgent,
-      maxAuthRetries: maxAuthRetries,
-      withCredentials: withCredentials,
-      failure: failure,
       clearHeaders: clearHeaders,
     );
 
@@ -215,15 +167,7 @@ Future<void> httpPut({
       body: body,
       encodeBody: encodeBody,
       headers: headers,
-      userAgent: userAgent,
-      followRedirects: followRedirects,
       timeout: timeout,
-      maxRedirects: maxRedirects,
-      allowAutoSignedCert: allowAutoSignedCert,
-      sendUserAgent: sendUserAgent,
-      maxAuthRetries: maxAuthRetries,
-      withCredentials: withCredentials,
-      failure: failure,
       clearHeaders: clearHeaders,
     );
 
@@ -251,15 +195,7 @@ Future<void> httpDelete({
       action: action,
       error: error,
       headers: headers,
-      userAgent: userAgent,
-      followRedirects: followRedirects,
       timeout: timeout,
-      maxRedirects: maxRedirects,
-      allowAutoSignedCert: allowAutoSignedCert,
-      sendUserAgent: sendUserAgent,
-      maxAuthRetries: maxAuthRetries,
-      withCredentials: withCredentials,
-      failure: failure,
       clearHeaders: clearHeaders,
     );
 
