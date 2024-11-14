@@ -85,9 +85,9 @@ class MediaDataSource {
     required final MediaFilterDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/Media/Filter",
         body: dto,
         action: (Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
@@ -98,26 +98,24 @@ class MediaDataSource {
     required final MediaUpdateDto dto,
     required final Function(GenericResponse<MediaReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPut(
+      httpRequest(
+        httpMethod: EHttpMethod.put,
         url: "$baseUrl/Media",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<MediaReadDto>.fromJson(response.body, fromMap: MediaReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   void delete({
     required final String id,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpDelete(
+      httpRequest(
+        httpMethod: EHttpMethod.delete,
         url: "$baseUrl/Media/$id",
         action: (final Response response) => onResponse(),
         error: (final Response response) => onError(),
-        failure: failure,
       );
 }

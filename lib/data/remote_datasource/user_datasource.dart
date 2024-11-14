@@ -9,9 +9,9 @@ class UserDataSource {
     required final UserCreateUpdateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/user",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
@@ -22,9 +22,9 @@ class UserDataSource {
     required final String id,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/user/ToggleBlock/$id",
         action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -33,9 +33,9 @@ class UserDataSource {
   void readMyBlockList({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/user/ReadMyBlockList",
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -45,9 +45,9 @@ class UserDataSource {
     required final UserCreateUpdateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPut(
+      httpRequest(
+        httpMethod: EHttpMethod.put,
         url: "$baseUrl/user",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
@@ -57,9 +57,9 @@ class UserDataSource {
   void read({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/user",
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -68,9 +68,9 @@ class UserDataSource {
   void logout({
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpDelete(
+      httpRequest(
+        httpMethod: EHttpMethod.delete,
         url: "$baseUrl/user/Logout",
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -80,9 +80,9 @@ class UserDataSource {
     required final String id,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/user/$id",
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -92,9 +92,9 @@ class UserDataSource {
     required final String id,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpDelete(
+      httpRequest(
+        httpMethod: EHttpMethod.delete,
         url: "$baseUrl/user/$id",
         action: (final Response response) => onResponse(GenericResponse<String>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -106,9 +106,9 @@ class UserDataSource {
     required final String amount,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/user/TransferWalletToWallet",
         body: <String, dynamic>{
           "fromUserId": fromUserId,
@@ -118,7 +118,6 @@ class UserDataSource {
         encodeBody: false,
         action: (final Response<dynamic> response) => onResponse(),
         error: (final Response<dynamic> response) => onError(),
-        failure: failure,
       );
 
 
@@ -126,9 +125,9 @@ class UserDataSource {
     required final String teamId,
     required final VoidCallback onResponse,
     required final VoidCallback onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpDelete(
+      httpRequest(
+        httpMethod: EHttpMethod.delete,
         url: "$baseUrl/user/DeleteFromTeam/$teamId",
         action: (final Response response) => onResponse(),
         error: (final Response response) => onError(),
@@ -138,9 +137,9 @@ class UserDataSource {
     required final GetMobileVerificationCodeForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/user/GetVerificationCodeForLogin",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
@@ -151,9 +150,9 @@ class UserDataSource {
     required final LoginWithPasswordDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/user/LoginWithPassword",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
@@ -164,9 +163,9 @@ class UserDataSource {
     required final VerifyMobileForLoginDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/user/VerifyCodeForLogin",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
@@ -177,9 +176,9 @@ class UserDataSource {
     required final String userName,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/user/GetProfileByUsername/$userName",
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -189,9 +188,9 @@ class UserDataSource {
     required final UserFilterDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/user/Filter",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
@@ -202,9 +201,9 @@ class UserDataSource {
     required final AuthenticateDto dto,
     required final Function(GenericResponse<UserReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/user/authenticate",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
@@ -217,9 +216,9 @@ class UserDataSource {
     required final String transactionRefId,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/user/Subscribe?userId=$userId&contentId=$contentId&transactionRefId=$transactionRefId",
         action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),

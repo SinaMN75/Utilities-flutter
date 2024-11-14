@@ -9,9 +9,9 @@ class AppSettingsDataSource {
     required final Function(GenericResponse<AppSettingsReadDto> response) onResponse,
     required final VoidCallback onError,
     final int timeoutInSeconds = 10,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         timeout: Duration(seconds: timeoutInSeconds),
         url: "$baseUrl/AppSettings",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AppSettingsReadDto>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),
@@ -24,9 +24,9 @@ class AppSettingsDataSource {
     final bool? showContents = true,
     required final Function(GenericResponse<ReadEverythingDto> response) onResponse,
     required final VoidCallback onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/AppSettings/ReadEverything?showProducts=$showProducts&showCategories=$showCategories&showContents=$showContents",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<ReadEverythingDto>.fromJson(response.body, fromMap: ReadEverythingDto.fromMap)),
         error: (final Response<dynamic> response) => onError(),
@@ -35,9 +35,9 @@ class AppSettingsDataSource {
   void readDashboardData({
     required final Function(GenericResponse<DashboardDataReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/AppSettings/ReadDashboardData",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<DashboardDataReadDto>.fromJson(response.body, fromMap: DashboardDataReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body, fromMap: AppSettingsReadDto.fromMap)),

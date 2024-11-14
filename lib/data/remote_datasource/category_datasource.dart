@@ -9,14 +9,13 @@ class CategoryDataSource {
     required final CategoryCreateUpdateDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/Category",
         body: dto,
         action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   void importFromExcel({
@@ -44,54 +43,50 @@ class CategoryDataSource {
     required final String dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/Category/BulkCreate",
         body: dto,
         action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   void update({
     required final CategoryCreateUpdateDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPut(
+      httpRequest(
+        httpMethod: EHttpMethod.put,
         url: "$baseUrl/Category",
         body: dto,
         action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   void filter({
     required final CategoryFilterDto dto,
     required final Function(GenericResponse<CategoryReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/Category/Filter",
         body: dto,
         action: (Response response) => onResponse(GenericResponse<CategoryReadDto>.fromJson(response.body, fromMap: CategoryReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   void delete({
     required final String id,
     required final VoidCallback onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpDelete(
+      httpRequest(
+        httpMethod: EHttpMethod.delete,
         url: "$baseUrl/Category/$id",
         action: (Response response) => onResponse(),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 }

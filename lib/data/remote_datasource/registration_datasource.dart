@@ -9,9 +9,9 @@ class RegistrationDataSource {
     required final RegistrationFilterDto dto,
     required final Function(GenericResponse<RegistrationReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/Registration/Filter",
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<RegistrationReadDto>.fromJson(response.body, fromMap: RegistrationReadDto.fromMap)),
@@ -22,9 +22,9 @@ class RegistrationDataSource {
     required final RegistrationCreateDto dto,
     required final Function(GenericResponse<RegistrationReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/Registration",
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<RegistrationReadDto>.fromJson(response.body, fromMap: RegistrationReadDto.fromMap)),
@@ -35,9 +35,9 @@ class RegistrationDataSource {
     required final RegistrationUpdateDto dto,
     required final Function(GenericResponse<RegistrationReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPut(
+      httpRequest(
+        httpMethod: EHttpMethod.put,
         url: "$baseUrl/Registration",
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<RegistrationReadDto>.fromJson(response.body, fromMap: RegistrationReadDto.fromMap)),
@@ -48,9 +48,9 @@ class RegistrationDataSource {
     required final String id,
     required final Function(GenericResponse<RegistrationReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpDelete(
+      httpRequest(
+        httpMethod: EHttpMethod.delete,
         url: "$baseUrl/Registration/$id",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<RegistrationReadDto>.fromJson(response.body, fromMap: RegistrationReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),

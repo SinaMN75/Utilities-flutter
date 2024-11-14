@@ -9,9 +9,9 @@ class AddressDataSource {
     required final AddressFilterDto dto,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/address/Filter",
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
@@ -22,9 +22,9 @@ class AddressDataSource {
     required final AddressCreateUpdateDto dto,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/address",
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
@@ -35,9 +35,9 @@ class AddressDataSource {
     required final AddressCreateUpdateDto dto,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPut(
+      httpRequest(
+        httpMethod: EHttpMethod.put,
         url: "$baseUrl/address",
         body: dto,
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
@@ -48,9 +48,9 @@ class AddressDataSource {
     required final String id,
     required final Function(GenericResponse<AddressReadDto> response) onResponse,
     required final Function(GenericResponse<dynamic> errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpDelete(
+      httpRequest(
+        httpMethod: EHttpMethod.delete,
         url: "$baseUrl/address/$id",
         action: (final Response<dynamic> response) => onResponse(GenericResponse<AddressReadDto>.fromJson(response.body, fromMap: AddressReadDto.fromMap)),
         error: (final Response<dynamic> response) => onError(GenericResponse<dynamic>.fromJson(response.body)),

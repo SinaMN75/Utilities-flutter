@@ -10,7 +10,8 @@ class ScrapperDataSource {
     required final Function(InstaPostReadDto response) onResponse,
     required final Function() onError,
   }) async {
-    httpGet(
+    httpRequest(
+      httpMethod: EHttpMethod.get,
       url: "$baseUrl/Scrapper/GetInstaPostRapidApi/$username",
       action: (final Response response) {
         onResponse(InstaPostReadDto.fromJson(response.bodyString ?? "{}"));

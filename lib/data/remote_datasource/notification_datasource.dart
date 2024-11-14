@@ -8,40 +8,37 @@ class NotificationDataSource {
   void read({
     required final Function(GenericResponse<NotificationReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/Notification",
         action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   void readById({
     required final String id,
     required final Function(GenericResponse<NotificationReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/Notification/$id",
         action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   void filter({
     required final NotificationFilterReadDto filter,
     required final Function(GenericResponse<NotificationReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/Notification/Filter",
         body: filter,
         action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 
   void updateSeenStatus({
@@ -49,14 +46,13 @@ class NotificationDataSource {
     required final int status,
     required final VoidCallback onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         encodeBody: false,
         url: "$baseUrl/Notification/UpdateSeenStatus?seenStatus=$status",
         body: notificationIds,
         action: (Response response) => onResponse(),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-        failure: failure,
       );
 }

@@ -9,9 +9,9 @@ class ProductDataSource {
     required final ProductCreateUpdateDto dto,
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/ProductV2",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
@@ -22,9 +22,9 @@ class ProductDataSource {
     required final ProductCreateUpdateDto dto,
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPut(
+      httpRequest(
+        httpMethod: EHttpMethod.put,
         url: "$baseUrl/ProductV2",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
@@ -34,9 +34,9 @@ class ProductDataSource {
   void read({
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/ProductV2",
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -46,9 +46,9 @@ class ProductDataSource {
     required final String id,
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpGet(
+      httpRequest(
+        httpMethod: EHttpMethod.get,
         url: "$baseUrl/ProductV2/$id",
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
@@ -58,9 +58,9 @@ class ProductDataSource {
     required final String id,
     required final Function(GenericResponse) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpDelete(
+      httpRequest(
+        httpMethod: EHttpMethod.delete,
         url: "$baseUrl/ProductV2/$id",
         action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
         error: (final Response response) => onError(GenericResponse<dynamic>.fromJson(response.body)),
@@ -70,9 +70,9 @@ class ProductDataSource {
     required final ProductFilterDto dto,
     required final Function(GenericResponse<ProductReadDto> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/ProductV2/Filter",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<ProductReadDto>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
@@ -83,9 +83,9 @@ class ProductDataSource {
     required final ReactionCreateUpdateDto dto,
     required final Function(GenericResponse<dynamic> response) onResponse,
     required final Function(GenericResponse errorResponse) onError,
-    final Function(dynamic error)? failure,
   }) =>
-      httpPost(
+      httpRequest(
+        httpMethod: EHttpMethod.post,
         url: "$baseUrl/ProductV2/CreateReaction",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<dynamic>.fromJson(response.body, fromMap: ProductReadDto.fromMap)),
