@@ -64,16 +64,3 @@ T? removeNullEntries<T>(T? json) {
 
   return json;
 }
-
-class EmptyObjectDto {
-  EmptyObjectDto({this.o});
-
-  factory EmptyObjectDto.fromJson(final String str) => EmptyObjectDto.fromMap(json.decode(str));
-
-  factory EmptyObjectDto.fromMap(final Map<String, dynamic> json) => EmptyObjectDto(o: json["o"]);
-  final String? o;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  Map<String, dynamic> toMap() => <String, dynamic>{"o": o};
-}

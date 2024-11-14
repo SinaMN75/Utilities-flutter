@@ -65,139 +65,18 @@ Future<void> httpRequest({
     if (httpMethod == EHttpMethod.patch) response = await connect.patch(url, params, headers: header);
     if (httpMethod == EHttpMethod.delete) response = await connect.delete(url, headers: header);
 
-    if (kDebugMode) response.logRaw(params: (body == null || !encodeBody) ? "" : body.toJson());
+    if (kDebugMode) response.prettyLog(params: (body == null || !encodeBody) ? "" : body.toJson());
     if (response.isSuccessful()) {
       action(response);
     } else {
       error(response);
     }
   } catch (e) {
-    developer.log(e.toString());
     error(const Response<dynamic>(statusCode: 999));
     await dismissEasyLoading();
   }
   await dismissEasyLoading();
 }
-
-Future<void> httpGet({
-  required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
-  final Function(dynamic error)? failure,
-  final Map<String, String>? headers,
-  final String userAgent = 'SinaMN75',
-  final bool followRedirects = true,
-  final Duration timeout = const Duration(minutes: 60),
-  final int maxRedirects = 5,
-  final bool allowAutoSignedCert = false,
-  final bool sendUserAgent = false,
-  final int maxAuthRetries = 1,
-  final bool withCredentials = false,
-  final bool clearHeaders = false,
-  final bool? cache,
-  final DateTime? cacheExpireDate,
-}) async =>
-    httpRequest(
-      url: url,
-      httpMethod: EHttpMethod.get,
-      action: action,
-      error: error,
-      headers: headers,
-      timeout: timeout,
-      clearHeaders: clearHeaders,
-    );
-
-Future<void> httpPost({
-  required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
-  final Function(dynamic error)? failure,
-  final Map<String, String>? headers,
-  final dynamic body,
-  final bool encodeBody = true,
-  final String userAgent = 'SinaMN75',
-  final bool followRedirects = true,
-  final Duration timeout = const Duration(minutes: 60),
-  final int maxRedirects = 5,
-  final bool allowAutoSignedCert = false,
-  final bool sendUserAgent = false,
-  final int maxAuthRetries = 1,
-  final bool withCredentials = false,
-  final bool clearHeaders = false,
-  final bool? cache,
-  final DateTime? cacheExpireDate,
-}) async =>
-    httpRequest(
-      url: url,
-      httpMethod: EHttpMethod.post,
-      action: action,
-      error: error,
-      body: body,
-      encodeBody: encodeBody,
-      headers: headers,
-      timeout: timeout,
-      clearHeaders: clearHeaders,
-    );
-
-Future<void> httpPut({
-  required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
-  final Function(dynamic error)? failure,
-  final Map<String, String>? headers,
-  final dynamic body,
-  final bool encodeBody = true,
-  final String userAgent = 'SinaMN75',
-  final bool followRedirects = true,
-  final Duration timeout = const Duration(minutes: 60),
-  final int maxRedirects = 5,
-  final bool allowAutoSignedCert = false,
-  final bool sendUserAgent = false,
-  final int maxAuthRetries = 1,
-  final bool withCredentials = false,
-  final bool clearHeaders = false,
-  final bool? cache,
-  final DateTime? cacheExpireDate,
-}) async =>
-    httpRequest(
-      url: url,
-      httpMethod: EHttpMethod.put,
-      action: action,
-      error: error,
-      body: body,
-      encodeBody: encodeBody,
-      headers: headers,
-      timeout: timeout,
-      clearHeaders: clearHeaders,
-    );
-
-Future<void> httpDelete({
-  required final String url,
-  required final Function(Response<dynamic> response) action,
-  required final Function(Response<dynamic> response) error,
-  final Function(dynamic error)? failure,
-  final Map<String, String>? headers,
-  final String userAgent = 'SinaMN75',
-  final bool followRedirects = true,
-  final Duration timeout = const Duration(minutes: 60),
-  final int maxRedirects = 5,
-  final bool allowAutoSignedCert = false,
-  final bool sendUserAgent = false,
-  final int maxAuthRetries = 1,
-  final bool withCredentials = false,
-  final bool clearHeaders = false,
-  final bool? cache,
-  final DateTime? cacheExpireDate,
-}) async =>
-    httpRequest(
-      url: url,
-      httpMethod: EHttpMethod.delete,
-      action: action,
-      error: error,
-      headers: headers,
-      timeout: timeout,
-      clearHeaders: clearHeaders,
-    );
 
 enum EHttpMethod { get, post, put, patch, delete }
 
