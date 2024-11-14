@@ -34,24 +34,20 @@ bool isDesktopSize() => navigatorKey.currentContext!.width >= 1100;
 
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
 
-Future<dynamic> push(
+void push(
   final Widget page, {
   final bool dialog = false,
   final Transition transition = Transition.cupertino,
   final bool preventDuplicates = true,
   final int milliSecondDelay = 1,
 }) async {
-  final Widget _page = await Future<Widget>.microtask(() => page);
-  delay(
-    milliSecondDelay,
-    () async => await Get.to(
-      _page,
-      fullscreenDialog: dialog,
-      popGesture: true,
-      opaque: dialog ? false : true,
-      transition: transition,
-      preventDuplicates: preventDuplicates,
-    ),
+  Get.to(
+    page,
+    fullscreenDialog: dialog,
+    popGesture: true,
+    opaque: dialog ? false : true,
+    transition: transition,
+    preventDuplicates: preventDuplicates,
   );
 }
 
