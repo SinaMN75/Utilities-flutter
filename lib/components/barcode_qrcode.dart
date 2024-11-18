@@ -24,7 +24,7 @@ class _UBarcodeState extends State<UBarcode> {
 
   @override
   void initState() {
-    if (widget.type == UBarcodeQrCodeType.qrcode) symbology = QRCode();
+    if (widget.type == UBarcodeQrCodeType.qrcode) symbology = QRCode(errorCorrectionLevel: ErrorCorrectionLevel.low);
     if (widget.type == UBarcodeQrCodeType.dataMatrix) symbology = DataMatrix();
     if (widget.type == UBarcodeQrCodeType.code128) symbology = Code128();
     if (widget.type == UBarcodeQrCodeType.code128A) symbology = Code128A();
