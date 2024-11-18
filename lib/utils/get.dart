@@ -32,6 +32,8 @@ bool isTabletSize() => navigatorKey.currentContext!.width < 1100 && navigatorKey
 
 bool isDesktopSize() => navigatorKey.currentContext!.width >= 1100;
 
+bool isPwa() => html.window.matchMedia('(display-mode: standalone)').matches;
+
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
 
 void push(
