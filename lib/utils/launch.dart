@@ -1,6 +1,10 @@
 part of 'utils.dart';
 
-Future<void> launchURL(final String url, {final LaunchMode mode = LaunchMode.platformDefault}) async => launchUrl(Uri.parse(url), mode: mode);
+Future<void> launchURL(final String url, {final LaunchMode mode = LaunchMode.platformDefault}) async => launchUrl(
+      Uri.parse(url),
+      mode: mode,
+      webOnlyWindowName: kIsWeb ? "_self" : null,
+    );
 
 void launchWhatsApp(final String number) async => await launchURL("https://api.whatsapp.com/send?phone=$number");
 
