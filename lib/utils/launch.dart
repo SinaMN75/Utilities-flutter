@@ -18,7 +18,7 @@ void launchInstagram(final String username) async => await launchURL("https://in
 
 void call(final String phone) async => await launchURL("tel:$phone");
 
-void sms(final String phone) async => await launchURL("sms:$phone");
+void sms(final String phone, final String body) async => await launchURL("sms:$phone?body=$body");
 
 void shareWithTelegram(final String param) async => await launchURL("tg://msg?text=$param");
 
