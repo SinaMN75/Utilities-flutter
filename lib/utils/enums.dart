@@ -266,6 +266,12 @@ enum TagCategory {
   sport(185),
   couch(186),
   questionnaire(187),
+  skills(188),
+  business(189),
+  estate(190),
+  rent(191),
+  health(192),
+  question(193),
   enabled(201);
 
   const TagCategory(this.number);
