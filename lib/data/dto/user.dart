@@ -214,6 +214,8 @@ class UserJsonDetail {
     this.nationalCode,
     this.degree,
     this.stringList,
+    this.healthReport1,
+    this.healthReport2,
   });
 
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
@@ -249,6 +251,8 @@ class UserJsonDetail {
         foodAllergies: json["foodAllergies"],
         fatherName: json["fatherName"],
         height: json["height"],
+        healthReport1: json["healthReport1"],
+        healthReport2: json["healthReport2"],
         keyValues1: json["keyValues1"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues1"]!.map((x) => KeyValueViewModel.fromMap(x))),
         weight: json["weight"],
         userSubscriptions: json["userSubscriptions"] == null ? [] : List<UserSubscriptions>.from(json["userSubscriptions"]!.map((x) => UserSubscriptions.fromMap(x))),
@@ -278,6 +282,8 @@ class UserJsonDetail {
   final String? foodAllergies;
   final String? sickness;
   final String? usedDrugs;
+  final String? healthReport1;
+  final String? healthReport2;
   final int? deliveryPrice1;
   final int? deliveryPrice2;
   final int? deliveryPrice3;
@@ -321,6 +327,8 @@ class UserJsonDetail {
         "sickness": sickness,
         "schoolName": schoolName,
         "nationalCode": nationalCode,
+        "healthReport2": healthReport2,
+        "healthReport1": healthReport1,
         "keyValues1": keyValues1 == null ? [] : List<dynamic>.from(keyValues1!.map((x) => x.toMap())),
       };
 }
@@ -744,6 +752,8 @@ class UserCreateUpdateDto {
   final String? foodAllergies;
   final String? sickness;
   final String? usedDrugs;
+  final String? healthReport1;
+  final String? healthReport2;
   final int? gender;
   final int? legalAuthenticationType;
   final int? nationalityType;
@@ -768,6 +778,8 @@ class UserCreateUpdateDto {
     this.stringList,
     this.email,
     this.firstName,
+    this.healthReport1,
+    this.healthReport2,
     this.userName,
     this.phoneNumber,
     this.lastName,
@@ -849,6 +861,8 @@ class UserCreateUpdateDto {
         lastName: json["lastName"],
         fullName: json["fullName"],
         bio: json["bio"],
+        healthReport1: json["healthReport1"],
+        healthReport2: json["healthReport2"],
         headline: json["headline"],
         appUserName: json["appUserName"],
         appPhoneNumber: json["appPhoneNumber"],
@@ -919,6 +933,8 @@ class UserCreateUpdateDto {
         "subtitle": subtitle,
         "fullName": fullName,
         "bio": bio,
+        "healthReport2": healthReport2,
+        "healthReport1": healthReport1,
         "headline": headline,
         "appUserName": appUserName,
         "appPhoneNumber": appPhoneNumber,
