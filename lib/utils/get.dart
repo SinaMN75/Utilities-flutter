@@ -34,6 +34,8 @@ bool isDesktopSize() => navigatorKey.currentContext!.width >= 1100;
 
 bool isPwa() => html.window.matchMedia('(display-mode: standalone)').matches;
 
+void reloadWeb() => html.window.location.reload();
+
 void updateLocale(final Locale locale) => Get.updateLocale(locale);
 
 void push(
