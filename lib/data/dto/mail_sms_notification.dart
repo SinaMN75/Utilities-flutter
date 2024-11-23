@@ -65,7 +65,7 @@ class SendOtpSmsDto {
 
   factory SendOtpSmsDto.fromJson(String str) => SendOtpSmsDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory SendOtpSmsDto.fromMap(Map<String, dynamic> json) => SendOtpSmsDto(
     mobileNumber: json["mobileNumber"],

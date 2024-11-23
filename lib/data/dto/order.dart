@@ -163,7 +163,7 @@ class OrderReservationCreateDto {
 
   factory OrderReservationCreateDto.fromJson(String str) => OrderReservationCreateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory OrderReservationCreateDto.fromMap(Map<String, dynamic> json) =>
       OrderReservationCreateDto(
@@ -205,7 +205,7 @@ class ReserveDto {
 
   factory ReserveDto.fromJson(String str) => ReserveDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReserveDto.fromMap(Map<String, dynamic> json) =>
       ReserveDto(

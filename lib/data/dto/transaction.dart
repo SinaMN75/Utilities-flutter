@@ -23,7 +23,7 @@ class TransactionCreateDto {
 
   factory TransactionCreateDto.fromJson(String str) => TransactionCreateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory TransactionCreateDto.fromMap(dynamic json) => TransactionCreateDto(
         amount: json["amount"],
@@ -73,7 +73,7 @@ class TransactionUpdateDto {
 
   factory TransactionUpdateDto.fromJson(String str) => TransactionUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory TransactionUpdateDto.fromMap(dynamic json) => TransactionUpdateDto(
         id: json["id"],
@@ -125,7 +125,7 @@ class TransactionFilterDto {
 
   factory TransactionFilterDto.fromJson(String str) => TransactionFilterDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory TransactionFilterDto.fromMap(dynamic json) => TransactionFilterDto(
     amount: json["amount"],
@@ -192,7 +192,7 @@ class TransactionReadDto {
 
   factory TransactionReadDto.fromJson(String str) => TransactionReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory TransactionReadDto.fromMap(dynamic json) => TransactionReadDto(
         id: json["id"],

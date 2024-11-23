@@ -21,7 +21,7 @@ class PayNgCreateDto {
 
   factory PayNgCreateDto.fromJson(String str) => PayNgCreateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PayNgCreateDto.fromMap(dynamic json) => PayNgCreateDto(
         action: json["action"],
@@ -85,7 +85,7 @@ class PayNgReadDto {
 
   factory PayNgReadDto.fromJson(String str) => PayNgReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PayNgReadDto.fromMap(dynamic json) => PayNgReadDto(
     id: json["_id"],
@@ -139,7 +139,7 @@ class NgAmount {
 
   factory NgAmount.fromJson(String str) => NgAmount.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NgAmount.fromMap(dynamic json) => NgAmount(
         currencyCode: json["currencyCode"],
@@ -161,7 +161,7 @@ class NgEmbedded {
 
   factory NgEmbedded.fromJson(String str) => NgEmbedded.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NgEmbedded.fromMap(dynamic json) => NgEmbedded(
         payment: json["payment"] == null ? [] : List<NgPayment>.from(json["payment"]!.map((x) => NgPayment.fromMap(x))),
@@ -195,7 +195,7 @@ class NgPayment {
 
   factory NgPayment.fromJson(String str) => NgPayment.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NgPayment.fromMap(dynamic json) => NgPayment(
         id: json["id"],
@@ -235,7 +235,7 @@ class NgPaymentLinks {
 
   factory NgPaymentLinks.fromJson(String str) => NgPaymentLinks.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NgPaymentLinks.fromMap(dynamic json) => NgPaymentLinks(
         self: json["self"] == null ? null : NgLink.fromMap(json["self"]),
@@ -265,7 +265,7 @@ class NgLink {
 
   factory NgLink.fromJson(String str) => NgLink.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NgLink.fromMap(dynamic json) => NgLink(
         name: json["name"],
@@ -285,7 +285,7 @@ class NgFormattedOrderSummary {
 
   factory NgFormattedOrderSummary.fromJson(String str) => NgFormattedOrderSummary.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NgFormattedOrderSummary.fromMap(dynamic json) => NgFormattedOrderSummary();
 
@@ -313,7 +313,7 @@ class NgResultLinks {
 
   factory NgResultLinks.fromJson(String str) => NgResultLinks.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NgResultLinks.fromMap(dynamic json) => NgResultLinks(
         cancel: json["cancel"] == null ? null : NgLink.fromMap(json["cancel"]),
@@ -345,7 +345,7 @@ class NgPaymentMethods {
 
   factory NgPaymentMethods.fromJson(String str) => NgPaymentMethods.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory NgPaymentMethods.fromMap(dynamic json) => NgPaymentMethods(
         card: json["card"] == null ? [] : List<String>.from(json["card"]!.map((x) => x)),
@@ -397,7 +397,7 @@ class VerifyNgReadDto {
 
   factory VerifyNgReadDto.fromJson(String str) => VerifyNgReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory VerifyNgReadDto.fromMap(dynamic json) => VerifyNgReadDto(
         id: json["id"],

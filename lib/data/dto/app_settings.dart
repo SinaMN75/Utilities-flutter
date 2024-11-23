@@ -55,7 +55,7 @@ class AppSettingsReadDto {
 
   factory AppSettingsReadDto.fromJson(String str) => AppSettingsReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory AppSettingsReadDto.fromMap(Map<String, dynamic> json) => AppSettingsReadDto(
         dateTime: json["dateTime"],
@@ -123,7 +123,7 @@ class AgeCategory {
 
   factory AgeCategory.fromJson(String str) => AgeCategory.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory AgeCategory.fromMap(Map<String, dynamic> json) => AgeCategory(
         id: json["id"],
@@ -171,7 +171,7 @@ class AppSettings {
 
   factory AppSettings.fromJson(String str) => AppSettings.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory AppSettings.fromMap(Map<String, dynamic> json) => AppSettings(
         smsPanelSettings: json["smsPanelSettings"] == null ? null : SmsPanelSettings.fromMap(json["smsPanelSettings"]),
@@ -219,7 +219,7 @@ class PaymentSettings {
 
   factory PaymentSettings.fromJson(String str) => PaymentSettings.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PaymentSettings.fromMap(Map<String, dynamic> json) => PaymentSettings(
         id: json["id"],
@@ -245,7 +245,7 @@ class PushNotificationSetting {
 
   factory PushNotificationSetting.fromJson(String str) => PushNotificationSetting.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PushNotificationSetting.fromMap(Map<String, dynamic> json) => PushNotificationSetting(
         provider: json["provider"],
@@ -277,7 +277,7 @@ class SmsPanelSettings {
 
   factory SmsPanelSettings.fromJson(String str) => SmsPanelSettings.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory SmsPanelSettings.fromMap(Map<String, dynamic> json) => SmsPanelSettings(
         provider: json["provider"],
@@ -309,7 +309,7 @@ class UsageRules {
 
   factory UsageRules.fromJson(String str) => UsageRules.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UsageRules.fromMap(Map<String, dynamic> json) => UsageRules(
         maxProductPerDay: json["maxProductPerDay"],
@@ -339,7 +339,7 @@ class ReadEverythingDto {
 
   factory ReadEverythingDto.fromJson(String str) => ReadEverythingDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReadEverythingDto.fromMap(Map<String, dynamic> json) => ReadEverythingDto(
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"].cast<Map<String, dynamic>>().map(CategoryReadDto.fromMap)).toList(),

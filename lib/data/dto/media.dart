@@ -177,7 +177,7 @@ class MediaUpdateDto {
   List<int>? removeTags;
   List<int>? addTags;
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   Map<String, dynamic> toMap() => {
         "id": id,

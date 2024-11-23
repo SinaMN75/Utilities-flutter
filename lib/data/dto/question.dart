@@ -15,7 +15,7 @@ class QuestionCreateDto {
 
   factory QuestionCreateDto.fromJson(String str) => QuestionCreateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory QuestionCreateDto.fromMap(dynamic json) => QuestionCreateDto(
         question: json["question"],
@@ -45,7 +45,7 @@ class AnswerDetail {
 
   factory AnswerDetail.fromJson(String str) => AnswerDetail.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory AnswerDetail.fromMap(dynamic json) => AnswerDetail(
         answer: json["answer"],
@@ -77,7 +77,7 @@ class QuestionFilterDto {
 
   factory QuestionFilterDto.fromJson(String str) => QuestionFilterDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory QuestionFilterDto.fromMap(Map<String, dynamic> json) => QuestionFilterDto(
         pageSize: json["pageSize"],
@@ -115,7 +115,7 @@ class QuestionReadDto {
 
   factory QuestionReadDto.fromJson(String str) => QuestionReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory QuestionReadDto.fromMap(Map<String, dynamic> json) => QuestionReadDto(
         id: json["id"],
@@ -147,7 +147,7 @@ class QuestionJsonDetail {
 
   factory QuestionJsonDetail.fromJson(String str) => QuestionJsonDetail.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory QuestionJsonDetail.fromMap(Map<String, dynamic> json) => QuestionJsonDetail(
         question: json["question"],
@@ -171,7 +171,7 @@ class UserQuestionAnswerCreateDto {
 
   factory UserQuestionAnswerCreateDto.fromJson(String str) => UserQuestionAnswerCreateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserQuestionAnswerCreateDto.fromMap(Map<String, dynamic> json) => UserQuestionAnswerCreateDto(
         userId: json["userId"],
@@ -199,7 +199,7 @@ class UserQuestionAnswer {
 
   factory UserQuestionAnswer.fromJson(String str) => UserQuestionAnswer.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserQuestionAnswer.fromMap(Map<String, dynamic> json) => UserQuestionAnswer(
         question: json["question"],
@@ -231,7 +231,7 @@ class UserQuestionAnswerFilterDto {
 
   factory UserQuestionAnswerFilterDto.fromJson(String str) => UserQuestionAnswerFilterDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserQuestionAnswerFilterDto.fromMap(Map<String, dynamic> json) => UserQuestionAnswerFilterDto(
         pageSize: json["pageSize"],
@@ -267,7 +267,7 @@ class UserQuestionAnswerReadDto {
 
   factory UserQuestionAnswerReadDto.fromJson(String str) => UserQuestionAnswerReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserQuestionAnswerReadDto.fromMap(Map<String, dynamic> json) => UserQuestionAnswerReadDto(
         id: json["id"],
@@ -297,7 +297,7 @@ class UserQuestionAnswerReadDtoJsonDetail {
 
   factory UserQuestionAnswerReadDtoJsonDetail.fromJson(String str) => UserQuestionAnswerReadDtoJsonDetail.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserQuestionAnswerReadDtoJsonDetail.fromMap(Map<String, dynamic> json) => UserQuestionAnswerReadDtoJsonDetail(
         userQuestionAnswer: json["userQuestionAnswer"] == null ? [] : List<UserQuestionAnswer>.from(json["userQuestionAnswer"]!.map((x) => UserQuestionAnswer.fromMap(x))),

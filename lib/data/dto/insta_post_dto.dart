@@ -9,7 +9,7 @@ class InstaPostReadDto {
 
   factory InstaPostReadDto.fromJson(String str) => InstaPostReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory InstaPostReadDto.fromMap(Map<String, dynamic> json) => InstaPostReadDto(
     instagramPosts: json["instagramPosts"] == null ? [] : List<InstagramPost>.from(json["instagramPosts"]!.map((x) => InstagramPost.fromMap(x))),
@@ -31,7 +31,7 @@ class InstagramPost {
 
   factory InstagramPost.fromJson(String str) => InstagramPost.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory InstagramPost.fromMap(Map<String, dynamic> json) => InstagramPost(
     desctiption: json["desctiption"],

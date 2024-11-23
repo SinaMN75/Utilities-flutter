@@ -72,7 +72,7 @@ Future<void> httpRequest({
       error(response);
     }
   } catch (e) {
-    error(const Response<dynamic>(statusCode: 999));
+    error(const Response<dynamic>(statusCode: 999, body: "{}", bodyString: "{}"));
     await dismissEasyLoading();
   }
   await dismissEasyLoading();
@@ -93,7 +93,7 @@ extension HTTP on Response<dynamic> {
 
   void prettyLog({final String params = ""}) {
     developer.log(
-      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: ${const JsonEncoder.withIndent(" ").convert(params)} \nRESPONSE: ${const JsonEncoder.withIndent(" ").convert(body)}",
+      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body}",
     );
   }
 }

@@ -137,7 +137,7 @@ class GroupChatCreateUpdateDto {
 
   factory GroupChatCreateUpdateDto.fromJson(String str) => GroupChatCreateUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory GroupChatCreateUpdateDto.fromMap(Map<String, dynamic> json) => GroupChatCreateUpdateDto(
         id: json["id"],

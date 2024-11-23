@@ -739,7 +739,7 @@ class ReservationTimes {
 
   factory ReservationTimes.fromJson(String str) => ReservationTimes.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReservationTimes.fromMap(Map<String, dynamic> json) => ReservationTimes(
         dateFrom: json["dateFrom"] == null ? null : DateTime.parse(json["dateFrom"]),
@@ -781,7 +781,7 @@ class Time {
 
   factory Time.fromJson(String str) => Time.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory Time.fromMap(Map<String, dynamic> json) => Time(
         timeFrom: json["timeFrom"] == null ? null : DateTime.parse(json["timeFrom"]),
@@ -811,7 +811,7 @@ class VisitCount {
 
   factory VisitCount.fromJson(String str) => VisitCount.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory VisitCount.fromMap(Map<String, dynamic> json) => VisitCount(
         visitId: json["visitId"],
@@ -837,7 +837,7 @@ class ReactionReadDto {
 
   factory ReactionReadDto.fromJson(String str) => ReactionReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReactionReadDto.fromMap(Map<String, dynamic> json) => ReactionReadDto(
         reaction: json["reaction"],
@@ -861,7 +861,7 @@ class ReactionCreateUpdateDto {
 
   factory ReactionCreateUpdateDto.fromJson(String str) => ReactionCreateUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ReactionCreateUpdateDto.fromMap(Map<String, dynamic> json) => ReactionCreateUpdateDto(
         reaction: json["reaction"],
@@ -911,7 +911,7 @@ class Seat {
 
   factory Seat.fromJson(String str) => Seat.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory Seat.fromMap(Map<String, dynamic> json) => Seat(
         chairId: json["chairId"],

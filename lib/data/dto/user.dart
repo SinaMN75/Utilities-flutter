@@ -360,7 +360,7 @@ class UserSubscriptions {
 
   factory UserSubscriptions.fromJson(String str) => UserSubscriptions.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserSubscriptions.fromMap(Map<String, dynamic> json) => UserSubscriptions(
         contentId: json["contentId"],
@@ -846,7 +846,7 @@ class UserCreateUpdateDto {
 
   factory UserCreateUpdateDto.fromJson(String str) => UserCreateUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserCreateUpdateDto.fromMap(Map<String, dynamic> json) => UserCreateUpdateDto(
     id: json["id"],

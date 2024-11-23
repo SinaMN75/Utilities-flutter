@@ -19,7 +19,7 @@ class RegistrationCreateDto {
 
   factory RegistrationCreateDto.fromJson(String str) => RegistrationCreateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory RegistrationCreateDto.fromMap(Map<String, dynamic> json) => RegistrationCreateDto(
         title: json["title"],
@@ -57,7 +57,7 @@ class RegistrationUpdateDto {
 
   factory RegistrationUpdateDto.fromJson(String str) => RegistrationUpdateDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory RegistrationUpdateDto.fromMap(Map<String, dynamic> json) => RegistrationUpdateDto(
         id: json["id"],
@@ -99,7 +99,7 @@ class RegistrationReadDto {
 
   factory RegistrationReadDto.fromJson(String str) => RegistrationReadDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory RegistrationReadDto.fromMap(Map<String, dynamic> json) => RegistrationReadDto(
         title: json["title"],
@@ -141,7 +141,7 @@ class RegistrationFilterDto {
 
   factory RegistrationFilterDto.fromJson(String str) => RegistrationFilterDto.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory RegistrationFilterDto.fromMap(Map<String, dynamic> json) => RegistrationFilterDto(
         pageSize: json["pageSize"],
