@@ -42,4 +42,17 @@ class QuestionDataSource {
         action: (Response response) => onResponse(),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
+
+  void createUserAnswer({
+    required final UserQuestionAnswerCreateDto dto,
+    required final Function(GenericResponse response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+  }) =>
+      httpRequest(
+        httpMethod: EHttpMethod.post,
+        url: "$baseUrl/Question/UserAnswer",
+        body: dto,
+        action: (Response response) => onResponse(GenericResponse.fromJson(response.body)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+      );
 }
