@@ -90,7 +90,7 @@ extension StringExtensions on String {
   String formatJalaliDateTime() {
     final DateTime dateTime = DateTime.parse(this);
     final Jalali jalali = Jalali.fromDateTime(dateTime);
-    return '${jalali.year}/${jalali.month}/${jalali.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second}';
+    return '${jalali.year}/${jalali.month}/${jalali.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second.toString().append0()}';
   }
 
   String maxLength({required final int max}) => length > max ? "${substring(0, max - 3)}..." : this;
