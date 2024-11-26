@@ -55,4 +55,17 @@ class QuestionDataSource {
         action: (Response response) => onResponse(GenericResponse.fromJson(response.body)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
+
+  void filterUserAnswer({
+    required final UserQuestionAnswerFilterDto dto,
+    required final Function(GenericResponse<UserQuestionAnswerReadDto> response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+  }) =>
+      httpRequest(
+        httpMethod: EHttpMethod.post,
+        url: "$baseUrl/Question/FilterUserAnswer",
+        body: dto,
+        action: (Response response) => onResponse(GenericResponse.fromJson(response.body, fromMap: UserQuestionAnswerReadDto.fromMap)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+      );
 }
