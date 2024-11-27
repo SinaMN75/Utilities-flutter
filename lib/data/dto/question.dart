@@ -102,7 +102,7 @@ class QuestionReadDto {
   final String updatedAt;
   final QuestionJsonDetail jsonDetail;
   final List<int> tags;
-  final List<CategoryReadDto> categories;
+  final CategoryReadDto categoryId;
 
   QuestionReadDto({
     required this.id,
@@ -110,7 +110,7 @@ class QuestionReadDto {
     required this.updatedAt,
     required this.jsonDetail,
     required this.tags,
-    required this.categories,
+    required this.categoryId,
   });
 
   factory QuestionReadDto.fromJson(String str) => QuestionReadDto.fromMap(json.decode(str));
@@ -123,7 +123,7 @@ class QuestionReadDto {
         updatedAt: json["updatedAt"],
         jsonDetail: QuestionJsonDetail.fromMap(json["jsonDetail"]),
         tags: List<int>.from(json["tags"].map((x) => x)),
-        categories: List<CategoryReadDto>.from(json["categories"].map((x) => CategoryReadDto.fromMap(x))),
+        categoryId: json["categoryId"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -132,7 +132,7 @@ class QuestionReadDto {
         "updatedAt": updatedAt,
         "jsonDetail": jsonDetail.toMap(),
         "tags": List<dynamic>.from(tags.map((x) => x)),
-        "categories": List<dynamic>.from(categories.map((x) => x.toMap())),
+        "categoryId": categoryId,
       };
 }
 
