@@ -186,7 +186,7 @@ class UserQuestionAnswerCreateDto {
 
 class UserQuestionAnswer {
   final String question;
-  final String title;
+  final String? title;
   final String answer;
   final String hint;
   final int point;
@@ -194,9 +194,9 @@ class UserQuestionAnswer {
   UserQuestionAnswer({
     required this.question,
     required this.answer,
-    required this.title,
     required this.hint,
     required this.point,
+    this.title,
   });
 
   factory UserQuestionAnswer.fromJson(String str) => UserQuestionAnswer.fromMap(json.decode(str));
