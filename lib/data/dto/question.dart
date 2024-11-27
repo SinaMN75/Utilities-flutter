@@ -186,6 +186,7 @@ class UserQuestionAnswerCreateDto {
 
 class UserQuestionAnswer {
   final String question;
+  final String title;
   final String answer;
   final String hint;
   final int point;
@@ -193,6 +194,7 @@ class UserQuestionAnswer {
   UserQuestionAnswer({
     required this.question,
     required this.answer,
+    required this.title,
     required this.hint,
     required this.point,
   });
@@ -202,6 +204,7 @@ class UserQuestionAnswer {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserQuestionAnswer.fromMap(Map<String, dynamic> json) => UserQuestionAnswer(
+        title: json["title"],
         question: json["question"],
         answer: json["answer"],
         hint: json["hint"],
@@ -210,6 +213,7 @@ class UserQuestionAnswer {
 
   Map<String, dynamic> toMap() => {
         "question": question,
+        "title": title,
         "answer": answer,
         "hint": hint,
         "point": point,
