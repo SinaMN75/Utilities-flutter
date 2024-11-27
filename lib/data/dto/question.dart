@@ -4,13 +4,13 @@ class QuestionCreateDto {
   final String question;
   final List<AnswerDetail> answers;
   final List<int> tags;
-  final List<String> categories;
+  final String categoryId;
 
   QuestionCreateDto({
     required this.question,
     required this.answers,
     required this.tags,
-    required this.categories,
+    required this.categoryId,
   });
 
   factory QuestionCreateDto.fromJson(String str) => QuestionCreateDto.fromMap(json.decode(str));
@@ -21,14 +21,14 @@ class QuestionCreateDto {
         question: json["question"],
         answers: List<AnswerDetail>.from(json["answers"].map((x) => AnswerDetail.fromMap(x))),
         tags: List<int>.from(json["tags"].map((x) => x)),
-        categories: List<String>.from(json["categories"].map((x) => x)),
+        categoryId: json["question"],
       );
 
   Map<String, dynamic> toMap() => {
         "question": question,
         "answers": List<dynamic>.from(answers.map((x) => x.toMap())),
         "tags": List<dynamic>.from(tags.map((x) => x)),
-        "categories": List<dynamic>.from(categories.map((x) => x)),
+        "categoryId": categoryId,
       };
 }
 
@@ -64,14 +64,14 @@ class QuestionFilterDto {
   final int? pageSize;
   final int? pageNumber;
   final String? fromDate;
-  final List<String>? categories;
+  final String? categoryId;
   final List<int>? tags;
 
   QuestionFilterDto({
     this.pageSize,
     this.pageNumber,
     this.fromDate,
-    this.categories,
+    this.categoryId,
     this.tags,
   });
 
@@ -83,7 +83,7 @@ class QuestionFilterDto {
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
         fromDate: json["fromDate"],
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+        categoryId: json["question"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
       );
 
@@ -91,7 +91,7 @@ class QuestionFilterDto {
         "pageSize": pageSize,
         "pageNumber": pageNumber,
         "fromDate": fromDate,
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
+        "categoryId": categoryId,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
       };
 }
