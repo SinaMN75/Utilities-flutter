@@ -1,5 +1,9 @@
 part of '../utils.dart';
 
+typedef Func0<A> = A Function();
+typedef Func1<A, B> = B Function(A);
+typedef Func2<A, B, C> = C Function(A, B);
+
 extension GenericIterableExtentions<T> on Iterable {
   Iterable<E> mapIndexed<E, T>(final E Function(int index, T item) f) sync* {
     int index = 0;
@@ -92,4 +96,11 @@ extension ListExtensions<T> on List<T> {
     insert(index, t);
     return this;
   }
+}
+
+extension GroupBy<V> on Iterable<V> {
+  Map<K, List<V>> groupBy<K>(Func1<V, K> getKey) => this.fold(
+        <K, List<V>>{},
+        (Map<K, List<V>> map, V element) => map..putIfAbsent(getKey(element), () => <V>[]).add(element),
+      );
 }
