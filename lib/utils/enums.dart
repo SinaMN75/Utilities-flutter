@@ -390,7 +390,9 @@ enum TagUser {
   adminContentRead(312, "خواندن محتوا"),
   adminContentUpdate(313, "تغییر محتوا"),
   adminCommentRead(314, "خواندن نظرات"),
-  adminCommentUpdate(315, "تغییر نظرات");
+  adminQuestionRead(315, "تغییر نظرات"),
+  adminQuestionUpdate(316, "تغییر نظرات"),
+  adminSuper(399, "تغییر نظرات");
 
   const TagUser(this.number, this.title);
 
