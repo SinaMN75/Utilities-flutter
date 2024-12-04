@@ -5,8 +5,8 @@ homepage: SinaMN75.com
 publish_to: 'none'
 
 environment:
-  sdk: '>=3.2.0'
-  flutter: ">=3.13.0"
+  sdk: '>=3.6.0-334.4.beta'
+  flutter: ">=3.27.0-0.2.pre"
 
 dependencies:
   flutter:
@@ -51,7 +51,7 @@ dependencies:
   any_link_preview: ^3.0.2
   flutter_multi_formatter: ^2.13.0
   universal_html: ^2.2.4
-  persian_datetime_picker: ^3.0.2
+  shamsi_date: ^1.0.4
 
 dependency_overrides:
   http: 1.0.0
