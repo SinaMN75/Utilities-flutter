@@ -76,25 +76,25 @@ class URemoteDataSource {
 
   late String baseUrl;
 
-  static late AddressDataSource address;
-  static late AppSettingsDataSource appSettings;
-  static late BlockDataSource block;
-  static late CategoryDataSource category;
-  static late CommentDataSource comment;
-  static late ContentDataSource content;
-  static late FollowBookmarkDataSource followBookmark;
-  static late MailSmsNotificationDataSource mailSmsNotification;
-  static late MediaDataSource media;
-  static late NotificationDataSource notification;
-  static late OrderDataSource order;
-  static late PaymentDataSource payment;
-  static late ProductDataSource product;
-  static late QuestionDataSource question;
-  static late RegistrationDataSource registration;
-  static late ReportDataSource report;
-  static late ScrapperDataSource scrapper;
-  static late TransactionDataSource transaction;
-  static late UserDataSource user;
+  late AddressDataSource address;
+  late AppSettingsDataSource appSettings;
+  late BlockDataSource block;
+  late CategoryDataSource category;
+  late CommentDataSource comment;
+  late ContentDataSource content;
+  late FollowBookmarkDataSource followBookmark;
+  late MailSmsNotificationDataSource mailSmsNotification;
+  late MediaDataSource media;
+  late NotificationDataSource notification;
+  late OrderDataSource order;
+  late PaymentDataSource payment;
+  late ProductDataSource product;
+  late QuestionDataSource question;
+  late RegistrationDataSource registration;
+  late ReportDataSource report;
+  late ScrapperDataSource scrapper;
+  late TransactionDataSource transaction;
+  late UserDataSource user;
 }
 
 T? removeNullEntries<T>(T? json) {
