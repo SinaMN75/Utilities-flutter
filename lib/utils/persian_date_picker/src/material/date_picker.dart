@@ -643,7 +643,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> with RestorationMix
     const double fontSizeToScale = 14.0;
     final double textScaleFactor = MediaQuery.textScalerOf(context).clamp(maxScaleFactor: _kMaxTextScaleFactor).scale(fontSizeToScale) / fontSizeToScale;
     final Size dialogSize = _dialogSize(context) * textScaleFactor;
-    final DialogThemeData dialogTheme = theme.dialogTheme;
+    final DialogTheme dialogTheme = theme.dialogTheme;
     return Dialog(
       backgroundColor: datePickerTheme.backgroundColor ?? defaults.backgroundColor,
       elevation: useMaterial3 ? datePickerTheme.elevation ?? defaults.elevation! : datePickerTheme.elevation ?? dialogTheme.elevation ?? 24,
@@ -1522,7 +1522,7 @@ class _PersianDateRangePickerDialogState extends State<PersianDateRangePickerDia
           cancelText: widget.cancelText ?? (useMaterial3 ? localizations.cancelButtonLabel : localizations.cancelButtonLabel.toUpperCase()),
           helpText: widget.helpText ?? (useMaterial3 ? localizations.dateRangePickerHelpText : localizations.dateRangePickerHelpText.toUpperCase()),
         );
-        final DialogThemeData dialogTheme = theme.dialogTheme;
+        final DialogTheme dialogTheme = theme.dialogTheme;
         size = orientation == Orientation.portrait ? (useMaterial3 ? _inputPortraitDialogSizeM3 : _inputPortraitDialogSizeM2) : _inputRangeLandscapeDialogSize;
         elevation = useMaterial3 ? datePickerTheme.elevation ?? defaults.elevation! : datePickerTheme.elevation ?? dialogTheme.elevation ?? 24;
         shadowColor = datePickerTheme.shadowColor ?? defaults.shadowColor;
