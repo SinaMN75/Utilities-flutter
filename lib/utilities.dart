@@ -32,8 +32,6 @@ export 'package:share_plus/share_plus.dart';
 export 'package:syncfusion_flutter_barcodes/barcodes.dart';
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
-export 'package:utilities/persian_date_picker/persian_datetime_picker.dart';
-export 'package:utilities/persian_date_picker/src/date/shamsi_date.dart';
 export 'package:uuid/uuid.dart';
 export 'package:video_player/video_player.dart';
 export 'package:webview_flutter/webview_flutter.dart';
