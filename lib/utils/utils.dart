@@ -36,6 +36,7 @@ part 'local_auth.dart';
 part 'local_storage.dart';
 part 'location.dart';
 part 'notification.dart';
+part 'u_app_utils.dart';
 part 'uuid.dart';
 part 'view_models.dart';
 

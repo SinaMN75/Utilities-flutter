@@ -29,7 +29,7 @@ class MediaDataSource {
         'Id': id,
         'File': MultipartFile(
           kIsWeb ? fileData.bytes : File(fileData.path!),
-          filename: isWeb() ? ":).${fileData.extension}" : fileData.path!.split('/').last,
+          filename: UAppUtils.isWeb ? ":).${fileData.extension}" : fileData.path!.split('/').last,
         ),
         'CategoryId': categoryId,
         'ContentId': contentId,

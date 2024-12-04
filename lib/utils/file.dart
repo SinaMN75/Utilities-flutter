@@ -29,7 +29,7 @@ void showFilePicker({
         (final PlatformFile i) async {
           files.add(
             FileData(
-              path: isWeb() ? null : i.path,
+              path: UAppUtils.isWeb ? null : i.path,
               bytes: i.bytes,
               extension: ".${i.extension}",
               jsonDetail: MediaJsonDetail(title: (i.name.split(".").first)),
