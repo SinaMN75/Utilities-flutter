@@ -51,50 +51,28 @@ part 'remote_datasource/scrapper_datasource.dart';
 part 'remote_datasource/transaction_datasource.dart';
 part 'remote_datasource/user_datasource.dart';
 
-class URemoteDataSource {
-  URemoteDataSource(this.baseUrl) {
-    address = AddressDataSource(baseUrl: baseUrl);
-    appSettings = AppSettingsDataSource(baseUrl: baseUrl);
-    block = BlockDataSource(baseUrl: baseUrl);
-    category = CategoryDataSource(baseUrl: baseUrl);
-    comment = CommentDataSource(baseUrl: baseUrl);
-    content = ContentDataSource(baseUrl: baseUrl);
-    followBookmark = FollowBookmarkDataSource(baseUrl: baseUrl);
-    mailSmsNotification = MailSmsNotificationDataSource(baseUrl: baseUrl);
-    media = MediaDataSource(baseUrl: baseUrl);
-    notification = NotificationDataSource(baseUrl: baseUrl);
-    order = OrderDataSource(baseUrl: baseUrl);
-    payment = PaymentDataSource(baseUrl: baseUrl);
-    product = ProductDataSource(baseUrl: baseUrl);
-    question = QuestionDataSource(baseUrl: baseUrl);
-    registration = RegistrationDataSource(baseUrl: baseUrl);
-    report = ReportDataSource(baseUrl: baseUrl);
-    scrapper = ScrapperDataSource(baseUrl: baseUrl);
-    transaction = TransactionDataSource(baseUrl: baseUrl);
-    user = UserDataSource(baseUrl: baseUrl);
-  }
+abstract class URemoteDataSource {
+  static late String baseUrl;
 
-  late String baseUrl;
-
-  late AddressDataSource address;
-  late AppSettingsDataSource appSettings;
-  late BlockDataSource block;
-  late CategoryDataSource category;
-  late CommentDataSource comment;
-  late ContentDataSource content;
-  late FollowBookmarkDataSource followBookmark;
-  late MailSmsNotificationDataSource mailSmsNotification;
-  late MediaDataSource media;
-  late NotificationDataSource notification;
-  late OrderDataSource order;
-  late PaymentDataSource payment;
-  late ProductDataSource product;
-  late QuestionDataSource question;
-  late RegistrationDataSource registration;
-  late ReportDataSource report;
-  late ScrapperDataSource scrapper;
-  late TransactionDataSource transaction;
-  late UserDataSource user;
+  static late AddressDataSource address = AddressDataSource(baseUrl: baseUrl);
+  static late AppSettingsDataSource appSettings = AppSettingsDataSource(baseUrl: baseUrl);
+  static late BlockDataSource block = BlockDataSource(baseUrl: baseUrl);
+  static late CategoryDataSource category = CategoryDataSource(baseUrl: baseUrl);
+  static late CommentDataSource comment = CommentDataSource(baseUrl: baseUrl);
+  static late ContentDataSource content = ContentDataSource(baseUrl: baseUrl);
+  static late FollowBookmarkDataSource followBookmark = FollowBookmarkDataSource(baseUrl: baseUrl);
+  static late MailSmsNotificationDataSource mailSmsNotification = MailSmsNotificationDataSource(baseUrl: baseUrl);
+  static late MediaDataSource media = MediaDataSource(baseUrl: baseUrl);
+  static late NotificationDataSource notification = NotificationDataSource(baseUrl: baseUrl);
+  static late OrderDataSource order = OrderDataSource(baseUrl: baseUrl);
+  static late PaymentDataSource payment = PaymentDataSource(baseUrl: baseUrl);
+  static late ProductDataSource product = ProductDataSource(baseUrl: baseUrl);
+  static late QuestionDataSource question = QuestionDataSource(baseUrl: baseUrl);
+  static late RegistrationDataSource registration = RegistrationDataSource(baseUrl: baseUrl);
+  static late ReportDataSource report = ReportDataSource(baseUrl: baseUrl);
+  static late ScrapperDataSource scrapper = ScrapperDataSource(baseUrl: baseUrl);
+  static late TransactionDataSource transaction = TransactionDataSource(baseUrl: baseUrl);
+  static late UserDataSource user = UserDataSource(baseUrl: baseUrl);
 }
 
 T? removeNullEntries<T>(T? json) {
