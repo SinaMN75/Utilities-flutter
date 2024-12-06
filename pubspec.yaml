@@ -5,8 +5,8 @@ homepage: SinaMN75.com
 publish_to: 'none'
 
 environment:
-  sdk: '>=3.7.0-207.0.dev'
-  flutter: ">=3.27.0-1.0.pre.701"
+  sdk: '>=3.2.0'
+  flutter: ">=3.13.0"
 
 dependencies:
   flutter:
