@@ -1,6 +1,16 @@
 part of 'utils.dart';
 
 abstract class UAppUtils {
+  static late PackageInfo packageInfo;
+
+  static String appName = packageInfo.appName;
+
+  static String appPackageName = packageInfo.packageName;
+
+  static String appVersion = packageInfo.version;
+
+  static String appBuildNumber = packageInfo.buildNumber;
+
   static bool isAndroid = GetPlatform.isAndroid && !kIsWeb;
 
   static bool isIos = GetPlatform.isIOS && !kIsWeb;

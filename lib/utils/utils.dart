@@ -196,26 +196,6 @@ void shareWidget({required final Widget widget}) async => await ScreenshotContro
 
 Future<Uint8List> screenshot({required final Widget widget}) => ScreenshotController().captureFromWidget(widget);
 
-Future<String> appName() async {
-  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  return packageInfo.appName;
-}
-
-Future<String> appPackageName() async {
-  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  return packageInfo.packageName;
-}
-
-Future<String> appVersion() async {
-  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  return packageInfo.version;
-}
-
-Future<String> appBuildNumber() async {
-  final PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  return packageInfo.buildNumber;
-}
-
 Future<void> showEasyLoading() => EasyLoading.show();
 
 Future<void> dismissEasyLoading() => EasyLoading.dismiss();
