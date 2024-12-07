@@ -120,7 +120,6 @@ class UserDataSource {
         error: (final Response<dynamic> response) => onError(),
       );
 
-
   void deleteFromTeam({
     required final String teamId,
     required final VoidCallback onResponse,

@@ -44,13 +44,20 @@ Widget plusMinus({
   }
 
   return Obx(
-        () => Row(
+    () => Row(
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       children: <Widget>[
         GestureDetector(onTap: increaseAmount, child: addWidget ?? Icon(Icons.add_circle, size: 30, color: currentAmount.value == max ? maximumColor : null)),
         Text(amountString(), style: textStyle).pSymmetric(horizontal: spaceBetween),
-        GestureDetector(onTap: decreaseAmount, child: minusWidget ?? Icon(Icons.remove_circle, size: 30,color: minimumColor,)),
+        GestureDetector(
+            onTap: decreaseAmount,
+            child: minusWidget ??
+                Icon(
+                  Icons.remove_circle,
+                  size: 30,
+                  color: minimumColor,
+                )),
       ],
     ),
   );

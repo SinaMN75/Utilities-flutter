@@ -14,6 +14,7 @@ import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
 import 'package:utilities/utilities3.dart';
 import 'package:utilities/utils/persian_date_picker/persian_datetime_picker.dart';
+import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
 part 'badges.dart';
 part 'barcode_qrcode.dart';
@@ -26,7 +27,6 @@ part 'form.dart';
 part 'image.dart';
 part 'link_previewer.dart';
 part 'map.dart';
-part 'others.dart';
 part 'otp_field.dart';
 part 'plus_minus.dart';
 part 'rating_bar.dart';

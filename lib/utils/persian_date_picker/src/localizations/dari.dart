@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shamsi_date/shamsi_date.dart';
+import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
 import '../material/date.dart';
 
@@ -11,161 +11,161 @@ class DariMaterialLocalizations extends DefaultMaterialLocalizations {
   static const LocalizationsDelegate<MaterialLocalizations> delegate = _DariMaterialLocalizationsDelegate();
 
   static const List<String> _narrowWeekdays = <String>[
-    'ش', // S (شنبه)
-    'ی', // S (یکشنبه)
-    'د', // M (دوشنبه)
-    'س', // T (سه‌شنبه)
-    'چ', // W (چهارشنبه)
-    'پ', // T (پنج‌شنبه)
-    'ج', // F (جمعه)
+    'ش',
+    'ی',
+    'د',
+    'س',
+    'چ',
+    'پ',
+    'ج',
   ];
   static const List<String> _shortMonths = <String>[
-    'حم', // Hamal
-    'ثو', // Sowr
-    'جوز', // Jawza
-    'سر', // Saratan
-    'اسد', // Asad
-    'سنب', // Sonbola
-    'میز', // Mizan
-    'عق', // Aqrab
-    'قوس', // Qaws
-    'جد', // Jadi
-    'دلو', // Dalw
-    'حوت', // Hoot
+    'حم',
+    'ثو',
+    'جوز',
+    'سر',
+    'اسد',
+    'سنب',
+    'میز',
+    'عق',
+    'قوس',
+    'جد',
+    'دلو',
+    'حوت',
   ];
 
   static const List<String> _months = <String>[
-    'حمل', // Hamal
-    'ثور', // Sowr
-    'جوزا', // Jawza
-    'سرطان', // Saratan
-    'اسد', // Asad
-    'سنبله', // Sonbola
-    'میزان', // Mizan
-    'عقرب', // Aqrab
-    'قوس', // Qaws
-    'جدی', // Jadi
-    'دلو', // Dalw
-    'حوت', // Hoot
+    'حمل',
+    'ثور',
+    'جوزا',
+    'سرطان',
+    'اسد',
+    'سنبله',
+    'میزان',
+    'عقرب',
+    'قوس',
+    'جدی',
+    'دلو',
+    'حوت',
   ];
 
   @override
   List<String> get narrowWeekdays => _narrowWeekdays;
 
   @override
-  String get okButtonLabel => 'تایید'; // Confirm
+  String get okButtonLabel => 'تایید';
 
   @override
-  String get cancelButtonLabel => 'لغو'; // Cancel
+  String get cancelButtonLabel => 'لغو';
 
   @override
-  String get datePickerHelpText => 'انتخاب تاریخ'; // Select Date
+  String get datePickerHelpText => 'انتخاب تاریخ';
 
   @override
-  String get nextMonthTooltip => "ماه بعد"; // Next Month
+  String get nextMonthTooltip => "ماه بعد";
 
   @override
-  String get previousMonthTooltip => "ماه قبل"; // Previous Month
+  String get previousMonthTooltip => "ماه قبل";
 
   @override
-  int get firstDayOfWeekIndex => 6; // Saturday as the first day of the week in Afghanistan
+  int get firstDayOfWeekIndex => 6;
 
   @override
-  String get saveButtonLabel => "ذخیره"; // Save
+  String get saveButtonLabel => "ذخیره";
 
   @override
-  String get dateRangePickerHelpText => "انتخاب بازهٔ زمانی"; // Select Date Range
+  String get dateRangePickerHelpText => "انتخاب بازهٔ زمانی";
 
   @override
-  String get dateRangeStartLabel => "تاریخ شروع"; // Start Date
+  String get dateRangeStartLabel => "تاریخ شروع";
 
   @override
-  String get dateRangeEndLabel => "تاریخ پایان"; // End Date
+  String get dateRangeEndLabel => "تاریخ پایان";
 
   @override
-  String get closeButtonTooltip => "بستن"; // Close
+  String get closeButtonTooltip => "بستن";
 
   @override
-  String get inputDateModeButtonLabel => "ورودی تاریخ"; // Switch to Input Mode
+  String get inputDateModeButtonLabel => "ورودی تاریخ";
 
   @override
-  String get calendarModeButtonLabel => "تقویم"; // Switch to Calendar Mode
+  String get calendarModeButtonLabel => "تقویم";
 
   @override
-  String get dateInputLabel => "تاریخ"; // Date
+  String get dateInputLabel => "تاریخ";
 
   @override
-  String get timePickerDialHelpText => "انتخاب زمان"; // Select Time
+  String get timePickerDialHelpText => "انتخاب زمان";
 
   @override
-  String get anteMeridiemAbbreviation => "ق.ظ"; // AM
+  String get anteMeridiemAbbreviation => "ق.ظ";
 
   @override
-  String get postMeridiemAbbreviation => "ب.ظ"; // PM
+  String get postMeridiemAbbreviation => "ب.ظ";
 
   @override
-  String get timePickerInputHelpText => "زمان"; // Time
+  String get timePickerInputHelpText => "زمان";
 
   @override
-  String get timePickerHourLabel => "ساعت"; // Hour
+  String get timePickerHourLabel => "ساعت";
 
   @override
-  String get timePickerMinuteLabel => "دقیقه"; // Minute
+  String get timePickerMinuteLabel => "دقیقه";
 
   @override
-  String get inputTimeModeButtonLabel => "ورودی زمان"; // Switch to Input Time Mode
+  String get inputTimeModeButtonLabel => "ورودی زمان";
 
   @override
-  String get dialModeButtonLabel => "حالت انتخابگر دیال"; // Switch to Dial Mode
+  String get dialModeButtonLabel => "حالت انتخابگر دیال";
 
   @override
-  String get invalidDateFormatLabel => "قالب نادرست."; // Invalid Format
+  String get invalidDateFormatLabel => "قالب نادرست.";
 
   @override
-  String get invalidDateRangeLabel => "قالب بازه نادرست."; // Invalid Range Format
+  String get invalidDateRangeLabel => "قالب بازه نادرست.";
 
   @override
-  String get invalidTimeLabel => "قالب زمان نادرست."; // Invalid Time Format
+  String get invalidTimeLabel => "قالب زمان نادرست.";
 
   @override
-  String get unspecifiedDate => "تاریخ نامشخص"; // Unspecified Date
+  String get unspecifiedDate => "تاریخ نامشخص";
 
   @override
-  String get unspecifiedDateRange => "بازهٔ زمانی نامشخص"; // Unspecified Date Range
+  String get unspecifiedDateRange => "بازهٔ زمانی نامشخص";
 
   @override
   String formatYear(DateTime date) {
-    return Jalali.fromDateTime(date).year.toString(); // Jalali year
+    return Jalali.fromDateTime(date).year.toString();
   }
 
   @override
   String formatMediumDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Medium date format
+    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatShortMonthDay(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_shortMonths[jalaliDate.month - 1]}'; // Short month day format
+    return '${jalaliDate.day} ${_shortMonths[jalaliDate.month - 1]}';
   }
 
   @override
   String formatMonthYear(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Month-year format
+    return '${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatFullDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Full date format
+    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatCompactDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day}/${jalaliDate.month}/${jalaliDate.year}'; // Compact date format
+    return '${jalaliDate.day}/${jalaliDate.month}/${jalaliDate.year}';
   }
 }
 
@@ -190,28 +190,28 @@ class DariCupertinoLocalizations extends DefaultCupertinoLocalizations {
   static const LocalizationsDelegate<CupertinoLocalizations> delegate = _DariCupertinoLocalizationsDelegate();
 
   static const List<String> _shortWeekdays = <String>[
-    'ش', // Saturday
-    'ی', // Sunday
-    'د', // Monday
-    'س', // Tuesday
-    'چ', // Wednesday
-    'پ', // Thursday
-    'ج', // Friday
+    'ش',
+    'ی',
+    'د',
+    'س',
+    'چ',
+    'پ',
+    'ج',
   ];
 
   static const List<String> _months = <String>[
-    'حمل', // Hamal
-    'ثور', // Sawr
-    'جوزا', // Jawza
-    'سرطان', // Saratan
-    'اسد', // Asad
-    'سنبله', // Sunbula
-    'میزان', // Meezan
-    'عقرب', // Aqrab
-    'قوس', // Qaws
-    'جدی', // Jadi
-    'دلو', // Dalwa
-    'حوت', // Hoot
+    'حمل',
+    'ثور',
+    'جوزا',
+    'سرطان',
+    'اسد',
+    'سنبله',
+    'میزان',
+    'عقرب',
+    'قوس',
+    'جدی',
+    'دلو',
+    'حوت',
   ];
 
   @override

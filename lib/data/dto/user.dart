@@ -849,7 +849,7 @@ class UserCreateUpdateDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory UserCreateUpdateDto.fromMap(Map<String, dynamic> json) => UserCreateUpdateDto(
-    id: json["id"],
+        id: json["id"],
         degree: json["degree"],
         stringList: json["stringList"] == null ? [] : List<String>.from(json["stringList"]!.map((x) => x)),
         email: json["email"],

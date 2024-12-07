@@ -19,8 +19,7 @@ class OrderFilterDto {
 
   factory OrderFilterDto.fromJson(final String str) => OrderFilterDto.fromMap(json.decode(str));
 
-  factory OrderFilterDto.fromMap(final dynamic json) =>
-      OrderFilterDto(
+  factory OrderFilterDto.fromMap(final dynamic json) => OrderFilterDto(
         id: json["id"],
         showProducts: json["showProducts"],
         status: json["status"],
@@ -51,8 +50,7 @@ class OrderFilterDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "id": id,
         "showProducts": showProducts,
         "status": status,
@@ -85,8 +83,7 @@ class OrderCreateUpdateDto {
 
   factory OrderCreateUpdateDto.fromJson(final String str) => OrderCreateUpdateDto.fromMap(json.decode(str));
 
-  factory OrderCreateUpdateDto.fromMap(final dynamic json) =>
-      OrderCreateUpdateDto(
+  factory OrderCreateUpdateDto.fromMap(final dynamic json) => OrderCreateUpdateDto(
         id: json["id"],
         description: json["description"],
         discountCode: json["discountCode"],
@@ -111,8 +108,7 @@ class OrderCreateUpdateDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "id": id,
         "description": description,
         "discountCode": discountCode,
@@ -134,8 +130,7 @@ class OrderDetailCreateUpdateDto {
 
   factory OrderDetailCreateUpdateDto.fromJson(final String str) => OrderDetailCreateUpdateDto.fromMap(json.decode(str));
 
-  factory OrderDetailCreateUpdateDto.fromMap(final dynamic json) =>
-      OrderDetailCreateUpdateDto(
+  factory OrderDetailCreateUpdateDto.fromMap(final dynamic json) => OrderDetailCreateUpdateDto(
         productId: json["productId"],
         count: json["count"],
       );
@@ -144,13 +139,11 @@ class OrderDetailCreateUpdateDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "productId": productId,
         "count": count,
       };
 }
-
 
 class OrderReservationCreateDto {
   String? productId;
@@ -165,14 +158,12 @@ class OrderReservationCreateDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  factory OrderReservationCreateDto.fromMap(Map<String, dynamic> json) =>
-      OrderReservationCreateDto(
+  factory OrderReservationCreateDto.fromMap(Map<String, dynamic> json) => OrderReservationCreateDto(
         productId: json["productId"],
         reserveDto: json["reserveDto"] == null ? [] : List<ReserveDto>.from(json["reserveDto"]!.map((x) => ReserveDto.fromMap(x))),
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "productId": productId,
         "reserveDto": reserveDto == null ? [] : List<dynamic>.from(reserveDto!.map((x) => x.toMap())),
       };
@@ -207,8 +198,7 @@ class ReserveDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  factory ReserveDto.fromMap(Map<String, dynamic> json) =>
-      ReserveDto(
+  factory ReserveDto.fromMap(Map<String, dynamic> json) => ReserveDto(
         dateFrom: json["dateFrom"] == null ? null : DateTime.parse(json["dateFrom"]),
         dateTo: json["dateTo"] == null ? null : DateTime.parse(json["dateTo"]),
         timeFrom: json["timeFrom"] == null ? null : DateTime.parse(json["timeFrom"]),
@@ -221,8 +211,7 @@ class ReserveDto {
         priceForAnyExtra: json["priceForAnyExtra"],
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "dateFrom": dateFrom?.toIso8601String(),
         "dateTo": dateTo?.toIso8601String(),
         "timeFrom": timeFrom?.toIso8601String(),
@@ -235,7 +224,6 @@ class ReserveDto {
         "priceForAnyExtra": priceForAnyExtra,
       };
 }
-
 
 class OrderReadDto {
   int? orderNumber;
@@ -276,8 +264,7 @@ class OrderReadDto {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  factory OrderReadDto.fromMap(final dynamic json) =>
-      OrderReadDto(
+  factory OrderReadDto.fromMap(final dynamic json) => OrderReadDto(
         orderNumber: json["orderNumber"],
         orderType: json["orderType"],
         totalPrice: json["totalPrice"],
@@ -295,8 +282,7 @@ class OrderReadDto {
         productOwnerId: json["productOwnerId"],
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "orderNumber": orderNumber,
         "orderType": orderType,
         "totalPrice": totalPrice,
@@ -346,8 +332,7 @@ class OrderDetail {
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
-  factory OrderDetail.fromMap(final dynamic json) =>
-      OrderDetail(
+  factory OrderDetail.fromMap(final dynamic json) => OrderDetail(
         unitPrice: json["unitPrice"],
         count: json["count"],
         order: json["order"] == null ? null : OrderReadDto.fromMap(json["order"]),
@@ -361,8 +346,7 @@ class OrderDetail {
         updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
       );
 
-  Map<String, dynamic> toMap() =>
-      {
+  Map<String, dynamic> toMap() => {
         "unitPrice": unitPrice,
         "count": count,
         "order": order?.toMap(),

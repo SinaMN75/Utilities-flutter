@@ -128,7 +128,7 @@ class TransactionFilterDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory TransactionFilterDto.fromMap(dynamic json) => TransactionFilterDto(
-    amount: json["amount"],
+        amount: json["amount"],
         refId: json["refId"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
         buyerId: json["buyerId"],
@@ -139,8 +139,7 @@ class TransactionFilterDto {
         dateTimeEnd: json["dateTimeEnd"],
       );
 
-  dynamic toMap() =>
-      {
+  dynamic toMap() => {
         "amount": amount,
         "refId": refId,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),

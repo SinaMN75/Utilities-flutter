@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shamsi_date/shamsi_date.dart';
+import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
 import '../material/date.dart';
 
@@ -11,43 +11,43 @@ class PersianMaterialLocalizations extends DefaultMaterialLocalizations {
   static const LocalizationsDelegate<MaterialLocalizations> delegate = _PersianMaterialLocalizationsDelegate();
 
   static const List<String> _narrowWeekdays = <String>[
-    'ش', // S (شنبه)
-    'ی', // S (یکشنبه)
-    'د', // M (دوشنبه)
-    'س', // T (سه‌شنبه)
-    'چ', // W (چهارشنبه)
-    'پ', // T (پنج‌شنبه)
-    'ج', // F (جمعه)
+    'ش',
+    'ی',
+    'د',
+    'س',
+    'چ',
+    'پ',
+    'ج',
   ];
 
   static const List<String> _shortMonths = <String>[
-    'فر', // Farvardin
-    'ارد', // Ordibehesht
-    'خرد', // Khordad
-    'تیر', // Tir
-    'مرد', // Mordad
-    'شه', // Shahrivar
-    'مهر', // Mehr
-    'آبا', // Aban
-    'آذر', // Azar
-    'دی', // Dey
-    'بهمن', // Bahman
-    'اسف', // Esfand
+    'فر',
+    'ارد',
+    'خرد',
+    'تیر',
+    'مرد',
+    'شه',
+    'مهر',
+    'آبا',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسف',
   ];
 
   static const List<String> _months = <String>[
-    'فروردین', // Farvardin
-    'اردیبهشت', // Ordibehesht
-    'خرداد', // Khordad
-    'تیر', // Tir
-    'مرداد', // Mordad
-    'شهریور', // Shahrivar
-    'مهر', // Mehr
-    'آبان', // Aban
-    'آذر', // Azar
-    'دی', // Dey
-    'بهمن', // Bahman
-    'اسفند', // Esfand
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند',
   ];
 
   @override
@@ -136,44 +136,44 @@ class PersianMaterialLocalizations extends DefaultMaterialLocalizations {
 
   @override
   String formatYear(DateTime date) {
-    return Jalali.fromDateTime(date).year.toString(); // Use Jalali year
+    return Jalali.fromDateTime(date).year.toString();
   }
 
   @override
   String formatMediumDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Format medium date
+    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatShortMonthDay(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_shortMonths[jalaliDate.month - 1]}'; // Format short month day
+    return '${jalaliDate.day} ${_shortMonths[jalaliDate.month - 1]}';
   }
 
   @override
   String formatShortDate(DateTime date) {
     Jalali jdate = Jalali.fromDateTime(date);
-    final String month = _shortMonths[jdate.month - 1]; // Jalali months are 1-based
+    final String month = _shortMonths[jdate.month - 1];
     return '${jdate.day} $month, ${jdate.year}';
   }
 
   @override
   String formatMonthYear(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Format month year
+    return '${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatFullDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Format full date
+    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatCompactDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day}/${jalaliDate.month}/${jalaliDate.year}'; // Format compact date
+    return '${jalaliDate.day}/${jalaliDate.month}/${jalaliDate.year}';
   }
 }
 
@@ -197,45 +197,44 @@ class PersianCupertinoLocalizations extends DefaultCupertinoLocalizations {
 
   static const LocalizationsDelegate<CupertinoLocalizations> delegate = _PersianCupertinoLocalizationsDelegate();
 
-  /// Short version of days of week in Jalali.
   static const List<String> shortWeekdays = <String>[
-    'ش', // Saturday
-    'ی', // Sunday
-    'د', // Monday
-    'س', // Tuesday
-    'چ', // Wednesday
-    'پ', // Thursday
-    'ج', // Friday
+    'ش',
+    'ی',
+    'د',
+    'س',
+    'چ',
+    'پ',
+    'ج',
   ];
 
   static const List<String> _shortMonths = <String>[
-    'فرو', // Farvardin
-    'اردی', // Ordibehesht
-    'خرد', // Khordad
-    'تیر', // Tir
-    'مرد', // Mordad
-    'شهری', // Shahrivar
-    'مهر', // Mehr
-    'آبا', // Aban
-    'آذر', // Azar
-    'دی', // Dey
-    'بهم', // Bahman
-    'اسف', // Esfand
+    'فرو',
+    'اردی',
+    'خرد',
+    'تیر',
+    'مرد',
+    'شهری',
+    'مهر',
+    'آبا',
+    'آذر',
+    'دی',
+    'بهم',
+    'اسف',
   ];
 
   static const List<String> _months = <String>[
-    'فروردین', // Farvardin
-    'اردیبهشت', // Ordibehesht
-    'خرداد', // Khordad
-    'تیر', // Tir
-    'مرداد', // Mordad
-    'شهریور', // Shahrivar
-    'مهر', // Mehr
-    'آبان', // Aban
-    'آذر', // Azar
-    'دی', // Dey
-    'بهمن', // Bahman
-    'اسفند', // Esfand
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند',
   ];
 
   @override

@@ -12,9 +12,7 @@ void bottomSheet({
           color: Theme.of(navigatorKey.currentContext!).colorScheme.surface,
           borderRadius: BorderRadius.circular(20),
         ),
-        constraints: BoxConstraints(maxHeight: MediaQuery
-            .sizeOf(navigatorKey.currentContext!)
-            .height - 100),
+        constraints: BoxConstraints(maxHeight: MediaQuery.sizeOf(navigatorKey.currentContext!).height - 100),
         padding: padding,
         child: SingleChildScrollView(child: child),
       ),

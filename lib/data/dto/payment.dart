@@ -88,7 +88,7 @@ class PayNgReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory PayNgReadDto.fromMap(dynamic json) => PayNgReadDto(
-    id: json["_id"],
+        id: json["_id"],
         links: json["_links"] == null ? null : NgResultLinks.fromMap(json["_links"]),
         type: json["type"],
         merchantDefinedData: json["merchantDefinedData"] == null ? null : NgFormattedOrderSummary.fromMap(json["merchantDefinedData"]),

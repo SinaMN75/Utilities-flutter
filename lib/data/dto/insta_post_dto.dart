@@ -12,12 +12,12 @@ class InstaPostReadDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory InstaPostReadDto.fromMap(Map<String, dynamic> json) => InstaPostReadDto(
-    instagramPosts: json["instagramPosts"] == null ? [] : List<InstagramPost>.from(json["instagramPosts"]!.map((x) => InstagramPost.fromMap(x))),
-  );
+        instagramPosts: json["instagramPosts"] == null ? [] : List<InstagramPost>.from(json["instagramPosts"]!.map((x) => InstagramPost.fromMap(x))),
+      );
 
   Map<String, dynamic> toMap() => {
-    "instagramPosts": instagramPosts == null ? [] : List<dynamic>.from(instagramPosts!.map((x) => x.toMap())),
-  };
+        "instagramPosts": instagramPosts == null ? [] : List<dynamic>.from(instagramPosts!.map((x) => x.toMap())),
+      };
 }
 
 class InstagramPost {
@@ -34,12 +34,12 @@ class InstagramPost {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory InstagramPost.fromMap(Map<String, dynamic> json) => InstagramPost(
-    desctiption: json["desctiption"],
-    images: json["images"] == null ? [] : List<String>.from(json["images"]!.map((x) => x)),
-  );
+        desctiption: json["desctiption"],
+        images: json["images"] == null ? [] : List<String>.from(json["images"]!.map((x) => x)),
+      );
 
   Map<String, dynamic> toMap() => {
-    "desctiption": desctiption,
-    "images": images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
-  };
+        "desctiption": desctiption,
+        "images": images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
+      };
 }

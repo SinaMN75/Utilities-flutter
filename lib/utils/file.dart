@@ -224,14 +224,14 @@ Widget filePickerList({
                         margin: const EdgeInsets.all(12),
                       )
                     else if (data.extension!.isImageFileName)
-                        UImage(
+                      UImage(
                         "",
                         fileData: data,
                         width: 150,
                         height: 150,
                         borderRadius: 12,
                         fit: BoxFit.cover,
-                        ).pAll(12)
+                      ).pAll(12)
                     else if (!data.extension!.isImageFileName)
                       Icon(
                         data.extension!.isPDFFileName ? Icons.picture_as_pdf_outlined : Icons.videocam_outlined,
@@ -333,7 +333,7 @@ Widget filePickerList({
       if (title != null) Text(title).titleMedium(),
       const SizedBox(height: 8),
       Obx(
-            () => Column(
+        () => Column(
           children: <Widget>[
             ...oldFiles
                 .mapIndexed(
@@ -354,7 +354,7 @@ Widget filePickerList({
             ...addedFiles
                 .mapIndexed(
                   (final int index, final FileData i) => fileIcon(
-                data: i,
+                    data: i,
                     onFileDeleted: (final FileData i) {
                       addedFiles.remove(i);
                       deletedFiles.add(i);

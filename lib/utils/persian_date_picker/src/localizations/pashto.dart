@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shamsi_date/shamsi_date.dart';
+import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
 import '../material/date.dart';
 
@@ -11,43 +11,43 @@ class PashtoMaterialLocalizations extends DefaultMaterialLocalizations {
   static const LocalizationsDelegate<MaterialLocalizations> delegate = _PashtoMaterialLocalizationsDelegate();
 
   static const List<String> _narrowWeekdays = <String>[
-    'ش', // S (شنبه)
-    'ی', // S (یکشنبه)
-    'د', // M (دوشنبه)
-    'س', // T (سه‌شنبه)
-    'چ', // W (چهارشنبه)
-    'پ', // T (پنج‌شنبه)
-    'ج', // F (جمعه)
+    'ش',
+    'ی',
+    'د',
+    'س',
+    'چ',
+    'پ',
+    'ج',
   ];
 
   static const List<String> _shortMonths = <String>[
-    'حمل', // Hamal
-    'ثور', // Sawr
-    'غبرګ', // Ghway
-    'چنګاښ', // Chaṇgah
-    'زمری', // Zmari
-    'وږی', // Wrozha
-    'تله', // Tala
-    'لړم', // Larwm
-    'لیندۍ', // Lendai
-    'مرغ', // Murg
-    'سلواغه', // Salwāgha
-    'كب', // Kab
+    'حمل',
+    'ثور',
+    'غبرګ',
+    'چنګاښ',
+    'زمری',
+    'وږی',
+    'تله',
+    'لړم',
+    'لیندۍ',
+    'مرغ',
+    'سلواغه',
+    'كب',
   ];
 
   static const List<String> _months = <String>[
-    'حمل', // Hamal
-    'ثور', // Sawr
-    'غبرګولی', // Ghway
-    'چنګاښ', // Chaṇgah
-    'زمری', // Zmari
-    'وږی', // Wrozha
-    'تله', // Tala
-    'لړم', // Larwm
-    'لیندۍ', // Lendai
-    'مرغومی', // Murg
-    'سلواغه', // Salwāgha
-    'كب', // Kab
+    'حمل',
+    'ثور',
+    'غبرګولی',
+    'چنګاښ',
+    'زمری',
+    'وږی',
+    'تله',
+    'لړم',
+    'لیندۍ',
+    'مرغومی',
+    'سلواغه',
+    'كب',
   ];
 
   @override
@@ -136,37 +136,37 @@ class PashtoMaterialLocalizations extends DefaultMaterialLocalizations {
 
   @override
   String formatYear(DateTime date) {
-    return Jalali.fromDateTime(date).year.toString(); // Use Jalali year
+    return Jalali.fromDateTime(date).year.toString();
   }
 
   @override
   String formatMediumDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Format medium date
+    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatShortMonthDay(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_shortMonths[jalaliDate.month - 1]}'; // Format short month day
+    return '${jalaliDate.day} ${_shortMonths[jalaliDate.month - 1]}';
   }
 
   @override
   String formatMonthYear(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Format month year
+    return '${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatFullDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Format full date
+    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatCompactDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day}/${jalaliDate.month}/${jalaliDate.year}'; // Format compact date
+    return '${jalaliDate.day}/${jalaliDate.month}/${jalaliDate.year}';
   }
 }
 
@@ -190,30 +190,29 @@ class PashtoCupertinoLocalizations extends DefaultCupertinoLocalizations {
 
   static const LocalizationsDelegate<CupertinoLocalizations> delegate = _PashtoCupertinoLocalizationsDelegate();
 
-  /// Short version of days of week in Jalali.
   static const List<String> shortWeekdays = <String>[
-    'ش', // Saturday
-    'ی', // Sunday
-    'د', // Monday
-    'س', // Tuesday
-    'چ', // Wednesday
-    'پ', // Thursday
-    'ج', // Friday
+    'ش',
+    'ی',
+    'د',
+    'س',
+    'چ',
+    'پ',
+    'ج',
   ];
 
   static const List<String> _months = <String>[
-    'حمل', // Hamal
-    'ثور', // Sawr
-    'غبرګولی', // Ghway
-    'چنګاښ', // Chaṇgah
-    'زمری', // Zmari
-    'وږی', // Wrozha
-    'تله', // Tala
-    'لړم', // Larwm
-    'لیندۍ', // Lendai
-    'مرغومی', // Murg
-    'سلواغه', // Salwāgha
-    'كب', // Kab
+    'حمل',
+    'ثور',
+    'غبرګولی',
+    'چنګاښ',
+    'زمری',
+    'وږی',
+    'تله',
+    'لړم',
+    'لیندۍ',
+    'مرغومی',
+    'سلواغه',
+    'كب',
   ];
 
   @override

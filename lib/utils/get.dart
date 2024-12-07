@@ -9,12 +9,12 @@ void push(
     }) async =>
     Get.to(
       page,
-    fullscreenDialog: dialog,
-    popGesture: true,
-    opaque: dialog ? false : true,
-    transition: transition,
-    preventDuplicates: preventDuplicates,
-  );
+      fullscreenDialog: dialog,
+      popGesture: true,
+      opaque: dialog ? false : true,
+      transition: transition,
+      preventDuplicates: preventDuplicates,
+    );
 
 void dialog(
   final Widget page, {

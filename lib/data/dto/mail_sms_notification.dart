@@ -68,18 +68,18 @@ class SendOtpSmsDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory SendOtpSmsDto.fromMap(Map<String, dynamic> json) => SendOtpSmsDto(
-    mobileNumber: json["mobileNumber"],
-    param1: json["param1"],
-    template: json["template"],
-    param2: json["param2"],
-    param3: json["param3"],
-  );
+        mobileNumber: json["mobileNumber"],
+        param1: json["param1"],
+        template: json["template"],
+        param2: json["param2"],
+        param3: json["param3"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "mobileNumber": mobileNumber,
-    "param1": param1,
-    "template": template,
-    "param2": param2,
-    "param3": param3,
-  };
+        "mobileNumber": mobileNumber,
+        "param1": param1,
+        "template": template,
+        "param2": param2,
+        "param3": param3,
+      };
 }

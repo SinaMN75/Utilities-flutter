@@ -108,7 +108,7 @@ class ContentJsonDetail {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ContentJsonDetail.fromMap(Map<String, dynamic> json) => ContentJsonDetail(
-    instagram: json["instagram"],
+        instagram: json["instagram"],
         telegram: json["telegram"],
         whatsApp: json["whatsApp"],
         linkedIn: json["linkedIn"],
@@ -205,7 +205,7 @@ class ContentCreateUpdateDto {
   String toJson() => json.encode(removeNullEntries(toMap()));
 
   factory ContentCreateUpdateDto.fromMap(Map<String, dynamic> json) => ContentCreateUpdateDto(
-    id: json["id"],
+        id: json["id"],
         title: json["title"],
         subTitle: json["subTitle"],
         description: json["description"],

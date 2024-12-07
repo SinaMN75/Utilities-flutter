@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shamsi_date/shamsi_date.dart';
+import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
 import '../material/date.dart';
 
@@ -11,43 +11,43 @@ class SoraniMaterialLocalizations extends DefaultMaterialLocalizations {
   static const LocalizationsDelegate<MaterialLocalizations> delegate = _SoraniMaterialLocalizationsDelegate();
 
   static const List<String> _narrowWeekdays = <String>[
-    'ش', // S (شه‌ممه‌)
-    'ی', // S (یه‌كشه‌ممه‌)
-    'دو', // M (دووشه‌ممه‌)
-    'سه', // T (سێشه‌ممه‌)
-    'چ', // W (چوارشه‌ممه‌)
-    'پ', // T (پێنجشه‌ممه‌)
-    'ه', // F (هه‌ینی)
+    'ش',
+    'ی',
+    'دو',
+    'سه',
+    'چ',
+    'پ',
+    'ه',
   ];
 
   static const List<String> _shortMonths = <String>[
-    'شبا', // Shabaya
-    'ئادا', // Adaar
-    'حوز', // Haziran
-    'تمو', // Tamuz
-    'ئاب', // Ab
-    'ئەیلو', // Eylul
-    'تشر', // Tishrin
-    'تشر', // Tishrin2
-    'كان', // Kanun
-    'كان', // Kanun2
-    'شبا', // Shabayar
-    'ئایار', // Ayar
+    'شبا',
+    'ئادا',
+    'حوز',
+    'تمو',
+    'ئاب',
+    'ئەیلو',
+    'تشر',
+    'تشر',
+    'كان',
+    'كان',
+    'شبا',
+    'ئایار',
   ];
 
   static const List<String> _months = <String>[
-    'شبا', // Shabaya
-    'ئادا', // Adaar
-    'حوز', // Haziran
-    'تموز', // Tamuz
-    'ئاب', // Ab
-    'ئەیلو', // Eylul
-    'تشر', // Tishrin
-    'تشر', // Tishrin2
-    'كان', // Kanun
-    'كان', // Kanun2
-    'شبا', // Shabayar
-    'ئایار', // Ayar
+    'شبا',
+    'ئادا',
+    'حوز',
+    'تموز',
+    'ئاب',
+    'ئەیلو',
+    'تشر',
+    'تشر',
+    'كان',
+    'كان',
+    'شبا',
+    'ئایار',
   ];
 
   @override
@@ -136,37 +136,37 @@ class SoraniMaterialLocalizations extends DefaultMaterialLocalizations {
 
   @override
   String formatYear(DateTime date) {
-    return Jalali.fromDateTime(date).year.toString(); // Use Jalali year
+    return Jalali.fromDateTime(date).year.toString();
   }
 
   @override
   String formatMediumDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Format medium date
+    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatShortMonthDay(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_shortMonths[jalaliDate.month - 1]}'; // Format short month day
+    return '${jalaliDate.day} ${_shortMonths[jalaliDate.month - 1]}';
   }
 
   @override
   String formatMonthYear(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Format month year
+    return '${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatFullDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}'; // Format full date
+    return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatCompactDate(DateTime date) {
     final jalaliDate = Jalali.fromDateTime(date);
-    return '${jalaliDate.day}/${jalaliDate.month}/${jalaliDate.year}'; // Format compact date
+    return '${jalaliDate.day}/${jalaliDate.month}/${jalaliDate.year}';
   }
 }
 
@@ -191,43 +191,43 @@ class SoraniCupertinoLocalizations extends DefaultCupertinoLocalizations {
   static const LocalizationsDelegate<CupertinoLocalizations> delegate = _SoraniCupertinoLocalizationsDelegate();
 
   static const List<String> shortWeekdays = <String>[
-    'ش', // Saturday
-    'ی', // Sunday
-    'دو', // Monday
-    'سه', // Tuesday
-    'چ', // Wednesday
-    'پ', // Thursday
-    'ه', // Friday
+    'ش',
+    'ی',
+    'دو',
+    'سه',
+    'چ',
+    'پ',
+    'ه',
   ];
 
   static const List<String> _shortMonths = <String>[
-    'شبا', // Shabaya
-    'ئادا', // Adaar
-    'حوز', // Haziran
-    'تموز', // Tamuz
-    'ئاب', // Ab
-    'ئەیلو', // Eylul
-    'تشر', // Tishrin
-    'تشر', // Tishrin2
-    'كان', // Kanun
-    'كان', // Kanun2
-    'شبا', // Shabayar
-    'ئایار', // Ayar
+    'شبا',
+    'ئادا',
+    'حوز',
+    'تموز',
+    'ئاب',
+    'ئەیلو',
+    'تشر',
+    'تشر',
+    'كان',
+    'كان',
+    'شبا',
+    'ئایار',
   ];
 
   static const List<String> _months = <String>[
-    'شبا', // Shabaya
-    'ئادا', // Adaar
-    'حوز', // Haziran
-    'تموز', // Tamuz
-    'ئاب', // Ab
-    'ئەیلو', // Eylul
-    'تشر', // Tishrin
-    'تشر', // Tishrin2
-    'كان', // Kanun
-    'كان', // Kanun2
-    'شبا', // Shabayar
-    'ئایار', // Ayar
+    'شبا',
+    'ئادا',
+    'حوز',
+    'تموز',
+    'ئاب',
+    'ئەیلو',
+    'تشر',
+    'تشر',
+    'كان',
+    'كان',
+    'شبا',
+    'ئایار',
   ];
 
   @override

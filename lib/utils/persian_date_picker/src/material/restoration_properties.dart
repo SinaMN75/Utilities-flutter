@@ -1,16 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shamsi_date/shamsi_date.dart';
+import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
 
 import 'date.dart';
 
-/// A [RestorableValue] that knows how to save and restore [Jalali].
-///
-/// {@macro flutter.widgets.RestorableNum}.
 class RestorableJalali extends RestorableValue<Jalali> {
-  /// Creates a [RestorableJalali].
-  ///
-  /// {@macro flutter.widgets.RestorableNum.constructor}
   RestorableJalali(Jalali defaultValue) : _defaultValue = defaultValue;
 
   final Jalali _defaultValue;
@@ -31,14 +25,7 @@ class RestorableJalali extends RestorableValue<Jalali> {
   Object? toPrimitives() => value.millisecondsSinceEpoch;
 }
 
-/// A [RestorableValue] that knows how to save and restore [Jalali] that is
-/// nullable.
-///
-/// {@macro flutter.widgets.RestorableNum}.
 class RestorableJalaliN extends RestorableValue<Jalali?> {
-  /// Creates a [RestorableJalali].
-  ///
-  /// {@macro flutter.widgets.RestorableNum.constructor}
   RestorableJalaliN(Jalali? defaultValue) : _defaultValue = defaultValue;
 
   final Jalali? _defaultValue;
