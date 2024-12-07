@@ -36,6 +36,7 @@ export 'package:url_launcher/url_launcher.dart';
 export 'package:uuid/uuid.dart';
 export 'package:video_player/video_player.dart';
 export 'package:webview_flutter/webview_flutter.dart';
+export 'utils/shamsi_date/shamsi_date.dart';
 
 export 'components/components.dart';
 export 'components/fdottedline.dart';
