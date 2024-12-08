@@ -245,4 +245,38 @@ extension StringExtensions on String {
     month = month.replaceAll("12", "December");
     return month;
   }
+
+  String removeCharAt(int charIndex) {
+    final charList = split('').toList();
+    charList.removeAt(charIndex);
+    return charList.join('');
+  }
+
+  String toPhoneNumber({
+    InvalidPhoneAction invalidPhoneAction = InvalidPhoneAction.ShowUnformatted,
+    bool allowEndlessPhone = false,
+    String? defaultMask,
+    String? defaultCountryCode,
+  }) {
+    return formatAsPhoneNumber(
+          this,
+          allowEndlessPhone: allowEndlessPhone,
+          defaultCountryCode: defaultCountryCode,
+          defaultMask: defaultMask,
+          invalidPhoneAction: invalidPhoneAction,
+        ) ??
+        this;
+  }
+
+  String toCardNumber() => formatAsCardNumber(this);
+
+  bool isValidCardNumber({
+    bool checkLength = false,
+    bool useLuhnAlgo = true,
+  }) =>
+      isCardNumberValid(
+        cardNumber: this,
+        useLuhnAlgo: useLuhnAlgo,
+        checkLength: checkLength,
+      );
 }
