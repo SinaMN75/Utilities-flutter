@@ -1,26 +1,4 @@
-part of '../utils.dart';
-
-class Separate3By3Formatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(final TextEditingValue oldValue, final TextEditingValue newValue) {
-    if (newValue.text.isEmpty)
-      return newValue.copyWith(text: '');
-    else if (newValue.text.compareTo(oldValue.text) != 0) {
-      final List<String> chars = newValue.text.replaceAll(',', '').split('');
-      final StringBuffer buffer = StringBuffer();
-      for (int i = 0; i < chars.length; i++) {
-        if (i % 3 == 0 && i != 0) buffer.write(',');
-        buffer.write(chars[i]);
-      }
-
-      return TextEditingValue(
-        text: buffer.toString(),
-        selection: TextSelection.collapsed(offset: buffer.length - newValue.text.length - newValue.selection.extentOffset),
-      );
-    } else
-      return newValue;
-  }
-}
+import 'package:utilities/utilities.dart';
 
 extension TextExtension on Text {
   Text displayLarge({

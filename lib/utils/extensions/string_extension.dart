@@ -1,4 +1,7 @@
-part of '../utils.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:utilities/utilities.dart';
+import 'package:utilities/utils/multi_formatter/flutter_multi_formatter.dart';
+import 'package:utilities/utils/persian_date_picker/persian_datetime_picker.dart';
 
 extension TextEditingControllerExtension on TextEditingController {
   String numberString() => text.replaceAll(RegExp('[^0-9]'), '');

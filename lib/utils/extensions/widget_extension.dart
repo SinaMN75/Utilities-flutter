@@ -1,4 +1,4 @@
-part of '../utils.dart';
+import 'package:utilities/utilities.dart';
 
 extension WidgetsExtension on Widget {
   Widget pAll(double padding) => Padding(padding: EdgeInsets.all(padding), child: this);
@@ -46,37 +46,23 @@ extension WidgetsExtension on Widget {
 
   Widget expanded({final int flex = 1}) => Expanded(flex: flex, child: this);
 
-  Widget shimmer({
-    final Color? baseColor,
-    final Color? highlightColor,
-  }) =>
-      Shimmer.fromColors(
-        baseColor: baseColor ?? Theme.of(navigatorKey.currentContext!).primaryColorDark.withOpacity(0.1),
-        highlightColor: highlightColor ?? Theme.of(navigatorKey.currentContext!).primaryColorDark.withOpacity(0.3),
-        child: this,
-      );
-
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
-  Widget copyTextToClipboardOnTap(final String text, {final VoidCallback? action}) => onTap(() {
-        copyToClipboard(text);
-        if (action != null) action();
-      });
-
   Widget showMenus(final List<PopupMenuEntry<int>> items) => GestureDetector(
-      onTapDown: (details) async {
-        final screenSize = MediaQuery.of(navigatorKey.currentContext!).size;
-        double left = details.globalPosition.dx;
-        double top = details.globalPosition.dy;
-        double right = screenSize.width - details.globalPosition.dx;
-        double bottom = screenSize.height - details.globalPosition.dy;
-        await showMenu<int>(
-          context: navigatorKey.currentContext!,
-          position: RelativeRect.fromLTRB(left, top, right, bottom),
-          items: items,
-        );
-      },
-      child: this);
+        onTapDown: (details) async {
+          final screenSize = MediaQuery.of(navigatorKey.currentContext!).size;
+          double left = details.globalPosition.dx;
+          double top = details.globalPosition.dy;
+          double right = screenSize.width - details.globalPosition.dx;
+          double bottom = screenSize.height - details.globalPosition.dy;
+          await showMenu<int>(
+            context: navigatorKey.currentContext!,
+            position: RelativeRect.fromLTRB(left, top, right, bottom),
+            items: items,
+          );
+        },
+        child: this,
+      );
 
   Widget onLongPress(final GestureTapCallback? onPressed) => GestureDetector(onLongPress: onPressed, child: this);
 

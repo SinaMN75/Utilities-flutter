@@ -1,4 +1,4 @@
-part of 'components.dart';
+import 'package:utilities/utilities.dart';
 
 class UBarcode extends StatefulWidget {
   const UBarcode(

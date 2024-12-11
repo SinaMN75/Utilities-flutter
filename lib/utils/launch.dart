@@ -1,4 +1,4 @@
-part of 'utils.dart';
+import 'package:utilities/utilities.dart';
 
 Future<void> launchURL(final String url, {final LaunchMode mode = LaunchMode.platformDefault}) async => launchUrl(
       Uri.parse(url),

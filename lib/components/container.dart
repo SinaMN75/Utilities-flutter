@@ -1,4 +1,6 @@
-part of 'components.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:utilities/utilities.dart';
+import 'package:utilities/utilities2.dart';
 
 class UScaffold extends StatelessWidget {
   const UScaffold({

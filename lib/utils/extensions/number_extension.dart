@@ -1,4 +1,4 @@
-part of '../utils.dart';
+import 'package:utilities/utilities.dart';
 
 extension DoubleExtionsion on double {
   String toStringAsSmartRound({int maxPrecision = 2}) {

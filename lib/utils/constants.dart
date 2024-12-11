@@ -1,4 +1,4 @@
-part of 'utils.dart';
+import 'package:utilities/utilities.dart';
 
 extension PageStateExtension on PageState {
   bool isInitial() => this == PageState.initial;

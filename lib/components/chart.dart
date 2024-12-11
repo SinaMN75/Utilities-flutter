@@ -1,4 +1,5 @@
-part of 'components.dart';
+import 'package:utilities/utilities.dart';
+import 'package:utilities/utilities3.dart';
 
 class UDoughnutChart extends StatelessWidget {
   const UDoughnutChart({

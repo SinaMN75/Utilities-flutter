@@ -1,4 +1,4 @@
-part of 'utils.dart';
+import 'package:utilities/utilities.dart';
 
 class Fonts extends TextStyle {
   static const Vazir = TextStyle(fontFamily: 'Vazir', package: "utilities");

@@ -1,4 +1,4 @@
-part of '../utils.dart';
+import 'package:utilities/utilities.dart';
 
 extension HexColor on Color {
   static Color fromHex(final String hexString) {

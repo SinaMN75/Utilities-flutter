@@ -1,4 +1,5 @@
-part of 'utils.dart';
+import 'package:universal_html/html.dart' as html;
+import 'package:utilities/utilities.dart';
 
 abstract class UAppUtils {
   static late PackageInfo packageInfo;

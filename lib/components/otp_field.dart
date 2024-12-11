@@ -1,4 +1,5 @@
-part of 'components.dart';
+import 'package:utilities/utilities.dart';
+import 'package:utilities/utilities2.dart';
 
 Widget otpTextField({
   final int length = 4,

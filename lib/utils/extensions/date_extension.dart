@@ -1,4 +1,5 @@
-part of '../utils.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:utilities/utilities.dart';
 
 extension DateTimeExtensions on DateTime {
   Jalali toJalali() => Jalali.fromDateTime(this);

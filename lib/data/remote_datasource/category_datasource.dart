@@ -32,7 +32,6 @@ class CategoryDataSource {
         headers: <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""},
         contentType: "multipart/form-data",
       );
-      log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
     } catch (e) {
       onError();

@@ -1,46 +1,7 @@
-import 'dart:developer' as developer;
-import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart' as intl;
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:universal_html/html.dart' as html;
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
-import 'package:utilities/utils/persian_date_picker/persian_datetime_picker.dart';
-import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
-
-part 'constants.dart';
-part 'enums.dart';
-part 'extensions/align_extension.dart';
-part 'extensions/color_extension.dart';
-part 'extensions/date_extension.dart';
-part 'extensions/enums_extension.dart';
-part 'extensions/file_extension.dart';
-part 'extensions/iterable_extension.dart';
-part 'extensions/number_extension.dart';
-part 'extensions/shimmer_extension.dart';
-part 'extensions/string_extension.dart';
-part 'extensions/text_extension.dart';
-part 'extensions/widget_extension.dart';
-part 'file.dart';
-part 'firebase.dart';
-part 'fonts.dart';
-part 'get.dart';
-part 'http_interceptor.dart';
-part 'internet_connection_checker.dart';
-part 'launch.dart';
-part 'local_auth.dart';
-part 'local_storage.dart';
-part 'location.dart';
-part 'notification.dart';
-part 'u_app_utils.dart';
-part 'uuid.dart';
-part 'view_models.dart';
 
 void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
       Duration(milliseconds: milliseconds),
@@ -56,8 +17,6 @@ Color hexStringToColor(final String hexString) {
 }
 
 String colorToHexColor(final Color color) => color.value.toRadixString(16);
-
-void copyToClipboard(final String text) async => await Clipboard.setData(ClipboardData(text: text));
 
 void validateForm({required final GlobalKey<FormState> key, required final VoidCallback action}) {
   if (key.currentState!.validate()) action();

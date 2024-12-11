@@ -1,4 +1,4 @@
-part of 'utils.dart';
+import 'package:utilities/utilities.dart';
 
 class FileData {
   FileData({

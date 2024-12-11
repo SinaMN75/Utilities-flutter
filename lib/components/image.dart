@@ -1,4 +1,5 @@
-part of 'components.dart';
+import 'package:utilities/utilities.dart';
+import 'package:utilities/utilities3.dart';
 
 class UImage extends StatelessWidget {
   const UImage(
@@ -78,9 +79,9 @@ class UImage extends StatelessWidget {
                   placeholder: placeholder,
                 );
               else if (source.startsWith("http") && source.endsWith(".json"))
-                return lottie.Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
+                return Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
               else if (source.endsWith(".json"))
-                return lottie.Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
+                return Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
               else
                 return UImageAsset(
                   source,

@@ -1,4 +1,4 @@
-part of 'utils.dart';
+import 'package:utilities/utilities.dart';
 
 class UtilitiesFirebase {
   static final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
@@ -19,7 +19,6 @@ class UtilitiesFirebase {
     if (UAppUtils.isAndroid) {
       await _firebaseMessaging.requestPermission(announcement: true, carPlay: true, criticalAlert: true, provisional: true);
       final String? fcmToken = await _firebaseMessaging.getToken();
-      developer.log("FCM Token: $fcmToken");
       return fcmToken;
     } else
       return null;

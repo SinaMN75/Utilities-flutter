@@ -1,4 +1,4 @@
-part of 'components.dart';
+import 'package:utilities/utilities.dart';
 
 Widget plusMinus({
   required final Function(int) onChanged,

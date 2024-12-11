@@ -1,4 +1,4 @@
-part of 'components.dart';
+import 'package:utilities/utilities.dart';
 
 enum DataType {
   DataList,
@@ -37,12 +37,6 @@ class Config {
     this.children = 'children',
   });
 }
-
-var logger = Logger(
-  printer: PrettyPrinter(
-    methodCount: 0,
-  ),
-);
 
 /// @create at 2021/7/15 15:01
 /// @create by kevin

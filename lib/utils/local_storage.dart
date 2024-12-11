@@ -1,4 +1,4 @@
-part of 'utils.dart';
+import 'package:utilities/utilities.dart';
 
 void setData(final String key, final dynamic value) => GetStorage().write(key, value);
 

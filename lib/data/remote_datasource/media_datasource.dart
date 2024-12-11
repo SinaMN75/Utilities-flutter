@@ -72,7 +72,6 @@ class MediaDataSource {
             contentType: "multipart/form-data",
           )
           .timeout(Duration(minutes: 60));
-      log("UPLOAD: ${response.statusCode} ${response.bodyString}");
       onResponse();
       return;
     } catch (e) {

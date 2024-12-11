@@ -1,4 +1,3 @@
-part of 'utils.dart';
 
 class UNotification {
   // static void showNotification({

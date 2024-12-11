@@ -1,5 +1,3 @@
-part of 'utils.dart';
-
 class UtilitiesTagUtils {
   static String tagCurrencyTitleFromTagList(final List<int> tags) {
     if (tags.contains(Currency.dolor.number)) return Currency.dolor.title;

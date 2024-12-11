@@ -1,4 +1,4 @@
-part of 'utils.dart';
+import 'package:utilities/utilities.dart';
 
 Future<Position?> getUserLocation({final Function(Position)? onUserLocationFound}) async {
   bool serviceEnabled;

@@ -1,5 +1,3 @@
-part of '../utils.dart';
-
 extension GenericIterableExtentions<T> on Iterable {
   Iterable<E> mapIndexed<E, T>(final E Function(int index, T item) f) sync* {
     int index = 0;

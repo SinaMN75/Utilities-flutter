@@ -1,4 +1,4 @@
-part of '../utils.dart';
+import 'package:utilities/utilities.dart';
 
 extension TagProductsExtentions<T> on List<TagProduct> {
   TagProduct? getByNumber(final int number) => where((final TagProduct element) => element.number == number).toList().firstOrNull;
