@@ -40,7 +40,7 @@ extension RxPageStateExtension on Rx<PageState> {
   PageState emptying() => this(PageState.empty);
 }
 
-abstract class UtilitiesConstants {
+abstract class UConstants {
   static String token = "token";
   static String userId = "userId";
 }

@@ -1,7 +1,7 @@
 import 'package:universal_html/html.dart' as html;
 import 'package:utilities/utilities.dart';
 
-abstract class UAppUtils {
+abstract class UApp {
   static late PackageInfo packageInfo;
 
   static String appName = packageInfo.appName;

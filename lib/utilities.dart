@@ -86,6 +86,7 @@ export 'utils/get.dart';
 export 'utils/http_interceptor.dart';
 export 'utils/internet_connection_checker.dart';
 export 'utils/launch.dart';
+export 'utils/loading.dart';
 export 'utils/local_auth.dart';
 export 'utils/local_storage.dart';
 export 'utils/location.dart';
@@ -98,7 +99,7 @@ export 'utils/view_models.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-abstract class UtilitiesCore {
+abstract class UCore {
   static late String apiKey;
 }
 
@@ -117,7 +118,7 @@ Future<void> initUtilities({
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(deviceOrientations);
   await GetStorage.init();
-  UAppUtils.packageInfo = await PackageInfo.fromPlatform();
+  UApp.packageInfo = await PackageInfo.fromPlatform();
   if (firebaseOptions != null) {
     try {
       await Firebase.initializeApp(options: firebaseOptions);
@@ -133,7 +134,7 @@ Future<void> initUtilities({
     if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
   } catch (e) {}
 
-  UtilitiesCore.apiKey = apiKey;
+  UCore.apiKey = apiKey;
   if (baseUrl != null) URemoteDataSource.baseUrl = baseUrl;
   return;
 }

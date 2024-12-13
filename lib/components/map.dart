@@ -45,7 +45,7 @@ class _UMapState extends State<UMap> {
   @override
   void initState() {
     if (widget.initOnUserLocation)
-      getUserLocation(
+      ULocation.getUserLocation(
         onUserLocationFound: (final dynamic location) {
           widget.controller.move(LatLng(location.latitude, location.longitude), widget.controller.camera.zoom);
         },
@@ -85,7 +85,7 @@ class _UMapState extends State<UMap> {
             FloatingActionButton(
               heroTag: "UMapFab1",
               mini: true,
-              onPressed: () async => getUserLocation(
+              onPressed: () async => ULocation.getUserLocation(
                 onUserLocationFound: (final dynamic location) {
                   widget.controller.move(LatLng(location.latitude, location.longitude), widget.controller.camera.zoom);
                 },

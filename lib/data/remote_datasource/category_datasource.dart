@@ -29,7 +29,7 @@ class CategoryDataSource {
       final Response<dynamic> response = await GetConnect().post(
         '$baseUrl/Category/ImportFromExcel',
         form,
-        headers: <String, String>{"Authorization": getString(UtilitiesConstants.token) ?? ""},
+        headers: <String, String>{"Authorization": ULocalStorage.getString(UConstants.token) ?? ""},
         contentType: "multipart/form-data",
       );
       onResponse();

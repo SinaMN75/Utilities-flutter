@@ -16,8 +16,8 @@ Future<void> httpRequest({
 }) async {
   try {
     final Map<String, String> header = <String, String>{
-      "Authorization": getString(UtilitiesConstants.token) ?? "",
-      "X-API-Key": UtilitiesCore.apiKey,
+      "Authorization": ULocalStorage.getString(UConstants.token) ?? "",
+      "X-API-Key": UCore.apiKey,
     };
 
     if (clearHeaders) header.clear();
@@ -36,14 +36,14 @@ Future<void> httpRequest({
 
     if (httpMethod == EHttpMethod.get) {
       if (cacheExpireDate != null) {
-        if (getString(url).isNullOrEmpty() || (getString(url) ?? "").length <= 10) {
+        if (ULocalStorage.getString(url).isNullOrEmpty() || (ULocalStorage.getString(url) ?? "").length <= 10) {
           response = await connect.get(url, headers: header);
-          setData(url, response.bodyString);
-          setData("${url}___ExpireDate", cacheExpireDate.toIso8601String());
+          ULocalStorage.set(url, response.bodyString);
+          ULocalStorage.set("${url}___ExpireDate", cacheExpireDate.toIso8601String());
         } else {
-          if (DateTime.parse(getString("${url}___ExpireDate")!).isBefore(DateTime.now())) {
-            setData(url, null);
-            setData("${url}___ExpireDate", null);
+          if (DateTime.parse(ULocalStorage.getString("${url}___ExpireDate")!).isBefore(DateTime.now())) {
+            ULocalStorage.set(url, null);
+            ULocalStorage.set("${url}___ExpireDate", null);
             await httpRequest(
               url: url,
               httpMethod: EHttpMethod.get,
@@ -55,7 +55,7 @@ Future<void> httpRequest({
               cacheExpireDate: cacheExpireDate,
             );
           } else {
-            action(Response<dynamic>(statusCode: 200, bodyString: getString(url)));
+            action(Response<dynamic>(statusCode: 200, bodyString: ULocalStorage.getString(url)));
             return;
           }
         }
@@ -75,9 +75,9 @@ Future<void> httpRequest({
     }
   } catch (e) {
     error(const Response<dynamic>(statusCode: 999, body: "{}", bodyString: "{}"));
-    await dismissEasyLoading();
+    ULoading.dismissLoading();
   }
-  await dismissEasyLoading();
+  ULoading.dismissLoading();
 }
 
 enum EHttpMethod { get, post, put, patch, delete }

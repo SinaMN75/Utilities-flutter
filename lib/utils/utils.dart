@@ -1,7 +1,6 @@
 
 import 'package:intl/intl.dart' as intl;
 import 'package:utilities/utilities.dart';
-import 'package:utilities/utilities2.dart';
 
 void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
       Duration(milliseconds: milliseconds),
@@ -127,7 +126,7 @@ void showYesCancelDialog({
       ),
     );
 
-bool isLoggedIn() => getString(UtilitiesConstants.token) == null ? false : true;
+bool isLoggedIn() => ULocalStorage.getString(UConstants.token) == null ? false : true;
 
 bool isPhoneNumber(final String s) {
   if (s.length > 16 || s.length < 9) return false;
@@ -142,45 +141,4 @@ bool isNumeric(final String? s) {
   return res != 10000;
 }
 
-void shareText(final String text, {final String? subject}) => Share.share(text, subject: subject);
-
-void shareFile(final List<String> file, final String text) => Share.shareXFiles(file.map(XFile.new).toList());
-
-void shareWidget({required final Widget widget}) async => await ScreenshotController().capture().then((final Uint8List? image) async {
-      final Directory directory = await getApplicationDocumentsDirectory();
-      final File imagePath = await File('${directory.path}/image.png').create();
-      await imagePath.writeAsBytes(image!);
-      shareFile(<String>[imagePath.path], "");
-    });
-
 Future<Uint8List> screenshot({required final Widget widget}) => ScreenshotController().captureFromWidget(widget);
-
-Future<void> showEasyLoading() => EasyLoading.show();
-
-Future<void> dismissEasyLoading() => EasyLoading.dismiss();
-
-Future<void> showEasyError() => EasyLoading.showError("");
-
-bool isEasyLoadingShow() => EasyLoading.isShow;
-
-class MaskedTextInputFormatter extends TextInputFormatter {
-  MaskedTextInputFormatter({required this.mask, required this.separator});
-
-  final String? mask;
-  final String? separator;
-
-  @override
-  TextEditingValue formatEditUpdate(final TextEditingValue oldValue, final TextEditingValue newValue) {
-    if (newValue.text.isNotEmpty) {
-      if (newValue.text.length > oldValue.text.length) {
-        if (newValue.text.length > mask!.length) return oldValue;
-        if (newValue.text.length < mask!.length && mask![newValue.text.length - 1] == separator)
-          return TextEditingValue(
-            text: '${oldValue.text}$separator${newValue.text.substring(newValue.text.length - 1)}',
-            selection: TextSelection.collapsed(offset: newValue.selection.end + 1),
-          );
-      }
-    }
-    return newValue;
-  }
-}

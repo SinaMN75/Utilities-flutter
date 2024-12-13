@@ -1,4 +1,4 @@
-class UtilitiesTagUtils {
+class UTagUtils {
   static String tagCurrencyTitleFromTagList(final List<int> tags) {
     if (tags.contains(Currency.dolor.number)) return Currency.dolor.title;
     if (tags.contains(Currency.aed.number)) return Currency.aed.title;

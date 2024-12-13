@@ -17,7 +17,7 @@ class ULinkPreviewer extends StatelessWidget {
             fontSize: 12,
             color: Theme.of(navigatorKey.currentContext!).colorScheme.brightness == Brightness.dark ? Colors.white : Colors.black,
           ),
-        ).onTap(() => launchURL(link)),
+        ).onTap(() => ULaunch.launchURL(link)),
         bodyStyle: const TextStyle(
           fontSize: 12,
           color: Colors.black,

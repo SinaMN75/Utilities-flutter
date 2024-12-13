@@ -1,6 +1,6 @@
 import 'package:utilities/utilities.dart';
 
-class UtilitiesFirebase {
+class UFirebase {
   static final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   static final FirebaseAnalytics instance = FirebaseAnalytics.instance;
 
@@ -8,7 +8,7 @@ class UtilitiesFirebase {
     required final Function(RemoteMessage? message) onMessage,
     required final Function(RemoteMessage? message) onBackgroundMessage,
   }) async {
-    if (UAppUtils.isAndroid) {
+    if (UApp.isAndroid) {
       FirebaseMessaging.onMessage.listen(onMessage);
       FirebaseMessaging.onBackgroundMessage(onBackgroundMessage as BackgroundMessageHandler);
     } else
@@ -16,7 +16,7 @@ class UtilitiesFirebase {
   }
 
   static Future<String?> getFcmToken() async {
-    if (UAppUtils.isAndroid) {
+    if (UApp.isAndroid) {
       await _firebaseMessaging.requestPermission(announcement: true, carPlay: true, criticalAlert: true, provisional: true);
       final String? fcmToken = await _firebaseMessaging.getToken();
       return fcmToken;

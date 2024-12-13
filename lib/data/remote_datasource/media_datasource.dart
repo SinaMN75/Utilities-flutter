@@ -29,7 +29,7 @@ class MediaDataSource {
         'Id': id,
         'File': MultipartFile(
           kIsWeb ? fileData.bytes : File(fileData.path!),
-          filename: UAppUtils.isWeb ? ":).${fileData.extension}" : fileData.path!.split('/').last,
+          filename: UApp.isWeb ? ":).${fileData.extension}" : fileData.path!.split('/').last,
         ),
         'CategoryId': categoryId,
         'ContentId': contentId,
@@ -67,7 +67,7 @@ class MediaDataSource {
             '$baseUrl/Media',
             form,
             headers: <String, String>{
-              "Authorization": getString(UtilitiesConstants.token) ?? "",
+              "Authorization": ULocalStorage.getString(UConstants.token) ?? "",
             },
             contentType: "multipart/form-data",
           )

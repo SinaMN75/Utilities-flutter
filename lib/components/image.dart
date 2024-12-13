@@ -36,7 +36,7 @@ class UImage extends StatelessWidget {
         child: Builder(
           builder: (final BuildContext context) {
             if (fileData != null) {
-              if (UAppUtils.isWeb)
+              if (UApp.isWeb)
                 return UImageMemory(
                   fileData!.bytes!,
                   width: width,
