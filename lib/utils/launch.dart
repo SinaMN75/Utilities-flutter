@@ -1,7 +1,7 @@
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
 
-class ULaunch {
+abstract class ULaunch {
   static Future<void> launchURL(final String url, {final LaunchMode mode = LaunchMode.platformDefault}) async => launchUrl(
         Uri.parse(url),
         mode: mode,

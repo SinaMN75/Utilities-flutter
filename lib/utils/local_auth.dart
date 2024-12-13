@@ -1,6 +1,6 @@
 import 'package:utilities/utilities.dart';
 
-class ULocalAuth {
+abstract class ULocalAuth {
   final LocalAuthentication auth = LocalAuthentication();
 
   Future<bool> canAuthenticate() async => await auth.canCheckBiometrics || await auth.isDeviceSupported();

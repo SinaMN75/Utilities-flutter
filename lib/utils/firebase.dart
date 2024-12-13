@@ -1,6 +1,6 @@
 import 'package:utilities/utilities.dart';
 
-class UFirebase {
+abstract class UFirebase {
   static final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   static final FirebaseAnalytics instance = FirebaseAnalytics.instance;
 

@@ -1,6 +1,6 @@
 import 'package:utilities/utilities.dart';
 
-class ULoading {
+abstract class ULoading {
   static void showLoading() => EasyLoading.show();
 
   static void dismissLoading() => EasyLoading.dismiss();

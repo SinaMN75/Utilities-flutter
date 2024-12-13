@@ -1,5 +1,4 @@
-
-class UNotification {
+abstract class UNotification {
   // static void showNotification({
   //   required final String title,
   //   required final String message,

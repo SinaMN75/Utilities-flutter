@@ -1,6 +1,6 @@
 import 'package:utilities/utilities.dart';
 
-class ULocalStorage {
+abstract class ULocalStorage {
   static void set(final String key, final dynamic value) => GetStorage().write(key, value);
 
   static int? getInt(final String key) => GetStorage().read(key);

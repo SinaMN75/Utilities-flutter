@@ -1,7 +1,7 @@
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities2.dart';
 
-class UFile {
+abstract class UFile {
   static void showFilePicker({
     required final Function(List<FileData> file) action,
     final FileType fileType = FileType.any,
@@ -346,7 +346,7 @@ class UFile {
                 onTap: () => showFilePicker(
                   allowMultiple: true,
                   action: (final List<FileData> files) {
-                    addedFiles.addAll(files.map((final FileData e) => e..id = UUIDGenerator().uuidV4()).toList());
+                    addedFiles.addAll(files.map((final FileData e) => e..id = UUtils.uuidV4()).toList());
                     onFileSelected(addedFiles);
                   },
                 ),

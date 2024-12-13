@@ -1,6 +1,6 @@
 import 'package:utilities/utilities.dart';
 
-class UFonts extends TextStyle {
+abstract class UFonts extends TextStyle {
   static const Vazir = TextStyle(fontFamily: 'Vazir', package: "utilities");
   static const Samim = TextStyle(fontFamily: 'Samim', package: "utilities");
   static const Shabnam = TextStyle(fontFamily: 'Shabnam', package: "utilities");
