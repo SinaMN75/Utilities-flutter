@@ -454,7 +454,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> with RestorationMix
     const double fontSizeToScale = 14.0;
     final double textScaleFactor = MediaQuery.textScalerOf(context).clamp(maxScaleFactor: _kMaxTextScaleFactor).scale(fontSizeToScale) / fontSizeToScale;
     final Size dialogSize = _dialogSize(context) * textScaleFactor;
-    final DialogTheme dialogTheme = theme.dialogTheme;
+    final DialogThemeData dialogTheme = theme.dialogTheme;
     return Dialog(
       backgroundColor: datePickerTheme.backgroundColor ?? defaults.backgroundColor,
       elevation: useMaterial3 ? datePickerTheme.elevation ?? defaults.elevation! : datePickerTheme.elevation ?? dialogTheme.elevation ?? 24,
@@ -1084,7 +1084,7 @@ class _PersianDateRangePickerDialogState extends State<PersianDateRangePickerDia
           cancelText: widget.cancelText ?? (useMaterial3 ? localizations.cancelButtonLabel : localizations.cancelButtonLabel.toUpperCase()),
           helpText: widget.helpText ?? (useMaterial3 ? localizations.dateRangePickerHelpText : localizations.dateRangePickerHelpText.toUpperCase()),
         );
-        final DialogTheme dialogTheme = theme.dialogTheme;
+        final DialogThemeData dialogTheme = theme.dialogTheme;
         size = orientation == Orientation.portrait ? (useMaterial3 ? _inputPortraitDialogSizeM3 : _inputPortraitDialogSizeM2) : _inputRangeLandscapeDialogSize;
         elevation = useMaterial3 ? datePickerTheme.elevation ?? defaults.elevation! : datePickerTheme.elevation ?? dialogTheme.elevation ?? 24;
         shadowColor = datePickerTheme.shadowColor ?? defaults.shadowColor;
@@ -1159,7 +1159,7 @@ class _CalendarRangePickerDialog extends StatelessWidget {
     final Color? dialogBackground = themeData.rangePickerBackgroundColor ?? defaults.rangePickerBackgroundColor;
     final Color? headerBackground = themeData.rangePickerHeaderBackgroundColor ?? defaults.rangePickerHeaderBackgroundColor;
     final Color? headerForeground = themeData.rangePickerHeaderForegroundColor ?? defaults.rangePickerHeaderForegroundColor;
-    final Color? headerDisabledForeground = headerForeground?.withOpacity(0.38);
+    final Color? headerDisabledForeground = headerForeground?.withValues(alpha: 0.38);
     final TextStyle? headlineStyle = themeData.rangePickerHeaderHeadlineStyle ?? defaults.rangePickerHeaderHeadlineStyle;
     final TextStyle? headlineHelpStyle = (themeData.rangePickerHeaderHelpStyle ?? defaults.rangePickerHeaderHelpStyle)?.apply(color: headerForeground);
     final String startDateText = _formatRangeStartDate(localizations, selectedStartDate, selectedEndDate);
@@ -2045,7 +2045,7 @@ class _DayItemState extends State<_DayItem> {
         textDirection: textDirection,
       );
     } else if (widget.isDisabled) {
-      itemStyle = textTheme.bodyMedium?.apply(color: colorScheme.onSurface.withOpacity(0.38));
+      itemStyle = textTheme.bodyMedium?.apply(color: colorScheme.onSurface.withValues(alpha: 0.38));
     } else if (widget.isToday) {
       itemStyle = textTheme.bodyMedium?.apply(color: colorScheme.primary);
       decoration = BoxDecoration(

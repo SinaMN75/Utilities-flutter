@@ -35,31 +35,13 @@ extension IterableExtentions<T> on Iterable<T> {
       return first;
   }
 
-  bool isNullOrEmpty() {
-    if (isEmpty) return true;
-    return false;
+  void forEachIndexed(void Function(int index, T element) action) {
+    int index = 0;
+    for (var element in this) action(index++, element);
   }
 
-  bool isNotNullOrEmpty() {
-    if (isNotEmpty) return true;
-    return false;
-  }
-}
-
-extension NullableIterableExtentions on Iterable? {
-  bool isNullOrEmpty() {
-    if (this == null)
-      return true;
-    else if (this!.isEmpty) return true;
-    return false;
-  }
-
-  bool containsAll<T>(final List<T> list) => (this ?? <T>[]).toSet().containsAll(this ?? <T>[]);
-}
-
-extension ListExtensions<T> on List<T> {
   List<T> alternative(final T main, final T replace) {
-    final List<T> list = this;
+    final List<T> list = this.toList();
     list.remove(main);
     list.add(replace);
     return list;
@@ -77,17 +59,31 @@ extension ListExtensions<T> on List<T> {
   }
 
   List<T> addAndReturn(final T t) {
-    add(t);
-    return this;
+    List<T> list = toList();
+    list.add(t);
+    return list;
   }
 
   List<T> addAllAndReturn(final List<T> t) {
-    addAll(t);
-    return this;
+    List<T> list = toList();
+    list.addAll(t);
+    return list;
   }
 
   List<T> insertAndReturn(final int index, final T t) {
-    insert(index, t);
-    return this;
+    List<T> list = toList();
+    list.insert(index, t);
+    return list;
   }
+}
+
+extension NullableIterableExtentions on Iterable? {
+  bool isNullOrEmpty() {
+    if (this == null)
+      return true;
+    else if (this!.isEmpty) return true;
+    return false;
+  }
+
+  bool containsAll<T>(final List<T> list) => (this ?? <T>[]).toSet().containsAll(this ?? <T>[]);
 }
