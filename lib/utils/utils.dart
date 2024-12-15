@@ -7,16 +7,6 @@ void delay(final int milliseconds, final VoidCallback action) async => Future<dy
       () async => action(),
     );
 
-Color hexStringToColor(final String hexString) {
-  if (hexString.isEmpty) return Colors.transparent;
-  final StringBuffer buffer = StringBuffer();
-  if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-  buffer.write(hexString.replaceFirst('#', ''));
-  return Color(int.parse(buffer.toString(), radix: 16));
-}
-
-String colorToHexColor(final Color color) => color.value.toRadixString(16);
-
 void validateForm({required final GlobalKey<FormState> key, required final VoidCallback action}) {
   if (key.currentState!.validate()) action();
 }
@@ -109,7 +99,7 @@ void showYesCancelDialog({
             child: button(
               width: MediaQuery.sizeOf(navigatorKey.currentContext!).width / 4,
               backgroundColor: Theme.of(navigatorKey.currentContext!).primaryColorDark,
-              onTap: onCancelButtonTap ?? back,
+              onTap: onCancelButtonTap ?? UNavigator.back,
               title: cancelButtonTitle,
               textStyle: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium,
             ),
