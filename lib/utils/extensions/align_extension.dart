@@ -43,7 +43,6 @@ extension AlignExtensions on Widget {
 
   Align alignAtCenter({final Key? key, final double? heightFactor, final double? widthFactor}) => Align(
         key: key,
-        alignment: Alignment.center,
         heightFactor: heightFactor,
         widthFactor: widthFactor,
         child: this,

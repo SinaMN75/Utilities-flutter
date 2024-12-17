@@ -5,7 +5,7 @@ abstract class ULocalAuth {
 
   Future<bool> canAuthenticate() async => await auth.canCheckBiometrics || await auth.isDeviceSupported();
 
-  Future<List<BiometricType>> availableBiometrics() async => await auth.getAvailableBiometrics();
+  Future<List<BiometricType>> availableBiometrics() async => auth.getAvailableBiometrics();
 
   Future<bool> authenticate({
     final String localizedReason = "",

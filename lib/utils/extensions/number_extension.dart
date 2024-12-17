@@ -1,18 +1,18 @@
 import 'package:utilities/utilities.dart';
 
 extension DoubleExtionsion on double {
-  String toStringAsSmartRound({int maxPrecision = 2}) {
-    final str = toString();
+  String toStringAsSmartRound({final int maxPrecision = 2}) {
+    final String str = toString();
     try {
       if (str.contains('.')) {
-        final split = str.split('');
-        final mantissa = <String>[];
-        final periodIndex = str.indexOf('.');
-        final wholePart = str.substring(0, periodIndex);
+        final List<String> split = str.split('');
+        final List<String> mantissa = <String>[];
+        final int periodIndex = str.indexOf('.');
+        final String wholePart = str.substring(0, periodIndex);
         int numChars = 0;
-        for (var i = periodIndex + 1; i < str.length; i++) {
+        for (int i = periodIndex + 1; i < str.length; i++) {
           if (numChars >= maxPrecision) break;
-          final char = split[i];
+          final String char = split[i];
           mantissa.add(char);
           numChars++;
         }
@@ -38,8 +38,8 @@ extension DoubleExtionsion on double {
   }
 
   int toSafeInt({
-    int? minValue,
-    int? maxValue,
+    final int? minValue,
+    final int? maxValue,
   }) {
     if (minValue == null && maxValue == null) {
       return toInt();
@@ -60,9 +60,9 @@ extension DoubleExtionsion on double {
 
 extension IntExtesion on int {
   int subtractClamping(
-    int subtract, {
-    int minValue = 0,
-    int maxValue = 999999999,
+    final int subtract, {
+    final int minValue = 0,
+    final int maxValue = 999999999,
   }) =>
       (this - subtract).clamp(
         minValue,

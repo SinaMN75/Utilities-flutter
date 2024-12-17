@@ -82,7 +82,7 @@ extension DateTimeExtensions on DateTime {
       else
         return persian ? 'همین الان' : 'Just now';
     } catch (e) {
-      return this.toIso8601String();
+      return toIso8601String();
     }
   }
 }

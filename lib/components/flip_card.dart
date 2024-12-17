@@ -7,7 +7,7 @@ enum CardSide { FRONT, BACK }
 enum Fill { none, fillFront, fillBack }
 
 class AnimationCard extends StatelessWidget {
-  AnimationCard({this.child, this.animation, this.direction});
+  const AnimationCard({super.key, this.child, this.animation, this.direction});
 
   final Widget? child;
   final Animation<double>? animation;
@@ -17,7 +17,7 @@ class AnimationCard extends StatelessWidget {
   Widget build(final BuildContext context) => AnimatedBuilder(
         animation: animation!,
         builder: (final BuildContext context, final Widget? child) {
-          Matrix4 transform = Matrix4.identity();
+          final Matrix4 transform = Matrix4.identity();
           transform.setEntry(3, 2, 0.001);
           if (direction == FlipDirection.VERTICAL) {
             transform.rotateX(animation!.value);
@@ -213,7 +213,7 @@ class FlipCardController {
 
     final Completer completer = Completer();
 
-    Duration? original = controller!.duration;
+    final Duration? original = controller!.duration;
     controller!.duration = durationTotal;
     await controller!.forward();
 

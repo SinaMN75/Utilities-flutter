@@ -1,7 +1,6 @@
 import 'package:intl/intl.dart' as intl;
 import 'package:utilities/utilities.dart';
-import 'package:utilities/utils/multi_formatter/flutter_multi_formatter.dart';
-import 'package:utilities/utils/persian_date_picker/persian_datetime_picker.dart';
+import 'package:utilities/utilities2.dart';
 
 extension TextEditingControllerExtension on TextEditingController {
   String numberString() => text.replaceAll(RegExp('[^0-9]'), '');
@@ -27,8 +26,8 @@ extension OptionalStringExtension on String? {
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatFullDate();
 
   String toJalaliDateTimeFull() {
-    DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString());
-    return Jalali.fromDateTime(dateTime).formatCompactDate() + " " + dateTime.hour.toString() + ":" + dateTime.minute.toString();
+    final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString());
+    return "${Jalali.fromDateTime(dateTime).formatCompactDate()} ${dateTime.hour}:${dateTime.minute}";
   }
 
   String toRialMoneyPersian({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "" : "-", "");
@@ -37,7 +36,7 @@ extension OptionalStringExtension on String? {
 
   String rialToTomanMoneyPersian() => "${((this ?? "0").toInt() / 10).toString().separateNumbers3By3()} تومان ".trim();
 
-  String formatJalaliDateTime({bool toLocal = false}) {
+  String formatJalaliDateTime({final bool toLocal = false}) {
     final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString()).toLocal();
     final Jalali jalali = Jalali.fromDateTime(dateTime);
     if (dateTime.hour == 0 && dateTime.minute == 0) return '${jalali.year}/${jalali.month}/${jalali.day}';
@@ -56,7 +55,7 @@ extension StringExtensions on String {
 
   int number() => replaceAll(RegExp('[^0-9]'), '').toInt();
 
-  String? nullIfEmpty() => this.isEmpty ? null : this;
+  String? nullIfEmpty() => isEmpty ? null : this;
 
   String toRialMoneyPersian() => "${separateNumbers3By3()} ریال ";
 
@@ -112,7 +111,7 @@ extension StringExtensions on String {
     try {
       final Duration difference = DateTime.now().difference(intl.DateFormat("yyyy-MM-ddThh:mm:sss").parse(this));
       if (difference.inDays > 8)
-        return this.substring(0, 10);
+        return substring(0, 10);
       else if ((difference.inDays / 7).floor() >= 1)
         return persian
             ? numericDates
@@ -249,33 +248,32 @@ extension StringExtensions on String {
     return month;
   }
 
-  String removeCharAt(int charIndex) {
-    final charList = split('').toList();
+  String removeCharAt(final int charIndex) {
+    final List<String> charList = split('').toList();
     charList.removeAt(charIndex);
-    return charList.join('');
+    return charList.join();
   }
 
   String toPhoneNumber({
-    InvalidPhoneAction invalidPhoneAction = InvalidPhoneAction.ShowUnformatted,
-    bool allowEndlessPhone = false,
-    String? defaultMask,
-    String? defaultCountryCode,
-  }) {
-    return formatAsPhoneNumber(
-          this,
-          allowEndlessPhone: allowEndlessPhone,
-          defaultCountryCode: defaultCountryCode,
-          defaultMask: defaultMask,
-          invalidPhoneAction: invalidPhoneAction,
-        ) ??
-        this;
-  }
+    final InvalidPhoneAction invalidPhoneAction = InvalidPhoneAction.ShowUnformatted,
+    final bool allowEndlessPhone = false,
+    final String? defaultMask,
+    final String? defaultCountryCode,
+  }) =>
+      formatAsPhoneNumber(
+        this,
+        allowEndlessPhone: allowEndlessPhone,
+        defaultCountryCode: defaultCountryCode,
+        defaultMask: defaultMask,
+        invalidPhoneAction: invalidPhoneAction,
+      ) ??
+      this;
 
   String toCardNumber() => formatAsCardNumber(this);
 
   bool isValidCardNumber({
-    bool checkLength = false,
-    bool useLuhnAlgo = true,
+    final bool checkLength = false,
+    final bool useLuhnAlgo = true,
   }) =>
       isCardNumberValid(
         cardNumber: this,

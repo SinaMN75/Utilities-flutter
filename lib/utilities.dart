@@ -105,8 +105,8 @@ abstract class UCore {
 }
 
 Future<void> initUtilities({
-  final FirebaseOptions? firebaseOptions,
   required final String apiKey,
+  final FirebaseOptions? firebaseOptions,
   final String? baseUrl,
   final bool safeDevice = false,
   final bool protectDataLeaking = false,

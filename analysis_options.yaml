@@ -1,14 +1,6 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude:
-    - "lib/generated_plugin_registrant.dart"
-    - "lib/generated/intl/messages_all.dart"
-    - "lib/generated/intl/messages_en.dart"
-    - "lib/generated/intl/messages_fa.dart"
-    - "lib/generated/l10n.dart"
-    - "lib/view/widgets/chat_view/**"
-
 
 #  errors:
 #    always_declare_return_types: error

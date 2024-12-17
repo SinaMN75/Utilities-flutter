@@ -5,6 +5,7 @@ import 'package:utilities/utilities2.dart';
 class UScaffold extends StatelessWidget {
   const UScaffold({
     required this.body,
+    super.key,
     this.appBar,
     this.drawer,
     this.endDrawer,
@@ -22,11 +23,9 @@ class UScaffold extends StatelessWidget {
     this.extendBodyBehindAppBar = false,
     this.floatingActionButtonLocation = FloatingActionButtonLocation.endFloat,
     this.alignment = Alignment.center,
-    this.key,
   });
 
   final Widget body;
-  final Key? key;
   final PreferredSizeWidget? appBar;
   final Widget? drawer;
   final Widget? endDrawer;
@@ -46,7 +45,7 @@ class UScaffold extends StatelessWidget {
   final Alignment alignment;
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
+  Widget build(final BuildContext context) => GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
         child: Scaffold(
           onDrawerChanged: onDrawerChanged,
@@ -79,8 +78,8 @@ class UScaffold extends StatelessWidget {
 
 class USmartRefresh extends StatelessWidget {
   const USmartRefresh({
-    super.key,
     required this.child,
+    super.key,
     this.controller,
     this.scrollController,
     this.onRefresh,
@@ -96,7 +95,7 @@ class USmartRefresh extends StatelessWidget {
   final bool enablePullUp;
 
   @override
-  Widget build(BuildContext context) => SmartRefresher(
+  Widget build(final BuildContext context) => SmartRefresher(
         scrollController: scrollController,
         enablePullUp: enablePullUp,
         header: const WaterDropHeader(),
@@ -113,7 +112,7 @@ class USmartRefresh extends StatelessWidget {
               body = const Text("release to load more");
             else
               body = const Text("No more Data");
-            return SizedBox(height: 55.0, child: Center(child: body));
+            return SizedBox(height: 55, child: Center(child: body));
           },
         ),
         controller: controller ?? RefreshController(),
@@ -125,9 +124,9 @@ class USmartRefresh extends StatelessWidget {
 
 class UDefaultTabBar extends StatelessWidget {
   const UDefaultTabBar({
-    super.key,
     required this.children,
     required this.tabBar,
+    super.key,
     this.width,
     this.height,
     this.controller,
@@ -144,7 +143,7 @@ class UDefaultTabBar extends StatelessWidget {
   final ScrollPhysics? physics;
 
   @override
-  Widget build(BuildContext context) => DefaultTabController(
+  Widget build(final BuildContext context) => DefaultTabController(
         initialIndex: initialIndex,
         length: children.length,
         child: Column(
@@ -155,8 +154,8 @@ class UDefaultTabBar extends StatelessWidget {
               height: height ?? MediaQuery.sizeOf(navigatorKey.currentContext!).height,
               child: TabBarView(
                 physics: physics,
-                children: children,
                 controller: controller,
+                children: children,
               ),
             ).expanded()
           ],
@@ -166,9 +165,9 @@ class UDefaultTabBar extends StatelessWidget {
 
 class UIconTextHorizontal extends StatelessWidget {
   const UIconTextHorizontal({
-    super.key,
     required this.leading,
     required this.trailing,
+    super.key,
     this.spaceBetween = 6,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
@@ -183,7 +182,7 @@ class UIconTextHorizontal extends StatelessWidget {
   final MainAxisSize mainAxisSize;
 
   @override
-  Widget build(BuildContext context) => Row(
+  Widget build(final BuildContext context) => Row(
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
         mainAxisSize: mainAxisSize,
@@ -193,9 +192,9 @@ class UIconTextHorizontal extends StatelessWidget {
 
 class UIconTextVertical extends StatelessWidget {
   const UIconTextVertical({
-    super.key,
     required this.leading,
     required this.trailing,
+    super.key,
     this.spaceBetween = 6,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
@@ -210,7 +209,7 @@ class UIconTextVertical extends StatelessWidget {
   final MainAxisSize mainAxisSize;
 
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(final BuildContext context) => Column(
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
         mainAxisSize: mainAxisSize,

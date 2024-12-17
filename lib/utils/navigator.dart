@@ -53,9 +53,9 @@ abstract class UNavigator {
   static void back({final bool closeOverlays = false}) => delay(10, () => Get.back(closeOverlays: closeOverlays));
 
   static void alertDialog({
+    required final (String, VoidCallback) action1,
     final String? title,
     final Widget? titleWidget,
-    required final (String, VoidCallback) action1,
     final String? subtitle,
     final Widget? content,
     final (String, VoidCallback)? action2,
@@ -83,7 +83,7 @@ abstract class UNavigator {
     final bool useSafeArea = false,
     final Clip clipBehavior = Clip.hardEdge,
     final bool scrollable = false,
-    final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+    final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
     final EdgeInsetsGeometry? contentPadding = EdgeInsets.zero,
     final bool defaultCloseButton = false,
     final VoidCallback? onDismiss,
@@ -133,7 +133,7 @@ abstract class UNavigator {
           contentTextStyle: contentTextStyle,
           icon: defaultCloseButton
               ? IconButton(
-                  onPressed: () => UNavigator.back(),
+                  onPressed: UNavigator.back,
                   icon: Icon(Icons.close, color: navigatorKey.currentContext!.theme.colorScheme.error),
                 ).alignAtCenterRight()
               : icon,

@@ -3,14 +3,15 @@ import 'package:utilities/utilities.dart';
 class UBarcode extends StatefulWidget {
   const UBarcode(
     this.value, {
-    super.key,
+    this.type = UBarcodeQrCodeType.qrcode,
     this.color,
     this.backgroundColor,
     this.showValue = false,
+    super.key,
   });
 
   final String value;
-  final UBarcodeQrCodeType type = UBarcodeQrCodeType.qrcode;
+  final UBarcodeQrCodeType type;
   final Color? color;
   final Color? backgroundColor;
   final bool showValue;
@@ -42,7 +43,7 @@ class _UBarcodeState extends State<UBarcode> {
   }
 
   @override
-  Widget build(BuildContext context) => SfBarcodeGenerator(
+  Widget build(final BuildContext context) => SfBarcodeGenerator(
         value: widget.value,
         symbology: symbology,
         barColor: widget.color,

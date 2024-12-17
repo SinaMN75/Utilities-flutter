@@ -34,7 +34,7 @@ abstract class UTagUtils {
 }
 
 extension TagMediaExtension on List<TagMedia> {
-  List<int> getNumbers() => this.map((final TagMedia e) => e.number).toList();
+  List<int> getNumbers() => map((final TagMedia e) => e.number).toList();
 }
 
 extension NullableTagMediaExtension on List<TagMedia>? {
@@ -42,7 +42,7 @@ extension NullableTagMediaExtension on List<TagMedia>? {
 }
 
 extension TagCommentExtension on List<TagComment> {
-  List<int> getNumbers() => this.map((final TagComment e) => e.number).toList();
+  List<int> getNumbers() => map((final TagComment e) => e.number).toList();
 }
 
 extension NullableTagCommentExtension on List<TagComment>? {
@@ -50,7 +50,7 @@ extension NullableTagCommentExtension on List<TagComment>? {
 }
 
 extension TagContentExtension on List<TagContent> {
-  List<int> getNumbers() => this.map((final TagContent e) => e.number).toList();
+  List<int> getNumbers() => map((final TagContent e) => e.number).toList();
 }
 
 extension NullableTagContentExtension on List<TagContent>? {

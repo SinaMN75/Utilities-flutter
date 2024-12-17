@@ -122,7 +122,7 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
 
     Widget _badgeView() => AnimatedOpacity(
           opacity: widget.showBadge ? 1 : 0,
-          duration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200),
           child: Material(
             shape: border,
             elevation: widget.elevation,
@@ -133,11 +133,11 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
 
     Widget _badgeViewGradient() => AnimatedOpacity(
           opacity: widget.showBadge ? 1 : 0,
-          duration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200),
           child: Material(
             shape: border,
             elevation: widget.elevation,
-            child: Container(
+            child: DecoratedBox(
               decoration: widget.shape == BadgeShape.circle
                   ? BoxDecoration(gradient: widget.gradient, shape: BoxShape.circle)
                   : BoxDecoration(
@@ -174,8 +174,8 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
   @override
   void didUpdateWidget(final BadgeWidget oldWidget) {
     if (widget.badgeContent is Text && oldWidget.badgeContent is Text) {
-      final Text newText = widget.badgeContent as Text;
-      final Text oldText = oldWidget.badgeContent as Text;
+      final Text newText = widget.badgeContent! as Text;
+      final Text oldText = oldWidget.badgeContent! as Text;
       if (newText.data != oldText.data) {
         _animationController.reset();
         _animationController.forward();
@@ -183,8 +183,8 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
     }
 
     if (widget.badgeContent is Icon && oldWidget.badgeContent is Icon) {
-      final Icon newIcon = widget.badgeContent as Icon;
-      final Icon oldIcon = oldWidget.badgeContent as Icon;
+      final Icon newIcon = widget.badgeContent! as Icon;
+      final Icon oldIcon = oldWidget.badgeContent! as Icon;
       if (newIcon.icon != oldIcon.icon) {
         _animationController.reset();
         _animationController.forward();
@@ -204,7 +204,7 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
 class BadgePosition {
   const BadgePosition({this.top, this.end, this.bottom, this.start, this.isCenter = false});
 
-  factory BadgePosition.center() => BadgePosition(isCenter: true);
+  factory BadgePosition.center() => const BadgePosition(isCenter: true);
 
   factory BadgePosition.topStart({final double top = -5, final double start = -10}) => BadgePosition(top: top, start: start);
 
@@ -230,7 +230,7 @@ enum BadgeShape {
 }
 
 class BadgePositioned extends StatelessWidget {
-  const BadgePositioned({final Key? key, this.position, required this.child}) : super(key: key);
+  const BadgePositioned({required this.child, final Key? key, this.position}) : super(key: key);
   final BadgePosition? position;
 
   final Widget child;

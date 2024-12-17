@@ -10,7 +10,7 @@ Future<void> httpRequest({
   final dynamic body,
   final bool encodeBody = true,
   final Map<String, String>? headers,
-  final Duration timeout = const Duration(seconds: 30),
+  final Duration timeout = const Duration(seconds: 10),
   final bool clearHeaders = false,
   final DateTime? cacheExpireDate,
 }) async {
@@ -71,6 +71,7 @@ Future<void> httpRequest({
     if (response.isSuccessful()) {
       action(response);
     } else {
+      if (response.statusCode == 401) ULocalStorage.clearData();
       error(response);
     }
   } catch (e) {

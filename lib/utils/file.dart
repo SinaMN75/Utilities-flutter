@@ -34,7 +34,7 @@ abstract class UFile {
                 path: UApp.isWeb ? null : i.path,
                 bytes: i.bytes,
                 extension: ".${i.extension}",
-                jsonDetail: MediaJsonDetail(title: (i.name.split(".").first)),
+                jsonDetail: MediaJsonDetail(title: i.name.split(".").first),
               ),
             );
           },

@@ -1,16 +1,10 @@
 import 'package:utilities/utilities.dart';
 import 'package:utilities/utilities3.dart';
 
-bool _isEmpty(double? d) {
-  return d == null || d == 0.0;
-}
+bool _isEmpty(final double? d) => d == null || d == 0.0;
 
 /// cornerdart migrate
 class FDottedLineCorner {
-  final double leftTopCorner;
-  final double rightTopCorner;
-  final double rightBottomCorner;
-  final double leftBottomCorner;
 
   /// Specify the size of each rounded corner
   const FDottedLineCorner({
@@ -21,14 +15,33 @@ class FDottedLineCorner {
   });
 
   /// Set all rounded corners to one size
-  FDottedLineCorner.all(double radius)
+  FDottedLineCorner.all(final double radius)
       : leftTopCorner = radius,
         rightTopCorner = radius,
         rightBottomCorner = radius,
         leftBottomCorner = radius;
+  final double leftTopCorner;
+  final double rightTopCorner;
+  final double rightBottomCorner;
+  final double leftBottomCorner;
 }
 
 class FDottedLine extends StatefulWidget {
+
+  /// [FDottedLine] provides developers with the ability to create dashed lines. It also supports creating a dashed border for a [Widget]. Support for controlling the thickness, spacing, and corners of the dotted border.
+  FDottedLine({
+    final Key? key,
+    this.color = Colors.black,
+    this.height,
+    this.width,
+    this.dottedLength = 5.0,
+    this.space = 3.0,
+    this.strokeWidth = 1.0,
+    this.corner,
+    this.child,
+  }) : super(key: key) {
+    assert(width != null || height != null || child != null);
+  }
   /// Dotted line color
   final Color color;
 
@@ -56,21 +69,6 @@ class FDottedLine extends StatefulWidget {
   /// At this time, [width] and [height] will no longer be valid.
   final Widget? child;
 
-  /// [FDottedLine] provides developers with the ability to create dashed lines. It also supports creating a dashed border for a [Widget]. Support for controlling the thickness, spacing, and corners of the dotted border.
-  FDottedLine({
-    Key? key,
-    this.color = Colors.black,
-    this.height,
-    this.width,
-    this.dottedLength = 5.0,
-    this.space = 3.0,
-    this.strokeWidth = 1.0,
-    this.corner,
-    this.child,
-  }) : super(key: key) {
-    assert(width != null || height != null || child != null);
-  }
-
   @override
   _FDottedLineState createState() => _FDottedLineState();
 }
@@ -81,11 +79,11 @@ class _FDottedLineState extends State<FDottedLine> {
   GlobalKey childKey = GlobalKey();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     if (_isEmpty(widget.width) && _isEmpty(widget.height) && widget.child == null) return Container();
     if (widget.child != null) {
       tryToGetChildSize();
-      List<Widget> children = [];
+      final List<Widget> children = <Widget>[];
       children.add(Container(
         clipBehavior: widget.corner == null ? Clip.none : Clip.antiAlias,
         decoration: BoxDecoration(
@@ -109,12 +107,12 @@ class _FDottedLineState extends State<FDottedLine> {
   }
 
   void tryToGetChildSize() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((final Duration timeStamp) {
       try {
-        RenderBox box = childKey.currentContext!.findRenderObject() as RenderBox;
-        double tempWidth = box.size.width;
-        double tempHeight = box.size.height;
-        bool needUpdate = tempWidth != childWidth || tempHeight != childHeight;
+        final RenderBox box = childKey.currentContext!.findRenderObject()! as RenderBox;
+        final double tempWidth = box.size.width;
+        final double tempHeight = box.size.height;
+        final bool needUpdate = tempWidth != childWidth || tempHeight != childHeight;
         if (needUpdate) {
           setState(() {
             childWidth = tempWidth;
@@ -125,8 +123,7 @@ class _FDottedLineState extends State<FDottedLine> {
     });
   }
 
-  CustomPaint dashPath({double? width, double? height}) {
-    return CustomPaint(
+  CustomPaint dashPath({final double? width, final double? height}) => CustomPaint(
       size: Size(_isEmpty(width) ? widget.strokeWidth : width!, _isEmpty(height) ? widget.strokeWidth : height!),
       foregroundPainter: _DottedLinePainter()
         ..color = widget.color
@@ -136,7 +133,6 @@ class _FDottedLineState extends State<FDottedLine> {
         ..corner = widget.corner
         ..isShape = !_isEmpty(height) && !_isEmpty(width),
     );
-  }
 }
 
 class _DottedLinePainter extends CustomPainter {
@@ -152,8 +148,8 @@ class _DottedLinePainter extends CustomPainter {
   Radius bottomLeft = Radius.zero;
 
   @override
-  void paint(Canvas canvas, Size size) {
-    var isHorizontal = size.width > size.height;
+  void paint(final Canvas canvas, final Size size) {
+    final bool isHorizontal = size.width > size.height;
     final Paint paint = Paint()
       ..isAntiAlias = true
       ..filterQuality = FilterQuality.high
@@ -163,10 +159,10 @@ class _DottedLinePainter extends CustomPainter {
 
     /// line
     if (!isShape) {
-      double length = isHorizontal ? size.width : size.height;
-      double count = (length) / (dottedLength! + space!);
+      final double length = isHorizontal ? size.width : size.height;
+      final double count = length / (dottedLength! + space!);
       if (count < 2.0) return;
-      var startOffset = Offset(0, 0);
+      Offset startOffset = Offset.zero;
       for (int i = 0; i < count.toInt(); i++) {
         canvas.drawLine(startOffset, startOffset.translate((isHorizontal ? dottedLength! : 0), (isHorizontal ? 0 : dottedLength!)), paint);
         startOffset = startOffset.translate((isHorizontal ? (dottedLength! + space!) : 0), (isHorizontal ? 0 : (dottedLength! + space!)));
@@ -175,7 +171,7 @@ class _DottedLinePainter extends CustomPainter {
 
     /// shape
     else {
-      Path path = Path();
+      final Path path = Path();
       path.addRRect(
         RRect.fromLTRBAndCorners(
           0,
@@ -189,17 +185,17 @@ class _DottedLinePainter extends CustomPainter {
         ),
       );
 
-      Path draw = buildDashPath(path, dottedLength, space);
+      final Path draw = buildDashPath(path, dottedLength, space);
       canvas.drawPath(draw, paint);
     }
   }
 
-  Path buildDashPath(Path path, double? dottedLength, double? space) {
+  Path buildDashPath(final Path path, final double? dottedLength, final double? space) {
     final Path r = Path();
-    for (PathMetric metric in path.computeMetrics()) {
-      double start = 0.0;
+    for (final PathMetric metric in path.computeMetrics()) {
+      double start = 0;
       while (start < metric.length) {
-        double end = start + dottedLength!;
+        final double end = start + dottedLength!;
         r.addPath(metric.extractPath(start, end), Offset.zero);
         start = end + space!;
       }
@@ -208,5 +204,5 @@ class _DottedLinePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_DottedLinePainter oldDelegate) => true;
+  bool shouldRepaint(final _DottedLinePainter oldDelegate) => true;
 }

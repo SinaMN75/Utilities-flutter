@@ -1,15 +1,18 @@
 import 'package:utilities/utilities.dart';
 
 extension WidgetsExtension on Widget {
-  Widget pAll(double padding) => Padding(padding: EdgeInsets.all(padding), child: this);
+  Widget pAll(final double padding) => Padding(padding: EdgeInsets.all(padding), child: this);
 
-  Widget pSymmetric({double horizontal = 0.0, double vertical = 0.0}) => Padding(padding: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical), child: this);
+  Widget pSymmetric({final double horizontal = 0.0, final double vertical = 0.0}) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+        child: this,
+      );
 
   Widget pOnly({
-    double left = 0.0,
-    double top = 0.0,
-    double right = 0.0,
-    double bottom = 0.0,
+    final double left = 0.0,
+    final double top = 0.0,
+    final double right = 0.0,
+    final double bottom = 0.0,
   }) =>
       Padding(padding: EdgeInsets.only(top: top, left: left, right: right, bottom: bottom), child: this);
 
@@ -49,12 +52,12 @@ extension WidgetsExtension on Widget {
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
   Widget showMenus(final List<PopupMenuEntry<int>> items) => GestureDetector(
-        onTapDown: (details) async {
-          final screenSize = MediaQuery.of(navigatorKey.currentContext!).size;
-          double left = details.globalPosition.dx;
-          double top = details.globalPosition.dy;
-          double right = screenSize.width - details.globalPosition.dx;
-          double bottom = screenSize.height - details.globalPosition.dy;
+        onTapDown: (final TapDownDetails details) async {
+          final Size screenSize = MediaQuery.of(navigatorKey.currentContext!).size;
+          final double left = details.globalPosition.dx;
+          final double top = details.globalPosition.dy;
+          final double right = screenSize.width - details.globalPosition.dx;
+          final double bottom = screenSize.height - details.globalPosition.dy;
           await showMenu<int>(
             context: navigatorKey.currentContext!,
             position: RelativeRect.fromLTRB(left, top, right, bottom),
@@ -81,8 +84,8 @@ extension WidgetsExtension on Widget {
   Widget safeArea() => SafeArea(child: this);
 
   Widget scrollable({final Axis scrollDirection = Axis.vertical}) => SingleChildScrollView(
-        child: this,
         scrollDirection: scrollDirection,
+        child: this,
       );
 
   Widget container({
