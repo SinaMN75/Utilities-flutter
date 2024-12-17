@@ -284,4 +284,54 @@ extension StringExtensions on String {
   String toBase64() => base64Encode(utf8.encode(this));
 
   String fromBase64() => utf8.decode(base64Decode(this));
+
+  String toBase58() {
+    const base58Alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    final input = utf8.encode(this);
+    BigInt intData = BigInt.from(0);
+
+    for (var byte in input) intData = intData * BigInt.from(256) + BigInt.from(byte);
+
+    StringBuffer result = StringBuffer();
+    while (intData > BigInt.zero) {
+      final remainder = intData % BigInt.from(58);
+      intData = intData ~/ BigInt.from(58);
+      result.write(base58Alphabet[remainder.toInt()]);
+    }
+
+    for (var byte in input) {
+      if (byte == 0)
+        result.write(base58Alphabet[0]);
+      else
+        break;
+    }
+
+    return result.toString().split('').reversed.join();
+  }
+
+  String fromBase58() {
+    const base58Alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    BigInt intData = BigInt.zero;
+
+    for (var char in this.split('')) {
+      final index = base58Alphabet.indexOf(char);
+      if (index < 0) throw FormatException('Invalid Base58 character: $char');
+      intData = intData * BigInt.from(58) + BigInt.from(index);
+    }
+
+    List<int> bytes = [];
+    while (intData > BigInt.zero) {
+      bytes.insert(0, (intData % BigInt.from(256)).toInt());
+      intData = intData ~/ BigInt.from(256);
+    }
+
+    for (var char in this.split('')) {
+      if (char == '1')
+        bytes.insert(0, 0);
+      else
+        break;
+    }
+
+    return utf8.decode(bytes);
+  }
 }
