@@ -75,7 +75,6 @@ export 'utils/extensions/enums_extension.dart';
 export 'utils/extensions/file_extension.dart';
 export 'utils/extensions/iterable_extension.dart';
 export 'utils/extensions/number_extension.dart';
-export 'utils/extensions/shimmer_extension.dart';
 export 'utils/extensions/string_extension.dart';
 export 'utils/extensions/text_extension.dart';
 export 'utils/extensions/widget_extension.dart';

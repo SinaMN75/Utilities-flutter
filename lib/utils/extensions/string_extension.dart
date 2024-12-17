@@ -280,4 +280,8 @@ extension StringExtensions on String {
         useLuhnAlgo: useLuhnAlgo,
         checkLength: checkLength,
       );
+
+  String toBase64() => base64Encode(utf8.encode(this));
+
+  String fromBase64() => utf8.decode(base64Decode(this));
 }
