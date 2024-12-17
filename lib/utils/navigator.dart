@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:utilities/utilities.dart';
 
 abstract class UNavigator {
-  void push(
+  static void push(
     final Widget page, {
     final bool dialog = false,
     final Transition transition = Transition.cupertino,
@@ -18,7 +18,7 @@ abstract class UNavigator {
         preventDuplicates: preventDuplicates,
       );
 
-  void dialog(
+  static void dialog(
     final Widget page, {
     final bool barrierDismissible = true,
     final bool useSafeArea = false,
@@ -46,7 +46,7 @@ abstract class UNavigator {
 
   static void back({final bool closeOverlays = false}) => Get.back(closeOverlays: closeOverlays);
 
-  void alertDialog({
+  static void alertDialog({
     final String? title,
     final Widget? titleWidget,
     required final (String, VoidCallback) action1,
@@ -71,7 +71,7 @@ abstract class UNavigator {
         onDismiss: onDismiss,
       );
 
-  void dialogAlert(
+  static void dialogAlert(
     final Widget page, {
     final bool barrierDismissible = true,
     final bool useSafeArea = false,
@@ -147,7 +147,7 @@ abstract class UNavigator {
         (final _) => onDismiss != null ? onDismiss() : null,
       );
 
-  void snackbarGreen({
+  static void snackbarGreen({
     required final String title,
     required final String subtitle,
     final SnackPosition? snackPosition,
@@ -228,7 +228,7 @@ abstract class UNavigator {
       );
   }
 
-  void snackbarRed({
+  static void snackbarRed({
     required final String title,
     required final String subtitle,
     final SnackPosition? snackPosition,
