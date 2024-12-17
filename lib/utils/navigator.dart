@@ -9,13 +9,16 @@ abstract class UNavigator {
     final bool preventDuplicates = true,
     final int milliSecondDelay = 1,
   }) async =>
-      Get.to(
-        page,
-        fullscreenDialog: dialog,
-        popGesture: true,
-        opaque: dialog ? false : true,
-        transition: transition,
-        preventDuplicates: preventDuplicates,
+      delay(
+        10,
+        () => Get.to(
+          page,
+          fullscreenDialog: dialog,
+          popGesture: true,
+          opaque: dialog ? false : true,
+          transition: transition,
+          preventDuplicates: preventDuplicates,
+        ),
       );
 
   static void dialog(
@@ -34,17 +37,20 @@ abstract class UNavigator {
     final Transition transition = Transition.cupertino,
     final int milliSecondDelay = 1,
   }) =>
-      Get.offAll(
-        () => page,
-        fullscreenDialog: dialog,
-        popGesture: true,
-        opaque: dialog ? false : true,
-        transition: transition,
+      delay(
+        10,
+        () => Get.offAll(
+          () => page,
+          fullscreenDialog: dialog,
+          popGesture: true,
+          opaque: dialog ? false : true,
+          transition: transition,
+        ),
       );
 
-  static void off(final Widget page) => Get.off(() => page);
+  static void off(final Widget page) => delay(10, () => Get.off(() => page));
 
-  static void back({final bool closeOverlays = false}) => Get.back(closeOverlays: closeOverlays);
+  static void back({final bool closeOverlays = false}) => delay(10, () => Get.back(closeOverlays: closeOverlays));
 
   static void alertDialog({
     final String? title,
