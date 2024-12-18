@@ -25,7 +25,6 @@ export 'package:flutter_svg/flutter_svg.dart';
 export 'package:flutter_typeahead/flutter_typeahead.dart';
 export 'package:geolocator/geolocator.dart';
 export 'package:get/get.dart';
-export 'package:get_storage/get_storage.dart';
 export 'package:group_button/group_button.dart';
 export 'package:image_cropper/image_cropper.dart';
 export 'package:local_auth/local_auth.dart';
@@ -34,6 +33,7 @@ export 'package:path_provider/path_provider.dart';
 export 'package:screen_protector/screen_protector.dart';
 export 'package:screenshot/screenshot.dart';
 export 'package:share_plus/share_plus.dart';
+export 'package:shared_preferences/shared_preferences.dart';
 export 'package:slide_countdown/slide_countdown.dart';
 export 'package:syncfusion_flutter_barcodes/barcodes.dart';
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -117,7 +117,6 @@ Future<void> initUtilities({
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(deviceOrientations);
-  await GetStorage.init();
   UApp.packageInfo = await PackageInfo.fromPlatform();
   if (firebaseOptions != null) {
     try {
