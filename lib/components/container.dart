@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:utilities/utilities.dart';
-import 'package:utilities/utilities2.dart';
 
 class UScaffold extends StatelessWidget {
   const UScaffold({
@@ -73,52 +71,6 @@ class UScaffold extends StatelessWidget {
             ),
           ),
         ),
-      );
-}
-
-class USmartRefresh extends StatelessWidget {
-  const USmartRefresh({
-    required this.child,
-    super.key,
-    this.controller,
-    this.scrollController,
-    this.onRefresh,
-    this.onLoading,
-    this.enablePullUp = false,
-  });
-
-  final Widget child;
-  final RefreshController? controller;
-  final ScrollController? scrollController;
-  final VoidCallback? onRefresh;
-  final VoidCallback? onLoading;
-  final bool enablePullUp;
-
-  @override
-  Widget build(final BuildContext context) => SmartRefresher(
-        scrollController: scrollController,
-        enablePullUp: enablePullUp,
-        header: const WaterDropHeader(),
-        footer: CustomFooter(
-          builder: (final BuildContext? context, final LoadStatus? mode) {
-            Widget body;
-            if (mode == LoadStatus.idle)
-              body = const Text("pull up load");
-            else if (mode == LoadStatus.loading)
-              body = const CupertinoActivityIndicator();
-            else if (mode == LoadStatus.failed)
-              body = const Text("Load Failed!Click retry!");
-            else if (mode == LoadStatus.canLoading)
-              body = const Text("release to load more");
-            else
-              body = const Text("No more Data");
-            return SizedBox(height: 55, child: Center(child: body));
-          },
-        ),
-        controller: controller ?? RefreshController(),
-        onRefresh: onRefresh,
-        onLoading: onLoading,
-        child: child,
       );
 }
 
