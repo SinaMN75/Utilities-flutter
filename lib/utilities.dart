@@ -42,6 +42,7 @@ export 'package:utilities/utilities.dart';
 export 'package:uuid/uuid.dart';
 export 'package:video_player/video_player.dart';
 export 'package:webview_flutter/webview_flutter.dart';
+export 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 export 'components/badges.dart';
 export 'components/barcode_qrcode.dart';
