@@ -16,7 +16,6 @@ extension OptionalStringExtension on String? {
   String? nullIfEmpty() => (this ?? "").isEmpty ? null : this;
 
   String getPrice() {
-    // final int ff=int.parse(this);
     final int nums = this!.toInt();
     return nums > 0 ? intl.NumberFormat('###,###,###,###,000').format(nums) : '0';
   }
@@ -46,6 +45,8 @@ extension OptionalStringExtension on String? {
   bool isNullOrEmpty() => this == null || this == "";
 
   bool isNotNullOrEmpty() => this != null || this != "";
+
+  bool isNumeric() => (int.tryParse(this ?? "") ?? 10000) != 10000;
 }
 
 extension StringExtensions on String {
