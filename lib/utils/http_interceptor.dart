@@ -36,7 +36,7 @@ Future<void> httpRequest({
 
     if (httpMethod == EHttpMethod.get) {
       if (cacheExpireDate != null) {
-        if (ULocalStorage.getString(url).isNullOrEmpty() || (ULocalStorage.getString(url) ?? "").length <= 10) {
+        if (ULocalStorage.getString(url).isNullOrEmpty()) {
           response = await connect.get(url, headers: header);
           ULocalStorage.set(url, response.bodyString);
           ULocalStorage.set("${url}___ExpireDate", cacheExpireDate.toIso8601String());
