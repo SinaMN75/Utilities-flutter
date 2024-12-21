@@ -117,6 +117,7 @@ Future<void> initUtilities({
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(deviceOrientations);
+  await ULocalStorage.init();
   UApp.packageInfo = await PackageInfo.fromPlatform();
   if (firebaseOptions != null) {
     try {

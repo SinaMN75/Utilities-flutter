@@ -36,6 +36,7 @@ class UserReadDto {
     this.ageCategory,
     required this.jsonDetail,
     required this.tags,
+    required this.tags2,
     this.media,
     this.categories,
     this.isFollowing,
@@ -82,6 +83,7 @@ class UserReadDto {
         ageCategory: json["ageCategory"],
         jsonDetail: UserJsonDetail.fromMap(json["jsonDetail"]),
         tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags2: List<int>.from(json["tags2"]!.map((final dynamic x) => x)),
         media: json["media"] == null ? <MediaReadDto>[] : List<MediaReadDto>.from(json["media"]!.map(MediaReadDto.fromMap)),
         categories: json["categories"] == null ? <CategoryReadDto>[] : List<CategoryReadDto>.from(json["categories"]!.map(CategoryReadDto.fromMap)),
         isFollowing: json["isFollowing"],
@@ -124,6 +126,7 @@ class UserReadDto {
   final int? ageCategory;
   final UserJsonDetail jsonDetail;
   List<int> tags;
+  List<int> tags2;
   final List<MediaReadDto>? media;
   final List<CategoryReadDto>? categories;
   final bool? isFollowing;
@@ -169,6 +172,7 @@ class UserReadDto {
         "ageCategory": ageCategory,
         "jsonDetail": jsonDetail.toMap(),
         "tags": List<dynamic>.from(tags.map((final int x) => x)),
+        "tags2": List<dynamic>.from(tags2.map((final int x) => x)),
         "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((final MediaReadDto x) => x.toMap())),
         "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((final CategoryReadDto x) => x.toMap())),
         "isFollowing": isFollowing,
@@ -428,6 +432,7 @@ class UserFilterDto {
     this.showPremiums,
     this.categories,
     this.tags,
+    this.tags2,
     this.institute,
   });
 
@@ -471,6 +476,7 @@ class UserFilterDto {
         phoneNumbers: json["phoneNumbers"] == null ? <String>[] : List<String>.from(json["phoneNumbers"]!.map((final String x) => x)),
         categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((final String x) => x)),
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+        tags2: json["tags2"] == null ? <int>[] : List<int>.from(json["tags2"]!.map((final dynamic x) => x)),
       );
 
   factory UserFilterDto.fromJson(final String str) => UserFilterDto.fromMap(json.decode(str));
@@ -513,6 +519,7 @@ class UserFilterDto {
   final List<String>? phoneNumbers;
   final List<String>? categories;
   final List<int>? tags;
+  final List<int>? tags2;
 
   String toJson() => json.encode(removeNullEntries(toMap()));
 
@@ -556,6 +563,7 @@ class UserFilterDto {
         "phoneNumbers": phoneNumbers == null ? <dynamic>[] : List<dynamic>.from(phoneNumbers!.map((final String x) => x)),
         "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((final String x) => x)),
         "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((final int x) => x)),
+        "tags2": tags2 == null ? <dynamic>[] : List<dynamic>.from(tags2!.map((final int x) => x)),
       };
 }
 
@@ -766,6 +774,7 @@ class UserCreateUpdateDto {
   final String? address;
   final String? institute;
   final List<int>? tags;
+  final List<int>? tags2;
   final List<int>? removeTags;
   final List<int>? addTags;
   final String? title;
@@ -830,6 +839,7 @@ class UserCreateUpdateDto {
     this.shebaNumber,
     this.address,
     this.tags,
+    this.tags2,
     this.removeTags,
     this.addTags,
     this.weight,
@@ -915,6 +925,7 @@ class UserCreateUpdateDto {
         address: json["address"],
         institute: json["institute"],
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+        tags2: json["tags2"] == null ? [] : List<int>.from(json["tags2"]!.map((x) => x)),
         removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
         addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
         keyValues1: json["keyValues1"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues1"]!.map((x) => KeyValueViewModel.fromMap(x))),
@@ -987,6 +998,7 @@ class UserCreateUpdateDto {
         "shebaNumber": shebaNumber,
         "address": address,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+        "tags2": tags2 == null ? [] : List<dynamic>.from(tags2!.map((x) => x)),
         "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
         "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
         "keyValues1": keyValues1 == null ? [] : List<dynamic>.from(keyValues1!.map((x) => x.toMap())),

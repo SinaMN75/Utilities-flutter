@@ -3,9 +3,7 @@ import 'package:utilities/utilities.dart';
 abstract class ULocalStorage {
   static late SharedPreferences sharedPreferences;
 
-  static void init() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-  }
+  static Future<void> init() async => sharedPreferences = await SharedPreferences.getInstance();
 
   static void set(final String key, final dynamic value) {
     if (value is String) sharedPreferences.setString(key, value);
