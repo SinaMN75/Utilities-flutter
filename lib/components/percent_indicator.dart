@@ -730,7 +730,7 @@ class _LinearPainter extends CustomPainter {
   }) {
     _paintBackground.color = backgroundColor;
 
-    _paintLine.color = progress.toString() == "0.0" ? progressColor.withOpacity(0.0) : progressColor;
+    _paintLine.color = progress.toString() == "0.0" ? progressColor.withValues(alpha: 0.0) : progressColor;
   }
 
   @override
