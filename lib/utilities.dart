@@ -69,7 +69,6 @@ export 'data/data.dart';
 export 'utils/clipboard.dart';
 export 'utils/constants.dart';
 export 'utils/enums.dart';
-export 'utils/excel.dart';
 export 'utils/extensions/date_extension.dart';
 export 'utils/extensions/enums_extension.dart';
 export 'utils/extensions/file_extension.dart';

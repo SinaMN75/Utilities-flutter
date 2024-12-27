@@ -1,12 +1,12 @@
 import 'package:utilities_framework_flutter/utilities.dart';
 
 abstract class UFonts extends TextStyle {
-  static const TextStyle vazir = TextStyle(fontFamily: 'Vazir', package: "utilities");
-  static const TextStyle samim = TextStyle(fontFamily: 'Samim', package: "utilities");
-  static const TextStyle shabnam = TextStyle(fontFamily: 'Shabnam', package: "utilities");
-  static const TextStyle sahel = TextStyle(fontFamily: 'Sahel', package: "utilities");
-  static const TextStyle yekan = TextStyle(fontFamily: 'Yekan', package: "utilities");
-  static const TextStyle iranSansFaNum = TextStyle(fontFamily: 'IranSansFaNum', package: "utilities");
+  static const TextStyle vazir = TextStyle(fontFamily: 'Vazir', package: "utilities_framework_flutter");
+  static const TextStyle samim = TextStyle(fontFamily: 'Samim', package: "utilities_framework_flutter");
+  static const TextStyle shabnam = TextStyle(fontFamily: 'Shabnam', package: "utilities_framework_flutter");
+  static const TextStyle sahel = TextStyle(fontFamily: 'Sahel', package: "utilities_framework_flutter");
+  static const TextStyle yekan = TextStyle(fontFamily: 'Yekan', package: "utilities_framework_flutter");
+  static const TextStyle iranSansFaNum = TextStyle(fontFamily: 'IranSansFaNum', package: "utilities_framework_flutter");
 
   static TextTheme vazirTextTheme = const TextTheme(
     displayLarge: UFonts.vazir,

@@ -7,10 +7,10 @@ abstract class UNavigator {
     final bool dialog = false,
     final Transition transition = Transition.cupertino,
     final bool preventDuplicates = true,
-    final int milliSecondDelay = 1,
+    final int milliSecondDelay = 10,
   }) async =>
       delay(
-        10,
+        milliSecondDelay,
         () => Get.to(
           page,
           fullscreenDialog: dialog,
@@ -35,10 +35,10 @@ abstract class UNavigator {
     final Widget page, {
     final bool dialog = false,
     final Transition transition = Transition.cupertino,
-    final int milliSecondDelay = 1,
+    final int milliSecondDelay = 10,
   }) =>
       delay(
-        10,
+        milliSecondDelay,
         () => Get.offAll(
           () => page,
           fullscreenDialog: dialog,
