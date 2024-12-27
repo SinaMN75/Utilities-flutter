@@ -18,30 +18,14 @@ extension GenericIterableExtentions<T> on Iterable {
   T? getFirstIfExist() => isNullOrEmpty() ? null : first;
 
   T? firstOrDefault({final T? defaultValue}) => isNullOrEmpty() ? defaultValue : first;
-}
-
-extension IterableExtentions<T> on Iterable<T> {
-  Iterable<T> takeIfPossible(final int range) {
-    if (range > length)
-      return take(length);
-    else
-      return take(range);
-  }
-
-  T? getFirstIfExist() {
-    if (isNullOrEmpty())
-      return null;
-    else
-      return first;
-  }
 
   void forEachIndexed(void Function(int index, T element) action) {
     int index = 0;
     for (var element in this) action(index++, element);
   }
 
-  List<T> alternative(final T main, final T replace) {
-    final List<T> list = this.toList();
+  List alternative(final T main, final T replace) {
+    final List list = toList();
     list.remove(main);
     list.add(replace);
     return list;
@@ -58,20 +42,20 @@ extension IterableExtentions<T> on Iterable<T> {
     return setA.any(this.contains);
   }
 
-  List<T> addAndReturn(final T t) {
-    List<T> list = toList();
+  List addAndReturn(final T t) {
+    List list = toList();
     list.add(t);
     return list;
   }
 
-  List<T> addAllAndReturn(final List<T> t) {
-    List<T> list = toList();
+  List addAllAndReturn(final List<T> t) {
+    List list = toList();
     list.addAll(t);
     return list;
   }
 
-  List<T> insertAndReturn(final int index, final T t) {
-    List<T> list = toList();
+  List insertAndReturn(final int index, final T t) {
+    List list = toList();
     list.insert(index, t);
     return list;
   }
