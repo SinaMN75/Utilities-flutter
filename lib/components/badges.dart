@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 enum BadgeAnimationType {
   slide,
@@ -70,7 +70,7 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
   late AnimationController _animationController;
   late Animation<double> _animation;
 
-  final Tween<Offset> _positionTween = Tween(begin: const Offset(-0.5, 0.9), end: Offset.zero);
+  final Tween<Offset> _positionTween = Tween<Offset>(begin: const Offset(-0.5, 0.9), end: Offset.zero);
   final Tween<double> _scaleTween = Tween<double>(begin: 0.1, end: 1);
 
   @override

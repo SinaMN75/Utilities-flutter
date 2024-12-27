@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 final RegExp _repeatingDots = RegExp(r'\.{2,}');
 final RegExp _repeatingCommas = RegExp(r',{2,}');

@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 extension TagProductsExtentions<T> on List<TagProduct> {
   TagProduct? getByNumber(final int number) => where((final TagProduct element) => element.number == number).toList().firstOrNull;

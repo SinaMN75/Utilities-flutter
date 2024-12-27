@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 export 'dart:async';
 export 'dart:convert';
@@ -39,7 +39,7 @@ export 'package:slide_countdown/slide_countdown.dart';
 export 'package:syncfusion_flutter_barcodes/barcodes.dart';
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 export 'package:url_launcher/url_launcher.dart';
-export 'package:utilities/utilities.dart';
+export 'package:utilities_framework_flutter/utilities.dart';
 export 'package:uuid/uuid.dart';
 export 'package:video_player/video_player.dart';
 export 'package:webview_flutter/webview_flutter.dart';

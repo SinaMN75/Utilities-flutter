@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 enum DataType {
   DataList,
@@ -63,13 +63,13 @@ class FlutterTreePro extends StatefulWidget {
   final bool isExpanded;
 
   FlutterTreePro({
+    required this.onChecked,
     Key? key,
     this.treeData = const <String, dynamic>{},
     this.initialTreeData = const <String, dynamic>{},
     this.config = const Config(),
     this.listData = const <Map<String, dynamic>>[],
     this.initialListData = const <Map<String, dynamic>>[],
-    required this.onChecked,
     this.isExpanded = false,
   }) : super(key: key);
 

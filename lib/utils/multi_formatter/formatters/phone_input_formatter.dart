@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 class PhoneInputFormatter extends TextInputFormatter {
   final ValueChanged<PhoneCountryData?>? onCountrySelected;
@@ -209,12 +209,6 @@ class PhoneInputFormatter extends TextInputFormatter {
 
     if (currentMask == newMask) {
       return;
-    }
-
-    if (kDebugMode) {
-      print(
-        'Phone mask for country "${countryData['country']}"' + ' was replaced from $currentMask to $newMask',
-      );
     }
 
     countryData['phoneMask'] = newMask;

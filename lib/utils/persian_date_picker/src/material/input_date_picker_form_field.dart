@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
+import 'package:utilities_framework_flutter/utils/shamsi_date/shamsi_date.dart';
 
 import 'date.dart';
 

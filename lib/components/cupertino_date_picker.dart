@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 class LinearDatePicker extends StatefulWidget {
   const LinearDatePicker({
@@ -313,8 +313,8 @@ class NumberPicker extends StatelessWidget {
     this.unselectedRowStyle,
     this.isShowMonthName = false,
     this.isJalali = false,
-  })  : assert(maxValue >= minValue),
-        assert(step > 0),
+  })  : assert(maxValue >= minValue, ""),
+        assert(step > 0, ""),
         selectedIntValue = (initialValue < minValue) ? minValue : ((initialValue > maxValue) ? maxValue : initialValue),
         selectedDecimalValue = -1,
         decimalPlaces = 0,
@@ -417,13 +417,13 @@ class NumberPicker extends StatelessWidget {
 
     return Listener(
       onPointerUp: (final PointerUpEvent ev) {
-        if (intScrollController.position.activity is HoldScrollActivity) {
+        if (intScrollController.position is HoldScrollActivity) {
           animateInt(selectedIntValue);
         }
       },
       child: NotificationListener(
         onNotification: _onIntegerNotification,
-        child: Container(
+        child: SizedBox(
           height: listViewHeight,
           width: listViewWidth,
           child: Stack(
@@ -500,7 +500,7 @@ class NumberPicker extends StatelessWidget {
             animateDecimal(0);
           } else {
             final double decimalPart = _toDecimal(selectedDecimalValue);
-            newValue = (intValueInTheMiddle + decimalPart).toDouble();
+            newValue = intValueInTheMiddle + decimalPart;
           }
         }
         if (haptics) {
@@ -531,7 +531,7 @@ class NumberPicker extends StatelessWidget {
     final Notification notification,
     final ScrollController scrollController,
   ) =>
-      notification is UserScrollNotification && notification.direction == ScrollDirection.idle && scrollController.position.activity is! HoldScrollActivity;
+      notification is UserScrollNotification && notification.direction == ScrollDirection.idle && scrollController.position is! HoldScrollActivity;
 
   double _toDecimal(final int decimalValueAsInteger) => double.parse(
         (decimalValueAsInteger * math.pow(10, -decimalPlaces)).toStringAsFixed(decimalPlaces),

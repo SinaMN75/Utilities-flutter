@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 class CreditCardExpirationDateFormatter extends MaskedInputFormatter {
   CreditCardExpirationDateFormatter() : super('00/00');

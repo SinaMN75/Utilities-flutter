@@ -1,4 +1,4 @@
-import 'package:utilities/utils/persian_tools/persian_tools.dart';
+import 'package:utilities_framework_flutter/utils/persian_tools/persian_tools.dart';
 
 enum DigitLocale { en, fa, ar }
 
@@ -170,7 +170,6 @@ class PersianToolsNumber {
       case DigitLocale.ar:
         return convertEnToAr(addedCommasIfNeeded);
       case DigitLocale.en:
-      default:
         return addedCommasIfNeeded;
     }
   }
