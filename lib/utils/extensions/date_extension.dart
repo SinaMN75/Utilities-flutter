@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart' as intl;
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 extension DateTimeExtensions on DateTime {
   Jalali toJalali() => Jalali.fromDateTime(this);

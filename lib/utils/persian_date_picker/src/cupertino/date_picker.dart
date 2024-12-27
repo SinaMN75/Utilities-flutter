@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:utilities/utils/shamsi_date/shamsi_date.dart';
+import 'package:utilities_framework_flutter/utils/shamsi_date/shamsi_date.dart';
 
 import '../material/date.dart';
 

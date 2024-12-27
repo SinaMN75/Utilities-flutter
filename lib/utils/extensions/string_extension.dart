@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart' as intl;
-import 'package:utilities/utilities.dart';
-import 'package:utilities/utilities2.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:utilities_framework_flutter/utilities2.dart';
 
 extension TextEditingControllerExtension on TextEditingController {
   String numberString() => text.replaceAll(RegExp('[^0-9]'), '');

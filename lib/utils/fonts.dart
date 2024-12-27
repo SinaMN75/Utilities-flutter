@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 abstract class UFonts extends TextStyle {
   static const TextStyle vazir = TextStyle(fontFamily: 'Vazir', package: "utilities");

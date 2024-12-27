@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 part 'dto/address.dart';
 part 'dto/app_settings.dart';

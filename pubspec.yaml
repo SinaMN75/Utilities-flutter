@@ -1,11 +1,10 @@
-name: utilities
-description: A new Flutter package project.
-version: 0.0.1
-homepage: SinaMN75.com
-publish_to: 'none'
+name: utilities_framework_flutter
+description: The only package you need
+version: 1.0.0
+homepage: https://sinamn75.com
 
 environment:
-  sdk: '>=3.5.0'
+  sdk: ">=3.4.0 <4.0.0"
   flutter: ">=3.27.0"
 
 dependencies:
@@ -44,6 +43,8 @@ dependencies:
   screen_protector: ^1.4.2+1
   any_link_preview: ^3.0.2
   universal_html: ^2.2.4
+
+
 
 flutter:
   uses-material-design: true

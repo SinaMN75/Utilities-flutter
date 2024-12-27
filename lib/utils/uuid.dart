@@ -1,4 +1,4 @@
-import 'package:utilities/utilities.dart';
+import 'package:utilities_framework_flutter/utilities.dart';
 
 abstract class UUtils {
   static String uuidV4() => const Uuid().v4();
