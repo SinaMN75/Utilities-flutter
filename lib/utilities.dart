@@ -103,7 +103,7 @@ abstract class UCore {
 }
 
 Future<void> initUtilities({
-  required final String apiKey,
+  final String? apiKey,
   final FirebaseOptions? firebaseOptions,
   final String? baseUrl,
   final bool safeDevice = false,
@@ -133,7 +133,7 @@ Future<void> initUtilities({
     if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
   } catch (e) {}
 
-  UCore.apiKey = apiKey;
+  UCore.apiKey = apiKey ?? "";
   if (baseUrl != null) URemoteDataSource.baseUrl = baseUrl;
   return;
 }
