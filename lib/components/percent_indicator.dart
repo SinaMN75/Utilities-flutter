@@ -33,9 +33,7 @@ class CircularPercentIndicator extends StatefulWidget {
 
   final Color backgroundColor;
 
-  Color get progressColor => _progressColor;
-
-  late Color _progressColor;
+  final Color? progressColor;
 
   final bool animation;
 
@@ -83,7 +81,7 @@ class CircularPercentIndicator extends StatefulWidget {
     required this.radius,
     this.fillColor = Colors.transparent,
     this.backgroundColor = const Color(0xFFB8C7CB),
-    Color? progressColor,
+    this.progressColor,
     this.backgroundWidth = -1,
     this.linearGradient,
     this.animation = false,
@@ -107,7 +105,6 @@ class CircularPercentIndicator extends StatefulWidget {
     if (linearGradient != null && progressColor != null) {
       throw ArgumentError('Cannot provide both linearGradient and progressColor');
     }
-    _progressColor = progressColor ?? Colors.red;
 
     assert(startAngle >= 0.0);
     if (percent < 0.0 || percent > 1.0) {
@@ -213,7 +210,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
             CustomPaint(
               painter: _CirclePainter(
                 progress: _percent * 360,
-                progressColor: widget.progressColor,
+                progressColor: widget.progressColor ?? Theme.of(context).colorScheme.primary,
                 backgroundColor: widget.backgroundColor,
                 startAngle: widget.startAngle,
                 circularStrokeCap: widget.circularStrokeCap,
@@ -452,14 +449,11 @@ class LinearPercentIndicator extends StatefulWidget {
 
   final Color fillColor;
 
-  Color get backgroundColor => _backgroundColor;
-  late Color _backgroundColor;
+  final Color backgroundColor;
 
   final LinearGradient? linearGradientBackgroundColor;
 
-  Color get progressColor => _progressColor;
-
-  late Color _progressColor;
+  final Color progressColor;
 
   final bool animation;
 
@@ -503,10 +497,10 @@ class LinearPercentIndicator extends StatefulWidget {
     this.percent = 0.0,
     this.lineHeight = 5.0,
     this.width,
-    Color? backgroundColor,
+    this.backgroundColor = Colors.transparent,
     this.linearGradientBackgroundColor,
     this.linearGradient,
-    Color? progressColor,
+    this.progressColor = Colors.blue,
     this.animation = false,
     this.animationDuration = 500,
     this.animateFromLastPercent = false,
@@ -525,15 +519,13 @@ class LinearPercentIndicator extends StatefulWidget {
     this.onAnimationEnd,
     this.widgetIndicator,
   }) : super(key: key) {
-    if (linearGradient != null && progressColor != null) {
+    if (linearGradient != null) {
       throw ArgumentError('Cannot provide both linearGradient and progressColor');
     }
-    _progressColor = progressColor ?? Colors.red;
 
-    if (linearGradientBackgroundColor != null && backgroundColor != null) {
+    if (linearGradientBackgroundColor != null) {
       throw ArgumentError('Cannot provide both linearGradientBackgroundColor and backgroundColor');
     }
-    _backgroundColor = backgroundColor ?? Color(0xFFB8C7CB);
 
     if (percent < 0.0 || percent > 1.0) {
       throw new Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");

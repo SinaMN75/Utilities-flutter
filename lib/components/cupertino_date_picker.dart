@@ -417,7 +417,7 @@ class NumberPicker extends StatelessWidget {
 
     return Listener(
       onPointerUp: (final PointerUpEvent ev) {
-        if (intScrollController.position.activity is HoldScrollActivity) {
+        if (intScrollController.position is HoldScrollActivity) {
           animateInt(selectedIntValue);
         }
       },
@@ -531,7 +531,7 @@ class NumberPicker extends StatelessWidget {
     final Notification notification,
     final ScrollController scrollController,
   ) =>
-      notification is UserScrollNotification && notification.direction == ScrollDirection.idle && scrollController.position.activity is! HoldScrollActivity;
+      notification is UserScrollNotification && notification.direction == ScrollDirection.idle && scrollController.position is! HoldScrollActivity;
 
   double _toDecimal(final int decimalValueAsInteger) => double.parse(
         (decimalValueAsInteger * math.pow(10, -decimalPlaces)).toStringAsFixed(decimalPlaces),

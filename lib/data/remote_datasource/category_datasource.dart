@@ -26,7 +26,7 @@ class CategoryDataSource {
     FormData form = FormData(<String, dynamic>{'file': MultipartFile(kIsWeb ? fileData.bytes : fileData.path, filename: ":).xlsx")});
 
     try {
-      final Response<dynamic> response = await GetConnect().post(
+      await GetConnect().post(
         '$baseUrl/Category/ImportFromExcel',
         form,
         headers: <String, String>{"Authorization": ULocalStorage.getString(UConstants.token) ?? ""},

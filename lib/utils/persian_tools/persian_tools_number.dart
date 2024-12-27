@@ -170,7 +170,6 @@ class PersianToolsNumber {
       case DigitLocale.ar:
         return convertEnToAr(addedCommasIfNeeded);
       case DigitLocale.en:
-      default:
         return addedCommasIfNeeded;
     }
   }

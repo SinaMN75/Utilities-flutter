@@ -62,7 +62,7 @@ class MediaDataSource {
         maxRedirects: 10,
       );
 
-      final Response<dynamic> response = await connect
+      await connect
           .post(
             '$baseUrl/Media',
             form,
