@@ -305,7 +305,6 @@ String? jalaliStringToGregorianString(String? jalaliDateString, String seprator)
 
     return '${dateTime.year.toString().padLeft(4, '0')}/${dateTime.month.toString().padLeft(2, '0')}/${dateTime.day.toString().padLeft(2, '0')}';
   } catch (e) {
-    print("Error converting Jalali date: $e");
     return null;
   }
 }

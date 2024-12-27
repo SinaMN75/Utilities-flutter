@@ -75,7 +75,7 @@ class _UTextFieldState extends State<UTextField> {
   }
 
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(final BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           if (widget.text != null)

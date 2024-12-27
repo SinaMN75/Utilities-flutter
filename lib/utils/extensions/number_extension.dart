@@ -30,9 +30,6 @@ extension DoubleExtionsion on double {
         return wholePart;
       }
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
     }
     return str;
   }

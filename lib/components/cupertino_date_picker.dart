@@ -313,8 +313,8 @@ class NumberPicker extends StatelessWidget {
     this.unselectedRowStyle,
     this.isShowMonthName = false,
     this.isJalali = false,
-  })  : assert(maxValue >= minValue),
-        assert(step > 0),
+  })  : assert(maxValue >= minValue, ""),
+        assert(step > 0, ""),
         selectedIntValue = (initialValue < minValue) ? minValue : ((initialValue > maxValue) ? maxValue : initialValue),
         selectedDecimalValue = -1,
         decimalPlaces = 0,
@@ -423,7 +423,7 @@ class NumberPicker extends StatelessWidget {
       },
       child: NotificationListener(
         onNotification: _onIntegerNotification,
-        child: Container(
+        child: SizedBox(
           height: listViewHeight,
           width: listViewWidth,
           child: Stack(
@@ -500,7 +500,7 @@ class NumberPicker extends StatelessWidget {
             animateDecimal(0);
           } else {
             final double decimalPart = _toDecimal(selectedDecimalValue);
-            newValue = (intValueInTheMiddle + decimalPart).toDouble();
+            newValue = intValueInTheMiddle + decimalPart;
           }
         }
         if (haptics) {

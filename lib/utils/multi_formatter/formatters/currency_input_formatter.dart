@@ -95,8 +95,6 @@ class CurrencyInputFormatter extends TextInputFormatter {
           onValueChange!(double.parse(_nextValue));
         }
       } catch (e) {
-        if (_printDebugInfo) print(e);
-
         onValueChange!(double.nan);
       } finally {
         _scheduledUpdate = false;
@@ -338,10 +336,6 @@ class CurrencyInputFormatter extends TextInputFormatter {
       if (newAsCurrency.isNotEmpty) {
         initialCaretOffset += 1;
       }
-    }
-
-    if (_printDebugInfo) {
-      print('RETURN 8 $newAsCurrency');
     }
 
     return TextEditingValue(

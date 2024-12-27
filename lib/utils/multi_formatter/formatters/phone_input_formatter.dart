@@ -211,12 +211,6 @@ class PhoneInputFormatter extends TextInputFormatter {
       return;
     }
 
-    if (kDebugMode) {
-      print(
-        'Phone mask for country "${countryData['country']}"' + ' was replaced from $currentMask to $newMask',
-      );
-    }
-
     countryData['phoneMask'] = newMask;
   }
 

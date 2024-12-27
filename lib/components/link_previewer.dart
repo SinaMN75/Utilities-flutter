@@ -1,12 +1,12 @@
 import 'package:utilities_framework_flutter/utilities.dart';
 
 class ULinkPreviewer extends StatelessWidget {
-  const ULinkPreviewer({super.key, required this.link});
+  const ULinkPreviewer({required this.link, super.key});
 
   final String link;
 
   @override
-  Widget build(BuildContext context) => AnyLinkPreview(
+  Widget build(final BuildContext context) => AnyLinkPreview(
         link: link,
         displayDirection: UIDirection.uiDirectionHorizontal,
         bodyMaxLines: 10,
