@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:utilities_framework_flutter/utils/shamsi_date/shamsi_date.dart';
+import 'package:utilities_framework_flutter/src/utils/shamsi_date/shamsi_date.dart';
 
 import '../material/date.dart';
 

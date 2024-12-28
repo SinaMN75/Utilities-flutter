@@ -1,5 +1,5 @@
+import 'package:utilities_framework_flutter/src/utils/multi_formatter/formatters/all_fiat_currencies.dart';
 import 'package:utilities_framework_flutter/utilities.dart';
-import 'package:utilities_framework_flutter/utils/multi_formatter/formatters/all_fiat_currencies.dart';
 
 final RegExp _digitRegExp = RegExp(r'[-0-9]+');
 final RegExp _positiveDigitRegExp = RegExp(r'[0-9]+');

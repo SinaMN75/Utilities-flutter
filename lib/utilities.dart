@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:safe_device/safe_device.dart';
 import 'package:utilities_framework_flutter/utilities.dart';
 
 export 'dart:async';
@@ -44,57 +47,57 @@ export 'package:uuid/uuid.dart';
 export 'package:video_player/video_player.dart';
 export 'package:webview_flutter/webview_flutter.dart';
 
-export 'components/badges.dart';
-export 'components/barcode_qrcode.dart';
-export 'components/bottom_sheet.dart';
-export 'components/chart.dart';
-export 'components/container.dart';
-export 'components/cupertino_date_picker.dart';
-export 'components/fdottedline.dart';
-export 'components/flip_card.dart';
-export 'components/flutter_tree.dart';
-export 'components/form.dart';
-export 'components/image.dart';
-export 'components/link_previewer.dart';
-export 'components/map.dart';
-export 'components/otp_field.dart';
-export 'components/pagination.dart';
-export 'components/percent_indicator.dart';
-export 'components/plus_minus.dart';
-export 'components/rating_bar.dart';
-export 'components/readmore.dart';
-export 'components/scrolling_text.dart';
-export 'components/webview.dart';
-export 'data/data.dart';
-export 'utils/clipboard.dart';
-export 'utils/constants.dart';
-export 'utils/enums.dart';
-export 'utils/extensions/date_extension.dart';
-export 'utils/extensions/enums_extension.dart';
-export 'utils/extensions/file_extension.dart';
-export 'utils/extensions/iterable_extension.dart';
-export 'utils/extensions/number_extension.dart';
-export 'utils/extensions/string_extension.dart';
-export 'utils/extensions/text_extension.dart';
-export 'utils/extensions/widget_extension.dart';
-export 'utils/file.dart';
-export 'utils/firebase.dart';
-export 'utils/fonts.dart';
-export 'utils/http_interceptor.dart';
-export 'utils/internet_connection_checker.dart';
-export 'utils/launch.dart';
-export 'utils/loading.dart';
-export 'utils/local_auth.dart';
-export 'utils/local_storage.dart';
-export 'utils/location.dart';
-export 'utils/multi_formatter/flutter_multi_formatter.dart';
-export 'utils/navigator.dart';
-export 'utils/notification.dart';
-export 'utils/shamsi_date/shamsi_date.dart';
-export 'utils/u_app_utils.dart';
-export 'utils/utils.dart';
-export 'utils/uuid.dart';
-export 'utils/view_models.dart';
+export 'src/components/badges.dart';
+export 'src/components/barcode_qrcode.dart';
+export 'src/components/bottom_sheet.dart';
+export 'src/components/chart.dart';
+export 'src/components/container.dart';
+export 'src/components/cupertino_date_picker.dart';
+export 'src/components/fdottedline.dart';
+export 'src/components/flip_card.dart';
+export 'src/components/flutter_tree.dart';
+export 'src/components/form.dart';
+export 'src/components/image.dart';
+export 'src/components/link_previewer.dart';
+export 'src/components/map.dart';
+export 'src/components/otp_field.dart';
+export 'src/components/pagination.dart';
+export 'src/components/percent_indicator.dart';
+export 'src/components/plus_minus.dart';
+export 'src/components/rating_bar.dart';
+export 'src/components/readmore.dart';
+export 'src/components/scrolling_text.dart';
+export 'src/components/webview.dart';
+export 'src/data/data.dart';
+export 'src/utils/clipboard.dart';
+export 'src/utils/constants.dart';
+export 'src/utils/enums.dart';
+export 'src/utils/extensions/date_extension.dart';
+export 'src/utils/extensions/enums_extension.dart';
+export 'src/utils/extensions/file_extension.dart';
+export 'src/utils/extensions/iterable_extension.dart';
+export 'src/utils/extensions/number_extension.dart';
+export 'src/utils/extensions/string_extension.dart';
+export 'src/utils/extensions/text_extension.dart';
+export 'src/utils/extensions/widget_extension.dart';
+export 'src/utils/file.dart';
+export 'src/utils/firebase.dart';
+export 'src/utils/fonts.dart';
+export 'src/utils/http_interceptor.dart';
+export 'src/utils/internet_connection_checker.dart';
+export 'src/utils/launch.dart';
+export 'src/utils/loading.dart';
+export 'src/utils/local_auth.dart';
+export 'src/utils/local_storage.dart';
+export 'src/utils/location.dart';
+export 'src/utils/multi_formatter/flutter_multi_formatter.dart';
+export 'src/utils/navigator.dart';
+export 'src/utils/notification.dart';
+export 'src/utils/shamsi_date/shamsi_date.dart';
+export 'src/utils/u_app_utils.dart';
+export 'src/utils/utils.dart';
+export 'src/utils/uuid.dart';
+export 'src/utils/view_models.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -109,12 +112,15 @@ Future<void> initUtilities({
   final bool safeDevice = false,
   final bool protectDataLeaking = false,
   final bool preventScreenShot = false,
+  final EasyLoadingIndicatorType loadingType = EasyLoadingIndicatorType.dualRing,
+  final EasyLoadingStyle loadingStyle = EasyLoadingStyle.custom,
   final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ],
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (safeDevice && !(await SafeDevice.isSafeDevice)) exit(0);
   await SystemChrome.setPreferredOrientations(deviceOrientations);
   await ULocalStorage.init();
   UApp.packageInfo = await PackageInfo.fromPlatform();
@@ -135,5 +141,22 @@ Future<void> initUtilities({
 
   UCore.apiKey = apiKey ?? "";
   if (baseUrl != null) URemoteDataSource.baseUrl = baseUrl;
+
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = loadingType
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = Colors.blue
+    ..backgroundColor = Colors.transparent
+    ..indicatorColor = Colors.blue
+    ..textColor = Colors.transparent
+    ..maskColor = Colors.blue
+    ..maskType = EasyLoadingMaskType.clear
+    ..loadingStyle = loadingStyle
+    ..userInteractions = false
+    ..boxShadow = <BoxShadow>[]
+    ..dismissOnTap = false;
+
   return;
 }

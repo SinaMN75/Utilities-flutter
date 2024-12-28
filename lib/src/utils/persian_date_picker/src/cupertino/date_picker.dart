@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:utilities_framework_flutter/utils/shamsi_date/shamsi_date.dart';
+import 'package:utilities_framework_flutter/src/utils/shamsi_date/shamsi_date.dart';
 
 import '../material/date.dart';
 
@@ -933,7 +933,8 @@ class _CupertinoDatePickerDateState extends State<PersianCupertinoDatePicker> {
         children: List<Widget>.generate(daysInCurrentMonth, (int index) {
           final int day = index + 1;
           final int? dayOfWeek = widget.showDayOfWeek ? Jalali(selectedYear, selectedMonth, day).weekDay : null;
-          final bool isInvalidDay = (day > daysInCurrentMonth) || (widget.minimumDate?.year == selectedYear && widget.minimumDate!.month == selectedMonth && widget.minimumDate!.day > day) || (widget.maximumDate?.year == selectedYear && widget.maximumDate!.month == selectedMonth && widget.maximumDate!.day < day);
+          final bool isInvalidDay =
+              (day > daysInCurrentMonth) || (widget.minimumDate?.year == selectedYear && widget.minimumDate!.month == selectedMonth && widget.minimumDate!.day > day) || (widget.maximumDate?.year == selectedYear && widget.maximumDate!.month == selectedMonth && widget.maximumDate!.day < day);
           return itemPositioningBuilder(
             context,
             Text(

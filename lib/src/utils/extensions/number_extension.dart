@@ -29,8 +29,7 @@ extension DoubleExtionsion on double {
         }
         return wholePart;
       }
-    } catch (e) {
-    }
+    } catch (e) {}
     return str;
   }
 

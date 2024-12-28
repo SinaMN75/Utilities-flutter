@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:utilities_framework_flutter/utils/shamsi_date/shamsi_date.dart';
+import 'package:utilities_framework_flutter/src/utils/shamsi_date/shamsi_date.dart';
 
 abstract final class PersianDateUtils {
   static Jalali dateOnly(Jalali date) {

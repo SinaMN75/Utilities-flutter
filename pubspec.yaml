@@ -50,6 +50,7 @@ dependencies:
   screen_protector: ^1.4.2+1
   any_link_preview: ^3.0.2
   universal_html: ^2.2.4
+  safe_device: ^1.1.9
 
 flutter:
   uses-material-design: true
