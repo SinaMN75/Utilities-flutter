@@ -8,7 +8,7 @@ enum DataType {
 /// @create at 2021/7/15 15:01
 /// @create by kevin
 /// @desc  参数类型配置
-class TreeConfig {
+class Config {
   ///数据类型
 
   final DataType dataType;
@@ -28,7 +28,7 @@ class TreeConfig {
   ///
   final String children;
 
-  const TreeConfig({
+  const Config({
     this.dataType = DataType.DataMap,
     this.parentId = 'parentId',
     this.value = 'value',
@@ -57,7 +57,7 @@ class FlutterTreePro extends StatefulWidget {
   final Function(List<Map<String, dynamic>>) onChecked;
 
   ///  Config
-  final TreeConfig config;
+  final Config config;
 
   /// if expanded items
   final bool isExpanded;
@@ -67,7 +67,7 @@ class FlutterTreePro extends StatefulWidget {
     Key? key,
     this.treeData = const <String, dynamic>{},
     this.initialTreeData = const <String, dynamic>{},
-    this.config = const TreeConfig(),
+    this.config = const Config(),
     this.listData = const <Map<String, dynamic>>[],
     this.initialListData = const <Map<String, dynamic>>[],
     this.isExpanded = false,
@@ -448,7 +448,7 @@ class MStack {
 class DataUtil {
   /// @params
   /// @desc  List to map
-  static Map<String, dynamic> transformListToMap(List dataList, TreeConfig config) {
+  static Map<String, dynamic> transformListToMap(List dataList, Config config) {
     Map obj = {};
     int? rootId;
     dataList.forEach((v) {
@@ -478,7 +478,7 @@ class DataUtil {
 
   /// @params
   /// @desc expand tree map
-  Map<String, dynamic> expandMap(Map<String, dynamic> dataMap, TreeConfig config) {
+  Map<String, dynamic> expandMap(Map<String, dynamic> dataMap, Config config) {
     dataMap['open'] = false;
     dataMap['checked'] = 0;
     dataMap.putIfAbsent(dataMap[config.id], () => dataMap);

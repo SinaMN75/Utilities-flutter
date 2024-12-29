@@ -77,11 +77,10 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
       final List<String> initList = widget.initialDate.split("/");
       _selectedYear = int.parse(initList[0]);
       _selectedMonth = int.parse(initList[1]);
-      if (widget.showDay) {
+      if (widget.showDay)
         _selectedDay = int.parse(initList[2]);
-      } else {
+      else
         _selectedDay = widget.isJalaali ? Jalali.now().day : Jalali.now().day;
-      }
     } else {
       if (widget.isJalaali) {
         _selectedYear = Jalali.now().year;
