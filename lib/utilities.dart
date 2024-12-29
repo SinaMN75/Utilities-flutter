@@ -76,7 +76,6 @@ export 'src/components/rating_bar.dart';
 export 'src/components/readmore.dart';
 export 'src/components/scrolling_text.dart';
 export 'src/components/webview.dart';
-export 'src/data/data.dart';
 export 'src/utils/clipboard.dart';
 export 'src/utils/constants.dart';
 export 'src/utils/enums.dart';
@@ -148,7 +147,6 @@ Future<void> initUtilities({
   } catch (e) {}
 
   UCore.apiKey = apiKey ?? "";
-  if (baseUrl != null) URemoteDataSource.baseUrl = baseUrl;
 
   EasyLoading.instance
     ..displayDuration = const Duration(milliseconds: 2000)
