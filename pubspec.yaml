@@ -1,5 +1,5 @@
 name: utilities_framework_flutter
-description: The only package you need
+description: The only package you need, An abstraction over many useful packages that you may need in every single project you have
 version: 1.0.5
 homepage: https://sinamn75.com
 platforms:
