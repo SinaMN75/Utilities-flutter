@@ -43,6 +43,8 @@ extension RxPageStateExtension on Rx<PageState> {
 abstract class UConstants {
   static String token = "token";
   static String userId = "userId";
+  static String locale = "locale";
+  static String isDarkMode = "isDarkMode";
 }
 
 enum PageState { initial, loading, loaded, error, empty, paging }

@@ -1,5 +1,3 @@
-import 'package:utilities_framework_flutter/utilities.dart';
-
 export 'dart:async';
 export 'dart:convert';
 export 'dart:io';
@@ -89,6 +87,7 @@ export 'utils/file.dart';
 export 'utils/firebase.dart';
 export 'utils/fonts.dart';
 export 'utils/http_interceptor.dart';
+export 'utils/init.dart';
 export 'utils/internet_connection_checker.dart';
 export 'utils/launch.dart';
 export 'utils/loading.dart';
@@ -104,45 +103,3 @@ export 'utils/u_app_utils.dart';
 export 'utils/utils.dart';
 export 'utils/uuid.dart';
 export 'utils/view_models.dart';
-
-GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
-abstract class UCore {
-  static late String apiKey;
-}
-
-Future<void> initUtilities({
-  final String? apiKey,
-  final FirebaseOptions? firebaseOptions,
-  final String? baseUrl,
-  final bool safeDevice = false,
-  final bool protectDataLeaking = false,
-  final bool preventScreenShot = false,
-  final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ],
-}) async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(deviceOrientations);
-  await ULocalStorage.init();
-  UApp.packageInfo = await PackageInfo.fromPlatform();
-  if (firebaseOptions != null) {
-    try {
-      await Firebase.initializeApp(options: firebaseOptions);
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-      PlatformDispatcher.instance.onError = (final Object error, final StackTrace stack) {
-        FirebaseCrashlytics.instance.recordError(error, stack);
-        return true;
-      };
-    } catch (e) {}
-  }
-  try {
-    if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
-    if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
-  } catch (e) {}
-
-  UCore.apiKey = apiKey ?? "";
-  if (baseUrl != null) URemoteDataSource.baseUrl = baseUrl;
-  return;
-}
