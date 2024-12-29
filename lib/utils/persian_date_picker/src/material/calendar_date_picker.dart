@@ -221,7 +221,7 @@ class _CalendarDatePickerState extends State<PersianCalendarDatePicker> {
       case PersianDatePickerMode.year:
         return Padding(
           padding: const EdgeInsets.only(top: _subHeaderHeight),
-          child: YearPicker(
+          child: PersianYearPicker(
             key: _yearPickerKey,
             currentDate: widget.currentDate,
             firstDate: widget.firstDate,
@@ -950,8 +950,8 @@ class _DayPickerGridDelegate extends SliverGridDelegate {
 
 const _DayPickerGridDelegate _dayPickerGridDelegate = _DayPickerGridDelegate();
 
-class YearPicker extends StatefulWidget {
-  YearPicker({
+class PersianYearPicker extends StatefulWidget {
+  PersianYearPicker({
     super.key,
     Jalali? currentDate,
     required this.firstDate,
@@ -980,10 +980,10 @@ class YearPicker extends StatefulWidget {
   final DragStartBehavior dragStartBehavior;
 
   @override
-  State<YearPicker> createState() => _YearPickerState();
+  State<PersianYearPicker> createState() => _PersianYearPickerState();
 }
 
-class _YearPickerState extends State<YearPicker> {
+class _PersianYearPickerState extends State<PersianYearPicker> {
   ScrollController? _scrollController;
   final WidgetStatesController _statesController = WidgetStatesController();
 
@@ -1003,7 +1003,7 @@ class _YearPickerState extends State<YearPicker> {
   }
 
   @override
-  void didUpdateWidget(YearPicker oldWidget) {
+  void didUpdateWidget(PersianYearPicker oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.selectedDate != oldWidget.selectedDate && widget.selectedDate != null) {
       _scrollController!.jumpTo(_scrollOffsetForYear(widget.selectedDate!));

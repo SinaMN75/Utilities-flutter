@@ -1,5 +1,4 @@
 import 'package:utilities_framework_flutter/utilities.dart';
-import 'package:utilities_framework_flutter/utilities2.dart';
 
 abstract class ULaunch {
   static Future<void> launchURL(final String url, {final LaunchMode mode = LaunchMode.platformDefault}) async => launchUrl(

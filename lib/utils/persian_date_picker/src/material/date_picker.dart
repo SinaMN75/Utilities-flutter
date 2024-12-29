@@ -73,7 +73,7 @@ Future<Jalali?> showPersianDatePicker({
   );
   assert(debugCheckHasMaterialLocalizations(context));
 
-  Widget dialog = DatePickerDialog(
+  Widget dialog = PersianDatePickerDialog(
     initialDate: initialDate,
     firstDate: firstDate,
     lastDate: lastDate,
@@ -132,8 +132,8 @@ Future<Jalali?> showPersianDatePicker({
   );
 }
 
-class DatePickerDialog extends StatefulWidget {
-  DatePickerDialog({
+class PersianDatePickerDialog extends StatefulWidget {
+  PersianDatePickerDialog({
     super.key,
     Jalali? initialDate,
     required Jalali firstDate,
@@ -215,10 +215,10 @@ class DatePickerDialog extends StatefulWidget {
   final Icon? switchToCalendarEntryModeIcon;
 
   @override
-  State<DatePickerDialog> createState() => _DatePickerDialogState();
+  State<PersianDatePickerDialog> createState() => _PersianDatePickerDialogState();
 }
 
-class _DatePickerDialogState extends State<DatePickerDialog> with RestorationMixin {
+class _PersianDatePickerDialogState extends State<PersianDatePickerDialog> with RestorationMixin {
   late final RestorableJalaliN _selectedDate = RestorableJalaliN(widget.initialDate);
   late final _RestorableDatePickerEntryMode _entryMode = _RestorableDatePickerEntryMode(widget.initialEntryMode);
   final _RestorableAutovalidateMode _autovalidateMode = _RestorableAutovalidateMode(AutovalidateMode.disabled);

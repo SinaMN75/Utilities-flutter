@@ -67,65 +67,6 @@ class MediaReadDto {
       };
 }
 
-class MediaJsonDetail {
-  MediaJsonDetail({
-    this.link,
-    this.title,
-    this.description,
-    this.size,
-    this.time,
-    this.artist,
-    this.album,
-    this.isPrivate,
-    this.link1,
-    this.link2,
-    this.link3,
-  });
-
-  factory MediaJsonDetail.fromJson(final String str) => MediaJsonDetail.fromMap(json.decode(str));
-
-  factory MediaJsonDetail.fromMap(final dynamic json) => MediaJsonDetail(
-        link: json["link"],
-        link1: json["link1"],
-        link2: json["link2"],
-        link3: json["link3"],
-        title: json["title"],
-        description: json["description"],
-        size: json["size"],
-        time: json["time"],
-        artist: json["artist"],
-        album: json["album"],
-        isPrivate: json["isPrivate"],
-      );
-  String? link;
-  String? title;
-  String? description;
-  String? size;
-  String? time;
-  String? artist;
-  String? album;
-  String? link1;
-  String? link2;
-  String? link3;
-  int? isPrivate;
-
-  String toJson() => json.encode(removeNullEntries(toMap()));
-
-  dynamic toMap() => {
-        "link": link,
-        "link1": link1,
-        "link2": link2,
-        "link3": link3,
-        "title": title,
-        "description": description,
-        "size": size,
-        "time": time,
-        "artist": artist,
-        "album": album,
-        "isPrivate": isPrivate,
-      };
-}
-
 class MediaUpdateDto {
   factory MediaUpdateDto.fromJson(final String str) => MediaUpdateDto.fromMap(json.decode(str));
 

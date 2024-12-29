@@ -1,5 +1,4 @@
 import 'package:utilities_framework_flutter/utilities.dart';
-import 'package:utilities_framework_flutter/utilities2.dart';
 
 enum ButtonType { elevated, text, outlined }
 
