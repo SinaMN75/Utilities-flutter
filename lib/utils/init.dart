@@ -39,6 +39,8 @@ Future<void> initUtilities({
 
   UCore.apiKey = apiKey ?? "";
   if (baseUrl != null) URemoteDataSource.baseUrl = baseUrl;
+
+  UNetwork.connectivityResult = await Connectivity().checkConnectivity();
   return;
 }
 
@@ -67,7 +69,7 @@ class UMaterialApp extends StatelessWidget {
         localizationsDelegates: localizationsDelegates,
         supportedLocales: supportedLocales,
         home: home,
-        locale: locale,
+        locale: Locale(ULocalStorage.getString(UConstants.locale) ?? locale.languageCode),
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) ? ThemeMode.dark : ThemeMode.light,

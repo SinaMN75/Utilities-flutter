@@ -342,7 +342,7 @@ abstract class UNavigator {
   }) =>
       showDialog(
         context: navigatorKey.currentContext!,
-        builder: (final BuildContext context) => AlertDialog(
+        builder: (final BuildContext context) => AlertDialog.adaptive(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           title: Text(title).bodyLarge(),
           content: Text(description).bodyMedium(),

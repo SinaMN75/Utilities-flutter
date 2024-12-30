@@ -1,5 +1,7 @@
 import 'package:utilities_framework_flutter/utilities.dart';
 
+enum TypeMedia { image, svg, video, pdf, voice, link }
+
 class FileData {
   FileData({
     this.path,

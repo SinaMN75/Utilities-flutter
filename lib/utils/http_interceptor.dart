@@ -68,12 +68,10 @@ Future<void> httpRequest({
     if (httpMethod == EHttpMethod.delete) response = await connect.delete(url, headers: header);
 
     if (kDebugMode) response.prettyLog(params: (body == null || !encodeBody) ? "" : body.toJson());
-    if (response.isSuccessful()) {
+    if (response.isSuccessful())
       action(response);
-    } else {
-      if (response.statusCode == 401) ULocalStorage.clearData();
+    else
       error(response);
-    }
   } catch (e) {
     error(const Response<dynamic>(statusCode: 999, body: "{}", bodyString: "{}"));
     ULoading.dismissLoading();

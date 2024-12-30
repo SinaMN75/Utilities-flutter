@@ -1,6 +1,20 @@
 import 'package:utilities_framework_flutter/utilities.dart';
 
-Future<bool> isConnectedToNetwork() async => InternetConnectionChecker().hasConnection;
+abstract class UNetwork {
+  static late List<ConnectivityResult> connectivityResult;
+
+  static bool hasCellular() => connectivityResult.contains(ConnectivityResult.mobile);
+
+  static bool hasWifi() => connectivityResult.contains(ConnectivityResult.wifi);
+
+  static bool hasVpn() => connectivityResult.contains(ConnectivityResult.vpn);
+
+  static bool hasEthernet() => connectivityResult.contains(ConnectivityResult.ethernet);
+
+  static bool hasBluetooth() => connectivityResult.contains(ConnectivityResult.bluetooth);
+
+  static Future<bool> hasNetworkConnection() async => InternetConnectionChecker().hasConnection;
+}
 
 class AddressCheckOptions {
   AddressCheckOptions(
