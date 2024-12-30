@@ -22,6 +22,7 @@ export 'package:flutter/services.dart';
 export 'package:flutter_cache_manager/flutter_cache_manager.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
+export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_map_location_marker/flutter_map_location_marker.dart' hide PermissionDeniedException;
 export 'package:flutter_svg/flutter_svg.dart';
