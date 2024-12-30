@@ -1,17 +1,30 @@
 import 'package:utilities_framework_flutter/utilities.dart';
 
 abstract class UNetwork {
-  static late List<ConnectivityResult> connectivityResult;
+  static Future<bool> hasCellular() async {
+    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    return connectivityResult.contains(ConnectivityResult.mobile);
+  }
 
-  static bool hasCellular() => connectivityResult.contains(ConnectivityResult.mobile);
+  static Future<bool> hasWifi() async {
+    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    return connectivityResult.contains(ConnectivityResult.wifi);
+  }
 
-  static bool hasWifi() => connectivityResult.contains(ConnectivityResult.wifi);
+  static Future<bool> hasVpn() async {
+    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    return connectivityResult.contains(ConnectivityResult.vpn);
+  }
 
-  static bool hasVpn() => connectivityResult.contains(ConnectivityResult.vpn);
+  static Future<bool> hasEthernet() async {
+    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    return connectivityResult.contains(ConnectivityResult.ethernet);
+  }
 
-  static bool hasEthernet() => connectivityResult.contains(ConnectivityResult.ethernet);
-
-  static bool hasBluetooth() => connectivityResult.contains(ConnectivityResult.bluetooth);
+  static Future<bool> hasBluetooth() async {
+    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    return connectivityResult.contains(ConnectivityResult.bluetooth);
+  }
 
   static Future<bool> hasNetworkConnection() async => InternetConnectionChecker().hasConnection;
 }

@@ -39,8 +39,6 @@ Future<void> initUtilities({
 
   UCore.apiKey = apiKey ?? "";
   if (baseUrl != null) URemoteDataSource.baseUrl = baseUrl;
-
-  UNetwork.connectivityResult = await Connectivity().checkConnectivity();
   return;
 }
 
