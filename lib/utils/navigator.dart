@@ -48,9 +48,15 @@ abstract class UNavigator {
         ),
       );
 
-  static void off(final Widget page) => delay(10, () => Get.off(() => page));
+  static void off(final Widget page, {final bool preventDuplicates = true}) => delay(
+        10,
+        () => Get.off(() => page, preventDuplicates: preventDuplicates),
+      );
 
-  static void back({final bool closeOverlays = false}) => delay(10, () => Get.back(closeOverlays: closeOverlays));
+  static void back({final bool closeOverlays = false}) => delay(
+        10,
+        () => Get.back(closeOverlays: closeOverlays),
+      );
 
   static void alertDialog({
     required final (String, VoidCallback) action1,
