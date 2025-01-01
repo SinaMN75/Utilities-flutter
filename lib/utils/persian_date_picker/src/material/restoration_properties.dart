@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:utilities_framework_flutter/utils/shamsi_date/shamsi_date.dart';
+import 'package:u/utils/shamsi_date/shamsi_date.dart';
 
 import 'date.dart';
 

@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 abstract class ULocalStorage {
   static late SharedPreferences sharedPreferences;
@@ -20,7 +20,7 @@ abstract class ULocalStorage {
 
   static double? getDouble(final String key) => sharedPreferences.getDouble(key);
 
-  static void clearData() => sharedPreferences.clear();
+  static void clear() => sharedPreferences.clear();
 
   static void remove(final String key) => sharedPreferences.remove(key);
 }

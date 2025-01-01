@@ -1,6 +1,6 @@
-name: utilities_framework_flutter
-description: The only package you need, An abstraction over many useful packages that you may need in every single project you have
-version: 1.0.5
+name: u
+description: The only package you need
+version: 1.0.0
 homepage: https://sinamn75.com
 platforms:
   android:
@@ -50,6 +50,7 @@ dependencies:
   screen_protector: ^1.4.2+1
   any_link_preview: ^3.0.2
   universal_html: ^2.2.4
+  connectivity_plus: ^6.1.1
 
 flutter:
   uses-material-design: true

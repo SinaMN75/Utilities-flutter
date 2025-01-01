@@ -1,4 +1,6 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
+
+enum TypeMedia { image, svg, video, pdf, voice, link }
 
 class FileData {
   FileData({

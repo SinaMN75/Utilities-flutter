@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 class CreditCardCvcInputFormatter extends MaskedInputFormatter {
   CreditCardCvcInputFormatter({bool isAmericanExpress = false})

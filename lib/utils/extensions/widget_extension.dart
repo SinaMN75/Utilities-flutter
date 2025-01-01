@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 extension WidgetsExtension on Widget {
   Widget pAll(final double padding) => Padding(padding: EdgeInsets.all(padding), child: this);

@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
       Duration(milliseconds: milliseconds),

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 abstract class UNavigator {
   static void push(
@@ -48,9 +48,15 @@ abstract class UNavigator {
         ),
       );
 
-  static void off(final Widget page) => delay(10, () => Get.off(() => page));
+  static void off(final Widget page, {final bool preventDuplicates = true}) => delay(
+        10,
+        () => Get.off(() => page, preventDuplicates: preventDuplicates),
+      );
 
-  static void back({final bool closeOverlays = false}) => delay(10, () => Get.back(closeOverlays: closeOverlays));
+  static void back({final bool closeOverlays = false}) => delay(
+        10,
+        () => Get.back(closeOverlays: closeOverlays),
+      );
 
   static void alertDialog({
     required final (String, VoidCallback) action1,
@@ -342,7 +348,7 @@ abstract class UNavigator {
   }) =>
       showDialog(
         context: navigatorKey.currentContext!,
-        builder: (final BuildContext context) => AlertDialog(
+        builder: (final BuildContext context) => AlertDialog.adaptive(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           title: Text(title).bodyLarge(),
           content: Text(description).bodyMedium(),

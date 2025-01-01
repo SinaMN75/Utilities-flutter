@@ -1,5 +1,3 @@
-import 'package:utilities_framework_flutter/utilities.dart';
-
 export 'dart:async';
 export 'dart:convert';
 export 'dart:io';
@@ -10,6 +8,7 @@ export 'package:cached_network_image/cached_network_image.dart';
 export 'package:carousel_slider/carousel_slider.dart';
 export 'package:chewie/chewie.dart';
 export 'package:collection/collection.dart' hide binarySearch, mergeSort;
+export 'package:connectivity_plus/connectivity_plus.dart';
 export 'package:device_info_plus/device_info_plus.dart';
 export 'package:file_picker/file_picker.dart';
 export 'package:firebase_analytics/firebase_analytics.dart';
@@ -24,6 +23,7 @@ export 'package:flutter/services.dart';
 export 'package:flutter_cache_manager/flutter_cache_manager.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:flutter_local_notifications/flutter_local_notifications.dart';
+export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_map_location_marker/flutter_map_location_marker.dart' hide PermissionDeniedException;
 export 'package:flutter_svg/flutter_svg.dart';
@@ -46,8 +46,8 @@ export 'package:slide_countdown/slide_countdown.dart';
 export 'package:syncfusion_flutter_barcodes/barcodes.dart';
 export 'package:syncfusion_flutter_charts/charts.dart' hide AnimationType, Position;
 export 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+export 'package:u/utilities.dart';
 export 'package:url_launcher/url_launcher.dart';
-export 'package:utilities_framework_flutter/utilities.dart';
 export 'package:uuid/uuid.dart';
 export 'package:video_player/video_player.dart';
 export 'package:webview_flutter/webview_flutter.dart';
@@ -73,6 +73,7 @@ export 'components/rating_bar.dart';
 export 'components/readmore.dart';
 export 'components/scrolling_text.dart';
 export 'components/webview.dart';
+export 'data/data.dart';
 export 'utils/clipboard.dart';
 export 'utils/constants.dart';
 export 'utils/enums.dart';
@@ -88,7 +89,7 @@ export 'utils/file.dart';
 export 'utils/firebase.dart';
 export 'utils/fonts.dart';
 export 'utils/http_interceptor.dart';
-export 'utils/internet_connection_checker.dart';
+export 'utils/init.dart';
 export 'utils/launch.dart';
 export 'utils/loading.dart';
 export 'utils/local_auth.dart';
@@ -96,6 +97,7 @@ export 'utils/local_storage.dart';
 export 'utils/location.dart';
 export 'utils/multi_formatter/flutter_multi_formatter.dart';
 export 'utils/navigator.dart';
+export 'utils/network.dart';
 export 'utils/notification.dart';
 export 'utils/persian_date_picker/persian_datetime_picker.dart';
 export 'utils/shamsi_date/shamsi_date.dart';
@@ -103,44 +105,3 @@ export 'utils/u_app_utils.dart';
 export 'utils/utils.dart';
 export 'utils/uuid.dart';
 export 'utils/view_models.dart';
-
-GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
-abstract class UCore {
-  static late String apiKey;
-}
-
-Future<void> initUtilities({
-  final String? apiKey,
-  final FirebaseOptions? firebaseOptions,
-  final String? baseUrl,
-  final bool safeDevice = false,
-  final bool protectDataLeaking = false,
-  final bool preventScreenShot = false,
-  final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ],
-}) async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(deviceOrientations);
-  await ULocalStorage.init();
-  UApp.packageInfo = await PackageInfo.fromPlatform();
-  if (firebaseOptions != null) {
-    try {
-      await Firebase.initializeApp(options: firebaseOptions);
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-      PlatformDispatcher.instance.onError = (final Object error, final StackTrace stack) {
-        FirebaseCrashlytics.instance.recordError(error, stack);
-        return true;
-      };
-    } catch (e) {}
-  }
-  try {
-    if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
-    if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
-  } catch (e) {}
-
-  UCore.apiKey = apiKey ?? "";
-  return;
-}

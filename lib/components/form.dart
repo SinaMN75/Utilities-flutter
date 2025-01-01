@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 enum ButtonType { elevated, text, outlined }
 
@@ -83,6 +83,7 @@ class _UTextFieldState extends State<UTextField> {
               trailing: widget.required ? const Text("*").bodyMedium(color: Theme.of(context).colorScheme.error) : const SizedBox(),
             ).pSymmetric(vertical: 8),
           TextFormField(
+            enabled: !widget.readOnly,
             autofillHints: widget.autoFillHints,
             textDirection: widget.keyboardType == TextInputType.number ? TextDirection.ltr : null,
             inputFormatters: widget.formatters,

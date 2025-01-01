@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 extension PageStateExtension on PageState {
   bool isInitial() => this == PageState.initial;
@@ -43,11 +43,11 @@ extension RxPageStateExtension on Rx<PageState> {
 abstract class UConstants {
   static String token = "token";
   static String userId = "userId";
+  static String locale = "locale";
+  static String isDarkMode = "isDarkMode";
 }
 
 enum PageState { initial, loading, loaded, error, empty, paging }
-
-enum TypeMedia { image, svg, video, pdf, voice, link }
 
 abstract class USample {
   static const String persianLorem =
