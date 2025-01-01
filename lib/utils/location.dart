@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 abstract class ULocation {
   static Future<Position?> getUserLocation({final Function(Position)? onUserLocationFound}) async {

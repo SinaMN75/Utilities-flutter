@@ -1,6 +1,6 @@
 import 'dart:developer' as developer;
 
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 Future<void> httpRequest({
   required final String url,

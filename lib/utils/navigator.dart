@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 abstract class UNavigator {
   static void push(

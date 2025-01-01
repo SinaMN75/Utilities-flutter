@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 part 'dto/address.dart';
 part 'dto/app_settings.dart';

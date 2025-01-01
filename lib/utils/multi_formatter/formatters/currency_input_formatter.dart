@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 final RegExp _mantissaSeparatorRegexp = RegExp(r'[,.]');
 final RegExp _illegalCharsRegexp = RegExp(r'[^0-9-,.]+');

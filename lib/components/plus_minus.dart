@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 Widget plusMinus({
   required final Function(int) onChanged,

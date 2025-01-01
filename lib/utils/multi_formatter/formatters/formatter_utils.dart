@@ -1,5 +1,5 @@
-import 'package:utilities_framework_flutter/utilities.dart';
-import 'package:utilities_framework_flutter/utils/multi_formatter/formatters/all_fiat_currencies.dart';
+import 'package:u/utilities.dart';
+import 'package:u/utils/multi_formatter/formatters/all_fiat_currencies.dart';
 
 final RegExp _digitRegExp = RegExp(r'[-0-9]+');
 final RegExp _positiveDigitRegExp = RegExp(r'[0-9]+');
@@ -7,9 +7,9 @@ final RegExp _digitWithPeriodRegExp = RegExp(r'[-0-9]+(\.[0-9]+)?');
 final RegExp _oneDashRegExp = RegExp(r'[-]{2,}');
 final RegExp _startPlusRegExp = RegExp(r'^\+{1}[)(\d]+');
 final RegExp _maskContentsRegExp = RegExp(r'^[-0-9)( +]{3,}$');
-final RegExp _isMaskSymbolRegExp = RegExp(r'^[-\+ )(]+$');
+final RegExp _isMaskSymbolRegExp = RegExp(r'^[-+ )(]+$');
 // final RegExp _repeatingDotsRegExp = RegExp(r'\.{2,}');
-final _spaceRegex = RegExp(r'[\s]+');
+final _spaceRegex = RegExp(r'\s+');
 
 /// [errorText] if you don't want this method to throw any
 /// errors, pass null here

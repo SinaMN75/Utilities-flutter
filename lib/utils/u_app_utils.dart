@@ -1,5 +1,5 @@
+import 'package:u/utilities.dart';
 import 'package:universal_html/html.dart' as html;
-import 'package:utilities_framework_flutter/utilities.dart';
 
 abstract class UApp {
   static late PackageInfo packageInfo;

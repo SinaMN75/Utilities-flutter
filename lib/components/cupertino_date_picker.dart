@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 class LinearDatePicker extends StatefulWidget {
   const LinearDatePicker({

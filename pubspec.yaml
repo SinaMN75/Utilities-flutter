@@ -1,6 +1,6 @@
-name: utilities_framework_flutter
+name: u
 description: The only package you need
-version: 1.0.5
+version: 1.0.0
 homepage: https://sinamn75.com
 platforms:
   android:

@@ -1,4 +1,4 @@
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 extension DoubleExtionsion on double {
   String toStringAsSmartRound({final int maxPrecision = 2}) {

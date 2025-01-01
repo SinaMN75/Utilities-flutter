@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:utilities_framework_flutter/utilities.dart';
+import 'package:u/utilities.dart';
 
 bool _isEmpty(final double? d) => d == null || d == 0.0;
 
