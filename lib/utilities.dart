@@ -72,7 +72,6 @@ export 'components/rating_bar.dart';
 export 'components/readmore.dart';
 export 'components/scrolling_text.dart';
 export 'components/webview.dart';
-export 'data/data.dart';
 export 'utils/clipboard.dart';
 export 'utils/constants.dart';
 export 'utils/enums.dart';
