@@ -26,9 +26,9 @@ abstract class UTagUtils {
 
   static TagContent tagContentFromIntList(final List<int> tags) {
     TagContent tagContent = TagContent.terms;
-    TagContent.values.forEach((final TagContent i) {
+    for (var i in TagContent.values) {
       if (tags.contains(i.number)) tagContent = i;
-    });
+    }
     return tagContent;
   }
 }

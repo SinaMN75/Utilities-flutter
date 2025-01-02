@@ -17,7 +17,7 @@ class MoneySymbols {
 }
 
 @Deprecated(
-  'This formatter will be removed in future versions of the' + ' package. Please use CurrencyInputFormatter instead',
+  'This formatter will be removed in future versions of the' ' package. Please use CurrencyInputFormatter instead',
 )
 class MoneyInputFormatter extends TextInputFormatter {
   static final RegExp _wrongLeadingZeroMatcher = RegExp(r'^0\d{1}');
@@ -179,7 +179,7 @@ class MoneyInputFormatter extends TextInputFormatter {
         }
       }
 
-      if (oldValue.text.length < 1 && newValue.text.length != 1) {
+      if (oldValue.text.isEmpty && newValue.text.length != 1) {
         if (_leadingLength < 1) {
           return newValue;
         }
@@ -496,7 +496,7 @@ class MoneyInputFormatter extends TextInputFormatter {
 
 String _swapCommasAndPeriods(String input) {
   var temp = input;
-  if (temp.indexOf('.,') > -1) {
+  if (temp.contains('.,')) {
     temp = temp.replaceAll('.,', ',,');
   }
   temp = temp.replaceAll('.', 'PERIOD').replaceAll(',', 'COMMA');

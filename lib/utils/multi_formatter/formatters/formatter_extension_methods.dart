@@ -62,7 +62,7 @@ extension NumericInputFormatting on num {
     bool useSymbolPadding = false,
   }) {
     return fu.toCurrencyString(
-      this.toString(),
+      toString(),
       mantissaLength: mantissaLength,
       leadingSymbol: leadingSymbol,
       shorteningPolicy: shorteningPolicy,

@@ -55,11 +55,12 @@ class PosInputFormatter implements TextInputFormatter {
     );
 
     // Add the zeros until you get to the whole part
-    if (text.length <= mantissaLength)
+    if (text.length <= mantissaLength) {
       text = text.padLeft(
         mantissaLength + 1,
         '0',
       );
+    }
 
     if (text.length > mantissaLength) {
       final separatorOffset = text.length - mantissaLength;

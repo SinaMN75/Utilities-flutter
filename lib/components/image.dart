@@ -35,7 +35,7 @@ class UImage extends StatelessWidget {
         child: Builder(
           builder: (final BuildContext context) {
             if (fileData != null) {
-              if (UApp.isWeb)
+              if (UApp.isWeb) {
                 return UImageMemory(
                   fileData!.bytes!,
                   width: width,
@@ -44,7 +44,7 @@ class UImage extends StatelessWidget {
                   color: color,
                   fit: fit,
                 );
-              else
+              } else {
                 return UImageFile(
                   File(fileData!.path!),
                   width: width,
@@ -53,10 +53,11 @@ class UImage extends StatelessWidget {
                   color: color,
                   fit: fit,
                 );
+              }
             } else if (source.length <= 5) {
-              if (placeholder == null)
+              if (placeholder == null) {
                 return SizedBox(width: width, height: height);
-              else
+              } else {
                 return UImageAsset(
                   placeholder!,
                   width: width,
@@ -65,8 +66,9 @@ class UImage extends StatelessWidget {
                   color: color,
                   fit: fit,
                 );
+              }
             } else {
-              if (source.startsWith("http"))
+              if (source.startsWith("http")) {
                 return UImageNetwork(
                   source,
                   width: width,
@@ -77,7 +79,7 @@ class UImage extends StatelessWidget {
                   progressIndicatorBuilder: progressIndicatorBuilder,
                   placeholder: placeholder,
                 );
-              else if (source.startsWith("http") && source.endsWith(".json"))
+              } else if (source.startsWith("http") && source.endsWith(".json"))
                 return Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
               else if (source.endsWith(".json"))
                 return Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);

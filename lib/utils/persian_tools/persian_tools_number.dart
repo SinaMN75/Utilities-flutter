@@ -106,7 +106,7 @@ class PersianToolsNumber {
 
   String convertFaToEn(String digits) {
     for (var i = 0; i < 10; i++) {
-      digits = digits.replaceAll('${faNumber[i]}', '$i');
+      digits = digits.replaceAll(faNumber[i], '$i');
     }
     return digits;
   }
@@ -155,12 +155,12 @@ class PersianToolsNumber {
     var sum = 0;
     var isNegative = false;
 
-    tokens.forEach((element) {
+    for (var element in tokens) {
       final token = convertFaToEn(element);
 
-      if (token == ['منفی', 'مثبت'][0])
+      if (token == ['منفی', 'مثبت'][0]) {
         isNegative = true;
-      else if (units[token] != null)
+      } else if (units[token] != null)
         sum += units[token]!;
       else if (ten[token] != null)
         sum += ten[token]!;
@@ -175,7 +175,7 @@ class PersianToolsNumber {
               'تریلیون': 1000000000000,
             }[token] ??
             1;
-    });
+    }
     return isNegative ? sum * -1 : sum;
   }
 
@@ -250,7 +250,9 @@ class PersianToolsNumber {
       number = (number / 1000).floor();
     }
     if (result.length > 4) return '';
-    for (var i = 0; i < result.length; i++) if (result[i] != '' && i != 0) result[i] += ' ${['', 'هزار', 'میلیون', 'میلیارد'][i]} و ';
+    for (var i = 0; i < result.length; i++) {
+      if (result[i] != '' && i != 0) result[i] += ' ${['', 'هزار', 'میلیون', 'میلیارد'][i]} و ';
+    }
     result = result.reversed.toList();
     var words = result.join('');
     if (words.endsWith(' و ')) words = words.substring(0, (words.length - 3));

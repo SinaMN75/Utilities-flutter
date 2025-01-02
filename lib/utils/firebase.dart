@@ -11,8 +11,9 @@ abstract class UFirebase {
     if (UApp.isAndroid) {
       FirebaseMessaging.onMessage.listen(onMessage);
       FirebaseMessaging.onBackgroundMessage(onBackgroundMessage as BackgroundMessageHandler);
-    } else
+    } else {
       return;
+    }
   }
 
   static Future<String?> getFcmToken() async {
@@ -20,8 +21,9 @@ abstract class UFirebase {
       await _firebaseMessaging.requestPermission(announcement: true, carPlay: true, criticalAlert: true, provisional: true);
       final String? fcmToken = await _firebaseMessaging.getToken();
       return fcmToken;
-    } else
+    } else {
       return null;
+    }
   }
 
   static void deleteFcmToken() => _firebaseMessaging.deleteToken();

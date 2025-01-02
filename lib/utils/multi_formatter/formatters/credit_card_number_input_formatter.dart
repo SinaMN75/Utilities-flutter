@@ -213,7 +213,7 @@ class CardSystemData {
 
   @override
   String toString() {
-    return '[CardSystemData(system: $system,' + ' systemCode: $systemCode]';
+    return '[CardSystemData(system: $system,' ' systemCode: $systemCode]';
   }
 }
 
@@ -256,14 +256,12 @@ class _CardSystemDatas {
           break;
         }
       }
-      if (rawData == null) {
-        rawData = tempSystems.last;
-      }
+      rawData ??= tempSystems.last;
     }
     return CardSystemData.fromMap(rawData);
   }
 
-  static List<Map<String, dynamic>> _data = <Map<String, dynamic>>[
+  static final List<Map<String, dynamic>> _data = <Map<String, dynamic>>[
     {
       'system': CardSystem.VISA,
       'systemCode': '4',

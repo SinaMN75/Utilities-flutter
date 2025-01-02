@@ -10,7 +10,7 @@ extension GenericIterableExtentions<T> on Iterable {
   Iterable takeIfPossible(final int range) => range < length ? take(length) : take(range);
 
   List insertFirstReturn<T>(final T item) {
-    List list = this.toList();
+    List list = toList();
     list.insert(0, item);
     return list;
   }
@@ -21,27 +21,31 @@ extension GenericIterableExtentions<T> on Iterable {
 
   void forEachIndexed(void Function(int index, dynamic element) action) {
     int index = 0;
-    for (var element in this) action(index++, element);
+    for (var element in this) {
+      action(index++, element);
+    }
   }
 }
 
 extension IterableExtentions<T> on Iterable<T> {
   Iterable<T> takeIfPossible(final int range) {
-    if (range > length)
+    if (range > length) {
       return take(length);
-    else
+    } else {
       return take(range);
+    }
   }
 
   T? getFirstIfExist() {
-    if (isNullOrEmpty())
+    if (isNullOrEmpty()) {
       return null;
-    else
+    } else {
       return first;
+    }
   }
 
   List<T> alternative(final T main, final T replace) {
-    final List<T> list = this.toList();
+    final List<T> list = toList();
     list.remove(main);
     list.add(replace);
     return list;
@@ -55,7 +59,7 @@ extension IterableExtentions<T> on Iterable<T> {
 
   bool containsAny<T>(final List<T> list) {
     final Set<T> setA = Set<T>.of(list);
-    return setA.any(this.contains);
+    return setA.any(contains);
   }
 
   List<T> addAndReturn(final T t) {
@@ -79,9 +83,9 @@ extension IterableExtentions<T> on Iterable<T> {
 
 extension NullableIterableExtentions on Iterable? {
   bool isNullOrEmpty() {
-    if (this == null)
+    if (this == null) {
       return true;
-    else if (this!.isEmpty) return true;
+    } else if (this!.isEmpty) return true;
     return false;
   }
 

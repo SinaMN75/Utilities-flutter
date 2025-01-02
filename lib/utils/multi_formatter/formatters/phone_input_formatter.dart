@@ -181,9 +181,9 @@ class PhoneInputFormatter extends TextInputFormatter {
       countryData['altMasks'] = alternativeMasks;
     } else {
       final existingList = countryData['altMasks'];
-      alternativeMasks.forEach((m) {
+      for (var m in alternativeMasks) {
         existingList.add(m);
-      });
+      }
     }
     // if (kDebugMode) {
     //   print('Alternative masks for country "${countryData['country']}"' +
@@ -583,7 +583,7 @@ class PhoneCountryData {
 
   @override
   String toString() {
-    return '[PhoneCountryData(country: $country,' + ' phoneCode: $phoneCode, countryCode: $countryCode)]';
+    return '[PhoneCountryData(country: $country,' ' phoneCode: $phoneCode, countryCode: $countryCode)]';
   }
 }
 
@@ -647,7 +647,7 @@ class PhoneCodes {
   ) {
     phoneCode = phoneCode.replaceAll('+', '');
     var list = <PhoneCountryData>[];
-    _data.forEach((data) {
+    for (var data in _data) {
       var c = toNumericString(
         data['internalPhoneCode'],
         allowAllZeroes: true,
@@ -655,7 +655,7 @@ class PhoneCodes {
       if (c == phoneCode) {
         list.add(PhoneCountryData.fromMap(data));
       }
-    });
+    }
     return list;
   }
 
@@ -709,7 +709,7 @@ class PhoneCodes {
     return null;
   }
 
-  static List<Map<String, dynamic>> _data = <Map<String, dynamic>>[
+  static final List<Map<String, dynamic>> _data = <Map<String, dynamic>>[
     {
       'country': 'Afghanistan',
       'countryRU': 'Афганистан',

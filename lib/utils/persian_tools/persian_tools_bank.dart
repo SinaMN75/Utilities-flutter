@@ -49,7 +49,7 @@ class PersianToolsBank {
     Bank(name: 'بانک خاورمیانه', initCode: '585947'),
   ];
 
-  var _banksInfo = <BankInformation>[
+  final _banksInfo = <BankInformation>[
     BankInformation(nickname: 'central-bank', name: 'Central Bank of Iran', persianName: 'بانک مرکزی جمهوری اسلامی ایران', code: '010', isAccountNumberAvailable: false),
     BankInformation(nickname: 'sanat-o-madan', name: 'Sanat O Madan Bank', persianName: 'بانک صنعت و معدن', code: '011', isAccountNumberAvailable: false),
     BankInformation(nickname: 'mellat', name: 'Mellat Bank', persianName: 'بانک ملت', code: '012', isAccountNumberAvailable: false),
@@ -93,7 +93,9 @@ class PersianToolsBank {
         isAccountNumberAvailable: true,
         process: (s) {
           s = s.substring(7);
-          while (s[0] == '0') s = s.substring(1);
+          while (s[0] == '0') {
+            s = s.substring(1);
+          }
           return AccountNumberModel(accountNumber: s, formattedAccountNumber: s);
         }),
     BankInformation(
@@ -104,9 +106,11 @@ class PersianToolsBank {
         isAccountNumberAvailable: true,
         process: (s) {
           s = s.substring(7);
-          while (s[0] == '0') s = s.substring(1);
+          while (s[0] == '0') {
+            s = s.substring(1);
+          }
           s = s.substring(0, s.length - 1);
-          return AccountNumberModel(accountNumber: s, formattedAccountNumber: s.substring(0, 4) + '-' + s.substring(3, 6) + '-' + s.substring(6, 14) + '-' + s[14]);
+          return AccountNumberModel(accountNumber: s, formattedAccountNumber: '${s.substring(0, 4)}-${s.substring(3, 6)}-${s.substring(6, 14)}-${s[14]}');
         }),
     BankInformation(
       nickname: 'parsian',
@@ -116,7 +120,7 @@ class PersianToolsBank {
       isAccountNumberAvailable: true,
       process: (s) {
         s = s.substring(14);
-        return AccountNumberModel(accountNumber: s, formattedAccountNumber: '0' + s.substring(0, 3) + '-0' + s.substring(2, 8) + '-' + s.substring(9, 12));
+        return AccountNumberModel(accountNumber: s, formattedAccountNumber: '0${s.substring(0, 3)}-0${s.substring(2, 8)}-${s.substring(9, 12)}');
       },
     ),
   ];
@@ -154,7 +158,7 @@ class PersianToolsBank {
       } on RangeError catch (_) {
         block = remainder;
       }
-      remainder = '${int.parse(block) % 97}' + remainder.substring(block.length);
+      remainder = '${int.parse(block) % 97}${remainder.substring(block.length)}';
     }
     return int.parse(remainder) % 97;
   }

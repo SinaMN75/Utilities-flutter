@@ -1,4 +1,4 @@
-library datetimepicker;
+library;
 
 export 'src/cupertino/date_picker.dart';
 export 'src/localizations/dari.dart';

@@ -1,6 +1,6 @@
 class PersianTools {
-  static const faText = 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی' + '۰۱۲۳۴۵۶۷۸۹' + 'َُِ' + '‌آاً';
-  static const faComplexText = faText + 'ًٌٍَُِّْٰٔءك‌ةۀأإيـئؤ،';
+  static const faText = 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی' '۰۱۲۳۴۵۶۷۸۹' 'َُِ' '‌آاً';
+  static const faComplexText = '$faTextًٌٍَُِّْٰٔءك‌ةۀأإيـئؤ،';
 
   static bool isPersian(String input, [bool isComplex = false, Pattern? trimPattern]) {
     trimPattern ??= RegExp('["' r"'-+()؟\s.]");
@@ -27,7 +27,9 @@ class PersianTools {
     if ((int.tryParse(nationalId.substring(3, 9)) ?? 0) == 0) return false;
     final lastNumber = int.parse(nationalId.substring(9, 10));
     var sum = 0;
-    for (var i = 0; i < 9; i++) sum += int.parse(nationalId.substring(i, i + 1)) * (10 - i);
+    for (var i = 0; i < 9; i++) {
+      sum += int.parse(nationalId.substring(i, i + 1)) * (10 - i);
+    }
     sum = sum % 11;
     return (sum < 2 && lastNumber == sum) || (sum >= 2 && lastNumber == 11 - sum);
   }

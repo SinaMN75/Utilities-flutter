@@ -34,7 +34,7 @@ class AnimationCard extends StatelessWidget {
       );
 }
 
-typedef void BoolCallback(bool isFront);
+typedef BoolCallback = void Function(bool isFront);
 
 class FlipCard extends StatefulWidget {
   final Widget front;
@@ -50,7 +50,7 @@ class FlipCard extends StatefulWidget {
   final Alignment alignment;
 
   const FlipCard({
-    final Key? key,
+    super.key,
     required this.front,
     required this.back,
     this.speed = 500,
@@ -62,10 +62,10 @@ class FlipCard extends StatefulWidget {
     this.alignment = Alignment.center,
     this.fill = Fill.none,
     this.side = CardSide.FRONT,
-  }) : super(key: key);
+  });
 
   @override
-  State<StatefulWidget> createState() => FlipCardState(this.side == CardSide.FRONT);
+  State<StatefulWidget> createState() => FlipCardState(side == CardSide.FRONT);
 }
 
 class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin {
