@@ -9,7 +9,6 @@ abstract class UCore {
 Future<void> initUtilities({
   final String? apiKey,
   final FirebaseOptions? firebaseOptions,
-  final String? baseUrl,
   final bool safeDevice = false,
   final bool protectDataLeaking = false,
   final bool preventScreenShot = false,
@@ -38,7 +37,6 @@ Future<void> initUtilities({
   } catch (e) {}
 
   UCore.apiKey = apiKey ?? "";
-  if (baseUrl != null) URemoteDataSource.baseUrl = baseUrl;
   return;
 }
 
