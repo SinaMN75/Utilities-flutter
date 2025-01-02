@@ -326,8 +326,8 @@ abstract class UNavigator {
     final String title = "خروج از سیستم",
     final String description = "آیا از خروج از سیستم اطمینان دارید؟",
     final VoidCallback? onCancelButtonTap,
-    final String? yesButtonTitle = "بله",
-    final String? cancelButtonTitle = 'انصراف',
+    final String yesButtonTitle = "بله",
+    final String cancelButtonTitle = 'انصراف',
   }) =>
       showYesCancelDialog(
         title: title,
@@ -343,8 +343,8 @@ abstract class UNavigator {
     required final String description,
     required final VoidCallback onYesButtonTap,
     final VoidCallback? onCancelButtonTap,
-    final String? yesButtonTitle = "بله",
-    final String? cancelButtonTitle = 'انصراف',
+    final String yesButtonTitle = "بله",
+    final String cancelButtonTitle = 'انصراف',
   }) =>
       showDialog(
         context: navigatorKey.currentContext!,
@@ -354,22 +354,13 @@ abstract class UNavigator {
           content: Text(description).bodyMedium(),
           actionsAlignment: MainAxisAlignment.center,
           actions: <Widget>[
-            SizedBox(
-              child: button(
-                width: MediaQuery.sizeOf(navigatorKey.currentContext!).width / 4,
-                backgroundColor: Theme.of(navigatorKey.currentContext!).primaryColorDark,
-                onTap: onCancelButtonTap ?? UNavigator.back,
-                title: cancelButtonTitle,
-                textStyle: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium,
-              ),
+            TextButton(
+              onPressed: onCancelButtonTap ?? UNavigator.back,
+              child: Text(cancelButtonTitle),
             ),
-            SizedBox(
-              child: button(
-                width: MediaQuery.sizeOf(navigatorKey.currentContext!).width / 4,
-                onTap: onYesButtonTap,
-                title: yesButtonTitle,
-                textStyle: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium,
-              ),
+            TextButton(
+              onPressed: onYesButtonTap,
+              child: Text(yesButtonTitle),
             ),
           ],
         ),
