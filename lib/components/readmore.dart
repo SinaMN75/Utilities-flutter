@@ -8,7 +8,7 @@ enum TrimMode {
 class ReadMoreText extends StatefulWidget {
   const ReadMoreText(
     this.data, {
-    Key? key,
+    super.key,
     this.preDataText,
     this.postDataText,
     this.preDataTextStyle,
@@ -27,12 +27,12 @@ class ReadMoreText extends StatefulWidget {
     this.semanticsLabel,
     this.moreStyle,
     this.lessStyle,
-    this.delimiter = _kEllipsis + ' ',
+    this.delimiter = '$_kEllipsis ',
     this.delimiterStyle,
     this.callback,
     this.onLinkPressed,
     this.linkTextStyle,
-  }) : super(key: key);
+  });
   final int trimLength;
   final int trimLines;
   final TrimMode trimMode;
@@ -93,23 +93,23 @@ class ReadMoreTextState extends State<ReadMoreText> {
     final locale = widget.locale ?? Localizations.maybeLocaleOf(context);
 
     final colorClickableText = widget.colorClickableText ?? Theme.of(context).colorScheme.secondary;
-    final _defaultLessStyle = widget.lessStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
-    final _defaultMoreStyle = widget.moreStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
-    final _defaultDelimiterStyle = widget.delimiterStyle ?? effectiveTextStyle;
+    final defaultLessStyle = widget.lessStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
+    final defaultMoreStyle = widget.moreStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
+    final defaultDelimiterStyle = widget.delimiterStyle ?? effectiveTextStyle;
 
     TextSpan link = TextSpan(
       text: _readMore ? widget.trimCollapsedText : widget.trimExpandedText,
-      style: _readMore ? _defaultMoreStyle : _defaultLessStyle,
+      style: _readMore ? defaultMoreStyle : defaultLessStyle,
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
     );
 
-    TextSpan _delimiter = TextSpan(
+    TextSpan delimiter = TextSpan(
       text: _readMore
           ? widget.trimCollapsedText.isNotEmpty
               ? widget.delimiter
               : ''
           : '',
-      style: _defaultDelimiterStyle,
+      style: defaultDelimiterStyle,
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
     );
 
@@ -120,16 +120,18 @@ class ReadMoreTextState extends State<ReadMoreText> {
 
         TextSpan? preTextSpan;
         TextSpan? postTextSpan;
-        if (widget.preDataText != null)
+        if (widget.preDataText != null) {
           preTextSpan = TextSpan(
-            text: widget.preDataText! + " ",
+            text: "${widget.preDataText!} ",
             style: widget.preDataTextStyle ?? effectiveTextStyle,
           );
-        if (widget.postDataText != null)
+        }
+        if (widget.postDataText != null) {
           postTextSpan = TextSpan(
-            text: " " + widget.postDataText!,
+            text: " ${widget.postDataText!}",
             style: widget.postDataTextStyle ?? effectiveTextStyle,
           );
+        }
         final text = TextSpan(
           children: [if (preTextSpan != null) preTextSpan, TextSpan(text: widget.data, style: effectiveTextStyle), if (postTextSpan != null) postTextSpan],
         );
@@ -143,7 +145,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
         );
         textPainter.layout(minWidth: 0, maxWidth: maxWidth);
         final linkSize = textPainter.size;
-        textPainter.text = _delimiter;
+        textPainter.text = delimiter;
         textPainter.layout(minWidth: 0, maxWidth: maxWidth);
         final delimiterSize = textPainter.size;
         textPainter.text = text;
@@ -167,7 +169,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
           linkLongerThanLine = true;
         }
 
-        var textSpan;
+        TextSpan textSpan;
         switch (widget.trimMode) {
           case TrimMode.Length:
             if (widget.trimLength < widget.data.length) {
@@ -179,7 +181,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
                   color: Colors.blue,
                 ),
                 onPressed: widget.onLinkPressed,
-                children: [_delimiter, link],
+                children: [delimiter, link],
               );
             } else {
               textSpan = _buildData(
@@ -204,7 +206,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
                   color: Colors.blue,
                 ),
                 onPressed: widget.onLinkPressed,
-                children: [_delimiter, link],
+                children: [delimiter, link],
               );
             } else {
               textSpan = _buildData(

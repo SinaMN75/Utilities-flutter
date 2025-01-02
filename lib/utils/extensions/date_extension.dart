@@ -16,9 +16,9 @@ extension DateTimeExtensions on DateTime {
     try {
       final Duration difference = DateTime.now().difference(this);
 
-      if ((difference.inDays / 365).floor() >= 2)
+      if ((difference.inDays / 365).floor() >= 2) {
         return persian ? '${difference.inDays.toString().persianNumber()} سال پیش' : '${(difference.inDays / 365).floor()}y';
-      else if ((difference.inDays / 365).floor() >= 1)
+      } else if ((difference.inDays / 365).floor() >= 1)
         return persian
             ? numericDates
                 ? '۱ سال پیش'

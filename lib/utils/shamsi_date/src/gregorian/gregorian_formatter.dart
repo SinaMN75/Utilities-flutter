@@ -2,7 +2,7 @@ import '../date_formatter.dart';
 import '../gregorian/gregorian_date.dart';
 
 class GregorianFormatter extends DateFormatter {
-  const GregorianFormatter(Gregorian date) : super(date);
+  const GregorianFormatter(Gregorian super.date);
 
   static const List<String> _monthNames = [
     'January',

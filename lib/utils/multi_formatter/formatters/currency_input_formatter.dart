@@ -24,7 +24,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
   final int? maxTextLength;
   final ValueChanged<num>? onValueChange;
 
-  bool _printDebugInfo = false;
+  final bool _printDebugInfo = false;
 
   /// Indicates if there are any scheduled updates using [_widgetsBinding]'s `addPostFrameCallback`.
   bool _scheduledUpdate = false;
@@ -368,7 +368,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
 
   int _getLeadingLength() {
     if (useSymbolPadding) {
-      if (leadingSymbol.length > 0) {
+      if (leadingSymbol.isNotEmpty) {
         return leadingSymbol.length + 1;
       } else {
         return 0;
@@ -379,7 +379,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
 
   int _getTrailingLength() {
     if (useSymbolPadding) {
-      if (trailingSymbol.length > 0) {
+      if (trailingSymbol.isNotEmpty) {
         return trailingSymbol.length + 1;
       } else {
         return 0;

@@ -49,8 +49,8 @@ class CommentReadDto {
 
   factory CommentReadDto.fromMap(final dynamic json) => CommentReadDto(
         id: json["id"],
-        createdAt: json["createdAt"] == null ? null : json["createdAt"],
-        updatedAt: json["updatedAt"] == null ? null : json["updatedAt"],
+        createdAt: json["createdAt"],
+        updatedAt: json["updatedAt"],
         score: json["score"],
         comment: json["comment"],
         isLiked: json["isLiked"],

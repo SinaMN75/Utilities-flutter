@@ -26,10 +26,11 @@ Future<void> httpRequest({
     Response<dynamic> response = const Response<dynamic>();
     dynamic params;
     if (body != null) {
-      if (encodeBody)
+      if (encodeBody) {
         params = body.toJson();
-      else
+      } else {
         params = body;
+      }
     }
 
     final GetConnect connect = GetConnect(timeout: timeout);
@@ -59,8 +60,9 @@ Future<void> httpRequest({
             return;
           }
         }
-      } else
+      } else {
         response = await connect.get(url, headers: header);
+      }
     }
     if (httpMethod == EHttpMethod.post) response = await connect.post(url, params, headers: header);
     if (httpMethod == EHttpMethod.put) response = await connect.put(url, params, headers: header);
@@ -68,10 +70,11 @@ Future<void> httpRequest({
     if (httpMethod == EHttpMethod.delete) response = await connect.delete(url, headers: header);
 
     if (kDebugMode) response.prettyLog(params: (body == null || !encodeBody) ? "" : body.toJson());
-    if (response.isSuccessful())
+    if (response.isSuccessful()) {
       action(response);
-    else
+    } else {
       error(response);
+    }
   } catch (e) {
     error(const Response<dynamic>(statusCode: 999, body: "{}", bodyString: "{}"));
     ULoading.dismissLoading();

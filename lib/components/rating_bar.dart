@@ -16,6 +16,7 @@ class RatingWidget {
 
 class RatingBar extends StatefulWidget {
   const RatingBar({
+    super.key,
     required RatingWidget ratingWidget,
     required this.onRatingUpdate,
     this.glowColor,
@@ -39,6 +40,7 @@ class RatingBar extends StatefulWidget {
         _ratingWidget = ratingWidget;
 
   const RatingBar.builder({
+    super.key,
     required IndexedWidgetBuilder itemBuilder,
     required this.onRatingUpdate,
     this.glowColor,
@@ -162,26 +164,26 @@ class _RatingBarState extends State<RatingBar> {
     final item = widget._itemBuilder?.call(context, index);
     final ratingOffset = widget.allowHalfRating ? 0.5 : 1.0;
 
-    Widget _ratingWidget;
+    Widget ratingWidget0;
 
     if (index >= _rating) {
-      _ratingWidget = _NoRatingWidget(
+      ratingWidget0 = _NoRatingWidget(
         size: widget.itemSize,
-        child: ratingWidget?.empty ?? item!,
         enableMask: ratingWidget == null,
         unratedColor: widget.unratedColor ?? Theme.of(context).disabledColor,
+        child: ratingWidget?.empty ?? item!,
       );
     } else if (index >= _rating - ratingOffset && widget.allowHalfRating) {
       if (ratingWidget?.half == null) {
-        _ratingWidget = _HalfRatingWidget(
+        ratingWidget0 = _HalfRatingWidget(
           size: widget.itemSize,
-          child: item!,
           enableMask: ratingWidget == null,
           rtlMode: _isRTL,
           unratedColor: widget.unratedColor ?? Theme.of(context).disabledColor,
+          child: item!,
         );
       } else {
-        _ratingWidget = SizedBox(
+        ratingWidget0 = SizedBox(
           width: widget.itemSize,
           height: widget.itemSize,
           child: FittedBox(
@@ -199,7 +201,7 @@ class _RatingBarState extends State<RatingBar> {
       }
       iconRating += 0.5;
     } else {
-      _ratingWidget = SizedBox(
+      ratingWidget0 = SizedBox(
         width: widget.itemSize,
         height: widget.itemSize,
         child: FittedBox(
@@ -262,7 +264,7 @@ class _RatingBarState extends State<RatingBar> {
               }
               return child!;
             },
-            child: _ratingWidget,
+            child: ratingWidget0,
           ),
         ),
       ),
@@ -276,12 +278,12 @@ class _RatingBarState extends State<RatingBar> {
       final box = navigatorKey.currentContext!.findRenderObject() as RenderBox?;
       if (box == null) return;
 
-      final _pos = box.globalToLocal(dragDetails.globalPosition);
+      final pos = box.globalToLocal(dragDetails.globalPosition);
       double i;
       if (widget.direction == Axis.horizontal) {
-        i = _pos.dx / (widget.itemSize + widget.itemPadding.horizontal);
+        i = pos.dx / (widget.itemSize + widget.itemPadding.horizontal);
       } else {
-        i = _pos.dy / (widget.itemSize + widget.itemPadding.vertical);
+        i = pos.dy / (widget.itemSize + widget.itemPadding.vertical);
       }
       var currentRating = widget.allowHalfRating ? i : i.round().toDouble();
       if (currentRating > widget.itemCount) {
@@ -312,7 +314,7 @@ class _RatingBarState extends State<RatingBar> {
 }
 
 class _HalfRatingWidget extends StatelessWidget {
-  _HalfRatingWidget({
+  const _HalfRatingWidget({
     required this.size,
     required this.child,
     required this.enableMask,
@@ -338,10 +340,10 @@ class _HalfRatingWidget extends StatelessWidget {
                 FittedBox(
                   fit: BoxFit.contain,
                   child: _NoRatingWidget(
-                    child: child,
                     size: size,
                     unratedColor: unratedColor,
                     enableMask: enableMask,
+                    child: child,
                   ),
                 ),
                 FittedBox(
@@ -356,8 +358,8 @@ class _HalfRatingWidget extends StatelessWidget {
               ],
             )
           : FittedBox(
-              child: child,
               fit: BoxFit.contain,
+              child: child,
             ),
     );
   }
@@ -388,7 +390,7 @@ class _HalfClipper extends CustomClipper<Rect> {
 }
 
 class _NoRatingWidget extends StatelessWidget {
-  _NoRatingWidget({
+  const _NoRatingWidget({
     required this.size,
     required this.child,
     required this.enableMask,
@@ -422,7 +424,8 @@ class _NoRatingWidget extends StatelessWidget {
 }
 
 class RatingBarIndicator extends StatefulWidget {
-  RatingBarIndicator({
+  const RatingBarIndicator({
+    super.key,
     required this.itemBuilder,
     this.textDirection,
     this.unratedColor,

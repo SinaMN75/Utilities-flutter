@@ -176,10 +176,10 @@ Widget button({
   final int countDownSeconds = 120,
 }) {
   final Rx<PageState> buttonState = state.obs;
-  if (buttonType == ButtonType.elevated)
+  if (buttonType == ButtonType.elevated) {
     return Obx(
       () {
-        if (buttonState.value == PageState.initial)
+        if (buttonState.value == PageState.initial) {
           return ElevatedButton(
             style: ButtonStyle(
               textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle),
@@ -195,7 +195,7 @@ Widget button({
               ),
             ),
           );
-        else if (buttonState.value == PageState.loading)
+        } else if (buttonState.value == PageState.loading)
           return const CircularProgressIndicator().alignAtCenter();
         else if (buttonState.value == PageState.paging)
           return SlideCountdown(
@@ -209,7 +209,8 @@ Widget button({
           return const SizedBox();
       },
     );
-  if (buttonType == ButtonType.outlined)
+  }
+  if (buttonType == ButtonType.outlined) {
     return OutlinedButton(
       style: ButtonStyle(
         textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle),
@@ -225,7 +226,8 @@ Widget button({
         ),
       ),
     );
-  if (buttonType == ButtonType.text)
+  }
+  if (buttonType == ButtonType.text) {
     return TextButton(
       style: ButtonStyle(
         textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle),
@@ -241,6 +243,7 @@ Widget button({
         ),
       ),
     );
+  }
   return const SizedBox();
 }
 

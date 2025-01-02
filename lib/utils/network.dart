@@ -119,9 +119,9 @@ class InternetConnectionChecker {
         (final AddressCheckResult request) {
           length -= 1;
           if (!result.isCompleted) {
-            if (request.isSuccess)
+            if (request.isSuccess) {
               result.complete(true);
-            else if (length == 0) result.complete(false);
+            } else if (length == 0) result.complete(false);
           }
         },
       );

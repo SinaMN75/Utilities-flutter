@@ -77,10 +77,11 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
       final List<String> initList = widget.initialDate.split("/");
       _selectedYear = int.parse(initList[0]);
       _selectedMonth = int.parse(initList[1]);
-      if (widget.showDay)
+      if (widget.showDay) {
         _selectedDay = int.parse(initList[2]);
-      else
+      } else {
         _selectedDay = widget.isJalaali ? Jalali.now().day : Jalali.now().day;
+      }
     } else {
       if (widget.isJalaali) {
         _selectedYear = Jalali.now().year;
@@ -145,14 +146,16 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
                 selectedRowStyle: widget.selectedRowStyle,
                 unselectedRowStyle: widget.unselectedRowStyle,
                 onChanged: (final num value) {
-                  if (value != _selectedYear)
+                  if (value != _selectedYear) {
                     setState(() {
                       _selectedYear = value as int?;
-                      if (widget.showDay)
+                      if (widget.showDay) {
                         widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}/${_selectedDay.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
-                      else
+                      } else {
                         widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
+                      }
                     });
+                  }
                 }),
             NumberPicker.integer(
                 listViewWidth: widget.columnWidth,
@@ -164,14 +167,16 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
                 isShowMonthName: widget.showMonthName,
                 isJalali: widget.isJalaali,
                 onChanged: (final num value) {
-                  if (value != _selectedMonth)
+                  if (value != _selectedMonth) {
                     setState(() {
                       _selectedMonth = value as int?;
-                      if (widget.showDay)
+                      if (widget.showDay) {
                         widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}/${_selectedDay.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
-                      else
+                      } else {
                         widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
+                      }
                     });
+                  }
                 }),
             Visibility(
               visible: widget.showDay,
@@ -183,14 +188,16 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
                   selectedRowStyle: widget.selectedRowStyle,
                   unselectedRowStyle: widget.unselectedRowStyle,
                   onChanged: (final num value) {
-                    if (value != _selectedDay)
+                    if (value != _selectedDay) {
                       setState(() {
                         _selectedDay = value as int;
-                        if (widget.showDay)
+                        if (widget.showDay) {
                           widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}/${_selectedDay.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
-                        else
+                        } else {
                           widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
+                        }
                       });
+                    }
                   }),
             )
           ],
@@ -298,7 +305,7 @@ class NumberPicker extends StatelessWidget {
     required this.minValue,
     required this.maxValue,
     required this.onChanged,
-    final Key? key,
+    super.key,
     this.enabled = true,
     this.textMapper,
     this.itemExtent = kDefaultItemExtent,
@@ -323,8 +330,7 @@ class NumberPicker extends StatelessWidget {
         ),
         decimalScrollController = null,
         listViewHeight = 3 * itemExtent,
-        integerItemCount = (maxValue - minValue) ~/ step + 1,
-        super(key: key) {
+        integerItemCount = (maxValue - minValue) ~/ step + 1 {
     onChanged(selectedIntValue);
   }
 
@@ -551,8 +557,7 @@ class _NumberPickerSelectedItemDecoration extends StatelessWidget {
     required this.axis,
     required this.itemExtent,
     required this.decoration,
-    final Key? key,
-  }) : super(key: key);
+  });
   final Axis axis;
   final double itemExtent;
   final Decoration? decoration;

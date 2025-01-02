@@ -39,7 +39,7 @@ abstract class UFile {
           },
         );
         action(files);
-      } else
+      } else {
         action(
           <FileData>[
             FileData(
@@ -50,6 +50,7 @@ abstract class UFile {
             ),
           ],
         );
+      }
     }
   }
 
@@ -294,8 +295,7 @@ abstract class UFile {
                             onFileDeleted: onFileDeleted,
                             onFileEdited: (final FileData i) {},
                           ),
-                        )
-                        .toList(),
+                    ),
                   ],
                 ),
                 if (data.parentId == null) const Divider(thickness: 4, color: Colors.blue) else const Divider(),
@@ -326,8 +326,7 @@ abstract class UFile {
                         onFileEdited(oldFiles);
                       },
                     ),
-                  )
-                  .toList(),
+              ),
               ...addedFiles
                   .mapIndexed(
                     (final int index, final FileData i) => fileIcon(
@@ -339,8 +338,7 @@ abstract class UFile {
                       },
                       onFileEdited: (final FileData i) => addedFiles[index] = i,
                     ),
-                  )
-                  .toList(),
+              ),
               addIcon(
                 onTap: () => showFilePicker(
                   allowMultiple: true,

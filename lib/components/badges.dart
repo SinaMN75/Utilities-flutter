@@ -8,7 +8,7 @@ enum BadgeAnimationType {
 
 class BadgeWidget extends StatefulWidget {
   const BadgeWidget({
-    final Key? key,
+    super.key,
     this.badgeContent,
     this.child,
     this.badgeColor = Colors.red,
@@ -26,7 +26,7 @@ class BadgeWidget extends StatefulWidget {
     this.borderSide = BorderSide.none,
     this.stackFit = StackFit.loose,
     this.gradient,
-  }) : super(key: key);
+  });
 
   final Widget? child;
 
@@ -120,7 +120,7 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
             borderRadius: widget.borderRadius,
           );
 
-    Widget _badgeView() => AnimatedOpacity(
+    Widget badgeView() => AnimatedOpacity(
           opacity: widget.showBadge ? 1 : 0,
           duration: const Duration(milliseconds: 200),
           child: Material(
@@ -131,7 +131,7 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
           ),
         );
 
-    Widget _badgeViewGradient() => AnimatedOpacity(
+    Widget badgeViewGradient() => AnimatedOpacity(
           opacity: widget.showBadge ? 1 : 0,
           duration: const Duration(milliseconds: 200),
           child: Material(
@@ -153,22 +153,22 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
       if (widget.animationType == BadgeAnimationType.slide) {
         return SlideTransition(
           position: _positionTween.animate(_animation),
-          child: widget.gradient == null ? _badgeView() : _badgeViewGradient(),
+          child: widget.gradient == null ? badgeView() : badgeViewGradient(),
         );
       } else if (widget.animationType == BadgeAnimationType.scale) {
         return ScaleTransition(
           scale: _animation,
-          child: widget.gradient == null ? _badgeView() : _badgeViewGradient(),
+          child: widget.gradient == null ? badgeView() : badgeViewGradient(),
         );
       } else if (widget.animationType == BadgeAnimationType.fade) {
         return FadeTransition(
           opacity: _animation,
-          child: widget.gradient == null ? _badgeView() : _badgeViewGradient(),
+          child: widget.gradient == null ? badgeView() : badgeViewGradient(),
         );
       }
     }
 
-    return widget.gradient == null ? _badgeView() : _badgeViewGradient();
+    return widget.gradient == null ? badgeView() : badgeViewGradient();
   }
 
   @override
@@ -230,7 +230,7 @@ enum BadgeShape {
 }
 
 class BadgePositioned extends StatelessWidget {
-  const BadgePositioned({required this.child, final Key? key, this.position}) : super(key: key);
+  const BadgePositioned({required this.child, super.key, this.position});
   final BadgePosition? position;
 
   final Widget child;

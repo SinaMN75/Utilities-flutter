@@ -55,7 +55,7 @@ class NotificationReadDto {
         "seenStatus": seenStatus,
         "tagUseCase": tagUseCase,
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((final int x) => x)),
-        "creatorUser": creatorUser == null ? null : creatorUser!.toMap(),
+        "creatorUser": creatorUser?.toMap(),
         "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
       };
 }

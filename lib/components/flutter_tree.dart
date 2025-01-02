@@ -62,16 +62,16 @@ class FlutterTreePro extends StatefulWidget {
   /// if expanded items
   final bool isExpanded;
 
-  FlutterTreePro({
+  const FlutterTreePro({
     required this.onChecked,
-    Key? key,
+    super.key,
     this.treeData = const <String, dynamic>{},
     this.initialTreeData = const <String, dynamic>{},
     this.config = const TreeConfig(),
     this.listData = const <Map<String, dynamic>>[],
     this.initialListData = const <Map<String, dynamic>>[],
     this.isExpanded = false,
-  }) : super(key: key);
+  });
 
   @override
   _FlutterTreeProState createState() => _FlutterTreeProState();
@@ -106,9 +106,9 @@ class _FlutterTreeProState extends State<FlutterTreePro> {
       var listToMap = DataUtil.transformListToMap(widget.listData, widget.config);
       sourceTreeMap = listToMap;
       factoryTreeData(sourceTreeMap);
-      widget.initialListData.forEach((element) {
+      for (var element in widget.initialListData) {
         element['checked'] = 0;
-      });
+      }
       for (var item in widget.initialListData) {
         for (var element in treeMap.values.toList()) {
           if (item['id'] == element['id']) {
@@ -432,16 +432,16 @@ class MStack {
 
   push(item) {
     top++;
-    this.items.add(item);
+    items.add(item);
   }
 
   pop() {
     --top;
-    return this.items.removeLast();
+    return items.removeLast();
   }
 
   peek() {
-    return this.items[this.top - 1];
+    return items[top - 1];
   }
 }
 
@@ -451,7 +451,7 @@ class DataUtil {
   static Map<String, dynamic> transformListToMap(List dataList, TreeConfig config) {
     Map obj = {};
     int? rootId;
-    dataList.forEach((v) {
+    for (var v in dataList) {
       // 根节点
       if (v[config.parentId] != 0) {
         if (obj[v[config.parentId]] != null) {
@@ -472,7 +472,7 @@ class DataUtil {
         v[config.children] = obj[v[config.id]][config.children];
       }
       obj[v[config.id]] = v;
-    });
+    }
     return obj[rootId] ?? {};
   }
 

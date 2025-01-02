@@ -2,7 +2,7 @@ import '../date_formatter.dart';
 import '../jalali/jalali_date.dart';
 
 class JalaliFormatter extends DateFormatter {
-  const JalaliFormatter(Jalali date) : super(date);
+  const JalaliFormatter(Jalali super.date);
 
   static const List<String> _monthNames = [
     'فروردین',

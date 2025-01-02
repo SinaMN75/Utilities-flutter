@@ -74,7 +74,7 @@ class CircularPercentIndicator extends StatefulWidget {
   final bool rotateLinearGradient;
 
   CircularPercentIndicator({
-    Key? key,
+    super.key,
     this.percent = 0.0,
     this.lineWidth = 5.0,
     this.startAngle = 0.0,
@@ -101,7 +101,7 @@ class CircularPercentIndicator extends StatefulWidget {
     this.onAnimationEnd,
     this.widgetIndicator,
     this.rotateLinearGradient = false,
-  }) : super(key: key) {
+  }) {
     if (linearGradient != null && progressColor != null) {
       throw ArgumentError('Cannot provide both linearGradient and progressColor');
     }
@@ -202,7 +202,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
       items.add(widget.header!);
     }
     items.add(
-      Container(
+      SizedBox(
         height: _diameter,
         width: _diameter,
         child: Stack(
@@ -492,7 +492,7 @@ class LinearPercentIndicator extends StatefulWidget {
   final Widget? widgetIndicator;
 
   LinearPercentIndicator({
-    Key? key,
+    super.key,
     this.fillColor = Colors.transparent,
     this.percent = 0.0,
     this.lineHeight = 5.0,
@@ -518,7 +518,7 @@ class LinearPercentIndicator extends StatefulWidget {
     this.restartAnimation = false,
     this.onAnimationEnd,
     this.widgetIndicator,
-  }) : super(key: key) {
+  }) {
     if (linearGradient != null) {
       throw ArgumentError('Cannot provide both linearGradient and progressColor');
     }
@@ -528,7 +528,7 @@ class LinearPercentIndicator extends StatefulWidget {
     }
 
     if (percent < 0.0 || percent > 1.0) {
-      throw new Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
+      throw Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
     }
   }
 
@@ -697,8 +697,8 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
 }
 
 class _LinearPainter extends CustomPainter {
-  final Paint _paintBackground = new Paint();
-  final Paint _paintLine = new Paint();
+  final Paint _paintBackground = Paint();
+  final Paint _paintLine = Paint();
   final double progress;
   final bool isRTL;
   final Color progressColor;

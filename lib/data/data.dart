@@ -49,25 +49,25 @@ part 'remote_datasource/user_datasource.dart';
 abstract class URemoteDataSource {
   static late String baseUrl;
 
-  static late AddressDataSource address = AddressDataSource(baseUrl: baseUrl);
-  static late AppSettingsDataSource appSettings = AppSettingsDataSource(baseUrl: baseUrl);
-  static late BlockDataSource block = BlockDataSource(baseUrl: baseUrl);
-  static late CategoryDataSource category = CategoryDataSource(baseUrl: baseUrl);
-  static late CommentDataSource comment = CommentDataSource(baseUrl: baseUrl);
-  static late ContentDataSource content = ContentDataSource(baseUrl: baseUrl);
-  static late FollowBookmarkDataSource followBookmark = FollowBookmarkDataSource(baseUrl: baseUrl);
-  static late MailSmsNotificationDataSource mailSmsNotification = MailSmsNotificationDataSource(baseUrl: baseUrl);
-  static late MediaDataSource media = MediaDataSource(baseUrl: baseUrl);
-  static late NotificationDataSource notification = NotificationDataSource(baseUrl: baseUrl);
-  static late OrderDataSource order = OrderDataSource(baseUrl: baseUrl);
-  static late PaymentDataSource payment = PaymentDataSource(baseUrl: baseUrl);
-  static late ProductDataSource product = ProductDataSource(baseUrl: baseUrl);
-  static late QuestionDataSource question = QuestionDataSource(baseUrl: baseUrl);
-  static late RegistrationDataSource registration = RegistrationDataSource(baseUrl: baseUrl);
-  static late ReportDataSource report = ReportDataSource(baseUrl: baseUrl);
-  static late ScrapperDataSource scrapper = ScrapperDataSource(baseUrl: baseUrl);
-  static late TransactionDataSource transaction = TransactionDataSource(baseUrl: baseUrl);
-  static late UserDataSource user = UserDataSource(baseUrl: baseUrl);
+  static AddressDataSource address = AddressDataSource(baseUrl: baseUrl);
+  static AppSettingsDataSource appSettings = AppSettingsDataSource(baseUrl: baseUrl);
+  static BlockDataSource block = BlockDataSource(baseUrl: baseUrl);
+  static CategoryDataSource category = CategoryDataSource(baseUrl: baseUrl);
+  static CommentDataSource comment = CommentDataSource(baseUrl: baseUrl);
+  static ContentDataSource content = ContentDataSource(baseUrl: baseUrl);
+  static FollowBookmarkDataSource followBookmark = FollowBookmarkDataSource(baseUrl: baseUrl);
+  static MailSmsNotificationDataSource mailSmsNotification = MailSmsNotificationDataSource(baseUrl: baseUrl);
+  static MediaDataSource media = MediaDataSource(baseUrl: baseUrl);
+  static NotificationDataSource notification = NotificationDataSource(baseUrl: baseUrl);
+  static OrderDataSource order = OrderDataSource(baseUrl: baseUrl);
+  static PaymentDataSource payment = PaymentDataSource(baseUrl: baseUrl);
+  static ProductDataSource product = ProductDataSource(baseUrl: baseUrl);
+  static QuestionDataSource question = QuestionDataSource(baseUrl: baseUrl);
+  static RegistrationDataSource registration = RegistrationDataSource(baseUrl: baseUrl);
+  static ReportDataSource report = ReportDataSource(baseUrl: baseUrl);
+  static ScrapperDataSource scrapper = ScrapperDataSource(baseUrl: baseUrl);
+  static TransactionDataSource transaction = TransactionDataSource(baseUrl: baseUrl);
+  static UserDataSource user = UserDataSource(baseUrl: baseUrl);
 }
 
 T? removeNullEntries<T>(T? json) {

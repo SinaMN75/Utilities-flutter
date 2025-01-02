@@ -31,7 +31,7 @@ class FDottedLine extends StatefulWidget {
 
   /// [FDottedLine] provides developers with the ability to create dashed lines. It also supports creating a dashed border for a [Widget]. Support for controlling the thickness, spacing, and corners of the dotted border.
   const FDottedLine({
-    final Key? key,
+    super.key,
     this.color = Colors.black,
     this.height,
     this.width,
@@ -40,7 +40,7 @@ class FDottedLine extends StatefulWidget {
     this.strokeWidth = 1.0,
     this.corner,
     this.child,
-  }) : super(key: key);
+  });
 
   /// Dotted line color
   final Color color;

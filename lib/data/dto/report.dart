@@ -75,7 +75,7 @@ class ReportReadDto {
         "id": id,
         "title": title,
         "description": description,
-        "product": product == null ? null : product!.toMap(),
+        "product": product?.toMap(),
       };
 }
 

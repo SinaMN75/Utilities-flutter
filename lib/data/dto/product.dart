@@ -660,8 +660,24 @@ class ProductFilterDto extends BaseFilterDto {
   bool? showExpired;
   bool? boosted;
 
+  @override
+  @override
+  @override
+  @override
+  @override
+  @override
+  @override
+  @override
   String toJson() => json.encode(removeNullEntries(toMap()));
 
+  @override
+  @override
+  @override
+  @override
+  @override
+  @override
+  @override
+  @override
   Map<String, dynamic> toMap() => {
         "title": title,
         "subtitle": subtitle,

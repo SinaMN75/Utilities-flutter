@@ -30,8 +30,8 @@ class BookmarkReadDto {
   dynamic toMap() => {
         "folderName": folderName,
         "id": id,
-        "product": product == null ? null : product!.toMap(),
-        "user": user == null ? null : user!.toMap(),
+        "product": product?.toMap(),
+        "user": user?.toMap(),
         "media": media == null ? null : List<dynamic>.from(media!.map((x) => x.toMap())),
       };
 }

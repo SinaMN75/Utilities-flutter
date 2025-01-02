@@ -198,7 +198,7 @@ abstract class UNavigator {
     final int duration = 5,
     final bool instantInit = true,
   }) {
-    if (!Get.isSnackbarOpen)
+    if (!Get.isSnackbarOpen) {
       Get.snackbar(
         title,
         subtitle,
@@ -238,6 +238,7 @@ abstract class UNavigator {
         titleText: titleText,
         userInputForm: userInputForm,
       );
+    }
   }
 
   static void snackbarRed({
@@ -279,7 +280,7 @@ abstract class UNavigator {
     final int duration = 5,
     final bool instantInit = true,
   }) {
-    if (!Get.isSnackbarOpen)
+    if (!Get.isSnackbarOpen) {
       Get.snackbar(
         title,
         subtitle,
@@ -319,6 +320,7 @@ abstract class UNavigator {
         titleText: titleText,
         userInputForm: userInputForm,
       );
+    }
   }
 
   static void logout({

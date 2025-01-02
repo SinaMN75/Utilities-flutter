@@ -83,10 +83,11 @@ extension StringExtensions on String {
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this)).formatFullDate();
 
   String append0() {
-    if (length == 1)
+    if (length == 1) {
       return "0$this";
-    else
+    } else {
       return this;
+    }
   }
 
   String formatJalaliDateTime() {
@@ -110,9 +111,9 @@ extension StringExtensions on String {
   String toTimeAgo({final bool numericDates = false, final bool persian = false}) {
     try {
       final Duration difference = DateTime.now().difference(intl.DateFormat("yyyy-MM-ddThh:mm:sss").parse(this));
-      if (difference.inDays > 8)
+      if (difference.inDays > 8) {
         return substring(0, 10);
-      else if ((difference.inDays / 7).floor() >= 1)
+      } else if ((difference.inDays / 7).floor() >= 1)
         return persian
             ? numericDates
                 ? '۱ هفته پیش'
@@ -290,7 +291,9 @@ extension StringExtensions on String {
     final input = utf8.encode(this);
     BigInt intData = BigInt.from(0);
 
-    for (var byte in input) intData = intData * BigInt.from(256) + BigInt.from(byte);
+    for (var byte in input) {
+      intData = intData * BigInt.from(256) + BigInt.from(byte);
+    }
 
     StringBuffer result = StringBuffer();
     while (intData > BigInt.zero) {
@@ -300,10 +303,11 @@ extension StringExtensions on String {
     }
 
     for (var byte in input) {
-      if (byte == 0)
+      if (byte == 0) {
         result.write(base58Alphabet[0]);
-      else
+      } else {
         break;
+      }
     }
 
     return result.toString().split('').reversed.join();
@@ -313,7 +317,7 @@ extension StringExtensions on String {
     const base58Alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
     BigInt intData = BigInt.zero;
 
-    for (var char in this.split('')) {
+    for (var char in split('')) {
       final index = base58Alphabet.indexOf(char);
       if (index < 0) throw FormatException('Invalid Base58 character: $char');
       intData = intData * BigInt.from(58) + BigInt.from(index);
@@ -325,11 +329,12 @@ extension StringExtensions on String {
       intData = intData ~/ BigInt.from(256);
     }
 
-    for (var char in this.split('')) {
-      if (char == '1')
+    for (var char in split('')) {
+      if (char == '1') {
         bytes.insert(0, 0);
-      else
+      } else {
         break;
+      }
     }
 
     return utf8.decode(bytes);

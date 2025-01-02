@@ -43,12 +43,13 @@ class UMap extends StatefulWidget {
 class _UMapState extends State<UMap> {
   @override
   void initState() {
-    if (widget.initOnUserLocation)
+    if (widget.initOnUserLocation) {
       ULocation.getUserLocation(
         onUserLocationFound: (final dynamic location) {
           widget.controller.move(LatLng(location.latitude, location.longitude), widget.controller.camera.zoom);
         },
       );
+    }
     super.initState();
   }
 
