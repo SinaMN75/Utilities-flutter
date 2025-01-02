@@ -42,9 +42,9 @@ dependencies:
   firebase_messaging: ^15.1.6
   firebase_analytics: ^11.3.6
   firebase_crashlytics: ^4.2.0
-  syncfusion_flutter_charts: ^28.1.33
-  syncfusion_flutter_barcodes: ^28.1.33
-  syncfusion_flutter_pdfviewer: ^28.1.33
+  syncfusion_flutter_charts: ^28.1.37
+  syncfusion_flutter_barcodes: ^28.1.37
+  syncfusion_flutter_pdfviewer: ^28.1.37
   pin_code_fields: ^8.0.1
   slide_countdown: ^2.0.2
   screenshot: ^3.0.0
