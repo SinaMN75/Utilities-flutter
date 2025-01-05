@@ -51,6 +51,8 @@ extension WidgetsExtension on Widget {
 
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
+  Widget onTapInk(final GestureTapCallback? onPressed) => InkWell(onTap: onPressed, child: this);
+
   Widget showMenus(final List<PopupMenuEntry<int>> items) => GestureDetector(
         onTapDown: (final TapDownDetails details) async {
           final Size screenSize = MediaQuery.of(navigatorKey.currentContext!).size;
