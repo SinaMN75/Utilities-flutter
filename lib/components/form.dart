@@ -1,7 +1,5 @@
 import 'package:u/utilities.dart';
 
-enum ButtonType { elevated, text, outlined }
-
 class UTextField extends StatefulWidget {
   const UTextField({
     super.key,
@@ -121,130 +119,114 @@ class _UTextFieldState extends State<UTextField> {
       );
 }
 
-Widget textFieldPersianDatePicker({
-  required final Function(DateTime, Jalali) onChange,
-  final String? text,
-  final double? fontSize,
-  final String? hintText,
-  final String? labelText,
-  final int lines = 1,
-  final Widget? prefix,
-  final Widget? suffix,
-  final TextAlign textAlign = TextAlign.start,
-  final double? textHeight,
-  final TextEditingController? controller,
-  final Jalali? initialDate,
-  final Jalali? startDate,
-  final Jalali? endDate,
-}) {
-  final Rx<Jalali> jalali = (initialDate ?? Jalali.now()).obs;
-  return UTextField(
-    controller: controller,
-    text: text,
-    labelText: labelText,
-    fontSize: fontSize,
-    hintText: hintText,
-    textAlign: textAlign,
-    readOnly: true,
-    textHeight: textHeight,
-    onTap: () async {
-      jalali(
-        await showPersianDatePicker(
-          context: navigatorKey.currentContext!,
-          initialDate: jalali.value,
-          firstDate: startDate ?? Jalali(1320),
-          lastDate: endDate ?? Jalali(1405),
-        ),
-      );
-      onChange(jalali.value.toDateTime(), jalali.value);
-    },
-  );
+class UTextFieldPersianDatePicker extends StatefulWidget {
+  const UTextFieldPersianDatePicker({
+    super.key,
+    required this.onChange,
+    this.text,
+    this.fontSize,
+    this.hintText,
+    this.labelText,
+    this.prefix,
+    this.suffix,
+    this.textHeight,
+    this.controller,
+    this.initialDate,
+    this.startDate,
+    this.endDate,
+    this.textAlign = TextAlign.start,
+  });
+
+  final Function(DateTime, Jalali) onChange;
+  final String? text;
+  final double? fontSize;
+  final String? hintText;
+  final String? labelText;
+  final Widget? prefix;
+  final Widget? suffix;
+  final TextAlign textAlign;
+  final double? textHeight;
+  final TextEditingController? controller;
+  final Jalali? initialDate;
+  final Jalali? startDate;
+  final Jalali? endDate;
+
+  @override
+  State<UTextFieldPersianDatePicker> createState() => _UTextFieldPersianDatePickerState();
 }
 
-Widget button({
-  final String? title,
-  final Widget? titleWidget,
-  final VoidCallback? onTap,
-  final IconData? icon,
-  final double? width,
-  final double? height,
-  final TextStyle? textStyle,
-  final Color? backgroundColor,
-  final ButtonType buttonType = ButtonType.elevated,
-  final EdgeInsets? padding,
-  final PageState state = PageState.initial,
-  final int countDownSeconds = 120,
-}) {
-  final Rx<PageState> buttonState = state.obs;
-  if (buttonType == ButtonType.elevated) {
-    return Obx(
-      () {
-        if (buttonState.value == PageState.initial) {
-          return ElevatedButton(
-            style: ButtonStyle(
-              textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle),
-              backgroundColor: WidgetStateProperty.all(backgroundColor),
-              padding: WidgetStateProperty.all(padding),
-            ),
-            onPressed: onTap,
-            child: SizedBox(
-              height: height ?? 20,
-              width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
-              child: Center(
-                child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
-              ),
-            ),
+class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicker> {
+  late Jalali jalali;
+
+  @override
+  void initState() {
+    jalali = (widget.initialDate ?? Jalali.now());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) => UTextField(
+        controller: widget.controller,
+        text: widget.text,
+        prefix: widget.prefix,
+        suffix: widget.suffix,
+        labelText: widget.labelText,
+        fontSize: widget.fontSize,
+        hintText: widget.hintText,
+        textAlign: widget.textAlign,
+        readOnly: true,
+        textHeight: widget.textHeight,
+        onTap: () async {
+          Jalali? selectedDate = await showPersianDatePicker(
+            context: navigatorKey.currentContext!,
+            initialDate: jalali,
+            firstDate: widget.startDate ?? Jalali(1320),
+            lastDate: widget.endDate ?? Jalali(1405),
           );
-        } else if (buttonState.value == PageState.loading)
-          return const CircularProgressIndicator().alignAtCenter();
-        else if (buttonState.value == PageState.paging)
-          return SlideCountdown(
-            separatorStyle: TextStyle(color: Theme.of(navigatorKey.currentContext!).colorScheme.onSurface),
-            decoration: const BoxDecoration(),
-            style: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium!,
-            duration: Duration(seconds: countDownSeconds),
-            onDone: () => buttonState(PageState.initial),
-          ).alignAtCenter();
-        else
-          return const SizedBox();
-      },
-    );
-  }
-  if (buttonType == ButtonType.outlined) {
-    return OutlinedButton(
-      style: ButtonStyle(
-        textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle),
-        backgroundColor: WidgetStateProperty.all(backgroundColor),
-        padding: WidgetStateProperty.all(padding),
-      ),
-      onPressed: onTap,
-      child: SizedBox(
-        height: height ?? 20,
-        width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
-        child: Center(
-          child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
+          setState(() => jalali = selectedDate ?? Jalali.now());
+          widget.onChange(jalali.toDateTime(), jalali);
+        },
+      );
+}
+
+class UElevatedButton extends StatelessWidget {
+  const UElevatedButton({
+    super.key,
+    this.title,
+    this.titleWidget,
+    this.onTap,
+    this.icon,
+    this.width,
+    this.height,
+    this.textStyle,
+    this.backgroundColor,
+    this.padding,
+  });
+
+  final String? title;
+  final Widget? titleWidget;
+  final VoidCallback? onTap;
+  final IconData? icon;
+  final double? width;
+  final double? height;
+  final TextStyle? textStyle;
+  final Color? backgroundColor;
+  final EdgeInsets? padding;
+
+  @override
+  Widget build(BuildContext context) => ElevatedButton(
+        style: ButtonStyle(
+          textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle!),
+          backgroundColor: WidgetStateProperty.all(backgroundColor),
+          padding: WidgetStateProperty.all(padding),
         ),
-      ),
-    );
-  }
-  if (buttonType == ButtonType.text) {
-    return TextButton(
-      style: ButtonStyle(
-        textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle),
-        backgroundColor: WidgetStateProperty.all(backgroundColor),
-        padding: WidgetStateProperty.all(padding),
-      ),
-      onPressed: onTap,
-      child: SizedBox(
-        height: height ?? 20,
-        width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
-        child: Center(
-          child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center),
+        onPressed: onTap,
+        child: SizedBox(
+          height: height ?? 20,
+          width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
+          child: Center(child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center)),
         ),
-      ),
-    );
-  }
-  return const SizedBox();
+      );
 }
 
 Widget textFieldTypeAhead<T>({
