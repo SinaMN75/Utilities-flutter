@@ -229,53 +229,73 @@ class UElevatedButton extends StatelessWidget {
       );
 }
 
-Widget textFieldTypeAhead<T>({
-  required final void Function(T) onSuggestionSelected,
-  required final FutureOr<List<T>?> Function(String) suggestionsCallback,
-  final Widget Function(BuildContext context, T itemData)? itemBuilder,
-  final String? text,
-  final Widget? prefix,
-  final VoidCallback? onTap,
-  final bool isDense = false,
-  final Widget? suffix,
-  final String? labelText,
-  final String? hintText,
-  final EdgeInsetsGeometry? contentPadding,
-  final TextEditingController? controller,
-  final bool hideKeyboard = false,
-  final String? Function(String?)? validator,
-  final Function(String)? onChanged,
-}) =>
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        if (text != null) Text(text, style: Theme.of(navigatorKey.currentContext!).textTheme.titleSmall).pSymmetric(vertical: 8),
-        TypeAheadField<T>(
-          hideKeyboardOnDrag: hideKeyboard,
-          suggestionsCallback: suggestionsCallback,
-          builder: (final BuildContext _, final TextEditingController __, final FocusNode ___) => UTextField(
-            onTap: onTap,
-            validator: validator,
-            prefix: prefix,
-            isDense: isDense,
-            contentPadding: contentPadding,
-            onChanged: onChanged,
-            text: text,
-            hintText: hintText,
-            labelText: labelText,
-            suffix: suffix,
-            controller: controller,
+class UTextFieldTypeAhead<T> extends StatelessWidget {
+  const UTextFieldTypeAhead({
+    super.key,
+    required this.onSuggestionSelected,
+    required this.suggestionsCallback,
+    this.itemBuilder,
+    this.text,
+    this.prefix,
+    this.onTap,
+    this.suffix,
+    this.labelText,
+    this.hintText,
+    this.contentPadding,
+    this.controller,
+    this.validator,
+    this.onChanged,
+    this.isDense = false,
+    this.hideKeyboard = false,
+  });
+
+  final void Function(T) onSuggestionSelected;
+  final FutureOr<List<T>?> Function(String) suggestionsCallback;
+  final Widget Function(BuildContext context, T itemData)? itemBuilder;
+  final String? text;
+  final Widget? prefix;
+  final VoidCallback? onTap;
+  final bool isDense;
+  final Widget? suffix;
+  final String? labelText;
+  final String? hintText;
+  final EdgeInsetsGeometry? contentPadding;
+  final TextEditingController? controller;
+  final bool hideKeyboard;
+  final String? Function(String?)? validator;
+  final Function(String)? onChanged;
+
+  @override
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          TypeAheadField<T>(
+            hideKeyboardOnDrag: hideKeyboard,
+            suggestionsCallback: suggestionsCallback,
+            builder: (final BuildContext _, final TextEditingController __, final FocusNode ___) => UTextField(
+              onTap: onTap,
+              validator: validator,
+              prefix: prefix,
+              isDense: isDense,
+              contentPadding: contentPadding,
+              onChanged: onChanged,
+              text: text,
+              hintText: hintText,
+              labelText: labelText,
+              suffix: suffix,
+              controller: controller,
+            ),
+            itemBuilder: itemBuilder ??
+                (final BuildContext context, final Object? suggestion) => Container(
+                      margin: const EdgeInsets.all(4),
+                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      child: Text(suggestion.toString()),
+                    ),
+            onSelected: onSuggestionSelected,
           ),
-          itemBuilder: itemBuilder ??
-              (final BuildContext context, final Object? suggestion) => Container(
-                    margin: const EdgeInsets.all(4),
-                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    child: Text(suggestion.toString()),
-                  ),
-          onSelected: onSuggestionSelected,
-        ),
-      ],
-    );
+        ],
+      );
+}
 
 class UOtpField extends StatelessWidget {
   const UOtpField({
