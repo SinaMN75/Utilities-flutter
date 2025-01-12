@@ -88,7 +88,6 @@ export 'utils/file.dart';
 export 'utils/firebase.dart';
 export 'utils/fonts.dart';
 export 'utils/http_interceptor.dart';
-export 'utils/http_interceptor2.dart';
 export 'utils/init.dart';
 export 'utils/launch.dart';
 export 'utils/loading.dart';

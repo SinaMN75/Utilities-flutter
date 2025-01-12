@@ -7,5 +7,5 @@ abstract class ULoading {
 
   static void showError() => EasyLoading.showError("");
 
-  bool isLoadingShow() => EasyLoading.isShow;
+  static bool isLoadingShow() => EasyLoading.isShow;
 }

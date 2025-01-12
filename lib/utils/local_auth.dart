@@ -1,13 +1,13 @@
 import 'package:u/utilities.dart';
 
 abstract class ULocalAuth {
-  final LocalAuthentication auth = LocalAuthentication();
+  static final LocalAuthentication auth = LocalAuthentication();
 
-  Future<bool> canAuthenticate() async => await auth.canCheckBiometrics || await auth.isDeviceSupported();
+  static Future<bool> canAuthenticate() async => await auth.canCheckBiometrics || await auth.isDeviceSupported();
 
-  Future<List<BiometricType>> availableBiometrics() async => auth.getAvailableBiometrics();
+  static Future<List<BiometricType>> availableBiometrics() async => auth.getAvailableBiometrics();
 
-  Future<bool> authenticate({
+  static Future<bool> authenticate({
     final String localizedReason = "",
     final bool useErrorDialogs = true,
     final bool stickyAuth = false,
