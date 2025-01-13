@@ -32,6 +32,7 @@ export 'package:geolocator/geolocator.dart';
 export 'package:get/get.dart' hide HeaderValue;
 export 'package:group_button/group_button.dart';
 export 'package:image_cropper/image_cropper.dart';
+export 'package:image_picker/image_picker.dart';
 export 'package:latlong2/latlong.dart' hide pi, Path;
 export 'package:local_auth/local_auth.dart';
 export 'package:lottie/lottie.dart' hide Marker;
