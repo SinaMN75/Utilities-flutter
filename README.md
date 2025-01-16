@@ -33,8 +33,7 @@ Here you can pass some optional parameters to `initUtilities` function
 
 `firebaseOptions`: for adding the firebase options.
 
-`safeDevice`: for having some security checks on Android and
-iOS   [safe_device](https://pub.dev/packages/safe_device)
+`safeDevice`: for having some security checks on Android and iOS   [safe_device](https://pub.dev/packages/safe_device)
 
 `protectDataLeaking` and `preventScreenShot`: screen protector for preventing user from getting
 screenshots    [screen_protector](https://pub.dev/packages/screen_protector)
@@ -43,11 +42,9 @@ screenshots    [screen_protector](https://pub.dev/packages/screen_protector)
 
 ## UMaterialApp
 
-UMaterialApp is a wrapper on top of `GetMaterialApp` of Getx package with some default
-implementations.
+UMaterialApp is a wrapper on top of `GetMaterialApp` of Getx package with some default implementations.
 
-for simplicity all the parameters are required, and everything about having dark/light theme,
-localizations, loading
+for simplicity all the parameters are required, and everything about having dark/light theme, localizations, loading
 dialogs and... are handled.
 
 ## Basic Utilities
@@ -102,10 +99,7 @@ if ((response.bodyString ?? "").length >= 50) action(LifeReportItemsResponse.fro
 else action(null);
 },
 error: (final Response<dynamic> response) {},
-cacheExpireDate
-:
-cacheExpireDate
-,
+cacheExpireDate: cacheExpireDate,
 );
 ```
 
@@ -132,8 +126,7 @@ ULaunch.shareWithEmail("some text");
 
 ### `ULoading`
 
-A very simple loading dialog from
-anywhere. [flutter_easyloading](https://pub.dev/packages/flutter_easyloading)
+A very simple loading dialog from anywhere. [flutter_easyloading](https://pub.dev/packages/flutter_easyloading)
 
 ```dart
 ULoading.showLoading();
@@ -161,24 +154,18 @@ useErrorDialogs: true,
 
 ### `ULocalStorage`
 
-Easiest Local Storage management
-with [shared_preferences](https://pub.dev/packages/shared_preferences)
+Easiest Local Storage management with [shared_preferences](https://pub.dev/packages/shared_preferences)
 
 ```dart
-  ULocalStorage.set("key1", "value");ULocalStorage.set("key2", 1);
+  ULocalStorage.set("key1", "value");
+ULocalStorage.set("key2", 1);
 ULocalStorage.set("key3", 4.5);
 ULocalStorage.set("key4", true);
 
 final String? key1 = ULocalStorage.getString("key1");
 final int? key2 = ULocalStorage.getInt("key2");
 final double? key3 = ULocalStorage.getDouble("key3");
-final bool? key4 = ULocalStorage.
-getBool
-(
-"
-key4
-"
-);
+final bool? key4 = ULocalStorage.getBool("key4");
 ```
 
 ### `ULocation`
@@ -199,10 +186,7 @@ UNavigator.off(const ProfilePage(), preventDuplicates: false);
 UNavigator.offAll(const ProfilePage(), milliSecondDelay: 100, transition: Transition.fadeIn);
 UNavigator.dialog(const ProfilePage());
 UNavigator.dialogAlert(const ProfilePage());
-UNavigator.
-back
-(
-);
+UNavigator.back();
 ```
 
 ### `UNetwork`
@@ -210,30 +194,12 @@ back
 Check User's Connections.
 
 ```dart
-
-bool hasBluetooth = await
-UNetwork.hasBluetooth
-();
-
-bool hasCellular = await
-UNetwork.hasCellular
-();
-
-bool hasEthernet = await
-UNetwork.hasEthernet
-();
-
-bool hasWifi = await
-UNetwork.hasWifi
-();
-
-bool hasVpn = await
-UNetwork.hasVpn
-();
-
-bool hasNetworkConnection = await
-UNetwork.hasNetworkConnection
-();
+  bool hasBluetooth = await UNetwork.hasBluetooth();
+bool hasCellular = await UNetwork.hasCellular();
+bool hasEthernet = await UNetwork.hasEthernet();
+bool hasWifi = await UNetwork.hasWifi();
+bool hasVpn = await UNetwork.hasVpn();
+bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
 ```
 
 ### `UNotification`
@@ -241,8 +207,7 @@ UNetwork.hasNetworkConnection
 Easiest Way of Showing a Simple Notification.
 
 ```dart
-  UNotification.showNotification
-(
+  UNotification.showNotification(
 title: "title",
 message: "message",
 onNotificationTap: (NotificationResponse response) {
@@ -259,8 +224,7 @@ print(response.payload);
 A Set of Utils About App and Device.
 
 ```dart
-
-final String appBuildNumber = UApp.buildNumber;
+  final String appBuildNumber = UApp.buildNumber;
 final String appVersion = UApp.version;
 final String appName = UApp.name;
 final String appPackageName = UApp.packageName;
@@ -276,18 +240,8 @@ final bool isDesktopSize = UApp.isDesktopSize();
 final bool isLandScape = UApp.isLandScape();
 final bool isPortrait = UApp.isPortrait();
 
-UApp.switchTheme
-(); // switch to dark if it's light, and light if it's dark
-UApp.updateLocale
-(
-const
-Locale
-(
-"
-fa
-"
-)
-);
+UApp.switchTheme(); // switch to dark if it's light, and light if it's dark
+UApp.updateLocale(const Locale("fa"));
 ```
 
 ### `Extensions`
@@ -296,26 +250,23 @@ A Set of Extensions Method for Making the Life Easier.
 
 #### `DateExtension`
 ```dart
-
-final DateTime dateTime = DateTime(2000);
+  final DateTime dateTime = DateTime(2000);
 final String dateTimeString = DateTime(2000).toIso8601String();
 
 final Jalali jalali = dateTime.toJalali();
 final Gregorian gregorian = jalali.toGregorian();
 
-jalali.formatCompactDate
-();jalali.formatFullDate
-();jalali.formatMonthYear
-();jalali.formatYear
-();jalali.formatShortDate
-();
+jalali.formatCompactDate();
+jalali.formatFullDate();
+jalali.formatMonthYear();
+jalali.formatYear();
+jalali.formatShortDate();
 
-dateTimeString.toJalaliCompactDateString
-();dateTimeString.toJalaliDateString
-();dateTimeString.toJalaliDateTimeFull
-();dateTimeString.getDay
-();dateTimeString.getYear
-();dateTimeString.getMinute
-();
+dateTimeString.toJalaliCompactDateString();
+dateTimeString.toJalaliDateString();
+dateTimeString.toJalaliDateTimeFull();
+dateTimeString.getDay();
+dateTimeString.getYear();
+dateTimeString.getMinute();
 ```
 
