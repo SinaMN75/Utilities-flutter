@@ -68,13 +68,13 @@ File Picker [file_picker](https://pub.dev/packages/file_picker)
 
 ```dart
 UFile.showFilePicker(
-  allowCompression: true,
-  allowedExtensions: <String>["png", "jpg", "JPEG"],
-  allowMultiple: true,
-  dialogTitle: "Pick Some Awesome Image",
-  fileType: FileType.image,
-  ...
-  action: (final List<FileData> files) {},
+allowCompression: true,
+allowedExtensions: <String>["png", "jpg", "JPEG"],
+allowMultiple: true,
+dialogTitle: "Pick Some Awesome Image",
+fileType: FileType.image,
+...
+action: (final List<FileData> files) {},
 );
 ```
 
@@ -82,12 +82,12 @@ File Picker [image_cropper](https://pub.dev/packages/image_cropper)
 
 ```dart
 UFile.cropImage(
-  filePath: "filePath",
-  toolbarColor: Colors.purple,
-  cropAspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 2),
-  cropStyle: CropStyle.circle,
-  androidUiSettings: AndroidUiSettings(hideBottomControls: true),
-  action: (final FileData file) {},
+filePath: "filePath",
+toolbarColor: Colors.purple,
+cropAspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 2),
+cropStyle: CropStyle.circle,
+androidUiSettings: AndroidUiSettings(hideBottomControls: true),
+action: (final FileData file) {},
 );
 ```
 
@@ -95,14 +95,17 @@ UFile.cropImage(
 
 ```dart
 httpRequest(
-  url: "${AppConstants.baseUrlPractino}GetReportsByMobile/$nationalCode",
-  httpMethod: EHttpMethod.get,
-  action: (final Response<dynamic> response) {
-    if ((response.bodyString ?? "").length >= 50) action(LifeReportItemsResponse.fromJson('{"items": ${response.bodyString!}}'));
-    else action(null);
-  },
-  error: (final Response<dynamic> response) {},
-  cacheExpireDate: cacheExpireDate,
+url: "${AppConstants.baseUrlPractino}GetReportsByMobile/$nationalCode",
+httpMethod: EHttpMethod.get,
+action: (final Response<dynamic> response) {
+if ((response.bodyString ?? "").length >= 50) action(LifeReportItemsResponse.fromJson('{"items": ${response.bodyString!}}'));
+else action(null);
+},
+error: (final Response<dynamic> response) {},
+cacheExpireDate
+:
+cacheExpireDate
+,
 );
 ```
 
@@ -148,11 +151,11 @@ final bool canAuthenticate = await ULocalAuth.canAuthenticate();
 final List<BiometricType> availableBiometrics = await ULocalAuth.availableBiometrics();
 
 await ULocalAuth.authenticate(
-  biometricOnly: true,
-  localizedReason: "just for fun",
-  sensitiveTransaction: true,
-  stickyAuth: true,
-  useErrorDialogs: true,
+biometricOnly: true,
+localizedReason: "just for fun",
+sensitiveTransaction: true,
+stickyAuth: true,
+useErrorDialogs: true,
 );
 ```
 
@@ -162,15 +165,20 @@ Easiest Local Storage management
 with [shared_preferences](https://pub.dev/packages/shared_preferences)
 
 ```dart
-  ULocalStorage.set("key1", "value");
-  ULocalStorage.set("key2", 1);
-  ULocalStorage.set("key3", 4.5);
-  ULocalStorage.set("key4", true);
+  ULocalStorage.set("key1", "value");ULocalStorage.set("key2", 1);
+ULocalStorage.set("key3", 4.5);
+ULocalStorage.set("key4", true);
 
-  final String? key1 = ULocalStorage.getString("key1");
-  final int? key2 = ULocalStorage.getInt("key2");
-  final double? key3 = ULocalStorage.getDouble("key3");
-  final bool? key4 = ULocalStorage.getBool("key4");
+final String? key1 = ULocalStorage.getString("key1");
+final int? key2 = ULocalStorage.getInt("key2");
+final double? key3 = ULocalStorage.getDouble("key3");
+final bool? key4 = ULocalStorage.
+getBool
+(
+"
+key4
+"
+);
 ```
 
 ### `ULocation`
@@ -187,11 +195,14 @@ Navigation Between Pages Without Context.
 
 ```dart
   UNavigator.push(const ProfilePage());
-  UNavigator.off(const ProfilePage(), preventDuplicates: false);
-  UNavigator.offAll(const ProfilePage(), milliSecondDelay: 100, transition: Transition.fadeIn);
-  UNavigator.dialog(const ProfilePage());
-  UNavigator.dialogAlert(const ProfilePage());
-  UNavigator.back();
+UNavigator.off(const ProfilePage(), preventDuplicates: false);
+UNavigator.offAll(const ProfilePage(), milliSecondDelay: 100, transition: Transition.fadeIn);
+UNavigator.dialog(const ProfilePage());
+UNavigator.dialogAlert(const ProfilePage());
+UNavigator.
+back
+(
+);
 ```
 
 ### `UNetwork`
@@ -284,7 +295,6 @@ fa
 A Set of Extensions Method for Making the Life Easier.
 
 #### `DateExtension`
-
 ```dart
 
 final DateTime dateTime = DateTime(2000);
