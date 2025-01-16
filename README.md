@@ -140,7 +140,6 @@ ULoading.isLoadingShow();
 ```
 
 ### `ULocalAuth`
-
 Authentication with biometric [local_auth](https://pub.dev/packages/local_auth)
 
 ```dart
@@ -184,7 +183,7 @@ final Position? position = await ULocation.getUserLocation();
 
 ### `UNavigator`
 
-Navigation Between Pages without context.
+Navigation Between Pages Without Context.
 
 ```dart
   UNavigator.push(const ProfilePage());
@@ -194,3 +193,119 @@ Navigation Between Pages without context.
   UNavigator.dialogAlert(const ProfilePage());
   UNavigator.back();
 ```
+
+### `UNetwork`
+
+Check User's Connections.
+
+```dart
+
+bool hasBluetooth = await
+UNetwork.hasBluetooth
+();
+
+bool hasCellular = await
+UNetwork.hasCellular
+();
+
+bool hasEthernet = await
+UNetwork.hasEthernet
+();
+
+bool hasWifi = await
+UNetwork.hasWifi
+();
+
+bool hasVpn = await
+UNetwork.hasVpn
+();
+
+bool hasNetworkConnection = await
+UNetwork.hasNetworkConnection
+();
+```
+
+### `UNotification`
+
+Easiest Way of Showing a Simple Notification.
+
+```dart
+  UNotification.showNotification
+(
+title: "title",
+message: "message",
+onNotificationTap: (NotificationResponse response) {
+print(response.id);
+print(response.actionId);
+print(response.input);
+print(response.payload);
+},
+);
+```
+
+### `UAppUtils`
+
+A Set of Utils About App and Device.
+
+```dart
+
+final String appBuildNumber = UApp.buildNumber;
+final String appVersion = UApp.version;
+final String appName = UApp.name;
+final String appPackageName = UApp.packageName;
+
+final bool isAndroid = UApp.isAndroid;
+final bool isIos = UApp.isIos;
+final bool isWeb = UApp.isWeb;
+final bool isWindows = UApp.isWindows;
+final bool isMacOs = UApp.isMacOs;
+final bool isMobile = UApp.isMobile;
+final bool isPwa = UApp.isPwa;
+final bool isDesktopSize = UApp.isDesktopSize();
+final bool isLandScape = UApp.isLandScape();
+final bool isPortrait = UApp.isPortrait();
+
+UApp.switchTheme
+(); // switch to dark if it's light, and light if it's dark
+UApp.updateLocale
+(
+const
+Locale
+(
+"
+fa
+"
+)
+);
+```
+
+### `Extensions`
+
+A Set of Extensions Method for Making the Life Easier.
+
+#### `DateExtension`
+
+```dart
+
+final DateTime dateTime = DateTime(2000);
+final String dateTimeString = DateTime(2000).toIso8601String();
+
+final Jalali jalali = dateTime.toJalali();
+final Gregorian gregorian = jalali.toGregorian();
+
+jalali.formatCompactDate
+();jalali.formatFullDate
+();jalali.formatMonthYear
+();jalali.formatYear
+();jalali.formatShortDate
+();
+
+dateTimeString.toJalaliCompactDateString
+();dateTimeString.toJalaliDateString
+();dateTimeString.toJalaliDateTimeFull
+();dateTimeString.getDay
+();dateTimeString.getYear
+();dateTimeString.getMinute
+();
+```
+

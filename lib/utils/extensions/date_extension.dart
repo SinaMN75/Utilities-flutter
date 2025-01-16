@@ -2,10 +2,6 @@ import 'package:intl/intl.dart' as intl;
 import 'package:u/utilities.dart';
 
 extension DateTimeExtensions on DateTime {
-  Jalali toJalali() => Jalali.fromDateTime(this);
-
-  Gregorian toGregorian() => Gregorian.fromDateTime(this);
-
   String formatDate(final String dateFormat) => intl.DateFormat(dateFormat).format(this);
 
   static DateTime utcNow() => DateTime.now().toUtc();

@@ -1,6 +1,37 @@
 import 'package:u/utilities.dart';
 
 abstract class UFile {
+  static Future<List<FileData>> showImagePicker({
+    required final ImageSource source,
+    final bool allowMultiple = false,
+    final Function(List<FileData>)? action,
+  }) async {
+    final List<FileData> files = <FileData>[];
+    final ImagePicker imagePicker = ImagePicker();
+
+    if (allowMultiple) {
+      List<XFile> images = await imagePicker.pickMultiImage(
+        requestFullMetadata: true,
+      );
+      images.forEach((final XFile i) async {
+        final Uint8List bytes = await i.readAsBytes();
+        files.add(FileData(bytes: bytes, path: i.path, extension: i.path.split(".").last));
+      });
+      if (action != null) action(files);
+      return files;
+    } else {
+      XFile? image = await imagePicker.pickImage(
+        source: source,
+        requestFullMetadata: true,
+      );
+      if (image == null) return <FileData>[];
+      final Uint8List bytes = await image.readAsBytes();
+      files.add(FileData(bytes: bytes, path: image.path, extension: image.path.split(".").last));
+      if (action != null) action(files);
+      return files;
+    }
+  }
+
   static void showFilePicker({
     required final Function(List<FileData> file) action,
     final FileType fileType = FileType.any,
@@ -288,13 +319,12 @@ abstract class UFile {
                     right: data.parentId == null ? 0 : 60,
                   ),
                   children: <Widget>[
-                    ...(data.children ?? <FileData>[])
-                        .map(
-                          (final FileData e) => fileIcon(
-                            data: e,
-                            onFileDeleted: onFileDeleted,
-                            onFileEdited: (final FileData i) {},
-                          ),
+                    ...(data.children ?? <FileData>[]).map(
+                      (final FileData e) => fileIcon(
+                        data: e,
+                        onFileDeleted: onFileDeleted,
+                        onFileEdited: (final FileData i) {},
+                      ),
                     ),
                   ],
                 ),
@@ -312,38 +342,36 @@ abstract class UFile {
         Obx(
           () => Column(
             children: <Widget>[
-              ...oldFiles
-                  .mapIndexed(
-                    (final int index, final FileData i) => fileIcon(
-                      data: i,
-                      onFileDeleted: (final FileData data) {
-                        oldFiles.remove(data);
-                        deletedFiles.add(data);
-                        onFileDeleted(deletedFiles);
-                      },
-                      onFileEdited: (final FileData i) {
-                        oldFiles[index] = i;
-                        onFileEdited(oldFiles);
-                      },
-                    ),
+              ...oldFiles.mapIndexed(
+                (final int index, final FileData i) => fileIcon(
+                  data: i,
+                  onFileDeleted: (final FileData data) {
+                    oldFiles.remove(data);
+                    deletedFiles.add(data);
+                    onFileDeleted(deletedFiles);
+                  },
+                  onFileEdited: (final FileData i) {
+                    oldFiles[index] = i;
+                    onFileEdited(oldFiles);
+                  },
+                ),
               ),
-              ...addedFiles
-                  .mapIndexed(
-                    (final int index, final FileData i) => fileIcon(
-                      data: i,
-                      onFileDeleted: (final FileData i) {
-                        addedFiles.remove(i);
-                        deletedFiles.add(i);
-                        onFileDeleted(deletedFiles);
-                      },
-                      onFileEdited: (final FileData i) => addedFiles[index] = i,
-                    ),
+              ...addedFiles.mapIndexed(
+                (final int index, final FileData i) => fileIcon(
+                  data: i,
+                  onFileDeleted: (final FileData i) {
+                    addedFiles.remove(i);
+                    deletedFiles.add(i);
+                    onFileDeleted(deletedFiles);
+                  },
+                  onFileEdited: (final FileData i) => addedFiles[index] = i,
+                ),
               ),
               addIcon(
                 onTap: () => showFilePicker(
                   allowMultiple: true,
                   action: (final List<FileData> files) {
-                    addedFiles.addAll(files.map((final FileData e) => e..id = UUtils.uuidV4()).toList());
+                    addedFiles.addAll(files.map((final FileData e) => e..id = uuidV4()).toList());
                     onFileSelected(addedFiles);
                   },
                 ),

@@ -4,13 +4,13 @@ import 'package:universal_html/html.dart' as html;
 abstract class UApp {
   static late PackageInfo packageInfo;
 
-  static String appName = packageInfo.appName;
+  static String name = packageInfo.appName;
 
-  static String appPackageName = packageInfo.packageName;
+  static String packageName = packageInfo.packageName;
 
-  static String appVersion = packageInfo.version;
+  static String version = packageInfo.version;
 
-  static String appBuildNumber = packageInfo.buildNumber;
+  static String buildNumber = packageInfo.buildNumber;
 
   static bool isAndroid = GetPlatform.isAndroid && !kIsWeb;
 
