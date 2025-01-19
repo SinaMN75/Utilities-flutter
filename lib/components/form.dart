@@ -134,6 +134,10 @@ class UTextFieldPersianDatePicker extends StatefulWidget {
     this.initialDate,
     this.startDate,
     this.endDate,
+    this.validator,
+    this.readOnly = false,
+    this.date = true,
+    this.time = false,
     this.textAlign = TextAlign.start,
   });
 
@@ -143,6 +147,7 @@ class UTextFieldPersianDatePicker extends StatefulWidget {
   final String? hintText;
   final String? labelText;
   final Widget? prefix;
+  final bool readOnly;
   final Widget? suffix;
   final TextAlign textAlign;
   final double? textHeight;
@@ -150,6 +155,9 @@ class UTextFieldPersianDatePicker extends StatefulWidget {
   final Jalali? initialDate;
   final Jalali? startDate;
   final Jalali? endDate;
+  final String? Function(String?)? validator;
+  final bool date;
+  final bool time;
 
   @override
   State<UTextFieldPersianDatePicker> createState() => _UTextFieldPersianDatePickerState();
@@ -176,15 +184,34 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
         textAlign: widget.textAlign,
         readOnly: true,
         textHeight: widget.textHeight,
+        validator: widget.validator,
         onTap: () async {
-          Jalali? selectedDate = await showPersianDatePicker(
-            context: navigatorKey.currentContext!,
-            initialDate: jalali,
-            firstDate: widget.startDate ?? Jalali(1320),
-            lastDate: widget.endDate ?? Jalali(1405),
-          );
-          setState(() => jalali = selectedDate ?? Jalali.now());
-          widget.onChange(jalali.toDateTime(), jalali);
+          if (!widget.readOnly) {
+            Jalali? selectedDate = Jalali.now();
+            if (widget.date)
+              selectedDate = await showPersianDatePicker(
+                context: navigatorKey.currentContext!,
+                initialDate: jalali,
+                firstDate: widget.startDate ?? Jalali(1320),
+                locale: Get.locale,
+                lastDate: widget.endDate ?? Jalali(1405),
+              );
+            if (widget.time) {
+              TimeOfDay? timeOfDay = await showTimePicker(
+                context: context,
+                initialTime: TimeOfDay(hour: 0, minute: 0),
+              );
+              selectedDate = Jalali(
+                selectedDate!.year,
+                selectedDate.month,
+                selectedDate.day,
+                timeOfDay!.hour,
+                timeOfDay.minute,
+              );
+            }
+            setState(() => jalali = selectedDate ?? Jalali.now());
+            widget.onChange(jalali.toDateTime(), jalali);
+          }
         },
       );
 }

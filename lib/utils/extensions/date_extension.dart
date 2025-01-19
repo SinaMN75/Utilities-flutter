@@ -4,9 +4,11 @@ import 'package:u/utilities.dart';
 extension DateTimeExtensions on DateTime {
   String formatDate(final String dateFormat) => intl.DateFormat(dateFormat).format(this);
 
-  static DateTime utcNow() => DateTime.now().toUtc();
+  DateTime utcNow() => DateTime.now().toUtc();
 
-  static String utcNowIso() => DateTime.now().toUtc().toIso8601String();
+  String utcNowIso() => DateTime.now().toUtc().toIso8601String();
+
+  String toJalaliDateTime() => "${toJalali().formatCompactDate()} ${hour.toString().append0()}:${minute.toString().append0()}";
 
   String toTimeAgo({final bool numericDates = false, final bool persian = false}) {
     try {

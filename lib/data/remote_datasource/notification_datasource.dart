@@ -40,19 +40,4 @@ class NotificationDataSource {
         action: (Response response) => onResponse(GenericResponse<NotificationReadDto>.fromJson(response.body, fromMap: NotificationReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
-
-  void updateSeenStatus({
-    required final List<String> notificationIds,
-    required final int status,
-    required final VoidCallback onResponse,
-    required final Function(GenericResponse errorResponse) onError,
-  }) =>
-      httpRequest(
-        httpMethod: EHttpMethod.post,
-        encodeBody: false,
-        url: "$baseUrl/Notification/UpdateSeenStatus?seenStatus=$status",
-        body: notificationIds,
-        action: (Response response) => onResponse(),
-        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
-      );
 }

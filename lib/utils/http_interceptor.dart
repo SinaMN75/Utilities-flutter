@@ -8,10 +8,8 @@ Future<void> httpRequest({
   required final Function(Response<dynamic> response) action,
   required final Function(Response<dynamic> response) error,
   final dynamic body,
-  final bool encodeBody = true,
   final Map<String, String>? headers,
   final Duration timeout = const Duration(seconds: 10),
-  final bool clearHeaders = false,
   final DateTime? cacheExpireDate,
 }) async {
   try {
@@ -20,18 +18,11 @@ Future<void> httpRequest({
       "X-API-Key": UCore.apiKey,
     };
 
-    if (clearHeaders) header.clear();
     if (headers != null) header.addAll(headers);
 
     Response<dynamic> response = const Response<dynamic>();
     dynamic params;
-    if (body != null) {
-      if (encodeBody) {
-        params = body.toJson();
-      } else {
-        params = body;
-      }
-    }
+    if (body != null) params = body.toJson();
 
     final GetConnect connect = GetConnect(timeout: timeout);
 
@@ -52,7 +43,6 @@ Future<void> httpRequest({
               error: error,
               headers: headers,
               timeout: timeout,
-              clearHeaders: clearHeaders,
               cacheExpireDate: cacheExpireDate,
             );
           } else {
@@ -69,7 +59,7 @@ Future<void> httpRequest({
     if (httpMethod == EHttpMethod.patch) response = await connect.patch(url, params, headers: header);
     if (httpMethod == EHttpMethod.delete) response = await connect.delete(url, headers: header);
 
-    if (kDebugMode) response.prettyLog(params: (body == null || !encodeBody) ? "" : body.toJson());
+    if (kDebugMode) response.prettyLog(params: body == null ? "" : body.toJson());
     if (response.isSuccessful()) {
       action(response);
     } else {
@@ -89,15 +79,9 @@ extension HTTP on Response<dynamic> {
 
   bool isServerError() => (statusCode ?? 0) >= 500 && (statusCode ?? 0) <= 599 ? true : false;
 
-  void logRaw({final String params = ""}) {
-    developer.log(
-      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params\n HEADERS: ${request?.headers} \nRESPONSE: $body",
-    );
-  }
-
   void prettyLog({final String params = ""}) {
     developer.log(
-      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body}",
+      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body",
     );
   }
 }
