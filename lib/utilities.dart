@@ -56,7 +56,6 @@ export 'package:webview_flutter/webview_flutter.dart';
 
 export 'components/badges.dart';
 export 'components/barcode_qrcode.dart';
-export 'components/bottom_sheet.dart';
 export 'components/chart.dart';
 export 'components/container.dart';
 export 'components/cupertino_date_picker.dart';
