@@ -138,6 +138,8 @@ class UTextFieldPersianDatePicker extends StatefulWidget {
     this.readOnly = false,
     this.date = true,
     this.time = false,
+    this.submitButtonText = "Submit",
+    this.cancelButtonText = "Cancel",
     this.textAlign = TextAlign.start,
   });
 
@@ -155,6 +157,8 @@ class UTextFieldPersianDatePicker extends StatefulWidget {
   final Jalali? initialDate;
   final Jalali? startDate;
   final Jalali? endDate;
+  final String submitButtonText;
+  final String cancelButtonText;
   final String? Function(String?)? validator;
   final bool date;
   final bool time;
@@ -189,29 +193,48 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
           if (!widget.readOnly) {
             if (widget.date) {
               UNavigator.bottomSheet(
-                  child: LinearDatePicker(
-                    startDate: "1330/01/01",
-                    endDate: "1406/12/30",
-                    initialDate: "${jalali.year}/${jalali.month}/${jalali.day}",
-                    addLeadingZero: true,
-                    dateChangeListener: (String selectedDate) {
-                      setState(
-                        () => jalali = Jalali(
-                          selectedDate.getYear(),
-                          selectedDate.getMonth(),
-                          selectedDate.getDay(),
-                        ),
-                      );
-                      widget.onChange(jalali.toDateTime(), jalali);
-                    },
-                    showDay: true,
-                    yearText: "سال",
-                    monthText: "ماه",
-                    dayText: "روز",
-                    showLabels: true,
-                    columnWidth: 100,
-                    showMonthName: true,
-                    isJalaali: true,
+                  child: Column(
+                    children: [
+                      LinearDatePicker(
+                        startDate: "1330/01/01",
+                        endDate: "1406/12/30",
+                        initialDate: "${jalali.year}/${jalali.month}/${jalali.day}",
+                        addLeadingZero: true,
+                        dateChangeListener: (String selectedDate) {
+                          jalali = Jalali(
+                            selectedDate.getYear(),
+                            selectedDate.getMonth(),
+                            selectedDate.getDay(),
+                          );
+                        },
+                        showDay: true,
+                        yearText: "سال",
+                        monthText: "ماه",
+                        dayText: "روز",
+                        showLabels: true,
+                        columnWidth: 100,
+                        showMonthName: true,
+                        isJalaali: true,
+                      ),
+                      Row(
+                        children: [
+                          UElevatedButton(
+                            title: widget.submitButtonText,
+                            onTap: () {
+                              setState(() {});
+                              widget.onChange(jalali.toDateTime(), jalali);
+                              UNavigator.back();
+                            },
+                          ).expanded(),
+                          SizedBox(width: 12),
+                          UElevatedButton(
+                            title: widget.cancelButtonText,
+                            backgroundColor: Theme.of(context).colorScheme.primary,
+                            onTap: () => UNavigator.back(),
+                          ).expanded(),
+                        ],
+                      ).pOnly(top: 24, bottom: 12),
+                    ],
                   ),
                   onDismiss: () async {
                     if (widget.time) {
@@ -226,9 +249,9 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
                         timeOfDay!.hour,
                         timeOfDay.minute,
                       );
+                      setState(() => jalali = jalali);
+                      widget.onChange(jalali.toDateTime(), jalali);
                     }
-                    setState(() => jalali = jalali);
-                    widget.onChange(jalali.toDateTime(), jalali);
                   });
             }
           }
