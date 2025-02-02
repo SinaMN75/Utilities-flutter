@@ -3,6 +3,13 @@ import 'package:universal_html/html.dart' as html;
 
 abstract class UApp {
   static late PackageInfo packageInfo;
+  static DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  static late AndroidDeviceInfo androidDeviceInfo;
+  static late IosDeviceInfo iosDeviceInfo;
+  static late WebBrowserInfo webBrowserInfo;
+  static late MacOsDeviceInfo macOsDeviceInfo;
+  static late WindowsDeviceInfo windowsDeviceInfo;
+  static late LinuxDeviceInfo linuxDeviceInfo;
 
   static String name = packageInfo.appName;
 

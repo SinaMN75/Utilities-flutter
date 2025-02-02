@@ -22,6 +22,12 @@ Future<void> initUtilities({
   await SystemChrome.setPreferredOrientations(deviceOrientations);
   await ULocalStorage.init();
   UApp.packageInfo = await PackageInfo.fromPlatform();
+  UApp.androidDeviceInfo = await UApp.deviceInfo.androidInfo;
+  UApp.iosDeviceInfo = await UApp.deviceInfo.iosInfo;
+  UApp.webBrowserInfo = await UApp.deviceInfo.webBrowserInfo;
+  UApp.windowsDeviceInfo = await UApp.deviceInfo.windowsInfo;
+  UApp.macOsDeviceInfo = await UApp.deviceInfo.macOsInfo;
+  UApp.linuxDeviceInfo = await UApp.deviceInfo.linuxInfo;
   if (firebaseOptions != null) {
     try {
       await Firebase.initializeApp(options: firebaseOptions);
