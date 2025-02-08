@@ -16,9 +16,7 @@ class UserDataSource {
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
         error: (final Response response) {
-          if (response.statusCode == 603) {
-            UNavigator.snackbarRed(title: S.of(navigatorKey.currentContext!).error, subtitle: S.of(navigatorKey.currentContext!).userAlreadyExist);
-          }
+          if (response.statusCode == 603) UNavigator.snackbarRed(title: UMessages.error(), subtitle: UMessages.userWithThisInfoAlreadyExist());
           onError(GenericResponse.fromJson(response.body));
         },
       );

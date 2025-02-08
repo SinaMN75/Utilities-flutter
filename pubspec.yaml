@@ -82,6 +82,3 @@ flutter:
     - family: IranSansFaNum
       fonts:
         - asset: lib/assets/fonts/IranSansFaNum.ttf
-
-flutter_intl:
-  enabled: true

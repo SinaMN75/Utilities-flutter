@@ -55,6 +55,8 @@ abstract class UApp {
 
   static void reloadWeb() => html.window.location.reload();
 
+  static String locale() => Get.locale?.languageCode ?? "en";
+
   static void updateLocale(final Locale locale) {
     Get.updateLocale(locale);
     ULocalStorage.set(UConstants.locale, locale.languageCode);
