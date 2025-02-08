@@ -15,7 +15,12 @@ class UserDataSource {
         url: "$baseUrl/user",
         body: dto,
         action: (final Response response) => onResponse(GenericResponse<UserReadDto>.fromJson(response.body, fromMap: UserReadDto.fromMap)),
-        error: (final Response response) => onError(GenericResponse.fromJson(response.body)),
+        error: (final Response response) {
+          if (response.statusCode == 603) {
+            UNavigator.snackbarRed(title: S.of(navigatorKey.currentContext!).error, subtitle: S.of(navigatorKey.currentContext!).userAlreadyExist);
+          }
+          onError(GenericResponse.fromJson(response.body));
+        },
       );
 
   void toggleBlock({

@@ -1,3 +1,4 @@
+import 'package:u/generated/l10n.dart';
 import 'package:u/utilities.dart';
 
 part 'dto/address.dart';
