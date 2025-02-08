@@ -7,7 +7,7 @@ abstract class UMessages {
   }
 
   static String userWithThisInfoAlreadyExist() {
-    if (UApp.locale() == "fa") return "کاربر با این اطلاعات قبلا قبت نام کرده است";
+    if (UApp.locale() == "fa") return "کاربر با این اطلاعات قبلا ثبت نام کرده است";
     return "User with this information is already exists.";
   }
 }
