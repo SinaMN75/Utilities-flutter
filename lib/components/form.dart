@@ -292,7 +292,7 @@ class UElevatedButton extends StatelessWidget {
         ),
         onPressed: onTap,
         child: SizedBox(
-          height: height ?? 20,
+          height: height,
           width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
           child: Center(child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center)),
         ),
@@ -382,6 +382,7 @@ class UOtpField extends StatelessWidget {
     this.fieldWidth = 60,
     this.fillColor,
     this.borderColor,
+    this.activeColor,
     this.cursorColor,
     this.onTap,
     this.validator,
@@ -401,6 +402,7 @@ class UOtpField extends StatelessWidget {
   final double fieldWidth;
   final Color? fillColor;
   final Color? borderColor;
+  final Color? activeColor;
   final Color? cursorColor;
   final Function? onTap;
   final String? Function(String?)? validator;
@@ -426,8 +428,8 @@ class UOtpField extends StatelessWidget {
           inactiveFillColor: fillColor,
           selectedFillColor: fillColor,
           inactiveColor: borderColor,
-          selectedColor: borderColor,
-          activeColor: borderColor,
+          selectedColor: activeColor,
+          activeColor: activeColor,
           borderWidth: 1,
           activeBorderWidth: 1,
           errorBorderWidth: 1,
