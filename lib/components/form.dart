@@ -299,6 +299,43 @@ class UElevatedButton extends StatelessWidget {
       );
 }
 
+class UOutlinedButton extends StatelessWidget {
+  const UOutlinedButton({
+    super.key,
+    this.title,
+    this.titleWidget,
+    this.onTap,
+    this.icon,
+    this.width,
+    this.height,
+    this.textStyle,
+    this.padding,
+  });
+
+  final String? title;
+  final Widget? titleWidget;
+  final VoidCallback? onTap;
+  final IconData? icon;
+  final double? width;
+  final double? height;
+  final TextStyle? textStyle;
+  final EdgeInsets? padding;
+
+  @override
+  Widget build(BuildContext context) => OutlinedButton(
+        style: ButtonStyle(
+          textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle!),
+          padding: WidgetStateProperty.all(padding),
+        ),
+        onPressed: onTap,
+        child: SizedBox(
+          height: height,
+          width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
+          child: Center(child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center)),
+        ),
+      );
+}
+
 class UTextFieldTypeAhead<T> extends StatelessWidget {
   const UTextFieldTypeAhead({
     super.key,
