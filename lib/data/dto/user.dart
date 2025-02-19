@@ -218,8 +218,8 @@ class UserJsonDetail {
     this.nationalCode,
     this.degree,
     this.stringList,
-    this.healthReport1,
-    this.healthReport2,
+    this.health1,
+    this.health2,
   });
 
   factory UserJsonDetail.fromJson(final String str) => UserJsonDetail.fromMap(json.decode(str));
@@ -255,8 +255,8 @@ class UserJsonDetail {
         foodAllergies: json["foodAllergies"],
         fatherName: json["fatherName"],
         height: json["height"],
-        healthReport1: json["healthReport1"],
-        healthReport2: json["healthReport2"],
+        health1: List<String>.from(json["health1"]!.map((final dynamic x) => x)),
+        health2: List<String>.from(json["health2"]!.map((final dynamic x) => x)),
         keyValues1: json["keyValues1"] == null ? [] : List<KeyValueViewModel>.from(json["keyValues1"]!.map((x) => KeyValueViewModel.fromMap(x))),
         weight: json["weight"],
         userSubscriptions: json["userSubscriptions"] == null ? [] : List<UserSubscriptions>.from(json["userSubscriptions"]!.map((x) => UserSubscriptions.fromMap(x))),
@@ -286,8 +286,8 @@ class UserJsonDetail {
   final String? foodAllergies;
   final String? sickness;
   final String? usedDrugs;
-  final String? healthReport1;
-  final String? healthReport2;
+  final List<String>? health1;
+  final List<String>? health2;
   final int? deliveryPrice1;
   final int? deliveryPrice2;
   final int? deliveryPrice3;
@@ -331,8 +331,8 @@ class UserJsonDetail {
         "sickness": sickness,
         "schoolName": schoolName,
         "nationalCode": nationalCode,
-        "healthReport2": healthReport2,
-        "healthReport1": healthReport1,
+        "health2": health2,
+        "health1": health1,
         "keyValues1": keyValues1 == null ? [] : List<dynamic>.from(keyValues1!.map((x) => x.toMap())),
       };
 }

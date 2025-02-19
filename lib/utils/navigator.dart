@@ -388,7 +388,12 @@ abstract class UNavigator {
             maxHeight: MediaQuery.sizeOf(navigatorKey.currentContext!).height - 100,
           ),
           padding: padding,
-          child: SingleChildScrollView(child: child),
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(navigatorKey.currentContext!).viewInsets.bottom,
+            ),
+            child: SingleChildScrollView(child: child),
+          ),
         ),
         backgroundColor: Theme.of(navigatorKey.currentContext!).colorScheme.surface,
         isDismissible: isDismissible,
