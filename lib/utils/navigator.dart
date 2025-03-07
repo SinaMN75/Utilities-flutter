@@ -72,7 +72,7 @@ abstract class UNavigator {
       dialog(
         CupertinoAlertDialog(
           title: titleWidget ?? Text(title ?? '').bodyLarge().fit(),
-          content: content ?? Text(subtitle!),
+          content: content ?? Text(subtitle ?? ""),
           actions: <Widget>[
             TextButton(onPressed: action1.$2, child: Text(action1.$1)),
             if (action2 != null) TextButton(onPressed: action2.$2, child: Text(action2.$1)),

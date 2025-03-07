@@ -12,7 +12,7 @@ Future<void> httpRequest({
   final Duration timeout = const Duration(seconds: 10),
   final DateTime? cacheExpireDate,
 }) async {
-  try {
+  // try {
     final Map<String, String> header = <String, String>{
       "Authorization": ULocalStorage.getString(UConstants.token) ?? "",
       "X-API-Key": UCore.apiKey,
@@ -65,10 +65,10 @@ Future<void> httpRequest({
     } else {
       error(response);
     }
-  } catch (e) {
-    error(const Response<dynamic>(statusCode: 999, body: "{}", bodyString: "{}"));
-    ULoading.dismissLoading();
-  }
+  // } catch (e) {
+  //   error(const Response<dynamic>(statusCode: 999, body: "{}", bodyString: "{}"));
+  //   ULoading.dismissLoading();
+  // }
   ULoading.dismissLoading();
 }
 
