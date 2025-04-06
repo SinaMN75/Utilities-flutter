@@ -66,4 +66,17 @@ class PaymentDataSource {
         action: (Response response) => onResponse(GenericResponse<VerifyNgReadDto>.fromJson(response.body, fromMap: VerifyNgReadDto.fromMap)),
         error: (Response response) => onError(GenericResponse.fromJson(response.body)),
       );
+
+
+  void getAvreenIpgToken({
+    required final GetAvreenIpgDto dto,
+    required final Function(GetAvreenIpgResponse response) onResponse,
+    required final Function(GenericResponse errorResponse) onError,
+  }) =>
+      httpRequest(
+        httpMethod: EHttpMethod.post,
+        url: "https://oa.avreenco.com:8080/api/ipg/site/getToken",
+        action: (Response response) => onResponse(GetAvreenIpgResponse.fromJson(response.body)),
+        error: (Response response) => onError(GenericResponse.fromJson(response.body)),
+      );
 }

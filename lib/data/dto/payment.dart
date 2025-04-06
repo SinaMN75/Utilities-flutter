@@ -439,3 +439,79 @@ class VerifyNgReadDto {
         "embedded": embedded?.toMap(),
       };
 }
+
+class GetAvreenIpgDto {
+  final String? mid;
+  final String? password;
+  final String? localDateTime;
+  final String? txnType;
+  final String? terminalId;
+  final String? amount;
+  final String? clientTxnId;
+  final String? redirectUrl;
+  final String? mobileNumber;
+
+  GetAvreenIpgDto({
+    this.mid = "1349289522311081984",
+    this.password = "U2F5YW5AMTIz",
+    this.localDateTime,
+    this.txnType = "000000",
+    this.terminalId = "41112587",
+    this.amount,
+    this.clientTxnId = "123456789",
+    this.redirectUrl = "aaa://hello.com",
+    this.mobileNumber = "09351902721",
+  });
+
+  factory GetAvreenIpgDto.fromJson(String str) => GetAvreenIpgDto.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory GetAvreenIpgDto.fromMap(Map<String, dynamic> json) => GetAvreenIpgDto(
+        mid: json["mid"],
+        password: json["password"],
+        localDateTime: json["localDateTime"],
+        txnType: json["txnType"],
+        terminalId: json["terminalId"],
+        amount: json["amount"],
+        clientTxnId: json["clientTxnId"],
+        redirectUrl: json["redirectUrl"],
+        mobileNumber: json["mobileNumber"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "mid": mid,
+        "password": password,
+        "localDateTime": localDateTime,
+        "txnType": txnType,
+        "terminalId": terminalId,
+        "amount": amount,
+        "clientTxnId": clientTxnId,
+        "redirectUrl": redirectUrl,
+        "mobileNumber": mobileNumber,
+      };
+}
+
+class GetAvreenIpgResponse {
+  final String? signiture;
+  final String? token;
+
+  GetAvreenIpgResponse({
+    this.signiture,
+    this.token,
+  });
+
+  factory GetAvreenIpgResponse.fromJson(String str) => GetAvreenIpgResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory GetAvreenIpgResponse.fromMap(Map<String, dynamic> json) => GetAvreenIpgResponse(
+        signiture: json["signiture"],
+        token: json["token"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "signiture": signiture,
+        "token": token,
+      };
+}
