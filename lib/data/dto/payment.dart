@@ -513,6 +513,7 @@ class GetAvreenIpgDto {
   final String? mobileNumber;
   final String? referenceId;
   final String? invoiceNo;
+  final ApportiomentParams? apportionment;
 
   GetAvreenIpgDto({
     this.mid = "1349289522311081984",
@@ -526,6 +527,7 @@ class GetAvreenIpgDto {
     this.clientTxnId = "123456789",
     this.redirectUrl = "aaa://hello.com",
     this.mobileNumber = "09351902721",
+    this.apportionment,
   });
 
   factory GetAvreenIpgDto.fromJson(String str) =>
@@ -545,6 +547,9 @@ class GetAvreenIpgDto {
         clientTxnId: json["clientTxnId"],
         redirectUrl: json["redirectUrl"],
         mobileNumber: json["mobileNumber"],
+        apportionment: json["apportionment"] == null
+            ? null
+            : ApportiomentParams.fromMap(json["apportionment"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -559,6 +564,33 @@ class GetAvreenIpgDto {
         "mobileNumber": mobileNumber,
         "referenceId": referenceId,
         "invoiceNo": invoiceNo,
+        "apportionment": apportionment?.toMap(),
+      };
+}
+
+class ApportiomentParams {
+  final String? accountId;
+  final int? amount;
+
+  ApportiomentParams({
+    this.accountId,
+    this.amount,
+  });
+
+  factory ApportiomentParams.fromJson(String str) =>
+      ApportiomentParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ApportiomentParams.fromMap(Map<String, dynamic> json) =>
+      ApportiomentParams(
+        accountId: json["accountId"],
+        amount: json["amount"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "accountId": accountId,
+        "amount": amount,
       };
 }
 
