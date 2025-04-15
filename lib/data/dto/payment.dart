@@ -513,7 +513,7 @@ class GetAvreenIpgDto {
   final String? mobileNumber;
   final String? referenceId;
   final String? invoiceNo;
-  final ApportiomentParams? apportionment;
+  final List<ApportiomentParams>? apportionment;
 
   GetAvreenIpgDto({
     this.mid = "1349289522311081984",
@@ -548,8 +548,9 @@ class GetAvreenIpgDto {
         redirectUrl: json["redirectUrl"],
         mobileNumber: json["mobileNumber"],
         apportionment: json["apportionment"] == null
-            ? null
-            : ApportiomentParams.fromMap(json["apportionment"]),
+            ? []
+            : List<ApportiomentParams>.from(json["apportionment"]!
+                .map((x) => ApportiomentParams.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -564,7 +565,9 @@ class GetAvreenIpgDto {
         "mobileNumber": mobileNumber,
         "referenceId": referenceId,
         "invoiceNo": invoiceNo,
-        "apportionment": apportionment?.toMap(),
+        "apportionment": apportionment == null
+            ? []
+            : List<dynamic>.from(apportionment!.map((x) => x.toMap())),
       };
 }
 
