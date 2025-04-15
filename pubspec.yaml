@@ -23,29 +23,29 @@ dependencies:
 
   group_button: ^5.3.4
   carousel_slider: ^5.0.0
-  chewie: ^1.10.0
+  chewie: ^1.11.1
   share_plus: ^10.1.4
   webview_flutter: ^4.10.0
   local_auth: ^2.3.0
   get: ^4.7.2
-  flutter_map: ^7.0.2
-  flutter_map_location_marker: ^9.1.1
-  geolocator: ^13.0.2
+  flutter_map: ^8.1.1
+  flutter_map_location_marker: ^10.0.2
+  geolocator: ^13.0.4
   flutter_svg: ^2.0.17
   lottie: ^3.3.1
-  image_cropper: ^9.0.0
-  file_picker: ^9.0.2
+  image_cropper: ^9.1.0
+  file_picker: ^10.1.2
   flutter_easyloading: ^3.0.5
-  flutter_local_notifications: ^18.0.1
+  flutter_local_notifications: ^19.1.0
   flutter_typeahead: ^5.2.0
   cached_network_image: ^3.4.1
-  firebase_messaging: ^15.2.4
-  firebase_analytics: ^11.4.4
-  firebase_crashlytics: ^4.3.4
-  syncfusion_flutter_charts: ^28.2.7
-  syncfusion_flutter_barcodes: ^28.2.7
-  syncfusion_flutter_pdfviewer: ^28.2.7
-  syncfusion_flutter_signaturepad: ^28.2.7
+  firebase_messaging: ^15.2.5
+  firebase_analytics: ^11.4.5
+  firebase_crashlytics: ^4.3.5
+  syncfusion_flutter_charts: ^29.1.38
+  syncfusion_flutter_barcodes: ^29.1.38
+  syncfusion_flutter_pdfviewer: ^29.1.38
+  syncfusion_flutter_signaturepad: ^29.1.38
   pin_code_fields: ^8.0.1
   slide_countdown: ^2.0.2
   screenshot: ^3.0.0
