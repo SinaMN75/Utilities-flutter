@@ -63,7 +63,7 @@ abstract class UFile {
               FileData(
                 path: UApp.isWeb ? null : i.path,
                 bytes: i.bytes,
-                extension: ".${i.extension}",
+                extension: i.extension,
                 jsonDetail: MediaJsonDetail(title: i.name.split(".").first),
               ),
             );
@@ -74,7 +74,7 @@ abstract class UFile {
         action(
           <FileData>[
             FileData(
-              path: result.files.single.path,
+              path: kIsWeb ? null : result.files.single.path,
               bytes: result.files.single.bytes,
               extension: result.files.single.extension,
               jsonDetail: MediaJsonDetail(title: result.files[0].name),
