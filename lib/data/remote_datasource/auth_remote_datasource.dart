@@ -1,5 +1,6 @@
-import 'dart:ui';
+import 'dart:convert';
 
+import 'package:http/src/response.dart';
 import 'package:u/data/params/auth_params.dart';
 import 'package:u/data/responses/base_response.dart';
 import 'package:u/data/responses/user_response.dart';
@@ -14,15 +15,23 @@ class AuthRemoteDataSource {
     required final RegisterParams dto,
     required final Function(BaseResponse<UserResponse> r) onOk,
     required final Function(BaseResponse e) onError,
-    final VoidCallback? onException,
+    final Function(Exception e)? onException,
   }) {
     SimpleHttp().post(
       "$baseUrl/auth/Register",
       body: dto.toMap(),
-      onSuccess: (response) => onOk(BaseResponse<UserResponse>.fromJson(response.body, fromMap: UserResponse.fromMap)),
-      onError: (response) => onOk(BaseResponse.fromJson(response.body, fromMap: UserResponse.fromMap)),
-      onException: (e) {
-        if (onException != null) onException();
+      onSuccess: (final Response response) => onOk(BaseResponse<UserResponse>.fromJson(
+        jsonDecode(response.body),
+        (json) => UserResponse.fromJson(json),
+      )),
+      onError: (final response) {
+        return onError(BaseResponse<dynamic>.fromJson(
+          jsonDecode(response.body),
+          (json) => UserResponse.fromJson(json),
+        ));
+      },
+      onException: (final e) {
+        if (onException != null) onException(e);
       },
     );
   }
