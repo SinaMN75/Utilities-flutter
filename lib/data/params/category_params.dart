@@ -47,3 +47,39 @@ class CategoryReadParams {
     "showMedia": showMedia,
   };
 }
+
+class CategoryCreateParams {
+  final String apiKey;
+  final String token;
+  final String title;
+  final String? subtitle;
+  final List<int> tags;
+
+  CategoryCreateParams({
+    required this.apiKey,
+    required this.token,
+    required this.title,
+    required this.tags,
+    this.subtitle,
+  });
+
+  factory CategoryCreateParams.fromJson(String str) => CategoryCreateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory CategoryCreateParams.fromMap(Map<String, dynamic> json) => CategoryCreateParams(
+    apiKey: json["apiKey"],
+    token: json["token"],
+    title: json["title"],
+    subtitle: json["subtitle"],
+    tags: List<int>.from(json["tags"]!.map((x) => x)),
+  );
+
+  Map<String, dynamic> toMap() => {
+    "apiKey": apiKey,
+    "token": token,
+    "title": title,
+    "subtitle": subtitle,
+    "tags": List<dynamic>.from(tags.map((x) => x)),
+  };
+}

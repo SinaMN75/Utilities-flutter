@@ -3,22 +3,22 @@ import 'dart:convert';
 import 'package:u/data/responses/media.dart';
 
 class CategoryResponse {
-  final String? id;
+  final String id;
   final String? createdAt;
   final String? updatedAt;
-  final List<int>? tags;
-  final CategoryJsonData? jsonData;
-  final String? title;
+  final List<int> tags;
+  final CategoryJsonData jsonData;
+  final String title;
   final List<String>? children;
   final List<MediaResponse>? media;
 
   CategoryResponse({
-    this.id,
+    required this.id,
+    required this.tags,
+    required this.jsonData,
+    required this.title,
     this.createdAt,
     this.updatedAt,
-    this.tags,
-    this.jsonData,
-    this.title,
     this.children,
     this.media,
   });
@@ -31,8 +31,8 @@ class CategoryResponse {
     id: json["id"],
     createdAt: json["createdAt"],
     updatedAt: json["updatedAt"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-    jsonData: json["jsonData"] == null ? null : CategoryJsonData.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"]!.map((x) => x)),
+    jsonData: CategoryJsonData.fromMap(json["jsonData"]),
     title: json["title"],
     children: json["children"] == null ? [] : List<String>.from(json["children"]!.map((x) => x)),
     media: json["media"] == null ? [] : List<MediaResponse>.from(json["media"]!.map((x) => MediaResponse.fromMap(x))),
@@ -42,8 +42,8 @@ class CategoryResponse {
     "id": id,
     "createdAt": createdAt,
     "updatedAt": updatedAt,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-    "jsonData": jsonData?.toMap(),
+    "tags": List<dynamic>.from(tags.map((x) => x)),
+    "jsonData": jsonData.toMap(),
     "title": title,
     "children": children == null ? [] : List<dynamic>.from(children!.map((x) => x)),
     "media": media == null ? [] : List<dynamic>.from(media!.map((x) => x.toMap())),
