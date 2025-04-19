@@ -83,3 +83,47 @@ class CategoryCreateParams {
     "tags": List<dynamic>.from(tags.map((x) => x)),
   };
 }
+
+class CategoryUpdateParams {
+  final String apiKey;
+  final String token;
+  final String id;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final String? title;
+  final String? subtitle;
+
+  CategoryUpdateParams({
+    required this.apiKey,
+    required this.token,
+    required this.id,
+    this.addTags,
+    this.removeTags,
+    this.title,
+    this.subtitle,
+  });
+
+  factory CategoryUpdateParams.fromJson(String str) => CategoryUpdateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory CategoryUpdateParams.fromMap(Map<String, dynamic> json) => CategoryUpdateParams(
+    apiKey: json["apiKey"],
+    token: json["token"],
+    id: json["id"],
+    addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
+    removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
+    title: json["title"],
+    subtitle: json["subtitle"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "apiKey": apiKey,
+    "token": token,
+    "id": id,
+    "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
+    "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
+    "title": title,
+    "subtitle": subtitle,
+  };
+}
