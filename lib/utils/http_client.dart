@@ -34,62 +34,63 @@ class SimpleHttp {
     required final Function(http.Response)? onError,
     required final Function(dynamic)? onException,
   }) async {
-    try {
-      // Build cache key (URL + method + body)
-      final String cacheKey = _buildCacheKey(method, endpoint, queryParams, body);
+    // try {
+    // Build cache key (URL + method + body)
+    final String cacheKey = _buildCacheKey(method, endpoint, queryParams, body);
 
-      // Check cache first if enabled
-      if (enableCache && cacheResponse && _cache.containsKey(cacheKey)) {
-        final CacheEntry cached = _cache[cacheKey]!;
-        if (DateTime.now().difference(cached.timestamp) <= cacheDuration) {
-          onSuccess?.call(cached.response);
-          return;
-        } else {
-          _cache.remove(cacheKey);
-        }
-      }
-
-      // Build URI
-      final Uri uri = _buildUri(endpoint, queryParams);
-
-      // Merge headers
-      final Map<String, String> mergedHeaders = <String, String>{...defaultHeaders, ...?headers};
-
-      // Create request
-      final http.Request request = http.Request(method, uri);
-      request.headers.addAll(mergedHeaders);
-
-      // Add body if provided
-      if (body != null) {
-        if (body is Map || body is List) {
-          request.body = jsonEncode(body);
-          request.headers['Content-Type'] = 'application/json';
-        } else if (body is String) {
-          request.body = body;
-        } else if (body is List<int>) {
-          request.bodyBytes = body;
-        }
-      }
-
-      // Send request with timeout
-      final http.Response response = await _client.send(request).timeout(timeout).then(http.Response.fromStream);
-
-      // Cache the response if enabled
-      if (enableCache && cacheResponse && response.statusCode == 200) {
-        _cache[cacheKey] = CacheEntry(response, DateTime.now());
-      }
-
-      // Handle response
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        onSuccess?.call(response);
+    // Check cache first if enabled
+    if (enableCache && cacheResponse && _cache.containsKey(cacheKey)) {
+      final CacheEntry cached = _cache[cacheKey]!;
+      if (DateTime.now().difference(cached.timestamp) <= cacheDuration) {
+        onSuccess?.call(cached.response);
+        return;
       } else {
-        onError?.call(response);
+        _cache.remove(cacheKey);
       }
-      response.prettyLog(params: jsonEncode(body));
-    } catch (e) {
-      onException?.call(e);
-      print(e);
     }
+
+    // Build URI
+    final Uri uri = _buildUri(endpoint, queryParams);
+
+    // Merge headers
+    final Map<String, String> mergedHeaders = <String, String>{...defaultHeaders, ...?headers};
+
+    // Create request
+    final http.Request request = http.Request(method, uri);
+    request.headers.addAll(mergedHeaders);
+
+    // Add body if provided
+    if (body != null) {
+      if (body is Map || body is List) {
+        request.body = jsonEncode(body);
+        request.headers['Content-Type'] = 'application/json';
+      } else if (body is String) {
+        request.body = body;
+      } else if (body is List<int>) {
+        request.bodyBytes = body;
+      }
+    }
+
+    // Send request with timeout
+    final http.Response response = await _client.send(request).timeout(timeout).then(http.Response.fromStream);
+    response.prettyLog(params: jsonEncode(body));
+
+    // Cache the response if enabled
+    if (enableCache && cacheResponse && response.statusCode == 200) {
+      _cache[cacheKey] = CacheEntry(response, DateTime.now());
+    }
+
+    // Handle response
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      onSuccess?.call(response);
+    } else {
+      onError?.call(response);
+    }
+    // } catch (e) {
+    //   onException?.call(e);
+    //   print(e);
+    //   e.printError();
+    // }
   }
 
   // File upload

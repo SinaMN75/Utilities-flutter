@@ -14,16 +14,17 @@ class AuthRemoteDataSource {
     required final Function(UResponse<LoginResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
-  }) =>
-      SimpleHttp().post(
-        "$baseUrl/auth/Register",
-        body: p.toMap(),
-        onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body)),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body)),
-        onException: (e) {
-          if (onException != null) onException(e);
-        },
-      );
+  }) {
+    SimpleHttp().post(
+      "$baseUrl/auth/Register",
+      body: p.toMap(),
+      onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body, (final dynamic i) => LoginResponse.fromMap(i))),
+      onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+      onException: (e) {
+        if (onException != null) onException(e);
+      },
+    );
+  }
 
   void login({
     required final LoginWithUserNamePasswordParams p,
@@ -32,11 +33,11 @@ class AuthRemoteDataSource {
     final Function(Exception)? onException,
   }) =>
       SimpleHttp().post(
-        "$baseUrl/auth/LoginWithPassword",
+        "$baseUrl/auth/LoginWithUserNamePassword",
         body: p.toMap(),
-        onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body)),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body)),
-        onException: (e) {
+        onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body, (final dynamic i) => LoginResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (final e) {
           if (onException != null) onException(e);
         },
       );
