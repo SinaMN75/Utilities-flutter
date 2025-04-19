@@ -1,5 +1,118 @@
 import 'dart:convert';
 
+class UserCreateParams {
+  final String apiKey;
+  final String token;
+  final String? userName;
+  final String? password;
+  final String? phoneNumber;
+  final String? email;
+  final String? firstName;
+  final String? lastName;
+  final String? bio;
+  final String? country;
+  final String? state;
+  final String? city;
+  final String? birthdate;
+  final int? weight;
+  final int? height;
+  final String? address;
+  final String? fatherName;
+  final String? fcmToken;
+  final List<String>? health1;
+  final List<String>? foodAllergies;
+  final List<String>? drugAllergies;
+  final List<String>? sickness;
+  final List<int> tags;
+  final List<String>? categories;
+
+  UserCreateParams({
+    required this.apiKey,
+    required this.token,
+    required this.tags,
+    this.userName,
+    this.password,
+    this.phoneNumber,
+    this.email,
+    this.firstName,
+    this.lastName,
+    this.bio,
+    this.country,
+    this.state,
+    this.city,
+    this.birthdate,
+    this.weight,
+    this.height,
+    this.address,
+    this.fatherName,
+    this.fcmToken,
+    this.health1,
+    this.foodAllergies,
+    this.drugAllergies,
+    this.sickness,
+    this.categories,
+  });
+
+  factory UserCreateParams.fromJson(String str) => UserCreateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UserCreateParams.fromMap(Map<String, dynamic> json) => UserCreateParams(
+    apiKey: json["apiKey"],
+    token: json["token"],
+    userName: json["userName"],
+    password: json["password"],
+    phoneNumber: json["phoneNumber"],
+    email: json["email"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
+    bio: json["bio"],
+    country: json["country"],
+    state: json["state"],
+    city: json["city"],
+    birthdate: json["birthdate"],
+    weight: json["weight"],
+    height: json["height"],
+    address: json["address"],
+    fatherName: json["fatherName"],
+    fcmToken: json["fcmToken"],
+    health1: json["health1"] == null ? [] : List<String>.from(json["health1"]!.map((x) => x)),
+    foodAllergies: json["foodAllergies"] == null ? [] : List<String>.from(json["foodAllergies"]!.map((x) => x)),
+    drugAllergies: json["drugAllergies"] == null ? [] : List<String>.from(json["drugAllergies"]!.map((x) => x)),
+    sickness: json["sickness"] == null ? [] : List<String>.from(json["sickness"]!.map((x) => x)),
+    tags: List<int>.from(json["tags"]!.map((x) => x)),
+    categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+  );
+
+  Map<String, dynamic> toMap() => {
+    "apiKey": apiKey,
+    "token": token,
+    "userName": userName,
+    "password": password,
+    "phoneNumber": phoneNumber,
+    "email": email,
+    "firstName": firstName,
+    "lastName": lastName,
+    "bio": bio,
+    "country": country,
+    "state": state,
+    "city": city,
+    "birthdate": birthdate,
+    "weight": weight,
+    "height": height,
+    "address": address,
+    "fatherName": fatherName,
+    "fcmToken": fcmToken,
+    "health1": health1 == null ? [] : List<dynamic>.from(health1!.map((x) => x)),
+    "foodAllergies": foodAllergies == null ? [] : List<dynamic>.from(foodAllergies!.map((x) => x)),
+    "drugAllergies": drugAllergies == null ? [] : List<dynamic>.from(drugAllergies!.map((x) => x)),
+    "sickness": sickness == null ? [] : List<dynamic>.from(sickness!.map((x) => x)),
+    "tags": List<dynamic>.from(tags.map((x) => x)),
+    "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
+  };
+}
+
+
 class UserUpdateParams {
   final String id;
   final String? password;
@@ -29,7 +142,6 @@ class UserUpdateParams {
   final List<int>? addSickness;
   final List<int>? removeSickness;
   final List<String>? categories;
-  final List<UserAnswer>? userAnswers;
 
   UserUpdateParams({
     required this.id,
@@ -60,7 +172,6 @@ class UserUpdateParams {
     this.addSickness,
     this.removeSickness,
     this.categories,
-    this.userAnswers,
   });
 
   factory UserUpdateParams.fromJson(String str) => UserUpdateParams.fromMap(json.decode(str));
@@ -96,7 +207,6 @@ class UserUpdateParams {
     addSickness: json["addSickness"] == null ? [] : List<int>.from(json["addSickness"]!.map((x) => x)),
     removeSickness: json["removeSickness"] == null ? [] : List<int>.from(json["removeSickness"]!.map((x) => x)),
     categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
-    userAnswers: json["userAnswers"] == null ? [] : List<UserAnswer>.from(json["userAnswers"]!.map((x) => UserAnswer.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
@@ -128,82 +238,5 @@ class UserUpdateParams {
     "addSickness": addSickness == null ? [] : List<dynamic>.from(addSickness!.map((x) => x)),
     "removeSickness": removeSickness == null ? [] : List<dynamic>.from(removeSickness!.map((x) => x)),
     "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
-    "userAnswers": userAnswers == null ? [] : List<dynamic>.from(userAnswers!.map((x) => x.toMap())),
-  };
-}
-
-class UserAnswer {
-  final String? date;
-  final int? totalScore;
-  final List<Result>? results;
-
-  UserAnswer({
-    this.date,
-    this.totalScore,
-    this.results,
-  });
-
-  factory UserAnswer.fromJson(String str) => UserAnswer.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory UserAnswer.fromMap(Map<String, dynamic> json) => UserAnswer(
-    date: json["date"],
-    totalScore: json["totalScore"],
-    results: json["results"] == null ? [] : List<Result>.from(json["results"]!.map((x) => Result.fromMap(x))),
-  );
-
-  Map<String, dynamic> toMap() => {
-    "date": date,
-    "totalScore": totalScore,
-    "results": results == null ? [] : List<dynamic>.from(results!.map((x) => x.toMap())),
-  };
-}
-
-class Result {
-  final String? question;
-  final Answer? answer;
-
-  Result({
-    this.question,
-    this.answer,
-  });
-
-  factory Result.fromJson(String str) => Result.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Result.fromMap(Map<String, dynamic> json) => Result(
-    question: json["question"],
-    answer: json["answer"] == null ? null : Answer.fromMap(json["answer"]),
-  );
-
-  Map<String, dynamic> toMap() => {
-    "question": question,
-    "answer": answer?.toMap(),
-  };
-}
-
-class Answer {
-  final String? title;
-  final String? score;
-
-  Answer({
-    this.title,
-    this.score,
-  });
-
-  factory Answer.fromJson(String str) => Answer.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Answer.fromMap(Map<String, dynamic> json) => Answer(
-    title: json["title"],
-    score: json["score"],
-  );
-
-  Map<String, dynamic> toMap() => {
-    "title": title,
-    "score": score,
   };
 }
