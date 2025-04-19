@@ -52,24 +52,24 @@ class RegisterParams {
       };
 }
 
-class LoginParams {
+class LoginWithEmailPasswordParams {
   final String apiKey;
   final String token;
   final String email;
   final String password;
 
-  LoginParams({
+  LoginWithEmailPasswordParams({
     required this.apiKey,
     required this.token,
     required this.email,
     required this.password,
   });
 
-  factory LoginParams.fromJson(String str) => LoginParams.fromMap(json.decode(str));
+  factory LoginWithEmailPasswordParams.fromJson(String str) => LoginWithEmailPasswordParams.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory LoginParams.fromMap(Map<String, dynamic> json) => LoginParams(
+  factory LoginWithEmailPasswordParams.fromMap(Map<String, dynamic> json) => LoginWithEmailPasswordParams(
         apiKey: json["apiKey"],
         token: json["token"],
         email: json["email"],
@@ -80,6 +80,38 @@ class LoginParams {
         "apiKey": apiKey,
         "token": token,
         "email": email,
+        "password": password,
+      };
+}
+
+class LoginWithUserNamePasswordParams {
+  final String apiKey;
+  final String token;
+  final String userName;
+  final String password;
+
+  LoginWithUserNamePasswordParams({
+    required this.apiKey,
+    required this.token,
+    required this.userName,
+    required this.password,
+  });
+
+  factory LoginWithUserNamePasswordParams.fromJson(String str) => LoginWithUserNamePasswordParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory LoginWithUserNamePasswordParams.fromMap(Map<String, dynamic> json) => LoginWithUserNamePasswordParams(
+        apiKey: json["apiKey"],
+        token: json["token"],
+    userName: json["userName"],
+        password: json["password"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "apiKey": apiKey,
+        "token": token,
+        "userName": userName,
         "password": password,
       };
 }

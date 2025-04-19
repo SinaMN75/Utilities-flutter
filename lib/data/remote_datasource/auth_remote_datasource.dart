@@ -10,14 +10,14 @@ class AuthRemoteDataSource {
   final String baseUrl;
 
   void register({
-    required final RegisterParams dto,
+    required final RegisterParams p,
     required final Function(UResponse<LoginResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       SimpleHttp().post(
         "$baseUrl/auth/Register",
-        body: dto.toMap(),
+        body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body)),
         onException: (e) {
@@ -26,14 +26,14 @@ class AuthRemoteDataSource {
       );
 
   void login({
-    required final RegisterParams dto,
+    required final LoginWithUserNamePasswordParams p,
     required final Function(UResponse<LoginResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       SimpleHttp().post(
         "$baseUrl/auth/LoginWithPassword",
-        body: dto.toMap(),
+        body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body)),
         onException: (e) {
