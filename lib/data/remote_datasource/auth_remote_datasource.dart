@@ -1,38 +1,43 @@
-import 'dart:convert';
-
-import 'package:http/src/response.dart';
+import 'package:http/http.dart';
 import 'package:u/data/params/auth_params.dart';
+import 'package:u/data/responses/auth_response.dart';
 import 'package:u/data/responses/base_response.dart';
-import 'package:u/data/responses/user_response.dart';
 import 'package:u/utils/http_client.dart';
 
 class AuthRemoteDataSource {
-  final String baseUrl;
-
   AuthRemoteDataSource({required this.baseUrl});
+
+  final String baseUrl;
 
   void register({
     required final RegisterParams dto,
-    required final Function(BaseResponse<UserResponse> r) onOk,
-    required final Function(BaseResponse e) onError,
-    final Function(Exception e)? onException,
-  }) {
-    SimpleHttp().post(
-      "$baseUrl/auth/Register",
-      body: dto.toMap(),
-      onSuccess: (final Response response) => onOk(BaseResponse<UserResponse>.fromJson(
-        jsonDecode(response.body),
-        (json) => UserResponse.fromJson(json),
-      )),
-      onError: (final response) {
-        return onError(BaseResponse<dynamic>.fromJson(
-          jsonDecode(response.body),
-          (json) => UserResponse.fromJson(json),
-        ));
-      },
-      onException: (final e) {
-        if (onException != null) onException(e);
-      },
-    );
-  }
+    required final Function(UResponse<LoginResponse> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      SimpleHttp().post(
+        "$baseUrl/auth/Register",
+        body: dto.toMap(),
+        onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body)),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body)),
+        onException: (e) {
+          if (onException != null) onException(e);
+        },
+      );
+
+  void login({
+    required final RegisterParams dto,
+    required final Function(UResponse<LoginResponse> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      SimpleHttp().post(
+        "$baseUrl/auth/LoginWithPassword",
+        body: dto.toMap(),
+        onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body)),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body)),
+        onException: (e) {
+          if (onException != null) onException(e);
+        },
+      );
 }

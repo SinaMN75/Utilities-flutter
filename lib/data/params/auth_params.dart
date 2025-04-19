@@ -51,3 +51,35 @@ class RegisterParams {
         "tags": List<dynamic>.from(tags.map((x) => x)),
       };
 }
+
+class LoginParams {
+  final String apiKey;
+  final String token;
+  final String email;
+  final String password;
+
+  LoginParams({
+    required this.apiKey,
+    required this.token,
+    required this.email,
+    required this.password,
+  });
+
+  factory LoginParams.fromJson(String str) => LoginParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory LoginParams.fromMap(Map<String, dynamic> json) => LoginParams(
+        apiKey: json["apiKey"],
+        token: json["token"],
+        email: json["email"],
+        password: json["password"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "apiKey": apiKey,
+        "token": token,
+        "email": email,
+        "password": password,
+      };
+}

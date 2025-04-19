@@ -88,6 +88,7 @@ class SimpleHttp {
       response.prettyLog(params: jsonEncode(body));
     } catch (e) {
       onException?.call(e);
+      print(e);
     }
   }
 
