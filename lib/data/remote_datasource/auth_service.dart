@@ -4,8 +4,8 @@ import 'package:u/data/responses/auth_response.dart';
 import 'package:u/data/responses/base_response.dart';
 import 'package:u/utils/http_client.dart';
 
-class AuthRemoteDataSource {
-  AuthRemoteDataSource({required this.baseUrl});
+class AuthService {
+  AuthService({required this.baseUrl});
 
   final String baseUrl;
 
