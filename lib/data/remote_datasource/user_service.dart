@@ -1,4 +1,5 @@
 import 'package:http/http.dart';
+import 'package:u/data/params/base_params.dart';
 import 'package:u/data/params/user_params.dart';
 import 'package:u/data/responses/base_response.dart';
 import 'package:u/data/responses/user_response.dart';
@@ -10,7 +11,7 @@ class UserService {
   final String baseUrl;
 
   void readById({
-    required final UserReadParams p,
+    required final IdParams p,
     required final Function(UResponse<UserResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
