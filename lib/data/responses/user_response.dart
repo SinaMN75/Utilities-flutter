@@ -5,14 +5,14 @@ import 'package:u/data/responses/exam.dart';
 import 'package:u/data/responses/media.dart';
 
 class UserResponse {
-  final String? id;
-  final String? createdAt;
-  final String? updatedAt;
-  final List<int>? tags;
-  final UserJsonData? jsonData;
-  final String? userName;
-  final String? phoneNumber;
-  final String? email;
+  final String id;
+  final String createdAt;
+  final String updatedAt;
+  final List<int> tags;
+  final UserJsonData jsonData;
+  final String userName;
+  final String phoneNumber;
+  final String email;
   final String? firstName;
   final String? lastName;
   final String? country;
@@ -24,14 +24,14 @@ class UserResponse {
   final List<MediaResponse>? media;
 
   UserResponse({
-    this.id,
-    this.createdAt,
-    this.updatedAt,
-    this.tags,
-    this.jsonData,
-    this.userName,
-    this.phoneNumber,
-    this.email,
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.tags,
+    required this.jsonData,
+    required this.userName,
+    required this.phoneNumber,
+    required this.email,
     this.firstName,
     this.lastName,
     this.country,
@@ -51,8 +51,8 @@ class UserResponse {
         id: json["id"],
         createdAt: json["createdAt"],
         updatedAt: json["updatedAt"],
-        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-        jsonData: json["jsonData"] == null ? null : UserJsonData.fromMap(json["jsonData"]),
+        tags: List<int>.from(json["tags"]!.map((x) => x)),
+        jsonData: UserJsonData.fromMap(json["jsonData"]),
         userName: json["userName"],
         phoneNumber: json["phoneNumber"],
         email: json["email"],
@@ -71,8 +71,8 @@ class UserResponse {
         "id": id,
         "createdAt": createdAt,
         "updatedAt": updatedAt,
-        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-        "jsonData": jsonData?.toMap(),
+        "tags": List<dynamic>.from(tags.map((x) => x)),
+        "jsonData": jsonData.toMap(),
         "userName": userName,
         "phoneNumber": phoneNumber,
         "email": email,
