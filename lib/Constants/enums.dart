@@ -1,4 +1,33 @@
-enum TagUser {
+mixin NumericIdentifiable {
+  int get number;
+}
+
+extension NumericEnumExtension<T extends Enum> on Iterable<T> {
+  T? fromNumber(final int id) {
+    try {
+      return firstWhere(
+        (final element) => (element as dynamic).number == id,
+        orElse: () => null as T,
+      );
+    } catch (e) {
+      return null;
+    }
+  }
+
+  T fromNumericIdOrThrow(final int id) {
+    final dynamic result = fromNumber(id);
+    if (result == null) {
+      throw ArgumentError.value(
+        id,
+        'id',
+        'No ${T.toString().split('.').first} found with numericId $id',
+      );
+    }
+    return result;
+  }
+}
+
+enum TagUser with NumericIdentifiable {
   male('مرد', 'Male', 100),
   female('زن', 'Female', 101),
   superAdmin('سوپر ادمین', 'Super Admin', 201),
@@ -8,6 +37,8 @@ enum TagUser {
 
   final String titleFa;
   final String titleEn;
+
+  @override
   final int number;
 }
 
