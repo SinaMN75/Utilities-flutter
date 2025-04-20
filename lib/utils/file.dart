@@ -10,9 +10,7 @@ abstract class UFile {
     final ImagePicker imagePicker = ImagePicker();
 
     if (allowMultiple) {
-      List<XFile> images = await imagePicker.pickMultiImage(
-        requestFullMetadata: true,
-      );
+      final List<XFile> images = await imagePicker.pickMultiImage();
       images.forEach((final XFile i) async {
         final Uint8List bytes = await i.readAsBytes();
         files.add(FileData(bytes: bytes, path: i.path, extension: i.path.split(".").last));
@@ -20,9 +18,8 @@ abstract class UFile {
       if (action != null) action(files);
       return files;
     } else {
-      XFile? image = await imagePicker.pickImage(
+      final XFile? image = await imagePicker.pickImage(
         source: source,
-        requestFullMetadata: true,
       );
       if (image == null) return <FileData>[];
       final Uint8List bytes = await image.readAsBytes();

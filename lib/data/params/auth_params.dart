@@ -1,8 +1,7 @@
+import 'package:u/data/params/base_params.dart';
 import 'package:u/utilities.dart';
 
-class RegisterParams {
-  final String apiKey;
-  final String? token;
+class RegisterParams extends BaseParams {
   final String userName;
   final String email;
   final String phoneNumber;
@@ -12,7 +11,8 @@ class RegisterParams {
   final List<int> tags;
 
   RegisterParams({
-    required this.apiKey,
+    required super.apiKey,
+    super.token,
     required this.userName,
     required this.email,
     required this.phoneNumber,
@@ -20,7 +20,6 @@ class RegisterParams {
     required this.tags,
     this.firstName,
     this.lastName,
-    this.token,
   });
 
   factory RegisterParams.fromJson(String str) => RegisterParams.fromMap(json.decode(str));
@@ -52,15 +51,13 @@ class RegisterParams {
       };
 }
 
-class LoginWithEmailPasswordParams {
-  final String apiKey;
-  final String token;
+class LoginWithEmailPasswordParams extends BaseParams {
   final String email;
   final String password;
 
   LoginWithEmailPasswordParams({
-    required this.apiKey,
-    required this.token,
+    required super.apiKey,
+    super.token,
     required this.email,
     required this.password,
   });
@@ -77,6 +74,7 @@ class LoginWithEmailPasswordParams {
       );
 
   Map<String, dynamic> toMap() => {
+        ...toBaseMap(),
         "apiKey": apiKey,
         "token": token,
         "email": email,
@@ -84,15 +82,13 @@ class LoginWithEmailPasswordParams {
       };
 }
 
-class LoginWithUserNamePasswordParams {
-  final String apiKey;
-  final String token;
+class LoginWithUserNamePasswordParams extends BaseParams {
   final String userName;
   final String password;
 
   LoginWithUserNamePasswordParams({
-    required this.apiKey,
-    required this.token,
+    required super.apiKey,
+    super.token,
     required this.userName,
     required this.password,
   });
@@ -109,6 +105,7 @@ class LoginWithUserNamePasswordParams {
       );
 
   Map<String, dynamic> toMap() => {
+        ...toBaseMap(),
         "apiKey": apiKey,
         "token": token,
         "userName": userName,

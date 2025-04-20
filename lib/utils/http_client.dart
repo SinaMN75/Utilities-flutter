@@ -11,11 +11,13 @@ class SimpleHttp {
     this.defaultHeaders = const <String, String>{'Accept': 'application/json'},
     this.enableCache = false,
     this.cacheDuration = const Duration(minutes: 5),
+    this.defaultBody = const <dynamic, dynamic>{},
   });
 
   final String? baseUrl;
   final Duration timeout;
   final Map<String, String> defaultHeaders;
+  final Map<dynamic, dynamic> defaultBody;
   final bool enableCache;
   final Duration cacheDuration;
   final http.Client _client = http.Client();
@@ -57,7 +59,9 @@ class SimpleHttp {
 
     // Add body if provided
     if (body != null) {
-      if (body is Map || body is List) {
+      if (body is Map) {
+        // Map<dynamic, dynamic> p = body;
+        // body.addAll(defaultBody);
         request.body = jsonEncode(removeNullEntries(body));
         request.headers['Content-Type'] = 'application/json';
         request.headers['Locale'] = UApp.locale();
@@ -253,7 +257,7 @@ class SimpleHttp {
     final Uri uri = baseUrl != null ? Uri.parse('$baseUrl$endpoint') : Uri.parse(endpoint);
 
     if (queryParams != null) {
-      return uri.replace(queryParameters: queryParams.map((final String key, final value) => MapEntry(key, value?.toString() ?? '')));
+      return uri.replace(queryParameters: queryParams.map((final String key, final dynamic value) => MapEntry<String, String>(key, value?.toString() ?? '')));
     }
 
     return uri;

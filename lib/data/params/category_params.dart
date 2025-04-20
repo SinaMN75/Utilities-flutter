@@ -2,17 +2,17 @@ import 'dart:convert';
 
 import 'package:u/data/params/base_params.dart';
 
-class CategoryReadParams extends BaseReadParams {
+class CategoryReadParams {
   final List<String>? ids;
   final bool? showMedia;
 
   CategoryReadParams({
-    super.apiKey,
-    super.token,
-    super.pageSize,
-    super.pageNumber,
-    super.fromDate,
-    super.tags,
+    // required super.apiKey,
+    // super.token,
+    // super.pageSize,
+    // super.pageNumber,
+    // super.fromDate,
+    // super.tags,
     this.ids,
     this.showMedia,
   });
@@ -22,41 +22,39 @@ class CategoryReadParams extends BaseReadParams {
   String toJson() => json.encode(toMap());
 
   factory CategoryReadParams.fromMap(Map<String, dynamic> json) => CategoryReadParams(
-    apiKey: json["apiKey"],
-    token: json["token"],
-    pageSize: json["pageSize"],
-    pageNumber: json["pageNumber"],
-    fromDate: json["fromDate"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+    // apiKey: json["apiKey"],
+    // token: json["token"],
+    // pageSize: json["pageSize"],
+    // pageNumber: json["pageNumber"],
+    // fromDate: json["fromDate"],
+    // tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
     ids: json["ids"] == null ? [] : List<String>.from(json["ids"]!.map((x) => x)),
     showMedia: json["showMedia"],
   );
 
   Map<String, dynamic> toMap() => {
-    ...super.toBaseMap(),
-    "apiKey": apiKey,
-    "token": token,
-    "pageSize": pageSize,
-    "pageNumber": pageNumber,
-    "fromDate": fromDate,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+    // ...super.toBaseMap(),
+    // "apiKey": apiKey,
+    // "token": token,
+    // "pageSize": pageSize,
+    // "pageNumber": pageNumber,
+    // "fromDate": fromDate,
+    // "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
     "ids": ids == null ? [] : List<dynamic>.from(ids!.map((x) => x)),
     "showMedia": showMedia,
   };
 }
 
-class CategoryCreateParams {
-  final String apiKey;
-  final String? token;
+class CategoryCreateParams extends BaseParams {
   final String title;
   final String? subtitle;
   final List<int> tags;
 
   CategoryCreateParams({
-    required this.apiKey,
+    required super.apiKey,
+    super.token,
     required this.title,
     required this.tags,
-    this.token,
     this.subtitle,
   });
 
