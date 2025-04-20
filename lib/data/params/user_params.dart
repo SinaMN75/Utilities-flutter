@@ -15,7 +15,7 @@ class UserCreateParams {
   final String? country;
   final String? state;
   final String? city;
-  final String? birthdate;
+  final DateTime? birthdate;
   final int? weight;
   final int? height;
   final String? address;
@@ -72,7 +72,7 @@ class UserCreateParams {
         country: json["country"],
         state: json["state"],
         city: json["city"],
-        birthdate: json["birthdate"],
+        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
         weight: json["weight"],
         height: json["height"],
         address: json["address"],
@@ -99,7 +99,7 @@ class UserCreateParams {
         "country": country,
         "state": state,
         "city": city,
-        "birthdate": birthdate,
+        "birthdate": birthdate?.toIso8601String(),
         "weight": weight,
         "height": height,
         "address": address,
@@ -126,7 +126,7 @@ class UserUpdateParams extends BaseParams {
   final String? phoneNumber;
   final String? email;
   final String? bio;
-  final String? birthdate;
+  final DateTime? birthdate;
   final String? fcmToken;
   final int? weight;
   final int? height;
@@ -195,7 +195,7 @@ class UserUpdateParams extends BaseParams {
         phoneNumber: json["phoneNumber"],
         email: json["email"],
         bio: json["bio"],
-        birthdate: json["birthdate"],
+        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
         fcmToken: json["fcmToken"],
         weight: json["weight"],
         height: json["height"],
@@ -227,7 +227,7 @@ class UserUpdateParams extends BaseParams {
         "phoneNumber": phoneNumber,
         "email": email,
         "bio": bio,
-        "birthdate": birthdate,
+        "birthdate": birthdate?.toIso8601String(),
         "fcmToken": fcmToken,
         "weight": weight,
         "height": height,

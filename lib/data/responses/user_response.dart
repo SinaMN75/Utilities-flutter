@@ -19,7 +19,7 @@ class UserResponse {
   final String? state;
   final String? city;
   final String? bio;
-  final String? birthdate;
+  final DateTime? birthdate;
   final List<CategoryResponse>? categories;
   final List<MediaResponse>? media;
 
@@ -62,7 +62,7 @@ class UserResponse {
         state: json["state"],
         city: json["city"],
         bio: json["bio"],
-        birthdate: json["birthdate"],
+        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
         categories: json["categories"] == null ? [] : List<CategoryResponse>.from(json["categories"]!.map((x) => CategoryResponse.fromMap(x))),
         media: json["media"] == null ? [] : List<MediaResponse>.from(json["media"]!.map((x) => MediaResponse.fromMap(x))),
       );
@@ -82,7 +82,7 @@ class UserResponse {
         "state": state,
         "city": city,
         "bio": bio,
-        "birthdate": birthdate,
+        "birthdate": birthdate?.toIso8601String(),
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x.toMap())),
         "media": media == null ? [] : List<dynamic>.from(media!.map((x) => x.toMap())),
       };
@@ -162,16 +162,16 @@ class RegisterResponse {
   String toJson() => json.encode(toMap());
 
   factory RegisterResponse.fromMap(Map<String, dynamic> json) => RegisterResponse(
-    token: json["token"],
-    refreshToken: json["refreshToken"],
-    expires: json["expires"],
-    user: json["user"] == null ? null : UserResponse.fromMap(json["user"]),
-  );
+        token: json["token"],
+        refreshToken: json["refreshToken"],
+        expires: json["expires"],
+        user: json["user"] == null ? null : UserResponse.fromMap(json["user"]),
+      );
 
   Map<String, dynamic> toMap() => {
-    "token": token,
-    "refreshToken": refreshToken,
-    "expires": expires,
-    "user": user?.toMap(),
-  };
+        "token": token,
+        "refreshToken": refreshToken,
+        "expires": expires,
+        "user": user?.toMap(),
+      };
 }
