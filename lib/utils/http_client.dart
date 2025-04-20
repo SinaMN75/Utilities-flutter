@@ -1,10 +1,8 @@
-import 'dart:async';
-import 'dart:convert';
 import 'dart:developer' as developer;
-import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:u/utilities.dart';
 
 class SimpleHttp {
   SimpleHttp({
@@ -34,8 +32,6 @@ class SimpleHttp {
     required final Function(http.Response)? onError,
     required final Function(dynamic)? onException,
   }) async {
-    // try {
-    // Build cache key (URL + method + body)
     final String cacheKey = _buildCacheKey(method, endpoint, queryParams, body);
 
     // Check cache first if enabled
@@ -64,6 +60,7 @@ class SimpleHttp {
       if (body is Map || body is List) {
         request.body = jsonEncode(body);
         request.headers['Content-Type'] = 'application/json';
+        request.headers['Locale'] = UApp.locale();
       } else if (body is String) {
         request.body = body;
       } else if (body is List<int>) {
@@ -86,11 +83,6 @@ class SimpleHttp {
     } else {
       onError?.call(response);
     }
-    // } catch (e) {
-    //   onException?.call(e);
-    //   print(e);
-    //   e.printError();
-    // }
   }
 
   // File upload
