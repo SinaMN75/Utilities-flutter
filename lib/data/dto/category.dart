@@ -1,28 +1,5 @@
 part of '../data.dart';
 
-extension CategoryReadDtoListExtension on Iterable<CategoryReadDto> {
-  List<CategoryReadDto> whereByTag(final TagCategory tag) => where(
-        (final CategoryReadDto i) => i.tags.contains(tag.number),
-      ).toList();
-
-  List<CategoryReadDto> whereByParentId(final String parentId) => where(
-        (final CategoryReadDto i) => i.parentId == parentId,
-      ).toList();
-}
-
-extension OptionalCategoryReadDtoListExtension on Iterable<CategoryReadDto>? {
-  List<CategoryReadDto> whereByTag(final TagCategory tag) => (this ?? <CategoryReadDto>[])
-      .where(
-        (final CategoryReadDto i) => i.tags.contains(tag.number),
-      )
-      .toList();
-
-  List<CategoryReadDto> whereByParentId(final String parentId) => (this ?? <CategoryReadDto>[])
-      .where(
-        (final CategoryReadDto i) => i.parentId == parentId,
-      )
-      .toList();
-}
 
 class CategoryReadDto {
   CategoryReadDto({

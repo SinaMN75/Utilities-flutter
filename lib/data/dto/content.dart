@@ -1,11 +1,5 @@
 part of '../data.dart';
 
-extension ContentReadDtoExtension on List<ContentReadDto> {
-  List<ContentReadDto> getByTags({required final List<TagContent> tags}) => where(
-        (final ContentReadDto e) => e.tags.containsAll(tags.getNumbers()),
-      ).toList();
-}
-
 class ContentReadDto {
   final String? id;
   final String? createdAt;

@@ -194,20 +194,6 @@ extension NullableMediaResponseExtension on List<MediaReadDto>? {
           .toList() ??
       <String>[];
 
-  List<MediaReadDto>? images({final List<TagMedia> tags = const <TagMedia>[]}) => this
-      ?.where((final MediaReadDto e) => e.tags.containsAll(tags.getNumbers()))
-      .toList()
-      .where(
-        (final MediaReadDto e) => e.url.isImageFileName,
-      )
-      .toList();
-
-  List<String>? imagesUrl({final List<TagMedia> tags = const <TagMedia>[]}) => images(tags: tags)
-      ?.map(
-        (final MediaReadDto e) => e.url,
-      )
-      .toList();
-
   List<String> getImages({final int? tag}) =>
       this
           ?.where((final MediaReadDto e) => (e.url.isImageFileName || e.url.isVectorFileName) && (tag != null ? (e.tags.contains(tag)) : true))
@@ -351,8 +337,6 @@ extension MediaResponseExtension on List<MediaReadDto> {
   }
 
   String getImage({final int? tag}) => getImages(tag: tag).getFirstIfExist() ?? "--";
-
-  String getCover() => getImages(tag: TagMedia.cover.number).getFirstIfExist() ?? getImages(tag: TagMedia.post.number).getFirstIfExist() ?? "--";
 
   String getVideo({final int? tag}) => getVideos(tag: tag).getFirstIfExist() ?? "--";
 

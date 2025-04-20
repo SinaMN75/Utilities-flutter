@@ -79,7 +79,6 @@ export 'utils/clipboard.dart';
 export 'utils/constants.dart';
 export 'utils/enums.dart';
 export 'utils/extensions/date_extension.dart';
-export 'utils/extensions/enums_extension.dart';
 export 'utils/extensions/iterable_extension.dart';
 export 'utils/extensions/number_extension.dart';
 export 'utils/extensions/string_extension.dart';
