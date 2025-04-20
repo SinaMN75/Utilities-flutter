@@ -1,22 +1,18 @@
 import 'dart:convert';
 
-class CategoryReadParams {
-  final String? apiKey;
-  final String? token;
-  final int? pageSize;
-  final int? pageNumber;
-  final String? fromDate;
-  final List<int>? tags;
+import 'package:u/data/params/base_params.dart';
+
+class CategoryReadParams extends BaseReadParams {
   final List<String>? ids;
   final bool? showMedia;
 
   CategoryReadParams({
-    this.apiKey,
-    this.token,
-    this.pageSize,
-    this.pageNumber,
-    this.fromDate,
-    this.tags,
+    super.apiKey,
+    super.token,
+    super.pageSize,
+    super.pageNumber,
+    super.fromDate,
+    super.tags,
     this.ids,
     this.showMedia,
   });
@@ -37,6 +33,7 @@ class CategoryReadParams {
   );
 
   Map<String, dynamic> toMap() => {
+    ...super.toBaseMap(),
     "apiKey": apiKey,
     "token": token,
     "pageSize": pageSize,

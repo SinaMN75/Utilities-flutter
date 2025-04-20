@@ -26,6 +26,29 @@ class UserService {
         },
       );
 
+  void read({
+    required final UserReadParams p,
+    required final Function(UResponse<List<UserResponse>> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      SimpleHttp().post(
+        "$baseUrl/User/Read",
+        body: p.toMap(),
+        onSuccess: (final Response r) => onOk(
+          UResponse<List<UserResponse>>.fromJson(
+            r.body,
+            (final dynamic i) => List<UserResponse>.from(
+              (i as List<dynamic>).map((final dynamic x) => UserResponse.fromMap(x)),
+            ),
+          ),
+        ),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (final dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
+
   void readById({
     required final IdParams p,
     required final Function(UResponse<UserResponse> r) onOk,

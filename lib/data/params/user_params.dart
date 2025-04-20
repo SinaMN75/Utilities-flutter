@@ -114,6 +114,77 @@ class UserCreateParams {
       };
 }
 
+class UserReadParams extends UserReadParams {
+  final String? userName;
+  final String? phoneNumber;
+  final String? email;
+  final String? bio;
+  final DateTime? startBirthDate;
+  final DateTime? endBirthDate;
+  final List<String>? categories;
+  final bool? showCategories;
+  final bool? showMedia;
+
+  UserReadParams({
+    super.apiKey,
+    super.token,
+    super.pageSize,
+    super.pageNumber,
+    super.fromDate,
+    super.tags,
+    this.userName,
+    this.phoneNumber,
+    this.email,
+    this.bio,
+    this.startBirthDate,
+    this.endBirthDate,
+    this.categories,
+    this.showCategories,
+    this.showMedia,
+  });
+
+  factory UserReadParams.fromJson(String str) => UserReadParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UserReadParams.fromMap(Map<String, dynamic> json) => UserReadParams(
+        apiKey: json["apiKey"],
+        token: json["token"],
+        pageSize: json["pageSize"],
+        pageNumber: json["pageNumber"],
+        fromDate: json["fromDate"] == null ? null : DateTime.parse(json["fromDate"]),
+        tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+        userName: json["userName"],
+        phoneNumber: json["phoneNumber"],
+        email: json["email"],
+        bio: json["bio"],
+        startBirthDate: json["startBirthDate"] == null ? null : DateTime.parse(json["startBirthDate"]),
+        endBirthDate: json["endBirthDate"] == null ? null : DateTime.parse(json["endBirthDate"]),
+        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+        showCategories: json["showCategories"],
+        showMedia: json["showMedia"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        ...toBaseMap(),
+        "apiKey": apiKey,
+        "token": token,
+        "pageSize": pageSize,
+        "pageNumber": pageNumber,
+        "fromDate": fromDate?.toIso8601String(),
+        "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+        "userName": userName,
+        "phoneNumber": phoneNumber,
+        "email": email,
+        "bio": bio,
+        "startBirthDate": startBirthDate?.toIso8601String(),
+        "endBirthDate": endBirthDate?.toIso8601String(),
+        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
+        "showCategories": showCategories,
+        "showMedia": showMedia,
+      };
+}
+
 class UserUpdateParams extends BaseParams {
   final String id;
   final String? password;

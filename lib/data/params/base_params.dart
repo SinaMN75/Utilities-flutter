@@ -9,6 +9,25 @@ abstract class BaseParams {
   Map<String, dynamic> toBaseMap() => {"apiKey": apiKey, "token": token};
 }
 
+abstract class BaseReadParams extends BaseParams {
+  BaseReadParams({
+    required super.apiKey,
+    required super.token,
+    this.pageSize,
+    this.pageNumber,
+    this.fromDate,
+    this.tags,
+  });
+
+  final int? pageSize;
+  final int? pageNumber;
+  final String? fromDate;
+  final List<int>? tags;
+
+  @override
+  Map<String, dynamic> toBaseMap() => {...toBaseMap()};
+}
+
 class IdParams extends BaseParams {
   final String id;
 
