@@ -10,6 +10,8 @@ extension TextEditingControllerExtension on TextEditingController {
 extension OptionalStringExtension on String? {
   String numberString() => (this ?? "0").replaceAll(RegExp('[^0-9]'), '');
 
+  String toStringOrEmptyIfNull() => this ?? "";
+
   int number() => (this ?? "0").replaceAll(RegExp('[^0-9]'), '').toInt();
 
   String? nullIfEmpty() => (this ?? "").isEmpty ? null : this;

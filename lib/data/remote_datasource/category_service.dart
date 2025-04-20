@@ -21,7 +21,7 @@ class CategoryService {
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (e) {
+        onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
       );
@@ -38,11 +38,11 @@ class CategoryService {
         onSuccess: (final Response r) => onOk(
           UResponse<List<CategoryResponse>>.fromJson(
             r.body,
-                (i) => List<CategoryResponse>.from(i.map((x) => CategoryResponse.fromMap(x))),
+            (final dynamic i) => List<CategoryResponse>.from((i as List<dynamic>).map((final dynamic x) => CategoryResponse.fromMap(x))),
           ),
         ),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (e) {
+        onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
       );
@@ -52,30 +52,32 @@ class CategoryService {
     required final Function(UResponse<CategoryResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
-  }) => SimpleHttp().post(
-      "$baseUrl/category/ReadById",
-      body: p.toMap(),
-      onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
-      onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (e) {
-        if (onException != null) onException(e);
-      },
-    );
+  }) =>
+      SimpleHttp().post(
+        "$baseUrl/category/ReadById",
+        body: p.toMap(),
+        onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (final dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
 
   void update({
     required final CategoryUpdateParams p,
     required final Function(UResponse<CategoryResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
-  }) => SimpleHttp().post(
-      "$baseUrl/category/Update",
-      body: p.toMap(),
-      onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
-      onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (e) {
-        if (onException != null) onException(e);
-      },
-    );
+  }) =>
+      SimpleHttp().post(
+        "$baseUrl/category/Update",
+        body: p.toMap(),
+        onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (final dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
 
   void delete({
     required final IdParams p,
@@ -88,7 +90,7 @@ class CategoryService {
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (e) {
+        onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
       );

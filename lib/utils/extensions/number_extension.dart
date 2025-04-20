@@ -176,4 +176,6 @@ extension OptionalIntExtension on int? {
   String toTomanMoneyPersian({final bool removeNegative = false}) => "${(this ?? 0).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
 
   String rialToTomanMoneyPersian({final bool removeNegative = false}) => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
+
+  String toStringOrEmptyIfNull() => this == null ? "" : toString();
 }

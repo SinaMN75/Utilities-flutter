@@ -10,30 +10,6 @@ class UResponse<T> {
     this.totalCount = 0,
   });
 
-  factory UResponse.fromJson(final String str, final T Function(dynamic) fromMapT) => UResponse<T>.fromMap(json.decode(str), fromMapT);
-
-  factory UResponse.fromMap(final Map<String, dynamic> json, final T Function(dynamic) fromMapT) {
-    final dynamic rawResult = json["result"];
-
-    T? parsedResult;
-    if (rawResult == null) {
-      parsedResult = null;
-    } else if (rawResult is List) {
-      parsedResult = rawResult.map((final e) => fromMapT(e)).toList() as T;
-    } else {
-      parsedResult = fromMapT(rawResult);
-    }
-
-    return UResponse<T>(
-      result: parsedResult,
-      status: json["status"],
-      pageSize: json["pageSize"] ?? 0,
-      pageCount: json["pageCount"] ?? 0,
-      totalCount: json["totalCount"] ?? 0,
-      message: json["message"] ?? '',
-    );
-  }
-
   final T? result;
   final int status;
   final int pageSize;
@@ -41,18 +17,24 @@ class UResponse<T> {
   final int totalCount;
   final String message;
 
-  String toJson(final Object Function(T value) toMapT) => json.encode(toMap(toMapT));
+  factory UResponse.fromJson(String str, T Function(dynamic) fromMapT) {
+    final Map<String, dynamic> jsonMap = json.decode(str);
+    final rawResult = jsonMap["result"];
+    T? parsedResult;
 
-  Map<String, dynamic> toMap(final Object Function(T value) toMapT) => {
-        "result": result == null
-            ? null
-            : result is List
-                ? (result as List).map((final e) => toMapT(e)).toList()
-                : toMapT(result as T),
-        "status": status,
-        "pageSize": pageSize,
-        "pageCount": pageCount,
-        "totalCount": totalCount,
-        "message": message,
-      };
+    if (rawResult == null) {
+      parsedResult = null;
+    } else {
+      parsedResult = fromMapT(rawResult);
+    }
+
+    return UResponse<T>(
+      result: parsedResult,
+      status: jsonMap["status"],
+      pageSize: jsonMap["pageSize"] ?? 0,
+      pageCount: jsonMap["pageCount"] ?? 0,
+      totalCount: jsonMap["totalCount"] ?? 0,
+      message: jsonMap["message"] ?? '',
+    );
+  }
 }

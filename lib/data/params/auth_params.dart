@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'package:u/utilities.dart';
 
 class RegisterParams {
   final String apiKey;
@@ -44,7 +44,7 @@ class RegisterParams {
         "token": token,
         "userName": userName,
         "email": email,
-        "phoneNumber": phoneNumber,
+        "phoneNumber": phoneNumber.englishNumber(),
         "password": password,
         "firstName": firstName,
         "lastName": lastName,
@@ -104,7 +104,7 @@ class LoginWithUserNamePasswordParams {
   factory LoginWithUserNamePasswordParams.fromMap(Map<String, dynamic> json) => LoginWithUserNamePasswordParams(
         apiKey: json["apiKey"],
         token: json["token"],
-    userName: json["userName"],
+        userName: json["userName"],
         password: json["password"],
       );
 
