@@ -166,7 +166,7 @@ class UserReadParams extends BaseReadParams {
       );
 
   Map<String, dynamic> toMap() => {
-        ...toBaseMap(),
+        ...toBaseReadMap(),
         "apiKey": apiKey,
         "token": token,
         "pageSize": pageSize,
@@ -205,14 +205,14 @@ class UserUpdateParams extends BaseParams {
   final String? fatherName;
   final List<int>? addTags;
   final List<int>? removeTags;
-  final List<int>? addHealth1;
-  final List<int>? removeHealth1;
-  final List<int>? addFoodAllergies;
-  final List<int>? removeFoodAllergies;
-  final List<int>? addDrugAllergies;
-  final List<int>? removeDrugAllergies;
-  final List<int>? addSickness;
-  final List<int>? removeSickness;
+  final List<String>? addHealth1;
+  final List<String>? removeHealth1;
+  final List<String>? addFoodAllergies;
+  final List<String>? removeFoodAllergies;
+  final List<String>? addDrugAllergies;
+  final List<String>? removeDrugAllergies;
+  final List<String>? addSickness;
+  final List<String>? removeSickness;
   final List<String>? categories;
 
   UserUpdateParams({
@@ -274,14 +274,14 @@ class UserUpdateParams extends BaseParams {
         fatherName: json["fatherName"],
         addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
         removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
-        addHealth1: json["addHealth1"] == null ? [] : List<int>.from(json["addHealth1"]!.map((x) => x)),
-        removeHealth1: json["removeHealth1"] == null ? [] : List<int>.from(json["removeHealth1"]!.map((x) => x)),
-        addFoodAllergies: json["addFoodAllergies"] == null ? [] : List<int>.from(json["addFoodAllergies"]!.map((x) => x)),
-        removeFoodAllergies: json["removeFoodAllergies"] == null ? [] : List<int>.from(json["removeFoodAllergies"]!.map((x) => x)),
-        addDrugAllergies: json["addDrugAllergies"] == null ? [] : List<int>.from(json["addDrugAllergies"]!.map((x) => x)),
-        removeDrugAllergies: json["removeDrugAllergies"] == null ? [] : List<int>.from(json["removeDrugAllergies"]!.map((x) => x)),
-        addSickness: json["addSickness"] == null ? [] : List<int>.from(json["addSickness"]!.map((x) => x)),
-        removeSickness: json["removeSickness"] == null ? [] : List<int>.from(json["removeSickness"]!.map((x) => x)),
+        addHealth1: json["addHealth1"] == null ? [] : List<String>.from(json["addHealth1"]!.map((x) => x)),
+        removeHealth1: json["removeHealth1"] == null ? [] : List<String>.from(json["removeHealth1"]!.map((x) => x)),
+        addFoodAllergies: json["addFoodAllergies"] == null ? [] : List<String>.from(json["addFoodAllergies"]!.map((x) => x)),
+        removeFoodAllergies: json["removeFoodAllergies"] == null ? [] : List<String>.from(json["removeFoodAllergies"]!.map((x) => x)),
+        addDrugAllergies: json["addDrugAllergies"] == null ? [] : List<String>.from(json["addDrugAllergies"]!.map((x) => x)),
+        removeDrugAllergies: json["removeDrugAllergies"] == null ? [] : List<String>.from(json["removeDrugAllergies"]!.map((x) => x)),
+        addSickness: json["addSickness"] == null ? [] : List<String>.from(json["addSickness"]!.map((x) => x)),
+        removeSickness: json["removeSickness"] == null ? [] : List<String>.from(json["removeSickness"]!.map((x) => x)),
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
       );
 

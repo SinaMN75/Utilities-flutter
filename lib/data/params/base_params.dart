@@ -24,8 +24,7 @@ abstract class BaseReadParams extends BaseParams {
   final DateTime? fromDate;
   final List<int>? tags;
 
-  @override
-  Map<String, dynamic> toBaseMap() => {...toBaseMap()};
+  Map<String, dynamic> toBaseReadMap() => {...toBaseMap()};
 }
 
 class IdParams extends BaseParams {
