@@ -50,16 +50,16 @@ class CategoryReadParams {
 
 class CategoryCreateParams {
   final String apiKey;
-  final String token;
+  final String? token;
   final String title;
   final String? subtitle;
   final List<int> tags;
 
   CategoryCreateParams({
     required this.apiKey,
-    required this.token,
     required this.title,
     required this.tags,
+    this.token,
     this.subtitle,
   });
 
@@ -86,7 +86,7 @@ class CategoryCreateParams {
 
 class CategoryUpdateParams {
   final String apiKey;
-  final String token;
+  final String? token;
   final String id;
   final List<int>? addTags;
   final List<int>? removeTags;
@@ -95,8 +95,8 @@ class CategoryUpdateParams {
 
   CategoryUpdateParams({
     required this.apiKey,
-    required this.token,
     required this.id,
+    this.token,
     this.addTags,
     this.removeTags,
     this.title,
