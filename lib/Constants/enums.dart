@@ -1,7 +1,8 @@
 enum TagUser {
   male('مرد', 'Male', 100),
   female('زن', 'Female', 101),
-  superAdmin('سوپر ادمین', 'Super Admin', 201);
+  superAdmin('سوپر ادمین', 'Super Admin', 201),
+  guest('مهمان', 'Guest', 202);
 
   const TagUser(this.titleFa, this.titleEn, this.number);
 
