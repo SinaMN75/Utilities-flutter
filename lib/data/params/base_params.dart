@@ -21,7 +21,7 @@ abstract class BaseReadParams extends BaseParams {
 
   final int? pageSize;
   final int? pageNumber;
-  final String? fromDate;
+  final DateTime? fromDate;
   final List<int>? tags;
 
   @override

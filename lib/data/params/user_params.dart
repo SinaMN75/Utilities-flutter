@@ -114,7 +114,7 @@ class UserCreateParams {
       };
 }
 
-class UserReadParams extends UserReadParams {
+class UserReadParams extends BaseReadParams {
   final String? userName;
   final String? phoneNumber;
   final String? email;
