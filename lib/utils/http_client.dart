@@ -58,7 +58,7 @@ class SimpleHttp {
     // Add body if provided
     if (body != null) {
       if (body is Map || body is List) {
-        request.body = jsonEncode(body);
+        request.body = jsonEncode(removeNullEntries(body));
         request.headers['Content-Type'] = 'application/json';
         request.headers['Locale'] = UApp.locale();
       } else if (body is String) {
