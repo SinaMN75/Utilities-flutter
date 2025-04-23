@@ -1,8 +1,4 @@
-import 'package:http/http.dart';
-import 'package:u/data/params/auth_params.dart';
-import 'package:u/data/responses/auth_response.dart';
-import 'package:u/data/responses/base_response.dart';
-import 'package:u/utils/http_client.dart';
+part of "../data.dart";
 
 class AuthService {
   AuthService({required this.baseUrl});

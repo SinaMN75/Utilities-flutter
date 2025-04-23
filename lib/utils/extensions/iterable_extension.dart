@@ -1,4 +1,4 @@
-extension GenericIterableExtentions<T> on Iterable {
+extension GenericIterableExtentions<T> on Iterable<dynamic> {
   Iterable<E> mapIndexed<E, T>(final E Function(int index, T item) f) sync* {
     int index = 0;
     for (final T item in this) {
@@ -7,10 +7,10 @@ extension GenericIterableExtentions<T> on Iterable {
     }
   }
 
-  Iterable takeIfPossible(final int range) => range < length ? take(length) : take(range);
+  Iterable<dynamic> takeIfPossible(final int range) => range < length ? take(length) : take(range);
 
-  List insertFirstReturn<T>(final T item) {
-    List list = toList();
+  List<dynamic> insertFirstReturn<T>(final T item) {
+    final List<dynamic> list = toList();
     list.insert(0, item);
     return list;
   }
@@ -21,7 +21,7 @@ extension GenericIterableExtentions<T> on Iterable {
 
   void forEachIndexed(void Function(int index, dynamic element) action) {
     int index = 0;
-    for (var element in this) {
+    for (T element in this) {
       action(index++, element);
     }
   }
@@ -63,29 +63,31 @@ extension IterableExtentions<T> on Iterable<T> {
   }
 
   List<T> addAndReturn(final T t) {
-    List<T> list = toList();
+    final List<T> list = toList();
     list.add(t);
     return list;
   }
 
   List<T> addAllAndReturn(final List<T> t) {
-    List<T> list = toList();
+    final List<T> list = toList();
     list.addAll(t);
     return list;
   }
 
   List<T> insertAndReturn(final int index, final T t) {
-    List<T> list = toList();
+    final List<T> list = toList();
     list.insert(index, t);
     return list;
   }
 }
 
-extension NullableIterableExtentions on Iterable? {
+extension NullableIterableExtentions on Iterable<dynamic>? {
   bool isNullOrEmpty() {
     if (this == null) {
       return true;
-    } else if (this!.isEmpty) return true;
+    } else if (this!.isEmpty) {
+      return true;
+    }
     return false;
   }
 

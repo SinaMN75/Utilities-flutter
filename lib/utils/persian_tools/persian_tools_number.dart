@@ -3,9 +3,9 @@ import 'package:u/utils/persian_tools/persian_tools.dart';
 enum DigitLocale { en, fa, ar }
 
 class PersianToolsNumber {
-  static const faNumber = '۰۱۲۳۴۵۶۷۸۹';
-  static const arNumber = '۰۱۲۳٤٥٦۷۸۹';
-  static const numberToWord = {
+  static const String faNumber = '۰۱۲۳۴۵۶۷۸۹';
+  static const String arNumber = '۰۱۲۳٤٥٦۷۸۹';
+  static const Map<int, String> numberToWord = <int, String>{
     0: '',
     1: 'یک',
     2: 'دو',
@@ -45,7 +45,7 @@ class PersianToolsNumber {
     900: 'نهصد'
   };
 
-  static const units = <String, int>{
+  static const Map<String, int> units = <String, int>{
     'صفر': 0,
     'یک': 1,
     'دو': 2,
@@ -77,7 +77,7 @@ class PersianToolsNumber {
     'نود': 90
   };
 
-  static const ten = <String, int>{'صد': 100, 'یکصد': 100, 'دویست': 200, 'سیصد': 300, 'چهارصد': 400, 'پانصد': 500, 'ششصد': 600, 'هفتصد': 700, 'هشتصد': 800, 'نهصد': 900};
+  static const Map<String, int> ten = <String, int>{'صد': 100, 'یکصد': 100, 'دویست': 200, 'سیصد': 300, 'چهارصد': 400, 'پانصد': 500, 'ششصد': 600, 'هفتصد': 700, 'هشتصد': 800, 'نهصد': 900};
 
   String? numberToWordsString(String number, {bool ordinal = false}) {
     if (number.isEmpty) return null;
@@ -91,35 +91,35 @@ class PersianToolsNumber {
   }
 
   String convertEnToFa(String digits) {
-    for (var i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
       digits = digits.replaceAll('$i', faNumber[i]);
     }
     return digits;
   }
 
   String convertEnToAr(String digits) {
-    for (var i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
       digits = digits.replaceAll('$i', arNumber[i]);
     }
     return digits;
   }
 
   String convertFaToEn(String digits) {
-    for (var i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
       digits = digits.replaceAll(faNumber[i], '$i');
     }
     return digits;
   }
 
   String convertArToFa(String digits) {
-    for (var i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
       digits = digits.replaceAll(arNumber[i], faNumber[i]);
     }
     return digits;
   }
 
   String convertArToEn(String digits) {
-    for (var i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
       digits = digits.replaceAll(arNumber[i], '$i');
     }
     return digits;
@@ -129,14 +129,14 @@ class PersianToolsNumber {
     if (number is! int && number is! String && number is! double) {
       throw Exception('Type should be String or int');
     }
-    final numberStr = number.runtimeType is String
+    final String numberStr = number.runtimeType is String
         ? number as String //
         : number.toString();
-    final enNumberStr = PersianTools.isPersian(numberStr) ? convertFaToEn(numberStr) : numberStr;
-    final decimalNumber = enNumberStr.split('.');
-    final integerPart = decimalNumber[0].replaceAllMapped(
+    final String enNumberStr = PersianTools.isPersian(numberStr) ? convertFaToEn(numberStr) : numberStr;
+    final List<String> decimalNumber = enNumberStr.split('.');
+    final String integerPart = decimalNumber[0].replaceAllMapped(
       RegExp(r'(\d)(?=(\d{3})+(?!\d))'),
-      (matched) => '${matched[1]},',
+      (Match matched) => '${matched[1]},',
     );
     String decimalPart;
     try {
@@ -152,13 +152,13 @@ class PersianToolsNumber {
   }
 
   int _compute(List<String> tokens) {
-    var sum = 0;
-    var isNegative = false;
+    int sum = 0;
+    bool isNegative = false;
 
-    for (var element in tokens) {
-      final token = convertFaToEn(element);
+    for (String element in tokens) {
+      final String token = convertFaToEn(element);
 
-      if (token == ['منفی', 'مثبت'][0]) {
+      if (token == <String>['منفی', 'مثبت'][0]) {
         isNegative = true;
       } else if (units[token] != null)
         sum += units[token]!;
@@ -167,7 +167,7 @@ class PersianToolsNumber {
       else if (int.tryParse(token) != null)
         sum += int.parse(token, radix: 10);
       else
-        sum *= {
+        sum *= <String, int>{
               'هزار': 1000,
               'میلیون': 1000000,
               'بیلیون': 1000000000,
@@ -190,9 +190,9 @@ class PersianToolsNumber {
     DigitLocale digits = DigitLocale.en,
     bool addComma = false,
   }) {
-    final computeNumbers = wordsToNumber(words);
+    final int? computeNumbers = wordsToNumber(words);
     if (computeNumbers == null) return null;
-    final addedCommasIfNeeded = addComma ? addCommas(computeNumbers) : computeNumbers.toString();
+    final String addedCommasIfNeeded = addComma ? addCommas(computeNumbers) : computeNumbers.toString();
 
     switch (digits) {
       case DigitLocale.fa:
@@ -205,16 +205,16 @@ class PersianToolsNumber {
   }
 
   List<String> _tokenize(String words) {
-    final temp = PersianTools.replaceMapValue(words, {
+    final String temp = PersianTools.replaceMapValue(words, <String, String>{
       'شیش صد': 'ششصد',
       'شش صد': 'ششصد',
       'هفت صد': 'هفتصد',
       'هشت صد': 'هشتصد',
       'نه صد': 'نهصد',
     });
-    final result = <String>[];
-    temp.split(' ').forEach((element) {
-      if (element != ['و', ' و '][0]) {
+    final List<String> result = <String>[];
+    temp.split(' ').forEach((String element) {
+      if (element != <String>['و', ' و '][0]) {
         result.add(element);
       }
     });
@@ -222,8 +222,8 @@ class PersianToolsNumber {
   }
 
   String _numToWord(int number) {
-    var unit = 100;
-    var result = '';
+    int unit = 100;
+    String result = '';
 
     while (unit > 0) {
       if ((number / unit).floor() * unit != 0) {
@@ -242,19 +242,19 @@ class PersianToolsNumber {
 
   /// Checks current [input] for negative [value] and deploying converting process
   String _convert(int number) {
-    var result = <String>[];
-    final isNegative = number < 0;
+    List<String> result = <String>[];
+    final bool isNegative = number < 0;
     number = isNegative ? number * -1 : number;
     while (number > 0) {
       result.add(_numToWord(number % 1000));
       number = (number / 1000).floor();
     }
     if (result.length > 4) return '';
-    for (var i = 0; i < result.length; i++) {
-      if (result[i] != '' && i != 0) result[i] += ' ${['', 'هزار', 'میلیون', 'میلیارد'][i]} و ';
+    for (int i = 0; i < result.length; i++) {
+      if (result[i] != '' && i != 0) result[i] += ' ${<String>['', 'هزار', 'میلیون', 'میلیارد'][i]} و ';
     }
     result = result.reversed.toList();
-    var words = result.join('');
+    String words = result.join();
     if (words.endsWith(' و ')) words = words.substring(0, (words.length - 3));
     words = PersianTools.trim(isNegative ? 'منفی $words' : words);
     return words;

@@ -87,23 +87,23 @@ class ReadMoreTextState extends State<ReadMoreText> {
       effectiveTextStyle = defaultTextStyle.style.merge(widget.style);
     }
 
-    final textAlign = widget.textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start;
-    final textDirection = widget.textDirection ?? Directionality.of(context);
-    final overflow = defaultTextStyle.overflow;
-    final locale = widget.locale ?? Localizations.maybeLocaleOf(context);
+    final TextAlign textAlign = widget.textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start;
+    final TextDirection textDirection = widget.textDirection ?? Directionality.of(context);
+    final TextOverflow overflow = defaultTextStyle.overflow;
+    final Locale? locale = widget.locale ?? Localizations.maybeLocaleOf(context);
 
-    final colorClickableText = widget.colorClickableText ?? Theme.of(context).colorScheme.secondary;
-    final defaultLessStyle = widget.lessStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
-    final defaultMoreStyle = widget.moreStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
-    final defaultDelimiterStyle = widget.delimiterStyle ?? effectiveTextStyle;
+    final Color colorClickableText = widget.colorClickableText ?? Theme.of(context).colorScheme.secondary;
+    final TextStyle? defaultLessStyle = widget.lessStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
+    final TextStyle? defaultMoreStyle = widget.moreStyle ?? effectiveTextStyle?.copyWith(color: colorClickableText);
+    final TextStyle? defaultDelimiterStyle = widget.delimiterStyle ?? effectiveTextStyle;
 
-    TextSpan link = TextSpan(
+    final TextSpan link = TextSpan(
       text: _readMore ? widget.trimCollapsedText : widget.trimExpandedText,
       style: _readMore ? defaultMoreStyle : defaultLessStyle,
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
     );
 
-    TextSpan delimiter = TextSpan(
+    final TextSpan delimiter = TextSpan(
       text: _readMore
           ? widget.trimCollapsedText.isNotEmpty
               ? widget.delimiter
@@ -132,10 +132,10 @@ class ReadMoreTextState extends State<ReadMoreText> {
             style: widget.postDataTextStyle ?? effectiveTextStyle,
           );
         }
-        final text = TextSpan(
-          children: [if (preTextSpan != null) preTextSpan, TextSpan(text: widget.data, style: effectiveTextStyle), if (postTextSpan != null) postTextSpan],
+        final TextSpan text = TextSpan(
+          children: <InlineSpan>[if (preTextSpan != null) preTextSpan, TextSpan(text: widget.data, style: effectiveTextStyle), if (postTextSpan != null) postTextSpan],
         );
-        TextPainter textPainter = TextPainter(
+        final TextPainter textPainter = TextPainter(
           text: link,
           textAlign: textAlign,
           textDirection: textDirection,
@@ -143,26 +143,26 @@ class ReadMoreTextState extends State<ReadMoreText> {
           ellipsis: overflow == TextOverflow.ellipsis ? widget.delimiter : null,
           locale: locale,
         );
-        textPainter.layout(minWidth: 0, maxWidth: maxWidth);
-        final linkSize = textPainter.size;
+        textPainter.layout(maxWidth: maxWidth);
+        final Size linkSize = textPainter.size;
         textPainter.text = delimiter;
-        textPainter.layout(minWidth: 0, maxWidth: maxWidth);
-        final delimiterSize = textPainter.size;
+        textPainter.layout(maxWidth: maxWidth);
+        final Size delimiterSize = textPainter.size;
         textPainter.text = text;
         textPainter.layout(minWidth: constraints.minWidth, maxWidth: maxWidth);
-        final textSize = textPainter.size;
+        final Size textSize = textPainter.size;
         bool linkLongerThanLine = false;
         int endIndex;
 
         if (linkSize.width < maxWidth) {
-          final readMoreSize = linkSize.width + delimiterSize.width;
-          final pos = textPainter.getPositionForOffset(Offset(
+          final double readMoreSize = linkSize.width + delimiterSize.width;
+          final TextPosition pos = textPainter.getPositionForOffset(Offset(
             textDirection == TextDirection.rtl ? readMoreSize : textSize.width - readMoreSize,
             textSize.height,
           ));
           endIndex = textPainter.getOffsetBefore(pos.offset) ?? 0;
         } else {
-          var pos = textPainter.getPositionForOffset(
+          final TextPosition pos = textPainter.getPositionForOffset(
             textSize.bottomLeft(Offset.zero),
           );
           endIndex = pos.offset;
@@ -181,7 +181,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
                   color: Colors.blue,
                 ),
                 onPressed: widget.onLinkPressed,
-                children: [delimiter, link],
+                children: <TextSpan>[delimiter, link],
               );
             } else {
               textSpan = _buildData(
@@ -192,7 +192,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
                   color: Colors.blue,
                 ),
                 onPressed: widget.onLinkPressed,
-                children: [],
+                children: <TextSpan>[],
               );
             }
             break;
@@ -206,7 +206,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
                   color: Colors.blue,
                 ),
                 onPressed: widget.onLinkPressed,
-                children: [delimiter, link],
+                children: <TextSpan>[delimiter, link],
               );
             } else {
               textSpan = _buildData(
@@ -217,7 +217,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
                   color: Colors.blue,
                 ),
                 onPressed: widget.onLinkPressed,
-                children: [],
+                children: <TextSpan>[],
               );
             }
             break;
@@ -225,7 +225,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
 
         return Text.rich(
           TextSpan(
-            children: [
+            children: <InlineSpan>[
               if (preTextSpan != null) preTextSpan,
               textSpan,
               if (postTextSpan != null) postTextSpan,
@@ -257,15 +257,15 @@ class ReadMoreTextState extends State<ReadMoreText> {
     ValueChanged<String>? onPressed,
     required List<TextSpan> children,
   }) {
-    RegExp exp = RegExp(r'(?:(?:https?|ftp)://)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+    final RegExp exp = RegExp(r'(?:(?:https?|ftp)://)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
 
-    List<TextSpan> contents = [];
+    final List<TextSpan> contents = <TextSpan>[];
 
     while (exp.hasMatch(data)) {
-      final match = exp.firstMatch(data);
+      final RegExpMatch? match = exp.firstMatch(data);
 
-      final firstTextPart = data.substring(0, match!.start);
-      final linkTextPart = data.substring(match.start, match.end);
+      final String firstTextPart = data.substring(0, match!.start);
+      final String linkTextPart = data.substring(match.start, match.end);
 
       contents.add(
         TextSpan(

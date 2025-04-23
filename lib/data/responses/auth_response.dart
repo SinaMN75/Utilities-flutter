@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:u/data/responses/user_response.dart';
+part of "../data.dart";
 
 class LoginResponse {
   final String token;
@@ -26,7 +24,7 @@ class LoginResponse {
     user: UserResponse.fromMap(json["user"]),
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     "token": token,
     "refreshToken": refreshToken,
     "expires": expires,

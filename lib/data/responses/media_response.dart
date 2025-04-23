@@ -1,5 +1,4 @@
-
-import 'dart:convert';
+part of "../data.dart";
 
 class MediaResponse {
   final String? id;
@@ -26,16 +25,16 @@ class MediaResponse {
     id: json["id"],
     createdAt: json["createdAt"],
     updatedAt: json["updatedAt"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
     jsonData: json["jsonData"] == null ? null : MediaJsonData.fromMap(json["jsonData"]),
     path: json["path"],
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt,
     "updatedAt": updatedAt,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "jsonData": jsonData?.toMap(),
     "path": path,
   };
@@ -59,7 +58,7 @@ class MediaJsonData {
     description: json["description"],
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
     "description": description,
   };

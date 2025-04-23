@@ -6,8 +6,7 @@ extension NumericEnumExtension<T extends Enum> on Iterable<T> {
   T? fromNumber(final int id) {
     try {
       return firstWhere(
-        (final element) => (element as dynamic).number == id,
-        orElse: () => null as T,
+        (final dynamic element) => (element as dynamic).number == id,
       );
     } catch (e) {
       return null;

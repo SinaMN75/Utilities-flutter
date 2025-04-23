@@ -1,4 +1,4 @@
-import 'dart:convert';
+part of "../data.dart";
 
 abstract class BaseParams {
   final String? apiKey;
@@ -6,7 +6,7 @@ abstract class BaseParams {
 
   BaseParams({required this.apiKey, required this.token});
 
-  Map<String, dynamic> toBaseMap() => {"apiKey": apiKey, "token": token};
+  Map<String, dynamic> toBaseMap() => <String, dynamic>{"apiKey": apiKey, "token": token};
 }
 
 abstract class BaseReadParams extends BaseParams {
@@ -24,7 +24,7 @@ abstract class BaseReadParams extends BaseParams {
   final DateTime? fromDate;
   final List<int>? tags;
 
-  Map<String, dynamic> toReadBaseMap() => {...toBaseMap()};
+  Map<String, dynamic> toReadBaseMap() => <String, dynamic>{...toBaseMap()};
 }
 
 abstract class BaseUpdateParams extends BaseParams {
@@ -40,11 +40,11 @@ abstract class BaseUpdateParams extends BaseParams {
   final List<int>? removeTags;
   final String id;
 
-  Map<String, dynamic> toUpdateBaseMap() => {
+  Map<String, dynamic> toUpdateBaseMap() => <String, dynamic>{
         ...toBaseMap(),
         "id": id,
-        "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
-        "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
+        "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
+        "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
       };
 }
 
@@ -67,7 +67,7 @@ class IdParams extends BaseParams {
         id: json["id"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         ...toBaseMap(),
         "id": id,
       };

@@ -112,7 +112,7 @@ class MediaJsonDetail {
 
   String toJson() => json.encode(toMap());
 
-  dynamic toMap() => {
+  dynamic toMap() => <String, dynamic>{
         "link": link,
         "link1": link1,
         "link2": link2,

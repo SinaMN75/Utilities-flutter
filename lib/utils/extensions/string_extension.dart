@@ -289,22 +289,22 @@ extension StringExtensions on String {
   String fromBase64() => utf8.decode(base64Decode(this));
 
   String toBase58() {
-    const base58Alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
-    final input = utf8.encode(this);
+    const String base58Alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    final Uint8List input = utf8.encode(this);
     BigInt intData = BigInt.from(0);
 
-    for (var byte in input) {
+    for (int byte in input) {
       intData = intData * BigInt.from(256) + BigInt.from(byte);
     }
 
-    StringBuffer result = StringBuffer();
+    final StringBuffer result = StringBuffer();
     while (intData > BigInt.zero) {
-      final remainder = intData % BigInt.from(58);
+      final BigInt remainder = intData % BigInt.from(58);
       intData = intData ~/ BigInt.from(58);
       result.write(base58Alphabet[remainder.toInt()]);
     }
 
-    for (var byte in input) {
+    for (int byte in input) {
       if (byte == 0) {
         result.write(base58Alphabet[0]);
       } else {
@@ -316,22 +316,22 @@ extension StringExtensions on String {
   }
 
   String fromBase58() {
-    const base58Alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    const String base58Alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
     BigInt intData = BigInt.zero;
 
-    for (var char in split('')) {
-      final index = base58Alphabet.indexOf(char);
+    for (String char in split('')) {
+      final int index = base58Alphabet.indexOf(char);
       if (index < 0) throw FormatException('Invalid Base58 character: $char');
       intData = intData * BigInt.from(58) + BigInt.from(index);
     }
 
-    List<int> bytes = [];
+    final List<int> bytes = <int>[];
     while (intData > BigInt.zero) {
       bytes.insert(0, (intData % BigInt.from(256)).toInt());
       intData = intData ~/ BigInt.from(256);
     }
 
-    for (var char in split('')) {
+    for (String char in split('')) {
       if (char == '1') {
         bytes.insert(0, 0);
       } else {

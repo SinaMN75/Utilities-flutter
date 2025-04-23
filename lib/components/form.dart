@@ -194,7 +194,7 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
             if (widget.date) {
               UNavigator.bottomSheet(
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       LinearDatePicker(
                         startDate: "1330/01/01",
                         endDate: "1406/12/30",
@@ -207,17 +207,12 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
                             selectedDate.getDay(),
                           );
                         },
-                        showDay: true,
-                        yearText: "سال",
-                        monthText: "ماه",
-                        dayText: "روز",
-                        showLabels: true,
                         columnWidth: 100,
                         showMonthName: true,
                         isJalaali: true,
                       ),
                       Row(
-                        children: [
+                        children: <Widget>[
                           UElevatedButton(
                             title: widget.submitButtonText,
                             onTap: () {
@@ -226,7 +221,7 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
                               UNavigator.back();
                             },
                           ).expanded(),
-                          SizedBox(width: 12),
+                          const SizedBox(width: 12),
                           UElevatedButton(
                             title: widget.cancelButtonText,
                             backgroundColor: Theme.of(context).colorScheme.primary,
@@ -238,9 +233,9 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
                   ),
                   onDismiss: () async {
                     if (widget.time) {
-                      TimeOfDay? timeOfDay = await showTimePicker(
+                      final TimeOfDay? timeOfDay = await showTimePicker(
                         context: context,
-                        initialTime: TimeOfDay(hour: 0, minute: 0),
+                        initialTime: const TimeOfDay(hour: 0, minute: 0),
                       );
                       jalali = Jalali(
                         jalali.year,
@@ -335,170 +330,3 @@ class UOutlinedButton extends StatelessWidget {
         ),
       );
 }
-
-class UTextFieldTypeAhead<T> extends StatelessWidget {
-  const UTextFieldTypeAhead({
-    super.key,
-    required this.onSuggestionSelected,
-    required this.suggestionsCallback,
-    this.itemBuilder,
-    this.text,
-    this.prefix,
-    this.onTap,
-    this.suffix,
-    this.labelText,
-    this.hintText,
-    this.contentPadding,
-    this.controller,
-    this.validator,
-    this.onChanged,
-    this.isDense = false,
-    this.hideKeyboard = false,
-  });
-
-  final void Function(T) onSuggestionSelected;
-  final FutureOr<List<T>?> Function(String) suggestionsCallback;
-  final Widget Function(BuildContext context, T itemData)? itemBuilder;
-  final String? text;
-  final Widget? prefix;
-  final VoidCallback? onTap;
-  final bool isDense;
-  final Widget? suffix;
-  final String? labelText;
-  final String? hintText;
-  final EdgeInsetsGeometry? contentPadding;
-  final TextEditingController? controller;
-  final bool hideKeyboard;
-  final String? Function(String?)? validator;
-  final Function(String)? onChanged;
-
-  @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          TypeAheadField<T>(
-            hideKeyboardOnDrag: hideKeyboard,
-            suggestionsCallback: suggestionsCallback,
-            builder: (final BuildContext _, final TextEditingController __, final FocusNode ___) => UTextField(
-              onTap: onTap,
-              validator: validator,
-              prefix: prefix,
-              isDense: isDense,
-              contentPadding: contentPadding,
-              onChanged: onChanged,
-              text: text,
-              hintText: hintText,
-              labelText: labelText,
-              suffix: suffix,
-              controller: controller,
-            ),
-            itemBuilder: itemBuilder ??
-                (final BuildContext context, final Object? suggestion) => Container(
-                      margin: const EdgeInsets.all(4),
-                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                      child: Text(suggestion.toString()),
-                    ),
-            onSelected: onSuggestionSelected,
-          ),
-        ],
-      );
-}
-
-class UOtpField extends StatelessWidget {
-  const UOtpField({
-    this.length = 4,
-    this.autoFocus = false,
-    this.controller,
-    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
-    this.hintCharacter,
-    this.onCompleted,
-    this.borderRadius = 8,
-    this.shape = PinCodeFieldShape.box,
-    this.fieldOuterPadding,
-    this.fieldHeight = 64,
-    this.fieldWidth = 60,
-    this.fillColor,
-    this.borderColor,
-    this.activeColor,
-    this.cursorColor,
-    this.onTap,
-    this.validator,
-    super.key,
-  });
-
-  final int length;
-  final bool autoFocus;
-  final TextEditingController? controller;
-  final MainAxisAlignment mainAxisAlignment;
-  final String? hintCharacter;
-  final void Function(String)? onCompleted;
-  final double borderRadius;
-  final PinCodeFieldShape shape;
-  final EdgeInsetsGeometry? fieldOuterPadding;
-  final double fieldHeight;
-  final double fieldWidth;
-  final Color? fillColor;
-  final Color? borderColor;
-  final Color? activeColor;
-  final Color? cursorColor;
-  final Function? onTap;
-  final String? Function(String?)? validator;
-
-  @override
-  Widget build(BuildContext context) => PinCodeTextField(
-        controller: controller,
-        appContext: navigatorKey.currentContext!,
-        length: length,
-        cursorColor: cursorColor,
-        onTap: onTap,
-        autoFocus: autoFocus,
-        mainAxisAlignment: mainAxisAlignment,
-        hintCharacter: hintCharacter,
-        validator: validator,
-        pinTheme: PinTheme(
-          shape: shape,
-          fieldOuterPadding: fieldOuterPadding,
-          borderRadius: BorderRadius.circular(borderRadius),
-          fieldHeight: fieldHeight,
-          fieldWidth: fieldWidth,
-          activeFillColor: fillColor,
-          inactiveFillColor: fillColor,
-          selectedFillColor: fillColor,
-          inactiveColor: borderColor,
-          selectedColor: activeColor,
-          activeColor: activeColor,
-          borderWidth: 1,
-          activeBorderWidth: 1,
-          errorBorderWidth: 1,
-          inactiveBorderWidth: 1,
-          disabledBorderWidth: 1,
-        ),
-        enableActiveFill: true,
-        backgroundColor: Colors.transparent,
-        keyboardType: TextInputType.number,
-        onCompleted: onCompleted,
-        onChanged: (final _) {},
-      ).ltr();
-}
-
-Widget radioListTile<T>({
-  required final T value,
-  required final T groupValue,
-  required final String title,
-  required final String subTitle,
-  required final Function(T?)? onChanged,
-  final bool toggleable = true,
-}) =>
-    RadioListTile<T>(
-      toggleable: toggleable,
-      controlAffinity: ListTileControlAffinity.leading,
-      title: Text(title),
-      subtitle: FittedBox(alignment: Alignment.centerRight, fit: BoxFit.scaleDown, child: Text(subTitle)),
-      groupValue: groupValue,
-      value: value,
-      onChanged: onChanged,
-    ).container(
-      radius: 20,
-      borderColor: Theme.of(navigatorKey.currentContext!).colorScheme.onSurface.withValues(alpha: 0.2),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-    );

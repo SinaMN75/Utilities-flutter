@@ -4,7 +4,7 @@ String uuidV4() => const Uuid().v4();
 
 String uuidV1() => const Uuid().v1();
 
-void delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
+Future<void> delay(final int milliseconds, final VoidCallback action) async => Future<dynamic>.delayed(
       Duration(milliseconds: milliseconds),
       () async => action(),
     );

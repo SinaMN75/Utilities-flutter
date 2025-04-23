@@ -11,13 +11,11 @@ class SimpleHttp {
     this.defaultHeaders = const <String, String>{'Accept': 'application/json'},
     this.enableCache = false,
     this.cacheDuration = const Duration(minutes: 5),
-    this.defaultBody = const <dynamic, dynamic>{},
   });
 
   final String? baseUrl;
   final Duration timeout;
   final Map<String, String> defaultHeaders;
-  final Map<dynamic, dynamic> defaultBody;
   final bool enableCache;
   final Duration cacheDuration;
   final http.Client _client = http.Client();
@@ -60,8 +58,6 @@ class SimpleHttp {
     // Add body if provided
     if (body != null) {
       if (body is Map) {
-        // Map<dynamic, dynamic> p = body;
-        // body.addAll(defaultBody);
         request.body = jsonEncode(removeNullEntries(body));
         request.headers['Content-Type'] = 'application/json';
         request.headers['Locale'] = UApp.locale();
@@ -316,4 +312,18 @@ extension HTTP on http.Response {
       "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body",
     );
   }
+}
+
+T? removeNullEntries<T>(T? json) {
+  if (json == null) return null;
+
+  if (json is List) {
+    json.removeWhere((final dynamic e) => e == null);
+    json.forEach(removeNullEntries);
+  } else if (json is Map) {
+    json.removeWhere((final dynamic key, final dynamic value) => key == null || value == null);
+    json.values.forEach(removeNullEntries);
+  }
+
+  return json;
 }

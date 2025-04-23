@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:u/data/params/base_params.dart';
+part of "../data.dart";
 
 class CategoryCreateParams extends BaseParams {
   final String title;
@@ -24,15 +22,15 @@ class CategoryCreateParams extends BaseParams {
     token: json["token"],
     title: json["title"],
     subtitle: json["subtitle"],
-    tags: List<int>.from(json["tags"]!.map((x) => x)),
+    tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     "apiKey": apiKey,
     "token": token,
     "title": title,
     "subtitle": subtitle,
-    "tags": List<dynamic>.from(tags.map((x) => x)),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
   };
 }
 
@@ -61,20 +59,20 @@ class CategoryReadParams extends BaseReadParams {
     pageSize: json["pageSize"],
     pageNumber: json["pageNumber"],
     fromDate: json["fromDate"],
-    tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
-    ids: json["ids"] == null ? [] : List<String>.from(json["ids"]!.map((x) => x)),
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
+    ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((final dynamic x) => x)),
     showMedia: json["showMedia"],
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     ...super.toBaseMap(),
     "apiKey": apiKey,
     "token": token,
     "pageSize": pageSize,
     "pageNumber": pageNumber,
     "fromDate": fromDate,
-    "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),
-    "ids": ids == null ? [] : List<dynamic>.from(ids!.map((x) => x)),
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "showMedia": showMedia,
   };
 }
@@ -101,19 +99,19 @@ class CategoryUpdateParams extends BaseUpdateParams {
     apiKey: json["apiKey"],
     token: json["token"],
     id: json["id"],
-    addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
-    removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
+    addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((final dynamic x) => x)),
+    removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((final dynamic x) => x)),
     title: json["title"],
     subtitle: json["subtitle"],
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     ...toUpdateBaseMap(),
     "apiKey": apiKey,
     "token": token,
     "id": id,
-    "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
-    "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
+    "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
+    "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
     "title": title,
     "subtitle": subtitle,
   };

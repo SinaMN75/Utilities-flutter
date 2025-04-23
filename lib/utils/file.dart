@@ -29,7 +29,7 @@ abstract class UFile {
     }
   }
 
-  static void showFilePicker({
+  static Future<void> showFilePicker({
     required final Function(List<FileData> file) action,
     final FileType fileType = FileType.any,
     final bool allowMultiple = false,

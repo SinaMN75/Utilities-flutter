@@ -1,4 +1,4 @@
-import 'dart:convert';
+part of "../data.dart";
 
 class UserAnswerJson {
   final String? date;
@@ -18,13 +18,13 @@ class UserAnswerJson {
   factory UserAnswerJson.fromMap(Map<String, dynamic> json) => UserAnswerJson(
     date: json["date"],
     totalScore: json["totalScore"],
-    results: json["results"] == null ? [] : List<ResultElement>.from(json["results"]!.map((x) => ResultElement.fromMap(x))),
+    results: json["results"] == null ? <ResultElement>[] : List<ResultElement>.from(json["results"]!.map((final dynamic x) => ResultElement.fromMap(x))),
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     "date": date,
     "totalScore": totalScore,
-    "results": results == null ? [] : List<dynamic>.from(results!.map((x) => x.toMap())),
+    "results": results == null ? <dynamic>[] : List<dynamic>.from(results!.map((ResultElement x) => x.toMap())),
   };
 }
 
@@ -46,7 +46,7 @@ class ResultElement {
     answer: json["answer"] == null ? null : Answer.fromMap(json["answer"]),
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     "question": question,
     "answer": answer?.toMap(),
   };
@@ -70,7 +70,7 @@ class Answer {
     score: json["score"],
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
     "score": score,
   };

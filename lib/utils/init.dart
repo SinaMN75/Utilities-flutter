@@ -2,14 +2,8 @@ import 'package:u/utilities.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-abstract class UCore {
-  static late String apiKey;
-}
-
 Future<void> initUtilities({
-  final String? apiKey,
   final FirebaseOptions? firebaseOptions,
-  final String? baseUrl,
   final bool safeDevice = false,
   final bool protectDataLeaking = false,
   final bool preventScreenShot = false,
@@ -42,9 +36,6 @@ Future<void> initUtilities({
     if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
     if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
   } catch (e) {}
-
-  UCore.apiKey = apiKey ?? "";
-  if (baseUrl != null) URemoteDataSource.baseUrl = baseUrl;
   return;
 }
 
@@ -72,11 +63,10 @@ class UMaterialApp extends StatelessWidget {
         enableLog: false,
         localizationsDelegates: localizationsDelegates,
         supportedLocales: supportedLocales,
-        home: home,
+        home: LoaderOverlay(child: home),
         locale: Locale(ULocalStorage.getString(UConstants.locale) ?? locale.languageCode),
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) ? ThemeMode.dark : ThemeMode.light,
-        builder: EasyLoading.init(),
       );
 }

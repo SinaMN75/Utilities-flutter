@@ -18,10 +18,9 @@ class SignaturePad extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        children: <Widget>[
           Container(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
             child: SfSignaturePad(
               key: signatureGlobalKey,
@@ -31,7 +30,7 @@ class SignaturePad extends StatelessWidget {
               maximumStrokeWidth: 4,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -42,11 +41,11 @@ class SignaturePad extends StatelessWidget {
         ],
       );
 
-  void handleSaveButtonPressed() async {
+  Future<void> handleSaveButtonPressed() async {
     final ui.Image data = await signatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
     final ByteData? bytes = await data.toByteData(format: ui.ImageByteFormat.png);
     final Uint8List byte = bytes!.buffer.asUint8List();
-    File file = await UFile.writeToFile(byte);
+    final File file = await UFile.writeToFile(byte);
     onSave(FileData(path: file.path, bytes: byte, extension: "png"));
   }
 }

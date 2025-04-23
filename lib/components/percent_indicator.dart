@@ -151,7 +151,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
             _animationController!.repeat(min: 0, max: 1.0);
           }
         });
-      _animationController!.addStatusListener((status) {
+      _animationController!.addStatusListener((AnimationStatus status) {
         if (widget.onAnimationEnd != null && status == AnimationStatus.completed) {
           widget.onAnimationEnd!();
         }
@@ -197,7 +197,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    var items = List<Widget>.empty(growable: true);
+    final List<Widget> items = List<Widget>.empty(growable: true);
     if (widget.header != null) {
       items.add(widget.header!);
     }
@@ -253,20 +253,18 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
 
     return Material(
       color: widget.fillColor,
-      child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: items,
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: items,
       ),
     );
   }
 
   double getCurrentPercent(double percent) {
     if (widget.arcType != null) {
-      final angle = _getStartAngleFixedMargin(widget.arcType!).fixedStartAngle;
-      final fixedPercent = 1.0 / widget.percent * _percent;
+      final double angle = _getStartAngleFixedMargin(widget.arcType!).fixedStartAngle;
+      final double fixedPercent = 1.0 / widget.percent * _percent;
       late double margin;
       if (widget.arcType == ArcType.HALF) {
         margin = 180 * widget.percent;
@@ -275,7 +273,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
       }
       return radians(angle + margin * fixedPercent).toDouble();
     } else {
-      final angle = 360;
+      const int angle = 360;
       return radians((widget.reverse ? -angle : angle) * _percent).toDouble();
     }
   }
@@ -361,11 +359,11 @@ class _CirclePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
+    final Offset center = Offset(size.width / 2, size.height / 2);
     double fixedStartAngle = startAngle;
     double startAngleFixedMargin = 1.0;
     if (arcType != null) {
-      final arcAngles = _getStartAngleFixedMargin(arcType!);
+      final _ArcAngles arcAngles = _getStartAngleFixedMargin(arcType!);
       fixedStartAngle = arcAngles.fixedStartAngle;
       startAngleFixedMargin = arcAngles.startAngleFixedMargin;
     }
@@ -386,7 +384,6 @@ class _CirclePainter extends CustomPainter {
           transform: reverse ? GradientRotation(radians(-90 - progress + startAngle) - correction) : GradientRotation(radians(-90.0 + startAngle) - correction),
           startAngle: radians(0).toDouble(),
           endAngle: radians(progress).toDouble(),
-          tileMode: TileMode.clamp,
           colors: reverse ? linearGradient!.colors.reversed.toList() : linearGradient!.colors,
         ).createShader(
           Rect.fromCircle(center: center, radius: radius),
@@ -409,8 +406,8 @@ class _CirclePainter extends CustomPainter {
     }
 
     if (reverse) {
-      final start = radians(360 * startAngleFixedMargin - 90.0 + fixedStartAngle).toDouble();
-      final end = radians(-progress * startAngleFixedMargin).toDouble();
+      final double start = radians(360 * startAngleFixedMargin - 90.0 + fixedStartAngle).toDouble();
+      final double end = radians(-progress * startAngleFixedMargin).toDouble();
       canvas.drawArc(
         Rect.fromCircle(
           center: center,
@@ -422,8 +419,8 @@ class _CirclePainter extends CustomPainter {
         _paintLine,
       );
     } else {
-      final start = radians(-90.0 + fixedStartAngle).toDouble();
-      final end = radians(progress * startAngleFixedMargin).toDouble();
+      final double start = radians(-90.0 + fixedStartAngle).toDouble();
+      final double end = radians(progress * startAngleFixedMargin).toDouble();
       canvas.drawArc(
         Rect.fromCircle(
           center: center,
@@ -540,8 +537,8 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
   AnimationController? _animationController;
   Animation? _animation;
   double _percent = 0.0;
-  final _containerKey = GlobalKey();
-  final _keyIndicator = GlobalKey();
+  final GlobalKey<State<StatefulWidget>> _containerKey = GlobalKey();
+  final GlobalKey<State<StatefulWidget>> _keyIndicator = GlobalKey();
   double _containerWidth = 0.0;
   double _containerHeight = 0.0;
   double _indicatorWidth = 0.0;
@@ -579,7 +576,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
             _animationController!.repeat(min: 0, max: 1.0);
           }
         });
-      _animationController!.addStatusListener((status) {
+      _animationController!.addStatusListener((AnimationStatus status) {
         if (widget.onAnimationEnd != null && status == AnimationStatus.completed) {
           widget.onAnimationEnd!();
         }
@@ -623,13 +620,13 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    var items = List<Widget>.empty(growable: true);
+    final List<Widget> items = List<Widget>.empty(growable: true);
     if (widget.leading != null) {
       items.add(widget.leading!);
     }
-    final hasSetWidth = widget.width != null;
-    final percentPositionedHorizontal = _containerWidth * _percent - _indicatorWidth / 3;
-    var containerWidget = Container(
+    final bool hasSetWidth = widget.width != null;
+    final double percentPositionedHorizontal = _containerWidth * _percent - _indicatorWidth / 3;
+    final Container containerWidget = Container(
       width: hasSetWidth ? widget.width : double.infinity,
       height: widget.lineHeight,
       padding: widget.padding,
@@ -685,7 +682,6 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
         color: widget.fillColor,
         child: Row(
           mainAxisAlignment: widget.alignment,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: items,
         ),
       ),
@@ -727,7 +723,7 @@ class _LinearPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Path backgroundPath = Path();
+    final Path backgroundPath = Path();
     backgroundPath.addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, size.width, size.height), barRadius));
     canvas.drawPath(backgroundPath, _paintBackground);
 
@@ -736,12 +732,12 @@ class _LinearPainter extends CustomPainter {
     }
 
     if (linearGradientBackgroundColor != null) {
-      Offset shaderEndPoint = clipLinearGradient ? Offset.zero : Offset(size.width, size.height);
+      final Offset shaderEndPoint = clipLinearGradient ? Offset.zero : Offset(size.width, size.height);
       _paintBackground.shader = linearGradientBackgroundColor?.createShader(Rect.fromPoints(Offset.zero, shaderEndPoint));
     }
 
-    final xProgress = size.width * progress;
-    Path linePath = Path();
+    final double xProgress = size.width * progress;
+    final Path linePath = Path();
     if (isRTL) {
       if (linearGradient != null) {
         _paintLine.shader = _createGradientShaderRightToLeft(size, xProgress);
@@ -757,7 +753,7 @@ class _LinearPainter extends CustomPainter {
   }
 
   Shader _createGradientShaderRightToLeft(Size size, double xProgress) {
-    Offset shaderEndPoint = clipLinearGradient ? Offset.zero : Offset(xProgress, size.height);
+    final Offset shaderEndPoint = clipLinearGradient ? Offset.zero : Offset(xProgress, size.height);
     return linearGradient!.createShader(
       Rect.fromPoints(
         Offset(size.width, size.height),
@@ -767,7 +763,7 @@ class _LinearPainter extends CustomPainter {
   }
 
   Shader _createGradientShaderLeftToRight(Size size, double xProgress) {
-    Offset shaderEndPoint = clipLinearGradient ? Offset(size.width, size.height) : Offset(xProgress, size.height);
+    final Offset shaderEndPoint = clipLinearGradient ? Offset(size.width, size.height) : Offset(xProgress, size.height);
     return linearGradient!.createShader(
       Rect.fromPoints(
         Offset.zero,

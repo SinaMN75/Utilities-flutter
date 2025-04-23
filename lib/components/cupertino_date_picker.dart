@@ -64,7 +64,7 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
   int maxDay = 31;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     if (widget.isJalaali) {
       minYear = Jalali.now().year - 100;

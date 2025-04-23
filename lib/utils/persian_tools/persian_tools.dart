@@ -1,16 +1,16 @@
 class PersianTools {
-  static const faText = 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی' '۰۱۲۳۴۵۶۷۸۹' 'َُِ' '‌آاً';
-  static const faComplexText = '$faTextًٌٍَُِّْٰٔءك‌ةۀأإيـئؤ،';
+  static const String faText = 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی' '۰۱۲۳۴۵۶۷۸۹' 'َُِ' '‌آاً';
+  static const String faComplexText = '$faTextًٌٍَُِّْٰٔءك‌ةۀأإيـئؤ،';
 
   static bool isPersian(String input, [bool isComplex = false, Pattern? trimPattern]) {
     trimPattern ??= RegExp('["' r"'-+()؟\s.]");
-    var rawText = input.replaceAll(trimPattern, '');
-    var faRegExp = isComplex ? faComplexText : faText;
+    final String rawText = input.replaceAll(trimPattern, '');
+    final String faRegExp = isComplex ? faComplexText : faText;
     return RegExp('^[$faRegExp]+\$').hasMatch(rawText);
   }
 
   static bool hasPersian(String input, [bool isComplex = false]) {
-    var faRegExp = isComplex ? faComplexText : faText;
+    final String faRegExp = isComplex ? faComplexText : faText;
     return RegExp('[$faRegExp]').hasMatch(input);
   }
 
@@ -18,16 +18,16 @@ class PersianTools {
 
   static String replaceMapValue(String string, Map<String, String> mapPattern) => string.replaceAllMapped(
         RegExp(mapPattern.keys.join('|'), caseSensitive: false),
-        (match) => mapPattern[match.group(0)]!,
+        (Match match) => mapPattern[match.group(0)]!,
       );
 
   bool verifyIranianNationalId(String value) {
     if (!RegExp(r'^\d{10}$').hasMatch(value)) return false;
-    final nationalId = '0000$value'.substring(value.length + 4 - 10);
+    final String nationalId = '0000$value'.substring(value.length + 4 - 10);
     if ((int.tryParse(nationalId.substring(3, 9)) ?? 0) == 0) return false;
-    final lastNumber = int.parse(nationalId.substring(9, 10));
-    var sum = 0;
-    for (var i = 0; i < 9; i++) {
+    final int lastNumber = int.parse(nationalId.substring(9, 10));
+    int sum = 0;
+    for (int i = 0; i < 9; i++) {
       sum += int.parse(nationalId.substring(i, i + 1)) * (10 - i);
     }
     sum = sum % 11;

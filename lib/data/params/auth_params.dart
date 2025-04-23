@@ -1,5 +1,4 @@
-import 'package:u/data/params/base_params.dart';
-import 'package:u/utilities.dart';
+part of "../data.dart";
 
 class RegisterParams extends BaseParams {
   final String userName;
@@ -35,10 +34,10 @@ class RegisterParams extends BaseParams {
         password: json["password"],
         firstName: json["firstName"],
         lastName: json["lastName"],
-        tags: List<int>.from(json["tags"]!.map((x) => x)),
+        tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         ...toBaseMap(),
         "userName": userName,
         "email": email,
@@ -46,7 +45,7 @@ class RegisterParams extends BaseParams {
         "password": password,
         "firstName": firstName,
         "lastName": lastName,
-        "tags": List<dynamic>.from(tags.map((x) => x)),
+        "tags": List<dynamic>.from(tags.map((int x) => x)),
       };
 }
 
@@ -72,7 +71,7 @@ class LoginWithEmailPasswordParams extends BaseParams {
         password: json["password"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         ...toBaseMap(),
         "email": email,
         "password": password,
@@ -101,7 +100,7 @@ class LoginWithUserNamePasswordParams extends BaseParams {
         password: json["password"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         ...toBaseMap(),
         "userName": userName,
         "password": password,

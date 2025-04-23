@@ -1,11 +1,10 @@
-import 'dart:convert';
-
-import 'package:u/data/params/base_params.dart';
+part of "../data.dart";
 
 class UserCreateParams {
   final String apiKey;
   final String? token;
   final String? userName;
+  final String? parentId;
   final String? password;
   final String? phoneNumber;
   final String? email;
@@ -34,6 +33,7 @@ class UserCreateParams {
     required this.tags,
     this.userName,
     this.password,
+    this.parentId,
     this.phoneNumber,
     this.email,
     this.firstName,
@@ -63,6 +63,7 @@ class UserCreateParams {
         apiKey: json["apiKey"],
         token: json["token"],
         userName: json["userName"],
+        parentId: json["parentId"],
         password: json["password"],
         phoneNumber: json["phoneNumber"],
         email: json["email"],
@@ -90,6 +91,7 @@ class UserCreateParams {
         "apiKey": apiKey,
         "token": token,
         "userName": userName,
+        "parentId": parentId,
         "password": password,
         "phoneNumber": phoneNumber,
         "email": email,
@@ -124,6 +126,7 @@ class UserReadParams extends BaseReadParams {
   final List<String>? categories;
   final bool? showCategories;
   final bool? showMedia;
+  final bool? showChildren;
 
   UserReadParams({
     super.apiKey,
@@ -141,6 +144,7 @@ class UserReadParams extends BaseReadParams {
     this.categories,
     this.showCategories,
     this.showMedia,
+    this.showChildren,
   });
 
   factory UserReadParams.fromJson(String str) => UserReadParams.fromMap(json.decode(str));
@@ -163,9 +167,10 @@ class UserReadParams extends BaseReadParams {
         categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
         showCategories: json["showCategories"],
         showMedia: json["showMedia"],
+        showChildren: json["showChildren"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         ...toReadBaseMap(),
         "apiKey": apiKey,
         "token": token,
@@ -182,6 +187,7 @@ class UserReadParams extends BaseReadParams {
         "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
         "showCategories": showCategories,
         "showMedia": showMedia,
+        "showChildren": showChildren,
       };
 }
 
@@ -269,20 +275,20 @@ class UserUpdateParams extends BaseUpdateParams {
         height: json["height"],
         address: json["address"],
         fatherName: json["fatherName"],
-        addTags: json["addTags"] == null ? [] : List<int>.from(json["addTags"]!.map((x) => x)),
-        removeTags: json["removeTags"] == null ? [] : List<int>.from(json["removeTags"]!.map((x) => x)),
-        addHealth1: json["addHealth1"] == null ? [] : List<String>.from(json["addHealth1"]!.map((x) => x)),
-        removeHealth1: json["removeHealth1"] == null ? [] : List<String>.from(json["removeHealth1"]!.map((x) => x)),
-        addFoodAllergies: json["addFoodAllergies"] == null ? [] : List<String>.from(json["addFoodAllergies"]!.map((x) => x)),
-        removeFoodAllergies: json["removeFoodAllergies"] == null ? [] : List<String>.from(json["removeFoodAllergies"]!.map((x) => x)),
-        addDrugAllergies: json["addDrugAllergies"] == null ? [] : List<String>.from(json["addDrugAllergies"]!.map((x) => x)),
-        removeDrugAllergies: json["removeDrugAllergies"] == null ? [] : List<String>.from(json["removeDrugAllergies"]!.map((x) => x)),
-        addSickness: json["addSickness"] == null ? [] : List<String>.from(json["addSickness"]!.map((x) => x)),
-        removeSickness: json["removeSickness"] == null ? [] : List<String>.from(json["removeSickness"]!.map((x) => x)),
-        categories: json["categories"] == null ? [] : List<String>.from(json["categories"]!.map((x) => x)),
+        addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((final dynamic x) => x)),
+        removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((final dynamic x) => x)),
+        addHealth1: json["addHealth1"] == null ? <String>[] : List<String>.from(json["addHealth1"]!.map((final dynamic x) => x)),
+        removeHealth1: json["removeHealth1"] == null ? <String>[] : List<String>.from(json["removeHealth1"]!.map((final dynamic x) => x)),
+        addFoodAllergies: json["addFoodAllergies"] == null ? <String>[] : List<String>.from(json["addFoodAllergies"]!.map((final dynamic x) => x)),
+        removeFoodAllergies: json["removeFoodAllergies"] == null ? <String>[] : List<String>.from(json["removeFoodAllergies"]!.map((final dynamic x) => x)),
+        addDrugAllergies: json["addDrugAllergies"] == null ? <String>[] : List<String>.from(json["addDrugAllergies"]!.map((final dynamic x) => x)),
+        removeDrugAllergies: json["removeDrugAllergies"] == null ? <String>[] : List<String>.from(json["removeDrugAllergies"]!.map((final dynamic x) => x)),
+        addSickness: json["addSickness"] == null ? <String>[] : List<String>.from(json["addSickness"]!.map((final dynamic x) => x)),
+        removeSickness: json["removeSickness"] == null ? <String>[] : List<String>.from(json["removeSickness"]!.map((final dynamic x) => x)),
+        categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((final dynamic x) => x)),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         ...toUpdateBaseMap(),
         "id": id,
         "password": password,
@@ -301,16 +307,16 @@ class UserUpdateParams extends BaseUpdateParams {
         "height": height,
         "address": address,
         "fatherName": fatherName,
-        "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
-        "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
-        "addHealth1": addHealth1 == null ? [] : List<dynamic>.from(addHealth1!.map((x) => x)),
-        "removeHealth1": removeHealth1 == null ? [] : List<dynamic>.from(removeHealth1!.map((x) => x)),
-        "addFoodAllergies": addFoodAllergies == null ? [] : List<dynamic>.from(addFoodAllergies!.map((x) => x)),
-        "removeFoodAllergies": removeFoodAllergies == null ? [] : List<dynamic>.from(removeFoodAllergies!.map((x) => x)),
-        "addDrugAllergies": addDrugAllergies == null ? [] : List<dynamic>.from(addDrugAllergies!.map((x) => x)),
-        "removeDrugAllergies": removeDrugAllergies == null ? [] : List<dynamic>.from(removeDrugAllergies!.map((x) => x)),
-        "addSickness": addSickness == null ? [] : List<dynamic>.from(addSickness!.map((x) => x)),
-        "removeSickness": removeSickness == null ? [] : List<dynamic>.from(removeSickness!.map((x) => x)),
-        "categories": categories == null ? [] : List<dynamic>.from(categories!.map((x) => x)),
+        "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
+        "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
+        "addHealth1": addHealth1 == null ? <dynamic>[] : List<dynamic>.from(addHealth1!.map((String x) => x)),
+        "removeHealth1": removeHealth1 == null ? <dynamic>[] : List<dynamic>.from(removeHealth1!.map((String x) => x)),
+        "addFoodAllergies": addFoodAllergies == null ? <dynamic>[] : List<dynamic>.from(addFoodAllergies!.map((String x) => x)),
+        "removeFoodAllergies": removeFoodAllergies == null ? <dynamic>[] : List<dynamic>.from(removeFoodAllergies!.map((String x) => x)),
+        "addDrugAllergies": addDrugAllergies == null ? <dynamic>[] : List<dynamic>.from(addDrugAllergies!.map((String x) => x)),
+        "removeDrugAllergies": removeDrugAllergies == null ? <dynamic>[] : List<dynamic>.from(removeDrugAllergies!.map((String x) => x)),
+        "addSickness": addSickness == null ? <dynamic>[] : List<dynamic>.from(addSickness!.map((String x) => x)),
+        "removeSickness": removeSickness == null ? <dynamic>[] : List<dynamic>.from(removeSickness!.map((String x) => x)),
+        "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
       };
 }

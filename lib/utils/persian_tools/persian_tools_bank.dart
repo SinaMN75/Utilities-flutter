@@ -1,5 +1,5 @@
 class PersianToolsBank {
-  static const bankInformation = <Bank?>[
+  static const List<Bank?> bankInformation = <Bank?>[
     Bank(name: 'بانک آینده', initCode: '636214'),
     Bank(name: 'بانک اقتصاد نوین', initCode: '627412'),
     Bank(name: 'بانک انصار', initCode: '627381'),
@@ -49,7 +49,7 @@ class PersianToolsBank {
     Bank(name: 'بانک خاورمیانه', initCode: '585947'),
   ];
 
-  final _banksInfo = <BankInformation>[
+  final List<BankInformation> _banksInfo = <BankInformation>[
     BankInformation(nickname: 'central-bank', name: 'Central Bank of Iran', persianName: 'بانک مرکزی جمهوری اسلامی ایران', code: '010', isAccountNumberAvailable: false),
     BankInformation(nickname: 'sanat-o-madan', name: 'Sanat O Madan Bank', persianName: 'بانک صنعت و معدن', code: '011', isAccountNumberAvailable: false),
     BankInformation(nickname: 'mellat', name: 'Mellat Bank', persianName: 'بانک ملت', code: '012', isAccountNumberAvailable: false),
@@ -91,7 +91,7 @@ class PersianToolsBank {
         persianName: 'بانک شهر',
         code: '061',
         isAccountNumberAvailable: true,
-        process: (s) {
+        process: (String s) {
           s = s.substring(7);
           while (s[0] == '0') {
             s = s.substring(1);
@@ -104,7 +104,7 @@ class PersianToolsBank {
         persianName: 'بانک پاسارگاد',
         code: '057',
         isAccountNumberAvailable: true,
-        process: (s) {
+        process: (String s) {
           s = s.substring(7);
           while (s[0] == '0') {
             s = s.substring(1);
@@ -118,7 +118,7 @@ class PersianToolsBank {
       persianName: 'بانک پارسیان',
       code: '054',
       isAccountNumberAvailable: true,
-      process: (s) {
+      process: (String s) {
         s = s.substring(14);
         return AccountNumberModel(accountNumber: s, formattedAccountNumber: '0${s.substring(0, 3)}-0${s.substring(2, 8)}-${s.substring(9, 12)}');
       },
@@ -127,10 +127,10 @@ class PersianToolsBank {
 
   Bank? getBankNameFromCardNumber(String cardNumber) {
     if (cardNumber.length == 16) {
-      final initCode = cardNumber.substring(0, 6);
+      final String initCode = cardNumber.substring(0, 6);
 
-      final findBank = bankInformation.firstWhere(
-        (element) => element?.initCode == initCode,
+      final Bank? findBank = bankInformation.firstWhere(
+        (Bank? element) => element?.initCode == initCode,
         orElse: () => null,
       );
 
@@ -142,7 +142,7 @@ class PersianToolsBank {
   bool validateCardNumber(String cardNumber) {
     if (cardNumber.length < 16 || int.parse(cardNumber.substring(1, 11)) == 0 || int.parse(cardNumber.substring(10)) == 0) return false;
     int sum = 0, even, subDigit;
-    for (var i = 0; i < 16; i++) {
+    for (int i = 0; i < 16; i++) {
       even = i % 2 == 0 ? 2 : 1;
       subDigit = int.parse(cardNumber[i]) * even;
       sum += subDigit > 9 ? subDigit - 9 : subDigit;
@@ -166,21 +166,21 @@ class PersianToolsBank {
   bool isShebaValid(String sheba) {
     if (sheba.length != 26) return false;
     if (!RegExp(r'IR[0-9]{24}').hasMatch(sheba)) return false;
-    final d1 = sheba.codeUnitAt(0) - 65 + 10;
-    final d2 = sheba.codeUnitAt(1) - 65 + 10;
-    var iban = sheba.substring(4);
+    final int d1 = sheba.codeUnitAt(0) - 65 + 10;
+    final int d2 = sheba.codeUnitAt(1) - 65 + 10;
+    String iban = sheba.substring(4);
     iban += '$d1$d2${sheba.substring(2, 4)}';
-    final remainder = _iso7064Mod97_10(iban);
+    final int remainder = _iso7064Mod97_10(iban);
     return remainder != 1 ? false : true;
   }
 
   BankInformation? call(String sheba) {
     if (!isShebaValid(sheba)) return null;
-    final bankCode = RegExp(r'IR[0-9]{2}([0-9]{3})[0-9]{19}').firstMatch(sheba)?[1] ?? '';
-    var bank = {for (var bank in _banksInfo) bank.code: bank}[bankCode];
+    final String bankCode = RegExp(r'IR[0-9]{2}([0-9]{3})[0-9]{19}').firstMatch(sheba)?[1] ?? '';
+    final BankInformation? bank = <String, BankInformation>{for (BankInformation bank in _banksInfo) bank.code: bank}[bankCode];
     if (bank == null) return null;
     if (bank.isAccountNumberAvailable) {
-      final data = bank.process!(sheba);
+      final AccountNumberModel data = bank.process!(sheba);
       bank.accountNumber = data.accountNumber;
       bank.formattedAccountNumber = data.formattedAccountNumber;
     }
@@ -216,7 +216,7 @@ class BankInformation {
   });
 
   @override
-  int get hashCode => Object.hash(nickname, name, [persianName, code, isAccountNumberAvailable, accountNumber, formattedAccountNumber, process]);
+  int get hashCode => Object.hash(nickname, name, <Object?>[persianName, code, isAccountNumberAvailable, accountNumber, formattedAccountNumber, process]);
 
   @override
   bool operator ==(Object other) {

@@ -2,27 +2,27 @@ import 'package:u/utilities.dart';
 
 abstract class UNetwork {
   static Future<bool> hasCellular() async {
-    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
     return connectivityResult.contains(ConnectivityResult.mobile);
   }
 
   static Future<bool> hasWifi() async {
-    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
     return connectivityResult.contains(ConnectivityResult.wifi);
   }
 
   static Future<bool> hasVpn() async {
-    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
     return connectivityResult.contains(ConnectivityResult.vpn);
   }
 
   static Future<bool> hasEthernet() async {
-    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
     return connectivityResult.contains(ConnectivityResult.ethernet);
   }
 
   static Future<bool> hasBluetooth() async {
-    List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
     return connectivityResult.contains(ConnectivityResult.bluetooth);
   }
 

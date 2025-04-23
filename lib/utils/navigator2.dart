@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:u/utilities.dart';
 
 abstract class UNavigator2 {
-  static void push(final Widget page) async => Navigator.of(navigatorKey.currentContext!).push(
-        MaterialPageRoute(builder: (context) => page),
+  static Future<void> push(final Widget page) async => Navigator.of(navigatorKey.currentContext!).push(
+        MaterialPageRoute<Widget>(builder: (BuildContext context) => page),
       );
 
   static void dialog(
@@ -15,18 +15,18 @@ abstract class UNavigator2 {
         context: navigatorKey.currentContext!,
         barrierDismissible: barrierDismissible,
         builder: (BuildContext context) => page,
-      ).then((value) {
+      ).then((final dynamic value) {
         if (onDismiss != null) onDismiss();
       });
 
   static void offAll(final Widget page) => Navigator.of(navigatorKey.currentContext!).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => page),
-        (route) => false,
+        MaterialPageRoute<Widget>(builder: (BuildContext context) => page),
+        (Route<dynamic> route) => false,
       );
 
   static void off(final Widget page, {final bool preventDuplicates = true}) => Navigator.of(
         navigatorKey.currentContext!,
-      ).pushReplacement(MaterialPageRoute(builder: (context) => page));
+      ).pushReplacement(MaterialPageRoute<Widget>(builder: (BuildContext context) => page));
 
   static void back() => Navigator.of(navigatorKey.currentContext!).pop();
 
@@ -55,7 +55,7 @@ abstract class UNavigator2 {
         onDismiss: onDismiss,
       );
 
-  static void dialogAlert(
+  static Future<void> dialogAlert(
     final Widget page, {
     final bool barrierDismissible = true,
     final bool useSafeArea = false,
@@ -172,12 +172,12 @@ abstract class UNavigator2 {
         SnackBar(
           content: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               if (icon != null) icon,
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(title, style: TextStyle(color: colorText ?? Colors.white)),
                     Text(subtitle, style: TextStyle(color: colorText ?? Colors.white)),
                   ],
@@ -238,12 +238,12 @@ abstract class UNavigator2 {
         SnackBar(
           content: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               if (icon != null) icon,
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(title, style: TextStyle(color: colorText ?? Colors.white)),
                     Text(subtitle, style: TextStyle(color: colorText ?? Colors.white)),
                   ],

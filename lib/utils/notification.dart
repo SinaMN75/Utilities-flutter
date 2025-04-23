@@ -12,10 +12,10 @@ abstract class UNotification {
   }) {
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
-    final InitializationSettings initializationSettings = InitializationSettings(
-      android: const AndroidInitializationSettings('@mipmap/launcher_icon'),
+    const InitializationSettings initializationSettings = InitializationSettings(
+      android: AndroidInitializationSettings('@mipmap/launcher_icon'),
       iOS: DarwinInitializationSettings(),
-      linux: const LinuxInitializationSettings(defaultActionName: ''),
+      linux: LinuxInitializationSettings(defaultActionName: ''),
       macOS: DarwinInitializationSettings(),
     );
     flutterLocalNotificationsPlugin.initialize(

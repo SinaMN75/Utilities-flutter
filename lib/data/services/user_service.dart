@@ -1,9 +1,4 @@
-import 'package:http/http.dart';
-import 'package:u/data/params/base_params.dart';
-import 'package:u/data/params/user_params.dart';
-import 'package:u/data/responses/base_response.dart';
-import 'package:u/data/responses/user_response.dart';
-import 'package:u/utils/http_client.dart';
+part of "../data.dart";
 
 class UserService {
   UserService({required this.baseUrl});

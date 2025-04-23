@@ -1,4 +1,4 @@
-import 'dart:convert';
+part of "../data.dart";
 
 class UResponse<T> {
   UResponse({
@@ -19,7 +19,7 @@ class UResponse<T> {
 
   factory UResponse.fromJson(String str, T Function(dynamic) fromMapT) {
     final Map<String, dynamic> jsonMap = json.decode(str);
-    final rawResult = jsonMap["result"];
+    final dynamic rawResult = jsonMap["result"];
     T? parsedResult;
 
     if (rawResult == null) {

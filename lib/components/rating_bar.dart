@@ -141,28 +141,27 @@ class _RatingBarState extends State<RatingBar> {
 
   @override
   Widget build(BuildContext context) {
-    final textDirection = widget.textDirection ?? Directionality.of(context);
+    final TextDirection textDirection = widget.textDirection ?? Directionality.of(context);
     _isRTL = textDirection == TextDirection.rtl;
     iconRating = 0.0;
 
     return Material(
       color: Colors.transparent,
       child: Wrap(
-        alignment: WrapAlignment.start,
         textDirection: textDirection,
         direction: widget.direction,
-        children: List.generate(
+        children: List<Widget>.generate(
           widget.itemCount,
-          (index) => _buildRating(context, index),
+          (int index) => _buildRating(context, index),
         ),
       ),
     );
   }
 
   Widget _buildRating(BuildContext context, int index) {
-    final ratingWidget = widget._ratingWidget;
-    final item = widget._itemBuilder?.call(context, index);
-    final ratingOffset = widget.allowHalfRating ? 0.5 : 1.0;
+    final RatingWidget? ratingWidget = widget._ratingWidget;
+    final Widget? item = widget._itemBuilder?.call(context, index);
+    final double ratingOffset = widget.allowHalfRating ? 0.5 : 1.0;
 
     Widget ratingWidget0;
 
@@ -187,7 +186,6 @@ class _RatingBarState extends State<RatingBar> {
           width: widget.itemSize,
           height: widget.itemSize,
           child: FittedBox(
-            fit: BoxFit.contain,
             child: _isRTL
                 ? Transform(
                     transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
@@ -205,7 +203,6 @@ class _RatingBarState extends State<RatingBar> {
         width: widget.itemSize,
         height: widget.itemSize,
         child: FittedBox(
-          fit: BoxFit.contain,
           child: ratingWidget?.full ?? item,
         ),
       );
@@ -215,13 +212,13 @@ class _RatingBarState extends State<RatingBar> {
     return IgnorePointer(
       ignoring: widget.ignoreGestures,
       child: GestureDetector(
-        onTapDown: (details) {
+        onTapDown: (TapDownDetails details) {
           double value;
           if (index == 0 && (_rating == 1 || _rating == 0.5)) {
             value = 0;
           } else {
-            final tappedPosition = details.localPosition.dx;
-            final tappedOnFirstHalf = tappedPosition <= widget.itemSize / 2;
+            final double tappedPosition = details.localPosition.dx;
+            final bool tappedOnFirstHalf = tappedPosition <= widget.itemSize / 2;
             value = index + (tappedOnFirstHalf && widget.allowHalfRating ? 0.5 : 1.0);
           }
 
@@ -240,13 +237,13 @@ class _RatingBarState extends State<RatingBar> {
           padding: widget.itemPadding,
           child: ValueListenableBuilder<bool>(
             valueListenable: _glow,
-            builder: (context, glow, child) {
+            builder: (BuildContext context, bool glow, Widget? child) {
               if (glow && widget.glow) {
-                final glowColor = widget.glowColor ?? Theme.of(context).colorScheme.secondary;
+                final Color glowColor = widget.glowColor ?? Theme.of(context).colorScheme.secondary;
                 return DecoratedBox(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    boxShadow: [
+                    boxShadow: <BoxShadow>[
                       BoxShadow(
                         color: glowColor.withAlpha(30),
                         blurRadius: 10,
@@ -275,17 +272,17 @@ class _RatingBarState extends State<RatingBar> {
 
   void _onDragUpdate(DragUpdateDetails dragDetails) {
     if (!widget.tapOnlyMode) {
-      final box = navigatorKey.currentContext!.findRenderObject() as RenderBox?;
+      final RenderBox? box = navigatorKey.currentContext!.findRenderObject() as RenderBox?;
       if (box == null) return;
 
-      final pos = box.globalToLocal(dragDetails.globalPosition);
+      final Offset pos = box.globalToLocal(dragDetails.globalPosition);
       double i;
       if (widget.direction == Axis.horizontal) {
         i = pos.dx / (widget.itemSize + widget.itemPadding.horizontal);
       } else {
         i = pos.dy / (widget.itemSize + widget.itemPadding.vertical);
       }
-      var currentRating = widget.allowHalfRating ? i : i.round().toDouble();
+      double currentRating = widget.allowHalfRating ? i : i.round().toDouble();
       if (currentRating > widget.itemCount) {
         currentRating = widget.itemCount.toDouble();
       }
@@ -338,7 +335,6 @@ class _HalfRatingWidget extends StatelessWidget {
               fit: StackFit.expand,
               children: <Widget>[
                 FittedBox(
-                  fit: BoxFit.contain,
                   child: _NoRatingWidget(
                     size: size,
                     unratedColor: unratedColor,
@@ -347,7 +343,6 @@ class _HalfRatingWidget extends StatelessWidget {
                   ),
                 ),
                 FittedBox(
-                  fit: BoxFit.contain,
                   child: ClipRect(
                     clipper: _HalfClipper(
                       rtlMode: rtlMode,
@@ -358,7 +353,6 @@ class _HalfRatingWidget extends StatelessWidget {
               ],
             )
           : FittedBox(
-              fit: BoxFit.contain,
               child: child,
             ),
     );
@@ -408,7 +402,6 @@ class _NoRatingWidget extends StatelessWidget {
       height: size,
       width: size,
       child: FittedBox(
-        fit: BoxFit.contain,
         child: enableMask
             ? ColorFiltered(
                 colorFilter: ColorFilter.mode(
@@ -473,7 +466,7 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    final textDirection = widget.textDirection ?? Directionality.of(context);
+    final TextDirection textDirection = widget.textDirection ?? Directionality.of(context);
     _isRTL = textDirection == TextDirection.rtl;
     _ratingNumber = widget.rating.truncate() + 1;
     _ratingFraction = widget.rating - _ratingNumber + 1;
@@ -495,9 +488,9 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
   }
 
   List<Widget> get _children {
-    return List.generate(
+    return List<Widget>.generate(
       widget.itemCount,
-      (index) {
+      (int index) {
         if (widget.textDirection != null) {
           if (widget.textDirection == TextDirection.rtl && Directionality.of(navigatorKey.currentContext!) != TextDirection.rtl) {
             return Transform(
@@ -523,7 +516,6 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
           fit: StackFit.expand,
           children: <Widget>[
             FittedBox(
-              fit: BoxFit.contain,
               child: index + 1 < _ratingNumber
                   ? widget.itemBuilder(navigatorKey.currentContext!, index)
                   : ColorFiltered(
@@ -537,7 +529,6 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
             if (index + 1 == _ratingNumber)
               if (_isRTL)
                 FittedBox(
-                  fit: BoxFit.contain,
                   child: ClipRect(
                     clipper: _IndicatorClipper(
                       ratingFraction: _ratingFraction,
@@ -548,7 +539,6 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
                 )
               else
                 FittedBox(
-                  fit: BoxFit.contain,
                   child: ClipRect(
                     clipper: _IndicatorClipper(
                       ratingFraction: _ratingFraction,

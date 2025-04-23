@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:u/utilities.dart';
 
 abstract class UNavigator {
-  static void push(
+  static Future<void> push(
     final Widget page, {
     final bool dialog = false,
     final Transition transition = Transition.cupertino,
@@ -83,7 +83,7 @@ abstract class UNavigator {
         onDismiss: onDismiss,
       );
 
-  static void dialogAlert(
+  static Future<void> dialogAlert(
     final Widget page, {
     final bool barrierDismissible = true,
     final bool useSafeArea = false,
