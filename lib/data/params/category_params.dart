@@ -2,6 +2,40 @@ import 'dart:convert';
 
 import 'package:u/data/params/base_params.dart';
 
+class CategoryCreateParams extends BaseParams {
+  final String title;
+  final String? subtitle;
+  final List<int> tags;
+
+  CategoryCreateParams({
+    required super.apiKey,
+    super.token,
+    required this.title,
+    required this.tags,
+    this.subtitle,
+  });
+
+  factory CategoryCreateParams.fromJson(String str) => CategoryCreateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory CategoryCreateParams.fromMap(Map<String, dynamic> json) => CategoryCreateParams(
+    apiKey: json["apiKey"],
+    token: json["token"],
+    title: json["title"],
+    subtitle: json["subtitle"],
+    tags: List<int>.from(json["tags"]!.map((x) => x)),
+  );
+
+  Map<String, dynamic> toMap() => {
+    "apiKey": apiKey,
+    "token": token,
+    "title": title,
+    "subtitle": subtitle,
+    "tags": List<dynamic>.from(tags.map((x) => x)),
+  };
+}
+
 class CategoryReadParams extends BaseReadParams {
   final List<String>? ids;
   final bool? showMedia;
@@ -45,55 +79,16 @@ class CategoryReadParams extends BaseReadParams {
   };
 }
 
-class CategoryCreateParams extends BaseParams {
-  final String title;
-  final String? subtitle;
-  final List<int> tags;
-
-  CategoryCreateParams({
-    required super.apiKey,
-    super.token,
-    required this.title,
-    required this.tags,
-    this.subtitle,
-  });
-
-  factory CategoryCreateParams.fromJson(String str) => CategoryCreateParams.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory CategoryCreateParams.fromMap(Map<String, dynamic> json) => CategoryCreateParams(
-    apiKey: json["apiKey"],
-    token: json["token"],
-    title: json["title"],
-    subtitle: json["subtitle"],
-    tags: List<int>.from(json["tags"]!.map((x) => x)),
-  );
-
-  Map<String, dynamic> toMap() => {
-    "apiKey": apiKey,
-    "token": token,
-    "title": title,
-    "subtitle": subtitle,
-    "tags": List<dynamic>.from(tags.map((x) => x)),
-  };
-}
-
-class CategoryUpdateParams {
-  final String apiKey;
-  final String? token;
-  final String id;
-  final List<int>? addTags;
-  final List<int>? removeTags;
+class CategoryUpdateParams extends BaseUpdateParams {
   final String? title;
   final String? subtitle;
 
   CategoryUpdateParams({
-    required this.apiKey,
-    required this.id,
-    this.token,
-    this.addTags,
-    this.removeTags,
+    required super.apiKey,
+    required super.id,
+    required super.token,
+    super.addTags,
+    super.removeTags,
     this.title,
     this.subtitle,
   });
@@ -113,6 +108,7 @@ class CategoryUpdateParams {
   );
 
   Map<String, dynamic> toMap() => {
+    ...toUpdateBaseMap(),
     "apiKey": apiKey,
     "token": token,
     "id": id,

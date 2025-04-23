@@ -24,7 +24,28 @@ abstract class BaseReadParams extends BaseParams {
   final DateTime? fromDate;
   final List<int>? tags;
 
-  Map<String, dynamic> toBaseReadMap() => {...toBaseMap()};
+  Map<String, dynamic> toReadBaseMap() => {...toBaseMap()};
+}
+
+abstract class BaseUpdateParams extends BaseParams {
+  BaseUpdateParams({
+    required this.id,
+    required super.apiKey,
+    required super.token,
+    this.addTags,
+    this.removeTags,
+  });
+
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final String id;
+
+  Map<String, dynamic> toUpdateBaseMap() => {
+        ...toBaseMap(),
+        "id": id,
+        "addTags": addTags == null ? [] : List<dynamic>.from(addTags!.map((x) => x)),
+        "removeTags": removeTags == null ? [] : List<dynamic>.from(removeTags!.map((x) => x)),
+      };
 }
 
 class IdParams extends BaseParams {

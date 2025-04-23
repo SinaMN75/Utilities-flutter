@@ -2,7 +2,7 @@ import 'package:http/http.dart';
 import 'package:u/data/params/base_params.dart';
 import 'package:u/data/params/category_params.dart';
 import 'package:u/data/responses/base_response.dart';
-import 'package:u/data/responses/category.dart';
+import 'package:u/data/responses/category_response.dart';
 import 'package:u/utils/http_client.dart';
 
 class CategoryService {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:u/data/responses/media.dart';
+import 'package:u/data/responses/media_response.dart';
 
 class CategoryResponse {
   final String id;

@@ -39,8 +39,7 @@ class RegisterParams extends BaseParams {
       );
 
   Map<String, dynamic> toMap() => {
-        "apiKey": apiKey,
-        "token": token,
+        ...toBaseMap(),
         "userName": userName,
         "email": email,
         "phoneNumber": phoneNumber.englishNumber(),
@@ -75,8 +74,6 @@ class LoginWithEmailPasswordParams extends BaseParams {
 
   Map<String, dynamic> toMap() => {
         ...toBaseMap(),
-        "apiKey": apiKey,
-        "token": token,
         "email": email,
         "password": password,
       };
@@ -106,8 +103,6 @@ class LoginWithUserNamePasswordParams extends BaseParams {
 
   Map<String, dynamic> toMap() => {
         ...toBaseMap(),
-        "apiKey": apiKey,
-        "token": token,
         "userName": userName,
         "password": password,
       };

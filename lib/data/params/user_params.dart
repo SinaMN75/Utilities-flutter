@@ -166,7 +166,7 @@ class UserReadParams extends BaseReadParams {
       );
 
   Map<String, dynamic> toMap() => {
-        ...toBaseReadMap(),
+        ...toReadBaseMap(),
         "apiKey": apiKey,
         "token": token,
         "pageSize": pageSize,
@@ -185,8 +185,7 @@ class UserReadParams extends BaseReadParams {
       };
 }
 
-class UserUpdateParams extends BaseParams {
-  final String id;
+class UserUpdateParams extends BaseUpdateParams {
   final String? password;
   final String? firstName;
   final String? lastName;
@@ -203,8 +202,6 @@ class UserUpdateParams extends BaseParams {
   final int? height;
   final String? address;
   final String? fatherName;
-  final List<int>? addTags;
-  final List<int>? removeTags;
   final List<String>? addHealth1;
   final List<String>? removeHealth1;
   final List<String>? addFoodAllergies;
@@ -216,9 +213,11 @@ class UserUpdateParams extends BaseParams {
   final List<String>? categories;
 
   UserUpdateParams({
-    required this.id,
+    required super.id,
     required super.apiKey,
     required super.token,
+    super.addTags,
+    super.removeTags,
     this.password,
     this.firstName,
     this.lastName,
@@ -235,8 +234,6 @@ class UserUpdateParams extends BaseParams {
     this.height,
     this.address,
     this.fatherName,
-    this.addTags,
-    this.removeTags,
     this.addHealth1,
     this.removeHealth1,
     this.addFoodAllergies,
@@ -286,7 +283,7 @@ class UserUpdateParams extends BaseParams {
       );
 
   Map<String, dynamic> toMap() => {
-        ...toBaseMap(),
+        ...toUpdateBaseMap(),
         "id": id,
         "password": password,
         "firstName": firstName,

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:u/data/responses/category.dart';
-import 'package:u/data/responses/exam.dart';
-import 'package:u/data/responses/media.dart';
+import 'package:u/data/responses/category_response.dart';
+import 'package:u/data/responses/exam_response.dart';
+import 'package:u/data/responses/media_response.dart';
 
 class UserResponse {
   final String id;
