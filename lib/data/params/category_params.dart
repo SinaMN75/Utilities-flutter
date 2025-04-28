@@ -106,7 +106,7 @@ class CategoryUpdateParams extends BaseUpdateParams {
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    ...toUpdateBaseMap(),
+    ...toBaseUpdateBaseMap(),
     "apiKey": apiKey,
     "token": token,
     "id": id,

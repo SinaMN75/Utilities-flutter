@@ -129,7 +129,7 @@ class UserReadParams extends BaseReadParams {
   final bool? showChildren;
 
   UserReadParams({
-    super.apiKey,
+    required super.apiKey,
     super.token,
     super.pageSize,
     super.pageNumber,
@@ -171,7 +171,7 @@ class UserReadParams extends BaseReadParams {
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        ...toReadBaseMap(),
+        ...toBaseReadMap(),
         "apiKey": apiKey,
         "token": token,
         "pageSize": pageSize,
@@ -289,7 +289,7 @@ class UserUpdateParams extends BaseUpdateParams {
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        ...toUpdateBaseMap(),
+        ...toBaseUpdateBaseMap(),
         "id": id,
         "password": password,
         "firstName": firstName,

@@ -79,11 +79,11 @@ class UImage extends StatelessWidget {
                   progressIndicatorBuilder: progressIndicatorBuilder,
                   placeholder: placeholder,
                 );
-              } else if (source.startsWith("http") && source.endsWith(".json"))
+              } else if (source.startsWith("http") && source.endsWith(".json")) {
                 return Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
-              else if (source.endsWith(".json"))
+              } else if (source.endsWith(".json")) {
                 return Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
-              else
+              } else {
                 return UImageAsset(
                   source,
                   width: width,
@@ -92,6 +92,7 @@ class UImage extends StatelessWidget {
                   borderRadius: borderRadius,
                   color: color,
                 );
+              }
             }
           },
         ),
@@ -132,30 +133,6 @@ class UIconPrimary extends StatelessWidget {
         progressIndicatorBuilder: progressIndicatorBuilder,
       );
 }
-
-Widget iconPrimary(
-  final String source, {
-  final Color? color,
-  final double? width,
-  final double? height,
-  final BoxFit fit = BoxFit.contain,
-  final Clip clipBehavior = Clip.hardEdge,
-  final double borderRadius = 1,
-  final EdgeInsets margin = EdgeInsets.zero,
-  final String? placeholder,
-  final ProgressIndicatorBuilder? progressIndicatorBuilder,
-  final VoidCallback? onTap,
-}) =>
-    UImage(
-      source,
-      color: color ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
-      width: width,
-      height: height,
-      fit: fit,
-      borderRadius: borderRadius,
-      placeholder: placeholder,
-      progressIndicatorBuilder: progressIndicatorBuilder,
-    );
 
 class UImageAsset extends StatelessWidget {
   const UImageAsset(

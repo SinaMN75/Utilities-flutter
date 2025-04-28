@@ -52,7 +52,7 @@ class UserService {
   }) {
     SimpleHttp().post(
       "$baseUrl/user/ReadById",
-      body: p.toMap(),
+      body: p.toIdParamMap(),
       onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (e) {

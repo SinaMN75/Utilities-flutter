@@ -1,21 +1,22 @@
 import 'dart:math' as math;
 
 import 'package:u/utilities.dart';
+typedef TextMapper = String Function(String numberText);
 
 class LinearDatePicker extends StatefulWidget {
   const LinearDatePicker({
-    required this.dateChangeListener,
+    required this.onDateChanged,
     super.key,
-    this.startDate = "",
-    this.endDate = "",
-    this.initialDate = "",
+    this.startDate = '',
+    this.endDate = '',
+    this.initialDate = '',
     this.showDay = true,
     this.labelStyle,
     this.selectedRowStyle,
     this.unselectedRowStyle,
-    this.yearText = "سال",
-    this.monthText = "ماه",
-    this.dayText = "روز",
+    this.yearText = 'سال',
+    this.monthText = 'ماه',
+    this.dayText = 'روز',
     this.showLabels = true,
     this.columnWidth = 55.0,
     this.isJalaali = false,
@@ -24,7 +25,7 @@ class LinearDatePicker extends StatefulWidget {
   });
 
   final bool showDay;
-  final Function(String date) dateChangeListener;
+  final ValueChanged<String> onDateChanged;
 
   final String startDate;
   final String endDate;
@@ -42,266 +43,227 @@ class LinearDatePicker extends StatefulWidget {
   final double columnWidth;
   final bool isJalaali;
   final bool showMonthName;
-
   final bool addLeadingZero;
 
   @override
-  _LinearDatePickerState createState() => _LinearDatePickerState();
+  State<LinearDatePicker> createState() => _LinearDatePickerState();
 }
 
 class _LinearDatePickerState extends State<LinearDatePicker> {
-  int? _selectedYear;
-  int? _selectedMonth;
+  late int _selectedYear;
+  late int _selectedMonth;
   late int _selectedDay;
 
-  int? minYear;
-  int? maxYear;
-
-  int minMonth = 01;
-  int maxMonth = 12;
-
-  int minDay = 01;
-  int maxDay = 31;
+  late final int _minYear;
+  late final int _maxYear;
+  final int _minMonth = 1;
+  final int _maxMonth = 12;
+  final int _minDay = 1;
 
   @override
   void initState() {
     super.initState();
-    if (widget.isJalaali) {
-      minYear = Jalali.now().year - 100;
-      maxYear = Jalali.now().year;
-    } else {
-      minYear = Gregorian.now().year - 100;
-      maxYear = Gregorian.now().year;
-    }
+    _initializeDateRange();
+    _initializeSelectedDate();
+  }
+
+  void _initializeDateRange() {
+    final now = widget.isJalaali ? Jalali.now().year : Gregorian.now().year;
+    _minYear = now - 100;
+    _maxYear = now;
+  }
+
+  void _initializeSelectedDate() {
     if (widget.initialDate.isNotEmpty) {
-      final List<String> initList = widget.initialDate.split("/");
-      _selectedYear = int.parse(initList[0]);
-      _selectedMonth = int.parse(initList[1]);
-      if (widget.showDay) {
-        _selectedDay = int.parse(initList[2]);
-      } else {
-        _selectedDay = widget.isJalaali ? Jalali.now().day : Jalali.now().day;
-      }
+      final parts = widget.initialDate.split('/');
+      _selectedYear = int.parse(parts[0]);
+      _selectedMonth = int.parse(parts[1]);
+      _selectedDay = widget.showDay ? int.parse(parts[2]) : _getCurrentDay();
     } else {
-      if (widget.isJalaali) {
-        _selectedYear = Jalali.now().year;
-        _selectedMonth = Jalali.now().month;
-        _selectedDay = Jalali.now().day;
-      } else {
-        _selectedYear = Gregorian.now().year;
-        _selectedMonth = Gregorian.now().month;
-        _selectedDay = Gregorian.now().day;
-      }
+      final now = widget.isJalaali ? Jalali.now() : Gregorian.now();
+      _selectedYear = now.year;
+      _selectedMonth = now.month;
+      _selectedDay = now.day;
     }
   }
 
+  int _getCurrentDay() => widget.isJalaali ? Jalali.now().day : Gregorian.now().day;
+
   @override
-  Widget build(final BuildContext context) {
-    maxDay = _getMonthLength(_selectedYear, _selectedMonth);
+  Widget build(BuildContext context) {
+    final maxDay = _getMonthLength(_selectedYear, _selectedMonth);
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Visibility(
-          visible: widget.showLabels,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                  width: widget.columnWidth,
-                  child: Text(
-                    widget.yearText,
-                    style: widget.labelStyle,
-                    textAlign: TextAlign.center,
-                  )),
-              SizedBox(
-                  width: widget.columnWidth,
-                  child: Text(
-                    widget.monthText,
-                    style: widget.labelStyle,
-                    textAlign: TextAlign.center,
-                  )),
-              Visibility(
-                visible: widget.showDay,
-                child: SizedBox(
-                    width: widget.columnWidth,
-                    child: Text(
-                      widget.dayText,
-                      style: widget.labelStyle,
-                      textAlign: TextAlign.center,
-                    )),
-              ),
-            ],
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            NumberPicker.integer(
-                listViewWidth: widget.columnWidth,
-                initialValue: _selectedYear!,
-                minValue: _getMinimumYear()!,
-                maxValue: _getMaximumYear(),
-                selectedRowStyle: widget.selectedRowStyle,
-                unselectedRowStyle: widget.unselectedRowStyle,
-                onChanged: (final num value) {
-                  if (value != _selectedYear) {
-                    setState(() {
-                      _selectedYear = value as int?;
-                      if (widget.showDay) {
-                        widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}/${_selectedDay.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
-                      } else {
-                        widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
-                      }
-                    });
-                  }
-                }),
-            NumberPicker.integer(
-                listViewWidth: widget.columnWidth,
-                initialValue: _selectedMonth!,
-                minValue: _getMinimumMonth(),
-                maxValue: _getMaximumMonth(),
-                selectedRowStyle: widget.selectedRowStyle,
-                unselectedRowStyle: widget.unselectedRowStyle,
-                isShowMonthName: widget.showMonthName,
-                isJalali: widget.isJalaali,
-                onChanged: (final num value) {
-                  if (value != _selectedMonth) {
-                    setState(() {
-                      _selectedMonth = value as int?;
-                      if (widget.showDay) {
-                        widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}/${_selectedDay.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
-                      } else {
-                        widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
-                      }
-                    });
-                  }
-                }),
-            Visibility(
-              visible: widget.showDay,
-              child: NumberPicker.integer(
-                  listViewWidth: widget.columnWidth,
-                  initialValue: _selectedDay,
-                  minValue: _getMinimumDay(),
-                  maxValue: _getMaximumDay(),
-                  selectedRowStyle: widget.selectedRowStyle,
-                  unselectedRowStyle: widget.unselectedRowStyle,
-                  onChanged: (final num value) {
-                    if (value != _selectedDay) {
-                      setState(() {
-                        _selectedDay = value as int;
-                        if (widget.showDay) {
-                          widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}/${_selectedDay.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
-                        } else {
-                          widget.dateChangeListener("${_selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, "0")}/${_selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, "0")}");
-                        }
-                      });
-                    }
-                  }),
-            )
-          ],
-        ),
+      children: [
+        if (widget.showLabels) _buildLabels(),
+        _buildDatePickers(maxDay),
       ],
     );
   }
 
-  int _getMonthLength(final int? selectedYear, final int? selectedMonth) {
-    if (widget.isJalaali) {
-      if (selectedMonth! <= 6) {
-        return 31;
-      }
-      if (selectedMonth > 6 && selectedMonth < 12) {
-        return 30;
-      }
-      if (Jalali(selectedYear!).isLeapYear()) {
-        return 30;
-      } else {
-        return 29;
-      }
-    } else {
-      DateTime firstOfNextMonth;
-      if (selectedMonth == 12) {
-        firstOfNextMonth = DateTime(selectedYear! + 1, 1, 1, 12);
-      } else {
-        firstOfNextMonth = DateTime(selectedYear!, selectedMonth! + 1, 1, 12);
-      }
-      final int numberOfDaysInMonth = firstOfNextMonth.subtract(const Duration(days: 1)).day;
+  Widget _buildLabels() => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      _buildLabel(widget.yearText),
+      _buildLabel(widget.monthText),
+      if (widget.showDay) _buildLabel(widget.dayText),
+    ],
+  );
 
-      return numberOfDaysInMonth;
+  Widget _buildLabel(String text) => SizedBox(
+    width: widget.columnWidth,
+    child: Text(
+      text,
+      style: widget.labelStyle,
+      textAlign: TextAlign.center,
+    ),
+  );
+
+  Widget _buildDatePickers(int maxDay) => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      _buildYearPicker(),
+      _buildMonthPicker(),
+      if (widget.showDay) _buildDayPicker(maxDay),
+    ],
+  );
+
+  Widget _buildYearPicker() => NumberPicker.integer(
+    listViewWidth: widget.columnWidth,
+    initialValue: _selectedYear,
+    minValue: _getMinimumYear(),
+    maxValue: _getMaximumYear(),
+    selectedRowStyle: widget.selectedRowStyle,
+    unselectedRowStyle: widget.unselectedRowStyle,
+    onChanged: (value) => _handleYearChange(value as int),
+  );
+
+  Widget _buildMonthPicker() => NumberPicker.integer(
+    listViewWidth: widget.columnWidth,
+    initialValue: _selectedMonth,
+    minValue: _getMinimumMonth(),
+    maxValue: _getMaximumMonth(),
+    selectedRowStyle: widget.selectedRowStyle,
+    unselectedRowStyle: widget.unselectedRowStyle,
+    isShowMonthName: widget.showMonthName,
+    isJalali: widget.isJalaali,
+    onChanged: (value) => _handleMonthChange(value as int),
+  );
+
+  Widget _buildDayPicker(int maxDay) => NumberPicker.integer(
+    listViewWidth: widget.columnWidth,
+    initialValue: _selectedDay,
+    minValue: _getMinimumDay(),
+    maxValue: math.min(maxDay, _getMaximumDay()),
+    selectedRowStyle: widget.selectedRowStyle,
+    unselectedRowStyle: widget.unselectedRowStyle,
+    onChanged: (value) => _handleDayChange(value as int),
+  );
+
+  void _handleYearChange(int year) {
+    if (year != _selectedYear) {
+      setState(() {
+        _selectedYear = year;
+        _notifyDateChange();
+      });
+    }
+  }
+
+  void _handleMonthChange(int month) {
+    if (month != _selectedMonth) {
+      setState(() {
+        _selectedMonth = month;
+        _selectedDay = math.min(_selectedDay, _getMonthLength(_selectedYear, _selectedMonth));
+        _notifyDateChange();
+      });
+    }
+  }
+
+  void _handleDayChange(int day) {
+    if (day != _selectedDay) {
+      setState(() {
+        _selectedDay = day;
+        _notifyDateChange();
+      });
+    }
+  }
+
+  void _notifyDateChange() {
+    final year = _selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, '0');
+    final month = _selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, '0');
+
+    if (widget.showDay) {
+      final day = _selectedDay.toString().padLeft(widget.addLeadingZero ? 2 : 1, '0');
+      widget.onDateChanged('$year/$month/$day');
+    } else {
+      widget.onDateChanged('$year/$month');
+    }
+  }
+
+  int _getMonthLength(int year, int month) {
+    if (widget.isJalaali) {
+      if (month <= 6) return 31;
+      if (month < 12) return 30;
+      return Jalali(year).isLeapYear() ? 30 : 29;
+    } else {
+      final nextMonth = month == 12
+          ? DateTime(year + 1, 1, 1)
+          : DateTime(year, month + 1, 1);
+      return nextMonth.subtract(const Duration(days: 1)).day;
     }
   }
 
   int _getMinimumMonth() {
-    if (widget.startDate.isNotEmpty) {
-      final List<String> startList = widget.startDate.split("/");
-      final int startMonth = int.parse(startList[1]);
+    if (widget.startDate.isEmpty) return _minMonth;
 
-      if (_selectedYear == _getMinimumYear()) {
-        return startMonth;
-      }
-    }
-
-    return minMonth;
+    final startMonth = int.parse(widget.startDate.split('/')[1]);
+    return _selectedYear == _getMinimumYear() ? startMonth : _minMonth;
   }
 
   int _getMaximumMonth() {
-    if (widget.endDate.isNotEmpty) {
-      final List<String> endList = widget.endDate.split("/");
-      final int endMonth = int.parse(endList[1]);
-      if (_selectedYear == _getMaximumYear()) {
-        return endMonth;
-      }
-    }
-    return maxMonth;
+    if (widget.endDate.isEmpty) return _maxMonth;
+
+    final endMonth = int.parse(widget.endDate.split('/')[1]);
+    return _selectedYear == _getMaximumYear() ? endMonth : _maxMonth;
   }
 
-  int? _getMinimumYear() {
-    if (widget.startDate.isNotEmpty) {
-      final List<String> startList = widget.startDate.split("/");
-      return int.parse(startList[0]);
-    }
-    return minYear;
+  int _getMinimumYear() {
+    return widget.startDate.isEmpty
+        ? _minYear
+        : int.parse(widget.startDate.split('/')[0]);
   }
 
-  _getMaximumYear() {
-    if (widget.endDate.isNotEmpty) {
-      final List<String> endList = widget.endDate.split("/");
-      return int.parse(endList[0]);
-    }
-    return maxYear;
+  int _getMaximumYear() {
+    return widget.endDate.isEmpty
+        ? _maxYear
+        : int.parse(widget.endDate.split('/')[0]);
   }
 
   int _getMinimumDay() {
-    if (widget.startDate.isNotEmpty && widget.showDay) {
-      final List<String> startList = widget.startDate.split("/");
-      final int startDay = int.parse(startList[2]);
+    if (!widget.showDay || widget.startDate.isEmpty) return _minDay;
 
-      if (_selectedYear == _getMinimumYear() && _selectedMonth == _getMinimumMonth()) {
-        return startDay;
-      }
-    }
-
-    return minDay;
+    final startDay = int.parse(widget.startDate.split('/')[2]);
+    return (_selectedYear == _getMinimumYear() && _selectedMonth == _getMinimumMonth())
+        ? startDay
+        : _minDay;
   }
 
   int _getMaximumDay() {
-    if (widget.endDate.isNotEmpty && widget.showDay) {
-      final List<String> endList = widget.endDate.split("/");
-      final int endDay = int.parse(endList[2]);
-      if (_selectedYear == _getMaximumYear() && _selectedMonth == _getMaximumMonth()) {
-        return endDay;
-      }
+    if (!widget.showDay || widget.endDate.isEmpty) {
+      return _getMonthLength(_selectedYear, _selectedMonth);
     }
-    return _getMonthLength(_selectedYear, _selectedMonth);
+
+    final endDay = int.parse(widget.endDate.split('/')[2]);
+    return (_selectedYear == _getMaximumYear() && _selectedMonth == _getMaximumMonth())
+        ? endDay
+        : _getMonthLength(_selectedYear, _selectedMonth);
   }
 }
 
-typedef TextMapper = String Function(String numberText);
-
 class NumberPicker extends StatelessWidget {
   NumberPicker.integer({
-    required final int initialValue,
+    required this.initialValue,
     required this.minValue,
     required this.maxValue,
     required this.onChanged,
@@ -320,109 +282,61 @@ class NumberPicker extends StatelessWidget {
     this.unselectedRowStyle,
     this.isShowMonthName = false,
     this.isJalali = false,
-  })  : assert(maxValue >= minValue, ""),
-        assert(step > 0, ""),
-        selectedIntValue = (initialValue < minValue) ? minValue : ((initialValue > maxValue) ? maxValue : initialValue),
+  })  : assert(maxValue >= minValue, 'maxValue must be >= minValue'),
+        assert(step > 0, 'step must be > 0'),
+        selectedIntValue = initialValue.clamp(minValue, maxValue),
         selectedDecimalValue = -1,
         decimalPlaces = 0,
         intScrollController = ScrollController(
-          initialScrollOffset: (initialValue - minValue) ~/ step * itemExtent,
+          initialScrollOffset: ((initialValue - minValue) ~/ step) * itemExtent,
         ),
         decimalScrollController = null,
         listViewHeight = 3 * itemExtent,
-        integerItemCount = (maxValue - minValue) ~/ step + 1 {
-    onChanged(selectedIntValue);
-  }
+        integerItemCount = ((maxValue - minValue) ~/ step) + 1;
 
   static const double kDefaultItemExtent = 50;
-
   static const double kDefaultListViewCrossAxisSize = 100;
 
-  final ValueChanged<num> onChanged;
-
+  final int initialValue;
   final int minValue;
-
   final int maxValue;
-
+  final ValueChanged<num> onChanged;
   final bool enabled;
-
   final TextMapper? textMapper;
-
   final int decimalPlaces;
-
   final double itemExtent;
-
   final double listViewHeight;
-
   final double? listViewWidth;
-
   final ScrollController intScrollController;
-
   final ScrollController? decimalScrollController;
-
   final int selectedIntValue;
-
   final int selectedDecimalValue;
-
   final bool highlightSelectedValue;
-
   final Decoration? decoration;
-
   final int step;
-
   final Axis scrollDirection;
-
   final bool zeroPad;
-
   final int integerItemCount;
-
   final bool haptics;
-
   final TextStyle? selectedRowStyle;
-
   final TextStyle? unselectedRowStyle;
+  final bool isShowMonthName;
+  final bool isJalali;
 
-  final bool? isShowMonthName;
-
-  final bool? isJalali;
-
-  void animateInt(final int valueToSelect) {
-    final int diff = valueToSelect - minValue;
-    final int index = diff ~/ step;
-    animateIntToIndex(index);
-  }
-
-  void animateIntToIndex(final int index) {
+  void animateInt(int valueToSelect) {
+    final index = (valueToSelect - minValue) ~/ step;
     _animate(intScrollController, index * itemExtent);
   }
 
-  void animateDecimal(final int decimalValue) {
-    _animate(decimalScrollController!, decimalValue * itemExtent);
-  }
-
-  void animateDecimalAndInteger(final double valueToSelect) {
-    animateInt(valueToSelect.floor());
-    animateDecimal(((valueToSelect - valueToSelect.floorToDouble()) * math.pow(10, decimalPlaces)).round());
-  }
-
   @override
-  Widget build(final BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-
-    return _integerListView(themeData);
-  }
-
-  Widget _integerListView(final ThemeData themeData) {
-    TextStyle defaultStyle;
-    TextStyle selectedStyle;
-
-    defaultStyle = unselectedRowStyle ?? themeData.textTheme.bodyMedium!;
-    selectedStyle = selectedRowStyle ?? themeData.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w700);
-
-    final int listItemCount = integerItemCount + 2;
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final defaultStyle = unselectedRowStyle ?? theme.textTheme.bodyMedium!;
+    final selectedStyle = selectedRowStyle ?? theme.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w700);
+    final listItemCount = integerItemCount + 2;
 
     return Listener(
-      onPointerUp: (final PointerUpEvent ev) {
+      onPointerUp: (_) {
         if (intScrollController.position is HoldScrollActivity) {
           animateInt(selectedIntValue);
         }
@@ -433,7 +347,7 @@ class NumberPicker extends StatelessWidget {
           height: listViewHeight,
           width: listViewWidth,
           child: Stack(
-            children: <Widget>[
+            children: [
               ListView.builder(
                 scrollDirection: scrollDirection,
                 controller: intScrollController,
@@ -441,21 +355,20 @@ class NumberPicker extends StatelessWidget {
                 physics: enabled ? const ClampingScrollPhysics() : const NeverScrollableScrollPhysics(),
                 itemCount: listItemCount,
                 cacheExtent: _calculateCacheExtent(listItemCount),
-                itemBuilder: (final BuildContext context, final int index) {
-                  final int value = _intValueFromIndex(index);
-
-                  final TextStyle itemStyle = value == selectedIntValue && highlightSelectedValue ? selectedStyle : defaultStyle;
-
-                  final bool isExtra = index == 0 || index == listItemCount - 1;
+                itemBuilder: (context, index) {
+                  final value = _intValueFromIndex(index);
+                  final isExtra = index == 0 || index == listItemCount - 1;
 
                   return isExtra
                       ? Container()
                       : Center(
-                          child: Text(
-                            getDisplayedValue(value),
-                            style: itemStyle,
-                          ),
-                        );
+                    child: Text(
+                      getDisplayedValue(value),
+                      style: value == selectedIntValue && highlightSelectedValue
+                          ? selectedStyle
+                          : defaultStyle,
+                    ),
+                  );
                 },
               ),
               _NumberPickerSelectedItemDecoration(
@@ -470,13 +383,13 @@ class NumberPicker extends StatelessWidget {
     );
   }
 
-  String getDisplayedValue(final int value) {
-    if (isShowMonthName!) {
-      return value.getMonthName(isJalali!);
-    } else {
-      final String text = zeroPad ? value.toString().padLeft(maxValue.toString().length, '0') : value.toString();
-      return textMapper != null ? textMapper!(text) : text;
+  String getDisplayedValue(int value) {
+    if (isShowMonthName) {
+      return value.getMonthName(isJalali);
     }
+    return zeroPad
+        ? value.toString().padLeft(maxValue.toString().length, '0')
+        : value.toString();
   }
 
   int _intValueFromIndex(int index) {
@@ -485,66 +398,39 @@ class NumberPicker extends StatelessWidget {
     return minValue + index * step;
   }
 
-  bool _onIntegerNotification(final Notification notification) {
+  bool _onIntegerNotification(Notification notification) {
     if (notification is ScrollNotification) {
-      int intIndexOfMiddleElement = (notification.metrics.pixels / itemExtent).round();
-      intIndexOfMiddleElement = intIndexOfMiddleElement.clamp(0, integerItemCount - 1);
-      int intValueInTheMiddle = _intValueFromIndex(intIndexOfMiddleElement + 1);
-      intValueInTheMiddle = _normalizeIntegerMiddleValue(intValueInTheMiddle);
+      var middleIndex = (notification.metrics.pixels / itemExtent).round().clamp(0, integerItemCount - 1);
+      var middleValue = _normalizeIntegerMiddleValue(_intValueFromIndex(middleIndex + 1));
 
       if (_userStoppedScrolling(notification, intScrollController)) {
-        animateIntToIndex(intIndexOfMiddleElement);
+        animateInt(middleValue);
       }
 
-      if (intValueInTheMiddle != selectedIntValue) {
-        num newValue;
-        if (decimalPlaces == 0) {
-          newValue = intValueInTheMiddle;
-        } else {
-          if (intValueInTheMiddle == maxValue) {
-            newValue = intValueInTheMiddle.toDouble();
-            animateDecimal(0);
-          } else {
-            final double decimalPart = _toDecimal(selectedDecimalValue);
-            newValue = intValueInTheMiddle + decimalPart;
-          }
-        }
-        if (haptics) {
-          HapticFeedback.selectionClick();
-        }
-        onChanged(newValue);
+      if (middleValue != selectedIntValue) {
+        if (haptics) HapticFeedback.selectionClick();
+        onChanged(middleValue);
       }
     }
     return true;
   }
 
-  double _calculateCacheExtent(final int itemCount) {
-    double cacheExtent = 250;
-    if ((itemCount - 2) * kDefaultItemExtent <= cacheExtent) {
-      cacheExtent = (itemCount - 3) * kDefaultItemExtent;
-    }
-    return cacheExtent;
+  double _calculateCacheExtent(int itemCount) {
+    final cacheExtent = 250.0;
+    return (itemCount - 2) * kDefaultItemExtent <= cacheExtent
+        ? (itemCount - 3) * kDefaultItemExtent
+        : cacheExtent;
   }
 
-  int _normalizeMiddleValue(final int valueInTheMiddle, final int min, final int max) => math.max(math.min(valueInTheMiddle, max), min);
+  int _normalizeIntegerMiddleValue(int value) => value.clamp(minValue, (maxValue ~/ step) * step);
 
-  int _normalizeIntegerMiddleValue(final int integerValueInTheMiddle) {
-    final int max = (maxValue ~/ step) * step;
-    return _normalizeMiddleValue(integerValueInTheMiddle, minValue, max);
-  }
+  bool _userStoppedScrolling(Notification notification, ScrollController controller) =>
+      notification is UserScrollNotification &&
+          notification.direction == ScrollDirection.idle &&
+          controller.position is! HoldScrollActivity;
 
-  bool _userStoppedScrolling(
-    final Notification notification,
-    final ScrollController scrollController,
-  ) =>
-      notification is UserScrollNotification && notification.direction == ScrollDirection.idle && scrollController.position is! HoldScrollActivity;
-
-  double _toDecimal(final int decimalValueAsInteger) => double.parse(
-        (decimalValueAsInteger * math.pow(10, -decimalPlaces)).toStringAsFixed(decimalPlaces),
-      );
-
-  void _animate(final ScrollController scrollController, final double value) {
-    scrollController.animateTo(
+  void _animate(ScrollController controller, double value) {
+    controller.animateTo(
       value,
       duration: const Duration(seconds: 1),
       curve: const ElasticOutCurve(),
@@ -558,20 +444,21 @@ class _NumberPickerSelectedItemDecoration extends StatelessWidget {
     required this.itemExtent,
     required this.decoration,
   });
+
   final Axis axis;
   final double itemExtent;
   final Decoration? decoration;
 
   @override
-  Widget build(final BuildContext context) => Center(
-        child: IgnorePointer(
-          child: Container(
-            width: isVertical ? double.infinity : itemExtent,
-            height: isVertical ? itemExtent : double.infinity,
-            decoration: decoration,
-          ),
-        ),
-      );
+  Widget build(BuildContext context) => Center(
+    child: IgnorePointer(
+      child: Container(
+        width: isVertical ? double.infinity : itemExtent,
+        height: isVertical ? itemExtent : double.infinity,
+        decoration: decoration,
+      ),
+    ),
+  );
 
   bool get isVertical => axis == Axis.vertical;
 }
@@ -585,113 +472,76 @@ class NumberPickerDialog extends StatefulWidget {
     this.title,
     this.titlePadding,
     this.step = 1,
-    this.infiniteLoop = false,
     this.zeroPad = false,
     this.highlightSelectedValue = true,
     this.decoration,
     this.textMapper,
     this.haptics = false,
-    final Widget? confirmWidget,
-    final Widget? cancelWidget,
+    this.confirmWidget = const Text('OK'),
+    this.cancelWidget = const Text('CANCEL'),
     this.isShowMonthName = false,
     this.isJalali = false,
-  })  : confirmWidget = confirmWidget ?? const Text("OK"),
-        cancelWidget = cancelWidget ?? const Text("CANCEL"),
-        decimalPlaces = 0,
-        initialDoubleValue = -1.0;
+  }) : decimalPlaces = 0;
 
-  const NumberPickerDialog.decimal({
-    required this.minValue,
-    required this.maxValue,
-    required this.initialDoubleValue,
-    super.key,
-    this.decimalPlaces = 1,
-    this.title,
-    this.titlePadding,
-    this.highlightSelectedValue = true,
-    this.decoration,
-    this.textMapper,
-    this.haptics = false,
-    final Widget? confirmWidget,
-    final Widget? cancelWidget,
-    this.isShowMonthName = false,
-    this.isJalali = false,
-  })  : confirmWidget = confirmWidget ?? const Text("OK"),
-        cancelWidget = cancelWidget ?? const Text("CANCEL"),
-        initialIntegerValue = -1,
-        step = 1,
-        infiniteLoop = false,
-        zeroPad = false;
   final int minValue;
   final int maxValue;
   final int initialIntegerValue;
-  final double initialDoubleValue;
   final int decimalPlaces;
   final Widget? title;
   final EdgeInsets? titlePadding;
   final Widget confirmWidget;
   final Widget cancelWidget;
   final int step;
-  final bool infiniteLoop;
   final bool zeroPad;
   final bool highlightSelectedValue;
   final Decoration? decoration;
   final TextMapper? textMapper;
   final bool haptics;
-
   final bool isShowMonthName;
   final bool isJalali;
 
   @override
-  State<NumberPickerDialog> createState() => _NumberPickerDialogControllerState(
-        initialIntegerValue,
-        initialDoubleValue,
-      );
+  State<NumberPickerDialog> createState() => _NumberPickerDialogState();
 }
 
-class _NumberPickerDialogControllerState extends State<NumberPickerDialog> {
-  _NumberPickerDialogControllerState(this.selectedIntValue, this.selectedDoubleValue);
+class _NumberPickerDialogState extends State<NumberPickerDialog> {
+  late int selectedValue;
 
-  int selectedIntValue;
-  double selectedDoubleValue;
-
-  void _handleValueChanged(final num value) {
-    if (value is int) {
-      setState(() => selectedIntValue = value);
-    } else {
-      setState(() => selectedDoubleValue = value as double);
-    }
+  @override
+  void initState() {
+    super.initState();
+    selectedValue = widget.initialIntegerValue;
   }
 
-  NumberPicker _buildNumberPicker() => NumberPicker.integer(
-        initialValue: selectedIntValue,
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: widget.title,
+      titlePadding: widget.titlePadding,
+      content: NumberPicker.integer(
+        initialValue: selectedValue,
         minValue: widget.minValue,
         maxValue: widget.maxValue,
         step: widget.step,
         zeroPad: widget.zeroPad,
         highlightSelectedValue: widget.highlightSelectedValue,
         decoration: widget.decoration,
-        onChanged: _handleValueChanged,
+        onChanged: (value) => setState(() => selectedValue = value as int),
         textMapper: widget.textMapper,
         haptics: widget.haptics,
-      );
-
-  @override
-  Widget build(final BuildContext context) => AlertDialog(
-        title: widget.title,
-        titlePadding: widget.titlePadding,
-        content: _buildNumberPicker(),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: widget.cancelWidget,
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(
-              widget.decimalPlaces > 0 ? selectedDoubleValue : selectedIntValue,
-            ),
-            child: widget.confirmWidget,
-          ),
-        ],
-      );
+        isShowMonthName: widget.isShowMonthName,
+        isJalali: widget.isJalali,
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: widget.cancelWidget,
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(context, selectedValue),
+          child: widget.confirmWidget,
+        ),
+      ],
+    );
+  }
 }

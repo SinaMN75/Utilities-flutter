@@ -1,7 +1,7 @@
 part of "../data.dart";
 
 abstract class BaseParams {
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   BaseParams({required this.apiKey, required this.token});
@@ -24,7 +24,7 @@ abstract class BaseReadParams extends BaseParams {
   final DateTime? fromDate;
   final List<int>? tags;
 
-  Map<String, dynamic> toReadBaseMap() => <String, dynamic>{...toBaseMap()};
+  Map<String, dynamic> toBaseReadMap() => <String, dynamic>{...toBaseMap()};
 }
 
 abstract class BaseUpdateParams extends BaseParams {
@@ -40,7 +40,7 @@ abstract class BaseUpdateParams extends BaseParams {
   final List<int>? removeTags;
   final String id;
 
-  Map<String, dynamic> toUpdateBaseMap() => <String, dynamic>{
+  Map<String, dynamic> toBaseUpdateBaseMap() => <String, dynamic>{
         ...toBaseMap(),
         "id": id,
         "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
@@ -53,13 +53,13 @@ class IdParams extends BaseParams {
 
   IdParams({
     required super.apiKey,
-    required super.token,
+    super.token,
     required this.id,
   });
 
   factory IdParams.fromJson(String str) => IdParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(toIdParamMap());
 
   factory IdParams.fromMap(Map<String, dynamic> json) => IdParams(
         apiKey: json["apiKey"],
@@ -67,8 +67,33 @@ class IdParams extends BaseParams {
         id: json["id"],
       );
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
+  Map<String, dynamic> toIdParamMap() => <String, dynamic>{
         ...toBaseMap(),
         "id": id,
+      };
+}
+
+class IdListParams extends BaseParams {
+  final List<String>? ids;
+
+  IdListParams({
+    required super.apiKey,
+    super.token,
+    this.ids,
+  });
+
+  factory IdListParams.fromJson(String str) => IdListParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toIdListMap());
+
+  factory IdListParams.fromMap(Map<String, dynamic> json) => IdListParams(
+        apiKey: json["apiKey"],
+        token: json["token"],
+        ids: json["ids"] == null ? [] : List<String>.from(json["ids"]!.map((x) => x)),
+      );
+
+  Map<String, dynamic> toIdListMap() => {
+        ...toBaseMap(),
+        "ids": ids == null ? [] : List<dynamic>.from(ids!.map((x) => x)),
       };
 }

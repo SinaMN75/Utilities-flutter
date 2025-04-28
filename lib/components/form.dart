@@ -200,7 +200,7 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
                         endDate: "1406/12/30",
                         initialDate: "${jalali.year}/${jalali.month}/${jalali.day}",
                         addLeadingZero: true,
-                        dateChangeListener: (String selectedDate) {
+                        onDateChanged: (String selectedDate) {
                           jalali = Jalali(
                             selectedDate.getYear(),
                             selectedDate.getMonth(),
