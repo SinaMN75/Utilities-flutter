@@ -26,33 +26,33 @@ class ExamResponse {
   String toJson() => json.encode(toMap());
 
   factory ExamResponse.fromMap(Map<String, dynamic> json) => ExamResponse(
-    id: json["id"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    tags: List<int>.from(json["tags"].map((x) => x)),
-    jsonData: ResultJsonData.fromMap(json["jsonData"]),
-    title: json["title"],
-    description: json["description"],
-    category: CategoryResponse.fromMap(json["category"]),
-  );
+        id: json["id"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        tags: List<int>.from(json["tags"].map((x) => x)),
+        jsonData: ResultJsonData.fromMap(json["jsonData"]),
+        title: json["title"],
+        description: json["description"],
+        category: CategoryResponse.fromMap(json["category"]),
+      );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "tags": List<dynamic>.from(tags.map((x) => x)),
-    "jsonData": jsonData.toMap(),
-    "title": title,
-    "description": description,
-    "category": category.toMap(),
-  };
+        "id": id,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "tags": List<dynamic>.from(tags.map((x) => x)),
+        "jsonData": jsonData.toMap(),
+        "title": title,
+        "description": description,
+        "category": category.toMap(),
+      };
 }
 
 class ResultJsonData {
-  final List<QuestionJson>? questions;
+  final List<QuestionJson> questions;
 
   ResultJsonData({
-    this.questions,
+    required this.questions,
   });
 
   factory ResultJsonData.fromJson(String str) => ResultJsonData.fromMap(json.decode(str));
@@ -60,16 +60,16 @@ class ResultJsonData {
   String toJson() => json.encode(toMap());
 
   factory ResultJsonData.fromMap(Map<String, dynamic> json) => ResultJsonData(
-        questions: json["questions"] == null ? [] : List<QuestionJson>.from(json["questions"]!.map((x) => QuestionJson.fromMap(x))),
+        questions: List<QuestionJson>.from(json["questions"]!.map((x) => QuestionJson.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
-        "questions": questions == null ? [] : List<dynamic>.from(questions!.map((x) => x.toMap())),
+        "questions": List<dynamic>.from(questions.map((x) => x.toMap())),
       };
 }
 
 class UserAnswerJson {
-  final String date;
+  final DateTime date;
   final int totalScore;
   final List<UserAnswerResultJson> results;
 
@@ -84,13 +84,13 @@ class UserAnswerJson {
   String toJson() => json.encode(toMap());
 
   factory UserAnswerJson.fromMap(Map<String, dynamic> json) => UserAnswerJson(
-        date: json["date"],
+        date: DateTime.parse(json["date"]),
         totalScore: json["totalScore"],
         results: List<UserAnswerResultJson>.from(json["results"]!.map((final dynamic x) => UserAnswerResultJson.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "date": date,
+        "date": date.toIso8601String(),
         "totalScore": totalScore,
         "results": List<dynamic>.from(results.map((UserAnswerResultJson x) => x.toMap())),
       };

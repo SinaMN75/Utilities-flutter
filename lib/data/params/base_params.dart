@@ -74,12 +74,12 @@ class IdParams extends BaseParams {
 }
 
 class IdListParams extends BaseParams {
-  final List<String>? ids;
+  final List<String> ids;
 
   IdListParams({
     required super.apiKey,
-    super.token,
-    this.ids,
+    required super.token,
+    required this.ids,
   });
 
   factory IdListParams.fromJson(String str) => IdListParams.fromMap(json.decode(str));
@@ -89,11 +89,11 @@ class IdListParams extends BaseParams {
   factory IdListParams.fromMap(Map<String, dynamic> json) => IdListParams(
         apiKey: json["apiKey"],
         token: json["token"],
-        ids: json["ids"] == null ? [] : List<String>.from(json["ids"]!.map((x) => x)),
+        ids: List<String>.from(json["ids"]!.map((x) => x)),
       );
 
   Map<String, dynamic> toIdListMap() => {
         ...toBaseMap(),
-        "ids": ids == null ? [] : List<dynamic>.from(ids!.map((x) => x)),
+        "ids": List<dynamic>.from(ids.map((x) => x)),
       };
 }

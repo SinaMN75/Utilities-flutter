@@ -46,7 +46,7 @@ class _GlobalLoaderContext {
 class _BuildPage extends StatefulWidget {
   final Widget? child;
 
-  const _BuildPage({Key? key, this.child}) : super(key: key);
+  const _BuildPage({this.child});
 
   @override
   __BuildPageState createState() => __BuildPageState();
