@@ -180,10 +180,8 @@ class PhoneInputFormatter extends TextInputFormatter {
     if (!mergeWithExisting || countryData['altMasks'] == null) {
       countryData['altMasks'] = alternativeMasks;
     } else {
-      final existingList = countryData['altMasks'];
-      for (var m in alternativeMasks) {
-        existingList.add(m);
-      }
+      final List<dynamic> existingList = countryData['altMasks'] as List<dynamic>;
+      alternativeMasks.forEach(existingList.add);
     }
     // if (kDebugMode) {
     //   print('Alternative masks for country "${countryData['country']}"' +
@@ -205,7 +203,7 @@ class PhoneInputFormatter extends TextInputFormatter {
   }) {
     checkMask(newMask);
     final Map<String, dynamic> countryData = _findCountryDataByCountryCode(countryCode);
-    final currentMask = countryData['phoneMask'];
+    final String currentMask = countryData['phoneMask'] as String;
 
     if (currentMask == newMask) {
       return;
