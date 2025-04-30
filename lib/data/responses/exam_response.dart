@@ -29,18 +29,18 @@ class ExamResponse {
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        tags: List<int>.from(json["tags"].map((x) => x)),
+        tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         jsonData: ResultJsonData.fromMap(json["jsonData"]),
         title: json["title"],
         description: json["description"],
         category: CategoryResponse.fromMap(json["category"]),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
-        "tags": List<dynamic>.from(tags.map((x) => x)),
+        "tags": List<dynamic>.from(tags.map((int x) => x)),
         "jsonData": jsonData.toMap(),
         "title": title,
         "description": description,
@@ -60,11 +60,11 @@ class ResultJsonData {
   String toJson() => json.encode(toMap());
 
   factory ResultJsonData.fromMap(Map<String, dynamic> json) => ResultJsonData(
-        questions: List<QuestionJson>.from(json["questions"]!.map((x) => QuestionJson.fromMap(x))),
+        questions: List<QuestionJson>.from(json["questions"]!.map((dynamic x) => QuestionJson.fromMap(x))),
       );
 
-  Map<String, dynamic> toMap() => {
-        "questions": List<dynamic>.from(questions.map((x) => x.toMap())),
+  Map<String, dynamic> toMap() => <String, dynamic>{
+        "questions": List<dynamic>.from(questions.map((QuestionJson x) => x.toMap())),
       };
 }
 
@@ -141,14 +141,14 @@ class QuestionJson {
         order: json["order"],
         title: json["title"],
         description: json["description"],
-        options: List<QuestionOptionJson>.from(json["options"]!.map((x) => QuestionOptionJson.fromMap(x))),
+        options: List<QuestionOptionJson>.from(json["options"]!.map((dynamic x) => QuestionOptionJson.fromMap(x))),
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "order": order,
         "title": title,
         "description": description,
-        "options": List<dynamic>.from(options.map((x) => x.toMap())),
+        "options": List<dynamic>.from(options.map((QuestionOptionJson x) => x.toMap())),
       };
 }
 
@@ -173,7 +173,7 @@ class QuestionOptionJson {
         score: json["score"],
       );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "title": title,
         "hint": hint,
         "score": score,

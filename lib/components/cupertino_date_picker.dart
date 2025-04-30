@@ -68,19 +68,19 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
   }
 
   void _initializeDateRange() {
-    final now = widget.isJalaali ? Jalali.now().year : Gregorian.now().year;
+    final int now = widget.isJalaali ? Jalali.now().year : Gregorian.now().year;
     _minYear = now - 100;
     _maxYear = now;
   }
 
   void _initializeSelectedDate() {
     if (widget.initialDate.isNotEmpty) {
-      final parts = widget.initialDate.split('/');
+      final List<String> parts = widget.initialDate.split('/');
       _selectedYear = int.parse(parts[0]);
       _selectedMonth = int.parse(parts[1]);
       _selectedDay = widget.showDay ? int.parse(parts[2]) : _getCurrentDay();
     } else {
-      final now = widget.isJalaali ? Jalali.now() : Gregorian.now();
+      final Date now = widget.isJalaali ? Jalali.now() : Gregorian.now();
       _selectedYear = now.year;
       _selectedMonth = now.month;
       _selectedDay = now.day;
@@ -91,11 +91,11 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    final maxDay = _getMonthLength(_selectedYear, _selectedMonth);
+    final int maxDay = _getMonthLength(_selectedYear, _selectedMonth);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: [
+      children: <Widget>[
         if (widget.showLabels) _buildLabels(),
         _buildDatePickers(maxDay),
       ],
@@ -104,7 +104,7 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
 
   Widget _buildLabels() => Row(
     mainAxisAlignment: MainAxisAlignment.center,
-    children: [
+    children: <Widget>[
       _buildLabel(widget.yearText),
       _buildLabel(widget.monthText),
       if (widget.showDay) _buildLabel(widget.dayText),
@@ -122,7 +122,7 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
 
   Widget _buildDatePickers(int maxDay) => Row(
     mainAxisAlignment: MainAxisAlignment.center,
-    children: [
+    children: <Widget>[
       _buildYearPicker(),
       _buildMonthPicker(),
       if (widget.showDay) _buildDayPicker(maxDay),
@@ -136,7 +136,7 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
     maxValue: _getMaximumYear(),
     selectedRowStyle: widget.selectedRowStyle,
     unselectedRowStyle: widget.unselectedRowStyle,
-    onChanged: (value) => _handleYearChange(value as int),
+    onChanged: (num value) => _handleYearChange(value as int),
   );
 
   Widget _buildMonthPicker() => NumberPicker.integer(
@@ -148,7 +148,7 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
     unselectedRowStyle: widget.unselectedRowStyle,
     isShowMonthName: widget.showMonthName,
     isJalali: widget.isJalaali,
-    onChanged: (value) => _handleMonthChange(value as int),
+    onChanged: (num value) => _handleMonthChange(value as int),
   );
 
   Widget _buildDayPicker(int maxDay) => NumberPicker.integer(
@@ -158,7 +158,7 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
     maxValue: math.min(maxDay, _getMaximumDay()),
     selectedRowStyle: widget.selectedRowStyle,
     unselectedRowStyle: widget.unselectedRowStyle,
-    onChanged: (value) => _handleDayChange(value as int),
+    onChanged: (num value) => _handleDayChange(value as int),
   );
 
   void _handleYearChange(int year) {
@@ -190,11 +190,11 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
   }
 
   void _notifyDateChange() {
-    final year = _selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, '0');
-    final month = _selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, '0');
+    final String year = _selectedYear.toString().padLeft(widget.addLeadingZero ? 4 : 1, '0');
+    final String month = _selectedMonth.toString().padLeft(widget.addLeadingZero ? 2 : 1, '0');
 
     if (widget.showDay) {
-      final day = _selectedDay.toString().padLeft(widget.addLeadingZero ? 2 : 1, '0');
+      final String day = _selectedDay.toString().padLeft(widget.addLeadingZero ? 2 : 1, '0');
       widget.onDateChanged('$year/$month/$day');
     } else {
       widget.onDateChanged('$year/$month');
@@ -207,9 +207,9 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
       if (month < 12) return 30;
       return Jalali(year).isLeapYear() ? 30 : 29;
     } else {
-      final nextMonth = month == 12
-          ? DateTime(year + 1, 1, 1)
-          : DateTime(year, month + 1, 1);
+      final DateTime nextMonth = month == 12
+          ? DateTime(year + 1)
+          : DateTime(year, month + 1);
       return nextMonth.subtract(const Duration(days: 1)).day;
     }
   }
@@ -217,14 +217,14 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
   int _getMinimumMonth() {
     if (widget.startDate.isEmpty) return _minMonth;
 
-    final startMonth = int.parse(widget.startDate.split('/')[1]);
+    final int startMonth = int.parse(widget.startDate.split('/')[1]);
     return _selectedYear == _getMinimumYear() ? startMonth : _minMonth;
   }
 
   int _getMaximumMonth() {
     if (widget.endDate.isEmpty) return _maxMonth;
 
-    final endMonth = int.parse(widget.endDate.split('/')[1]);
+    final int endMonth = int.parse(widget.endDate.split('/')[1]);
     return _selectedYear == _getMaximumYear() ? endMonth : _maxMonth;
   }
 
@@ -243,7 +243,7 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
   int _getMinimumDay() {
     if (!widget.showDay || widget.startDate.isEmpty) return _minDay;
 
-    final startDay = int.parse(widget.startDate.split('/')[2]);
+    final int startDay = int.parse(widget.startDate.split('/')[2]);
     return (_selectedYear == _getMinimumYear() && _selectedMonth == _getMinimumMonth())
         ? startDay
         : _minDay;
@@ -254,7 +254,7 @@ class _LinearDatePickerState extends State<LinearDatePicker> {
       return _getMonthLength(_selectedYear, _selectedMonth);
     }
 
-    final endDay = int.parse(widget.endDate.split('/')[2]);
+    final int endDay = int.parse(widget.endDate.split('/')[2]);
     return (_selectedYear == _getMaximumYear() && _selectedMonth == _getMaximumMonth())
         ? endDay
         : _getMonthLength(_selectedYear, _selectedMonth);
@@ -324,16 +324,16 @@ class NumberPicker extends StatelessWidget {
   final bool isJalali;
 
   void animateInt(int valueToSelect) {
-    final index = (valueToSelect - minValue) ~/ step;
+    final int index = (valueToSelect - minValue) ~/ step;
     _animate(intScrollController, index * itemExtent);
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final defaultStyle = unselectedRowStyle ?? theme.textTheme.bodyMedium!;
-    final selectedStyle = selectedRowStyle ?? theme.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w700);
-    final listItemCount = integerItemCount + 2;
+    final ThemeData theme = Theme.of(context);
+    final TextStyle defaultStyle = unselectedRowStyle ?? theme.textTheme.bodyMedium!;
+    final TextStyle selectedStyle = selectedRowStyle ?? theme.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w700);
+    final int listItemCount = integerItemCount + 2;
 
     return Listener(
       onPointerUp: (_) {
@@ -341,13 +341,13 @@ class NumberPicker extends StatelessWidget {
           animateInt(selectedIntValue);
         }
       },
-      child: NotificationListener(
+      child: NotificationListener<Notification>(
         onNotification: _onIntegerNotification,
         child: SizedBox(
           height: listViewHeight,
           width: listViewWidth,
           child: Stack(
-            children: [
+            children: <Widget>[
               ListView.builder(
                 scrollDirection: scrollDirection,
                 controller: intScrollController,
@@ -355,9 +355,9 @@ class NumberPicker extends StatelessWidget {
                 physics: enabled ? const ClampingScrollPhysics() : const NeverScrollableScrollPhysics(),
                 itemCount: listItemCount,
                 cacheExtent: _calculateCacheExtent(listItemCount),
-                itemBuilder: (context, index) {
-                  final value = _intValueFromIndex(index);
-                  final isExtra = index == 0 || index == listItemCount - 1;
+                itemBuilder: (BuildContext context, int index) {
+                  final int value = _intValueFromIndex(index);
+                  final bool isExtra = index == 0 || index == listItemCount - 1;
 
                   return isExtra
                       ? Container()
@@ -400,8 +400,8 @@ class NumberPicker extends StatelessWidget {
 
   bool _onIntegerNotification(Notification notification) {
     if (notification is ScrollNotification) {
-      var middleIndex = (notification.metrics.pixels / itemExtent).round().clamp(0, integerItemCount - 1);
-      var middleValue = _normalizeIntegerMiddleValue(_intValueFromIndex(middleIndex + 1));
+      final int middleIndex = (notification.metrics.pixels / itemExtent).round().clamp(0, integerItemCount - 1);
+      final int middleValue = _normalizeIntegerMiddleValue(_intValueFromIndex(middleIndex + 1));
 
       if (_userStoppedScrolling(notification, intScrollController)) {
         animateInt(middleValue);
@@ -416,7 +416,7 @@ class NumberPicker extends StatelessWidget {
   }
 
   double _calculateCacheExtent(int itemCount) {
-    final cacheExtent = 250.0;
+    const double cacheExtent = 250.0;
     return (itemCount - 2) * kDefaultItemExtent <= cacheExtent
         ? (itemCount - 3) * kDefaultItemExtent
         : cacheExtent;
@@ -526,13 +526,13 @@ class _NumberPickerDialogState extends State<NumberPickerDialog> {
         zeroPad: widget.zeroPad,
         highlightSelectedValue: widget.highlightSelectedValue,
         decoration: widget.decoration,
-        onChanged: (value) => setState(() => selectedValue = value as int),
+        onChanged: (num value) => setState(() => selectedValue = value as int),
         textMapper: widget.textMapper,
         haptics: widget.haptics,
         isShowMonthName: widget.isShowMonthName,
         isJalali: widget.isJalali,
       ),
-      actions: [
+      actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.pop(context),
           child: widget.cancelWidget,

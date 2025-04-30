@@ -4,7 +4,7 @@ import '../jalali/jalali_date.dart';
 class JalaliFormatter extends DateFormatter {
   const JalaliFormatter(Jalali super.date);
 
-  static const List<String> _monthNames = [
+  static const List<String> _monthNames = <String>[
     'فروردین',
     'اردیبهشت',
     'خرداد',
@@ -19,7 +19,7 @@ class JalaliFormatter extends DateFormatter {
     'اسفند',
   ];
 
-  static const List<String> _monthNamesAfghanistan = [
+  static const List<String> _monthNamesAfghanistan = <String>[
     'حمل',
     'ثور',
     'جوزا',
@@ -34,7 +34,7 @@ class JalaliFormatter extends DateFormatter {
     'حوت',
   ];
 
-  static const List<String> _weekDayNames = [
+  static const List<String> _weekDayNames = <String>[
     'شنبه',
     'یک شنبه',
     'دو شنبه',

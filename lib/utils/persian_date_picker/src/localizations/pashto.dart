@@ -141,31 +141,31 @@ class PashtoMaterialLocalizations extends DefaultMaterialLocalizations {
 
   @override
   String formatMediumDate(DateTime date) {
-    final jalaliDate = Jalali.fromDateTime(date);
+    final Jalali jalaliDate = Jalali.fromDateTime(date);
     return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatShortMonthDay(DateTime date) {
-    final jalaliDate = Jalali.fromDateTime(date);
+    final Jalali jalaliDate = Jalali.fromDateTime(date);
     return '${jalaliDate.day} ${_shortMonths[jalaliDate.month - 1]}';
   }
 
   @override
   String formatMonthYear(DateTime date) {
-    final jalaliDate = Jalali.fromDateTime(date);
+    final Jalali jalaliDate = Jalali.fromDateTime(date);
     return '${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatFullDate(DateTime date) {
-    final jalaliDate = Jalali.fromDateTime(date);
+    final Jalali jalaliDate = Jalali.fromDateTime(date);
     return '${jalaliDate.day} ${_months[jalaliDate.month - 1]} ${jalaliDate.year}';
   }
 
   @override
   String formatCompactDate(DateTime date) {
-    final jalaliDate = Jalali.fromDateTime(date);
+    final Jalali jalaliDate = Jalali.fromDateTime(date);
     return '${jalaliDate.day}/${jalaliDate.month}/${jalaliDate.year}';
   }
 }

@@ -9,7 +9,7 @@ final RegExp _startPlusRegExp = RegExp(r'^\+{1}[)(\d]+');
 final RegExp _maskContentsRegExp = RegExp(r'^[-0-9)( +]{3,}$');
 final RegExp _isMaskSymbolRegExp = RegExp(r'^[-+ )(]+$');
 // final RegExp _repeatingDotsRegExp = RegExp(r'\.{2,}');
-final _spaceRegex = RegExp(r'\s+');
+final RegExp _spaceRegex = RegExp(r'\s+');
 
 /// [errorText] if you don't want this method to throw any
 /// errors, pass null here
@@ -37,22 +37,22 @@ String toNumericString(
   if (mantissaSeparator == '.') {
     inputString = inputString.replaceAll(',', '');
   } else if (mantissaSeparator == ',') {
-    final fractionSep = _detectFractionSeparator(inputString);
+    final String? fractionSep = _detectFractionSeparator(inputString);
     if (fractionSep != null) {
       inputString = inputString.replaceAll(fractionSep, '%FRAC%');
     }
     inputString = inputString.replaceAll('.', '').replaceAll('%FRAC%', '.');
   }
-  var startsWithPeriod = numericStringStartsWithOrphanPeriod(
+  final bool startsWithPeriod = numericStringStartsWithOrphanPeriod(
     inputString,
   );
 
-  var regexWithoutPeriod = allowHyphen ? _digitRegExp : _positiveDigitRegExp;
-  var regExp = allowPeriod ? _digitWithPeriodRegExp : regexWithoutPeriod;
-  var result = inputString.splitMapJoin(
+  final RegExp regexWithoutPeriod = allowHyphen ? _digitRegExp : _positiveDigitRegExp;
+  final RegExp regExp = allowPeriod ? _digitWithPeriodRegExp : regexWithoutPeriod;
+  String result = inputString.splitMapJoin(
     regExp,
-    onMatch: (m) => m.group(0)!,
-    onNonMatch: (nm) => '',
+    onMatch: (Match m) => m.group(0)!,
+    onNonMatch: (String nm) => '',
   );
   if (startsWithPeriod && allowPeriod) {
     result = '0.$result';
@@ -81,12 +81,12 @@ String toNumericStringByRegex(
   bool allowHyphen = true,
 }) {
   if (inputString == null) return '';
-  var regexWithoutPeriod = allowHyphen ? _digitRegExp : _positiveDigitRegExp;
-  var regExp = allowPeriod ? _digitWithPeriodRegExp : regexWithoutPeriod;
+  final RegExp regexWithoutPeriod = allowHyphen ? _digitRegExp : _positiveDigitRegExp;
+  final RegExp regExp = allowPeriod ? _digitWithPeriodRegExp : regexWithoutPeriod;
   return inputString.splitMapJoin(
     regExp,
-    onMatch: (m) => m.group(0)!,
-    onNonMatch: (nm) => '',
+    onMatch: (Match m) => m.group(0)!,
+    onNonMatch: (String nm) => '',
   );
 }
 
@@ -108,11 +108,11 @@ String _toDoubleString(
   String? errorText = 'Invalid number',
   bool allowAllZeroes = false,
 }) {
-  const period = '.';
-  const zero = '0';
-  const dash = '-';
+  const String period = '.';
+  const String zero = '0';
+  const String dash = '-';
   // final allowedSymbols = ['-', period];
-  final temp = <String>[];
+  final List<String> temp = <String>[];
   if (input.startsWith(period)) {
     if (allowPeriod) {
       temp.add(zero);
@@ -122,8 +122,8 @@ String _toDoubleString(
   }
   bool periodUsed = false;
 
-  for (var i = 0; i < input.length; i++) {
-    final char = input[i];
+  for (int i = 0; i < input.length; i++) {
+    final String char = input[i];
     if (!isDigit(char, positiveOnly: true)) {
       if (char == dash) {
         if (i > 0) {
@@ -168,9 +168,9 @@ String _toDoubleString(
 }
 
 bool numericStringStartsWithOrphanPeriod(String string) {
-  var result = false;
-  for (var i = 0; i < string.length; i++) {
-    var char = string[i];
+  bool result = false;
+  for (int i = 0; i < string.length; i++) {
+    final String char = string[i];
     if (isDigit(char)) {
       break;
     }
@@ -437,14 +437,14 @@ String _getMantissaSeparator(
 final RegExp _possibleFractionRegExp = RegExp(r'[,.]');
 
 String? _detectFractionSeparator(String value) {
-  final index = value.lastIndexOf(_possibleFractionRegExp);
+  final int index = value.lastIndexOf(_possibleFractionRegExp);
   if (index < 0) {
     return null;
   }
-  final separator = value[index];
+  final String separator = value[index];
   int numOccurrences = 0;
-  for (var i = 0; i < value.length; i++) {
-    final char = value[i];
+  for (int i = 0; i < value.length; i++) {
+    final String char = value[i];
     if (char == separator) {
       numOccurrences++;
     }
@@ -492,11 +492,11 @@ String toCurrencyString(
   if (value.isEmpty) {
     value = '0';
   }
-  String mSeparator = _getMantissaSeparator(
+  final String mSeparator = _getMantissaSeparator(
     thousandSeparator,
     mantissaLength,
   );
-  String tSeparator = _getThousandSeparator(
+  final String tSeparator = _getThousandSeparator(
     thousandSeparator,
   );
 
@@ -504,13 +504,11 @@ String toCurrencyString(
   /// 04.00 и т.д
   value = toNumericString(
     value,
-    allowAllZeroes: false,
-    allowHyphen: true,
     allowPeriod: true,
     mantissaSeparator: mSeparator,
     mantissaLength: mantissaLength,
   );
-  bool hasFraction = mantissaLength > 0;
+  final bool hasFraction = mantissaLength > 0;
   String? fractionalSeparator;
   if (hasFraction) {
     fractionalSeparator = _detectFractionSeparator(value);
@@ -518,11 +516,11 @@ String toCurrencyString(
     value = value.replaceAll(tSeparator, '');
   }
 
-  var sb = StringBuffer();
+  StringBuffer sb = StringBuffer();
 
   bool addedMantissaSeparator = false;
-  for (var i = 0; i < value.length; i++) {
-    final char = value[i];
+  for (int i = 0; i < value.length; i++) {
+    final String char = value[i];
     if (char == '-') {
       if (i > 0) {
         continue;
@@ -548,8 +546,8 @@ String toCurrencyString(
     }
   }
 
-  final str = sb.toString();
-  final evenPart = addedMantissaSeparator ? str.substring(0, str.indexOf('.')) : str;
+  final String str = sb.toString();
+  final String evenPart = addedMantissaSeparator ? str.substring(0, str.indexOf('.')) : str;
 
   int skipEvenNumbers = 0;
   String shorteningName = '';
@@ -575,7 +573,7 @@ String toCurrencyString(
         break;
       case ShorteningPolicy.Automatic:
         // find out what shortening to use base on the length of the string
-        final policy = _detectShorteningPolicyByStrLength(evenPart);
+        final ShorteningPolicy policy = _detectShorteningPolicyByStrLength(evenPart);
         return toCurrencyString(
           value,
           leadingSymbol: leadingSymbol,
@@ -587,14 +585,14 @@ String toCurrencyString(
         );
     }
   }
-  bool ignoreMantissa = skipEvenNumbers > 0;
+  final bool ignoreMantissa = skipEvenNumbers > 0;
 
-  final fractionalPart = addedMantissaSeparator ? str.substring(str.indexOf('.') + 1) : '';
-  final reversed = evenPart.split('').reversed.toList();
-  List<String> temp = [];
+  final String fractionalPart = addedMantissaSeparator ? str.substring(str.indexOf('.') + 1) : '';
+  final List<String> reversed = evenPart.split('').reversed.toList();
+  final List<String> temp = <String>[];
   bool skippedLast = false;
-  for (var i = 0; i < reversed.length; i++) {
-    final char = reversed[i];
+  for (int i = 0; i < reversed.length; i++) {
+    final String char = reversed[i];
     if (skipEvenNumbers > 0) {
       skipEvenNumbers--;
       skippedLast = true;
@@ -610,9 +608,9 @@ String toCurrencyString(
     skippedLast = false;
     temp.add(char);
   }
-  value = temp.reversed.join('');
+  value = temp.reversed.join();
   sb = StringBuffer();
-  for (var i = 0; i < mantissaLength; i++) {
+  for (int i = 0; i < mantissaLength; i++) {
     if (i < fractionalPart.length) {
       sb.write(fractionalPart[i]);
     } else {
@@ -620,7 +618,7 @@ String toCurrencyString(
     }
   }
 
-  final fraction = sb.toString();
+  final String fraction = sb.toString();
   if (value.isEmpty) {
     value = '0';
   }
@@ -634,7 +632,7 @@ String toCurrencyString(
 
   /// add leading and trailing
   sb = StringBuffer();
-  for (var i = 0; i < value.length; i++) {
+  for (int i = 0; i < value.length; i++) {
     if (i == 0) {
       if (leadingSymbol.isNotEmpty) {
         sb.write(leadingSymbol);

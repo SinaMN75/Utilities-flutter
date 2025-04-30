@@ -16,7 +16,7 @@ class UserService {
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (e) {
+        onException: (dynamic e) {
           if (onException != null) onException(e);
         },
       );
@@ -55,7 +55,7 @@ class UserService {
       body: p.toIdParamMap(),
       onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (e) {
+      onException: (dynamic e) {
         if (onException != null) onException(e);
       },
     );
@@ -72,7 +72,7 @@ class UserService {
       body: p.toMap(),
       onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (e) {
+      onException: (dynamic e) {
         if (onException != null) onException(e);
       },
     );
@@ -89,7 +89,7 @@ class UserService {
       body: p.toIdParamMap(),
       onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (e) {
+      onException: (dynamic e) {
         if (onException != null) onException(e);
       },
     );

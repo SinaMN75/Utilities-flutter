@@ -16,7 +16,7 @@ class AuthService {
       body: p.toMap(),
       onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body, (final dynamic i) => LoginResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (e) {
+      onException: (dynamic e) {
         if (onException != null) onException(e);
       },
     );
@@ -33,7 +33,7 @@ class AuthService {
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body, (final dynamic i) => LoginResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (final e) {
+        onException: (dynamic e) {
           if (onException != null) onException(e);
         },
       );

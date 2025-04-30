@@ -1,4 +1,103 @@
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  exclude:
+    - "lib/utils/multi_formatter"
+    - "lib/utils/persian_date_picker/"
+
+  errors:
+    avoid_empty_else: error
+    avoid_function_literals_in_foreach_calls: error
+    avoid_print: error
+    avoid_redundant_argument_values: error
+    avoid_return_types_on_setters: error
+    avoid_returning_null: error
+    avoid_returning_null_for_future: error
+    avoid_returning_this: error
+    avoid_slow_async_io: error
+    avoid_unnecessary_containers: error
+    avoid_unused_constructor_parameters: error
+    avoid_void_async: error
+    await_only_futures: error
+    cancel_subscriptions: error
+    cast_nullable_to_non_nullable: error
+    close_sinks: error
+    control_flow_in_finally: error
+    invariant_booleans: error
+    iterable_contains_unrelated_type: error
+    list_remove_unrelated_type: error
+    no_logic_in_create_state: error
+    null_check_on_nullable_type_parameter: error
+    prefer_const_constructors: error
+    prefer_const_constructors_in_immutables: error
+    prefer_const_declarations: error
+    prefer_const_literals_to_create_immutables: error
+    prefer_final_fields: error
+    prefer_final_locals: error
+    prefer_foreach: error
+    prefer_is_empty: error
+    prefer_spread_collections: error
+    sized_box_for_whitespace: error
+    sized_box_shrink_expand: error
+    test_types_in_equals: error
+    throw_in_finally: error
+    type_annotate_public_apis: error
+    unawaited_futures: error
+    unnecessary_await_in_return: error
+    unnecessary_const: error
+    unnecessary_null_checks: error
+    unnecessary_nullable_for_final_variable_declarations: error
+    unrelated_type_equality_checks: error
+    use_key_in_widget_constructors: error
+    use_late_for_private_fields_and_variables: error
+    always_specify_types: error
+    omit_local_variable_types: error
+
 linter:
   rules:
+    avoid_empty_else: true
+    avoid_function_literals_in_foreach_calls: true
+    avoid_print: true
+    avoid_redundant_argument_values: true
+    avoid_return_types_on_setters: true
+    avoid_returning_null: true
+    avoid_returning_null_for_future: true
+    avoid_returning_this: true
+    avoid_slow_async_io: true
+    avoid_unnecessary_containers: true
+    avoid_unused_constructor_parameters: true
+    avoid_void_async: true
+    await_only_futures: true
+    cancel_subscriptions: true
+    cast_nullable_to_non_nullable: true
+    close_sinks: true
+    control_flow_in_finally: true
+    invariant_booleans: true
+    iterable_contains_unrelated_type: true
+    list_remove_unrelated_type: true
+    no_logic_in_create_state: true
+    null_check_on_nullable_type_parameter: true
+    prefer_const_constructors: true
+    prefer_const_constructors_in_immutables: true
+    prefer_const_declarations: true
+    prefer_const_literals_to_create_immutables: true
+    prefer_final_fields: true
+    prefer_final_locals: true
+    prefer_foreach: true
+    prefer_is_empty: true
+    prefer_spread_collections: true
+    sized_box_for_whitespace: true
+    sized_box_shrink_expand: true
+    test_types_in_equals: true
+    throw_in_finally: true
+    type_annotate_public_apis: true
+    unawaited_futures: true
+    unnecessary_await_in_return: true
+    unnecessary_const: true
+    unnecessary_null_checks: true
+    unnecessary_nullable_for_final_variable_declarations: true
+    unrelated_type_equality_checks: true
+    use_key_in_widget_constructors: true
+    use_late_for_private_fields_and_variables: true
+    always_specify_types: true
+    prefer_typing_uninitialized_variables: true

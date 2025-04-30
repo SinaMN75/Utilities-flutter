@@ -122,7 +122,7 @@ class CircularPercentIndicator extends StatefulWidget {
 
 class _CircularPercentIndicatorState extends State<CircularPercentIndicator> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AnimationController? _animationController;
-  Animation? _animation;
+  late Animation<double> _animation;
   double _percent = 0.0;
   double _diameter = 0.0;
 
@@ -141,11 +141,11 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
         vsync: this,
         duration: Duration(milliseconds: widget.animationDuration),
       );
-      _animation = Tween(begin: 0.0, end: widget.percent).animate(
+      _animation = Tween<double>(begin: 0.0, end: widget.percent).animate(
         CurvedAnimation(parent: _animationController!, curve: widget.curve),
       )..addListener(() {
           setState(() {
-            _percent = _animation!.value;
+            _percent = _animation.value;
           });
           if (widget.restartAnimation && _percent == 1.0) {
             _animationController!.repeat(min: 0, max: 1.0);
@@ -176,7 +176,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
     if (oldWidget.percent != widget.percent || oldWidget.startAngle != widget.startAngle) {
       if (_animationController != null) {
         _animationController!.duration = Duration(milliseconds: widget.animationDuration);
-        _animation = Tween(
+        _animation = Tween<double>(
           begin: widget.animateFromLastPercent ? oldWidget.percent : 0.0,
           end: widget.percent,
         ).animate(
@@ -224,7 +224,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
                 maskFilter: widget.maskFilter,
                 rotateLinearGradient: widget.rotateLinearGradient,
               ),
-              child: (widget.center != null) ? Center(child: widget.center) : SizedBox.expand(),
+              child: (widget.center != null) ? Center(child: widget.center) : const SizedBox.expand(),
             ),
             if (widget.widgetIndicator != null && widget.animation)
               Positioned.fill(
@@ -535,7 +535,7 @@ class LinearPercentIndicator extends StatefulWidget {
 
 class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AnimationController? _animationController;
-  Animation? _animation;
+  late Animation<double> _animation;
   double _percent = 0.0;
   final GlobalKey<State<StatefulWidget>> _containerKey = GlobalKey();
   final GlobalKey<State<StatefulWidget>> _keyIndicator = GlobalKey();
@@ -566,11 +566,11 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
     });
     if (widget.animation) {
       _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: widget.animationDuration));
-      _animation = Tween(begin: 0.0, end: widget.percent).animate(
+      _animation = Tween<double>(begin: 0.0, end: widget.percent).animate(
         CurvedAnimation(parent: _animationController!, curve: widget.curve),
       )..addListener(() {
           setState(() {
-            _percent = _animation!.value;
+            _percent = _animation.value;
           });
           if (widget.restartAnimation && _percent == 1.0) {
             _animationController!.repeat(min: 0, max: 1.0);
@@ -600,7 +600,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
     if (oldWidget.percent != widget.percent) {
       if (_animationController != null) {
         _animationController!.duration = Duration(milliseconds: widget.animationDuration);
-        _animation = Tween(begin: widget.animateFromLastPercent ? oldWidget.percent : 0.0, end: widget.percent).animate(
+        _animation = Tween<double>(begin: widget.animateFromLastPercent ? oldWidget.percent : 0.0, end: widget.percent).animate(
           CurvedAnimation(parent: _animationController!, curve: widget.curve),
         );
         _animationController!.forward(from: 0.0);

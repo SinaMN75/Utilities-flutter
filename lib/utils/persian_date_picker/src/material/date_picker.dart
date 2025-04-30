@@ -1876,13 +1876,13 @@ class _MonthItemState extends State<_MonthItem> {
       );
       final List<Widget> weekList = dayItems.sublist(start, end);
 
-      final Jalali dateAfterLeadingPadding = Jalali(year, month, 1).addDays(start - dayOffset);
+      final Jalali dateAfterLeadingPadding = Jalali(year, month).addDays(start - dayOffset);
 
       final bool isLeadingInRange = !(dayOffset > 0 && i == 0) && widget.selectedDateStart != null && widget.selectedDateEnd != null && dateAfterLeadingPadding.isAfter(widget.selectedDateStart!) && !dateAfterLeadingPadding.isAfter(widget.selectedDateEnd!);
       weekList.insert(0, _buildEdgeBox(context, isLeadingInRange));
 
       if (end < dayItems.length || (end == dayItems.length && dayItems.length % JalaliExt.daysPerWeek == 0)) {
-        final Jalali dateBeforeTrailingPadding = Jalali(year, month, 1).addDays(end - dayOffset - 1);
+        final Jalali dateBeforeTrailingPadding = Jalali(year, month).addDays(end - dayOffset - 1);
 
         final bool isTrailingInRange = widget.selectedDateStart != null && widget.selectedDateEnd != null && !dateBeforeTrailingPadding.isBefore(widget.selectedDateStart!) && dateBeforeTrailingPadding.isBefore(widget.selectedDateEnd!);
         weekList.add(_buildEdgeBox(context, isTrailingInRange));

@@ -4,7 +4,7 @@ import '../gregorian/gregorian_date.dart';
 class GregorianFormatter extends DateFormatter {
   const GregorianFormatter(Gregorian super.date);
 
-  static const List<String> _monthNames = [
+  static const List<String> _monthNames = <String>[
     'January',
     'February',
     'March',
@@ -19,7 +19,7 @@ class GregorianFormatter extends DateFormatter {
     'December',
   ];
 
-  static const List<String> _weekDayNames = [
+  static const List<String> _weekDayNames = <String>[
     'Monday',
     'Tuesday',
     'Wednesday',

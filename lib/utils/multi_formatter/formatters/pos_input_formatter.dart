@@ -22,10 +22,10 @@ class PosInputFormatter implements TextInputFormatter {
     String text,
     String separator,
   ) {
-    final textLength = text.length;
-    final textBuffer = <String>[];
+    final int textLength = text.length;
+    final List<String> textBuffer = <String>[];
 
-    for (var i = 0; i < textLength; i++) {
+    for (int i = 0; i < textLength; i++) {
       if (i % 3 == 0 && i != 0) {
         textBuffer.add(separator);
       }
@@ -40,7 +40,7 @@ class PosInputFormatter implements TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    var text = newValue.text;
+    String text = newValue.text;
 
     // Clean text
     text = text.replaceAll(
@@ -63,13 +63,13 @@ class PosInputFormatter implements TextInputFormatter {
     }
 
     if (text.length > mantissaLength) {
-      final separatorOffset = text.length - mantissaLength;
+      final int separatorOffset = text.length - mantissaLength;
 
-      var integerPart = text.substring(
+      String integerPart = text.substring(
         0,
         separatorOffset,
       );
-      final decimalPart = text.substring(
+      final String decimalPart = text.substring(
         separatorOffset,
         text.length,
       );
@@ -128,7 +128,7 @@ class DecimalPosSeparator {
   static const DecimalPosSeparator comma = DecimalPosSeparator._(',');
 
   /// All decimal pos separators
-  static List<DecimalPosSeparator> get values => const [comma, dot];
+  static List<DecimalPosSeparator> get values => const <DecimalPosSeparator>[comma, dot];
 
   @override
   String toString() => '$runtimeType.$char';
@@ -171,7 +171,7 @@ class ThousandsPosSeparator {
   static const ThousandsPosSeparator quote = ThousandsPosSeparator._('\'');
 
   /// All thousands pos separators
-  static List<ThousandsPosSeparator> get values => const [comma, dot];
+  static List<ThousandsPosSeparator> get values => const <ThousandsPosSeparator>[comma, dot];
 
   @override
   String toString() => '$runtimeType.$char';

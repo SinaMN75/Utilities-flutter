@@ -220,7 +220,7 @@ class BankInformation {
 
   @override
   bool operator ==(Object other) {
-    other = other as BankInformation;
+    if (other is! BankInformation) return false;
     return nickname == other.nickname &&
         name == other.name &&
         persianName == other.persianName &&

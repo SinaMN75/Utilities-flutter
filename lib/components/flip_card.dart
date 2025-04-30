@@ -65,7 +65,7 @@ class FlipCard extends StatefulWidget {
   });
 
   @override
-  State<StatefulWidget> createState() => FlipCardState(side == CardSide.FRONT);
+  State<StatefulWidget> createState() => FlipCardState();
 }
 
 class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin {
@@ -73,22 +73,23 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
   Animation<double>? _frontRotation;
   Animation<double>? _backRotation;
 
-  bool isFront;
+  bool isFront = true;
 
-  FlipCardState(this.isFront);
+  FlipCardState();
 
   @override
   void initState() {
     super.initState();
+    isFront = widget.side == CardSide.FRONT;
     controller = AnimationController(
       value: isFront ? 0.0 : 1.0,
       duration: Duration(milliseconds: widget.speed),
       vsync: this,
     );
-    _frontRotation = TweenSequence(
-      [
+    _frontRotation = TweenSequence<double>(
+      <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-          tween: Tween(begin: 0.0, end: pi / 2).chain(CurveTween(curve: Curves.easeIn)),
+          tween: Tween<double>(begin: 0.0, end: pi / 2).chain(CurveTween(curve: Curves.easeIn)),
           weight: 50,
         ),
         TweenSequenceItem<double>(
@@ -97,10 +98,10 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
         ),
       ],
     ).animate(controller!);
-    _backRotation = TweenSequence(
-      [
+    _backRotation = TweenSequence<double>(
+      <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50),
-        TweenSequenceItem<double>(tween: Tween(begin: -pi / 2, end: 0.0).chain(CurveTween(curve: Curves.easeOut)), weight: 50),
+        TweenSequenceItem<double>(tween: Tween<double>(begin: -pi / 2, end: 0.0).chain(CurveTween(curve: Curves.easeOut)), weight: 50),
       ],
     ).animate(controller!);
 
@@ -142,7 +143,7 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
 
   @override
   Widget build(final BuildContext context) {
-    final frontPositioning = widget.fill == Fill.fillFront ? _fill : _noop;
+    final Widget Function(Widget child) frontPositioning = widget.fill == Fill.fillFront ? _fill : _noop;
     final Widget Function(Widget child) backPositioning = widget.fill == Fill.fillBack ? _fill : _noop;
 
     final Stack child = Stack(
@@ -211,7 +212,7 @@ class FlipCardController {
 
     final Duration? durationTotal = total ?? controller!.duration;
 
-    final Completer completer = Completer();
+    final Completer<void> completer = Completer<void>();
 
     final Duration? original = controller!.duration;
     controller!.duration = durationTotal;

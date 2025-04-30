@@ -4,7 +4,7 @@ class _Algo {
   const _Algo._();
 
   static _JalaliCalculation calculate(int jy) {
-    final List<int> breaks = [
+    final List<int> breaks = <int>[
       -61,
       9,
       38,
@@ -100,7 +100,7 @@ class _Algo {
       millisecond,
     ).year;
     int jy = gy - 621;
-    final r = calculate(jy);
+    final _JalaliCalculation r = calculate(jy);
     bool isLeap = r.leap == 0;
     final int jdn1f = Gregorian(
       gy,
@@ -181,8 +181,8 @@ class _Algo {
       }
     }
 
-    final r = calculate(year);
-    final isLeap = r.leap == 0;
+    final _JalaliCalculation r = calculate(year);
+    final bool isLeap = r.leap == 0;
 
     final int ml = month == 12 ? (isLeap ? 30 : 29) : (month > 6 ? 30 : 31);
 
@@ -203,7 +203,7 @@ class _Algo {
       throw DateException('Millisecond is out of bounds. [0..999]');
     }
 
-    final julianDayNumber = Gregorian(
+    final int julianDayNumber = Gregorian(
           r.gy,
           3,
           r.march,

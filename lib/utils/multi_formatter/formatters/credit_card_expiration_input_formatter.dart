@@ -5,18 +5,18 @@ class CreditCardExpirationDateFormatter extends MaskedInputFormatter {
 
   @override
   FormattedValue applyMask(String text) {
-    var fv = super.applyMask(text);
-    var result = fv.toString();
-    var numericString = toNumericString(
+    FormattedValue fv = super.applyMask(text);
+    String result = fv.toString();
+    final String numericString = toNumericString(
       result,
       allowAllZeroes: true,
     );
-    var numAddedLeadingSymbols = 0;
+    int numAddedLeadingSymbols = 0;
     String? amendedMonth;
     if (numericString.isNotEmpty) {
-      var allDigits = numericString.split('');
-      var stringBuffer = StringBuffer();
-      var firstDigit = int.parse(allDigits[0]);
+      final List<String> allDigits = numericString.split('');
+      final StringBuffer stringBuffer = StringBuffer();
+      final int firstDigit = int.parse(allDigits[0]);
 
       if (firstDigit > 1) {
         stringBuffer.write('0');
@@ -26,7 +26,7 @@ class CreditCardExpirationDateFormatter extends MaskedInputFormatter {
       } else if (firstDigit == 1) {
         if (allDigits.length > 1) {
           stringBuffer.write(firstDigit);
-          var secondDigit = int.parse(allDigits[1]);
+          final int secondDigit = int.parse(allDigits[1]);
           if (secondDigit > 2) {
             stringBuffer.write(2);
           } else {
@@ -40,7 +40,7 @@ class CreditCardExpirationDateFormatter extends MaskedInputFormatter {
       if (result.length < amendedMonth.length) {
         result = amendedMonth;
       } else {
-        var sub = result.substring(2, result.length);
+        final String sub = result.substring(2, result.length);
         result = '$amendedMonth$sub';
       }
     }
@@ -48,7 +48,7 @@ class CreditCardExpirationDateFormatter extends MaskedInputFormatter {
 
     /// a little hack to be able to move caret by one
     /// symbol to the right if a leading zero was added automatically
-    for (var i = 0; i < numAddedLeadingSymbols; i++) {
+    for (int i = 0; i < numAddedLeadingSymbols; i++) {
       fv.increaseNumberOfLeadingSymbols();
     }
     return fv;

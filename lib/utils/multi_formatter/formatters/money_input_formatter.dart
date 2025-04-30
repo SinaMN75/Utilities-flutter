@@ -62,12 +62,12 @@ class MoneyInputFormatter extends TextInputFormatter {
     String value,
     TextEditingValue textEditingValue,
   ) {
-    var tempValue = value;
-    final leadingTotalLength = _leadingLength + _paddingLength;
+    String tempValue = value;
+    final int leadingTotalLength = _leadingLength + _paddingLength;
     if (leadingTotalLength != 0 && tempValue.length >= leadingTotalLength) {
-      final curLeading = tempValue.substring(0, leadingTotalLength);
+      final String curLeading = tempValue.substring(0, leadingTotalLength);
       tempValue = tempValue.substring(leadingTotalLength);
-      final match = _wrongLeadingZeroMatcher.matchAsPrefix(tempValue);
+      final Match? match = _wrongLeadingZeroMatcher.matchAsPrefix(tempValue);
       if (match != null) {
         /// The very process of removing the leading zero
         tempValue = tempValue.substring(1, tempValue.length);
@@ -86,8 +86,8 @@ class MoneyInputFormatter extends TextInputFormatter {
     if (_leadingLength > 0 && _trailingLength > 0) {
       throw 'You cannot use trailing an leading symbols at the same time';
     }
-    var newText = newValue.text;
-    var oldText = oldValue.text;
+    String newText = newValue.text;
+    String oldText = oldValue.text;
     if (oldValue == newValue) {
       return newValue;
     }
@@ -105,7 +105,7 @@ class MoneyInputFormatter extends TextInputFormatter {
     /// If a value starts with something like 02,000.50$
     /// the zero, obviously, must be removed
     int numZeroesRemovedAtStringStart = 0;
-    var newRemoveZeroResult = _removeWrongLeadingZero(
+    final String? newRemoveZeroResult = _removeWrongLeadingZero(
       newText,
       newValue,
     );
@@ -114,14 +114,14 @@ class MoneyInputFormatter extends TextInputFormatter {
       numZeroesRemovedAtStringStart = 1;
     }
 
-    var usesCommaForMantissa = _usesCommasForMantissa();
+    final bool usesCommaForMantissa = _usesCommasForMantissa();
     if (usesCommaForMantissa) {
       newText = _swapCommasAndPeriods(newText);
       oldText = _swapCommasAndPeriods(oldText);
       oldValue = oldValue.copyWith(text: oldText);
       newValue = newValue.copyWith(text: newText);
     }
-    var usesSpacesAsThousandSeparator = _usesSpacesForThousands();
+    final bool usesSpacesAsThousandSeparator = _usesSpacesForThousands();
     if (usesSpacesAsThousandSeparator) {
       /// if spaces are used as thousand separators
       /// they must be replaced with commas here
@@ -140,16 +140,16 @@ class MoneyInputFormatter extends TextInputFormatter {
       newValue = newValue.copyWith(text: newText);
     }
 
-    var isErasing = newValue.text.length < oldValue.text.length;
+    final bool isErasing = newValue.text.length < oldValue.text.length;
 
     TextSelection selection;
 
     /// mantissa must always be a period here because the string at this
     /// point is always formmated using commas as thousand separators
     /// for simplicity
-    var mantissaSymbol = '.';
-    var leadingZeroWithDot = '${leadingSymbol}0$mantissaSymbol';
-    var leadingZeroWithoutDot = '$leadingSymbol$mantissaSymbol';
+    const String mantissaSymbol = '.';
+    final String leadingZeroWithDot = '${leadingSymbol}0$mantissaSymbol';
+    final String leadingZeroWithoutDot = '$leadingSymbol$mantissaSymbol';
 
     if (isErasing) {
       if (newValue.selection.end < _leadingLength) {
@@ -168,8 +168,8 @@ class MoneyInputFormatter extends TextInputFormatter {
           /// we should allow mantissa editing anyway
           /// so this code restrictss the length only if we edit
           /// the main part
-          var lastSeparatorIndex = oldText.lastIndexOf('.');
-          var isAfterMantissa = newValue.selection.end > lastSeparatorIndex + 1;
+          final int lastSeparatorIndex = oldText.lastIndexOf('.');
+          final bool isAfterMantissa = newValue.selection.end > lastSeparatorIndex + 1;
 
           if (!newValue.text.contains('..')) {
             if (!isAfterMantissa) {
@@ -196,7 +196,7 @@ class MoneyInputFormatter extends TextInputFormatter {
       selection = newValue.selection;
 
       /// here we always have a fraction part
-      var lastSeparatorIndex = oldText.lastIndexOf('.');
+      final int lastSeparatorIndex = oldText.lastIndexOf('.');
       if (selection.end == lastSeparatorIndex) {
         /// if a caret was right after the mantissa separator then
         /// we need to bring it before the separator
@@ -205,7 +205,7 @@ class MoneyInputFormatter extends TextInputFormatter {
           offset: oldValue.selection.extentOffset - 1,
         );
         // print('OLD TEXT $oldText');
-        var preparedText = _prepareDotsAndCommas(oldText);
+        final String preparedText = _prepareDotsAndCommas(oldText);
         // print('PREPARED TEXT $preparedText');
         return TextEditingValue(
           selection: selection,
@@ -213,7 +213,7 @@ class MoneyInputFormatter extends TextInputFormatter {
         );
       }
 
-      var isAfterSeparator = lastSeparatorIndex < selection.extentOffset;
+      final bool isAfterSeparator = lastSeparatorIndex < selection.extentOffset;
       if (isAfterSeparator && lastSeparatorIndex > -1) {
         /// if the erasing started before the separator
         /// allow erasing everything
@@ -221,7 +221,7 @@ class MoneyInputFormatter extends TextInputFormatter {
           text: _prepareDotsAndCommas(newValue.text),
         );
       }
-      var numSeparatorsBefore = _countSymbolsInString(
+      final int numSeparatorsBefore = _countSymbolsInString(
         newText,
         ',',
       );
@@ -230,10 +230,9 @@ class MoneyInputFormatter extends TextInputFormatter {
         mantissaLength: mantissaLength,
         leadingSymbol: leadingSymbol,
         trailingSymbol: trailingSymbol,
-        thousandSeparator: ThousandSeparator.Comma,
         useSymbolPadding: useSymbolPadding,
       );
-      var numSeparatorsAfter = _countSymbolsInString(
+      int numSeparatorsAfter = _countSymbolsInString(
         newText,
         ',',
       );
@@ -246,7 +245,7 @@ class MoneyInputFormatter extends TextInputFormatter {
         numSeparatorsAfter = 0;
       }
 
-      var selectionOffset = numSeparatorsAfter - numSeparatorsBefore;
+      final int selectionOffset = numSeparatorsAfter - numSeparatorsBefore;
       int offset = selection.extentOffset + selectionOffset;
       if (_leadingLength > 0) {
         // _leadingLength = leadingSymbol.length;
@@ -276,7 +275,7 @@ class MoneyInputFormatter extends TextInputFormatter {
         }
       }
 
-      var preparedText = _prepareDotsAndCommas(newText);
+      final String preparedText = _prepareDotsAndCommas(newText);
       return TextEditingValue(
         selection: selection,
         text: preparedText,
@@ -285,7 +284,7 @@ class MoneyInputFormatter extends TextInputFormatter {
 
     /// stop isErasing
 
-    bool oldStartsWithLeading = leadingSymbol.isNotEmpty &&
+    final bool oldStartsWithLeading = leadingSymbol.isNotEmpty &&
         oldValue.text.startsWith(
           leadingSymbol,
         );
@@ -293,10 +292,10 @@ class MoneyInputFormatter extends TextInputFormatter {
     /// count the number of thousand separators in an old string
     /// then check how many of there are there in the new one and if
     /// the number is different add this number to the selection offset
-    var oldSelectionEnd = oldValue.selection.end;
-    TextEditingValue value = oldSelectionEnd > -1 ? oldValue : newValue;
-    String oldSubstrBeforeSelection = oldSelectionEnd > -1 ? value.text.substring(0, value.selection.end) : '';
-    int numThousandSeparatorsInOldSub = _countSymbolsInString(
+    final int oldSelectionEnd = oldValue.selection.end;
+    final TextEditingValue value = oldSelectionEnd > -1 ? oldValue : newValue;
+    final String oldSubstrBeforeSelection = oldSelectionEnd > -1 ? value.text.substring(0, value.selection.end) : '';
+    final int numThousandSeparatorsInOldSub = _countSymbolsInString(
       oldSubstrBeforeSelection,
       ',',
     );
@@ -304,16 +303,11 @@ class MoneyInputFormatter extends TextInputFormatter {
     /// This check is necessary because if an input looks like this
     /// $.5, toCurrencyString() method will convert it to
     /// $0.5 and the selection must also be shifted by 1 symbol to the right
-    var startsWithOrphanPeriod = numericStringStartsWithOrphanPeriod(newText);
-    var formattedValue = toCurrencyString(
+    final bool startsWithOrphanPeriod = numericStringStartsWithOrphanPeriod(newText);
+    final String formattedValue = toCurrencyString(
       newText,
       leadingSymbol: leadingSymbol,
       mantissaLength: mantissaLength,
-
-      /// we always need a comma here because
-      /// this value is not final. The correct symbol will be
-      /// added in _prepareDotsAndCommas() method
-      thousandSeparator: ThousandSeparator.Comma,
       trailingSymbol: trailingSymbol,
       useSymbolPadding: useSymbolPadding,
     );
@@ -323,7 +317,7 @@ class MoneyInputFormatter extends TextInputFormatter {
     /// replacements may occure below
     // print(formattedValue);
 
-    String newSubstrBeforeSelection = oldSelectionEnd > -1
+    final String newSubstrBeforeSelection = oldSelectionEnd > -1
         ? formattedValue.substring(
             0,
             value.selection.end,
@@ -342,7 +336,7 @@ class MoneyInputFormatter extends TextInputFormatter {
       numAddedSeparators = 0;
     }
 
-    bool newStartsWithLeading = leadingSymbol.isNotEmpty &&
+    final bool newStartsWithLeading = leadingSymbol.isNotEmpty &&
         formattedValue.startsWith(
           leadingSymbol,
         );
@@ -350,9 +344,9 @@ class MoneyInputFormatter extends TextInputFormatter {
     /// if an old string did not contain a leading symbol but
     /// the new one does then wee need to add a length of the leading
     /// to the selection offset
-    bool addedLeading = !oldStartsWithLeading && newStartsWithLeading;
+    final bool addedLeading = !oldStartsWithLeading && newStartsWithLeading;
 
-    var selectionIndex = value.selection.end + numAddedSeparators;
+    int selectionIndex = value.selection.end + numAddedSeparators;
 
     int wholePartSubStart = 0;
     if (addedLeading) {
@@ -367,9 +361,9 @@ class MoneyInputFormatter extends TextInputFormatter {
     /// mantissa separator after
     selectionIndex -= numZeroesRemovedAtStringStart;
 
-    var mantissaIndex = formattedValue.indexOf(mantissaSymbol);
+    final int mantissaIndex = formattedValue.indexOf(mantissaSymbol);
     if (mantissaIndex > wholePartSubStart) {
-      var wholePartSubstring = formattedValue.substring(
+      final String wholePartSubstring = formattedValue.substring(
         wholePartSubStart,
         mantissaIndex,
       );
@@ -388,10 +382,10 @@ class MoneyInputFormatter extends TextInputFormatter {
       selectionIndex += 1;
     }
 
-    var preparedText = _prepareDotsAndCommas(
+    final String preparedText = _prepareDotsAndCommas(
       formattedValue,
     );
-    var selectionEnd = min(
+    final int selectionEnd = min(
       selectionIndex,
       preparedText.length,
     );
@@ -405,11 +399,11 @@ class MoneyInputFormatter extends TextInputFormatter {
   }
 
   bool isZero(String text) {
-    var numeriString = toNumericString(
+    final String numeriString = toNumericString(
       text,
       allowPeriod: true,
     );
-    var value = double.tryParse(numeriString) ?? 0.0;
+    final double value = double.tryParse(numeriString) ?? 0.0;
     return value == 0.0;
   }
 
@@ -421,16 +415,16 @@ class MoneyInputFormatter extends TextInputFormatter {
     required int trailingLength,
   }) {
     if (value.length < 2) return value;
-    var presplit = value.split('');
-    var stringBuffer = StringBuffer();
-    for (var i = 0; i < presplit.length; i++) {
-      var char = presplit[i];
+    final List<String> presplit = value.split('');
+    final StringBuffer stringBuffer = StringBuffer();
+    for (int i = 0; i < presplit.length; i++) {
+      final String char = presplit[i];
       if (char == ' ') {
         /// we only need to allow spaces as padding
         /// before and after currency symbol
         /// this is used for the cases when we use spaces as thousand separators
-        final minAllowedSpacePos = leadingLength;
-        final maxAllowSpacePos = presplit.length - (1 + trailingLength);
+        final int minAllowedSpacePos = leadingLength;
+        final int maxAllowSpacePos = presplit.length - (1 + trailingLength);
         if (i != minAllowedSpacePos && i != maxAllowSpacePos) {
           stringBuffer.write(',');
         } else {
@@ -458,12 +452,12 @@ class MoneyInputFormatter extends TextInputFormatter {
   }
 
   bool _usesCommasForMantissa() {
-    var value = (thousandSeparator == ThousandSeparator.Period || thousandSeparator == ThousandSeparator.SpaceAndCommaMantissa);
+    final bool value = (thousandSeparator == ThousandSeparator.Period || thousandSeparator == ThousandSeparator.SpaceAndCommaMantissa);
     return value;
   }
 
   bool _usesSpacesForThousands() {
-    var value = (thousandSeparator == ThousandSeparator.SpaceAndCommaMantissa || thousandSeparator == ThousandSeparator.SpaceAndPeriodMantissa);
+    final bool value = (thousandSeparator == ThousandSeparator.SpaceAndCommaMantissa || thousandSeparator == ThousandSeparator.SpaceAndPeriodMantissa);
     return value;
   }
 
@@ -471,7 +465,7 @@ class MoneyInputFormatter extends TextInputFormatter {
   /// resulting string, after it has been brought to
   /// default view with commas as thousand separator
   String _prepareDotsAndCommas(String value) {
-    var useCommasForMantissa = _usesCommasForMantissa();
+    final bool useCommasForMantissa = _usesCommasForMantissa();
     if (useCommasForMantissa) {
       value = _swapCommasAndPeriods(value);
     }
@@ -487,15 +481,15 @@ class MoneyInputFormatter extends TextInputFormatter {
 
   void _processCallback(String value) {
     if (onValueChange != null) {
-      var numericValue = toNumericString(value, allowPeriod: true);
-      var val = double.tryParse(numericValue) ?? 0.0;
+      final String numericValue = toNumericString(value, allowPeriod: true);
+      final double val = double.tryParse(numericValue) ?? 0.0;
       onValueChange!(val);
     }
   }
 }
 
 String _swapCommasAndPeriods(String input) {
-  var temp = input;
+  String temp = input;
   if (temp.contains('.,')) {
     temp = temp.replaceAll('.,', ',,');
   }
@@ -505,8 +499,8 @@ String _swapCommasAndPeriods(String input) {
 }
 
 int _countSymbolsInString(String string, String symbolToCount) {
-  var counter = 0;
-  for (var i = 0; i < string.length; i++) {
+  int counter = 0;
+  for (int i = 0; i < string.length; i++) {
     if (string[i] == symbolToCount) counter++;
   }
   return counter;

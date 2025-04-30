@@ -30,26 +30,26 @@ class CreditCardNumberInputFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    var isErasing = newValue.text.length < oldValue.text.length;
+    final bool isErasing = newValue.text.length < oldValue.text.length;
     if (isErasing) {
       if (newValue.text.isEmpty) {
         _removeFirstLetter();
       }
     }
-    var onlyNumbers = toNumericString(
+    final String onlyNumbers = toNumericString(
       newValue.text,
     );
-    String maskedValue = _applyMask(
+    final String maskedValue = _applyMask(
       onlyNumbers,
     );
     if (maskedValue.length == oldValue.text.length) {
       return oldValue;
     }
-    var endOffset = max(
+    final int endOffset = max(
       oldValue.text.length - oldValue.selection.end,
       0,
     );
-    var selectionEnd = maskedValue.length - endOffset;
+    final int selectionEnd = maskedValue.length - endOffset;
     return TextEditingValue(
       selection: TextSelection.collapsed(
         offset: selectionEnd,
@@ -59,9 +59,9 @@ class CreditCardNumberInputFormatter extends TextInputFormatter {
   }
 
   /// this is a small dirty hack to be able to remove the first character
-  Future _removeFirstLetter() async {
-    await Future.delayed(
-      Duration(
+  Future<void> _removeFirstLetter() async {
+    await Future<void>.delayed(
+      const Duration(
         milliseconds: 5,
       ),
     );
@@ -83,7 +83,7 @@ class CreditCardNumberInputFormatter extends TextInputFormatter {
     if (numericString.isEmpty) {
       _updateCardSystemData(null);
     } else {
-      var countryData = _CardSystemDatas.getCardSystemDataByNumber(
+      final CardSystemData? countryData = _CardSystemDatas.getCardSystemDataByNumber(
         numericString,
       );
       if (countryData != null) {
@@ -109,23 +109,22 @@ bool isCardNumberValid({
     cardNumber,
     allowAllZeroes: true,
     allowHyphen: false,
-    allowPeriod: false,
   );
   if (cardNumber.isEmpty) {
     return false;
   }
-  var countryData = _CardSystemDatas.getCardSystemDataByNumber(cardNumber);
+  final CardSystemData? countryData = _CardSystemDatas.getCardSystemDataByNumber(cardNumber);
   if (countryData == null) {
     return false;
   }
   if (useLuhnAlgo) {
-    final isLuhnOk = checkNumberByLuhn(number: cardNumber);
+    final bool isLuhnOk = checkNumberByLuhn(number: cardNumber);
     if (!isLuhnOk) {
       return false;
     }
   }
-  var formatted = _formatByMask(cardNumber, countryData.numberMask!);
-  var reprocessed = toNumericString(formatted);
+  final String formatted = _formatByMask(cardNumber, countryData.numberMask!);
+  final String reprocessed = toNumericString(formatted);
   return reprocessed == cardNumber && (checkLength == false || reprocessed.length == countryData.numDigits);
 }
 
@@ -153,7 +152,7 @@ String formatAsCardNumber(String cardNumber) {
   cardNumber = toNumericString(
     cardNumber,
   );
-  var cardSystemData = _CardSystemDatas.getCardSystemDataByNumber(cardNumber)!;
+  final CardSystemData cardSystemData = _CardSystemDatas.getCardSystemDataByNumber(cardNumber)!;
   return _formatByMask(cardNumber, cardSystemData.numberMask!);
 }
 
@@ -167,14 +166,14 @@ String _formatByMask(
   String text,
   String mask,
 ) {
-  var chars = text.split('');
-  var result = <String>[];
-  var index = 0;
-  for (var i = 0; i < mask.length; i++) {
+  final List<String> chars = text.split('');
+  final List<String> result = <String>[];
+  int index = 0;
+  for (int i = 0; i < mask.length; i++) {
     if (index >= chars.length) {
       break;
     }
-    var curChar = chars[index];
+    final String curChar = chars[index];
     if (mask[i] == '0') {
       if (isDigit(curChar)) {
         result.add(curChar);
@@ -227,8 +226,8 @@ class _CardSystemDatas {
 
     if (substringLength < 1) return null;
     Map? rawData;
-    List<Map> tempSystems = [];
-    for (var data in _data) {
+    List<Map> tempSystems = <Map>[];
+    for (Map<String, dynamic> data in _data) {
       final systemCode = data['systemCode'];
       if (cardNumber.startsWith(systemCode)) {
         tempSystems.add(data);
@@ -240,16 +239,16 @@ class _CardSystemDatas {
     if (tempSystems.length == 1) {
       rawData = tempSystems.first;
     } else {
-      tempSystems.sort((a, b) => b['systemCode'].compareTo(a['systemCode']));
+      tempSystems.sort((Map a, Map b) => b['systemCode'].compareTo(a['systemCode']));
       final int maxCodeLength = tempSystems.first['systemCode'].length;
       tempSystems = tempSystems
           .where(
-            (e) => e['systemCode'].length == maxCodeLength,
+            (Map e) => e['systemCode'].length == maxCodeLength,
           )
           .toList();
 
-      tempSystems.sort((a, b) => a['systemCode'].compareTo(b['systemCode']));
-      for (var data in tempSystems) {
+      tempSystems.sort((Map a, Map b) => a['systemCode'].compareTo(b['systemCode']));
+      for (Map data in tempSystems) {
         final int numMaskDigits = data['numDigits']!;
         if (cardNumber.length <= numMaskDigits) {
           rawData = data;
@@ -262,139 +261,139 @@ class _CardSystemDatas {
   }
 
   static final List<Map<String, dynamic>> _data = <Map<String, dynamic>>[
-    {
+    <String, dynamic>{
       'system': CardSystem.VISA,
       'systemCode': '4',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.DINERS_CLUB,
       'systemCode': '14',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.DINERS_CLUB,
       'systemCode': '36',
       'numberMask': '0000 000000 0000',
       'numDigits': 14,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.DINERS_CLUB,
       'systemCode': '54',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.DINERS_CLUB,
       'systemCode': '30',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.MASTERCARD,
       'systemCode': '5',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.MASTERCARD,
       'systemCode': '222',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.MASTERCARD,
       'systemCode': '2720',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.AMERICAN_EXPRESS,
       'systemCode': '34',
       'numberMask': '0000 000000 00000',
       'numDigits': 15,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.AMERICAN_EXPRESS,
       'systemCode': '37',
       'numberMask': '0000 000000 00000',
       'numDigits': 15,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.JCB,
       'systemCode': '35',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.UZ_CARD,
       'systemCode': '8600',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.UZ_CARD,
       'systemCode': '5614',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.HUMO,
       'systemCode': '9860',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.DISCOVER,
       'systemCode': '65',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.DISCOVER,
       'systemCode': '60',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.DISCOVER,
       'systemCode': '60',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 19,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.MAESTRO,
       'systemCode': '67',
       'numberMask': '0000 0000 0000 0000 0',
       'numDigits': 17,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.MAESTRO,
       'systemCode': '67',
       'numberMask': '00000000 0000000000',
       'numDigits': 18,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.MIR,
       'systemCode': '2200',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.MIR,
       'systemCode': '2204',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.UNION_PAY,
       'systemCode': '62',
       'numberMask': '0000 0000 0000 0000',
       'numDigits': 16,
     },
-    {
+    <String, dynamic>{
       'system': CardSystem.UNION_PAY,
       'systemCode': '62',
       'numberMask': '0000 0000 0000 0000 000',
@@ -406,8 +405,8 @@ class _CardSystemDatas {
 bool checkNumberByLuhn({
   required String number,
 }) {
-  final cardNumbers = number.split('');
-  int numDigits = cardNumbers.length;
+  final List<String> cardNumbers = number.split('');
+  final int numDigits = cardNumbers.length;
 
   int sum = 0;
   bool isSecond = false;

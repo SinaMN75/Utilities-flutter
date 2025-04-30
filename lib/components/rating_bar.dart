@@ -117,7 +117,7 @@ class _RatingBarState extends State<RatingBar> {
   @override
   void initState() {
     super.initState();
-    _glow = ValueNotifier(false);
+    _glow = ValueNotifier<bool>(false);
     _minRating = widget.minRating;
     _maxRating = widget.maxRating ?? widget.itemCount.toDouble();
     _rating = widget.initialRating;

@@ -97,7 +97,7 @@ class _Algo {
       throw DateException('Gregorian month is out of valid range.');
     }
 
-    final ml = getMonthLength(year, month);
+    final int ml = getMonthLength(year, month);
 
     if (day < 1 || day > ml) {
       throw DateException('Gregorian day is out of valid range.');
@@ -122,7 +122,7 @@ class _Algo {
       throw DateException('Millisecond is out of bounds. [0..999]');
     }
 
-    final julianDayNumber = (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) + ((153 * ((month + 9) % 12) + 2) ~/ 5) + day - 34840408 - ((((year + 100100 + ((month - 8) ~/ 6)) ~/ 100) * 3) ~/ 4) + 752;
+    final int julianDayNumber = (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) + ((153 * ((month + 9) % 12) + 2) ~/ 5) + day - 34840408 - ((((year + 100100 + ((month - 8) ~/ 6)) ~/ 100) * 3) ~/ 4) + 752;
 
     return Gregorian._raw(
       julianDayNumber,

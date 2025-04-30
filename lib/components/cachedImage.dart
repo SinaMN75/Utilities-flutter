@@ -49,7 +49,7 @@ class _CachedNetworkImageState extends State<CachedNetworkImage> {
         return bytes;
       }
     } catch (e) {
-      print("Failed to load image: $e");
+      e.printError();
     }
     return null;
   }

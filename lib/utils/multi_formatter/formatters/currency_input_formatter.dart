@@ -63,7 +63,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
     they might interfere with numbers: -,.+
   ''');
 
-  dynamic get _widgetsBinding {
+  WidgetsBinding? get _widgetsBinding {
     return WidgetsBinding.instance;
   }
 
@@ -87,7 +87,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
     }
 
     _scheduledUpdate = true;
-    _widgetsBinding?.addPostFrameCallback((timeStamp) {
+    _widgetsBinding?.addPostFrameCallback((Duration timeStamp) {
       try {
         if (mantissaLength < 1) {
           onValueChange!(int.parse(_nextValue));
@@ -106,7 +106,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
   /// @{macro fmf_schedule_update}
   ///
   String _updateValueFromText(String newText) {
-    final asNumeric = toNumericString(
+    final String asNumeric = toNumericString(
       newText,
       allowPeriod: true,
       mantissaSeparator: _mantissaSeparator,
@@ -146,26 +146,24 @@ class CurrencyInputFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    final trailingLength = _getTrailingLength();
-    final leadingLength = _getLeadingLength();
+    final int trailingLength = _getTrailingLength();
+    final int leadingLength = _getLeadingLength();
     int oldCaretIndex = max(oldValue.selection.start, oldValue.selection.end);
     int newCaretIndex = max(newValue.selection.start, newValue.selection.end);
-    var newText = newValue.text;
-    final newAsNumeric = _updateValueFromText(newText);
+    String newText = newValue.text;
+    final String newAsNumeric = _updateValueFromText(newText);
 
-    var oldText = oldValue.text;
+    final String oldText = oldValue.text;
     if (oldValue == newValue) {
       if (_printDebugInfo) {
-        print('RETURN 0 ${oldValue.text}');
       }
       return newValue;
     }
-    bool isErasing = newText.length < oldText.length;
+    final bool isErasing = newText.length < oldText.length;
     if (isErasing) {
       if (mantissaLength == 0 && oldCaretIndex == oldValue.text.length) {
         if (trailingLength > 0) {
           if (_printDebugInfo) {
-            print('RETURN 1 ${oldValue.text}');
           }
           return oldValue.copyWith(
             selection: TextSelection.collapsed(
@@ -184,7 +182,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
           /// the number from e.g. this 45 555 $ becomes this 45555 $ but
           /// after applying the format again in regains the lost space and
           /// this leads to a situation when nothing seems to be changed
-          final differences = _findDifferentChars(
+          final List<String> differences = _findDifferentChars(
             longerString: oldText,
             shorterString: newText,
           );
@@ -202,7 +200,6 @@ class CurrencyInputFormatter extends TextInputFormatter {
         longerString: oldText,
       )) {
         if (_printDebugInfo) {
-          print('RETURN 2 ${oldValue.text}');
         }
 
         // propagate previous correct value with mantissa separator
@@ -220,7 +217,6 @@ class CurrencyInputFormatter extends TextInputFormatter {
     } else {
       if (_containsIllegalChars(newText)) {
         if (_printDebugInfo) {
-          print('RETURN 3 ${oldValue.text}');
         }
 
         // propagate previous correct value without illegal chars
@@ -230,12 +226,12 @@ class CurrencyInputFormatter extends TextInputFormatter {
       }
     }
 
-    int afterMantissaPosition = _countAfterMantissaPosition(
+    final int afterMantissaPosition = _countAfterMantissaPosition(
       oldText: oldText,
       oldCaretOffset: oldCaretIndex,
     );
 
-    final newAsCurrency = toCurrencyString(
+    final String newAsCurrency = toCurrencyString(
       newText,
       mantissaLength: mantissaLength,
       thousandSeparator: thousandSeparator,
@@ -249,7 +245,6 @@ class CurrencyInputFormatter extends TextInputFormatter {
       oldText: oldText,
     )) {
       if (_printDebugInfo) {
-        print('RETURN 4 ${oldValue.text.length} $oldCaretIndex');
       }
 
       // propagate previous correct value with correct mantissa position
@@ -272,7 +267,6 @@ class CurrencyInputFormatter extends TextInputFormatter {
         caretPosition: newCaretIndex,
       )) {
         if (_printDebugInfo) {
-          print('RETURN 5 $newAsCurrency');
         }
         return TextEditingValue(
           selection: TextSelection.collapsed(
@@ -282,10 +276,9 @@ class CurrencyInputFormatter extends TextInputFormatter {
         );
       } else {
         if (_printDebugInfo) {
-          print('RETURN 6 $newAsCurrency');
         }
 
-        int offset = min(
+        final int offset = min(
           newCaretIndex,
           newAsCurrency.length - trailingLength,
         );
@@ -298,10 +291,9 @@ class CurrencyInputFormatter extends TextInputFormatter {
       }
     }
 
-    var initialCaretOffset = leadingLength;
+    int initialCaretOffset = leadingLength;
     if (_isZeroOrEmpty(newAsNumeric)) {
       if (_printDebugInfo) {
-        print('RETURN 7 ${newValue.text}');
       }
       int offset = min(
         newValue.text.length,
@@ -317,7 +309,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
         ),
       );
     }
-    final oldAsCurrency = toCurrencyString(
+    final String oldAsCurrency = toCurrencyString(
       oldText,
       mantissaLength: mantissaLength,
       thousandSeparator: thousandSeparator,
@@ -326,7 +318,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
       useSymbolPadding: useSymbolPadding,
     );
 
-    var lengthDiff = newAsCurrency.length - oldAsCurrency.length;
+    final int lengthDiff = newAsCurrency.length - oldAsCurrency.length;
 
     initialCaretOffset = max(
       (oldCaretIndex + lengthDiff),
@@ -392,17 +384,17 @@ class CurrencyInputFormatter extends TextInputFormatter {
     required String longerString,
     required String shorterString,
   }) {
-    final newChars = longerString.split('');
-    final oldChars = shorterString.split('');
-    for (var i = 0; i < oldChars.length; i++) {
-      final oldChar = oldChars[i];
+    final List<String> newChars = longerString.split('');
+    final List<String> oldChars = shorterString.split('');
+    for (int i = 0; i < oldChars.length; i++) {
+      final String oldChar = oldChars[i];
       newChars.remove(oldChar);
     }
     return newChars;
   }
 
   bool _containsMantissaSeparator(List<String> chars) {
-    for (var char in chars) {
+    for (String char in chars) {
       if (char == _mantissaSeparator) {
         return true;
       }
@@ -415,7 +407,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
     required String oldText,
   }) {
     if (newText.length > oldText.length) {
-      final newChars = _findDifferentChars(
+      final List<String> newChars = _findDifferentChars(
         longerString: newText,
         shorterString: oldText,
       );
@@ -423,7 +415,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
       /// [hasWrongSeparator] is an attempt to fix this
       /// https://github.com/caseyryan/flutter_multi_formatter/issues/114
       /// Not sure if it will have some side effect
-      final hasWrongSeparator = newText.contains(',.') || newText.contains('.,');
+      final bool hasWrongSeparator = newText.contains(',.') || newText.contains('.,');
       if (_containsMantissaSeparator(newChars) || hasWrongSeparator) {
         return true;
       }
@@ -438,7 +430,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
   }) {
     if (newText.length < oldText.length) {
       if (caretPosition < newText.length) {
-        var nextChar = '';
+        String nextChar = '';
         if (caretPosition < newText.length - 1) {
           nextChar = newText[caretPosition];
           if (!isDigit(nextChar, positiveOnly: true) || int.tryParse(nextChar) == 0) {
@@ -457,7 +449,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
     if (mantissaLength < 1) {
       return 0;
     }
-    final mantissaIndex = oldText.lastIndexOf(
+    final int mantissaIndex = oldText.lastIndexOf(
       _mantissaSeparatorRegexp,
     );
     if (mantissaIndex < 0) {
@@ -473,7 +465,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
     required String shorterString,
     required String longerString,
   }) {
-    final differentChars = _findDifferentChars(
+    final List<String> differentChars = _findDifferentChars(
       shorterString: shorterString,
       longerString: longerString,
     );
@@ -485,11 +477,11 @@ class CurrencyInputFormatter extends TextInputFormatter {
 
   bool _containsIllegalChars(String input) {
     if (input.isEmpty) return false;
-    var clearedInput = input;
+    String clearedInput = input;
     if (leadingSymbol.isNotEmpty) {
       /// allows to get read of an odd minus in front of a leading symbol
       /// https://github.com/caseyryan/flutter_multi_formatter/issues/123
-      var sub = clearedInput.substring(
+      final String sub = clearedInput.substring(
         0,
         clearedInput.indexOf(leadingSymbol) + 1,
       );

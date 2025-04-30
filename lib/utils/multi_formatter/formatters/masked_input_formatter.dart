@@ -16,7 +16,7 @@ class MaskedInputFormatter extends TextInputFormatter {
   final String _anyCharMask = '#';
   final String _onlyDigitMask = '0';
   final RegExp? allowedCharMatcher;
-  final List<_Separator> _separators = [];
+  final List<_Separator> _separators = <_Separator>[];
 
   // List<int> _separatorIndices = <int>[];
   // List<String> _separatorChars = <String>[];
@@ -44,10 +44,10 @@ class MaskedInputFormatter extends TextInputFormatter {
 
   String get unmaskedValue {
     _prepareMask();
-    final stringBuffer = StringBuffer();
-    for (var i = 0; i < _maskedValue.length; i++) {
-      var char = _maskedValue[i];
-      if (!_separators.any((s) => s.value == char)) {
+    final StringBuffer stringBuffer = StringBuffer();
+    for (int i = 0; i < _maskedValue.length; i++) {
+      final String char = _maskedValue[i];
+      if (!_separators.any((_Separator s) => s.value == char)) {
         stringBuffer.write(char);
       }
     }
@@ -65,12 +65,12 @@ class MaskedInputFormatter extends TextInputFormatter {
     final FormattedValue newFormattedValue = applyMask(
       newValue.text,
     );
-    var numSeparatorsInNew = 0;
-    var numSeparatorsInOld = 0;
+    int numSeparatorsInNew = 0;
+    int numSeparatorsInOld = 0;
 
     /// it's only used in CreditCardExpirationDateFormatter
     /// when it adds a leading zero to the input
-    var addOffset = newFormattedValue._numLeadingSymbols;
+    final int addOffset = newFormattedValue._numLeadingSymbols;
     numSeparatorsInOld = _countSeparators(
       oldFormattedValue.text,
     );
@@ -78,11 +78,11 @@ class MaskedInputFormatter extends TextInputFormatter {
       newFormattedValue.text,
     );
 
-    var separatorsDiff = (numSeparatorsInNew - numSeparatorsInOld);
+    int separatorsDiff = (numSeparatorsInNew - numSeparatorsInOld);
     if (newFormattedValue._isErasing) {
       separatorsDiff = 0;
     }
-    var selectionOffset = newValue.selection.end + separatorsDiff;
+    int selectionOffset = newValue.selection.end + separatorsDiff;
     _maskedValue = newFormattedValue.text;
 
     if (selectionOffset > _maskedValue.length) {
@@ -107,8 +107,8 @@ class MaskedInputFormatter extends TextInputFormatter {
 
   void _prepareMask() {
     if (_separators.isEmpty) {
-      for (var i = 0; i < mask.length; i++) {
-        final separatorChar = mask[i];
+      for (int i = 0; i < mask.length; i++) {
+        final String separatorChar = mask[i];
         if (separatorChar != _anyCharMask && separatorChar != _onlyDigitMask) {
           _separators.add(
             _Separator(
@@ -123,11 +123,11 @@ class MaskedInputFormatter extends TextInputFormatter {
 
   int _countSeparators(String text) {
     _prepareMask();
-    var numSeparators = 0;
-    for (var i = 0; i < text.length; i++) {
-      final char = text[i];
+    int numSeparators = 0;
+    for (int i = 0; i < text.length; i++) {
+      final String char = text[i];
 
-      if (_separators.any((s) => s.value == char)) {
+      if (_separators.any((_Separator s) => s.value == char)) {
         numSeparators++;
       }
     }
@@ -135,10 +135,10 @@ class MaskedInputFormatter extends TextInputFormatter {
   }
 
   String _removeSeparators(String text) {
-    var stringBuffer = StringBuffer();
-    for (var i = 0; i < text.length; i++) {
-      var char = text[i];
-      if (!_separators.any((s) => s.value == char)) {
+    final StringBuffer stringBuffer = StringBuffer();
+    for (int i = 0; i < text.length; i++) {
+      final String char = text[i];
+      if (!_separators.any((_Separator s) => s.value == char)) {
         stringBuffer.write(char);
       }
     }
@@ -147,30 +147,29 @@ class MaskedInputFormatter extends TextInputFormatter {
 
   _Separator? _getSeparatorForIndex(int index) {
     return _separators.firstWhereOrNull(
-      (s) => s.indexInMask == index,
+      (_Separator s) => s.indexInMask == index,
     );
   }
 
   FormattedValue applyMask(String text) {
     _prepareMask();
-    String clearedValueAfter = _removeSeparators(text);
-    final isErasing = _maskedValue.length > text.length;
-    FormattedValue formattedValue = FormattedValue();
-    StringBuffer stringBuffer = StringBuffer();
-    var index = 0;
-    final splitMask = mask.split('');
-    final placeholder = List.filled(
+    final String clearedValueAfter = _removeSeparators(text);
+    final bool isErasing = _maskedValue.length > text.length;
+    final FormattedValue formattedValue = FormattedValue();
+    final StringBuffer stringBuffer = StringBuffer();
+    int index = 0;
+    final List<String> splitMask = mask.split('');
+    final List<String> placeholder = List<String>.filled(
       splitMask.length,
       '',
-      growable: false,
     );
-    var lastRealCharIndex = 0;
-    for (var i = 0; i < splitMask.length; i++) {
-      final separator = _getSeparatorForIndex(i);
+    int lastRealCharIndex = 0;
+    for (int i = 0; i < splitMask.length; i++) {
+      final _Separator? separator = _getSeparatorForIndex(i);
       if (separator == null) {
         if (clearedValueAfter.length > index) {
-          final maskOnDigitMatcher = splitMask[i] == _onlyDigitMask;
-          var curChar = clearedValueAfter[index];
+          final bool maskOnDigitMatcher = splitMask[i] == _onlyDigitMask;
+          final String curChar = clearedValueAfter[index];
           if (maskOnDigitMatcher) {
             if (!isDigit(curChar, positiveOnly: true)) {
               break;
@@ -190,7 +189,7 @@ class MaskedInputFormatter extends TextInputFormatter {
         placeholder[i] = separator.value;
       }
     }
-    for (var i = 0; i < lastRealCharIndex; i++) {
+    for (int i = 0; i < lastRealCharIndex; i++) {
       stringBuffer.write(placeholder[i]);
     }
     formattedValue._isErasing = isErasing;

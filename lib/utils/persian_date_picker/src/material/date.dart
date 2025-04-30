@@ -31,7 +31,7 @@ abstract final class PersianDateUtils {
   }
 
   static int firstDayOffset(int year, int month, MaterialLocalizations localizations) {
-    final int weekdayFromSaturday = (Jalali(year, month, 1).weekDay % 7);
+    final int weekdayFromSaturday = (Jalali(year, month).weekDay % 7);
     int firstDayOfWeekIndex = localizations.firstDayOfWeekIndex;
 
     firstDayOfWeekIndex = (firstDayOfWeekIndex - 6) % 7;
@@ -128,7 +128,7 @@ extension JalaliExt on Jalali {
     'اسفند',
   ];
 
-  static List<String> narrowWeekdays = [
+  static List<String> narrowWeekdays = <String>[
     'ش',
     'ی',
     'د',
@@ -138,7 +138,7 @@ extension JalaliExt on Jalali {
     'ج',
   ];
 
-  static List<String> shortDayName = [
+  static List<String> shortDayName = <String>[
     'شنبه',
     '۱شنبه',
     '۲شنبه',
@@ -149,7 +149,7 @@ extension JalaliExt on Jalali {
   ];
 
   int get millisecondsSinceEpoch {
-    DateTime dateTime = toDateTime();
+    final DateTime dateTime = toDateTime();
 
     return dateTime.millisecondsSinceEpoch;
   }
@@ -178,27 +178,27 @@ extension JalaliExt on Jalali {
   }
 
   String formatMediumDate() {
-    final f = formatter;
+    final JalaliFormatter f = formatter;
     return '${shortDayName[weekDay - 1]} ${f.d} ${f.mN}';
   }
 
   String formatFullDate() {
-    final f = formatter;
+    final JalaliFormatter f = formatter;
     return '${f.wN} ${f.d} ${f.mN} ${f.yyyy}';
   }
 
   String toJalaliDateTime() {
-    final f = formatter;
+    final JalaliFormatter f = formatter;
     return '${f.yyyy}-${f.mm}-${f.dd} ${_twoDigits(hour)}:${_twoDigits(minute)}:${_twoDigits(second)}';
   }
 
   String formatYear() {
-    final f = formatter;
+    final JalaliFormatter f = formatter;
     return f.yyyy;
   }
 
   String formatCompactDate() {
-    final f = formatter;
+    final JalaliFormatter f = formatter;
     final String month = f.mm;
     final String day = f.dd;
     final String year = f.yyyy;
@@ -206,17 +206,17 @@ extension JalaliExt on Jalali {
   }
 
   String formatShortDate() {
-    final f = formatter;
+    final JalaliFormatter f = formatter;
     return '${f.dd} ${f.mN}  ,${f.yyyy}';
   }
 
   String formatMonthYear() {
-    final f = formatter;
+    final JalaliFormatter f = formatter;
     return '${f.yyyy}/${f.mm}';
   }
 
   String formatShortMonthDay() {
-    final f = formatter;
+    final JalaliFormatter f = formatter;
     return '${f.dd} ${f.mN}';
   }
 
@@ -241,10 +241,10 @@ extension JalaliExt on Jalali {
   }
 
   Jalali addHours(int hours) {
-    int newHour = (hour + hours) % 24;
-    int dayOverflow = (hour + hours) ~/ 24;
+    final int newHour = (hour + hours) % 24;
+    final int dayOverflow = (hour + hours) ~/ 24;
 
-    Jalali newDateTime = copyWith(
+    final Jalali newDateTime = copyWith(
       hour: newHour,
     );
 
@@ -292,16 +292,16 @@ String? jalaliStringToGregorianString(String? jalaliDateString, String seprator)
   try {
     final List<String> parts = jalaliDateString.split(seprator);
     if (parts.length != 3) {
-      throw FormatException("Invalid Jalali date format");
+      throw const FormatException("Invalid Jalali date format");
     }
 
     final int year = int.parse(parts[0]);
     final int month = int.parse(parts[1]);
     final int day = int.parse(parts[2]);
 
-    Jalali jalaliDate = Jalali(year, month, day);
+    final Jalali jalaliDate = Jalali(year, month, day);
 
-    DateTime dateTime = jalaliDate.toDateTime();
+    final DateTime dateTime = jalaliDate.toDateTime();
 
     return '${dateTime.year.toString().padLeft(4, '0')}/${dateTime.month.toString().padLeft(2, '0')}/${dateTime.day.toString().padLeft(2, '0')}';
   } catch (e) {

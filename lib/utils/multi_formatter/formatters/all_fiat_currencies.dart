@@ -1,4 +1,4 @@
-const allFiatCurrencies = <String>[
+const List<String> allFiatCurrencies = <String>[
   'CNY',
   'USD',
   'EUR',

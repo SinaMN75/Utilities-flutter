@@ -89,11 +89,11 @@ class IdListParams extends BaseParams {
   factory IdListParams.fromMap(Map<String, dynamic> json) => IdListParams(
         apiKey: json["apiKey"],
         token: json["token"],
-        ids: List<String>.from(json["ids"]!.map((x) => x)),
+        ids: List<String>.from(json["ids"]!.map((dynamic x) => x)),
       );
 
-  Map<String, dynamic> toIdListMap() => {
+  Map<String, dynamic> toIdListMap() => <String, dynamic>{
         ...toBaseMap(),
-        "ids": List<dynamic>.from(ids.map((x) => x)),
+        "ids": List<dynamic>.from(ids.map((String x) => x)),
       };
 }
