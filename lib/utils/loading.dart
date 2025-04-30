@@ -1,6 +1,7 @@
-import 'dart:ui' show ImageFilter;
+import 'dart:ui';
 
-import 'package:u/utilities.dart';
+import 'package:flutter/material.dart';
+import 'package:u/utils/init.dart';
 
 class ULoading {
   static OverlayEntry? _overlayEntry;
@@ -25,9 +26,10 @@ class ULoading {
     double blurAmount = 2.0,
     bool dismissible = false,
     bool useDefaultLoader = true,
-    String defaultLoadingText = "",
+    String defaultLoadingText = '',
     Color defaultSpinnerColor = Colors.white,
     double defaultSpinnerSize = 40.0,
+    GlobalKey<NavigatorState>? key,
   }) {
     _customLoaderBuilder = customLoaderBuilder;
     _overlayColor = overlayColor;
@@ -39,16 +41,22 @@ class ULoading {
     _defaultLoadingText = defaultLoadingText;
     _defaultSpinnerColor = defaultSpinnerColor;
     _defaultSpinnerSize = defaultSpinnerSize;
+    if (key != null) navigatorKey = key;
   }
 
   /// Show loading overlay
   static void show({BuildContext? context, WidgetBuilder? customLoader}) {
     if (_isShowing) return;
 
-    final overlayState = Overlay.of(context ?? _getMainNavigatorContext());
+    final OverlayState? overlayState = (context != null ? Overlay.of(context) : navigatorKey.currentState?.overlay);
+
+    if (overlayState == null) {
+      debugPrint('ULoading: No Overlay found. Make sure your app has a Navigator or MaterialApp widget.');
+      return;
+    }
 
     _overlayEntry = OverlayEntry(
-      builder: (context) => _LoadingOverlay(
+      builder: (BuildContext context) => _LoadingOverlay(
         customLoader: customLoader ?? _customLoaderBuilder,
       ),
     );
@@ -68,11 +76,6 @@ class ULoading {
   /// Check if loading is currently showing
   static bool isShowing() {
     return _isShowing;
-  }
-
-  static BuildContext _getMainNavigatorContext() {
-    final navigatorKey = GlobalKey<NavigatorState>();
-    return navigatorKey.currentContext!;
   }
 }
 
@@ -116,8 +119,7 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
     return FadeTransition(
       opacity: _opacityAnimation,
       child: Stack(
-        children: [
-          // Background with blur and color
+        children: <Widget>[
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(
@@ -129,7 +131,6 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
               ),
             ),
           ),
-          // Dismissible layer if enabled
           if (ULoading._dismissible)
             Positioned.fill(
               child: GestureDetector(
@@ -138,13 +139,12 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
                 child: Container(color: Colors.transparent),
               ),
             ),
-          // Actual loader content
           Center(
             child: widget.customLoader != null
                 ? widget.customLoader!(context)
                 : ULoading._useDefaultLoader
-                ? _buildDefaultLoader()
-                : const SizedBox(),
+                    ? _buildDefaultLoader()
+                    : const SizedBox(),
           ),
         ],
       ),
@@ -154,7 +154,7 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
   Widget _buildDefaultLoader() {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: [
+      children: <Widget>[
         SizedBox(
           width: ULoading._defaultSpinnerSize,
           height: ULoading._defaultSpinnerSize,
@@ -166,7 +166,7 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
         const SizedBox(height: 16),
         Text(
           ULoading._defaultLoadingText,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 16,
           ),

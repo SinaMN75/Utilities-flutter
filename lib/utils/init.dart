@@ -36,12 +36,7 @@ Future<void> initUtilities({
     if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
     if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
   } catch (e) {}
-  ULoading.initialize(
-    overlayColor: Colors.black.withValues(alpha: 0.7),
-    animationDuration: Duration(milliseconds: 500),
-    blurAmount: 4,
-    defaultSpinnerColor: Colors.blue,
-  );
+  ULoading.initialize(key: navigatorKey, blurAmount: 1, overlayColor: Colors.black12);
 
   return;
 }
