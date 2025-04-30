@@ -1,0 +1,177 @@
+import 'dart:ui' show ImageFilter;
+
+import 'package:u/utilities.dart';
+
+class ULoading {
+  static OverlayEntry? _overlayEntry;
+  static bool _isShowing = false;
+  static WidgetBuilder? _customLoaderBuilder;
+  static Color _overlayColor = Colors.black54;
+  static Duration _animationDuration = const Duration(milliseconds: 300);
+  static Curve _animationCurve = Curves.easeInOut;
+  static double _blurAmount = 2.0;
+  static bool _dismissible = false;
+  static bool _useDefaultLoader = true;
+  static String _defaultLoadingText = 'Loading...';
+  static Color _defaultSpinnerColor = Colors.white;
+  static double _defaultSpinnerSize = 40.0;
+
+  /// Initialize loading with custom configurations (optional)
+  static void initialize({
+    WidgetBuilder? customLoaderBuilder,
+    Color overlayColor = Colors.black54,
+    Duration animationDuration = const Duration(milliseconds: 300),
+    Curve animationCurve = Curves.easeInOut,
+    double blurAmount = 2.0,
+    bool dismissible = false,
+    bool useDefaultLoader = true,
+    String defaultLoadingText = "",
+    Color defaultSpinnerColor = Colors.white,
+    double defaultSpinnerSize = 40.0,
+  }) {
+    _customLoaderBuilder = customLoaderBuilder;
+    _overlayColor = overlayColor;
+    _animationDuration = animationDuration;
+    _animationCurve = animationCurve;
+    _blurAmount = blurAmount;
+    _dismissible = dismissible;
+    _useDefaultLoader = useDefaultLoader;
+    _defaultLoadingText = defaultLoadingText;
+    _defaultSpinnerColor = defaultSpinnerColor;
+    _defaultSpinnerSize = defaultSpinnerSize;
+  }
+
+  /// Show loading overlay
+  static void show({BuildContext? context, WidgetBuilder? customLoader}) {
+    if (_isShowing) return;
+
+    final overlayState = Overlay.of(context ?? _getMainNavigatorContext());
+
+    _overlayEntry = OverlayEntry(
+      builder: (context) => _LoadingOverlay(
+        customLoader: customLoader ?? _customLoaderBuilder,
+      ),
+    );
+
+    overlayState.insert(_overlayEntry!);
+    _isShowing = true;
+  }
+
+  /// Hide loading overlay
+  static void hide() {
+    if (!_isShowing) return;
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+    _isShowing = false;
+  }
+
+  /// Check if loading is currently showing
+  static bool isShowing() {
+    return _isShowing;
+  }
+
+  static BuildContext _getMainNavigatorContext() {
+    final navigatorKey = GlobalKey<NavigatorState>();
+    return navigatorKey.currentContext!;
+  }
+}
+
+class _LoadingOverlay extends StatefulWidget {
+  final WidgetBuilder? customLoader;
+
+  const _LoadingOverlay({this.customLoader});
+
+  @override
+  __LoadingOverlayState createState() => __LoadingOverlayState();
+}
+
+class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _opacityAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: ULoading._animationDuration,
+      vsync: this,
+    );
+    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: ULoading._animationCurve,
+      ),
+    );
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _opacityAnimation,
+      child: Stack(
+        children: [
+          // Background with blur and color
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: ULoading._blurAmount,
+                sigmaY: ULoading._blurAmount,
+              ),
+              child: Container(
+                color: ULoading._overlayColor,
+              ),
+            ),
+          ),
+          // Dismissible layer if enabled
+          if (ULoading._dismissible)
+            Positioned.fill(
+              child: GestureDetector(
+                onTap: () => ULoading.hide(),
+                behavior: HitTestBehavior.opaque,
+                child: Container(color: Colors.transparent),
+              ),
+            ),
+          // Actual loader content
+          Center(
+            child: widget.customLoader != null
+                ? widget.customLoader!(context)
+                : ULoading._useDefaultLoader
+                ? _buildDefaultLoader()
+                : const SizedBox(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDefaultLoader() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          width: ULoading._defaultSpinnerSize,
+          height: ULoading._defaultSpinnerSize,
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(ULoading._defaultSpinnerColor),
+            strokeWidth: 3.0,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          ULoading._defaultLoadingText,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+        ),
+      ],
+    );
+  }
+}

@@ -1,4 +1,3 @@
-import 'package:loader_overlay/loader_overlay.dart';
 import 'package:u/utilities.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -37,6 +36,13 @@ Future<void> initUtilities({
     if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
     if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
   } catch (e) {}
+  ULoading.initialize(
+    overlayColor: Colors.black.withValues(alpha: 0.7),
+    animationDuration: Duration(milliseconds: 500),
+    blurAmount: 4,
+    defaultSpinnerColor: Colors.blue,
+  );
+
   return;
 }
 
@@ -64,7 +70,7 @@ class UMaterialApp extends StatelessWidget {
         enableLog: false,
         localizationsDelegates: localizationsDelegates,
         supportedLocales: supportedLocales,
-        home: LoaderOverlay(child: home),
+        home: home,
         locale: Locale(ULocalStorage.getString(UConstants.locale) ?? locale.languageCode),
         theme: lightTheme,
         darkTheme: darkTheme,
