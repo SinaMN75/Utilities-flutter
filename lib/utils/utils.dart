@@ -1,3 +1,4 @@
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:u/utilities.dart';
 
 String uuidV4() => const Uuid().v4();
@@ -55,3 +56,8 @@ FormFieldValidator<String> validateNumber({
 bool isLoggedIn() => ULocalStorage.getString(UConstants.token) == null ? false : true;
 
 Future<Uint8List> screenshot({required final Widget widget}) => ScreenshotController().captureFromWidget(widget);
+
+class ULoading {
+  static void show() => navigatorKey.currentContext!..loaderOverlay.show();
+  static void dismiss() => navigatorKey.currentContext!..loaderOverlay.hide();
+}

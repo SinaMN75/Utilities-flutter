@@ -1,3 +1,4 @@
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:u/utilities.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

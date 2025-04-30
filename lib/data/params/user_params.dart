@@ -121,6 +121,7 @@ class UserReadParams extends BaseReadParams {
   final String? phoneNumber;
   final String? email;
   final String? bio;
+  final String? parentId;
   final DateTime? startBirthDate;
   final DateTime? endBirthDate;
   final List<String>? categories;
@@ -136,6 +137,7 @@ class UserReadParams extends BaseReadParams {
     super.fromDate,
     super.tags,
     this.userName,
+    this.parentId,
     this.phoneNumber,
     this.email,
     this.bio,
@@ -156,6 +158,7 @@ class UserReadParams extends BaseReadParams {
         token: json["token"],
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
+    parentId: json["parentId"],
         fromDate: json["fromDate"] == null ? null : DateTime.parse(json["fromDate"]),
         tags: json["tags"] == null ? [] : List<int>.from(json["tags"]!.map((x) => x)),
         userName: json["userName"],
@@ -175,6 +178,7 @@ class UserReadParams extends BaseReadParams {
         "apiKey": apiKey,
         "token": token,
         "pageSize": pageSize,
+        "parentId": parentId,
         "pageNumber": pageNumber,
         "fromDate": fromDate?.toIso8601String(),
         "tags": tags == null ? [] : List<dynamic>.from(tags!.map((x) => x)),

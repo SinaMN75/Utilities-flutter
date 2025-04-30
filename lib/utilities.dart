@@ -81,7 +81,6 @@ export 'utils/firebase.dart';
 export 'utils/fonts.dart';
 export 'utils/init.dart';
 export 'utils/launch.dart';
-export 'utils/loading/loader_overlay.dart';
 export 'utils/local_auth.dart';
 export 'utils/local_storage.dart';
 export 'utils/location.dart';
