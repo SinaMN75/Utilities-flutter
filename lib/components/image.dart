@@ -1,3 +1,4 @@
+import 'package:u/components/cachedImage.dart';
 import 'package:u/utilities.dart';
 
 class UImage extends StatelessWidget {
@@ -9,7 +10,6 @@ class UImage extends StatelessWidget {
     this.width,
     this.height,
     this.placeholder,
-    this.progressIndicatorBuilder,
     this.fit = BoxFit.contain,
     this.borderRadius = 1,
     this.border,
@@ -24,7 +24,6 @@ class UImage extends StatelessWidget {
   final double borderRadius;
   final String? placeholder;
   final BoxBorder? border;
-  final ProgressIndicatorBuilder? progressIndicatorBuilder;
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
@@ -76,7 +75,6 @@ class UImage extends StatelessWidget {
                   fit: fit,
                   borderRadius: borderRadius,
                   color: color,
-                  progressIndicatorBuilder: progressIndicatorBuilder,
                   placeholder: placeholder,
                 );
               } else if (source.startsWith("http") && source.endsWith(".json")) {
@@ -107,7 +105,6 @@ class UIconPrimary extends StatelessWidget {
     this.width,
     this.height,
     this.placeholder,
-    this.progressIndicatorBuilder,
     this.fit = BoxFit.contain,
     this.borderRadius = 1,
   });
@@ -119,7 +116,6 @@ class UIconPrimary extends StatelessWidget {
   final BoxFit fit;
   final double borderRadius;
   final String? placeholder;
-  final ProgressIndicatorBuilder? progressIndicatorBuilder;
 
   @override
   Widget build(final BuildContext context) => UImage(
@@ -130,7 +126,6 @@ class UIconPrimary extends StatelessWidget {
         fit: fit,
         borderRadius: borderRadius,
         placeholder: placeholder,
-        progressIndicatorBuilder: progressIndicatorBuilder,
       );
 }
 
@@ -181,7 +176,6 @@ class UImageNetwork extends StatelessWidget {
     this.clipBehavior = Clip.hardEdge,
     this.borderRadius = 1,
     this.placeholder,
-    this.progressIndicatorBuilder,
     super.key,
   });
 
@@ -193,7 +187,6 @@ class UImageNetwork extends StatelessWidget {
   final Clip clipBehavior;
   final double borderRadius;
   final String? placeholder;
-  final ProgressIndicatorBuilder? progressIndicatorBuilder;
 
   @override
   Widget build(final BuildContext context) => Builder(
@@ -228,29 +221,27 @@ class UImageNetwork extends StatelessWidget {
                   )
                 : CachedNetworkImage(
                     imageUrl: url,
-                    color: color,
                     width: width,
                     height: height,
                     fit: fit,
-                    progressIndicatorBuilder: progressIndicatorBuilder,
                     errorWidget: placeholder == null
                         ? null
-                        : (final _, final __, final ___) => UImage(
-                              placeholder!,
-                              color: color,
-                              width: width,
-                              height: height,
-                              fit: fit,
-                            ),
+                        : UImage(
+                            placeholder!,
+                            color: color,
+                            width: width,
+                            height: height,
+                            fit: fit,
+                          ),
                     placeholder: placeholder == null
                         ? null
-                        : (final _, final __) => UImage(
-                              placeholder!,
-                              color: color,
-                              width: width,
-                              height: height,
-                              fit: fit,
-                            ),
+                        : UImage(
+                            placeholder!,
+                            color: color,
+                            width: width,
+                            height: height,
+                            fit: fit,
+                          ),
                   ),
       ).container(radius: borderRadius);
 }

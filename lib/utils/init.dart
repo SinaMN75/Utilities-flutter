@@ -4,9 +4,6 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> initUtilities({
   final FirebaseOptions? firebaseOptions,
-  final bool safeDevice = false,
-  final bool protectDataLeaking = false,
-  final bool preventScreenShot = false,
   final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -32,10 +29,6 @@ Future<void> initUtilities({
       };
     } catch (e) {}
   }
-  try {
-    if (protectDataLeaking) await ScreenProtector.protectDataLeakageWithColor(Colors.white);
-    if (preventScreenShot) await ScreenProtector.preventScreenshotOn();
-  } catch (e) {}
   ULoading.initialize(key: navigatorKey, blurAmount: 1, overlayColor: Colors.black12);
 
   return;

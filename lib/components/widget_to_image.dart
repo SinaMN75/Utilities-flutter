@@ -5,9 +5,7 @@ import 'package:u/utilities.dart';
 class WidgetToImageController {
   GlobalKey? _globalKey;
 
-  void bind(GlobalKey globalKey) {
-    _globalKey = globalKey;
-  }
+  void bind(GlobalKey globalKey) => _globalKey = globalKey;
 
   Future<Uint8List?> capture() async {
     if (_globalKey?.currentContext == null) return null;
@@ -28,11 +26,7 @@ class WidgetToImage extends StatefulWidget {
   final Widget child;
   final WidgetToImageController controller;
 
-  const WidgetToImage({
-    super.key,
-    required this.child,
-    required this.controller,
-  });
+  const WidgetToImage({super.key, required this.child, required this.controller});
 
   @override
   State<WidgetToImage> createState() => _WidgetToImageState();

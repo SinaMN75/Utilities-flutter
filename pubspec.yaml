@@ -49,9 +49,6 @@ dependencies:
   syncfusion_flutter_signaturepad: ^29.1.39
 
 # https://pub.dev/packages/search_choices
-  cached_network_image: ^3.4.1
-  screenshot: ^3.0.0
-  screen_protector: ^1.4.2+1
   any_link_preview: ^3.0.3
   universal_html: ^2.2.4
 

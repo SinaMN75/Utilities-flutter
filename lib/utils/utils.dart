@@ -53,5 +53,3 @@ FormFieldValidator<String> validateNumber({
     };
 
 bool isLoggedIn() => ULocalStorage.getString(UConstants.token) == null ? false : true;
-
-Future<Uint8List> screenshot({required final Widget widget}) => ScreenshotController().captureFromWidget(widget);

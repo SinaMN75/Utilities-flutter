@@ -41,14 +41,4 @@ abstract class ULaunch {
   static void shareText(final String text, {final String? subject}) => SharePlus.instance.share(ShareParams(text: text, subject: subject));
 
   static void shareFile(final List<String> file, final String text) => SharePlus.instance.share(ShareParams(text: text, files: file.map(XFile.new).toList()));
-
-  static Future<void> shareWidget({
-    required final Widget widget,
-  }) async =>
-      ScreenshotController().capture().then((final Uint8List? image) async {
-        final Directory directory = await getApplicationDocumentsDirectory();
-        final File imagePath = await File('${directory.path}/image.png').create();
-        await imagePath.writeAsBytes(image!);
-        shareFile(<String>[imagePath.path], "");
-      });
 }
