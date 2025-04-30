@@ -77,4 +77,21 @@ class UserService {
       },
     );
   }
+
+  void delete({
+    required final IdParams p,
+    required final Function(UResponse<dynamic> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) {
+    SimpleHttp().post(
+      "$baseUrl/user/Delete",
+      body: p.toIdParamMap(),
+      onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+      onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+      onException: (e) {
+        if (onException != null) onException(e);
+      },
+    );
+  }
 }
