@@ -7,6 +7,7 @@ class CategoryResponse {
   final List<int> tags;
   final CategoryJsonData jsonData;
   final String title;
+  final String? parentId;
   final List<String>? children;
   final List<MediaResponse>? media;
 
@@ -16,6 +17,7 @@ class CategoryResponse {
     required this.jsonData,
     required this.title,
     this.createdAt,
+    this.parentId,
     this.updatedAt,
     this.children,
     this.media,
@@ -28,6 +30,7 @@ class CategoryResponse {
   factory CategoryResponse.fromMap(Map<String, dynamic> json) => CategoryResponse(
     id: json["id"],
     createdAt: json["createdAt"],
+    parentId: json["parentId"],
     updatedAt: json["updatedAt"],
     tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
     jsonData: CategoryJsonData.fromMap(json["jsonData"]),
@@ -39,6 +42,7 @@ class CategoryResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt,
+    "parentId": parentId,
     "updatedAt": updatedAt,
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "jsonData": jsonData.toMap(),

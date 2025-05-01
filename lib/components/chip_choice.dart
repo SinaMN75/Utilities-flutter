@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:u/utilities.dart';
 
 class CustomChipChoice<T> extends StatefulWidget {
@@ -118,7 +117,7 @@ class _CustomChipChoiceState<T> extends State<CustomChipChoice<T>> {
     return ChipTheme(
       data: style,
       child: Chip(
-        label: Text(item.toString()),
+        label: Text(item.toString()).paddingAll(8),
         onDeleted: isSelected && widget.isMultiChoice ? () => _handleSelection(item, index) : null,
         deleteIconColor: style.labelStyle?.color,
       ),
