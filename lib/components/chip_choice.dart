@@ -9,10 +9,10 @@ class CustomChipChoice<T> extends StatefulWidget {
   final dynamic selected;
 
   /// Called when selection changes
-  final Function(dynamic) onChanged;
+  final Function(int index, bool isSelected, T item)? onChanged;
 
-  /// Chip builder function
-  final Widget Function(T item, bool isSelected) chipBuilder;
+  /// Optional chip builder function
+  final Widget Function(T item, bool isSelected, int index)? chipBuilder;
 
   /// Whether multiple selection is allowed
   final bool isMultiChoice;
@@ -41,12 +41,18 @@ class CustomChipChoice<T> extends StatefulWidget {
   /// Direction of the chip list
   final Axis direction;
 
+  /// Style for selected chips (used in default builder)
+  final ChipThemeData? selectedChipStyle;
+
+  /// Style for unselected chips (used in default builder)
+  final ChipThemeData? unselectedChipStyle;
+
   const CustomChipChoice({
     super.key,
     required this.options,
     required this.selected,
-    required this.onChanged,
-    required this.chipBuilder,
+    this.onChanged,
+    this.chipBuilder,
     this.isMultiChoice = false,
     this.spacing = 8.0,
     this.runSpacing = 8.0,
@@ -56,6 +62,8 @@ class CustomChipChoice<T> extends StatefulWidget {
     this.scrollPhysics,
     this.padding = EdgeInsets.zero,
     this.direction = Axis.horizontal,
+    this.selectedChipStyle,
+    this.unselectedChipStyle,
   });
 
   @override
@@ -71,31 +79,64 @@ class _CustomChipChoiceState<T> extends State<CustomChipChoice<T>> {
     }
   }
 
-  void _handleSelection(T item) {
+  void _handleSelection(T item, int index) {
+    final bool isSelected = _isSelected(item);
+
     if (widget.isMultiChoice) {
       final List<T> updatedSelection = List<T>.from(widget.selected as List<T>);
-      if (updatedSelection.contains(item)) {
+      if (isSelected) {
         updatedSelection.remove(item);
       } else {
         updatedSelection.add(item);
       }
-      widget.onChanged(updatedSelection);
+      widget.onChanged?.call(index, !isSelected, item);
     } else {
-      widget.onChanged(item);
+      if (!isSelected) {
+        widget.onChanged?.call(index, true, item);
+      }
     }
+  }
+
+  Widget _defaultChipBuilder(T item, bool isSelected, int index) {
+    final ThemeData theme = Theme.of(context);
+    final ChipThemeData selectedStyle = widget.selectedChipStyle ??
+        ChipThemeData(
+          backgroundColor: theme.colorScheme.primary,
+          labelStyle: TextStyle(color: theme.colorScheme.onPrimary),
+          side: BorderSide.none,
+        );
+
+    final ChipThemeData unselectedStyle = widget.unselectedChipStyle ??
+        ChipThemeData(
+          backgroundColor: theme.colorScheme.surfaceContainerHighest,
+          labelStyle: TextStyle(color: theme.colorScheme.onSurfaceVariant),
+          side: BorderSide(color: theme.colorScheme.outline),
+        );
+
+    final ChipThemeData style = isSelected ? selectedStyle : unselectedStyle;
+
+    return ChipTheme(
+      data: style,
+      child: Chip(
+        label: Text(item.toString()),
+        onDeleted: isSelected && widget.isMultiChoice ? () => _handleSelection(item, index) : null,
+        deleteIconColor: style.labelStyle?.color,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<GestureDetector> chips = widget.options.map(
-      (T item) {
-        final bool isSelected = _isSelected(item);
-        return GestureDetector(
-          onTap: () => _handleSelection(item),
-          child: widget.chipBuilder(item, isSelected),
-        );
-      },
-    ).toList();
+    final List<GestureDetector> chips = widget.options.asMap().entries.map((MapEntry<int, T> entry) {
+      final int index = entry.key;
+      final T item = entry.value;
+      final bool isSelected = _isSelected(item);
+
+      return GestureDetector(
+        onTap: () => _handleSelection(item, index),
+        child: widget.chipBuilder != null ? widget.chipBuilder!(item, isSelected, index) : _defaultChipBuilder(item, isSelected, index),
+      );
+    }).toList();
 
     if (widget.scrollable) {
       return SingleChildScrollView(
@@ -106,21 +147,11 @@ class _CustomChipChoiceState<T> extends State<CustomChipChoice<T>> {
         child: widget.direction == Axis.horizontal
             ? Row(
                 mainAxisSize: MainAxisSize.min,
-                children: chips
-                    .expand(
-                      (GestureDetector chip) => <Widget>[chip, SizedBox(width: widget.spacing)],
-                    )
-                    .toList()
-                  ..removeLast(),
+                children: chips.expand((GestureDetector chip) => <Widget>[chip, SizedBox(width: widget.spacing)]).toList()..removeLast(),
               )
             : Column(
                 mainAxisSize: MainAxisSize.min,
-                children: chips
-                    .expand(
-                      (GestureDetector chip) => <Widget>[chip, SizedBox(height: widget.spacing)],
-                    )
-                    .toList()
-                  ..removeLast(),
+                children: chips.expand((GestureDetector chip) => <Widget>[chip, SizedBox(height: widget.spacing)]).toList()..removeLast(),
               ),
       );
     } else {
