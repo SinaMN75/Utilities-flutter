@@ -41,27 +41,30 @@ enum TagUser with NumericIdentifiable {
   final int number;
 }
 
-enum TagCategory {
+enum TagCategory with NumericIdentifiable {
   category('دسته‌بندی', 'Category', 100);
 
   const TagCategory(this.titleFa, this.titleEn, this.number);
 
   final String titleFa;
   final String titleEn;
+
+  @override
   final int number;
 }
 
-enum TagMedia {
+enum TagMedia with NumericIdentifiable {
   image('تصویر', 'Image', 100);
 
   const TagMedia(this.titleFa, this.titleEn, this.number);
 
   final String titleFa;
   final String titleEn;
+  @override
   final int number;
 }
 
-enum TagProduct {
+enum TagProduct with NumericIdentifiable {
   product('محصول', 'Product', 101),
   new_('جدید', 'New', 201),
   kindOfNew('نو', 'Kind of New', 202),
@@ -77,10 +80,11 @@ enum TagProduct {
 
   final String titleFa;
   final String titleEn;
+  @override
   final int number;
 }
 
-enum TagComment {
+enum TagComment with NumericIdentifiable {
   released('منتشر شده', 'Released', 100),
   inQueue('در حال بررسی', 'In Queue', 101),
   rejected('رد شده', 'Rejected', 102),
@@ -90,6 +94,7 @@ enum TagComment {
 
   final String titleFa;
   final String titleEn;
+  @override
   final int number;
 }
 
