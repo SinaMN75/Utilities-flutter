@@ -5,6 +5,7 @@ class ExamCreateParams extends BaseParams {
   final String title;
   final String description;
   final List<QuestionJson> questions;
+  final List<ExamScoreDetail> scoreDetails;
   final String categoryId;
 
   ExamCreateParams({
@@ -14,6 +15,7 @@ class ExamCreateParams extends BaseParams {
     required this.title,
     required this.description,
     required this.questions,
+    required this.scoreDetails,
     required this.categoryId,
   });
 
@@ -24,19 +26,21 @@ class ExamCreateParams extends BaseParams {
   factory ExamCreateParams.fromMap(Map<String, dynamic> json) => ExamCreateParams(
         apiKey: json["apiKey"],
         token: json["token"],
-        tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
+        tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         title: json["title"],
         description: json["description"],
-        questions: List<QuestionJson>.from(json["questions"]!.map((dynamic x) => QuestionJson.fromMap(x))),
+        questions: List<QuestionJson>.from(json["questions"].map((dynamic x) => QuestionJson.fromMap(x))),
+        scoreDetails: List<ExamScoreDetail>.from(json["scoreDetails"].map((dynamic x) => ExamScoreDetail.fromMap(x))),
         categoryId: json["categoryId"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        ...toBaseMap(),
-        "tags": List<dynamic>.from(tags.map((int x) => x)),
+        ...super.toBaseMap(),
+        "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
         "title": title,
         "description": description,
-        "questions": List<dynamic>.from(questions.map((QuestionJson x) => x.toMap())),
+        "questions": List<dynamic>.from(questions.map((dynamic x) => x.toMap())),
+        "scoreDetails": List<dynamic>.from(scoreDetails.map((dynamic x) => x.toMap())),
         "categoryId": categoryId,
       };
 }
@@ -59,30 +63,33 @@ class ExamReadParams extends BaseReadParams {
   String toJson() => json.encode(toMap());
 
   factory ExamReadParams.fromMap(Map<String, dynamic> json) => ExamReadParams(
-        apiKey: json["apiKey"],
-        token: json["token"],
-        pageSize: json["pageSize"],
-        pageNumber: json["pageNumber"],
-        fromDate: json["fromDate"] == null ? null : DateTime.parse(json["fromDate"]),
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        categoryId: json["categoryId"],
-      );
+    apiKey: json["apiKey"],
+    token: json["token"],
+    pageSize: json["pageSize"],
+    pageNumber: json["pageNumber"],
+    fromDate: json["fromDate"] == null ? null : DateTime.parse(json["fromDate"]),
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    categoryId: json["categoryId"],
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        ...toBaseReadMap(),
-        "categoryId": categoryId,
-      };
+    ...toBaseReadMap(),
+    "categoryId": categoryId,
+  };
 }
 
+
 class SubmitAnswersParams extends BaseParams {
-  final List<UserAnswerJson> userAnswers;
+  final List<UserAnswerResultJson> answers;
   final String userId;
+  final String examId;
 
   SubmitAnswersParams({
     required super.apiKey,
     required super.token,
-    required this.userAnswers,
+    required this.answers,
     required this.userId,
+    required this.examId,
   });
 
   factory SubmitAnswersParams.fromJson(String str) => SubmitAnswersParams.fromMap(json.decode(str));
@@ -90,15 +97,17 @@ class SubmitAnswersParams extends BaseParams {
   String toJson() => json.encode(toMap());
 
   factory SubmitAnswersParams.fromMap(Map<String, dynamic> json) => SubmitAnswersParams(
-    apiKey: json["apiKey"],
-    token: json["token"],
-    userAnswers: json["userAnswers"] == null ? <UserAnswerJson>[] : List<UserAnswerJson>.from(json["userAnswers"]!.map((dynamic x) => UserAnswerJson.fromMap(x))),
-    userId: json["userId"],
-  );
+        apiKey: json["apiKey"],
+        token: json["token"],
+        answers: List<UserAnswerResultJson>.from(json["answers"].map((dynamic x) => UserAnswerResultJson.fromMap(x))),
+        userId: json["userId"],
+        examId: json["examId"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    ...toBaseMap(),
-    "userAnswers": List<dynamic>.from(userAnswers.map((UserAnswerJson x) => x.toMap())),
-    "userId": userId,
-  };
+        ...super.toBaseMap(),
+        "answers": List<dynamic>.from(answers.map((dynamic x) => x.toMap())),
+        "userId": userId,
+        "examId": examId,
+      };
 }

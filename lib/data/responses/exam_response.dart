@@ -5,7 +5,7 @@ class ExamResponse {
   final DateTime createdAt;
   final DateTime updatedAt;
   final List<int> tags;
-  final ResultJsonData jsonData;
+  final ExamJsonData jsonData;
   final String title;
   final String description;
   final CategoryResponse category;
@@ -30,7 +30,7 @@ class ExamResponse {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-        jsonData: ResultJsonData.fromMap(json["jsonData"]),
+        jsonData: ExamJsonData.fromMap(json["jsonData"]),
         title: json["title"],
         description: json["description"],
         category: CategoryResponse.fromMap(json["category"]),
@@ -48,35 +48,75 @@ class ExamResponse {
       };
 }
 
-class ResultJsonData {
+class ExamJsonData {
   final List<QuestionJson> questions;
+  final List<ExamScoreDetail> scoreDetails;
 
-  ResultJsonData({
+  ExamJsonData({
     required this.questions,
+    required this.scoreDetails,
   });
 
-  factory ResultJsonData.fromJson(String str) => ResultJsonData.fromMap(json.decode(str));
+  factory ExamJsonData.fromJson(String str) => ExamJsonData.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ResultJsonData.fromMap(Map<String, dynamic> json) => ResultJsonData(
-        questions: List<QuestionJson>.from(json["questions"]!.map((dynamic x) => QuestionJson.fromMap(x))),
+  factory ExamJsonData.fromMap(Map<String, dynamic> json) => ExamJsonData(
+        questions: List<QuestionJson>.from(json["questions"].map((dynamic x) => QuestionJson.fromMap(x))),
+        scoreDetails: List<ExamScoreDetail>.from(json["scoreDetails"].map((dynamic x) => ExamScoreDetail.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "questions": List<dynamic>.from(questions.map((QuestionJson x) => x.toMap())),
+        "scoreDetails": List<dynamic>.from(scoreDetails.map((ExamScoreDetail x) => x.toMap())),
+      };
+}
+
+class ExamScoreDetail {
+  final double minScore;
+  final double maxScore;
+  final String label;
+  final String description;
+
+  ExamScoreDetail({
+    required this.minScore,
+    required this.maxScore,
+    required this.label,
+    required this.description,
+  });
+
+  factory ExamScoreDetail.fromJson(String str) => ExamScoreDetail.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ExamScoreDetail.fromMap(Map<String, dynamic> json) => ExamScoreDetail(
+        minScore: json["minScore"]?.toDouble(),
+        maxScore: json["maxScore"]?.toDouble(),
+        label: json["label"],
+        description: json["description"],
+      );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+        "minScore": minScore,
+        "maxScore": maxScore,
+        "label": label,
+        "description": description,
       };
 }
 
 class UserAnswerJson {
   final DateTime date;
-  final int totalScore;
+  final double totalScore;
   final List<UserAnswerResultJson> results;
+  final String label;
+  final String description;
 
   UserAnswerJson({
     required this.date,
     required this.totalScore,
     required this.results,
+    required this.label,
+    required this.description,
   });
 
   factory UserAnswerJson.fromJson(String str) => UserAnswerJson.fromMap(json.decode(str));
@@ -85,24 +125,28 @@ class UserAnswerJson {
 
   factory UserAnswerJson.fromMap(Map<String, dynamic> json) => UserAnswerJson(
         date: DateTime.parse(json["date"]),
-        totalScore: json["totalScore"],
-        results: List<UserAnswerResultJson>.from(json["results"]!.map((final dynamic x) => UserAnswerResultJson.fromMap(x))),
+        totalScore: json["totalScore"]?.toDouble(),
+        results: List<UserAnswerResultJson>.from(json["results"].map((dynamic x) => UserAnswerResultJson.fromMap(x))),
+        label: json["label"],
+        description: json["description"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "date": date.toIso8601String(),
         "totalScore": totalScore,
         "results": List<dynamic>.from(results.map((UserAnswerResultJson x) => x.toMap())),
+        "label": label,
+        "description": description,
       };
 }
 
 class UserAnswerResultJson {
-  final String? question;
-  final QuestionOptionJson? answer;
+  final String question;
+  final QuestionOptionJson answer;
 
   UserAnswerResultJson({
-    this.question,
-    this.answer,
+    required this.question,
+    required this.answer,
   });
 
   factory UserAnswerResultJson.fromJson(String str) => UserAnswerResultJson.fromMap(json.decode(str));
@@ -111,26 +155,26 @@ class UserAnswerResultJson {
 
   factory UserAnswerResultJson.fromMap(Map<String, dynamic> json) => UserAnswerResultJson(
         question: json["question"],
-        answer: json["answer"] == null ? null : QuestionOptionJson.fromMap(json["answer"]),
+        answer: QuestionOptionJson.fromMap(json["answer"]),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "question": question,
-        "answer": answer?.toMap(),
+        "answer": answer.toMap(),
       };
 }
 
 class QuestionJson {
-  final int? order;
+  final int order;
   final String title;
   final String description;
   final List<QuestionOptionJson> options;
 
   QuestionJson({
+    this.order = 0,
     required this.title,
     required this.description,
     required this.options,
-    this.order,
   });
 
   factory QuestionJson.fromJson(String str) => QuestionJson.fromMap(json.decode(str));
@@ -138,10 +182,10 @@ class QuestionJson {
   String toJson() => json.encode(toMap());
 
   factory QuestionJson.fromMap(Map<String, dynamic> json) => QuestionJson(
-        order: json["order"],
+        order: json["order"] ?? 0,
         title: json["title"],
         description: json["description"],
-        options: List<QuestionOptionJson>.from(json["options"]!.map((dynamic x) => QuestionOptionJson.fromMap(x))),
+        options: List<QuestionOptionJson>.from(json["options"].map((dynamic x) => QuestionOptionJson.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -155,7 +199,7 @@ class QuestionJson {
 class QuestionOptionJson {
   final String title;
   final String hint;
-  final String score;
+  final double score;
 
   QuestionOptionJson({
     required this.title,
@@ -170,7 +214,7 @@ class QuestionOptionJson {
   factory QuestionOptionJson.fromMap(Map<String, dynamic> json) => QuestionOptionJson(
         title: json["title"],
         hint: json["hint"],
-        score: json["score"],
+        score: json["score"]?.toDouble(),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
