@@ -158,7 +158,7 @@ class UserReadParams extends BaseReadParams {
         token: json["token"],
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
-    parentId: json["parentId"],
+        parentId: json["parentId"],
         fromDate: json["fromDate"] == null ? null : DateTime.parse(json["fromDate"]),
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
         userName: json["userName"],
@@ -214,12 +214,10 @@ class UserUpdateParams extends BaseUpdateParams {
   final String? fatherName;
   final List<String>? addHealth1;
   final List<String>? removeHealth1;
-  final List<String>? addFoodAllergies;
-  final List<String>? removeFoodAllergies;
-  final List<String>? addDrugAllergies;
-  final List<String>? removeDrugAllergies;
-  final List<String>? addSickness;
-  final List<String>? removeSickness;
+  final List<String>? health1;
+  final List<String>? foodAllergies;
+  final List<String>? drugAllergies;
+  final List<String>? sickness;
   final List<String>? categories;
 
   UserUpdateParams({
@@ -246,12 +244,10 @@ class UserUpdateParams extends BaseUpdateParams {
     this.fatherName,
     this.addHealth1,
     this.removeHealth1,
-    this.addFoodAllergies,
-    this.removeFoodAllergies,
-    this.addDrugAllergies,
-    this.removeDrugAllergies,
-    this.addSickness,
-    this.removeSickness,
+    this.health1,
+    this.foodAllergies,
+    this.drugAllergies,
+    this.sickness,
     this.categories,
   });
 
@@ -283,12 +279,10 @@ class UserUpdateParams extends BaseUpdateParams {
         removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((final dynamic x) => x)),
         addHealth1: json["addHealth1"] == null ? <String>[] : List<String>.from(json["addHealth1"]!.map((final dynamic x) => x)),
         removeHealth1: json["removeHealth1"] == null ? <String>[] : List<String>.from(json["removeHealth1"]!.map((final dynamic x) => x)),
-        addFoodAllergies: json["addFoodAllergies"] == null ? <String>[] : List<String>.from(json["addFoodAllergies"]!.map((final dynamic x) => x)),
-        removeFoodAllergies: json["removeFoodAllergies"] == null ? <String>[] : List<String>.from(json["removeFoodAllergies"]!.map((final dynamic x) => x)),
-        addDrugAllergies: json["addDrugAllergies"] == null ? <String>[] : List<String>.from(json["addDrugAllergies"]!.map((final dynamic x) => x)),
-        removeDrugAllergies: json["removeDrugAllergies"] == null ? <String>[] : List<String>.from(json["removeDrugAllergies"]!.map((final dynamic x) => x)),
-        addSickness: json["addSickness"] == null ? <String>[] : List<String>.from(json["addSickness"]!.map((final dynamic x) => x)),
-        removeSickness: json["removeSickness"] == null ? <String>[] : List<String>.from(json["removeSickness"]!.map((final dynamic x) => x)),
+        foodAllergies: json["foodAllergies"] == null ? <String>[] : List<String>.from(json["foodAllergies"]!.map((final dynamic x) => x)),
+        drugAllergies: json["drugAllergies"] == null ? <String>[] : List<String>.from(json["drugAllergies"]!.map((final dynamic x) => x)),
+        sickness: json["sickness"] == null ? <String>[] : List<String>.from(json["sickness"]!.map((final dynamic x) => x)),
+        health1: json["health1"] == null ? <String>[] : List<String>.from(json["health1"]!.map((final dynamic x) => x)),
         categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((final dynamic x) => x)),
       );
 
@@ -315,12 +309,10 @@ class UserUpdateParams extends BaseUpdateParams {
         "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
         "addHealth1": addHealth1 == null ? <dynamic>[] : List<dynamic>.from(addHealth1!.map((String x) => x)),
         "removeHealth1": removeHealth1 == null ? <dynamic>[] : List<dynamic>.from(removeHealth1!.map((String x) => x)),
-        "addFoodAllergies": addFoodAllergies == null ? <dynamic>[] : List<dynamic>.from(addFoodAllergies!.map((String x) => x)),
-        "removeFoodAllergies": removeFoodAllergies == null ? <dynamic>[] : List<dynamic>.from(removeFoodAllergies!.map((String x) => x)),
-        "addDrugAllergies": addDrugAllergies == null ? <dynamic>[] : List<dynamic>.from(addDrugAllergies!.map((String x) => x)),
-        "removeDrugAllergies": removeDrugAllergies == null ? <dynamic>[] : List<dynamic>.from(removeDrugAllergies!.map((String x) => x)),
-        "addSickness": addSickness == null ? <dynamic>[] : List<dynamic>.from(addSickness!.map((String x) => x)),
-        "removeSickness": removeSickness == null ? <dynamic>[] : List<dynamic>.from(removeSickness!.map((String x) => x)),
+        "health1": health1 == null ? <dynamic>[] : List<dynamic>.from(health1!.map((String x) => x)),
+        "sickness": sickness == null ? <dynamic>[] : List<dynamic>.from(sickness!.map((String x) => x)),
+        "foodAllergies": foodAllergies == null ? <dynamic>[] : List<dynamic>.from(foodAllergies!.map((String x) => x)),
+        "drugAllergies": drugAllergies == null ? <dynamic>[] : List<dynamic>.from(drugAllergies!.map((String x) => x)),
         "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
       };
 }
