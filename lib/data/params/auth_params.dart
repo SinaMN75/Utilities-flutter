@@ -2,8 +2,8 @@ part of "../data.dart";
 
 class RegisterParams extends BaseParams {
   final String userName;
-  final String email;
-  final String phoneNumber;
+  final String? email;
+  final String? phoneNumber;
   final String password;
   final String? firstName;
   final String? lastName;
@@ -13,8 +13,8 @@ class RegisterParams extends BaseParams {
     required super.apiKey,
     super.token,
     required this.userName,
-    required this.email,
-    required this.phoneNumber,
+    this.email,
+    this.phoneNumber,
     required this.password,
     required this.tags,
     this.firstName,
@@ -41,7 +41,7 @@ class RegisterParams extends BaseParams {
         ...toBaseMap(),
         "userName": userName,
         "email": email,
-        "phoneNumber": phoneNumber.englishNumber(),
+        "phoneNumber": phoneNumber?.englishNumber(),
         "password": password,
         "firstName": firstName,
         "lastName": lastName,

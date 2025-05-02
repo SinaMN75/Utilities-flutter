@@ -7,8 +7,8 @@ class UserResponse {
   final List<int> tags;
   final UserJsonData jsonData;
   final String userName;
-  final String phoneNumber;
-  final String email;
+  final String? phoneNumber;
+  final String? email;
   final String? firstName;
   final String? lastName;
   final String? country;
@@ -27,8 +27,8 @@ class UserResponse {
     required this.tags,
     required this.jsonData,
     required this.userName,
-    required this.phoneNumber,
-    required this.email,
+    this.phoneNumber,
+    this.email,
     this.firstName,
     this.children,
     this.lastName,
