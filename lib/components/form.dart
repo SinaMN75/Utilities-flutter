@@ -192,7 +192,7 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
         onTap: () async {
           if (!widget.readOnly) {
             if (widget.date) {
-              UNavigator.bottomSheet(
+              await UNavigator.bottomSheet(
                   child: Column(
                     children: <Widget>[
                       LinearDatePicker(

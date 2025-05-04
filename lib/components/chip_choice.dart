@@ -117,7 +117,7 @@ class _CustomChipChoiceState<T> extends State<CustomChipChoice<T>> {
     return ChipTheme(
       data: style,
       child: Chip(
-        label: Text(item.toString()).paddingAll(8),
+        label: Text(item.toString()).pAll(8),
         onDeleted: isSelected && widget.isMultiChoice ? () => _handleSelection(item, index) : null,
         deleteIconColor: style.labelStyle?.color,
       ),
