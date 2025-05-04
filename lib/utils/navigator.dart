@@ -7,14 +7,18 @@ abstract class UNavigator {
     final bool dialog = false,
     final Transition transition = Transition.cupertino,
     final bool preventDuplicates = true,
+    final int milliSecondDelay = 10,
   }) async =>
-      Get.to(
-        page,
-        fullscreenDialog: dialog,
-        popGesture: true,
-        opaque: dialog ? false : true,
-        transition: transition,
-        preventDuplicates: preventDuplicates,
+      delay(
+        milliSecondDelay,
+        () => Get.to(
+          page,
+          fullscreenDialog: dialog,
+          popGesture: true,
+          opaque: dialog ? false : true,
+          transition: transition,
+          preventDuplicates: preventDuplicates,
+        ),
       );
 
   static void dialog(
@@ -31,18 +35,28 @@ abstract class UNavigator {
     final Widget page, {
     final bool dialog = false,
     final Transition transition = Transition.cupertino,
+    final int milliSecondDelay = 10,
   }) =>
-      Get.offAll(
-        () => page,
-        fullscreenDialog: dialog,
-        popGesture: true,
-        opaque: dialog ? false : true,
-        transition: transition,
+      delay(
+        milliSecondDelay,
+        () => Get.offAll(
+          () => page,
+          fullscreenDialog: dialog,
+          popGesture: true,
+          opaque: dialog ? false : true,
+          transition: transition,
+        ),
       );
 
-  static void off(final Widget page, {final bool preventDuplicates = true}) => Get.off(() => page, preventDuplicates: preventDuplicates);
+  static void off(final Widget page, {final bool preventDuplicates = true}) => delay(
+        10,
+        () => Get.off(() => page, preventDuplicates: preventDuplicates),
+      );
 
-  static void back({final bool closeOverlays = false}) => Get.back(closeOverlays: closeOverlays);
+  static void back({final bool closeOverlays = false}) => delay(
+        10,
+        () => Get.back(closeOverlays: closeOverlays),
+      );
 
   static void alertDialog({
     required final (String, VoidCallback) action1,
