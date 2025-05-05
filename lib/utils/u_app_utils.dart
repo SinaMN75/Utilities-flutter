@@ -19,38 +19,24 @@ abstract class UApp {
 
   static String buildNumber = packageInfo.buildNumber;
 
-  static bool isAndroid = GetPlatform.isAndroid && !kIsWeb;
+  static bool get isWeb => kIsWeb;
+  static bool get isAndroid => !isWeb && Platform.isAndroid;
+  static bool get isIos => !isWeb && Platform.isIOS;
+  static bool get isMacOs => !isWeb && Platform.isMacOS;
+  static bool get isWindows => !isWeb && Platform.isWindows;
+  static bool get isLinux => !isWeb && Platform.isLinux;
+  static bool get isFuchsia => !isWeb && Platform.isFuchsia;
+  static bool get isMobile => isAndroid || isIos;
+  static bool get isDesktop => isMacOs || isWindows || isLinux;
 
-  static bool isIos = GetPlatform.isIOS && !kIsWeb;
+  static bool isLandscape() => MediaQuery.of(navigatorKey.currentContext!).orientation == Orientation.landscape;
+  static bool isPortrait() => MediaQuery.of(navigatorKey.currentContext!).orientation == Orientation.portrait;
+  static bool isTablet() => !isWeb && MediaQuery.of(navigatorKey.currentContext!).size.shortestSide >= 600;
+  static bool isPhone() => !isWeb && MediaQuery.of(navigatorKey.currentContext!).size.shortestSide < 600;
+  static bool isMobileSize() => MediaQuery.of(navigatorKey.currentContext!).size.width < 850;
+  static bool isTabletSize() => MediaQuery.of(navigatorKey.currentContext!).size.width < 1100 && MediaQuery.of(navigatorKey.currentContext!).size.width >= 850;
 
-  static bool isMacOs = GetPlatform.isMacOS && !kIsWeb;
-
-  static bool isWindows = GetPlatform.isWindows && !kIsWeb;
-
-  static bool isLinux = GetPlatform.isLinux && !kIsWeb;
-
-  static bool isFuchsia = GetPlatform.isFuchsia && !kIsWeb;
-
-  static bool isMobile = GetPlatform.isMobile && !kIsWeb;
-
-  static bool isWeb = GetPlatform.isWeb && kIsWeb;
-
-  static bool isDesktop = GetPlatform.isDesktop && !kIsWeb;
-
-  static bool isLandScape() => navigatorKey.currentContext!.isLandscape;
-
-  static bool isPortrait() => navigatorKey.currentContext!.isPortrait;
-
-  static bool isTablet() => navigatorKey.currentContext!.isTablet && !kIsWeb;
-
-  static bool isPhone() => navigatorKey.currentContext!.isPhone && !kIsWeb;
-
-  static bool isMobileSize() => navigatorKey.currentContext!.width < 850;
-
-  static bool isTabletSize() => navigatorKey.currentContext!.width < 1100 && navigatorKey.currentContext!.width >= 850;
-
-  static bool isDesktopSize() => navigatorKey.currentContext!.width >= 1100;
-
+  static bool isDesktopSize() => MediaQuery.of(navigatorKey.currentContext!).size.width >= 1100;
   static bool isPwa = html.window.matchMedia('(display-mode: standalone)').matches;
 
   static void reloadWeb() => html.window.location.reload();
