@@ -1,11 +1,14 @@
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 //
 // /// The ultimate navigation utility with every feature imaginable (no packages)
 // abstract class UNavigator {
+//   // Core Configuration
 //   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 //   static final GlobalKey<ScaffoldMessengerState> scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 //
+//   // Quick Accessors
 //   static BuildContext get context => navigatorKey.currentContext!;
 //
 //   static ThemeData get theme => Theme.of(context);
@@ -17,6 +20,10 @@
 //   static bool get isAndroid => theme.platform == TargetPlatform.android;
 //
 //   static bool get isIOS => theme.platform == TargetPlatform.iOS;
+//
+//   //===============================
+//   // Core Navigation
+//   //===============================
 //
 //   /// Push with optional custom transition
 //   static Future<T?> push<T>(
@@ -50,31 +57,38 @@
 //     Widget page, {
 //     RouteTransitions transition = RouteTransitions.fade,
 //     RouteSettings? settings,
-//   }) =>
-//       Navigator.pushReplacement<T, dynamic>(
-//         context,
-//         PageRouteBuilder<T>(
-//           pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
-//           transitionsBuilder: _getTransition(transition),
-//           settings: settings,
-//         ),
-//       );
+//     VoidCallback? onDismiss,
+//   }) {
+//     return Navigator.pushReplacement<T, dynamic>(
+//       context,
+//       PageRouteBuilder<T>(
+//         pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
+//         transitionsBuilder: _getTransition(transition),
+//         settings: settings,
+//       ),
+//     ).then((T? value) {
+//       onDismiss?.call();
+//       return value;
+//     });
+//   }
 //
 //   /// Clear all routes and start fresh
 //   static void offAll(
 //     Widget page, {
 //     RouteTransitions transition = RouteTransitions.fade,
 //     RouteSettings? settings,
-//   }) =>
-//       Navigator.pushAndRemoveUntil(
-//         context,
-//         PageRouteBuilder<dynamic>(
-//           pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
-//           transitionsBuilder: _getTransition(transition),
-//           settings: settings,
-//         ),
-//         (Route<dynamic> route) => false,
-//       );
+//     VoidCallback? onDismiss,
+//   }) {
+//     Navigator.pushAndRemoveUntil(
+//       context,
+//       PageRouteBuilder<dynamic>(
+//         pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
+//         transitionsBuilder: _getTransition(transition),
+//         settings: settings,
+//       ),
+//       (Route<dynamic> route) => false,
+//     ).then((_) => onDismiss?.call());
+//   }
 //
 //   /// Pop with optional result
 //   static void back<T>([T? result]) {
@@ -82,6 +96,10 @@
 //       Navigator.pop<T>(context, result);
 //     }
 //   }
+//
+//   //===============================
+//   // Dialogs & Modals
+//   //===============================
 //
 //   /// Adaptive dialog (Material/Cupertino)
 //   static Future<T?> dialog<T>({
@@ -149,7 +167,7 @@
 //   }
 //
 //   //===============================
-//   // Bottom Sheets (with onDismiss)
+//   // Bottom Sheets
 //   //===============================
 //
 //   /// Adaptive bottom sheet
@@ -223,10 +241,10 @@
 //   }
 //
 //   //===============================
-//   // Notifications (Snackbars & Toasts)
+//   // Notifications
 //   //===============================
 //
-//   /// Standard snackbar with onDismiss
+//   /// Standard snackbar
 //   static void snackbar({
 //     required String message,
 //     String? title,
@@ -255,7 +273,7 @@
 //     });
 //   }
 //
-//   /// Floating toast-style notification with onDismiss
+//   /// Floating toast-style notification
 //   static void toast({
 //     required String message,
 //     Duration duration = const Duration(seconds: 2),
@@ -288,16 +306,44 @@
 //     });
 //   }
 //
+//   /// Error notification
+//   static void error({
+//     required String message,
+//     Duration duration = const Duration(seconds: 4),
+//     String? actionLabel,
+//     VoidCallback? onAction,
+//     VoidCallback? onDismiss,
+//   }) {
+//     snackbar(
+//       message: message,
+//       backgroundColor: theme.colorScheme.error,
+//       textColor: theme.colorScheme.onError,
+//       action: actionLabel != null
+//           ? SnackBarAction(
+//               label: actionLabel,
+//               onPressed: onAction ?? () {},
+//               textColor: theme.colorScheme.onError,
+//             )
+//           : null,
+//       duration: duration,
+//       onDismiss: onDismiss,
+//     );
+//   }
+//
 //   //===============================
 //   // Advanced Features
 //   //===============================
 //
-//   /// Full-screen dialog with onDismiss
-//   static Future<T?> fullScreenDialog<T>(Widget page, {VoidCallback? onDismiss}) {
+//   /// Full-screen dialog
+//   static Future<T?> fullScreenDialog<T>(
+//     Widget page, {
+//     RouteTransitions transition = RouteTransitions.upToDown,
+//     VoidCallback? onDismiss,
+//   }) {
 //     return push<T>(
 //       page,
 //       fullscreenDialog: true,
-//       transition: RouteTransitions.upToDown,
+//       transition: transition,
 //     ).then((T? value) {
 //       onDismiss?.call();
 //       return value;
@@ -312,6 +358,7 @@
 //     Duration duration = const Duration(seconds: 3),
 //     Alignment alignment = Alignment.topCenter,
 //     EdgeInsets padding = const EdgeInsets.all(20),
+//     VoidCallback? onDismiss,
 //   }) {
 //     dismissOverlay();
 //
@@ -334,13 +381,25 @@
 //     Overlay.of(context).insert(overlay);
 //
 //     if (duration != Duration.zero) {
-//       Future<void>.delayed(duration, dismissOverlay);
+//       Future<void>.delayed(duration, () {
+//         dismissOverlay();
+//         onDismiss?.call();
+//       });
 //     }
 //   }
 //
 //   static void dismissOverlay() {
 //     _currentOverlay?.remove();
 //     _currentOverlay = null;
+//   }
+//
+//   /// Copy to clipboard with feedback
+//   static void copyToClipboard(String text, {String? successMessage}) {
+//     Clipboard.setData(ClipboardData(text: text)).then((_) {
+//       if (successMessage != null) {
+//         toast(message: successMessage);
+//       }
+//     });
 //   }
 //
 //   //===============================
