@@ -1,9 +1,9 @@
 import 'package:u/utilities.dart';
+import 'package:u/utils/crashlytics.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> initUtilities({
-  final FirebaseOptions? firebaseOptions,
   final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -19,18 +19,8 @@ Future<void> initUtilities({
   if (UApp.isWindows) UApp.windowsDeviceInfo = await UApp.deviceInfo.windowsInfo;
   if (UApp.isMacOs) UApp.macOsDeviceInfo = await UApp.deviceInfo.macOsInfo;
   if (UApp.isLinux) UApp.linuxDeviceInfo = await UApp.deviceInfo.linuxInfo;
-  if (firebaseOptions != null) {
-    try {
-      await Firebase.initializeApp(options: firebaseOptions);
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-      PlatformDispatcher.instance.onError = (final Object error, final StackTrace stack) {
-        FirebaseCrashlytics.instance.recordError(error, stack);
-        return true;
-      };
-    } catch (e) {}
-  }
   ULoading.initialize(key: navigatorKey, blurAmount: 1, overlayColor: Colors.black12);
-
+  await CustomCrashlytics.initialize();
   return;
 }
 

@@ -25,9 +25,6 @@ dependencies:
   webview_flutter: ^4.11.0
   local_auth: ^2.3.0
   flutter_svg: ^2.1.0
-  firebase_messaging: ^15.2.5
-  firebase_analytics: ^11.4.5
-  firebase_crashlytics: ^4.3.5
   image_picker: ^1.1.2
 
   # fluttercommunity.dev

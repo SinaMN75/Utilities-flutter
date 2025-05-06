@@ -42,19 +42,4 @@ abstract class UApp {
   static void reloadWeb() => html.window.location.reload();
 
   static String locale() => Get.locale?.languageCode ?? "en";
-
-  static void updateLocale(final Locale locale) {
-    Get.updateLocale(locale);
-    ULocalStorage.set(UConstants.locale, locale.languageCode);
-  }
-
-  static void switchTheme() {
-    if (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) {
-      Get.changeThemeMode(ThemeMode.light);
-      ULocalStorage.set(UConstants.isDarkMode, false);
-    } else {
-      Get.changeThemeMode(ThemeMode.dark);
-      ULocalStorage.set(UConstants.isDarkMode, true);
-    }
-  }
 }
