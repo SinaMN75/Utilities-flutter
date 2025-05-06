@@ -7,50 +7,79 @@ class CustomCrashlytics {
       return true;
     };
 
-    FlutterError.onError = (FlutterErrorDetails details) {
-      _recordFlutterError(details);
-    };
+    FlutterError.onError = (FlutterErrorDetails details) => _recordFlutterError(details);
   }
 
   static Future<void> _recordError(dynamic error, StackTrace stack) async {
-    final String message = '''
-====== DART ERROR ======
-${await _getSystemInfo()}
-Error: $error
-Stack Trace:
-$stack
-=======================
-''';
-    _writeToLogFile(message);
+    final Map<String, dynamic> errorData = <String, dynamic>{
+      'type': 'DART_ERROR',
+      'timestamp': DateTime.now().toIso8601String(),
+      'error': <String, String>{
+        'type': error.runtimeType.toString(),
+        'message': error.toString(),
+      },
+      'stackTrace': _formatStackTrace(stack),
+      'systemInfo': await _getSystemInfo(),
+    };
+
+    _writeToLogFile(jsonEncode(errorData));
   }
 
   static Future<void> _recordFlutterError(FlutterErrorDetails details) async {
-    final String message = '''
-====== FLUTTER ERROR ======
-${await _getSystemInfo()}
-Library: ${details.library}
-Exception: ${details.exception}
-Stack Trace:
-${details.stack}
-Context:
-${details.context}
-=======================
-''';
-    _writeToLogFile(message);
+    final Map<String, dynamic> errorData = <String, dynamic>{
+      'type': 'FLUTTER_ERROR',
+      'timestamp': DateTime.now().toIso8601String(),
+      'error': <String, String?>{
+        'library': details.library,
+        'exceptionType': details.exception.runtimeType.toString(),
+        'exception': details.exception.toString(),
+      },
+      'stackTrace': _formatFlutterStackTrace(details.stack),
+      'context': details.context?.toString() ?? 'No context',
+      'additionalInfo': details.informationCollector != null
+          ? _formatInformationCollector(details.informationCollector)
+          : null,
+      'systemInfo': await _getSystemInfo(),
+    };
+
+    _writeToLogFile(jsonEncode(errorData));
   }
 
-  static Future<String> _getSystemInfo() async {
-    final String deviceInfo = '''
-Time: ${DateTime.now()}
-App: ${UApp.name} (${UApp.packageName})
-Version: ${UApp.version} (build ${UApp.buildNumber})
-Platform: ${_getPlatformInfo()}
-Device: ${await _getDeviceInfo()}
-Screen: ${_getScreenInfo()}
-Locale: ${UApp.locale()}
-''';
+  static String _formatStackTrace(StackTrace? stack) {
+    if (stack == null) return "";
+    if (stack == StackTrace.empty) return 'Empty stack trace provided';
+    return stack.toString();
+  }
 
-    return deviceInfo;
+  static String _formatFlutterStackTrace(StackTrace? stack) {
+    if (stack == null) return "";
+    return stack.toString();
+  }
+
+  static List<String> _formatInformationCollector(InformationCollector? collector) {
+    if (collector == null) return <String>[];
+
+    try {
+      final Iterable<DiagnosticsNode> information = collector();
+      return information.map((DiagnosticsNode info) => info.toString()).toList();
+    } catch (e) {
+      return <String>['Failed to collect additional information: $e'];
+    }
+  }
+
+  static Future<Map<String, dynamic>> _getSystemInfo() async {
+    return <String, dynamic>{
+      'app': <String, String>{
+        'name': UApp.name,
+        'packageName': UApp.packageName,
+        'version': UApp.version,
+        'buildNumber': UApp.buildNumber,
+      },
+      'platform': _getPlatformInfo(),
+      'device': await _getDeviceInfo(),
+      'screen': _getScreenInfo(),
+      'locale': UApp.locale(),
+    };
   }
 
   static String _getPlatformInfo() {
@@ -64,41 +93,72 @@ Locale: ${UApp.locale()}
     return 'Unknown';
   }
 
-  static Future<String> _getDeviceInfo() async {
+  static Future<Map<String, dynamic>> _getDeviceInfo() async {
     try {
       if (UApp.isAndroid) {
-        return '${UApp.androidDeviceInfo.model} (${UApp.androidDeviceInfo.manufacturer}) - Android ${UApp.androidDeviceInfo.version.release}';
+        return <String, dynamic>{
+          'type': 'Android',
+          'model': UApp.androidDeviceInfo.model,
+          'manufacturer': UApp.androidDeviceInfo.manufacturer,
+          'osVersion': UApp.androidDeviceInfo.version.release,
+        };
       } else if (UApp.isIos) {
-        return '${UApp.iosDeviceInfo.model} - iOS ${UApp.iosDeviceInfo.systemVersion}';
+        return <String, dynamic>{
+          'type': 'iOS',
+          'model': UApp.iosDeviceInfo.model,
+          'osVersion': UApp.iosDeviceInfo.systemVersion,
+        };
       } else if (UApp.isWeb) {
-        return '${UApp.webBrowserInfo.browserName.name} ${UApp.webBrowserInfo.appVersion}';
+        return <String, dynamic>{
+          'type': 'Web',
+          'browser': UApp.webBrowserInfo.browserName.name,
+          'version': UApp.webBrowserInfo.appVersion,
+        };
       } else if (UApp.isMacOs) {
-        return '${UApp.macOsDeviceInfo.model} - macOS ${UApp.macOsDeviceInfo.osRelease}';
+        return <String, dynamic>{
+          'type': 'macOS',
+          'model': UApp.macOsDeviceInfo.model,
+          'osVersion': UApp.macOsDeviceInfo.osRelease,
+        };
       } else if (UApp.isWindows) {
-        return '${UApp.windowsDeviceInfo.computerName} - Windows ${UApp.windowsDeviceInfo.majorVersion}';
+        return <String, dynamic>{
+          'type': 'Windows',
+          'computerName': UApp.windowsDeviceInfo.computerName,
+          'version': UApp.windowsDeviceInfo.majorVersion,
+        };
       } else if (UApp.isLinux) {
-        return '${UApp.linuxDeviceInfo.name} - ${UApp.linuxDeviceInfo.version}';
+        return <String, dynamic>{
+          'type': 'Linux',
+          'name': UApp.linuxDeviceInfo.name,
+          'version': UApp.linuxDeviceInfo.version,
+        };
       }
     } catch (e) {
-      return 'Failed to get detailed device info: $e';
+      return <String, dynamic>{
+        'error': 'Failed to get detailed device info: $e'
+      };
     }
-    return 'Unknown device';
+    return <String, dynamic>{'type': 'Unknown device'};
   }
 
-  static String _getScreenInfo() {
+  static Map<String, dynamic> _getScreenInfo() {
     try {
-      final BuildContext context = navigatorKey.currentContext!;
-      final MediaQueryData media = MediaQuery.of(context);
+      final MediaQueryData media = MediaQuery.of(navigatorKey.currentContext!);
       final Size size = media.size;
 
-      return '''
-Size: ${size.width.toStringAsFixed(0)}x${size.height.toStringAsFixed(0)}
-Pixel ratio: ${media.devicePixelRatio.toStringAsFixed(2)}
-Orientation: ${media.orientation.name}
-Device type: ${_getDeviceType(context)}
-''';
+      return <String, dynamic>{
+        'size': <String, double>{
+          'width': size.width,
+          'height': size.height,
+        },
+        'pixelRatio': media.devicePixelRatio,
+        'orientation': media.orientation.name,
+        'deviceType': _getDeviceType(navigatorKey.currentContext!),
+      };
     } catch (e) {
-      return 'Failed to get screen info: $e';
+      return <String, dynamic>{
+        'error': 'Failed to get screen info: $e'
+      };
     }
   }
 
@@ -113,7 +173,21 @@ Device type: ${_getDeviceType(context)}
     return 'Unknown';
   }
 
-  static void _writeToLogFile(String message) {
-    UNavigator.draggableSheet(Text(message));
+  static void _writeToLogFile(String jsonMessage) {
+    try {
+      final String prettyJson = const JsonEncoder.withIndent('  ').convert(jsonDecode(jsonMessage));
+      UNavigator.draggableSheet(
+        SingleChildScrollView(
+          child: Text(prettyJson),
+        ),
+      );
+
+    } catch (e) {
+      debugPrint('Failed to display error: $e');
+    }
+  }
+
+  static void reportError(dynamic error, StackTrace stackTrace) {
+    _recordError(error, stackTrace);
   }
 }
