@@ -20,7 +20,7 @@ export 'package:flutter_map/flutter_map.dart';
 export 'package:flutter_map_location_marker/flutter_map_location_marker.dart' hide PermissionDeniedException;
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:geolocator/geolocator.dart';
-export 'package:get/get.dart' hide HeaderValue;
+export 'package:get/get.dart' hide HeaderValue, GetConnect, Response;
 export 'package:image_cropper/image_cropper.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:latlong2/latlong.dart' hide pi, Path;

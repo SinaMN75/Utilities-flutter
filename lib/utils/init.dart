@@ -1,5 +1,4 @@
 import 'package:u/utilities.dart';
-import 'package:u/utils/crashlytics.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -20,7 +19,7 @@ Future<void> initUtilities({
   if (UApp.isMacOs) UApp.macOsDeviceInfo = await UApp.deviceInfo.macOsInfo;
   if (UApp.isLinux) UApp.linuxDeviceInfo = await UApp.deviceInfo.linuxInfo;
   ULoading.initialize(key: navigatorKey, blurAmount: 1, overlayColor: Colors.black12);
-  await CustomCrashlytics.initialize();
+  // await CustomCrashlytics.initialize();
   return;
 }
 
