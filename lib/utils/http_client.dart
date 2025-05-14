@@ -19,7 +19,7 @@ class SimpleHttp {
   final Client _client = Client();
   final Map<String, CacheEntry> _cache = <String, CacheEntry>{};
 
-  Future<void> request({
+  Future<Response?> request({
     required final String method,
     required final String endpoint,
     final Map<String, String>? headers,
@@ -32,28 +32,23 @@ class SimpleHttp {
   }) async {
     final String cacheKey = _buildCacheKey(method, endpoint, queryParams, body);
 
-    // Check cache first if enabled
     if (enableCache && cacheResponse && _cache.containsKey(cacheKey)) {
       final CacheEntry cached = _cache[cacheKey]!;
       if (DateTime.now().difference(cached.timestamp) <= cacheDuration) {
         onSuccess?.call(cached.response);
-        return;
+        return cached.response;
       } else {
         _cache.remove(cacheKey);
       }
     }
 
-    // Build URI
     final Uri uri = _buildUri(endpoint, queryParams);
 
-    // Merge headers
     final Map<String, String> mergedHeaders = <String, String>{...defaultHeaders, ...?headers};
 
-    // Create request
     final Request request = Request(method, uri);
     request.headers.addAll(mergedHeaders);
 
-    // Add body if provided
     if (body != null) {
       if (body is Map) {
         request.body = jsonEncode(removeNullEntries(body));
@@ -66,24 +61,22 @@ class SimpleHttp {
       }
     }
 
-    // Send request with timeout
     final Response response = await _client.send(request).timeout(timeout).then(Response.fromStream);
     response.prettyLog(params: jsonEncode(body));
 
-    // Cache the response if enabled
     if (enableCache && cacheResponse && response.statusCode == 200) {
       _cache[cacheKey] = CacheEntry(response, DateTime.now());
     }
 
-    // Handle response
     if (response.statusCode >= 200 && response.statusCode < 300) {
       onSuccess?.call(response);
+      return response;
     } else {
       onError?.call(response);
+      return response;
     }
   }
 
-  // File upload
   Future<void> upload({
     required final String endpoint,
     required final List<MultipartFile> files,
@@ -98,18 +91,14 @@ class SimpleHttp {
       final Uri uri = _buildUri(endpoint, queryParams);
       final MultipartRequest request = MultipartRequest('POST', uri);
 
-      // Add headers
       request.headers.addAll(<String, String>{...defaultHeaders, ...?headers});
 
-      // Add fields
       if (fields != null) {
         request.fields.addAll(fields);
       }
 
-      // Add files
       request.files.addAll(files);
 
-      // Send request
       final Response response = await request.send().timeout(timeout).then(Response.fromStream);
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
@@ -122,7 +111,6 @@ class SimpleHttp {
     }
   }
 
-  // File download
   Future<void> download({
     required final String endpoint,
     required final String savePath,
@@ -151,8 +139,7 @@ class SimpleHttp {
     }
   }
 
-  // Convenience methods
-  Future<void> get(
+  Future<Response?> get(
     final String endpoint, {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
@@ -172,7 +159,7 @@ class SimpleHttp {
         onException: onException,
       );
 
-  Future<void> post(
+  Future<Response?> post(
     final String endpoint, {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
@@ -194,7 +181,7 @@ class SimpleHttp {
         onException: onException,
       );
 
-  Future<void> put(
+  Future<Response?> put(
     final String endpoint, {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
@@ -216,7 +203,7 @@ class SimpleHttp {
         onException: onException,
       );
 
-  Future<void> delete(
+  Future<Response?> delete(
     final String endpoint, {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
@@ -236,7 +223,6 @@ class SimpleHttp {
         onException: onException,
       );
 
-  // Cache management
   void clearCache() {
     _cache.clear();
   }
@@ -246,7 +232,6 @@ class SimpleHttp {
     _cache.remove(key);
   }
 
-  // Helper methods
   Uri _buildUri(final String endpoint, final Map<String, dynamic>? queryParams) {
     final Uri uri = baseUrl != null ? Uri.parse('$baseUrl$endpoint') : Uri.parse(endpoint);
 
@@ -263,12 +248,10 @@ class SimpleHttp {
     return '$method:$uri:$bodyKey';
   }
 
-  // JSON decoding helpers
   static Map<String, dynamic> decodeJson(final Response response) => jsonDecode(response.body) as Map<String, dynamic>;
 
   static List<dynamic> decodeJsonArray(final Response response) => jsonDecode(response.body) as List<dynamic>;
 
-  // File upload helper
   static Future<MultipartFile> multipartFileFromFile(
     final String fieldName,
     final File file, {
