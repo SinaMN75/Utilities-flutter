@@ -3,21 +3,8 @@ import 'dart:developer' as developer;
 import 'package:u/utilities.dart';
 
 class SimpleHttp {
-  SimpleHttp({
-    this.baseUrl,
-    this.timeout = const Duration(seconds: 30),
-    this.defaultHeaders = const <String, String>{'Accept': 'application/json'},
-    this.enableCache = false,
-    this.cacheDuration = const Duration(minutes: 5),
-  });
-
-  final String? baseUrl;
-  final Duration timeout;
-  final Map<String, String> defaultHeaders;
-  final bool enableCache;
-  final Duration cacheDuration;
+  final Map<String, String> defaultHeaders = const <String, String>{'Accept': 'application/json'};
   final Client _client = Client();
-  final Map<String, CacheEntry> _cache = <String, CacheEntry>{};
 
   Future<Response?> request({
     required final String method,
@@ -25,55 +12,68 @@ class SimpleHttp {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
-    final bool cacheResponse = false,
+    Duration? cacheDuration,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
   }) async {
-    final String cacheKey = _buildCacheKey(method, endpoint, queryParams, body);
+    try {
+      final String cacheKey = _buildCacheKey(method, endpoint, queryParams, body);
 
-    if (enableCache && cacheResponse && _cache.containsKey(cacheKey)) {
-      final CacheEntry cached = _cache[cacheKey]!;
-      if (DateTime.now().difference(cached.timestamp) <= cacheDuration) {
-        onSuccess?.call(cached.response);
-        return cached.response;
+      if (cacheDuration != null) {
+        final String? cachedResponse = ULocalStorage.getString(cacheKey);
+        final String? cachedTimestamp = ULocalStorage.getString('$cacheKey:timestamp');
+
+        if (cachedResponse != null && cachedTimestamp != null) {
+          final DateTime timestamp = DateTime.parse(cachedTimestamp);
+          if (DateTime.now().difference(timestamp) <= cacheDuration) {
+            final Response response = Response(cachedResponse, 200);
+            onSuccess?.call(response);
+            return response;
+          } else {
+            ULocalStorage.remove(cacheKey);
+            ULocalStorage.remove('$cacheKey:timestamp');
+          }
+        }
+      }
+
+      final Uri uri = _buildUri(endpoint, queryParams);
+
+      final Map<String, String> mergedHeaders = <String, String>{...defaultHeaders, ...?headers};
+
+      final Request request = Request(method, uri);
+      request.headers.addAll(mergedHeaders);
+
+      if (body != null) {
+        if (body is Map) {
+          request.body = jsonEncode(removeNullEntries(body));
+          request.headers['Content-Type'] = 'application/json';
+          request.headers['Locale'] = UApp.locale();
+        } else if (body is String) {
+          request.body = body;
+        } else if (body is List<int>) {
+          request.bodyBytes = body;
+        }
+      }
+
+      final Response response = await _client.send(request).timeout(const Duration(seconds: 30)).then(Response.fromStream);
+      response.prettyLog(params: jsonEncode(body));
+
+      if (cacheDuration != null && response.statusCode == 200) {
+        ULocalStorage.set(cacheKey, response.body);
+        ULocalStorage.set('$cacheKey:timestamp', DateTime.now().toIso8601String());
+      }
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        onSuccess?.call(response);
+        return response;
       } else {
-        _cache.remove(cacheKey);
+        onError?.call(response);
+        return response;
       }
-    }
-
-    final Uri uri = _buildUri(endpoint, queryParams);
-
-    final Map<String, String> mergedHeaders = <String, String>{...defaultHeaders, ...?headers};
-
-    final Request request = Request(method, uri);
-    request.headers.addAll(mergedHeaders);
-
-    if (body != null) {
-      if (body is Map) {
-        request.body = jsonEncode(removeNullEntries(body));
-        request.headers['Content-Type'] = 'application/json';
-        request.headers['Locale'] = UApp.locale();
-      } else if (body is String) {
-        request.body = body;
-      } else if (body is List<int>) {
-        request.bodyBytes = body;
-      }
-    }
-
-    final Response response = await _client.send(request).timeout(timeout).then(Response.fromStream);
-    response.prettyLog(params: jsonEncode(body));
-
-    if (enableCache && cacheResponse && response.statusCode == 200) {
-      _cache[cacheKey] = CacheEntry(response, DateTime.now());
-    }
-
-    if (response.statusCode >= 200 && response.statusCode < 300) {
-      onSuccess?.call(response);
-      return response;
-    } else {
-      onError?.call(response);
-      return response;
+    } catch (e) {
+      onException?.call(e);
+      return null;
     }
   }
 
@@ -99,7 +99,7 @@ class SimpleHttp {
 
       request.files.addAll(files);
 
-      final Response response = await request.send().timeout(timeout).then(Response.fromStream);
+      final Response response = await request.send().timeout(const Duration(seconds: 30)).then(Response.fromStream);
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         onSuccess?.call(response);
@@ -113,6 +113,7 @@ class SimpleHttp {
 
   Future<void> download({
     required final String endpoint,
+    Duration? cacheDuration,
     required final String savePath,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
@@ -125,7 +126,7 @@ class SimpleHttp {
       final Request request = Request('GET', uri);
       request.headers.addAll(<String, String>{...defaultHeaders, ...?headers});
 
-      final StreamedResponse response = await _client.send(request).timeout(timeout);
+      final StreamedResponse response = await _client.send(request).timeout(const Duration(seconds: 30));
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final File file = File(savePath);
@@ -141,9 +142,9 @@ class SimpleHttp {
 
   Future<Response?> get(
     final String endpoint, {
+    Duration? cacheDuration,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    final bool cacheResponse = false,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -151,9 +152,9 @@ class SimpleHttp {
       request(
         method: 'GET',
         endpoint: endpoint,
+        cacheDuration: cacheDuration,
         headers: headers,
         queryParams: queryParams,
-        cacheResponse: cacheResponse,
         onSuccess: onSuccess,
         onError: onError,
         onException: onException,
@@ -161,10 +162,10 @@ class SimpleHttp {
 
   Future<Response?> post(
     final String endpoint, {
+    Duration? cacheDuration,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
-    final bool cacheResponse = false,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -175,7 +176,7 @@ class SimpleHttp {
         headers: headers,
         queryParams: queryParams,
         body: body,
-        cacheResponse: cacheResponse,
+        cacheDuration: cacheDuration,
         onSuccess: onSuccess,
         onError: onError,
         onException: onException,
@@ -186,7 +187,6 @@ class SimpleHttp {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
-    final bool cacheResponse = false,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -197,7 +197,6 @@ class SimpleHttp {
         headers: headers,
         queryParams: queryParams,
         body: body,
-        cacheResponse: cacheResponse,
         onSuccess: onSuccess,
         onError: onError,
         onException: onException,
@@ -207,7 +206,6 @@ class SimpleHttp {
     final String endpoint, {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    final bool cacheResponse = false,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -217,23 +215,25 @@ class SimpleHttp {
         endpoint: endpoint,
         headers: headers,
         queryParams: queryParams,
-        cacheResponse: cacheResponse,
         onSuccess: onSuccess,
         onError: onError,
         onException: onException,
       );
 
   void clearCache() {
-    _cache.clear();
+    // SharedPreferences doesn't support clearing only cache entries,
+    // so we need to track cache keys separately if we want to implement this
+    // For now, just leave this empty or implement a more sophisticated solution
   }
 
   void removeFromCache(final String method, final String endpoint, [final dynamic body]) {
     final String key = _buildCacheKey(method, endpoint, null, body);
-    _cache.remove(key);
+    ULocalStorage.remove(key);
+    ULocalStorage.remove('$key:timestamp');
   }
 
   Uri _buildUri(final String endpoint, final Map<String, dynamic>? queryParams) {
-    final Uri uri = baseUrl != null ? Uri.parse('$baseUrl$endpoint') : Uri.parse(endpoint);
+    final Uri uri = Uri.parse(endpoint);
 
     if (queryParams != null) {
       return uri.replace(queryParameters: queryParams.map((final String key, final dynamic value) => MapEntry<String, String>(key, value?.toString() ?? '')));
@@ -272,15 +272,7 @@ class SimpleHttp {
 
   void close() {
     _client.close();
-    clearCache();
   }
-}
-
-class CacheEntry {
-  CacheEntry(this.response, this.timestamp);
-
-  final Response response;
-  final DateTime timestamp;
 }
 
 extension HTTP on Response {
