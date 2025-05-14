@@ -13,8 +13,8 @@ abstract class BaseReadParams extends BaseParams {
   BaseReadParams({
     required super.apiKey,
     required super.token,
-    this.pageSize,
-    this.pageNumber,
+    this.pageSize = 100,
+    this.pageNumber = 1,
     this.fromDate,
     this.tags,
   });
@@ -24,7 +24,7 @@ abstract class BaseReadParams extends BaseParams {
   final DateTime? fromDate;
   final List<int>? tags;
 
-  Map<String, dynamic> toBaseReadMap() => <String, dynamic>{...toBaseMap()};
+  Map<String, dynamic> toBaseReadMap() => <String, dynamic>{...toBaseMap(), "pageSize": pageSize, "pageNumber": pageNumber};
 }
 
 abstract class BaseUpdateParams extends BaseParams {
