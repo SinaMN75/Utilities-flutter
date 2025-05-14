@@ -1,4 +1,3 @@
-import 'package:http/http.dart' as http;
 import 'package:u/utilities.dart';
 
 class CachedNetworkImage extends StatefulWidget {
@@ -33,18 +32,14 @@ class _CachedNetworkImageState extends State<CachedNetworkImage> {
   }
 
   Future<Uint8List?> _loadImage() async {
-    // Check if cached in SharedPreferences
     final String? cachedBase64 = ULocalStorage.getString(widget.imageUrl);
     if (cachedBase64 != null) {
       return base64.decode(cachedBase64);
     }
-
-    // If not cached, download and store
     try {
-      final http.Response response = await http.get(Uri.parse(widget.imageUrl));
+      final Response response = await get(Uri.parse(widget.imageUrl));
       if (response.statusCode == 200) {
         final Uint8List bytes = response.bodyBytes;
-        // Cache as base64
         ULocalStorage.set(widget.imageUrl, base64.encode(bytes));
         return bytes;
       }

@@ -1,7 +1,5 @@
 import 'dart:developer' as developer;
 
-import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
 import 'package:u/utilities.dart';
 
 class SimpleHttp {
@@ -18,7 +16,7 @@ class SimpleHttp {
   final Map<String, String> defaultHeaders;
   final bool enableCache;
   final Duration cacheDuration;
-  final http.Client _client = http.Client();
+  final Client _client = Client();
   final Map<String, CacheEntry> _cache = <String, CacheEntry>{};
 
   Future<void> request({
@@ -28,8 +26,8 @@ class SimpleHttp {
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final bool cacheResponse = false,
-    required final Function(http.Response)? onSuccess,
-    required final Function(http.Response)? onError,
+    required final Function(Response)? onSuccess,
+    required final Function(Response)? onError,
     required final Function(dynamic)? onException,
   }) async {
     final String cacheKey = _buildCacheKey(method, endpoint, queryParams, body);
@@ -52,7 +50,7 @@ class SimpleHttp {
     final Map<String, String> mergedHeaders = <String, String>{...defaultHeaders, ...?headers};
 
     // Create request
-    final http.Request request = http.Request(method, uri);
+    final Request request = Request(method, uri);
     request.headers.addAll(mergedHeaders);
 
     // Add body if provided
@@ -69,7 +67,7 @@ class SimpleHttp {
     }
 
     // Send request with timeout
-    final http.Response response = await _client.send(request).timeout(timeout).then(http.Response.fromStream);
+    final Response response = await _client.send(request).timeout(timeout).then(Response.fromStream);
     response.prettyLog(params: jsonEncode(body));
 
     // Cache the response if enabled
@@ -88,17 +86,17 @@ class SimpleHttp {
   // File upload
   Future<void> upload({
     required final String endpoint,
-    required final List<http.MultipartFile> files,
+    required final List<MultipartFile> files,
     final Map<String, String>? fields,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    required final Function(http.Response)? onSuccess,
-    required final Function(http.Response)? onError,
+    required final Function(Response)? onSuccess,
+    required final Function(Response)? onError,
     required final Function(dynamic)? onException,
   }) async {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
-      final http.MultipartRequest request = http.MultipartRequest('POST', uri);
+      final MultipartRequest request = MultipartRequest('POST', uri);
 
       // Add headers
       request.headers.addAll(<String, String>{...defaultHeaders, ...?headers});
@@ -112,7 +110,7 @@ class SimpleHttp {
       request.files.addAll(files);
 
       // Send request
-      final http.Response response = await request.send().timeout(timeout).then(http.Response.fromStream);
+      final Response response = await request.send().timeout(timeout).then(Response.fromStream);
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         onSuccess?.call(response);
@@ -131,22 +129,22 @@ class SimpleHttp {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     required final Function(File)? onSuccess,
-    required final Function(http.Response)? onError,
+    required final Function(Response)? onError,
     required final Function(dynamic)? onException,
   }) async {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
-      final http.Request request = http.Request('GET', uri);
+      final Request request = Request('GET', uri);
       request.headers.addAll(<String, String>{...defaultHeaders, ...?headers});
 
-      final http.StreamedResponse response = await _client.send(request).timeout(timeout);
+      final StreamedResponse response = await _client.send(request).timeout(timeout);
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final File file = File(savePath);
         await response.stream.pipe(file.openWrite());
         onSuccess?.call(file);
       } else {
-        onError?.call(await http.Response.fromStream(response));
+        onError?.call(await Response.fromStream(response));
       }
     } catch (e) {
       onException?.call(e);
@@ -159,8 +157,8 @@ class SimpleHttp {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final bool cacheResponse = false,
-    required final Function(http.Response)? onSuccess,
-    required final Function(http.Response)? onError,
+    required final Function(Response)? onSuccess,
+    required final Function(Response)? onError,
     required final Function(dynamic)? onException,
   }) async =>
       request(
@@ -180,8 +178,8 @@ class SimpleHttp {
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final bool cacheResponse = false,
-    required final Function(http.Response)? onSuccess,
-    required final Function(http.Response)? onError,
+    required final Function(Response)? onSuccess,
+    required final Function(Response)? onError,
     required final Function(dynamic)? onException,
   }) async =>
       request(
@@ -202,8 +200,8 @@ class SimpleHttp {
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final bool cacheResponse = false,
-    required final Function(http.Response)? onSuccess,
-    required final Function(http.Response)? onError,
+    required final Function(Response)? onSuccess,
+    required final Function(Response)? onError,
     required final Function(dynamic)? onException,
   }) async =>
       request(
@@ -223,8 +221,8 @@ class SimpleHttp {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final bool cacheResponse = false,
-    required final Function(http.Response)? onSuccess,
-    required final Function(http.Response)? onError,
+    required final Function(Response)? onSuccess,
+    required final Function(Response)? onError,
     required final Function(dynamic)? onException,
   }) async =>
       request(
@@ -266,12 +264,12 @@ class SimpleHttp {
   }
 
   // JSON decoding helpers
-  static Map<String, dynamic> decodeJson(final http.Response response) => jsonDecode(response.body) as Map<String, dynamic>;
+  static Map<String, dynamic> decodeJson(final Response response) => jsonDecode(response.body) as Map<String, dynamic>;
 
-  static List<dynamic> decodeJsonArray(final http.Response response) => jsonDecode(response.body) as List<dynamic>;
+  static List<dynamic> decodeJsonArray(final Response response) => jsonDecode(response.body) as List<dynamic>;
 
   // File upload helper
-  static Future<http.MultipartFile> multipartFileFromFile(
+  static Future<MultipartFile> multipartFileFromFile(
     final String fieldName,
     final File file, {
     String? filename,
@@ -280,7 +278,7 @@ class SimpleHttp {
     filename ??= file.path.split('/').last;
     final Stream<List<int>> stream = file.openRead();
     final int length = await file.length();
-    return http.MultipartFile(
+    return MultipartFile(
       fieldName,
       stream,
       length,
@@ -298,11 +296,11 @@ class SimpleHttp {
 class CacheEntry {
   CacheEntry(this.response, this.timestamp);
 
-  final http.Response response;
+  final Response response;
   final DateTime timestamp;
 }
 
-extension HTTP on http.Response {
+extension HTTP on Response {
   bool isSuccessful() => statusCode >= 200 && statusCode <= 299 ? true : false;
 
   bool isServerError() => statusCode >= 500 && statusCode <= 599 ? true : false;

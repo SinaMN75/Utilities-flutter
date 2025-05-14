@@ -1,436 +1,432 @@
-// import 'package:flutter/cupertino.dart';
-// import 'package:u/utilities.dart';
-//
-// abstract class UNavigator {
-//   static Future<void> push(
-//     final Widget page, {
-//     final bool dialog = false,
-//     final Transition transition = Transition.cupertino,
-//     final bool preventDuplicates = true,
-//     final int milliSecondDelay = 10,
-//   }) async =>
-//       delay(
-//         milliSecondDelay,
-//         () => Get.to(
-//           page,
-//           fullscreenDialog: dialog,
-//           popGesture: true,
-//           opaque: dialog ? false : true,
-//           transition: transition,
-//           preventDuplicates: preventDuplicates,
-//         ),
-//       );
-//
-//   static void dialog(
-//     final Widget page, {
-//     final bool barrierDismissible = true,
-//     final bool useSafeArea = false,
-//     final VoidCallback? onDismiss,
-//   }) =>
-//       Get.dialog(page, useSafeArea: useSafeArea, barrierDismissible: barrierDismissible).then(
-//         (final _) => onDismiss != null ? onDismiss() : null,
-//       );
-//
-//   static void offAll(
-//     final Widget page, {
-//     final bool dialog = false,
-//     final Transition transition = Transition.cupertino,
-//     final int milliSecondDelay = 10,
-//   }) =>
-//       delay(
-//         milliSecondDelay,
-//         () => Get.offAll(
-//           () => page,
-//           fullscreenDialog: dialog,
-//           popGesture: true,
-//           opaque: dialog ? false : true,
-//           transition: transition,
-//         ),
-//       );
-//
-//   static void off(final Widget page, {final bool preventDuplicates = true}) => delay(
-//         10,
-//         () => Get.off(() => page, preventDuplicates: preventDuplicates),
-//       );
-//
-//   static void back({final bool closeOverlays = false}) => delay(
-//         10,
-//         () => Get.back(closeOverlays: closeOverlays),
-//       );
-//
-//   static void alertDialog({
-//     required final (String, VoidCallback) action1,
-//     final String? title,
-//     final Widget? titleWidget,
-//     final String? subtitle,
-//     final Widget? content,
-//     final (String, VoidCallback)? action2,
-//     final (String, VoidCallback)? action3,
-//     final VoidCallback? onDismiss,
-//     final bool barrierDismissible = true,
-//   }) =>
-//       dialog(
-//         CupertinoAlertDialog(
-//           title: titleWidget ?? Text(title ?? '').bodyLarge().fit(),
-//           content: content ?? Text(subtitle!),
-//           actions: <Widget>[
-//             TextButton(onPressed: action1.$2, child: Text(action1.$1)),
-//             if (action2 != null) TextButton(onPressed: action2.$2, child: Text(action2.$1)),
-//             if (action3 != null) TextButton(onPressed: action3.$2, child: Text(action3.$1)),
-//           ],
-//         ),
-//         barrierDismissible: barrierDismissible,
-//         onDismiss: onDismiss,
-//       );
-//
-//   static Future<void> dialogAlert(
-//     final Widget page, {
-//     final bool barrierDismissible = true,
-//     final bool useSafeArea = false,
-//     final Clip clipBehavior = Clip.hardEdge,
-//     final bool scrollable = false,
-//     final EdgeInsets insetPadding = const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
-//     final EdgeInsetsGeometry? contentPadding = EdgeInsets.zero,
-//     final bool defaultCloseButton = false,
-//     final VoidCallback? onDismiss,
-//     final Widget? icon,
-//     final EdgeInsetsGeometry? iconPadding,
-//     final Color? iconColor,
-//     final Widget? title,
-//     final EdgeInsetsGeometry? titlePadding,
-//     final TextStyle? titleTextStyle,
-//     final TextStyle? contentTextStyle,
-//     final List<Widget>? actions,
-//     final EdgeInsetsGeometry? actionsPadding,
-//     final MainAxisAlignment? actionsAlignment,
-//     final OverflowBarAlignment? actionsOverflowAlignment,
-//     final VerticalDirection? actionsOverflowDirection,
-//     final double? actionsOverflowButtonSpacing,
-//     final EdgeInsetsGeometry? buttonPadding,
-//     final Color? backgroundColor,
-//     final double? elevation,
-//     final Color? shadowColor,
-//     final Color? surfaceTintColor,
-//     final String? semanticLabel,
-//     final ShapeBorder? shape,
-//     final AlignmentGeometry? alignment,
-//     final ScrollController? scrollController,
-//     final ScrollController? actionScrollController,
-//     final Duration? insetAnimationDuration,
-//     final Curve? insetAnimationCurve,
-//   }) async =>
-//       Get.dialog(
-//         AlertDialog(
-//           content: page,
-//           title: title,
-//           contentPadding: contentPadding,
-//           alignment: alignment,
-//           backgroundColor: backgroundColor,
-//           shadowColor: shadowColor,
-//           elevation: elevation,
-//           actions: actions,
-//           actionsAlignment: actionsAlignment,
-//           actionsOverflowAlignment: actionsOverflowAlignment,
-//           actionsOverflowButtonSpacing: actionsOverflowButtonSpacing,
-//           actionsOverflowDirection: actionsOverflowDirection,
-//           actionsPadding: actionsPadding,
-//           buttonPadding: buttonPadding,
-//           clipBehavior: clipBehavior,
-//           contentTextStyle: contentTextStyle,
-//           icon: defaultCloseButton
-//               ? IconButton(
-//                   onPressed: UNavigator.back,
-//                   icon: Icon(
-//                     Icons.close,
-//                     color: navigatorKey.currentContext!.theme.colorScheme.error,
-//                   ),
-//                 ).alignAtCenterRight()
-//               : icon,
-//           iconColor: iconColor,
-//           iconPadding: iconPadding,
-//           insetPadding: insetPadding,
-//           scrollable: scrollable,
-//           semanticLabel: semanticLabel,
-//           shape: shape,
-//           surfaceTintColor: surfaceTintColor,
-//           titlePadding: titlePadding,
-//           titleTextStyle: titleTextStyle,
-//         ),
-//         useSafeArea: useSafeArea,
-//         barrierDismissible: barrierDismissible,
-//       ).then(
-//         (final _) => onDismiss != null ? onDismiss() : null,
-//       );
-//
-//   static void snackbarGreen({
-//     required final String title,
-//     required final String subtitle,
-//     final SnackPosition? snackPosition,
-//     final Widget? titleText,
-//     final Widget? messageText,
-//     final Widget? icon,
-//     final bool? shouldIconPulse,
-//     final double? maxWidth,
-//     final EdgeInsets? margin,
-//     final EdgeInsets? padding,
-//     final double? borderRadius,
-//     final Color? borderColor,
-//     final double? borderWidth,
-//     final Color? backgroundColor,
-//     final Color? leftBarIndicatorColor,
-//     final List<BoxShadow>? boxShadows,
-//     final Gradient? backgroundGradient,
-//     final TextButton? mainButton,
-//     final OnTap? onTap,
-//     final bool? isDismissible,
-//     final bool? showProgressIndicator,
-//     final DismissDirection? dismissDirection,
-//     final AnimationController? progressIndicatorController,
-//     final Color? progressIndicatorBackgroundColor,
-//     final Animation<Color>? progressIndicatorValueColor,
-//     final SnackStyle? snackStyle,
-//     final Curve? forwardAnimationCurve,
-//     final Curve? reverseAnimationCurve,
-//     final Duration? animationDuration,
-//     final double? barBlur,
-//     final double? overlayBlur,
-//     final SnackbarStatusCallback? snackbarStatus,
-//     final Color? overlayColor,
-//     final Form? userInputForm,
-//     final Color? colorText,
-//     final int duration = 5,
-//     final bool instantInit = true,
-//   }) {
-//     if (!Get.isSnackbarOpen) {
-//       Get.snackbar(
-//         title,
-//         subtitle,
-//         backgroundColor: backgroundColor ?? Colors.green,
-//         colorText: colorText ?? Colors.white,
-//         maxWidth: maxWidth,
-//         onTap: onTap,
-//         margin: margin,
-//         borderRadius: borderRadius,
-//         snackPosition: snackPosition,
-//         padding: padding,
-//         animationDuration: animationDuration,
-//         backgroundGradient: backgroundGradient,
-//         barBlur: barBlur,
-//         borderColor: borderColor,
-//         borderWidth: borderWidth,
-//         boxShadows: boxShadows,
-//         dismissDirection: dismissDirection,
-//         duration: Duration(seconds: duration),
-//         forwardAnimationCurve: forwardAnimationCurve,
-//         icon: icon,
-//         instantInit: instantInit,
-//         isDismissible: isDismissible,
-//         leftBarIndicatorColor: leftBarIndicatorColor,
-//         mainButton: mainButton,
-//         messageText: messageText,
-//         overlayBlur: overlayBlur,
-//         overlayColor: overlayColor,
-//         progressIndicatorBackgroundColor: progressIndicatorBackgroundColor,
-//         progressIndicatorController: progressIndicatorController,
-//         progressIndicatorValueColor: progressIndicatorValueColor,
-//         reverseAnimationCurve: reverseAnimationCurve,
-//         shouldIconPulse: shouldIconPulse,
-//         showProgressIndicator: showProgressIndicator,
-//         snackbarStatus: snackbarStatus,
-//         snackStyle: snackStyle,
-//         titleText: titleText,
-//         userInputForm: userInputForm,
-//       );
-//     }
-//   }
-//
-//   static void snackbarRed({
-//     required final String title,
-//     required final String subtitle,
-//     final SnackPosition? snackPosition,
-//     final Widget? titleText,
-//     final Widget? messageText,
-//     final Widget? icon,
-//     final bool? shouldIconPulse,
-//     final double? maxWidth,
-//     final EdgeInsets? margin,
-//     final EdgeInsets? padding,
-//     final double? borderRadius,
-//     final Color? borderColor,
-//     final double? borderWidth,
-//     final Color? backgroundColor,
-//     final Color? leftBarIndicatorColor,
-//     final List<BoxShadow>? boxShadows,
-//     final Gradient? backgroundGradient,
-//     final TextButton? mainButton,
-//     final OnTap? onTap,
-//     final bool? isDismissible,
-//     final bool? showProgressIndicator,
-//     final DismissDirection? dismissDirection,
-//     final AnimationController? progressIndicatorController,
-//     final Color? progressIndicatorBackgroundColor,
-//     final Animation<Color>? progressIndicatorValueColor,
-//     final SnackStyle? snackStyle,
-//     final Curve? forwardAnimationCurve,
-//     final Curve? reverseAnimationCurve,
-//     final Duration? animationDuration,
-//     final double? barBlur,
-//     final double? overlayBlur,
-//     final SnackbarStatusCallback? snackbarStatus,
-//     final Color? overlayColor,
-//     final Form? userInputForm,
-//     final Color? colorText,
-//     final int duration = 5,
-//     final bool instantInit = true,
-//   }) {
-//     if (!Get.isSnackbarOpen) {
-//       Get.snackbar(
-//         title,
-//         subtitle,
-//         backgroundColor: backgroundColor ?? Colors.red,
-//         colorText: colorText ?? Colors.white,
-//         maxWidth: maxWidth,
-//         onTap: onTap,
-//         margin: margin,
-//         borderRadius: borderRadius,
-//         snackPosition: snackPosition,
-//         padding: padding,
-//         animationDuration: animationDuration,
-//         backgroundGradient: backgroundGradient,
-//         barBlur: barBlur,
-//         borderColor: borderColor,
-//         borderWidth: borderWidth,
-//         boxShadows: boxShadows,
-//         dismissDirection: dismissDirection,
-//         duration: Duration(seconds: duration),
-//         forwardAnimationCurve: forwardAnimationCurve,
-//         icon: icon,
-//         instantInit: instantInit,
-//         isDismissible: isDismissible,
-//         leftBarIndicatorColor: leftBarIndicatorColor,
-//         mainButton: mainButton,
-//         messageText: messageText,
-//         overlayBlur: overlayBlur,
-//         overlayColor: overlayColor,
-//         progressIndicatorBackgroundColor: progressIndicatorBackgroundColor,
-//         progressIndicatorController: progressIndicatorController,
-//         progressIndicatorValueColor: progressIndicatorValueColor,
-//         reverseAnimationCurve: reverseAnimationCurve,
-//         shouldIconPulse: shouldIconPulse,
-//         showProgressIndicator: showProgressIndicator,
-//         snackbarStatus: snackbarStatus,
-//         snackStyle: snackStyle,
-//         titleText: titleText,
-//         userInputForm: userInputForm,
-//       );
-//     }
-//   }
-//
-//   static void logout({
-//     required final VoidCallback onLoggedOut,
-//     final String title = "خروج از سیستم",
-//     final String description = "آیا از خروج از سیستم اطمینان دارید؟",
-//     final VoidCallback? onCancelButtonTap,
-//     final String yesButtonTitle = "بله",
-//     final String cancelButtonTitle = 'انصراف',
-//   }) =>
-//       showYesCancelDialog(
-//         title: title,
-//         description: description,
-//         onYesButtonTap: onLoggedOut,
-//         cancelButtonTitle: cancelButtonTitle,
-//         onCancelButtonTap: onCancelButtonTap,
-//         yesButtonTitle: yesButtonTitle,
-//       );
-//
-//   static void showYesCancelDialog({
-//     required final String title,
-//     required final String description,
-//     required final VoidCallback onYesButtonTap,
-//     final VoidCallback? onCancelButtonTap,
-//     final String yesButtonTitle = "بله",
-//     final String cancelButtonTitle = 'انصراف',
-//   }) =>
-//       showDialog(
-//         context: navigatorKey.currentContext!,
-//         builder: (final BuildContext context) => AlertDialog.adaptive(
-//           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-//           title: Text(title).bodyLarge(),
-//           content: Text(description).bodyMedium(),
-//           actionsAlignment: MainAxisAlignment.center,
-//           actions: <Widget>[
-//             TextButton(
-//               onPressed: onCancelButtonTap ?? UNavigator.back,
-//               child: Text(cancelButtonTitle),
-//             ),
-//             TextButton(
-//               onPressed: onYesButtonTap,
-//               child: Text(yesButtonTitle),
-//             ),
-//           ],
-//         ),
-//       );
-//
-//   static void bottomSheet({
-//     required final Widget child,
-//     final EdgeInsets padding = const EdgeInsets.all(20),
-//     final bool isDismissible = true,
-//     final VoidCallback? onDismiss,
-//   }) =>
-//       showModalBottomSheet(
-//         builder: (final BuildContext context) => Container(
-//           clipBehavior: Clip.hardEdge,
-//           decoration: BoxDecoration(
-//             color: Theme.of(navigatorKey.currentContext!).colorScheme.surface,
-//             borderRadius: BorderRadius.circular(20),
-//           ),
-//           constraints: BoxConstraints(
-//             maxHeight: MediaQuery.sizeOf(navigatorKey.currentContext!).height - 100,
-//           ),
-//           padding: padding,
-//           child: Padding(
-//             padding: EdgeInsets.only(
-//               bottom: MediaQuery.of(navigatorKey.currentContext!).viewInsets.bottom,
-//             ),
-//             child: SingleChildScrollView(child: child),
-//           ),
-//         ),
-//         backgroundColor: Theme.of(navigatorKey.currentContext!).colorScheme.surface,
-//         isDismissible: isDismissible,
-//         isScrollControlled: true,
-//         context: navigatorKey.currentContext!,
-//       ).then((final _) => onDismiss != null ? onDismiss() : null);
-//
-//   static void scrollableBottomSheet({
-//     final List<Widget>? children,
-//     final Widget? child,
-//     final bool isDismissible = true,
-//     final EdgeInsets padding = const EdgeInsets.all(20),
-//     final bool expand = false,
-//     final double maxChildSize = 1.0,
-//     final double minChildSize = 0.4,
-//     final VoidCallback? onDismiss,
-//   }) =>
-//       showModalBottomSheet(
-//         context: navigatorKey.currentContext!,
-//         builder: (final BuildContext context) => Container(
-//           padding: padding,
-//           child: DraggableScrollableSheet(
-//             expand: expand,
-//             initialChildSize: minChildSize,
-//             maxChildSize: maxChildSize,
-//             minChildSize: minChildSize,
-//             builder: (final BuildContext _, final ScrollController c) => SingleChildScrollView(
-//               controller: c,
-//               child: child ??
-//                   Column(
-//                     children: children!,
-//                   ),
-//             ),
-//           ),
-//         ),
-//         backgroundColor: Theme.of(navigatorKey.currentContext!).colorScheme.surface,
-//         isDismissible: isDismissible,
-//         isScrollControlled: true,
-//       ).whenComplete(onDismiss ?? () {});
-// }
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:u/utils/init.dart';
+
+abstract class UNavigator {
+
+  static ThemeData get theme => Theme.of(navigatorKey.currentContext!);
+  static MediaQueryData get mediaQuery => MediaQuery.of(navigatorKey.currentContext!);
+  static bool get canPop => Navigator.of(navigatorKey.currentContext!).canPop();
+  static bool get isAndroid => theme.platform == TargetPlatform.android;
+  static bool get isIOS => theme.platform == TargetPlatform.iOS;
+
+  /// Push with optional custom transition
+  static Future<T?> push<T>(
+    Widget page, {
+    bool fullscreenDialog = false,
+    bool preventDuplicates = true,
+    RouteTransitions transition = RouteTransitions.rightToLeft,
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeOut,
+    RouteSettings? settings,
+  }) {
+    if (preventDuplicates && _isCurrentRoute(page)) {
+      return Future<T?>.value();
+    }
+
+    return Navigator.push<T>(
+      navigatorKey.currentContext!,
+      PageRouteBuilder<T>(
+        pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
+        transitionsBuilder: _getTransition(transition),
+        transitionDuration: duration,
+        reverseTransitionDuration: duration,
+        settings: settings ?? RouteSettings(name: page.runtimeType.toString()),
+        fullscreenDialog: fullscreenDialog,
+      ),
+    );
+  }
+
+  /// Replace current route
+  static Future<T?> off<T>(
+    Widget page, {
+    RouteTransitions transition = RouteTransitions.fade,
+    RouteSettings? settings,
+    VoidCallback? onDismiss,
+  }) => Navigator.pushReplacement<T, dynamic>(
+      navigatorKey.currentContext!,
+      PageRouteBuilder<T>(
+        pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
+        transitionsBuilder: _getTransition(transition),
+        settings: settings,
+      ),
+    ).then((T? value) {
+      onDismiss?.call();
+      return value;
+    });
+
+  /// Clear all routes and start fresh
+  static void offAll(
+    Widget page, {
+    RouteTransitions transition = RouteTransitions.fade,
+    RouteSettings? settings,
+    VoidCallback? onDismiss,
+  }) {
+    Navigator.pushAndRemoveUntil(
+      navigatorKey.currentContext!,
+      PageRouteBuilder<dynamic>(
+        pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
+        transitionsBuilder: _getTransition(transition),
+        settings: settings,
+      ),
+      (Route<dynamic> route) => false,
+    ).then((_) => onDismiss?.call());
+  }
+
+  /// Pop with optional result
+  static void back<T>([T? result]) {
+    if (canPop) {
+      Navigator.pop<T>(navigatorKey.currentContext!, result);
+    }
+  }
+
+  /// Adaptive dialog (Material/Cupertino)
+  static Future<T?> dialog<T>(
+    Widget child, {
+    bool barrierDismissible = true,
+    bool useRootNavigator = true,
+    Color? barrierColor,
+    RouteSettings? settings,
+    VoidCallback? onDismiss,
+  }) {
+    final Future<T?> dialogFuture = isIOS
+        ? showCupertinoDialog<T>(
+            context: navigatorKey.currentContext!,
+            barrierDismissible: barrierDismissible,
+            useRootNavigator: useRootNavigator,
+            builder: (BuildContext context) => child,
+          )
+        : showDialog<T>(
+            context: navigatorKey.currentContext!,
+            barrierDismissible: barrierDismissible,
+            useRootNavigator: useRootNavigator,
+            barrierColor: barrierColor ?? Colors.black54,
+            routeSettings: settings,
+            builder: (BuildContext context) => child,
+          );
+
+    return dialogFuture.then((T? value) {
+      onDismiss?.call();
+      return value;
+    });
+  }
+
+  /// Confirmation dialog with actions
+  static void confirm({
+    required String title,
+    required String message,
+    String confirmText = 'OK',
+    String cancelText = 'Cancel',
+    bool destructive = false,
+    VoidCallback? onDismiss,
+    VoidCallback? onCancel,
+    VoidCallback? onConfirm,
+  }) =>
+      dialog(
+        AlertDialog.adaptive(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(onPressed: onCancel ?? back, child: Text(cancelText)),
+            TextButton(
+              onPressed: onConfirm,
+              style: destructive
+                  ? TextButton.styleFrom(
+                      foregroundColor: theme.colorScheme.error,
+                    )
+                  : null,
+              child: Text(confirmText),
+            ),
+          ],
+        ),
+        onDismiss: onDismiss,
+      );
+
+  /// Adaptive bottom sheet
+  static Future<T?> bottomSheet<T>(
+    Widget child, {
+    bool isScrollControlled = true,
+    bool useSafeArea = true,
+    double? elevation,
+    Color? backgroundColor,
+    ShapeBorder? shape,
+    Clip? clipBehavior,
+    BoxConstraints? constraints,
+    VoidCallback? onDismiss,
+  }) {
+    final Future<T?> sheetFuture = showModalBottomSheet<T>(
+      context: navigatorKey.currentContext!,
+      isScrollControlled: isScrollControlled,
+      useSafeArea: useSafeArea,
+      backgroundColor: backgroundColor ?? theme.canvasColor,
+      elevation: elevation,
+      shape: shape ??
+          const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+          ),
+      clipBehavior: clipBehavior ?? Clip.antiAlias,
+      constraints: constraints,
+      builder: (BuildContext context) => Padding(
+        padding: EdgeInsets.only(
+          bottom: mediaQuery.viewInsets.bottom,
+        ),
+        child: child,
+      ),
+    );
+
+    return sheetFuture.then((T? value) {
+      onDismiss?.call();
+      return value;
+    });
+  }
+
+  /// Draggable scrollable sheet
+  static Future<T?> draggableSheet<T>(
+    Widget child, {
+    double initialChildSize = 0.5,
+    double minChildSize = 0.25,
+    double maxChildSize = 0.9,
+    bool expand = false,
+    bool useRootNavigator = true,
+    VoidCallback? onDismiss,
+  }) => showModalBottomSheet<T>(
+      context: navigatorKey.currentContext!,
+      isScrollControlled: true,
+      useRootNavigator: useRootNavigator,
+      builder: (BuildContext context) => DraggableScrollableSheet(
+        expand: expand,
+        initialChildSize: initialChildSize,
+        minChildSize: minChildSize,
+        maxChildSize: maxChildSize,
+        builder: (BuildContext context, ScrollController controller) => SingleChildScrollView(
+          controller: controller,
+          child: child,
+        ),
+      ),
+    ).then((T? value) {
+      onDismiss?.call();
+      return value;
+    });
+
+  /// Standard snackbar
+  static void snackbar({
+    required String message,
+    String? title,
+    Duration duration = const Duration(seconds: 4),
+    Color? backgroundColor,
+    Color? textColor,
+    SnackBarAction? action,
+    DismissDirection dismissDirection = DismissDirection.down,
+    EdgeInsets? margin,
+    double? width,
+    VoidCallback? onDismiss,
+  }) => ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(SnackBar(
+      content: Text(message, style: TextStyle(color: textColor)),
+      backgroundColor: backgroundColor ?? theme.snackBarTheme.backgroundColor,
+      duration: duration,
+      action: action,
+      dismissDirection: dismissDirection,
+      behavior: margin != null ? SnackBarBehavior.floating : null,
+      margin: margin,
+      width: width,
+    )).closed.then((_) {
+      onDismiss?.call();
+    });
+
+  /// Floating toast-style notification
+  static void toast({
+    required String message,
+    Duration duration = const Duration(seconds: 2),
+    Color? backgroundColor,
+    Color? textColor,
+    double borderRadius = 20,
+    EdgeInsets padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+    EdgeInsets margin = const EdgeInsets.only(bottom: 30),
+    VoidCallback? onDismiss,
+  }) => ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(SnackBar(
+      content: Text(
+        message,
+        style: TextStyle(color: textColor ?? theme.colorScheme.onSurface),
+        textAlign: TextAlign.center,
+      ),
+      backgroundColor: backgroundColor ?? theme.colorScheme.surface,
+      elevation: 6,
+      duration: duration,
+      behavior: SnackBarBehavior.floating,
+      margin: margin,
+      padding: padding,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(borderRadius),
+      ),
+    )).closed.then((_) {
+      onDismiss?.call();
+    });
+
+  /// Error notification
+  static void error({
+    required String message,
+    Duration duration = const Duration(seconds: 4),
+    String? actionLabel,
+    VoidCallback? onAction,
+    VoidCallback? onDismiss,
+  }) => snackbar(
+      message: message,
+      backgroundColor: theme.colorScheme.error,
+      textColor: theme.colorScheme.onError,
+      action: actionLabel != null
+          ? SnackBarAction(
+              label: actionLabel,
+              onPressed: onAction ?? () {},
+              textColor: theme.colorScheme.onError,
+            )
+          : null,
+      duration: duration,
+      onDismiss: onDismiss,
+    );
+
+  /// Full-screen dialog
+  static Future<T?> fullScreenDialog<T>(
+    Widget page, {
+    RouteTransitions transition = RouteTransitions.upToDown,
+    VoidCallback? onDismiss,
+  }) => push<T>(
+      page,
+      fullscreenDialog: true,
+      transition: transition,
+    ).then((T? value) {
+      onDismiss?.call();
+      return value;
+    });
+
+  /// Overlay notification (non-intrusive)
+  static OverlayEntry? _currentOverlay;
+
+  static void showOverlay({
+    required Widget child,
+    Duration duration = const Duration(seconds: 3),
+    Alignment alignment = Alignment.topCenter,
+    EdgeInsets padding = const EdgeInsets.all(20),
+    VoidCallback? onDismiss,
+  }) {
+    dismissOverlay();
+
+    final OverlayEntry overlay = OverlayEntry(
+      builder: (BuildContext context) => SafeArea(
+        child: Padding(
+          padding: padding,
+          child: Align(
+            alignment: alignment,
+            child: Material(
+              color: Colors.transparent,
+              child: child,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    _currentOverlay = overlay;
+    Overlay.of(navigatorKey.currentContext!).insert(overlay);
+
+    if (duration != Duration.zero) {
+      Future<void>.delayed(duration, () {
+        dismissOverlay();
+        onDismiss?.call();
+      });
+    }
+  }
+
+  static void dismissOverlay() {
+    _currentOverlay?.remove();
+    _currentOverlay = null;
+  }
+
+  static Widget Function(BuildContext, Animation<double>, Animation<double>, Widget) _getTransition(RouteTransitions transition) {
+    switch (transition) {
+      case RouteTransitions.fade:
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+          return FadeTransition(opacity: animation, child: child);
+        };
+      case RouteTransitions.rightToLeft:
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(
+              parent: animation,
+              curve: Curves.fastOutSlowIn,
+            )),
+            child: child,
+          );
+        };
+      case RouteTransitions.leftToRight:
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(-1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        };
+      case RouteTransitions.upToDown:
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, -1),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        };
+      case RouteTransitions.downToUp:
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+          return SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 1),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          );
+        };
+      case RouteTransitions.scale:
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+          return ScaleTransition(
+            scale: animation,
+            child: child,
+          );
+        };
+      case RouteTransitions.rotate:
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+          return RotationTransition(
+            turns: animation,
+            child: child,
+          );
+        };
+      case RouteTransitions.size:
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+          return SizeTransition(
+            sizeFactor: animation,
+            child: child,
+          );
+        };
+    }
+  }
+
+  static bool _isCurrentRoute(Widget page) {
+    final ModalRoute<dynamic>? currentRoute = ModalRoute.of(navigatorKey.currentContext!);
+    return currentRoute?.settings.name == page.runtimeType.toString();
+  }
+}
+
+enum RouteTransitions {
+  fade,
+  rightToLeft,
+  leftToRight,
+  upToDown,
+  downToUp,
+  scale,
+  rotate,
+  size,
+}

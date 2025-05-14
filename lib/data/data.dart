@@ -1,9 +1,4 @@
-import 'dart:convert';
-
-import 'package:http/http.dart';
-import 'package:u/utils/extensions/string_extension.dart';
-
-import '../utils/http_client.dart';
+import 'package:u/utilities.dart';
 
 part "params/auth_params.dart";
 part "params/base_params.dart";

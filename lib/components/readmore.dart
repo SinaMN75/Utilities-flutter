@@ -1,8 +1,8 @@
 import 'package:u/utilities.dart';
 
 enum TrimMode {
-  Length,
-  Line,
+  length,
+  line,
 }
 
 class ReadMoreText extends StatefulWidget {
@@ -18,7 +18,7 @@ class ReadMoreText extends StatefulWidget {
     this.colorClickableText,
     this.trimLength = 240,
     this.trimLines = 2,
-    this.trimMode = TrimMode.Length,
+    this.trimMode = TrimMode.length,
     this.style,
     this.textAlign,
     this.textDirection,
@@ -33,6 +33,7 @@ class ReadMoreText extends StatefulWidget {
     this.onLinkPressed,
     this.linkTextStyle,
   });
+
   final int trimLength;
   final int trimLines;
   final TrimMode trimMode;
@@ -171,7 +172,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
 
         TextSpan textSpan;
         switch (widget.trimMode) {
-          case TrimMode.Length:
+          case TrimMode.length:
             if (widget.trimLength < widget.data.length) {
               textSpan = _buildData(
                 data: _readMore ? widget.data.substring(0, widget.trimLength) : widget.data,
@@ -196,7 +197,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
               );
             }
             break;
-          case TrimMode.Line:
+          case TrimMode.line:
             if (textPainter.didExceedMaxLines) {
               textSpan = _buildData(
                 data: _readMore ? widget.data.substring(0, endIndex) + (linkLongerThanLine ? _kLineSeparator : '') : widget.data,
@@ -242,9 +243,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
       result = Semantics(
         textDirection: widget.textDirection,
         label: widget.semanticsLabel,
-        child: ExcludeSemantics(
-          child: result,
-        ),
+        child: ExcludeSemantics(child: result),
       );
     }
     return result;
@@ -267,31 +266,17 @@ class ReadMoreTextState extends State<ReadMoreText> {
       final String firstTextPart = data.substring(0, match!.start);
       final String linkTextPart = data.substring(match.start, match.end);
 
-      contents.add(
-        TextSpan(
-          text: firstTextPart,
-        ),
-      );
+      contents.add(TextSpan(text: firstTextPart));
       contents.add(
         TextSpan(
           text: linkTextPart,
           style: linkTextStyle,
-          recognizer: TapGestureRecognizer()
-            ..onTap = () => onPressed?.call(
-                  linkTextPart.trim(),
-                ),
+          recognizer: TapGestureRecognizer()..onTap = () => onPressed?.call(linkTextPart.trim()),
         ),
       );
       data = data.substring(match.end, data.length);
     }
-    contents.add(
-      TextSpan(
-        text: data,
-      ),
-    );
-    return TextSpan(
-      children: contents..addAll(children),
-      style: textStyle,
-    );
+    contents.add(TextSpan(text: data));
+    return TextSpan(children: contents..addAll(children), style: textStyle);
   }
 }
