@@ -1,7 +1,33 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:u/utilities.dart';
 
 class UOtpField extends StatefulWidget {
+  const UOtpField({
+    required this.cursorColor,
+    required this.fillColor,
+    required this.activeColor,
+    required this.borderColor,
+    required this.controller,
+    super.key,
+    this.length = 6,
+    this.autoFocus = false,
+    this.onChanged,
+    this.onCompleted,
+    this.validator,
+    this.textStyle,
+    this.fieldWidth = 48,
+    this.fieldHeight = 60,
+    this.borderRadius = 8,
+    this.borderWidth = 1.5,
+    this.obscureText = false,
+    this.obscuringCharacter = '•',
+    this.keyboardType = TextInputType.number,
+    this.showCursor = true,
+    this.readOnly = false,
+    this.decoration,
+    this.autoDismissKeyboard = true,
+    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
+  });
+
   final TextEditingController controller;
   final int length;
   final bool autoFocus;
@@ -26,33 +52,6 @@ class UOtpField extends StatefulWidget {
   final bool autoDismissKeyboard;
   final MainAxisAlignment mainAxisAlignment;
 
-  const UOtpField({
-    Key? key,
-    required this.controller,
-    this.length = 6,
-    this.autoFocus = false,
-    this.onChanged,
-    this.onCompleted,
-    this.validator,
-    this.textStyle,
-    this.fieldWidth = 48.0,
-    this.fieldHeight = 60.0,
-    required this.cursorColor,
-    required this.fillColor,
-    required this.activeColor,
-    required this.borderColor,
-    this.borderRadius = 8.0,
-    this.borderWidth = 1.5,
-    this.obscureText = false,
-    this.obscuringCharacter = '•',
-    this.keyboardType = TextInputType.number,
-    this.showCursor = true,
-    this.readOnly = false,
-    this.decoration,
-    this.autoDismissKeyboard = true,
-    this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
-  }) : super(key: key);
-
   @override
   _UOtpFieldState createState() => _UOtpFieldState();
 }
@@ -69,14 +68,19 @@ class _UOtpFieldState extends State<UOtpField> {
   }
 
   void _initializeOtpFields() {
-    _focusNodes = List<FocusNode>.generate(widget.length, (int index) => FocusNode());
+    _focusNodes = List<FocusNode>.generate(
+      widget.length,
+      (final int index) => FocusNode(),
+    );
     _controllers = List<TextEditingController>.generate(
       widget.length,
-      (int index) => TextEditingController(),
+      (final int index) => TextEditingController(),
     );
-    _otp = List<String>.generate(widget.length, (int index) => '');
+    _otp = List<String>.generate(
+      widget.length,
+      (final int index) => '',
+    );
 
-    // Set up the main controller listener
     widget.controller.addListener(_syncControllersWithMain);
   }
 
@@ -93,17 +97,17 @@ class _UOtpFieldState extends State<UOtpField> {
 
   @override
   void dispose() {
-    for (FocusNode node in _focusNodes) {
+    for (final FocusNode node in _focusNodes) {
       node.dispose();
     }
-    for (TextEditingController controller in _controllers) {
+    for (final TextEditingController controller in _controllers) {
       controller.dispose();
     }
     widget.controller.removeListener(_syncControllersWithMain);
     super.dispose();
   }
 
-  void _onChanged(int index, String value) {
+  void _onChanged(final int index, final String value) {
     if (value.length > 1) {
       // Handle paste operation
       if (value.length == widget.length) {
@@ -133,13 +137,13 @@ class _UOtpFieldState extends State<UOtpField> {
     }
   }
 
-  void _onKeyDown(int index, KeyEvent event) {
+  void _onKeyDown(final int index, final KeyEvent event) {
     if (event.logicalKey == LogicalKeyboardKey.backspace && _controllers[index].text.isEmpty && index > 0) {
       _focusNodes[index - 1].requestFocus();
     }
   }
 
-  Color _getBorderColor(int index) {
+  Color _getBorderColor(final int index) {
     if (_focusNodes[index].hasFocus) {
       return widget.activeColor;
     } else if (_controllers[index].text.isNotEmpty) {
@@ -149,79 +153,74 @@ class _UOtpFieldState extends State<UOtpField> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return FormField<String>(
-      validator: widget.validator,
-      builder: (FormFieldState<String> formFieldState) {
-        return Column(
+  Widget build(final BuildContext context) => FormField<String>(
+        validator: widget.validator,
+        builder: (final FormFieldState<String> formFieldState) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
               mainAxisAlignment: widget.mainAxisAlignment,
-              children: List<Widget>.generate(widget.length, (int index) {
-                return SizedBox(
-                  width: widget.fieldWidth,
-                  height: widget.fieldHeight,
-                  child: KeyboardListener(
-                    focusNode: FocusNode(),
-                    onKeyEvent: (KeyEvent event) => _onKeyDown(index, event),
-                    child: TextField(
-                      controller: _controllers[index],
-                      focusNode: _focusNodes[index],
-                      autofocus: widget.autoFocus && index == 0,
-                      textAlign: TextAlign.center,
-                      style: widget.textStyle ?? Theme.of(context).textTheme.headlineSmall,
-                      keyboardType: widget.keyboardType,
-                      cursorColor: widget.cursorColor,
-                      showCursor: widget.showCursor,
-                      readOnly: widget.readOnly,
-                      obscureText: widget.obscureText,
-                      obscuringCharacter: widget.obscuringCharacter,
-                      maxLength: 1,
-                      decoration: widget.decoration ??
-                          InputDecoration(
-                            counterText: '',
-                            filled: true,
-                            fillColor: widget.fillColor,
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(widget.borderRadius),
-                              borderSide: BorderSide(
-                                color: _getBorderColor(index),
-                                width: widget.borderWidth,
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(widget.borderRadius),
-                              borderSide: BorderSide(
-                                color: widget.activeColor,
-                                width: widget.borderWidth,
-                              ),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(widget.borderRadius),
-                              borderSide: BorderSide(
-                                color: Theme.of(context).colorScheme.error,
-                                width: widget.borderWidth,
-                              ),
-                            ),
+              children: List<Widget>.generate(
+                  widget.length,
+                  (final int index) => SizedBox(
+                        width: widget.fieldWidth,
+                        height: widget.fieldHeight,
+                        child: KeyboardListener(
+                          focusNode: FocusNode(),
+                          onKeyEvent: (final KeyEvent event) => _onKeyDown(index, event),
+                          child: TextField(
+                            controller: _controllers[index],
+                            focusNode: _focusNodes[index],
+                            autofocus: widget.autoFocus && index == 0,
+                            textAlign: TextAlign.center,
+                            style: widget.textStyle ?? Theme.of(context).textTheme.headlineSmall,
+                            keyboardType: widget.keyboardType,
+                            cursorColor: widget.cursorColor,
+                            showCursor: widget.showCursor,
+                            readOnly: widget.readOnly,
+                            obscureText: widget.obscureText,
+                            obscuringCharacter: widget.obscuringCharacter,
+                            maxLength: 1,
+                            decoration: widget.decoration ??
+                                InputDecoration(
+                                  counterText: '',
+                                  filled: true,
+                                  fillColor: widget.fillColor,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(widget.borderRadius),
+                                    borderSide: BorderSide(
+                                      color: _getBorderColor(index),
+                                      width: widget.borderWidth,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(widget.borderRadius),
+                                    borderSide: BorderSide(
+                                      color: widget.activeColor,
+                                      width: widget.borderWidth,
+                                    ),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(widget.borderRadius),
+                                    borderSide: BorderSide(
+                                      color: Theme.of(context).colorScheme.error,
+                                      width: widget.borderWidth,
+                                    ),
+                                  ),
+                                ),
+                            onChanged: (final String value) => _onChanged(index, value),
                           ),
-                      onChanged: (String value) => _onChanged(index, value),
-                    ),
-                  ),
-                );
-              }),
+                        ),
+                      )),
             ),
             if (formFieldState.hasError)
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  formFieldState.errorText!,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.error),
-                ),
-              ),
+              Text(
+                formFieldState.errorText!,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+              ).pOnly(top: 8),
           ],
-        );
-      },
-    );
-  }
+        ),
+      ).ltr();
 }
