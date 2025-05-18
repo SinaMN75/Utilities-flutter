@@ -2,8 +2,8 @@ import 'dart:developer' as developer;
 
 import 'package:u/utilities.dart';
 
-class SimpleHttp {
-  SimpleHttp({
+class UHttpClient {
+  UHttpClient({
     this.baseUrl,
     this.timeout = const Duration(seconds: 30),
     this.defaultHeaders = const <String, String>{'Accept': 'application/json'},
@@ -20,7 +20,6 @@ class SimpleHttp {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
-    final bool cacheResponse = false,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -120,7 +119,6 @@ class SimpleHttp {
     final String endpoint, {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    final bool cacheResponse = false,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -130,7 +128,6 @@ class SimpleHttp {
         endpoint: endpoint,
         headers: headers,
         queryParams: queryParams,
-        cacheResponse: cacheResponse,
         onSuccess: onSuccess,
         onError: onError,
         onException: onException,
@@ -141,7 +138,6 @@ class SimpleHttp {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
-    final bool cacheResponse = false,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -152,7 +148,6 @@ class SimpleHttp {
         headers: headers,
         queryParams: queryParams,
         body: body,
-        cacheResponse: cacheResponse,
         onSuccess: onSuccess,
         onError: onError,
         onException: onException,
@@ -163,7 +158,6 @@ class SimpleHttp {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
-    final bool cacheResponse = false,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -174,7 +168,6 @@ class SimpleHttp {
         headers: headers,
         queryParams: queryParams,
         body: body,
-        cacheResponse: cacheResponse,
         onSuccess: onSuccess,
         onError: onError,
         onException: onException,
@@ -184,7 +177,6 @@ class SimpleHttp {
     final String endpoint, {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    final bool cacheResponse = false,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -194,7 +186,6 @@ class SimpleHttp {
         endpoint: endpoint,
         headers: headers,
         queryParams: queryParams,
-        cacheResponse: cacheResponse,
         onSuccess: onSuccess,
         onError: onError,
         onException: onException,

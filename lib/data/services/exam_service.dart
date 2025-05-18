@@ -11,7 +11,7 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/exam/Create",
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<ExamResponse>.fromJson(r.body, (final dynamic i) => ExamResponse.fromMap(i))),
@@ -27,7 +27,7 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/exam/Read",
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(
@@ -48,7 +48,7 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/exam/ReadById",
         body: p.toIdParamMap(),
         onSuccess: (final Response r) => onOk(UResponse<ExamResponse>.fromJson(r.body, (final dynamic i) => ExamResponse.fromMap(i))),
@@ -64,7 +64,7 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/category/Delete",
         body: p.toIdListMap(),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -80,7 +80,7 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/exam/SubmitAnswers",
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

@@ -11,7 +11,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/user/Create",
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
@@ -27,7 +27,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/User/Read",
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(
@@ -50,7 +50,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    SimpleHttp().post(
+    UHttpClient().post(
       "$baseUrl/user/ReadById",
       body: p.toIdParamMap(),
       onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
@@ -67,7 +67,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    SimpleHttp().post(
+    UHttpClient().post(
       "$baseUrl/user/Update",
       body: p.toMap(),
       onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
@@ -84,7 +84,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    SimpleHttp().post(
+    UHttpClient().post(
       "$baseUrl/user/Delete",
       body: p.toIdParamMap(),
       onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

@@ -11,7 +11,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/category/Create",
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
@@ -27,7 +27,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/category/Read",
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(
@@ -48,7 +48,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/category/ReadById",
         body: p.toIdParamMap(),
         onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
@@ -64,7 +64,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/category/Update",
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
@@ -80,7 +80,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/category/Delete",
         body: p.toIdParamMap(),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

@@ -11,7 +11,7 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    SimpleHttp().post(
+    UHttpClient().post(
       "$baseUrl/auth/Register",
       body: p.toMap(),
       onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body, (final dynamic i) => LoginResponse.fromMap(i))),
@@ -28,7 +28,7 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      SimpleHttp().post(
+      UHttpClient().post(
         "$baseUrl/auth/LoginWithUserNamePassword",
         body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body, (final dynamic i) => LoginResponse.fromMap(i))),
