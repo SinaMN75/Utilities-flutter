@@ -5,9 +5,7 @@ mixin NumericIdentifiable {
 extension NumericEnumExtension<T extends Enum> on Iterable<T> {
   T? fromNumber(final int id) {
     try {
-      return firstWhere(
-        (final dynamic element) => (element as dynamic).number == id,
-      );
+      return firstWhere((final dynamic element) => (element as dynamic).number == id);
     } catch (e) {
       return null;
     }
@@ -16,14 +14,14 @@ extension NumericEnumExtension<T extends Enum> on Iterable<T> {
   T fromNumericIdOrThrow(final int id) {
     final dynamic result = fromNumber(id);
     if (result == null) {
-      throw ArgumentError.value(
-        id,
-        'id',
-        'No ${T.toString().split('.').first} found with numericId $id',
-      );
+      throw ArgumentError.value(id, 'id', 'No ${T.toString().split('.').first} found with numericId $id');
     }
     return result;
   }
+}
+
+extension TagListExtension on Iterable<int> {
+  bool isMale() => contains(TagUser.male.number);
 }
 
 enum TagUser with NumericIdentifiable {
@@ -39,6 +37,8 @@ enum TagUser with NumericIdentifiable {
 
   @override
   final int number;
+
+  bool isMale() => this == TagUser.male;
 }
 
 enum TagCategory with NumericIdentifiable {
