@@ -10,7 +10,7 @@ class DashboardService {
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().get(
+      UHttpClient().post(
         "$baseUrl/dashboard/ReadSystemMetrics",
         onSuccess: (final Response r) => onOk(MetricsResponse.fromJson(r.body)),
         onError: (final Response r) => onError(),
@@ -24,7 +24,7 @@ class DashboardService {
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().get(
+      UHttpClient().post(
         "$baseUrl/dashboard/Read",
         onSuccess: (final Response r) => onOk(DashboardResponse.fromJson(r.body)),
         onError: (final Response r) => onError(),
