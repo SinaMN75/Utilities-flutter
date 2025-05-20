@@ -15,23 +15,35 @@ abstract class BaseReadParams extends BaseParams {
     required super.token,
     this.pageSize = 100,
     this.pageNumber = 1,
-    this.fromDate,
-    this.toDate,
+    this.fromCreatedAt,
+    this.toCreatedAt,
     this.tags,
+    this.orderByCreatedAt,
+    this.orderByCreatedAtDesc,
+    this.orderByLastName,
+    this.orderByLastNameDesc,
   });
 
   final int? pageSize;
   final int? pageNumber;
-  final DateTime? fromDate;
-  final DateTime? toDate;
+  final DateTime? fromCreatedAt;
+  final DateTime? toCreatedAt;
   final List<int>? tags;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByLastName;
+  final bool? orderByLastNameDesc;
 
   Map<String, dynamic> toBaseReadMap() => <String, dynamic>{
         ...toBaseMap(),
         "pageSize": pageSize,
         "pageNumber": pageNumber,
-        "fromDate": fromDate?.toIso8601String(),
-        "toDate": toDate?.toIso8601String(),
+        "fromCreatedAt": fromCreatedAt?.toIso8601String(),
+        "toCreatedAt": toCreatedAt?.toIso8601String(),
+        "orderByCreatedAt": orderByCreatedAt,
+        "orderByCreatedAtDesc": orderByCreatedAtDesc,
+        "orderByLastName": orderByLastName,
+        "orderByLastNameDesc": orderByLastNameDesc,
       };
 }
 

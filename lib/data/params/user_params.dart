@@ -128,17 +128,18 @@ class UserReadParams extends BaseReadParams {
   final bool? showCategories;
   final bool? showMedia;
   final bool? showChildren;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
-  final bool? orderByLastName;
-  final bool? orderByLastNameDesc;
 
   UserReadParams({
     required super.apiKey,
     super.token,
     super.pageSize,
     super.pageNumber,
-    super.fromDate,
+    super.fromCreatedAt,
+    super.toCreatedAt,
+    super.orderByCreatedAt,
+    super.orderByCreatedAtDesc,
+    super.orderByLastName,
+    super.orderByLastNameDesc,
     super.tags,
     this.userName,
     this.parentId,
@@ -151,46 +152,15 @@ class UserReadParams extends BaseReadParams {
     this.showCategories,
     this.showMedia,
     this.showChildren,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
-    this.orderByLastName,
-    this.orderByLastNameDesc,
   });
 
-  factory UserReadParams.fromJson(String str) => UserReadParams.fromMap(json.decode(str));
-
   String toJson() => json.encode(toMap());
-
-  factory UserReadParams.fromMap(Map<String, dynamic> json) => UserReadParams(
-        apiKey: json["apiKey"],
-        token: json["token"],
-        pageSize: json["pageSize"],
-        pageNumber: json["pageNumber"],
-        parentId: json["parentId"],
-        fromDate: json["fromDate"] == null ? null : DateTime.parse(json["fromDate"]),
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        userName: json["userName"],
-        phoneNumber: json["phoneNumber"],
-        email: json["email"],
-        bio: json["bio"],
-        startBirthDate: json["startBirthDate"] == null ? null : DateTime.parse(json["startBirthDate"]),
-        endBirthDate: json["endBirthDate"] == null ? null : DateTime.parse(json["endBirthDate"]),
-        categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((dynamic x) => x)),
-        showCategories: json["showCategories"],
-        showMedia: json["showMedia"],
-        showChildren: json["showChildren"],
-        orderByCreatedAt: json["orderByCreatedAt"],
-        orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
-        orderByLastName: json["orderByLastName"],
-        orderByLastNameDesc: json["orderByLastNameDesc"],
-      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         ...toBaseReadMap(),
         "apiKey": apiKey,
         "token": token,
         "parentId": parentId,
-        "fromDate": fromDate?.toIso8601String(),
         "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
         "userName": userName,
         "phoneNumber": phoneNumber,
@@ -202,10 +172,6 @@ class UserReadParams extends BaseReadParams {
         "showCategories": showCategories,
         "showMedia": showMedia,
         "showChildren": showChildren,
-        "orderByCreatedAt": orderByCreatedAt,
-        "orderByCreatedAtDesc": orderByCreatedAtDesc,
-        "orderByLastName": orderByLastName,
-        "orderByLastNameDesc": orderByLastNameDesc,
       };
 }
 
