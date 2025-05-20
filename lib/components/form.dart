@@ -193,49 +193,29 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
         onTap: () async {
           if (!widget.readOnly) {
             if (widget.date) {
-              await UNavigator.bottomSheet(
-                  Column(
-                    children: <Widget>[
-                      JalaliDatePickerDialog(
-                        initialDate: Jalali.now(),
-                        onDateSelected: (DateTime d, Jalali j) => jalali = j,
-                      ),
-                      Row(
-                        children: <Widget>[
-                          UElevatedButton(
-                            title: widget.submitButtonText,
-                            onTap: () {
-                              setState(() {});
-                              widget.onChange(jalali.toDateTime(), jalali);
-                              UNavigator.back();
-                            },
-                          ).expanded(),
-                          const SizedBox(width: 12),
-                          UElevatedButton(
-                            title: widget.cancelButtonText,
-                            backgroundColor: Theme.of(context).colorScheme.primary,
-                            onTap: () => UNavigator.back(),
-                          ).expanded(),
-                        ],
-                      ).pOnly(top: 24, bottom: 12),
-                    ],
-                  ), onDismiss: () async {
-                if (widget.time) {
-                  final TimeOfDay? timeOfDay = await showTimePicker(
-                    context: context,
-                    initialTime: const TimeOfDay(hour: 0, minute: 0),
-                  );
-                  jalali = Jalali(
-                    jalali.year,
-                    jalali.month,
-                    jalali.day,
-                    timeOfDay!.hour,
-                    timeOfDay.minute,
-                  );
+              await UNavigator.dialog(JalaliDatePickerDialog(
+                initialDate: Jalali.now(),
+                onDateSelected: (DateTime d, Jalali j) {
+                  jalali = j;
                   setState(() => jalali = jalali);
                   widget.onChange(jalali.toDateTime(), jalali);
-                }
-              });
+                },
+              ));
+              if (widget.time) {
+                final TimeOfDay? timeOfDay = await showTimePicker(
+                  context: context,
+                  initialTime: const TimeOfDay(hour: 0, minute: 0),
+                );
+                jalali = Jalali(
+                  jalali.year,
+                  jalali.month,
+                  jalali.day,
+                  timeOfDay!.hour,
+                  timeOfDay.minute,
+                );
+                setState(() => jalali = jalali);
+                widget.onChange(jalali.toDateTime(), jalali);
+              }
             }
           }
         },

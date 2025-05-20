@@ -46,6 +46,7 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
   }
 
   Widget _buildHeader() => Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
             "$currentYear",
