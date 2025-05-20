@@ -117,11 +117,12 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     const List<String> weekDays = <String>["شنبه", "یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"];
     dayWidgets.addAll(
       weekDays
-          .map((String day) => Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                alignment: Alignment.center,
-                child: Text(day, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black54)),
-              ))
+          .map(
+            (String day) => Text(day).labelSmall(fontWeight: FontWeight.bold).container(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  alignment: Alignment.center,
+                ),
+          )
           .toList(),
     );
 
@@ -200,7 +201,7 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     return Flexible(
       child: GridView.count(
         padding: const EdgeInsets.all(8),
-        crossAxisCount: 4,
+        crossAxisCount: 5,
         shrinkWrap: true,
         children: yearWidgets,
       ),
@@ -236,7 +237,7 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     return Flexible(
       child: GridView.count(
         padding: const EdgeInsets.all(4),
-        crossAxisCount: 3,
+        crossAxisCount: 4,
         shrinkWrap: true,
         children: monthWidgets,
       ),
