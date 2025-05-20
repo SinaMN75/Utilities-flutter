@@ -8,17 +8,17 @@ class MetricsResponse {
   final double freeMemory;
   final double totalDisk;
   final double freeDisk;
-  final double date;
+  final String date;
 
   MetricsResponse({
-    required this.cpuUsage,
-    required this.memoryUsage,
-    required this.diskUsage,
-    required this.totalMemory,
-    required this.freeMemory,
-    required this.totalDisk,
-    required this.freeDisk,
-    required this.date,
+    this.cpuUsage = 0,
+    this.memoryUsage = 0,
+    this.diskUsage = 0,
+    this.totalMemory = 0,
+    this.freeMemory = 0,
+    this.totalDisk = 0,
+    this.freeDisk = 0,
+    this.date = "",
   });
 
   factory MetricsResponse.fromJson(String str) => MetricsResponse.fromMap(json.decode(str));
