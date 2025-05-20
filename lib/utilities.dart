@@ -47,7 +47,6 @@ export 'components/barcode_qrcode.dart';
 export 'components/chart.dart';
 export 'components/chip_choice.dart';
 export 'components/container.dart';
-export 'components/cupertino_date_picker.dart';
 export 'components/fdottedline.dart';
 export 'components/flip_card.dart';
 export 'components/form.dart';
