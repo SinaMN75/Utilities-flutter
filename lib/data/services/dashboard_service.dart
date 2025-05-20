@@ -11,7 +11,7 @@ class DashboardService {
     final Function(Exception)? onException,
   }) =>
       UHttpClient().get(
-        "$baseUrl/metrics",
+        "$baseUrl/dashboard/ReadSystemMetrics",
         onSuccess: (final Response r) => onOk(MetricsResponse.fromJson(r.body)),
         onError: (final Response r) => onError(),
         onException: (dynamic e) {
