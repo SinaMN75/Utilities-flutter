@@ -1,3 +1,4 @@
+import 'package:u/components/persian_date_picker.dart';
 import 'package:u/utilities.dart';
 
 class UTextField extends StatefulWidget {
@@ -193,23 +194,11 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
           if (!widget.readOnly) {
             if (widget.date) {
               await UNavigator.bottomSheet(
-                   Column(
+                  Column(
                     children: <Widget>[
-                      LinearDatePicker(
-                        startDate: "1330/01/01",
-                        endDate: "1406/12/30",
-                        initialDate: "${jalali.year}/${jalali.month}/${jalali.day}",
-                        addLeadingZero: true,
-                        onDateChanged: (String selectedDate) {
-                          jalali = Jalali(
-                            selectedDate.getYear(),
-                            selectedDate.getMonth(),
-                            selectedDate.getDay(),
-                          );
-                        },
-                        columnWidth: 100,
-                        showMonthName: true,
-                        isJalaali: true,
+                      JalaliDatePickerDialog(
+                        initialDate: Jalali.now(),
+                        onDateSelected: (DateTime d, Jalali j) => jalali = j,
                       ),
                       Row(
                         children: <Widget>[
@@ -230,24 +219,23 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
                         ],
                       ).pOnly(top: 24, bottom: 12),
                     ],
-                  ),
-                  onDismiss: () async {
-                    if (widget.time) {
-                      final TimeOfDay? timeOfDay = await showTimePicker(
-                        context: context,
-                        initialTime: const TimeOfDay(hour: 0, minute: 0),
-                      );
-                      jalali = Jalali(
-                        jalali.year,
-                        jalali.month,
-                        jalali.day,
-                        timeOfDay!.hour,
-                        timeOfDay.minute,
-                      );
-                      setState(() => jalali = jalali);
-                      widget.onChange(jalali.toDateTime(), jalali);
-                    }
-                  });
+                  ), onDismiss: () async {
+                if (widget.time) {
+                  final TimeOfDay? timeOfDay = await showTimePicker(
+                    context: context,
+                    initialTime: const TimeOfDay(hour: 0, minute: 0),
+                  );
+                  jalali = Jalali(
+                    jalali.year,
+                    jalali.month,
+                    jalali.day,
+                    timeOfDay!.hour,
+                    timeOfDay.minute,
+                  );
+                  setState(() => jalali = jalali);
+                  widget.onChange(jalali.toDateTime(), jalali);
+                }
+              });
             }
           }
         },
