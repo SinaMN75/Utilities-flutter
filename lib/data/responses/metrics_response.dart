@@ -24,13 +24,13 @@ class MetricsResponse {
   factory MetricsResponse.fromJson(String str) => MetricsResponse.fromMap(json.decode(str));
 
   factory MetricsResponse.fromMap(Map<String, dynamic> json) => MetricsResponse(
-        cpuUsage: json["cpuUsage"],
-        memoryUsage: json["memoryUsage"],
-        diskUsage: json["diskUsage"],
-        totalMemory: json["totalMemory"],
-        freeMemory: json["freeMemory"],
-        totalDisk: json["totalDisk"],
-        freeDisk: json["freeDisk"],
+        cpuUsage: json["cpuUsage"].toString().toDouble(),
+        memoryUsage: json["memoryUsage"].toString().toDouble(),
+        diskUsage: json["diskUsage"].toString().toDouble(),
+        totalMemory: json["totalMemory"].toString().toDouble(),
+        freeMemory: json["freeMemory"].toString().toDouble(),
+        totalDisk: json["totalDisk"].toString().toDouble(),
+        freeDisk: json["freeDisk"].toString().toDouble(),
         date: json["date"],
       );
 }
