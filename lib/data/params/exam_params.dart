@@ -53,7 +53,7 @@ class ExamReadParams extends BaseReadParams {
     super.token,
     super.pageSize,
     super.pageNumber,
-    super.fromDate,
+    super.fromCreatedAt,
     super.tags,
     this.categoryId,
   });
@@ -67,7 +67,7 @@ class ExamReadParams extends BaseReadParams {
     token: json["token"],
     pageSize: json["pageSize"],
     pageNumber: json["pageNumber"],
-    fromDate: json["fromDate"] == null ? null : DateTime.parse(json["fromDate"]),
+    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     categoryId: json["categoryId"],
   );
