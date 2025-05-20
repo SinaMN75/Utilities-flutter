@@ -128,6 +128,10 @@ class UserReadParams extends BaseReadParams {
   final bool? showCategories;
   final bool? showMedia;
   final bool? showChildren;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByLastName;
+  final bool? orderByLastNameDesc;
 
   UserReadParams({
     required super.apiKey,
@@ -147,6 +151,10 @@ class UserReadParams extends BaseReadParams {
     this.showCategories,
     this.showMedia,
     this.showChildren,
+    this.orderByCreatedAt,
+    this.orderByCreatedAtDesc,
+    this.orderByLastName,
+    this.orderByLastNameDesc,
   });
 
   factory UserReadParams.fromJson(String str) => UserReadParams.fromMap(json.decode(str));
@@ -171,6 +179,10 @@ class UserReadParams extends BaseReadParams {
         showCategories: json["showCategories"],
         showMedia: json["showMedia"],
         showChildren: json["showChildren"],
+        orderByCreatedAt: json["orderByCreatedAt"],
+        orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
+        orderByLastName: json["orderByLastName"],
+        orderByLastNameDesc: json["orderByLastNameDesc"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -190,6 +202,10 @@ class UserReadParams extends BaseReadParams {
         "showCategories": showCategories,
         "showMedia": showMedia,
         "showChildren": showChildren,
+        "orderByCreatedAt": orderByCreatedAt,
+        "orderByCreatedAtDesc": orderByCreatedAtDesc,
+        "orderByLastName": orderByLastName,
+        "orderByLastNameDesc": orderByLastNameDesc,
       };
 }
 

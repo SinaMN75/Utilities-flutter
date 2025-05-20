@@ -16,15 +16,23 @@ abstract class BaseReadParams extends BaseParams {
     this.pageSize = 100,
     this.pageNumber = 1,
     this.fromDate,
+    this.toDate,
     this.tags,
   });
 
   final int? pageSize;
   final int? pageNumber;
   final DateTime? fromDate;
+  final DateTime? toDate;
   final List<int>? tags;
 
-  Map<String, dynamic> toBaseReadMap() => <String, dynamic>{...toBaseMap(), "pageSize": pageSize, "pageNumber": pageNumber};
+  Map<String, dynamic> toBaseReadMap() => <String, dynamic>{
+        ...toBaseMap(),
+        "pageSize": pageSize,
+        "pageNumber": pageNumber,
+        "fromDate": fromDate?.toIso8601String(),
+        "toDate": toDate?.toIso8601String(),
+      };
 }
 
 abstract class BaseUpdateParams extends BaseParams {
