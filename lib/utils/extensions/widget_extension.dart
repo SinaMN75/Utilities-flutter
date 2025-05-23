@@ -63,6 +63,8 @@ extension WidgetsExtension on Widget {
 
   Widget safeArea() => SafeArea(child: this);
 
+  Widget form(GlobalKey<FormState> key) => Form(key: key, child: this);
+
   Widget scrollable({final Axis scrollDirection = Axis.vertical}) => SingleChildScrollView(
         scrollDirection: scrollDirection,
         child: this,
