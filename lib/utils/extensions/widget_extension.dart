@@ -18,28 +18,6 @@ extension WidgetsExtension on Widget {
 
   Widget get pZero => Padding(padding: EdgeInsets.zero, child: this);
 
-  Widget withTooltip(
-    final String message, {
-    final Decoration? decoration,
-    final double? height,
-    final bool? preferBelow,
-    final EdgeInsetsGeometry? padding,
-    final TextStyle? textStyle,
-    final Duration? waitDuration,
-    final EdgeInsetsGeometry? margin,
-  }) =>
-      Tooltip(
-        message: message,
-        decoration: decoration,
-        height: height,
-        padding: padding,
-        preferBelow: preferBelow,
-        textStyle: textStyle,
-        waitDuration: waitDuration,
-        margin: margin,
-        child: this,
-      );
-
   Widget fit({final Alignment alignment = Alignment.center}) => FittedBox(
         key: key,
         alignment: alignment,
@@ -115,6 +93,20 @@ extension WidgetsExtension on Widget {
           borderRadius: BorderRadius.circular(radius),
           border: Border.all(color: borderColor, width: borderWidth),
         ),
+        child: this,
+      );
+
+  Widget card({
+    final Color? backgroundColor,
+    final double elevation = 1,
+    final EdgeInsets? margin,
+  }) =>
+      Card(
+        clipBehavior: Clip.hardEdge,
+        margin: margin,
+        elevation: elevation,
+        color: backgroundColor,
+        surfaceTintColor: backgroundColor,
         child: this,
       );
 
