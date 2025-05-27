@@ -21,6 +21,22 @@ class UserService {
         },
       );
 
+  void bulkCreate({
+    required final UserBulkCreateParams p,
+    required final Function(UResponse<dynamic> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      UHttpClient().post(
+        "$baseUrl/user/BulkCreate",
+        body: p.toMap(),
+        onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
+
   void read({
     required final UserReadParams p,
     required final Function(UResponse<List<UserResponse>> r) onOk,
