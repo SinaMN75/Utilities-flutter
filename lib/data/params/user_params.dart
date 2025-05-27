@@ -1,5 +1,33 @@
 part of "../data.dart";
 
+class UserBulkCreateParams {
+  final String apiKey;
+  final String token;
+  final List<UserCreateParams> users;
+
+  UserBulkCreateParams({
+    required this.apiKey,
+    required this.token,
+    required this.users,
+  });
+
+  factory UserBulkCreateParams.fromJson(String str) => UserBulkCreateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UserBulkCreateParams.fromMap(Map<String, dynamic> json) => UserBulkCreateParams(
+        apiKey: json["apiKey"],
+        token: json["token"],
+        users: List<UserCreateParams>.from(json["users"].map((dynamic x) => UserCreateParams.fromMap(x))),
+      );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+        "apiKey": apiKey,
+        "token": token,
+        "users": List<dynamic>.from(users.map((UserCreateParams x) => x.toMap())),
+      };
+}
+
 class UserCreateParams {
   final String apiKey;
   final String? token;
