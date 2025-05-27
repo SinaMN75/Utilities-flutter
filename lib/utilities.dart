@@ -53,6 +53,7 @@ export 'components/form.dart';
 export 'components/image.dart';
 export 'components/link_previewer.dart';
 export 'components/map.dart';
+export 'components/number_pagination.dart';
 export 'components/percent_indicator.dart';
 export 'components/rating_bar.dart';
 export 'components/readmore.dart';

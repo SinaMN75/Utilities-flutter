@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class NumberPagination extends StatelessWidget {
+class UNumberPagination extends StatelessWidget {
   final int currentPage;
   final int totalPages;
   final int threshold;
@@ -11,7 +11,7 @@ class NumberPagination extends StatelessWidget {
   final Icon? prevIcon;
   final Icon? nextIcon;
 
-  const NumberPagination({
+  const UNumberPagination({
     super.key,
     required this.currentPage,
     required this.totalPages,
