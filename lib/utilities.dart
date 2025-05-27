@@ -50,6 +50,7 @@ export 'components/container.dart';
 export 'components/fdottedline.dart';
 export 'components/flip_card.dart';
 export 'components/form.dart';
+export 'components/gauge.dart';
 export 'components/image.dart';
 export 'components/link_previewer.dart';
 export 'components/map.dart';
