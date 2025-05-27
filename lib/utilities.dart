@@ -57,6 +57,7 @@ export 'components/percent_indicator.dart';
 export 'components/rating_bar.dart';
 export 'components/readmore.dart';
 export 'components/scrolling_text.dart';
+export 'components/segmented_control.dart';
 export 'components/signaturepad.dart';
 export 'components/webview.dart';
 export 'components/widget_to_image.dart';
