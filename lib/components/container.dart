@@ -20,7 +20,7 @@ class UScaffold extends StatelessWidget {
     this.resizeToAvoidBottomInset = false,
     this.extendBodyBehindAppBar = false,
     this.floatingActionButtonLocation = FloatingActionButtonLocation.endFloat,
-    this.alignment = Alignment.center,
+    this.alignment,
   });
 
   final Widget body;
@@ -40,7 +40,7 @@ class UScaffold extends StatelessWidget {
   final double? height;
   final DrawerCallback? onDrawerChanged;
   final DrawerCallback? onEndDrawerChanged;
-  final Alignment alignment;
+  final Alignment? alignment;
 
   @override
   Widget build(final BuildContext context) => GestureDetector(
@@ -59,16 +59,14 @@ class UScaffold extends StatelessWidget {
           floatingActionButton: floatingActionButton,
           floatingActionButtonLocation: floatingActionButtonLocation,
           bottomNavigationBar: bottomNavigationBar,
-          body: Align(
+          body: Container(
+            width: width,
+            height: height,
+            constraints: constraints,
+            decoration: decoration,
+            padding: padding,
             alignment: alignment,
-            child: Container(
-              width: width,
-              height: height,
-              constraints: constraints,
-              decoration: decoration,
-              padding: padding,
-              child: body,
-            ),
+            child: body,
           ),
         ),
       );

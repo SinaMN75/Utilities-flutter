@@ -43,7 +43,8 @@ enum TagUser with NumericIdentifiable {
 
 enum TagCategory with NumericIdentifiable {
   category('دسته‌بندی', 'Category', 100),
-  exam('پرشسنامه', 'Exam', 101);
+  exam('پرشسنامه', 'Exam', 101),
+  user('کاربران', 'User', 102);
 
   const TagCategory(this.titleFa, this.titleEn, this.number);
 
