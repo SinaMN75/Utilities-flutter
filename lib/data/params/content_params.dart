@@ -1,36 +1,33 @@
 part of "../data.dart";
 
-class ExamCreateParams {
+class ContentCreateParams {
   final String title;
   final String description;
-  final List<QuestionJson> questions;
-  final List<ExamScoreDetail> scoreDetails;
-  final String categoryId;
+  final String subTitle;
+  final String? instagram;
   final List<int> tags;
   final String? apiKey;
   final String? token;
 
-  ExamCreateParams({
+  ContentCreateParams({
     required this.title,
     required this.description,
-    required this.questions,
-    required this.scoreDetails,
-    required this.categoryId,
+    required this.subTitle,
+    this.instagram,
     required this.tags,
     this.apiKey,
     this.token,
   });
 
-  factory ExamCreateParams.fromJson(String str) => ExamCreateParams.fromMap(json.decode(str));
+  factory ContentCreateParams.fromJson(String str) => ContentCreateParams.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ExamCreateParams.fromMap(Map<String, dynamic> json) => ExamCreateParams(
+  factory ContentCreateParams.fromMap(Map<String, dynamic> json) => ContentCreateParams(
     title: json["title"],
     description: json["description"],
-    questions: List<QuestionJson>.from(json["questions"].map((dynamic x) => QuestionJson.fromMap(x))),
-    scoreDetails: List<ExamScoreDetail>.from(json["scoreDetails"].map((dynamic x) => ExamScoreDetail.fromMap(x))),
-    categoryId: json["categoryId"],
+    subTitle: json["subTitle"],
+    instagram: json["instagram"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     apiKey: json["apiKey"],
     token: json["token"],
@@ -39,17 +36,68 @@ class ExamCreateParams {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
     "description": description,
-    "questions": List<dynamic>.from(questions.map((dynamic x) => x.toMap())),
-    "scoreDetails": List<dynamic>.from(scoreDetails.map((dynamic x) => x.toMap())),
-    "categoryId": categoryId,
+    "subTitle": subTitle,
+    "instagram": instagram,
     "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
     "apiKey": apiKey,
     "token": token,
   };
 }
 
-class ExamReadParams {
-  final String? categoryId;
+class ContentUpdateParams {
+  final String id;
+  final String? title;
+  final String? subTitle;
+  final String? description;
+  final String? instagram;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final String? apiKey;
+  final String? token;
+
+  ContentUpdateParams({
+    required this.id,
+    this.title,
+    this.subTitle,
+    this.description,
+    this.instagram,
+    this.addTags,
+    this.removeTags,
+    this.apiKey,
+    this.token,
+  });
+
+  factory ContentUpdateParams.fromJson(String str) => ContentUpdateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ContentUpdateParams.fromMap(Map<String, dynamic> json) => ContentUpdateParams(
+    id: json["id"],
+    title: json["title"],
+    subTitle: json["subTitle"],
+    description: json["description"],
+    instagram: json["instagram"],
+    addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
+    removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
+    apiKey: json["apiKey"],
+    token: json["token"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "title": title,
+    "subTitle": subTitle,
+    "description": description,
+    "instagram": instagram,
+    "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
+    "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
+    "apiKey": apiKey,
+    "token": token,
+  };
+}
+
+class ContentReadParams {
+  final bool? showMedia;
   final int? pageSize;
   final int? pageNumber;
   final DateTime? fromCreatedAt;
@@ -62,8 +110,8 @@ class ExamReadParams {
   final String? apiKey;
   final String? token;
 
-  ExamReadParams({
-    this.categoryId,
+  ContentReadParams({
+    this.showMedia,
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
@@ -77,12 +125,12 @@ class ExamReadParams {
     this.token,
   });
 
-  factory ExamReadParams.fromJson(String str) => ExamReadParams.fromMap(json.decode(str));
+  factory ContentReadParams.fromJson(String str) => ContentReadParams.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ExamReadParams.fromMap(Map<String, dynamic> json) => ExamReadParams(
-    categoryId: json["categoryId"],
+  factory ContentReadParams.fromMap(Map<String, dynamic> json) => ContentReadParams(
+    showMedia: json["showMedia"] ?? false,
     pageSize: json["pageSize"] ?? 0,
     pageNumber: json["pageNumber"] ?? 0,
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
@@ -97,7 +145,7 @@ class ExamReadParams {
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "categoryId": categoryId,
+    "showMedia": showMedia,
     "pageSize": pageSize,
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
@@ -109,33 +157,5 @@ class ExamReadParams {
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
     "apiKey": apiKey,
     "token": token,
-  };
-}
-
-class SubmitAnswersParams {
-  final List<UserAnswerResultJson> answers;
-  final String userId;
-  final String examId;
-
-  SubmitAnswersParams({
-    required this.answers,
-    required this.userId,
-    required this.examId,
-  });
-
-  factory SubmitAnswersParams.fromJson(String str) => SubmitAnswersParams.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory SubmitAnswersParams.fromMap(Map<String, dynamic> json) => SubmitAnswersParams(
-    answers: List<UserAnswerResultJson>.from(json["answers"].map((dynamic x) => UserAnswerResultJson.fromMap(x))),
-    userId: json["userId"],
-    examId: json["examId"],
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "answers": List<dynamic>.from(answers.map((dynamic x) => x.toMap())),
-    "userId": userId,
-    "examId": examId,
   };
 }

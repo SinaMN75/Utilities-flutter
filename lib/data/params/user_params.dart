@@ -29,13 +29,10 @@ class UserBulkCreateParams {
 }
 
 class UserCreateParams {
-  final String apiKey;
-  final String? token;
-  final String? userName;
-  final String? parentId;
-  final String? password;
-  final String? phoneNumber;
-  final String? email;
+  final String userName;
+  final String password;
+  final String phoneNumber;
+  final String email;
   final String? firstName;
   final String? lastName;
   final String? bio;
@@ -43,8 +40,8 @@ class UserCreateParams {
   final String? state;
   final String? city;
   final DateTime? birthdate;
-  final int? weight;
-  final int? height;
+  final double? weight;
+  final double? height;
   final String? address;
   final String? fatherName;
   final String? fcmToken;
@@ -54,16 +51,14 @@ class UserCreateParams {
   final List<String>? sickness;
   final List<int> tags;
   final List<String>? categories;
+  final String? apiKey;
+  final String? token;
 
   UserCreateParams({
-    required this.apiKey,
-    required this.token,
-    required this.tags,
-    this.userName,
-    this.password,
-    this.parentId,
-    this.phoneNumber,
-    this.email,
+    required this.userName,
+    required this.password,
+    required this.phoneNumber,
+    required this.email,
     this.firstName,
     this.lastName,
     this.bio,
@@ -80,7 +75,10 @@ class UserCreateParams {
     this.foodAllergies,
     this.drugAllergies,
     this.sickness,
+    required this.tags,
     this.categories,
+    this.apiKey,
+    this.token,
   });
 
   factory UserCreateParams.fromJson(String str) => UserCreateParams.fromMap(json.decode(str));
@@ -88,89 +86,86 @@ class UserCreateParams {
   String toJson() => json.encode(toMap());
 
   factory UserCreateParams.fromMap(Map<String, dynamic> json) => UserCreateParams(
-        apiKey: json["apiKey"],
-        token: json["token"],
-        userName: json["userName"],
-        parentId: json["parentId"],
-        password: json["password"],
-        phoneNumber: json["phoneNumber"],
-        email: json["email"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        bio: json["bio"],
-        country: json["country"],
-        state: json["state"],
-        city: json["city"],
-        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
-        weight: json["weight"],
-        height: json["height"],
-        address: json["address"],
-        fatherName: json["fatherName"],
-        fcmToken: json["fcmToken"],
-        health1: json["health1"] == null ? <String>[] : List<String>.from(json["health1"]!.map((dynamic x) => x)),
-        foodAllergies: json["foodAllergies"] == null ? <String>[] : List<String>.from(json["foodAllergies"]!.map((dynamic x) => x)),
-        drugAllergies: json["drugAllergies"] == null ? <String>[] : List<String>.from(json["drugAllergies"]!.map((dynamic x) => x)),
-        sickness: json["sickness"] == null ? <String>[] : List<String>.from(json["sickness"]!.map((dynamic x) => x)),
-        tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((dynamic x) => x)),
-      );
+    userName: json["userName"],
+    password: json["password"],
+    phoneNumber: json["phoneNumber"],
+    email: json["email"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
+    bio: json["bio"],
+    country: json["country"],
+    state: json["state"],
+    city: json["city"],
+    birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
+    weight: json["weight"],
+    height: json["height"],
+    address: json["address"],
+    fatherName: json["fatherName"],
+    fcmToken: json["fcmToken"],
+    health1: json["health1"] == null ? null : List<String>.from(json["health1"].map((dynamic x) => x)),
+    foodAllergies: json["foodAllergies"] == null ? null : List<String>.from(json["foodAllergies"].map((dynamic x) => x)),
+    drugAllergies: json["drugAllergies"] == null ? <String>[] : List<String>.from(json["drugAllergies"].map((dynamic x) => x)),
+    sickness: json["sickness"] == null ? null : List<String>.from(json["sickness"].map((dynamic x) => x)),
+    tags: List<int>.from(json["tags"].map((dynamic x) => x)),
+    categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
+    apiKey: json["apiKey"],
+    token: json["token"],
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "apiKey": apiKey,
-        "token": token,
-        "userName": userName,
-        "parentId": parentId,
-        "password": password,
-        "phoneNumber": phoneNumber,
-        "email": email,
-        "firstName": firstName,
-        "lastName": lastName,
-        "bio": bio,
-        "country": country,
-        "state": state,
-        "city": city,
-        "birthdate": birthdate?.toIso8601String(),
-        "weight": weight,
-        "height": height,
-        "address": address,
-        "fatherName": fatherName,
-        "fcmToken": fcmToken,
-        "health1": health1 == null ? <dynamic>[] : List<dynamic>.from(health1!.map((String x) => x)),
-        "foodAllergies": foodAllergies == null ? <dynamic>[] : List<dynamic>.from(foodAllergies!.map((String x) => x)),
-        "drugAllergies": drugAllergies == null ? <dynamic>[] : List<dynamic>.from(drugAllergies!.map((String x) => x)),
-        "sickness": sickness == null ? <dynamic>[] : List<dynamic>.from(sickness!.map((String x) => x)),
-        "tags": List<dynamic>.from(tags.map((int x) => x)),
-        "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
-      };
+    "userName": userName,
+    "password": password,
+    "phoneNumber": phoneNumber,
+    "email": email,
+    "firstName": firstName,
+    "lastName": lastName,
+    "bio": bio,
+    "country": country,
+    "state": state,
+    "city": city,
+    "birthdate": birthdate?.toIso8601String(),
+    "weight": weight,
+    "height": height,
+    "address": address,
+    "fatherName": fatherName,
+    "fcmToken": fcmToken,
+    "health1": health1 == null ? null : List<dynamic>.from(health1!.map((dynamic x) => x)),
+    "foodAllergies": foodAllergies == null ? null : List<dynamic>.from(foodAllergies!.map((dynamic x) => x)),
+    "drugAllergies": drugAllergies == null ? null : List<dynamic>.from(drugAllergies!.map((dynamic x) => x)),
+    "sickness": sickness == null ? null : List<dynamic>.from(sickness!.map((dynamic x) => x)),
+    "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
+    "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
+    "apiKey": apiKey,
+    "token": token,
+  };
 }
 
-class UserReadParams extends BaseReadParams {
+class UserReadParams {
   final String? userName;
   final String? phoneNumber;
   final String? email;
   final String? bio;
-  final String? parentId;
   final DateTime? startBirthDate;
   final DateTime? endBirthDate;
   final List<String>? categories;
   final bool? showCategories;
   final bool? showMedia;
-  final bool? showChildren;
+  final bool? orderByLastName;
+  final bool? orderByLastNameDesc;
+  final int? pageSize;
+  final int? pageNumber;
+  final DateTime? fromCreatedAt;
+  final DateTime? toCreatedAt;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByUpdatedAt;
+  final bool? orderByUpdatedAtDesc;
+  final List<int>? tags;
+  final String? apiKey;
+  final String? token;
 
   UserReadParams({
-    required super.apiKey,
-    super.token,
-    super.pageSize,
-    super.pageNumber,
-    super.fromCreatedAt,
-    super.toCreatedAt,
-    super.orderByCreatedAt,
-    super.orderByCreatedAtDesc,
-    super.orderByLastName,
-    super.orderByLastNameDesc,
-    super.tags,
     this.userName,
-    this.parentId,
     this.phoneNumber,
     this.email,
     this.bio,
@@ -179,31 +174,77 @@ class UserReadParams extends BaseReadParams {
     this.categories,
     this.showCategories,
     this.showMedia,
-    this.showChildren,
+    this.orderByLastName,
+    this.orderByLastNameDesc,
+    this.pageSize,
+    this.pageNumber,
+    this.fromCreatedAt,
+    this.toCreatedAt,
+    this.orderByCreatedAt,
+    this.orderByCreatedAtDesc,
+    this.orderByUpdatedAt,
+    this.orderByUpdatedAtDesc,
+    this.tags,
+    this.apiKey,
+    this.token,
   });
+
+  factory UserReadParams.fromJson(String str) => UserReadParams.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
+  factory UserReadParams.fromMap(Map<String, dynamic> json) => UserReadParams(
+    userName: json["userName"],
+    phoneNumber: json["phoneNumber"],
+    email: json["email"],
+    bio: json["bio"],
+    startBirthDate: json["startBirthDate"] == null ? null : DateTime.parse(json["startBirthDate"]),
+    endBirthDate: json["endBirthDate"] == null ? null : DateTime.parse(json["endBirthDate"]),
+    categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
+    showCategories: json["showCategories"] ?? false,
+    showMedia: json["showMedia"] ?? false,
+    orderByLastName: json["orderByLastName"] ?? false,
+    orderByLastNameDesc: json["orderByLastNameDesc"] ?? false,
+    pageSize: json["pageSize"] ?? 0,
+    pageNumber: json["pageNumber"] ?? 0,
+    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
+    toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
+    orderByCreatedAt: json["orderByCreatedAt"] ?? false,
+    orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
+    orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
+    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
+    tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    apiKey: json["apiKey"],
+    token: json["token"],
+  );
+
   Map<String, dynamic> toMap() => <String, dynamic>{
-        ...toBaseReadMap(),
-        "apiKey": apiKey,
-        "token": token,
-        "parentId": parentId,
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-        "userName": userName,
-        "phoneNumber": phoneNumber,
-        "email": email,
-        "bio": bio,
-        "startBirthDate": startBirthDate?.toIso8601String(),
-        "endBirthDate": endBirthDate?.toIso8601String(),
-        "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
-        "showCategories": showCategories,
-        "showMedia": showMedia,
-        "showChildren": showChildren,
-      };
+    "userName": userName,
+    "phoneNumber": phoneNumber,
+    "email": email,
+    "bio": bio,
+    "startBirthDate": startBirthDate?.toIso8601String(),
+    "endBirthDate": endBirthDate?.toIso8601String(),
+    "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
+    "showCategories": showCategories,
+    "showMedia": showMedia,
+    "orderByLastName": orderByLastName,
+    "orderByLastNameDesc": orderByLastNameDesc,
+    "pageSize": pageSize,
+    "pageNumber": pageNumber,
+    "fromCreatedAt": fromCreatedAt?.toIso8601String(),
+    "toCreatedAt": toCreatedAt?.toIso8601String(),
+    "orderByCreatedAt": orderByCreatedAt,
+    "orderByCreatedAtDesc": orderByCreatedAtDesc,
+    "orderByUpdatedAt": orderByUpdatedAt,
+    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
+    "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+    "apiKey": apiKey,
+    "token": token,
+  };
 }
 
-class UserUpdateParams extends BaseUpdateParams {
+class UserUpdateParams {
   final String? password;
   final String? firstName;
   final String? lastName;
@@ -216,24 +257,25 @@ class UserUpdateParams extends BaseUpdateParams {
   final String? bio;
   final DateTime? birthdate;
   final String? fcmToken;
-  final int? weight;
-  final int? height;
   final String? address;
   final String? fatherName;
+  final double? weight;
+  final double? height;
   final List<String>? addHealth1;
   final List<String>? removeHealth1;
-  final List<String>? health1;
   final List<String>? foodAllergies;
   final List<String>? drugAllergies;
   final List<String>? sickness;
+  final List<String>? health1;
   final List<String>? categories;
+  final String id;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final List<int>? tags;
+  final String? apiKey;
+  final String? token;
 
   UserUpdateParams({
-    required super.id,
-    required super.apiKey,
-    required super.token,
-    super.addTags,
-    super.removeTags,
     this.password,
     this.firstName,
     this.lastName,
@@ -246,17 +288,23 @@ class UserUpdateParams extends BaseUpdateParams {
     this.bio,
     this.birthdate,
     this.fcmToken,
-    this.weight,
-    this.height,
     this.address,
     this.fatherName,
+    this.weight,
+    this.height,
     this.addHealth1,
     this.removeHealth1,
-    this.health1,
     this.foodAllergies,
     this.drugAllergies,
     this.sickness,
+    this.health1,
     this.categories,
+    required this.id,
+    this.addTags,
+    this.removeTags,
+    this.tags,
+    this.apiKey,
+    this.token,
   });
 
   factory UserUpdateParams.fromJson(String str) => UserUpdateParams.fromMap(json.decode(str));
@@ -264,63 +312,66 @@ class UserUpdateParams extends BaseUpdateParams {
   String toJson() => json.encode(toMap());
 
   factory UserUpdateParams.fromMap(Map<String, dynamic> json) => UserUpdateParams(
-        id: json["id"],
-        token: json["token"],
-        apiKey: json["apiKey"],
-        password: json["password"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        country: json["country"],
-        state: json["state"],
-        city: json["city"],
-        userName: json["userName"],
-        phoneNumber: json["phoneNumber"],
-        email: json["email"],
-        bio: json["bio"],
-        birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
-        fcmToken: json["fcmToken"],
-        weight: json["weight"],
-        height: json["height"],
-        address: json["address"],
-        fatherName: json["fatherName"],
-        addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((final dynamic x) => x)),
-        removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((final dynamic x) => x)),
-        addHealth1: json["addHealth1"] == null ? <String>[] : List<String>.from(json["addHealth1"]!.map((final dynamic x) => x)),
-        removeHealth1: json["removeHealth1"] == null ? <String>[] : List<String>.from(json["removeHealth1"]!.map((final dynamic x) => x)),
-        foodAllergies: json["foodAllergies"] == null ? <String>[] : List<String>.from(json["foodAllergies"]!.map((final dynamic x) => x)),
-        drugAllergies: json["drugAllergies"] == null ? <String>[] : List<String>.from(json["drugAllergies"]!.map((final dynamic x) => x)),
-        sickness: json["sickness"] == null ? <String>[] : List<String>.from(json["sickness"]!.map((final dynamic x) => x)),
-        health1: json["health1"] == null ? <String>[] : List<String>.from(json["health1"]!.map((final dynamic x) => x)),
-        categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((final dynamic x) => x)),
-      );
+    password: json["password"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
+    country: json["country"],
+    state: json["state"],
+    city: json["city"],
+    userName: json["userName"],
+    phoneNumber: json["phoneNumber"],
+    email: json["email"],
+    bio: json["bio"],
+    birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
+    fcmToken: json["fcmToken"],
+    address: json["address"],
+    fatherName: json["fatherName"],
+    weight: json["weight"],
+    height: json["height"],
+    addHealth1: json["addHealth1"] == null ? null : List<String>.from(json["addHealth1"].map((dynamic x) => x)),
+    removeHealth1: json["removeHealth1"] == null ? null : List<String>.from(json["removeHealth1"].map((dynamic x) => x)),
+    foodAllergies: json["foodAllergies"] == null ? null : List<String>.from(json["foodAllergies"].map((dynamic x) => x)),
+    drugAllergies: json["drugAllergies"] == null ? null : List<String>.from(json["drugAllergies"].map((dynamic x) => x)),
+    sickness: json["sickness"] == null ? null : List<String>.from(json["sickness"].map((dynamic x) => x)),
+    health1: json["health1"] == null ? null : List<String>.from(json["health1"].map((dynamic x) => x)),
+    categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
+    id: json["id"],
+    addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
+    removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
+    tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    apiKey: json["apiKey"],
+    token: json["token"],
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        ...toBaseUpdateBaseMap(),
-        "id": id,
-        "password": password,
-        "firstName": firstName,
-        "lastName": lastName,
-        "country": country,
-        "state": state,
-        "city": city,
-        "userName": userName,
-        "phoneNumber": phoneNumber,
-        "email": email,
-        "bio": bio,
-        "birthdate": birthdate?.toIso8601String(),
-        "fcmToken": fcmToken,
-        "weight": weight,
-        "height": height,
-        "address": address,
-        "fatherName": fatherName,
-        "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
-        "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
-        "addHealth1": addHealth1 == null ? <dynamic>[] : List<dynamic>.from(addHealth1!.map((String x) => x)),
-        "removeHealth1": removeHealth1 == null ? <dynamic>[] : List<dynamic>.from(removeHealth1!.map((String x) => x)),
-        "health1": health1 == null ? <dynamic>[] : List<dynamic>.from(health1!.map((String x) => x)),
-        "sickness": sickness == null ? <dynamic>[] : List<dynamic>.from(sickness!.map((String x) => x)),
-        "foodAllergies": foodAllergies == null ? <dynamic>[] : List<dynamic>.from(foodAllergies!.map((String x) => x)),
-        "drugAllergies": drugAllergies == null ? <dynamic>[] : List<dynamic>.from(drugAllergies!.map((String x) => x)),
-        "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
-      };
+    "password": password,
+    "firstName": firstName,
+    "lastName": lastName,
+    "country": country,
+    "state": state,
+    "city": city,
+    "userName": userName,
+    "phoneNumber": phoneNumber,
+    "email": email,
+    "bio": bio,
+    "birthdate": birthdate?.toIso8601String(),
+    "fcmToken": fcmToken,
+    "address": address,
+    "fatherName": fatherName,
+    "weight": weight,
+    "height": height,
+    "addHealth1": addHealth1 == null ? null : List<dynamic>.from(addHealth1!.map((dynamic x) => x)),
+    "removeHealth1": removeHealth1 == null ? null : List<dynamic>.from(removeHealth1!.map((dynamic x) => x)),
+    "foodAllergies": foodAllergies == null ? null : List<dynamic>.from(foodAllergies!.map((dynamic x) => x)),
+    "drugAllergies": drugAllergies == null ? null : List<dynamic>.from(drugAllergies!.map((dynamic x) => x)),
+    "sickness": sickness == null ? null : List<dynamic>.from(sickness!.map((dynamic x) => x)),
+    "health1": health1 == null ? null : List<dynamic>.from(health1!.map((dynamic x) => x)),
+    "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
+    "id": id,
+    "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
+    "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
+    "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+    "apiKey": apiKey,
+    "token": token,
+  };
 }

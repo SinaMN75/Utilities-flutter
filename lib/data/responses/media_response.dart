@@ -1,65 +1,87 @@
 part of "../data.dart";
 
 class MediaResponse {
-  final String? id;
-  final String? createdAt;
-  final String? updatedAt;
-  final List<int>? tags;
-  final MediaJsonData? jsonData;
-  final String? path;
+  final String id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final MediaJson jsonData;
+  final List<int> tags;
+  final String path;
+  final String? userId;
+  final String? contentId;
+  final String? categoryId;
+  final String? commentId;
+  final String? productId;
 
   MediaResponse({
-    this.id,
-    this.createdAt,
-    this.updatedAt,
-    this.tags,
-    this.jsonData,
-    this.path,
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.jsonData,
+    required this.tags,
+    required this.path,
+    this.userId,
+    this.contentId,
+    this.categoryId,
+    this.commentId,
+    this.productId,
   });
+
+  String get url => "https://localhost:7048/Media/$path";
 
   factory MediaResponse.fromJson(String str) => MediaResponse.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory MediaResponse.fromMap(Map<String, dynamic> json) => MediaResponse(
-    id: json["id"],
-    createdAt: json["createdAt"],
-    updatedAt: json["updatedAt"],
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-    jsonData: json["jsonData"] == null ? null : MediaJsonData.fromMap(json["jsonData"]),
-    path: json["path"],
-  );
+        id: json["id"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        jsonData: MediaJson.fromMap(json["jsonData"]),
+        tags: List<int>.from(json["tags"].map((dynamic x) => x)),
+        path: json["path"],
+        userId: json["userId"],
+        contentId: json["contentId"],
+        categoryId: json["categoryId"],
+        commentId: json["commentId"],
+        productId: json["productId"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "id": id,
-    "createdAt": createdAt,
-    "updatedAt": updatedAt,
-    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-    "jsonData": jsonData?.toMap(),
-    "path": path,
-  };
+        "id": id,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "jsonData": jsonData.toMap(),
+        "tags": List<dynamic>.from(tags.map((int x) => x)),
+        "path": path,
+        "userId": userId,
+        "contentId": contentId,
+        "categoryId": categoryId,
+        "commentId": commentId,
+        "productId": productId,
+      };
 }
 
-class MediaJsonData {
+class MediaJson {
   final String? title;
   final String? description;
 
-  MediaJsonData({
+  MediaJson({
     this.title,
     this.description,
   });
 
-  factory MediaJsonData.fromJson(String str) => MediaJsonData.fromMap(json.decode(str));
+  factory MediaJson.fromJson(String str) => MediaJson.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory MediaJsonData.fromMap(Map<String, dynamic> json) => MediaJsonData(
-    title: json["title"],
-    description: json["description"],
-  );
+  factory MediaJson.fromMap(Map<String, dynamic> json) => MediaJson(
+        title: json["title"],
+        description: json["description"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "title": title,
-    "description": description,
-  };
+        "title": title,
+        "description": description,
+      };
 }

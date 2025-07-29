@@ -2,23 +2,27 @@ part of "../data.dart";
 
 class CategoryResponse {
   final String id;
-  final String? createdAt;
-  final String? updatedAt;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final CategoryJson jsonData;
   final List<int> tags;
-  final CategoryJsonData jsonData;
   final String title;
   final String? parentId;
-  final List<String>? children;
+  final CategoryResponse? parent;
+  final int? order;
+  final List<CategoryResponse>? children;
   final List<MediaResponse>? media;
 
   CategoryResponse({
     required this.id,
-    required this.tags,
+    required this.createdAt,
+    required this.updatedAt,
     required this.jsonData,
+    required this.tags,
     required this.title,
-    this.createdAt,
     this.parentId,
-    this.updatedAt,
+    this.parent,
+    this.order,
     this.children,
     this.media,
   });
@@ -28,46 +32,66 @@ class CategoryResponse {
   String toJson() => json.encode(toMap());
 
   factory CategoryResponse.fromMap(Map<String, dynamic> json) => CategoryResponse(
-    id: json["id"],
-    createdAt: json["createdAt"],
-    parentId: json["parentId"],
-    updatedAt: json["updatedAt"],
-    tags: List<int>.from(json["tags"]!.map((final dynamic x) => x)),
-    jsonData: CategoryJsonData.fromMap(json["jsonData"]),
-    title: json["title"],
-    children: json["children"] == null ? <String>[] : List<String>.from(json["children"]!.map((final dynamic x) => x)),
-    media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"]!.map((final dynamic x) => MediaResponse.fromMap(x))),
-  );
+        id: json["id"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        jsonData: CategoryJson.fromMap(json["jsonData"]),
+        tags: List<int>.from(json["tags"].map((dynamic x) => x)),
+        title: json["title"],
+        parentId: json["parentId"],
+        parent: json["parent"] == null ? null : CategoryResponse.fromMap(json["parent"]),
+        order: json["order"],
+        children: json["children"] == null ? <CategoryResponse>[] : List<CategoryResponse>.from(json["children"].map((dynamic x) => CategoryResponse.fromMap(x))),
+        media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "id": id,
-    "createdAt": createdAt,
-    "parentId": parentId,
-    "updatedAt": updatedAt,
-    "tags": List<dynamic>.from(tags.map((int x) => x)),
-    "jsonData": jsonData.toMap(),
-    "title": title,
-    "children": children == null ? <dynamic>[] : List<dynamic>.from(children!.map((String x) => x)),
-    "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((MediaResponse x) => x.toMap())),
-  };
+        "id": id,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "jsonData": jsonData.toMap(),
+        "tags": List<dynamic>.from(tags.map((int x) => x)),
+        "title": title,
+        "parentId": parentId,
+        "parent": parent?.toMap(),
+        "order": order,
+        "children": children == null ? null : List<dynamic>.from(children!.map((CategoryResponse x) => x.toMap())),
+        "media": children == null ? null : List<dynamic>.from(media!.map((MediaResponse x) => x.toMap())),
+      };
 }
 
-class CategoryJsonData {
+class CategoryJson {
   final String? subtitle;
+  final String? link;
+  final String? location;
+  final String? type;
+  final List<String>? relatedProducts;
 
-  CategoryJsonData({
+  CategoryJson({
     this.subtitle,
+    this.link,
+    this.location,
+    this.type,
+    this.relatedProducts,
   });
 
-  factory CategoryJsonData.fromJson(String str) => CategoryJsonData.fromMap(json.decode(str));
+  factory CategoryJson.fromJson(String str) => CategoryJson.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory CategoryJsonData.fromMap(Map<String, dynamic> json) => CategoryJsonData(
-    subtitle: json["subtitle"],
-  );
+  factory CategoryJson.fromMap(Map<String, dynamic> json) => CategoryJson(
+        subtitle: json["subtitle"],
+        link: json["link"],
+        location: json["location"],
+        type: json["type"],
+        relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "subtitle": subtitle,
-  };
+        "subtitle": subtitle,
+        "link": link,
+        "location": location,
+        "type": type,
+        "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
+      };
 }

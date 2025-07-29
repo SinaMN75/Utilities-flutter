@@ -1,0 +1,181 @@
+part of "../data.dart";
+
+class CommentCreateParams {
+  final String description;
+  final double score;
+  final int? reaction;
+  final String? parentId;
+  final String? productId;
+  final String? targetUserId;
+  final String? userId;
+  final List<int> tags;
+  final String? apiKey;
+  final String? token;
+
+  CommentCreateParams({
+    required this.description,
+    required this.score,
+    this.reaction,
+    this.parentId,
+    this.productId,
+    this.targetUserId,
+    this.userId,
+    required this.tags,
+    this.apiKey,
+    this.token,
+  });
+
+  factory CommentCreateParams.fromJson(String str) => CommentCreateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory CommentCreateParams.fromMap(Map<String, dynamic> json) => CommentCreateParams(
+    description: json["description"],
+    score: json["score"] ?? 0,
+    reaction: json["reaction"],
+    parentId: json["parentId"],
+    productId: json["productId"],
+    targetUserId: json["targetUserId"],
+    userId: json["userId"],
+    tags: List<int>.from(json["tags"].map((dynamic x) => x)),
+    apiKey: json["apiKey"],
+    token: json["token"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "description": description,
+    "score": score,
+    "reaction": reaction,
+    "parentId": parentId,
+    "productId": productId,
+    "targetUserId": targetUserId,
+    "userId": userId,
+    "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
+    "apiKey": apiKey,
+    "token": token,
+  };
+}
+
+class CommentUpdateParams {
+  final String? description;
+  final double? score;
+  final String id;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final List<int>? tags;
+  final String? apiKey;
+  final String? token;
+
+  CommentUpdateParams({
+    this.description,
+    this.score,
+    required this.id,
+    this.addTags,
+    this.removeTags,
+    this.tags,
+    this.apiKey,
+    this.token,
+  });
+
+  factory CommentUpdateParams.fromJson(String str) => CommentUpdateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory CommentUpdateParams.fromMap(Map<String, dynamic> json) => CommentUpdateParams(
+    description: json["description"],
+    score: json["score"],
+    id: json["id"],
+    addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
+    removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
+    tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    apiKey: json["apiKey"],
+    token: json["token"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "description": description,
+    "score": score,
+    "id": id,
+    "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
+    "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
+    "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+    "apiKey": apiKey,
+    "token": token,
+  };
+}
+
+class CommentReadParams {
+  final String? userId;
+  final String? productId;
+  final String? targetUserId;
+  final bool? showMedia;
+  final int? pageSize;
+  final int? pageNumber;
+  final DateTime? fromCreatedAt;
+  final DateTime? toCreatedAt;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByUpdatedAt;
+  final bool? orderByUpdatedAtDesc;
+  final List<int>? tags;
+  final String? apiKey;
+  final String? token;
+
+  CommentReadParams({
+    this.userId,
+    this.productId,
+    this.targetUserId,
+    this.showMedia,
+    this.pageSize,
+    this.pageNumber,
+    this.fromCreatedAt,
+    this.toCreatedAt,
+    this.orderByCreatedAt,
+    this.orderByCreatedAtDesc,
+    this.orderByUpdatedAt,
+    this.orderByUpdatedAtDesc,
+    this.tags,
+    this.apiKey,
+    this.token,
+  });
+
+  factory CommentReadParams.fromJson(String str) => CommentReadParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory CommentReadParams.fromMap(Map<String, dynamic> json) => CommentReadParams(
+    userId: json["userId"],
+    productId: json["productId"],
+    targetUserId: json["targetUserId"],
+    showMedia: json["showMedia"] ?? false,
+    pageSize: json["pageSize"] ?? 0,
+    pageNumber: json["pageNumber"] ?? 0,
+    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
+    toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
+    orderByCreatedAt: json["orderByCreatedAt"] ?? false,
+    orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
+    orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
+    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
+    tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    apiKey: json["apiKey"],
+    token: json["token"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "userId": userId,
+    "productId": productId,
+    "targetUserId": targetUserId,
+    "showMedia": showMedia,
+    "pageSize": pageSize,
+    "pageNumber": pageNumber,
+    "fromCreatedAt": fromCreatedAt?.toIso8601String(),
+    "toCreatedAt": toCreatedAt?.toIso8601String(),
+    "orderByCreatedAt": orderByCreatedAt,
+    "orderByCreatedAtDesc": orderByCreatedAtDesc,
+    "orderByUpdatedAt": orderByUpdatedAt,
+    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
+    "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+    "apiKey": apiKey,
+    "token": token,
+  };
+}

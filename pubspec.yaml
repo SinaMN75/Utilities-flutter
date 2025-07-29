@@ -24,11 +24,11 @@ dependencies:
   # flutter.dev
   webview_flutter: ^4.13.0
   local_auth: ^2.3.0
-  flutter_svg: ^2.1.0
+  flutter_svg: ^2.2.0
   image_picker: ^1.1.2
 
   # fluttercommunity.dev
-  chewie: ^1.11.3
+  chewie: ^1.12.1
   share_plus: ^11.0.0
   connectivity_plus: ^6.1.4
 
@@ -38,19 +38,19 @@ dependencies:
   geolocator: ^14.0.1
   lottie: ^3.3.1
   image_cropper: ^9.1.0
-  file_picker: ^10.1.9
-  flutter_local_notifications: ^19.2.1
-  syncfusion_flutter_charts: ^29.2.5
-  syncfusion_flutter_barcodes: ^29.2.5
-  syncfusion_flutter_pdfviewer: ^29.2.5
-  syncfusion_flutter_signaturepad: ^29.2.5
-  syncfusion_flutter_gauges: ^29.2.5
+  file_picker: ^10.2.0
+  flutter_local_notifications: ^19.3.0
+  syncfusion_flutter_charts: ^30.1.37
+  syncfusion_flutter_barcodes: ^30.1.37
+  syncfusion_flutter_pdfviewer: ^30.1.37
+  syncfusion_flutter_signaturepad: ^30.1.37
+  syncfusion_flutter_gauges: ^30.1.37
 
   any_link_preview: ^3.0.3
   universal_html: ^2.2.4
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
