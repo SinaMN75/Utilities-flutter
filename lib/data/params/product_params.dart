@@ -21,7 +21,7 @@ class ProductCreateParams {
   final List<String>? relatedProducts;
   final String? parentId;
   final String? userId;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   ProductCreateParams({
@@ -45,7 +45,7 @@ class ProductCreateParams {
     this.relatedProducts,
     this.parentId,
     this.userId,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -131,7 +131,7 @@ class ProductUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   ProductUpdateParams({
@@ -161,7 +161,7 @@ class ProductUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -260,7 +260,7 @@ class ProductReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   ProductReadParams({
@@ -291,7 +291,7 @@ class ProductReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 

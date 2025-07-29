@@ -51,7 +51,7 @@ class UserCreateParams {
   final List<String>? sickness;
   final List<int> tags;
   final List<String>? categories;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   UserCreateParams({
@@ -77,7 +77,7 @@ class UserCreateParams {
     this.sickness,
     required this.tags,
     this.categories,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -161,7 +161,7 @@ class UserReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   UserReadParams({
@@ -185,7 +185,7 @@ class UserReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -272,7 +272,7 @@ class UserUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   UserUpdateParams({
@@ -303,7 +303,7 @@ class UserUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 

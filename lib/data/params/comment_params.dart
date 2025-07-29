@@ -9,7 +9,7 @@ class CommentCreateParams {
   final String? targetUserId;
   final String? userId;
   final List<int> tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   CommentCreateParams({
@@ -21,7 +21,7 @@ class CommentCreateParams {
     this.targetUserId,
     this.userId,
     required this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -63,7 +63,7 @@ class CommentUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   CommentUpdateParams({
@@ -73,7 +73,7 @@ class CommentUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -118,7 +118,7 @@ class CommentReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   CommentReadParams({
@@ -135,7 +135,7 @@ class CommentReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 

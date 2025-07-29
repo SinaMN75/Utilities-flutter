@@ -11,7 +11,7 @@ class CategoryCreateParams {
   final String? type;
   final String? link;
   final List<String>? relatedProducts;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   CategoryCreateParams({
@@ -25,7 +25,7 @@ class CategoryCreateParams {
     this.type,
     this.link,
     this.relatedProducts,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -79,7 +79,7 @@ class CategoryUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   CategoryUpdateParams({
@@ -97,7 +97,7 @@ class CategoryUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -154,7 +154,7 @@ class CategoryReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   CategoryReadParams({
@@ -167,7 +167,7 @@ class CategoryReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 

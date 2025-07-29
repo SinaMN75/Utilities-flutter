@@ -11,7 +11,7 @@ class MediaUpdateParams {
   final String? commentId;
   final String? categoryId;
   final String? productId;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   MediaUpdateParams({
@@ -25,7 +25,7 @@ class MediaUpdateParams {
     this.commentId,
     this.categoryId,
     this.productId,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 

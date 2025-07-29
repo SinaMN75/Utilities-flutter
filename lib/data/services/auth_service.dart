@@ -37,4 +37,20 @@ class AuthService {
           if (onException != null) onException(e);
         },
       );
+
+  void readUserByToken({
+    required final BaseParams p,
+    required final Function(UResponse<UserResponse> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      UHttpClient().post(
+        "$baseUrl/auth/ReadUserByToken",
+        body: p.toBaseMap(),
+        onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
 }

@@ -7,7 +7,7 @@ class ExamCreateParams {
   final List<ExamScoreDetail> scoreDetails;
   final String categoryId;
   final List<int> tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   ExamCreateParams({
@@ -17,7 +17,7 @@ class ExamCreateParams {
     required this.scoreDetails,
     required this.categoryId,
     required this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -59,7 +59,7 @@ class ExamReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   ExamReadParams({
@@ -73,7 +73,7 @@ class ExamReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -116,14 +116,14 @@ class SubmitAnswersParams {
   final List<UserAnswerResultJson> answers;
   final String userId;
   final String examId;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   SubmitAnswersParams({
     required this.answers,
     required this.userId,
     required this.examId,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 

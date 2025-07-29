@@ -9,71 +9,14 @@ abstract class BaseParams {
   Map<String, dynamic> toBaseMap() => <String, dynamic>{"apiKey": apiKey, "token": token};
 }
 
-abstract class BaseReadParams extends BaseParams {
-  BaseReadParams({
-    required super.apiKey,
-    required super.token,
-    this.pageSize = 100,
-    this.pageNumber = 1,
-    this.fromCreatedAt,
-    this.toCreatedAt,
-    this.tags,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
-    this.orderByLastName,
-    this.orderByLastNameDesc,
-  });
-
-  final int? pageSize;
-  final int? pageNumber;
-  final DateTime? fromCreatedAt;
-  final DateTime? toCreatedAt;
-  final List<int>? tags;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
-  final bool? orderByLastName;
-  final bool? orderByLastNameDesc;
-
-  Map<String, dynamic> toBaseReadMap() => <String, dynamic>{
-        ...toBaseMap(),
-        "pageSize": pageSize,
-        "pageNumber": pageNumber,
-        "fromCreatedAt": fromCreatedAt?.toIso8601String(),
-        "toCreatedAt": toCreatedAt?.toIso8601String(),
-        "orderByCreatedAt": orderByCreatedAt,
-        "orderByCreatedAtDesc": orderByCreatedAtDesc,
-        "orderByLastName": orderByLastName,
-        "orderByLastNameDesc": orderByLastNameDesc,
-      };
-}
-
-abstract class BaseUpdateParams extends BaseParams {
-  BaseUpdateParams({
-    required this.id,
-    required super.apiKey,
-    required super.token,
-    this.addTags,
-    this.removeTags,
-  });
-
-  final List<int>? addTags;
-  final List<int>? removeTags;
+class IdParams {
   final String id;
-
-  Map<String, dynamic> toBaseUpdateBaseMap() => <String, dynamic>{
-        ...toBaseMap(),
-        "id": id,
-        "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
-        "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
-      };
-}
-
-class IdParams extends BaseParams {
-  final String id;
+  final String apiKey;
+  final String? token;
 
   IdParams({
-    required super.apiKey,
-    super.token,
+    required this.apiKey,
+    this.token,
     required this.id,
   });
 
@@ -88,17 +31,20 @@ class IdParams extends BaseParams {
       );
 
   Map<String, dynamic> toIdParamMap() => <String, dynamic>{
-        ...toBaseMap(),
         "id": id,
+        "apiKey": apiKey,
+        "token": token,
       };
 }
 
-class IdListParams extends BaseParams {
+class IdListParams {
   final List<String> ids;
+  final String apiKey;
+  final String? token;
 
   IdListParams({
-    required super.apiKey,
-    required super.token,
+    required this.apiKey,
+    this.token,
     required this.ids,
   });
 
@@ -113,7 +59,8 @@ class IdListParams extends BaseParams {
       );
 
   Map<String, dynamic> toIdListMap() => <String, dynamic>{
-        ...toBaseMap(),
         "ids": List<dynamic>.from(ids.map((String x) => x)),
+        "apiKey": apiKey,
+        "token": token,
       };
 }

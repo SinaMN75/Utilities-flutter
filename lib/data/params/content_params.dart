@@ -6,7 +6,7 @@ class ContentCreateParams {
   final String subTitle;
   final String? instagram;
   final List<int> tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   ContentCreateParams({
@@ -15,7 +15,7 @@ class ContentCreateParams {
     required this.subTitle,
     this.instagram,
     required this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -52,7 +52,7 @@ class ContentUpdateParams {
   final String? instagram;
   final List<int>? addTags;
   final List<int>? removeTags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   ContentUpdateParams({
@@ -63,7 +63,7 @@ class ContentUpdateParams {
     this.instagram,
     this.addTags,
     this.removeTags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -107,7 +107,7 @@ class ContentReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   ContentReadParams({
@@ -121,7 +121,7 @@ class ContentReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 

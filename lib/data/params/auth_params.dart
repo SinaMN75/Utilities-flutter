@@ -2,12 +2,12 @@ part of "../data.dart";
 
 class RefreshTokenParams {
   final String refreshToken;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   RefreshTokenParams({
     required this.refreshToken,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -30,12 +30,12 @@ class RefreshTokenParams {
 
 class GetMobileVerificationCodeForLoginParams {
   final String phoneNumber;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   GetMobileVerificationCodeForLoginParams({
     required this.phoneNumber,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -59,13 +59,13 @@ class GetMobileVerificationCodeForLoginParams {
 class LoginWithEmailPasswordParams {
   final String email;
   final String password;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   LoginWithEmailPasswordParams({
     required this.email,
     required this.password,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -91,13 +91,13 @@ class LoginWithEmailPasswordParams {
 class LoginWithUserNamePasswordParams {
   final String userName;
   final String password;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   LoginWithUserNamePasswordParams({
     required this.userName,
     required this.password,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -128,7 +128,7 @@ class RegisterParams {
   final String? firstName;
   final String? lastName;
   final List<int> tags;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   RegisterParams({
@@ -139,7 +139,7 @@ class RegisterParams {
     this.firstName,
     this.lastName,
     required this.tags,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
@@ -177,7 +177,7 @@ class VerifyMobileForLoginParams {
   final String otp;
   final String? firstName;
   final String? lastName;
-  final String? apiKey;
+  final String apiKey;
   final String? token;
 
   VerifyMobileForLoginParams({
@@ -185,7 +185,7 @@ class VerifyMobileForLoginParams {
     required this.otp,
     this.firstName,
     this.lastName,
-    this.apiKey,
+    required this.apiKey,
     this.token,
   });
 
