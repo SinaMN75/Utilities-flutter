@@ -6,7 +6,7 @@ abstract class BaseParams {
 
   BaseParams({required this.apiKey, required this.token});
 
-  Map<String, dynamic> toBaseMap() => <String, dynamic>{"apiKey": apiKey, "token": token};
+  Map<String, dynamic> toMap() => <String, dynamic>{"apiKey": apiKey, "token": token};
 }
 
 class IdParams {
@@ -22,7 +22,7 @@ class IdParams {
 
   factory IdParams.fromJson(String str) => IdParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toIdParamMap());
+  String toJson() => json.encode(toMap());
 
   factory IdParams.fromMap(Map<String, dynamic> json) => IdParams(
         apiKey: json["apiKey"],
@@ -30,7 +30,7 @@ class IdParams {
         id: json["id"],
       );
 
-  Map<String, dynamic> toIdParamMap() => <String, dynamic>{
+  Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
         "apiKey": apiKey,
         "token": token,

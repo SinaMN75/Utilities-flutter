@@ -68,7 +68,7 @@ class UserService {
   }) {
     UHttpClient().post(
       "$baseUrl/user/ReadById",
-      body: p.toIdParamMap(),
+      body: p.toMap(),
       onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (dynamic e) {
@@ -102,7 +102,7 @@ class UserService {
   }) {
     UHttpClient().post(
       "$baseUrl/user/Delete",
-      body: p.toIdParamMap(),
+      body: p.toMap(),
       onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (dynamic e) {

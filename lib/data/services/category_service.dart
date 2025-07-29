@@ -50,7 +50,7 @@ class CategoryService {
   }) =>
       UHttpClient().post(
         "$baseUrl/category/ReadById",
-        body: p.toIdParamMap(),
+        body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
@@ -82,7 +82,7 @@ class CategoryService {
   }) =>
       UHttpClient().post(
         "$baseUrl/category/Delete",
-        body: p.toIdParamMap(),
+        body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {

@@ -50,7 +50,7 @@ class ExamService {
   }) =>
       UHttpClient().post(
         "$baseUrl/exam/ReadById",
-        body: p.toIdParamMap(),
+        body: p.toMap(),
         onSuccess: (final Response r) => onOk(UResponse<ExamResponse>.fromJson(r.body, (final dynamic i) => ExamResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
