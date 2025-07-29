@@ -1,6 +1,6 @@
 part of "../data.dart";
 
-abstract class BaseParams {
+class BaseParams {
   final String apiKey;
   final String? token;
 
