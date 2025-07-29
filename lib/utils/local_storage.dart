@@ -16,6 +16,8 @@ abstract class ULocalStorage {
 
   static String? getString(final String key) => sharedPreferences.getString(key);
 
+  static String? getToken() => sharedPreferences.getString(UConstants.token);
+
   static bool? getBool(final String key) => sharedPreferences.getBool(key);
 
   static double? getDouble(final String key) => sharedPreferences.getDouble(key);
