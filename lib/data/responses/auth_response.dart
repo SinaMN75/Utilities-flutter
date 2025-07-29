@@ -18,16 +18,16 @@ class LoginResponse {
   String toJson() => json.encode(toMap());
 
   factory LoginResponse.fromMap(Map<String, dynamic> json) => LoginResponse(
-    token: json["token"],
-    refreshToken: json["refreshToken"],
-    expires: json["expires"],
-    user: UserResponse.fromMap(json["user"]),
-  );
+        token: json["token"],
+        refreshToken: json["refreshToken"],
+        expires: json["expires"],
+        user: UserResponse.fromMap(json["user"]),
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "token": token,
-    "refreshToken": refreshToken,
-    "expires": expires,
-    "user": user.toMap(),
-  };
+        "token": token,
+        "refreshToken": refreshToken,
+        "expires": expires,
+        "user": user.toMap(),
+      };
 }

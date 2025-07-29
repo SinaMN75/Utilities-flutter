@@ -24,24 +24,24 @@ class ContentCreateParams {
   String toJson() => json.encode(toMap());
 
   factory ContentCreateParams.fromMap(Map<String, dynamic> json) => ContentCreateParams(
-    title: json["title"],
-    description: json["description"],
-    subTitle: json["subTitle"],
-    instagram: json["instagram"],
-    tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-    apiKey: json["apiKey"],
-    token: json["token"],
-  );
+        title: json["title"],
+        description: json["description"],
+        subTitle: json["subTitle"],
+        instagram: json["instagram"],
+        tags: List<int>.from(json["tags"].map((dynamic x) => x)),
+        apiKey: json["apiKey"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "title": title,
-    "description": description,
-    "subTitle": subTitle,
-    "instagram": instagram,
-    "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
-    "apiKey": apiKey,
-    "token": token,
-  };
+        "title": title,
+        "description": description,
+        "subTitle": subTitle,
+        "instagram": instagram,
+        "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
+        "apiKey": apiKey,
+        "token": token,
+      };
 }
 
 class ContentUpdateParams {
@@ -72,28 +72,28 @@ class ContentUpdateParams {
   String toJson() => json.encode(toMap());
 
   factory ContentUpdateParams.fromMap(Map<String, dynamic> json) => ContentUpdateParams(
-    id: json["id"],
-    title: json["title"],
-    subTitle: json["subTitle"],
-    description: json["description"],
-    instagram: json["instagram"],
-    addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
-    removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
-    apiKey: json["apiKey"],
-    token: json["token"],
-  );
+        id: json["id"],
+        title: json["title"],
+        subTitle: json["subTitle"],
+        description: json["description"],
+        instagram: json["instagram"],
+        addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
+        removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
+        apiKey: json["apiKey"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "id": id,
-    "title": title,
-    "subTitle": subTitle,
-    "description": description,
-    "instagram": instagram,
-    "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
-    "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
-    "apiKey": apiKey,
-    "token": token,
-  };
+        "id": id,
+        "title": title,
+        "subTitle": subTitle,
+        "description": description,
+        "instagram": instagram,
+        "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
+        "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
+        "apiKey": apiKey,
+        "token": token,
+      };
 }
 
 class ContentReadParams {
@@ -130,32 +130,32 @@ class ContentReadParams {
   String toJson() => json.encode(toMap());
 
   factory ContentReadParams.fromMap(Map<String, dynamic> json) => ContentReadParams(
-    showMedia: json["showMedia"] ?? false,
-    pageSize: json["pageSize"] ?? 0,
-    pageNumber: json["pageNumber"] ?? 0,
-    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
-    toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"] ?? false,
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
-    orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
-    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
-    tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-    apiKey: json["apiKey"],
-    token: json["token"],
-  );
+        showMedia: json["showMedia"] ?? false,
+        pageSize: json["pageSize"] ?? 0,
+        pageNumber: json["pageNumber"] ?? 0,
+        fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
+        toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
+        orderByCreatedAt: json["orderByCreatedAt"] ?? false,
+        orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
+        orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
+        orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
+        tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+        apiKey: json["apiKey"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "showMedia": showMedia,
-    "pageSize": pageSize,
-    "pageNumber": pageNumber,
-    "fromCreatedAt": fromCreatedAt?.toIso8601String(),
-    "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
-    "orderByUpdatedAt": orderByUpdatedAt,
-    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
-    "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-    "apiKey": apiKey,
-    "token": token,
-  };
+        "showMedia": showMedia,
+        "pageSize": pageSize,
+        "pageNumber": pageNumber,
+        "fromCreatedAt": fromCreatedAt?.toIso8601String(),
+        "toCreatedAt": toCreatedAt?.toIso8601String(),
+        "orderByCreatedAt": orderByCreatedAt,
+        "orderByCreatedAtDesc": orderByCreatedAtDesc,
+        "orderByUpdatedAt": orderByUpdatedAt,
+        "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
+        "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+        "apiKey": apiKey,
+        "token": token,
+      };
 }

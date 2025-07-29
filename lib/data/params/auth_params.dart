@@ -1,4 +1,5 @@
 part of "../data.dart";
+
 class RefreshTokenParams {
   final String refreshToken;
   final String? apiKey;
@@ -15,16 +16,16 @@ class RefreshTokenParams {
   String toJson() => json.encode(toMap());
 
   factory RefreshTokenParams.fromMap(Map<String, dynamic> json) => RefreshTokenParams(
-    refreshToken: json["refreshToken"],
-    apiKey: json["apiKey"],
-    token: json["token"],
-  );
+        refreshToken: json["refreshToken"],
+        apiKey: json["apiKey"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "refreshToken": refreshToken,
-    "apiKey": apiKey,
-    "token": token,
-  };
+        "refreshToken": refreshToken,
+        "apiKey": apiKey,
+        "token": token,
+      };
 }
 
 class GetMobileVerificationCodeForLoginParams {
@@ -43,16 +44,16 @@ class GetMobileVerificationCodeForLoginParams {
   String toJson() => json.encode(toMap());
 
   factory GetMobileVerificationCodeForLoginParams.fromMap(Map<String, dynamic> json) => GetMobileVerificationCodeForLoginParams(
-    phoneNumber: json["phoneNumber"],
-    apiKey: json["apiKey"],
-    token: json["token"],
-  );
+        phoneNumber: json["phoneNumber"],
+        apiKey: json["apiKey"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "phoneNumber": phoneNumber,
-    "apiKey": apiKey,
-    "token": token,
-  };
+        "phoneNumber": phoneNumber,
+        "apiKey": apiKey,
+        "token": token,
+      };
 }
 
 class LoginWithEmailPasswordParams {
@@ -73,18 +74,18 @@ class LoginWithEmailPasswordParams {
   String toJson() => json.encode(toMap());
 
   factory LoginWithEmailPasswordParams.fromMap(Map<String, dynamic> json) => LoginWithEmailPasswordParams(
-    email: json["email"],
-    password: json["password"],
-    apiKey: json["apiKey"],
-    token: json["token"],
-  );
+        email: json["email"],
+        password: json["password"],
+        apiKey: json["apiKey"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "email": email,
-    "password": password,
-    "apiKey": apiKey,
-    "token": token,
-  };
+        "email": email,
+        "password": password,
+        "apiKey": apiKey,
+        "token": token,
+      };
 }
 
 class LoginWithUserNamePasswordParams {
@@ -105,18 +106,18 @@ class LoginWithUserNamePasswordParams {
   String toJson() => json.encode(toMap());
 
   factory LoginWithUserNamePasswordParams.fromMap(Map<String, dynamic> json) => LoginWithUserNamePasswordParams(
-    userName: json["userName"],
-    password: json["password"],
-    apiKey: json["apiKey"],
-    token: json["token"],
-  );
+        userName: json["userName"],
+        password: json["password"],
+        apiKey: json["apiKey"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "userName": userName,
-    "password": password,
-    "apiKey": apiKey,
-    "token": token,
-  };
+        "userName": userName,
+        "password": password,
+        "apiKey": apiKey,
+        "token": token,
+      };
 }
 
 class RegisterParams {
@@ -147,28 +148,28 @@ class RegisterParams {
   String toJson() => json.encode(toMap());
 
   factory RegisterParams.fromMap(Map<String, dynamic> json) => RegisterParams(
-    userName: json["userName"],
-    email: json["email"],
-    phoneNumber: json["phoneNumber"],
-    password: json["password"],
-    firstName: json["firstName"],
-    lastName: json["lastName"],
-    tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-    apiKey: json["apiKey"],
-    token: json["token"],
-  );
+        userName: json["userName"],
+        email: json["email"],
+        phoneNumber: json["phoneNumber"],
+        password: json["password"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        tags: List<int>.from(json["tags"].map((dynamic x) => x)),
+        apiKey: json["apiKey"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "userName": userName,
-    "email": email,
-    "phoneNumber": phoneNumber,
-    "password": password,
-    "firstName": firstName,
-    "lastName": lastName,
-    "tags": List<dynamic>.from(tags.map((int x) => x)),
-    "apiKey": apiKey,
-    "token": token,
-  };
+        "userName": userName,
+        "email": email,
+        "phoneNumber": phoneNumber,
+        "password": password,
+        "firstName": firstName,
+        "lastName": lastName,
+        "tags": List<dynamic>.from(tags.map((int x) => x)),
+        "apiKey": apiKey,
+        "token": token,
+      };
 }
 
 class VerifyMobileForLoginParams {
@@ -193,20 +194,20 @@ class VerifyMobileForLoginParams {
   String toJson() => json.encode(toMap());
 
   factory VerifyMobileForLoginParams.fromMap(Map<String, dynamic> json) => VerifyMobileForLoginParams(
-    phoneNumber: json["phoneNumber"],
-    otp: json["otp"],
-    firstName: json["firstName"],
-    lastName: json["lastName"],
-    apiKey: json["apiKey"],
-    token: json["token"],
-  );
+        phoneNumber: json["phoneNumber"],
+        otp: json["otp"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        apiKey: json["apiKey"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "phoneNumber": phoneNumber,
-    "otp": otp,
-    "firstName": firstName,
-    "lastName": lastName,
-    "apiKey": apiKey,
-    "token": token,
-  };
+        "phoneNumber": phoneNumber,
+        "otp": otp,
+        "firstName": firstName,
+        "lastName": lastName,
+        "apiKey": apiKey,
+        "token": token,
+      };
 }
