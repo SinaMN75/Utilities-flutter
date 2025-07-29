@@ -23,3 +23,21 @@ part "services/category_service.dart";
 part "services/dashboard_service.dart";
 part "services/exam_service.dart";
 part "services/user_service.dart";
+
+class UServices {
+  final String baseUrl;
+
+  late AuthService auth;
+  late CategoryService category;
+  late DashboardService dashboard;
+  late ExamService exam;
+  late UserService user;
+
+  UServices({required this.baseUrl}) {
+    auth = AuthService(baseUrl: baseUrl);
+    category = CategoryService(baseUrl: baseUrl);
+    dashboard = DashboardService(baseUrl: baseUrl);
+    exam = ExamService(baseUrl: baseUrl);
+    user = UserService(baseUrl: baseUrl);
+  }
+}
