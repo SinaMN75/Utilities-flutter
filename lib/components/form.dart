@@ -298,3 +298,83 @@ class UOutlinedButton extends StatelessWidget {
         ),
       );
 }
+
+class USearchableDropdown<T> extends StatefulWidget {
+  final List<T> items;
+  final String Function(T) labelBuilder;
+  final void Function(T?) onChanged;
+  final T? selectedItem;
+  final String hintText;
+
+  const USearchableDropdown({
+    super.key,
+    required this.items,
+    required this.labelBuilder,
+    required this.onChanged,
+    this.selectedItem,
+    this.hintText = "Select item",
+  });
+
+  @override
+  State<USearchableDropdown<T>> createState() => _USearchableDropdownState<T>();
+}
+
+class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
+  late RxList<T> filteredItems = widget.items.obs;
+
+  Future<void> _openSearchDialog() async {
+    await showDialog<T>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Search and select"),
+          content: SizedBox(
+            width: 200,
+            height: 400,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                UTextField(
+                  hintText: "جستجو",
+                  onChanged: (final String? i) => filteredItems(widget.items.where((T item) => widget.labelBuilder(item).toLowerCase().contains(i!.toLowerCase())).toList()),
+                ),
+                const SizedBox(height: 12),
+                Obx(
+                      () => ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: filteredItems.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final T item = filteredItems[index];
+                      return ListTile(
+                        title: Text(widget.labelBuilder(item)),
+                        onTap: () {
+                          widget.onChanged(item);
+                          Navigator.of(context).pop(item);
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) => InkWell(
+    onTap: _openSearchDialog,
+    child: InputDecorator(
+      decoration: InputDecoration(
+        labelText: widget.hintText,
+        border: const OutlineInputBorder(),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      ),
+      child: Text(
+        widget.selectedItem != null ? widget.labelBuilder(widget.selectedItem as T) : 'انتخاب',
+      ),
+    ),
+  );
+}
