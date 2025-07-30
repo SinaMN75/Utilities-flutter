@@ -19,7 +19,7 @@ class UScaffold extends StatelessWidget {
     this.onEndDrawerChanged,
     this.resizeToAvoidBottomInset = false,
     this.extendBodyBehindAppBar = false,
-    this.floatingActionButtonLocation = FloatingActionButtonLocation.endFloat,
+    this.floatingActionButtonLocation,
     this.alignment,
   });
 
@@ -34,7 +34,7 @@ class UScaffold extends StatelessWidget {
   final BoxDecoration? decoration;
   final bool resizeToAvoidBottomInset;
   final bool extendBodyBehindAppBar;
-  final FloatingActionButtonLocation floatingActionButtonLocation;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
   final BoxConstraints? constraints;
   final double? width;
   final double? height;
@@ -57,7 +57,7 @@ class UScaffold extends StatelessWidget {
           extendBodyBehindAppBar: extendBodyBehindAppBar,
           resizeToAvoidBottomInset: resizeToAvoidBottomInset,
           floatingActionButton: floatingActionButton,
-          floatingActionButtonLocation: floatingActionButtonLocation,
+          floatingActionButtonLocation: floatingActionButtonLocation ?? (floatingActionButton is FloatingActionButton ? FloatingActionButtonLocation.endFloat : FloatingActionButtonLocation.centerFloat),
           bottomNavigationBar: bottomNavigationBar,
           body: Container(
             width: width,
