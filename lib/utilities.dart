@@ -47,6 +47,7 @@ export 'components/barcode_qrcode.dart';
 export 'components/chart.dart';
 export 'components/chip_choice.dart';
 export 'components/container.dart';
+export 'components/count_down_timer.dart';
 export 'components/fdottedline.dart';
 export 'components/flip_card.dart';
 export 'components/form.dart';
