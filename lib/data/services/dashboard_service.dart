@@ -55,7 +55,7 @@ class DashboardService {
   }) =>
       UHttpClient().post(
         "$baseUrl/api/logs/content",
-        body: json.encode(<String, String>{'id': logId}),
+        body: <String, String>{'id': logId},
         onSuccess: (final Response r) {
           final List<dynamic> jsonList = json.decode(r.body);
           final List<LogContentResponse> logs = jsonList.map((dynamic e) => LogContentResponse.fromMap(e)).toList();
