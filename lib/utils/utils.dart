@@ -35,9 +35,10 @@ FormFieldValidator<String> validateNotEmpty({
 FormFieldValidator<String> validateEmail({
   final String requiredMessage = "مقدار وارد شده صحیح نیست",
   final String notEmailMessage = "ایمیل وارد شده صحیح نیست",
+  final bool required = true,
 }) =>
     (final String? value) {
-      if (value!.isEmpty) return requiredMessage;
+      if (value!.isEmpty && required) return requiredMessage;
       if (!value.isEmail) return notEmailMessage;
       return null;
     };
