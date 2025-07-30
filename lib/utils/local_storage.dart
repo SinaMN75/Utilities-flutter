@@ -1,28 +1,32 @@
 import 'package:u/utilities.dart';
 
 abstract class ULocalStorage {
-  static late SharedPreferences sharedPreferences;
+  static late SharedPreferences sp;
 
-  static Future<void> init() async => sharedPreferences = await SharedPreferences.getInstance();
+  static Future<void> init() async => sp = await SharedPreferences.getInstance();
 
   static void set(final String key, final dynamic value) {
-    if (value is String) sharedPreferences.setString(key, value);
-    if (value is bool) sharedPreferences.setBool(key, value);
-    if (value is double) sharedPreferences.setDouble(key, value);
-    if (value is int) sharedPreferences.setInt(key, value);
+    if (value is String) sp.setString(key, value);
+    if (value is bool) sp.setBool(key, value);
+    if (value is double) sp.setDouble(key, value);
+    if (value is int) sp.setInt(key, value);
   }
 
-  static int? getInt(final String key) => sharedPreferences.getInt(key);
+  static int? getInt(final String key) => sp.getInt(key);
 
-  static String? getString(final String key) => sharedPreferences.getString(key);
+  static String? getString(final String key) => sp.getString(key);
 
-  static String? getToken() => sharedPreferences.getString(UConstants.token);
+  static bool? getBool(final String key) => sp.getBool(key);
 
-  static bool? getBool(final String key) => sharedPreferences.getBool(key);
+  static double? getDouble(final String key) => sp.getDouble(key);
 
-  static double? getDouble(final String key) => sharedPreferences.getDouble(key);
+  static void clear() => sp.clear();
 
-  static void clear() => sharedPreferences.clear();
+  static void remove(final String key) => sp.remove(key);
 
-  static void remove(final String key) => sharedPreferences.remove(key);
+  static String? getToken() => sp.getString(UConstants.token);
+
+  static bool hasToken() => sp.getString(UConstants.token) != null;
+
+  static String? getUserId() => sp.getString(UConstants.userId);
 }
