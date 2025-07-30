@@ -52,7 +52,7 @@ class UserCreateParams {
   final List<int> tags;
   final List<String>? categories;
   final String apiKey;
-  final String? token;
+  final String token;
 
   UserCreateParams({
     required this.userName,
@@ -78,7 +78,7 @@ class UserCreateParams {
     required this.tags,
     this.categories,
     required this.apiKey,
-    this.token,
+    required this.token,
   });
 
   factory UserCreateParams.fromJson(String str) => UserCreateParams.fromMap(json.decode(str));
@@ -273,7 +273,7 @@ class UserUpdateParams {
   final List<int>? removeTags;
   final List<int>? tags;
   final String apiKey;
-  final String? token;
+  final String token;
 
   UserUpdateParams({
     this.password,
@@ -304,7 +304,7 @@ class UserUpdateParams {
     this.removeTags,
     this.tags,
     required this.apiKey,
-    this.token,
+    required this.token,
   });
 
   factory UserUpdateParams.fromJson(String str) => UserUpdateParams.fromMap(json.decode(str));
