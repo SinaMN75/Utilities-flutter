@@ -1,16 +1,13 @@
 import 'package:u/utilities.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-late UThemeData uThemeData;
 
 Future<void> initUtilities({
-  required final UThemeData themeData,
   final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ],
 }) async {
-  uThemeData = themeData;
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(deviceOrientations);
   await ULocalStorage.init();
@@ -31,18 +28,16 @@ class UMaterialApp extends StatelessWidget {
     required this.localizationsDelegates,
     required this.supportedLocales,
     required this.locale,
-    required this.lightTheme,
-    required this.darkTheme,
     required this.home,
+    required this.uThemeData,
     super.key,
   });
 
   final List<LocalizationsDelegate<dynamic>> localizationsDelegates;
   final List<Locale> supportedLocales;
   final Locale locale;
-  final ThemeData lightTheme;
-  final ThemeData darkTheme;
   final Widget home;
+  final UThemeData uThemeData;
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
@@ -52,8 +47,121 @@ class UMaterialApp extends StatelessWidget {
         supportedLocales: supportedLocales,
         home: home,
         locale: Locale(ULocalStorage.getString(UConstants.locale) ?? locale.languageCode),
-        theme: lightTheme,
-        darkTheme: darkTheme,
         themeMode: (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) ? ThemeMode.dark : ThemeMode.light,
+        theme: uLightTheme(uThemeData),
+        darkTheme: uLightTheme(uThemeData),
       );
+
+  ThemeData uLightTheme(UThemeData data) => ThemeData(
+    disabledColor: data.disabledColor,
+    fontFamily: data.fontFamily,
+    highlightColor: Colors.green,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: data.primaryColor,
+      primary: data.primaryColor,
+      secondary: data.secondaryColor,
+      error: data.errorColor,
+    ),
+    cardTheme: CardThemeData(
+      elevation: 10,
+      shadowColor: data.primaryColor.withValues(alpha: 0.2),
+    ),
+    tabBarTheme: TabBarThemeData(
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
+      labelPadding: const EdgeInsets.symmetric(vertical: 12),
+      unselectedLabelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
+        textStyle: WidgetStatePropertyAll<TextStyle>(
+          TextStyle(
+              fontFamily: data.fontFamily, color: Colors.white, fontSize: 16),
+        ),
+        shape: WidgetStatePropertyAll<OutlinedBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+        padding: const WidgetStatePropertyAll<EdgeInsets>(
+          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        ),
+        backgroundColor: WidgetStateProperty.resolveWith((
+            final Set<WidgetState> states,
+            ) {
+          if (states.contains(WidgetState.disabled)) {
+            return data.disabledColor;
+          } else {
+            return data.secondaryColor;
+          }
+        }),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStatePropertyAll<OutlinedBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        ),
+        padding: const WidgetStatePropertyAll<EdgeInsets>(
+          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        ),
+      ),
+    ),
+    drawerTheme: DrawerThemeData(
+      shape: Border.all(color: Colors.transparent, width: 0.1),
+    ),
+    listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: data.primaryColor),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide:
+        BorderSide(color: data.disabledColor.withValues(alpha: 0.5)),
+      ),
+      labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor),
+      filled: true,
+      fillColor: Colors.white,
+      contentPadding:
+      const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+    ),
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: WidgetStateProperty.all(data.primaryColor),
+    ),
+    navigationRailTheme: NavigationRailThemeData(
+      unselectedLabelTextStyle: TextStyle(
+        fontFamily: data.fontFamily,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.white60,
+      ),
+      selectedLabelTextStyle: TextStyle(
+        fontFamily: data.fontFamily,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+      selectedIconTheme: const IconThemeData(color: Colors.black),
+      unselectedIconTheme: const IconThemeData(color: Colors.white60),
+      backgroundColor: data.primaryColor,
+      indicatorColor: Colors.white,
+    ),
+  );
+}
+
+class UThemeData {
+  final String fontFamily;
+  final Color disabledColor;
+  final Color primaryColor;
+  final Color secondaryColor;
+  final Color errorColor;
+
+  UThemeData({
+    required this.fontFamily,
+    required this.disabledColor,
+    required this.primaryColor,
+    required this.secondaryColor,
+    required this.errorColor,
+  });
 }

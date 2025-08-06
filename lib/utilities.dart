@@ -67,7 +67,6 @@ export 'components/webview.dart';
 export 'components/widget_to_image.dart';
 export 'data/data.dart';
 export 'init.dart';
-export 'theme/u_theme_data.dart';
 export 'utils/app_utils.dart';
 export 'utils/clipboard.dart';
 export 'utils/constants.dart';
