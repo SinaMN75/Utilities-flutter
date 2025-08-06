@@ -1,8 +1,13 @@
 part of "../data.dart";
 
 class CategoryService {
-  CategoryService({required this.baseUrl, required this.apiKey});
+  CategoryService({
+    required this.baseUrl,
+    required this.apiKey,
+    required this.token,
+  });
 
+  final String? token;
   final String apiKey;
   final String baseUrl;
 
@@ -14,7 +19,7 @@ class CategoryService {
   }) =>
       UHttpClient().post(
         "$baseUrl/category/Create",
-        body: p.toMap().add("apiKey", apiKey),
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
@@ -30,7 +35,7 @@ class CategoryService {
   }) =>
       UHttpClient().post(
         "$baseUrl/category/Read",
-        body: p.toMap().add("apiKey", apiKey),
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<List<CategoryResponse>>.fromJson(
             r.body,
@@ -51,7 +56,7 @@ class CategoryService {
   }) =>
       UHttpClient().post(
         "$baseUrl/category/ReadById",
-        body: p.toMap().add("apiKey", apiKey),
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
@@ -67,7 +72,7 @@ class CategoryService {
   }) =>
       UHttpClient().post(
         "$baseUrl/category/Update",
-        body: p.toMap().add("apiKey", apiKey),
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<CategoryResponse>.fromJson(r.body, (final dynamic i) => CategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
@@ -83,7 +88,7 @@ class CategoryService {
   }) =>
       UHttpClient().post(
         "$baseUrl/category/Delete",
-        body: p.toMap().add("apiKey", apiKey),
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {

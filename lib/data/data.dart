@@ -36,10 +36,10 @@ class UServices {
   late UserService user;
 
   UServices({required this.baseUrl, required this.apiKey}) {
-    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey);
-    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey);
     dashboard = DashboardService(baseUrl: baseUrl);
-    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey);
-    user = UserService(baseUrl: baseUrl, apiKey: apiKey);
+    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    user = UserService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
   }
 }

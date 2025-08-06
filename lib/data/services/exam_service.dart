@@ -1,8 +1,13 @@
 part of "../data.dart";
 
 class ExamService {
-  ExamService({required this.baseUrl, required this.apiKey});
+  ExamService({
+    required this.baseUrl,
+    required this.apiKey,
+    required this.token,
+  });
 
+  final String? token;
   final String apiKey;
   final String baseUrl;
 
@@ -14,7 +19,7 @@ class ExamService {
   }) =>
       UHttpClient().post(
         "$baseUrl/exam/Create",
-        body: p.toMap().add("apiKey", apiKey),
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<ExamResponse>.fromJson(r.body, (final dynamic i) => ExamResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
@@ -30,7 +35,7 @@ class ExamService {
   }) =>
       UHttpClient().post(
         "$baseUrl/exam/Read",
-        body: p.toMap().add("apiKey", apiKey),
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<List<ExamResponse>>.fromJson(
             r.body,
@@ -51,7 +56,7 @@ class ExamService {
   }) =>
       UHttpClient().post(
         "$baseUrl/exam/ReadById",
-        body: p.toMap().add("apiKey", apiKey),
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<ExamResponse>.fromJson(r.body, (final dynamic i) => ExamResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
@@ -83,7 +88,7 @@ class ExamService {
   }) =>
       UHttpClient().post(
         "$baseUrl/exam/SubmitAnswers",
-        body: p.toMap().add("apiKey", apiKey),
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
