@@ -1,8 +1,9 @@
 part of "../data.dart";
 
 class UserService {
-  UserService({required this.baseUrl});
+  UserService({required this.baseUrl, required this.apiKey});
 
+  final String apiKey;
   final String baseUrl;
 
   void create({
@@ -13,7 +14,7 @@ class UserService {
   }) =>
       UHttpClient().post(
         "$baseUrl/user/Create",
-        body: p.toMap(),
+        body: p.toMap().add("apiKey", apiKey),
         onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (dynamic e) {
@@ -29,7 +30,7 @@ class UserService {
   }) =>
       UHttpClient().post(
         "$baseUrl/user/BulkCreate",
-        body: p.toMap(),
+        body: p.toMap().add("apiKey", apiKey),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (dynamic e) {
@@ -45,7 +46,7 @@ class UserService {
   }) =>
       UHttpClient().post(
         "$baseUrl/User/Read",
-        body: p.toMap(),
+        body: p.toMap().add("apiKey", apiKey),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UserResponse>>.fromJson(
             r.body,
@@ -68,7 +69,7 @@ class UserService {
   }) {
     UHttpClient().post(
       "$baseUrl/user/ReadById",
-      body: p.toMap(),
+      body: p.toMap().add("apiKey", apiKey),
       onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (dynamic e) {
@@ -85,7 +86,7 @@ class UserService {
   }) {
     UHttpClient().post(
       "$baseUrl/user/Update",
-      body: p.toMap(),
+      body: p.toMap().add("apiKey", apiKey),
       onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (dynamic e) {
@@ -102,7 +103,7 @@ class UserService {
   }) {
     UHttpClient().post(
       "$baseUrl/user/Delete",
-      body: p.toMap(),
+      body: p.toMap().add("apiKey", apiKey),
       onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (dynamic e) {

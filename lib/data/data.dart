@@ -1,4 +1,5 @@
 import 'package:u/utilities.dart';
+import 'package:u/utils/extensions/map_extension.dart';
 
 part "params/auth_params.dart";
 part "params/base_params.dart";
@@ -26,6 +27,7 @@ part "services/user_service.dart";
 
 class UServices {
   final String baseUrl;
+  final String apiKey;
 
   late AuthService auth;
   late CategoryService category;
@@ -33,11 +35,11 @@ class UServices {
   late ExamService exam;
   late UserService user;
 
-  UServices({required this.baseUrl}) {
-    auth = AuthService(baseUrl: baseUrl);
-    category = CategoryService(baseUrl: baseUrl);
+  UServices({required this.baseUrl, required this.apiKey}) {
+    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey);
+    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey);
     dashboard = DashboardService(baseUrl: baseUrl);
-    exam = ExamService(baseUrl: baseUrl);
-    user = UserService(baseUrl: baseUrl);
+    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey);
+    user = UserService(baseUrl: baseUrl, apiKey: apiKey);
   }
 }

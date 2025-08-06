@@ -1,8 +1,9 @@
 part of "../data.dart";
 
 class ExamService {
-  ExamService({required this.baseUrl});
+  ExamService({required this.baseUrl, required this.apiKey});
 
+  final String apiKey;
   final String baseUrl;
 
   void create({
@@ -13,7 +14,7 @@ class ExamService {
   }) =>
       UHttpClient().post(
         "$baseUrl/exam/Create",
-        body: p.toMap(),
+        body: p.toMap().add("apiKey", apiKey),
         onSuccess: (final Response r) => onOk(UResponse<ExamResponse>.fromJson(r.body, (final dynamic i) => ExamResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
@@ -29,7 +30,7 @@ class ExamService {
   }) =>
       UHttpClient().post(
         "$baseUrl/exam/Read",
-        body: p.toMap(),
+        body: p.toMap().add("apiKey", apiKey),
         onSuccess: (final Response r) => onOk(
           UResponse<List<ExamResponse>>.fromJson(
             r.body,
@@ -50,7 +51,7 @@ class ExamService {
   }) =>
       UHttpClient().post(
         "$baseUrl/exam/ReadById",
-        body: p.toMap(),
+        body: p.toMap().add("apiKey", apiKey),
         onSuccess: (final Response r) => onOk(UResponse<ExamResponse>.fromJson(r.body, (final dynamic i) => ExamResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
@@ -82,7 +83,7 @@ class ExamService {
   }) =>
       UHttpClient().post(
         "$baseUrl/exam/SubmitAnswers",
-        body: p.toMap(),
+        body: p.toMap().add("apiKey", apiKey),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
