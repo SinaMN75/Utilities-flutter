@@ -29,7 +29,7 @@ class UMaterialApp extends StatelessWidget {
     required this.supportedLocales,
     required this.locale,
     required this.home,
-    required this.uThemeData,
+    required this.themeData,
     super.key,
   });
 
@@ -37,7 +37,7 @@ class UMaterialApp extends StatelessWidget {
   final List<Locale> supportedLocales;
   final Locale locale;
   final Widget home;
-  final UThemeData uThemeData;
+  final UThemeData themeData;
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
@@ -48,8 +48,8 @@ class UMaterialApp extends StatelessWidget {
         home: home,
         locale: Locale(ULocalStorage.getString(UConstants.locale) ?? locale.languageCode),
         themeMode: (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) ? ThemeMode.dark : ThemeMode.light,
-        theme: uLightTheme(uThemeData),
-        darkTheme: uLightTheme(uThemeData),
+        theme: uLightTheme(themeData),
+        darkTheme: uLightTheme(themeData),
       );
 
   ThemeData uLightTheme(UThemeData data) => ThemeData(
