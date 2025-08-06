@@ -7,7 +7,6 @@ class ExamCreateParams {
   final List<ExamScoreDetail> scoreDetails;
   final String categoryId;
   final List<int> tags;
-  final String apiKey;
   final String? token;
 
   ExamCreateParams({
@@ -17,7 +16,6 @@ class ExamCreateParams {
     required this.scoreDetails,
     required this.categoryId,
     required this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -32,7 +30,6 @@ class ExamCreateParams {
         scoreDetails: List<ExamScoreDetail>.from(json["scoreDetails"].map((dynamic x) => ExamScoreDetail.fromMap(x))),
         categoryId: json["categoryId"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -43,7 +40,6 @@ class ExamCreateParams {
         "scoreDetails": List<dynamic>.from(scoreDetails.map((dynamic x) => x.toMap())),
         "categoryId": categoryId,
         "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -59,7 +55,6 @@ class ExamReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String apiKey;
   final String? token;
 
   ExamReadParams({
@@ -73,7 +68,6 @@ class ExamReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -92,7 +86,6 @@ class ExamReadParams {
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -107,7 +100,6 @@ class ExamReadParams {
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -116,14 +108,12 @@ class SubmitAnswersParams {
   final List<UserAnswerResultJson> answers;
   final String userId;
   final String examId;
-  final String apiKey;
   final String? token;
 
   SubmitAnswersParams({
     required this.answers,
     required this.userId,
     required this.examId,
-    required this.apiKey,
     this.token,
   });
 
@@ -135,7 +125,6 @@ class SubmitAnswersParams {
         answers: List<UserAnswerResultJson>.from(json["answers"].map((dynamic x) => UserAnswerResultJson.fromMap(x))),
         userId: json["userId"],
         examId: json["examId"],
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -143,7 +132,6 @@ class SubmitAnswersParams {
         "answers": List<dynamic>.from(answers.map((dynamic x) => x.toMap())),
         "userId": userId,
         "examId": examId,
-        "apiKey": apiKey,
         "token": token,
       };
 }

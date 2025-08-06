@@ -9,7 +9,6 @@ class CommentCreateParams {
   final String? targetUserId;
   final String? userId;
   final List<int> tags;
-  final String apiKey;
   final String? token;
 
   CommentCreateParams({
@@ -21,7 +20,6 @@ class CommentCreateParams {
     this.targetUserId,
     this.userId,
     required this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -38,7 +36,6 @@ class CommentCreateParams {
         targetUserId: json["targetUserId"],
         userId: json["userId"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -51,7 +48,6 @@ class CommentCreateParams {
         "targetUserId": targetUserId,
         "userId": userId,
         "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -63,7 +59,6 @@ class CommentUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String apiKey;
   final String? token;
 
   CommentUpdateParams({
@@ -73,7 +68,6 @@ class CommentUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -88,7 +82,6 @@ class CommentUpdateParams {
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -99,7 +92,6 @@ class CommentUpdateParams {
         "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
         "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -118,7 +110,6 @@ class CommentReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String apiKey;
   final String? token;
 
   CommentReadParams({
@@ -135,7 +126,6 @@ class CommentReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -157,7 +147,6 @@ class CommentReadParams {
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -175,7 +164,6 @@ class CommentReadParams {
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }

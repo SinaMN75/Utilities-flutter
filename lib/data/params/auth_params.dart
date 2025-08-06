@@ -2,12 +2,10 @@ part of "../data.dart";
 
 class RefreshTokenParams {
   final String refreshToken;
-  final String apiKey;
   final String? token;
 
   RefreshTokenParams({
     required this.refreshToken,
-    required this.apiKey,
     this.token,
   });
 
@@ -17,25 +15,21 @@ class RefreshTokenParams {
 
   factory RefreshTokenParams.fromMap(Map<String, dynamic> json) => RefreshTokenParams(
         refreshToken: json["refreshToken"],
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "refreshToken": refreshToken,
-        "apiKey": apiKey,
         "token": token,
       };
 }
 
 class GetMobileVerificationCodeForLoginParams {
   final String phoneNumber;
-  final String apiKey;
   final String? token;
 
   GetMobileVerificationCodeForLoginParams({
     required this.phoneNumber,
-    required this.apiKey,
     this.token,
   });
 
@@ -45,13 +39,11 @@ class GetMobileVerificationCodeForLoginParams {
 
   factory GetMobileVerificationCodeForLoginParams.fromMap(Map<String, dynamic> json) => GetMobileVerificationCodeForLoginParams(
         phoneNumber: json["phoneNumber"],
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "phoneNumber": phoneNumber,
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -59,13 +51,11 @@ class GetMobileVerificationCodeForLoginParams {
 class LoginWithEmailPasswordParams {
   final String email;
   final String password;
-  final String apiKey;
   final String? token;
 
   LoginWithEmailPasswordParams({
     required this.email,
     required this.password,
-    required this.apiKey,
     this.token,
   });
 
@@ -76,14 +66,12 @@ class LoginWithEmailPasswordParams {
   factory LoginWithEmailPasswordParams.fromMap(Map<String, dynamic> json) => LoginWithEmailPasswordParams(
         email: json["email"],
         password: json["password"],
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "email": email,
         "password": password,
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -91,13 +79,11 @@ class LoginWithEmailPasswordParams {
 class LoginWithUserNamePasswordParams {
   final String userName;
   final String password;
-  final String apiKey;
   final String? token;
 
   LoginWithUserNamePasswordParams({
     required this.userName,
     required this.password,
-    required this.apiKey,
     this.token,
   });
 
@@ -108,14 +94,12 @@ class LoginWithUserNamePasswordParams {
   factory LoginWithUserNamePasswordParams.fromMap(Map<String, dynamic> json) => LoginWithUserNamePasswordParams(
         userName: json["userName"],
         password: json["password"],
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "userName": userName,
         "password": password,
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -128,7 +112,6 @@ class RegisterParams {
   final String? firstName;
   final String? lastName;
   final List<int> tags;
-  final String apiKey;
   final String? token;
 
   RegisterParams({
@@ -139,7 +122,6 @@ class RegisterParams {
     this.firstName,
     this.lastName,
     required this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -155,7 +137,6 @@ class RegisterParams {
         firstName: json["firstName"],
         lastName: json["lastName"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -167,7 +148,6 @@ class RegisterParams {
         "firstName": firstName,
         "lastName": lastName,
         "tags": List<dynamic>.from(tags.map((int x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -177,7 +157,6 @@ class VerifyMobileForLoginParams {
   final String otp;
   final String? firstName;
   final String? lastName;
-  final String apiKey;
   final String? token;
 
   VerifyMobileForLoginParams({
@@ -185,7 +164,6 @@ class VerifyMobileForLoginParams {
     required this.otp,
     this.firstName,
     this.lastName,
-    required this.apiKey,
     this.token,
   });
 
@@ -198,7 +176,6 @@ class VerifyMobileForLoginParams {
         otp: json["otp"],
         firstName: json["firstName"],
         lastName: json["lastName"],
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -207,7 +184,6 @@ class VerifyMobileForLoginParams {
         "otp": otp,
         "firstName": firstName,
         "lastName": lastName,
-        "apiKey": apiKey,
         "token": token,
       };
 }

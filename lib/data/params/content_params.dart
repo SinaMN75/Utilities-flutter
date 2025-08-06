@@ -6,7 +6,6 @@ class ContentCreateParams {
   final String subTitle;
   final String? instagram;
   final List<int> tags;
-  final String apiKey;
   final String? token;
 
   ContentCreateParams({
@@ -15,7 +14,6 @@ class ContentCreateParams {
     required this.subTitle,
     this.instagram,
     required this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -29,7 +27,6 @@ class ContentCreateParams {
         subTitle: json["subTitle"],
         instagram: json["instagram"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -39,7 +36,6 @@ class ContentCreateParams {
         "subTitle": subTitle,
         "instagram": instagram,
         "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -52,7 +48,6 @@ class ContentUpdateParams {
   final String? instagram;
   final List<int>? addTags;
   final List<int>? removeTags;
-  final String apiKey;
   final String? token;
 
   ContentUpdateParams({
@@ -63,7 +58,6 @@ class ContentUpdateParams {
     this.instagram,
     this.addTags,
     this.removeTags,
-    required this.apiKey,
     this.token,
   });
 
@@ -79,7 +73,6 @@ class ContentUpdateParams {
         instagram: json["instagram"],
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -91,7 +84,6 @@ class ContentUpdateParams {
         "instagram": instagram,
         "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
         "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -107,7 +99,6 @@ class ContentReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String apiKey;
   final String? token;
 
   ContentReadParams({
@@ -121,7 +112,6 @@ class ContentReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -140,7 +130,6 @@ class ContentReadParams {
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -155,7 +144,6 @@ class ContentReadParams {
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }

@@ -1,12 +1,10 @@
 part of "../data.dart";
 
 class UserBulkCreateParams {
-  final String apiKey;
   final String token;
   final List<UserCreateParams> users;
 
   UserBulkCreateParams({
-    required this.apiKey,
     required this.token,
     required this.users,
   });
@@ -16,13 +14,11 @@ class UserBulkCreateParams {
   String toJson() => json.encode(toMap());
 
   factory UserBulkCreateParams.fromMap(Map<String, dynamic> json) => UserBulkCreateParams(
-        apiKey: json["apiKey"],
         token: json["token"],
         users: List<UserCreateParams>.from(json["users"].map((dynamic x) => UserCreateParams.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "apiKey": apiKey,
         "token": token,
         "users": List<dynamic>.from(users.map((UserCreateParams x) => x.toMap())),
       };
@@ -51,7 +47,6 @@ class UserCreateParams {
   final List<String>? sickness;
   final List<int> tags;
   final List<String>? categories;
-  final String apiKey;
   final String token;
 
   UserCreateParams({
@@ -77,7 +72,6 @@ class UserCreateParams {
     this.sickness,
     required this.tags,
     this.categories,
-    required this.apiKey,
     required this.token,
   });
 
@@ -108,7 +102,6 @@ class UserCreateParams {
         sickness: json["sickness"] == null ? null : List<String>.from(json["sickness"].map((dynamic x) => x)),
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -135,7 +128,6 @@ class UserCreateParams {
         "sickness": sickness == null ? null : List<dynamic>.from(sickness!.map((dynamic x) => x)),
         "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -161,7 +153,6 @@ class UserReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String apiKey;
   final String? token;
 
   UserReadParams({
@@ -185,7 +176,6 @@ class UserReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -214,7 +204,6 @@ class UserReadParams {
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -239,7 +228,6 @@ class UserReadParams {
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -272,7 +260,6 @@ class UserUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String apiKey;
   final String token;
 
   UserUpdateParams({
@@ -303,7 +290,6 @@ class UserUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    required this.apiKey,
     required this.token,
   });
 
@@ -339,7 +325,6 @@ class UserUpdateParams {
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -371,7 +356,6 @@ class UserUpdateParams {
         "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
         "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }

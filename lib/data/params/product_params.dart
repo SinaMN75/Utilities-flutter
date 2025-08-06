@@ -21,7 +21,6 @@ class ProductCreateParams {
   final List<String>? relatedProducts;
   final String? parentId;
   final String? userId;
-  final String apiKey;
   final String? token;
 
   ProductCreateParams({
@@ -45,7 +44,6 @@ class ProductCreateParams {
     this.relatedProducts,
     this.parentId,
     this.userId,
-    required this.apiKey,
     this.token,
   });
 
@@ -74,7 +72,6 @@ class ProductCreateParams {
         relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
         parentId: json["parentId"],
         userId: json["userId"],
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -99,7 +96,6 @@ class ProductCreateParams {
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((dynamic x) => x)),
         "parentId": parentId,
         "userId": userId,
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -131,7 +127,6 @@ class ProductUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String apiKey;
   final String? token;
 
   ProductUpdateParams({
@@ -161,7 +156,6 @@ class ProductUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -196,7 +190,6 @@ class ProductUpdateParams {
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -227,7 +220,6 @@ class ProductUpdateParams {
         "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
         "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }
@@ -260,7 +252,6 @@ class ProductReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String apiKey;
   final String? token;
 
   ProductReadParams({
@@ -291,7 +282,6 @@ class ProductReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    required this.apiKey,
     this.token,
   });
 
@@ -327,7 +317,6 @@ class ProductReadParams {
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -359,7 +348,6 @@ class ProductReadParams {
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "apiKey": apiKey,
         "token": token,
       };
 }

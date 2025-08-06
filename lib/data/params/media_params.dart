@@ -11,7 +11,6 @@ class MediaUpdateParams {
   final String? commentId;
   final String? categoryId;
   final String? productId;
-  final String apiKey;
   final String? token;
 
   MediaUpdateParams({
@@ -25,7 +24,6 @@ class MediaUpdateParams {
     this.commentId,
     this.categoryId,
     this.productId,
-    required this.apiKey,
     this.token,
   });
 
@@ -44,7 +42,6 @@ class MediaUpdateParams {
         commentId: json["commentId"],
         categoryId: json["categoryId"],
         productId: json["productId"],
-        apiKey: json["apiKey"],
         token: json["token"],
       );
 
@@ -59,7 +56,6 @@ class MediaUpdateParams {
         "commentId": commentId,
         "categoryId": categoryId,
         "productId": productId,
-        "apiKey": apiKey,
         "token": token,
       };
 }
