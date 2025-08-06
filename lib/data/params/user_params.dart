@@ -1,11 +1,9 @@
 part of "../data.dart";
 
 class UserBulkCreateParams {
-  final String token;
   final List<UserCreateParams> users;
 
   UserBulkCreateParams({
-    required this.token,
     required this.users,
   });
 
@@ -14,12 +12,10 @@ class UserBulkCreateParams {
   String toJson() => json.encode(toMap());
 
   factory UserBulkCreateParams.fromMap(Map<String, dynamic> json) => UserBulkCreateParams(
-        token: json["token"],
         users: List<UserCreateParams>.from(json["users"].map((dynamic x) => UserCreateParams.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "token": token,
         "users": List<dynamic>.from(users.map((UserCreateParams x) => x.toMap())),
       };
 }
@@ -47,7 +43,6 @@ class UserCreateParams {
   final List<String>? sickness;
   final List<int> tags;
   final List<String>? categories;
-  final String token;
 
   UserCreateParams({
     required this.userName,
@@ -72,7 +67,6 @@ class UserCreateParams {
     this.sickness,
     required this.tags,
     this.categories,
-    required this.token,
   });
 
   factory UserCreateParams.fromJson(String str) => UserCreateParams.fromMap(json.decode(str));
@@ -102,7 +96,6 @@ class UserCreateParams {
         sickness: json["sickness"] == null ? null : List<String>.from(json["sickness"].map((dynamic x) => x)),
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
-        token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -128,7 +121,6 @@ class UserCreateParams {
         "sickness": sickness == null ? null : List<dynamic>.from(sickness!.map((dynamic x) => x)),
         "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
-        "token": token,
       };
 }
 
@@ -153,7 +145,6 @@ class UserReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String? token;
 
   UserReadParams({
     this.userName,
@@ -176,7 +167,6 @@ class UserReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.token,
   });
 
   factory UserReadParams.fromJson(String str) => UserReadParams.fromMap(json.decode(str));
@@ -204,7 +194,6 @@ class UserReadParams {
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -228,7 +217,6 @@ class UserReadParams {
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "token": token,
       };
 }
 
@@ -260,7 +248,6 @@ class UserUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String token;
 
   UserUpdateParams({
     this.password,
@@ -290,7 +277,6 @@ class UserUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    required this.token,
   });
 
   factory UserUpdateParams.fromJson(String str) => UserUpdateParams.fromMap(json.decode(str));
@@ -325,7 +311,6 @@ class UserUpdateParams {
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -356,6 +341,5 @@ class UserUpdateParams {
         "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
         "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "token": token,
       };
 }

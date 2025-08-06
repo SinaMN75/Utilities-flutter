@@ -11,7 +11,6 @@ class CategoryCreateParams {
   final String? type;
   final String? link;
   final List<String>? relatedProducts;
-  final String? token;
 
   CategoryCreateParams({
     this.id,
@@ -24,7 +23,6 @@ class CategoryCreateParams {
     this.type,
     this.link,
     this.relatedProducts,
-    this.token,
   });
 
   factory CategoryCreateParams.fromJson(String str) => CategoryCreateParams.fromMap(json.decode(str));
@@ -42,7 +40,7 @@ class CategoryCreateParams {
         type: json["type"],
         link: json["link"],
         relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
-        token: json["token"],
+        
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -56,7 +54,6 @@ class CategoryCreateParams {
         "type": type,
         "link": link,
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
-        "token": token,
       };
 }
 
@@ -75,7 +72,6 @@ class CategoryUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String? token;
 
   CategoryUpdateParams({
     this.title,
@@ -92,7 +88,6 @@ class CategoryUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    this.token,
   });
 
   factory CategoryUpdateParams.fromJson(String str) => CategoryUpdateParams.fromMap(json.decode(str));
@@ -114,7 +109,7 @@ class CategoryUpdateParams {
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        token: json["token"],
+        
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -132,7 +127,6 @@ class CategoryUpdateParams {
         "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
         "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
-        "token": token,
       };
 }
 
@@ -146,7 +140,6 @@ class CategoryReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String? token;
 
   CategoryReadParams({
     this.ids,
@@ -158,7 +151,6 @@ class CategoryReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.token,
   });
 
   factory CategoryReadParams.fromJson(String str) => CategoryReadParams.fromMap(json.decode(str));
@@ -175,7 +167,7 @@ class CategoryReadParams {
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        token: json["token"],
+        
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -188,6 +180,5 @@ class CategoryReadParams {
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
-        "token": token,
       };
 }

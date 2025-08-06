@@ -6,7 +6,6 @@ class ContentCreateParams {
   final String subTitle;
   final String? instagram;
   final List<int> tags;
-  final String? token;
 
   ContentCreateParams({
     required this.title,
@@ -14,7 +13,6 @@ class ContentCreateParams {
     required this.subTitle,
     this.instagram,
     required this.tags,
-    this.token,
   });
 
   factory ContentCreateParams.fromJson(String str) => ContentCreateParams.fromMap(json.decode(str));
@@ -27,7 +25,6 @@ class ContentCreateParams {
         subTitle: json["subTitle"],
         instagram: json["instagram"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-        token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -36,7 +33,6 @@ class ContentCreateParams {
         "subTitle": subTitle,
         "instagram": instagram,
         "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
-        "token": token,
       };
 }
 
@@ -48,7 +44,6 @@ class ContentUpdateParams {
   final String? instagram;
   final List<int>? addTags;
   final List<int>? removeTags;
-  final String? token;
 
   ContentUpdateParams({
     required this.id,
@@ -58,7 +53,6 @@ class ContentUpdateParams {
     this.instagram,
     this.addTags,
     this.removeTags,
-    this.token,
   });
 
   factory ContentUpdateParams.fromJson(String str) => ContentUpdateParams.fromMap(json.decode(str));
@@ -73,7 +67,6 @@ class ContentUpdateParams {
         instagram: json["instagram"],
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
-        token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -84,7 +77,6 @@ class ContentUpdateParams {
         "instagram": instagram,
         "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
         "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
-        "token": token,
       };
 }
 
@@ -99,7 +91,6 @@ class ContentReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
-  final String? token;
 
   ContentReadParams({
     this.showMedia,
@@ -112,7 +103,6 @@ class ContentReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.token,
   });
 
   factory ContentReadParams.fromJson(String str) => ContentReadParams.fromMap(json.decode(str));
@@ -130,7 +120,6 @@ class ContentReadParams {
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -144,6 +133,5 @@ class ContentReadParams {
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-        "token": token,
       };
 }

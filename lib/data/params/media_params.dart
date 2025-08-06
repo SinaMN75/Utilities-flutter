@@ -11,7 +11,6 @@ class MediaUpdateParams {
   final String? commentId;
   final String? categoryId;
   final String? productId;
-  final String? token;
 
   MediaUpdateParams({
     required this.id,
@@ -24,7 +23,6 @@ class MediaUpdateParams {
     this.commentId,
     this.categoryId,
     this.productId,
-    this.token,
   });
 
   factory MediaUpdateParams.fromJson(String str) => MediaUpdateParams.fromMap(json.decode(str));
@@ -42,7 +40,6 @@ class MediaUpdateParams {
         commentId: json["commentId"],
         categoryId: json["categoryId"],
         productId: json["productId"],
-        token: json["token"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -56,6 +53,5 @@ class MediaUpdateParams {
         "commentId": commentId,
         "categoryId": categoryId,
         "productId": productId,
-        "token": token,
       };
 }
