@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:u/init.dart';
 
 class UThemeData {
   final String fontFamily;
@@ -8,15 +9,15 @@ class UThemeData {
   final Color errorColor;
 
   UThemeData({
-    required this.disabledColor,
     required this.fontFamily,
+    required this.disabledColor,
     required this.primaryColor,
     required this.secondaryColor,
     required this.errorColor,
   });
 
   ThemeData lightTheme() => ThemeData(
-        disabledColor: disabledColor,
+        disabledColor: uThemeData.disabledColor,
         fontFamily: fontFamily,
         highlightColor: Colors.green,
         colorScheme: ColorScheme.fromSeed(

@@ -1,7 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
-import 'package:u/utils/init.dart';
+import 'package:u/utilities.dart';
 
 class ULoading {
   static OverlayEntry? _overlayEntry;

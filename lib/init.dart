@@ -1,13 +1,16 @@
 import 'package:u/utilities.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+late UThemeData uThemeData;
 
 Future<void> initUtilities({
+  required final UThemeData themeData,
   final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ],
 }) async {
+  uThemeData = themeData;
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(deviceOrientations);
   await ULocalStorage.init();
