@@ -7,6 +7,7 @@ part "params/category_params.dart";
 part "params/comment_params.dart";
 part "params/content_params.dart";
 part "params/exam_params.dart";
+part "params/follow_params.dart";
 part "params/media_params.dart";
 part "params/product_params.dart";
 part "params/user_params.dart";
@@ -16,6 +17,7 @@ part "responses/category_response.dart";
 part "responses/comment_response.dart";
 part "responses/dashboard_response.dart";
 part "responses/exam_response.dart";
+part "responses/follower_following_count_response.dart";
 part "responses/media_response.dart";
 part "responses/product_response.dart";
 part "responses/user_response.dart";
@@ -23,6 +25,7 @@ part "services/auth_service.dart";
 part "services/category_service.dart";
 part "services/dashboard_service.dart";
 part "services/exam_service.dart";
+part "services/follow_service.dart";
 part "services/user_service.dart";
 
 class UServices {

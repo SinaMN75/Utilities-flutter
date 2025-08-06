@@ -38,3 +38,47 @@ class UResponse<T> {
     );
   }
 }
+
+class VisitCount {
+  final String userId;
+  final int count;
+
+  VisitCount({
+    required this.userId,
+    this.count = 1,
+  });
+
+  factory VisitCount.fromJson(String str) => VisitCount.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory VisitCount.fromMap(Map<String, dynamic> json) => VisitCount(
+    userId: json["userId"],
+    count: json["count"] ?? 1,
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "userId": userId,
+    "count": count,
+  };
+}
+
+class UserIdParams {
+  final String? userId;
+
+  UserIdParams({
+    this.userId,
+  });
+
+  factory UserIdParams.fromJson(String str) => UserIdParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UserIdParams.fromMap(Map<String, dynamic> json) => UserIdParams(
+    userId: json["userId"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "userId": userId,
+  };
+}

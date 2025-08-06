@@ -148,26 +148,3 @@ class ProductJson {
       };
 }
 
-class VisitCount {
-  final String userId;
-  final int count;
-
-  VisitCount({
-    required this.userId,
-    this.count = 1,
-  });
-
-  factory VisitCount.fromJson(String str) => VisitCount.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory VisitCount.fromMap(Map<String, dynamic> json) => VisitCount(
-        userId: json["userId"],
-        count: json["count"] ?? 1,
-      );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-        "userId": userId,
-        "count": count,
-      };
-}

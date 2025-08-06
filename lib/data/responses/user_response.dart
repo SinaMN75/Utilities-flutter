@@ -103,6 +103,7 @@ class UserJson {
   final String? address;
   final String? fatherName;
   final List<UserAnswerJson> userAnswerJson;
+  final List<VisitCount>? visitCounts;
 
   UserJson({
     this.fcmToken,
@@ -114,6 +115,7 @@ class UserJson {
     this.height,
     this.address,
     this.fatherName,
+    this.visitCounts,
     this.userAnswerJson = const <UserAnswerJson>[],
   });
 
@@ -131,6 +133,7 @@ class UserJson {
         height: json["height"],
         address: json["address"],
         fatherName: json["fatherName"],
+        visitCounts: json["visitCounts"] == null ? <VisitCount>[] : List<VisitCount>.from(json["visitCounts"].map((dynamic x) => VisitCount.fromMap(x))),
         userAnswerJson: json["userAnswerJson"] == null ? <UserAnswerJson>[] : List<UserAnswerJson>.from(json["userAnswerJson"].map((dynamic x) => UserAnswerJson.fromMap(x))),
       );
 
@@ -144,6 +147,7 @@ class UserJson {
         "height": height,
         "address": address,
         "fatherName": fatherName,
+        "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((VisitCount x) => x.toMap())),
         "userAnswerJson": List<dynamic>.from(userAnswerJson.map((UserAnswerJson x) => x.toMap())),
       };
 }
