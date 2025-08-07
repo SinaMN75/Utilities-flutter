@@ -8,7 +8,7 @@ class UImageSlider extends StatefulWidget {
   final Color inactiveIndicatorColor;
   final double indicatorActiveSize;
   final double indicatorInactiveSize;
-  final Duration autoPlayDuration;
+  final int autoPlayDuration;
   final BoxFit imageFit;
   final double radius;
   final Color imagePlaceholderColor;
@@ -23,7 +23,7 @@ class UImageSlider extends StatefulWidget {
     this.inactiveIndicatorColor = Colors.grey,
     this.indicatorActiveSize = 10,
     this.indicatorInactiveSize = 8,
-    this.autoPlayDuration = const Duration(seconds: 3),
+    this.autoPlayDuration = 7,
     this.imageFit = BoxFit.cover,
     this.radius = 0,
     this.imagePlaceholderColor = Colors.grey,
@@ -57,7 +57,7 @@ class _UImageSliderState extends State<UImageSlider> {
     if (widget.images.length <= 1) return;
 
     _autoPlayTimer = Timer.periodic(
-      widget.autoPlayDuration,
+      Duration(seconds: widget.autoPlayDuration),
           (dynamic timer) {
         if (_currentPage < widget.images.length - 1) {
           _pageController.nextPage(
