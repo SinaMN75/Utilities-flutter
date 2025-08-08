@@ -66,6 +66,7 @@ class UMaterialApp extends StatelessWidget {
           elevation: 10,
           shadowColor: data.primaryColor.withValues(alpha: 0.2),
           color: data.cardColor,
+          clipBehavior: Clip.antiAlias,
         ),
         tabBarTheme: TabBarThemeData(
           indicatorSize: TabBarIndicatorSize.tab,
