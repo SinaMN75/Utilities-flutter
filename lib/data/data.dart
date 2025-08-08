@@ -1,6 +1,4 @@
-import 'package:u/enums.dart';
 import 'package:u/utilities.dart';
-import 'package:u/utils/extensions/map_extension.dart';
 
 part "params/auth_params.dart";
 part "params/base_params.dart";
@@ -27,6 +25,7 @@ part "services/category_service.dart";
 part "services/dashboard_service.dart";
 part "services/exam_service.dart";
 part "services/follow_service.dart";
+part "services/product_service.dart";
 part "services/user_service.dart";
 
 class UServices {
