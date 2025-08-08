@@ -143,7 +143,7 @@ class QuestionJson {
 class QuestionOptionJson {
   final String title;
   final String hint;
-  final double score;
+  final int score;
 
   QuestionOptionJson({
     required this.title,
@@ -170,7 +170,7 @@ class QuestionOptionJson {
 
 class UserAnswerJson {
   final DateTime date;
-  final double totalScore;
+  final int totalScore;
   final List<UserAnswerResultJson> results;
   final String label;
   final String description;
