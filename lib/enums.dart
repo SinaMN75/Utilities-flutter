@@ -41,6 +41,20 @@ enum TagUser with NumericIdentifiable {
   bool isMale() => this == TagUser.male;
 }
 
+enum TagContent with NumericIdentifiable {
+  aboutUs('درباره ما', 'About Us', 101),
+  terms('قوانین و مقررات', 'Terms and Conditions', 102),
+  homeSlider1('اسلایدر', 'Slider', 103);
+
+  const TagContent(this.titleFa, this.titleEn, this.number);
+
+  final String titleFa;
+  final String titleEn;
+
+  @override
+  final int number;
+}
+
 enum TagCategory with NumericIdentifiable {
   category('دسته‌بندی', 'Category', 100),
   exam('پرشسنامه', 'Exam', 101),
