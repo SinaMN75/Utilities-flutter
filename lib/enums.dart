@@ -60,7 +60,9 @@ enum TagCategory with NumericIdentifiable {
 }
 
 enum TagMedia with NumericIdentifiable {
-  image('تصویر', 'Image', 100);
+  image('تصویر', 'Image', 100),
+  profile('پروفایل', 'Profile', 101),
+  test('', '', 999);
 
   const TagMedia(this.titleFa, this.titleEn, this.number);
 

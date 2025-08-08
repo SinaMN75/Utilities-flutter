@@ -1,5 +1,10 @@
 part of "../data.dart";
 
+extension MediaListExtension on Iterable<MediaResponse> {
+  String? get profile => firstWhereOrNull((final MediaResponse i) => i.tags.contains(TagMedia.profile.number))?.url;
+  MediaResponse? get profileMedia => firstWhereOrNull((final MediaResponse i) => i.tags.contains(TagMedia.profile.number));
+}
+
 class MediaResponse {
   final String id;
   final DateTime createdAt;
