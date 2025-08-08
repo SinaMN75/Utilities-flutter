@@ -37,6 +37,7 @@ class UServices {
   late DashboardService dashboard;
   late ExamService exam;
   late UserService user;
+  late ProductService product;
 
   UServices({required this.baseUrl, required this.apiKey}) {
     dashboard = DashboardService(baseUrl: baseUrl);
@@ -44,5 +45,6 @@ class UServices {
     category = CategoryService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
     exam = ExamService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
     user = UserService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    product = ProductService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
   }
 }
