@@ -63,7 +63,7 @@ class UMaterialApp extends StatelessWidget {
           error: data.errorColor,
         ),
         cardTheme: CardThemeData(
-          elevation: 10,
+          elevation: data.cardElevation,
           shadowColor: data.primaryColor.withValues(alpha: 0.2),
           color: data.cardColor,
           clipBehavior: Clip.antiAlias,
@@ -156,13 +156,15 @@ class UThemeData {
   final Color secondaryColor;
   final Color errorColor;
   final Color cardColor;
+  final double cardElevation;
 
   UThemeData({
     required this.fontFamily,
     required this.disabledColor,
     required this.primaryColor,
     required this.secondaryColor,
-    required this.errorColor,
-    required this.cardColor,
+    this.errorColor = Colors.red,
+    this.cardColor = Colors.white,
+    this.cardElevation = 1,
   });
 }
