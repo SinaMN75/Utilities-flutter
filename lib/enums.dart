@@ -75,6 +75,9 @@ enum TagMedia with NumericIdentifiable {
 
 enum TagProduct with NumericIdentifiable {
   product('محصول', 'Product', 101),
+  content('کیس', 'Case', 102),
+  blog('کیس', 'Case', 103),
+  case_('کیس', 'Case', 104),
   new_('جدید', 'New', 201),
   kindOfNew('نو', 'Kind of New', 202),
   used('دست دوم', 'Used', 203),
