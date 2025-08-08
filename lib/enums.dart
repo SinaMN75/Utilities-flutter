@@ -46,6 +46,7 @@ enum TagCategory with NumericIdentifiable {
   exam('پرشسنامه', 'Exam', 101),
   user('کاربران', 'User', 102),
   menu('کاربران', 'Menu', 103),
+  speciality('تخصص', 'Speciality', 104),
   enabled('فعال', 'Enabled', 201),
   disabled('غیر فعال', 'Disabled', 202),
   hidden('مخفی', 'Hidden', 203);

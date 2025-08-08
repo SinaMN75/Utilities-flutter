@@ -1,5 +1,10 @@
 part of "../data.dart";
 
+extension CategoryListExtension on Iterable<CategoryResponse> {
+  CategoryResponse? get speciality => firstWhereOrNull((final CategoryResponse i) => i.tags.contains(TagCategory.speciality.number));
+}
+
+
 class CategoryResponse {
   final String id;
   final DateTime createdAt;
