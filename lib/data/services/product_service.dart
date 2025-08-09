@@ -28,7 +28,7 @@ class ProductService {
       );
 
   void read({
-    required final CategoryReadParams p,
+    required final ProductReadParams p,
     required final Function(UResponse<List<ProductResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
@@ -65,7 +65,7 @@ class ProductService {
       );
 
   void update({
-    required final CategoryUpdateParams p,
+    required final ProductUpdateParams p,
     required final Function(UResponse<ProductResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
