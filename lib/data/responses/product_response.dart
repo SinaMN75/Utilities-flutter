@@ -17,6 +17,7 @@ class ProductResponse {
   final double? longitude;
   final int? stock;
   final double? price;
+  final int point;
   final String? parentId;
   final ProductResponse? parent;
   final String userId;
@@ -32,6 +33,7 @@ class ProductResponse {
     required this.jsonData,
     required this.tags,
     required this.title,
+    required this.point,
     this.code,
     this.subtitle,
     this.description,
@@ -72,6 +74,7 @@ class ProductResponse {
         longitude: json["longitude"],
         stock: json["stock"],
         price: json["price"],
+        point: json["point"],
         parentId: json["parentId"],
         parent: json["parent"] == null ? null : ProductResponse.fromMap(json["parent"]),
         userId: json["userId"],
@@ -93,6 +96,7 @@ class ProductResponse {
         "description": description,
         "slug": slug,
         "type": type,
+        "point": point,
         "content": content,
         "latitude": latitude,
         "longitude": longitude,

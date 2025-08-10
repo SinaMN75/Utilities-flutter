@@ -21,6 +21,7 @@ class ProductCreateParams {
   final List<String>? relatedProducts;
   final String? parentId;
   final String? userId;
+  final int? point;
 
   ProductCreateParams({
     required this.title,
@@ -43,6 +44,7 @@ class ProductCreateParams {
     this.relatedProducts,
     this.parentId,
     this.userId,
+    this.point,
   });
 
   factory ProductCreateParams.fromJson(String str) => ProductCreateParams.fromMap(json.decode(str));
@@ -65,6 +67,7 @@ class ProductCreateParams {
         stock: json["stock"],
         price: json["price"],
         details: json["details"],
+        point: json["point"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
         relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
@@ -93,6 +96,7 @@ class ProductCreateParams {
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((dynamic x) => x)),
         "parentId": parentId,
         "userId": userId,
+        "point": point,
       };
 }
 
@@ -123,6 +127,7 @@ class ProductUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
+  final int? point;
 
   ProductUpdateParams({
     this.title,
@@ -151,6 +156,7 @@ class ProductUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
+    this.point,
   });
 
   factory ProductUpdateParams.fromJson(String str) => ProductUpdateParams.fromMap(json.decode(str));
@@ -169,7 +175,8 @@ class ProductUpdateParams {
         longitude: json["longitude"],
         stock: json["stock"],
         price: json["price"],
-        parentId: json["parentId"],
+    point: json["point"],
+    parentId: json["parentId"],
         userId: json["userId"],
         actionType: json["actionType"],
         actionTitle: json["actionTitle"],
@@ -200,6 +207,7 @@ class ProductUpdateParams {
         "price": price,
         "parentId": parentId,
         "userId": userId,
+        "point": point,
         "actionType": actionType,
         "actionTitle": actionTitle,
         "actionUri": actionUri,
