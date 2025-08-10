@@ -44,7 +44,7 @@ class FollowService {
       );
 
   void readFollowers({
-    required final UserIdParams p,
+    required final IdParams p,
     required final Function(UResponse<List<UserResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
@@ -65,7 +65,7 @@ class FollowService {
       );
 
   void readFollowedUsers({
-    required final UserIdParams p,
+    required final IdParams p,
     required final Function(UResponse<List<UserResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
@@ -86,7 +86,7 @@ class FollowService {
       );
 
   void readFollowedProducts({
-    required final UserIdParams p,
+    required final IdParams p,
     required final Function(UResponse<List<ProductResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
@@ -107,7 +107,7 @@ class FollowService {
       );
 
   void readFollowedCategories({
-    required final UserIdParams p,
+    required final IdParams p,
     required final Function(UResponse<List<CategoryResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
@@ -128,7 +128,7 @@ class FollowService {
       );
 
   void readFollowerFollowingCount({
-    required final UserIdParams p,
+    required final IdParams p,
     required final Function(UResponse<FollowerFollowingCountResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
@@ -137,6 +137,54 @@ class FollowService {
         "$baseUrl/follow/ReadFollowerFollowingCount",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<FollowerFollowingCountResponse>.fromJson(r.body, (final dynamic i) => FollowerFollowingCountResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (final dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
+
+  void isFollowingUser({
+    required final FollowParams p,
+    required final Function(UResponse<bool> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      UHttpClient().post(
+        "$baseUrl/follow/IsFollowingUser",
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (final dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
+
+  void isFollowingProduct({
+    required final FollowParams p,
+    required final Function(UResponse<bool> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      UHttpClient().post(
+        "$baseUrl/follow/isFollowingProduct",
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (final dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
+
+  void isFollowingCategory({
+    required final FollowParams p,
+    required final Function(UResponse<bool> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      UHttpClient().post(
+        "$baseUrl/follow/isFollowingCategory",
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);

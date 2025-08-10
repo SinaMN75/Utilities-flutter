@@ -62,23 +62,3 @@ class VisitCount {
     "count": count,
   };
 }
-
-class UserIdParams {
-  final String? userId;
-
-  UserIdParams({
-    this.userId,
-  });
-
-  factory UserIdParams.fromJson(String str) => UserIdParams.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory UserIdParams.fromMap(Map<String, dynamic> json) => UserIdParams(
-    userId: json["userId"],
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "userId": userId,
-  };
-}
