@@ -2,11 +2,15 @@ part of "../data.dart";
 
 class FollowParams {
   final String? userId;
-  final String targetUserId;
+  final String? targetUserId;
+  final String? targetProductId;
+  final String? targetCategoryId;
 
   FollowParams({
     this.userId,
-    required this.targetUserId,
+    this.targetUserId,
+    this.targetProductId,
+    this.targetCategoryId,
   });
 
   factory FollowParams.fromJson(String str) => FollowParams.fromMap(json.decode(str));
@@ -15,11 +19,15 @@ class FollowParams {
 
   factory FollowParams.fromMap(Map<String, dynamic> json) => FollowParams(
     userId: json["userId"],
-    targetUserId: json["targetUserId"] ?? 1,
+    targetUserId: json["targetUserId"],
+    targetProductId: json["targetProductId"],
+    targetCategoryId: json["targetCategoryId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "userId": userId,
     "targetUserId": targetUserId,
+    "targetProductId": targetProductId,
+    "targetCategoryId": targetCategoryId,
   };
 }

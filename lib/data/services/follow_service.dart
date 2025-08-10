@@ -55,7 +55,7 @@ class FollowService {
         onSuccess: (final Response r) => onOk(
           UResponse<List<UserResponse>>.fromJson(
             r.body,
-                (final dynamic i) => List<UserResponse>.from((i as List<dynamic>).map((final dynamic x) => UserResponse.fromMap(x))),
+            (final dynamic i) => List<UserResponse>.from((i as List<dynamic>).map((final dynamic x) => UserResponse.fromMap(x))),
           ),
         ),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -64,19 +64,61 @@ class FollowService {
         },
       );
 
-  void readFollowings({
+  void readFollowedUsers({
     required final UserIdParams p,
     required final Function(UResponse<List<UserResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       UHttpClient().post(
-        "$baseUrl/follow/ReadFollowings",
+        "$baseUrl/follow/ReadFollowedUsers",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UserResponse>>.fromJson(
             r.body,
-                (final dynamic i) => List<UserResponse>.from((i as List<dynamic>).map((final dynamic x) => UserResponse.fromMap(x))),
+            (final dynamic i) => List<UserResponse>.from((i as List<dynamic>).map((final dynamic x) => UserResponse.fromMap(x))),
+          ),
+        ),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (final dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
+
+  void readFollowedProducts({
+    required final UserIdParams p,
+    required final Function(UResponse<List<ProductResponse>> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      UHttpClient().post(
+        "$baseUrl/follow/ReadFollowedProducts",
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        onSuccess: (final Response r) => onOk(
+          UResponse<List<ProductResponse>>.fromJson(
+            r.body,
+            (final dynamic i) => List<ProductResponse>.from((i as List<dynamic>).map((final dynamic x) => ProductResponse.fromMap(x))),
+          ),
+        ),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onException: (final dynamic e) {
+          if (onException != null) onException(e);
+        },
+      );
+
+  void readFollowedCategories({
+    required final UserIdParams p,
+    required final Function(UResponse<List<CategoryResponse>> r) onOk,
+    required final Function(UResponse<dynamic> e) onError,
+    final Function(Exception)? onException,
+  }) =>
+      UHttpClient().post(
+        "$baseUrl/follow/ReadFollowedCategories",
+        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        onSuccess: (final Response r) => onOk(
+          UResponse<List<CategoryResponse>>.fromJson(
+            r.body,
+            (final dynamic i) => List<CategoryResponse>.from((i as List<dynamic>).map((final dynamic x) => CategoryResponse.fromMap(x))),
           ),
         ),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -100,5 +142,4 @@ class FollowService {
           if (onException != null) onException(e);
         },
       );
-
 }

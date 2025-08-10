@@ -2,11 +2,15 @@ part of "../data.dart";
 
 class FollowerFollowingCountResponse {
   final int followers;
-  final int followings;
+  final int followedUsers;
+  final int followedProducts;
+  final int followedCategories;
 
   FollowerFollowingCountResponse({
     required this.followers,
-    required this.followings,
+    required this.followedUsers,
+    required this.followedProducts,
+    required this.followedCategories,
   });
 
   factory FollowerFollowingCountResponse.fromJson(String str) => FollowerFollowingCountResponse.fromMap(json.decode(str));
@@ -15,11 +19,15 @@ class FollowerFollowingCountResponse {
 
   factory FollowerFollowingCountResponse.fromMap(Map<String, dynamic> json) => FollowerFollowingCountResponse(
     followers: json["followers"],
-    followings: json["followings"],
+    followedUsers: json["followedUsers"],
+    followedProducts: json["followedProducts"],
+    followedCategories: json["followedCategories"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "followers": followers,
-    "followings": followings,
+    "followedUsers": followedUsers,
+    "followedProducts": followedProducts,
+    "followedCategories": followedCategories,
   };
 }
