@@ -51,12 +51,18 @@ class ContentJson {
   final String? subTitle;
   final String? description;
   final String? instagram;
+  final String? telegram;
+  final String? whatsapp;
+  final String? phone;
 
   ContentJson({
     this.title,
     this.subTitle,
     this.description,
     this.instagram,
+    this.telegram,
+    this.whatsapp,
+    this.phone,
   });
 
   factory ContentJson.fromJson(String str) => ContentJson.fromMap(json.decode(str));
@@ -68,6 +74,9 @@ class ContentJson {
         subTitle: json["subTitle"],
         description: json["description"],
         instagram: json["instagram"],
+        telegram: json["telegram"],
+        whatsapp: json["whatsapp"],
+        phone: json["phone"],
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -75,5 +84,8 @@ class ContentJson {
         "subTitle": subTitle,
         "description": description,
         "instagram": instagram,
+        "telegram": telegram,
+        "whatsapp": whatsapp,
+        "phone": phone,
       };
 }

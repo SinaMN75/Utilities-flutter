@@ -23,6 +23,7 @@ part "responses/product_response.dart";
 part "responses/user_response.dart";
 part "services/auth_service.dart";
 part "services/category_service.dart";
+part "services/comment_service.dart";
 part "services/content_service.dart";
 part "services/dashboard_service.dart";
 part "services/exam_service.dart";
