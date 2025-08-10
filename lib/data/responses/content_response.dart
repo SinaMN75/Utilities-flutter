@@ -1,5 +1,11 @@
 part of "../data.dart";
 
+extension ContentListExtension on Iterable<ContentResponse> {
+  ContentResponse? firstByTag(TagContent tag) => firstWhereOrNull((final ContentResponse i) => i.tags.contains(tag.number));
+
+  List<ContentResponse> byTag(TagContent tag) => where((final ContentResponse i) => i.tags.contains(tag.number)).toList();
+}
+
 class ContentResponse {
   final String id;
   final DateTime createdAt;
