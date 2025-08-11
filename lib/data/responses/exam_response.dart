@@ -77,8 +77,8 @@ class ExamJson {
 }
 
 class ExamScoreDetail {
-  final double minScore;
-  final double maxScore;
+  final int minScore;
+  final int maxScore;
   final String label;
   final String description;
 
