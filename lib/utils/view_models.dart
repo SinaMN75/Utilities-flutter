@@ -3,14 +3,6 @@ import 'package:u/utilities.dart';
 enum TypeMedia { image, svg, video, pdf, voice, link }
 
 class FileData {
-  final String? path;
-  final Uint8List? bytes;
-  final String? extension;
-  final String? url;
-  final String? id;
-  final List<int>? tags;
-  final List<FileData>? children;
-
   FileData({
     this.path,
     this.bytes,
@@ -20,6 +12,14 @@ class FileData {
     this.tags,
     this.children,
   });
+
+  final String? path;
+  final Uint8List? bytes;
+  final String? extension;
+  final String? url;
+  final String? id;
+  final List<int>? tags;
+  final List<FileData>? children;
 }
 
 class MediaViewModel {

@@ -337,11 +337,6 @@ class UTextButton extends StatelessWidget {
 }
 
 class USearchableDropdown<T> extends StatefulWidget {
-  final List<T> items;
-  final String Function(T) labelBuilder;
-  final void Function(T?) onChanged;
-  final T? selectedItem;
-  final String hintText;
 
   const USearchableDropdown({
     super.key,
@@ -351,6 +346,12 @@ class USearchableDropdown<T> extends StatefulWidget {
     this.selectedItem,
     this.hintText = "Select item",
   });
+
+  final List<T> items;
+  final String Function(T) labelBuilder;
+  final void Function(T?) onChanged;
+  final T? selectedItem;
+  final String hintText;
 
   @override
   State<USearchableDropdown<T>> createState() => _USearchableDropdownState<T>();

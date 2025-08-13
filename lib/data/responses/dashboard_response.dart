@@ -1,14 +1,6 @@
 part of "../data.dart";
 
 class MetricsResponse {
-  final double cpuUsage;
-  final double memoryUsage;
-  final double diskUsage;
-  final double totalMemory;
-  final double freeMemory;
-  final double totalDisk;
-  final double freeDisk;
-  final String date;
 
   MetricsResponse({
     this.cpuUsage = 0,
@@ -33,20 +25,17 @@ class MetricsResponse {
         freeDisk: json["freeDisk"].toString().toDouble(),
         date: json["date"],
       );
+  final double cpuUsage;
+  final double memoryUsage;
+  final double diskUsage;
+  final double totalMemory;
+  final double freeMemory;
+  final double totalDisk;
+  final double freeDisk;
+  final String date;
 }
 
 class DashboardResponse {
-  final int categories;
-  final int comments;
-  final int contents;
-  final int exams;
-  final int media;
-  final int products;
-  final int users;
-  final List<UserResponse> newUsers;
-  final List<CategoryResponse> newCategories;
-  final List<ExamResponse> newExams;
-  final List<MediaResponse> newMedia;
 
   // final List<> newComments;
   // final List<> newContents;
@@ -71,8 +60,6 @@ class DashboardResponse {
 
   factory DashboardResponse.fromJson(String str) => DashboardResponse.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory DashboardResponse.fromMap(Map<String, dynamic> json) => DashboardResponse(
         categories: json["categories"],
         comments: json["comments"],
@@ -89,6 +76,19 @@ class DashboardResponse {
         // newContents: List<NewContent>.from(json["newContents"].map((dynamic x) => NewContent.fromMap(x))),
         // newProducts: List<NewProduct>.from(json["newProducts"].map((dynamic x) => NewProduct.fromMap(x))),
       );
+  final int categories;
+  final int comments;
+  final int contents;
+  final int exams;
+  final int media;
+  final int products;
+  final int users;
+  final List<UserResponse> newUsers;
+  final List<CategoryResponse> newCategories;
+  final List<ExamResponse> newExams;
+  final List<MediaResponse> newMedia;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "categories": categories,
@@ -109,7 +109,6 @@ class DashboardResponse {
 }
 
 class LogStructureResponse {
-  final List<YearLog> logs;
 
   LogStructureResponse({
     required this.logs,
@@ -117,11 +116,12 @@ class LogStructureResponse {
 
   factory LogStructureResponse.fromJson(String str) => LogStructureResponse.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory LogStructureResponse.fromMap(Map<String, dynamic> json) => LogStructureResponse(
         logs: List<YearLog>.from(json["logs"].map((dynamic x) => YearLog.fromMap(x))),
       );
+  final List<YearLog> logs;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "logs": List<dynamic>.from(logs.map((YearLog x) => x.toMap())),
@@ -129,8 +129,6 @@ class LogStructureResponse {
 }
 
 class YearLog {
-  final int year;
-  final List<MonthLog> months;
 
   YearLog({
     required this.year,
@@ -139,12 +137,14 @@ class YearLog {
 
   factory YearLog.fromJson(String str) => YearLog.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory YearLog.fromMap(Map<String, dynamic> json) => YearLog(
         year: json["year"],
         months: List<MonthLog>.from(json["months"].map((dynamic x) => MonthLog.fromMap(x))),
       );
+  final int year;
+  final List<MonthLog> months;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "year": year,
@@ -153,8 +153,6 @@ class YearLog {
 }
 
 class MonthLog {
-  final int month;
-  final List<DayLog> days;
 
   MonthLog({
     required this.month,
@@ -163,12 +161,14 @@ class MonthLog {
 
   factory MonthLog.fromJson(String str) => MonthLog.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory MonthLog.fromMap(Map<String, dynamic> json) => MonthLog(
         month: json["month"],
         days: List<DayLog>.from(json["days"].map((dynamic x) => DayLog.fromMap(x))),
       );
+  final int month;
+  final List<DayLog> days;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "month": month,
@@ -177,9 +177,6 @@ class MonthLog {
 }
 
 class DayLog {
-  final int day;
-  final String? success;
-  final String? failed;
 
   DayLog({
     required this.day,
@@ -189,13 +186,16 @@ class DayLog {
 
   factory DayLog.fromJson(String str) => DayLog.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory DayLog.fromMap(Map<String, dynamic> json) => DayLog(
         day: json["day"],
         success: json["success"],
         failed: json["failed"],
       );
+  final int day;
+  final String? success;
+  final String? failed;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "day": day,
@@ -205,10 +205,6 @@ class DayLog {
 }
 
 class LogContentResponse {
-  final String summary;
-  final String requestBody;
-  final String responseBody;
-  final LogException? exception;
 
   LogContentResponse({
     required this.summary,
@@ -219,14 +215,18 @@ class LogContentResponse {
 
   factory LogContentResponse.fromJson(String str) => LogContentResponse.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory LogContentResponse.fromMap(Map<String, dynamic> json) => LogContentResponse(
         summary: json["summary"],
         requestBody: json["requestBody"],
         responseBody: json["responseBody"],
         exception: json["exception"] == null ? null : LogException.fromMap(json["exception"]),
       );
+  final String summary;
+  final String requestBody;
+  final String responseBody;
+  final LogException? exception;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "summary": summary,
@@ -237,9 +237,6 @@ class LogContentResponse {
 }
 
 class LogException {
-  final String type;
-  final String message;
-  final String stackTrace;
 
   LogException({
     required this.type,
@@ -249,13 +246,16 @@ class LogException {
 
   factory LogException.fromJson(String str) => LogException.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory LogException.fromMap(Map<String, dynamic> json) => LogException(
         type: json["type"],
         message: json["message"],
         stackTrace: json["stackTrace"],
       );
+  final String type;
+  final String message;
+  final String stackTrace;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "type": type,

@@ -20,15 +20,6 @@ class MoneySymbols {
   'This formatter will be removed in future versions of the' ' package. Please use CurrencyInputFormatter instead',
 )
 class MoneyInputFormatter extends TextInputFormatter {
-  static final RegExp _wrongLeadingZeroMatcher = RegExp(r'^0\d{1}');
-
-  final ThousandSeparator thousandSeparator;
-  final int mantissaLength;
-  final String leadingSymbol;
-  final String trailingSymbol;
-  final bool useSymbolPadding;
-  final int? maxTextLength;
-  final ValueChanged<double>? onValueChange;
 
   /// [thousandSeparator] specifies what symbol will be used to separate
   /// each block of 3 digits, e.g. [ThousandSeparator.Comma] will format
@@ -55,6 +46,16 @@ class MoneyInputFormatter extends TextInputFormatter {
     this.onValueChange,
     this.maxTextLength,
   });
+
+  static final RegExp _wrongLeadingZeroMatcher = RegExp(r'^0\d{1}');
+
+  final ThousandSeparator thousandSeparator;
+  final int mantissaLength;
+  final String leadingSymbol;
+  final String trailingSymbol;
+  final bool useSymbolPadding;
+  final int? maxTextLength;
+  final ValueChanged<double>? onValueChange;
 
   /// [textEditingValue] is used to change
   /// selection in case there is a wrong leading zero

@@ -1,9 +1,9 @@
 import 'date.dart';
 
 abstract class DateFormatter {
-  final Date date;
-
   const DateFormatter(this.date);
+
+  final Date date;
 
   String get y {
     final int year = date.year;

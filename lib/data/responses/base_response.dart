@@ -10,13 +10,6 @@ class UResponse<T> {
     this.totalCount = 0,
   });
 
-  final T? result;
-  final int status;
-  final int pageSize;
-  final int pageCount;
-  final int totalCount;
-  final String message;
-
   factory UResponse.fromJson(String str, T Function(dynamic) fromMapT) {
     final Map<String, dynamic> jsonMap = json.decode(str);
     final dynamic rawResult = jsonMap["result"];
@@ -37,11 +30,16 @@ class UResponse<T> {
       message: jsonMap["message"] ?? '',
     );
   }
+
+  final T? result;
+  final int status;
+  final int pageSize;
+  final int pageCount;
+  final int totalCount;
+  final String message;
 }
 
 class VisitCount {
-  final String userId;
-  final int count;
 
   VisitCount({
     required this.userId,
@@ -50,12 +48,14 @@ class VisitCount {
 
   factory VisitCount.fromJson(String str) => VisitCount.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory VisitCount.fromMap(Map<String, dynamic> json) => VisitCount(
     userId: json["userId"],
     count: json["count"] ?? 1,
   );
+  final String userId;
+  final int count;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "userId": userId,

@@ -1,23 +1,9 @@
 import 'package:flutter/material.dart';
 
 class USegmentedControl<T> extends StatefulWidget {
-  final Map<T, Widget> children;
-  final T initialValue;
-  final ValueChanged<T> onValueChanged;
-  final Duration duration;
-  final Curve curve;
-  final bool isStretch;
-  final BoxDecoration? decoration;
-  final BoxDecoration? thumbDecoration;
-  final EdgeInsets padding;
-  final double innerPadding;
-  final double? height;
-  final double? width;
-  final TextStyle? selectedTextStyle;
-  final TextStyle? unselectedTextStyle;
 
   const USegmentedControl({
-    Key? key,
+    super.key,
     required this.children,
     required this.initialValue,
     required this.onValueChanged,
@@ -32,7 +18,22 @@ class USegmentedControl<T> extends StatefulWidget {
     this.width,
     this.selectedTextStyle,
     this.unselectedTextStyle,
-  }) : super(key: key);
+  });
+
+  final Map<T, Widget> children;
+  final T initialValue;
+  final ValueChanged<T> onValueChanged;
+  final Duration duration;
+  final Curve curve;
+  final bool isStretch;
+  final BoxDecoration? decoration;
+  final BoxDecoration? thumbDecoration;
+  final EdgeInsets padding;
+  final double innerPadding;
+  final double? height;
+  final double? width;
+  final TextStyle? selectedTextStyle;
+  final TextStyle? unselectedTextStyle;
 
   @override
   State<USegmentedControl<T>> createState() => _USegmentedControlState<T>();

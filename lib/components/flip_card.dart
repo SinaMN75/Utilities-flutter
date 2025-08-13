@@ -37,17 +37,6 @@ class AnimationCard extends StatelessWidget {
 typedef BoolCallback = void Function(bool isFront);
 
 class FlipCard extends StatefulWidget {
-  final Widget front;
-  final Widget back;
-  final int speed;
-  final FlipDirection direction;
-  final VoidCallback? onFlip;
-  final BoolCallback? onFlipDone;
-  final FlipCardController? controller;
-  final Fill fill;
-  final CardSide side;
-  final bool flipOnTouch;
-  final Alignment alignment;
 
   const FlipCard({
     super.key,
@@ -64,18 +53,29 @@ class FlipCard extends StatefulWidget {
     this.side = CardSide.FRONT,
   });
 
+  final Widget front;
+  final Widget back;
+  final int speed;
+  final FlipDirection direction;
+  final VoidCallback? onFlip;
+  final BoolCallback? onFlipDone;
+  final FlipCardController? controller;
+  final Fill fill;
+  final CardSide side;
+  final bool flipOnTouch;
+  final Alignment alignment;
+
   @override
   State<StatefulWidget> createState() => FlipCardState();
 }
 
 class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin {
+  FlipCardState();
   AnimationController? controller;
   Animation<double>? _frontRotation;
   Animation<double>? _backRotation;
 
   bool isFront = true;
-
-  FlipCardState();
 
   @override
   void initState() {

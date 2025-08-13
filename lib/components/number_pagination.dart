@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
 
 class UNumberPagination extends StatelessWidget {
-  final int currentPage;
-  final int totalPages;
-  final int threshold;
-  final ValueChanged<int> onPageChanged;
-  final Color? selectedColor;
-  final Color? unselectedColor;
-  final bool showPrevNext;
-  final Icon? prevIcon;
-  final Icon? nextIcon;
 
   const UNumberPagination({
     super.key,
@@ -23,6 +14,16 @@ class UNumberPagination extends StatelessWidget {
     this.prevIcon,
     this.nextIcon,
   });
+
+  final int currentPage;
+  final int totalPages;
+  final int threshold;
+  final ValueChanged<int> onPageChanged;
+  final Color? selectedColor;
+  final Color? unselectedColor;
+  final bool showPrevNext;
+  final Icon? prevIcon;
+  final Icon? nextIcon;
 
   @override
   Widget build(BuildContext context) {

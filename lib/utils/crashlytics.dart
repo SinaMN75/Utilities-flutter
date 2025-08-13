@@ -36,9 +36,7 @@ class CustomCrashlytics {
       },
       'stackTrace': _formatFlutterStackTrace(details.stack),
       'context': details.context?.toString() ?? 'No context',
-      'additionalInfo': details.informationCollector != null
-          ? _formatInformationCollector(details.informationCollector)
-          : null,
+      'additionalInfo': details.informationCollector != null ? _formatInformationCollector(details.informationCollector) : null,
       'systemInfo': await _getSystemInfo(),
     };
 
@@ -134,9 +132,7 @@ class CustomCrashlytics {
         };
       }
     } catch (e) {
-      return <String, dynamic>{
-        'error': 'Failed to get detailed device info: $e'
-      };
+      return <String, dynamic>{'error': 'Failed to get detailed device info: $e'};
     }
     return <String, dynamic>{'type': 'Unknown device'};
   }
@@ -156,9 +152,7 @@ class CustomCrashlytics {
         'deviceType': _getDeviceType(navigatorKey.currentContext!),
       };
     } catch (e) {
-      return <String, dynamic>{
-        'error': 'Failed to get screen info: $e'
-      };
+      return <String, dynamic>{'error': 'Failed to get screen info: $e'};
     }
   }
 
@@ -181,7 +175,6 @@ class CustomCrashlytics {
           child: Text(prettyJson),
         ),
       );
-
     } catch (e) {
       debugPrint('Failed to display error: $e');
     }

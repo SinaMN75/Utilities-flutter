@@ -1,12 +1,6 @@
 import 'package:u/utilities.dart';
 
 class CachedNetworkImage extends StatefulWidget {
-  final String imageUrl;
-  final Widget? placeholder;
-  final Widget? errorWidget;
-  final double? width;
-  final double? height;
-  final BoxFit? fit;
 
   const CachedNetworkImage({
     super.key,
@@ -17,6 +11,13 @@ class CachedNetworkImage extends StatefulWidget {
     this.height,
     this.fit,
   });
+
+  final String imageUrl;
+  final Widget? placeholder;
+  final Widget? errorWidget;
+  final double? width;
+  final double? height;
+  final BoxFit? fit;
 
   @override
   _CachedNetworkImageState createState() => _CachedNetworkImageState();

@@ -3,14 +3,15 @@ import 'package:u/utilities.dart';
 enum _PickerMode { calendar, selectYear, selectMonth }
 
 class JalaliDatePickerDialog extends StatefulWidget {
-  final Jalali initialDate;
-  final Function(DateTime, Jalali) onDateSelected;
 
   const JalaliDatePickerDialog({
     super.key,
     required this.initialDate,
     required this.onDateSelected,
   });
+
+  final Jalali initialDate;
+  final Function(DateTime, Jalali) onDateSelected;
 
   @override
   _JalaliDatePickerDialogState createState() => _JalaliDatePickerDialogState();

@@ -2,25 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class UGauge extends StatelessWidget {
-  final double min;
-  final double max;
-  final double value;
-  final double size;
-  final List<UGaugeRange>? ranges;
-  final List<UGaugeAnnotation>? annotations;
-  final bool showTicks;
-  final bool showLabels;
-  final Color? axisColor;
-  final double? axisThickness;
-  final Color? needleColor;
-  final double needleWidth;
-  final double needleKnobRadius;
-  final Color? majorTickColor;
-  final double? majorTickLength;
-  final Color? minorTickColor;
-  final double? minorTickLength;
-  final double? labelFontSize;
-  final Color? labelColor;
 
   const UGauge({
     super.key,
@@ -44,6 +25,26 @@ class UGauge extends StatelessWidget {
     this.labelFontSize,
     this.labelColor,
   });
+
+  final double min;
+  final double max;
+  final double value;
+  final double size;
+  final List<UGaugeRange>? ranges;
+  final List<UGaugeAnnotation>? annotations;
+  final bool showTicks;
+  final bool showLabels;
+  final Color? axisColor;
+  final double? axisThickness;
+  final Color? needleColor;
+  final double needleWidth;
+  final double needleKnobRadius;
+  final Color? majorTickColor;
+  final double? majorTickLength;
+  final Color? minorTickColor;
+  final double? minorTickLength;
+  final double? labelFontSize;
+  final Color? labelColor;
 
   @override
   Widget build(BuildContext context) {
@@ -91,11 +92,6 @@ class UGauge extends StatelessWidget {
 }
 
 class UGaugeRange {
-  final double start;
-  final double end;
-  final Color color;
-  final double? startWidth;
-  final double? endWidth;
 
   UGaugeRange({
     required this.start,
@@ -104,6 +100,12 @@ class UGaugeRange {
     this.startWidth,
     this.endWidth,
   });
+
+  final double start;
+  final double end;
+  final Color color;
+  final double? startWidth;
+  final double? endWidth;
 
   GaugeRange _toSfRange() {
     return GaugeRange(
@@ -117,15 +119,16 @@ class UGaugeRange {
 }
 
 class UGaugeAnnotation {
-  final Widget widget;
-  final double angle;
-  final double position;
 
   UGaugeAnnotation({
     required this.widget,
     required this.angle,
     required this.position,
   });
+
+  final Widget widget;
+  final double angle;
+  final double position;
 
   GaugeAnnotation _toSfAnnotation() {
     return GaugeAnnotation(

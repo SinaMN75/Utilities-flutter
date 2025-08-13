@@ -1,27 +1,6 @@
 part of "../data.dart";
 
 class ProductCreateParams {
-  final String title;
-  final String? code;
-  final String? subtitle;
-  final String? description;
-  final String? actionType;
-  final String? actionTitle;
-  final String? actionUri;
-  final String? slug;
-  final String? type;
-  final String? content;
-  final double? latitude;
-  final double? longitude;
-  final int? stock;
-  final double? price;
-  final String? details;
-  final List<int> tags;
-  final List<String>? categories;
-  final List<String>? relatedProducts;
-  final String? parentId;
-  final String? userId;
-  final int? point;
 
   ProductCreateParams({
     required this.title,
@@ -49,8 +28,6 @@ class ProductCreateParams {
 
   factory ProductCreateParams.fromJson(String str) => ProductCreateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ProductCreateParams.fromMap(Map<String, dynamic> json) => ProductCreateParams(
         title: json["title"],
         code: json["code"],
@@ -74,6 +51,29 @@ class ProductCreateParams {
         parentId: json["parentId"],
         userId: json["userId"],
       );
+  final String title;
+  final String? code;
+  final String? subtitle;
+  final String? description;
+  final String? actionType;
+  final String? actionTitle;
+  final String? actionUri;
+  final String? slug;
+  final String? type;
+  final String? content;
+  final double? latitude;
+  final double? longitude;
+  final int? stock;
+  final double? price;
+  final String? details;
+  final List<int> tags;
+  final List<String>? categories;
+  final List<String>? relatedProducts;
+  final String? parentId;
+  final String? userId;
+  final int? point;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "title": title,
@@ -101,33 +101,6 @@ class ProductCreateParams {
 }
 
 class ProductUpdateParams {
-  final String? title;
-  final String? code;
-  final String? subtitle;
-  final String? description;
-  final String? slug;
-  final String? type;
-  final String? content;
-  final double? latitude;
-  final double? longitude;
-  final int? stock;
-  final double? price;
-  final String? parentId;
-  final String? userId;
-  final String? actionType;
-  final String? actionTitle;
-  final String? actionUri;
-  final String? details;
-  final List<String>? relatedProducts;
-  final List<String>? addRelatedProducts;
-  final List<String>? removeRelatedProducts;
-  final List<String>? addCategories;
-  final List<String>? removeCategories;
-  final String id;
-  final List<int>? addTags;
-  final List<int>? removeTags;
-  final List<int>? tags;
-  final int? point;
 
   ProductUpdateParams({
     this.title,
@@ -161,8 +134,6 @@ class ProductUpdateParams {
 
   factory ProductUpdateParams.fromJson(String str) => ProductUpdateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ProductUpdateParams.fromMap(Map<String, dynamic> json) => ProductUpdateParams(
         title: json["title"],
         code: json["code"],
@@ -175,8 +146,8 @@ class ProductUpdateParams {
         longitude: json["longitude"],
         stock: json["stock"],
         price: json["price"],
-    point: json["point"],
-    parentId: json["parentId"],
+        point: json["point"],
+        parentId: json["parentId"],
         userId: json["userId"],
         actionType: json["actionType"],
         actionTitle: json["actionTitle"],
@@ -192,6 +163,35 @@ class ProductUpdateParams {
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
       );
+  final String? title;
+  final String? code;
+  final String? subtitle;
+  final String? description;
+  final String? slug;
+  final String? type;
+  final String? content;
+  final double? latitude;
+  final double? longitude;
+  final int? stock;
+  final double? price;
+  final String? parentId;
+  final String? userId;
+  final String? actionType;
+  final String? actionTitle;
+  final String? actionUri;
+  final String? details;
+  final List<String>? relatedProducts;
+  final List<String>? addRelatedProducts;
+  final List<String>? removeRelatedProducts;
+  final List<String>? addCategories;
+  final List<String>? removeCategories;
+  final String id;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final List<int>? tags;
+  final int? point;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "title": title,
@@ -225,33 +225,6 @@ class ProductUpdateParams {
 }
 
 class ProductReadParams {
-  final String? query;
-  final String? title;
-  final String? code;
-  final String? parentId;
-  final String? userId;
-  final int? minStock;
-  final int? maxStock;
-  final double? minPrice;
-  final double? maxPrice;
-  final bool? showCategories;
-  final bool? showCategoriesMedia;
-  final bool? showMedia;
-  final bool? showUser;
-  final bool? showUserMedia;
-  final bool? showUserCategory;
-  final bool? showChildren;
-  final bool? showChildrenDepth;
-  final List<String>? ids;
-  final int? pageSize;
-  final int? pageNumber;
-  final DateTime? fromCreatedAt;
-  final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
-  final List<int>? tags;
 
   ProductReadParams({
     this.query,
@@ -281,11 +254,12 @@ class ProductReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
+    this.showCommentCount,
+    this.showIsFollowing,
+    this.showChildrenCount,
   });
 
   factory ProductReadParams.fromJson(String str) => ProductReadParams.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
 
   factory ProductReadParams.fromMap(Map<String, dynamic> json) => ProductReadParams(
         query: json["query"],
@@ -314,8 +288,43 @@ class ProductReadParams {
         orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
+        showCommentCount: json["showCommentCount"] ?? false,
+        showIsFollowing: json["showIsFollowing"] ?? false,
+        showChildrenCount: json["showChildrenCount"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
       );
+  final String? query;
+  final String? title;
+  final String? code;
+  final String? parentId;
+  final String? userId;
+  final int? minStock;
+  final int? maxStock;
+  final double? minPrice;
+  final double? maxPrice;
+  final bool? showCategories;
+  final bool? showCategoriesMedia;
+  final bool? showMedia;
+  final bool? showUser;
+  final bool? showUserMedia;
+  final bool? showUserCategory;
+  final bool? showChildren;
+  final bool? showChildrenDepth;
+  final List<String>? ids;
+  final int? pageSize;
+  final int? pageNumber;
+  final DateTime? fromCreatedAt;
+  final DateTime? toCreatedAt;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByUpdatedAt;
+  final bool? orderByUpdatedAtDesc;
+  final bool? showCommentCount;
+  final bool? showIsFollowing;
+  final bool? showChildrenCount;
+  final List<int>? tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "query": query,
@@ -344,6 +353,9 @@ class ProductReadParams {
         "orderByCreatedAtDesc": orderByCreatedAtDesc,
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
+        "showIsFollowing": showIsFollowing,
+        "showChildrenCount": showChildrenCount,
+        "showCommentCount": showCommentCount,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
       };
 }

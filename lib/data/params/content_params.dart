@@ -1,11 +1,6 @@
 part of "../data.dart";
 
 class ContentCreateParams {
-  final String title;
-  final String description;
-  final String subTitle;
-  final String? instagram;
-  final List<int> tags;
 
   ContentCreateParams({
     required this.title,
@@ -17,8 +12,6 @@ class ContentCreateParams {
 
   factory ContentCreateParams.fromJson(String str) => ContentCreateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ContentCreateParams.fromMap(Map<String, dynamic> json) => ContentCreateParams(
         title: json["title"],
         description: json["description"],
@@ -26,6 +19,13 @@ class ContentCreateParams {
         instagram: json["instagram"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
       );
+  final String title;
+  final String description;
+  final String subTitle;
+  final String? instagram;
+  final List<int> tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "title": title,
@@ -37,13 +37,6 @@ class ContentCreateParams {
 }
 
 class ContentUpdateParams {
-  final String id;
-  final String? title;
-  final String? subTitle;
-  final String? description;
-  final String? instagram;
-  final List<int>? addTags;
-  final List<int>? removeTags;
 
   ContentUpdateParams({
     required this.id,
@@ -57,8 +50,6 @@ class ContentUpdateParams {
 
   factory ContentUpdateParams.fromJson(String str) => ContentUpdateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ContentUpdateParams.fromMap(Map<String, dynamic> json) => ContentUpdateParams(
         id: json["id"],
         title: json["title"],
@@ -68,6 +59,15 @@ class ContentUpdateParams {
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
       );
+  final String id;
+  final String? title;
+  final String? subTitle;
+  final String? description;
+  final String? instagram;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
@@ -81,16 +81,6 @@ class ContentUpdateParams {
 }
 
 class ContentReadParams {
-  final bool? showMedia;
-  final int? pageSize;
-  final int? pageNumber;
-  final DateTime? fromCreatedAt;
-  final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
-  final List<int>? tags;
 
   ContentReadParams({
     this.showMedia,
@@ -107,8 +97,6 @@ class ContentReadParams {
 
   factory ContentReadParams.fromJson(String str) => ContentReadParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ContentReadParams.fromMap(Map<String, dynamic> json) => ContentReadParams(
         showMedia: json["showMedia"] ?? false,
         pageSize: json["pageSize"] ?? 0,
@@ -121,6 +109,18 @@ class ContentReadParams {
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
       );
+  final bool? showMedia;
+  final int? pageSize;
+  final int? pageNumber;
+  final DateTime? fromCreatedAt;
+  final DateTime? toCreatedAt;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByUpdatedAt;
+  final bool? orderByUpdatedAtDesc;
+  final List<int>? tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "showMedia": showMedia,

@@ -150,13 +150,6 @@ class UMaterialApp extends StatelessWidget {
 }
 
 class UThemeData {
-  final String fontFamily;
-  final Color disabledColor;
-  final Color primaryColor;
-  final Color secondaryColor;
-  final Color errorColor;
-  final Color cardColor;
-  final double cardElevation;
 
   UThemeData({
     required this.fontFamily,
@@ -167,4 +160,12 @@ class UThemeData {
     this.cardColor = Colors.white,
     this.cardElevation = 1,
   });
+
+  final String fontFamily;
+  final Color disabledColor;
+  final Color primaryColor;
+  final Color secondaryColor;
+  final Color errorColor;
+  final Color cardColor;
+  final double cardElevation;
 }

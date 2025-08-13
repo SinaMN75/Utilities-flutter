@@ -6,60 +6,6 @@ import '../jalali/jalali_date.dart';
 part 'gregorian_calculation.dart';
 
 class Gregorian extends Date {
-  static const Gregorian min = Gregorian._raw(1925675, 560, 3, 20, 0, 0, 0, 0);
-
-  static const Gregorian max = Gregorian._raw(3108616, 3798, 12, 31, 23, 59, 59, 999);
-
-  const Gregorian._raw(
-    this.julianDayNumber,
-    this.year,
-    this.month,
-    this.day,
-    this.hour,
-    this.minute,
-    this.second,
-    this.millisecond,
-  );
-
-  @override
-  final int julianDayNumber;
-
-  @override
-  final int year;
-
-  @override
-  final int month;
-
-  @override
-  final int day;
-
-  @override
-  final int hour;
-
-  @override
-  final int minute;
-
-  @override
-  final int second;
-
-  @override
-  final int millisecond;
-
-  @override
-  int get weekDay {
-    return julianDayNumber % 7 + 1;
-  }
-
-  @override
-  int get monthLength {
-    return _Algo.getMonthLength(year, month);
-  }
-
-  @override
-  GregorianFormatter get formatter {
-    return GregorianFormatter(this);
-  }
-
   factory Gregorian(
     final int year, [
     final int month = 1,
@@ -79,6 +25,17 @@ class Gregorian extends Date {
       millisecond,
     );
   }
+
+  const Gregorian._raw(
+    this.julianDayNumber,
+    this.year,
+    this.month,
+    this.day,
+    this.hour,
+    this.minute,
+    this.second,
+    this.millisecond,
+  );
 
   factory Gregorian.fromJulianDayNumber(
     final int julianDayNumber, [
@@ -132,6 +89,49 @@ class Gregorian extends Date {
 
   factory Gregorian.now() {
     return Gregorian.fromDateTime(DateTime.now());
+  }
+
+  static const Gregorian min = Gregorian._raw(1925675, 560, 3, 20, 0, 0, 0, 0);
+
+  static const Gregorian max = Gregorian._raw(3108616, 3798, 12, 31, 23, 59, 59, 999);
+
+  @override
+  final int julianDayNumber;
+
+  @override
+  final int year;
+
+  @override
+  final int month;
+
+  @override
+  final int day;
+
+  @override
+  final int hour;
+
+  @override
+  final int minute;
+
+  @override
+  final int second;
+
+  @override
+  final int millisecond;
+
+  @override
+  int get weekDay {
+    return julianDayNumber % 7 + 1;
+  }
+
+  @override
+  int get monthLength {
+    return _Algo.getMonthLength(year, month);
+  }
+
+  @override
+  GregorianFormatter get formatter {
+    return GregorianFormatter(this);
   }
 
   @override

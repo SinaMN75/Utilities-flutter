@@ -7,17 +7,6 @@ extension MediaListExtension on Iterable<MediaResponse> {
 }
 
 class MediaResponse {
-  final String id;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final MediaJson jsonData;
-  final List<int> tags;
-  final String path;
-  final String? userId;
-  final String? contentId;
-  final String? categoryId;
-  final String? commentId;
-  final String? productId;
 
   MediaResponse({
     required this.id,
@@ -33,11 +22,7 @@ class MediaResponse {
     this.productId,
   });
 
-  String get url => "https://localhost:7048/Media/$path";
-
   factory MediaResponse.fromJson(String str) => MediaResponse.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
 
   factory MediaResponse.fromMap(Map<String, dynamic> json) => MediaResponse(
         id: json["id"],
@@ -52,6 +37,21 @@ class MediaResponse {
         commentId: json["commentId"],
         productId: json["productId"],
       );
+  final String id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final MediaJson jsonData;
+  final List<int> tags;
+  final String path;
+  final String? userId;
+  final String? contentId;
+  final String? categoryId;
+  final String? commentId;
+  final String? productId;
+
+  String get url => "https://localhost:7048/Media/$path";
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
@@ -69,8 +69,6 @@ class MediaResponse {
 }
 
 class MediaJson {
-  final String? title;
-  final String? description;
 
   MediaJson({
     this.title,
@@ -79,12 +77,14 @@ class MediaJson {
 
   factory MediaJson.fromJson(String str) => MediaJson.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory MediaJson.fromMap(Map<String, dynamic> json) => MediaJson(
         title: json["title"],
         description: json["description"],
       );
+  final String? title;
+  final String? description;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "title": title,

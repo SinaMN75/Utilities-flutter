@@ -32,6 +32,17 @@ part "services/product_service.dart";
 part "services/user_service.dart";
 
 class UServices {
+  UServices({required this.baseUrl, required this.apiKey}) {
+    dashboard = DashboardService(baseUrl: baseUrl);
+    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    user = UserService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    product = ProductService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    content = ContentService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    comment = CommentService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    follow = FollowService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+  }
   final String baseUrl;
   final String apiKey;
 
@@ -44,16 +55,4 @@ class UServices {
   late ContentService content;
   late CommentService comment;
   late FollowService follow;
-
-  UServices({required this.baseUrl, required this.apiKey}) {
-    dashboard = DashboardService(baseUrl: baseUrl);
-    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    user = UserService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    product = ProductService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    content = ContentService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    comment = CommentService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    follow = FollowService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-  }
 }

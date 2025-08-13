@@ -1,11 +1,14 @@
 import 'package:u/utilities.dart';
 
 abstract class UNavigator {
-
   static ThemeData get theme => Theme.of(navigatorKey.currentContext!);
+
   static MediaQueryData get mediaQuery => MediaQuery.of(navigatorKey.currentContext!);
+
   static bool get canPop => Navigator.of(navigatorKey.currentContext!).canPop();
+
   static bool get isAndroid => theme.platform == TargetPlatform.android;
+
   static bool get isIOS => theme.platform == TargetPlatform.iOS;
 
   /// Push with optional custom transition
@@ -41,17 +44,18 @@ abstract class UNavigator {
     RouteTransitions transition = RouteTransitions.fade,
     RouteSettings? settings,
     VoidCallback? onDismiss,
-  }) => Navigator.pushReplacement<T, dynamic>(
-      navigatorKey.currentContext!,
-      PageRouteBuilder<T>(
-        pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
-        transitionsBuilder: _getTransition(transition),
-        settings: settings,
-      ),
-    ).then((T? value) {
-      onDismiss?.call();
-      return value;
-    });
+  }) =>
+      Navigator.pushReplacement<T, dynamic>(
+        navigatorKey.currentContext!,
+        PageRouteBuilder<T>(
+          pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
+          transitionsBuilder: _getTransition(transition),
+          settings: settings,
+        ),
+      ).then((T? value) {
+        onDismiss?.call();
+        return value;
+      });
 
   /// Clear all routes and start fresh
   static void offAll(
@@ -187,24 +191,25 @@ abstract class UNavigator {
     bool expand = false,
     bool useRootNavigator = true,
     VoidCallback? onDismiss,
-  }) => showModalBottomSheet<T>(
-      context: navigatorKey.currentContext!,
-      isScrollControlled: true,
-      useRootNavigator: useRootNavigator,
-      builder: (BuildContext context) => DraggableScrollableSheet(
-        expand: expand,
-        initialChildSize: initialChildSize,
-        minChildSize: minChildSize,
-        maxChildSize: maxChildSize,
-        builder: (BuildContext context, ScrollController controller) => SingleChildScrollView(
-          controller: controller,
-          child: child,
+  }) =>
+      showModalBottomSheet<T>(
+        context: navigatorKey.currentContext!,
+        isScrollControlled: true,
+        useRootNavigator: useRootNavigator,
+        builder: (BuildContext context) => DraggableScrollableSheet(
+          expand: expand,
+          initialChildSize: initialChildSize,
+          minChildSize: minChildSize,
+          maxChildSize: maxChildSize,
+          builder: (BuildContext context, ScrollController controller) => SingleChildScrollView(
+            controller: controller,
+            child: child,
+          ),
         ),
-      ),
-    ).then((T? value) {
-      onDismiss?.call();
-      return value;
-    });
+      ).then((T? value) {
+        onDismiss?.call();
+        return value;
+      });
 
   /// Standard snackbar
   static void snackbar({
@@ -218,18 +223,22 @@ abstract class UNavigator {
     EdgeInsets? margin,
     double? width,
     VoidCallback? onDismiss,
-  }) => ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(SnackBar(
-      content: Text(message, style: TextStyle(color: textColor)),
-      backgroundColor: backgroundColor ?? theme.snackBarTheme.backgroundColor,
-      duration: duration,
-      action: action,
-      dismissDirection: dismissDirection,
-      behavior: margin != null ? SnackBarBehavior.floating : null,
-      margin: margin,
-      width: width,
-    )).closed.then((_) {
-      onDismiss?.call();
-    });
+  }) =>
+      ScaffoldMessenger.of(navigatorKey.currentContext!)
+          .showSnackBar(SnackBar(
+            content: Text(message, style: TextStyle(color: textColor)),
+            backgroundColor: backgroundColor ?? theme.snackBarTheme.backgroundColor,
+            duration: duration,
+            action: action,
+            dismissDirection: dismissDirection,
+            behavior: margin != null ? SnackBarBehavior.floating : null,
+            margin: margin,
+            width: width,
+          ))
+          .closed
+          .then((_) {
+        onDismiss?.call();
+      });
 
   /// Floating toast-style notification
   static void toast({
@@ -241,24 +250,28 @@ abstract class UNavigator {
     EdgeInsets padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
     EdgeInsets margin = const EdgeInsets.only(bottom: 30),
     VoidCallback? onDismiss,
-  }) => ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(SnackBar(
-      content: Text(
-        message,
-        style: TextStyle(color: textColor ?? theme.colorScheme.onSurface),
-        textAlign: TextAlign.center,
-      ),
-      backgroundColor: backgroundColor ?? theme.colorScheme.surface,
-      elevation: 6,
-      duration: duration,
-      behavior: SnackBarBehavior.floating,
-      margin: margin,
-      padding: padding,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(borderRadius),
-      ),
-    )).closed.then((_) {
-      onDismiss?.call();
-    });
+  }) =>
+      ScaffoldMessenger.of(navigatorKey.currentContext!)
+          .showSnackBar(SnackBar(
+            content: Text(
+              message,
+              style: TextStyle(color: textColor ?? theme.colorScheme.onSurface),
+              textAlign: TextAlign.center,
+            ),
+            backgroundColor: backgroundColor ?? theme.colorScheme.surface,
+            elevation: 6,
+            duration: duration,
+            behavior: SnackBarBehavior.floating,
+            margin: margin,
+            padding: padding,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
+          ))
+          .closed
+          .then((_) {
+        onDismiss?.call();
+      });
 
   /// Error notification
   static void error({
@@ -267,34 +280,36 @@ abstract class UNavigator {
     String? actionLabel,
     VoidCallback? onAction,
     VoidCallback? onDismiss,
-  }) => snackbar(
-      message: message,
-      backgroundColor: theme.colorScheme.error,
-      textColor: theme.colorScheme.onError,
-      action: actionLabel != null
-          ? SnackBarAction(
-              label: actionLabel,
-              onPressed: onAction ?? () {},
-              textColor: theme.colorScheme.onError,
-            )
-          : null,
-      duration: duration,
-      onDismiss: onDismiss,
-    );
+  }) =>
+      snackbar(
+        message: message,
+        backgroundColor: theme.colorScheme.error,
+        textColor: theme.colorScheme.onError,
+        action: actionLabel != null
+            ? SnackBarAction(
+                label: actionLabel,
+                onPressed: onAction ?? () {},
+                textColor: theme.colorScheme.onError,
+              )
+            : null,
+        duration: duration,
+        onDismiss: onDismiss,
+      );
 
   /// Full-screen dialog
   static Future<T?> fullScreenDialog<T>(
     Widget page, {
     RouteTransitions transition = RouteTransitions.upToDown,
     VoidCallback? onDismiss,
-  }) => push<T>(
-      page,
-      fullscreenDialog: true,
-      transition: transition,
-    ).then((T? value) {
-      onDismiss?.call();
-      return value;
-    });
+  }) =>
+      push<T>(
+        page,
+        fullscreenDialog: true,
+        transition: transition,
+      ).then((T? value) {
+        onDismiss?.call();
+        return value;
+      });
 
   /// Overlay notification (non-intrusive)
   static OverlayEntry? _currentOverlay;

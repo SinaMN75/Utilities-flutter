@@ -5,9 +5,9 @@ abstract class DateException implements Exception {
 }
 
 class _DateExceptionImpl implements DateException {
-  final String message;
-
   const _DateExceptionImpl(this.message);
+
+  final String message;
 
   @override
   String toString() {

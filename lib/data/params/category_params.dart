@@ -1,16 +1,6 @@
 part of "../data.dart";
 
 class CategoryCreateParams {
-  final String? id;
-  final String title;
-  final String? subtitle;
-  final List<int> tags;
-  final String? parentId;
-  final int? order;
-  final String? location;
-  final String? type;
-  final String? link;
-  final List<String>? relatedProducts;
 
   CategoryCreateParams({
     this.id,
@@ -27,8 +17,6 @@ class CategoryCreateParams {
 
   factory CategoryCreateParams.fromJson(String str) => CategoryCreateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory CategoryCreateParams.fromMap(Map<String, dynamic> json) => CategoryCreateParams(
         id: json["id"],
         title: json["title"],
@@ -42,6 +30,18 @@ class CategoryCreateParams {
         relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
         
       );
+  final String? id;
+  final String title;
+  final String? subtitle;
+  final List<int> tags;
+  final String? parentId;
+  final int? order;
+  final String? location;
+  final String? type;
+  final String? link;
+  final List<String>? relatedProducts;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
@@ -58,20 +58,6 @@ class CategoryCreateParams {
 }
 
 class CategoryUpdateParams {
-  final String? title;
-  final String? subtitle;
-  final String? link;
-  final String? location;
-  final String? type;
-  final int? order;
-  final String? parentId;
-  final List<String>? relatedProducts;
-  final List<String>? addRelatedProducts;
-  final List<String>? removeRelatedProducts;
-  final String id;
-  final List<int>? addTags;
-  final List<int>? removeTags;
-  final List<int>? tags;
 
   CategoryUpdateParams({
     this.title,
@@ -92,8 +78,6 @@ class CategoryUpdateParams {
 
   factory CategoryUpdateParams.fromJson(String str) => CategoryUpdateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory CategoryUpdateParams.fromMap(Map<String, dynamic> json) => CategoryUpdateParams(
         title: json["title"],
         subtitle: json["subtitle"],
@@ -111,6 +95,22 @@ class CategoryUpdateParams {
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
         
       );
+  final String? title;
+  final String? subtitle;
+  final String? link;
+  final String? location;
+  final String? type;
+  final int? order;
+  final String? parentId;
+  final List<String>? relatedProducts;
+  final List<String>? addRelatedProducts;
+  final List<String>? removeRelatedProducts;
+  final String id;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final List<int>? tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "title": title,
@@ -131,15 +131,6 @@ class CategoryUpdateParams {
 }
 
 class CategoryReadParams {
-  final List<String>? ids;
-  final bool? showMedia;
-  final int? pageSize;
-  final int? pageNumber;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
-  final List<int>? tags;
 
   CategoryReadParams({
     this.ids,
@@ -155,8 +146,6 @@ class CategoryReadParams {
 
   factory CategoryReadParams.fromJson(String str) => CategoryReadParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory CategoryReadParams.fromMap(Map<String, dynamic> json) => CategoryReadParams(
         ids: json["ids"] == null ? null : List<String>.from(json["ids"].map((dynamic x) => x)),
         showMedia: json["showMedia"] ?? false,
@@ -169,6 +158,17 @@ class CategoryReadParams {
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
         
       );
+  final List<String>? ids;
+  final bool? showMedia;
+  final int? pageSize;
+  final int? pageNumber;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByUpdatedAt;
+  final bool? orderByUpdatedAtDesc;
+  final List<int>? tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "ids": ids == null ? null : List<dynamic>.from(ids!.map((String x) => x)),

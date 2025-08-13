@@ -7,17 +7,6 @@ extension CategoryListExtension on Iterable<CategoryResponse> {
 
 
 class CategoryResponse {
-  final String id;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final CategoryJson jsonData;
-  final List<int> tags;
-  final String title;
-  final String? parentId;
-  final CategoryResponse? parent;
-  final int? order;
-  final List<CategoryResponse>? children;
-  final List<MediaResponse>? media;
 
   CategoryResponse({
     required this.id,
@@ -35,8 +24,6 @@ class CategoryResponse {
 
   factory CategoryResponse.fromJson(String str) => CategoryResponse.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory CategoryResponse.fromMap(Map<String, dynamic> json) => CategoryResponse(
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
@@ -50,6 +37,19 @@ class CategoryResponse {
         children: json["children"] == null ? <CategoryResponse>[] : List<CategoryResponse>.from(json["children"].map((dynamic x) => CategoryResponse.fromMap(x))),
         media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
       );
+  final String id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final CategoryJson jsonData;
+  final List<int> tags;
+  final String title;
+  final String? parentId;
+  final CategoryResponse? parent;
+  final int? order;
+  final List<CategoryResponse>? children;
+  final List<MediaResponse>? media;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
@@ -67,11 +67,6 @@ class CategoryResponse {
 }
 
 class CategoryJson {
-  final String? subtitle;
-  final String? link;
-  final String? location;
-  final String? type;
-  final List<String>? relatedProducts;
 
   CategoryJson({
     this.subtitle,
@@ -83,8 +78,6 @@ class CategoryJson {
 
   factory CategoryJson.fromJson(String str) => CategoryJson.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory CategoryJson.fromMap(Map<String, dynamic> json) => CategoryJson(
         subtitle: json["subtitle"],
         link: json["link"],
@@ -92,6 +85,13 @@ class CategoryJson {
         type: json["type"],
         relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
       );
+  final String? subtitle;
+  final String? link;
+  final String? location;
+  final String? type;
+  final List<String>? relatedProducts;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "subtitle": subtitle,

@@ -7,12 +7,6 @@ extension ContentListExtension on Iterable<ContentResponse> {
 }
 
 class ContentResponse {
-  final String id;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final ContentJson jsonData;
-  final List<int> tags;
-  final List<MediaResponse> media;
 
   ContentResponse({
     required this.id,
@@ -25,8 +19,6 @@ class ContentResponse {
 
   factory ContentResponse.fromJson(String str) => ContentResponse.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ContentResponse.fromMap(Map<String, dynamic> json) => ContentResponse(
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
@@ -35,6 +27,14 @@ class ContentResponse {
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
       );
+  final String id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final ContentJson jsonData;
+  final List<int> tags;
+  final List<MediaResponse> media;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
@@ -47,13 +47,6 @@ class ContentResponse {
 }
 
 class ContentJson {
-  final String? title;
-  final String? subTitle;
-  final String? description;
-  final String? instagram;
-  final String? telegram;
-  final String? whatsapp;
-  final String? phone;
 
   ContentJson({
     this.title,
@@ -67,8 +60,6 @@ class ContentJson {
 
   factory ContentJson.fromJson(String str) => ContentJson.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ContentJson.fromMap(Map<String, dynamic> json) => ContentJson(
         title: json["title"],
         subTitle: json["subTitle"],
@@ -78,6 +69,15 @@ class ContentJson {
         whatsapp: json["whatsapp"],
         phone: json["phone"],
       );
+  final String? title;
+  final String? subTitle;
+  final String? description;
+  final String? instagram;
+  final String? telegram;
+  final String? whatsapp;
+  final String? phone;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "title": title,

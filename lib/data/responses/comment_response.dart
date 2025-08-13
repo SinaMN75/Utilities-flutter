@@ -1,23 +1,6 @@
 part of "../data.dart";
 
 class CommentResponse {
-  final String id;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final CommentJson jsonData;
-  final List<int> tags;
-  final double score;
-  final String description;
-  final String? parentId;
-  final CommentResponse? parent;
-  final UserResponse? user;
-  final String userId;
-  final UserResponse? targetUser;
-  final String? targetUserId;
-  final ProductResponse? product;
-  final String? productId;
-  final List<CommentResponse>? children;
-  final List<MediaResponse>? media;
 
   CommentResponse({
     required this.id,
@@ -41,8 +24,6 @@ class CommentResponse {
 
   factory CommentResponse.fromJson(String str) => CommentResponse.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory CommentResponse.fromMap(Map<String, dynamic> json) => CommentResponse(
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
@@ -62,6 +43,25 @@ class CommentResponse {
         children: json["children"] == null ? <CommentResponse>[] : List<CommentResponse>.from(json["children"].map((dynamic x) => CommentResponse.fromMap(x))),
         media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
       );
+  final String id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final CommentJson jsonData;
+  final List<int> tags;
+  final double score;
+  final String description;
+  final String? parentId;
+  final CommentResponse? parent;
+  final UserResponse? user;
+  final String userId;
+  final UserResponse? targetUser;
+  final String? targetUserId;
+  final ProductResponse? product;
+  final String? productId;
+  final List<CommentResponse>? children;
+  final List<MediaResponse>? media;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
@@ -85,7 +85,6 @@ class CommentResponse {
 }
 
 class CommentJson {
-  final List<CommentReacts>? reacts;
 
   CommentJson({
     this.reacts,
@@ -93,11 +92,12 @@ class CommentJson {
 
   factory CommentJson.fromJson(String str) => CommentJson.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory CommentJson.fromMap(Map<String, dynamic> json) => CommentJson(
         reacts: json["reacts"] == null ? <CommentReacts>[] : List<CommentReacts>.from(json["reacts"].map((dynamic x) => CommentReacts.fromMap(x))),
       );
+  final List<CommentReacts>? reacts;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "reacts": reacts == null ? null : List<dynamic>.from(reacts!.map((CommentReacts x) => x.toMap())),
@@ -105,8 +105,6 @@ class CommentJson {
 }
 
 class CommentReacts {
-  final int tag;
-  final String userId;
 
   CommentReacts({
     required this.tag,
@@ -115,12 +113,14 @@ class CommentReacts {
 
   factory CommentReacts.fromJson(String str) => CommentReacts.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory CommentReacts.fromMap(Map<String, dynamic> json) => CommentReacts(
         tag: json["tag"],
         userId: json["userId"],
       );
+  final int tag;
+  final String userId;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "tag": tag,

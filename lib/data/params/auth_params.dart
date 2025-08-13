@@ -1,7 +1,6 @@
 part of "../data.dart";
 
 class RefreshTokenParams {
-  final String refreshToken;
 
   RefreshTokenParams({
     required this.refreshToken,
@@ -9,11 +8,12 @@ class RefreshTokenParams {
 
   factory RefreshTokenParams.fromJson(String str) => RefreshTokenParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory RefreshTokenParams.fromMap(Map<String, dynamic> json) => RefreshTokenParams(
         refreshToken: json["refreshToken"],
       );
+  final String refreshToken;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "refreshToken": refreshToken,
@@ -21,7 +21,6 @@ class RefreshTokenParams {
 }
 
 class GetMobileVerificationCodeForLoginParams {
-  final String phoneNumber;
 
   GetMobileVerificationCodeForLoginParams({
     required this.phoneNumber,
@@ -29,11 +28,12 @@ class GetMobileVerificationCodeForLoginParams {
 
   factory GetMobileVerificationCodeForLoginParams.fromJson(String str) => GetMobileVerificationCodeForLoginParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory GetMobileVerificationCodeForLoginParams.fromMap(Map<String, dynamic> json) => GetMobileVerificationCodeForLoginParams(
         phoneNumber: json["phoneNumber"],
       );
+  final String phoneNumber;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "phoneNumber": phoneNumber,
@@ -41,8 +41,6 @@ class GetMobileVerificationCodeForLoginParams {
 }
 
 class LoginWithEmailPasswordParams {
-  final String email;
-  final String password;
 
   LoginWithEmailPasswordParams({
     required this.email,
@@ -51,12 +49,14 @@ class LoginWithEmailPasswordParams {
 
   factory LoginWithEmailPasswordParams.fromJson(String str) => LoginWithEmailPasswordParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory LoginWithEmailPasswordParams.fromMap(Map<String, dynamic> json) => LoginWithEmailPasswordParams(
         email: json["email"],
         password: json["password"],
       );
+  final String email;
+  final String password;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "email": email,
@@ -65,8 +65,6 @@ class LoginWithEmailPasswordParams {
 }
 
 class LoginWithUserNamePasswordParams {
-  final String userName;
-  final String password;
 
   LoginWithUserNamePasswordParams({
     required this.userName,
@@ -75,12 +73,14 @@ class LoginWithUserNamePasswordParams {
 
   factory LoginWithUserNamePasswordParams.fromJson(String str) => LoginWithUserNamePasswordParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory LoginWithUserNamePasswordParams.fromMap(Map<String, dynamic> json) => LoginWithUserNamePasswordParams(
         userName: json["userName"],
         password: json["password"],
       );
+  final String userName;
+  final String password;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "userName": userName,
@@ -89,13 +89,6 @@ class LoginWithUserNamePasswordParams {
 }
 
 class RegisterParams {
-  final String userName;
-  final String? email;
-  final String? phoneNumber;
-  final String password;
-  final String? firstName;
-  final String? lastName;
-  final List<int> tags;
 
   RegisterParams({
     required this.userName,
@@ -109,8 +102,6 @@ class RegisterParams {
 
   factory RegisterParams.fromJson(String str) => RegisterParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory RegisterParams.fromMap(Map<String, dynamic> json) => RegisterParams(
         userName: json["userName"],
         email: json["email"],
@@ -120,6 +111,15 @@ class RegisterParams {
         lastName: json["lastName"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
       );
+  final String userName;
+  final String? email;
+  final String? phoneNumber;
+  final String password;
+  final String? firstName;
+  final String? lastName;
+  final List<int> tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "userName": userName,
@@ -133,10 +133,6 @@ class RegisterParams {
 }
 
 class VerifyMobileForLoginParams {
-  final String phoneNumber;
-  final String otp;
-  final String? firstName;
-  final String? lastName;
 
   VerifyMobileForLoginParams({
     required this.phoneNumber,
@@ -147,14 +143,18 @@ class VerifyMobileForLoginParams {
 
   factory VerifyMobileForLoginParams.fromJson(String str) => VerifyMobileForLoginParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory VerifyMobileForLoginParams.fromMap(Map<String, dynamic> json) => VerifyMobileForLoginParams(
         phoneNumber: json["phoneNumber"],
         otp: json["otp"],
         firstName: json["firstName"],
         lastName: json["lastName"],
       );
+  final String phoneNumber;
+  final String otp;
+  final String? firstName;
+  final String? lastName;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "phoneNumber": phoneNumber,

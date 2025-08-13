@@ -1,7 +1,6 @@
 part of "../data.dart";
 
 class UserBulkCreateParams {
-  final List<UserCreateParams> users;
 
   UserBulkCreateParams({
     required this.users,
@@ -9,11 +8,12 @@ class UserBulkCreateParams {
 
   factory UserBulkCreateParams.fromJson(String str) => UserBulkCreateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory UserBulkCreateParams.fromMap(Map<String, dynamic> json) => UserBulkCreateParams(
         users: List<UserCreateParams>.from(json["users"].map((dynamic x) => UserCreateParams.fromMap(x))),
       );
+  final List<UserCreateParams> users;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "users": List<dynamic>.from(users.map((UserCreateParams x) => x.toMap())),
@@ -21,28 +21,6 @@ class UserBulkCreateParams {
 }
 
 class UserCreateParams {
-  final String userName;
-  final String password;
-  final String phoneNumber;
-  final String email;
-  final String? firstName;
-  final String? lastName;
-  final String? bio;
-  final String? country;
-  final String? state;
-  final String? city;
-  final DateTime? birthdate;
-  final int? weight;
-  final int? height;
-  final String? address;
-  final String? fatherName;
-  final String? fcmToken;
-  final List<String>? health1;
-  final List<String>? foodAllergies;
-  final List<String>? drugAllergies;
-  final List<String>? sickness;
-  final List<int> tags;
-  final List<String>? categories;
 
   UserCreateParams({
     required this.userName,
@@ -71,8 +49,6 @@ class UserCreateParams {
 
   factory UserCreateParams.fromJson(String str) => UserCreateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory UserCreateParams.fromMap(Map<String, dynamic> json) => UserCreateParams(
         userName: json["userName"],
         password: json["password"],
@@ -97,6 +73,30 @@ class UserCreateParams {
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
       );
+  final String userName;
+  final String password;
+  final String phoneNumber;
+  final String email;
+  final String? firstName;
+  final String? lastName;
+  final String? bio;
+  final String? country;
+  final String? state;
+  final String? city;
+  final DateTime? birthdate;
+  final int? weight;
+  final int? height;
+  final String? address;
+  final String? fatherName;
+  final String? fcmToken;
+  final List<String>? health1;
+  final List<String>? foodAllergies;
+  final List<String>? drugAllergies;
+  final List<String>? sickness;
+  final List<int> tags;
+  final List<String>? categories;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "userName": userName,
@@ -125,26 +125,6 @@ class UserCreateParams {
 }
 
 class UserReadParams {
-  final String? userName;
-  final String? phoneNumber;
-  final String? email;
-  final String? bio;
-  final DateTime? startBirthDate;
-  final DateTime? endBirthDate;
-  final List<String>? categories;
-  final bool? showCategories;
-  final bool? showMedia;
-  final bool? orderByLastName;
-  final bool? orderByLastNameDesc;
-  final int? pageSize;
-  final int? pageNumber;
-  final DateTime? fromCreatedAt;
-  final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
-  final List<int>? tags;
 
   UserReadParams({
     this.userName,
@@ -171,8 +151,6 @@ class UserReadParams {
 
   factory UserReadParams.fromJson(String str) => UserReadParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory UserReadParams.fromMap(Map<String, dynamic> json) => UserReadParams(
         userName: json["userName"],
         phoneNumber: json["phoneNumber"],
@@ -195,6 +173,28 @@ class UserReadParams {
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
       );
+  final String? userName;
+  final String? phoneNumber;
+  final String? email;
+  final String? bio;
+  final DateTime? startBirthDate;
+  final DateTime? endBirthDate;
+  final List<String>? categories;
+  final bool? showCategories;
+  final bool? showMedia;
+  final bool? orderByLastName;
+  final bool? orderByLastNameDesc;
+  final int? pageSize;
+  final int? pageNumber;
+  final DateTime? fromCreatedAt;
+  final DateTime? toCreatedAt;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByUpdatedAt;
+  final bool? orderByUpdatedAtDesc;
+  final List<int>? tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "userName": userName,
@@ -221,33 +221,6 @@ class UserReadParams {
 }
 
 class UserUpdateParams {
-  final String? password;
-  final String? firstName;
-  final String? lastName;
-  final String? country;
-  final String? state;
-  final String? city;
-  final String? userName;
-  final String? phoneNumber;
-  final String? email;
-  final String? bio;
-  final DateTime? birthdate;
-  final String? fcmToken;
-  final String? address;
-  final String? fatherName;
-  final int? weight;
-  final int? height;
-  final List<String>? addHealth1;
-  final List<String>? removeHealth1;
-  final List<String>? foodAllergies;
-  final List<String>? drugAllergies;
-  final List<String>? sickness;
-  final List<String>? health1;
-  final List<String>? categories;
-  final String id;
-  final List<int>? addTags;
-  final List<int>? removeTags;
-  final List<int>? tags;
 
   UserUpdateParams({
     this.password,
@@ -281,8 +254,6 @@ class UserUpdateParams {
 
   factory UserUpdateParams.fromJson(String str) => UserUpdateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory UserUpdateParams.fromMap(Map<String, dynamic> json) => UserUpdateParams(
         password: json["password"],
         firstName: json["firstName"],
@@ -312,6 +283,35 @@ class UserUpdateParams {
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
       );
+  final String? password;
+  final String? firstName;
+  final String? lastName;
+  final String? country;
+  final String? state;
+  final String? city;
+  final String? userName;
+  final String? phoneNumber;
+  final String? email;
+  final String? bio;
+  final DateTime? birthdate;
+  final String? fcmToken;
+  final String? address;
+  final String? fatherName;
+  final int? weight;
+  final int? height;
+  final List<String>? addHealth1;
+  final List<String>? removeHealth1;
+  final List<String>? foodAllergies;
+  final List<String>? drugAllergies;
+  final List<String>? sickness;
+  final List<String>? health1;
+  final List<String>? categories;
+  final String id;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final List<int>? tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "password": password,

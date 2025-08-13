@@ -15,15 +15,14 @@ class CardSystem {
 }
 
 class CreditCardNumberInputFormatter extends TextInputFormatter {
-  final ValueChanged<CardSystemData?>? onCardSystemSelected;
-  final bool useSeparators;
-
-  CardSystemData? _cardSystemData;
-
   CreditCardNumberInputFormatter({
     this.onCardSystemSelected,
     this.useSeparators = true,
   });
+  final ValueChanged<CardSystemData?>? onCardSystemSelected;
+  final bool useSeparators;
+
+  CardSystemData? _cardSystemData;
 
   @override
   TextEditingValue formatEditUpdate(
@@ -189,10 +188,6 @@ String _formatByMask(
 }
 
 class CardSystemData {
-  final String? system;
-  final String? systemCode;
-  final String? numberMask;
-  final int? numDigits;
 
   CardSystemData._init({
     this.numberMask,
@@ -201,7 +196,7 @@ class CardSystemData {
     this.numDigits,
   });
 
-  factory CardSystemData.fromMap(Map value) {
+  factory CardSystemData.fromMap(Map<dynamic, dynamic> value) {
     return CardSystemData._init(
       system: value['system'],
       systemCode: value['systemCode'],
@@ -209,6 +204,11 @@ class CardSystemData {
       numberMask: value['numberMask'],
     );
   }
+
+  final String? system;
+  final String? systemCode;
+  final String? numberMask;
+  final int? numDigits;
 
   @override
   String toString() {
@@ -225,10 +225,10 @@ class _CardSystemDatas {
     substringLength = substringLength ?? cardNumber.length;
 
     if (substringLength < 1) return null;
-    Map? rawData;
-    List<Map> tempSystems = <Map>[];
+    Map<dynamic, dynamic>? rawData;
+    List<Map<dynamic, dynamic>> tempSystems = <Map<dynamic, dynamic>>[];
     for (Map<String, dynamic> data in _data) {
-      final systemCode = data['systemCode'];
+      final dynamic systemCode = data['systemCode'];
       if (cardNumber.startsWith(systemCode)) {
         tempSystems.add(data);
       }
@@ -239,16 +239,16 @@ class _CardSystemDatas {
     if (tempSystems.length == 1) {
       rawData = tempSystems.first;
     } else {
-      tempSystems.sort((Map a, Map b) => b['systemCode'].compareTo(a['systemCode']));
+      tempSystems.sort((Map<dynamic, dynamic> a, Map<dynamic, dynamic> b) => b['systemCode'].compareTo(a['systemCode']));
       final int maxCodeLength = tempSystems.first['systemCode'].length;
       tempSystems = tempSystems
           .where(
-            (Map e) => e['systemCode'].length == maxCodeLength,
+            (Map<dynamic, dynamic> e) => e['systemCode'].length == maxCodeLength,
           )
           .toList();
 
-      tempSystems.sort((Map a, Map b) => a['systemCode'].compareTo(b['systemCode']));
-      for (Map data in tempSystems) {
+      tempSystems.sort((Map<dynamic, dynamic> a, Map<dynamic, dynamic> b) => a['systemCode'].compareTo(b['systemCode']));
+      for (Map<dynamic, dynamic> data in tempSystems) {
         final int numMaskDigits = data['numDigits']!;
         if (cardNumber.length <= numMaskDigits) {
           rawData = data;

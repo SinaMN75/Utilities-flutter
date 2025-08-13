@@ -1,25 +1,6 @@
 part of "../data.dart";
 
 class UserResponse {
-  final String id;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final UserJson jsonData;
-  final List<int> tags;
-  final String userName;
-  final String? password;
-  final String? refreshToken;
-  final String? phoneNumber;
-  final String? email;
-  final String? firstName;
-  final String? lastName;
-  final String? bio;
-  final String? country;
-  final String? state;
-  final String? city;
-  final DateTime? birthdate;
-  final List<CategoryResponse>? categories;
-  final List<MediaResponse>? media;
 
   UserResponse({
     required this.id,
@@ -45,8 +26,6 @@ class UserResponse {
 
   factory UserResponse.fromJson(String str) => UserResponse.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory UserResponse.fromMap(Map<String, dynamic> json) => UserResponse(
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
@@ -68,6 +47,27 @@ class UserResponse {
         categories: json["categories"] == null ? <CategoryResponse>[] : List<CategoryResponse>.from(json["categories"].map((dynamic x) => CategoryResponse.fromMap(x))),
         media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
       );
+  final String id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final UserJson jsonData;
+  final List<int> tags;
+  final String userName;
+  final String? password;
+  final String? refreshToken;
+  final String? phoneNumber;
+  final String? email;
+  final String? firstName;
+  final String? lastName;
+  final String? bio;
+  final String? country;
+  final String? state;
+  final String? city;
+  final DateTime? birthdate;
+  final List<CategoryResponse>? categories;
+  final List<MediaResponse>? media;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
@@ -93,17 +93,6 @@ class UserResponse {
 }
 
 class UserJson {
-  final String? fcmToken;
-  final List<String>? health1;
-  final List<String>? foodAllergies;
-  final List<String>? drugAllergies;
-  final List<String>? sickness;
-  final int? weight;
-  final int? height;
-  final String? address;
-  final String? fatherName;
-  final List<UserAnswerJson> userAnswerJson;
-  final List<VisitCount>? visitCounts;
 
   UserJson({
     this.fcmToken,
@@ -121,8 +110,6 @@ class UserJson {
 
   factory UserJson.fromJson(String str) => UserJson.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory UserJson.fromMap(Map<String, dynamic> json) => UserJson(
         fcmToken: json["fcmToken"],
         health1: json["health1"] == null ? <String>[] : List<String>.from(json["health1"].map((dynamic x) => x)),
@@ -136,6 +123,19 @@ class UserJson {
         visitCounts: json["visitCounts"] == null ? <VisitCount>[] : List<VisitCount>.from(json["visitCounts"].map((dynamic x) => VisitCount.fromMap(x))),
         userAnswerJson: json["userAnswerJson"] == null ? <UserAnswerJson>[] : List<UserAnswerJson>.from(json["userAnswerJson"].map((dynamic x) => UserAnswerJson.fromMap(x))),
       );
+  final String? fcmToken;
+  final List<String>? health1;
+  final List<String>? foodAllergies;
+  final List<String>? drugAllergies;
+  final List<String>? sickness;
+  final int? weight;
+  final int? height;
+  final String? address;
+  final String? fatherName;
+  final List<UserAnswerJson> userAnswerJson;
+  final List<VisitCount>? visitCounts;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "fcmToken": fcmToken,
@@ -153,10 +153,6 @@ class UserJson {
 }
 
 class RegisterResponse {
-  final String? token;
-  final String? refreshToken;
-  final String? expires;
-  final UserResponse? user;
 
   RegisterResponse({
     this.token,
@@ -167,14 +163,18 @@ class RegisterResponse {
 
   factory RegisterResponse.fromJson(String str) => RegisterResponse.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory RegisterResponse.fromMap(Map<String, dynamic> json) => RegisterResponse(
         token: json["token"],
         refreshToken: json["refreshToken"],
         expires: json["expires"],
         user: json["user"] == null ? null : UserResponse.fromMap(json["user"]),
       );
+  final String? token;
+  final String? refreshToken;
+  final String? expires;
+  final UserResponse? user;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "token": token,

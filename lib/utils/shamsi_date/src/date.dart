@@ -1,11 +1,11 @@
 import 'date_formatter.dart';
 
 abstract class Date implements Comparable<Date> {
+  const Date();
+
   static const int minJulianDayNumber = 1925675;
 
   static const int maxJulianDayNumber = 3108616;
-
-  const Date();
 
   int get year;
 

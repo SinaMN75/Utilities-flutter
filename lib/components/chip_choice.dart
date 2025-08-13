@@ -1,6 +1,25 @@
 import 'package:u/utilities.dart';
 
 class CustomChipChoice<T> extends StatefulWidget {
+  const CustomChipChoice({
+    super.key,
+    required this.options,
+    required this.selected,
+    this.onChanged,
+    this.chipBuilder,
+    this.isMultiChoice = false,
+    this.spacing = 8.0,
+    this.runSpacing = 8.0,
+    this.alignment = WrapAlignment.start,
+    this.scrollController,
+    this.scrollable = false,
+    this.scrollPhysics,
+    this.padding = EdgeInsets.zero,
+    this.direction = Axis.horizontal,
+    this.selectedChipStyle,
+    this.unselectedChipStyle,
+  });
+
   /// List of all available options
   final List<T> options;
 
@@ -45,25 +64,6 @@ class CustomChipChoice<T> extends StatefulWidget {
 
   /// Style for unselected chips (used in default builder)
   final ChipThemeData? unselectedChipStyle;
-
-  const CustomChipChoice({
-    super.key,
-    required this.options,
-    required this.selected,
-    this.onChanged,
-    this.chipBuilder,
-    this.isMultiChoice = false,
-    this.spacing = 8.0,
-    this.runSpacing = 8.0,
-    this.alignment = WrapAlignment.start,
-    this.scrollController,
-    this.scrollable = false,
-    this.scrollPhysics,
-    this.padding = EdgeInsets.zero,
-    this.direction = Axis.horizontal,
-    this.selectedChipStyle,
-    this.unselectedChipStyle,
-  });
 
   @override
   State<CustomChipChoice<T>> createState() => _CustomChipChoiceState<T>();

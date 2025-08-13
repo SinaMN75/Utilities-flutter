@@ -6,9 +6,25 @@ import '../jalali/jalali_formatter.dart';
 part 'jalali_calculation.dart';
 
 class Jalali extends Date {
-  static const Jalali min = Jalali._raw(1925675, -61, 1, 1, 0, 0, 0, 0, true);
-
-  static const Jalali max = Jalali._raw(3108616, 3177, 10, 11, 23, 59, 59, 999, false);
+  factory Jalali(
+    final int year, [
+    final int month = 1,
+    final int day = 1,
+    final int hour = 0,
+    final int minute = 0,
+    final int second = 0,
+    final int millisecond = 0,
+  ]) {
+    return _Algo.createFromYearMonthDay(
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
+  }
 
   const Jalali._raw(
     this.julianDayNumber,
@@ -21,6 +37,56 @@ class Jalali extends Date {
     this.millisecond,
     this._isLeap,
   );
+
+  factory Jalali.fromJulianDayNumber(
+    final int julianDayNumber, [
+    final int hour = 0,
+    final int minute = 0,
+    final int second = 0,
+    final int millisecond = 0,
+  ]) {
+    return _Algo.createFromJulianDayNumber(
+      julianDayNumber,
+      hour,
+      minute,
+      second,
+      millisecond,
+    );
+  }
+
+  factory Jalali.fromDateTime(DateTime dateTime) {
+    return Gregorian.fromDateTime(dateTime).toJalali();
+  }
+
+  factory Jalali.fromGregorian(Gregorian date) {
+    return Jalali.fromJulianDayNumber(
+      date.julianDayNumber,
+      date.hour,
+      date.minute,
+      date.second,
+      date.millisecond,
+    );
+  }
+
+  factory Jalali.fromMillisecondsSinceEpoch(
+    int milliseconds, {
+    bool isUtc = false,
+  }) {
+    return Jalali.fromDateTime(
+      DateTime.fromMillisecondsSinceEpoch(
+        milliseconds,
+        isUtc: isUtc,
+      ),
+    );
+  }
+
+  factory Jalali.now() {
+    return Gregorian.now().toJalali();
+  }
+
+  static const Jalali min = Jalali._raw(1925675, -61, 1, 1, 0, 0, 0, 0, true);
+
+  static const Jalali max = Jalali._raw(3108616, 3177, 10, 11, 23, 59, 59, 999, false);
 
   @override
   final int julianDayNumber;
@@ -67,72 +133,6 @@ class Jalali extends Date {
   @override
   JalaliFormatter get formatter {
     return JalaliFormatter(this);
-  }
-
-  factory Jalali(
-    final int year, [
-    final int month = 1,
-    final int day = 1,
-    final int hour = 0,
-    final int minute = 0,
-    final int second = 0,
-    final int millisecond = 0,
-  ]) {
-    return _Algo.createFromYearMonthDay(
-      year,
-      month,
-      day,
-      hour,
-      minute,
-      second,
-      millisecond,
-    );
-  }
-
-  factory Jalali.fromJulianDayNumber(
-    final int julianDayNumber, [
-    final int hour = 0,
-    final int minute = 0,
-    final int second = 0,
-    final int millisecond = 0,
-  ]) {
-    return _Algo.createFromJulianDayNumber(
-      julianDayNumber,
-      hour,
-      minute,
-      second,
-      millisecond,
-    );
-  }
-
-  factory Jalali.fromDateTime(DateTime dateTime) {
-    return Gregorian.fromDateTime(dateTime).toJalali();
-  }
-
-  factory Jalali.fromGregorian(Gregorian date) {
-    return Jalali.fromJulianDayNumber(
-      date.julianDayNumber,
-      date.hour,
-      date.minute,
-      date.second,
-      date.millisecond,
-    );
-  }
-
-  factory Jalali.fromMillisecondsSinceEpoch(
-    int milliseconds, {
-    bool isUtc = false,
-  }) {
-    return Jalali.fromDateTime(
-      DateTime.fromMillisecondsSinceEpoch(
-        milliseconds,
-        isUtc: isUtc,
-      ),
-    );
-  }
-
-  factory Jalali.now() {
-    return Gregorian.now().toJalali();
   }
 
   @override

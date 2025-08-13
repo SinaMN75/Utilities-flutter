@@ -79,9 +79,9 @@ class ULoading {
 }
 
 class _LoadingOverlay extends StatefulWidget {
-  final WidgetBuilder? customLoader;
-
   const _LoadingOverlay({this.customLoader});
+
+  final WidgetBuilder? customLoader;
 
   @override
   __LoadingOverlayState createState() => __LoadingOverlayState();

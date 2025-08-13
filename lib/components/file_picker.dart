@@ -3,9 +3,6 @@ import 'package:path/path.dart' as path;
 import '../utilities.dart';
 
 class FilePickerComponent extends StatefulWidget {
-  final List<FileData> initialFiles;
-  final ValueChanged<List<FileData>> onFilesChanged;
-  final bool allowMultipleSelection;
 
   const FilePickerComponent({
     super.key,
@@ -13,6 +10,10 @@ class FilePickerComponent extends StatefulWidget {
     required this.onFilesChanged,
     this.allowMultipleSelection = true,
   });
+
+  final List<FileData> initialFiles;
+  final ValueChanged<List<FileData>> onFilesChanged;
+  final bool allowMultipleSelection;
 
   @override
   State<FilePickerComponent> createState() => _FilePickerComponentState();

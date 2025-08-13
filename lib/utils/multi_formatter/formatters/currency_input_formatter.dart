@@ -16,22 +16,6 @@ class CurrencySymbols {
 }
 
 class CurrencyInputFormatter extends TextInputFormatter {
-  final ThousandSeparator thousandSeparator;
-  final int mantissaLength;
-  final String leadingSymbol;
-  final String trailingSymbol;
-  final bool useSymbolPadding;
-  final int? maxTextLength;
-  final ValueChanged<num>? onValueChange;
-
-  final bool _printDebugInfo = false;
-
-  /// Indicates if there are any scheduled updates using [_widgetsBinding]'s `addPostFrameCallback`.
-  bool _scheduledUpdate = false;
-
-  /// The value that will be passed to [onValueChange] on the next scheduled frame.
-  /// This value need is updated using [_updateValue] and [_updateValueFromText].
-  late String _nextValue;
 
   /// [thousandSeparator] specifies what symbol will be used to separate
   /// each block of 3 digits, e.g. [ThousandSeparator.Comma] will format
@@ -62,6 +46,22 @@ class CurrencyInputFormatter extends TextInputFormatter {
     the next symbols as leading or trailing because 
     they might interfere with numbers: -,.+
   ''');
+  final ThousandSeparator thousandSeparator;
+  final int mantissaLength;
+  final String leadingSymbol;
+  final String trailingSymbol;
+  final bool useSymbolPadding;
+  final int? maxTextLength;
+  final ValueChanged<num>? onValueChange;
+
+  final bool _printDebugInfo = false;
+
+  /// Indicates if there are any scheduled updates using [_widgetsBinding]'s `addPostFrameCallback`.
+  bool _scheduledUpdate = false;
+
+  /// The value that will be passed to [onValueChange] on the next scheduled frame.
+  /// This value need is updated using [_updateValue] and [_updateValueFromText].
+  late String _nextValue;
 
   WidgetsBinding? get _widgetsBinding {
     return WidgetsBinding.instance;
@@ -155,16 +155,14 @@ class CurrencyInputFormatter extends TextInputFormatter {
 
     final String oldText = oldValue.text;
     if (oldValue == newValue) {
-      if (_printDebugInfo) {
-      }
+      if (_printDebugInfo) {}
       return newValue;
     }
     final bool isErasing = newText.length < oldText.length;
     if (isErasing) {
       if (mantissaLength == 0 && oldCaretIndex == oldValue.text.length) {
         if (trailingLength > 0) {
-          if (_printDebugInfo) {
-          }
+          if (_printDebugInfo) {}
           return oldValue.copyWith(
             selection: TextSelection.collapsed(
               offset: min(
@@ -199,8 +197,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
         shorterString: newText,
         longerString: oldText,
       )) {
-        if (_printDebugInfo) {
-        }
+        if (_printDebugInfo) {}
 
         // propagate previous correct value with mantissa separator
         _updateValueFromText(oldText);
@@ -216,8 +213,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
       }
     } else {
       if (_containsIllegalChars(newText)) {
-        if (_printDebugInfo) {
-        }
+        if (_printDebugInfo) {}
 
         // propagate previous correct value without illegal chars
         _updateValueFromText(oldText);
@@ -244,8 +240,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
       newText: newText,
       oldText: oldText,
     )) {
-      if (_printDebugInfo) {
-      }
+      if (_printDebugInfo) {}
 
       // propagate previous correct value with correct mantissa position
       _updateValueFromText(oldText);
@@ -266,8 +261,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
         oldText: oldText,
         caretPosition: newCaretIndex,
       )) {
-        if (_printDebugInfo) {
-        }
+        if (_printDebugInfo) {}
         return TextEditingValue(
           selection: TextSelection.collapsed(
             offset: newCaretIndex,
@@ -275,8 +269,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
           text: newAsCurrency,
         );
       } else {
-        if (_printDebugInfo) {
-        }
+        if (_printDebugInfo) {}
 
         final int offset = min(
           newCaretIndex,
@@ -293,8 +286,7 @@ class CurrencyInputFormatter extends TextInputFormatter {
 
     int initialCaretOffset = leadingLength;
     if (_isZeroOrEmpty(newAsNumeric)) {
-      if (_printDebugInfo) {
-      }
+      if (_printDebugInfo) {}
       int offset = min(
         newValue.text.length,
         initialCaretOffset + 1,

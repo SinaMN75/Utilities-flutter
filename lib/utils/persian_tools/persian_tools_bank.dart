@@ -190,20 +190,15 @@ class PersianToolsBank {
 }
 
 class AccountNumberModel {
-  final String accountNumber, formattedAccountNumber;
-
   const AccountNumberModel({
     required this.accountNumber,
     required this.formattedAccountNumber,
   });
+
+  final String accountNumber, formattedAccountNumber;
 }
 
 class BankInformation {
-  final String nickname, name, persianName, code;
-  final bool isAccountNumberAvailable;
-  AccountNumberModel Function(String)? process;
-  String? accountNumber, formattedAccountNumber;
-
   BankInformation({
     required this.nickname,
     required this.name,
@@ -215,20 +210,18 @@ class BankInformation {
     this.formattedAccountNumber,
   });
 
+  final String nickname, name, persianName, code;
+  final bool isAccountNumberAvailable;
+  AccountNumberModel Function(String)? process;
+  String? accountNumber, formattedAccountNumber;
+
   @override
   int get hashCode => Object.hash(nickname, name, <Object?>[persianName, code, isAccountNumberAvailable, accountNumber, formattedAccountNumber, process]);
 
   @override
   bool operator ==(Object other) {
     if (other is! BankInformation) return false;
-    return nickname == other.nickname &&
-        name == other.name &&
-        persianName == other.persianName &&
-        code == other.code &&
-        isAccountNumberAvailable == other.isAccountNumberAvailable &&
-        accountNumber == other.accountNumber &&
-        formattedAccountNumber == other.formattedAccountNumber &&
-        process == other.process;
+    return nickname == other.nickname && name == other.name && persianName == other.persianName && code == other.code && isAccountNumberAvailable == other.isAccountNumberAvailable && accountNumber == other.accountNumber && formattedAccountNumber == other.formattedAccountNumber && process == other.process;
   }
 }
 

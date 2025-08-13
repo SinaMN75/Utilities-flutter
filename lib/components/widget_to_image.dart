@@ -23,10 +23,9 @@ class WidgetToImageController {
 }
 
 class WidgetToImage extends StatefulWidget {
+  const WidgetToImage({super.key, required this.child, required this.controller});
   final Widget child;
   final WidgetToImageController controller;
-
-  const WidgetToImage({super.key, required this.child, required this.controller});
 
   @override
   State<WidgetToImage> createState() => _WidgetToImageState();

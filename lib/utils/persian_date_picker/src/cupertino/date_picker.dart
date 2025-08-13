@@ -933,8 +933,7 @@ class _CupertinoDatePickerDateState extends State<PersianCupertinoDatePicker> {
         children: List<Widget>.generate(daysInCurrentMonth, (int index) {
           final int day = index + 1;
           final int? dayOfWeek = widget.showDayOfWeek ? Jalali(selectedYear, selectedMonth, day).weekDay : null;
-          final bool isInvalidDay =
-              (day > daysInCurrentMonth) || (widget.minimumDate?.year == selectedYear && widget.minimumDate!.month == selectedMonth && widget.minimumDate!.day > day) || (widget.maximumDate?.year == selectedYear && widget.maximumDate!.month == selectedMonth && widget.maximumDate!.day < day);
+          final bool isInvalidDay = (day > daysInCurrentMonth) || (widget.minimumDate?.year == selectedYear && widget.minimumDate!.month == selectedMonth && widget.minimumDate!.day > day) || (widget.maximumDate?.year == selectedYear && widget.maximumDate!.month == selectedMonth && widget.maximumDate!.day < day);
           return itemPositioningBuilder(
             context,
             Text(

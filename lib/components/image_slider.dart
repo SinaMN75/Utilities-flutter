@@ -1,18 +1,6 @@
 import 'package:u/utilities.dart';
 
 class UImageSlider extends StatefulWidget {
-  final List<String> images;
-  final double height;
-  final double indicatorHeight;
-  final Color activeIndicatorColor;
-  final Color inactiveIndicatorColor;
-  final double indicatorActiveSize;
-  final double indicatorInactiveSize;
-  final int autoPlayDuration;
-  final BoxFit imageFit;
-  final double radius;
-  final Color imagePlaceholderColor;
-  final Widget? errorWidget;
 
   const UImageSlider({
     super.key,
@@ -29,6 +17,19 @@ class UImageSlider extends StatefulWidget {
     this.imagePlaceholderColor = Colors.grey,
     this.errorWidget,
   });
+
+  final List<String> images;
+  final double height;
+  final double indicatorHeight;
+  final Color activeIndicatorColor;
+  final Color inactiveIndicatorColor;
+  final double indicatorActiveSize;
+  final double indicatorInactiveSize;
+  final int autoPlayDuration;
+  final BoxFit imageFit;
+  final double radius;
+  final Color imagePlaceholderColor;
+  final Widget? errorWidget;
 
   @override
   State<UImageSlider> createState() => _UImageSliderState();

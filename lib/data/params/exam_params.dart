@@ -1,12 +1,6 @@
 part of "../data.dart";
 
 class ExamCreateParams {
-  final String title;
-  final String description;
-  final List<QuestionJson> questions;
-  final List<ExamScoreDetail> scoreDetails;
-  final String categoryId;
-  final List<int> tags;
 
   ExamCreateParams({
     required this.title,
@@ -19,8 +13,6 @@ class ExamCreateParams {
 
   factory ExamCreateParams.fromJson(String str) => ExamCreateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ExamCreateParams.fromMap(Map<String, dynamic> json) => ExamCreateParams(
         title: json["title"],
         description: json["description"],
@@ -29,6 +21,14 @@ class ExamCreateParams {
         categoryId: json["categoryId"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
       );
+  final String title;
+  final String description;
+  final List<QuestionJson> questions;
+  final List<ExamScoreDetail> scoreDetails;
+  final String categoryId;
+  final List<int> tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "title": title,
@@ -41,16 +41,6 @@ class ExamCreateParams {
 }
 
 class ExamReadParams {
-  final String? categoryId;
-  final int? pageSize;
-  final int? pageNumber;
-  final DateTime? fromCreatedAt;
-  final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
-  final List<int>? tags;
 
   ExamReadParams({
     this.categoryId,
@@ -67,8 +57,6 @@ class ExamReadParams {
 
   factory ExamReadParams.fromJson(String str) => ExamReadParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ExamReadParams.fromMap(Map<String, dynamic> json) => ExamReadParams(
         categoryId: json["categoryId"],
         pageSize: json["pageSize"] ?? 0,
@@ -81,6 +69,18 @@ class ExamReadParams {
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
       );
+  final String? categoryId;
+  final int? pageSize;
+  final int? pageNumber;
+  final DateTime? fromCreatedAt;
+  final DateTime? toCreatedAt;
+  final bool? orderByCreatedAt;
+  final bool? orderByCreatedAtDesc;
+  final bool? orderByUpdatedAt;
+  final bool? orderByUpdatedAtDesc;
+  final List<int>? tags;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "categoryId": categoryId,
@@ -97,9 +97,6 @@ class ExamReadParams {
 }
 
 class SubmitAnswersParams {
-  final List<UserAnswerResultJson> answers;
-  final String userId;
-  final String examId;
 
   SubmitAnswersParams({
     required this.answers,
@@ -109,13 +106,16 @@ class SubmitAnswersParams {
 
   factory SubmitAnswersParams.fromJson(String str) => SubmitAnswersParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory SubmitAnswersParams.fromMap(Map<String, dynamic> json) => SubmitAnswersParams(
         answers: List<UserAnswerResultJson>.from(json["answers"].map((dynamic x) => UserAnswerResultJson.fromMap(x))),
         userId: json["userId"],
         examId: json["examId"],
       );
+  final List<UserAnswerResultJson> answers;
+  final String userId;
+  final String examId;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "answers": List<dynamic>.from(answers.map((dynamic x) => x.toMap())),

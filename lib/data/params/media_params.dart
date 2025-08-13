@@ -1,16 +1,6 @@
 part of "../data.dart";
 
 class MediaUpdateParams {
-  final String id;
-  final List<int>? addTags;
-  final List<int>? removeTags;
-  final String? title;
-  final String? description;
-  final String? userId;
-  final String? contentId;
-  final String? commentId;
-  final String? categoryId;
-  final String? productId;
 
   MediaUpdateParams({
     required this.id,
@@ -27,8 +17,6 @@ class MediaUpdateParams {
 
   factory MediaUpdateParams.fromJson(String str) => MediaUpdateParams.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory MediaUpdateParams.fromMap(Map<String, dynamic> json) => MediaUpdateParams(
         id: json["id"],
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
@@ -41,6 +29,18 @@ class MediaUpdateParams {
         categoryId: json["categoryId"],
         productId: json["productId"],
       );
+  final String id;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final String? title;
+  final String? description;
+  final String? userId;
+  final String? contentId;
+  final String? commentId;
+  final String? categoryId;
+  final String? productId;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,

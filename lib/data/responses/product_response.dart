@@ -1,30 +1,6 @@
 part of "../data.dart";
 
 class ProductResponse {
-  final String id;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final ProductJson jsonData;
-  final List<int> tags;
-  final String title;
-  final String? code;
-  final String? subtitle;
-  final String? description;
-  final String? slug;
-  final String? type;
-  final String? content;
-  final double? latitude;
-  final double? longitude;
-  final int? stock;
-  final double? price;
-  final int point;
-  final String? parentId;
-  final ProductResponse? parent;
-  final String userId;
-  final UserResponse? user;
-  final List<ProductResponse>? children;
-  final List<MediaResponse>? media;
-  final List<CategoryResponse>? categories;
 
   ProductResponse({
     required this.id,
@@ -51,11 +27,13 @@ class ProductResponse {
     this.children,
     this.media,
     this.categories,
+    this.commentCount,
+    this.isFollowing,
+    required this.visitCount,
+    this.childrenCount,
   });
 
   factory ProductResponse.fromJson(String str) => ProductResponse.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
 
   factory ProductResponse.fromMap(Map<String, dynamic> json) => ProductResponse(
         id: json["id"],
@@ -78,11 +56,45 @@ class ProductResponse {
         parentId: json["parentId"],
         parent: json["parent"] == null ? null : ProductResponse.fromMap(json["parent"]),
         userId: json["userId"],
+        commentCount: json["commentCount"],
+        isFollowing: json["isFollowing"],
+        visitCount: json["visitCount"],
+        childrenCount: json["childrenCount"],
         user: json["user"] == null ? null : UserResponse.fromMap(json["user"]),
         children: json["children"] == null ? <ProductResponse>[] : List<ProductResponse>.from(json["children"].map((dynamic x) => ProductResponse.fromMap(x))),
         media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
         categories: json["categories"] == null ? <CategoryResponse>[] : List<CategoryResponse>.from(json["categories"].map((dynamic x) => CategoryResponse.fromMap(x))),
       );
+  final String id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final ProductJson jsonData;
+  final List<int> tags;
+  final String title;
+  final String? code;
+  final String? subtitle;
+  final String? description;
+  final String? slug;
+  final String? type;
+  final String? content;
+  final double? latitude;
+  final double? longitude;
+  final int? stock;
+  final double? price;
+  final int point;
+  final String? parentId;
+  final ProductResponse? parent;
+  final String userId;
+  final UserResponse? user;
+  final List<ProductResponse>? children;
+  final List<MediaResponse>? media;
+  final List<CategoryResponse>? categories;
+  final int? commentCount;
+  final bool? isFollowing;
+  final int visitCount;
+  final int? childrenCount;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
@@ -105,6 +117,10 @@ class ProductResponse {
         "parentId": parentId,
         "parent": parent?.toMap(),
         "userId": userId,
+        "commentCount": commentCount,
+        "isFollowing": isFollowing,
+        "visitCount": visitCount,
+        "childrenCount": childrenCount,
         "user": user?.toMap(),
         "children": children == null ? null : List<dynamic>.from(children!.map((ProductResponse x) => x.toMap())),
         "media": media == null ? null : List<dynamic>.from(media!.map((MediaResponse x) => x.toMap())),
@@ -113,12 +129,6 @@ class ProductResponse {
 }
 
 class ProductJson {
-  final String? actionType;
-  final String? actionTitle;
-  final String? actionUri;
-  final String? details;
-  final List<VisitCount>? visitCounts;
-  final List<String>? relatedProducts;
 
   ProductJson({
     this.actionType,
@@ -131,8 +141,6 @@ class ProductJson {
 
   factory ProductJson.fromJson(String str) => ProductJson.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory ProductJson.fromMap(Map<String, dynamic> json) => ProductJson(
         actionType: json["actionType"],
         actionTitle: json["actionTitle"],
@@ -141,6 +149,14 @@ class ProductJson {
         visitCounts: json["visitCounts"] == null ? <VisitCount>[] : List<VisitCount>.from(json["visitCounts"].map((dynamic x) => VisitCount.fromMap(x))),
         relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
       );
+  final String? actionType;
+  final String? actionTitle;
+  final String? actionUri;
+  final String? details;
+  final List<VisitCount>? visitCounts;
+  final List<String>? relatedProducts;
+
+  String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "actionType": actionType,
@@ -151,4 +167,3 @@ class ProductJson {
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
       };
 }
-

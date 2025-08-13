@@ -22,6 +22,50 @@ extension CircularStrokeCapExtension on CircularStrokeCap {
 num radians(num deg) => deg * (pi / 180.0);
 
 class CircularPercentIndicator extends StatefulWidget {
+
+  CircularPercentIndicator({
+    super.key,
+    this.percent = 0.0,
+    this.lineWidth = 5.0,
+    this.startAngle = 0.0,
+    required this.radius,
+    this.fillColor = Colors.transparent,
+    this.backgroundColor = const Color(0xFFB8C7CB),
+    this.progressColor,
+    this.backgroundWidth = -1,
+    this.linearGradient,
+    this.animation = false,
+    this.animationDuration = 500,
+    this.header,
+    this.footer,
+    this.center,
+    this.addAutomaticKeepAlive = true,
+    this.circularStrokeCap = CircularStrokeCap.butt,
+    this.arcBackgroundColor,
+    this.arcType,
+    this.animateFromLastPercent = false,
+    this.reverse = false,
+    this.curve = Curves.linear,
+    this.maskFilter,
+    this.restartAnimation = false,
+    this.onAnimationEnd,
+    this.widgetIndicator,
+    this.rotateLinearGradient = false,
+  }) {
+    if (linearGradient != null && progressColor != null) {
+      throw ArgumentError('Cannot provide both linearGradient and progressColor');
+    }
+
+    assert(startAngle >= 0.0);
+    if (percent < 0.0 || percent > 1.0) {
+      throw Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
+    }
+
+    if (arcType == null && arcBackgroundColor != null) {
+      throw ArgumentError('arcType is required when you arcBackgroundColor');
+    }
+  }
+
   final double percent;
   final double radius;
 
@@ -72,49 +116,6 @@ class CircularPercentIndicator extends StatefulWidget {
   final Widget? widgetIndicator;
 
   final bool rotateLinearGradient;
-
-  CircularPercentIndicator({
-    super.key,
-    this.percent = 0.0,
-    this.lineWidth = 5.0,
-    this.startAngle = 0.0,
-    required this.radius,
-    this.fillColor = Colors.transparent,
-    this.backgroundColor = const Color(0xFFB8C7CB),
-    this.progressColor,
-    this.backgroundWidth = -1,
-    this.linearGradient,
-    this.animation = false,
-    this.animationDuration = 500,
-    this.header,
-    this.footer,
-    this.center,
-    this.addAutomaticKeepAlive = true,
-    this.circularStrokeCap = CircularStrokeCap.butt,
-    this.arcBackgroundColor,
-    this.arcType,
-    this.animateFromLastPercent = false,
-    this.reverse = false,
-    this.curve = Curves.linear,
-    this.maskFilter,
-    this.restartAnimation = false,
-    this.onAnimationEnd,
-    this.widgetIndicator,
-    this.rotateLinearGradient = false,
-  }) {
-    if (linearGradient != null && progressColor != null) {
-      throw ArgumentError('Cannot provide both linearGradient and progressColor');
-    }
-
-    assert(startAngle >= 0.0);
-    if (percent < 0.0 || percent > 1.0) {
-      throw Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
-    }
-
-    if (arcType == null && arcBackgroundColor != null) {
-      throw ArgumentError('arcType is required when you arcBackgroundColor');
-    }
-  }
 
   @override
   _CircularPercentIndicatorState createState() => _CircularPercentIndicatorState();
@@ -190,7 +191,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
     _checkIfNeedCancelAnimation(oldWidget);
   }
 
-  _updateProgress() {
+  void _updateProgress() {
     setState(() => _percent = widget.percent);
   }
 
@@ -305,23 +306,6 @@ class _ArcAngles {
 }
 
 class _CirclePainter extends CustomPainter {
-  final Paint _paintBackground = Paint();
-  final Paint _paintLine = Paint();
-  final Paint _paintBackgroundStartAngle = Paint();
-  final double lineWidth;
-  final double backgroundWidth;
-  final double progress;
-  final double radius;
-  final Color progressColor;
-  final Color backgroundColor;
-  final CircularStrokeCap circularStrokeCap;
-  final double startAngle;
-  final LinearGradient? linearGradient;
-  final Color? arcBackgroundColor;
-  final ArcType? arcType;
-  final bool reverse;
-  final MaskFilter? maskFilter;
-  final bool rotateLinearGradient;
 
   _CirclePainter({
     required this.lineWidth,
@@ -356,6 +340,24 @@ class _CirclePainter extends CustomPainter {
     _paintLine.strokeWidth = lineWidth;
     _paintLine.strokeCap = circularStrokeCap.strokeCap;
   }
+
+  final Paint _paintBackground = Paint();
+  final Paint _paintLine = Paint();
+  final Paint _paintBackgroundStartAngle = Paint();
+  final double lineWidth;
+  final double backgroundWidth;
+  final double progress;
+  final double radius;
+  final Color progressColor;
+  final Color backgroundColor;
+  final CircularStrokeCap circularStrokeCap;
+  final double startAngle;
+  final LinearGradient? linearGradient;
+  final Color? arcBackgroundColor;
+  final ArcType? arcType;
+  final bool reverse;
+  final MaskFilter? maskFilter;
+  final bool rotateLinearGradient;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -439,6 +441,48 @@ class _CirclePainter extends CustomPainter {
 }
 
 class LinearPercentIndicator extends StatefulWidget {
+
+  LinearPercentIndicator({
+    super.key,
+    this.fillColor = Colors.transparent,
+    this.percent = 0.0,
+    this.lineHeight = 5.0,
+    this.width,
+    this.backgroundColor = Colors.transparent,
+    this.linearGradientBackgroundColor,
+    this.linearGradient,
+    this.progressColor = Colors.blue,
+    this.animation = false,
+    this.animationDuration = 500,
+    this.animateFromLastPercent = false,
+    this.isRTL = false,
+    this.leading,
+    this.trailing,
+    this.center,
+    this.addAutomaticKeepAlive = true,
+    this.barRadius,
+    this.padding = const EdgeInsets.symmetric(horizontal: 10.0),
+    this.alignment = MainAxisAlignment.start,
+    this.maskFilter,
+    this.clipLinearGradient = false,
+    this.curve = Curves.linear,
+    this.restartAnimation = false,
+    this.onAnimationEnd,
+    this.widgetIndicator,
+  }) {
+    if (linearGradient != null) {
+      throw ArgumentError('Cannot provide both linearGradient and progressColor');
+    }
+
+    if (linearGradientBackgroundColor != null) {
+      throw ArgumentError('Cannot provide both linearGradientBackgroundColor and backgroundColor');
+    }
+
+    if (percent < 0.0 || percent > 1.0) {
+      throw Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
+    }
+  }
+
   final double percent;
   final double? width;
 
@@ -487,47 +531,6 @@ class LinearPercentIndicator extends StatefulWidget {
   final VoidCallback? onAnimationEnd;
 
   final Widget? widgetIndicator;
-
-  LinearPercentIndicator({
-    super.key,
-    this.fillColor = Colors.transparent,
-    this.percent = 0.0,
-    this.lineHeight = 5.0,
-    this.width,
-    this.backgroundColor = Colors.transparent,
-    this.linearGradientBackgroundColor,
-    this.linearGradient,
-    this.progressColor = Colors.blue,
-    this.animation = false,
-    this.animationDuration = 500,
-    this.animateFromLastPercent = false,
-    this.isRTL = false,
-    this.leading,
-    this.trailing,
-    this.center,
-    this.addAutomaticKeepAlive = true,
-    this.barRadius,
-    this.padding = const EdgeInsets.symmetric(horizontal: 10.0),
-    this.alignment = MainAxisAlignment.start,
-    this.maskFilter,
-    this.clipLinearGradient = false,
-    this.curve = Curves.linear,
-    this.restartAnimation = false,
-    this.onAnimationEnd,
-    this.widgetIndicator,
-  }) {
-    if (linearGradient != null) {
-      throw ArgumentError('Cannot provide both linearGradient and progressColor');
-    }
-
-    if (linearGradientBackgroundColor != null) {
-      throw ArgumentError('Cannot provide both linearGradientBackgroundColor and backgroundColor');
-    }
-
-    if (percent < 0.0 || percent > 1.0) {
-      throw Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
-    }
-  }
 
   @override
   _LinearPercentIndicatorState createState() => _LinearPercentIndicatorState();
@@ -611,7 +614,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
     _checkIfNeedCancelAnimation(oldWidget);
   }
 
-  _updateProgress() {
+  void _updateProgress() {
     setState(() {
       _percent = widget.percent;
     });
@@ -693,17 +696,6 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
 }
 
 class _LinearPainter extends CustomPainter {
-  final Paint _paintBackground = Paint();
-  final Paint _paintLine = Paint();
-  final double progress;
-  final bool isRTL;
-  final Color progressColor;
-  final Color backgroundColor;
-  final Radius barRadius;
-  final LinearGradient? linearGradient;
-  final LinearGradient? linearGradientBackgroundColor;
-  final MaskFilter? maskFilter;
-  final bool clipLinearGradient;
 
   _LinearPainter({
     required this.progress,
@@ -720,6 +712,18 @@ class _LinearPainter extends CustomPainter {
 
     _paintLine.color = progress.toString() == "0.0" ? progressColor.withValues(alpha: 0.0) : progressColor;
   }
+
+  final Paint _paintBackground = Paint();
+  final Paint _paintLine = Paint();
+  final double progress;
+  final bool isRTL;
+  final Color progressColor;
+  final Color backgroundColor;
+  final Radius barRadius;
+  final LinearGradient? linearGradient;
+  final LinearGradient? linearGradientBackgroundColor;
+  final MaskFilter? maskFilter;
+  final bool clipLinearGradient;
 
   @override
   void paint(Canvas canvas, Size size) {

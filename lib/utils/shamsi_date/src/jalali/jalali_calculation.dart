@@ -232,15 +232,15 @@ class _Algo {
 }
 
 class _JalaliCalculation {
-  final int leap;
-
-  final int gy;
-
-  final int march;
-
   const _JalaliCalculation({
     required this.leap,
     required this.gy,
     required this.march,
   });
+
+  final int leap;
+
+  final int gy;
+
+  final int march;
 }
