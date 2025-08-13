@@ -40,18 +40,18 @@ class UResponse<T> {
 }
 
 class VisitCount {
-
   VisitCount({
     required this.userId,
-    this.count = 1,
+    required this.count,
   });
 
   factory VisitCount.fromJson(String str) => VisitCount.fromMap(json.decode(str));
 
   factory VisitCount.fromMap(Map<String, dynamic> json) => VisitCount(
     userId: json["userId"],
-    count: json["count"] ?? 1,
+    count: json["count"],
   );
+
   final String userId;
   final int count;
 
@@ -61,4 +61,30 @@ class VisitCount {
     "userId": userId,
     "count": count,
   };
+}
+
+class PointCount {
+  PointCount({
+    required this.userId,
+    required this.point,
+  });
+
+  factory PointCount.fromJson(String str) => PointCount.fromMap(json.decode(str));
+
+  factory PointCount.fromMap(Map<String, dynamic> json) =>
+      PointCount(
+        userId: json["userId"],
+        point: json["point"],
+      );
+
+  final String userId;
+  final int point;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "userId": userId,
+        "point": point,
+      };
 }

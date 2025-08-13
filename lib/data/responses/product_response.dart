@@ -1,7 +1,6 @@
 part of "../data.dart";
 
 class ProductResponse {
-
   ProductResponse({
     required this.id,
     required this.createdAt,
@@ -91,7 +90,7 @@ class ProductResponse {
   final List<CategoryResponse>? categories;
   final int? commentCount;
   final bool? isFollowing;
-  final int visitCount;
+  final int? visitCount;
   final int? childrenCount;
 
   String toJson() => json.encode(toMap());
@@ -129,13 +128,13 @@ class ProductResponse {
 }
 
 class ProductJson {
-
   ProductJson({
     this.actionType,
     this.actionTitle,
     this.actionUri,
     this.details,
     this.visitCounts,
+    this.pointCounts,
     this.relatedProducts,
   });
 
@@ -147,6 +146,7 @@ class ProductJson {
         actionUri: json["actionUri"],
         details: json["details"],
         visitCounts: json["visitCounts"] == null ? <VisitCount>[] : List<VisitCount>.from(json["visitCounts"].map((dynamic x) => VisitCount.fromMap(x))),
+        pointCounts: json["pointCounts"] == null ? <PointCount>[] : List<PointCount>.from(json["pointCounts"].map((dynamic x) => PointCount.fromMap(x))),
         relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
       );
   final String? actionType;
@@ -154,6 +154,7 @@ class ProductJson {
   final String? actionUri;
   final String? details;
   final List<VisitCount>? visitCounts;
+  final List<PointCount>? pointCounts;
   final List<String>? relatedProducts;
 
   String toJson() => json.encode(toMap());
@@ -164,6 +165,7 @@ class ProductJson {
         "actionUri": actionUri,
         "details": details,
         "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((VisitCount x) => x.toMap())),
+        "pointCounts": pointCounts == null ? null : List<dynamic>.from(pointCounts!.map((PointCount x) => x.toMap())),
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
       };
 }
