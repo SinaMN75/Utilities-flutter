@@ -5,7 +5,7 @@ analyzer:
     - "lib/utils/multi_formatter"
     - "lib/utils/multi_formatter/"
     - "lib/utils/multi_formatter"
-    - "lib/utils/persian_date_picker/"
+    - "lib/utils/persian_date_picker/src/cupertino/date_picker.dart"
 
   errors:
     avoid_empty_else: error

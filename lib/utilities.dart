@@ -92,7 +92,6 @@ export 'utils/multi_formatter/flutter_multi_formatter.dart';
 export 'utils/navigator.dart';
 export 'utils/network.dart';
 export 'utils/notification.dart';
-export 'utils/persian_date_picker/persian_datetime_picker.dart';
 export 'utils/shamsi_date/shamsi_date.dart';
 export 'utils/utils.dart';
 export 'utils/view_models.dart';
