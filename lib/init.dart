@@ -61,6 +61,8 @@ class UMaterialApp extends StatelessWidget {
           primary: data.primaryColor,
           secondary: data.secondaryColor,
           error: data.errorColor,
+          surface: data.surface,
+          surfaceContainer: data.surfaceContainer,
         ),
         cardTheme: CardThemeData(
           elevation: data.cardElevation,
@@ -150,7 +152,6 @@ class UMaterialApp extends StatelessWidget {
 }
 
 class UThemeData {
-
   UThemeData({
     required this.fontFamily,
     required this.disabledColor,
@@ -158,6 +159,8 @@ class UThemeData {
     required this.secondaryColor,
     this.errorColor = Colors.red,
     this.cardColor = Colors.white,
+    this.surface,
+    this.surfaceContainer,
     this.cardElevation = 1,
   });
 
@@ -168,4 +171,6 @@ class UThemeData {
   final Color errorColor;
   final Color cardColor;
   final double cardElevation;
+  final Color? surface;
+  final Color? surfaceContainer;
 }
