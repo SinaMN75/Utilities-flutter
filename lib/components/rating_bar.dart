@@ -16,9 +16,9 @@ class RatingWidget {
 
 class RatingBar extends StatefulWidget {
   const RatingBar({
-    super.key,
-    required RatingWidget ratingWidget,
     required this.onRatingUpdate,
+    required RatingWidget ratingWidget,
+    super.key,
     this.glowColor,
     this.maxRating,
     this.textDirection,
@@ -40,9 +40,9 @@ class RatingBar extends StatefulWidget {
         _ratingWidget = ratingWidget;
 
   const RatingBar.builder({
-    super.key,
-    required IndexedWidgetBuilder itemBuilder,
     required this.onRatingUpdate,
+    required IndexedWidgetBuilder itemBuilder,
+    super.key,
     this.glowColor,
     this.maxRating,
     this.textDirection,
@@ -418,8 +418,8 @@ class _NoRatingWidget extends StatelessWidget {
 
 class RatingBarIndicator extends StatefulWidget {
   const RatingBarIndicator({
-    super.key,
     required this.itemBuilder,
+    super.key,
     this.textDirection,
     this.unratedColor,
     this.direction = Axis.horizontal,

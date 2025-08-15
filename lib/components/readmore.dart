@@ -251,10 +251,10 @@ class ReadMoreTextState extends State<ReadMoreText> {
 
   TextSpan _buildData({
     required String data,
+    required List<TextSpan> children,
     TextStyle? textStyle,
     TextStyle? linkTextStyle,
     ValueChanged<String>? onPressed,
-    required List<TextSpan> children,
   }) {
     final RegExp exp = RegExp(r'(?:(?:https?|ftp)://)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
 

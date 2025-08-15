@@ -1,38 +1,37 @@
 part of "../data.dart";
 
-extension ContentListExtension on Iterable<ContentResponse> {
-  ContentResponse? firstByTag(TagContent tag) => firstWhereOrNull((final ContentResponse i) => i.tags.contains(tag.number));
+extension ContentListExtension on Iterable<UContentResponse> {
+  UContentResponse? firstByTag(TagContent tag) => firstWhereOrNull((final UContentResponse i) => i.tags.contains(tag.number));
 
-  List<ContentResponse> byTag(TagContent tag) => where((final ContentResponse i) => i.tags.contains(tag.number)).toList();
+  List<UContentResponse> byTag(TagContent tag) => where((final UContentResponse i) => i.tags.contains(tag.number)).toList();
 }
 
-class ContentResponse {
-
-  ContentResponse({
+class UContentResponse {
+  UContentResponse({
     required this.id,
     required this.createdAt,
     required this.updatedAt,
     required this.jsonData,
     required this.tags,
-    this.media = const <MediaResponse>[],
+    this.media = const <UMediaResponse>[],
   });
 
-  factory ContentResponse.fromJson(String str) => ContentResponse.fromMap(json.decode(str));
+  factory UContentResponse.fromJson(String str) => UContentResponse.fromMap(json.decode(str));
 
-  factory ContentResponse.fromMap(Map<String, dynamic> json) => ContentResponse(
+  factory UContentResponse.fromMap(Map<String, dynamic> json) => UContentResponse(
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        jsonData: ContentJson.fromMap(json["jsonData"]),
+        jsonData: UContentJson.fromMap(json["jsonData"]),
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-        media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
+        media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
       );
   final String id;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final ContentJson jsonData;
+  final UContentJson jsonData;
   final List<int> tags;
-  final List<MediaResponse> media;
+  final List<UMediaResponse> media;
 
   String toJson() => json.encode(toMap());
 
@@ -42,13 +41,12 @@ class ContentResponse {
         "updatedAt": updatedAt.toIso8601String(),
         "jsonData": jsonData.toMap(),
         "tags": List<dynamic>.from(tags.map((int x) => x)),
-        "media": List<dynamic>.from(media.map((MediaResponse x) => x.toMap())),
+        "media": List<dynamic>.from(media.map((UMediaResponse x) => x.toMap())),
       };
 }
 
-class ContentJson {
-
-  ContentJson({
+class UContentJson {
+  UContentJson({
     this.title,
     this.subTitle,
     this.description,
@@ -58,9 +56,9 @@ class ContentJson {
     this.phone,
   });
 
-  factory ContentJson.fromJson(String str) => ContentJson.fromMap(json.decode(str));
+  factory UContentJson.fromJson(String str) => UContentJson.fromMap(json.decode(str));
 
-  factory ContentJson.fromMap(Map<String, dynamic> json) => ContentJson(
+  factory UContentJson.fromMap(Map<String, dynamic> json) => UContentJson(
         title: json["title"],
         subTitle: json["subTitle"],
         description: json["description"],

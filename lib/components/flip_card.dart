@@ -37,11 +37,10 @@ class AnimationCard extends StatelessWidget {
 typedef BoolCallback = void Function(bool isFront);
 
 class FlipCard extends StatefulWidget {
-
   const FlipCard({
-    super.key,
     required this.front,
     required this.back,
+    super.key,
     this.speed = 500,
     this.onFlip,
     this.onFlipDone,
@@ -71,6 +70,7 @@ class FlipCard extends StatefulWidget {
 
 class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin {
   FlipCardState();
+
   AnimationController? controller;
   Animation<double>? _frontRotation;
   Animation<double>? _backRotation;

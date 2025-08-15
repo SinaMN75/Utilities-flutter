@@ -54,6 +54,7 @@ analyzer:
     use_late_for_private_fields_and_variables: error
     always_specify_types: error
     omit_local_variable_types: error
+    always_put_required_named_parameters_first: error
 
 linter:
   rules:
@@ -103,3 +104,4 @@ linter:
     use_late_for_private_fields_and_variables: true
     always_specify_types: true
     prefer_typing_uninitialized_variables: true
+    always_put_required_named_parameters_first: true

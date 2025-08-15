@@ -1,10 +1,9 @@
 import 'package:u/utilities.dart';
 
 class CachedNetworkImage extends StatefulWidget {
-
   const CachedNetworkImage({
-    super.key,
     required this.imageUrl,
+    super.key,
     this.placeholder,
     this.errorWidget,
     this.width,

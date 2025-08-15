@@ -2,7 +2,7 @@ import 'package:u/utilities.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-Future<void> initUtilities({
+Future<void> initU({
   final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

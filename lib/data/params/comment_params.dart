@@ -1,21 +1,20 @@
 part of "../data.dart";
 
-class CommentCreateParams {
-
-  CommentCreateParams({
+class UCommentCreateParams {
+  UCommentCreateParams({
     required this.description,
     required this.score,
+    required this.tags,
     this.reaction,
     this.parentId,
     this.productId,
     this.targetUserId,
     this.userId,
-    required this.tags,
   });
 
-  factory CommentCreateParams.fromJson(String str) => CommentCreateParams.fromMap(json.decode(str));
+  factory UCommentCreateParams.fromJson(String str) => UCommentCreateParams.fromMap(json.decode(str));
 
-  factory CommentCreateParams.fromMap(Map<String, dynamic> json) => CommentCreateParams(
+  factory UCommentCreateParams.fromMap(Map<String, dynamic> json) => UCommentCreateParams(
         description: json["description"],
         score: json["score"] ?? 0,
         reaction: json["reaction"],
@@ -48,20 +47,19 @@ class CommentCreateParams {
       };
 }
 
-class CommentUpdateParams {
-
-  CommentUpdateParams({
+class UCommentUpdateParams {
+  UCommentUpdateParams({
+    required this.id,
     this.description,
     this.score,
-    required this.id,
     this.addTags,
     this.removeTags,
     this.tags,
   });
 
-  factory CommentUpdateParams.fromJson(String str) => CommentUpdateParams.fromMap(json.decode(str));
+  factory UCommentUpdateParams.fromJson(String str) => UCommentUpdateParams.fromMap(json.decode(str));
 
-  factory CommentUpdateParams.fromMap(Map<String, dynamic> json) => CommentUpdateParams(
+  factory UCommentUpdateParams.fromMap(Map<String, dynamic> json) => UCommentUpdateParams(
         description: json["description"],
         score: json["score"],
         id: json["id"],
@@ -88,9 +86,8 @@ class CommentUpdateParams {
       };
 }
 
-class CommentReadParams {
-
-  CommentReadParams({
+class UCommentReadParams {
+  UCommentReadParams({
     this.userId,
     this.productId,
     this.targetUserId,
@@ -106,9 +103,9 @@ class CommentReadParams {
     this.tags,
   });
 
-  factory CommentReadParams.fromJson(String str) => CommentReadParams.fromMap(json.decode(str));
+  factory UCommentReadParams.fromJson(String str) => UCommentReadParams.fromMap(json.decode(str));
 
-  factory CommentReadParams.fromMap(Map<String, dynamic> json) => CommentReadParams(
+  factory UCommentReadParams.fromMap(Map<String, dynamic> json) => UCommentReadParams(
         userId: json["userId"],
         productId: json["productId"],
         targetUserId: json["targetUserId"],

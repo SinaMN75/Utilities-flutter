@@ -1,26 +1,25 @@
 part of "../data.dart";
 
-class LoginResponse {
-
-  LoginResponse({
+class ULoginResponse {
+  ULoginResponse({
     required this.token,
     required this.refreshToken,
     required this.expires,
     required this.user,
   });
 
-  factory LoginResponse.fromJson(String str) => LoginResponse.fromMap(json.decode(str));
+  factory ULoginResponse.fromJson(String str) => ULoginResponse.fromMap(json.decode(str));
 
-  factory LoginResponse.fromMap(Map<String, dynamic> json) => LoginResponse(
+  factory ULoginResponse.fromMap(Map<String, dynamic> json) => ULoginResponse(
         token: json["token"],
         refreshToken: json["refreshToken"],
         expires: json["expires"],
-        user: UserResponse.fromMap(json["user"]),
+        user: UUserResponse.fromMap(json["user"]),
       );
   final String token;
   final String refreshToken;
   final String expires;
-  final UserResponse user;
+  final UUserResponse user;
 
   String toJson() => json.encode(toMap());
 

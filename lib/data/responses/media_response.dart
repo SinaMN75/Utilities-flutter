@@ -1,14 +1,13 @@
 part of "../data.dart";
 
-extension MediaListExtension on Iterable<MediaResponse> {
-  MediaResponse? firstByTag(TagMedia tag) => firstWhereOrNull((final MediaResponse i) => i.tags.contains(tag.number));
+extension MediaListExtension on Iterable<UMediaResponse> {
+  UMediaResponse? firstByTag(TagMedia tag) => firstWhereOrNull((final UMediaResponse i) => i.tags.contains(tag.number));
 
-  List<MediaResponse> byTag(TagMedia tag) => where((final MediaResponse i) => i.tags.contains(tag.number)).toList();
+  List<UMediaResponse> byTag(TagMedia tag) => where((final UMediaResponse i) => i.tags.contains(tag.number)).toList();
 }
 
-class MediaResponse {
-
-  MediaResponse({
+class UMediaResponse {
+  UMediaResponse({
     required this.id,
     required this.createdAt,
     required this.updatedAt,
@@ -22,13 +21,13 @@ class MediaResponse {
     this.productId,
   });
 
-  factory MediaResponse.fromJson(String str) => MediaResponse.fromMap(json.decode(str));
+  factory UMediaResponse.fromJson(String str) => UMediaResponse.fromMap(json.decode(str));
 
-  factory MediaResponse.fromMap(Map<String, dynamic> json) => MediaResponse(
+  factory UMediaResponse.fromMap(Map<String, dynamic> json) => UMediaResponse(
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        jsonData: MediaJson.fromMap(json["jsonData"]),
+        jsonData: UMediaJson.fromMap(json["jsonData"]),
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         path: json["path"],
         userId: json["userId"],
@@ -40,7 +39,7 @@ class MediaResponse {
   final String id;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final MediaJson jsonData;
+  final UMediaJson jsonData;
   final List<int> tags;
   final String path;
   final String? userId;
@@ -68,16 +67,15 @@ class MediaResponse {
       };
 }
 
-class MediaJson {
-
-  MediaJson({
+class UMediaJson {
+  UMediaJson({
     this.title,
     this.description,
   });
 
-  factory MediaJson.fromJson(String str) => MediaJson.fromMap(json.decode(str));
+  factory UMediaJson.fromJson(String str) => UMediaJson.fromMap(json.decode(str));
 
-  factory MediaJson.fromMap(Map<String, dynamic> json) => MediaJson(
+  factory UMediaJson.fromMap(Map<String, dynamic> json) => UMediaJson(
         title: json["title"],
         description: json["description"],
       );

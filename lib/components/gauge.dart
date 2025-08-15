@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class UGauge extends StatelessWidget {
-
   const UGauge({
-    super.key,
     required this.value,
+    super.key,
     this.min = 0,
     this.max = 100,
     this.size = 200,
@@ -92,7 +91,6 @@ class UGauge extends StatelessWidget {
 }
 
 class UGaugeRange {
-
   UGaugeRange({
     required this.start,
     required this.end,
@@ -119,7 +117,6 @@ class UGaugeRange {
 }
 
 class UGaugeAnnotation {
-
   UGaugeAnnotation({
     required this.widget,
     required this.angle,

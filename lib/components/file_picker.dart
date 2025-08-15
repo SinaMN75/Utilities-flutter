@@ -3,11 +3,10 @@ import 'package:path/path.dart' as path;
 import '../utilities.dart';
 
 class FilePickerComponent extends StatefulWidget {
-
   const FilePickerComponent({
+    required this.onFilesChanged,
     super.key,
     this.initialFiles = const <FileData>[],
-    required this.onFilesChanged,
     this.allowMultipleSelection = true,
   });
 

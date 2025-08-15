@@ -1,7 +1,7 @@
 part of "../data.dart";
 
-class ProductResponse {
-  ProductResponse({
+class UProductResponse {
+  UProductResponse({
     required this.id,
     required this.createdAt,
     required this.updatedAt,
@@ -9,6 +9,8 @@ class ProductResponse {
     required this.tags,
     required this.title,
     required this.point,
+    required this.userId,
+    required this.visitCount,
     this.code,
     this.subtitle,
     this.description,
@@ -21,24 +23,22 @@ class ProductResponse {
     this.price,
     this.parentId,
     this.parent,
-    required this.userId,
     this.user,
     this.children,
     this.media,
     this.categories,
     this.commentCount,
     this.isFollowing,
-    required this.visitCount,
     this.childrenCount,
   });
 
-  factory ProductResponse.fromJson(String str) => ProductResponse.fromMap(json.decode(str));
+  factory UProductResponse.fromJson(String str) => UProductResponse.fromMap(json.decode(str));
 
-  factory ProductResponse.fromMap(Map<String, dynamic> json) => ProductResponse(
+  factory UProductResponse.fromMap(Map<String, dynamic> json) => UProductResponse(
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        jsonData: ProductJson.fromMap(json["jsonData"]),
+        jsonData: UProductJson.fromMap(json["jsonData"]),
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         title: json["title"],
         code: json["code"],
@@ -53,21 +53,21 @@ class ProductResponse {
         price: json["price"],
         point: json["point"],
         parentId: json["parentId"],
-        parent: json["parent"] == null ? null : ProductResponse.fromMap(json["parent"]),
+        parent: json["parent"] == null ? null : UProductResponse.fromMap(json["parent"]),
         userId: json["userId"],
         commentCount: json["commentCount"],
         isFollowing: json["isFollowing"],
         visitCount: json["visitCount"],
         childrenCount: json["childrenCount"],
-        user: json["user"] == null ? null : UserResponse.fromMap(json["user"]),
-        children: json["children"] == null ? <ProductResponse>[] : List<ProductResponse>.from(json["children"].map((dynamic x) => ProductResponse.fromMap(x))),
-        media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
-        categories: json["categories"] == null ? <CategoryResponse>[] : List<CategoryResponse>.from(json["categories"].map((dynamic x) => CategoryResponse.fromMap(x))),
+        user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
+        children: json["children"] == null ? <UProductResponse>[] : List<UProductResponse>.from(json["children"].map((dynamic x) => UProductResponse.fromMap(x))),
+        media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
+        categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
       );
   final String id;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final ProductJson jsonData;
+  final UProductJson jsonData;
   final List<int> tags;
   final String title;
   final String? code;
@@ -82,12 +82,12 @@ class ProductResponse {
   final double? price;
   final int point;
   final String? parentId;
-  final ProductResponse? parent;
+  final UProductResponse? parent;
   final String userId;
-  final UserResponse? user;
-  final List<ProductResponse>? children;
-  final List<MediaResponse>? media;
-  final List<CategoryResponse>? categories;
+  final UUserResponse? user;
+  final List<UProductResponse>? children;
+  final List<UMediaResponse>? media;
+  final List<UCategoryResponse>? categories;
   final int? commentCount;
   final bool? isFollowing;
   final int? visitCount;
@@ -121,14 +121,14 @@ class ProductResponse {
         "visitCount": visitCount,
         "childrenCount": childrenCount,
         "user": user?.toMap(),
-        "children": children == null ? null : List<dynamic>.from(children!.map((ProductResponse x) => x.toMap())),
-        "media": media == null ? null : List<dynamic>.from(media!.map((MediaResponse x) => x.toMap())),
-        "categories": categories == null ? null : List<dynamic>.from(categories!.map((CategoryResponse x) => x.toMap())),
+        "children": children == null ? null : List<dynamic>.from(children!.map((UProductResponse x) => x.toMap())),
+        "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
+        "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
       };
 }
 
-class ProductJson {
-  ProductJson({
+class UProductJson {
+  UProductJson({
     this.actionType,
     this.actionTitle,
     this.actionUri,
@@ -138,23 +138,23 @@ class ProductJson {
     this.relatedProducts,
   });
 
-  factory ProductJson.fromJson(String str) => ProductJson.fromMap(json.decode(str));
+  factory UProductJson.fromJson(String str) => UProductJson.fromMap(json.decode(str));
 
-  factory ProductJson.fromMap(Map<String, dynamic> json) => ProductJson(
+  factory UProductJson.fromMap(Map<String, dynamic> json) => UProductJson(
         actionType: json["actionType"],
         actionTitle: json["actionTitle"],
         actionUri: json["actionUri"],
         details: json["details"],
-        visitCounts: json["visitCounts"] == null ? <VisitCount>[] : List<VisitCount>.from(json["visitCounts"].map((dynamic x) => VisitCount.fromMap(x))),
-        pointCounts: json["pointCounts"] == null ? <PointCount>[] : List<PointCount>.from(json["pointCounts"].map((dynamic x) => PointCount.fromMap(x))),
+        visitCounts: json["visitCounts"] == null ? <UVisitCount>[] : List<UVisitCount>.from(json["visitCounts"].map((dynamic x) => UVisitCount.fromMap(x))),
+        pointCounts: json["pointCounts"] == null ? <UPointCount>[] : List<UPointCount>.from(json["pointCounts"].map((dynamic x) => UPointCount.fromMap(x))),
         relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
       );
   final String? actionType;
   final String? actionTitle;
   final String? actionUri;
   final String? details;
-  final List<VisitCount>? visitCounts;
-  final List<PointCount>? pointCounts;
+  final List<UVisitCount>? visitCounts;
+  final List<UPointCount>? pointCounts;
   final List<String>? relatedProducts;
 
   String toJson() => json.encode(toMap());
@@ -164,8 +164,8 @@ class ProductJson {
         "actionTitle": actionTitle,
         "actionUri": actionUri,
         "details": details,
-        "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((VisitCount x) => x.toMap())),
-        "pointCounts": pointCounts == null ? null : List<dynamic>.from(pointCounts!.map((PointCount x) => x.toMap())),
+        "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((UVisitCount x) => x.toMap())),
+        "pointCounts": pointCounts == null ? null : List<dynamic>.from(pointCounts!.map((UPointCount x) => x.toMap())),
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
       };
 }

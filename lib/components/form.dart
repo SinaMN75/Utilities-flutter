@@ -122,8 +122,8 @@ class _UTextFieldState extends State<UTextField> {
 
 class UTextFieldPersianDatePicker extends StatefulWidget {
   const UTextFieldPersianDatePicker({
-    super.key,
     required this.onChange,
+    super.key,
     this.text,
     this.fontSize,
     this.hintText,
@@ -337,12 +337,11 @@ class UTextButton extends StatelessWidget {
 }
 
 class USearchableDropdown<T> extends StatefulWidget {
-
   const USearchableDropdown({
-    super.key,
     required this.items,
     required this.labelBuilder,
     required this.onChanged,
+    super.key,
     this.selectedItem,
     this.hintText = "Select item",
   });
@@ -378,7 +377,7 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
                 ),
                 const SizedBox(height: 12),
                 Obx(
-                      () => ListView.builder(
+                  () => ListView.builder(
                     shrinkWrap: true,
                     itemCount: filteredItems.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -403,16 +402,16 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
 
   @override
   Widget build(BuildContext context) => InkWell(
-    onTap: _openSearchDialog,
-    child: InputDecorator(
-      decoration: InputDecoration(
-        labelText: widget.hintText,
-        border: const OutlineInputBorder(),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-      ),
-      child: Text(
-        widget.selectedItem != null ? widget.labelBuilder(widget.selectedItem as T) : 'انتخاب',
-      ),
-    ),
-  );
+        onTap: _openSearchDialog,
+        child: InputDecorator(
+          decoration: InputDecoration(
+            labelText: widget.hintText,
+            border: const OutlineInputBorder(),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+          ),
+          child: Text(
+            widget.selectedItem != null ? widget.labelBuilder(widget.selectedItem as T) : 'انتخاب',
+          ),
+        ),
+      );
 }

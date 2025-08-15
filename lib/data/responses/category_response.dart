@@ -1,14 +1,13 @@
 part of "../data.dart";
 
-extension CategoryListExtension on Iterable<CategoryResponse> {
-  CategoryResponse? get speciality => firstWhereOrNull((final CategoryResponse i) => i.tags.contains(TagCategory.speciality.number));
-  List<CategoryResponse> get specialities => where((final CategoryResponse i) => i.tags.contains(TagCategory.speciality.number)).toList();
+extension CategoryListExtension on Iterable<UCategoryResponse> {
+  UCategoryResponse? get speciality => firstWhereOrNull((final UCategoryResponse i) => i.tags.contains(TagCategory.speciality.number));
+
+  List<UCategoryResponse> get specialities => where((final UCategoryResponse i) => i.tags.contains(TagCategory.speciality.number)).toList();
 }
 
-
-class CategoryResponse {
-
-  CategoryResponse({
+class UCategoryResponse {
+  UCategoryResponse({
     required this.id,
     required this.createdAt,
     required this.updatedAt,
@@ -22,32 +21,32 @@ class CategoryResponse {
     this.media,
   });
 
-  factory CategoryResponse.fromJson(String str) => CategoryResponse.fromMap(json.decode(str));
+  factory UCategoryResponse.fromJson(String str) => UCategoryResponse.fromMap(json.decode(str));
 
-  factory CategoryResponse.fromMap(Map<String, dynamic> json) => CategoryResponse(
+  factory UCategoryResponse.fromMap(Map<String, dynamic> json) => UCategoryResponse(
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        jsonData: CategoryJson.fromMap(json["jsonData"]),
+        jsonData: UCategoryJson.fromMap(json["jsonData"]),
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         title: json["title"],
         parentId: json["parentId"],
-        parent: json["parent"] == null ? null : CategoryResponse.fromMap(json["parent"]),
+        parent: json["parent"] == null ? null : UCategoryResponse.fromMap(json["parent"]),
         order: json["order"],
-        children: json["children"] == null ? <CategoryResponse>[] : List<CategoryResponse>.from(json["children"].map((dynamic x) => CategoryResponse.fromMap(x))),
-        media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
+        children: json["children"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["children"].map((dynamic x) => UCategoryResponse.fromMap(x))),
+        media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
       );
   final String id;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final CategoryJson jsonData;
+  final UCategoryJson jsonData;
   final List<int> tags;
   final String title;
   final String? parentId;
-  final CategoryResponse? parent;
+  final UCategoryResponse? parent;
   final int? order;
-  final List<CategoryResponse>? children;
-  final List<MediaResponse>? media;
+  final List<UCategoryResponse>? children;
+  final List<UMediaResponse>? media;
 
   String toJson() => json.encode(toMap());
 
@@ -61,14 +60,13 @@ class CategoryResponse {
         "parentId": parentId,
         "parent": parent?.toMap(),
         "order": order,
-        "children": children == null ? null : List<dynamic>.from(children!.map((CategoryResponse x) => x.toMap())),
-        "media": children == null ? null : List<dynamic>.from(media!.map((MediaResponse x) => x.toMap())),
+        "children": children == null ? null : List<dynamic>.from(children!.map((UCategoryResponse x) => x.toMap())),
+        "media": children == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
       };
 }
 
-class CategoryJson {
-
-  CategoryJson({
+class UCategoryJson {
+  UCategoryJson({
     this.subtitle,
     this.link,
     this.location,
@@ -76,9 +74,9 @@ class CategoryJson {
     this.relatedProducts,
   });
 
-  factory CategoryJson.fromJson(String str) => CategoryJson.fromMap(json.decode(str));
+  factory UCategoryJson.fromJson(String str) => UCategoryJson.fromMap(json.decode(str));
 
-  factory CategoryJson.fromMap(Map<String, dynamic> json) => CategoryJson(
+  factory UCategoryJson.fromMap(Map<String, dynamic> json) => UCategoryJson(
         subtitle: json["subtitle"],
         link: json["link"],
         location: json["location"],

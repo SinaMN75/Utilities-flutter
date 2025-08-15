@@ -1,14 +1,13 @@
 part of "../data.dart";
 
-class RefreshTokenParams {
-
-  RefreshTokenParams({
+class URefreshTokenParams {
+  URefreshTokenParams({
     required this.refreshToken,
   });
 
-  factory RefreshTokenParams.fromJson(String str) => RefreshTokenParams.fromMap(json.decode(str));
+  factory URefreshTokenParams.fromJson(String str) => URefreshTokenParams.fromMap(json.decode(str));
 
-  factory RefreshTokenParams.fromMap(Map<String, dynamic> json) => RefreshTokenParams(
+  factory URefreshTokenParams.fromMap(Map<String, dynamic> json) => URefreshTokenParams(
         refreshToken: json["refreshToken"],
       );
   final String refreshToken;
@@ -20,15 +19,16 @@ class RefreshTokenParams {
       };
 }
 
-class GetMobileVerificationCodeForLoginParams {
-
-  GetMobileVerificationCodeForLoginParams({
+class UGetMobileVerificationCodeForLoginParams {
+  UGetMobileVerificationCodeForLoginParams({
     required this.phoneNumber,
   });
 
-  factory GetMobileVerificationCodeForLoginParams.fromJson(String str) => GetMobileVerificationCodeForLoginParams.fromMap(json.decode(str));
+  factory UGetMobileVerificationCodeForLoginParams.fromJson(String str) => UGetMobileVerificationCodeForLoginParams.fromMap(
+        json.decode(str),
+      );
 
-  factory GetMobileVerificationCodeForLoginParams.fromMap(Map<String, dynamic> json) => GetMobileVerificationCodeForLoginParams(
+  factory UGetMobileVerificationCodeForLoginParams.fromMap(Map<String, dynamic> json) => UGetMobileVerificationCodeForLoginParams(
         phoneNumber: json["phoneNumber"],
       );
   final String phoneNumber;
@@ -40,16 +40,15 @@ class GetMobileVerificationCodeForLoginParams {
       };
 }
 
-class LoginWithEmailPasswordParams {
-
-  LoginWithEmailPasswordParams({
+class ULoginWithEmailPasswordParams {
+  ULoginWithEmailPasswordParams({
     required this.email,
     required this.password,
   });
 
-  factory LoginWithEmailPasswordParams.fromJson(String str) => LoginWithEmailPasswordParams.fromMap(json.decode(str));
+  factory ULoginWithEmailPasswordParams.fromJson(String str) => ULoginWithEmailPasswordParams.fromMap(json.decode(str));
 
-  factory LoginWithEmailPasswordParams.fromMap(Map<String, dynamic> json) => LoginWithEmailPasswordParams(
+  factory ULoginWithEmailPasswordParams.fromMap(Map<String, dynamic> json) => ULoginWithEmailPasswordParams(
         email: json["email"],
         password: json["password"],
       );
@@ -64,16 +63,17 @@ class LoginWithEmailPasswordParams {
       };
 }
 
-class LoginWithUserNamePasswordParams {
-
-  LoginWithUserNamePasswordParams({
+class ULoginWithUserNamePasswordParams {
+  ULoginWithUserNamePasswordParams({
     required this.userName,
     required this.password,
   });
 
-  factory LoginWithUserNamePasswordParams.fromJson(String str) => LoginWithUserNamePasswordParams.fromMap(json.decode(str));
+  factory ULoginWithUserNamePasswordParams.fromJson(String str) => ULoginWithUserNamePasswordParams.fromMap(
+        json.decode(str),
+      );
 
-  factory LoginWithUserNamePasswordParams.fromMap(Map<String, dynamic> json) => LoginWithUserNamePasswordParams(
+  factory ULoginWithUserNamePasswordParams.fromMap(Map<String, dynamic> json) => ULoginWithUserNamePasswordParams(
         userName: json["userName"],
         password: json["password"],
       );
@@ -88,21 +88,20 @@ class LoginWithUserNamePasswordParams {
       };
 }
 
-class RegisterParams {
-
-  RegisterParams({
+class URegisterParams {
+  URegisterParams({
     required this.userName,
+    required this.password,
+    required this.tags,
     this.email,
     this.phoneNumber,
-    required this.password,
     this.firstName,
     this.lastName,
-    required this.tags,
   });
 
-  factory RegisterParams.fromJson(String str) => RegisterParams.fromMap(json.decode(str));
+  factory URegisterParams.fromJson(String str) => URegisterParams.fromMap(json.decode(str));
 
-  factory RegisterParams.fromMap(Map<String, dynamic> json) => RegisterParams(
+  factory URegisterParams.fromMap(Map<String, dynamic> json) => URegisterParams(
         userName: json["userName"],
         email: json["email"],
         phoneNumber: json["phoneNumber"],
@@ -132,18 +131,17 @@ class RegisterParams {
       };
 }
 
-class VerifyMobileForLoginParams {
-
-  VerifyMobileForLoginParams({
+class UVerifyMobileForLoginParams {
+  UVerifyMobileForLoginParams({
     required this.phoneNumber,
     required this.otp,
     this.firstName,
     this.lastName,
   });
 
-  factory VerifyMobileForLoginParams.fromJson(String str) => VerifyMobileForLoginParams.fromMap(json.decode(str));
+  factory UVerifyMobileForLoginParams.fromJson(String str) => UVerifyMobileForLoginParams.fromMap(json.decode(str));
 
-  factory VerifyMobileForLoginParams.fromMap(Map<String, dynamic> json) => VerifyMobileForLoginParams(
+  factory UVerifyMobileForLoginParams.fromMap(Map<String, dynamic> json) => UVerifyMobileForLoginParams(
         phoneNumber: json["phoneNumber"],
         otp: json["otp"],
         firstName: json["firstName"],

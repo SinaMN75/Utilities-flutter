@@ -1,32 +1,31 @@
 part of "../data.dart";
 
-class UserBulkCreateParams {
-
-  UserBulkCreateParams({
+class UUserBulkCreateParams {
+  UUserBulkCreateParams({
     required this.users,
   });
 
-  factory UserBulkCreateParams.fromJson(String str) => UserBulkCreateParams.fromMap(json.decode(str));
+  factory UUserBulkCreateParams.fromJson(String str) => UUserBulkCreateParams.fromMap(json.decode(str));
 
-  factory UserBulkCreateParams.fromMap(Map<String, dynamic> json) => UserBulkCreateParams(
-        users: List<UserCreateParams>.from(json["users"].map((dynamic x) => UserCreateParams.fromMap(x))),
+  factory UUserBulkCreateParams.fromMap(Map<String, dynamic> json) => UUserBulkCreateParams(
+        users: List<UUserCreateParams>.from(json["users"].map((dynamic x) => UUserCreateParams.fromMap(x))),
       );
-  final List<UserCreateParams> users;
+  final List<UUserCreateParams> users;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "users": List<dynamic>.from(users.map((UserCreateParams x) => x.toMap())),
+        "users": List<dynamic>.from(users.map((UUserCreateParams x) => x.toMap())),
       };
 }
 
-class UserCreateParams {
-
-  UserCreateParams({
+class UUserCreateParams {
+  UUserCreateParams({
     required this.userName,
     required this.password,
     required this.phoneNumber,
     required this.email,
+    required this.tags,
     this.firstName,
     this.lastName,
     this.bio,
@@ -43,13 +42,12 @@ class UserCreateParams {
     this.foodAllergies,
     this.drugAllergies,
     this.sickness,
-    required this.tags,
     this.categories,
   });
 
-  factory UserCreateParams.fromJson(String str) => UserCreateParams.fromMap(json.decode(str));
+  factory UUserCreateParams.fromJson(String str) => UUserCreateParams.fromMap(json.decode(str));
 
-  factory UserCreateParams.fromMap(Map<String, dynamic> json) => UserCreateParams(
+  factory UUserCreateParams.fromMap(Map<String, dynamic> json) => UUserCreateParams(
         userName: json["userName"],
         password: json["password"],
         phoneNumber: json["phoneNumber"],
@@ -124,9 +122,8 @@ class UserCreateParams {
       };
 }
 
-class UserReadParams {
-
-  UserReadParams({
+class UUserReadParams {
+  UUserReadParams({
     this.userName,
     this.phoneNumber,
     this.email,
@@ -149,9 +146,9 @@ class UserReadParams {
     this.tags,
   });
 
-  factory UserReadParams.fromJson(String str) => UserReadParams.fromMap(json.decode(str));
+  factory UUserReadParams.fromJson(String str) => UUserReadParams.fromMap(json.decode(str));
 
-  factory UserReadParams.fromMap(Map<String, dynamic> json) => UserReadParams(
+  factory UUserReadParams.fromMap(Map<String, dynamic> json) => UUserReadParams(
         userName: json["userName"],
         phoneNumber: json["phoneNumber"],
         email: json["email"],
@@ -220,9 +217,9 @@ class UserReadParams {
       };
 }
 
-class UserUpdateParams {
-
-  UserUpdateParams({
+class UUserUpdateParams {
+  UUserUpdateParams({
+    required this.id,
     this.password,
     this.firstName,
     this.lastName,
@@ -246,15 +243,14 @@ class UserUpdateParams {
     this.sickness,
     this.health1,
     this.categories,
-    required this.id,
     this.addTags,
     this.removeTags,
     this.tags,
   });
 
-  factory UserUpdateParams.fromJson(String str) => UserUpdateParams.fromMap(json.decode(str));
+  factory UUserUpdateParams.fromJson(String str) => UUserUpdateParams.fromMap(json.decode(str));
 
-  factory UserUpdateParams.fromMap(Map<String, dynamic> json) => UserUpdateParams(
+  factory UUserUpdateParams.fromMap(Map<String, dynamic> json) => UUserUpdateParams(
         password: json["password"],
         firstName: json["firstName"],
         lastName: json["lastName"],

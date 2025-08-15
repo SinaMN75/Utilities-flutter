@@ -14,15 +14,15 @@ class UHttpClient {
   final Map<String, String> defaultHeaders;
   final Client _client = Client();
 
-  Future<Response?> request({
+  Future<Response?> _request({
     required final String method,
     required final String endpoint,
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
-    final dynamic body,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
+    final Map<String, String>? headers,
+    final Map<String, dynamic>? queryParams,
+    final dynamic body,
   }) async {
     final Uri uri = _buildUri(endpoint, queryParams);
     final Map<String, String> mergedHeaders = <String, String>{...defaultHeaders, ...?headers};
@@ -56,12 +56,12 @@ class UHttpClient {
   Future<void> upload({
     required final String endpoint,
     required final List<MultipartFile> files,
-    final Map<String, String>? fields,
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
+    final Map<String, String>? fields,
+    final Map<String, String>? headers,
+    final Map<String, dynamic>? queryParams,
   }) async {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
@@ -90,11 +90,11 @@ class UHttpClient {
   Future<void> download({
     required final String endpoint,
     required final String savePath,
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
     required final Function(File)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
+    final Map<String, String>? headers,
+    final Map<String, dynamic>? queryParams,
   }) async {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
@@ -117,13 +117,13 @@ class UHttpClient {
 
   Future<Response?> get(
     final String endpoint, {
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
+    final Map<String, String>? headers,
+    final Map<String, dynamic>? queryParams,
   }) async =>
-      request(
+      _request(
         method: 'GET',
         endpoint: endpoint,
         headers: headers,
@@ -135,34 +135,34 @@ class UHttpClient {
 
   Future<Response?> post(
     final String endpoint, {
+    required final Function(String) onSuccess,
+    required final Function(String) onError,
+    required final Function(dynamic) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
-    required final Function(Response)? onSuccess,
-    required final Function(Response)? onError,
-    required final Function(dynamic)? onException,
   }) async =>
-      request(
+      _request(
         method: 'POST',
         endpoint: endpoint,
         headers: headers,
         queryParams: queryParams,
         body: body,
-        onSuccess: onSuccess,
-        onError: onError,
+        onSuccess: (Response r) => onSuccess(r.body),
+        onError: (Response r) => onError(r.body),
         onException: onException,
       );
 
   Future<Response?> put(
     final String endpoint, {
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
-    final dynamic body,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
+    final Map<String, String>? headers,
+    final Map<String, dynamic>? queryParams,
+    final dynamic body,
   }) async =>
-      request(
+      _request(
         method: 'PUT',
         endpoint: endpoint,
         headers: headers,
@@ -175,13 +175,13 @@ class UHttpClient {
 
   Future<Response?> delete(
     final String endpoint, {
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
+    final Map<String, String>? headers,
+    final Map<String, dynamic>? queryParams,
   }) async =>
-      request(
+      _request(
         method: 'DELETE',
         endpoint: endpoint,
         headers: headers,

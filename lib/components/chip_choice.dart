@@ -1,10 +1,10 @@
 import 'package:u/utilities.dart';
 
-class CustomChipChoice<T> extends StatefulWidget {
-  const CustomChipChoice({
-    super.key,
+class UChipChoice<T> extends StatefulWidget {
+  const UChipChoice({
     required this.options,
     required this.selected,
+    super.key,
     this.onChanged,
     this.chipBuilder,
     this.isMultiChoice = false,
@@ -66,10 +66,10 @@ class CustomChipChoice<T> extends StatefulWidget {
   final ChipThemeData? unselectedChipStyle;
 
   @override
-  State<CustomChipChoice<T>> createState() => _CustomChipChoiceState<T>();
+  State<UChipChoice<T>> createState() => _UChipChoiceState<T>();
 }
 
-class _CustomChipChoiceState<T> extends State<CustomChipChoice<T>> {
+class _UChipChoiceState<T> extends State<UChipChoice<T>> {
   bool _isSelected(T item) {
     if (widget.isMultiChoice) {
       return (widget.selected as List<T>).contains(item);

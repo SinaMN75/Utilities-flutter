@@ -4,8 +4,8 @@ import 'package:u/utilities.dart';
 
 class SignaturePad extends StatelessWidget {
   SignaturePad({
-    super.key,
     required this.onSave,
+    super.key,
     this.saveButtonText = "Save",
     this.clearButtonText = "Clear",
   });

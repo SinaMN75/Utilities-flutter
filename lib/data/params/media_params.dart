@@ -1,8 +1,7 @@
 part of "../data.dart";
 
-class MediaUpdateParams {
-
-  MediaUpdateParams({
+class UMediaUpdateParams {
+  UMediaUpdateParams({
     required this.id,
     this.addTags,
     this.removeTags,
@@ -15,9 +14,9 @@ class MediaUpdateParams {
     this.productId,
   });
 
-  factory MediaUpdateParams.fromJson(String str) => MediaUpdateParams.fromMap(json.decode(str));
+  factory UMediaUpdateParams.fromJson(String str) => UMediaUpdateParams.fromMap(json.decode(str));
 
-  factory MediaUpdateParams.fromMap(Map<String, dynamic> json) => MediaUpdateParams(
+  factory UMediaUpdateParams.fromMap(Map<String, dynamic> json) => UMediaUpdateParams(
         id: json["id"],
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),

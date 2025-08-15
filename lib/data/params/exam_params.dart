@@ -1,8 +1,7 @@
 part of "../data.dart";
 
-class ExamCreateParams {
-
-  ExamCreateParams({
+class UExamCreateParams {
+  UExamCreateParams({
     required this.title,
     required this.description,
     required this.questions,
@@ -11,20 +10,20 @@ class ExamCreateParams {
     required this.tags,
   });
 
-  factory ExamCreateParams.fromJson(String str) => ExamCreateParams.fromMap(json.decode(str));
+  factory UExamCreateParams.fromJson(String str) => UExamCreateParams.fromMap(json.decode(str));
 
-  factory ExamCreateParams.fromMap(Map<String, dynamic> json) => ExamCreateParams(
+  factory UExamCreateParams.fromMap(Map<String, dynamic> json) => UExamCreateParams(
         title: json["title"],
         description: json["description"],
-        questions: List<QuestionJson>.from(json["questions"].map((dynamic x) => QuestionJson.fromMap(x))),
-        scoreDetails: List<ExamScoreDetail>.from(json["scoreDetails"].map((dynamic x) => ExamScoreDetail.fromMap(x))),
+        questions: List<UQuestionJson>.from(json["questions"].map((dynamic x) => UQuestionJson.fromMap(x))),
+        scoreDetails: List<UExamScoreDetail>.from(json["scoreDetails"].map((dynamic x) => UExamScoreDetail.fromMap(x))),
         categoryId: json["categoryId"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
       );
   final String title;
   final String description;
-  final List<QuestionJson> questions;
-  final List<ExamScoreDetail> scoreDetails;
+  final List<UQuestionJson> questions;
+  final List<UExamScoreDetail> scoreDetails;
   final String categoryId;
   final List<int> tags;
 
@@ -40,9 +39,8 @@ class ExamCreateParams {
       };
 }
 
-class ExamReadParams {
-
-  ExamReadParams({
+class UExamReadParams {
+  UExamReadParams({
     this.categoryId,
     this.pageSize,
     this.pageNumber,
@@ -55,9 +53,9 @@ class ExamReadParams {
     this.tags,
   });
 
-  factory ExamReadParams.fromJson(String str) => ExamReadParams.fromMap(json.decode(str));
+  factory UExamReadParams.fromJson(String str) => UExamReadParams.fromMap(json.decode(str));
 
-  factory ExamReadParams.fromMap(Map<String, dynamic> json) => ExamReadParams(
+  factory UExamReadParams.fromMap(Map<String, dynamic> json) => UExamReadParams(
         categoryId: json["categoryId"],
         pageSize: json["pageSize"] ?? 0,
         pageNumber: json["pageNumber"] ?? 0,
@@ -96,22 +94,21 @@ class ExamReadParams {
       };
 }
 
-class SubmitAnswersParams {
-
-  SubmitAnswersParams({
+class USubmitAnswersParams {
+  USubmitAnswersParams({
     required this.answers,
     required this.userId,
     required this.examId,
   });
 
-  factory SubmitAnswersParams.fromJson(String str) => SubmitAnswersParams.fromMap(json.decode(str));
+  factory USubmitAnswersParams.fromJson(String str) => USubmitAnswersParams.fromMap(json.decode(str));
 
-  factory SubmitAnswersParams.fromMap(Map<String, dynamic> json) => SubmitAnswersParams(
-        answers: List<UserAnswerResultJson>.from(json["answers"].map((dynamic x) => UserAnswerResultJson.fromMap(x))),
+  factory USubmitAnswersParams.fromMap(Map<String, dynamic> json) => USubmitAnswersParams(
+        answers: List<UUserAnswerResultJson>.from(json["answers"].map((dynamic x) => UUserAnswerResultJson.fromMap(x))),
         userId: json["userId"],
         examId: json["examId"],
       );
-  final List<UserAnswerResultJson> answers;
+  final List<UUserAnswerResultJson> answers;
   final String userId;
   final String examId;
 

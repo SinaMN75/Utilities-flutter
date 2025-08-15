@@ -1,8 +1,7 @@
 part of "../data.dart";
 
-class UserResponse {
-
-  UserResponse({
+class UUserResponse {
+  UUserResponse({
     required this.id,
     required this.createdAt,
     required this.updatedAt,
@@ -24,13 +23,13 @@ class UserResponse {
     this.media,
   });
 
-  factory UserResponse.fromJson(String str) => UserResponse.fromMap(json.decode(str));
+  factory UUserResponse.fromJson(String str) => UUserResponse.fromMap(json.decode(str));
 
-  factory UserResponse.fromMap(Map<String, dynamic> json) => UserResponse(
+  factory UUserResponse.fromMap(Map<String, dynamic> json) => UUserResponse(
         id: json["id"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        jsonData: UserJson.fromMap(json["jsonData"]),
+        jsonData: UUserJson.fromMap(json["jsonData"]),
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         userName: json["userName"],
         password: json["password"],
@@ -44,13 +43,13 @@ class UserResponse {
         state: json["state"],
         city: json["city"],
         birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
-        categories: json["categories"] == null ? <CategoryResponse>[] : List<CategoryResponse>.from(json["categories"].map((dynamic x) => CategoryResponse.fromMap(x))),
-        media: json["media"] == null ? <MediaResponse>[] : List<MediaResponse>.from(json["media"].map((dynamic x) => MediaResponse.fromMap(x))),
+        categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
+        media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
       );
   final String id;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final UserJson jsonData;
+  final UUserJson jsonData;
   final List<int> tags;
   final String userName;
   final String? password;
@@ -64,8 +63,8 @@ class UserResponse {
   final String? state;
   final String? city;
   final DateTime? birthdate;
-  final List<CategoryResponse>? categories;
-  final List<MediaResponse>? media;
+  final List<UCategoryResponse>? categories;
+  final List<UMediaResponse>? media;
 
   String toJson() => json.encode(toMap());
 
@@ -87,14 +86,13 @@ class UserResponse {
         "state": state,
         "city": city,
         "birthdate": birthdate?.toIso8601String(),
-        "categories": categories == null ? null : List<dynamic>.from(categories!.map((CategoryResponse x) => x.toMap())),
-        "media": media == null ? null : List<dynamic>.from(media!.map((MediaResponse x) => x.toMap())),
+        "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
+        "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
       };
 }
 
-class UserJson {
-
-  UserJson({
+class UUserJson {
+  UUserJson({
     this.fcmToken,
     this.health1,
     this.foodAllergies,
@@ -105,12 +103,12 @@ class UserJson {
     this.address,
     this.fatherName,
     this.visitCounts,
-    this.userAnswerJson = const <UserAnswerJson>[],
+    this.userAnswerJson = const <UUserAnswerJson>[],
   });
 
-  factory UserJson.fromJson(String str) => UserJson.fromMap(json.decode(str));
+  factory UUserJson.fromJson(String str) => UUserJson.fromMap(json.decode(str));
 
-  factory UserJson.fromMap(Map<String, dynamic> json) => UserJson(
+  factory UUserJson.fromMap(Map<String, dynamic> json) => UUserJson(
         fcmToken: json["fcmToken"],
         health1: json["health1"] == null ? <String>[] : List<String>.from(json["health1"].map((dynamic x) => x)),
         foodAllergies: json["foodAllergies"] == null ? <String>[] : List<String>.from(json["foodAllergies"].map((dynamic x) => x)),
@@ -120,8 +118,8 @@ class UserJson {
         height: json["height"],
         address: json["address"],
         fatherName: json["fatherName"],
-        visitCounts: json["visitCounts"] == null ? <VisitCount>[] : List<VisitCount>.from(json["visitCounts"].map((dynamic x) => VisitCount.fromMap(x))),
-        userAnswerJson: json["userAnswerJson"] == null ? <UserAnswerJson>[] : List<UserAnswerJson>.from(json["userAnswerJson"].map((dynamic x) => UserAnswerJson.fromMap(x))),
+        visitCounts: json["visitCounts"] == null ? <UVisitCount>[] : List<UVisitCount>.from(json["visitCounts"].map((dynamic x) => UVisitCount.fromMap(x))),
+        userAnswerJson: json["userAnswerJson"] == null ? <UUserAnswerJson>[] : List<UUserAnswerJson>.from(json["userAnswerJson"].map((dynamic x) => UUserAnswerJson.fromMap(x))),
       );
   final String? fcmToken;
   final List<String>? health1;
@@ -132,8 +130,8 @@ class UserJson {
   final int? height;
   final String? address;
   final String? fatherName;
-  final List<UserAnswerJson> userAnswerJson;
-  final List<VisitCount>? visitCounts;
+  final List<UUserAnswerJson> userAnswerJson;
+  final List<UVisitCount>? visitCounts;
 
   String toJson() => json.encode(toMap());
 
@@ -147,32 +145,31 @@ class UserJson {
         "height": height,
         "address": address,
         "fatherName": fatherName,
-        "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((VisitCount x) => x.toMap())),
-        "userAnswerJson": List<dynamic>.from(userAnswerJson.map((UserAnswerJson x) => x.toMap())),
+        "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((UVisitCount x) => x.toMap())),
+        "userAnswerJson": List<dynamic>.from(userAnswerJson.map((UUserAnswerJson x) => x.toMap())),
       };
 }
 
-class RegisterResponse {
-
-  RegisterResponse({
+class URegisterResponse {
+  URegisterResponse({
     this.token,
     this.refreshToken,
     this.expires,
     this.user,
   });
 
-  factory RegisterResponse.fromJson(String str) => RegisterResponse.fromMap(json.decode(str));
+  factory URegisterResponse.fromJson(String str) => URegisterResponse.fromMap(json.decode(str));
 
-  factory RegisterResponse.fromMap(Map<String, dynamic> json) => RegisterResponse(
+  factory URegisterResponse.fromMap(Map<String, dynamic> json) => URegisterResponse(
         token: json["token"],
         refreshToken: json["refreshToken"],
         expires: json["expires"],
-        user: json["user"] == null ? null : UserResponse.fromMap(json["user"]),
+        user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
       );
   final String? token;
   final String? refreshToken;
   final String? expires;
-  final UserResponse? user;
+  final UUserResponse? user;
 
   String toJson() => json.encode(toMap());
 

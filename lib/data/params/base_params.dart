@@ -1,20 +1,19 @@
 part of "../data.dart";
 
-class BaseParams {
-  BaseParams();
+class UBaseParams {
+  UBaseParams();
 
   Map<String, dynamic> toMap() => <String, dynamic>{};
 }
 
-class IdParams {
-
-  IdParams({
+class UIdParams {
+  UIdParams({
     required this.id,
   });
 
-  factory IdParams.fromJson(String str) => IdParams.fromMap(json.decode(str));
+  factory UIdParams.fromJson(String str) => UIdParams.fromMap(json.decode(str));
 
-  factory IdParams.fromMap(Map<String, dynamic> json) => IdParams(
+  factory UIdParams.fromMap(Map<String, dynamic> json) => UIdParams(
         id: json["id"],
       );
   final String id;
@@ -26,15 +25,16 @@ class IdParams {
       };
 }
 
-class IdListParams {
-
-  IdListParams({
+class UIdListParams {
+  UIdListParams({
     required this.ids,
   });
 
-  factory IdListParams.fromJson(String str) => IdListParams.fromMap(json.decode(str));
+  factory UIdListParams.fromJson(String str) => UIdListParams.fromMap(
+        json.decode(str),
+      );
 
-  factory IdListParams.fromMap(Map<String, dynamic> json) => IdListParams(
+  factory UIdListParams.fromMap(Map<String, dynamic> json) => UIdListParams(
         ids: List<String>.from(json["ids"]!.map((dynamic x) => x)),
       );
   final List<String> ids;

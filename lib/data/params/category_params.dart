@@ -1,12 +1,11 @@
 part of "../data.dart";
 
-class CategoryCreateParams {
-
-  CategoryCreateParams({
-    this.id,
+class UCategoryCreateParams {
+  UCategoryCreateParams({
     required this.title,
-    this.subtitle,
     required this.tags,
+    this.id,
+    this.subtitle,
     this.parentId,
     this.order,
     this.location,
@@ -15,9 +14,9 @@ class CategoryCreateParams {
     this.relatedProducts,
   });
 
-  factory CategoryCreateParams.fromJson(String str) => CategoryCreateParams.fromMap(json.decode(str));
+  factory UCategoryCreateParams.fromJson(String str) => UCategoryCreateParams.fromMap(json.decode(str));
 
-  factory CategoryCreateParams.fromMap(Map<String, dynamic> json) => CategoryCreateParams(
+  factory UCategoryCreateParams.fromMap(Map<String, dynamic> json) => UCategoryCreateParams(
         id: json["id"],
         title: json["title"],
         subtitle: json["subtitle"],
@@ -28,7 +27,6 @@ class CategoryCreateParams {
         type: json["type"],
         link: json["link"],
         relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
-        
       );
   final String? id;
   final String title;
@@ -57,9 +55,9 @@ class CategoryCreateParams {
       };
 }
 
-class CategoryUpdateParams {
-
-  CategoryUpdateParams({
+class UCategoryUpdateParams {
+  UCategoryUpdateParams({
+    required this.id,
     this.title,
     this.subtitle,
     this.link,
@@ -70,15 +68,14 @@ class CategoryUpdateParams {
     this.relatedProducts,
     this.addRelatedProducts,
     this.removeRelatedProducts,
-    required this.id,
     this.addTags,
     this.removeTags,
     this.tags,
   });
 
-  factory CategoryUpdateParams.fromJson(String str) => CategoryUpdateParams.fromMap(json.decode(str));
+  factory UCategoryUpdateParams.fromJson(String str) => UCategoryUpdateParams.fromMap(json.decode(str));
 
-  factory CategoryUpdateParams.fromMap(Map<String, dynamic> json) => CategoryUpdateParams(
+  factory UCategoryUpdateParams.fromMap(Map<String, dynamic> json) => UCategoryUpdateParams(
         title: json["title"],
         subtitle: json["subtitle"],
         link: json["link"],
@@ -93,7 +90,6 @@ class CategoryUpdateParams {
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        
       );
   final String? title;
   final String? subtitle;
@@ -130,9 +126,8 @@ class CategoryUpdateParams {
       };
 }
 
-class CategoryReadParams {
-
-  CategoryReadParams({
+class UCategoryReadParams {
+  UCategoryReadParams({
     this.ids,
     this.showMedia,
     this.pageSize,
@@ -144,9 +139,9 @@ class CategoryReadParams {
     this.tags,
   });
 
-  factory CategoryReadParams.fromJson(String str) => CategoryReadParams.fromMap(json.decode(str));
+  factory UCategoryReadParams.fromJson(String str) => UCategoryReadParams.fromMap(json.decode(str));
 
-  factory CategoryReadParams.fromMap(Map<String, dynamic> json) => CategoryReadParams(
+  factory UCategoryReadParams.fromMap(Map<String, dynamic> json) => UCategoryReadParams(
         ids: json["ids"] == null ? null : List<String>.from(json["ids"].map((dynamic x) => x)),
         showMedia: json["showMedia"] ?? false,
         pageSize: json["pageSize"] ?? 100,
@@ -156,7 +151,6 @@ class CategoryReadParams {
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-        
       );
   final List<String>? ids;
   final bool? showMedia;

@@ -1,8 +1,7 @@
 part of "../data.dart";
 
-class MetricsResponse {
-
-  MetricsResponse({
+class UMetricsResponse {
+  UMetricsResponse({
     this.cpuUsage = 0,
     this.memoryUsage = 0,
     this.diskUsage = 0,
@@ -13,9 +12,9 @@ class MetricsResponse {
     this.date = "",
   });
 
-  factory MetricsResponse.fromJson(String str) => MetricsResponse.fromMap(json.decode(str));
+  factory UMetricsResponse.fromJson(String str) => UMetricsResponse.fromMap(json.decode(str));
 
-  factory MetricsResponse.fromMap(Map<String, dynamic> json) => MetricsResponse(
+  factory UMetricsResponse.fromMap(Map<String, dynamic> json) => UMetricsResponse(
         cpuUsage: json["cpuUsage"].toString().toDouble(),
         memoryUsage: json["memoryUsage"].toString().toDouble(),
         diskUsage: json["diskUsage"].toString().toDouble(),
@@ -35,13 +34,12 @@ class MetricsResponse {
   final String date;
 }
 
-class DashboardResponse {
-
+class UDashboardResponse {
   // final List<> newComments;
   // final List<> newContents;
   // final List<> newProducts;
 
-  DashboardResponse({
+  UDashboardResponse({
     required this.categories,
     required this.comments,
     required this.contents,
@@ -58,9 +56,9 @@ class DashboardResponse {
     // required this.newProducts,
   });
 
-  factory DashboardResponse.fromJson(String str) => DashboardResponse.fromMap(json.decode(str));
+  factory UDashboardResponse.fromJson(String str) => UDashboardResponse.fromMap(json.decode(str));
 
-  factory DashboardResponse.fromMap(Map<String, dynamic> json) => DashboardResponse(
+  factory UDashboardResponse.fromMap(Map<String, dynamic> json) => UDashboardResponse(
         categories: json["categories"],
         comments: json["comments"],
         contents: json["contents"],
@@ -68,10 +66,10 @@ class DashboardResponse {
         media: json["media"],
         products: json["products"],
         users: json["users"],
-        newUsers: List<UserResponse>.from(json["newUsers"].map((dynamic x) => UserResponse.fromMap(x))),
-        newCategories: List<CategoryResponse>.from(json["newCategories"].map((dynamic x) => CategoryResponse.fromMap(x))),
-        newExams: List<ExamResponse>.from(json["newExams"].map((dynamic x) => ExamResponse.fromMap(x))),
-        newMedia: List<MediaResponse>.from(json["newMedia"].map((dynamic x) => MediaResponse.fromMap(x))),
+        newUsers: List<UUserResponse>.from(json["newUsers"].map((dynamic x) => UUserResponse.fromMap(x))),
+        newCategories: List<UCategoryResponse>.from(json["newCategories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
+        newExams: List<UExamResponse>.from(json["newExams"].map((dynamic x) => UExamResponse.fromMap(x))),
+        newMedia: List<UMediaResponse>.from(json["newMedia"].map((dynamic x) => UMediaResponse.fromMap(x))),
         // newComments: List<NewComment>.from(json["newComments"].map((dynamic x) => NewComment.fromMap(x))),
         // newContents: List<NewContent>.from(json["newContents"].map((dynamic x) => NewContent.fromMap(x))),
         // newProducts: List<NewProduct>.from(json["newProducts"].map((dynamic x) => NewProduct.fromMap(x))),
@@ -83,10 +81,10 @@ class DashboardResponse {
   final int media;
   final int products;
   final int users;
-  final List<UserResponse> newUsers;
-  final List<CategoryResponse> newCategories;
-  final List<ExamResponse> newExams;
-  final List<MediaResponse> newMedia;
+  final List<UUserResponse> newUsers;
+  final List<UCategoryResponse> newCategories;
+  final List<UExamResponse> newExams;
+  final List<UMediaResponse> newMedia;
 
   String toJson() => json.encode(toMap());
 
@@ -98,10 +96,10 @@ class DashboardResponse {
         "media": media,
         "products": products,
         "users": users,
-        "newUsers": List<dynamic>.from(newUsers.map((UserResponse x) => x.toMap())),
-        "newCategories": List<dynamic>.from(newCategories.map((CategoryResponse x) => x.toMap())),
-        "newExams": List<dynamic>.from(newExams.map((ExamResponse x) => x.toMap())),
-        "newMedia": List<dynamic>.from(newMedia.map((MediaResponse x) => x.toMap())),
+        "newUsers": List<dynamic>.from(newUsers.map((UUserResponse x) => x.toMap())),
+        "newCategories": List<dynamic>.from(newCategories.map((UCategoryResponse x) => x.toMap())),
+        "newExams": List<dynamic>.from(newExams.map((UExamResponse x) => x.toMap())),
+        "newMedia": List<dynamic>.from(newMedia.map((UMediaResponse x) => x.toMap())),
         // "newContents": List<dynamic>.from(newContents.map((dynamic x) => x.toMap())),
         // "newComments": List<dynamic>.from(newComments.map((dynamic x) => x.toMap())),
         // "newProducts": List<dynamic>.from(newProducts.map((dynamic x) => x.toMap())),
@@ -109,7 +107,6 @@ class DashboardResponse {
 }
 
 class LogStructureResponse {
-
   LogStructureResponse({
     required this.logs,
   });
@@ -129,7 +126,6 @@ class LogStructureResponse {
 }
 
 class YearLog {
-
   YearLog({
     required this.year,
     required this.months,
@@ -153,7 +149,6 @@ class YearLog {
 }
 
 class MonthLog {
-
   MonthLog({
     required this.month,
     required this.days,
@@ -177,7 +172,6 @@ class MonthLog {
 }
 
 class DayLog {
-
   DayLog({
     required this.day,
     this.success,
@@ -205,7 +199,6 @@ class DayLog {
 }
 
 class LogContentResponse {
-
   LogContentResponse({
     required this.summary,
     required this.requestBody,
@@ -237,7 +230,6 @@ class LogContentResponse {
 }
 
 class LogException {
-
   LogException({
     required this.type,
     required this.message,

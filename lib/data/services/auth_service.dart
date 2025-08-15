@@ -12,16 +12,16 @@ class AuthService {
   final String baseUrl;
 
   void register({
-    required final RegisterParams p,
-    required final Function(UResponse<LoginResponse> r) onOk,
+    required final URegisterParams p,
+    required final Function(UResponse<ULoginResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
     UHttpClient().post(
       "$baseUrl/auth/Register",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
-      onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body, (final dynamic i) => LoginResponse.fromMap(i))),
-      onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+      onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
+      onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
       onException: (dynamic e) {
         if (onException != null) onException(e);
       },
@@ -29,48 +29,48 @@ class AuthService {
   }
 
   void loginWithUserNamePassword({
-    required final LoginWithUserNamePasswordParams p,
-    required final Function(UResponse<LoginResponse> r) onOk,
+    required final ULoginWithUserNamePasswordParams p,
+    required final Function(UResponse<ULoginResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       UHttpClient().post(
         "$baseUrl/auth/LoginWithUserNamePassword",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body, (final dynamic i) => LoginResponse.fromMap(i))),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
+        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
       );
 
   void loginWithEmailPassword({
-    required final LoginWithEmailPasswordParams p,
-    required final Function(UResponse<LoginResponse> r) onOk,
+    required final ULoginWithEmailPasswordParams p,
+    required final Function(UResponse<ULoginResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       UHttpClient().post(
         "$baseUrl/auth/LoginWithEmailPassword",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final Response r) => onOk(UResponse<LoginResponse>.fromJson(r.body, (final dynamic i) => LoginResponse.fromMap(i))),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
+        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
       );
 
   void readUserByToken({
-    required final BaseParams p,
-    required final Function(UResponse<UserResponse> r) onOk,
+    required final UBaseParams p,
+    required final Function(UResponse<UUserResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       UHttpClient().post(
         "$baseUrl/auth/ReadUserByToken",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final Response r) => onOk(UResponse<UserResponse>.fromJson(r.body, (final dynamic i) => UserResponse.fromMap(i))),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
+        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },

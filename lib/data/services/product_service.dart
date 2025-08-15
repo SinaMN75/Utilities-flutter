@@ -12,76 +12,76 @@ class ProductService {
   final String baseUrl;
 
   void create({
-    required final ProductCreateParams p,
-    required final Function(UResponse<ProductResponse> r) onOk,
+    required final UProductCreateParams p,
+    required final Function(UResponse<UProductResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       UHttpClient().post(
         "$baseUrl/product/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final Response r) => onOk(UResponse<ProductResponse>.fromJson(r.body, (final dynamic i) => ProductResponse.fromMap(i))),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onSuccess: (final String r) => onOk(UResponse<UProductResponse>.fromJson(r, (final dynamic i) => UProductResponse.fromMap(i))),
+        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
       );
 
   void read({
-    required final ProductReadParams p,
-    required final Function(UResponse<List<ProductResponse>> r) onOk,
+    required final UProductReadParams p,
+    required final Function(UResponse<List<UProductResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       UHttpClient().post(
         "$baseUrl/product/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final Response r) => onOk(
-          UResponse<List<ProductResponse>>.fromJson(
-            r.body,
-            (final dynamic i) => List<ProductResponse>.from((i as List<dynamic>).map((final dynamic x) => ProductResponse.fromMap(x))),
+        onSuccess: (final String r) => onOk(
+          UResponse<List<UProductResponse>>.fromJson(
+            r,
+            (final dynamic i) => List<UProductResponse>.from((i as List<dynamic>).map((final dynamic x) => UProductResponse.fromMap(x))),
           ),
         ),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
       );
 
   void readById({
-    required final IdParams p,
-    required final Function(UResponse<ProductResponse> r) onOk,
+    required final UIdParams p,
+    required final Function(UResponse<UProductResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       UHttpClient().post(
         "$baseUrl/product/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final Response r) => onOk(UResponse<ProductResponse>.fromJson(r.body, (final dynamic i) => ProductResponse.fromMap(i))),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onSuccess: (final String r) => onOk(UResponse<UProductResponse>.fromJson(r, (final dynamic i) => UProductResponse.fromMap(i))),
+        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
       );
 
   void update({
-    required final ProductUpdateParams p,
-    required final Function(UResponse<ProductResponse> r) onOk,
+    required final UProductUpdateParams p,
+    required final Function(UResponse<UProductResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
       UHttpClient().post(
         "$baseUrl/product/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final Response r) => onOk(UResponse<ProductResponse>.fromJson(r.body, (final dynamic i) => ProductResponse.fromMap(i))),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onSuccess: (final String r) => onOk(UResponse<UProductResponse>.fromJson(r, (final dynamic i) => UProductResponse.fromMap(i))),
+        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
       );
 
   void delete({
-    required final IdParams p,
+    required final UIdParams p,
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
@@ -89,8 +89,8 @@ class ProductService {
       UHttpClient().post(
         "$baseUrl/product/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },

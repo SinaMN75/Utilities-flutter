@@ -23,7 +23,8 @@ class WidgetToImageController {
 }
 
 class WidgetToImage extends StatefulWidget {
-  const WidgetToImage({super.key, required this.child, required this.controller});
+  const WidgetToImage({required this.child, required this.controller, super.key});
+
   final Widget child;
   final WidgetToImageController controller;
 

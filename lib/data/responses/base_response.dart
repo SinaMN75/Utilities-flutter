@@ -39,15 +39,15 @@ class UResponse<T> {
   final String message;
 }
 
-class VisitCount {
-  VisitCount({
+class UVisitCount {
+  UVisitCount({
     required this.userId,
     required this.count,
   });
 
-  factory VisitCount.fromJson(String str) => VisitCount.fromMap(json.decode(str));
+  factory UVisitCount.fromJson(String str) => UVisitCount.fromMap(json.decode(str));
 
-  factory VisitCount.fromMap(Map<String, dynamic> json) => VisitCount(
+  factory UVisitCount.fromMap(Map<String, dynamic> json) => UVisitCount(
     userId: json["userId"],
     count: json["count"],
   );
@@ -63,16 +63,16 @@ class VisitCount {
   };
 }
 
-class PointCount {
-  PointCount({
+class UPointCount {
+  UPointCount({
     required this.userId,
     required this.point,
   });
 
-  factory PointCount.fromJson(String str) => PointCount.fromMap(json.decode(str));
+  factory UPointCount.fromJson(String str) => UPointCount.fromMap(json.decode(str));
 
-  factory PointCount.fromMap(Map<String, dynamic> json) =>
-      PointCount(
+  factory UPointCount.fromMap(Map<String, dynamic> json) =>
+      UPointCount(
         userId: json["userId"],
         point: json["point"],
       );

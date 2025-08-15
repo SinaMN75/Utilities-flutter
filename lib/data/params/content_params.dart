@@ -1,18 +1,17 @@
 part of "../data.dart";
 
-class ContentCreateParams {
-
-  ContentCreateParams({
+class UContentCreateParams {
+  UContentCreateParams({
     required this.title,
     required this.description,
     required this.subTitle,
-    this.instagram,
     required this.tags,
+    this.instagram,
   });
 
-  factory ContentCreateParams.fromJson(String str) => ContentCreateParams.fromMap(json.decode(str));
+  factory UContentCreateParams.fromJson(String str) => UContentCreateParams.fromMap(json.decode(str));
 
-  factory ContentCreateParams.fromMap(Map<String, dynamic> json) => ContentCreateParams(
+  factory UContentCreateParams.fromMap(Map<String, dynamic> json) => UContentCreateParams(
         title: json["title"],
         description: json["description"],
         subTitle: json["subTitle"],
@@ -36,9 +35,8 @@ class ContentCreateParams {
       };
 }
 
-class ContentUpdateParams {
-
-  ContentUpdateParams({
+class UContentUpdateParams {
+  UContentUpdateParams({
     required this.id,
     this.title,
     this.subTitle,
@@ -48,9 +46,9 @@ class ContentUpdateParams {
     this.removeTags,
   });
 
-  factory ContentUpdateParams.fromJson(String str) => ContentUpdateParams.fromMap(json.decode(str));
+  factory UContentUpdateParams.fromJson(String str) => UContentUpdateParams.fromMap(json.decode(str));
 
-  factory ContentUpdateParams.fromMap(Map<String, dynamic> json) => ContentUpdateParams(
+  factory UContentUpdateParams.fromMap(Map<String, dynamic> json) => UContentUpdateParams(
         id: json["id"],
         title: json["title"],
         subTitle: json["subTitle"],
@@ -80,9 +78,8 @@ class ContentUpdateParams {
       };
 }
 
-class ContentReadParams {
-
-  ContentReadParams({
+class UContentReadParams {
+  UContentReadParams({
     this.showMedia,
     this.pageSize,
     this.pageNumber,
@@ -95,9 +92,9 @@ class ContentReadParams {
     this.tags,
   });
 
-  factory ContentReadParams.fromJson(String str) => ContentReadParams.fromMap(json.decode(str));
+  factory UContentReadParams.fromJson(String str) => UContentReadParams.fromMap(json.decode(str));
 
-  factory ContentReadParams.fromMap(Map<String, dynamic> json) => ContentReadParams(
+  factory UContentReadParams.fromMap(Map<String, dynamic> json) => UContentReadParams(
         showMedia: json["showMedia"] ?? false,
         pageSize: json["pageSize"] ?? 0,
         pageNumber: json["pageNumber"] ?? 0,

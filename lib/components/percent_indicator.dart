@@ -22,13 +22,12 @@ extension CircularStrokeCapExtension on CircularStrokeCap {
 num radians(num deg) => deg * (pi / 180.0);
 
 class CircularPercentIndicator extends StatefulWidget {
-
   CircularPercentIndicator({
+    required this.radius,
     super.key,
     this.percent = 0.0,
     this.lineWidth = 5.0,
     this.startAngle = 0.0,
-    required this.radius,
     this.fillColor = Colors.transparent,
     this.backgroundColor = const Color(0xFFB8C7CB),
     this.progressColor,
@@ -306,7 +305,6 @@ class _ArcAngles {
 }
 
 class _CirclePainter extends CustomPainter {
-
   _CirclePainter({
     required this.lineWidth,
     required this.backgroundWidth,
@@ -314,14 +312,14 @@ class _CirclePainter extends CustomPainter {
     required this.radius,
     required this.progressColor,
     required this.backgroundColor,
+    required this.reverse,
+    required this.rotateLinearGradient,
     this.startAngle = 0.0,
     this.circularStrokeCap = CircularStrokeCap.butt,
     this.linearGradient,
-    required this.reverse,
     this.arcBackgroundColor,
     this.arcType,
     this.maskFilter,
-    required this.rotateLinearGradient,
   }) {
     _paintBackground.color = backgroundColor;
     _paintBackground.style = PaintingStyle.stroke;
@@ -441,7 +439,6 @@ class _CirclePainter extends CustomPainter {
 }
 
 class LinearPercentIndicator extends StatefulWidget {
-
   LinearPercentIndicator({
     super.key,
     this.fillColor = Colors.transparent,
@@ -696,16 +693,15 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
 }
 
 class _LinearPainter extends CustomPainter {
-
   _LinearPainter({
     required this.progress,
     required this.isRTL,
     required this.progressColor,
     required this.backgroundColor,
     required this.barRadius,
+    required this.clipLinearGradient,
     this.linearGradient,
     this.maskFilter,
-    required this.clipLinearGradient,
     this.linearGradientBackgroundColor,
   }) {
     _paintBackground.color = backgroundColor;

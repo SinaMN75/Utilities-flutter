@@ -1,9 +1,9 @@
 part of "../data.dart";
 
-class ProductCreateParams {
-
-  ProductCreateParams({
+class UProductCreateParams {
+  UProductCreateParams({
     required this.title,
+    required this.tags,
     this.code,
     this.subtitle,
     this.description,
@@ -18,7 +18,6 @@ class ProductCreateParams {
     this.stock,
     this.price,
     this.details,
-    required this.tags,
     this.categories,
     this.relatedProducts,
     this.parentId,
@@ -26,9 +25,9 @@ class ProductCreateParams {
     this.point,
   });
 
-  factory ProductCreateParams.fromJson(String str) => ProductCreateParams.fromMap(json.decode(str));
+  factory UProductCreateParams.fromJson(String str) => UProductCreateParams.fromMap(json.decode(str));
 
-  factory ProductCreateParams.fromMap(Map<String, dynamic> json) => ProductCreateParams(
+  factory UProductCreateParams.fromMap(Map<String, dynamic> json) => UProductCreateParams(
         title: json["title"],
         code: json["code"],
         subtitle: json["subtitle"],
@@ -100,9 +99,9 @@ class ProductCreateParams {
       };
 }
 
-class ProductUpdateParams {
-
-  ProductUpdateParams({
+class UProductUpdateParams {
+  UProductUpdateParams({
+    required this.id,
     this.title,
     this.code,
     this.subtitle,
@@ -125,16 +124,15 @@ class ProductUpdateParams {
     this.removeRelatedProducts,
     this.addCategories,
     this.removeCategories,
-    required this.id,
     this.addTags,
     this.removeTags,
     this.tags,
     this.point,
   });
 
-  factory ProductUpdateParams.fromJson(String str) => ProductUpdateParams.fromMap(json.decode(str));
+  factory UProductUpdateParams.fromJson(String str) => UProductUpdateParams.fromMap(json.decode(str));
 
-  factory ProductUpdateParams.fromMap(Map<String, dynamic> json) => ProductUpdateParams(
+  factory UProductUpdateParams.fromMap(Map<String, dynamic> json) => UProductUpdateParams(
         title: json["title"],
         code: json["code"],
         subtitle: json["subtitle"],
@@ -224,9 +222,8 @@ class ProductUpdateParams {
       };
 }
 
-class ProductReadParams {
-
-  ProductReadParams({
+class UProductReadParams {
+  UProductReadParams({
     this.query,
     this.title,
     this.code,
@@ -259,9 +256,9 @@ class ProductReadParams {
     this.showChildrenCount,
   });
 
-  factory ProductReadParams.fromJson(String str) => ProductReadParams.fromMap(json.decode(str));
+  factory UProductReadParams.fromJson(String str) => UProductReadParams.fromMap(json.decode(str));
 
-  factory ProductReadParams.fromMap(Map<String, dynamic> json) => ProductReadParams(
+  factory UProductReadParams.fromMap(Map<String, dynamic> json) => UProductReadParams(
         query: json["query"],
         title: json["title"],
         code: json["code"],

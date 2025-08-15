@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 class USegmentedControl<T> extends StatefulWidget {
-
   const USegmentedControl({
-    super.key,
     required this.children,
     required this.initialValue,
     required this.onValueChanged,
+    super.key,
     this.duration = const Duration(milliseconds: 300),
     this.curve = Curves.easeInOut,
     this.isStretch = true,

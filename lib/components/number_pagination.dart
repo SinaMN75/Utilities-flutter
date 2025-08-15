@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 class UNumberPagination extends StatelessWidget {
-
   const UNumberPagination({
-    super.key,
     required this.currentPage,
     required this.totalPages,
     required this.onPageChanged,
+    super.key,
     this.threshold = 3,
     this.selectedColor,
     this.unselectedColor,
@@ -37,14 +36,11 @@ class UNumberPagination extends StatelessWidget {
         if (showPrevNext)
           IconButton(
             icon: prevIcon ?? const Icon(Icons.chevron_left),
-            onPressed: currentPage > 1
-                ? () => onPageChanged(currentPage - 1)
-                : null,
+            onPressed: currentPage > 1 ? () => onPageChanged(currentPage - 1) : null,
           ),
 
         // First page
-        if (currentPage > threshold + 1 && totalPages > threshold * 2)
-          _buildPageNumber(1, selectedColor, unselectedColor),
+        if (currentPage > threshold + 1 && totalPages > threshold * 2) _buildPageNumber(1, selectedColor, unselectedColor),
 
         // Left dots
         if (currentPage > threshold + 2 && totalPages > threshold * 2)
@@ -55,10 +51,7 @@ class UNumberPagination extends StatelessWidget {
 
         // Middle numbers
         for (int i = 1; i <= totalPages; i++)
-          if ((i >= currentPage - threshold && i <= currentPage + threshold) ||
-              i == 1 ||
-              i == totalPages)
-            _buildPageNumber(i, selectedColor, unselectedColor),
+          if ((i >= currentPage - threshold && i <= currentPage + threshold) || i == 1 || i == totalPages) _buildPageNumber(i, selectedColor, unselectedColor),
 
         // Right dots
         if (currentPage < totalPages - threshold - 1 && totalPages > threshold * 2)
@@ -68,15 +61,12 @@ class UNumberPagination extends StatelessWidget {
           ),
 
         // Last page
-        if (currentPage < totalPages - threshold && totalPages > threshold * 2)
-          _buildPageNumber(totalPages, selectedColor, unselectedColor),
+        if (currentPage < totalPages - threshold && totalPages > threshold * 2) _buildPageNumber(totalPages, selectedColor, unselectedColor),
 
         if (showPrevNext)
           IconButton(
             icon: nextIcon ?? const Icon(Icons.chevron_right),
-            onPressed: currentPage < totalPages
-                ? () => onPageChanged(currentPage + 1)
-                : null,
+            onPressed: currentPage < totalPages ? () => onPageChanged(currentPage + 1) : null,
           ),
       ],
     );
