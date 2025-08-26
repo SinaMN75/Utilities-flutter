@@ -54,12 +54,10 @@ class CircularPercentIndicator extends StatefulWidget {
     if (linearGradient != null && progressColor != null) {
       throw ArgumentError('Cannot provide both linearGradient and progressColor');
     }
-
     assert(startAngle >= 0.0);
     if (percent < 0.0 || percent > 1.0) {
       throw Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
     }
-
     if (arcType == null && arcBackgroundColor != null) {
       throw ArgumentError('arcType is required when you arcBackgroundColor');
     }
@@ -67,53 +65,29 @@ class CircularPercentIndicator extends StatefulWidget {
 
   final double percent;
   final double radius;
-
   final double lineWidth;
-
   final double backgroundWidth;
-
   final Color fillColor;
-
   final Color backgroundColor;
-
   final Color? progressColor;
-
   final bool animation;
-
   final int animationDuration;
-
   final Widget? header;
-
   final Widget? footer;
-
   final Widget? center;
-
   final LinearGradient? linearGradient;
-
   final CircularStrokeCap circularStrokeCap;
-
   final double startAngle;
-
   final bool animateFromLastPercent;
-
   final bool addAutomaticKeepAlive;
-
   final ArcType? arcType;
-
   final Color? arcBackgroundColor;
-
   final bool reverse;
-
   final MaskFilter? maskFilter;
-
   final Curve curve;
-
   final bool restartAnimation;
-
   final VoidCallback? onAnimationEnd;
-
   final Widget? widgetIndicator;
-
   final bool rotateLinearGradient;
 
   @override
@@ -246,11 +220,9 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
         ),
       ),
     );
-
     if (widget.footer != null) {
       items.add(widget.footer!);
     }
-
     return Material(
       color: widget.fillColor,
       child: Column(
@@ -325,14 +297,12 @@ class _CirclePainter extends CustomPainter {
     _paintBackground.style = PaintingStyle.stroke;
     _paintBackground.strokeWidth = backgroundWidth;
     _paintBackground.strokeCap = circularStrokeCap.strokeCap;
-
     if (arcBackgroundColor != null) {
       _paintBackgroundStartAngle.color = arcBackgroundColor!;
       _paintBackgroundStartAngle.style = PaintingStyle.stroke;
       _paintBackgroundStartAngle.strokeWidth = lineWidth;
       _paintBackgroundStartAngle.strokeCap = circularStrokeCap.strokeCap;
     }
-
     _paintLine.color = progressColor;
     _paintLine.style = PaintingStyle.stroke;
     _paintLine.strokeWidth = lineWidth;
@@ -370,7 +340,6 @@ class _CirclePainter extends CustomPainter {
     if (arcType == null) {
       canvas.drawCircle(center, radius, _paintBackground);
     }
-
     if (maskFilter != null) {
       _paintLine.maskFilter = maskFilter;
     }
@@ -394,7 +363,6 @@ class _CirclePainter extends CustomPainter {
         );
       }
     }
-
     if (arcBackgroundColor != null) {
       canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
@@ -404,7 +372,6 @@ class _CirclePainter extends CustomPainter {
         _paintBackgroundStartAngle,
       );
     }
-
     if (reverse) {
       final double start = radians(360 * startAngleFixedMargin - 90.0 + fixedStartAngle).toDouble();
       final double end = radians(-progress * startAngleFixedMargin).toDouble();
@@ -470,11 +437,9 @@ class LinearPercentIndicator extends StatefulWidget {
     if (linearGradient != null) {
       throw ArgumentError('Cannot provide both linearGradient and progressColor');
     }
-
     if (linearGradientBackgroundColor != null) {
       throw ArgumentError('Cannot provide both linearGradientBackgroundColor and backgroundColor');
     }
-
     if (percent < 0.0 || percent > 1.0) {
       throw Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
     }
@@ -482,51 +447,28 @@ class LinearPercentIndicator extends StatefulWidget {
 
   final double percent;
   final double? width;
-
   final double lineHeight;
-
   final Color fillColor;
-
   final Color backgroundColor;
-
   final LinearGradient? linearGradientBackgroundColor;
-
   final Color progressColor;
-
   final bool animation;
-
   final int animationDuration;
-
   final Widget? leading;
-
   final Widget? trailing;
-
   final Widget? center;
-
   final Radius? barRadius;
-
   final MainAxisAlignment alignment;
-
   final EdgeInsets padding;
-
   final bool animateFromLastPercent;
-
   final LinearGradient? linearGradient;
-
   final bool addAutomaticKeepAlive;
-
   final bool isRTL;
-
   final MaskFilter? maskFilter;
-
   final bool clipLinearGradient;
-
   final Curve curve;
-
   final bool restartAnimation;
-
   final VoidCallback? onAnimationEnd;
-
   final Widget? widgetIndicator;
 
   @override
@@ -664,7 +606,6 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
         ],
       ),
     );
-
     if (hasSetWidth) {
       items.add(containerWidget);
     } else {
@@ -675,7 +616,6 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
     if (widget.trailing != null) {
       items.add(widget.trailing!);
     }
-
     return Material(
       color: Colors.transparent,
       child: Container(
@@ -705,7 +645,6 @@ class _LinearPainter extends CustomPainter {
     this.linearGradientBackgroundColor,
   }) {
     _paintBackground.color = backgroundColor;
-
     _paintLine.color = progress.toString() == "0.0" ? progressColor.withValues(alpha: 0.0) : progressColor;
   }
 
@@ -726,16 +665,13 @@ class _LinearPainter extends CustomPainter {
     final Path backgroundPath = Path();
     backgroundPath.addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(0, 0, size.width, size.height), barRadius));
     canvas.drawPath(backgroundPath, _paintBackground);
-
     if (maskFilter != null) {
       _paintLine.maskFilter = maskFilter;
     }
-
     if (linearGradientBackgroundColor != null) {
       final Offset shaderEndPoint = clipLinearGradient ? Offset.zero : Offset(size.width, size.height);
       _paintBackground.shader = linearGradientBackgroundColor?.createShader(Rect.fromPoints(Offset.zero, shaderEndPoint));
     }
-
     final double xProgress = size.width * progress;
     final Path linePath = Path();
     if (isRTL) {

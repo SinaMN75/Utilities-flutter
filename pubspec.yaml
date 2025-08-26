@@ -25,12 +25,12 @@ dependencies:
   webview_flutter: ^4.13.0
   local_auth: ^2.3.0
   flutter_svg: ^2.2.0
-  image_picker: ^1.1.2
+  image_picker: ^1.2.0
 
   # fluttercommunity.dev
   chewie: ^1.12.1
-  share_plus: ^11.0.0
-  connectivity_plus: ^6.1.4
+  share_plus: ^11.1.0
+  connectivity_plus: ^6.1.5
 
   get: ^4.7.2
   flutter_map: 8.1.1
@@ -38,13 +38,13 @@ dependencies:
   geolocator: ^14.0.2
   lottie: ^3.3.1
   image_cropper: ^9.1.0
-  file_picker: ^10.2.0
-  flutter_local_notifications: ^19.4.0
-  syncfusion_flutter_charts: ^30.1.42
-  syncfusion_flutter_barcodes: ^30.1.42
-  syncfusion_flutter_pdfviewer: ^30.1.42
-  syncfusion_flutter_signaturepad: ^30.1.42
-  syncfusion_flutter_gauges: ^30.1.42
+  file_picker: ^10.3.2
+  flutter_local_notifications: ^19.4.1
+  syncfusion_flutter_charts: ^30.2.7
+  syncfusion_flutter_barcodes: ^30.2.7
+  syncfusion_flutter_pdfviewer: ^30.2.7
+  syncfusion_flutter_signaturepad: ^30.2.7
+  syncfusion_flutter_gauges: ^30.2.7
 
   any_link_preview: ^3.0.3
   universal_html: ^2.2.4

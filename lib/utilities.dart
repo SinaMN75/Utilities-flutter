@@ -94,4 +94,3 @@ export 'utils/network.dart';
 export 'utils/notification.dart';
 export 'utils/shamsi_date/shamsi_date.dart';
 export 'utils/utils.dart';
-export 'utils/view_models.dart';

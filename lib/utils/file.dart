@@ -1,6 +1,26 @@
 import 'package:path/path.dart' as path;
 import 'package:u/utilities.dart';
 
+class FileData {
+  FileData({
+    this.path,
+    this.bytes,
+    this.extension,
+    this.url,
+    this.id,
+    this.tags,
+    this.children,
+  });
+
+  final String? path;
+  final Uint8List? bytes;
+  final String? extension;
+  final String? url;
+  final String? id;
+  final List<int>? tags;
+  final List<FileData>? children;
+}
+
 abstract class UFile {
   static Future<List<FileData>> showImagePicker({
     required final ImageSource source,
