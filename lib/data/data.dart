@@ -45,7 +45,7 @@ class UServices {
   }
   final String baseUrl;
   final String apiKey;
-  final String token;
+  final String? token;
 
   late AuthService auth;
   late CategoryService category;
