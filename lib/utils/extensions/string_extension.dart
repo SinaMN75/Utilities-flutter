@@ -1,27 +1,27 @@
-import 'package:intl/intl.dart' as intl;
-import 'package:u/utilities.dart';
+import "package:intl/intl.dart" as intl;
+import "package:u/utilities.dart";
 
 extension TextEditingControllerExtension on TextEditingController {
-  String numberString() => text.replaceAll(RegExp('[^0-9]'), '');
+  String numberString() => text.replaceAll(RegExp("[^0-9]"), "");
 
-  int number() => text.replaceAll(RegExp('[^0-9]'), '').toInt();
+  int number() => text.replaceAll(RegExp("[^0-9]"), "").toInt();
 }
 
 extension OptionalStringExtension on String? {
-  String numberString() => (this ?? "0").replaceAll(RegExp('[^0-9]'), '');
+  String numberString() => (this ?? "0").replaceAll(RegExp("[^0-9]"), "");
 
   String toStringOrEmptyIfNull() => this ?? "";
 
-  int number() => (this ?? "0").replaceAll(RegExp('[^0-9]'), '').toInt();
+  int number() => (this ?? "0").replaceAll(RegExp("[^0-9]"), "").toInt();
 
   String? nullIfEmpty() => (this ?? "").isEmpty ? null : this;
 
   String getPrice() {
     final int nums = this!.toInt();
-    return nums > 0 ? intl.NumberFormat('###,###,###,###,000').format(nums) : '0';
+    return nums > 0 ? intl.NumberFormat("###,###,###,###,000").format(nums) : "0";
   }
 
-  String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
+  String separateNumbers3By3() => (this ?? "").replaceAllMapped(RegExp(r"(\d{1,3})(?=(\d{3})+(?!\d))"), (final Match m) => "${m[1]},");
 
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatFullDate();
 
@@ -39,8 +39,8 @@ extension OptionalStringExtension on String? {
   String formatJalaliDateTime({final bool toLocal = false}) {
     final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString()).toLocal();
     final Jalali jalali = Jalali.fromDateTime(dateTime);
-    if (dateTime.hour == 0 && dateTime.minute == 0) return '${jalali.year}/${jalali.month}/${jalali.day}';
-    return '${dateTime.hour}:${dateTime.minute}:${dateTime.second} ${jalali.year}/${jalali.month}/${jalali.day}';
+    if (dateTime.hour == 0 && dateTime.minute == 0) return "${jalali.year}/${jalali.month}/${jalali.day}";
+    return "${dateTime.hour}:${dateTime.minute}:${dateTime.second} ${jalali.year}/${jalali.month}/${jalali.day}";
   }
 
   bool isNullOrEmpty() => this == null || this == "";
@@ -53,9 +53,9 @@ extension OptionalStringExtension on String? {
 extension StringExtensions on String {
   String subStringIfExist(final int start, final int end) => length > end ? substring(start, end) : this;
 
-  String numberString() => replaceAll(RegExp('[^0-9]'), '');
+  String numberString() => replaceAll(RegExp("[^0-9]"), "");
 
-  int number() => replaceAll(RegExp('[^0-9]'), '').toInt();
+  int number() => replaceAll(RegExp("[^0-9]"), "").toInt();
 
   String? nullIfEmpty() => isEmpty ? null : this;
 
@@ -63,9 +63,9 @@ extension StringExtensions on String {
 
   String toTomanMoneyPersian() => "${separateNumbers3By3()} تومان ";
 
-  bool isTrue() => toLowerCase() == 'true';
+  bool isTrue() => toLowerCase() == "true";
 
-  bool isFalse() => toLowerCase() == 'false';
+  bool isFalse() => toLowerCase() == "false";
 
   bool isNumeric() => double.tryParse(this) != null;
 
@@ -73,11 +73,11 @@ extension StringExtensions on String {
 
   double toDouble() => double.tryParse(this) ?? 0;
 
-  String separateNumbers3By3() => replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (final Match m) => '${m[1]},');
+  String separateNumbers3By3() => replaceAllMapped(RegExp(r"(\d{1,3})(?=(\d{3})+(?!\d))"), (final Match m) => "${m[1]},");
 
   String separateCharacters(final int number, final String separator) => replaceAllMapped(
-        RegExp('(\\d{1,$number})(?=(\\d{$number})+(?!\\d))'),
-        (final Match m) => '${m[1]}$separator',
+        RegExp("(\\d{1,$number})(?=(\\d{$number})+(?!\\d))"),
+        (final Match m) => "${m[1]}$separator",
       );
 
   String toJalaliCompactDateString() => Jalali.fromDateTime(DateTime.parse(this)).formatCompactDate();
@@ -95,7 +95,7 @@ extension StringExtensions on String {
   String formatJalaliDateTime() {
     final DateTime dateTime = DateTime.parse(this);
     final Jalali jalali = Jalali.fromDateTime(dateTime);
-    return '${jalali.year}/${jalali.month}/${jalali.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second.toString().append0()}';
+    return "${jalali.year}/${jalali.month}/${jalali.day} ${dateTime.hour}:${dateTime.minute}:${dateTime.second.toString().append0()}";
   }
 
   String maxLength({required final int max}) => length > max ? "${substring(0, max - 3)}..." : this;
@@ -118,45 +118,45 @@ extension StringExtensions on String {
       } else if ((difference.inDays / 7).floor() >= 1)
         return persian
             ? numericDates
-                ? '۱ هفته پیش'
-                : 'هفته پیش'
+                ? "۱ هفته پیش"
+                : "هفته پیش"
             : numericDates
-                ? '1 week ago'
-                : 'Last week';
+                ? "1 week ago"
+                : "Last week";
       else if (difference.inDays >= 2)
-        return persian ? '${difference.inDays.toString().persianNumber()} روز پیش' : '${difference.inDays} days ago';
+        return persian ? "${difference.inDays.toString().persianNumber()} روز پیش" : "${difference.inDays} days ago";
       else if (difference.inDays >= 1)
         return persian
             ? numericDates
-                ? '۱ روز پیش'
-                : 'دیروز'
+                ? "۱ روز پیش"
+                : "دیروز"
             : numericDates
-                ? '1 day ago'
-                : 'Yesterday';
+                ? "1 day ago"
+                : "Yesterday";
       else if (difference.inHours >= 2)
-        return persian ? '${difference.inHours.toString().persianNumber()} ساعت پیش' : '${difference.inHours} hours ago';
+        return persian ? "${difference.inHours.toString().persianNumber()} ساعت پیش" : "${difference.inHours} hours ago";
       else if (difference.inHours >= 1)
         return persian
             ? numericDates
-                ? '۱ ساعت پیش'
-                : 'یک ساعت پیش'
+                ? "۱ ساعت پیش"
+                : "یک ساعت پیش"
             : numericDates
-                ? '1 hour ago'
-                : 'An hour ago';
+                ? "1 hour ago"
+                : "An hour ago";
       else if (difference.inMinutes >= 2)
-        return persian ? '${difference.inMinutes.toString().persianNumber()} دقیقه پیش' : '${difference.inMinutes} minutes ago';
+        return persian ? "${difference.inMinutes.toString().persianNumber()} دقیقه پیش" : "${difference.inMinutes} minutes ago";
       else if (difference.inMinutes >= 1)
         return persian
             ? numericDates
-                ? '۱ دقیقه پیش'
-                : 'یک دقیقه پیش'
+                ? "۱ دقیقه پیش"
+                : "یک دقیقه پیش"
             : numericDates
-                ? '1 minute ago'
-                : 'A minute ago';
+                ? "1 minute ago"
+                : "A minute ago";
       else if (difference.inSeconds >= 3)
-        return persian ? '${difference.inSeconds.toString().persianNumber()} ثانیه پیش' : '${difference.inSeconds} seconds ago';
+        return persian ? "${difference.inSeconds.toString().persianNumber()} ثانیه پیش" : "${difference.inSeconds} seconds ago";
       else
-        return persian ? 'همین الان' : 'Just now';
+        return persian ? "همین الان" : "Just now";
     } catch (e) {
       return this;
     }
@@ -252,7 +252,7 @@ extension StringExtensions on String {
   }
 
   String removeCharAt(final int charIndex) {
-    final List<String> charList = split('').toList();
+    final List<String> charList = split("").toList();
     charList.removeAt(charIndex);
     return charList.join();
   }
@@ -289,7 +289,7 @@ extension StringExtensions on String {
   String fromBase64() => utf8.decode(base64Decode(this));
 
   String toBase58() {
-    const String base58Alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    const String base58Alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
     final Uint8List input = utf8.encode(this);
     BigInt intData = BigInt.from(0);
 
@@ -312,16 +312,16 @@ extension StringExtensions on String {
       }
     }
 
-    return result.toString().split('').reversed.join();
+    return result.toString().split("").reversed.join();
   }
 
   String fromBase58() {
-    const String base58Alphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+    const String base58Alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
     BigInt intData = BigInt.zero;
 
-    for (String char in split('')) {
+    for (String char in split("")) {
       final int index = base58Alphabet.indexOf(char);
-      if (index < 0) throw FormatException('Invalid Base58 character: $char');
+      if (index < 0) throw FormatException("Invalid Base58 character: $char");
       intData = intData * BigInt.from(58) + BigInt.from(index);
     }
 
@@ -331,8 +331,8 @@ extension StringExtensions on String {
       intData = intData ~/ BigInt.from(256);
     }
 
-    for (String char in split('')) {
-      if (char == '1') {
+    for (String char in split("")) {
+      if (char == "1") {
         bytes.insert(0, 0);
       } else {
         break;

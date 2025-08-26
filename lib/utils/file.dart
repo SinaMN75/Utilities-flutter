@@ -1,5 +1,5 @@
-import 'package:path/path.dart' as path;
-import 'package:u/utilities.dart';
+import "package:path/path.dart" as path;
+import "package:u/utilities.dart";
 
 class FileData {
   FileData({
@@ -89,14 +89,14 @@ abstract class UFile {
 
       action(files);
     } catch (e) {
-      debugPrint('File picker error: $e');
+      debugPrint("File picker error: $e");
       action(<FileData>[]);
     }
   }
 
   static Future<File> writeToFile(final Uint8List data) async {
     final Directory tempDir = await getTemporaryDirectory();
-    return File('${tempDir.path}/${Random.secure().nextInt(10000)}.tmp').writeAsBytes(
+    return File("${tempDir.path}/${Random.secure().nextInt(10000)}.tmp").writeAsBytes(
       data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
     );
   }
@@ -135,7 +135,7 @@ abstract class UFile {
             AndroidUiSettings(
               aspectRatioPresets: aspectRatioPresets,
               cropStyle: cropStyle,
-              toolbarTitle: 'Crop Your Image',
+              toolbarTitle: "Crop Your Image",
               showCropGrid: true,
               hideBottomControls: false,
               lockAspectRatio: true,
@@ -152,7 +152,7 @@ abstract class UFile {
               resetAspectRatioEnabled: false,
               minimumAspectRatio: 1,
               aspectRatioPickerButtonHidden: true,
-              title: 'Crop Your Image',
+              title: "Crop Your Image",
               aspectRatioLockDimensionSwapEnabled: true,
               aspectRatioLockEnabled: true,
               hidesNavigationBar: true,

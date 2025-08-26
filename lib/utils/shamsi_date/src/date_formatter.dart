@@ -1,4 +1,4 @@
-import 'package:u/utils/shamsi_date/src/date.dart';
+import "package:u/utils/shamsi_date/src/date.dart";
 
 abstract class DateFormatter {
   const DateFormatter(this.date);
@@ -9,7 +9,7 @@ abstract class DateFormatter {
     final int year = date.year;
 
     if (year < 0) {
-      throw StateError('date.year = $year < 0');
+      throw StateError("date.year = $year < 0");
     }
 
     return year.toString();
@@ -19,11 +19,11 @@ abstract class DateFormatter {
     final int year = date.year;
 
     if (year < 0) {
-      throw StateError('date.year = $year < 0');
+      throw StateError("date.year = $year < 0");
     }
 
     if (year > 9999) {
-      throw StateError('date.year = $year > 9999');
+      throw StateError("date.year = $year > 9999");
     }
 
     final String str = year.toString();
@@ -32,13 +32,13 @@ abstract class DateFormatter {
       case 4:
         return str;
       case 3:
-        return '0$str';
+        return "0$str";
       case 2:
-        return '00$str';
+        return "00$str";
       case 1:
-        return '000$str';
+        return "000$str";
       default:
-        return '0000';
+        return "0000";
     }
   }
 
@@ -46,22 +46,22 @@ abstract class DateFormatter {
     final int year = date.year;
 
     if (year < 1000) {
-      throw StateError('date.year = $year < 1000');
+      throw StateError("date.year = $year < 1000");
     }
 
     if (year > 9999) {
-      throw StateError('date.year = $year > 9999');
+      throw StateError("date.year = $year > 9999");
     }
 
     final String str = (year % 100).toString();
-    return str.length == 1 ? '0$str' : str;
+    return str.length == 1 ? "0$str" : str;
   }
 
   String get m => date.month.toString();
 
   String get mm {
     final String str = m;
-    return str.length == 1 ? '0$str' : str;
+    return str.length == 1 ? "0$str" : str;
   }
 
   String get mN;
@@ -70,7 +70,7 @@ abstract class DateFormatter {
 
   String get dd {
     final String str = d;
-    return str.length == 1 ? '0$str' : str;
+    return str.length == 1 ? "0$str" : str;
   }
 
   String get wN;

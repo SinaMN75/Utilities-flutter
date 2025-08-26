@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 enum BadgeAnimationType {
   slide,

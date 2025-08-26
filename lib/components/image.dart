@@ -1,5 +1,5 @@
-import 'package:u/components/cachedImage.dart';
-import 'package:u/utilities.dart';
+import "package:u/components/cachedImage.dart";
+import "package:u/utilities.dart";
 
 class UImage extends StatelessWidget {
   const UImage(

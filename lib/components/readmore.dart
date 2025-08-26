@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 enum TrimMode {
   length,
@@ -13,8 +13,8 @@ class ReadMoreText extends StatefulWidget {
     this.postDataText,
     this.preDataTextStyle,
     this.postDataTextStyle,
-    this.trimExpandedText = 'show less',
-    this.trimCollapsedText = 'read more',
+    this.trimExpandedText = "show less",
+    this.trimCollapsedText = "read more",
     this.colorClickableText,
     this.trimLength = 240,
     this.trimLines = 2,
@@ -27,7 +27,7 @@ class ReadMoreText extends StatefulWidget {
     this.semanticsLabel,
     this.moreStyle,
     this.lessStyle,
-    this.delimiter = '$_kEllipsis ',
+    this.delimiter = "$_kEllipsis ",
     this.delimiterStyle,
     this.callback,
     this.onLinkPressed,
@@ -66,9 +66,9 @@ class ReadMoreText extends StatefulWidget {
   ReadMoreTextState createState() => ReadMoreTextState();
 }
 
-const String _kEllipsis = '\u2026';
+const String _kEllipsis = "\u2026";
 
-const String _kLineSeparator = '\u2028';
+const String _kLineSeparator = "\u2028";
 
 class ReadMoreTextState extends State<ReadMoreText> {
   bool _readMore = true;
@@ -108,8 +108,8 @@ class ReadMoreTextState extends State<ReadMoreText> {
       text: _readMore
           ? widget.trimCollapsedText.isNotEmpty
               ? widget.delimiter
-              : ''
-          : '',
+              : ""
+          : "",
       style: defaultDelimiterStyle,
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
     );
@@ -200,7 +200,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
           case TrimMode.line:
             if (textPainter.didExceedMaxLines) {
               textSpan = _buildData(
-                data: _readMore ? widget.data.substring(0, endIndex) + (linkLongerThanLine ? _kLineSeparator : '') : widget.data,
+                data: _readMore ? widget.data.substring(0, endIndex) + (linkLongerThanLine ? _kLineSeparator : "") : widget.data,
                 textStyle: effectiveTextStyle,
                 linkTextStyle: effectiveTextStyle?.copyWith(
                   decoration: TextDecoration.underline,
@@ -256,7 +256,7 @@ class ReadMoreTextState extends State<ReadMoreText> {
     TextStyle? linkTextStyle,
     ValueChanged<String>? onPressed,
   }) {
-    final RegExp exp = RegExp(r'(?:(?:https?|ftp)://)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+    final RegExp exp = RegExp(r"(?:(?:https?|ftp)://)?[\w/\-?=%.]+\.[\w/\-?=%.]+");
 
     final List<TextSpan> contents = <TextSpan>[];
 

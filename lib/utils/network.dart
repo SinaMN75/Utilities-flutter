@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 abstract class UNetwork {
   static Future<bool> hasCellular() async {
@@ -41,7 +41,7 @@ class AddressCheckOptions {
   final Duration timeout;
 
   @override
-  String toString() => 'AddressCheckOptions($address, $port, $timeout)';
+  String toString() => "AddressCheckOptions($address, $port, $timeout)";
 }
 
 class AddressCheckResult {
@@ -52,7 +52,7 @@ class AddressCheckResult {
   final bool isSuccess;
 
   @override
-  String toString() => 'AddressCheckResult($options, $isSuccess)';
+  String toString() => "AddressCheckResult($options, $isSuccess)";
 }
 
 class InternetConnectionChecker {
@@ -75,12 +75,12 @@ class InternetConnectionChecker {
 
   static final List<AddressCheckOptions> defaultAddresses = List<AddressCheckOptions>.unmodifiable(
     <AddressCheckOptions>[
-      AddressCheckOptions(InternetAddress('1.1.1.1', type: InternetAddressType.IPv4)),
-      AddressCheckOptions(InternetAddress('2606:4700:4700::1111', type: InternetAddressType.IPv6)),
-      AddressCheckOptions(InternetAddress('8.8.4.4', type: InternetAddressType.IPv4)),
-      AddressCheckOptions(InternetAddress('2001:4860:4860::8888', type: InternetAddressType.IPv6)),
-      AddressCheckOptions(InternetAddress('208.67.222.222', type: InternetAddressType.IPv4)),
-      AddressCheckOptions(InternetAddress('2620:0:ccc::2', type: InternetAddressType.IPv6)),
+      AddressCheckOptions(InternetAddress("1.1.1.1", type: InternetAddressType.IPv4)),
+      AddressCheckOptions(InternetAddress("2606:4700:4700::1111", type: InternetAddressType.IPv6)),
+      AddressCheckOptions(InternetAddress("8.8.4.4", type: InternetAddressType.IPv4)),
+      AddressCheckOptions(InternetAddress("2001:4860:4860::8888", type: InternetAddressType.IPv6)),
+      AddressCheckOptions(InternetAddress("208.67.222.222", type: InternetAddressType.IPv4)),
+      AddressCheckOptions(InternetAddress("2620:0:ccc::2", type: InternetAddressType.IPv6)),
     ],
   );
 

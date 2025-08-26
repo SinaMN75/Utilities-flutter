@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 abstract class UNavigator {
   static ThemeData get theme => Theme.of(navigatorKey.currentContext!);
@@ -117,8 +117,8 @@ abstract class UNavigator {
   static void confirm({
     required String title,
     required String message,
-    String confirmText = 'OK',
-    String cancelText = 'Cancel',
+    String confirmText = "OK",
+    String cancelText = "Cancel",
     bool destructive = false,
     VoidCallback? onDismiss,
     VoidCallback? onCancel,

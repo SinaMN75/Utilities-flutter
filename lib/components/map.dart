@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 enum UMapTileProvider {
   openStreetMap,
@@ -115,7 +115,7 @@ class _UMapState extends State<UMap> {
         );
       }
     } catch (e) {
-      debugPrint('Error getting user location: $e');
+      debugPrint("Error getting user location: $e");
     }
   }
 
@@ -149,16 +149,16 @@ class _UMapState extends State<UMap> {
   String _getTileUrlTemplate() {
     switch (widget.tileProvider) {
       case UMapTileProvider.openStreetMap:
-        return 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+        return "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
       case UMapTileProvider.openTopoMap:
-        return 'https://a.tile.opentopomap.org/{z}/{x}/{y}.png';
+        return "https://a.tile.opentopomap.org/{z}/{x}/{y}.png";
       case UMapTileProvider.stamenTerrain:
-        return 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg';
+        return "http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg";
       case UMapTileProvider.mapBox:
         if (widget.mapBoxAccessToken == null) {
-          throw Exception('MapBox access token is required for MapBox tile provider');
+          throw Exception("MapBox access token is required for MapBox tile provider");
         }
-        return 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${widget.mapBoxAccessToken}';
+        return "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=${widget.mapBoxAccessToken}";
     }
   }
 
@@ -180,8 +180,8 @@ class _UMapState extends State<UMap> {
           children: <Widget>[
             TileLayer(
               urlTemplate: _getTileUrlTemplate(),
-              userAgentPackageName: 'com.example.app',
-              tileBuilder: widget.showAttribution
+                userAgentPackageName: "com.example.app",
+                tileBuilder: widget.showAttribution
                     ? (BuildContext context, Widget tileWidget, TileImage tile) => Stack(
                           children: <Widget>[
                             tileWidget,
@@ -190,8 +190,8 @@ class _UMapState extends State<UMap> {
                               bottom: 5,
                               left: 5,
                               child: Text(
-                                '© OpenStreetMap contributors',
-                                style: TextStyle(fontSize: 10, color: Colors.black54),
+                                  "© OpenStreetMap contributors",
+                                  style: TextStyle(fontSize: 10, color: Colors.black54),
                               ),
                             ),
                           if (widget.tileProvider == UMapTileProvider.openTopoMap)
@@ -199,8 +199,8 @@ class _UMapState extends State<UMap> {
                               bottom: 5,
                               left: 5,
                               child: Text(
-                                '© OpenTopoMap',
-                                style: TextStyle(fontSize: 10, color: Colors.black54),
+                                  "© OpenTopoMap",
+                                  style: TextStyle(fontSize: 10, color: Colors.black54),
                               ),
                             ),
                           if (widget.tileProvider == UMapTileProvider.stamenTerrain)
@@ -208,8 +208,8 @@ class _UMapState extends State<UMap> {
                               bottom: 5,
                               left: 5,
                               child: Text(
-                                '© Stamen Design',
-                                style: TextStyle(fontSize: 10, color: Colors.black54),
+                                  "© Stamen Design",
+                                  style: TextStyle(fontSize: 10, color: Colors.black54),
                               ),
                             ),
                           if (widget.tileProvider == UMapTileProvider.mapBox)
@@ -217,8 +217,8 @@ class _UMapState extends State<UMap> {
                               bottom: 5,
                               left: 5,
                               child: Text(
-                                '© Mapbox',
-                                style: TextStyle(fontSize: 10, color: Colors.black54),
+                                  "© Mapbox",
+                                  style: TextStyle(fontSize: 10, color: Colors.black54),
                               ),
                             ),
                         ],
@@ -252,8 +252,8 @@ class _UMapState extends State<UMap> {
             bottom: 16,
             left: 16,
             child: FloatingActionButton(
-              heroTag: 'UMapFab1',
-              mini: true,
+                heroTag: "UMapFab1",
+                mini: true,
               onPressed: _centerOnUserLocation,
               child: const Icon(Icons.my_location),
             ),
@@ -265,8 +265,8 @@ class _UMapState extends State<UMap> {
             child: Column(
               children: <Widget>[
                 FloatingActionButton(
-                  heroTag: 'UMapFab2',
-                  mini: true,
+                    heroTag: "UMapFab2",
+                    mini: true,
                   onPressed: () => widget.controller.move(
                     widget.controller.camera.center,
                     widget.controller.camera.zoom + 1,
@@ -275,8 +275,8 @@ class _UMapState extends State<UMap> {
                 ),
                 const SizedBox(height: 8),
                 FloatingActionButton(
-                  heroTag: 'UMapFab3',
-                  mini: true,
+                    heroTag: "UMapFab3",
+                    mini: true,
                   onPressed: () => widget.controller.move(
                     widget.controller.camera.center,
                     widget.controller.camera.zoom - 1,
@@ -350,7 +350,7 @@ class DemoMap extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Map Demo')),
+      appBar: AppBar(title: const Text("Map Demo")),
       body: UMap(
         controller: controller,
         zoom: 12,
@@ -363,13 +363,13 @@ class DemoMap extends StatelessWidget {
           size: 24,
         ),
         onTap: (TapPosition position, LatLng point) {
-          debugPrint('Tapped at: $point');
+          debugPrint("Tapped at: $point");
         },
         onLongPress: (TapPosition position, LatLng point) {
-          debugPrint('Long pressed at: $point');
+          debugPrint("Long pressed at: $point");
         },
         onPositionChanged: (MapCamera camera, bool hasGesture) {
-          debugPrint('Map moved to: ${camera.center}, zoom: ${camera.zoom}');
+          debugPrint("Map moved to: ${camera.center}, zoom: ${camera.zoom}");
         },
       ),
     );

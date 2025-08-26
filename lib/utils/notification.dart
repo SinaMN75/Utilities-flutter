@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 abstract class UNotification {
   static void showNotification({
@@ -13,9 +13,9 @@ abstract class UNotification {
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
     const InitializationSettings initializationSettings = InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/launcher_icon'),
+      android: AndroidInitializationSettings("@mipmap/launcher_icon"),
       iOS: DarwinInitializationSettings(),
-      linux: LinuxInitializationSettings(defaultActionName: ''),
+      linux: LinuxInitializationSettings(defaultActionName: ""),
       macOS: DarwinInitializationSettings(),
     );
     flutterLocalNotificationsPlugin.initialize(
@@ -35,7 +35,7 @@ abstract class UNotification {
           channelDescription: channelDescription,
           importance: Importance.max,
           priority: Priority.high,
-          ticker: 'ticker',
+          ticker: "ticker",
           enableLights: true,
           colorized: true,
         ),

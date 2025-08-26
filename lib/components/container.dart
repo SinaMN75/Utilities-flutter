@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 class UScaffold extends StatelessWidget {
   const UScaffold({
@@ -589,7 +589,7 @@ class UListView extends StatelessWidget {
     this.scrollController,
     this.primary,
     this.reverse = false,
-  }) : assert(items != null || (itemBuilder != null && itemCount != null), 'Provide either items or itemBuilder with itemCount.');
+  }) : assert(items != null || (itemBuilder != null && itemCount != null), "Provide either items or itemBuilder with itemCount.");
 
   final List<Widget>? items;
   final IndexedWidgetBuilder? itemBuilder;

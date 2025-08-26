@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 class CustomCrashlytics {
   static Future<void> initialize() async {
@@ -12,14 +12,14 @@ class CustomCrashlytics {
 
   static Future<void> _recordError(dynamic error, StackTrace stack) async {
     final Map<String, dynamic> errorData = <String, dynamic>{
-      'type': 'DART_ERROR',
-      'timestamp': DateTime.now().toIso8601String(),
-      'error': <String, String>{
-        'type': error.runtimeType.toString(),
-        'message': error.toString(),
+      "type": "DART_ERROR",
+      "timestamp": DateTime.now().toIso8601String(),
+      "error": <String, String>{
+        "type": error.runtimeType.toString(),
+        "message": error.toString(),
       },
-      'stackTrace': _formatStackTrace(stack),
-      'systemInfo': await _getSystemInfo(),
+      "stackTrace": _formatStackTrace(stack),
+      "systemInfo": await _getSystemInfo(),
     };
 
     _writeToLogFile(jsonEncode(errorData));
@@ -27,17 +27,17 @@ class CustomCrashlytics {
 
   static Future<void> _recordFlutterError(FlutterErrorDetails details) async {
     final Map<String, dynamic> errorData = <String, dynamic>{
-      'type': 'FLUTTER_ERROR',
-      'timestamp': DateTime.now().toIso8601String(),
-      'error': <String, String?>{
-        'library': details.library,
-        'exceptionType': details.exception.runtimeType.toString(),
-        'exception': details.exception.toString(),
+      "type": "FLUTTER_ERROR",
+      "timestamp": DateTime.now().toIso8601String(),
+      "error": <String, String?>{
+        "library": details.library,
+        "exceptionType": details.exception.runtimeType.toString(),
+        "exception": details.exception.toString(),
       },
-      'stackTrace': _formatFlutterStackTrace(details.stack),
-      'context': details.context?.toString() ?? 'No context',
-      'additionalInfo': details.informationCollector != null ? _formatInformationCollector(details.informationCollector) : null,
-      'systemInfo': await _getSystemInfo(),
+      "stackTrace": _formatFlutterStackTrace(details.stack),
+      "context": details.context?.toString() ?? "No context",
+      "additionalInfo": details.informationCollector != null ? _formatInformationCollector(details.informationCollector) : null,
+      "systemInfo": await _getSystemInfo(),
     };
 
     _writeToLogFile(jsonEncode(errorData));
@@ -45,7 +45,7 @@ class CustomCrashlytics {
 
   static String _formatStackTrace(StackTrace? stack) {
     if (stack == null) return "";
-    if (stack == StackTrace.empty) return 'Empty stack trace provided';
+    if (stack == StackTrace.empty) return "Empty stack trace provided";
     return stack.toString();
   }
 
@@ -61,78 +61,78 @@ class CustomCrashlytics {
       final Iterable<DiagnosticsNode> information = collector();
       return information.map((DiagnosticsNode info) => info.toString()).toList();
     } catch (e) {
-      return <String>['Failed to collect additional information: $e'];
+      return <String>["Failed to collect additional information: $e"];
     }
   }
 
   static Future<Map<String, dynamic>> _getSystemInfo() async => <String, dynamic>{
-        'app': <String, String>{
-          'name': UApp.name,
-          'packageName': UApp.packageName,
-        'version': UApp.version,
-        'buildNumber': UApp.buildNumber,
-      },
-      'platform': _getPlatformInfo(),
-      'device': await _getDeviceInfo(),
-      'screen': _getScreenInfo(),
-      'locale': UApp.locale(),
-    };
+        "app": <String, String>{
+          "name": UApp.name,
+          "packageName": UApp.packageName,
+          "version": UApp.version,
+          "buildNumber": UApp.buildNumber,
+        },
+        "platform": _getPlatformInfo(),
+        "device": await _getDeviceInfo(),
+        "screen": _getScreenInfo(),
+        "locale": UApp.locale(),
+      };
 
   static String _getPlatformInfo() {
-    if (UApp.isWeb) return 'Web';
-    if (UApp.isAndroid) return 'Android';
-    if (UApp.isIos) return 'iOS';
-    if (UApp.isMacOs) return 'macOS';
-    if (UApp.isWindows) return 'Windows';
-    if (UApp.isLinux) return 'Linux';
-    if (UApp.isFuchsia) return 'Fuchsia';
-    return 'Unknown';
+    if (UApp.isWeb) return "Web";
+    if (UApp.isAndroid) return "Android";
+    if (UApp.isIos) return "iOS";
+    if (UApp.isMacOs) return "macOS";
+    if (UApp.isWindows) return "Windows";
+    if (UApp.isLinux) return "Linux";
+    if (UApp.isFuchsia) return "Fuchsia";
+    return "Unknown";
   }
 
   static Future<Map<String, dynamic>> _getDeviceInfo() async {
     try {
       if (UApp.isAndroid) {
         return <String, dynamic>{
-          'type': 'Android',
-          'model': UApp.androidDeviceInfo.model,
-          'manufacturer': UApp.androidDeviceInfo.manufacturer,
-          'osVersion': UApp.androidDeviceInfo.version.release,
+          "type": "Android",
+          "model": UApp.androidDeviceInfo.model,
+          "manufacturer": UApp.androidDeviceInfo.manufacturer,
+          "osVersion": UApp.androidDeviceInfo.version.release,
         };
       } else if (UApp.isIos) {
         return <String, dynamic>{
-          'type': 'iOS',
-          'model': UApp.iosDeviceInfo.model,
-          'osVersion': UApp.iosDeviceInfo.systemVersion,
+          "type": "iOS",
+          "model": UApp.iosDeviceInfo.model,
+          "osVersion": UApp.iosDeviceInfo.systemVersion,
         };
       } else if (UApp.isWeb) {
         return <String, dynamic>{
-          'type': 'Web',
-          'browser': UApp.webBrowserInfo.browserName.name,
-          'version': UApp.webBrowserInfo.appVersion,
+          "type": "Web",
+          "browser": UApp.webBrowserInfo.browserName.name,
+          "version": UApp.webBrowserInfo.appVersion,
         };
       } else if (UApp.isMacOs) {
         return <String, dynamic>{
-          'type': 'macOS',
-          'model': UApp.macOsDeviceInfo.model,
-          'osVersion': UApp.macOsDeviceInfo.osRelease,
+          "type": "macOS",
+          "model": UApp.macOsDeviceInfo.model,
+          "osVersion": UApp.macOsDeviceInfo.osRelease,
         };
       } else if (UApp.isWindows) {
         return <String, dynamic>{
-          'type': 'Windows',
-          'computerName': UApp.windowsDeviceInfo.computerName,
-          'version': UApp.windowsDeviceInfo.majorVersion,
+          "type": "Windows",
+          "computerName": UApp.windowsDeviceInfo.computerName,
+          "version": UApp.windowsDeviceInfo.majorVersion,
         };
       } else if (UApp.isLinux) {
         return <String, dynamic>{
-          'type': 'Linux',
-          'name': UApp.linuxDeviceInfo.name,
-          'version': UApp.linuxDeviceInfo.version,
+          "type": "Linux",
+          "name": UApp.linuxDeviceInfo.name,
+          "version": UApp.linuxDeviceInfo.version,
         };
       }
     } catch (e) {
-      return <String, dynamic>{'error': 'Failed to get detailed device info: $e'};
+      return <String, dynamic>{"error": "Failed to get detailed device info: $e"};
     }
-    return <String, dynamic>{'type': 'Unknown device'};
+    return <String, dynamic>{"type": "Unknown device"};
   }
 
   static Map<String, dynamic> _getScreenInfo() {
@@ -141,40 +141,40 @@ class CustomCrashlytics {
       final Size size = media.size;
 
       return <String, dynamic>{
-        'size': <String, double>{
-          'width': size.width,
-          'height': size.height,
+        "size": <String, double>{
+          "width": size.width,
+          "height": size.height,
         },
-        'pixelRatio': media.devicePixelRatio,
-        'orientation': media.orientation.name,
-        'deviceType': _getDeviceType(navigatorKey.currentContext!),
+        "pixelRatio": media.devicePixelRatio,
+        "orientation": media.orientation.name,
+        "deviceType": _getDeviceType(navigatorKey.currentContext!),
       };
     } catch (e) {
-      return <String, dynamic>{'error': 'Failed to get screen info: $e'};
+      return <String, dynamic>{"error": "Failed to get screen info: $e"};
     }
   }
 
   static String _getDeviceType(BuildContext context) {
-    if (UApp.isWeb) return 'Web';
-    if (UApp.isTablet()) return 'Tablet';
-    if (UApp.isPhone()) return 'Phone';
+    if (UApp.isWeb) return "Web";
+    if (UApp.isTablet()) return "Tablet";
+    if (UApp.isPhone()) return "Phone";
     if (UApp.isDesktop) {
-      if (UApp.isDesktopSize()) return 'Desktop (large)';
-      return 'Desktop';
+      if (UApp.isDesktopSize()) return "Desktop (large)";
+      return "Desktop";
     }
-    return 'Unknown';
+    return "Unknown";
   }
 
   static void _writeToLogFile(String jsonMessage) {
     try {
-      final String prettyJson = const JsonEncoder.withIndent('  ').convert(jsonDecode(jsonMessage));
+      final String prettyJson = const JsonEncoder.withIndent("  ").convert(jsonDecode(jsonMessage));
       UNavigator.draggableSheet(
         SingleChildScrollView(
           child: Text(prettyJson),
         ),
       );
     } catch (e) {
-      debugPrint('Failed to display error: $e');
+      debugPrint("Failed to display error: $e");
     }
   }
 

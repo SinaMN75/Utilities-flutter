@@ -1,6 +1,6 @@
-import 'dart:ui';
+import "dart:ui";
 
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 class ULoading {
   static OverlayEntry? _overlayEntry;
@@ -12,7 +12,7 @@ class ULoading {
   static double _blurAmount = 2;
   static bool _dismissible = false;
   static bool _useDefaultLoader = true;
-  static String _defaultLoadingText = 'Loading...';
+  static String _defaultLoadingText = "Loading...";
   static Color _defaultSpinnerColor = Colors.white;
   static double _defaultSpinnerSize = 40;
 
@@ -25,7 +25,7 @@ class ULoading {
     double blurAmount = 2.0,
     bool dismissible = false,
     bool useDefaultLoader = true,
-    String defaultLoadingText = '',
+    String defaultLoadingText = "",
     Color defaultSpinnerColor = Colors.white,
     double defaultSpinnerSize = 40.0,
     GlobalKey<NavigatorState>? key,
@@ -50,7 +50,7 @@ class ULoading {
     final OverlayState? overlayState = (context != null ? Overlay.of(context) : navigatorKey.currentState?.overlay);
 
     if (overlayState == null) {
-      debugPrint('ULoading: No Overlay found. Make sure your app has a Navigator or MaterialApp widget.');
+      debugPrint("ULoading: No Overlay found. Make sure your app has a Navigator or MaterialApp widget.");
       return;
     }
 

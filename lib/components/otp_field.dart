@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 class UOtpField extends StatefulWidget {
   const UOtpField({
@@ -19,7 +19,7 @@ class UOtpField extends StatefulWidget {
     this.borderRadius = 8,
     this.borderWidth = 1.5,
     this.obscureText = false,
-    this.obscuringCharacter = '•',
+    this.obscuringCharacter = "•",
     this.keyboardType = TextInputType.number,
     this.showCursor = true,
     this.readOnly = false,
@@ -78,7 +78,7 @@ class _UOtpFieldState extends State<UOtpField> {
     );
     _otp = List<String>.generate(
       widget.length,
-      (final int index) => '',
+      (final int index) => "",
     );
 
     widget.controller.addListener(_syncControllersWithMain);
@@ -90,7 +90,7 @@ class _UOtpFieldState extends State<UOtpField> {
       if (i < text.length) {
         _controllers[i].text = text[i];
       } else {
-        _controllers[i].text = '';
+        _controllers[i].text = "";
       }
     }
   }
@@ -183,7 +183,7 @@ class _UOtpFieldState extends State<UOtpField> {
                             maxLength: 1,
                             decoration: widget.decoration ??
                                 InputDecoration(
-                                  counterText: '',
+                                  counterText: "",
                                   filled: true,
                                   fillColor: widget.fillColor,
                                   enabledBorder: OutlineInputBorder(

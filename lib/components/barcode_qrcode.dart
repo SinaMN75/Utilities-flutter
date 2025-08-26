@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_barcodes/barcodes.dart';
+import "package:flutter/material.dart";
+import "package:syncfusion_flutter_barcodes/barcodes.dart";
 
 enum UBarcodeType {
   qrCode,
@@ -204,13 +204,13 @@ class DemoBarcodes extends StatelessWidget {
     const String qrSampleValue = "https://example.com";
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Barcode Demo')),
+      appBar: AppBar(title: const Text("Barcode Demo")),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('QR Code', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("QR Code", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 200,
               child: UBarcode(value: qrSampleValue,
@@ -223,79 +223,79 @@ class DemoBarcodes extends StatelessWidget {
                   qrCodeVersion: 5),
             ),
             SizedBox(height: 20),
-            Text('Data Matrix', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Data Matrix", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 200,
               child: UBarcode(value: sampleValue, type: UBarcodeType.dataMatrix, barColor: Colors.black, showValue: true, module: 3),
             ),
             SizedBox(height: 20),
-            Text('Code 128', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Code 128", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: sampleValue, type: UBarcodeType.code128, barColor: Colors.green, showValue: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('Code 128A', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Code 128A", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "ABC123", type: UBarcodeType.code128A, barColor: Colors.red, showValue: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('Code 128B', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Code 128B", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "abc123", type: UBarcodeType.code128B, barColor: Colors.blue, showValue: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('Code 128C', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Code 128C", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "123456", type: UBarcodeType.code128C, barColor: Colors.purple, showValue: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('Code 39', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Code 39", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "ABC123", type: UBarcodeType.code39, barColor: Colors.orange, showValue: true, enableCheckSum: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('Code 39 Extended', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Code 39 Extended", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "abc123", type: UBarcodeType.code39Extended, barColor: Colors.teal, showValue: true, enableCheckSum: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('Code 93', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Code 93", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "TEST93", type: UBarcodeType.code93, barColor: Colors.brown, showValue: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('Codabar', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Codabar", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "A123456A", type: UBarcodeType.codabar, barColor: Colors.cyan, showValue: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('EAN-8', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("EAN-8", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "12345670", type: UBarcodeType.ean8, barColor: Colors.black, showValue: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('EAN-13', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("EAN-13", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "123456789012", type: UBarcodeType.ean13, barColor: Colors.green, showValue: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('UPC-A', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("UPC-A", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "123456789012", type: UBarcodeType.upcA, barColor: Colors.blue, showValue: true, module: 2),
             ),
             SizedBox(height: 20),
-            Text('UPC-E', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("UPC-E", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 100,
               child: UBarcode(value: "0123456", type: UBarcodeType.upcE, barColor: Colors.red, showValue: true, module: 2),

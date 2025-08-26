@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 part "params/auth_params.dart";
 part "params/base_params.dart";

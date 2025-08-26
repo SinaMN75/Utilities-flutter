@@ -1,13 +1,13 @@
-import 'package:u/utils/shamsi_date/src/jalali/jalali_date.dart';
-import 'package:u/utils/shamsi_date/src/jalali/jalali_formatter.dart';
+import "package:u/utils/shamsi_date/src/jalali/jalali_date.dart";
+import "package:u/utils/shamsi_date/src/jalali/jalali_formatter.dart";
 
-export 'src/date.dart';
-export 'src/date_exception.dart';
-export 'src/date_formatter.dart';
-export 'src/gregorian/gregorian_date.dart';
-export 'src/gregorian/gregorian_formatter.dart';
-export 'src/jalali/jalali_date.dart';
-export 'src/jalali/jalali_formatter.dart';
+export "src/date.dart";
+export "src/date_exception.dart";
+export "src/date_formatter.dart";
+export "src/gregorian/gregorian_date.dart";
+export "src/gregorian/gregorian_formatter.dart";
+export "src/jalali/jalali_date.dart";
+export "src/jalali/jalali_formatter.dart";
 
 extension DateTimeExt on DateTime {
   Jalali toJalali() => Jalali.fromDateTime(this);
@@ -38,38 +38,38 @@ extension JalaliExt on Jalali {
   static const int monthsPerYear = 12;
 
   static const List<String> months = <String>[
-    'فروردین',
-    'اردیبهشت',
-    'خرداد',
-    'تیر',
-    'مرداد',
-    'شهریور',
-    'مهر',
-    'آبان',
-    'آذر',
-    'دی',
-    'بهمن',
-    'اسفند',
+    "فروردین",
+    "اردیبهشت",
+    "خرداد",
+    "تیر",
+    "مرداد",
+    "شهریور",
+    "مهر",
+    "آبان",
+    "آذر",
+    "دی",
+    "بهمن",
+    "اسفند",
   ];
 
   static List<String> narrowWeekdays = <String>[
-    'ش',
-    'ی',
-    'د',
-    'س',
-    'چ',
-    'پ',
-    'ج',
+    "ش",
+    "ی",
+    "د",
+    "س",
+    "چ",
+    "پ",
+    "ج",
   ];
 
   static List<String> shortDayName = <String>[
-    'شنبه',
-    '۱شنبه',
-    '۲شنبه',
-    '۳شنبه',
-    '۴شنبه',
-    '۵شنبه',
-    'جمعه',
+    "شنبه",
+    "۱شنبه",
+    "۲شنبه",
+    "۳شنبه",
+    "۴شنبه",
+    "۵شنبه",
+    "جمعه",
   ];
 
   int get millisecondsSinceEpoch {
@@ -85,27 +85,27 @@ extension JalaliExt on Jalali {
   bool isAtSameMomentAs(Jalali other) => other.compareTo(this) == 0;
 
   String _twoDigits(int n) {
-    if (n >= 10) return '$n';
-    return '0$n';
+    if (n >= 10) return "$n";
+    return "0$n";
   }
 
-  String datePickerMediumDate() => '${shortDayName[weekDay - saturday]} '
-      '${formatter.mN} '
-      '${day.toString().padRight(2)}';
+  String datePickerMediumDate() => "${shortDayName[weekDay - saturday]} "
+      "${formatter.mN} "
+      "${day.toString().padRight(2)}";
 
   String formatMediumDate() {
     final JalaliFormatter f = formatter;
-    return '${shortDayName[weekDay - 1]} ${f.d} ${f.mN}';
+    return "${shortDayName[weekDay - 1]} ${f.d} ${f.mN}";
   }
 
   String formatFullDate() {
     final JalaliFormatter f = formatter;
-    return '${f.wN} ${f.d} ${f.mN} ${f.yyyy}';
+    return "${f.wN} ${f.d} ${f.mN} ${f.yyyy}";
   }
 
   String toJalaliDateTime() {
     final JalaliFormatter f = formatter;
-    return '${f.yyyy}-${f.mm}-${f.dd} ${_twoDigits(hour)}:${_twoDigits(minute)}:${_twoDigits(second)}';
+    return "${f.yyyy}-${f.mm}-${f.dd} ${_twoDigits(hour)}:${_twoDigits(minute)}:${_twoDigits(second)}";
   }
 
   String formatYear() {
@@ -118,22 +118,22 @@ extension JalaliExt on Jalali {
     final String month = f.mm;
     final String day = f.dd;
     final String year = f.yyyy;
-    return '$year/$month/$day';
+    return "$year/$month/$day";
   }
 
   String formatShortDate() {
     final JalaliFormatter f = formatter;
-    return '${f.dd} ${f.mN}  ,${f.yyyy}';
+    return "${f.dd} ${f.mN}  ,${f.yyyy}";
   }
 
   String formatMonthYear() {
     final JalaliFormatter f = formatter;
-    return '${f.yyyy}/${f.mm}';
+    return "${f.yyyy}/${f.mm}";
   }
 
   String formatShortMonthDay() {
     final JalaliFormatter f = formatter;
-    return '${f.dd} ${f.mN}';
+    return "${f.dd} ${f.mN}";
   }
 
   Jalali copyWith({

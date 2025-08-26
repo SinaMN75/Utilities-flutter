@@ -8,5 +8,5 @@ class _DateExceptionImpl implements DateException {
   final String message;
 
   @override
-  String toString() => 'DateException: $message';
+  String toString() => "DateException: $message";
 }

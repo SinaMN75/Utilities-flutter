@@ -62,6 +62,7 @@ analyzer:
     avoid_multiple_declarations_per_line: error
     prefer_int_literals: error
     prefer_expression_function_bodies: error
+    prefer_double_quotes: error
 
 linter:
   rules:
@@ -119,3 +120,4 @@ linter:
     avoid_multiple_declarations_per_line: true
     prefer_int_literals: true
     prefer_expression_function_bodies: true
+    prefer_double_quotes: true

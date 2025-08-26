@@ -1,12 +1,12 @@
-import 'dart:developer' as developer;
+import "dart:developer" as developer;
 
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 class UHttpClient {
   UHttpClient({
     this.baseUrl,
     this.timeout = const Duration(seconds: 30),
-    this.defaultHeaders = const <String, String>{'Accept': 'application/json'},
+    this.defaultHeaders = const <String, String>{"Accept": "application/json"},
   });
 
   final String? baseUrl;
@@ -32,8 +32,8 @@ class UHttpClient {
     if (body != null) {
       if (body is Map) {
         request.body = jsonEncode(removeNullEntries(body));
-        request.headers['Content-Type'] = 'application/json';
-        request.headers['Locale'] = UApp.locale();
+        request.headers["Content-Type"] = "application/json";
+        request.headers["Locale"] = UApp.locale();
       } else if (body is String) {
         request.body = body;
       } else if (body is List<int>) {
@@ -65,7 +65,7 @@ class UHttpClient {
   }) async {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
-      final MultipartRequest request = MultipartRequest('POST', uri);
+      final MultipartRequest request = MultipartRequest("POST", uri);
 
       request.headers.addAll(<String, String>{...defaultHeaders, ...?headers});
 
@@ -98,7 +98,7 @@ class UHttpClient {
   }) async {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
-      final Request request = Request('GET', uri);
+      final Request request = Request("GET", uri);
       request.headers.addAll(<String, String>{...defaultHeaders, ...?headers});
 
       final StreamedResponse response = await _client.send(request).timeout(timeout);
@@ -124,7 +124,7 @@ class UHttpClient {
     final Map<String, dynamic>? queryParams,
   }) async =>
       _request(
-        method: 'GET',
+        method: "GET",
         endpoint: endpoint,
         headers: headers,
         queryParams: queryParams,
@@ -143,7 +143,7 @@ class UHttpClient {
     final dynamic body,
   }) async =>
       _request(
-        method: 'POST',
+        method: "POST",
         endpoint: endpoint,
         headers: headers,
         queryParams: queryParams,
@@ -163,7 +163,7 @@ class UHttpClient {
     final dynamic body,
   }) async =>
       _request(
-        method: 'PUT',
+        method: "PUT",
         endpoint: endpoint,
         headers: headers,
         queryParams: queryParams,
@@ -182,7 +182,7 @@ class UHttpClient {
     final Map<String, dynamic>? queryParams,
   }) async =>
       _request(
-        method: 'DELETE',
+        method: "DELETE",
         endpoint: endpoint,
         headers: headers,
         queryParams: queryParams,
@@ -192,10 +192,10 @@ class UHttpClient {
       );
 
   Uri _buildUri(final String endpoint, final Map<String, dynamic>? queryParams) {
-    final Uri uri = baseUrl != null ? Uri.parse('$baseUrl$endpoint') : Uri.parse(endpoint);
+    final Uri uri = baseUrl != null ? Uri.parse("$baseUrl$endpoint") : Uri.parse(endpoint);
 
     if (queryParams != null) {
-      return uri.replace(queryParameters: queryParams.map((final String key, final dynamic value) => MapEntry<String, String>(key, value?.toString() ?? '')));
+      return uri.replace(queryParameters: queryParams.map((final String key, final dynamic value) => MapEntry<String, String>(key, value?.toString() ?? "")));
     }
 
     return uri;
@@ -211,7 +211,7 @@ class UHttpClient {
     String? filename,
     final MediaType? contentType,
   }) async {
-    filename ??= file.path.split('/').last;
+    filename ??= file.path.split("/").last;
     final Stream<List<int>> stream = file.openRead();
     final int length = await file.length();
     return MultipartFile(

@@ -1,6 +1,6 @@
-import 'dart:ui' as ui;
+import "dart:ui" as ui;
 
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 class SignaturePad extends StatelessWidget {
   SignaturePad({

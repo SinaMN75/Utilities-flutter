@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 class ULinkPreviewer extends StatelessWidget {
   const ULinkPreviewer({required this.link, super.key});

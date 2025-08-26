@@ -1,9 +1,9 @@
-import 'package:u/utils/shamsi_date/src/date.dart';
-import 'package:u/utils/shamsi_date/src/date_exception.dart';
-import 'package:u/utils/shamsi_date/src/gregorian/gregorian_date.dart';
-import 'package:u/utils/shamsi_date/src/jalali/jalali_formatter.dart';
+import "package:u/utils/shamsi_date/src/date.dart";
+import "package:u/utils/shamsi_date/src/date_exception.dart";
+import "package:u/utils/shamsi_date/src/gregorian/gregorian_date.dart";
+import "package:u/utils/shamsi_date/src/jalali/jalali_formatter.dart";
 
-part 'jalali_calculation.dart';
+part "jalali_calculation.dart";
 
 class Jalali extends Date {
   factory Jalali(
@@ -165,8 +165,8 @@ class Jalali extends Date {
   bool isLeapYear() => _isLeap;
 
   @override
-  String toString() => 'Jalali($year, $month, $day, $hour, '
-      '$minute, $second, $millisecond)';
+  String toString() => "Jalali($year, $month, $day, $hour, "
+      "$minute, $second, $millisecond)";
 
   @override
   Jalali operator +(int days) => addDays(days);

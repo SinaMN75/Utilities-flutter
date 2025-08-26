@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class UNumberPagination extends StatelessWidget {
   const UNumberPagination({
@@ -46,7 +46,7 @@ class UNumberPagination extends StatelessWidget {
         if (currentPage > threshold + 2 && totalPages > threshold * 2)
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Text('...'),
+            child: Text("..."),
           ),
 
         // Middle numbers
@@ -57,7 +57,7 @@ class UNumberPagination extends StatelessWidget {
         if (currentPage < totalPages - threshold - 1 && totalPages > threshold * 2)
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
-            child: Text('...'),
+            child: Text("..."),
           ),
 
         // Last page
@@ -82,8 +82,8 @@ class UNumberPagination extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
         ),
         child: Text(
-          '$page',
-          style: TextStyle(
+            "$page",
+            style: TextStyle(
             color: currentPage == page ? Colors.white : unselectedColor,
             fontWeight: currentPage == page ? FontWeight.bold : FontWeight.normal,
           ),

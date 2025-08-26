@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 class UWebView extends StatelessWidget {
   const UWebView({required this.url, super.key});

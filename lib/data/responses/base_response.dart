@@ -27,7 +27,7 @@ class UResponse<T> {
       pageSize: jsonMap["pageSize"] ?? 0,
       pageCount: jsonMap["pageCount"] ?? 0,
       totalCount: jsonMap["totalCount"] ?? 0,
-      message: jsonMap["message"] ?? '',
+      message: jsonMap["message"] ?? "",
     );
   }
 

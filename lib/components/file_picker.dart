@@ -1,5 +1,5 @@
-import 'package:path/path.dart' as path;
-import 'package:u/utilities.dart';
+import "package:path/path.dart" as path;
+import "package:u/utilities.dart";
 
 class FilePickerComponent extends StatefulWidget {
   const FilePickerComponent({
@@ -20,9 +20,9 @@ class FilePickerComponent extends StatefulWidget {
 class _FilePickerComponentState extends State<FilePickerComponent> {
   late List<FileData> _selectedFiles;
 
-  final List<String> _imageExtensions = <String>['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
-  final List<String> _videoExtensions = <String>['mp4', 'mov', 'avi', 'mkv', 'webm'];
-  final List<String> _documentExtensions = <String>['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt'];
+  final List<String> _imageExtensions = <String>["jpg", "jpeg", "png", "gif", "bmp", "webp"];
+  final List<String> _videoExtensions = <String>["mp4", "mov", "avi", "mkv", "webm"];
+  final List<String> _documentExtensions = <String>["pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt"];
 
   @override
   void initState() {
@@ -63,11 +63,11 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
 
   List<FileData> _getFilesByType(String type) {
     switch (type) {
-      case 'image':
+      case "image":
         return _selectedFiles.where((FileData file) => _imageExtensions.contains(file.extension?.toLowerCase())).toList();
-      case 'video':
+      case "video":
         return _selectedFiles.where((FileData file) => _videoExtensions.contains(file.extension?.toLowerCase())).toList();
-      case 'document':
+      case "document":
         return _selectedFiles.where((FileData file) => _documentExtensions.contains(file.extension?.toLowerCase())).toList();
       default:
         return <FileData>[];
@@ -88,7 +88,7 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
               Icon(icon, color: Colors.blue),
               const SizedBox(width: 8),
               Text(
-                '$title (${files.length})',
+                "$title (${files.length})",
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -134,7 +134,7 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
   String _getFileName(FileData file) {
     if (file.path != null) return path.basename(file.path!);
     if (file.url != null) return path.basename(file.url!);
-    return 'Unknown file';
+    return "Unknown file";
   }
 
   IconData _getFileIcon(String? extension) {
@@ -145,25 +145,25 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
       return Icons.image;
     } else if (_videoExtensions.contains(ext)) {
       return Icons.videocam;
-    } else if (ext == 'pdf') {
+    } else if (ext == "pdf") {
       return Icons.picture_as_pdf;
-    } else if (<String>['doc', 'docx'].contains(ext)) {
+    } else if (<String>["doc", "docx"].contains(ext)) {
       return Icons.article;
-    } else if (<String>['xls', 'xlsx'].contains(ext)) {
+    } else if (<String>["xls", "xlsx"].contains(ext)) {
       return Icons.table_chart;
-    } else if (<String>['ppt', 'pptx'].contains(ext)) {
+    } else if (<String>["ppt", "pptx"].contains(ext)) {
       return Icons.slideshow;
-    } else if (ext == 'txt') {
+    } else if (ext == "txt") {
       return Icons.text_snippet;
     }
     return Icons.insert_drive_file;
   }
 
   String _formatFileSize(int bytes) {
-    if (bytes <= 0) return '0 B';
-    const List<String> suffixes = <String>['B', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes <= 0) return "0 B";
+    const List<String> suffixes = <String>["B", "KB", "MB", "GB", "TB"];
     final int i = (log(bytes) / log(1024)).floor();
-    return '${(bytes / pow(1024, i)).toStringAsFixed(1)} ${suffixes[i]}';
+    return "${(bytes / pow(1024, i)).toStringAsFixed(1)} ${suffixes[i]}";
   }
 
   @override
@@ -188,16 +188,16 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
             children: <Widget>[
               Icon(Icons.attach_file),
               SizedBox(width: 8),
-              Text('Select Files'),
-            ],
+                Text("Select Files"),
+              ],
           ),
         ),
         const SizedBox(height: 20),
         if (_selectedFiles.isNotEmpty) ...<Widget>[
-          _buildFileList('Images', 'image', Icons.photo_library),
-          _buildFileList('Videos', 'video', Icons.video_library),
-          _buildFileList('Documents', 'document', Icons.library_books),
-        ],
+            _buildFileList("Images", "image", Icons.photo_library),
+            _buildFileList("Videos", "video", Icons.video_library),
+            _buildFileList("Documents", "document", Icons.library_books),
+          ],
       ],
     );
 }

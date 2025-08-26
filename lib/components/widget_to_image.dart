@@ -1,6 +1,6 @@
-import 'dart:ui' as ui;
+import "dart:ui" as ui;
 
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 class WidgetToImageController {
   GlobalKey? _globalKey;
@@ -16,7 +16,7 @@ class WidgetToImageController {
       final ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       return byteData?.buffer.asUint8List();
     } catch (e) {
-      debugPrint('Error capturing widget: $e');
+      debugPrint("Error capturing widget: $e");
       return null;
     }
   }

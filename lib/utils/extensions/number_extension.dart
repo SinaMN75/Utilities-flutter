@@ -1,13 +1,13 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 extension DoubleExtionsion on double {
   String toStringAsSmartRound({final int maxPrecision = 2}) {
     final String str = toString();
     try {
-      if (str.contains('.')) {
-        final List<String> split = str.split('');
+      if (str.contains(".")) {
+        final List<String> split = str.split("");
         final List<String> mantissa = <String>[];
-        final int periodIndex = str.indexOf('.');
+        final int periodIndex = str.indexOf(".");
         final String wholePart = str.substring(0, periodIndex);
         int numChars = 0;
         for (int i = periodIndex + 1; i < str.length; i++) {
@@ -19,12 +19,12 @@ extension DoubleExtionsion on double {
         if (mantissa.isNotEmpty) {
           int i = mantissa.length - 1;
           while (mantissa.isNotEmpty) {
-            if (mantissa[i] != '0') break;
+            if (mantissa[i] != "0") break;
             i--;
             mantissa.removeLast();
           }
           if (mantissa.isNotEmpty) {
-            return '$wholePart.${mantissa.join()}';
+            return "$wholePart.${mantissa.join()}";
           }
         }
         return wholePart;
@@ -134,7 +134,7 @@ extension IntExtesion on int {
       case 12:
         return "اسفند";
       default:
-        return '$this';
+        return "$this";
     }
   }
 
@@ -165,7 +165,7 @@ extension IntExtesion on int {
       case 12:
         return "Dec";
       default:
-        return '$this';
+        return "$this";
     }
   }
 }

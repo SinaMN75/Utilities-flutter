@@ -1,9 +1,9 @@
-import 'package:u/utils/shamsi_date/src/date.dart';
-import 'package:u/utils/shamsi_date/src/date_exception.dart';
-import 'package:u/utils/shamsi_date/src/gregorian/gregorian_formatter.dart';
-import 'package:u/utils/shamsi_date/src/jalali/jalali_date.dart';
+import "package:u/utils/shamsi_date/src/date.dart";
+import "package:u/utils/shamsi_date/src/date_exception.dart";
+import "package:u/utils/shamsi_date/src/gregorian/gregorian_formatter.dart";
+import "package:u/utils/shamsi_date/src/jalali/jalali_date.dart";
 
-part 'gregorian_calculation.dart';
+part "gregorian_calculation.dart";
 
 class Gregorian extends Date {
   factory Gregorian(
@@ -178,8 +178,8 @@ class Gregorian extends Date {
   bool isLeapYear() => _Algo.isLeapYear(year);
 
   @override
-  String toString() => 'Gregorian($year, $month, $day, $hour, '
-      '$minute, $second, $millisecond)';
+  String toString() => "Gregorian($year, $month, $day, $hour, "
+      "$minute, $second, $millisecond)";
 
   @override
   Gregorian operator +(int days) => addDays(days);

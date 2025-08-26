@@ -1,4 +1,4 @@
-part of 'jalali_date.dart';
+part of "jalali_date.dart";
 
 class _Algo {
   const _Algo._();
@@ -34,7 +34,7 @@ class _Algo {
     int jump = 0;
 
     if (jy < -61 || jy >= 3178) {
-      throw StateError('should not happen');
+      throw StateError("should not happen");
     }
 
     for (int i = 1; i < bl; i += 1) {
@@ -76,20 +76,20 @@ class _Algo {
     int millisecond,
   ) {
     if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
-      throw DateException('Julian day number is out of computable range.');
+      throw DateException("Julian day number is out of computable range.");
     }
 
     if (hour < 0 || hour > 23) {
-      throw DateException('Hour is out of bounds. [0..23]');
+      throw DateException("Hour is out of bounds. [0..23]");
     }
     if (minute < 0 || minute > 59) {
-      throw DateException('Minute is out of bounds. [0..59]');
+      throw DateException("Minute is out of bounds. [0..59]");
     }
     if (second < 0 || second > 59) {
-      throw DateException('Second is out of bounds. [0..59]');
+      throw DateException("Second is out of bounds. [0..59]");
     }
     if (millisecond < 0 || millisecond > 999) {
-      throw DateException('Millisecond is out of bounds. [0..999]');
+      throw DateException("Millisecond is out of bounds. [0..999]");
     }
 
     final int gy = Gregorian.fromJulianDayNumber(
@@ -164,20 +164,20 @@ class _Algo {
     int millisecond,
   ) {
     if (year < -61 || year > 3177) {
-      throw DateException('Jalali date is out of computable range.');
+      throw DateException("Jalali date is out of computable range.");
     }
 
     if (month < 1 || month > 12) {
-      throw DateException('Jalali month is out of valid range.');
+      throw DateException("Jalali month is out of valid range.");
     }
 
     if (day < 1) {
-      throw DateException('Jalali day is out of valid range.');
+      throw DateException("Jalali day is out of valid range.");
     }
 
     if (year == 3177) {
       if (month > 10 || (month == 10 && day > 11)) {
-        throw DateException('Jalali date is out of computable range.');
+        throw DateException("Jalali date is out of computable range.");
       }
     }
 
@@ -187,20 +187,20 @@ class _Algo {
     final int ml = month == 12 ? (isLeap ? 30 : 29) : (month > 6 ? 30 : 31);
 
     if (day > ml) {
-      throw DateException('Jalali day is out of valid range.');
+      throw DateException("Jalali day is out of valid range.");
     }
 
     if (hour < 0 || hour > 23) {
-      throw DateException('Hour is out of bounds. [0..23]');
+      throw DateException("Hour is out of bounds. [0..23]");
     }
     if (minute < 0 || minute > 59) {
-      throw DateException('Minute is out of bounds. [0..59]');
+      throw DateException("Minute is out of bounds. [0..59]");
     }
     if (second < 0 || second > 59) {
-      throw DateException('Second is out of bounds. [0..59]');
+      throw DateException("Second is out of bounds. [0..59]");
     }
     if (millisecond < 0 || millisecond > 999) {
-      throw DateException('Millisecond is out of bounds. [0..999]');
+      throw DateException("Millisecond is out of bounds. [0..999]");
     }
 
     final int julianDayNumber = Gregorian(

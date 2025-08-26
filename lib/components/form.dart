@@ -1,5 +1,5 @@
-import 'package:u/components/persian_date_picker.dart';
-import 'package:u/utilities.dart';
+import "package:u/components/persian_date_picker.dart";
+import "package:u/utilities.dart";
 
 class UTextField extends StatefulWidget {
   const UTextField({
@@ -257,7 +257,7 @@ class UElevatedButton extends StatelessWidget {
         child: SizedBox(
           height: height,
           width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
-          child: Center(child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center)),
+          child: Center(child: titleWidget ?? Text(title ?? "", textAlign: TextAlign.center)),
         ),
       );
 }
@@ -294,7 +294,7 @@ class UOutlinedButton extends StatelessWidget {
         child: SizedBox(
           height: height,
           width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
-          child: Center(child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center)),
+          child: Center(child: titleWidget ?? Text(title ?? "", textAlign: TextAlign.center)),
         ),
       );
 }
@@ -331,7 +331,7 @@ class UTextButton extends StatelessWidget {
         child: SizedBox(
           height: height,
           width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
-          child: Center(child: titleWidget ?? Text(title ?? '', textAlign: TextAlign.center)),
+          child: Center(child: titleWidget ?? Text(title ?? "", textAlign: TextAlign.center)),
         ),
       );
 }
@@ -408,7 +408,7 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
             contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
           ),
           child: Text(
-            widget.selectedItem != null ? widget.labelBuilder(widget.selectedItem as T) : 'انتخاب',
+            widget.selectedItem != null ? widget.labelBuilder(widget.selectedItem as T) : "انتخاب",
           ),
         ),
       );

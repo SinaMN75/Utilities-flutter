@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 abstract class ULocalAuth {
   static final LocalAuthentication auth = LocalAuthentication();

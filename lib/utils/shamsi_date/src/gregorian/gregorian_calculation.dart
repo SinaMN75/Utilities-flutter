@@ -1,4 +1,4 @@
-part of 'gregorian_date.dart';
+part of "gregorian_date.dart";
 
 class _Algo {
   const _Algo._();
@@ -46,20 +46,20 @@ class _Algo {
     int millisecond,
   ) {
     if (julianDayNumber < 1925675 || julianDayNumber > 3108616) {
-      throw DateException('Julian day number is out of computable range.');
+      throw DateException("Julian day number is out of computable range.");
     }
 
     if (hour < 0 || hour > 23) {
-      throw DateException('Hour is out of bounds. [0..23]');
+      throw DateException("Hour is out of bounds. [0..23]");
     }
     if (minute < 0 || minute > 59) {
-      throw DateException('Minute is out of bounds. [0..59]');
+      throw DateException("Minute is out of bounds. [0..59]");
     }
     if (second < 0 || second > 59) {
-      throw DateException('Second is out of bounds. [0..59]');
+      throw DateException("Second is out of bounds. [0..59]");
     }
     if (millisecond < 0 || millisecond > 999) {
-      throw DateException('Millisecond is out of bounds. [0..999]');
+      throw DateException("Millisecond is out of bounds. [0..999]");
     }
 
     final int j = 4 * julianDayNumber + 139361631 + ((((4 * julianDayNumber + 183187720) ~/ 146097) * 3) ~/ 4) * 4 - 3908;
@@ -90,36 +90,36 @@ class _Algo {
     int millisecond,
   ) {
     if (year < 560 || year > 3798) {
-      throw DateException('Gregorian date is out of computable range.');
+      throw DateException("Gregorian date is out of computable range.");
     }
 
     if (month < 1 || month > 12) {
-      throw DateException('Gregorian month is out of valid range.');
+      throw DateException("Gregorian month is out of valid range.");
     }
 
     final int ml = getMonthLength(year, month);
 
     if (day < 1 || day > ml) {
-      throw DateException('Gregorian day is out of valid range.');
+      throw DateException("Gregorian day is out of valid range.");
     }
 
     if (year == 560) {
       if (month < 3 || (month == 3 && day < 20)) {
-        throw DateException('Gregorian date is out of computable range.');
+        throw DateException("Gregorian date is out of computable range.");
       }
     }
 
     if (hour < 0 || hour > 23) {
-      throw DateException('Hour is out of bounds. [0..23]');
+      throw DateException("Hour is out of bounds. [0..23]");
     }
     if (minute < 0 || minute > 59) {
-      throw DateException('Minute is out of bounds. [0..59]');
+      throw DateException("Minute is out of bounds. [0..59]");
     }
     if (second < 0 || second > 59) {
-      throw DateException('Second is out of bounds. [0..59]');
+      throw DateException("Second is out of bounds. [0..59]");
     }
     if (millisecond < 0 || millisecond > 999) {
-      throw DateException('Millisecond is out of bounds. [0..999]');
+      throw DateException("Millisecond is out of bounds. [0..999]");
     }
 
     final int julianDayNumber = (((year + ((month - 8) ~/ 6) + 100100) * 1461) ~/ 4) + ((153 * ((month + 9) % 12) + 2) ~/ 5) + day - 34840408 - ((((year + 100100 + ((month - 8) ~/ 6)) ~/ 100) * 3) ~/ 4) + 752;

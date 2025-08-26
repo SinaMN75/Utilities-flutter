@@ -1,4 +1,4 @@
-import 'package:flutter/services.dart';
+import "package:flutter/services.dart";
 
 abstract class UClipboard {
   static Future<void> set(final String text) async => Clipboard.setData(ClipboardData(text: text));

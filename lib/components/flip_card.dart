@@ -1,4 +1,4 @@
-import 'package:u/utilities.dart';
+import "package:u/utilities.dart";
 
 enum FlipDirection { VERTICAL, HORIZONTAL }
 
@@ -189,7 +189,7 @@ class FlipCardController {
   FlipCardState? state;
 
   AnimationController? get controller {
-    assert(state != null, 'Controller not attached to any FlipCard. Did you forget to pass the controller to the FlipCard?');
+    assert(state != null, "Controller not attached to any FlipCard. Did you forget to pass the controller to the FlipCard?");
     return state!.controller;
   }
 

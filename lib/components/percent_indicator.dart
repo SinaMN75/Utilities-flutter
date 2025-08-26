@@ -1,6 +1,6 @@
-import 'dart:math';
+import "dart:math";
 
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 enum ArcType { HALF, FULL }
 
@@ -52,14 +52,14 @@ class CircularPercentIndicator extends StatefulWidget {
     this.rotateLinearGradient = false,
   }) {
     if (linearGradient != null && progressColor != null) {
-      throw ArgumentError('Cannot provide both linearGradient and progressColor');
+      throw ArgumentError("Cannot provide both linearGradient and progressColor");
     }
     assert(startAngle >= 0.0);
     if (percent < 0.0 || percent > 1.0) {
       throw Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
     }
     if (arcType == null && arcBackgroundColor != null) {
-      throw ArgumentError('arcType is required when you arcBackgroundColor');
+      throw ArgumentError("arcType is required when you arcBackgroundColor");
     }
   }
 
@@ -436,10 +436,10 @@ class LinearPercentIndicator extends StatefulWidget {
     this.widgetIndicator,
   }) {
     if (linearGradient != null) {
-      throw ArgumentError('Cannot provide both linearGradient and progressColor');
+      throw ArgumentError("Cannot provide both linearGradient and progressColor");
     }
     if (linearGradientBackgroundColor != null) {
-      throw ArgumentError('Cannot provide both linearGradientBackgroundColor and backgroundColor');
+      throw ArgumentError("Cannot provide both linearGradientBackgroundColor and backgroundColor");
     }
     if (percent < 0.0 || percent > 1.0) {
       throw Exception("Percent value must be a double between 0.0 and 1.0, but it's $percent");
