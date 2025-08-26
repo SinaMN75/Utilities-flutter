@@ -45,6 +45,8 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^30.2.7
   syncfusion_flutter_signaturepad: ^30.2.7
   syncfusion_flutter_gauges: ^30.2.7
+  syncfusion_flutter_chat: ^30.2.7
+  syncfusion_flutter_calendar: ^30.2.7
 
   any_link_preview: ^3.0.3
   universal_html: ^2.2.4
