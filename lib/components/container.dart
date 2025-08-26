@@ -171,8 +171,6 @@ class UDefaultTabBar extends StatelessWidget {
       );
 }
 
-// Improved UIconTextHorizontal: Added optional subtitle, icon color, text styles,
-// onTap callback, background color, border, and elevation for card-like behavior.
 class UIconTextHorizontal extends StatelessWidget {
   const UIconTextHorizontal({
     required this.leading,
@@ -252,8 +250,6 @@ class UIconTextHorizontal extends StatelessWidget {
   }
 }
 
-// Improved UIconTextVertical: Similar improvements as horizontal version, with subtitle,
-// styles, onTap, card-like options.
 class UIconTextVertical extends StatelessWidget {
   const UIconTextVertical({
     required this.leading,
@@ -325,8 +321,6 @@ class UIconTextVertical extends StatelessWidget {
   }
 }
 
-// New: UContainer - A highly customizable container that combines Container, DecoratedBox, and more.
-// Supports shadow, border, gradient, image background, clip behavior, and transform.
 class UContainer extends StatelessWidget {
   const UContainer({
     this.child,
@@ -388,8 +382,6 @@ class UContainer extends StatelessWidget {
       );
 }
 
-// New: USpacedRow - A Row with automatic spacing between children, optional dividers, and wrap if needed.
-// Supports flex for children via Expanded wrappers.
 class USpacedRow extends StatelessWidget {
   const USpacedRow({
     required this.children,
@@ -448,7 +440,6 @@ class USpacedRow extends StatelessWidget {
   }
 }
 
-// New: USpacedColumn - Similar to USpacedRow but for Column.
 class USpacedColumn extends StatelessWidget {
   const USpacedColumn({
     required this.children,
@@ -507,8 +498,6 @@ class USpacedColumn extends StatelessWidget {
   }
 }
 
-// New: UCard - A customizable card with header, body, footer, actions, and elevation.
-// Supports onTap, border, color overrides.
 class UCard extends StatelessWidget {
   const UCard({
     required this.body,
@@ -572,9 +561,6 @@ class UCard extends StatelessWidget {
       );
 }
 
-// New: UListView - A customizable ListView with optional separators, headers, footers,
-// physics, and itemBuilder for dynamic lists to reduce boilerplate.
-// Updated UListView: Removed separator and related logic
 class UListView extends StatelessWidget {
   const UListView({
     this.items,
