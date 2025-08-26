@@ -2,14 +2,14 @@ part of "../data.dart";
 
 class AuthService {
   AuthService({
-    required this.baseUrl,
     required this.apiKey,
     required this.token,
+    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final String baseUrl;
+  final UHttpClient httpClient;
 
   void register({
     required final URegisterParams p,
@@ -17,8 +17,8 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    UHttpClient().post(
-      "$baseUrl/auth/Register",
+    httpClient.post(
+      "/auth/Register",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
       onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -34,8 +34,8 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/auth/LoginWithUserNamePassword",
+      httpClient.post(
+        "/auth/LoginWithUserNamePassword",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -50,8 +50,8 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/auth/LoginWithEmailPassword",
+      httpClient.post(
+        "/auth/LoginWithEmailPassword",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -66,8 +66,8 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/auth/ReadUserByToken",
+      httpClient.post(
+        "/auth/ReadUserByToken",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),

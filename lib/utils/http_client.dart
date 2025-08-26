@@ -59,18 +59,24 @@ class UHttpClient {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
-    final Map<String, String>? fields,
+    final Map<String, dynamic>? fields,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
   }) async {
     try {
-      final Uri uri = _buildUri(endpoint, queryParams);
-      final MultipartRequest request = MultipartRequest("POST", uri);
+      final MultipartRequest request = MultipartRequest("POST", _buildUri(endpoint, queryParams));
 
       request.headers.addAll(<String, String>{...defaultHeaders, ...?headers});
 
       if (fields != null) {
-        request.fields.addAll(fields);
+        request.fields.addAll(
+          fields.map(
+            (String key, dynamic value) => MapEntry<String, String>(
+              key,
+              value is String ? value : jsonEncode(value),
+            ),
+          ),
+        );
       }
 
       request.files.addAll(files);

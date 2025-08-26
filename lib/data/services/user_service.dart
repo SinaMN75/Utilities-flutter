@@ -2,14 +2,14 @@ part of "../data.dart";
 
 class UserService {
   UserService({
-    required this.baseUrl,
     required this.apiKey,
     required this.token,
+    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final String baseUrl;
+  final UHttpClient httpClient;
 
   void create({
     required final UUserCreateParams p,
@@ -17,8 +17,8 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/user/Create",
+      httpClient.post(
+        "/user/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -33,8 +33,8 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/user/BulkCreate",
+      httpClient.post(
+        "/user/BulkCreate",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -49,8 +49,8 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/User/Read",
+      httpClient.post(
+        "/User/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
           UResponse<List<UUserResponse>>.fromJson(
@@ -72,8 +72,8 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    UHttpClient().post(
-      "$baseUrl/user/ReadById",
+    httpClient.post(
+      "/user/ReadById",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -89,8 +89,8 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    UHttpClient().post(
-      "$baseUrl/user/Update",
+    httpClient.post(
+      "/user/Update",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -106,8 +106,8 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    UHttpClient().post(
-      "$baseUrl/user/Delete",
+    httpClient.post(
+      "/user/Delete",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
       onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),

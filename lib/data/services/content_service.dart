@@ -2,14 +2,14 @@ part of "../data.dart";
 
 class ContentService {
   ContentService({
-    required this.baseUrl,
     required this.apiKey,
     required this.token,
+    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final String baseUrl;
+  final UHttpClient httpClient;
 
   void create({
     required final UContentCreateParams p,
@@ -17,8 +17,8 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/content/Create",
+      httpClient.post(
+        "/content/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UContentResponse>.fromJson(r, (final dynamic i) => UContentResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -33,8 +33,8 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/content/Read",
+      httpClient.post(
+        "/content/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
           UResponse<List<UContentResponse>>.fromJson(
@@ -54,8 +54,8 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/content/ReadById",
+      httpClient.post(
+        "/content/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UContentResponse>.fromJson(r, (final dynamic i) => UContentResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -70,8 +70,8 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/content/Update",
+      httpClient.post(
+        "/content/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UContentResponse>.fromJson(r, (final dynamic i) => UContentResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -86,8 +86,8 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/content/Delete",
+      httpClient.post(
+        "/content/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),

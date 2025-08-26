@@ -2,14 +2,14 @@ part of "../data.dart";
 
 class ExamService {
   ExamService({
-    required this.baseUrl,
     required this.apiKey,
     required this.token,
+    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final String baseUrl;
+  final UHttpClient httpClient;
 
   void create({
     required final UExamCreateParams p,
@@ -17,8 +17,8 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/exam/Create",
+      httpClient.post(
+        "/exam/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UExamResponse>.fromJson(r, (final dynamic i) => UExamResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -33,8 +33,8 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/exam/Read",
+      httpClient.post(
+        "/exam/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
           UResponse<List<UExamResponse>>.fromJson(
@@ -54,8 +54,8 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/exam/ReadById",
+      httpClient.post(
+        "/exam/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UExamResponse>.fromJson(r, (final dynamic i) => UExamResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -70,8 +70,8 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/category/Delete",
+      httpClient.post(
+        "/category/Delete",
         body: p.toIdListMap(),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -86,8 +86,8 @@ class ExamService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/exam/SubmitAnswers",
+      httpClient.post(
+        "/exam/SubmitAnswers",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),

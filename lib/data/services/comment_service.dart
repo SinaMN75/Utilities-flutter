@@ -2,14 +2,14 @@ part of "../data.dart";
 
 class CommentService {
   CommentService({
-    required this.baseUrl,
     required this.apiKey,
     required this.token,
+    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final String baseUrl;
+  final UHttpClient httpClient;
 
   void create({
     required final UCommentCreateParams p,
@@ -17,8 +17,8 @@ class CommentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/comment/Create",
+      httpClient.post(
+        "/comment/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UCommentResponse>.fromJson(r, (final dynamic i) => UCommentResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -33,8 +33,8 @@ class CommentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/comment/Read",
+      httpClient.post(
+        "/comment/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
           UResponse<List<UCommentResponse>>.fromJson(
@@ -54,8 +54,8 @@ class CommentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/comment/ReadById",
+      httpClient.post(
+        "/comment/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UCommentResponse>.fromJson(r, (final dynamic i) => UCommentResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -70,8 +70,8 @@ class CommentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/comment/Update",
+      httpClient.post(
+        "/comment/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UCommentResponse>.fromJson(r, (final dynamic i) => UCommentResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -86,8 +86,8 @@ class CommentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/comment/Delete",
+      httpClient.post(
+        "/comment/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -102,8 +102,8 @@ class CommentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/comment/ReadProductCommentCount",
+      httpClient.post(
+        "/comment/ReadProductCommentCount",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<int>.fromJson(r, (final dynamic i) => i)),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -118,8 +118,8 @@ class CommentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/comment/ReadUserCommentCount",
+      httpClient.post(
+        "/comment/ReadUserCommentCount",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<int>.fromJson(r, (final dynamic i) => i)),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),

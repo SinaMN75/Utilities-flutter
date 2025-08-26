@@ -28,20 +28,26 @@ part "services/content_service.dart";
 part "services/dashboard_service.dart";
 part "services/exam_service.dart";
 part "services/follow_service.dart";
+part "services/media_service.dart";
 part "services/product_service.dart";
 part "services/user_service.dart";
 
 class UServices {
-  UServices({required this.baseUrl, required this.apiKey, required this.token}) {
-    dashboard = DashboardService(baseUrl: baseUrl);
-    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    user = UserService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    product = ProductService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    content = ContentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    comment = CommentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    follow = FollowService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+  UServices({
+    required this.baseUrl,
+    required this.apiKey,
+    required this.token,
+  }) {
+    final UHttpClient httpClient = UHttpClient(baseUrl: baseUrl);
+    dashboard = DashboardService(httpClient: httpClient, apiKey: apiKey, token: apiKey);
+    auth = AuthService(httpClient: httpClient, apiKey: apiKey, token: token);
+    category = CategoryService(httpClient: httpClient, apiKey: apiKey, token: token);
+    exam = ExamService(httpClient: httpClient, apiKey: apiKey, token: token);
+    user = UserService(httpClient: httpClient, apiKey: apiKey, token: token);
+    product = ProductService(httpClient: httpClient, apiKey: apiKey, token: token);
+    content = ContentService(httpClient: httpClient, apiKey: apiKey, token: token);
+    comment = CommentService(httpClient: httpClient, apiKey: apiKey, token: token);
+    follow = FollowService(httpClient: httpClient, apiKey: apiKey, token: token);
   }
 
   String baseUrl;

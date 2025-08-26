@@ -1,17 +1,23 @@
 part of "../data.dart";
 
 class DashboardService {
-  DashboardService({required this.baseUrl});
+  DashboardService({
+    required this.apiKey,
+    required this.token,
+    required this.httpClient,
+  });
 
-  final String baseUrl;
+  final String? token;
+  final String apiKey;
+  final UHttpClient httpClient;
 
   void readSystemMetrics({
     required final Function(UMetricsResponse r) onOk,
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/dashboard/ReadSystemMetrics",
+      httpClient.post(
+        "/dashboard/ReadSystemMetrics",
         onSuccess: (final String r) => onOk(UMetricsResponse.fromJson(r)),
         onError: (final String r) => onError(),
         onException: (dynamic e) {
@@ -24,8 +30,8 @@ class DashboardService {
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/dashboard/Read",
+      httpClient.post(
+        "/dashboard/Read",
         onSuccess: (final String r) => onOk(UDashboardResponse.fromJson(r)),
         onError: (final String r) => onError(),
         onException: (dynamic e) {
@@ -38,8 +44,8 @@ class DashboardService {
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/api/logs/structure",
+      httpClient.post(
+        "/api/logs/structure",
         onSuccess: (final String r) => onOk(LogStructureResponse.fromJson(r)),
         onError: (final String r) => onError(),
         onException: (dynamic e) {
@@ -53,8 +59,8 @@ class DashboardService {
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/api/logs/content",
+      httpClient.post(
+        "/api/logs/content",
         body: <String, String>{"id": logId},
         onSuccess: (final String r) => onOk(json.decode(r).map((dynamic e) => LogContentResponse.fromMap(e)).toList()),
         onError: (final String r) => onError(),

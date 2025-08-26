@@ -2,23 +2,22 @@ part of "../data.dart";
 
 class CategoryService {
   CategoryService({
-    required this.baseUrl,
     required this.apiKey,
     required this.token,
+    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final String baseUrl;
-
+  final UHttpClient httpClient;
   void create({
     required final UCategoryCreateParams p,
     required final Function(UResponse<UCategoryResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/category/Create",
+      httpClient.post(
+        "/category/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UCategoryResponse>.fromJson(r, (final dynamic i) => UCategoryResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -33,8 +32,8 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/category/Read",
+      httpClient.post(
+        "/category/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
           UResponse<List<UCategoryResponse>>.fromJson(
@@ -54,8 +53,8 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/category/ReadById",
+      httpClient.post(
+        "/category/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UCategoryResponse>.fromJson(r, (final dynamic i) => UCategoryResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -70,8 +69,8 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/category/Update",
+      httpClient.post(
+        "/category/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UCategoryResponse>.fromJson(r, (final dynamic i) => UCategoryResponse.fromMap(i))),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -86,8 +85,8 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      UHttpClient().post(
-        "$baseUrl/category/Delete",
+      httpClient.post(
+        "/category/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
         onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),

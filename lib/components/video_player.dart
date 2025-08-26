@@ -16,7 +16,7 @@ class UVideoPlayer extends StatefulWidget {
     this.errorIndicator,
     this.showLoading = true,
     this.constraints,
-    this.padding = const EdgeInsets.all(0),
+    this.padding = EdgeInsets.zero,
     this.controller,
     this.customControls,
     this.placeholder,
