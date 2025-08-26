@@ -43,9 +43,10 @@ class UServices {
     comment = CommentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
     follow = FollowService(baseUrl: baseUrl, apiKey: apiKey, token: token);
   }
-  final String baseUrl;
-  final String apiKey;
-  final String? token;
+
+  String baseUrl;
+  String apiKey;
+  String? token;
 
   late AuthService auth;
   late CategoryService category;
