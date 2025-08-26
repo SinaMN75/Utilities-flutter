@@ -42,7 +42,7 @@ class SignaturePad extends StatelessWidget {
       );
 
   Future<void> handleSaveButtonPressed() async {
-    final ui.Image data = await signatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
+    final ui.Image data = await signatureGlobalKey.currentState!.toImage(pixelRatio: 3);
     final ByteData? bytes = await data.toByteData(format: ui.ImageByteFormat.png);
     final Uint8List byte = bytes!.buffer.asUint8List();
     final File file = await UFile.writeToFile(byte);

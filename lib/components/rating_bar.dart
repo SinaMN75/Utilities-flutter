@@ -107,11 +107,12 @@ class RatingBar extends StatefulWidget {
 }
 
 class _RatingBarState extends State<RatingBar> {
-  double _rating = 0.0;
+  double _rating = 0;
   bool _isRTL = false;
-  double iconRating = 0.0;
+  double iconRating = 0;
 
-  late double _minRating, _maxRating;
+  late double _minRating;
+  late double _maxRating;
   late final ValueNotifier<bool> _glow;
 
   @override
@@ -188,7 +189,7 @@ class _RatingBarState extends State<RatingBar> {
           child: FittedBox(
             child: _isRTL
                 ? Transform(
-                    transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
+                    transform: Matrix4.identity()..scale(-1.0, 1, 1),
                     alignment: Alignment.center,
                     transformHitTests: false,
                     child: ratingWidget!.half,
@@ -326,11 +327,10 @@ class _HalfRatingWidget extends StatelessWidget {
   final Color unratedColor;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: size,
-      width: size,
-      child: enableMask
+  Widget build(BuildContext context) => SizedBox(
+        height: size,
+        width: size,
+        child: enableMask
           ? Stack(
               fit: StackFit.expand,
               children: <Widget>[
@@ -356,7 +356,6 @@ class _HalfRatingWidget extends StatelessWidget {
               child: child,
             ),
     );
-  }
 }
 
 class _HalfClipper extends CustomClipper<Rect> {
@@ -368,13 +367,13 @@ class _HalfClipper extends CustomClipper<Rect> {
   Rect getClip(Size size) => rtlMode
       ? Rect.fromLTRB(
           size.width / 2,
-          0.0,
+          0,
           size.width,
           size.height,
         )
       : Rect.fromLTRB(
-          0.0,
-          0.0,
+          0,
+          0,
           size.width / 2,
           size.height,
         );
@@ -397,11 +396,10 @@ class _NoRatingWidget extends StatelessWidget {
   final Color unratedColor;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: size,
-      width: size,
-      child: FittedBox(
+  Widget build(BuildContext context) => SizedBox(
+        height: size,
+        width: size,
+        child: FittedBox(
         child: enableMask
             ? ColorFiltered(
                 colorFilter: ColorFilter.mode(
@@ -413,7 +411,6 @@ class _NoRatingWidget extends StatelessWidget {
             : child,
       ),
     );
-  }
 }
 
 class RatingBarIndicator extends StatefulWidget {
@@ -453,7 +450,7 @@ class RatingBarIndicator extends StatefulWidget {
 }
 
 class _RatingBarIndicatorState extends State<RatingBarIndicator> {
-  double _ratingFraction = 0.0;
+  double _ratingFraction = 0;
   int _ratingNumber = 0;
   bool _isRTL = false;
 
@@ -487,30 +484,27 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
     );
   }
 
-  List<Widget> get _children {
-    return List<Widget>.generate(
-      widget.itemCount,
-      (int index) {
-        if (widget.textDirection != null) {
+  List<Widget> get _children => List<Widget>.generate(
+        widget.itemCount,
+        (int index) {
+          if (widget.textDirection != null) {
           if (widget.textDirection == TextDirection.rtl && Directionality.of(navigatorKey.currentContext!) != TextDirection.rtl) {
             return Transform(
-              transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
-              alignment: Alignment.center,
-              transformHitTests: false,
-              child: _buildItems(index),
+                transform: Matrix4.identity()..scale(-1.0, 1, 1),
+                alignment: Alignment.center,
+                transformHitTests: false,
+                child: _buildItems(index),
             );
           }
         }
         return _buildItems(index);
       },
     );
-  }
 
-  Widget _buildItems(int index) {
-    return Padding(
-      padding: widget.itemPadding,
-      child: SizedBox(
-        width: widget.itemSize,
+  Widget _buildItems(int index) => Padding(
+        padding: widget.itemPadding,
+        child: SizedBox(
+          width: widget.itemSize,
         height: widget.itemSize,
         child: Stack(
           fit: StackFit.expand,
@@ -550,7 +544,6 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
         ),
       ),
     );
-  }
 }
 
 class _IndicatorClipper extends CustomClipper<Rect> {
@@ -563,24 +556,20 @@ class _IndicatorClipper extends CustomClipper<Rect> {
   final bool rtlMode;
 
   @override
-  Rect getClip(Size size) {
-    return rtlMode
-        ? Rect.fromLTRB(
-            size.width - size.width * ratingFraction,
-            0.0,
-            size.width,
-            size.height,
-          )
+  Rect getClip(Size size) => rtlMode
+      ? Rect.fromLTRB(
+          size.width - size.width * ratingFraction,
+          0,
+          size.width,
+          size.height,
+        )
         : Rect.fromLTRB(
-            0.0,
-            0.0,
-            size.width * ratingFraction,
-            size.height,
-          );
-  }
+          0,
+          0,
+          size.width * ratingFraction,
+          size.height,
+        );
 
   @override
-  bool shouldReclip(_IndicatorClipper oldClipper) {
-    return ratingFraction != oldClipper.ratingFraction || rtlMode != oldClipper.rtlMode;
-  }
+  bool shouldReclip(_IndicatorClipper oldClipper) => ratingFraction != oldClipper.ratingFraction || rtlMode != oldClipper.rtlMode;
 }

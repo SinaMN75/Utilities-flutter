@@ -9,12 +9,12 @@ class ULoading {
   static Color _overlayColor = Colors.black54;
   static Duration _animationDuration = const Duration(milliseconds: 300);
   static Curve _animationCurve = Curves.easeInOut;
-  static double _blurAmount = 2.0;
+  static double _blurAmount = 2;
   static bool _dismissible = false;
   static bool _useDefaultLoader = true;
   static String _defaultLoadingText = 'Loading...';
   static Color _defaultSpinnerColor = Colors.white;
-  static double _defaultSpinnerSize = 40.0;
+  static double _defaultSpinnerSize = 40;
 
   /// Initialize loading with custom configurations (optional)
   static void initialize({
@@ -73,9 +73,7 @@ class ULoading {
   }
 
   /// Check if loading is currently showing
-  static bool isShowing() {
-    return _isShowing;
-  }
+  static bool isShowing() => _isShowing;
 }
 
 class _LoadingOverlay extends StatefulWidget {
@@ -98,7 +96,7 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
       duration: ULoading._animationDuration,
       vsync: this,
     );
-    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _controller,
         curve: ULoading._animationCurve,
@@ -114,11 +112,10 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
   }
 
   @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _opacityAnimation,
-      child: Stack(
-        children: <Widget>[
+  Widget build(BuildContext context) => FadeTransition(
+        opacity: _opacityAnimation,
+        child: Stack(
+          children: <Widget>[
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(
@@ -148,21 +145,19 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
         ],
       ),
     );
-  }
 
-  Widget _buildDefaultLoader() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        SizedBox(
+  Widget _buildDefaultLoader() => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          SizedBox(
           width: ULoading._defaultSpinnerSize,
           height: ULoading._defaultSpinnerSize,
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(ULoading._defaultSpinnerColor),
-            strokeWidth: 3.0,
+              strokeWidth: 3,
+            ),
           ),
-        ),
-        const SizedBox(height: 16),
+          const SizedBox(height: 16),
         Text(
           ULoading._defaultLoadingText,
           style: const TextStyle(
@@ -172,5 +167,4 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
         ),
       ],
     );
-  }
 }

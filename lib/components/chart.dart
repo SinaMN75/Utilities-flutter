@@ -96,11 +96,10 @@ class UDoughnutChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCircularChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCircularChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
         height: "100",
       ),
@@ -124,7 +123,6 @@ class UDoughnutChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UPieChart extends StatelessWidget {
@@ -152,11 +150,10 @@ class UPieChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCircularChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCircularChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
         height: "100",
       ),
@@ -175,7 +172,6 @@ class UPieChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class URadialBarChart extends StatelessWidget {
@@ -207,11 +203,10 @@ class URadialBarChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCircularChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCircularChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
         height: "100",
       ),
@@ -232,7 +227,6 @@ class URadialBarChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class ULineChart extends StatelessWidget {
@@ -260,11 +254,10 @@ class ULineChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -282,7 +275,6 @@ class ULineChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UColumnChart extends StatelessWidget {
@@ -312,11 +304,10 @@ class UColumnChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -335,7 +326,6 @@ class UColumnChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UBarChart extends StatelessWidget {
@@ -365,11 +355,10 @@ class UBarChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -388,7 +377,6 @@ class UBarChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UAreaChart extends StatelessWidget {
@@ -418,11 +406,10 @@ class UAreaChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -441,7 +428,6 @@ class UAreaChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UStackedBarChart extends StatelessWidget {
@@ -471,11 +457,10 @@ class UStackedBarChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -494,7 +479,6 @@ class UStackedBarChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UStackedColumnChart extends StatelessWidget {
@@ -524,11 +508,10 @@ class UStackedColumnChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -547,7 +530,6 @@ class UStackedColumnChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class URangeColumnChart extends StatelessWidget {
@@ -577,11 +559,10 @@ class URangeColumnChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -601,7 +582,6 @@ class URangeColumnChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class USplineChart extends StatelessWidget {
@@ -629,11 +609,10 @@ class USplineChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -651,7 +630,6 @@ class USplineChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UStepLineChart extends StatelessWidget {
@@ -679,11 +657,10 @@ class UStepLineChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -701,7 +678,6 @@ class UStepLineChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UScatterChart extends StatelessWidget {
@@ -729,11 +705,10 @@ class UScatterChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -751,7 +726,6 @@ class UScatterChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UBubbleChart extends StatelessWidget {
@@ -779,11 +753,10 @@ class UBubbleChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -802,7 +775,6 @@ class UBubbleChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UHiloChart extends StatelessWidget {
@@ -830,11 +802,10 @@ class UHiloChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -853,7 +824,6 @@ class UHiloChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UHiloOpenCloseChart extends StatelessWidget {
@@ -881,11 +851,10 @@ class UHiloOpenCloseChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -906,7 +875,6 @@ class UHiloOpenCloseChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UCandlestickChart extends StatelessWidget {
@@ -934,11 +902,10 @@ class UCandlestickChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -959,7 +926,6 @@ class UCandlestickChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UBoxAndWhiskerChart extends StatelessWidget {
@@ -987,11 +953,10 @@ class UBoxAndWhiskerChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -1009,7 +974,6 @@ class UBoxAndWhiskerChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UHistogramChart extends StatelessWidget {
@@ -1037,11 +1001,10 @@ class UHistogramChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -1058,7 +1021,6 @@ class UHistogramChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UWaterfallChart extends StatelessWidget {
@@ -1086,11 +1048,10 @@ class UWaterfallChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfCartesianChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfCartesianChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
       ),
       tooltipBehavior: TooltipBehavior(enable: enableTooltip),
@@ -1108,7 +1069,6 @@ class UWaterfallChart extends StatelessWidget {
         ),
       ],
     );
-  }
 }
 
 class UPyramidChart extends StatelessWidget {
@@ -1136,11 +1096,10 @@ class UPyramidChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfPyramidChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfPyramidChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
         height: "100",
       ),
@@ -1156,7 +1115,6 @@ class UPyramidChart extends StatelessWidget {
         dataLabelSettings: dataLabelSettings,
       ),
     );
-  }
 }
 
 class UFunnelChart extends StatelessWidget {
@@ -1184,11 +1142,10 @@ class UFunnelChart extends StatelessWidget {
   final DataLabelSettings dataLabelSettings;
 
   @override
-  Widget build(BuildContext context) {
-    return SfFunnelChart(
-      legend: Legend(
-        isVisible: showLegend,
-        overflowMode: overflowMode.toSyncfusion(),
+  Widget build(BuildContext context) => SfFunnelChart(
+        legend: Legend(
+          isVisible: showLegend,
+          overflowMode: overflowMode.toSyncfusion(),
         position: legendPosition.toSyncfusion(),
         height: "100",
       ),
@@ -1204,7 +1161,6 @@ class UFunnelChart extends StatelessWidget {
         dataLabelSettings: dataLabelSettings,
       ),
     );
-  }
 }
 
 class DemoCharts extends StatelessWidget {
@@ -1266,7 +1222,7 @@ class DemoCharts extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Chart Demo')),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

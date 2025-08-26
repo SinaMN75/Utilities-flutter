@@ -1,4 +1,4 @@
-import 'date.dart';
+import 'package:u/utils/shamsi_date/src/date.dart';
 
 abstract class DateFormatter {
   const DateFormatter(this.date);
@@ -57,9 +57,7 @@ abstract class DateFormatter {
     return str.length == 1 ? '0$str' : str;
   }
 
-  String get m {
-    return date.month.toString();
-  }
+  String get m => date.month.toString();
 
   String get mm {
     final String str = m;
@@ -68,9 +66,7 @@ abstract class DateFormatter {
 
   String get mN;
 
-  String get d {
-    return date.day.toString();
-  }
+  String get d => date.day.toString();
 
   String get dd {
     final String str = d;

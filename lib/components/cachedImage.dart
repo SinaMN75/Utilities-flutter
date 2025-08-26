@@ -50,11 +50,10 @@ class _CachedNetworkImageState extends State<CachedNetworkImage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<Uint8List?>(
-      future: _imageDataFuture,
-      builder: (BuildContext context, AsyncSnapshot<Uint8List?> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+  Widget build(BuildContext context) => FutureBuilder<Uint8List?>(
+        future: _imageDataFuture,
+        builder: (BuildContext context, AsyncSnapshot<Uint8List?> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
           return widget.placeholder ?? const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError || snapshot.data == null) {
           return widget.errorWidget ?? const Icon(Icons.error);
@@ -68,5 +67,4 @@ class _CachedNetworkImageState extends State<CachedNetworkImage> {
         }
       },
     );
-  }
 }

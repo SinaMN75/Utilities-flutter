@@ -1,7 +1,7 @@
-import '../date.dart';
-import '../date_exception.dart';
-import '../gregorian/gregorian_date.dart';
-import '../jalali/jalali_formatter.dart';
+import 'package:u/utils/shamsi_date/src/date.dart';
+import 'package:u/utils/shamsi_date/src/date_exception.dart';
+import 'package:u/utils/shamsi_date/src/gregorian/gregorian_date.dart';
+import 'package:u/utils/shamsi_date/src/jalali/jalali_formatter.dart';
 
 part 'jalali_calculation.dart';
 
@@ -14,17 +14,16 @@ class Jalali extends Date {
     final int minute = 0,
     final int second = 0,
     final int millisecond = 0,
-  ]) {
-    return _Algo.createFromYearMonthDay(
-      year,
-      month,
-      day,
+  ]) =>
+      _Algo.createFromYearMonthDay(
+        year,
+        month,
+        day,
       hour,
       minute,
       second,
       millisecond,
     );
-  }
 
   const Jalali._raw(
     this.julianDayNumber,
@@ -44,45 +43,37 @@ class Jalali extends Date {
     final int minute = 0,
     final int second = 0,
     final int millisecond = 0,
-  ]) {
-    return _Algo.createFromJulianDayNumber(
-      julianDayNumber,
-      hour,
-      minute,
+  ]) =>
+      _Algo.createFromJulianDayNumber(
+        julianDayNumber,
+        hour,
+        minute,
       second,
       millisecond,
     );
-  }
 
-  factory Jalali.fromDateTime(DateTime dateTime) {
-    return Gregorian.fromDateTime(dateTime).toJalali();
-  }
+  factory Jalali.fromDateTime(DateTime dateTime) => Gregorian.fromDateTime(dateTime).toJalali();
 
-  factory Jalali.fromGregorian(Gregorian date) {
-    return Jalali.fromJulianDayNumber(
-      date.julianDayNumber,
-      date.hour,
-      date.minute,
+  factory Jalali.fromGregorian(Gregorian date) => Jalali.fromJulianDayNumber(
+        date.julianDayNumber,
+        date.hour,
+        date.minute,
       date.second,
       date.millisecond,
     );
-  }
 
   factory Jalali.fromMillisecondsSinceEpoch(
     int milliseconds, {
     bool isUtc = false,
-  }) {
-    return Jalali.fromDateTime(
-      DateTime.fromMillisecondsSinceEpoch(
-        milliseconds,
-        isUtc: isUtc,
+  }) =>
+      Jalali.fromDateTime(
+        DateTime.fromMillisecondsSinceEpoch(
+          milliseconds,
+          isUtc: isUtc,
       ),
     );
-  }
 
-  factory Jalali.now() {
-    return Gregorian.now().toJalali();
-  }
+  factory Jalali.now() => Gregorian.now().toJalali();
 
   static const Jalali min = Jalali._raw(1925675, -61, 1, 1, 0, 0, 0, 0, true);
 
@@ -115,9 +106,7 @@ class Jalali extends Date {
   final bool _isLeap;
 
   @override
-  int get weekDay {
-    return (julianDayNumber + 2) % 7 + 1;
-  }
+  int get weekDay => (julianDayNumber + 2) % 7 + 1;
 
   @override
   int get monthLength {
@@ -131,9 +120,7 @@ class Jalali extends Date {
   }
 
   @override
-  JalaliFormatter get formatter {
-    return JalaliFormatter(this);
-  }
+  JalaliFormatter get formatter => JalaliFormatter(this);
 
   @override
   Jalali copy({
@@ -161,45 +148,31 @@ class Jalali extends Date {
   }
 
   @override
-  DateTime toDateTime() {
-    return toGregorian().toDateTime();
-  }
+  DateTime toDateTime() => toGregorian().toDateTime();
 
   @override
-  DateTime toUtcDateTime() {
-    return toGregorian().toUtcDateTime();
-  }
+  DateTime toUtcDateTime() => toGregorian().toUtcDateTime();
 
-  Gregorian toGregorian() {
-    return Gregorian.fromJulianDayNumber(
-      julianDayNumber,
-      hour,
-      minute,
+  Gregorian toGregorian() => Gregorian.fromJulianDayNumber(
+        julianDayNumber,
+        hour,
+        minute,
       second,
       millisecond,
     );
-  }
 
   @override
-  bool isLeapYear() {
-    return _isLeap;
-  }
+  bool isLeapYear() => _isLeap;
 
   @override
-  String toString() {
-    return 'Jalali($year, $month, $day, $hour, '
-        '$minute, $second, $millisecond)';
-  }
+  String toString() => 'Jalali($year, $month, $day, $hour, '
+      '$minute, $second, $millisecond)';
 
   @override
-  Jalali operator +(int days) {
-    return addDays(days);
-  }
+  Jalali operator +(int days) => addDays(days);
 
   @override
-  Jalali operator -(int days) {
-    return addDays(-days);
-  }
+  Jalali operator -(int days) => addDays(-days);
 
   @override
   Jalali add({

@@ -1,5 +1,5 @@
-import '../date_formatter.dart';
-import '../gregorian/gregorian_date.dart';
+import 'package:u/utils/shamsi_date/src/date_formatter.dart';
+import 'package:u/utils/shamsi_date/src/gregorian/gregorian_date.dart';
 
 class GregorianFormatter extends DateFormatter {
   const GregorianFormatter(Gregorian super.date);
@@ -30,12 +30,8 @@ class GregorianFormatter extends DateFormatter {
   ];
 
   @override
-  String get mN {
-    return _monthNames[date.month - 1];
-  }
+  String get mN => _monthNames[date.month - 1];
 
   @override
-  String get wN {
-    return _weekDayNames[date.weekDay - 1];
-  }
+  String get wN => _weekDayNames[date.weekDay - 1];
 }

@@ -1,7 +1,7 @@
-import '../date.dart';
-import '../date_exception.dart';
-import '../gregorian/gregorian_formatter.dart';
-import '../jalali/jalali_date.dart';
+import 'package:u/utils/shamsi_date/src/date.dart';
+import 'package:u/utils/shamsi_date/src/date_exception.dart';
+import 'package:u/utils/shamsi_date/src/gregorian/gregorian_formatter.dart';
+import 'package:u/utils/shamsi_date/src/jalali/jalali_date.dart';
 
 part 'gregorian_calculation.dart';
 
@@ -14,17 +14,16 @@ class Gregorian extends Date {
     final int minute = 0,
     final int second = 0,
     final int millisecond = 0,
-  ]) {
-    return _Algo.createFromYearMonthDay(
-      year,
-      month,
-      day,
+  ]) =>
+      _Algo.createFromYearMonthDay(
+        year,
+        month,
+        day,
       hour,
       minute,
       second,
       millisecond,
     );
-  }
 
   const Gregorian._raw(
     this.julianDayNumber,
@@ -43,53 +42,45 @@ class Gregorian extends Date {
     final int minute = 0,
     final int second = 0,
     final int millisecond = 0,
-  ]) {
-    return _Algo.createFromJulianDayNumber(
-      julianDayNumber,
-      hour,
-      minute,
+  ]) =>
+      _Algo.createFromJulianDayNumber(
+        julianDayNumber,
+        hour,
+        minute,
       second,
       millisecond,
     );
-  }
 
-  factory Gregorian.fromDateTime(DateTime dateTime) {
-    return Gregorian(
-      dateTime.year,
-      dateTime.month,
-      dateTime.day,
+  factory Gregorian.fromDateTime(DateTime dateTime) => Gregorian(
+        dateTime.year,
+        dateTime.month,
+        dateTime.day,
       dateTime.hour,
       dateTime.minute,
       dateTime.second,
       dateTime.millisecond,
     );
-  }
 
-  factory Gregorian.fromJalali(Jalali date) {
-    return Gregorian.fromJulianDayNumber(
-      date.julianDayNumber,
-      date.hour,
-      date.minute,
+  factory Gregorian.fromJalali(Jalali date) => Gregorian.fromJulianDayNumber(
+        date.julianDayNumber,
+        date.hour,
+        date.minute,
       date.second,
       date.millisecond,
     );
-  }
 
   factory Gregorian.fromMillisecondsSinceEpoch(
     int milliseconds, {
     bool isUtc = false,
-  }) {
-    return Gregorian.fromDateTime(
-      DateTime.fromMillisecondsSinceEpoch(
-        milliseconds,
-        isUtc: isUtc,
+  }) =>
+      Gregorian.fromDateTime(
+        DateTime.fromMillisecondsSinceEpoch(
+          milliseconds,
+          isUtc: isUtc,
       ),
     );
-  }
 
-  factory Gregorian.now() {
-    return Gregorian.fromDateTime(DateTime.now());
-  }
+  factory Gregorian.now() => Gregorian.fromDateTime(DateTime.now());
 
   static const Gregorian min = Gregorian._raw(1925675, 560, 3, 20, 0, 0, 0, 0);
 
@@ -120,19 +111,13 @@ class Gregorian extends Date {
   final int millisecond;
 
   @override
-  int get weekDay {
-    return julianDayNumber % 7 + 1;
-  }
+  int get weekDay => julianDayNumber % 7 + 1;
 
   @override
-  int get monthLength {
-    return _Algo.getMonthLength(year, month);
-  }
+  int get monthLength => _Algo.getMonthLength(year, month);
 
   @override
-  GregorianFormatter get formatter {
-    return GregorianFormatter(this);
-  }
+  GregorianFormatter get formatter => GregorianFormatter(this);
 
   @override
   Gregorian copy({
@@ -160,61 +145,47 @@ class Gregorian extends Date {
   }
 
   @override
-  DateTime toDateTime() {
-    return DateTime(
-      year,
-      month,
-      day,
+  DateTime toDateTime() => DateTime(
+        year,
+        month,
+        day,
       hour,
       minute,
       second,
       millisecond,
     );
-  }
 
   @override
-  DateTime toUtcDateTime() {
-    return DateTime.utc(
-      year,
-      month,
-      day,
+  DateTime toUtcDateTime() => DateTime.utc(
+        year,
+        month,
+        day,
       hour,
       minute,
       second,
       millisecond,
     );
-  }
 
-  Jalali toJalali() {
-    return Jalali.fromJulianDayNumber(
-      julianDayNumber,
-      hour,
-      minute,
+  Jalali toJalali() => Jalali.fromJulianDayNumber(
+        julianDayNumber,
+        hour,
+        minute,
       second,
       millisecond,
     );
-  }
 
   @override
-  bool isLeapYear() {
-    return _Algo.isLeapYear(year);
-  }
+  bool isLeapYear() => _Algo.isLeapYear(year);
 
   @override
-  String toString() {
-    return 'Gregorian($year, $month, $day, $hour, '
-        '$minute, $second, $millisecond)';
-  }
+  String toString() => 'Gregorian($year, $month, $day, $hour, '
+      '$minute, $second, $millisecond)';
 
   @override
-  Gregorian operator +(int days) {
-    return addDays(days);
-  }
+  Gregorian operator +(int days) => addDays(days);
 
   @override
-  Gregorian operator -(int days) {
-    return addDays(-days);
-  }
+  Gregorian operator -(int days) => addDays(-days);
 
   @override
   Gregorian add({

@@ -97,8 +97,8 @@ class CircularPercentIndicator extends StatefulWidget {
 class _CircularPercentIndicatorState extends State<CircularPercentIndicator> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AnimationController? _animationController;
   late Animation<double> _animation;
-  double _percent = 0.0;
-  double _diameter = 0.0;
+  double _percent = 0;
+  double _diameter = 0;
 
   @override
   void dispose() {
@@ -115,14 +115,14 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
         vsync: this,
         duration: Duration(milliseconds: widget.animationDuration),
       );
-      _animation = Tween<double>(begin: 0.0, end: widget.percent).animate(
+      _animation = Tween<double>(begin: 0, end: widget.percent).animate(
         CurvedAnimation(parent: _animationController!, curve: widget.curve),
       )..addListener(() {
           setState(() {
             _percent = _animation.value;
           });
           if (widget.restartAnimation && _percent == 1.0) {
-            _animationController!.repeat(min: 0, max: 1.0);
+            _animationController!.repeat(min: 0, max: 1);
           }
         });
       _animationController!.addStatusListener((AnimationStatus status) {
@@ -156,7 +156,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
         ).animate(
           CurvedAnimation(parent: _animationController!, curve: widget.curve),
         );
-        _animationController!.forward(from: 0.0);
+        _animationController!.forward(from: 0);
       } else {
         _updateProgress();
       }
@@ -255,7 +255,8 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
 }
 
 _ArcAngles _getStartAngleFixedMargin(ArcType arcType) {
-  double fixedStartAngle, startAngleFixedMargin;
+  double fixedStartAngle;
+  double startAngleFixedMargin;
   if (arcType == ArcType.FULL) {
     fixedStartAngle = 220;
     startAngleFixedMargin = 172 / fixedStartAngle;
@@ -331,7 +332,7 @@ class _CirclePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final Offset center = Offset(size.width / 2, size.height / 2);
     double fixedStartAngle = startAngle;
-    double startAngleFixedMargin = 1.0;
+    double startAngleFixedMargin = 1;
     if (arcType != null) {
       final _ArcAngles arcAngles = _getStartAngleFixedMargin(arcType!);
       fixedStartAngle = arcAngles.fixedStartAngle;
@@ -425,7 +426,7 @@ class LinearPercentIndicator extends StatefulWidget {
     this.center,
     this.addAutomaticKeepAlive = true,
     this.barRadius,
-    this.padding = const EdgeInsets.symmetric(horizontal: 10.0),
+    this.padding = const EdgeInsets.symmetric(horizontal: 10),
     this.alignment = MainAxisAlignment.start,
     this.maskFilter,
     this.clipLinearGradient = false,
@@ -478,13 +479,13 @@ class LinearPercentIndicator extends StatefulWidget {
 class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AnimationController? _animationController;
   late Animation<double> _animation;
-  double _percent = 0.0;
+  double _percent = 0;
   final GlobalKey<State<StatefulWidget>> _containerKey = GlobalKey();
   final GlobalKey<State<StatefulWidget>> _keyIndicator = GlobalKey();
-  double _containerWidth = 0.0;
-  double _containerHeight = 0.0;
-  double _indicatorWidth = 0.0;
-  double _indicatorHeight = 0.0;
+  double _containerWidth = 0;
+  double _containerHeight = 0;
+  double _indicatorWidth = 0;
+  double _indicatorHeight = 0;
 
   @override
   void dispose() {
@@ -508,14 +509,14 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
     });
     if (widget.animation) {
       _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: widget.animationDuration));
-      _animation = Tween<double>(begin: 0.0, end: widget.percent).animate(
+      _animation = Tween<double>(begin: 0, end: widget.percent).animate(
         CurvedAnimation(parent: _animationController!, curve: widget.curve),
       )..addListener(() {
           setState(() {
             _percent = _animation.value;
           });
           if (widget.restartAnimation && _percent == 1.0) {
-            _animationController!.repeat(min: 0, max: 1.0);
+            _animationController!.repeat(min: 0, max: 1);
           }
         });
       _animationController!.addStatusListener((AnimationStatus status) {
@@ -545,7 +546,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
         _animation = Tween<double>(begin: widget.animateFromLastPercent ? oldWidget.percent : 0.0, end: widget.percent).animate(
           CurvedAnimation(parent: _animationController!, curve: widget.curve),
         );
-        _animationController!.forward(from: 0.0);
+        _animationController!.forward(from: 0);
       } else {
         _updateProgress();
       }
@@ -592,7 +593,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
           ),
           if (widget.widgetIndicator != null && _indicatorWidth == 0)
             Opacity(
-              opacity: 0.0,
+              opacity: 0,
               key: _keyIndicator,
               child: widget.widgetIndicator,
             ),
@@ -645,7 +646,7 @@ class _LinearPainter extends CustomPainter {
     this.linearGradientBackgroundColor,
   }) {
     _paintBackground.color = backgroundColor;
-    _paintLine.color = progress.toString() == "0.0" ? progressColor.withValues(alpha: 0.0) : progressColor;
+    _paintLine.color = progress.toString() == "0.0" ? progressColor.withValues(alpha: 0) : progressColor;
   }
 
   final Paint _paintBackground = Paint();

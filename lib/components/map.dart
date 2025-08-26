@@ -141,8 +141,9 @@ class _UMapState extends State<UMap> {
     }
 
     return Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
+        locationSettings: const LocationSettings(
+      accuracy: LocationAccuracy.high,
+    ));
   }
 
   String _getTileUrlTemplate() {
@@ -162,11 +163,10 @@ class _UMapState extends State<UMap> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        FlutterMap(
-          mapController: widget.controller,
+  Widget build(BuildContext context) => Stack(
+        children: <Widget>[
+          FlutterMap(
+            mapController: widget.controller,
           options: MapOptions(
             initialCenter: widget.center,
             initialZoom: widget.zoom,
@@ -182,11 +182,10 @@ class _UMapState extends State<UMap> {
               urlTemplate: _getTileUrlTemplate(),
               userAgentPackageName: 'com.example.app',
               tileBuilder: widget.showAttribution
-                  ? (BuildContext context, Widget tileWidget, TileImage tile) {
-                      return Stack(
-                        children: <Widget>[
-                          tileWidget,
-                          if (widget.tileProvider == UMapTileProvider.openStreetMap)
+                    ? (BuildContext context, Widget tileWidget, TileImage tile) => Stack(
+                          children: <Widget>[
+                            tileWidget,
+                            if (widget.tileProvider == UMapTileProvider.openStreetMap)
                             const Positioned(
                               bottom: 5,
                               left: 5,
@@ -223,11 +222,10 @@ class _UMapState extends State<UMap> {
                               ),
                             ),
                         ],
-                      );
-                    }
-                  : null,
-            ),
-            if (widget.markers.isNotEmpty)
+                        )
+                    : null,
+              ),
+              if (widget.markers.isNotEmpty)
               MarkerLayer(
                 markers: widget.markers,
               ),
@@ -294,7 +292,6 @@ class _UMapState extends State<UMap> {
           ),
       ],
     );
-  }
 }
 
 class DemoMap extends StatelessWidget {
@@ -346,7 +343,7 @@ class DemoMap extends StatelessWidget {
           const LatLng(51.507364, -0.130928),
           const LatLng(51.503364, -0.130928),
         ],
-        color: Colors.green.withOpacity(0.3),
+        color: Colors.green.withValues(alpha: 0.3),
         borderColor: Colors.green,
         borderStrokeWidth: 2,
       ),
@@ -356,7 +353,7 @@ class DemoMap extends StatelessWidget {
       appBar: AppBar(title: const Text('Map Demo')),
       body: UMap(
         controller: controller,
-        zoom: 12.0,
+        zoom: 12,
         markers: markers,
         polylines: polylines,
         polygons: polygons,

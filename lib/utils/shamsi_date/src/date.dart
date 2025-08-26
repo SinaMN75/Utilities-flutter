@@ -1,4 +1,4 @@
-import 'date_formatter.dart';
+import 'package:u/utils/shamsi_date/src/date_formatter.dart';
 
 abstract class Date implements Comparable<Date> {
   const Date();
@@ -21,14 +21,12 @@ abstract class Date implements Comparable<Date> {
 
   int get millisecond;
 
-  Duration get time {
-    return Duration(
-      hours: hour,
-      minutes: minute,
-      seconds: second,
+  Duration get time => Duration(
+        hours: hour,
+        minutes: minute,
+        seconds: second,
       milliseconds: millisecond,
     );
-  }
 
   int get julianDayNumber;
 
@@ -67,27 +65,17 @@ abstract class Date implements Comparable<Date> {
   @override
   String toString();
 
-  int operator ^(Date other) {
-    return julianDayNumber - other.julianDayNumber;
-  }
+  int operator ^(Date other) => julianDayNumber - other.julianDayNumber;
 
-  int distanceTo(Date other) {
-    return other.julianDayNumber - julianDayNumber;
-  }
+  int distanceTo(Date other) => other.julianDayNumber - julianDayNumber;
 
-  int distanceFrom(Date other) {
-    return julianDayNumber - other.julianDayNumber;
-  }
+  int distanceFrom(Date other) => julianDayNumber - other.julianDayNumber;
 
   @override
-  bool operator ==(Object other) {
-    return other is Date && compareTo(other) == 0;
-  }
+  bool operator ==(Object other) => other is Date && compareTo(other) == 0;
 
   @override
-  int get hashCode {
-    return julianDayNumber.hashCode ^ time.hashCode;
-  }
+  int get hashCode => julianDayNumber.hashCode ^ time.hashCode;
 
   @override
   int compareTo(Date other) {
@@ -102,19 +90,11 @@ abstract class Date implements Comparable<Date> {
     }
   }
 
-  bool operator >(Date other) {
-    return compareTo(other) > 0;
-  }
+  bool operator >(Date other) => compareTo(other) > 0;
 
-  bool operator >=(Date other) {
-    return compareTo(other) >= 0;
-  }
+  bool operator >=(Date other) => compareTo(other) >= 0;
 
-  bool operator <(Date other) {
-    return compareTo(other) < 0;
-  }
+  bool operator <(Date other) => compareTo(other) < 0;
 
-  bool operator <=(Date other) {
-    return compareTo(other) <= 0;
-  }
+  bool operator <=(Date other) => compareTo(other) <= 0;
 }

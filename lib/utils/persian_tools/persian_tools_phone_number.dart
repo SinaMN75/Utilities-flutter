@@ -126,9 +126,7 @@ class OperatorDetail {
   int get hashCode => base.hashCode ^ provinces.hashCode ^ model.hashCode ^ type.hashCode ^ operator.hashCode;
 
   @override
-  String toString() {
-    return 'OperatorDetail{base: $base, provinces: $provinces, model: $model, type: $type, operator: $operator}';
-  }
+  String toString() => 'OperatorDetail{base: $base, provinces: $provinces, model: $model, type: $type, operator: $operator}';
 }
 
 class Operator {

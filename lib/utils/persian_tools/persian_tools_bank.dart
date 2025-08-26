@@ -141,7 +141,9 @@ class PersianToolsBank {
 
   bool validateCardNumber(String cardNumber) {
     if (cardNumber.length < 16 || int.parse(cardNumber.substring(1, 11)) == 0 || int.parse(cardNumber.substring(10)) == 0) return false;
-    int sum = 0, even, subDigit;
+    int sum = 0;
+    int even;
+    int subDigit;
     for (int i = 0; i < 16; i++) {
       even = i % 2 == 0 ? 2 : 1;
       subDigit = int.parse(cardNumber[i]) * even;
@@ -151,7 +153,8 @@ class PersianToolsBank {
   }
 
   int _iso7064Mod97_10(String iban) {
-    String remainder = iban, block;
+    String remainder = iban;
+    String block;
     while (remainder.length > 2) {
       try {
         block = remainder.substring(0, 9);
@@ -171,7 +174,7 @@ class PersianToolsBank {
     String iban = sheba.substring(4);
     iban += '$d1$d2${sheba.substring(2, 4)}';
     final int remainder = _iso7064Mod97_10(iban);
-    return remainder != 1 ? false : true;
+    return remainder != 1 || false;
   }
 
   BankInformation? call(String sheba) {
@@ -195,7 +198,8 @@ class AccountNumberModel {
     required this.formattedAccountNumber,
   });
 
-  final String accountNumber, formattedAccountNumber;
+  final String accountNumber;
+  final String formattedAccountNumber;
 }
 
 class BankInformation {
@@ -210,10 +214,14 @@ class BankInformation {
     this.formattedAccountNumber,
   });
 
-  final String nickname, name, persianName, code;
+  final String nickname;
+  final String name;
+  final String persianName;
+  final String code;
   final bool isAccountNumberAvailable;
   AccountNumberModel Function(String)? process;
-  String? accountNumber, formattedAccountNumber;
+  String? accountNumber;
+  String? formattedAccountNumber;
 
   @override
   int get hashCode => Object.hash(nickname, name, <Object?>[persianName, code, isAccountNumberAvailable, accountNumber, formattedAccountNumber, process]);

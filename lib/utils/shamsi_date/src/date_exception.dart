@@ -1,7 +1,5 @@
 abstract class DateException implements Exception {
-  factory DateException(String message) {
-    return _DateExceptionImpl(message);
-  }
+  factory DateException(String message) => _DateExceptionImpl(message);
 }
 
 class _DateExceptionImpl implements DateException {
@@ -10,7 +8,5 @@ class _DateExceptionImpl implements DateException {
   final String message;
 
   @override
-  String toString() {
-    return 'DateException: $message';
-  }
+  String toString() => 'DateException: $message';
 }

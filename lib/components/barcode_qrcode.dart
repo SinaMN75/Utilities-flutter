@@ -185,16 +185,14 @@ class _UBarcodeState extends State<UBarcode> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return SfBarcodeGenerator(
-      value: widget.value,
-      symbology: symbology,
-      barColor: widget.barColor,
+  Widget build(BuildContext context) => SfBarcodeGenerator(
+        value: widget.value,
+        symbology: symbology,
+        barColor: widget.barColor,
       backgroundColor: widget.backgroundColor,
       showValue: widget.showValue,
       textSpacing: widget.textSpacing,
     );
-  }
 }
 
 class DemoBarcodes extends StatelessWidget {
@@ -208,14 +206,21 @@ class DemoBarcodes extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Barcode Demo')),
       body: const SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text('QR Code', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 200,
-              child: UBarcode(value: qrSampleValue, barColor: Colors.blue, backgroundColor: Colors.white, showValue: true, textSpacing: 10.0, module: 2, errorCorrectionLevel: UErrorCorrectionLevel.high, qrCodeVersion: 5),
+              child: UBarcode(value: qrSampleValue,
+                  barColor: Colors.blue,
+                  backgroundColor: Colors.white,
+                  showValue: true,
+                  textSpacing: 10,
+                  module: 2,
+                  errorCorrectionLevel: UErrorCorrectionLevel.high,
+                  qrCodeVersion: 5),
             ),
             SizedBox(height: 20),
             Text('Data Matrix', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),

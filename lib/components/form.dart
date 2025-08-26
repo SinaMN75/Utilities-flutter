@@ -362,11 +362,10 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
   Future<void> _openSearchDialog() async {
     await showDialog<T>(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Search and select"),
-          content: SizedBox(
-            width: 200,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("Search and select"),
+        content: SizedBox(
+          width: 200,
             height: 400,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -395,8 +394,7 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
               ],
             ),
           ),
-        );
-      },
+      ),
     );
   }
 

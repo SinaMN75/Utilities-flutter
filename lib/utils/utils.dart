@@ -13,7 +13,7 @@ void validateForm({required final GlobalKey<FormState> key, required final VoidC
   if (key.currentState!.validate()) action();
 }
 
-bool hasMatch(final String? value, final String pattern) => (value == null) ? false : RegExp(pattern).hasMatch(value);
+bool hasMatch(final String? value, final String pattern) => (value == null) || RegExp(pattern).hasMatch(value);
 
 FormFieldValidator<String> validateMinLength(
   final int minLength, {
@@ -53,4 +53,4 @@ FormFieldValidator<String> validateNumber({
       return null;
     };
 
-bool isLoggedIn() => ULocalStorage.getString(UConstants.token) == null ? false : true;
+bool isLoggedIn() => ULocalStorage.getString(UConstants.token) == null || true;

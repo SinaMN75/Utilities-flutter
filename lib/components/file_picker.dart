@@ -1,6 +1,5 @@
 import 'package:path/path.dart' as path;
-
-import '../utilities.dart';
+import 'package:u/utilities.dart';
 
 class FilePickerComponent extends StatefulWidget {
   const FilePickerComponent({
@@ -83,7 +82,7 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
             children: <Widget>[
               Icon(icon, color: Colors.blue),
@@ -105,7 +104,7 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8),
             child: Column(
               children: files
                   .map((FileData file) => ListTile(
@@ -168,11 +167,10 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ElevatedButton(
-          onPressed: _pickFiles,
+  Widget build(BuildContext context) => Column(
+        children: <Widget>[
+          ElevatedButton(
+            onPressed: _pickFiles,
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
             foregroundColor: Colors.white,
@@ -202,5 +200,4 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
         ],
       ],
     );
-  }
 }

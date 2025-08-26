@@ -1,5 +1,5 @@
-import '../date_formatter.dart';
-import '../jalali/jalali_date.dart';
+import 'package:u/utils/shamsi_date/src/date_formatter.dart';
+import 'package:u/utils/shamsi_date/src/jalali/jalali_date.dart';
 
 class JalaliFormatter extends DateFormatter {
   const JalaliFormatter(Jalali super.date);
@@ -45,16 +45,10 @@ class JalaliFormatter extends DateFormatter {
   ];
 
   @override
-  String get mN {
-    return _monthNames[date.month - 1];
-  }
+  String get mN => _monthNames[date.month - 1];
 
-  String get mNAf {
-    return _monthNamesAfghanistan[date.month - 1];
-  }
+  String get mNAf => _monthNamesAfghanistan[date.month - 1];
 
   @override
-  String get wN {
-    return _weekDayNames[date.weekDay - 1];
-  }
+  String get wN => _weekDayNames[date.weekDay - 1];
 }

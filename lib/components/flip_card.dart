@@ -89,7 +89,7 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
     _frontRotation = TweenSequence<double>(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0.0, end: pi / 2).chain(CurveTween(curve: Curves.easeIn)),
+          tween: Tween<double>(begin: 0, end: pi / 2).chain(CurveTween(curve: Curves.easeIn)),
           weight: 50,
         ),
         TweenSequenceItem<double>(
@@ -101,7 +101,7 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
     _backRotation = TweenSequence<double>(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50),
-        TweenSequenceItem<double>(tween: Tween<double>(begin: -pi / 2, end: 0.0).chain(CurveTween(curve: Curves.easeOut)), weight: 50),
+        TweenSequenceItem<double>(tween: Tween<double>(begin: -pi / 2, end: 0).chain(CurveTween(curve: Curves.easeOut)), weight: 50),
       ],
     ).animate(controller!);
 

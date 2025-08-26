@@ -46,11 +46,10 @@ class UGauge extends StatelessWidget {
   final Color? labelColor;
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: SfRadialGauge(
+  Widget build(BuildContext context) => SizedBox(
+        width: size,
+        height: size,
+        child: SfRadialGauge(
         axes: <RadialAxis>[
           RadialAxis(
             minimum: min,
@@ -87,7 +86,6 @@ class UGauge extends StatelessWidget {
         ],
       ),
     );
-  }
 }
 
 class UGaugeRange {
@@ -105,15 +103,13 @@ class UGaugeRange {
   final double? startWidth;
   final double? endWidth;
 
-  GaugeRange _toSfRange() {
-    return GaugeRange(
-      startValue: start,
-      endValue: end,
-      color: color,
+  GaugeRange _toSfRange() => GaugeRange(
+        startValue: start,
+        endValue: end,
+        color: color,
       startWidth: startWidth ?? 10,
       endWidth: endWidth ?? 10,
     );
-  }
 }
 
 class UGaugeAnnotation {
@@ -127,11 +123,9 @@ class UGaugeAnnotation {
   final double angle;
   final double position;
 
-  GaugeAnnotation _toSfAnnotation() {
-    return GaugeAnnotation(
-      widget: widget,
-      angle: angle,
-      positionFactor: position,
+  GaugeAnnotation _toSfAnnotation() => GaugeAnnotation(
+        widget: widget,
+        angle: angle,
+        positionFactor: position,
     );
-  }
 }

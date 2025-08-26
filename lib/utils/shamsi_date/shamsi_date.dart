@@ -10,9 +10,7 @@ export 'src/jalali/jalali_date.dart';
 export 'src/jalali/jalali_formatter.dart';
 
 extension DateTimeExt on DateTime {
-  Jalali toJalali() {
-    return Jalali.fromDateTime(this);
-  }
+  Jalali toJalali() => Jalali.fromDateTime(this);
 }
 
 extension JalaliExt on Jalali {
@@ -80,28 +78,20 @@ extension JalaliExt on Jalali {
     return dateTime.millisecondsSinceEpoch;
   }
 
-  bool isBefore(Jalali date) {
-    return date.compareTo(this) > 0;
-  }
+  bool isBefore(Jalali date) => date.compareTo(this) > 0;
 
-  bool isAfter(Jalali date) {
-    return date.compareTo(this) < 0;
-  }
+  bool isAfter(Jalali date) => date.compareTo(this) < 0;
 
-  bool isAtSameMomentAs(Jalali other) {
-    return other.compareTo(this) == 0;
-  }
+  bool isAtSameMomentAs(Jalali other) => other.compareTo(this) == 0;
 
   String _twoDigits(int n) {
     if (n >= 10) return '$n';
     return '0$n';
   }
 
-  String datePickerMediumDate() {
-    return '${shortDayName[weekDay - saturday]} '
-        '${formatter.mN} '
-        '${day.toString().padRight(2)}';
-  }
+  String datePickerMediumDate() => '${shortDayName[weekDay - saturday]} '
+      '${formatter.mN} '
+      '${day.toString().padRight(2)}';
 
   String formatMediumDate() {
     final JalaliFormatter f = formatter;

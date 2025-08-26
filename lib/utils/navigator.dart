@@ -357,73 +357,57 @@ abstract class UNavigator {
   static Widget Function(BuildContext, Animation<double>, Animation<double>, Widget) _getTransition(RouteTransitions transition) {
     switch (transition) {
       case RouteTransitions.fade:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-          return FadeTransition(opacity: animation, child: child);
-        };
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => FadeTransition(opacity: animation, child: child);
       case RouteTransitions.rightToLeft:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-          return SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(1, 0),
-              end: Offset.zero,
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: Offset.zero,
             ).animate(CurvedAnimation(
               parent: animation,
               curve: Curves.fastOutSlowIn,
             )),
             child: child,
           );
-        };
       case RouteTransitions.leftToRight:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-          return SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(-1, 0),
-              end: Offset.zero,
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0),
+                end: Offset.zero,
             ).animate(animation),
             child: child,
           );
-        };
       case RouteTransitions.upToDown:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-          return SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(0, -1),
-              end: Offset.zero,
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, -1),
+                end: Offset.zero,
             ).animate(animation),
             child: child,
           );
-        };
       case RouteTransitions.downToUp:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-          return SlideTransition(
-            position: Tween<Offset>(
-              begin: const Offset(0, 1),
-              end: Offset.zero,
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, 1),
+                end: Offset.zero,
             ).animate(animation),
             child: child,
           );
-        };
       case RouteTransitions.scale:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-          return ScaleTransition(
-            scale: animation,
-            child: child,
-          );
-        };
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => ScaleTransition(
+              scale: animation,
+              child: child,
+            );
       case RouteTransitions.rotate:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-          return RotationTransition(
-            turns: animation,
-            child: child,
-          );
-        };
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => RotationTransition(
+              turns: animation,
+              child: child,
+            );
       case RouteTransitions.size:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-          return SizeTransition(
-            sizeFactor: animation,
-            child: child,
-          );
-        };
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SizeTransition(
+              sizeFactor: animation,
+              child: child,
+            );
     }
   }
 

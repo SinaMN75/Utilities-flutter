@@ -65,11 +65,10 @@ class CustomCrashlytics {
     }
   }
 
-  static Future<Map<String, dynamic>> _getSystemInfo() async {
-    return <String, dynamic>{
-      'app': <String, String>{
-        'name': UApp.name,
-        'packageName': UApp.packageName,
+  static Future<Map<String, dynamic>> _getSystemInfo() async => <String, dynamic>{
+        'app': <String, String>{
+          'name': UApp.name,
+          'packageName': UApp.packageName,
         'version': UApp.version,
         'buildNumber': UApp.buildNumber,
       },
@@ -78,7 +77,6 @@ class CustomCrashlytics {
       'screen': _getScreenInfo(),
       'locale': UApp.locale(),
     };
-  }
 
   static String _getPlatformInfo() {
     if (UApp.isWeb) return 'Web';

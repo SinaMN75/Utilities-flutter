@@ -229,9 +229,9 @@ class UHttpClient {
 }
 
 extension HTTP on Response {
-  bool isSuccessful() => statusCode >= 200 && statusCode <= 299 ? true : false;
+  bool isSuccessful() => statusCode >= 200 && statusCode <= 299 || false;
 
-  bool isServerError() => statusCode >= 500 && statusCode <= 599 ? true : false;
+  bool isServerError() => statusCode >= 500 && statusCode <= 599 || false;
 
   void prettyLog({final String params = ""}) {
     developer.log(

@@ -55,6 +55,13 @@ analyzer:
     always_specify_types: error
     omit_local_variable_types: error
     always_put_required_named_parameters_first: error
+    always_use_package_imports: error
+    annotate_overrides: error
+    avoid_bool_literals_in_conditional_expressions: error
+    avoid_init_to_null: error
+    avoid_multiple_declarations_per_line: error
+    prefer_int_literals: error
+    prefer_expression_function_bodies: error
 
 linter:
   rules:
@@ -105,3 +112,10 @@ linter:
     always_specify_types: true
     prefer_typing_uninitialized_variables: true
     always_put_required_named_parameters_first: true
+    always_use_package_imports: true
+    annotate_overrides: true
+    avoid_bool_literals_in_conditional_expressions: true
+    avoid_init_to_null: true
+    avoid_multiple_declarations_per_line: true
+    prefer_int_literals: true
+    prefer_expression_function_bodies: true
