@@ -32,19 +32,20 @@ part "services/product_service.dart";
 part "services/user_service.dart";
 
 class UServices {
-  UServices({required this.baseUrl, required this.apiKey}) {
+  UServices({required this.baseUrl, required this.apiKey, required this.token}) {
     dashboard = DashboardService(baseUrl: baseUrl);
-    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    user = UserService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    product = ProductService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    content = ContentService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    comment = CommentService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
-    follow = FollowService(baseUrl: baseUrl, apiKey: apiKey, token: ULocalStorage.getToken());
+    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    user = UserService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    product = ProductService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    content = ContentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    comment = CommentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    follow = FollowService(baseUrl: baseUrl, apiKey: apiKey, token: token);
   }
   final String baseUrl;
   final String apiKey;
+  final String token;
 
   late AuthService auth;
   late CategoryService category;
