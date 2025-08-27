@@ -331,31 +331,31 @@ class _HalfRatingWidget extends StatelessWidget {
         height: size,
         width: size,
         child: enableMask
-          ? Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                FittedBox(
-                  child: _NoRatingWidget(
-                    size: size,
-                    unratedColor: unratedColor,
-                    enableMask: enableMask,
-                    child: child,
-                  ),
-                ),
-                FittedBox(
-                  child: ClipRect(
-                    clipper: _HalfClipper(
-                      rtlMode: rtlMode,
+            ? Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  FittedBox(
+                    child: _NoRatingWidget(
+                      size: size,
+                      unratedColor: unratedColor,
+                      enableMask: enableMask,
+                      child: child,
                     ),
-                    child: child,
                   ),
-                ),
-              ],
-            )
-          : FittedBox(
-              child: child,
-            ),
-    );
+                  FittedBox(
+                    child: ClipRect(
+                      clipper: _HalfClipper(
+                        rtlMode: rtlMode,
+                      ),
+                      child: child,
+                    ),
+                  ),
+                ],
+              )
+            : FittedBox(
+                child: child,
+              ),
+      );
 }
 
 class _HalfClipper extends CustomClipper<Rect> {
@@ -400,17 +400,17 @@ class _NoRatingWidget extends StatelessWidget {
         height: size,
         width: size,
         child: FittedBox(
-        child: enableMask
-            ? ColorFiltered(
-                colorFilter: ColorFilter.mode(
-                  unratedColor,
-                  BlendMode.srcIn,
-                ),
-                child: child,
-              )
-            : child,
-      ),
-    );
+          child: enableMask
+              ? ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    unratedColor,
+                    BlendMode.srcIn,
+                  ),
+                  child: child,
+                )
+              : child,
+        ),
+      );
 }
 
 class RatingBarIndicator extends StatefulWidget {
@@ -488,62 +488,62 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
         widget.itemCount,
         (int index) {
           if (widget.textDirection != null) {
-          if (widget.textDirection == TextDirection.rtl && Directionality.of(navigatorKey.currentContext!) != TextDirection.rtl) {
-            return Transform(
+            if (widget.textDirection == TextDirection.rtl && Directionality.of(navigatorKey.currentContext!) != TextDirection.rtl) {
+              return Transform(
                 transform: Matrix4.identity()..scale(-1.0, 1, 1),
                 alignment: Alignment.center,
                 transformHitTests: false,
                 child: _buildItems(index),
-            );
+              );
+            }
           }
-        }
-        return _buildItems(index);
-      },
-    );
+          return _buildItems(index);
+        },
+      );
 
   Widget _buildItems(int index) => Padding(
         padding: widget.itemPadding,
         child: SizedBox(
           width: widget.itemSize,
-        height: widget.itemSize,
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            FittedBox(
-              child: index + 1 < _ratingNumber
-                  ? widget.itemBuilder(navigatorKey.currentContext!, index)
-                  : ColorFiltered(
-                      colorFilter: ColorFilter.mode(
-                        widget.unratedColor ?? Theme.of(navigatorKey.currentContext!).disabledColor,
-                        BlendMode.srcIn,
+          height: widget.itemSize,
+          child: Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              FittedBox(
+                child: index + 1 < _ratingNumber
+                    ? widget.itemBuilder(navigatorKey.currentContext!, index)
+                    : ColorFiltered(
+                        colorFilter: ColorFilter.mode(
+                          widget.unratedColor ?? Theme.of(navigatorKey.currentContext!).disabledColor,
+                          BlendMode.srcIn,
+                        ),
+                        child: widget.itemBuilder(navigatorKey.currentContext!, index),
+                      ),
+              ),
+              if (index + 1 == _ratingNumber)
+                if (_isRTL)
+                  FittedBox(
+                    child: ClipRect(
+                      clipper: _IndicatorClipper(
+                        ratingFraction: _ratingFraction,
+                        rtlMode: _isRTL,
                       ),
                       child: widget.itemBuilder(navigatorKey.currentContext!, index),
                     ),
-            ),
-            if (index + 1 == _ratingNumber)
-              if (_isRTL)
-                FittedBox(
-                  child: ClipRect(
-                    clipper: _IndicatorClipper(
-                      ratingFraction: _ratingFraction,
-                      rtlMode: _isRTL,
+                  )
+                else
+                  FittedBox(
+                    child: ClipRect(
+                      clipper: _IndicatorClipper(
+                        ratingFraction: _ratingFraction,
+                      ),
+                      child: widget.itemBuilder(navigatorKey.currentContext!, index),
                     ),
-                    child: widget.itemBuilder(navigatorKey.currentContext!, index),
                   ),
-                )
-              else
-                FittedBox(
-                  child: ClipRect(
-                    clipper: _IndicatorClipper(
-                      ratingFraction: _ratingFraction,
-                    ),
-                    child: widget.itemBuilder(navigatorKey.currentContext!, index),
-                  ),
-                ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+      );
 }
 
 class _IndicatorClipper extends CustomClipper<Rect> {
@@ -563,7 +563,7 @@ class _IndicatorClipper extends CustomClipper<Rect> {
           size.width,
           size.height,
         )
-        : Rect.fromLTRB(
+      : Rect.fromLTRB(
           0,
           0,
           size.width * ratingFraction,

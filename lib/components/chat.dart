@@ -50,7 +50,7 @@ class _UChatState extends State<UChat> {
   String? _errorMessage;
 
   @override
-  Widget build(BuildContext context) => UContainer(
+  Widget build(BuildContext context) => Container(
         padding: widget.padding,
         constraints: widget.constraints,
         color: widget.backgroundColor,
@@ -91,9 +91,7 @@ class _UChatState extends State<UChat> {
                                   _errorMessage = "Failed to send message: $e";
                                 });
                                 if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text(_errorMessage ?? "Message send failed")),
-                                  );
+                                  UNavigator.snackbar(message: _errorMessage ?? "Message send failed");
                                 }
                               }
                             },

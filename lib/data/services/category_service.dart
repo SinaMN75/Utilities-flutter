@@ -10,6 +10,7 @@ class CategoryService {
   final String? token;
   final String apiKey;
   final UHttpClient httpClient;
+
   void create({
     required final UCategoryCreateParams p,
     required final Function(UResponse<UCategoryResponse> r) onOk,

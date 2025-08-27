@@ -19,11 +19,11 @@ class Jalali extends Date {
         year,
         month,
         day,
-      hour,
-      minute,
-      second,
-      millisecond,
-    );
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
 
   const Jalali._raw(
     this.julianDayNumber,
@@ -48,9 +48,9 @@ class Jalali extends Date {
         julianDayNumber,
         hour,
         minute,
-      second,
-      millisecond,
-    );
+        second,
+        millisecond,
+      );
 
   factory Jalali.fromDateTime(DateTime dateTime) => Gregorian.fromDateTime(dateTime).toJalali();
 
@@ -58,9 +58,9 @@ class Jalali extends Date {
         date.julianDayNumber,
         date.hour,
         date.minute,
-      date.second,
-      date.millisecond,
-    );
+        date.second,
+        date.millisecond,
+      );
 
   factory Jalali.fromMillisecondsSinceEpoch(
     int milliseconds, {
@@ -70,8 +70,8 @@ class Jalali extends Date {
         DateTime.fromMillisecondsSinceEpoch(
           milliseconds,
           isUtc: isUtc,
-      ),
-    );
+        ),
+      );
 
   factory Jalali.now() => Gregorian.now().toJalali();
 
@@ -157,9 +157,9 @@ class Jalali extends Date {
         julianDayNumber,
         hour,
         minute,
-      second,
-      millisecond,
-    );
+        second,
+        millisecond,
+      );
 
   @override
   bool isLeapYear() => _isLeap;

@@ -100,29 +100,29 @@ class UDoughnutChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-        height: "100",
-      ),
-      annotations: <CircularChartAnnotation>[
-        CircularChartAnnotation(widget: centerWidget ?? const SizedBox()),
-      ],
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      series: <DoughnutSeries<ChartData, String>>[
-        DoughnutSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          radius: radius,
-          innerRadius: innerRadius,
-          explode: explode,
-          animationDuration: animationDuration,
-          animationDelay: animationDelay,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
+          height: "100",
         ),
-      ],
-    );
+        annotations: <CircularChartAnnotation>[
+          CircularChartAnnotation(widget: centerWidget ?? const SizedBox()),
+        ],
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        series: <DoughnutSeries<ChartData, String>>[
+          DoughnutSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            radius: radius,
+            innerRadius: innerRadius,
+            explode: explode,
+            animationDuration: animationDuration,
+            animationDelay: animationDelay,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UPieChart extends StatelessWidget {
@@ -154,24 +154,24 @@ class UPieChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-        height: "100",
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      series: <PieSeries<ChartData, String>>[
-        PieSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          radius: radius,
-          animationDuration: animationDuration,
-          animationDelay: animationDelay,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
+          height: "100",
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        series: <PieSeries<ChartData, String>>[
+          PieSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            radius: radius,
+            animationDuration: animationDuration,
+            animationDelay: animationDelay,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class URadialBarChart extends StatelessWidget {
@@ -207,26 +207,26 @@ class URadialBarChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-        height: "100",
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      series: <RadialBarSeries<ChartData, String>>[
-        RadialBarSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          radius: radius,
-          innerRadius: innerRadius,
-          animationDuration: animationDuration,
-          trackColor: trackColor,
-          trackOpacity: trackOpacity,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
+          height: "100",
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        series: <RadialBarSeries<ChartData, String>>[
+          RadialBarSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            radius: radius,
+            innerRadius: innerRadius,
+            animationDuration: animationDuration,
+            trackColor: trackColor,
+            trackOpacity: trackOpacity,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class ULineChart extends StatelessWidget {
@@ -258,23 +258,23 @@ class ULineChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <LineSeries<ChartData, String>>[
-        LineSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <LineSeries<ChartData, String>>[
+          LineSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UColumnChart extends StatelessWidget {
@@ -308,24 +308,24 @@ class UColumnChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <ColumnSeries<ChartData, String>>[
-        ColumnSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          spacing: spacing,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <ColumnSeries<ChartData, String>>[
+          ColumnSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            spacing: spacing,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UBarChart extends StatelessWidget {
@@ -359,24 +359,24 @@ class UBarChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <BarSeries<ChartData, String>>[
-        BarSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          spacing: spacing,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <BarSeries<ChartData, String>>[
+          BarSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            spacing: spacing,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UAreaChart extends StatelessWidget {
@@ -410,24 +410,24 @@ class UAreaChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <AreaSeries<ChartData, String>>[
-        AreaSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          opacity: opacity,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <AreaSeries<ChartData, String>>[
+          AreaSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            opacity: opacity,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UStackedBarChart extends StatelessWidget {
@@ -461,24 +461,24 @@ class UStackedBarChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <StackedBarSeries<ChartData, String>>[
-        StackedBarSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          spacing: spacing,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <StackedBarSeries<ChartData, String>>[
+          StackedBarSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            spacing: spacing,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UStackedColumnChart extends StatelessWidget {
@@ -512,24 +512,24 @@ class UStackedColumnChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <StackedColumnSeries<ChartData, String>>[
-        StackedColumnSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          spacing: spacing,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <StackedColumnSeries<ChartData, String>>[
+          StackedColumnSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            spacing: spacing,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class URangeColumnChart extends StatelessWidget {
@@ -563,25 +563,25 @@ class URangeColumnChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <RangeColumnSeries<ChartData, String>>[
-        RangeColumnSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          spacing: spacing,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          highValueMapper: (ChartData data, _) => data.high,
-          lowValueMapper: (ChartData data, _) => data.low,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.high.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <RangeColumnSeries<ChartData, String>>[
+          RangeColumnSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            spacing: spacing,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            highValueMapper: (ChartData data, _) => data.high,
+            lowValueMapper: (ChartData data, _) => data.low,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.high.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class USplineChart extends StatelessWidget {
@@ -613,23 +613,23 @@ class USplineChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <SplineSeries<ChartData, String>>[
-        SplineSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <SplineSeries<ChartData, String>>[
+          SplineSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UStepLineChart extends StatelessWidget {
@@ -661,23 +661,23 @@ class UStepLineChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <StepLineSeries<ChartData, String>>[
-        StepLineSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <StepLineSeries<ChartData, String>>[
+          StepLineSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UScatterChart extends StatelessWidget {
@@ -709,23 +709,23 @@ class UScatterChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <ScatterSeries<ChartData, String>>[
-        ScatterSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <ScatterSeries<ChartData, String>>[
+          ScatterSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UBubbleChart extends StatelessWidget {
@@ -757,24 +757,24 @@ class UBubbleChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <BubbleSeries<ChartData, String>>[
-        BubbleSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          sizeValueMapper: (ChartData data, _) => data.size,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <BubbleSeries<ChartData, String>>[
+          BubbleSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            sizeValueMapper: (ChartData data, _) => data.size,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UHiloChart extends StatelessWidget {
@@ -806,24 +806,24 @@ class UHiloChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <HiloSeries<ChartData, String>>[
-        HiloSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          highValueMapper: (ChartData data, _) => data.high,
-          lowValueMapper: (ChartData data, _) => data.low,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.high.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <HiloSeries<ChartData, String>>[
+          HiloSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            highValueMapper: (ChartData data, _) => data.high,
+            lowValueMapper: (ChartData data, _) => data.low,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.high.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UHiloOpenCloseChart extends StatelessWidget {
@@ -855,26 +855,26 @@ class UHiloOpenCloseChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <HiloOpenCloseSeries<ChartData, String>>[
-        HiloOpenCloseSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          openValueMapper: (ChartData data, _) => data.open,
-          closeValueMapper: (ChartData data, _) => data.close,
-          highValueMapper: (ChartData data, _) => data.high,
-          lowValueMapper: (ChartData data, _) => data.low,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.close.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <HiloOpenCloseSeries<ChartData, String>>[
+          HiloOpenCloseSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            openValueMapper: (ChartData data, _) => data.open,
+            closeValueMapper: (ChartData data, _) => data.close,
+            highValueMapper: (ChartData data, _) => data.high,
+            lowValueMapper: (ChartData data, _) => data.low,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.close.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UCandlestickChart extends StatelessWidget {
@@ -906,26 +906,26 @@ class UCandlestickChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <CandleSeries<ChartData, String>>[
-        CandleSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          openValueMapper: (ChartData data, _) => data.open,
-          closeValueMapper: (ChartData data, _) => data.close,
-          highValueMapper: (ChartData data, _) => data.high,
-          lowValueMapper: (ChartData data, _) => data.low,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.close.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <CandleSeries<ChartData, String>>[
+          CandleSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            openValueMapper: (ChartData data, _) => data.open,
+            closeValueMapper: (ChartData data, _) => data.close,
+            highValueMapper: (ChartData data, _) => data.high,
+            lowValueMapper: (ChartData data, _) => data.low,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.close.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UBoxAndWhiskerChart extends StatelessWidget {
@@ -957,23 +957,23 @@ class UBoxAndWhiskerChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <BoxAndWhiskerSeries<ChartData, String>>[
-        BoxAndWhiskerSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.boxValues ?? <num?>[data.yValue],
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <BoxAndWhiskerSeries<ChartData, String>>[
+          BoxAndWhiskerSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.boxValues ?? <num?>[data.yValue],
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UHistogramChart extends StatelessWidget {
@@ -1005,22 +1005,22 @@ class UHistogramChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <HistogramSeries<ChartData, num>>[
-        HistogramSeries<ChartData, num>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <HistogramSeries<ChartData, num>>[
+          HistogramSeries<ChartData, num>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UWaterfallChart extends StatelessWidget {
@@ -1052,23 +1052,23 @@ class UWaterfallChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      primaryXAxis: xAxis,
-      primaryYAxis: yAxis,
-      series: <WaterfallSeries<ChartData, String>>[
-        WaterfallSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (ChartData data, _) => data.color,
-          animationDuration: animationDuration,
-          xValueMapper: (ChartData data, _) => data.xValue.toString(),
-          yValueMapper: (ChartData data, _) => data.yValue,
-          dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
-          dataLabelSettings: dataLabelSettings,
+          position: legendPosition.toSyncfusion(),
         ),
-      ],
-    );
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        primaryXAxis: xAxis,
+        primaryYAxis: yAxis,
+        series: <WaterfallSeries<ChartData, String>>[
+          WaterfallSeries<ChartData, String>(
+            dataSource: data,
+            pointColorMapper: (ChartData data, _) => data.color,
+            animationDuration: animationDuration,
+            xValueMapper: (ChartData data, _) => data.xValue.toString(),
+            yValueMapper: (ChartData data, _) => data.yValue,
+            dataLabelMapper: (ChartData data, _) => data.label ?? data.yValue.toString(),
+            dataLabelSettings: dataLabelSettings,
+          ),
+        ],
+      );
 }
 
 class UPyramidChart extends StatelessWidget {
@@ -1100,21 +1100,21 @@ class UPyramidChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-        height: "100",
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      series: PyramidSeries<ChartData, String>(
-        dataSource: data,
-        pointColorMapper: (ChartData data, _) => data.color,
-        height: height,
-        width: width,
-        animationDuration: animationDuration,
-        xValueMapper: (ChartData data, _) => data.xValue.toString(),
-        yValueMapper: (ChartData data, _) => data.yValue,
-        dataLabelSettings: dataLabelSettings,
-      ),
-    );
+          position: legendPosition.toSyncfusion(),
+          height: "100",
+        ),
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        series: PyramidSeries<ChartData, String>(
+          dataSource: data,
+          pointColorMapper: (ChartData data, _) => data.color,
+          height: height,
+          width: width,
+          animationDuration: animationDuration,
+          xValueMapper: (ChartData data, _) => data.xValue.toString(),
+          yValueMapper: (ChartData data, _) => data.yValue,
+          dataLabelSettings: dataLabelSettings,
+        ),
+      );
 }
 
 class UFunnelChart extends StatelessWidget {
@@ -1146,21 +1146,21 @@ class UFunnelChart extends StatelessWidget {
         legend: Legend(
           isVisible: showLegend,
           overflowMode: overflowMode.toSyncfusion(),
-        position: legendPosition.toSyncfusion(),
-        height: "100",
-      ),
-      tooltipBehavior: TooltipBehavior(enable: enableTooltip),
-      series: FunnelSeries<ChartData, String>(
-        dataSource: data,
-        pointColorMapper: (ChartData data, _) => data.color,
-        height: height,
-        width: width,
-        animationDuration: animationDuration,
-        xValueMapper: (ChartData data, _) => data.xValue.toString(),
-        yValueMapper: (ChartData data, _) => data.yValue,
-        dataLabelSettings: dataLabelSettings,
-      ),
-    );
+          position: legendPosition.toSyncfusion(),
+          height: "100",
+        ),
+        tooltipBehavior: TooltipBehavior(enable: enableTooltip),
+        series: FunnelSeries<ChartData, String>(
+          dataSource: data,
+          pointColorMapper: (ChartData data, _) => data.color,
+          height: height,
+          width: width,
+          animationDuration: animationDuration,
+          xValueMapper: (ChartData data, _) => data.xValue.toString(),
+          yValueMapper: (ChartData data, _) => data.yValue,
+          dataLabelSettings: dataLabelSettings,
+        ),
+      );
 }
 
 class DemoCharts extends StatelessWidget {

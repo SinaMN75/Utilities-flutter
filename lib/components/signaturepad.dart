@@ -105,14 +105,7 @@ class SignaturePad extends StatelessWidget {
     } catch (e) {
       onError?.call("Error saving signature: $e");
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              "Error saving signature",
-              style: errorTextStyle ?? Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-        );
+        UNavigator.snackbar(message: "Error saving signature");
       }
     }
   }

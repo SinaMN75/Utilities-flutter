@@ -50,42 +50,42 @@ class UGauge extends StatelessWidget {
         width: size,
         height: size,
         child: SfRadialGauge(
-        axes: <RadialAxis>[
-          RadialAxis(
-            minimum: min,
-            maximum: max,
-            showTicks: showTicks,
-            showLabels: showLabels,
-            axisLineStyle: AxisLineStyle(
-              thickness: axisThickness ?? 10,
-              color: axisColor,
-            ),
-            majorTickStyle: MajorTickStyle(
-              length: majorTickLength ?? 10,
-              color: majorTickColor,
-            ),
-            minorTickStyle: MinorTickStyle(
-              length: minorTickLength ?? 5,
-              color: minorTickColor,
-            ),
-            axisLabelStyle: GaugeTextStyle(
-              fontSize: labelFontSize ?? 12,
-              color: labelColor,
-            ),
-            ranges: ranges?.map((UGaugeRange r) => r._toSfRange()).toList(),
-            pointers: <GaugePointer>[
-              NeedlePointer(
-                value: value,
-                needleColor: needleColor,
-                needleStartWidth: needleWidth,
-                knobStyle: KnobStyle(knobRadius: needleKnobRadius),
-              )
-            ],
-            annotations: annotations?.map((UGaugeAnnotation a) => a._toSfAnnotation()).toList(),
-          )
-        ],
-      ),
-    );
+          axes: <RadialAxis>[
+            RadialAxis(
+              minimum: min,
+              maximum: max,
+              showTicks: showTicks,
+              showLabels: showLabels,
+              axisLineStyle: AxisLineStyle(
+                thickness: axisThickness ?? 10,
+                color: axisColor,
+              ),
+              majorTickStyle: MajorTickStyle(
+                length: majorTickLength ?? 10,
+                color: majorTickColor,
+              ),
+              minorTickStyle: MinorTickStyle(
+                length: minorTickLength ?? 5,
+                color: minorTickColor,
+              ),
+              axisLabelStyle: GaugeTextStyle(
+                fontSize: labelFontSize ?? 12,
+                color: labelColor,
+              ),
+              ranges: ranges?.map((UGaugeRange r) => r._toSfRange()).toList(),
+              pointers: <GaugePointer>[
+                NeedlePointer(
+                  value: value,
+                  needleColor: needleColor,
+                  needleStartWidth: needleWidth,
+                  knobStyle: KnobStyle(knobRadius: needleKnobRadius),
+                )
+              ],
+              annotations: annotations?.map((UGaugeAnnotation a) => a._toSfAnnotation()).toList(),
+            )
+          ],
+        ),
+      );
 }
 
 class UGaugeRange {
@@ -107,9 +107,9 @@ class UGaugeRange {
         startValue: start,
         endValue: end,
         color: color,
-      startWidth: startWidth ?? 10,
-      endWidth: endWidth ?? 10,
-    );
+        startWidth: startWidth ?? 10,
+        endWidth: endWidth ?? 10,
+      );
 }
 
 class UGaugeAnnotation {
@@ -127,5 +127,5 @@ class UGaugeAnnotation {
         widget: widget,
         angle: angle,
         positionFactor: position,
-    );
+      );
 }

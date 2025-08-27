@@ -70,7 +70,7 @@ class _UCalendarState extends State<UCalendar> {
   String? _errorMessage;
 
   @override
-  Widget build(BuildContext context) => UContainer(
+  Widget build(BuildContext context) => Container(
         padding: widget.padding,
         constraints: widget.constraints,
         color: widget.backgroundColor,
@@ -263,9 +263,7 @@ class _CalendarDemoState extends State<CalendarDemo> {
           ),
           onTap: (CalendarTapDetails details) {
             if (details.appointments != null && details.appointments!.isNotEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Tapped: ${details.appointments!.first.subject}")),
-              );
+              UNavigator.snackbar(message: "Tapped: ${details.appointments!.first.subject}");
             }
           },
         ),

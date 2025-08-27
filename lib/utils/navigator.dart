@@ -363,36 +363,36 @@ abstract class UNavigator {
               position: Tween<Offset>(
                 begin: const Offset(1, 0),
                 end: Offset.zero,
-            ).animate(CurvedAnimation(
-              parent: animation,
-              curve: Curves.fastOutSlowIn,
-            )),
-            child: child,
-          );
+              ).animate(CurvedAnimation(
+                parent: animation,
+                curve: Curves.fastOutSlowIn,
+              )),
+              child: child,
+            );
       case RouteTransitions.leftToRight:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
               position: Tween<Offset>(
                 begin: const Offset(-1, 0),
                 end: Offset.zero,
-            ).animate(animation),
-            child: child,
-          );
+              ).animate(animation),
+              child: child,
+            );
       case RouteTransitions.upToDown:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
               position: Tween<Offset>(
                 begin: const Offset(0, -1),
                 end: Offset.zero,
-            ).animate(animation),
-            child: child,
-          );
+              ).animate(animation),
+              child: child,
+            );
       case RouteTransitions.downToUp:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
               position: Tween<Offset>(
                 begin: const Offset(0, 1),
                 end: Offset.zero,
-            ).animate(animation),
-            child: child,
-          );
+              ).animate(animation),
+              child: child,
+            );
       case RouteTransitions.scale:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => ScaleTransition(
               scale: animation,

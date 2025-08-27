@@ -257,33 +257,6 @@ extension StringExtensions on String {
     return charList.join();
   }
 
-  String toPhoneNumber({
-    final InvalidPhoneAction invalidPhoneAction = InvalidPhoneAction.ShowUnformatted,
-    final bool allowEndlessPhone = false,
-    final String? defaultMask,
-    final String? defaultCountryCode,
-  }) =>
-      formatAsPhoneNumber(
-        this,
-        allowEndlessPhone: allowEndlessPhone,
-        defaultCountryCode: defaultCountryCode,
-        defaultMask: defaultMask,
-        invalidPhoneAction: invalidPhoneAction,
-      ) ??
-      this;
-
-  String toCardNumber() => formatAsCardNumber(this);
-
-  bool isValidCardNumber({
-    final bool checkLength = false,
-    final bool useLuhnAlgo = true,
-  }) =>
-      isCardNumberValid(
-        cardNumber: this,
-        useLuhnAlgo: useLuhnAlgo,
-        checkLength: checkLength,
-      );
-
   String toBase64() => base64Encode(utf8.encode(this));
 
   String fromBase64() => utf8.decode(base64Decode(this));

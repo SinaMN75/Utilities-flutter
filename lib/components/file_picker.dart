@@ -171,33 +171,33 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
         children: <Widget>[
           ElevatedButton(
             onPressed: _pickFiles,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 12,
+              ),
+              elevation: 2,
             ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 12,
-            ),
-            elevation: 2,
-          ),
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Icon(Icons.attach_file),
-              SizedBox(width: 8),
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Icon(Icons.attach_file),
+                SizedBox(width: 8),
                 Text("Select Files"),
               ],
+            ),
           ),
-        ),
-        const SizedBox(height: 20),
-        if (_selectedFiles.isNotEmpty) ...<Widget>[
+          const SizedBox(height: 20),
+          if (_selectedFiles.isNotEmpty) ...<Widget>[
             _buildFileList("Images", "image", Icons.photo_library),
             _buildFileList("Videos", "video", Icons.video_library),
             _buildFileList("Documents", "document", Icons.library_books),
           ],
-      ],
-    );
+        ],
+      );
 }

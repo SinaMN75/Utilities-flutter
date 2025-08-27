@@ -116,55 +116,55 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
         opacity: _opacityAnimation,
         child: Stack(
           children: <Widget>[
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: ULoading._blurAmount,
-                sigmaY: ULoading._blurAmount,
-              ),
-              child: Container(
-                color: ULoading._overlayColor,
-              ),
-            ),
-          ),
-          if (ULoading._dismissible)
             Positioned.fill(
-              child: GestureDetector(
-                onTap: () => ULoading.hide(),
-                behavior: HitTestBehavior.opaque,
-                child: Container(color: Colors.transparent),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: ULoading._blurAmount,
+                  sigmaY: ULoading._blurAmount,
+                ),
+                child: Container(
+                  color: ULoading._overlayColor,
+                ),
               ),
             ),
-          Center(
-            child: widget.customLoader != null
-                ? widget.customLoader!(context)
-                : ULoading._useDefaultLoader
-                    ? _buildDefaultLoader()
-                    : const SizedBox(),
-          ),
-        ],
-      ),
-    );
+            if (ULoading._dismissible)
+              Positioned.fill(
+                child: GestureDetector(
+                  onTap: () => ULoading.hide(),
+                  behavior: HitTestBehavior.opaque,
+                  child: Container(color: Colors.transparent),
+                ),
+              ),
+            Center(
+              child: widget.customLoader != null
+                  ? widget.customLoader!(context)
+                  : ULoading._useDefaultLoader
+                      ? _buildDefaultLoader()
+                      : const SizedBox(),
+            ),
+          ],
+        ),
+      );
 
   Widget _buildDefaultLoader() => Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           SizedBox(
-          width: ULoading._defaultSpinnerSize,
-          height: ULoading._defaultSpinnerSize,
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(ULoading._defaultSpinnerColor),
+            width: ULoading._defaultSpinnerSize,
+            height: ULoading._defaultSpinnerSize,
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(ULoading._defaultSpinnerColor),
               strokeWidth: 3,
             ),
           ),
           const SizedBox(height: 16),
-        Text(
-          ULoading._defaultLoadingText,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
+          Text(
+            ULoading._defaultLoadingText,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
 }

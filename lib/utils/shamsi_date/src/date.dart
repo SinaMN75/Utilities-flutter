@@ -25,8 +25,8 @@ abstract class Date implements Comparable<Date> {
         hours: hour,
         minutes: minute,
         seconds: second,
-      milliseconds: millisecond,
-    );
+        milliseconds: millisecond,
+      );
 
   int get julianDayNumber;
 

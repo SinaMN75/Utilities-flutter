@@ -189,10 +189,10 @@ class _UBarcodeState extends State<UBarcode> {
         value: widget.value,
         symbology: symbology,
         barColor: widget.barColor,
-      backgroundColor: widget.backgroundColor,
-      showValue: widget.showValue,
-      textSpacing: widget.textSpacing,
-    );
+    backgroundColor: widget.backgroundColor,
+    showValue: widget.showValue,
+    textSpacing: widget.textSpacing,
+  );
 }
 
 class DemoBarcodes extends StatelessWidget {

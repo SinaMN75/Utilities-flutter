@@ -107,9 +107,7 @@ class _UPdfViewerState extends State<UPdfViewer> {
                         widget.onError?.call(details);
                         widget.onDocumentLoadFailed?.call(details);
                         if (context.mounted && widget.onError == null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Failed to load PDF: ${details.description}")),
-                          );
+                          UNavigator.snackbar(message: "Failed to load PDF: ${details.description}");
                         }
                       },
                     ),

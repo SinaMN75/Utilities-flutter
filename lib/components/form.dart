@@ -366,34 +366,34 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
         title: const Text("Search and select"),
         content: SizedBox(
           width: 200,
-            height: 400,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                UTextField(
-                  hintText: "جستجو",
-                  onChanged: (final String? i) => filteredItems(widget.items.where((T item) => widget.labelBuilder(item).toLowerCase().contains(i!.toLowerCase())).toList()),
+          height: 400,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              UTextField(
+                hintText: "جستجو",
+                onChanged: (final String? i) => filteredItems(widget.items.where((T item) => widget.labelBuilder(item).toLowerCase().contains(i!.toLowerCase())).toList()),
+              ),
+              const SizedBox(height: 12),
+              Obx(
+                () => ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: filteredItems.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final T item = filteredItems[index];
+                    return ListTile(
+                      title: Text(widget.labelBuilder(item)),
+                      onTap: () {
+                        widget.onChanged(item);
+                        Navigator.of(context).pop(item);
+                      },
+                    );
+                  },
                 ),
-                const SizedBox(height: 12),
-                Obx(
-                  () => ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: filteredItems.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final T item = filteredItems[index];
-                      return ListTile(
-                        title: Text(widget.labelBuilder(item)),
-                        onTap: () {
-                          widget.onChanged(item);
-                          Navigator.of(context).pop(item);
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
+        ),
       ),
     );
   }

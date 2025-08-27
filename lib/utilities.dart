@@ -93,7 +93,6 @@ export "utils/loading.dart";
 export "utils/local_auth.dart";
 export "utils/local_storage.dart";
 export "utils/location.dart";
-export "utils/multi_formatter/flutter_multi_formatter.dart";
 export "utils/navigator.dart";
 export "utils/network.dart";
 export "utils/notification.dart";

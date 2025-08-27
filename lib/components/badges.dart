@@ -231,6 +231,7 @@ enum BadgeShape {
 
 class BadgePositioned extends StatelessWidget {
   const BadgePositioned({required this.child, super.key, this.position});
+
   final BadgePosition? position;
 
   final Widget child;

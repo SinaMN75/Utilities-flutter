@@ -167,131 +167,131 @@ class _UMapState extends State<UMap> {
         children: <Widget>[
           FlutterMap(
             mapController: widget.controller,
-          options: MapOptions(
-            initialCenter: widget.center,
-            initialZoom: widget.zoom,
-            minZoom: widget.minZoom,
-            maxZoom: widget.maxZoom,
-            onTap: widget.onTap,
-            onLongPress: widget.onLongPress,
-            onPositionChanged: widget.onPositionChanged,
-            onPointerUp: widget.onPointerUp,
-          ),
-          children: <Widget>[
-            TileLayer(
-              urlTemplate: _getTileUrlTemplate(),
+            options: MapOptions(
+              initialCenter: widget.center,
+              initialZoom: widget.zoom,
+              minZoom: widget.minZoom,
+              maxZoom: widget.maxZoom,
+              onTap: widget.onTap,
+              onLongPress: widget.onLongPress,
+              onPositionChanged: widget.onPositionChanged,
+              onPointerUp: widget.onPointerUp,
+            ),
+            children: <Widget>[
+              TileLayer(
+                urlTemplate: _getTileUrlTemplate(),
                 userAgentPackageName: "com.example.app",
                 tileBuilder: widget.showAttribution
                     ? (BuildContext context, Widget tileWidget, TileImage tile) => Stack(
                           children: <Widget>[
                             tileWidget,
                             if (widget.tileProvider == UMapTileProvider.openStreetMap)
-                            const Positioned(
-                              bottom: 5,
-                              left: 5,
-                              child: Text(
+                              const Positioned(
+                                bottom: 5,
+                                left: 5,
+                                child: Text(
                                   "© OpenStreetMap contributors",
                                   style: TextStyle(fontSize: 10, color: Colors.black54),
+                                ),
                               ),
-                            ),
-                          if (widget.tileProvider == UMapTileProvider.openTopoMap)
-                            const Positioned(
-                              bottom: 5,
-                              left: 5,
-                              child: Text(
+                            if (widget.tileProvider == UMapTileProvider.openTopoMap)
+                              const Positioned(
+                                bottom: 5,
+                                left: 5,
+                                child: Text(
                                   "© OpenTopoMap",
                                   style: TextStyle(fontSize: 10, color: Colors.black54),
+                                ),
                               ),
-                            ),
-                          if (widget.tileProvider == UMapTileProvider.stamenTerrain)
-                            const Positioned(
-                              bottom: 5,
-                              left: 5,
-                              child: Text(
+                            if (widget.tileProvider == UMapTileProvider.stamenTerrain)
+                              const Positioned(
+                                bottom: 5,
+                                left: 5,
+                                child: Text(
                                   "© Stamen Design",
                                   style: TextStyle(fontSize: 10, color: Colors.black54),
+                                ),
                               ),
-                            ),
-                          if (widget.tileProvider == UMapTileProvider.mapBox)
-                            const Positioned(
-                              bottom: 5,
-                              left: 5,
-                              child: Text(
+                            if (widget.tileProvider == UMapTileProvider.mapBox)
+                              const Positioned(
+                                bottom: 5,
+                                left: 5,
+                                child: Text(
                                   "© Mapbox",
                                   style: TextStyle(fontSize: 10, color: Colors.black54),
+                                ),
                               ),
-                            ),
-                        ],
+                          ],
                         )
                     : null,
               ),
               if (widget.markers.isNotEmpty)
-              MarkerLayer(
-                markers: widget.markers,
-              ),
-            if (widget.polylines.isNotEmpty)
-              PolylineLayer<Object>(
-                polylines: widget.polylines,
-              ),
-            if (widget.polygons.isNotEmpty)
-              PolygonLayer<Object>(
-                polygons: widget.polygons,
-              ),
-            if (widget.currentLocationLayer)
-              const CurrentLocationLayer(
-                alignDirectionOnUpdate: AlignOnUpdate.always,
-                style: LocationMarkerStyle(
-                  markerSize: Size(16, 16),
-                  markerDirection: MarkerDirection.heading,
+                MarkerLayer(
+                  markers: widget.markers,
                 ),
-              ),
-          ],
-        ),
-        if (widget.myLocationButton)
-          Positioned(
-            bottom: 16,
-            left: 16,
-            child: FloatingActionButton(
+              if (widget.polylines.isNotEmpty)
+                PolylineLayer<Object>(
+                  polylines: widget.polylines,
+                ),
+              if (widget.polygons.isNotEmpty)
+                PolygonLayer<Object>(
+                  polygons: widget.polygons,
+                ),
+              if (widget.currentLocationLayer)
+                const CurrentLocationLayer(
+                  alignDirectionOnUpdate: AlignOnUpdate.always,
+                  style: LocationMarkerStyle(
+                    markerSize: Size(16, 16),
+                    markerDirection: MarkerDirection.heading,
+                  ),
+                ),
+            ],
+          ),
+          if (widget.myLocationButton)
+            Positioned(
+              bottom: 16,
+              left: 16,
+              child: FloatingActionButton(
                 heroTag: "UMapFab1",
                 mini: true,
-              onPressed: _centerOnUserLocation,
-              child: const Icon(Icons.my_location),
+                onPressed: _centerOnUserLocation,
+                child: const Icon(Icons.my_location),
+              ),
             ),
-          ),
-        if (widget.zoomButtons)
-          Positioned(
-            bottom: 16,
-            right: 16,
-            child: Column(
-              children: <Widget>[
-                FloatingActionButton(
+          if (widget.zoomButtons)
+            Positioned(
+              bottom: 16,
+              right: 16,
+              child: Column(
+                children: <Widget>[
+                  FloatingActionButton(
                     heroTag: "UMapFab2",
                     mini: true,
-                  onPressed: () => widget.controller.move(
-                    widget.controller.camera.center,
-                    widget.controller.camera.zoom + 1,
+                    onPressed: () => widget.controller.move(
+                      widget.controller.camera.center,
+                      widget.controller.camera.zoom + 1,
+                    ),
+                    child: const Icon(Icons.add),
                   ),
-                  child: const Icon(Icons.add),
-                ),
-                const SizedBox(height: 8),
-                FloatingActionButton(
+                  const SizedBox(height: 8),
+                  FloatingActionButton(
                     heroTag: "UMapFab3",
                     mini: true,
-                  onPressed: () => widget.controller.move(
-                    widget.controller.camera.center,
-                    widget.controller.camera.zoom - 1,
+                    onPressed: () => widget.controller.move(
+                      widget.controller.camera.center,
+                      widget.controller.camera.zoom - 1,
+                    ),
+                    child: const Icon(Icons.remove),
                   ),
-                  child: const Icon(Icons.remove),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        if (widget.centerWidget != null)
-          Align(
-            child: widget.centerWidget,
-          ),
-      ],
-    );
+          if (widget.centerWidget != null)
+            Align(
+              child: widget.centerWidget,
+            ),
+        ],
+      );
 }
 
 class DemoMap extends StatelessWidget {

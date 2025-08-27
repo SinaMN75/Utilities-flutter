@@ -19,11 +19,11 @@ class Gregorian extends Date {
         year,
         month,
         day,
-      hour,
-      minute,
-      second,
-      millisecond,
-    );
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
 
   const Gregorian._raw(
     this.julianDayNumber,
@@ -47,27 +47,27 @@ class Gregorian extends Date {
         julianDayNumber,
         hour,
         minute,
-      second,
-      millisecond,
-    );
+        second,
+        millisecond,
+      );
 
   factory Gregorian.fromDateTime(DateTime dateTime) => Gregorian(
         dateTime.year,
         dateTime.month,
         dateTime.day,
-      dateTime.hour,
-      dateTime.minute,
-      dateTime.second,
-      dateTime.millisecond,
-    );
+        dateTime.hour,
+        dateTime.minute,
+        dateTime.second,
+        dateTime.millisecond,
+      );
 
   factory Gregorian.fromJalali(Jalali date) => Gregorian.fromJulianDayNumber(
         date.julianDayNumber,
         date.hour,
         date.minute,
-      date.second,
-      date.millisecond,
-    );
+        date.second,
+        date.millisecond,
+      );
 
   factory Gregorian.fromMillisecondsSinceEpoch(
     int milliseconds, {
@@ -77,8 +77,8 @@ class Gregorian extends Date {
         DateTime.fromMillisecondsSinceEpoch(
           milliseconds,
           isUtc: isUtc,
-      ),
-    );
+        ),
+      );
 
   factory Gregorian.now() => Gregorian.fromDateTime(DateTime.now());
 
@@ -149,30 +149,30 @@ class Gregorian extends Date {
         year,
         month,
         day,
-      hour,
-      minute,
-      second,
-      millisecond,
-    );
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
 
   @override
   DateTime toUtcDateTime() => DateTime.utc(
         year,
         month,
         day,
-      hour,
-      minute,
-      second,
-      millisecond,
-    );
+        hour,
+        minute,
+        second,
+        millisecond,
+      );
 
   Jalali toJalali() => Jalali.fromJulianDayNumber(
         julianDayNumber,
         hour,
         minute,
-      second,
-      millisecond,
-    );
+        second,
+        millisecond,
+      );
 
   @override
   bool isLeapYear() => _Algo.isLeapYear(year);
