@@ -413,3 +413,167 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
         ),
       );
 }
+
+/// Model for a country
+class UCountry {
+  final String code; // e.g. "us"
+  final String dialCode; // e.g. "+1"
+  final String name; // e.g. "United States"
+
+  UCountry({required this.code, required this.dialCode, required this.name});
+}
+
+/// Picker type
+enum UCountryPickerType { dropdown, dialog, bottomSheet }
+
+/// The reusable phone field
+class UPhoneField extends StatefulWidget {
+  final List<UCountry> countries;
+  final UCountryPickerType pickerType;
+  final InputDecoration? decoration;
+  final TextEditingController? controller;
+  final Function(UCountry)? onCountryChanged;
+
+  const UPhoneField({
+    required this.countries,
+    super.key,
+    this.pickerType = UCountryPickerType.dialog,
+    this.decoration,
+    this.controller,
+    this.onCountryChanged,
+  });
+
+  @override
+  State<UPhoneField> createState() => _UPhoneFieldState();
+}
+
+class _UPhoneFieldState extends State<UPhoneField> {
+  late UCountry _selectedCountry;
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedCountry = widget.countries.first;
+    _controller = widget.controller ?? TextEditingController();
+  }
+
+  Future<void> _pickCountry() async {
+    switch (widget.pickerType) {
+      case UCountryPickerType.dropdown:
+        // handled inline
+        break;
+      case UCountryPickerType.dialog:
+        final UCountry? result = await showDialog<UCountry>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text("Select Country"),
+            content: SizedBox(
+              width: double.maxFinite,
+              child: ListView.builder(
+                itemCount: widget.countries.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final UCountry c = widget.countries[index];
+                  return ListTile(
+                    leading: Image.asset(
+                      "packages/utilities/lib/assets/flags/${c.code}.png",
+                      width: 28,
+                      height: 20,
+                    ),
+                    title: Text("${c.name} (${c.dialCode})"),
+                    onTap: () => Navigator.pop(context, c),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+        if (result != null) {
+          setState(() => _selectedCountry = result);
+          widget.onCountryChanged?.call(result);
+        }
+        break;
+
+      case UCountryPickerType.bottomSheet:
+        final UCountry? result = await showModalBottomSheet<UCountry>(
+          context: context,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          builder: (BuildContext context) => ListView.builder(
+            itemCount: widget.countries.length,
+            itemBuilder: (BuildContext context, int index) {
+              final UCountry c = widget.countries[index];
+              return ListTile(
+                leading: Image.asset(
+                  "packages/utilities/lib/assets/flags/${c.code}.png",
+                  width: 28,
+                  height: 20,
+                ),
+                title: Text("${c.name} (${c.dialCode})"),
+                onTap: () => Navigator.pop(context, c),
+              );
+            },
+          ),
+        );
+        if (result != null) {
+          setState(() => _selectedCountry = result);
+          widget.onCountryChanged?.call(result);
+        }
+        break;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => Row(
+        children: <Widget>[
+          if (widget.pickerType == UCountryPickerType.dropdown)
+            DropdownButton<UCountry>(
+              value: _selectedCountry,
+              underline: const SizedBox(),
+              items: widget.countries
+                  .map((UCountry c) => DropdownMenuItem<UCountry>(
+                        value: c,
+                        child: Row(
+                          children: <Widget>[
+                            Image.asset("packages/utilities/lib/assets/flags/${c.code}.png", width: 28, height: 20),
+                            const SizedBox(width: 8),
+                            Text(c.dialCode),
+                          ],
+                        ),
+                      ))
+                  .toList(),
+              onChanged: (UCountry? c) {
+                if (c != null) {
+                  setState(() => _selectedCountry = c);
+                  widget.onCountryChanged?.call(c);
+                }
+              },
+            )
+          else
+            InkWell(
+              onTap: _pickCountry,
+              child: Row(
+                children: <Widget>[
+                  Image.asset("packages/utilities/lib/assets/flags/${_selectedCountry.code}.png", width: 28, height: 20),
+                  const SizedBox(width: 6),
+                  Text(_selectedCountry.dialCode, style: const TextStyle(fontWeight: FontWeight.bold)),
+                  const Icon(Icons.arrow_drop_down),
+                ],
+              ),
+            ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: TextField(
+              controller: _controller,
+              keyboardType: TextInputType.phone,
+              decoration: widget.decoration ??
+                  const InputDecoration(
+                    hintText: "Phone number",
+                    border: OutlineInputBorder(),
+                  ),
+            ),
+          ),
+        ],
+      );
+}
