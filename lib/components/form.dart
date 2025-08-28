@@ -568,19 +568,11 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: TextField(
+                child: UTextField(
                   controller: _searchController,
-                  decoration: InputDecoration(
-                    hintText: "Search country, code, or dial code",
-                    prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
-                    filled: true,
-                    fillColor: Colors.grey[100],
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
+                  hintText: "Search country, code, or dial code",
+                  prefix: Icon(Icons.search, color: Colors.grey[600]),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   onChanged: _filterCountries,
                 ),
               ),
@@ -629,26 +621,16 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
     );
   }
 
-  void _filterCountries(String query) {
-    setState(() {
-      _filteredCountries = UCountry.list.where((UCountry i) => i.name.toLowerCase().contains(query.toLowerCase()) || i.dialCode.contains(query) || i.code.toLowerCase().contains(query.toLowerCase()) || i.capital.toLowerCase().contains(query.toLowerCase())).toList();
-    });
-  }
+  void _filterCountries(String query) => setState(() => _filteredCountries = UCountry.list.where((UCountry i) => i.name.toLowerCase().contains(query.toLowerCase()) || i.dialCode.contains(query) || i.code.toLowerCase().contains(query.toLowerCase()) || i.capital.toLowerCase().contains(query.toLowerCase())).toList());
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            "Phone Number",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey[800]),
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: <Widget>[
-              // Country selector
-              if (widget.pickerMode == CountryPickerMode.dropdown)
-                DropdownButton<UCountry>(
+  Widget build(BuildContext context) => UTextField(
+        controller: _phoneController,
+        hintText: "Enter phone number",
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        prefix: Builder(
+          builder: (_) => widget.pickerMode == CountryPickerMode.dropdown
+              ? DropdownButton<UCountry>(
                   value: _selectedCountry,
                   items: UCountry.list
                       .map(
@@ -683,11 +665,10 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                   underline: const SizedBox(),
                   icon: Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
                 )
-              else
-                GestureDetector(
+              : GestureDetector(
                   onTap: widget.pickerMode == CountryPickerMode.dialog ? _showCountryPickerDialog : _showCountryPickerBottomSheet,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey[400]!),
                       borderRadius: BorderRadius.circular(12),
@@ -712,41 +693,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                     ),
                   ),
                 ),
-              const SizedBox(width: 8),
-              // Phone number input
-              Expanded(
-                child: TextField(
-                  controller: _phoneController,
-                  decoration: InputDecoration(
-                    hintText: "Enter phone number",
-                    filled: true,
-                    fillColor: Colors.grey[100],
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    ),
-                    prefixIcon: Icon(Icons.phone, color: Colors.grey[600]),
-                  ),
-                  keyboardType: TextInputType.phone,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(15),
-                  ],
-                  style: const TextStyle(fontSize: 16),
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       );
 }
 
