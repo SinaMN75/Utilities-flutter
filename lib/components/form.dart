@@ -414,21 +414,21 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
       );
 }
 
-class PhoneNumberInput extends StatefulWidget {
+class UTextFieldPhoneNumber extends StatefulWidget {
   final CountryPickerMode pickerMode;
   final Function(PhoneNumberData) onChanged;
 
-  const PhoneNumberInput({
+  const UTextFieldPhoneNumber({
     required this.pickerMode,
     required this.onChanged,
     super.key,
   });
 
   @override
-  _PhoneNumberInputState createState() => _PhoneNumberInputState();
+  _UTextFieldPhoneNumberState createState() => _UTextFieldPhoneNumberState();
 }
 
-class _PhoneNumberInputState extends State<PhoneNumberInput> {
+class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _searchController = TextEditingController();
   UCountry _selectedCountry = UCountry.list[0];
@@ -477,7 +477,6 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
             children: <Widget>[
               const Text(
                 "Select Country",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
               TextField(
@@ -513,14 +512,8 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           height: 32,
                           errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 32),
                         ),
-                        title: Text(
-                          country.name,
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                        ),
-                        subtitle: Text(
-                          "${country.dialCode} • ${country.capital}",
-                          style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                        ),
+                        title: Text(country.name),
+                        subtitle: Text("${country.dialCode} • ${country.capital}"),
                         onTap: () {
                           setState(() {
                             _selectedCountry = country;
@@ -561,10 +554,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 12),
-                child: const Text(
-                  "Select Country",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
+                child: const Text("Select Country"),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -594,14 +584,8 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           height: 32,
                           errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 32),
                         ),
-                        title: Text(
-                          country.name,
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                        ),
-                        subtitle: Text(
-                          "${country.dialCode} • ${country.capital}",
-                          style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                        ),
+                        title: Text(country.name),
+                        subtitle: Text("${country.dialCode} • ${country.capital}"),
                         onTap: () {
                           setState(() {
                             _selectedCountry = country;
@@ -645,10 +629,7 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                                 errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 24),
                               ),
                               const SizedBox(width: 8),
-                              Text(
-                                i.dialCode,
-                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                              ),
+                              Text(i.dialCode),
                             ],
                           ),
                         ),
@@ -680,13 +661,10 @@ class _PhoneNumberInputState extends State<PhoneNumberInput> {
                           "packages/u/lib/assets/flags/${_selectedCountry.flag}",
                           width: 24,
                           height: 24,
-                          errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 24),
+                          errorBuilder: (_, __, ___) => const Icon(Icons.flag, size: 24),
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          _selectedCountry.dialCode,
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                        ),
+                        Text(_selectedCountry.dialCode),
                         const SizedBox(width: 4),
                         Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
                       ],
