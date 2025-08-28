@@ -124,7 +124,7 @@ extension StringExtensions on String {
                 ? "1 week ago"
                 : "Last week";
       else if (difference.inDays >= 2)
-        return persian ? "${difference.inDays.toString().persianNumber()} روز پیش" : "${difference.inDays} days ago";
+        return persian ? "${difference.inDays.toString().toPersianNumber()} روز پیش" : "${difference.inDays} days ago";
       else if (difference.inDays >= 1)
         return persian
             ? numericDates
@@ -134,7 +134,7 @@ extension StringExtensions on String {
                 ? "1 day ago"
                 : "Yesterday";
       else if (difference.inHours >= 2)
-        return persian ? "${difference.inHours.toString().persianNumber()} ساعت پیش" : "${difference.inHours} hours ago";
+        return persian ? "${difference.inHours.toString().toPersianNumber()} ساعت پیش" : "${difference.inHours} hours ago";
       else if (difference.inHours >= 1)
         return persian
             ? numericDates
@@ -144,7 +144,7 @@ extension StringExtensions on String {
                 ? "1 hour ago"
                 : "An hour ago";
       else if (difference.inMinutes >= 2)
-        return persian ? "${difference.inMinutes.toString().persianNumber()} دقیقه پیش" : "${difference.inMinutes} minutes ago";
+        return persian ? "${difference.inMinutes.toString().toPersianNumber()} دقیقه پیش" : "${difference.inMinutes} minutes ago";
       else if (difference.inMinutes >= 1)
         return persian
             ? numericDates
@@ -154,7 +154,7 @@ extension StringExtensions on String {
                 ? "1 minute ago"
                 : "A minute ago";
       else if (difference.inSeconds >= 3)
-        return persian ? "${difference.inSeconds.toString().persianNumber()} ثانیه پیش" : "${difference.inSeconds} seconds ago";
+        return persian ? "${difference.inSeconds.toString().toPersianNumber()} ثانیه پیش" : "${difference.inSeconds} seconds ago";
       else
         return persian ? "همین الان" : "Just now";
     } catch (e) {
@@ -162,7 +162,7 @@ extension StringExtensions on String {
     }
   }
 
-  String persianNumber() {
+  String toPersianNumber() {
     String number = this;
     number = number.replaceAll("1", "۱");
     number = number.replaceAll("2", "۲");
@@ -177,7 +177,7 @@ extension StringExtensions on String {
     return number;
   }
 
-  String englishNumber() {
+  String toEnglishNumber() {
     String number = this;
     number = number.replaceAll("۱", "1");
     number = number.replaceAll("۲", "2");
@@ -314,4 +314,24 @@ extension StringExtensions on String {
 
     return utf8.decode(bytes);
   }
+
+  String englishNumber() => replaceAll(RegExp(r"[^\d]"), "");
+
+  bool get isValidEmail => RegExp(
+        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+      ).hasMatch(this);
+
+  bool get isValidUrl => GetUtils.isURL(this);
+
+  bool get isValidPhone => RegExp(
+        r"^\+?[\d\s-]{8,15}$",
+      ).hasMatch(this);
+
+  bool get isAlphanumeric => RegExp(
+        r"^[a-zA-Z0-9]+$",
+      ).hasMatch(this);
+
+  bool get isStrongPassword => RegExp(
+        r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+      ).hasMatch(this);
 }
