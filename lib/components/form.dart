@@ -414,166 +414,364 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
       );
 }
 
-/// Model for a country
-class UCountry {
-  final String code; // e.g. "us"
-  final String dialCode; // e.g. "+1"
-  final String name; // e.g. "United States"
+class PhoneNumberInput extends StatefulWidget {
+  final CountryPickerMode pickerMode;
+  final Function(PhoneNumberData) onChanged;
 
-  UCountry({required this.code, required this.dialCode, required this.name});
-}
-
-/// Picker type
-enum UCountryPickerType { dropdown, dialog, bottomSheet }
-
-/// The reusable phone field
-class UPhoneField extends StatefulWidget {
-  final List<UCountry> countries;
-  final UCountryPickerType pickerType;
-  final InputDecoration? decoration;
-  final TextEditingController? controller;
-  final Function(UCountry)? onCountryChanged;
-
-  const UPhoneField({
-    required this.countries,
+  const PhoneNumberInput({
+    required this.pickerMode,
+    required this.onChanged,
     super.key,
-    this.pickerType = UCountryPickerType.dialog,
-    this.decoration,
-    this.controller,
-    this.onCountryChanged,
   });
 
   @override
-  State<UPhoneField> createState() => _UPhoneFieldState();
+  _PhoneNumberInputState createState() => _PhoneNumberInputState();
 }
 
-class _UPhoneFieldState extends State<UPhoneField> {
-  late UCountry _selectedCountry;
-  late TextEditingController _controller;
+class _PhoneNumberInputState extends State<PhoneNumberInput> {
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
+  UCountry _selectedCountry = UCountry.list[0];
+  List<UCountry> _filteredCountries = UCountry.list;
+  String _phoneNumber = "";
 
   @override
   void initState() {
     super.initState();
-    _selectedCountry = widget.countries.first;
-    _controller = widget.controller ?? TextEditingController();
-  }
-
-  Future<void> _pickCountry() async {
-    switch (widget.pickerType) {
-      case UCountryPickerType.dropdown:
-        // handled inline
-        break;
-      case UCountryPickerType.dialog:
-        final UCountry? result = await showDialog<UCountry>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: const Text("Select Country"),
-            content: SizedBox(
-              width: double.maxFinite,
-              child: ListView.builder(
-                itemCount: widget.countries.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final UCountry c = widget.countries[index];
-                  return ListTile(
-                    leading: Image.asset(
-                      "packages/utilities/lib/assets/flags/${c.code}.png",
-                      width: 28,
-                      height: 20,
-                    ),
-                    title: Text("${c.name} (${c.dialCode})"),
-                    onTap: () => Navigator.pop(context, c),
-                  );
-                },
-              ),
-            ),
-          ),
-        );
-        if (result != null) {
-          setState(() => _selectedCountry = result);
-          widget.onCountryChanged?.call(result);
-        }
-        break;
-
-      case UCountryPickerType.bottomSheet:
-        final UCountry? result = await showModalBottomSheet<UCountry>(
-          context: context,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-          ),
-          builder: (BuildContext context) => ListView.builder(
-            itemCount: widget.countries.length,
-            itemBuilder: (BuildContext context, int index) {
-              final UCountry c = widget.countries[index];
-              return ListTile(
-                leading: Image.asset(
-                  "packages/utilities/lib/assets/flags/${c.code}.png",
-                  width: 28,
-                  height: 20,
-                ),
-                title: Text("${c.name} (${c.dialCode})"),
-                onTap: () => Navigator.pop(context, c),
-              );
-            },
-          ),
-        );
-        if (result != null) {
-          setState(() => _selectedCountry = result);
-          widget.onCountryChanged?.call(result);
-        }
-        break;
-    }
+    _phoneController.addListener(_onPhoneChanged);
   }
 
   @override
-  Widget build(BuildContext context) => Row(
-        children: <Widget>[
-          if (widget.pickerType == UCountryPickerType.dropdown)
-            DropdownButton<UCountry>(
-              value: _selectedCountry,
-              underline: const SizedBox(),
-              items: widget.countries
-                  .map((UCountry c) => DropdownMenuItem<UCountry>(
-                        value: c,
-                        child: Row(
-                          children: <Widget>[
-                            Image.asset("packages/utilities/lib/assets/flags/${c.code}.png", width: 28, height: 20),
-                            const SizedBox(width: 8),
-                            Text(c.dialCode),
-                          ],
-                        ),
-                      ))
-                  .toList(),
-              onChanged: (UCountry? c) {
-                if (c != null) {
-                  setState(() => _selectedCountry = c);
-                  widget.onCountryChanged?.call(c);
-                }
-              },
-            )
-          else
-            InkWell(
-              onTap: _pickCountry,
-              child: Row(
-                children: <Widget>[
-                  Image.asset("packages/utilities/lib/assets/flags/${_selectedCountry.code}.png", width: 28, height: 20),
-                  const SizedBox(width: 6),
-                  Text(_selectedCountry.dialCode, style: const TextStyle(fontWeight: FontWeight.bold)),
-                  const Icon(Icons.arrow_drop_down),
-                ],
+  void dispose() {
+    _phoneController.dispose();
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onPhoneChanged() {
+    setState(() {
+      _phoneNumber = _phoneController.text;
+      widget.onChanged(PhoneNumberData(
+        countryCode: _selectedCountry.dialCode,
+        phoneNumber: "${_selectedCountry.dialCode}$_phoneNumber",
+        phoneWithoutCode: _phoneNumber,
+        countryName: _selectedCountry.name,
+        capital: _selectedCountry.capital,
+        continent: _selectedCountry.continent,
+        primaryReligion: _selectedCountry.primaryReligion,
+        currency: _selectedCountry.currency,
+        primaryLanguage: _selectedCountry.primaryLanguage,
+      ));
+    });
+  }
+
+  void _showCountryPickerDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Container(
+          constraints: const BoxConstraints(maxHeight: 500, maxWidth: 400),
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: <Widget>[
+              const Text(
+                "Select Country",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: TextField(
-              controller: _controller,
-              keyboardType: TextInputType.phone,
-              decoration: widget.decoration ??
-                  const InputDecoration(
-                    hintText: "Phone number",
-                    border: OutlineInputBorder(),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: "Search country, code, or dial code",
+                  prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
                   ),
-            ),
+                ),
+                onChanged: _filterCountries,
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _filteredCountries.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final UCountry country = _filteredCountries[index];
+                    return Card(
+                      elevation: 0,
+                      color: _selectedCountry == country ? Colors.blue[50] : Colors.white,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        leading: Image.asset(
+                          "packages/u/lib/assets/flags/${country.flag}",
+                          width: 32,
+                          height: 32,
+                          errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 32),
+                        ),
+                        title: Text(
+                          country.name,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
+                        subtitle: Text(
+                          "${country.dialCode} • ${country.capital}",
+                          style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            _selectedCountry = country;
+                            _onPhoneChanged();
+                          });
+                          Navigator.pop(context);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showCountryPickerBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (BuildContext context) => DraggableScrollableSheet(
+        initialChildSize: 0.85,
+        minChildSize: 0.5,
+        maxChildSize: 0.95,
+        expand: false,
+        builder: (BuildContext context, ScrollController scrollController) => Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          child: Column(
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: const Text(
+                  "Select Country",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: TextField(
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    hintText: "Search country, code, or dial code",
+                    prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
+                    filled: true,
+                    fillColor: Colors.grey[100],
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  onChanged: _filterCountries,
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: _filteredCountries.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final UCountry country = _filteredCountries[index];
+                    return Card(
+                      elevation: 0,
+                      color: _selectedCountry == country ? Colors.blue[50] : Colors.white,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        leading: Image.asset(
+                          "packages/u/lib/assets/flags/${country.flag}",
+                          width: 32,
+                          height: 32,
+                          errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 32),
+                        ),
+                        title: Text(
+                          country.name,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
+                        subtitle: Text(
+                          "${country.dialCode} • ${country.capital}",
+                          style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            _selectedCountry = country;
+                            _onPhoneChanged();
+                          });
+                          Navigator.pop(context);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _filterCountries(String query) {
+    setState(() {
+      _filteredCountries = UCountry.list.where((UCountry i) => i.name.toLowerCase().contains(query.toLowerCase()) || i.dialCode.contains(query) || i.code.toLowerCase().contains(query.toLowerCase()) || i.capital.toLowerCase().contains(query.toLowerCase())).toList();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            "Phone Number",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey[800]),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: <Widget>[
+              // Country selector
+              if (widget.pickerMode == CountryPickerMode.dropdown)
+                DropdownButton<UCountry>(
+                  value: _selectedCountry,
+                  items: UCountry.list
+                      .map(
+                        (UCountry i) => DropdownMenuItem<UCountry>(
+                          value: i,
+                          child: Row(
+                            children: <Widget>[
+                              Image.asset(
+                                "packages/u/lib/assets/flags/${i.flag}",
+                                width: 24,
+                                height: 24,
+                                errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 24),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                i.dialCode,
+                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (UCountry? country) {
+                    if (country != null) {
+                      setState(() {
+                        _selectedCountry = country;
+                        _onPhoneChanged();
+                      });
+                    }
+                  },
+                  underline: const SizedBox(),
+                  icon: Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
+                )
+              else
+                GestureDetector(
+                  onTap: widget.pickerMode == CountryPickerMode.dialog ? _showCountryPickerDialog : _showCountryPickerBottomSheet,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey[400]!),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Image.asset(
+                          "packages/u/lib/assets/flags/${_selectedCountry.flag}",
+                          width: 24,
+                          height: 24,
+                          errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 24),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          _selectedCountry.dialCode,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(width: 4),
+                        Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
+                      ],
+                    ),
+                  ),
+                ),
+              const SizedBox(width: 8),
+              // Phone number input
+              Expanded(
+                child: TextField(
+                  controller: _phoneController,
+                  decoration: InputDecoration(
+                    hintText: "Enter phone number",
+                    filled: true,
+                    fillColor: Colors.grey[100],
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.blue, width: 2),
+                    ),
+                    prefixIcon: Icon(Icons.phone, color: Colors.grey[600]),
+                  ),
+                  keyboardType: TextInputType.phone,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(15),
+                  ],
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
           ),
         ],
       );
+}
+
+enum CountryPickerMode { dropdown, dialog, bottomSheet }
+
+class PhoneNumberData {
+  final String countryCode;
+  final String phoneNumber;
+  final String phoneWithoutCode;
+  final String countryName;
+  final String capital;
+  final String continent;
+  final String primaryReligion;
+  final String currency;
+  final String primaryLanguage;
+
+  PhoneNumberData({
+    required this.countryCode,
+    required this.phoneNumber,
+    required this.phoneWithoutCode,
+    required this.countryName,
+    required this.capital,
+    required this.continent,
+    required this.primaryReligion,
+    required this.currency,
+    required this.primaryLanguage,
+  });
 }

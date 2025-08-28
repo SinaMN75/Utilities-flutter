@@ -75,6 +75,7 @@ export "components/widget_to_image.dart";
 export "data/data.dart";
 export "enums.dart";
 export "init.dart";
+export "models/countries.dart";
 export "utils/app_utils.dart";
 export "utils/clipboard.dart";
 export "utils/constants.dart";
