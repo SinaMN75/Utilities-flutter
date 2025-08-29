@@ -1,7 +1,5 @@
-import "package:u/utilities.dart"; // Assuming this contains UContainer and utilities
+import "package:u/utilities.dart";
 
-// UPdfViewer: A cross-platform PDF viewer with customizable source, zoom, scroll,
-// annotations, search, and loading/error states.
 class UPdfViewer extends StatefulWidget {
   const UPdfViewer({
     required this.source,
@@ -23,7 +21,7 @@ class UPdfViewer extends StatefulWidget {
     this.controller,
     this.onDocumentLoaded,
     this.onDocumentLoadFailed,
-    this.searchBar, // Optional search bar widget
+    this.searchBar,
   });
 
   final PdfViewerSource source;

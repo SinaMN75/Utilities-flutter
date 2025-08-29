@@ -6,8 +6,8 @@ enum CardSide { FRONT, BACK }
 
 enum Fill { none, fillFront, fillBack }
 
-class AnimationCard extends StatelessWidget {
-  const AnimationCard({super.key, this.child, this.animation, this.direction});
+class UAnimationCard extends StatelessWidget {
+  const UAnimationCard({super.key, this.child, this.animation, this.direction});
 
   final Widget? child;
   final Animation<double>? animation;
@@ -167,7 +167,7 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
 
   Widget _buildContent({required final bool front}) => IgnorePointer(
         ignoring: front ? !isFront : isFront,
-        child: AnimationCard(
+        child: UAnimationCard(
           animation: front ? _frontRotation : _backRotation,
           direction: widget.direction,
           child: front ? widget.front : widget.back,

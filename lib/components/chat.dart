@@ -1,7 +1,5 @@
-import "package:u/utilities.dart"; // Assuming this contains UContainer and utilities
+import "package:u/utilities.dart";
 
-// UChat: A cross-platform chat widget with customizable messages, composer,
-// action button, avatars, headers, footers, and loading/error states.
 class UChat extends StatefulWidget {
   const UChat({
     required this.messages,

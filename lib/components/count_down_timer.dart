@@ -1,20 +1,24 @@
 import "package:u/utilities.dart";
 
-class CountDownTimer extends StatefulWidget {
-  const CountDownTimer({
+class USendAgainCountDown extends StatefulWidget {
+  const USendAgainCountDown({
     required this.counter,
     required this.onSendAgainTap,
+    required this.buttonTitle,
+    required this.counterDescription,
     super.key,
   });
 
   final int counter;
   final VoidCallback onSendAgainTap;
+  final String buttonTitle;
+  final VoidCallback counterDescription;
 
   @override
-  State<CountDownTimer> createState() => _CountDownTimerState();
+  State<USendAgainCountDown> createState() => _USendAgainCountDownState();
 }
 
-class _CountDownTimerState extends State<CountDownTimer> {
+class _USendAgainCountDownState extends State<USendAgainCountDown> {
   int counter = 0;
   late Timer timer;
 
@@ -28,14 +32,14 @@ class _CountDownTimerState extends State<CountDownTimer> {
   Widget build(final BuildContext context) => counter == 0
       ? TextButton(
           onPressed: widget.onSendAgainTap,
-          child: const Text(
-            "ارسال دوباره",
+          child: Text(
+            widget.buttonTitle,
           ).labelLarge(color: context.theme.colorScheme.primary),
         )
       : TextButton(
           onPressed: null,
           child: Text(
-            "$counter ${"ثانیه برای ارسال دوباره"}",
+            "$counter ${widget.counterDescription}",
           ).labelLarge(color: context.theme.colorScheme.primary),
         );
 
