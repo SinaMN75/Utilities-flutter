@@ -10,6 +10,8 @@ extension DateTimeExtensions on DateTime {
 
   String toJalaliDateTime() => "${toJalali().formatCompactDate()} ${hour.toString().append0()}:${minute.toString().append0()}";
 
+  Jalali toJalali() => Jalali.fromDateTime(this);
+
   String toTimeAgo({final bool numericDates = false, final bool persian = false}) {
     try {
       final Duration difference = DateTime.now().difference(this);

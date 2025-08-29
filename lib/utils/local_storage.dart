@@ -10,6 +10,7 @@ abstract class ULocalStorage {
     if (value is bool) sp.setBool(key, value);
     if (value is double) sp.setDouble(key, value);
     if (value is int) sp.setInt(key, value);
+    if (value is List<String>) sp.setStringList(key, value);
   }
 
   static int? getInt(final String key) => sp.getInt(key);
@@ -19,6 +20,8 @@ abstract class ULocalStorage {
   static bool? getBool(final String key) => sp.getBool(key);
 
   static double? getDouble(final String key) => sp.getDouble(key);
+
+  static List<String>? getStringList(final String key) => sp.getStringList(key);
 
   static void clear() => sp.clear();
 

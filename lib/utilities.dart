@@ -97,5 +97,6 @@ export "utils/location.dart";
 export "utils/navigator.dart";
 export "utils/network.dart";
 export "utils/notification.dart";
-export "utils/shamsi_date/shamsi_date.dart";
+export "utils/persian_tools.dart";
+export "utils/shamsi.dart";
 export "utils/utils.dart";

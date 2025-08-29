@@ -1,6 +1,6 @@
 import "package:u/utilities.dart";
 
-class CustomCrashlytics {
+class UCrashlytics {
   static Future<void> initialize() async {
     PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
       _recordError(error, stack);
