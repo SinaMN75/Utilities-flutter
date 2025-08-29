@@ -1,12 +1,53 @@
-# Everything that Every Project might need in a Single Package
+# Utilities-Flutter
 
-To get started we need to initialize the package in  `main.dart`
+A comprehensive Flutter package that provides a collection of utilities to simplify common tasks in
+Flutter projects. This package wraps various functionalities, including navigation, local storage,
+file handling, network checks, notifications, and more, into a single, easy-to-use package.
 
-## `main.dart`
+## Table of Contents
 
+- [Getting Started](#getting-started)
+- [Features](#features)
+  - [UMaterialApp](#umaterialapp)
+  - [UClipboard](#uclipboard)
+  - [UFile](#ufile)
+  - [Http Interceptor](#http-interceptor)
+  - [ULaunch](#ulaunch)
+  - [ULoading](#uloading)
+  - [ULocalAuth](#ulocalauth)
+  - [ULocalStorage](#ulocalstorage)
+  - [ULocation](#ulocation)
+  - [UNavigator](#unavigator)
+  - [UNetwork](#unetwork)
+  - [UNotification](#unotification)
+  - [UAppUtils](#uapputils)
+  - [Extensions](#extensions)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Getting Started
+
+To use the `Utilities-Flutter` package, initialize it in your `main.dart` file. This package
+simplifies the setup of common Flutter functionalities such as localization, themes, and navigation.
+
+### Example `main.dart`
 ```dart
 Future<void> main() async {
-  await initUtilities();
+  await initUtilities(
+    apiKey: "your_api_key",
+    // Optional: Add API key for HTTP interceptor
+    firebaseOptions: null,
+    // Optional: Firebase options
+    safeDevice: true,
+    // Optional: Enable security checks for Android/iOS
+    protectDataLeaking: true,
+    // Optional: Prevent data leaking
+    preventScreenShot: true,
+    // Optional: Prevent screenshots
+    deviceOrientations: [DeviceOrientation.portraitUp], // Optional: Set device orientations
+  );
   runApp(
     UMaterialApp(
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
@@ -25,88 +66,80 @@ Future<void> main() async {
 }
 ```
 
-## InitUtilities
+## Features
 
-Here you can pass some optional parameters to `initUtilities` function
+### UMaterialApp
 
-`apiKey`: for adding ApiKey header to HttpInterceptor of the u package.
+A wrapper around `GetMaterialApp` from the GetX package, providing default implementations for
+theming, localization, and loading dialogs. All parameters are required for simplicity.
 
-`firebaseOptions`: for adding the firebase options.
+### UClipboard
 
-`safeDevice`: for having some security checks on Android and iOS   [safe_device](https://pub.dev/packages/safe_device)
-
-`protectDataLeaking` and `preventScreenShot`: screen protector for preventing user from getting
-screenshots    [screen_protector](https://pub.dev/packages/screen_protector)
-
-`deviceOrientations`: for supporting different Device orientations.
-
-## UMaterialApp
-
-UMaterialApp is a wrapper on top of `GetMaterialApp` of Getx package with some default implementations.
-
-for simplicity all the parameters are required, and everything about having dark/light theme, localizations, loading
-dialogs and... are handled.
-
-## Basic Utilities
-
-### `UClipboard`
-
-setting and getting string data from Clipboard.
-
+Manage clipboard operations easily.
 ```dart
-UClipboard.set("some text");
-
-UClipboard.getText();
+UClipboard.set
+("some text
+"
+); // Set text to clipboard
+String? text = await UClipboard.getText(); // Get text from clipboard
 ```
 
-### `UFile`
+### UFile
 
-File Picker [file_picker](https://pub.dev/packages/file_picker)
-
+Handle file picking and image cropping with ease.
 ```dart
+// File Picker
 UFile.showFilePicker(
 allowCompression: true,
-allowedExtensions: <String>["png", "jpg", "JPEG"],
+allowedExtensions: ["png", "jpg", "JPEG"],
 allowMultiple: true,
 dialogTitle: "Pick Some Awesome Image",
 fileType: FileType.image,
-...
-action: (final List<FileData> files) {},
+action: (List<FileData> files) {
+// Handle picked files
+},
 );
-```
 
-File Picker [image_cropper](https://pub.dev/packages/image_cropper)
-
-```dart
+// Image Cropper
 UFile.cropImage(
 filePath: "filePath",
 toolbarColor: Colors.purple,
 cropAspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 2),
 cropStyle: CropStyle.circle,
 androidUiSettings: AndroidUiSettings(hideBottomControls: true),
-action: (final FileData file) {},
+action: (FileData file) {
+// Handle cropped image
+},
 );
 ```
 
-### `http_interceptor`
+### Http Interceptor
 
+Make HTTP requests with a built-in interceptor.
 ```dart
 httpRequest(
 url: "${AppConstants.baseUrlPractino}GetReportsByMobile/$nationalCode",
 httpMethod: EHttpMethod.get,
-action: (final Response<dynamic> response) {
-if ((response.bodyString ?? "").length >= 50) action(LifeReportItemsResponse.fromJson('{"items": ${response.bodyString!}}'));
-else action(null);
+action: (Response response) {
+if ((response.bodyString ?? "").length >= 50) {
+action(LifeReportItemsResponse.fromJson('{"items": ${response.bodyString!}}'));
+} else {
+action(null);
+}
 },
-error: (final Response<dynamic> response) {},
-cacheExpireDate: cacheExpireDate,
+error: (Response response) {
+// Handle error
+},
+cacheExpireDate
+:
+cacheExpireDate
+,
 );
 ```
 
-### 'ULaunch'
+### ULaunch
 
-need to share text, image, widgets, or want to open someone's Telegram, whatsapp.
-
+Easily share content or open external apps and URLs.
 ```dart
 ULaunch.email("sina@email.com", "hello");
 ULaunch.call("1234567890");
@@ -121,28 +154,33 @@ ULaunch.launchMap(35.37651, 55.753325);
 ULaunch.shareWithTelegram("some text");
 ULaunch.shareWithWhatsapp("some text");
 ULaunch.shareWithEmail("some text");
-
 ```
 
-### `ULoading`
+### ULoading
 
-A very simple loading dialog from anywhere. [flutter_easyloading](https://pub.dev/packages/flutter_easyloading)
-
+Display simple loading dialogs using `flutter_easyloading`.
 ```dart
-ULoading.showLoading();
-ULoading.dismissLoading();
-ULoading.showError();
-ULoading.isLoadingShow();
+ULoading.showLoading
+(); // Show loading dialog
+ULoading.dismissLoading
+(); // Dismiss loading dialog
+ULoading.showError
+(); // Show error dialog
+bool isLoading = ULoading.isLoadingShow(); // Check if loading dialog is visible
 ```
 
-### `ULocalAuth`
-Authentication with biometric [local_auth](https://pub.dev/packages/local_auth)
+### ULocalAuth
 
+Handle biometric authentication with `local_auth`.
 ```dart
-final bool canAuthenticate = await ULocalAuth.canAuthenticate();
 
-final List<BiometricType> availableBiometrics = await ULocalAuth.availableBiometrics();
+bool canAuthenticate = await
+ULocalAuth.canAuthenticate
+();
 
+List<BiometricType> biometrics = await
+ULocalAuth.availableBiometrics
+();
 await ULocalAuth.authenticate(
 biometricOnly: true,
 localizedReason: "just for fun",
@@ -152,36 +190,47 @@ useErrorDialogs: true,
 );
 ```
 
-### `ULocalStorage`
+### ULocalStorage
 
-Easiest Local Storage management with [shared_preferences](https://pub.dev/packages/shared_preferences)
-
+Manage local storage with `shared_preferences`.
 ```dart
-  ULocalStorage.set("key1", "value");
+ULocalStorage.set
+("key1
+"
+,
+"
+value
+"
+);
 ULocalStorage.set("key2", 1);
 ULocalStorage.set("key3", 4.5);
 ULocalStorage.set("key4", true);
 
-final String? key1 = ULocalStorage.getString("key1");
-final int? key2 = ULocalStorage.getInt("key2");
-final double? key3 = ULocalStorage.getDouble("key3");
-final bool? key4 = ULocalStorage.getBool("key4");
+String? key1 = ULocalStorage.getString("key1");
+int? key2 = ULocalStorage.getInt("key2");
+double? key3 = ULocalStorage.getDouble("key3");
+bool? key4 = ULocalStorage.getBool("key4
+"
+);
 ```
 
-### `ULocation`
+### ULocation
 
-Get User's location [geolocator](https://pub.dev/packages/geolocator)
-
+Get the user's location with `geolocator`.
 ```dart
-final Position? position = await ULocation.getUserLocation();
+
+Position? position = await
+ULocation.getUserLocation
+();
 ```
 
-### `UNavigator`
+### UNavigator
 
-Navigation Between Pages Without Context.
-
+Navigate between pages without context.
 ```dart
-  UNavigator.push(const ProfilePage());
+UNavigator.push
+(
+const ProfilePage());
 UNavigator.off(const ProfilePage(), preventDuplicates: false);
 UNavigator.offAll(const ProfilePage(), milliSecondDelay: 100, transition: Transition.fadeIn);
 UNavigator.dialog(const ProfilePage());
@@ -189,12 +238,14 @@ UNavigator.dialogAlert(const ProfilePage());
 UNavigator.back();
 ```
 
-### `UNetwork`
+### UNetwork
 
-Check User's Connections.
-
+Check network and connection status.
 ```dart
-  bool hasBluetooth = await UNetwork.hasBluetooth();
+
+bool hasBluetooth = await
+UNetwork.hasBluetooth
+();
 bool hasCellular = await UNetwork.hasCellular();
 bool hasEthernet = await UNetwork.hasEthernet();
 bool hasWifi = await UNetwork.hasWifi();
@@ -202,12 +253,12 @@ bool hasVpn = await UNetwork.hasVpn();
 bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
 ```
 
-### `UNotification`
+### UNotification
 
-Easiest Way of Showing a Simple Notification.
-
+Show simple notifications.
 ```dart
-  UNotification.showNotification(
+UNotification.showNotification
+(
 title: "title",
 message: "message",
 onNotificationTap: (NotificationResponse response) {
@@ -219,54 +270,96 @@ print(response.payload);
 );
 ```
 
-### `UAppUtils`
+### UAppUtils
 
-A Set of Utils About App and Device.
-
+Utilities for app and device information.
 ```dart
-  final String appBuildNumber = UApp.buildNumber;
-final String appVersion = UApp.version;
-final String appName = UApp.name;
-final String appPackageName = UApp.packageName;
 
-final bool isAndroid = UApp.isAndroid;
-final bool isIos = UApp.isIos;
-final bool isWeb = UApp.isWeb;
-final bool isWindows = UApp.isWindows;
-final bool isMacOs = UApp.isMacOs;
-final bool isMobile = UApp.isMobile;
-final bool isPwa = UApp.isPwa;
-final bool isDesktopSize = UApp.isDesktopSize();
-final bool isLandScape = UApp.isLandScape();
-final bool isPortrait = UApp.isPortrait();
+String appBuildNumber = UApp.buildNumber;
+String appVersion = UApp.version;
+String appName = UApp.name;
+String appPackageName = UApp.packageName;
 
-UApp.switchTheme(); // switch to dark if it's light, and light if it's dark
-UApp.updateLocale(const Locale("fa"));
+bool isAndroid = UApp.isAndroid;
+bool isIos = UApp.isIos;
+bool isWeb = UApp.isWeb;
+bool isWindows = UApp.isWindows;
+bool isMacOs = UApp.isMacOs;
+bool isMobile = UApp.isMobile;
+bool isPwa = UApp.isPwa;
+bool isDesktopSize = UApp.isDesktopSize();
+bool isLandScape = UApp.isLandScape();
+bool isPortrait = UApp.isPortrait();
+
+UApp.switchTheme
+(); // Toggle between light and dark themes
+UApp.updateLocale
+(
+const
+Locale
+(
+"
+fa
+"
+)
+); // Update app locale
 ```
 
-### `Extensions`
+### Extensions
 
-A Set of Extensions Method for Making the Life Easier.
-
-#### `DateExtension`
+Simplify date handling with `DateExtension`.
 ```dart
-  final DateTime dateTime = DateTime(2000);
-final String dateTimeString = DateTime(2000).toIso8601String();
 
-final Jalali jalali = dateTime.toJalali();
-final Gregorian gregorian = jalali.toGregorian();
+DateTime dateTime = DateTime(2000);
+String dateTimeString = dateTime.toIso8601String();
 
-jalali.formatCompactDate();
-jalali.formatFullDate();
-jalali.formatMonthYear();
-jalali.formatYear();
-jalali.formatShortDate();
+Jalali jalali = dateTime.toJalali();
+Gregorian gregorian = jalali.toGregorian();
 
-dateTimeString.toJalaliCompactDateString();
-dateTimeString.toJalaliDateString();
-dateTimeString.toJalaliDateTimeFull();
-dateTimeString.getDay();
-dateTimeString.getYear();
-dateTimeString.getMinute();
+String compactDate = jalali.formatCompactDate();
+String fullDate = jalali.formatFullDate();
+String monthYear = jalali.formatMonthYear();
+String year = jalali.formatYear();
+String shortDate = jalali.formatShortDate();
+
+String jalaliCompact = dateTimeString.toJalaliCompactDateString();
+String jalaliDate = dateTimeString.toJalaliDateString();
+String jalaliFull = dateTimeString.toJalaliDateTimeFull();
+String day = dateTimeString.getDay();
+String yearStr = dateTimeString.getYear();
+String minute = dateTimeString.getMinute();
 ```
 
+## Installation
+
+Add the `utilities_flutter` package to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  utilities_flutter: ^1.0.0
+```
+
+Run the following command to install the package:
+
+```bash
+flutter pub get
+```
+
+## Usage
+
+1. Initialize the package in `main.dart` as shown in the [Getting Started](#getting-started)
+   section.
+2. Use the provided utilities as needed in your project.
+3. Refer to the [Features](#features) section for detailed examples of each utility.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Submit a pull request with a detailed description of your changes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
