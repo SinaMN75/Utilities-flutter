@@ -6,73 +6,42 @@ file handling, network checks, notifications, and more, into a single, easy-to-u
 
 # Table of Contents
 
-### Components
+# Components
 
-- [barcode_qrcode.dart](#componentsbarcode_qrcodedart)
-- [cachedImage.dart](#componentscachedimagedart)
-- [calendar.dart](#componentscalendardart)
-- [chart.dart](#componentschartdart)
-- [chat.dart](#componentschatdart)
-- [chip_choice.dart](#componentschip_choicedart)
-- [container.dart](#componentscontainerdart)
-- [count_down_timer.dart](#componentscount_down_timerdart)
-- [flip_card.dart](#componentsflip_carddart)
-- [form.dart](#componentsformdart)
-- [gauge.dart](#componentsgaugedart)
-- [image_slider.dart](#componentsimage_sliderdart)
-- [image.dart](#componentsimagedart)
-- [link_previewer.dart](#componentslink_previewerdart)
-- [map.dart](#componentsmapdart)
-- [number_pagination.dart](#number_pagination)
-- [otp_field.dart](#componentsotp_fielddart)
-- [pdf_viewer.dart](#componentspdf_viewerdart)
-- [percent_indicator.dart](#componentspercent_indicatordart)
-- [persian_date_picker.dart](#componentspersian_date_pickerdart)
-- [rating_bar.dart](#componentsrating_bardart)
-- [readmore.dart](#componentsreadmoredart)
-- [scrolling_text.dart](#componentsscrolling_textdart)
-- [segmented_control.dart](#componentssegmented_controldart)
-- [signaturepad.dart](#componentssignaturepaddart)
-- [video_player.dart](#componentsvideo_playerdart)
-- [webview.dart](#componentswebviewdart)
-- [widget_to_image.dart](#componentswidget_to_imagedart)
+- [barcode_qrcode.dart](#barcode_qrcodedart)
+- [cachedImage.dart](#cachedImagedart)
+- [calendar.dart](#calendardart)
+- [chart.dart](#chartdart)
+- [chat.dart](#chatdart)
+- [chip_choice.dart](#chip_choicedart)
+- [container.dart](#containerdart)
+- [count_down_timer.dart](#count_down_timerdart)
+- [flip_card.dart](#flip_carddart)
+- [form.dart](#formdart)
+- [gauge.dart](#gaugedart)
+- [image.dart](#imagedart)
+- [image_slider.dart](#image_sliderdart)
+- [link_previewer.dart](#link_previewerdart)
+- [map.dart](#mapdart)
+- [number_pagination.dart](#number_paginationdart)
+- [otp_field.dart](#otp_fielddart)
+- [pdf_viewer.dart](#pdf_viewerdart)
+- [percent_indicator.dart](#percent_indicatordart)
+- [persian_date_picker.dart](#persian_date_pickerdart)
+- [rating_bar.dart](#rating_bardart)
+- [readmore.dart](#readmoredart)
+- [scrolling_text.dart](#scrolling_textdart)
+- [segmented_control.dart](#segmented_controldart)
+- [signaturepad.dart](#signaturepaddart)
+- [video_player.dart](#video_playerdart)
+- [webview.dart](#webviewdart)
+- [widget_to_image.dart](#widget_to_imagedart)
 
-### Utils
-
-- [app_utils.dart](#utilsapp_utilsdart)
-- [clipboard.dart](#utilsclipboarddart)
-- [constants.dart](#utilsconstantsdart)
-- [crashlytics.dart](#utilscrashlyticsdart)
-- [file.dart](#utilsfiledart)
-- [fonts.dart](#utilsfontsdart)
-- [http_client.dart](#utilshttp_clientdart)
-- [launch.dart](#utilslaunchdart)
-- [loading.dart](#utilsloadingdart)
-- [local_auth.dart](#utilslocal_authdart)
-- [local_storage.dart](#utilslocal_storagedart)
-- [location.dart](#utilslocationdart)
-- [navigator.dart](#utilsnavigatordart)
-- [network.dart](#utilsnetworkdart)
-- [notification.dart](#utilsnotificationdart)
-- [persian_tools.dart](#utilspersian_toolsdart)
-- [shamsi.dart](#utilsshamsidart)
-- [utils.dart](#utilsutilsdart)
-
-### Extensions
-
-- [date_extension.dart](#extensionsdate_extensiondart)
-- [iterable_extension.dart](#extensionsiterable_extensiondart)
-- [map_extension.dart](#extensionsmap_extensiondart)
-- [number_extension.dart](#extensionsnumber_extensiondart)
-- [string_extension.dart](#extensionsstring_extensiondart)
-- [text_extension.dart](#extensionstext_extensiondart)
-- [widget_extension.dart](#extensionswidget_extensiondart)
-
-## components/barcode_qrcode.dart
+## barcode_qrcode.dart
 
 **Description**: A Flutter widget (`UBarcode`) for generating barcodes and QR codes using the
-`syncfusion_flutter_barcodes` package. Supports various barcode types with customizable appearance
-and behavior.
+`syncfusion_flutter_barcodes` Стагітарнапackage. Supports various barcode types with customizable
+appearance and behavior.
 
 **Parameters**:
 
@@ -90,26 +59,18 @@ and behavior.
 - `enableCheckSum`: Enables checksum for Code39, Code39Extended, and Code11 (optional).
 
 **Usage**:
-```dart
-class BarcodeExample extends StatelessWidget {
-  const BarcodeExample({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: UBarcode(
-        value: 'https://example.com',
-        type: UBarcodeType.qrCode,
-        barColor: Colors.black,
-        showValue: true,
-        errorCorrectionLevel: UErrorCorrectionLevel.high,
-      ),
-    );
-  }
-}
+```
+UBarcode(
+  value: 'https://example.com',
+  type: UBarcodeType.qrCode,
+  barColor: Colors.black,
+  showValue: true,
+  errorCorrectionLevel: UErrorCorrectionLevel.high,
+)
 ```
 
-## components/cachedImage.dart
+## cachedImage.dart
 
 **Description**: A Flutter widget (`CachedNetworkImage`) for loading and displaying images from a
 URL with caching support. It stores images in local storage to optimize performance and reduce
@@ -127,27 +88,19 @@ network requests.
 - `fit`: How the image should be scaled to fit its container (e.g., `BoxFit.cover`, optional).
 
 **Usage**:
-```dart
-class CachedImageExample extends StatelessWidget {
-  const CachedImageExample({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: CachedNetworkImage(
-        imageUrl: 'https://example.com/image.jpg',
-        placeholder: CircularProgressIndicator(),
-        errorWidget: Icon(Icons.broken_image),
-        width: 200,
-        height: 200,
-        fit: BoxFit.cover,
-      ),
-    );
-  }
-}
+```
+CachedNetworkImage(
+  imageUrl: 'https://example.com/image.jpg',
+  placeholder: CircularProgressIndicator(),
+  errorWidget: Icon(Icons.broken_image),
+  width: 200,
+  height: 200,
+  fit: BoxFit.cover,
+)
 ```
 
-## components/calendar.dart
+## calendar.dart
 
 **Description**: A Flutter widget (`UCalendar`) for displaying a customizable calendar with support
 for events, multiple views, and optional Jalali (Persian) calendar integration. Built using the
@@ -184,36 +137,28 @@ for events, multiple views, and optional Jalali (Persian) calendar integration. 
 - `onLongPress`: Callback for long press events (optional).
 
 **Usage**:
-```dart
-class CalendarExample extends StatelessWidget {
-  const CalendarExample({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final UCalendarDataSource dataSource = UCalendarDataSource(
-      appointments: [
-        Appointment(
-          startTime: DateTime.now(),
-          endTime: DateTime.now().add(const Duration(hours: 1)),
-          subject: 'Meeting',
-          color: Colors.blue,
-        ),
-      ],
-      useJalali: false,
-    );
-
-    return UCalendar(
-      dataSource: dataSource,
-      view: CalendarView.month,
-      showNavigationArrow: true,
-      showCurrentTimeIndicator: true,
-      onTap: (details) => print('Tapped: ${details.date}'),
-    );
-  }
-}
+```
+UCalendar(
+  dataSource: UCalendarDataSource(
+    appointments: [
+      Appointment(
+        startTime: DateTime.now(),
+        endTime: DateTime.now().add(Duration(hours: 1)),
+        subject: 'Meeting',
+        color: Colors.blue,
+      ),
+    ],
+    useJalali: false,
+  ),
+  view: CalendarView.month,
+  showNavigationArrow: true,
+  showCurrentTimeIndicator: true,
+  onTap: (details) => print('Tapped: ${details.date}'),
+)
 ```
 
-## components/chart.dart
+## chart.dart
 
 **Description**: A collection of Flutter widgets for rendering various chart types (e.g., Doughnut,
 Pie, Line, Bar, etc.) using the `syncfusion_flutter_charts` package. Each chart supports
@@ -240,41 +185,32 @@ customizable data visualization with legends, tooltips, and animations.
     `UAreaChart`).
 
 **Usage**:
-```dart
-class ChartExample extends StatelessWidget {
-  const ChartExample({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final List<ChartData> data = [
-      ChartData(xValue: 'Jan', yValue: 10, color: Colors.blue, label: 'Sales'),
-      ChartData(xValue: 'Feb', yValue: 15, color: Colors.red, label: 'Sales'),
-    ];
-
-    return UColumnChart(
-      data: data,
-      legendPosition: ChartLegendPosition.top,
-      showLegend: true,
-      enableTooltip: true,
-      xAxis: const CategoryAxis(),
-      yAxis: const NumericAxis(),
-      dataLabelSettings: const DataLabelSettings(isVisible: true),
-    );
-  }
-}
+```
+UColumnChart(
+  data: [
+    ChartData(xValue: 'Jan', yValue: 10, color: Colors.blue, label: 'Sales'),
+    ChartData(xValue: 'Feb', yValue: 15, color: Colors.red, label: 'Sales'),
+  ],
+  legendPosition: ChartLegendPosition.top,
+  showLegend: true,
+  enableTooltip: true,
+  xAxis: CategoryAxis(),
+  yAxis: NumericAxis(),
+  dataLabelSettings: DataLabelSettings(isVisible: true),
+)
 ```
 
-## components/chat.dart
+## chat.dart
 
-**Description**:  
-A Flutter chat widget (`UChat`) built on top of Syncfusion’s `SfChat` that provides a customizable
-messaging UI. Supports message lists, avatars, headers, footers, custom composers, action buttons,
-error handling, and loading indicators.
+**Description**: A Flutter chat widget (`UChat`) built on top of Syncfusion’s `SfChat` that provides
+a customizable messaging UI. Supports message lists, avatars, headers, footers, custom composers,
+action buttons, error handling, and loading indicators.
 
 **Parameters**:
 
-- `messages` *(required)*: List of `ChatMessage` objects representing the chat history.
-- `outgoingUserId` *(required)*: The ID of the current (outgoing) user.
+- `messages`: List of `ChatMessage` objects representing the chat history (required).
+- `outgoingUserId`: The ID of the current (outgoing) user (required).
 - `composer`: Custom `ChatComposer` widget for composing messages.
 - `actionButton`: Custom `ChatActionButton` for sending messages. Defaults to one that calls
   `onMessageSent`.
@@ -295,49 +231,35 @@ error handling, and loading indicators.
 
 **Usage**:
 
-```dart
-class ChatExample extends StatelessWidget {
-  const ChatExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final List<ChatMessage> messages = [
-      ChatMessage(
-        text: "Hello!",
-        time: DateTime.now().subtract(const Duration(minutes: 5)),
-        author: ChatAuthor(id: "1", name: "Alice"),
-      ),
-      ChatMessage(
-        text: "Hi Alice 👋",
-        time: DateTime.now(),
-        author: ChatAuthor(id: "2", name: "You"),
-      ),
-    ];
-
-    return Scaffold(
-      appBar: AppBar(title: const Text("Chat Example")),
-      body: UChat(
-        messages: messages,
-        outgoingUserId: "2",
-        onMessageSent: (message) {
-          debugPrint("Message sent: $message");
-        },
-      ),
-    );
-  }
-}
+```
+UChat(
+  messages: [
+    ChatMessage(
+      text: "Hello!",
+      time: DateTime.now().subtract(Duration(minutes: 5)),
+      author: ChatAuthor(id: "1", name: "Alice"),
+    ),
+    ChatMessage(
+      text: "Hi Alice 👋",
+      time: DateTime.now(),
+      author: ChatAuthor(id: "2", name: "You"),
+    ),
+  ],
+  outgoingUserId: "2",
+  onMessageSent: (message) => debugPrint("Message sent: $message"),
+)
 ```
 
-## components/chip_choice.dart
+## chip_choice.dart
 
-**Description**:  
-A customizable chip selection widget (`UChipChoice`) for single or multiple choice options. Supports
-scrollable or wrapped layouts, custom chip builders, and styling for selected and unselected states.
+**Description**: A customizable chip selection widget (`UChipChoice`) for single or multiple choice
+options. Supports scrollable or wrapped layouts, custom chip builders, and styling for selected and
+unselected states.
 
 **Parameters**:
 
-- `options` *(required)*: List of available items to display as chips.
-- `selected` *(required)*: Currently selected value(s). For multi-choice, provide a `List<T>`.
+- `options`: List of available items to display as chips (required).
+- `selected`: Currently selected value(s). For multi-choice, provide a `List<T>` (required).
 - `onChanged`: Callback when selection changes. Provides `(index, isSelected, item)`.
 - `chipBuilder`: Custom builder for chip widgets `(item, isSelected, index)`.
 - `isMultiChoice`: Whether multiple chips can be selected (defaults to `false`).
@@ -354,38 +276,15 @@ scrollable or wrapped layouts, custom chip builders, and styling for selected an
 
 **Usage**:
 
-```dart
-class ChipChoiceExample extends StatefulWidget {
-  const ChipChoiceExample({super.key});
-
-  @override
-  State<ChipChoiceExample> createState() => _ChipChoiceExampleState();
-}
-
-class _ChipChoiceExampleState extends State<ChipChoiceExample> {
-  String selected = "Apple";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Chip Choice Example")),
-      body: Center(
-        child: UChipChoice<String>(
-          options: const ["Apple", "Banana", "Orange", "Mango"],
-          selected: selected,
-          onChanged: (index, isSelected, item) {
-            setState(() {
-              selected = item;
-            });
-          },
-        ),
-      ),
-    );
-  }
-}
+```
+UChipChoice<String>(
+  options: ["Apple", "Banana", "Orange", "Mango"],
+  selected: "Apple",
+  onChanged: (index, isSelected, item) => print("Selected: $item"),
+)
 ```
 
-## components/container.dart
+## container.dart
 
 **Description**: A collection of Flutter widgets (`UScaffold`, `UDefaultTabBar`,
 `UIconTextHorizontal`, `UIconTextVertical`, `UContainer`, `USpacedRow`, `USpacedColumn`, `UCard`,
@@ -475,49 +374,39 @@ styling options.
 
 **Usage**:
 
-```dart
-class ContainerExample extends StatelessWidget {
-  const ContainerExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return UScaffold(
-      appBar: AppBar(title: const Text('Example')),
-      body: UContainer(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.blue[50],
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: USpacedColumn(
-          spacing: 10,
-          children: [
-            UIconTextHorizontal(
-              leading: const Icon(Icons.star),
-              trailing: const Text('Favorite'),
-              subtitle: const Text('Tap to favorite'),
-              onTap: () => print('Tapped'),
-            ),
-            UCard(
-              body: const Text('Card Content'),
-              header: const Text('Header'),
-              actions: [
-                TextButton(
-                  onPressed: () => print('Action'),
-                  child: const Text('Action'),
-                ),
-              ],
-            ),
-          ],
-        ),
+```
+UContainer(
+  padding: EdgeInsets.all(16),
+  margin: EdgeInsets.all(8),
+  decoration: BoxDecoration(
+    color: Colors.blue[50],
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: USpacedColumn(
+    spacing: 10,
+    children: [
+      UIconTextHorizontal(
+        leading: Icon(Icons.star),
+        trailing: Text('Favorite'),
+        subtitle: Text('Tap to favorite'),
+        onTap: () => print('Tapped'),
       ),
-    );
-  }
-}
+      UCard(
+        body: Text('Card Content'),
+        header: Text('Header'),
+        actions: [
+          TextButton(
+            onPressed: () => print('Action'),
+            child: Text('Action'),
+          ),
+        ],
+      ),
+    ],
+  ),
+)
 ```
 
-## components/count_down_timer.dart
+## count_down_timer.dart
 
 **Description**: A Flutter widget (`USendAgainCountDown`) that displays a countdown timer for a
 resend button, enabling it when the countdown reaches zero. It is commonly used for scenarios like
@@ -532,25 +421,16 @@ resending OTPs or emails.
 
 **Usage**:
 
-```dart
-class CountDownExample extends StatelessWidget {
-  const CountDownExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: USendAgainCountDown(
-        counter: 30,
-        onSendAgainTap: () => print('Resend tapped'),
-        buttonTitle: 'Resend Code',
-        counterDescription: 'seconds remaining',
-      ),
-    );
-  }
-}
+```
+USendAgainCountDown(
+  counter: 30,
+  onSendAgainTap: () => print('Resend tapped'),
+  buttonTitle: 'Resend Code',
+  counterDescription: 'seconds remaining',
+)
 ```
 
-## components/flip_card.dart
+## flip_card.dart
 
 **Description**: A Flutter widget (`FlipCard`) for creating a flippable card with front and back
 sides, supporting animated transitions. It allows flipping on tap or programmatically with
@@ -573,45 +453,24 @@ customizable direction and animation speed.
 
 **Usage**:
 
-```dart
-class FlipCardExample extends StatelessWidget {
-  const FlipCardExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final FlipCardController controller = FlipCardController();
-
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FlipCard(
-            front: Container(
-              color: Colors.blue,
-              child: const Center(child: Text('Front')),
-            ),
-            back: Container(
-              color: Colors.red,
-              child: const Center(child: Text('Back')),
-            ),
-            controller: controller,
-            direction: FlipDirection.HORIZONTAL,
-            flipOnTouch: true,
-            onFlipDone: (isFront) => print('Flipped to ${isFront ? "front" : "back"}'),
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () => controller.toggleCard(),
-            child: const Text('Flip Card'),
-          ),
-        ],
-      ),
-    );
-  }
-}
+```
+UFlipCard(
+  front: Container(
+    color: Colors.blue,
+    child: Center(child: Text('Front')),
+  ),
+  back: Container(
+    color: Colors.red,
+    child: Center(child: Text('Back')),
+  ),
+  controller: FlipCardController(),
+  direction: FlipDirection.HORIZONTAL,
+  flipOnTouch: true,
+  onFlipDone: (isFront) => print('Flipped to ${isFront ? "front" : "back"}'),
+)
 ```
 
-## components/form.dart
+## form.dart
 
 **Description**: A collection of Flutter widgets (`UTextField`, `UTextFieldPersianDatePicker`,
 `UElevatedButton`, `UOutlinedButton`, `UTextButton`, `USearchableDropdown`, `UTextFieldPhoneNumber`)
@@ -680,51 +539,39 @@ and phone number input with country selection.
 
 **Usage**:
 
-```dart
-class FormExample extends StatelessWidget {
-  const FormExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return UScaffold(
-      body: UContainer(
-        padding: const EdgeInsets.all(16),
-        child: USpacedColumn(
-          spacing: 16,
-          children: [
-            UTextField(
-              labelText: 'Name',
-              hintText: 'Enter your name',
-              onChanged: (value) => print('Name: $value'),
-              validator: (value) => value!.isEmpty ? 'Required' : null,
-            ),
-            UTextFieldPersianDatePicker(
-              text: 'Select Date',
-              onChange: (dateTime, jalali) => print('Selected: $jalali'),
-            ),
-            USearchableDropdown<String>(
-              items: ['Option 1', 'Option 2', 'Option 3'],
-              labelBuilder: (item) => item,
-              onChanged: (item) => print('Selected: $item'),
-            ),
-            UTextFieldPhoneNumber(
-              pickerMode: CountryPickerMode.bottomSheet,
-              onChanged: (data) => print('Phone: ${data.phoneNumber}'),
-            ),
-            UElevatedButton(
-              title: 'Submit',
-              onTap: () => print('Submitted'),
-              backgroundColor: Colors.blue,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+```
+USpacedColumn(
+  spacing: 16,
+  children: [
+    UTextField(
+      labelText: 'Name',
+      hintText: 'Enter your name',
+      onChanged: (value) => print('Name: $value'),
+      validator: (value) => value!.isEmpty ? 'Required' : null,
+    ),
+    UTextFieldPersianDatePicker(
+      text: 'Select Date',
+      onChange: (dateTime, jalali) => print('Selected: $jalali'),
+    ),
+    USearchableDropdown<String>(
+      items: ['Option 1', 'Option 2', 'Option 3'],
+      labelBuilder: (item) => item,
+      onChanged: (item) => print('Selected: $item'),
+    ),
+    UTextFieldPhoneNumber(
+      pickerMode: CountryPickerMode.bottomSheet,
+      onChanged: (data) => print('Phone: ${data.phoneNumber}'),
+    ),
+    UElevatedButton(
+      title: 'Submit',
+      onTap: () => print('Submitted'),
+      backgroundColor: Colors.blue,
+    ),
+  ],
+)
 ```
 
-## components/gauge.dart
+## gauge.dart
 
 **Description**: A Flutter widget (`UGauge`) for displaying a radial gauge using the
 `syncfusion_flutter_gauges` package. It supports customizable ranges, annotations, and styling for
@@ -747,39 +594,30 @@ the gauge's axis, needle, ticks, and labels.
 
 **Usage**:
 
-```dart
-class GaugeExample extends StatelessWidget {
-  const GaugeExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: UGauge(
-        value: 75,
-        min: 0,
-        max: 100,
-        size: 200,
-        ranges: [
-          UGaugeRange(start: 0, end: 50, color: Colors.red),
-          UGaugeRange(start: 50, end: 100, color: Colors.green),
-        ],
-        annotations: [
-          UGaugeAnnotation(
-            widget: const Text('75%'),
-            angle: 90,
-            position: 0.5,
-          ),
-        ],
-        needleColor: Colors.black,
-        showTicks: true,
-        showLabels: true,
-      ),
-    );
-  }
-}
+```
+UGauge(
+  value: 75,
+  min: 0,
+  max: 100,
+  size: 200,
+  ranges: [
+    UGaugeRange(start: 0, end: 50, color: Colors.red),
+    UGaugeRange(start: 50, end: 100, color: Colors.green),
+  ],
+  annotations: [
+    UGaugeAnnotation(
+      widget: Text('75%'),
+      angle: 90,
+      position: 0.5,
+    ),
+  ],
+  needleColor: Colors.black,
+  showTicks: true,
+  showLabels: true,
+)
 ```
 
-## components/image.dart
+## image.dart
 
 **Description**: A collection of Flutter widgets (`UImage`, `UIconPrimary`, `UImageAsset`,
 `UImageNetwork`, `UImageFile`, `UImageMemory`) for displaying images from various sources (network,
@@ -845,46 +683,34 @@ Provides customizable styling like border radius and fit.
 
 **Usage**:
 
-```dart
-class ImageExample extends StatelessWidget {
-  const ImageExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return UScaffold(
-      body: UContainer(
-        padding: const EdgeInsets.all(16),
-        child: USpacedColumn(
-          spacing: 16,
-          children: [
-            UImage(
-              source: 'https://example.com/image.jpg',
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-              placeholder: 'assets/placeholder.png',
-              borderRadius: 8,
-            ),
-            UIconPrimary(
-              source: 'assets/icon.png',
-              width: 50,
-              height: 50,
-            ),
-            UImageAsset(
-              path: 'assets/image.png',
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+```
+USpacedColumn(
+  spacing: 16,
+  children: [
+    UImage(
+      source: 'https://example.com/image.jpg',
+      width: 100,
+      height: 100,
+      fit: BoxFit.cover,
+      placeholder: 'assets/placeholder.png',
+      borderRadius: 8,
+    ),
+    UIconPrimary(
+      source: 'assets/icon.png',
+      width: 50,
+      height: 50,
+    ),
+    UImageAsset(
+      path: 'assets/image.png',
+      width: 100,
+      height: 100,
+      fit: BoxFit.cover,
+    ),
+  ],
+)
 ```
 
-## components/image_slider.dart
+## image_slider.dart
 
 **Description**: A Flutter widget (`UImageSlider`) for displaying a carousel of images with
 automatic scrolling and customizable indicators. It uses `PageView` for sliding images and supports
@@ -907,37 +733,23 @@ styling for image fit, border radius, and indicator appearance.
 
 **Usage**:
 
-```dart
-class ImageSliderExample extends StatelessWidget {
-  const ImageSliderExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final List<String> images = [
-      'https://example.com/image1.jpg',
-      'https://example.com/image2.jpg',
-      'assets/image3.png',
-    ];
-
-    return UScaffold(
-      body: UContainer(
-        padding: const EdgeInsets.all(16),
-        child: UImageSlider(
-          images: images,
-          height: 200,
-          imageFit: BoxFit.cover,
-          radius: 8,
-          autoPlayDuration: 5,
-          activeIndicatorColor: Colors.blue,
-          inactiveIndicatorColor: Colors.grey,
-        ),
-      ),
-    );
-  }
-}
+```
+UImageSlider(
+  images: [
+    'https://example.com/image1.jpg',
+    'https://example.com/image2.jpg',
+    'assets/image3.png',
+  ],
+  height: 200,
+  imageFit: BoxFit.cover,
+  radius: 8,
+  autoPlayDuration: 5,
+  activeIndicatorColor: Colors.blue,
+  inactiveIndicatorColor: Colors.grey,
+)
 ```
 
-## components/link_previewer.dart
+## link_previewer.dart
 
 **Description**: A Flutter widget (`ULinkPreviewer`) that displays a preview of a URL using the
 `any_link_preview` package. It shows a clickable preview with a title, description, and image (if
@@ -963,25 +775,13 @@ available), with customizable styling and error handling.
 
 **Usage**:
 
-```dart
-class LinkPreviewerExample extends StatelessWidget {
-  const LinkPreviewerExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return UScaffold(
-      body: UContainer(
-        padding: const EdgeInsets.all(16),
-        child: ULinkPreviewer(
-          link: 'https://example.com',
-        ),
-      ),
-    );
-  }
-}
+```
+ULinkPreviewer(
+  link: 'https://example.com',
+)
 ```
 
-## components/map.dart
+## map.dart
 
 **Description**: A Flutter widget (`UMap`) for displaying an interactive map using the `flutter_map`
 package. It supports multiple tile providers (OpenStreetMap, MapBox, OpenTopoMap, StamenTerrain),
@@ -1009,47 +809,36 @@ location" button, and customizable event callbacks.
 
 **Usage**:
 
-```dart
-class MapExample extends StatelessWidget {
-  const MapExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final MapController controller = MapController();
-
-    return UScaffold(
-      body: UMap(
-        controller: controller,
-        center: const LatLng(51.509364, -0.128928),
-        zoom: 12,
-        tileProvider: UMapTileProvider.openStreetMap,
-        markers: [
-          Marker(
-            point: const LatLng(51.509364, -0.128928),
-            width: 40,
-            height: 40,
-            child: const Icon(Icons.location_pin, color: Colors.red, size: 40),
-          ),
-        ],
-        polylines: [
-          Polyline(
-            points: [
-              const LatLng(51.509364, -0.128928),
-              const LatLng(51.514364, -0.133928),
-            ],
-            color: Colors.blue,
-            strokeWidth: 4,
-          ),
-        ],
-        centerWidget: const Icon(Icons.center_focus_strong, color: Colors.red),
-        onTap: (_, point) => print('Tapped at: $point'),
-      ),
-    );
-  }
-}
+```
+UMap(
+  controller: MapController(),
+  center: LatLng(51.509364, -0.128928),
+  zoom: 12,
+  tileProvider: UMapTileProvider.openStreetMap,
+  markers: [
+    Marker(
+      point: LatLng(51.509364, -0.128928),
+      width: 40,
+      height: 40,
+      child: Icon(Icons.location_pin, color: Colors.red, size: 40),
+    ),
+  ],
+  polylines: [
+    Polyline(
+      points: [
+        LatLng(51.509364, -0.128928),
+        LatLng(51.514364, -0.133928),
+      ],
+      color: Colors.blue,
+      strokeWidth: 4,
+    ),
+  ],
+  centerWidget: Icon(Icons.center_focus_strong, color: Colors.red),
+  onTap: (_, point) => print('Tapped at: $point'),
+)
 ```
 
-## components/number_pagination
+## number_pagination.dart
 
 **Description**: A Flutter widget (`UNumberPagination`) for displaying a pagination control with
 numbered page buttons, previous/next navigation, and ellipsis for large page counts. It supports
@@ -1068,33 +857,21 @@ customizable colors and icons, with a threshold to limit displayed page numbers.
 
 **Usage**:
 
-```dart
-class PaginationExample extends StatelessWidget {
-  const PaginationExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return UScaffold(
-      body: UContainer(
-        padding: const EdgeInsets.all(16),
-        child: UNumberPagination(
-          currentPage: 5,
-          totalPages: 10,
-          onPageChanged: (page) => print('Page changed to: $page'),
-          threshold: 2,
-          selectedColor: Colors.blue,
-          unselectedColor: Colors.grey,
-          showPrevNext: true,
-          prevIcon: const Icon(Icons.arrow_back),
-          nextIcon: const Icon(Icons.arrow_forward),
-        ),
-      ),
-    );
-  }
-}
+```
+UNumberPagination(
+  currentPage: 5,
+  totalPages: 10,
+  onPageChanged: (page) => print('Page changed to: $page'),
+  threshold: 2,
+  selectedColor: Colors.blue,
+  unselectedColor: Colors.grey,
+  showPrevNext: true,
+  prevIcon: Icon(Icons.arrow_back),
+  nextIcon: Icon(Icons.arrow_forward),
+)
 ```
 
-## components/otp_field.dart
+## otp_field.dart
 
 **Description**: A Flutter widget (`UOtpField`) for entering OTP (One-Time Password) codes with
 individual text fields for each digit. It supports customization of appearance, behavior, and
@@ -1126,33 +903,308 @@ validation, with features like auto-focus, paste handling, and keyboard navigati
 
 **Usage**:
 
-```dart
-class OtpFieldExample extends StatelessWidget {
-  const OtpFieldExample({super.key});
+```
+UOtpField(
+  controller: TextEditingController(),
+  length: 4,
+  cursorColor: Colors.blue,
+  fillColor: Colors.grey[200]!,
+  activeColor: Colors.blue,
+  borderColor: Colors.grey,
+  borderRadius: 12,
+  fieldWidth: 50,
+  fieldHeight: 50,
+  autoFocus: true,
+  onCompleted: (value) => print('OTP: $value'),
+  validator: (value) => value!.length < 4 ? 'Enter all digits' : null,
+)
+```
 
-  @override
-  Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
+## pdf_viewer.dart
 
-    return UScaffold(
-      body: UContainer(
-        padding: const EdgeInsets.all(16),
-        child: UOtpField(
-          controller: controller,
-          length: 4,
-          cursorColor: Colors.blue,
-          fillColor: Colors.grey[200]!,
-          activeColor: Colors.blue,
-          borderColor: Colors.grey,
-          borderRadius: 12,
-          fieldWidth: 50,
-          fieldHeight: 50,
-          autoFocus: true,
-          onCompleted: (value) => print('OTP: $value'),
-          validator: (value) => value!.length < 4 ? 'Enter all digits' : null,
-        ),
-      ),
-    );
-  }
-}
+**Description**: A Flutter widget for displaying PDF files with support for zooming, scrolling, and
+page navigation. Built using a PDF rendering library, it provides a smooth experience for viewing
+PDF documents.
+
+**Parameters**:
+
+- Not fully specified in the original input, but typically includes:
+  - `source`: Path or URL of the PDF file (required).
+  - `initialPage`: Starting page number (optional).
+  - `zoomLevel`: Initial zoom level (optional).
+  - `onPageChanged`: Callback for page changes (optional).
+  - `controller`: Controller for programmatic navigation (optional).
+
+**Usage**:
+
+```
+UPdfViewer(
+  source: 'https://example.com/sample.pdf',
+  initialPage: 1,
+  zoomLevel: 1.0,
+  onPageChanged: (page) => print('Page: $page'),
+)
+```
+
+## percent_indicator.dart
+
+**Description**: A Flutter widget for displaying progress as a percentage, typically as a circular
+or linear indicator. It supports customizable colors, animations, and text display.
+
+**Parameters**:
+
+- Not fully specified, but typically includes:
+  - `percent`: Progress value (0.0 to 1.0, required).
+  - `center`: Widget to display in the center (optional).
+  - `radius`: Radius for circular indicators (optional).
+  - `lineWidth`: Thickness of the progress line (optional).
+  - `backgroundColor`, `progressColor`: Colors for background and progress (optional).
+  - `animation`: Enable animation (defaults to `true`).
+  - `animationDuration`: Duration of animation in milliseconds (optional).
+
+**Usage**:
+
+```
+UPercentIndicator(
+  percent: 0.75,
+  center: Text('75%'),
+  radius: 50.0,
+  lineWidth: 5.0,
+  backgroundColor: Colors.grey,
+  progressColor: Colors.blue,
+  animation: true,
+)
+```
+
+## persian_date_picker.dart
+
+**Description**: A Flutter widget (`UTextFieldPersianDatePicker`) for selecting dates in the
+Persian (Jalali) calendar, integrated with a text field for input.
+
+**Parameters**:
+
+- `onChange`: Callback for selected date/time (required, returns `DateTime` and `Jalali`).
+- `text`, `hintText`, `labelText`, `fontSize`, `textHeight`: Text styling (optional).
+- `controller`: Text editing controller (optional).
+- `prefix`, `suffix`: Prefix/suffix widgets (optional).
+- `initialDate`, `startDate`, `endDate`: Jalali date settings (optional).
+- `validator`: Validation function (optional).
+- `readOnly`: Prevent interaction (defaults to `false`).
+- `date`, `time`: Enable date/time picker (defaults to `true`, `false`).
+- `submitButtonText`, `cancelButtonText`: Button labels (defaults to `"Submit"`, `"Cancel"`).
+- `textAlign`: Text alignment (defaults to `TextAlign.start`).
+
+**Usage**:
+
+```
+UTextFieldPersianDatePicker(
+  text: 'Select Date',
+  onChange: (dateTime, jalali) => print('Selected: $jalali'),
+)
+```
+
+## rating_bar.dart
+
+**Description**: A Flutter widget for displaying and interacting with a rating system, typically
+using stars or other icons to represent ratings.
+
+**Parameters**:
+
+- Not fully specified, but typically includes:
+  - `initialRating`: Initial rating value (required).
+  - `itemCount`: Number of rating items (e.g., stars, defaults to `5`).
+  - `itemSize`: Size of each rating item (optional).
+  - `onRatingUpdate`: Callback for rating changes (optional).
+  - `glowColor`, `unratedColor`, `ratedColor`: Styling for glow and colors (optional).
+  - `allowHalfRating`: Allow half ratings (defaults to `false`).
+
+**Usage**:
+
+```
+URatingBar(
+  initialRating: 3.0,
+  itemCount: 5,
+  itemSize: 40.0,
+  onRatingUpdate: (rating) => print('Rating: $rating'),
+  ratedColor: Colors.yellow,
+  unratedColor: Colors.grey,
+)
+```
+
+## readmore.dart
+
+**Description**: A Flutter widget for displaying text with a "read more" or "read less" toggle for
+long content, allowing users to expand or collapse text.
+
+**Parameters**:
+
+- Not fully specified, but typically includes:
+  - `text`: The text to display (required).
+  - `trimLines`: Number of lines before trimming (defaults to `3`).
+  - `trimMode`: Trimming mode (e.g., `TrimMode.line`, `TrimMode.length`, optional).
+  - `trimCollapsedText`, `trimExpandedText`: Text for toggle buttons (defaults to `"Read more"`,
+    `"Read less"`).
+  - `style`: Text style for the content (optional).
+  - `moreStyle`, `lessStyle`: Styles for toggle buttons (optional).
+
+**Usage**:
+
+```
+UReadMore(
+  text: 'This is a long text that will be trimmed after a few lines...',
+  trimLines: 3,
+  trimCollapsedText: 'Read more',
+  trimExpandedText: 'Read less',
+  style: TextStyle(fontSize: 16),
+)
+```
+
+## scrolling_text.dart
+
+**Description**: A Flutter widget for displaying scrolling text, useful for marquee-style displays
+or long text that needs to scroll horizontally.
+
+**Parameters**:
+
+- Not fully specified, but typically includes:
+  - `text`: The text to scroll (required).
+  - `textStyle`: Style for the text (optional).
+  - `scrollSpeed`: Speed of scrolling (optional).
+  - `pauseDuration`: Duration to pause after each scroll cycle (optional).
+  - `textAlign`: Text alignment (defaults to `TextAlign.start`).
+
+**Usage**:
+
+```
+UScrollingText(
+  text: 'This is a scrolling text example that moves horizontally.',
+  textStyle: TextStyle(fontSize: 16),
+  scrollSpeed: 50.0,
+  pauseDuration: Duration(seconds: 2),
+)
+```
+
+## segmented_control.dart
+
+**Description**: A Flutter widget for displaying a segmented control, allowing users to select one
+option from a set of mutually exclusive options.
+
+**Parameters**:
+
+- Not fully specified, but typically includes:
+  - `segments`: List of segment labels or widgets (required).
+  - `selectedSegment`: Initially selected segment (required).
+  - `onValueChanged`: Callback for segment changes (required).
+  - `backgroundColor`, `thumbColor`: Colors for background and selected segment (optional).
+  - `padding`: Padding for the control (optional).
+
+**Usage**:
+
+```
+USegmentedControl(
+  segments: ['Option 1', 'Option 2', 'Option 3'],
+  selectedSegment: 0,
+  onValueChanged: (index) => print('Selected: $index'),
+  backgroundColor: Colors.grey[200],
+  thumbColor: Colors.blue,
+)
+```
+
+## signaturepad.dart
+
+**Description**: A Flutter widget for capturing user signatures, allowing drawing on a canvas with
+customizable stroke width and color.
+
+**Parameters**:
+
+- Not fully specified, but typically includes:
+  - `controller`: Controller for accessing signature data (required).
+  - `strokeWidth`: Width of the signature stroke (optional).
+  - `strokeColor`: Color of the signature stroke (optional).
+  - `backgroundColor`: Background color of the canvas (optional).
+  - `onDrawStart`, `onDrawEnd`: Callbacks for drawing events (optional).
+
+**Usage**:
+
+```
+USignaturePad(
+  controller: SignatureController(),
+  strokeWidth: 3.0,
+  strokeColor: Colors.black,
+  backgroundColor: Colors.white,
+  onDrawEnd: () => print('Signature completed'),
+)
+```
+
+## video_player.dart
+
+**Description**: A Flutter widget for playing videos from various sources (network, file, or asset)
+with controls for play, pause, and seek.
+
+**Parameters**:
+
+- Not fully specified, but typically includes:
+  - `source`: Video source (URL, file, or asset path, required).
+  - `controller`: Video player controller (optional).
+  - `autoplay`: Start playing automatically (defaults to `false`).
+  - `looping`: Loop the video (defaults to `false`).
+  - `showControls`: Display playback controls (defaults to `true`).
+  - `aspectRatio`: Aspect ratio of the video (optional).
+
+**Usage**:
+
+```
+UVideoPlayer(
+  source: 'https://example.com/video.mp4',
+  autoplay: true,
+  looping: false,
+  showControls: true,
+)
+```
+
+## webview.dart
+
+**Description**: A Flutter widget for displaying web content within the app, supporting navigation,
+JavaScript execution, and customizable settings.
+
+**Parameters**:
+
+- Not fully specified, but typically includes:
+  - `url`: Initial URL to load (required).
+  - `javascriptMode`: Enable/disable JavaScript (defaults to enabled).
+  - `onPageStarted`, `onPageFinished`: Callbacks for page load events (optional).
+  - `navigationDelegate`: Control navigation requests (optional).
+  - `userAgent`: Custom user agent string (optional).
+
+**Usage**:
+
+```
+UWebView(
+  url: 'https://example.com',
+  javascriptMode: JavascriptMode.unrestricted,
+  onPageFinished: (url) => print('Page loaded: $url'),
+)
+```
+
+## widget_to_image.dart
+
+**Description**: A Flutter widget for capturing a widget as an image, useful for sharing or saving
+widget content as a screenshot.
+
+**Parameters**:
+
+- Not fully specified, but typically includes:
+  - `child`: The widget to capture (required).
+  - `controller`: Controller for triggering capture (optional).
+  - `pixelRatio`: Resolution of the captured image (optional).
+  - `onCapture`: Callback with the captured image data (optional).
+
+**Usage**:
+
+```
+UWidgetToImage(
+  child: Text('Capture this widget'),
+  controller: WidgetToImageController(),
+  onCapture: (imageData) => print('Image captured'),
+)
 ```
