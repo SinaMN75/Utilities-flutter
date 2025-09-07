@@ -39,6 +39,7 @@ dependencies:
   lottie: ^3.3.1
   image_cropper: ^9.1.0
   file_picker: ^10.3.2
+  permission_handler: ^12.0.1
   flutter_local_notifications: ^19.4.1
   syncfusion_flutter_charts: ^30.2.7
   syncfusion_flutter_barcodes: ^30.2.7

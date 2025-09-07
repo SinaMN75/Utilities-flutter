@@ -1,3 +1,5 @@
+import "package:http/http.dart" as http;
+import "package:permission_handler/permission_handler.dart";
 import "package:u/utilities.dart";
 
 class UPdfViewer extends StatefulWidget {
@@ -62,16 +64,10 @@ class _UPdfViewerState extends State<UPdfViewer> {
   int _totalPages = 0;
   String? _fileName;
   int? _fileSize;
-
-  // We store the active bytes of the document here so we can edit+reload.
   Uint8List? _documentBytes;
-
-  // Selection data from viewer
   String? _selectedText;
-  Rect? _globalSelectedRegion; // selection region in global (screen) coordinates
+  Rect? _globalSelectedRegion;
   int _selectedPageNumber = 1;
-
-  // toolbar visibility
   bool _showSelectionToolbar = false;
   Offset? _toolbarPosition;
 
@@ -84,7 +80,6 @@ class _UPdfViewerState extends State<UPdfViewer> {
 
   Future<void> _prepareSource() async {
     try {
-      // load bytes from whichever source is provided and gather metadata
       if (widget.source.bytes != null) {
         _documentBytes = widget.source.bytes;
         _fileName = "Memory PDF";
@@ -93,24 +88,29 @@ class _UPdfViewerState extends State<UPdfViewer> {
         final File f = widget.source.file!;
         _documentBytes = await f.readAsBytes();
         _fileName = f.uri.pathSegments.last;
-        _fileSize = (await f.length());
+        _fileSize = await f.length();
       } else if (widget.source.url != null) {
-        // For remote URL, just set the filename; viewer will stream it.
-        // If you want to download remote bytes first (to annotate), fetch them (not done here).
         _fileName = widget.source.url!.split("/").last;
-        _fileSize = null;
-        // leave _documentBytes null — viewer will load from network.
+        final http.Response response = await http.get(Uri.parse(widget.source.url!));
+        if (response.statusCode == 200) {
+          _documentBytes = response.bodyBytes;
+          _fileSize = _documentBytes!.lengthInBytes;
+        } else {
+          _fileSize = null;
+        }
       } else if (widget.source.assetPath != null) {
         _fileName = widget.source.assetPath!.split("/").last;
-        // load asset bytes if you want annotation support
-        try {
-          final ByteData data = await DefaultAssetBundle.of(context).load(widget.source.assetPath!);
-          _documentBytes = data.buffer.asUint8List();
-          _fileSize = _documentBytes!.lengthInBytes;
-        } catch (e) {
-          // ignore if can't load; viewer may load from asset directly
-        }
+        final ByteData data = await DefaultAssetBundle.of(context).load(widget.source.assetPath!);
+        _documentBytes = data.buffer.asUint8List();
+        _fileSize = _documentBytes!.lengthInBytes;
       }
+
+      if (_documentBytes != null) {
+        final PdfDocument document = PdfDocument(inputBytes: _documentBytes);
+        _totalPages = document.pages.count;
+        document.dispose();
+      }
+
       setState(() {});
     } catch (e) {
       setState(() {
@@ -120,30 +120,55 @@ class _UPdfViewerState extends State<UPdfViewer> {
     }
   }
 
-  /// Save bytes to a file inside app documents dir (secure-ish) and show path
   Future<String?> _saveBytesToAppDoc(Uint8List bytes, {String? suggestedName}) async {
     try {
+      if (await Permission.storage.request().isDenied) {
+        UNavigator.snackbar(message: "Storage permission denied");
+        return null;
+      }
       final Directory dir = await getApplicationDocumentsDirectory();
       final String name = suggestedName ?? (_fileName ?? "document");
-      final String filePath = '${dir.path}/${name.replaceAll(RegExp(r'[^a-zA-Z0-9_.-]'), '_')}_edited.pdf';
+      final String filePath = '${dir.path}/${name.replaceAll(RegExp(r'[^a-zA-Z0-9_.-]'), '_')}_${const Uuid().v4()}.pdf';
       final File f = File(filePath);
       await f.writeAsBytes(bytes, flush: true);
       return filePath;
     } catch (e) {
+      UNavigator.snackbar(message: "Failed to save PDF: $e");
       return null;
     }
   }
 
-  /// Public: Save current _documentBytes to disk (download)
   Future<void> _downloadOffline() async {
     try {
       if (_documentBytes == null) {
-        // If we don't have bytes (e.g., viewer loaded from URL stream), try to export annotations or ask user to download via URL.
-        UNavigator.snackbar(message: "Document bytes not available for secure offline save.");
-        return;
+        if (widget.source.url != null) {
+          final http.Response response = await http.get(Uri.parse(widget.source.url!));
+          if (response.statusCode == 200) {
+            _documentBytes = response.bodyBytes;
+          } else {
+            UNavigator.snackbar(message: "Failed to download PDF");
+            return;
+          }
+        } else {
+          UNavigator.snackbar(message: "Document bytes not available for secure offline save.");
+          return;
+        }
       }
-      final String? path = await _saveBytesToAppDoc(_documentBytes!, suggestedName: _fileName);
+
+      final PdfDocument document = PdfDocument(inputBytes: _documentBytes);
+      document.security.userPassword = "userpassword@123";
+      document.security.ownerPassword = "ownerpassword@123";
+      document.security.algorithm = PdfEncryptionAlgorithm.aesx256Bit;
+      final Uint8List encryptedBytes = Uint8List.fromList(await document.save());
+      document.dispose();
+
+      final String? path = await _saveBytesToAppDoc(encryptedBytes, suggestedName: _fileName);
       if (path != null) {
+        setState(() {
+          widget.source._replaceWithMemory(encryptedBytes);
+          _documentBytes = encryptedBytes;
+          _prepareSource();
+        });
         UNavigator.snackbar(message: "PDF saved securely at $path");
       } else {
         UNavigator.snackbar(message: "Failed to save PDF locally.");
@@ -153,18 +178,65 @@ class _UPdfViewerState extends State<UPdfViewer> {
     }
   }
 
-  /// Called when the viewer notifies selection changes
+  Future<void> _addWatermark() async {
+    if (widget.watermarkText == null || widget.watermarkText!.isEmpty) {
+      UNavigator.snackbar(message: "No watermark text provided.");
+      return;
+    }
+    if (_documentBytes == null) {
+      UNavigator.snackbar(message: "Document bytes not available for watermarking.");
+      return;
+    }
+
+    try {
+      final PdfDocument document = PdfDocument(inputBytes: _documentBytes);
+      for (int i = 0; i < document.pages.count; i++) {
+        final PdfPage page = document.pages[i];
+        final Size pageSize = page.getClientSize();
+        final PdfStandardFont font = PdfStandardFont(PdfFontFamily.helvetica, 40);
+        final Size size = font.measureString(widget.watermarkText!);
+        page.graphics.save();
+        page.graphics.translateTransform(pageSize.width / 2, pageSize.height / 2);
+        page.graphics.setTransparency(0.25);
+        page.graphics.rotateTransform(-45);
+        page.graphics.drawString(
+          widget.watermarkText!,
+          font,
+          pen: PdfPen(PdfColor(255, 0, 0)),
+          brush: PdfSolidBrush(PdfColor(255, 0, 0)),
+          bounds: Rect.fromLTWH(-size.width / 2, -size.height / 2, size.width, size.height),
+        );
+        page.graphics.restore();
+      }
+
+      document.security.userPassword = "userpassword@123";
+      document.security.ownerPassword = "ownerpassword@123";
+      document.security.algorithm = PdfEncryptionAlgorithm.aesx256Bit;
+      final Uint8List newBytes = Uint8List.fromList(await document.save());
+      document.dispose();
+
+      final String? path = await _saveBytesToAppDoc(newBytes, suggestedName: _fileName);
+      if (path != null) {
+        setState(() {
+          widget.source._replaceWithMemory(newBytes);
+          _documentBytes = newBytes;
+          _prepareSource();
+        });
+        UNavigator.snackbar(message: "PDF saved with watermark at $path");
+      } else {
+        UNavigator.snackbar(message: "Failed to save watermarked PDF.");
+      }
+    } catch (e) {
+      UNavigator.snackbar(message: "Failed to add watermark: $e");
+    }
+  }
+
   void _onTextSelectionChanged(PdfTextSelectionChangedDetails details) {
-    // details.selectedText and details.globalSelectedRegion are provided by the viewer.
     _selectedText = details.selectedText;
     _globalSelectedRegion = details.globalSelectedRegion;
-    // Syncfusion doesn't give page in this callback; use controller.pageNumber property.
-    // (controller.pageNumber is available after load)
     _selectedPageNumber = _controller.pageNumber;
 
-    // If there's selectedText, show toolbar near the selection
-    if ((_selectedText != null && _selectedText!.trim().isNotEmpty) && _globalSelectedRegion != null) {
-      // compute toolbar pos from region center
+    if (_selectedText != null && _selectedText!.trim().isNotEmpty && _globalSelectedRegion != null) {
       final Rect region = _globalSelectedRegion!;
       final Offset center = Offset(region.left + region.width / 2, region.top);
       setState(() {
@@ -179,27 +251,18 @@ class _UPdfViewerState extends State<UPdfViewer> {
     }
   }
 
-  /// Add a text-markup annotation (highlight / underline / strike) to the PDF and save the modified bytes.
-  ///
-  /// type: 'highlight' | 'underline' | 'strike'
   Future<void> _addTextMarkupAnnotation(String type) async {
     if (_selectedText == null || _selectedText!.trim().isEmpty) {
       UNavigator.snackbar(message: "No text selected.");
       return;
     }
-
-    // We need the document bytes to edit. If we don't have bytes loaded, we must get them first.
     if (_documentBytes == null) {
-      // Try to request bytes from viewer controller if exported API exists.
-      UNavigator.snackbar(message: "Cannot annotate: document bytes not available (load from File/Memory).");
+      UNavigator.snackbar(message: "Cannot annotate: document bytes not available.");
       return;
     }
 
     try {
-      // Load as editable PdfDocument (Syncfusion PDF library)
       final PdfDocument document = PdfDocument(inputBytes: _documentBytes);
-
-      // page index is zero-based
       final int pageIndex = _selectedPageNumber - 1;
       if (pageIndex < 0 || pageIndex >= document.pages.count) {
         UNavigator.snackbar(message: "Invalid page for annotation.");
@@ -207,95 +270,62 @@ class _UPdfViewerState extends State<UPdfViewer> {
         return;
       }
 
-      // Extract text lines from that page and find matching lines that contain the selectedText.
       final PdfTextExtractor extractor = PdfTextExtractor(document);
       final List<TextLine> lines = extractor.extractTextLines(startPageIndex: pageIndex, endPageIndex: pageIndex);
-
-      // For each TextLine, search for the selectedText. When found, create a markup annotation
-      // at the TextLine.bounds (or a series of bounds if selectedText spans multiple lines).
-      // NOTE: this matching is a heuristic; for robust multi-line matching you'd need
-      // to match fragments over multiple consecutive TextLine objects.
       final String needle = _selectedText!.trim();
       final List<Rect> matchedRects = <Rect>[];
 
       for (final TextLine line in lines) {
-        final String lineText = line.text;
-        if (lineText.contains(needle)) {
-          // The Syncfusion TextLine has a 'bounds' property with location in PDF page coordinates.
-          // Map it to Flutter Rect (left, top, width, height)
-          final Rect r = line.bounds;
-          matchedRects.add(Rect.fromLTWH(r.left, r.top, r.width, r.height));
-          // If you want multiple occurrences in one line, use indexOf loop (omitted for brevity).
-        } else {
-          // try partial matching per word sequence
-          // omitted for brevity — will only match lines containing the exact selected snippet
+        if (line.text.contains(needle)) {
+          matchedRects.add(Rect.fromLTWH(line.bounds.left, line.bounds.top, line.bounds.width, line.bounds.height));
         }
       }
 
+      final PdfPage page = document.pages[pageIndex];
       if (matchedRects.isEmpty) {
-        // As fallback, try to add annotation at full page (visible but not ideal).
         UNavigator.snackbar(message: "Could not resolve selection bounds precisely — adding annotation at top of page.");
-        final PdfPage page = document.pages[pageIndex];
-        const Rect fallbackRect = Rect.fromLTWH(10, 10, 200, 20);
         final PdfTextMarkupAnnotation annotation = PdfTextMarkupAnnotation(
-          fallbackRect,
-          "Auto highlight",
+          const Rect.fromLTWH(10, 10, 200, 20),
+          "Auto $type",
           PdfColor(255, 255, 0),
-        )..color = PdfColor(255, 255, 0); // yellow
+        )..color = PdfColor(255, 255, 0);
         page.annotations.add(annotation);
       } else {
-        // Add a markup annotation for each matched rectangle
-        final PdfPage page = document.pages[pageIndex];
-        final PdfTextMarkupAnnotationType markType = (type == "underline")
+        final PdfTextMarkupAnnotationType markType = type == "underline"
             ? PdfTextMarkupAnnotationType.underline
-            : (type == "strike")
+            : type == "strike"
                 ? PdfTextMarkupAnnotationType.strikethrough
                 : PdfTextMarkupAnnotationType.highlight;
 
         for (final Rect rect in matchedRects) {
-          // Convert Flutter Rect (which we got from TextLine.bounds) to Rect
-          final Rect r = Rect.fromLTWH(rect.left, rect.top, rect.width, rect.height);
-
           final PdfTextMarkupAnnotation annotation = PdfTextMarkupAnnotation(
-            r,
-            "User highlight",
+            rect,
+            "User $type",
             PdfColor(255, 255, 0),
           );
-          // set appearance / color
-          annotation.color = (markType == PdfTextMarkupAnnotationType.highlight) ? PdfColor(255, 255, 0) : PdfColor(255, 0, 0);
+          annotation.textMarkupAnnotationType = markType;
+          annotation.color = markType == PdfTextMarkupAnnotationType.highlight ? PdfColor(255, 255, 0) : PdfColor(255, 0, 0);
           annotation.setAppearance = true;
           page.annotations.add(annotation);
         }
       }
 
-      // Save modified document to bytes
-      final List<int> saved = await document.save();
+      final Uint8List newBytes = Uint8List.fromList(await document.save());
       document.dispose();
 
-      final Uint8List newBytes = Uint8List.fromList(saved);
-      // update our active bytes
-      _documentBytes = newBytes;
-
-      // Optionally save to file
       final String? savedPath = await _saveBytesToAppDoc(newBytes, suggestedName: _fileName);
-      if (savedPath != null) {
-        UNavigator.snackbar(message: "Annotation added and saved: $savedPath");
-      } else {
-        UNavigator.snackbar(message: "Annotation added.");
-      }
-
-      // Reload viewer from new bytes so annotations are visible.
       setState(() {
-        // we simply force a rebuild and rely on PdfViewerSource.memory to render updated bytes
+        widget.source._replaceWithMemory(newBytes);
+        _documentBytes = newBytes;
+        _prepareSource();
       });
-      // Replace viewer source with memory bytes (so toSfPdfViewer reads memory)
-      widget.source._replaceWithMemory(_documentBytes!); // helper (below)
+
+      UNavigator.snackbar(message: savedPath != null ? "Annotation added and saved: $savedPath" : "Annotation added.");
     } catch (e) {
       UNavigator.snackbar(message: "Failed to add annotation: $e");
     }
   }
 
-  /// Add a sticky-note comment at (approx) the selection location.
   Future<void> _addComment(String text) async {
     if (_documentBytes == null) {
       UNavigator.snackbar(message: "Document bytes not available for comment.");
@@ -311,29 +341,28 @@ class _UPdfViewerState extends State<UPdfViewer> {
       }
 
       final PdfPage page = document.pages[pageIndex];
-
-      // map global selection region to PDF page coordinates — approximate by placing near top-left of selected region.
-      // Note: precise coordinate mapping between viewer pixels and PDF points can be tricky — this heuristic places comment on page reasonably.
       double x = 50;
       double y = 50;
       if (_globalSelectedRegion != null) {
-        // use selection's left/top as a hint (NOTE: this is screen coords; mapping to PDF points may require scale/offset)
         x = _globalSelectedRegion!.left;
         y = _globalSelectedRegion!.top;
       }
 
       final Rect bounds = Rect.fromLTWH(x, y, 20, 20);
       final PdfPopupAnnotation popup = PdfPopupAnnotation(bounds, "Comment")..text = text;
-      // Add popup to page
       page.annotations.add(popup);
 
-      final List<int> saved = await document.save();
+      final Uint8List newBytes = Uint8List.fromList(await document.save());
       document.dispose();
-      _documentBytes = Uint8List.fromList(saved);
-      await _saveBytesToAppDoc(_documentBytes!, suggestedName: _fileName);
-      widget.source._replaceWithMemory(_documentBytes!);
 
-      UNavigator.snackbar(message: "Comment added.");
+      final String? savedPath = await _saveBytesToAppDoc(newBytes, suggestedName: _fileName);
+      setState(() {
+        widget.source._replaceWithMemory(newBytes);
+        _documentBytes = newBytes;
+        _prepareSource();
+      });
+
+      UNavigator.snackbar(message: savedPath != null ? "Comment added and saved: $savedPath" : "Comment added.");
     } catch (e) {
       UNavigator.snackbar(message: "Failed to add comment: $e");
     }
@@ -355,7 +384,7 @@ class _UPdfViewerState extends State<UPdfViewer> {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                      "${_fileName ?? "Unknown"}  |  $sizeKB  |  صفحات: $_totalPages",
+                      '${_fileName ?? 'Unknown'}  |  $sizeKB  |  صفحات: $_totalPages',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
@@ -363,6 +392,11 @@ class _UPdfViewerState extends State<UPdfViewer> {
                     IconButton(
                       icon: const Icon(Icons.download),
                       onPressed: _downloadOffline,
+                    ),
+                  if (widget.watermarkText != null)
+                    IconButton(
+                      icon: const Icon(Icons.water_drop),
+                      onPressed: _addWatermark,
                     ),
                 ],
               ),
@@ -379,88 +413,39 @@ class _UPdfViewerState extends State<UPdfViewer> {
                 else if (_hasError)
                   Center(child: Text(_errorMessage ?? "Failed to load PDF", style: const TextStyle(color: Colors.red)))
                 else
-                  // Render viewer from memory bytes if available (so annotations show), otherwise use original source
-                  (_documentBytes != null)
-                      ? SfPdfViewer.memory(
-                          _documentBytes!,
-                          controller: _controller,
-                          initialPageNumber: widget.initialPageNumber,
-                          initialZoomLevel: widget.initialZoomLevel,
-                          maxZoomLevel: widget.maxZoomLevel,
-                          scrollDirection: widget.scrollDirection,
-                          enableDocumentLinkAnnotation: widget.enableAnnotations,
-                          enableTextSelection: widget.enableTextSelection,
-                          onPageChanged: (PdfPageChangedDetails details) {
-                            widget.onPageChanged?.call(details);
-                            // update page number for selection mapping
-                            setState(() {
-                              _selectedPageNumber = _controller.pageNumber;
-                            });
-                          },
-                          onDocumentLoaded: (PdfDocumentLoadedDetails details) {
-                            if (widget.showLoading) setState(() => _isLoading = false);
-                            setState(() {
-                              _totalPages = details.document.pages.count;
-                            });
-                            widget.onDocumentLoaded?.call(details);
-                          },
-                          onDocumentLoadFailed: (PdfDocumentLoadFailedDetails details) {
-                            if (widget.showLoading) setState(() => _isLoading = false);
-                            setState(() {
-                              _hasError = true;
-                              _errorMessage = details.description;
-                            });
-                            widget.onError?.call(details);
-                            widget.onDocumentLoadFailed?.call(details);
-                          },
-                          onTextSelectionChanged: _onTextSelectionChanged,
-                        )
-                      : widget.source.toSfPdfViewer(
-                          controller: _controller,
-                          initialPageNumber: widget.initialPageNumber,
-                          initialZoomLevel: widget.initialZoomLevel,
-                          maxZoomLevel: widget.maxZoomLevel,
-                          scrollDirection: widget.scrollDirection,
-                          enableAnnotation: widget.enableAnnotations,
-                          enableTextSelection: widget.enableTextSelection,
-                          onPageChanged: (PdfPageChangedDetails details) {
-                            widget.onPageChanged?.call(details);
-                            setState(() {
-                              _selectedPageNumber = _controller.pageNumber;
-                            });
-                          },
-                          onDocumentLoaded: (PdfDocumentLoadedDetails details) {
-                            if (widget.showLoading) setState(() => _isLoading = false);
-                            setState(() {
-                              _totalPages = details.document.pages.count;
-                            });
-                            widget.onDocumentLoaded?.call(details);
-                            // try to fetch bytes from loaded document if available (the viewer does not give bytes).
-                          },
-                          onDocumentLoadFailed: (PdfDocumentLoadFailedDetails details) {
-                            if (widget.showLoading) setState(() => _isLoading = false);
-                            setState(() {
-                              _hasError = true;
-                              _errorMessage = details.description;
-                            });
-                            widget.onError?.call(details);
-                            widget.onDocumentLoadFailed?.call(details);
-                          },
-                          // show selection change only if using the viewer constructor
-                        ),
-                if (widget.watermarkText != null)
-                  IgnorePointer(
-                    child: Center(
-                      child: Text(
-                        widget.watermarkText!,
-                        style: TextStyle(fontSize: 48, color: Colors.black.withValues(alpha: 0.08), fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                  widget.source.toSfPdfViewer(
+                    controller: _controller,
+                    initialPageNumber: widget.initialPageNumber,
+                    initialZoomLevel: widget.initialZoomLevel,
+                    maxZoomLevel: widget.maxZoomLevel,
+                    scrollDirection: widget.scrollDirection,
+                    enableAnnotation: widget.enableAnnotations,
+                    enableTextSelection: widget.enableTextSelection,
+                    onPageChanged: (PdfPageChangedDetails details) {
+                      widget.onPageChanged?.call(details);
+                      setState(() {
+                        _selectedPageNumber = _controller.pageNumber;
+                      });
+                    },
+                    onDocumentLoaded: (PdfDocumentLoadedDetails details) {
+                      if (widget.showLoading) setState(() => _isLoading = false);
+                      setState(() {
+                        _totalPages = details.document.pages.count;
+                      });
+                      widget.onDocumentLoaded?.call(details);
+                    },
+                    onDocumentLoadFailed: (PdfDocumentLoadFailedDetails details) {
+                      if (widget.showLoading) setState(() => _isLoading = false);
+                      setState(() {
+                        _hasError = true;
+                        _errorMessage = details.description;
+                      });
+                      widget.onError?.call(details);
+                      widget.onDocumentLoadFailed?.call(details);
+                    },
+                    onTextSelectionChanged: _onTextSelectionChanged,
                   ),
                 if (widget.showLoading && _isLoading && !_hasError) widget.loadingIndicator ?? const Center(child: CircularProgressIndicator()),
-
-                // Selection toolbar overlay
                 if (_showSelectionToolbar && _toolbarPosition != null)
                   Positioned(
                     left: (_toolbarPosition!.dx - 80).clamp(8.0, MediaQuery.of(context).size.width - 160.0),
@@ -544,9 +529,14 @@ class _UPdfViewerState extends State<UPdfViewer> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
 
-/// Helper class to unify PDF source types (file, network, asset, memory)
 class PdfViewerSource {
   String? url;
   final String? assetPath;
@@ -573,7 +563,6 @@ class PdfViewerSource {
         assetPath = null,
         bytes = null;
 
-  // Convert this source to a SfPdfViewer widget (original)
   Widget toSfPdfViewer({
     required PdfViewerController controller,
     int initialPageNumber = 1,
@@ -585,6 +574,7 @@ class PdfViewerSource {
     void Function(PdfPageChangedDetails)? onPageChanged,
     void Function(PdfDocumentLoadedDetails)? onDocumentLoaded,
     void Function(PdfDocumentLoadFailedDetails)? onDocumentLoadFailed,
+    void Function(PdfTextSelectionChangedDetails)? onTextSelectionChanged,
   }) {
     if (url != null) {
       return SfPdfViewer.network(
@@ -593,15 +583,12 @@ class PdfViewerSource {
         initialPageNumber: initialPageNumber,
         initialZoomLevel: initialZoomLevel,
         maxZoomLevel: maxZoomLevel,
-        scrollDirection: scrollDirection,
         enableDocumentLinkAnnotation: enableAnnotation,
         enableTextSelection: enableTextSelection,
         onPageChanged: onPageChanged,
         onDocumentLoaded: onDocumentLoaded,
         onDocumentLoadFailed: onDocumentLoadFailed,
-        onTextSelectionChanged: (PdfTextSelectionChangedDetails details) {
-          // If using toSfPdfViewer directly, the parent widget may want to hook selection.
-        },
+        onTextSelectionChanged: onTextSelectionChanged,
       );
     } else if (assetPath != null) {
       return SfPdfViewer.asset(
@@ -610,12 +597,12 @@ class PdfViewerSource {
         initialPageNumber: initialPageNumber,
         initialZoomLevel: initialZoomLevel,
         maxZoomLevel: maxZoomLevel,
-        scrollDirection: scrollDirection,
         enableDocumentLinkAnnotation: enableAnnotation,
         enableTextSelection: enableTextSelection,
         onPageChanged: onPageChanged,
         onDocumentLoaded: onDocumentLoaded,
         onDocumentLoadFailed: onDocumentLoadFailed,
+        onTextSelectionChanged: onTextSelectionChanged,
       );
     } else if (bytes != null) {
       return SfPdfViewer.memory(
@@ -624,15 +611,12 @@ class PdfViewerSource {
         initialPageNumber: initialPageNumber,
         initialZoomLevel: initialZoomLevel,
         maxZoomLevel: maxZoomLevel,
-        scrollDirection: scrollDirection,
         enableDocumentLinkAnnotation: enableAnnotation,
         enableTextSelection: enableTextSelection,
         onPageChanged: onPageChanged,
         onDocumentLoaded: onDocumentLoaded,
         onDocumentLoadFailed: onDocumentLoadFailed,
-        onTextSelectionChanged: (PdfTextSelectionChangedDetails details) {
-          // can't forward easily here; consumer widget will attach
-        },
+        onTextSelectionChanged: onTextSelectionChanged,
       );
     } else if (file != null) {
       return SfPdfViewer.file(
@@ -641,24 +625,25 @@ class PdfViewerSource {
         initialPageNumber: initialPageNumber,
         initialZoomLevel: initialZoomLevel,
         maxZoomLevel: maxZoomLevel,
-        scrollDirection: scrollDirection,
         enableDocumentLinkAnnotation: enableAnnotation,
         enableTextSelection: enableTextSelection,
         onPageChanged: onPageChanged,
         onDocumentLoaded: onDocumentLoaded,
         onDocumentLoadFailed: onDocumentLoadFailed,
+        onTextSelectionChanged: onTextSelectionChanged,
       );
     }
     throw ArgumentError("Invalid PDF source: At least one source type must be provided.");
   }
 
-  // internal helper used by the viewer to swap the source to memory bytes after edits
   void _replaceWithMemory(Uint8List newBytes) {
     bytes = newBytes;
     url = null;
     // assetPath and file remain null
   }
 }
+
+enum PdfScrollDirection { vertical, horizontal }
 
 class PdfExamplePage extends StatefulWidget {
   const PdfExamplePage({super.key});
@@ -696,13 +681,10 @@ class _PdfExamplePageState extends State<PdfExamplePage> {
           ],
         ),
         body: UPdfViewer(
-          source: PdfViewerSource.asset("assets/sample.pdf"),
-          // load from asset
+          source: PdfViewerSource.network("https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf"),
           controller: _pdfController,
           watermarkText: "CONFIDENTIAL",
           enableOfflineDownload: true,
-
-          // --- event hooks (optional) ---
           onPageChanged: (PdfPageChangedDetails details) {
             debugPrint("Page changed: ${details.newPageNumber}");
           },
@@ -712,8 +694,6 @@ class _PdfExamplePageState extends State<PdfExamplePage> {
           onDocumentLoadFailed: (PdfDocumentLoadFailedDetails details) {
             debugPrint("Load failed: ${details.description}");
           },
-
-          // optional search bar
           searchBar: Padding(
             padding: const EdgeInsets.all(8),
             child: TextField(
