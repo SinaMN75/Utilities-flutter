@@ -583,6 +583,7 @@ class PdfViewerSource {
         initialPageNumber: initialPageNumber,
         initialZoomLevel: initialZoomLevel,
         maxZoomLevel: maxZoomLevel,
+        scrollDirection: scrollDirection,
         enableDocumentLinkAnnotation: enableAnnotation,
         enableTextSelection: enableTextSelection,
         onPageChanged: onPageChanged,
@@ -597,6 +598,7 @@ class PdfViewerSource {
         initialPageNumber: initialPageNumber,
         initialZoomLevel: initialZoomLevel,
         maxZoomLevel: maxZoomLevel,
+        scrollDirection: scrollDirection,
         enableDocumentLinkAnnotation: enableAnnotation,
         enableTextSelection: enableTextSelection,
         onPageChanged: onPageChanged,
@@ -611,6 +613,7 @@ class PdfViewerSource {
         initialPageNumber: initialPageNumber,
         initialZoomLevel: initialZoomLevel,
         maxZoomLevel: maxZoomLevel,
+        scrollDirection: scrollDirection,
         enableDocumentLinkAnnotation: enableAnnotation,
         enableTextSelection: enableTextSelection,
         onPageChanged: onPageChanged,
@@ -625,6 +628,7 @@ class PdfViewerSource {
         initialPageNumber: initialPageNumber,
         initialZoomLevel: initialZoomLevel,
         maxZoomLevel: maxZoomLevel,
+        scrollDirection: scrollDirection,
         enableDocumentLinkAnnotation: enableAnnotation,
         enableTextSelection: enableTextSelection,
         onPageChanged: onPageChanged,
@@ -642,8 +646,6 @@ class PdfViewerSource {
     // assetPath and file remain null
   }
 }
-
-enum PdfScrollDirection { vertical, horizontal }
 
 class PdfExamplePage extends StatefulWidget {
   const PdfExamplePage({super.key});
