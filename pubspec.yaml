@@ -43,6 +43,7 @@ dependencies:
   syncfusion_flutter_charts: ^30.2.7
   syncfusion_flutter_barcodes: ^30.2.7
   syncfusion_flutter_pdfviewer: ^30.2.7
+  syncfusion_flutter_pdf: ^30.2.7
   syncfusion_flutter_signaturepad: ^30.2.7
   syncfusion_flutter_gauges: ^30.2.7
   syncfusion_flutter_chat: ^30.2.7

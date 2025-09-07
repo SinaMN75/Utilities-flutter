@@ -18,7 +18,6 @@ analyzer:
     avoid_returning_null: error
     avoid_returning_null_for_future: error
     avoid_returning_this: error
-    avoid_slow_async_io: error
     avoid_unnecessary_containers: error
     avoid_unused_constructor_parameters: error
     avoid_void_async: error
@@ -76,7 +75,6 @@ linter:
     avoid_returning_null: true
     avoid_returning_null_for_future: true
     avoid_returning_this: true
-    avoid_slow_async_io: true
     avoid_unnecessary_containers: true
     avoid_unused_constructor_parameters: true
     avoid_void_async: true

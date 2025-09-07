@@ -261,7 +261,9 @@ class PersianTools {
       isAccountNumberAvailable: true,
       process: (String s) {
         s = s.substring(7);
-        while (s.startsWith("0")) s = s.substring(1);
+        while (s.startsWith("0")) {
+          s = s.substring(1);
+        }
         return AccountNumberModel(accountNumber: s, formattedAccountNumber: s);
       },
     ),
@@ -272,7 +274,9 @@ class PersianTools {
       isAccountNumberAvailable: true,
       process: (String s) {
         s = s.substring(7);
-        while (s.startsWith("0")) s = s.substring(1);
+        while (s.startsWith("0")) {
+          s = s.substring(1);
+        }
         s = s.substring(0, s.length - 1);
         return AccountNumberModel(
           accountNumber: s,

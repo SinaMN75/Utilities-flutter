@@ -1,4 +1,4 @@
-import "package:u/components/cachedImage.dart";
+import "package:u/components/cached_image.dart";
 import "package:u/utilities.dart";
 
 class UImage extends StatelessWidget {
