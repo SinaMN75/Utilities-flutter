@@ -354,7 +354,7 @@ abstract class UNavigator {
     _currentOverlay = null;
   }
 
-  Future<Color?> colorPicker({
+  static Future<Color?> colorPicker({
     required final List<Color> colors,
     required Color defaultColor,
     final String title = "Select a Color",
