@@ -354,6 +354,36 @@ abstract class UNavigator {
     _currentOverlay = null;
   }
 
+  Future<Color?> showColorPickerDialog({
+    required final List<Color> colors,
+    required Color defaultColor,
+    final String title = "Select a Color",
+    final String cancelTitle = "Cancel",
+  }) async =>
+      UNavigator.dialog<Color>(
+        AlertDialog(
+          title: Text(title),
+          content: Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: colors
+                .map(
+                  (Color color) => UContainer(
+                    width: 40,
+                    height: 40,
+                    color: color,
+                    borderRadius: BorderRadius.circular(100),
+                    border: color == defaultColor ? Border.all(width: 3) : null,
+                  ).onTap(() => UNavigator.back(color)),
+                )
+                .toList(),
+          ),
+          actions: <Widget>[
+            TextButton(onPressed: UNavigator.back, child: Text(cancelTitle)),
+          ],
+        ),
+      );
+
   static Widget Function(BuildContext, Animation<double>, Animation<double>, Widget) _getTransition(RouteTransitions transition) {
     switch (transition) {
       case RouteTransitions.fade:
