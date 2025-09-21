@@ -355,8 +355,8 @@ abstract class UNavigator {
   }
 
   static Future<Color?> colorPicker({
-    required final List<Color> colors,
     required Color defaultColor,
+    final List<Color>? colors,
     final String title = "Select a Color",
     final String cancelTitle = "Cancel",
   }) async =>
@@ -366,7 +366,7 @@ abstract class UNavigator {
           content: Wrap(
             spacing: 10,
             runSpacing: 10,
-            children: colors
+            children: (colors ?? <Color>[Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange, Colors.purple, Colors.pink, Colors.brown])
                 .map(
                   (Color color) => UContainer(
                     width: 40,
