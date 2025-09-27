@@ -113,7 +113,6 @@ abstract class UFile {
     final WebUiSettings? webUiSettings,
     final IOSUiSettings? iOSUiSettings,
     final Color? activeControlsWidgetColor,
-    final Color? statusBarColor,
     final Color? toolbarColor,
     final Color? toolbarWidgetColor,
     final List<CropAspectRatioPreset> aspectRatioPresets = const <CropAspectRatioPreset>[
@@ -141,7 +140,6 @@ abstract class UFile {
               lockAspectRatio: true,
               initAspectRatio: CropAspectRatioPreset.square,
               activeControlsWidgetColor: activeControlsWidgetColor ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
-              statusBarColor: statusBarColor ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
               toolbarColor: toolbarColor ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
               toolbarWidgetColor: toolbarWidgetColor ?? Theme.of(navigatorKey.currentContext!).cardColor,
             ),

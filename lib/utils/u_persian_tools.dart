@@ -350,7 +350,7 @@ class PersianTools {
   };
 
 // Phone number constants
-  static final RegExp _mobileRegex = RegExp(r"^(?:[+|0{2}]?98)?(?:0)?(\d{3})+(\d{3})+(\d{4})$");
+  static final RegExp _mobileRegex = RegExp(r"^(?:[+|0{2}]?98)?0?(\d{3})+(\d{3})+(\d{4})$");
   static final Map<String, OperatorDetail> _operators = <String, OperatorDetail>{
     "910": const OperatorDetail(base: "کشوری", operator: Operator.MCI),
     "914": const OperatorDetail(
