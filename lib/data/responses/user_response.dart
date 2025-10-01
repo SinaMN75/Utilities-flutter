@@ -112,7 +112,7 @@ class UUserJson {
   factory UUserJson.fromMap(Map<String, dynamic> json) => UUserJson(
         fcmToken: json["fcmToken"],
         health1: json["health1"] == null ? <String>[] : List<String>.from(json["health1"].map((dynamic x) => x)),
-        health2: json["health1"] == null ? <String>[] : List<String>.from(json["health1"].map((dynamic x) => x)),
+        health2: json["health2"] == null ? <String>[] : List<String>.from(json["health2"].map((dynamic x) => x)),
         foodAllergies: json["foodAllergies"] == null ? <String>[] : List<String>.from(json["foodAllergies"].map((dynamic x) => x)),
         drugAllergies: json["drugAllergies"] == null ? <String>[] : List<String>.from(json["drugAllergies"].map((dynamic x) => x)),
         sickness: json["sickness"] == null ? <String>[] : List<String>.from(json["sickness"].map((dynamic x) => x)),
