@@ -95,6 +95,7 @@ class UUserJson {
   UUserJson({
     this.fcmToken,
     this.health1,
+    this.health2,
     this.foodAllergies,
     this.drugAllergies,
     this.sickness,
@@ -111,6 +112,7 @@ class UUserJson {
   factory UUserJson.fromMap(Map<String, dynamic> json) => UUserJson(
         fcmToken: json["fcmToken"],
         health1: json["health1"] == null ? <String>[] : List<String>.from(json["health1"].map((dynamic x) => x)),
+        health2: json["health1"] == null ? <String>[] : List<String>.from(json["health1"].map((dynamic x) => x)),
         foodAllergies: json["foodAllergies"] == null ? <String>[] : List<String>.from(json["foodAllergies"].map((dynamic x) => x)),
         drugAllergies: json["drugAllergies"] == null ? <String>[] : List<String>.from(json["drugAllergies"].map((dynamic x) => x)),
         sickness: json["sickness"] == null ? <String>[] : List<String>.from(json["sickness"].map((dynamic x) => x)),
@@ -123,6 +125,7 @@ class UUserJson {
       );
   final String? fcmToken;
   final List<String>? health1;
+  final List<String>? health2;
   final List<String>? foodAllergies;
   final List<String>? drugAllergies;
   final List<String>? sickness;
@@ -138,6 +141,7 @@ class UUserJson {
   Map<String, dynamic> toMap() => <String, dynamic>{
         "fcmToken": fcmToken,
         "health1": health1 == null ? null : List<dynamic>.from(health1!.map((String x) => x)),
+        "health2": health2 == null ? null : List<dynamic>.from(health2!.map((String x) => x)),
         "foodAllergies": foodAllergies == null ? null : List<dynamic>.from(foodAllergies!.map((String x) => x)),
         "drugAllergies": drugAllergies == null ? null : List<dynamic>.from(drugAllergies!.map((String x) => x)),
         "sickness": sickness == null ? null : List<dynamic>.from(sickness!.map((String x) => x)),

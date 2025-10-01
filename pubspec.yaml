@@ -21,13 +21,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  # flutter.dev
   webview_flutter: ^4.13.0
   local_auth: ^2.3.0
   flutter_svg: ^2.2.0
   image_picker: ^1.2.0
-
-  # fluttercommunity.dev
   chewie: ^1.12.1
   share_plus: ^11.1.0
   connectivity_plus: ^6.1.5

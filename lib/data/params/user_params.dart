@@ -39,6 +39,7 @@ class UUserCreateParams {
     this.fatherName,
     this.fcmToken,
     this.health1,
+    this.health2,
     this.foodAllergies,
     this.drugAllergies,
     this.sickness,
@@ -65,6 +66,7 @@ class UUserCreateParams {
         fatherName: json["fatherName"],
         fcmToken: json["fcmToken"],
         health1: json["health1"] == null ? null : List<String>.from(json["health1"].map((dynamic x) => x)),
+        health2: json["health1"] == null ? <String>[] : List<String>.from(json["health1"].map((dynamic x) => x)),
         foodAllergies: json["foodAllergies"] == null ? null : List<String>.from(json["foodAllergies"].map((dynamic x) => x)),
         drugAllergies: json["drugAllergies"] == null ? <String>[] : List<String>.from(json["drugAllergies"].map((dynamic x) => x)),
         sickness: json["sickness"] == null ? null : List<String>.from(json["sickness"].map((dynamic x) => x)),
@@ -88,6 +90,7 @@ class UUserCreateParams {
   final String? fatherName;
   final String? fcmToken;
   final List<String>? health1;
+  final List<String>? health2;
   final List<String>? foodAllergies;
   final List<String>? drugAllergies;
   final List<String>? sickness;
@@ -114,6 +117,7 @@ class UUserCreateParams {
         "fatherName": fatherName,
         "fcmToken": fcmToken,
         "health1": health1 == null ? null : List<dynamic>.from(health1!.map((dynamic x) => x)),
+        "health2": health2 == null ? null : List<dynamic>.from(health2!.map((String x) => x)),
         "foodAllergies": foodAllergies == null ? null : List<dynamic>.from(foodAllergies!.map((dynamic x) => x)),
         "drugAllergies": drugAllergies == null ? null : List<dynamic>.from(drugAllergies!.map((dynamic x) => x)),
         "sickness": sickness == null ? null : List<dynamic>.from(sickness!.map((dynamic x) => x)),
