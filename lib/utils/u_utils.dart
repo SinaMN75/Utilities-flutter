@@ -1,6 +1,6 @@
 import "package:u/utilities.dart";
 
-class UUUID {
+abstract class UUUID {
   static const Uuid _uuid = Uuid();
 
   static String uuidV1() => _uuid.v1();
@@ -16,7 +16,7 @@ class UUUID {
   static String uuidV8() => _uuid.v8();
 }
 
-class UValidators {
+abstract class UValidators {
   static void validateForm({required final GlobalKey<FormState> key, required final VoidCallback action}) {
     if (key.currentState!.validate()) action();
   }
