@@ -65,7 +65,7 @@ class ULoading {
   }
 
   /// Hide loading overlay
-  static void hide() {
+  static void dismiss() {
     if (!_isShowing) return;
     _overlayEntry?.remove();
     _overlayEntry = null;
@@ -130,7 +130,7 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
             if (ULoading._dismissible)
               Positioned.fill(
                 child: GestureDetector(
-                  onTap: () => ULoading.hide(),
+                  onTap: () => ULoading.dismiss(),
                   behavior: HitTestBehavior.opaque,
                   child: Container(color: Colors.transparent),
                 ),
