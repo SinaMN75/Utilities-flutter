@@ -2,11 +2,13 @@ import "dart:developer" as developer;
 
 import "package:u/utilities.dart";
 
+enum UHttpRequestType { json, formData }
+
 class UHttpClient {
   UHttpClient({
     this.baseUrl,
     this.timeout = const Duration(seconds: 30),
-    this.defaultHeaders = const <String, String>{"Accept": "application/json"},
+    this.defaultHeaders = const <String, String>{},
   });
 
   final String? baseUrl;
@@ -23,6 +25,7 @@ class UHttpClient {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
+    final UHttpRequestType type = UHttpRequestType.json,
   }) async {
     final Uri uri = _buildUri(endpoint, queryParams);
     final Map<String, String> mergedHeaders = <String, String>{...defaultHeaders, ...?headers};
@@ -30,10 +33,14 @@ class UHttpClient {
     request.headers.addAll(mergedHeaders);
 
     if (body != null) {
-      if (body is Map) {
-        request.body = jsonEncode(removeNullEntries(body));
-        request.headers["Content-Type"] = "application/json";
-        request.headers["Locale"] = UApp.locale();
+      if (body is Map<String, String>) {
+        if (type == UHttpRequestType.json) {
+          request.body = jsonEncode(removeNullEntries(body));
+          request.headers["Content-Type"] = "application/json";
+        } else {
+          request.bodyFields = body;
+          request.headers["Content-Type"] = "application/x-www-form-urlencoded";
+        }
       } else if (body is String) {
         request.body = body;
       } else if (body is List<int>) {
@@ -147,6 +154,7 @@ class UHttpClient {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
+    final UHttpRequestType type = UHttpRequestType.json,
   }) async =>
       _request(
         method: "POST",
@@ -157,6 +165,7 @@ class UHttpClient {
         onSuccess: (Response r) => onSuccess(r.body),
         onError: (Response r) => onError(r.body),
         onException: onException,
+        type: type,
       );
 
   Future<Response?> put(
@@ -167,17 +176,9 @@ class UHttpClient {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
+    final UHttpRequestType type = UHttpRequestType.json,
   }) async =>
-      _request(
-        method: "PUT",
-        endpoint: endpoint,
-        headers: headers,
-        queryParams: queryParams,
-        body: body,
-        onSuccess: onSuccess,
-        onError: onError,
-        onException: onException,
-      );
+      _request(method: "PUT", endpoint: endpoint, headers: headers, queryParams: queryParams, body: body, onSuccess: onSuccess, onError: onError, onException: onException, type: type);
 
   Future<Response?> delete(
     final String endpoint, {
