@@ -440,8 +440,8 @@ class USpacedRow extends StatelessWidget {
   }
 }
 
-class USpacedColumn extends StatelessWidget {
-  const USpacedColumn({
+class UColumn extends StatelessWidget {
+  const UColumn({
     required this.children,
     super.key,
     this.spacing = 8.0,
@@ -451,11 +451,15 @@ class USpacedColumn extends StatelessWidget {
     this.divider,
     this.wrap = false,
     this.runSpacing = 8.0,
+    this.width,
+    this.height,
     this.flexFactors,
   });
 
   final List<Widget> children;
   final double spacing;
+  final double? width;
+  final double? height;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
@@ -479,21 +483,99 @@ class USpacedColumn extends StatelessWidget {
     }
 
     if (wrap) {
-      return Wrap(
-        direction: Axis.vertical,
-        spacing: spacing,
-        runSpacing: runSpacing,
-        alignment: mainAxisAlignment == MainAxisAlignment.start ? WrapAlignment.start : WrapAlignment.center,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: spacedChildren,
+      return SizedBox(
+        width: width,
+        height: height,
+        child: Wrap(
+          direction: Axis.vertical,
+          spacing: spacing,
+          runSpacing: runSpacing,
+          alignment: mainAxisAlignment == MainAxisAlignment.start ? WrapAlignment.start : WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: spacedChildren,
+        ),
       );
     }
 
-    return Column(
-      mainAxisAlignment: mainAxisAlignment,
-      crossAxisAlignment: crossAxisAlignment,
-      mainAxisSize: mainAxisSize,
-      children: spacedChildren,
+    return SizedBox(
+      width: width,
+      height: height,
+      child: Column(
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
+        children: spacedChildren,
+      ),
+    );
+  }
+}
+
+class URow extends StatelessWidget {
+  const URow({
+    required this.children,
+    super.key,
+    this.spacing = 8.0,
+    this.mainAxisAlignment = MainAxisAlignment.start,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.mainAxisSize = MainAxisSize.max,
+    this.divider,
+    this.wrap = false,
+    this.runSpacing = 8.0,
+    this.width,
+    this.height,
+    this.flexFactors,
+  });
+
+  final List<Widget> children;
+  final double spacing;
+  final double? width;
+  final double? height;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
+  final MainAxisSize mainAxisSize;
+  final Widget? divider;
+  final bool wrap;
+  final double runSpacing;
+  final List<int>? flexFactors;
+
+  @override
+  Widget build(final BuildContext context) {
+    final List<Widget> spacedChildren = <Widget>[];
+    for (int i = 0; i < children.length; i++) {
+      Widget child = children[i];
+      if (flexFactors != null && i < flexFactors!.length && flexFactors![i] > 0) {
+        child = Expanded(flex: flexFactors![i], child: child);
+      }
+      spacedChildren.add(child);
+      if (i < children.length - 1) {
+        spacedChildren.add(divider ?? SizedBox(height: spacing));
+      }
+    }
+
+    if (wrap) {
+      return SizedBox(
+        width: width,
+        height: height,
+        child: Wrap(
+          direction: Axis.vertical,
+          spacing: spacing,
+          runSpacing: runSpacing,
+          alignment: mainAxisAlignment == MainAxisAlignment.start ? WrapAlignment.start : WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: spacedChildren,
+        ),
+      );
+    }
+
+    return SizedBox(
+      width: width,
+      height: height,
+      child: Row(
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
+        children: spacedChildren,
+      ),
     );
   }
 }
