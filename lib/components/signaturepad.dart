@@ -70,7 +70,7 @@ class SignaturePad extends StatelessWidget {
             ),
           ),
           SizedBox(height: spacing),
-          USpacedRow(
+          URow(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             spacing: spacing,
             children: <Widget>[

@@ -184,7 +184,7 @@ class UIconTextHorizontal extends StatelessWidget {
     this.backgroundColor,
     this.borderRadius,
     this.elevation = 0.0,
-    this.padding = const EdgeInsets.all(8),
+    this.padding = EdgeInsets.zero,
   });
 
   final Widget leading;
@@ -236,7 +236,7 @@ class UIconTextVertical extends StatelessWidget {
     this.backgroundColor,
     this.borderRadius,
     this.elevation = 0.0,
-    this.padding = const EdgeInsets.all(8),
+    this.padding = EdgeInsets.zero,
   });
 
   final Widget leading;
