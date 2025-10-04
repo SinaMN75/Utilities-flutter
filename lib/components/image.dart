@@ -62,6 +62,7 @@ class UImage extends StatelessWidget {
                   width: width,
                   height: height,
                   borderRadius: borderRadius,
+                  placeholder: placeholder,
                   color: color,
                   fit: fit,
                 );
@@ -88,6 +89,7 @@ class UImage extends StatelessWidget {
                   height: height,
                   fit: fit,
                   borderRadius: borderRadius,
+                  placeholder: placeholder,
                   color: color,
                 );
               }
