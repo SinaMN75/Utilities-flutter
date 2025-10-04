@@ -133,6 +133,7 @@ class UImageAsset extends StatelessWidget {
   const UImageAsset(
     this.path, {
     this.color,
+    this.placeholder,
     this.width,
     this.height,
     this.fit = BoxFit.contain,
@@ -142,6 +143,7 @@ class UImageAsset extends StatelessWidget {
   });
 
   final String path;
+  final String? placeholder;
   final Color? color;
   final double? width;
   final double? height;
@@ -156,6 +158,17 @@ class UImageAsset extends StatelessWidget {
           width: width,
           height: height,
           fit: fit,
+          placeholderBuilder: (BuildContext context) => placeholder == null
+              ? SizedBox(width: width, height: height)
+              : UImageAsset(
+                  placeholder!,
+                  color: color,
+                  width: width,
+                  height: height,
+                  fit: fit,
+                  clipBehavior: clipBehavior,
+                  borderRadius: borderRadius,
+                ),
         ).container(radius: borderRadius)
       : Image.asset(
           path,
@@ -163,6 +176,17 @@ class UImageAsset extends StatelessWidget {
           width: width,
           height: height,
           fit: fit,
+          errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => placeholder == null
+              ? SizedBox(width: width, height: height)
+              : UImageAsset(
+                  placeholder!,
+                  color: color,
+                  width: width,
+                  height: height,
+                  fit: fit,
+                  clipBehavior: clipBehavior,
+                  borderRadius: borderRadius,
+                ),
         ).container(radius: borderRadius);
 }
 
