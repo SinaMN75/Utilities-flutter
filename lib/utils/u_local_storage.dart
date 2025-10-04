@@ -13,6 +13,8 @@ abstract class ULocalStorage {
     if (value is List<String>) sp.setStringList(key, value);
   }
 
+  static void setToken(final String value) => sp.setString(UConstants.token, value);
+
   static int? getInt(final String key) => sp.getInt(key);
 
   static String? getString(final String key) => sp.getString(key);
