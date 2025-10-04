@@ -176,14 +176,10 @@ class UIconTextHorizontal extends StatelessWidget {
     required this.leading,
     required this.trailing,
     super.key,
-    this.subtitle,
     this.spaceBetween = 8.0,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.min,
-    this.iconColor,
-    this.textStyle,
-    this.subtitleStyle,
     this.onTap,
     this.backgroundColor,
     this.borderRadius,
@@ -193,14 +189,10 @@ class UIconTextHorizontal extends StatelessWidget {
 
   final Widget leading;
   final Widget trailing;
-  final Widget? subtitle;
   final double spaceBetween;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
-  final Color? iconColor;
-  final TextStyle? textStyle;
-  final TextStyle? subtitleStyle;
   final VoidCallback? onTap;
   final Color? backgroundColor;
   final BorderRadius? borderRadius;
@@ -213,26 +205,7 @@ class UIconTextHorizontal extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
-      children: <Widget>[
-        ColorFiltered(
-          colorFilter: iconColor != null ? ColorFilter.mode(iconColor!, BlendMode.srcIn) : const ColorFilter.mode(Colors.transparent, BlendMode.srcIn),
-          child: leading,
-        ),
-        SizedBox(width: spaceBetween),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              DefaultTextStyle(style: textStyle ?? Theme.of(context).textTheme.bodyMedium!, child: trailing),
-              if (subtitle != null) ...<Widget>[
-                const SizedBox(height: 4),
-                DefaultTextStyle(style: subtitleStyle ?? Theme.of(context).textTheme.bodySmall!, child: subtitle!),
-              ],
-            ],
-          ),
-        ),
-      ],
+      children: <Widget>[leading, SizedBox(width: spaceBetween), trailing],
     );
 
     content = Padding(padding: padding, child: content);
@@ -255,14 +228,10 @@ class UIconTextVertical extends StatelessWidget {
     required this.leading,
     required this.trailing,
     super.key,
-    this.subtitle,
     this.spaceBetween = 8.0,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.min,
-    this.iconColor,
-    this.textStyle,
-    this.subtitleStyle,
     this.onTap,
     this.backgroundColor,
     this.borderRadius,
@@ -272,14 +241,10 @@ class UIconTextVertical extends StatelessWidget {
 
   final Widget leading;
   final Widget trailing;
-  final Widget? subtitle;
   final double spaceBetween;
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
-  final Color? iconColor;
-  final TextStyle? textStyle;
-  final TextStyle? subtitleStyle;
   final VoidCallback? onTap;
   final Color? backgroundColor;
   final BorderRadius? borderRadius;
@@ -292,18 +257,7 @@ class UIconTextVertical extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
-      children: <Widget>[
-        ColorFiltered(
-          colorFilter: iconColor != null ? ColorFilter.mode(iconColor!, BlendMode.srcIn) : const ColorFilter.mode(Colors.transparent, BlendMode.srcIn),
-          child: leading,
-        ),
-        SizedBox(height: spaceBetween),
-        DefaultTextStyle(style: textStyle ?? Theme.of(context).textTheme.bodyMedium!, child: trailing),
-        if (subtitle != null) ...<Widget>[
-          const SizedBox(height: 4),
-          DefaultTextStyle(style: subtitleStyle ?? Theme.of(context).textTheme.bodySmall!, child: subtitle!),
-        ],
-      ],
+      children: <Widget>[leading, SizedBox(height: spaceBetween), trailing],
     );
 
     content = Padding(padding: padding, child: content);
@@ -380,64 +334,6 @@ class UContainer extends StatelessWidget {
         clipBehavior: clipBehavior,
         child: child,
       );
-}
-
-class USpacedRow extends StatelessWidget {
-  const USpacedRow({
-    required this.children,
-    super.key,
-    this.spacing = 8.0,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
-    this.mainAxisSize = MainAxisSize.max,
-    this.divider,
-    this.wrap = false,
-    this.runSpacing = 8.0,
-    this.flexFactors,
-  });
-
-  final List<Widget> children;
-  final double spacing;
-  final MainAxisAlignment mainAxisAlignment;
-  final CrossAxisAlignment crossAxisAlignment;
-  final MainAxisSize mainAxisSize;
-  final Widget? divider;
-  final bool wrap;
-  final double runSpacing;
-  final List<int>? flexFactors; // Optional flex for each child
-
-  @override
-  Widget build(final BuildContext context) {
-    final List<Widget> spacedChildren = <Widget>[];
-    for (int i = 0; i < children.length; i++) {
-      Widget child = children[i];
-      if (flexFactors != null && i < flexFactors!.length && flexFactors![i] > 0) {
-        child = Expanded(flex: flexFactors![i], child: child);
-      }
-      spacedChildren.add(child);
-      if (i < children.length - 1) {
-        spacedChildren.add(divider ?? SizedBox(width: spacing));
-      }
-    }
-
-    if (wrap) {
-      return Wrap(
-        spacing: spacing,
-        runSpacing: runSpacing,
-        alignment: mainAxisAlignment == MainAxisAlignment.start ? WrapAlignment.start : WrapAlignment.center,
-        // Simplified mapping
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: spacedChildren,
-      );
-    }
-
-    return Row(
-      mainAxisAlignment: mainAxisAlignment,
-      crossAxisAlignment: crossAxisAlignment,
-      mainAxisSize: mainAxisSize,
-      children: spacedChildren,
-    );
-  }
 }
 
 class UColumn extends StatelessWidget {
