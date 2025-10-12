@@ -28,6 +28,7 @@ dependencies:
   chewie: ^1.12.1
   share_plus: ^11.1.0
   connectivity_plus: ^6.1.5
+  device_info_plus: ^12.1.0
 
   get: ^4.7.2
   flutter_map: 8.1.1
@@ -40,8 +41,6 @@ dependencies:
   flutter_local_notifications: ^19.4.1
   syncfusion_flutter_charts: ^31.1.20
   syncfusion_flutter_barcodes: ^31.1.20
-  syncfusion_flutter_pdfviewer: ^31.1.20
-  syncfusion_flutter_pdf: ^31.1.20
   syncfusion_flutter_signaturepad: ^31.1.20
   syncfusion_flutter_gauges: ^31.1.20
   syncfusion_flutter_chat: ^31.1.20

@@ -39,8 +39,6 @@ export "package:syncfusion_flutter_barcodes/barcodes.dart";
 export "package:syncfusion_flutter_calendar/calendar.dart";
 export "package:syncfusion_flutter_charts/charts.dart" hide AnimationType, Position;
 export "package:syncfusion_flutter_chat/chat.dart";
-export "package:syncfusion_flutter_pdf/pdf.dart";
-export "package:syncfusion_flutter_pdfviewer/pdfviewer.dart";
 export "package:syncfusion_flutter_signaturepad/signaturepad.dart";
 export "package:u/utilities.dart";
 export "package:url_launcher/url_launcher.dart";
