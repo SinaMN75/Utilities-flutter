@@ -33,9 +33,7 @@ abstract class UHttpClient {
         final int? cachedTimestamp = ULocalStorage.getInt("${cacheKey}_timestamp");
 
         if (cachedData != null && cachedTimestamp != null) {
-          final int cacheAge = DateTime
-              .now()
-              .millisecondsSinceEpoch - cachedTimestamp;
+          final int cacheAge = DateTime.now().millisecondsSinceEpoch - cachedTimestamp;
           final bool cacheValid = cacheAge < (cacheDuration).inMilliseconds;
 
           if (cacheValid) {
@@ -81,9 +79,7 @@ abstract class UHttpClient {
       // Cache successful GET responses if useCache is enabled
       if (cacheDuration != null && response.statusCode >= 200 && response.statusCode < 300) {
         ULocalStorage.set(cacheKey, response.body);
-        ULocalStorage.set("${cacheKey}_timestamp", DateTime
-            .now()
-            .millisecondsSinceEpoch);
+        ULocalStorage.set("${cacheKey}_timestamp", DateTime.now().millisecondsSinceEpoch);
       }
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
@@ -147,7 +143,7 @@ abstract class UHttpClient {
     required final Function(File)? onFileDownloaded,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    final Function(double)? onProgress,
+    final Function(int)? onProgress, // changed to int
   }) async {
     try {
       final File file = File(savePath);
@@ -166,12 +162,18 @@ abstract class UHttpClient {
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final int? totalLength = response.contentLength;
         int receivedBytes = 0;
+        DateTime lastProgressTime = DateTime.now();
 
         final IOSink sink = file.openWrite();
         await response.stream.map((List<int> chunk) {
           receivedBytes += chunk.length;
           if (totalLength != null && totalLength > 0 && onProgress != null) {
-            onProgress((receivedBytes / totalLength * 100).clamp(0, 100));
+            final DateTime now = DateTime.now();
+            if (now.difference(lastProgressTime).inSeconds >= 2) {
+              final int progress = ((receivedBytes / totalLength * 100).clamp(0, 100)).toInt();
+              onProgress(progress);
+              lastProgressTime = now;
+            }
           }
           return chunk;
         }).pipe(sink);
@@ -196,7 +198,7 @@ abstract class UHttpClient {
     required final Function(List<int>)? onFileDownloaded,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    final Function(double)? onProgress,
+    final Function(int)? onProgress, // changed to int
   }) async {
     try {
       final List<int>? existingBytes = await UKeyValueDb.getBytes(key);
@@ -216,12 +218,18 @@ abstract class UHttpClient {
         final int? totalLength = response.contentLength;
         int receivedBytes = 0;
         final List<int> bytes = <int>[];
+        DateTime lastProgressTime = DateTime.now();
 
         await response.stream.forEach((List<int> chunk) {
           bytes.addAll(chunk);
           receivedBytes += chunk.length;
           if (totalLength != null && totalLength > 0 && onProgress != null) {
-            onProgress((receivedBytes / totalLength * 100).clamp(0, 100));
+            final DateTime now = DateTime.now();
+            if (now.difference(lastProgressTime).inSeconds >= 2) {
+              final int progress = ((receivedBytes / totalLength * 100).clamp(0, 100)).toInt();
+              onProgress(progress);
+              lastProgressTime = now;
+            }
           }
         });
 
@@ -243,7 +251,7 @@ abstract class UHttpClient {
     required final Function(dynamic)? onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-        final Duration? cacheDuration,
+    final Duration? cacheDuration,
   }) async =>
       _request(
         method: "GET",
@@ -265,7 +273,7 @@ abstract class UHttpClient {
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
-        final Duration? cacheDuration,
+    final Duration? cacheDuration,
   }) async =>
       _request(
         method: "POST",
