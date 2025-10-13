@@ -4,12 +4,10 @@ class MediaService {
   MediaService({
     required this.apiKey,
     required this.token,
-    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final UHttpClient httpClient;
 
   Future<void> create({
     required final UMediaCreateParams p,
@@ -25,7 +23,7 @@ class MediaService {
       ),
     ];
 
-    await httpClient.upload(
+    await UHttpClient.upload(
       endpoint: "/Media/Create",
       files: files,
       fields: p.toMap()..addAll(<String, dynamic>{"apiKey": apiKey, "token": token}),
@@ -50,7 +48,7 @@ class MediaService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/Media/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -75,7 +73,7 @@ class MediaService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/Media/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -98,7 +96,7 @@ class MediaService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/Media/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -119,7 +117,7 @@ class MediaService {
     required final Function(Response) onError,
     final Function(Exception)? onException,
   }) async {
-    await httpClient.download(
+    await UHttpClient.download(
       endpoint: "/Media/Download?filePath=$filePath",
       savePath: savePath,
       onSuccess: onSuccess,

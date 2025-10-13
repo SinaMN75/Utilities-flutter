@@ -4,12 +4,10 @@ class ContentService {
   ContentService({
     required this.apiKey,
     required this.token,
-    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final UHttpClient httpClient;
 
   void create({
     required final UContentCreateParams p,
@@ -17,7 +15,7 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/content/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UContentResponse>.fromJson(r, (final dynamic i) => UContentResponse.fromMap(i))),
@@ -33,7 +31,7 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/content/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -54,7 +52,7 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/content/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UContentResponse>.fromJson(r, (final dynamic i) => UContentResponse.fromMap(i))),
@@ -70,7 +68,7 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/content/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UContentResponse>.fromJson(r, (final dynamic i) => UContentResponse.fromMap(i))),
@@ -86,7 +84,7 @@ class ContentService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/content/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),

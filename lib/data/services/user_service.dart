@@ -4,12 +4,10 @@ class UserService {
   UserService({
     required this.apiKey,
     required this.token,
-    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final UHttpClient httpClient;
 
   void create({
     required final UUserCreateParams p,
@@ -17,7 +15,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/user/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
@@ -33,7 +31,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/user/BulkCreate",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -49,7 +47,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/User/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -72,7 +70,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    httpClient.post(
+    UHttpClient.post(
       "/user/ReadById",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
@@ -89,7 +87,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    httpClient.post(
+    UHttpClient.post(
       "/user/Update",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
@@ -106,7 +104,7 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    httpClient.post(
+    UHttpClient.post(
       "/user/Delete",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),

@@ -4,12 +4,10 @@ class CategoryService {
   CategoryService({
     required this.apiKey,
     required this.token,
-    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final UHttpClient httpClient;
 
   void create({
     required final UCategoryCreateParams p,
@@ -17,7 +15,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/category/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UCategoryResponse>.fromJson(r, (final dynamic i) => UCategoryResponse.fromMap(i))),
@@ -33,7 +31,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/category/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -54,7 +52,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/category/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UCategoryResponse>.fromJson(r, (final dynamic i) => UCategoryResponse.fromMap(i))),
@@ -70,7 +68,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/category/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UCategoryResponse>.fromJson(r, (final dynamic i) => UCategoryResponse.fromMap(i))),
@@ -86,7 +84,7 @@ class CategoryService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/category/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),

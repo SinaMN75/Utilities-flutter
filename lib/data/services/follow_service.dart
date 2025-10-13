@@ -4,12 +4,10 @@ class FollowService {
   FollowService({
     required this.apiKey,
     required this.token,
-    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final UHttpClient httpClient;
 
   void follow({
     required final UFollowParams p,
@@ -17,7 +15,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/Follow",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -33,7 +31,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/Unfollow",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
@@ -49,7 +47,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/ReadFollowers",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -70,7 +68,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/ReadFollowedUsers",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -91,7 +89,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/ReadFollowedProducts",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -112,7 +110,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/ReadFollowedCategories",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(
@@ -133,7 +131,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/ReadFollowerFollowingCount",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UFollowerFollowingCountResponse>.fromJson(r, (final dynamic i) => UFollowerFollowingCountResponse.fromMap(i))),
@@ -149,7 +147,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/IsFollowingUser",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<bool>.fromJson(r, (final dynamic i) => i)),
@@ -165,7 +163,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/isFollowingProduct",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<bool>.fromJson(r, (final dynamic i) => i)),
@@ -181,7 +179,7 @@ class FollowService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/follow/isFollowingCategory",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<bool>.fromJson(r, (final dynamic i) => i)),

@@ -4,12 +4,10 @@ class AuthService {
   AuthService({
     required this.apiKey,
     required this.token,
-    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final UHttpClient httpClient;
 
   void register({
     required final URegisterParams p,
@@ -17,7 +15,7 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) {
-    httpClient.post(
+    UHttpClient.post(
       "/auth/Register",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
@@ -34,7 +32,7 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/auth/LoginWithUserNamePassword",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
@@ -50,7 +48,7 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/auth/LoginWithEmailPassword",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
@@ -66,7 +64,7 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/auth/ReadUserByToken",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),

@@ -4,19 +4,10 @@ import "package:u/utilities.dart";
 
 enum URequestBodyType { json, formData }
 
-class UHttpClient {
-  UHttpClient({
-    this.baseUrl,
-    this.timeout = const Duration(seconds: 30),
-    this.defaultHeaders = const <String, String>{"Accept": "application/json"},
-  });
+abstract class UHttpClient {
+  static final Client _client = Client();
 
-  final String? baseUrl;
-  final Duration timeout;
-  final Map<String, String> defaultHeaders;
-  final Client _client = Client();
-
-  Future<Response?> _request({
+  static Future<Response?> _request({
     required final String method,
     required final String endpoint,
     required final Function(Response)? onSuccess,
@@ -29,9 +20,8 @@ class UHttpClient {
   }) async {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
-      final Map<String, String> mergedHeaders = <String, String>{...defaultHeaders, ...?headers};
       final Request request = Request(method, uri);
-      request.headers.addAll(mergedHeaders);
+      if (headers != null) request.headers.addAll(headers);
 
       if (body != null) {
         if (bodyType == URequestBodyType.json) {
@@ -58,7 +48,7 @@ class UHttpClient {
         }
       }
 
-      final Response response = await _client.send(request).timeout(timeout).then(Response.fromStream);
+      final Response response = await _client.send(request).timeout(const Duration(seconds: 30)).then(Response.fromStream);
       response.prettyLog(params: jsonEncode(body));
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
@@ -74,7 +64,7 @@ class UHttpClient {
     }
   }
 
-  Future<void> upload({
+  static Future<void> upload({
     required final String endpoint,
     required final List<MultipartFile> files,
     required final Function(Response)? onSuccess,
@@ -86,7 +76,7 @@ class UHttpClient {
   }) async {
     try {
       final MultipartRequest request = MultipartRequest("POST", _buildUri(endpoint, queryParams));
-      request.headers.addAll(<String, String>{...defaultHeaders, ...?headers});
+      request.headers.addAll(<String, String>{...?headers});
 
       if (fields != null) {
         request.fields.addAll(
@@ -101,7 +91,7 @@ class UHttpClient {
 
       request.files.addAll(files);
 
-      final Response response = await request.send().timeout(timeout).then(Response.fromStream);
+      final Response response = await request.send().timeout(const Duration(seconds: 30)).then(Response.fromStream);
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         onSuccess?.call(response);
@@ -113,7 +103,7 @@ class UHttpClient {
     }
   }
 
-  Future<void> download({
+  static Future<void> download({
     required final String endpoint,
     required final String savePath,
     required final Function(File)? onSuccess,
@@ -125,9 +115,9 @@ class UHttpClient {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
       final Request request = Request("GET", uri);
-      request.headers.addAll(<String, String>{...defaultHeaders, ...?headers});
+      request.headers.addAll(<String, String>{...?headers});
 
-      final StreamedResponse response = await _client.send(request).timeout(timeout);
+      final StreamedResponse response = await _client.send(request).timeout(const Duration(seconds: 30));
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final File file = File(savePath);
@@ -141,7 +131,8 @@ class UHttpClient {
     }
   }
 
-  Future<Response?> get(final String endpoint, {
+  static Future<Response?> get(
+    final String endpoint, {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -158,7 +149,8 @@ class UHttpClient {
         onException: onException,
       );
 
-  Future<Response?> post(final String endpoint, {
+  static Future<Response?> post(
+    final String endpoint, {
     required final Function(String) onSuccess,
     required final Function(String) onError,
     required final Function(dynamic) onException,
@@ -179,7 +171,8 @@ class UHttpClient {
         onException: onException,
       );
 
-  Future<Response?> put(final String endpoint, {
+  static Future<Response?> put(
+    final String endpoint, {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -200,7 +193,8 @@ class UHttpClient {
         onException: onException,
       );
 
-  Future<Response?> delete(final String endpoint, {
+  static Future<Response?> delete(
+    final String endpoint, {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
@@ -217,13 +211,13 @@ class UHttpClient {
         onException: onException,
       );
 
-  Uri _buildUri(final String endpoint, final Map<String, dynamic>? queryParams) {
-    final Uri uri = baseUrl != null ? Uri.parse("$baseUrl$endpoint") : Uri.parse(endpoint);
+  static Uri _buildUri(final String endpoint, final Map<String, dynamic>? queryParams) {
+    final Uri uri = Uri.parse(endpoint);
 
     if (queryParams != null) {
       return uri.replace(
         queryParameters: queryParams.map(
-              (final String key, final dynamic value) => MapEntry<String, String>(key, value?.toString() ?? ""),
+          (final String key, final dynamic value) => MapEntry<String, String>(key, value?.toString() ?? ""),
         ),
       );
     }
@@ -235,11 +229,12 @@ class UHttpClient {
 
   static List<dynamic> decodeJsonArray(final Response response) => jsonDecode(response.body) as List<dynamic>;
 
-  static Future<MultipartFile> multipartFileFromFile(final String fieldName,
-      final File file, {
-        String? filename,
-        final MediaType? contentType,
-      }) async {
+  static Future<MultipartFile> multipartFileFromFile(
+    final String fieldName,
+    final File file, {
+    String? filename,
+    final MediaType? contentType,
+  }) async {
     filename ??= file.path.split("/").last;
     final Stream<List<int>> stream = file.openRead();
     final int length = await file.length();

@@ -38,16 +38,15 @@ class UServices {
     required this.apiKey,
     required this.token,
   }) {
-    final UHttpClient httpClient = UHttpClient(baseUrl: baseUrl);
-    dashboard = DashboardService(httpClient: httpClient, apiKey: apiKey, token: apiKey);
-    auth = AuthService(httpClient: httpClient, apiKey: apiKey, token: token);
-    category = CategoryService(httpClient: httpClient, apiKey: apiKey, token: token);
-    exam = ExamService(httpClient: httpClient, apiKey: apiKey, token: token);
-    user = UserService(httpClient: httpClient, apiKey: apiKey, token: token);
-    product = ProductService(httpClient: httpClient, apiKey: apiKey, token: token);
-    content = ContentService(httpClient: httpClient, apiKey: apiKey, token: token);
-    comment = CommentService(httpClient: httpClient, apiKey: apiKey, token: token);
-    follow = FollowService(httpClient: httpClient, apiKey: apiKey, token: token);
+    dashboard = DashboardService(apiKey: apiKey, token: apiKey);
+    auth = AuthService(apiKey: apiKey, token: token);
+    category = CategoryService(apiKey: apiKey, token: token);
+    exam = ExamService(apiKey: apiKey, token: token);
+    user = UserService(apiKey: apiKey, token: token);
+    product = ProductService(apiKey: apiKey, token: token);
+    content = ContentService(apiKey: apiKey, token: token);
+    comment = CommentService(apiKey: apiKey, token: token);
+    follow = FollowService(apiKey: apiKey, token: token);
   }
 
   String baseUrl;

@@ -4,19 +4,17 @@ class DashboardService {
   DashboardService({
     required this.apiKey,
     required this.token,
-    required this.httpClient,
   });
 
   final String? token;
   final String apiKey;
-  final UHttpClient httpClient;
 
   void readSystemMetrics({
     required final Function(UMetricsResponse r) onOk,
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/dashboard/ReadSystemMetrics",
         onSuccess: (final String r) => onOk(UMetricsResponse.fromJson(r)),
         onError: (final String r) => onError(),
@@ -30,7 +28,7 @@ class DashboardService {
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/dashboard/Read",
         onSuccess: (final String r) => onOk(UDashboardResponse.fromJson(r)),
         onError: (final String r) => onError(),
@@ -44,7 +42,7 @@ class DashboardService {
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/api/logs/structure",
         onSuccess: (final String r) => onOk(LogStructureResponse.fromJson(r)),
         onError: (final String r) => onError(),
@@ -59,7 +57,7 @@ class DashboardService {
     required final VoidCallback onError,
     final Function(Exception)? onException,
   }) =>
-      httpClient.post(
+      UHttpClient.post(
         "/api/logs/content",
         body: <String, String>{"id": logId},
         onSuccess: (final String r) => onOk(json.decode(r).map((dynamic e) => LogContentResponse.fromMap(e)).toList()),
