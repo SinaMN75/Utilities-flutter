@@ -7,6 +7,11 @@ enum URequestBodyType { json, formData }
 abstract class UHttpClient {
   static final Client _client = Client();
 
+  static String _generateCacheKey(String endpoint, Map<String, dynamic>? queryParams) {
+    final Uri uri = _buildUri(endpoint, queryParams);
+    return 'cache_${uri.toString().replaceAll(RegExp(r'[^\w]'), '_')}';
+  }
+
   static Future<Response?> _request({
     required final String method,
     required final String endpoint,
@@ -17,9 +22,31 @@ abstract class UHttpClient {
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
+    final Duration? cacheDuration,
   }) async {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
+      final String cacheKey = _generateCacheKey(endpoint, queryParams);
+
+      if (cacheDuration != null) {
+        final String? cachedData = ULocalStorage.getString(cacheKey);
+        final int? cachedTimestamp = ULocalStorage.getInt("${cacheKey}_timestamp");
+
+        if (cachedData != null && cachedTimestamp != null) {
+          final int cacheAge = DateTime
+              .now()
+              .millisecondsSinceEpoch - cachedTimestamp;
+          final bool cacheValid = cacheAge < (cacheDuration).inMilliseconds;
+
+          if (cacheValid) {
+            final Response response = Response(cachedData, 200, request: Request(method, uri));
+            response.prettyLog(params: jsonEncode(body));
+            onSuccess?.call(response);
+            return response;
+          }
+        }
+      }
+
       final Request request = Request(method, uri);
       if (headers != null) request.headers.addAll(headers);
 
@@ -50,6 +77,14 @@ abstract class UHttpClient {
 
       final Response response = await _client.send(request).timeout(const Duration(seconds: 30)).then(Response.fromStream);
       response.prettyLog(params: jsonEncode(body));
+
+      // Cache successful GET responses if useCache is enabled
+      if (cacheDuration != null && response.statusCode >= 200 && response.statusCode < 300) {
+        ULocalStorage.set(cacheKey, response.body);
+        ULocalStorage.set("${cacheKey}_timestamp", DateTime
+            .now()
+            .millisecondsSinceEpoch);
+      }
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         onSuccess?.call(response);
@@ -109,10 +144,19 @@ abstract class UHttpClient {
     required final Function(File)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
+    required final Function(File)? onFileDownloaded,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
+    final Function(double)? onProgress,
   }) async {
     try {
+      final File file = File(savePath);
+      if (await file.exists()) {
+        onFileDownloaded?.call(file);
+        onSuccess?.call(file);
+        return;
+      }
+
       final Uri uri = _buildUri(endpoint, queryParams);
       final Request request = Request("GET", uri);
       request.headers.addAll(<String, String>{...?headers});
@@ -120,9 +164,70 @@ abstract class UHttpClient {
       final StreamedResponse response = await _client.send(request).timeout(const Duration(seconds: 30));
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
-        final File file = File(savePath);
-        await response.stream.pipe(file.openWrite());
+        final int? totalLength = response.contentLength;
+        int receivedBytes = 0;
+
+        final IOSink sink = file.openWrite();
+        await response.stream.map((List<int> chunk) {
+          receivedBytes += chunk.length;
+          if (totalLength != null && totalLength > 0 && onProgress != null) {
+            onProgress((receivedBytes / totalLength * 100).clamp(0, 100));
+          }
+          return chunk;
+        }).pipe(sink);
+
+        await sink.close();
+        onFileDownloaded?.call(file);
         onSuccess?.call(file);
+      } else {
+        onError?.call(await Response.fromStream(response));
+      }
+    } catch (e) {
+      onException?.call(e);
+    }
+  }
+
+  static Future<void> downloadBytes({
+    required final String endpoint,
+    required final String key,
+    required final Function(List<int>)? onSuccess,
+    required final Function(Response)? onError,
+    required final Function(dynamic)? onException,
+    required final Function(List<int>)? onFileDownloaded,
+    final Map<String, String>? headers,
+    final Map<String, dynamic>? queryParams,
+    final Function(double)? onProgress,
+  }) async {
+    try {
+      final List<int>? existingBytes = await UKeyValueDb.getBytes(key);
+      if (existingBytes != null) {
+        onFileDownloaded?.call(existingBytes);
+        onSuccess?.call(existingBytes);
+        return;
+      }
+
+      final Uri uri = _buildUri(endpoint, queryParams);
+      final Request request = Request("GET", uri);
+      request.headers.addAll(<String, String>{...?headers});
+
+      final StreamedResponse response = await _client.send(request).timeout(const Duration(seconds: 30));
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        final int? totalLength = response.contentLength;
+        int receivedBytes = 0;
+        final List<int> bytes = <int>[];
+
+        await response.stream.forEach((List<int> chunk) {
+          bytes.addAll(chunk);
+          receivedBytes += chunk.length;
+          if (totalLength != null && totalLength > 0 && onProgress != null) {
+            onProgress((receivedBytes / totalLength * 100).clamp(0, 100));
+          }
+        });
+
+        await UKeyValueDb.setBytes(key, bytes);
+        onFileDownloaded?.call(bytes);
+        onSuccess?.call(bytes);
       } else {
         onError?.call(await Response.fromStream(response));
       }
@@ -138,6 +243,7 @@ abstract class UHttpClient {
     required final Function(dynamic)? onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
+        final Duration? cacheDuration,
   }) async =>
       _request(
         method: "GET",
@@ -147,6 +253,7 @@ abstract class UHttpClient {
         onSuccess: onSuccess,
         onError: onError,
         onException: onException,
+        cacheDuration: cacheDuration,
       );
 
   static Future<Response?> post(
@@ -158,6 +265,7 @@ abstract class UHttpClient {
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
+        final Duration? cacheDuration,
   }) async =>
       _request(
         method: "POST",
@@ -169,6 +277,7 @@ abstract class UHttpClient {
         onSuccess: (Response r) => onSuccess(r.body),
         onError: (Response r) => onError(r.body),
         onException: onException,
+        cacheDuration: cacheDuration,
       );
 
   static Future<Response?> put(
@@ -245,6 +354,14 @@ abstract class UHttpClient {
       filename: filename,
       contentType: contentType,
     );
+  }
+
+  static void clearCache() {
+    for (final String key in ULocalStorage.sp.getKeys()) {
+      if (key.startsWith("cache_")) {
+        ULocalStorage.remove(key);
+      }
+    }
   }
 
   void close() {

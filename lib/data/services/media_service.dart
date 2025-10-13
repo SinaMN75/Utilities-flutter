@@ -125,6 +125,7 @@ class MediaService {
       onException: (final dynamic e) {
         if (onException != null) onException(e);
       },
+      onFileDownloaded: (File p1) {},
     );
   }
 }
