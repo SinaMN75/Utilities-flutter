@@ -143,7 +143,7 @@ abstract class UHttpClient {
     required final Function(File)? onFileDownloaded,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    final Function(int)? onProgress, // changed to int
+    final Function(int)? onProgress,
   }) async {
     try {
       final File file = File(savePath);
@@ -169,7 +169,7 @@ abstract class UHttpClient {
           receivedBytes += chunk.length;
           if (totalLength != null && totalLength > 0 && onProgress != null) {
             final DateTime now = DateTime.now();
-            if (now.difference(lastProgressTime).inSeconds >= 2) {
+            if (now.difference(lastProgressTime).inSeconds >= 1) {
               final int progress = ((receivedBytes / totalLength * 100).clamp(0, 100)).toInt();
               onProgress(progress);
               lastProgressTime = now;
@@ -198,7 +198,7 @@ abstract class UHttpClient {
     required final Function(List<int>)? onFileDownloaded,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    final Function(int)? onProgress, // changed to int
+    final Function(int)? onProgress,
   }) async {
     try {
       final List<int>? existingBytes = await UKeyValueDb.getBytes(key);
@@ -225,7 +225,7 @@ abstract class UHttpClient {
           receivedBytes += chunk.length;
           if (totalLength != null && totalLength > 0 && onProgress != null) {
             final DateTime now = DateTime.now();
-            if (now.difference(lastProgressTime).inSeconds >= 2) {
+            if (now.difference(lastProgressTime).inSeconds >= 1) {
               final int progress = ((receivedBytes / totalLength * 100).clamp(0, 100)).toInt();
               onProgress(progress);
               lastProgressTime = now;
