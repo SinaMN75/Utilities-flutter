@@ -224,9 +224,8 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
 
 class UElevatedButton extends StatelessWidget {
   const UElevatedButton({
+    required this.title,
     super.key,
-    this.title,
-    this.titleWidget,
     this.onTap,
     this.icon,
     this.width,
@@ -236,10 +235,9 @@ class UElevatedButton extends StatelessWidget {
     this.padding,
   });
 
-  final String? title;
-  final Widget? titleWidget;
+  final String title;
   final VoidCallback? onTap;
-  final IconData? icon;
+  final Widget? icon;
   final double? width;
   final double? height;
   final TextStyle? textStyle;
@@ -247,17 +245,17 @@ class UElevatedButton extends StatelessWidget {
   final EdgeInsets? padding;
 
   @override
-  Widget build(BuildContext context) => ElevatedButton(
+  Widget build(BuildContext context) => ElevatedButton.icon(
+        onPressed: onTap,
+        icon: icon,
+        label: Text(title, textAlign: TextAlign.center),
         style: ButtonStyle(
           textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle!),
           backgroundColor: WidgetStateProperty.all(backgroundColor),
           padding: WidgetStateProperty.all(padding),
-        ),
-        onPressed: onTap,
-        child: SizedBox(
-          height: height,
-          width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
-          child: Center(child: titleWidget ?? Text(title ?? "", textAlign: TextAlign.center)),
+          fixedSize: WidgetStatePropertyAll<Size>(
+            Size(width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width, height ?? 30),
+          ),
         ),
       );
 }
@@ -372,7 +370,9 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
             children: <Widget>[
               UTextField(
                 hintText: "جستجو",
-                onChanged: (final String? i) => filteredItems(widget.items.where((T item) => widget.labelBuilder(item).toLowerCase().contains(i!.toLowerCase())).toList()),
+                onChanged: (final String? i) => filteredItems(
+                  widget.items.where((T item) => widget.labelBuilder(item).toLowerCase().contains(i!.toLowerCase())).toList(),
+                ),
               ),
               const SizedBox(height: 12),
               Obx(
@@ -605,7 +605,19 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
     );
   }
 
-  void _filterCountries(String query) => setState(() => _filteredCountries = UCountry.list.where((UCountry i) => i.name.toLowerCase().contains(query.toLowerCase()) || i.dialCode.contains(query) || i.code.toLowerCase().contains(query.toLowerCase()) || i.capital.toLowerCase().contains(query.toLowerCase())).toList());
+  void _filterCountries(String query) => setState(
+        () => _filteredCountries = UCountry.list
+            .where(
+              (UCountry i) =>
+                  i.name.toLowerCase().contains(query.toLowerCase()) ||
+                  i.dialCode.contains(query) ||
+                  i.code.toLowerCase().contains(query.toLowerCase()) ||
+                  i.capital.toLowerCase().contains(
+                        query.toLowerCase(),
+                      ),
+            )
+            .toList(),
+      );
 
   @override
   Widget build(BuildContext context) => UTextField(
