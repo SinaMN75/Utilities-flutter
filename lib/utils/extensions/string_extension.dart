@@ -51,6 +51,10 @@ extension OptionalStringExtension on String? {
 }
 
 extension StringExtensions on String {
+  Uint8List toBytesFromBase64() => base64.decode(this);
+
+  Uint8List toBytesFromBase64Url() => base64Url.decode(this);
+
   String subStringIfExist(final int start, final int end) => length > end ? substring(start, end) : this;
 
   String numberString() => replaceAll(RegExp("[^0-9]"), "");
@@ -334,4 +338,12 @@ extension StringExtensions on String {
   bool get isStrongPassword => RegExp(
         r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
       ).hasMatch(this);
+}
+
+extension Base64BytesExtensions on Uint8List {
+  String toBase64() => base64.encode(this);
+
+  String toBase64Url() => base64Url.encode(this);
+
+  String toBase64WithoutPadding() => base64.encode(this).replaceAll("=", "");
 }

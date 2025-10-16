@@ -194,19 +194,20 @@ abstract class UHttpClient {
   static Future<void> downloadBytes({
     required final String endpoint,
     required final String key,
-    required final Function(List<int>)? onSuccess,
+    required final Function(Uint8List)? onSuccess,
     required final Function(Response)? onError,
     required final Function(dynamic)? onException,
-    required final Function(List<int>)? onFileDownloaded,
+    required final Function(Uint8List)? onFileDownloaded,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final Function(int)? onProgress,
   }) async {
     try {
-      final List<int>? existingBytes = await UKeyValueDb.getBytes(key);
-      if (existingBytes != null) {
-        onFileDownloaded?.call(existingBytes);
-        onSuccess?.call(existingBytes);
+      final String? existingByteString = await ULocalStorage.getBigString(key);
+      if (existingByteString != null) {
+        final Uint8List bytes = existingByteString.toBytesFromBase64();
+        onFileDownloaded?.call(bytes);
+        onSuccess?.call(bytes);
         return;
       }
 
@@ -235,9 +236,9 @@ abstract class UHttpClient {
           }
         });
 
-        await UKeyValueDb.setBytes(key, bytes);
-        onFileDownloaded?.call(bytes);
-        onSuccess?.call(bytes);
+        await ULocalStorage.setBig(key, Uint8List.fromList(bytes).toBase64());
+        onFileDownloaded?.call(Uint8List.fromList(bytes));
+        onSuccess?.call(Uint8List.fromList(bytes));
       } else {
         onError?.call(await Response.fromStream(response));
       }
