@@ -51,16 +51,16 @@ class MediaService {
       UHttpClient.post(
         "/Media/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(
+        onSuccess: (final Response r) => onOk(
           UResponse<List<UMediaResponse>>.fromJson(
-            r,
+            r.body,
             (dynamic i) => List<UMediaResponse>.from(
               (i as List<dynamic>).map((dynamic x) => UMediaResponse.fromMap(x)),
             ),
           ),
         ),
-        onError: (final String r) => onError(
-          UResponse<dynamic>.fromJson(r, (dynamic i) => i),
+        onError: (final Response r) => onError(
+          UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
@@ -76,14 +76,14 @@ class MediaService {
       UHttpClient.post(
         "/Media/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(
+        onSuccess: (final Response r) => onOk(
           UResponse<UMediaResponse>.fromJson(
-            r,
+            r.body,
             (dynamic i) => UMediaResponse.fromMap(i),
           ),
         ),
-        onError: (final String r) => onError(
-          UResponse<dynamic>.fromJson(r, (dynamic i) => i),
+        onError: (final Response r) => onError(
+          UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
@@ -99,11 +99,11 @@ class MediaService {
       UHttpClient.post(
         "/Media/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(
-          UResponse<dynamic>.fromJson(r, (dynamic i) => i),
+        onSuccess: (final Response r) => onOk(
+          UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),
-        onError: (final String r) => onError(
-          UResponse<dynamic>.fromJson(r, (dynamic i) => i),
+        onError: (final Response r) => onError(
+          UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),
         onException: (final dynamic e) {
           if (onException != null) onException(e);

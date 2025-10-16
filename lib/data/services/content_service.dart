@@ -18,8 +18,8 @@ class ContentService {
       UHttpClient.post(
         "/content/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(UResponse<UContentResponse>.fromJson(r, (final dynamic i) => UContentResponse.fromMap(i))),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onSuccess: (final Response r) => onOk(UResponse<UContentResponse>.fromJson(r.body, (final dynamic i) => UContentResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
@@ -34,13 +34,13 @@ class ContentService {
       UHttpClient.post(
         "/content/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(
+        onSuccess: (final Response r) => onOk(
           UResponse<List<UContentResponse>>.fromJson(
-            r,
+            r.body,
             (final dynamic i) => List<UContentResponse>.from((i as List<dynamic>).map((final dynamic x) => UContentResponse.fromMap(x))),
           ),
         ),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
@@ -55,8 +55,8 @@ class ContentService {
       UHttpClient.post(
         "/content/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(UResponse<UContentResponse>.fromJson(r, (final dynamic i) => UContentResponse.fromMap(i))),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onSuccess: (final Response r) => onOk(UResponse<UContentResponse>.fromJson(r.body, (final dynamic i) => UContentResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
@@ -71,8 +71,8 @@ class ContentService {
       UHttpClient.post(
         "/content/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(UResponse<UContentResponse>.fromJson(r, (final dynamic i) => UContentResponse.fromMap(i))),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onSuccess: (final Response r) => onOk(UResponse<UContentResponse>.fromJson(r.body, (final dynamic i) => UContentResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
@@ -87,8 +87,8 @@ class ContentService {
       UHttpClient.post(
         "/content/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },

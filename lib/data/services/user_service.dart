@@ -18,8 +18,8 @@ class UserService {
       UHttpClient.post(
         "/user/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
@@ -34,8 +34,8 @@ class UserService {
       UHttpClient.post(
         "/user/BulkCreate",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
@@ -50,15 +50,15 @@ class UserService {
       UHttpClient.post(
         "/User/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(
+        onSuccess: (final Response r) => onOk(
           UResponse<List<UUserResponse>>.fromJson(
-            r,
+            r.body,
             (final dynamic i) => List<UUserResponse>.from(
               (i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x)),
             ),
           ),
         ),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (final dynamic e) {
           if (onException != null) onException(e);
         },
@@ -73,8 +73,8 @@ class UserService {
     UHttpClient.post(
       "/user/ReadById",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
-      onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
-      onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+      onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
+      onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (dynamic e) {
         if (onException != null) onException(e);
       },
@@ -90,8 +90,8 @@ class UserService {
     UHttpClient.post(
       "/user/Update",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
-      onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
-      onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+      onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
+      onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (dynamic e) {
         if (onException != null) onException(e);
       },
@@ -107,8 +107,8 @@ class UserService {
     UHttpClient.post(
       "/user/Delete",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
-      onSuccess: (final String r) => onOk(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
-      onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+      onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+      onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (dynamic e) {
         if (onException != null) onException(e);
       },

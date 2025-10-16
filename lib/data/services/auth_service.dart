@@ -18,8 +18,8 @@ class AuthService {
     UHttpClient.post(
       "/auth/Register",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
-      onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
-      onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+      onSuccess: (final Response r) => onOk(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
+      onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (dynamic e) {
         if (onException != null) onException(e);
       },
@@ -35,8 +35,8 @@ class AuthService {
       UHttpClient.post(
         "/auth/LoginWithUserNamePassword",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onSuccess: (final Response r) => onOk(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
@@ -51,8 +51,8 @@ class AuthService {
       UHttpClient.post(
         "/auth/LoginWithEmailPassword",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(UResponse<ULoginResponse>.fromJson(r, (final dynamic i) => ULoginResponse.fromMap(i))),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onSuccess: (final Response r) => onOk(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
@@ -67,8 +67,8 @@ class AuthService {
       UHttpClient.post(
         "/auth/ReadUserByToken",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
-        onSuccess: (final String r) => onOk(UResponse<UUserResponse>.fromJson(r, (final dynamic i) => UUserResponse.fromMap(i))),
-        onError: (final String r) => onError(UResponse<dynamic>.fromJson(r, (final dynamic i) => i)),
+        onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
+        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },

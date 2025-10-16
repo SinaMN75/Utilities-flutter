@@ -22,13 +22,15 @@ abstract class UHttpClient {
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
-    final Duration? cacheDuration,
+    final Duration cacheDuration = const Duration(minutes: 60),
+    final bool? cache,
+    final bool? returnCacheIfExist,
   }) async {
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = _generateCacheKey(endpoint, queryParams);
 
-      if (cacheDuration != null) {
+      if (returnCacheIfExist != null) {
         final String? cachedData = ULocalStorage.getString(cacheKey);
         final int? cachedTimestamp = ULocalStorage.getInt("${cacheKey}_timestamp");
 
@@ -77,7 +79,7 @@ abstract class UHttpClient {
       response.prettyLog(params: jsonEncode(body));
 
       // Cache successful GET responses if useCache is enabled
-      if (cacheDuration != null && response.statusCode >= 200 && response.statusCode < 300) {
+      if (cache != null && response.statusCode >= 200 && response.statusCode < 300) {
         ULocalStorage.set(cacheKey, response.body);
         ULocalStorage.set("${cacheKey}_timestamp", DateTime.now().millisecondsSinceEpoch);
       }
@@ -251,7 +253,9 @@ abstract class UHttpClient {
     required final Function(dynamic)? onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
-    final Duration? cacheDuration,
+    final Duration cacheDuration = const Duration(minutes: 60),
+    final bool? cache,
+    final bool? returnCacheIfExist,
   }) async =>
       _request(
         method: "GET",
@@ -262,18 +266,22 @@ abstract class UHttpClient {
         onError: onError,
         onException: onException,
         cacheDuration: cacheDuration,
+        cache: cache,
+        returnCacheIfExist: returnCacheIfExist,
       );
 
   static Future<Response?> post(
     final String endpoint, {
-    required final Function(String) onSuccess,
-    required final Function(String) onError,
+    required final Function(Response) onSuccess,
+    required final Function(Response) onError,
     required final Function(dynamic) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
-    final Duration? cacheDuration,
+    final Duration cacheDuration = const Duration(minutes: 60),
+    final bool? cache,
+    final bool? returnCacheIfExist,
   }) async =>
       _request(
         method: "POST",
@@ -282,10 +290,12 @@ abstract class UHttpClient {
         queryParams: queryParams,
         body: body,
         bodyType: bodyType,
-        onSuccess: (Response r) => onSuccess(r.body),
-        onError: (Response r) => onError(r.body),
+        onSuccess: (Response r) => onSuccess(r),
+        onError: (Response r) => onError(r),
         onException: onException,
         cacheDuration: cacheDuration,
+        cache: cache,
+        returnCacheIfExist: returnCacheIfExist,
       );
 
   static Future<Response?> put(

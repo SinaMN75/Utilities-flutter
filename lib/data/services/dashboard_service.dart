@@ -16,8 +16,8 @@ class DashboardService {
   }) =>
       UHttpClient.post(
         "/dashboard/ReadSystemMetrics",
-        onSuccess: (final String r) => onOk(UMetricsResponse.fromJson(r)),
-        onError: (final String r) => onError(),
+        onSuccess: (final Response r) => onOk(UMetricsResponse.fromJson(r.body)),
+        onError: (final Response r) => onError(),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
@@ -30,8 +30,8 @@ class DashboardService {
   }) =>
       UHttpClient.post(
         "/dashboard/Read",
-        onSuccess: (final String r) => onOk(UDashboardResponse.fromJson(r)),
-        onError: (final String r) => onError(),
+        onSuccess: (final Response r) => onOk(UDashboardResponse.fromJson(r.body)),
+        onError: (final Response r) => onError(),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
@@ -44,8 +44,8 @@ class DashboardService {
   }) =>
       UHttpClient.post(
         "/api/logs/structure",
-        onSuccess: (final String r) => onOk(LogStructureResponse.fromJson(r)),
-        onError: (final String r) => onError(),
+        onSuccess: (final Response r) => onOk(LogStructureResponse.fromJson(r.body)),
+        onError: (final Response r) => onError(),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
@@ -60,8 +60,8 @@ class DashboardService {
       UHttpClient.post(
         "/api/logs/content",
         body: <String, String>{"id": logId},
-        onSuccess: (final String r) => onOk(json.decode(r).map((dynamic e) => LogContentResponse.fromMap(e)).toList()),
-        onError: (final String r) => onError(),
+        onSuccess: (final Response r) => onOk(json.decode(r.body).map((dynamic e) => LogContentResponse.fromMap(e)).toList()),
+        onError: (final Response r) => onError(),
         onException: (dynamic e) {
           if (onException != null) onException(e);
         },
