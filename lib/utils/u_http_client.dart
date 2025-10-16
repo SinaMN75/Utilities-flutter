@@ -1,5 +1,4 @@
-import "dart:developer" as developer;
-
+import "package:async/async.dart";
 import "package:u/utilities.dart";
 
 enum URequestBodyType { json, formData }
@@ -394,9 +393,9 @@ extension HTTP on Response {
   bool isServerError() => statusCode >= 500 && statusCode <= 599 || false;
 
   void prettyLog({final String params = ""}) {
-    developer.log(
-      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body",
-    );
+    // developer.log(
+    //   "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body",
+    // );
   }
 }
 
@@ -412,4 +411,80 @@ T? removeNullEntries<T>(T? json) {
   }
 
   return json;
+}
+
+class DownloadUtils {
+  static final Map<String, CancelableOperation<Uint8List>> _downloadOperations = <String, CancelableOperation<Uint8List>>{};
+
+  static Future<Uint8List?> downloadFile({
+    required String url,
+    required String cacheKey,
+    required void Function(int progress) onProgress,
+  }) async {
+    if (_downloadOperations.containsKey(cacheKey)) {
+      await _downloadOperations[cacheKey]?.cancel();
+    }
+
+    final CancelableOperation<Uint8List> operation = CancelableOperation<Uint8List>.fromFuture(
+      _performDownload(url: url, onProgress: onProgress),
+      onCancel: () => _cleanup(cacheKey),
+    );
+
+    _downloadOperations[cacheKey] = operation;
+
+    try {
+      final Uint8List result = await operation.value;
+      _downloadOperations.remove(cacheKey);
+      return result;
+    } catch (e) {
+      _downloadOperations.remove(cacheKey);
+      rethrow;
+    }
+  }
+
+  static Future<Uint8List> _performDownload({
+    required String url,
+    required void Function(int progress) onProgress,
+  }) async {
+    final Client client = Client();
+    try {
+      final Request request = Request("GET", Uri.parse(url));
+      final StreamedResponse response = await client.send(request);
+
+      if (response.statusCode != 200) {
+        throw Exception("Failed to download file: ${response.statusCode}");
+      }
+
+      final int? contentLength = response.contentLength;
+      final List<int> bytes = <int>[];
+      int receivedLength = 0;
+
+      await for (List<int> data in response.stream) {
+        bytes.addAll(data);
+        receivedLength += data.length;
+
+        if (contentLength != null) {
+          final int progress = (receivedLength / contentLength * 100).round();
+          onProgress(progress);
+        }
+      }
+
+      return Uint8List.fromList(bytes);
+    } finally {
+      client.close();
+    }
+  }
+
+  static void cancelDownload(String cacheKey) {
+    if (_downloadOperations.containsKey(cacheKey)) {
+      _downloadOperations[cacheKey]?.cancel();
+      _downloadOperations.remove(cacheKey);
+    }
+  }
+
+  static bool isDownloading(String cacheKey) => _downloadOperations.containsKey(cacheKey);
+
+  static void _cleanup(String cacheKey) {
+    _downloadOperations.remove(cacheKey);
+  }
 }
