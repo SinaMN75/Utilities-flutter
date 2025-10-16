@@ -9,6 +9,8 @@ abstract class ULocalStorage {
     _directory = await getApplicationDocumentsDirectory();
   }
 
+  static Set<String> getKeys() => sp.getKeys();
+
   static void set(final String key, final dynamic value) {
     if (value is String) sp.setString(key, value);
     if (value is bool) sp.setBool(key, value);
@@ -35,7 +37,11 @@ abstract class ULocalStorage {
 
   static String? getUserId() => sp.getString(UConstants.userId);
 
-  static Future<void> setBig(String key, String value) async => File("${_directory.path}/$key.txt").writeAsString(value);
+  static Future<void> setBig(String key, String value) async {
+    try {
+      await File("${_directory.path}/$key.txt").writeAsString(value);
+    } catch (e) {}
+  }
 
   static Future<String?> getBigString(String key) async {
     try {
@@ -49,6 +55,19 @@ abstract class ULocalStorage {
     }
   }
 
+  static Future<List<String>> getBigKeys() async {
+    try {
+      final List<FileSystemEntity> files = _directory.listSync();
+      return files.where((FileSystemEntity file) => file is File && file.path.endsWith(".txt")).map((FileSystemEntity file) {
+        final String fileName = file.uri.pathSegments.last;
+        return fileName.substring(0, fileName.length - 4);
+      }).toList();
+    } catch (e) {
+      return <String>[];
+    }
+  }
+
+  /// GENERAL
   static Future<void> clear() async {
     final List<FileSystemEntity> files = _directory.listSync();
     for (FileSystemEntity file in files) {
@@ -60,10 +79,10 @@ abstract class ULocalStorage {
   }
 
   static Future<void> remove(String key) async {
+    await sp.remove(key);
     final File file = File("${_directory.path}/$key.txt");
     if (await file.exists()) {
       await file.delete();
     }
-    await sp.remove(key);
   }
 }
