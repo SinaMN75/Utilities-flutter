@@ -353,6 +353,7 @@ abstract class UNavigator {
     required String title,
     required String hint,
     required Function(String) onSubmit,
+    VoidCallback? onCancel,
     String cancelTitle = "Cancel",
     String submitTitle = "Submit",
     String defaultValue = "",
@@ -360,17 +361,23 @@ abstract class UNavigator {
     final TextEditingController controller = TextEditingController(text: defaultValue);
     final String? text = await showDialog<String>(
       context: navigatorKey.currentContext!,
-      builder: (BuildContext context) => AlertDialog(
+      builder: (BuildContext context) => AlertDialog.adaptive(
         title: Text(title),
-        content: UTextField(
-          hintText: hint,
-          lines: 4,
-          controller: controller,
-          keyboardType: TextInputType.multiline,
+        content: Material(
+          child: UTextField(
+            hintText: hint,
+            lines: 4,
+            controller: controller,
+            keyboardType: TextInputType.multiline,
+            contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+          ),
         ),
         actions: <Widget>[
-          UTextButton(title: cancelTitle, width: 100, onTap: back),
-          UElevatedButton(title: submitTitle, width: 100, onTap: () => back(controller.text)),
+          TextButton(onPressed: onCancel ?? back, child: Text(cancelTitle)),
+          TextButton(
+            onPressed: () => back(controller.text),
+            child: Text(submitTitle),
+          ),
         ],
       ),
     );
