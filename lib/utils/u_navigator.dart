@@ -365,12 +365,12 @@ abstract class UNavigator {
         content: UTextField(
           hintText: hint,
           lines: 4,
+          controller: controller,
           keyboardType: TextInputType.multiline,
-          contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         ),
         actions: <Widget>[
-          UTextButton(width: 100, title: cancelTitle, onTap: back),
-          UElevatedButton(width: 100, title: submitTitle, onTap: () => back(controller.text)),
+          UTextButton(title: cancelTitle, width: 100, onTap: back),
+          UElevatedButton(title: submitTitle, width: 100, onTap: () => back(controller.text)),
         ],
       ),
     );
@@ -418,7 +418,10 @@ abstract class UNavigator {
   static Widget Function(BuildContext, Animation<double>, Animation<double>, Widget) _getTransition(RouteTransitions transition) {
     switch (transition) {
       case RouteTransitions.fade:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => FadeTransition(opacity: animation, child: child);
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => FadeTransition(
+              opacity: animation,
+              child: child,
+            );
       case RouteTransitions.rightToLeft:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
               position: Tween<Offset>(
