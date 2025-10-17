@@ -362,13 +362,10 @@ abstract class UNavigator {
       context: navigatorKey.currentContext!,
       builder: (BuildContext context) => AlertDialog(
         title: Text(title),
-        content: UTextField(hintText: hint),
+        content: UTextField(hintText: hint, lines: 4),
         actions: <Widget>[
           UTextButton(title: cancelTitle, onTap: back),
-          UElevatedButton(
-            title: submitTitle,
-            onTap: () => back(controller.text),
-          ),
+          UElevatedButton(title: submitTitle, onTap: () => back(controller.text)),
         ],
       ),
     );
