@@ -349,6 +349,35 @@ abstract class UNavigator {
     }
   }
 
+  static Future<String?> inputDialog({
+    required String title,
+    required String hint,
+    required Function(String) onSubmit,
+    String cancelTitle = "Cancel",
+    String submitTitle = "Submit",
+    String defaultValue = "",
+  }) async {
+    final TextEditingController controller = TextEditingController(text: defaultValue);
+    final String? text = await showDialog<String>(
+      context: navigatorKey.currentContext!,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(title),
+        content: UTextField(hintText: hint),
+        actions: <Widget>[
+          UTextButton(title: cancelTitle, onTap: back),
+          UElevatedButton(
+            title: submitTitle,
+            onTap: () => back(controller.text),
+          ),
+        ],
+      ),
+    );
+    if (text != null) {
+      onSubmit(text);
+    }
+    return text;
+  }
+
   static void dismissOverlay() {
     _currentOverlay?.remove();
     _currentOverlay = null;
