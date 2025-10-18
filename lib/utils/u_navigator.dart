@@ -58,13 +58,13 @@ abstract class UNavigator {
       });
 
   /// Clear all routes and start fresh
-  static void offAll(
+  static Future<void> offAll(
     Widget page, {
     RouteTransitions transition = RouteTransitions.fade,
     RouteSettings? settings,
     VoidCallback? onDismiss,
-  }) {
-    Navigator.pushAndRemoveUntil(
+  }) async {
+    await Navigator.pushAndRemoveUntil(
       navigatorKey.currentContext!,
       PageRouteBuilder<dynamic>(
         pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,

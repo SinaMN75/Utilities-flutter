@@ -189,7 +189,7 @@ class UImageAsset extends StatelessWidget {
                   clipBehavior: clipBehavior,
                   borderRadius: borderRadius,
                 ),
-        ).container(radius: borderRadius);
+        );
 }
 
 class UImageNetwork extends StatelessWidget {

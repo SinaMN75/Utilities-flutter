@@ -233,7 +233,7 @@ class UElevatedButton extends StatelessWidget {
     this.height,
     this.textStyle,
     this.backgroundColor,
-    this.padding,
+    this.padding = EdgeInsets.zero,
   });
 
   final String title;
@@ -255,7 +255,7 @@ class UElevatedButton extends StatelessWidget {
           backgroundColor: WidgetStateProperty.all(backgroundColor),
           padding: WidgetStateProperty.all(padding),
           fixedSize: WidgetStatePropertyAll<Size>(
-            Size(width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width, height ?? 30),
+            Size(width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width, height ?? 46),
           ),
         ),
       );
