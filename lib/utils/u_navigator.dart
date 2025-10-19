@@ -352,7 +352,7 @@ abstract class UNavigator {
   static Future<String?> inputDialog({
     required String title,
     required String hint,
-    required Function(String) onSubmit,
+    Function(String)? onSubmit,
     VoidCallback? onCancel,
     String cancelTitle = "Cancel",
     String submitTitle = "Submit",
@@ -381,7 +381,7 @@ abstract class UNavigator {
         ],
       ),
     );
-    if (text != null) {
+    if (text != null && onSubmit != null) {
       onSubmit(text);
     }
     return text;
