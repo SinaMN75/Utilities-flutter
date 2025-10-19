@@ -7,10 +7,12 @@ abstract class ULocalStorage {
 
   static Future<void> init() async {
     sp = await SharedPreferences.getInstance();
-    _directory = await getApplicationDocumentsDirectory();
-    _bigFilesDirectory = Directory("${_directory.path}/big_files");
-    if (!await _bigFilesDirectory.exists()) {
-      await _bigFilesDirectory.create(recursive: true);
+    if (!kIsWeb) {
+      _directory = await getApplicationDocumentsDirectory();
+      _bigFilesDirectory = Directory("${_directory.path}/big_files");
+      if (!await _bigFilesDirectory.exists()) {
+        await _bigFilesDirectory.create(recursive: true);
+      }
     }
   }
 
@@ -47,9 +49,7 @@ abstract class ULocalStorage {
     try {
       final String base64String = base64Encode(bytes);
       await File("${_bigFilesDirectory.path}/$key.dat").writeAsString(base64String);
-    } catch (e) {
-      rethrow;
-    }
+    } catch (_) {}
   }
 
   // Get bytes from base64 string
@@ -131,10 +131,12 @@ abstract class ULocalStorage {
   }
 
   static Future<void> clear() async {
-    final List<FileSystemEntity> files = _bigFilesDirectory.listSync();
-    for (final FileSystemEntity file in files) {
-      if (file is File) {
-        await file.delete();
+    if (!kIsWeb) {
+      final List<FileSystemEntity> files = _bigFilesDirectory.listSync();
+      for (final FileSystemEntity file in files) {
+        if (file is File) {
+          await file.delete();
+        }
       }
     }
     await sp.clear();
