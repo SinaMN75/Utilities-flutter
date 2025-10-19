@@ -401,10 +401,24 @@ abstract class UNavigator {
       UNavigator.dialog<Color>(
         AlertDialog(
           title: Text(title),
-          content: Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: (colors ?? <Color>[Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange, Colors.purple, Colors.pink, Colors.brown])
+          content: GridView.count(
+            shrinkWrap: true,
+            crossAxisCount: 5,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            children: (colors ??
+                    <Color>[
+                      Colors.red,
+                      Colors.green,
+                      Colors.blue,
+                      Colors.yellow,
+                      Colors.orange,
+                      Colors.purple,
+                      Colors.pink,
+                      Colors.cyan,
+                      Colors.black,
+                      Colors.teal,
+                    ])
                 .map(
                   (Color color) => UContainer(
                     width: 40,
