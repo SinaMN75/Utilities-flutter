@@ -59,6 +59,8 @@ class UMaterialApp extends StatelessWidget {
         appBarTheme: AppBarThemeData(
           backgroundColor: data.appbarColor,
           titleTextStyle: data.appbarTitleTextStyle,
+          actionsIconTheme: IconThemeData(color: data.appbarIconColor),
+          iconTheme: IconThemeData(color: data.appbarIconColor),
         ),
         colorScheme: ColorScheme.fromSeed(
           seedColor: data.primaryColor,
@@ -168,6 +170,7 @@ class UThemeData {
     this.surfaceContainer,
     this.cardElevation = 1,
     this.appbarTitleTextStyle,
+    this.appbarIconColor,
   });
 
   final String fontFamily;
@@ -181,4 +184,5 @@ class UThemeData {
   final Color? surfaceContainer;
   final Color? appbarColor;
   final TextStyle? appbarTitleTextStyle;
+  final Color? appbarIconColor;
 }
