@@ -109,23 +109,4 @@ class MediaService {
           if (onException != null) onException(e);
         },
       );
-
-  Future<void> download({
-    required final String filePath,
-    required final String savePath,
-    required final Function(File) onSuccess,
-    required final Function(Response) onError,
-    final Function(Exception)? onException,
-  }) async {
-    await UHttpClient.download(
-      endpoint: "/Media/Download?filePath=$filePath",
-      savePath: savePath,
-      onSuccess: onSuccess,
-      onError: onError,
-      onException: (final dynamic e) {
-        if (onException != null) onException(e);
-      },
-      onFileDownloaded: (File p1) {},
-    );
-  }
 }

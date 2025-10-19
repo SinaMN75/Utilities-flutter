@@ -1,3 +1,5 @@
+import "dart:developer" as developer;
+
 import "package:async/async.dart";
 import "package:u/utilities.dart";
 
@@ -29,7 +31,7 @@ abstract class UHttpClient {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = _generateCacheKey(endpoint, queryParams);
 
-      if (returnCacheIfExist != null) {
+      if (returnCacheIfExist == true) {
         final String? cachedData = ULocalStorage.getString(cacheKey);
         final int? cachedTimestamp = ULocalStorage.getInt("${cacheKey}_timestamp");
 
@@ -129,117 +131,6 @@ abstract class UHttpClient {
         onSuccess?.call(response);
       } else {
         onError?.call(response);
-      }
-    } catch (e) {
-      onException?.call(e);
-    }
-  }
-
-  static Future<void> download({
-    required final String endpoint,
-    required final String savePath,
-    required final Function(File)? onSuccess,
-    required final Function(Response)? onError,
-    required final Function(dynamic)? onException,
-    required final Function(File)? onFileDownloaded,
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
-    final Function(int)? onProgress,
-  }) async {
-    try {
-      final File file = File(savePath);
-      if (await file.exists()) {
-        onFileDownloaded?.call(file);
-        onSuccess?.call(file);
-        return;
-      }
-
-      final Uri uri = _buildUri(endpoint, queryParams);
-      final Request request = Request("GET", uri);
-      request.headers.addAll(<String, String>{...?headers});
-
-      final StreamedResponse response = await _client.send(request).timeout(const Duration(seconds: 30));
-
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        final int? totalLength = response.contentLength;
-        int receivedBytes = 0;
-        DateTime lastProgressTime = DateTime.now();
-
-        final IOSink sink = file.openWrite();
-        await response.stream.map((List<int> chunk) {
-          receivedBytes += chunk.length;
-          if (totalLength != null && totalLength > 0 && onProgress != null) {
-            final DateTime now = DateTime.now();
-            if (now.difference(lastProgressTime).inSeconds >= 1) {
-              final int progress = ((receivedBytes / totalLength * 100).clamp(0, 100)).toInt();
-              onProgress(progress);
-              lastProgressTime = now;
-            }
-          }
-          return chunk;
-        }).pipe(sink);
-
-        await sink.close();
-        onFileDownloaded?.call(file);
-        onSuccess?.call(file);
-      } else {
-        onError?.call(await Response.fromStream(response));
-      }
-    } catch (e) {
-      onException?.call(e);
-    }
-  }
-
-  static Future<void> downloadBytes({
-    required final String endpoint,
-    required final String key,
-    required final Function(Uint8List)? onSuccess,
-    required final Function(Response)? onError,
-    required final Function(dynamic)? onException,
-    required final Function(Uint8List)? onFileDownloaded,
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
-    final Function(int)? onProgress,
-  }) async {
-    try {
-      final String? existingByteString = await ULocalStorage.getBigString(key);
-      if (existingByteString != null) {
-        final Uint8List bytes = existingByteString.toBytesFromBase64();
-        onFileDownloaded?.call(bytes);
-        onSuccess?.call(bytes);
-        return;
-      }
-
-      final Uri uri = _buildUri(endpoint, queryParams);
-      final Request request = Request("GET", uri);
-      request.headers.addAll(<String, String>{...?headers});
-
-      final StreamedResponse response = await _client.send(request).timeout(const Duration(seconds: 30));
-
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        final int? totalLength = response.contentLength;
-        int receivedBytes = 0;
-        final List<int> bytes = <int>[];
-        DateTime lastProgressTime = DateTime.now();
-
-        await response.stream.forEach((List<int> chunk) {
-          bytes.addAll(chunk);
-          receivedBytes += chunk.length;
-          if (totalLength != null && totalLength > 0 && onProgress != null) {
-            final DateTime now = DateTime.now();
-            if (now.difference(lastProgressTime).inSeconds >= 1) {
-              final int progress = ((receivedBytes / totalLength * 100).clamp(0, 100)).toInt();
-              onProgress(progress);
-              lastProgressTime = now;
-            }
-          }
-        });
-
-        await ULocalStorage.setBig(key, Uint8List.fromList(bytes).toBase64());
-        onFileDownloaded?.call(Uint8List.fromList(bytes));
-        onSuccess?.call(Uint8List.fromList(bytes));
-      } else {
-        onError?.call(await Response.fromStream(response));
       }
     } catch (e) {
       onException?.call(e);
@@ -393,9 +284,9 @@ extension HTTP on Response {
   bool isServerError() => statusCode >= 500 && statusCode <= 599 || false;
 
   void prettyLog({final String params = ""}) {
-    // developer.log(
-    //   "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body",
-    // );
+    developer.log(
+      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body",
+    );
   }
 }
 
