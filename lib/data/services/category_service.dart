@@ -4,10 +4,12 @@ class CategoryService {
   CategoryService({
     required this.apiKey,
     required this.token,
+    required this.baseUrl,
   });
 
   final String? token;
   final String apiKey;
+  final String baseUrl;
 
   void create({
     required final UCategoryCreateParams p,
@@ -16,7 +18,7 @@ class CategoryService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/category/Create",
+        "$baseUrl/category/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UCategoryResponse>.fromJson(r.body, (final dynamic i) => UCategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -30,7 +32,7 @@ class CategoryService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/category/Read",
+        "$baseUrl/category/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UCategoryResponse>>.fromJson(
@@ -49,7 +51,7 @@ class CategoryService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/category/ReadById",
+        "$baseUrl/category/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UCategoryResponse>.fromJson(r.body, (final dynamic i) => UCategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -63,7 +65,7 @@ class CategoryService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/category/Update",
+        "$baseUrl/category/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UCategoryResponse>.fromJson(r.body, (final dynamic i) => UCategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -77,7 +79,7 @@ class CategoryService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/category/Delete",
+        "$baseUrl/category/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

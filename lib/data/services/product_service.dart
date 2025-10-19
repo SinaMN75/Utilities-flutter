@@ -4,10 +4,12 @@ class ProductService {
   ProductService({
     required this.apiKey,
     required this.token,
+    required this.baseUrl,
   });
 
   final String? token;
   final String apiKey;
+  final String baseUrl;
 
   void create({
     required final UProductCreateParams p,
@@ -16,7 +18,7 @@ class ProductService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/product/Create",
+        "$baseUrl/product/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UProductResponse>.fromJson(r.body, (final dynamic i) => UProductResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -30,7 +32,7 @@ class ProductService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/product/Read",
+        "$baseUrl/product/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UProductResponse>>.fromJson(
@@ -49,7 +51,7 @@ class ProductService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/product/ReadById",
+        "$baseUrl/product/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UProductResponse>.fromJson(r.body, (final dynamic i) => UProductResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -63,7 +65,7 @@ class ProductService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/product/Update",
+        "$baseUrl/product/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UProductResponse>.fromJson(r.body, (final dynamic i) => UProductResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -77,7 +79,7 @@ class ProductService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/product/Delete",
+        "$baseUrl/product/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

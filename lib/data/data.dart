@@ -38,15 +38,15 @@ class UServices {
     required this.apiKey,
     required this.token,
   }) {
-    dashboard = DashboardService(apiKey: apiKey, token: apiKey);
-    auth = AuthService(apiKey: apiKey, token: token);
-    category = CategoryService(apiKey: apiKey, token: token);
-    exam = ExamService(apiKey: apiKey, token: token);
-    user = UserService(apiKey: apiKey, token: token);
-    product = ProductService(apiKey: apiKey, token: token);
-    content = ContentService(apiKey: apiKey, token: token);
-    comment = CommentService(apiKey: apiKey, token: token);
-    follow = FollowService(apiKey: apiKey, token: token);
+    dashboard = DashboardService(baseUrl: baseUrl, apiKey: apiKey, token: apiKey);
+    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    user = UserService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    product = ProductService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    content = ContentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    comment = CommentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    follow = FollowService(baseUrl: baseUrl, apiKey: apiKey, token: token);
   }
 
   String baseUrl;

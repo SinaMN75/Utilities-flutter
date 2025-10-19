@@ -4,10 +4,12 @@ class CommentService {
   CommentService({
     required this.apiKey,
     required this.token,
+    required this.baseUrl,
   });
 
   final String? token;
   final String apiKey;
+  final String baseUrl;
 
   void create({
     required final UCommentCreateParams p,
@@ -16,7 +18,7 @@ class CommentService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/comment/Create",
+        "$baseUrl/comment/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -30,7 +32,7 @@ class CommentService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/comment/Read",
+        "$baseUrl/comment/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UCommentResponse>>.fromJson(
@@ -49,7 +51,7 @@ class CommentService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/comment/ReadById",
+        "$baseUrl/comment/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -63,7 +65,7 @@ class CommentService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/comment/Update",
+        "$baseUrl/comment/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -77,7 +79,7 @@ class CommentService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/comment/Delete",
+        "$baseUrl/comment/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -91,7 +93,7 @@ class CommentService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/comment/ReadProductCommentCount",
+        "$baseUrl/comment/ReadProductCommentCount",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -105,7 +107,7 @@ class CommentService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/comment/ReadUserCommentCount",
+        "$baseUrl/comment/ReadUserCommentCount",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

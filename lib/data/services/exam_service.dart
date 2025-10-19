@@ -4,10 +4,12 @@ class ExamService {
   ExamService({
     required this.apiKey,
     required this.token,
+    required this.baseUrl,
   });
 
   final String? token;
   final String apiKey;
+  final String baseUrl;
 
   void create({
     required final UExamCreateParams p,
@@ -16,7 +18,7 @@ class ExamService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/exam/Create",
+        "$baseUrl/exam/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UExamResponse>.fromJson(r.body, (final dynamic i) => UExamResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -30,7 +32,7 @@ class ExamService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/exam/Read",
+        "$baseUrl/exam/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UExamResponse>>.fromJson(
@@ -49,7 +51,7 @@ class ExamService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/exam/ReadById",
+        "$baseUrl/exam/ReadById",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UExamResponse>.fromJson(r.body, (final dynamic i) => UExamResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -63,7 +65,7 @@ class ExamService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/category/Delete",
+        "$baseUrl/category/Delete",
         body: p.toIdListMap(),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -77,7 +79,7 @@ class ExamService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/exam/SubmitAnswers",
+        "$baseUrl/exam/SubmitAnswers",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

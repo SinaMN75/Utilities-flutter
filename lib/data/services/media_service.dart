@@ -4,10 +4,12 @@ class MediaService {
   MediaService({
     required this.apiKey,
     required this.token,
+    required this.baseUrl,
   });
 
   final String? token;
   final String apiKey;
+  final String baseUrl;
 
   Future<void> create({
     required final UMediaCreateParams p,
@@ -19,12 +21,12 @@ class MediaService {
       await UHttpClient.multipartFileFromFile(
         "File",
         p.file,
-        filename: p.file.path.split("/").last,
+        filename: p.file.path.split("$baseUrl/").last,
       ),
     ];
 
     await UHttpClient.upload(
-      endpoint: "/Media/Create",
+      endpoint: "$baseUrl/Media/Create",
       files: files,
       fields: p.toMap()..addAll(<String, dynamic>{"apiKey": apiKey, "token": token}),
       onSuccess: (final Response r) => onOk(
@@ -47,7 +49,7 @@ class MediaService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/Media/Read",
+        "$baseUrl/Media/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UMediaResponse>>.fromJson(
@@ -70,7 +72,7 @@ class MediaService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/Media/Update",
+        "$baseUrl/Media/Update",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<UMediaResponse>.fromJson(
@@ -91,7 +93,7 @@ class MediaService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/Media/Delete",
+        "$baseUrl/Media/Delete",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),

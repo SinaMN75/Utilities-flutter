@@ -4,10 +4,12 @@ class UserService {
   UserService({
     required this.apiKey,
     required this.token,
+    required this.baseUrl,
   });
 
   final String? token;
   final String apiKey;
+  final String baseUrl;
 
   void create({
     required final UUserCreateParams p,
@@ -16,7 +18,7 @@ class UserService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/user/Create",
+        "$baseUrl/user/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -30,7 +32,7 @@ class UserService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/user/BulkCreate",
+        "$baseUrl/user/BulkCreate",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -44,7 +46,7 @@ class UserService {
     final VoidCallback? onException,
   }) =>
       UHttpClient.post(
-        "/User/Read",
+        "$baseUrl/User/Read",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UUserResponse>>.fromJson(
@@ -65,7 +67,7 @@ class UserService {
     final VoidCallback? onException,
   }) {
     UHttpClient.post(
-      "/user/ReadById",
+      "$baseUrl/user/ReadById",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -80,7 +82,7 @@ class UserService {
     final VoidCallback? onException,
   }) {
     UHttpClient.post(
-      "/user/Update",
+      "$baseUrl/user/Update",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -95,7 +97,7 @@ class UserService {
     final VoidCallback? onException,
   }) {
     UHttpClient.post(
-      "/user/Delete",
+      "$baseUrl/user/Delete",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
