@@ -9,6 +9,7 @@ export "package:collection/collection.dart" hide binarySearch, mergeSort;
 export "package:connectivity_plus/connectivity_plus.dart";
 export "package:crypto/crypto.dart";
 export "package:device_info_plus/device_info_plus.dart";
+export "package:easy_sidemenu/easy_sidemenu.dart";
 export "package:file_picker/file_picker.dart";
 export "package:flutter/cupertino.dart" hide CupertinoTimerPicker, CupertinoTimerPickerMode, RefreshCallback;
 export "package:flutter/foundation.dart";
