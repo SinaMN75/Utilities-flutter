@@ -18,7 +18,7 @@ abstract class UHttpClient {
     required final String endpoint,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
-    required final Function(dynamic)? onException,
+    required final VoidCallback onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
@@ -93,7 +93,7 @@ abstract class UHttpClient {
         return response;
       }
     } catch (e) {
-      onException?.call(e);
+      onException();
       return null;
     }
   }
@@ -103,7 +103,7 @@ abstract class UHttpClient {
     required final List<MultipartFile> files,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
-    required final Function(dynamic)? onException,
+    required final VoidCallback onException,
     final Map<String, dynamic>? fields,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
@@ -133,7 +133,7 @@ abstract class UHttpClient {
         onError?.call(response);
       }
     } catch (e) {
-      onException?.call(e);
+      onException();
     }
   }
 
@@ -141,7 +141,7 @@ abstract class UHttpClient {
     final String endpoint, {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
-    required final Function(dynamic)? onException,
+    required final VoidCallback onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final Duration cacheDuration = const Duration(minutes: 60),
@@ -165,7 +165,7 @@ abstract class UHttpClient {
     final String endpoint, {
     required final Function(Response) onSuccess,
     required final Function(Response) onError,
-    required final Function(dynamic) onException,
+    required final VoidCallback onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
@@ -193,7 +193,7 @@ abstract class UHttpClient {
     final String endpoint, {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
-    required final Function(dynamic)? onException,
+    required final VoidCallback onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
@@ -215,7 +215,7 @@ abstract class UHttpClient {
     final String endpoint, {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
-    required final Function(dynamic)? onException,
+    required final VoidCallback onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
   }) async =>

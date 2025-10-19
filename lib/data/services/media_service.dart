@@ -13,7 +13,7 @@ class MediaService {
     required final UMediaCreateParams p,
     required final Function(UResponse<UMediaResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) async {
     final List<MultipartFile> files = <MultipartFile>[
       await UHttpClient.multipartFileFromFile(
@@ -36,9 +36,7 @@ class MediaService {
       onError: (final Response r) => onError(
         UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
       ),
-      onException: (final dynamic e) {
-        if (onException != null) onException(e);
-      },
+      onException: () => onException?.call(),
     );
   }
 
@@ -46,7 +44,7 @@ class MediaService {
     required final UMediaReadParams p,
     required final Function(UResponse<List<UMediaResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/Media/Read",
@@ -62,16 +60,14 @@ class MediaService {
         onError: (final Response r) => onError(
           UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void update({
     required final UMediaUpdateParams p,
     required final Function(UResponse<UMediaResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/Media/Update",
@@ -85,16 +81,14 @@ class MediaService {
         onError: (final Response r) => onError(
           UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void delete({
     required final UIdParams p,
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/Media/Delete",
@@ -105,8 +99,6 @@ class MediaService {
         onError: (final Response r) => onError(
           UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 }

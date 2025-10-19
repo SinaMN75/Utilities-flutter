@@ -13,39 +13,35 @@ class FollowService {
     required final UFollowParams p,
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/Follow",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void unfollow({
     required final UFollowParams p,
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/Unfollow",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void readFollowers({
     required final UIdParams p,
     required final Function(UResponse<List<UUserResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/ReadFollowers",
@@ -57,16 +53,14 @@ class FollowService {
           ),
         ),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void readFollowedUsers({
     required final UIdParams p,
     required final Function(UResponse<List<UUserResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/ReadFollowedUsers",
@@ -78,16 +72,14 @@ class FollowService {
           ),
         ),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void readFollowedProducts({
     required final UIdParams p,
     required final Function(UResponse<List<UProductResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/ReadFollowedProducts",
@@ -99,16 +91,14 @@ class FollowService {
           ),
         ),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void readFollowedCategories({
     required final UIdParams p,
     required final Function(UResponse<List<UCategoryResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/ReadFollowedCategories",
@@ -120,72 +110,62 @@ class FollowService {
           ),
         ),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void readFollowerFollowingCount({
     required final UIdParams p,
     required final Function(UResponse<UFollowerFollowingCountResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/ReadFollowerFollowingCount",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UFollowerFollowingCountResponse>.fromJson(r.body, (final dynamic i) => UFollowerFollowingCountResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void isFollowingUser({
     required final UFollowParams p,
     required final Function(UResponse<bool> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/IsFollowingUser",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void isFollowingProduct({
     required final UFollowParams p,
     required final Function(UResponse<bool> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/isFollowingProduct",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 
   void isFollowingCategory({
     required final UFollowParams p,
     required final Function(UResponse<bool> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final Function(Exception)? onException,
+    final VoidCallback? onException,
   }) =>
       UHttpClient.post(
         "/follow/isFollowingCategory",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (final dynamic e) {
-          if (onException != null) onException(e);
-        },
+        onException: () => onException?.call(),
       );
 }
