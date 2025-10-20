@@ -117,6 +117,7 @@ class UMaterialApp extends StatelessWidget {
         ),
         drawerTheme: DrawerThemeData(
           shape: Border.all(color: Colors.transparent, width: 0.1),
+          backgroundColor: data.drawerColor,
         ),
         listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
         inputDecorationTheme: InputDecorationTheme(
@@ -171,6 +172,7 @@ class UThemeData {
     this.cardElevation = 1,
     this.appbarTitleTextStyle,
     this.appbarIconColor,
+    this.drawerColor,
   });
 
   final String fontFamily;
@@ -185,4 +187,5 @@ class UThemeData {
   final Color? appbarColor;
   final TextStyle? appbarTitleTextStyle;
   final Color? appbarIconColor;
+  final Color? drawerColor;
 }

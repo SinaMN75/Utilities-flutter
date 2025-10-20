@@ -424,7 +424,7 @@ abstract class UNavigator {
                     width: 40,
                     height: 40,
                     color: color,
-                    borderRadius: BorderRadius.circular(100),
+                    radius: 100,
                     border: color == defaultColor ? Border.all(width: 3) : null,
                   ).onTap(() => UNavigator.back(color)),
                 )

@@ -15,7 +15,7 @@ class SignaturePad extends StatelessWidget {
     this.minStrokeWidth = 1.0,
     this.maxStrokeWidth = 4.0,
     this.border = const Border.fromBorderSide(BorderSide(color: Colors.grey)),
-    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
+    this.radius = 8,
     this.margin = const EdgeInsets.all(10),
     this.padding = const EdgeInsets.all(8),
     this.buttonStyle,
@@ -38,7 +38,7 @@ class SignaturePad extends StatelessWidget {
   final double minStrokeWidth;
   final double maxStrokeWidth;
   final Border? border;
-  final BorderRadius borderRadius;
+  final double? radius;
   final EdgeInsets margin;
   final EdgeInsets padding;
   final ButtonStyle? buttonStyle;
@@ -59,7 +59,7 @@ class SignaturePad extends StatelessWidget {
             margin: margin,
             padding: padding,
             border: border,
-            borderRadius: borderRadius,
+            radius: radius,
             constraints: constraints,
             child: SfSignaturePad(
               key: signatureGlobalKey,

@@ -285,7 +285,7 @@ class UContainer extends StatelessWidget {
     this.gradient,
     this.image,
     this.border,
-    this.borderRadius,
+    this.radius,
     this.boxShadow,
     this.width,
     this.height,
@@ -303,7 +303,7 @@ class UContainer extends StatelessWidget {
   final Gradient? gradient;
   final DecorationImage? image;
   final BoxBorder? border;
-  final BorderRadius? borderRadius;
+  final double? radius;
   final List<BoxShadow>? boxShadow;
   final double? width;
   final double? height;
@@ -328,7 +328,7 @@ class UContainer extends StatelessWidget {
           gradient: gradient,
           image: image,
           border: border,
-          borderRadius: borderRadius,
+          borderRadius: BorderRadius.circular(radius ?? 0),
           boxShadow: boxShadow,
         ),
         clipBehavior: clipBehavior,
@@ -350,6 +350,10 @@ class UColumn extends StatelessWidget {
     this.width,
     this.height,
     this.flexFactors,
+    this.backgroundColor,
+    this.padding,
+    this.margin,
+    this.radius,
   });
 
   final List<Widget> children;
@@ -363,6 +367,10 @@ class UColumn extends StatelessWidget {
   final bool wrap;
   final double runSpacing;
   final List<int>? flexFactors;
+  final double? radius;
+  final Color? backgroundColor;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
 
   @override
   Widget build(final BuildContext context) {
@@ -379,9 +387,13 @@ class UColumn extends StatelessWidget {
     }
 
     if (wrap) {
-      return SizedBox(
+      return UContainer(
+        color: backgroundColor,
         width: width,
         height: height,
+        padding: padding,
+        margin: margin,
+        radius: radius,
         child: Wrap(
           direction: Axis.vertical,
           spacing: spacing,
@@ -393,9 +405,13 @@ class UColumn extends StatelessWidget {
       );
     }
 
-    return SizedBox(
+    return UContainer(
+      color: backgroundColor,
       width: width,
       height: height,
+      padding: padding,
+      margin: margin,
+      radius: radius,
       child: Column(
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
@@ -420,6 +436,10 @@ class URow extends StatelessWidget {
     this.width,
     this.height,
     this.flexFactors,
+    this.backgroundColor,
+    this.padding,
+    this.margin,
+    this.radius,
   });
 
   final List<Widget> children;
@@ -433,6 +453,10 @@ class URow extends StatelessWidget {
   final bool wrap;
   final double runSpacing;
   final List<int>? flexFactors;
+  final Color? backgroundColor;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
+  final double? radius;
 
   @override
   Widget build(final BuildContext context) {
@@ -449,9 +473,13 @@ class URow extends StatelessWidget {
     }
 
     if (wrap) {
-      return SizedBox(
+      return UContainer(
+        color: backgroundColor,
         width: width,
         height: height,
+        padding: padding,
+        margin: margin,
+        radius: radius,
         child: Wrap(
           direction: Axis.vertical,
           spacing: spacing,
@@ -463,9 +491,13 @@ class URow extends StatelessWidget {
       );
     }
 
-    return SizedBox(
+    return UContainer(
+      color: backgroundColor,
       width: width,
       height: height,
+      padding: padding,
+      margin: margin,
+      radius: radius,
       child: Row(
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
