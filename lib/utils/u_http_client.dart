@@ -231,13 +231,8 @@ abstract class UHttpClient {
         ),
       );
     }
-
     return uri;
   }
-
-  static Map<String, dynamic> decodeJson(final Response response) => jsonDecode(response.body) as Map<String, dynamic>;
-
-  static List<dynamic> decodeJsonArray(final Response response) => jsonDecode(response.body) as List<dynamic>;
 
   static Future<MultipartFile> multipartFileFromFile(
     final String fieldName,
@@ -257,16 +252,18 @@ abstract class UHttpClient {
     );
   }
 
-  static void clearCache() {
-    for (final String key in ULocalStorage.getKeys()) {
-      if (key.startsWith("cache_")) {
-        ULocalStorage.remove(key);
-      }
-    }
-  }
+  static T? removeNullEntries<T>(T? json) {
+    if (json == null) return null;
 
-  void close() {
-    _client.close();
+    if (json is List) {
+      json.removeWhere((final dynamic e) => e == null);
+      json.forEach(removeNullEntries);
+    } else if (json is Map) {
+      json.removeWhere((final dynamic key, final dynamic value) => key == null || value == null);
+      json.values.forEach(removeNullEntries);
+    }
+
+    return json;
   }
 }
 
@@ -282,21 +279,7 @@ extension HTTP on Response {
   }
 }
 
-T? removeNullEntries<T>(T? json) {
-  if (json == null) return null;
-
-  if (json is List) {
-    json.removeWhere((final dynamic e) => e == null);
-    json.forEach(removeNullEntries);
-  } else if (json is Map) {
-    json.removeWhere((final dynamic key, final dynamic value) => key == null || value == null);
-    json.values.forEach(removeNullEntries);
-  }
-
-  return json;
-}
-
-class DownloadUtils {
+class UDownload {
   static final Map<String, CancelableOperation<Uint8List>> _downloadOperations = <String, CancelableOperation<Uint8List>>{};
 
   static Future<Uint8List?> downloadFile({
