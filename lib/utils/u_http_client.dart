@@ -18,15 +18,21 @@ abstract class UHttpClient {
     required final String endpoint,
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
-    required final VoidCallback onException,
+    required final Function(String) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
     final Duration cacheDuration = const Duration(minutes: 60),
+    final String noNetworkMessage = "Connection to Network was Not possible",
+    final String unexpectedErrorMessage = "Unexpected Error, Please try again",
     final bool? cache,
     final bool? returnCacheIfExist,
   }) async {
+    if (!await UNetwork.hasNetworkConnection()) {
+      onException(noNetworkMessage);
+      return null;
+    }
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = _generateCacheKey(endpoint, queryParams);
@@ -93,7 +99,8 @@ abstract class UHttpClient {
         return response;
       }
     } catch (e) {
-      onException();
+      onException(unexpectedErrorMessage);
+      developer.log(e.toString());
       return null;
     }
   }
@@ -141,10 +148,11 @@ abstract class UHttpClient {
     final String endpoint, {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
-    required final VoidCallback onException,
+    required final Function(String) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final Duration cacheDuration = const Duration(minutes: 60),
+    final String noNetworkMessage = "Connection to Network was Not possible",
     final bool? cache,
     final bool? returnCacheIfExist,
   }) async =>
@@ -165,12 +173,13 @@ abstract class UHttpClient {
     final String endpoint, {
     required final Function(Response) onSuccess,
     required final Function(Response) onError,
-    required final VoidCallback onException,
+    required final Function(String) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
     final Duration cacheDuration = const Duration(minutes: 60),
+    final String noNetworkMessage = "Connection to Network was Not possible",
     final bool? cache,
     final bool? returnCacheIfExist,
   }) async =>
@@ -193,11 +202,12 @@ abstract class UHttpClient {
     final String endpoint, {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
-    required final VoidCallback onException,
+    required final Function(String) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
+    final String noNetworkMessage = "Connection to Network was Not possible",
   }) async =>
       _request(
         method: "PUT",
@@ -215,9 +225,10 @@ abstract class UHttpClient {
     final String endpoint, {
     required final Function(Response)? onSuccess,
     required final Function(Response)? onError,
-    required final VoidCallback onException,
+    required final Function(String) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
+    final String noNetworkMessage = "Connection to Network was Not possible",
   }) async =>
       _request(
         method: "DELETE",

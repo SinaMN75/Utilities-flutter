@@ -15,35 +15,35 @@ class UserService {
     required final UUserCreateParams p,
     required final Function(UResponse<UUserResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final VoidCallback? onException,
+    required final Function(String e) onException,
   }) =>
       UHttpClient.post(
         "$baseUrl/user/Create",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: () => onException?.call(),
+        onException: (String e) => onException(e),
       );
 
   void bulkCreate({
     required final UUserBulkCreateParams p,
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final VoidCallback? onException,
+    required final Function(String e) onException,
   }) =>
       UHttpClient.post(
         "$baseUrl/user/BulkCreate",
         body: p.toMap().add("apiKey", apiKey).add("token", token),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: () => onException?.call(),
+        onException: (String e) => onException(e),
       );
 
   void read({
     required final UUserReadParams p,
     required final Function(UResponse<List<UUserResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final VoidCallback? onException,
+    required final Function(String e) onException,
   }) =>
       UHttpClient.post(
         "$baseUrl/User/Read",
@@ -57,21 +57,21 @@ class UserService {
           ),
         ),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: () => onException?.call(),
+        onException: (String e) => onException(e),
       );
 
   void readById({
     required final UIdParams p,
     required final Function(UResponse<UUserResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final VoidCallback? onException,
+    required final Function(String e) onException,
   }) {
     UHttpClient.post(
       "$baseUrl/user/ReadById",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: () => onException?.call(),
+      onException: (String e) => onException(e),
     );
   }
 
@@ -79,14 +79,14 @@ class UserService {
     required final UUserUpdateParams p,
     required final Function(UResponse<UUserResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final VoidCallback? onException,
+    required final Function(String e) onException,
   }) {
     UHttpClient.post(
       "$baseUrl/user/Update",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: () => onException?.call(),
+      onException: (String e) => onException(e),
     );
   }
 
@@ -94,14 +94,14 @@ class UserService {
     required final UIdParams p,
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
-    final VoidCallback? onException,
+    required final Function(String e) onException,
   }) {
     UHttpClient.post(
       "$baseUrl/user/Delete",
       body: p.toMap().add("apiKey", apiKey).add("token", token),
       onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: () => onException?.call(),
+      onException: (String e) => onException(e),
     );
   }
 }
