@@ -4,6 +4,7 @@ export "dart:io";
 export "dart:math";
 
 export "package:any_link_preview/any_link_preview.dart";
+export "package:async/async.dart";
 export "package:chewie/chewie.dart";
 export "package:collection/collection.dart" hide binarySearch, mergeSort;
 export "package:connectivity_plus/connectivity_plus.dart";

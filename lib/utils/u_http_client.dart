@@ -1,6 +1,5 @@
 import "dart:developer" as developer;
 
-import "package:async/async.dart";
 import "package:u/utilities.dart";
 
 enum URequestBodyType { json, formData }
@@ -25,7 +24,9 @@ abstract class UHttpClient {
     final String unexpectedErrorMessage = "Unexpected Error, Please try again",
     final bool offline = false,
   }) async {
-    if (!await UNetwork.hasNetworkConnection() && offline == false) {
+    final bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
+
+    if (!hasNetworkConnection && offline == false) {
       onException(noNetworkMessage);
       return null;
     }
@@ -33,7 +34,7 @@ abstract class UHttpClient {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = _generateCacheKey(endpoint, queryParams);
 
-      if (offline) {
+      if (!hasNetworkConnection && offline) {
         final String? cachedData = ULocalStorage.getString(cacheKey);
         if (cachedData != null) {
           final Response response = Response(cachedData, 200, request: Request(method, uri));
