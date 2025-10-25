@@ -111,7 +111,7 @@ abstract class ULocalStorage {
   }
 
   // Get storage info for all files
-  static Future<Map<String, int>> getAllFilesStorageInfo() async {
+  static Map<String, int> getAllFilesStorageInfo() {
     try {
       final List<FileSystemEntity> files = _bigFilesDirectory.listSync();
       final Map<String, int> storageInfo = <String, int>{};
@@ -120,7 +120,7 @@ abstract class ULocalStorage {
         if (file is File && file.path.endsWith(".dat")) {
           final String fileName = file.uri.pathSegments.last;
           final String key = fileName.substring(0, fileName.length - 4); // Remove '.dat'
-          final FileStat stat = await file.stat();
+          final FileStat stat = file.statSync();
           storageInfo[key] = stat.size;
         }
       }
