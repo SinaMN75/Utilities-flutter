@@ -23,10 +23,9 @@ abstract class UHttpClient {
     final Duration cacheDuration = const Duration(minutes: 60),
     final String noNetworkMessage = "Connection to Network was Not possible",
     final String unexpectedErrorMessage = "Unexpected Error, Please try again",
-    final bool cache = true,
-    final bool returnCacheIfExist = false,
+    final bool offline = false,
   }) async {
-    if (!await UNetwork.hasNetworkConnection() && returnCacheIfExist == false) {
+    if (!await UNetwork.hasNetworkConnection() && offline == false) {
       onException(noNetworkMessage);
       return null;
     }
@@ -34,7 +33,7 @@ abstract class UHttpClient {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = _generateCacheKey(endpoint, queryParams);
 
-      if (returnCacheIfExist == true) {
+      if (offline) {
         final String? cachedData = ULocalStorage.getString(cacheKey);
         if (cachedData != null) {
           final Response response = Response(cachedData, 200, request: Request(method, uri));
@@ -49,7 +48,6 @@ abstract class UHttpClient {
 
       if (body != null) {
         if (bodyType == URequestBodyType.json) {
-          // JSON body
           if (body is Map) {
             request.body = jsonEncode(removeNullEntries(body));
             request.headers["Content-Type"] = "application/json";
@@ -60,7 +58,6 @@ abstract class UHttpClient {
             request.bodyBytes = body;
           }
         } else if (bodyType == URequestBodyType.formData && body is Map<String, dynamic>) {
-          // Form data body
           final Map<String, String> formFields = <String, String>{};
           body.forEach((String key, dynamic value) {
             if (value != null) {
@@ -75,8 +72,7 @@ abstract class UHttpClient {
       final Response response = await _client.send(request).timeout(const Duration(seconds: 30)).then(Response.fromStream);
       response.prettyLog(params: jsonEncode(body));
 
-      // Cache successful GET responses if useCache is enabled
-      if (response.statusCode >= 200 && response.statusCode < 300) {
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
         ULocalStorage.set(cacheKey, response.body);
       }
 
@@ -142,7 +138,6 @@ abstract class UHttpClient {
     final Map<String, dynamic>? queryParams,
     final Duration cacheDuration = const Duration(minutes: 60),
     final String noNetworkMessage = "Connection to Network was Not possible",
-    final bool cache = true,
     final bool returnCacheIfExist = false,
   }) async =>
       _request(
@@ -154,8 +149,7 @@ abstract class UHttpClient {
         onError: onError,
         onException: onException,
         cacheDuration: cacheDuration,
-        cache: cache,
-        returnCacheIfExist: returnCacheIfExist,
+        offline: returnCacheIfExist,
       );
 
   static Future<Response?> post(
@@ -169,8 +163,7 @@ abstract class UHttpClient {
     final URequestBodyType bodyType = URequestBodyType.json,
     final Duration cacheDuration = const Duration(minutes: 60),
     final String noNetworkMessage = "Connection to Network was Not possible",
-    final bool cache = true,
-    final bool returnCacheIfExist = false,
+    final bool offline = false,
   }) async =>
       _request(
         method: "POST",
@@ -183,8 +176,7 @@ abstract class UHttpClient {
         onError: (Response r) => onError(r),
         onException: onException,
         cacheDuration: cacheDuration,
-        cache: cache,
-        returnCacheIfExist: returnCacheIfExist,
+        offline: offline,
       );
 
   static Future<Response?> put(
