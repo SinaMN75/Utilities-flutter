@@ -8,16 +8,13 @@ enum URequestBodyType { json, formData }
 abstract class UHttpClient {
   static final Client _client = Client();
 
-  static String _generateCacheKey(String endpoint, Map<String, dynamic>? queryParams) {
-    final Uri uri = _buildUri(endpoint, queryParams);
-    return 'cache_${uri.toString().replaceAll(RegExp(r'[^\w]'), '_')}';
-  }
+  static String _generateCacheKey(String endpoint, Map<String, dynamic>? q) => 'cache_${_buildUri(endpoint, q).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
 
   static Future<Response?> _request({
     required final String method,
     required final String endpoint,
-    required final Function(Response)? onSuccess,
-    required final Function(Response)? onError,
+    required final Function(Response) onSuccess,
+    required final Function(Response) onError,
     required final Function(String) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
@@ -26,10 +23,10 @@ abstract class UHttpClient {
     final Duration cacheDuration = const Duration(minutes: 60),
     final String noNetworkMessage = "Connection to Network was Not possible",
     final String unexpectedErrorMessage = "Unexpected Error, Please try again",
-    final bool? cache,
-    final bool? returnCacheIfExist,
+    final bool cache = true,
+    final bool returnCacheIfExist = false,
   }) async {
-    if (!await UNetwork.hasNetworkConnection()) {
+    if (!await UNetwork.hasNetworkConnection() && returnCacheIfExist == false) {
       onException(noNetworkMessage);
       return null;
     }
@@ -39,18 +36,11 @@ abstract class UHttpClient {
 
       if (returnCacheIfExist == true) {
         final String? cachedData = ULocalStorage.getString(cacheKey);
-        final int? cachedTimestamp = ULocalStorage.getInt("${cacheKey}_timestamp");
-
-        if (cachedData != null && cachedTimestamp != null) {
-          final int cacheAge = DateTime.now().millisecondsSinceEpoch - cachedTimestamp;
-          final bool cacheValid = cacheAge < (cacheDuration).inMilliseconds;
-
-          if (cacheValid) {
-            final Response response = Response(cachedData, 200, request: Request(method, uri));
-            response.prettyLog(params: jsonEncode(body));
-            onSuccess?.call(response);
-            return response;
-          }
+        if (cachedData != null) {
+          final Response response = Response(cachedData, 200, request: Request(method, uri));
+          response.prettyLog(params: jsonEncode(body));
+          onSuccess(response);
+          return response;
         }
       }
 
@@ -86,16 +76,15 @@ abstract class UHttpClient {
       response.prettyLog(params: jsonEncode(body));
 
       // Cache successful GET responses if useCache is enabled
-      if (cache != null && response.statusCode >= 200 && response.statusCode < 300) {
+      if (response.statusCode >= 200 && response.statusCode < 300) {
         ULocalStorage.set(cacheKey, response.body);
-        ULocalStorage.set("${cacheKey}_timestamp", DateTime.now().millisecondsSinceEpoch);
       }
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
-        onSuccess?.call(response);
+        onSuccess(response);
         return response;
       } else {
-        onError?.call(response);
+        onError(response);
         return response;
       }
     } catch (e) {
@@ -146,15 +135,15 @@ abstract class UHttpClient {
 
   static Future<Response?> get(
     final String endpoint, {
-    required final Function(Response)? onSuccess,
-    required final Function(Response)? onError,
+    required final Function(Response) onSuccess,
+    required final Function(Response) onError,
     required final Function(String) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final Duration cacheDuration = const Duration(minutes: 60),
     final String noNetworkMessage = "Connection to Network was Not possible",
-    final bool? cache,
-    final bool? returnCacheIfExist,
+    final bool cache = true,
+    final bool returnCacheIfExist = false,
   }) async =>
       _request(
         method: "GET",
@@ -180,8 +169,8 @@ abstract class UHttpClient {
     final URequestBodyType bodyType = URequestBodyType.json,
     final Duration cacheDuration = const Duration(minutes: 60),
     final String noNetworkMessage = "Connection to Network was Not possible",
-    final bool? cache,
-    final bool? returnCacheIfExist,
+    final bool cache = true,
+    final bool returnCacheIfExist = false,
   }) async =>
       _request(
         method: "POST",
@@ -200,8 +189,8 @@ abstract class UHttpClient {
 
   static Future<Response?> put(
     final String endpoint, {
-    required final Function(Response)? onSuccess,
-    required final Function(Response)? onError,
+    required final Function(Response) onSuccess,
+    required final Function(Response) onError,
     required final Function(String) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
@@ -223,8 +212,8 @@ abstract class UHttpClient {
 
   static Future<Response?> delete(
     final String endpoint, {
-    required final Function(Response)? onSuccess,
-    required final Function(Response)? onError,
+    required final Function(Response) onSuccess,
+    required final Function(Response) onError,
     required final Function(String) onException,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
