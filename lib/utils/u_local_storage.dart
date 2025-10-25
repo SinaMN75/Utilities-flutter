@@ -8,9 +8,18 @@ class ULocalStorage {
 
   static Set<String> getKeys() => _sp.getKeys();
 
-  static void set(String key, dynamic value, {Duration? expireTime}) {
+  static void set(String key, dynamic value, {Duration? expireTime, (String, String)? encryptKeyIv}) {
     if (value is String) {
-      _sp.setString(key, value);
+      _sp.setString(
+        key,
+        encryptKeyIv == null
+            ? value
+            : UEncryption.encryptString(
+                plainText: value,
+                key: encryptKeyIv.$1,
+                iv: encryptKeyIv.$2,
+              ),
+      );
     } else if (value is bool) {
       _sp.setBool(key, value);
     } else if (value is double) {
@@ -36,7 +45,17 @@ class ULocalStorage {
 
   static int? getInt(String key) => getIfNotExpired(key);
 
-  static String? getString(String key) => getIfNotExpired(key);
+  static String? getString(String key, {(String, String)? encryptKeyIv}) {
+    final String? value = getIfNotExpired(key);
+    if (value == null) return null;
+    if (encryptKeyIv == null) return getIfNotExpired(key);
+
+    return UEncryption.decryptString(
+      base64Encrypted: value,
+      key: encryptKeyIv.$1,
+      iv: encryptKeyIv.$2,
+    );
+  }
 
   static bool? getBool(String key) => getIfNotExpired(key);
 

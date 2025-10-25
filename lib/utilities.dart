@@ -88,6 +88,7 @@ export "utils/extensions/widget_extension.dart";
 export "utils/u_app_utils.dart";
 export "utils/u_clipboard.dart";
 export "utils/u_constants.dart";
+export "utils/u_encrypt.dart";
 export "utils/u_file.dart";
 export "utils/u_fonts.dart";
 export "utils/u_http_client.dart";

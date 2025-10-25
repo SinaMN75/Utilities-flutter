@@ -110,12 +110,12 @@ class UUpdateDialog {
               ),
               if (info.link1 != null && info.link1Title != null)
                 UElevatedButton(
-                  onTap: () => launchUrl(Uri.parse(info.link1!), mode: LaunchMode.externalApplication),
+                  onTap: () => ULaunch.launchURL(info.link1!),
                   title: info.link1Title ?? "---",
                 ).pOnly(top: 8),
               if (info.link2 != null && info.link2Title != null)
                 UElevatedButton(
-                  onTap: () => launchUrl(Uri.parse(info.link2!), mode: LaunchMode.externalApplication),
+                  onTap: () => ULaunch.launchURL(info.link2!),
                   title: info.link2Title ?? "",
                 ).pOnly(top: 8),
               if (type == UpdateType.optional)
