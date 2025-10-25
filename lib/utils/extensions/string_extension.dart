@@ -347,3 +347,12 @@ extension Base64BytesExtensions on Uint8List {
 
   String toBase64WithoutPadding() => base64.encode(this).replaceAll("=", "");
 }
+
+extension NumExtension on num {
+  String toBKMG() {
+    if (this <= 0) return "0 B";
+    const List<String> suffixes = <String>["B", "KB", "MB", "GB"];
+    final int i = (log(this) / log(1024)).floor();
+    return "${(this / pow(1024, i)).toStringAsFixed(1)} ${suffixes[i]}";
+  }
+}

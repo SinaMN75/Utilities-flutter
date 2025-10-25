@@ -76,7 +76,7 @@ abstract class UHttpClient {
         ULocalStorage.set(cacheKey, response.body);
       }
 
-      if (response.statusCode >= 200 && response.statusCode < 300) {
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
         onSuccess(response);
         return response;
       } else {
