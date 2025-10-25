@@ -11,6 +11,7 @@ Future<void> initU({
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(deviceOrientations);
   await ULocalStorage.init();
+  await UFileStorage.init();
   UApp.packageInfo = await PackageInfo.fromPlatform();
   if (UApp.isAndroid) UApp.androidDeviceInfo = await UApp.deviceInfo.androidInfo;
   if (UApp.isIos) UApp.iosDeviceInfo = await UApp.deviceInfo.iosInfo;

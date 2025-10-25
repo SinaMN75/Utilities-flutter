@@ -24,10 +24,7 @@ class ULocalStorage {
     }
 
     if (expireTime != null) {
-      _sp.setInt("_expiry_$key", DateTime
-          .now()
-          .add(expireTime)
-          .millisecondsSinceEpoch);
+      _sp.setInt("_expiry_$key", DateTime.now().add(expireTime).millisecondsSinceEpoch);
     }
   }
 
@@ -73,9 +70,7 @@ class ULocalStorage {
   static dynamic getIfNotExpired(String key) {
     final String expiryKey = "_expiry_$key";
     final int? expiryTime = _sp.getInt(expiryKey);
-    if (expiryTime != null && DateTime
-        .now()
-        .millisecondsSinceEpoch > expiryTime) {
+    if (expiryTime != null && DateTime.now().millisecondsSinceEpoch > expiryTime) {
       remove(key);
       remove(expiryKey);
       return null;
@@ -150,13 +145,13 @@ class UFileStorage {
   }
 
   /// Calculates the total storage used by all .dat files.
-  static Future<int> totalStorageUsed() async {
+  static int totalStorageUsed() {
     try {
       final List<FileSystemEntity> files = _bigFilesDirectory.listSync();
       int totalSize = 0;
       for (final FileSystemEntity file in files) {
         if (file is File && file.path.endsWith(".dat")) {
-          final FileStat stat = await file.stat();
+          final FileStat stat = file.statSync();
           totalSize += stat.size;
         }
       }

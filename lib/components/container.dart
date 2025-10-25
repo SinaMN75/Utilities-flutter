@@ -510,7 +510,7 @@ class URow extends StatelessWidget {
 
 class UCard extends StatelessWidget {
   const UCard({
-    required this.body,
+    required this.child,
     this.header,
     this.footer,
     this.actions,
@@ -525,7 +525,7 @@ class UCard extends StatelessWidget {
   });
 
   final Widget? header;
-  final Widget body;
+  final Widget child;
   final Widget? footer;
   final List<Widget>? actions;
   final double elevation;
@@ -553,7 +553,7 @@ class UCard extends StatelessWidget {
                 header!,
                 const SizedBox(height: 8),
               ],
-              Padding(padding: padding, child: body),
+              Padding(padding: padding, child: child),
               if (footer != null) ...<Widget>[
                 const SizedBox(height: 8),
                 footer!,
