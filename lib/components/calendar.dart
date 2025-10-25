@@ -263,7 +263,7 @@ class _CalendarDemoState extends State<CalendarDemo> {
           ),
           onTap: (CalendarTapDetails details) {
             if (details.appointments != null && details.appointments!.isNotEmpty) {
-              UNavigator.snackbar(message: "Tapped: ${details.appointments!.first.subject}");
+              UNavigator.snackBar(message: "Tapped: ${details.appointments!.first.subject}");
             }
           },
         ),

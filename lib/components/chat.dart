@@ -89,7 +89,7 @@ class _UChatState extends State<UChat> {
                                   _errorMessage = "Failed to send message: $e";
                                 });
                                 if (context.mounted) {
-                                  UNavigator.snackbar(message: _errorMessage ?? "Message send failed");
+                                  UNavigator.snackBar(message: _errorMessage ?? "Message send failed");
                                 }
                               }
                             },

@@ -68,7 +68,7 @@ class _UVideoPlayerState extends State<UVideoPlayer> {
           });
           widget.onError?.call(_errorMessage);
           if (context.mounted && widget.onError == null) {
-            UNavigator.snackbar(message: _errorMessage ?? "Video playback failed");
+            UNavigator.snackBar(message: _errorMessage ?? "Video playback failed");
           }
         }
       })

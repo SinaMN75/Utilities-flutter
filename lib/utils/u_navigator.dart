@@ -212,7 +212,7 @@ abstract class UNavigator {
       });
 
   /// Standard snackbar
-  static void snackbar({
+  static void snackBar({
     required String message,
     String? title,
     Duration duration = const Duration(seconds: 4),
@@ -240,40 +240,6 @@ abstract class UNavigator {
         onDismiss?.call();
       });
 
-  /// Floating toast-style notification
-  static void toast({
-    required String message,
-    Duration duration = const Duration(seconds: 2),
-    Color? backgroundColor,
-    Color? textColor,
-    double borderRadius = 20,
-    EdgeInsets padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-    EdgeInsets margin = const EdgeInsets.only(bottom: 30),
-    VoidCallback? onDismiss,
-  }) =>
-      ScaffoldMessenger.of(navigatorKey.currentContext!)
-          .showSnackBar(SnackBar(
-            content: Text(
-              message,
-              style: TextStyle(color: textColor ?? theme.colorScheme.onSurface),
-              textAlign: TextAlign.center,
-            ),
-            backgroundColor: backgroundColor ?? theme.colorScheme.surface,
-            elevation: 6,
-            duration: duration,
-            behavior: SnackBarBehavior.floating,
-            margin: margin,
-            padding: padding,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius),
-            ),
-          ))
-          .closed
-          .then((_) {
-        onDismiss?.call();
-      });
-
-  /// Error notification
   static void error({
     required String message,
     Duration duration = const Duration(seconds: 4),
@@ -281,7 +247,7 @@ abstract class UNavigator {
     VoidCallback? onAction,
     VoidCallback? onDismiss,
   }) =>
-      snackbar(
+      snackBar(
         message: message,
         backgroundColor: theme.colorScheme.error,
         textColor: theme.colorScheme.onError,
@@ -302,11 +268,7 @@ abstract class UNavigator {
     RouteTransitions transition = RouteTransitions.upToDown,
     VoidCallback? onDismiss,
   }) =>
-      push<T>(
-        page,
-        fullscreenDialog: true,
-        transition: transition,
-      ).then((T? value) {
+      push<T>(page, fullscreenDialog: true, transition: transition).then((T? value) {
         onDismiss?.call();
         return value;
       });
