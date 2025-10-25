@@ -401,34 +401,38 @@ abstract class UNavigator {
       UNavigator.dialog<Color>(
         AlertDialog(
           title: Text(title),
-          content: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 5,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            children: (colors ??
-                    <Color>[
-                      Colors.red,
-                      Colors.green,
-                      Colors.blue,
-                      Colors.yellow,
-                      Colors.orange,
-                      Colors.purple,
-                      Colors.pink,
-                      Colors.cyan,
-                      Colors.black,
-                      Colors.teal,
-                    ])
-                .map(
-                  (Color color) => UContainer(
-                    width: 40,
-                    height: 40,
-                    color: color,
-                    radius: 100,
-                    border: color == defaultColor ? Border.all(width: 3) : null,
-                  ).onTap(() => UNavigator.back(color)),
-                )
-                .toList(),
+          content: SizedBox(
+            width: 200,
+            height: 100,
+            child: GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 5,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+              children: (colors ??
+                      <Color>[
+                        Colors.red,
+                        Colors.green,
+                        Colors.blue,
+                        Colors.yellow,
+                        Colors.orange,
+                        Colors.purple,
+                        Colors.pink,
+                        Colors.cyan,
+                        Colors.black,
+                        Colors.teal,
+                      ])
+                  .map(
+                    (Color color) => UContainer(
+                      width: 40,
+                      height: 40,
+                      color: color,
+                      radius: 100,
+                      border: color == defaultColor ? Border.all(width: 3) : null,
+                    ).onTap(() => UNavigator.back(color)),
+                  )
+                  .toList(),
+            ),
           ),
           actions: <Widget>[
             TextButton(onPressed: UNavigator.back, child: Text(cancelTitle)),
