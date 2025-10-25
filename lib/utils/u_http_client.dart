@@ -258,7 +258,7 @@ abstract class UHttpClient {
   }
 
   static void clearCache() {
-    for (final String key in ULocalStorage.sp.getKeys()) {
+    for (final String key in ULocalStorage.getKeys()) {
       if (key.startsWith("cache_")) {
         ULocalStorage.remove(key);
       }
