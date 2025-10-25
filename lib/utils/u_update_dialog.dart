@@ -70,12 +70,12 @@ class Os {
       };
 }
 
-class UpdateDialog {
+class UUpdateDialog {
   static const String _skipKey = "skip_update_version";
 
   static Future<void> checkAndShow(
-    BuildContext context,
     UUpdateResponse serverData,
+    VoidCallback onSkipOrNotAvailable,
   ) async {
     final Os? info = _platformUpdate(serverData);
     if (info == null) return;
@@ -87,57 +87,60 @@ class UpdateDialog {
     // ✅ Skip check is ONLY for optional update
     if (type == UpdateType.optional) {
       final String? skipped = ULocalStorage.getString(_skipKey);
-      if (skipped == info.current) return;
+      if (skipped == info.current) {
+        onSkipOrNotAvailable();
+        return;
+      }
     }
 
     // ✅ Show dialog
     await showDialog(
       barrierDismissible: type == UpdateType.optional,
-      context: context,
-      builder: (_) => _dialog(context, info, type),
-    );
-  }
-
-  static Widget _dialog(BuildContext context, Os info, UpdateType type) => WillPopScope(
+      context: navigatorKey.currentContext!,
+      builder: (_) => WillPopScope(
         onWillPop: () async => type == UpdateType.optional,
         child: AlertDialog(
           title: Text(type == UpdateType.force ? "Update Required" : "Update Available"),
-          content: Column(
+          content: UColumn(
+            width: 200,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
                 type == UpdateType.force ? "You must update to continue using the app." : "A newer version of the app is available.",
               ),
-              const SizedBox(height: 16),
               if (info.link1 != null && info.link1Title != null)
-                FilledButton(
-                  onPressed: () => launchUrl(Uri.parse(info.link1!), mode: LaunchMode.externalApplication),
-                  child: Text(info.link1Title!),
-                ),
+                UElevatedButton(
+                  onTap: () => launchUrl(Uri.parse(info.link1!), mode: LaunchMode.externalApplication),
+                  title: info.link1Title ?? "---",
+                ).pOnly(top: 8),
               if (info.link2 != null && info.link2Title != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: FilledButton(
-                    onPressed: () => launchUrl(Uri.parse(info.link2!), mode: LaunchMode.externalApplication),
-                    child: Text(info.link2Title!),
-                  ),
-                ),
+                UElevatedButton(
+                  onTap: () => launchUrl(Uri.parse(info.link2!), mode: LaunchMode.externalApplication),
+                  title: info.link2Title ?? "",
+                ).pOnly(top: 8),
+              if (type == UpdateType.optional)
+                UTextButton(
+                  textStyle: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium!.copyWith(color: Colors.red),
+                  onTap: () => exit(0),
+                  title: "Exit",
+                ).pOnly(top: 8)
+              else
+                UTextButton(
+                  title: "Later",
+                  onTap: () {
+                    if (info.current != null) {
+                      ULocalStorage.set(_skipKey, info.current);
+                    }
+                    UNavigator.back();
+                    onSkipOrNotAvailable();
+                  },
+                ).pOnly(top: 8),
             ],
           ),
-          actions: <Widget>[
-            if (type == UpdateType.optional)
-              TextButton(
-                onPressed: () {
-                  if (info.current != null) {
-                    ULocalStorage.set(_skipKey, info.current);
-                  }
-                  Navigator.pop(context);
-                },
-                child: const Text("Later"),
-              ),
-          ],
         ),
-      );
+      ),
+    );
+  }
 
   static Os? _platformUpdate(UUpdateResponse x) {
     if (Platform.isAndroid) return x.android;

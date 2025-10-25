@@ -322,15 +322,12 @@ class UTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => TextButton(
-        style: ButtonStyle(
-          textStyle: textStyle == null ? null : WidgetStatePropertyAll<TextStyle>(textStyle!),
-          padding: WidgetStateProperty.all(padding),
-        ),
+        style: ButtonStyle(padding: WidgetStateProperty.all(padding)),
         onPressed: onTap,
         child: SizedBox(
           height: height,
           width: width ?? MediaQuery.sizeOf(navigatorKey.currentContext!).width,
-          child: Center(child: titleWidget ?? Text(title ?? "", textAlign: TextAlign.center)),
+          child: Center(child: titleWidget ?? Text(title ?? "", textAlign: TextAlign.center, style: textStyle)),
         ),
       );
 }
