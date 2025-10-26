@@ -109,23 +109,25 @@ class UUpdateDialog {
                 type == UpdateType.force ? "You must update to continue using the app." : "A newer version of the app is available.",
               ),
               if (info.link1 != null && info.link1Title != null)
-                UElevatedButton(
+                UButton(
                   onTap: () => ULaunch.launchURL(info.link1!),
                   title: info.link1Title ?? "---",
                 ).pOnly(top: 8),
               if (info.link2 != null && info.link2Title != null)
-                UElevatedButton(
+                UButton(
                   onTap: () => ULaunch.launchURL(info.link2!),
                   title: info.link2Title ?? "",
                 ).pOnly(top: 8),
               if (type == UpdateType.optional)
-                UTextButton(
+                UButton(
+                  type: UButtonType.text,
                   textStyle: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium!.copyWith(color: Colors.red),
                   onTap: () => exit(0),
                   title: "Exit",
                 ).pOnly(top: 8)
               else
-                UTextButton(
+                UButton(
+                  type: UButtonType.text,
                   title: "Later",
                   onTap: () {
                     if (info.current != null) {
