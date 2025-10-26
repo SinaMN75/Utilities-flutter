@@ -76,7 +76,7 @@ class UMaterialApp extends StatelessWidget {
         cardTheme: CardThemeData(
           elevation: data.cardElevation,
           shadowColor: data.primaryColor.withValues(alpha: 0.2),
-          color: data.cardColor,
+          color: data.cardColor ?? Colors.white,
           clipBehavior: Clip.antiAlias,
         ),
         tabBarTheme: TabBarThemeData(
@@ -164,7 +164,7 @@ class UMaterialApp extends StatelessWidget {
         cardTheme: CardThemeData(
           elevation: data.cardElevation,
           shadowColor: data.primaryColor.withValues(alpha: 0.2),
-          color: data.cardColor,
+          color: data.cardColor ?? Colors.black,
           clipBehavior: Clip.antiAlias,
         ),
         tabBarTheme: TabBarThemeData(
@@ -238,7 +238,7 @@ class UThemeData {
     required this.primaryColor,
     required this.secondaryColor,
     this.errorColor = Colors.red,
-    this.cardColor = Colors.white,
+    this.cardColor,
     this.appbarColor,
     this.surface,
     this.surfaceContainer,
@@ -253,7 +253,7 @@ class UThemeData {
   final Color primaryColor;
   final Color secondaryColor;
   final Color errorColor;
-  final Color cardColor;
+  final Color? cardColor;
   final double cardElevation;
   final Color? surface;
   final Color? surfaceContainer;
