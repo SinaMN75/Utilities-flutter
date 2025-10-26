@@ -226,7 +226,7 @@ abstract class UNavigator {
   }) =>
       ScaffoldMessenger.of(navigatorKey.currentContext!)
           .showSnackBar(SnackBar(
-            content: Text(message, style: TextStyle(color: textColor)),
+            content: Text(message, style: TextStyle(color: textColor ?? (UApp.isDarkMode ? Colors.white : Colors.black))),
             backgroundColor: backgroundColor ?? theme.snackBarTheme.backgroundColor,
             duration: duration,
             action: action,

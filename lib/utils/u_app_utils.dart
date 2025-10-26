@@ -68,6 +68,8 @@ abstract class UApp {
     ULocalStorage.set(UConstants.locale, locale.languageCode);
   }
 
+  static void isDarkTheme() => Get.isDarkMode;
+
   static void switchTheme() {
     if (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) {
       Get.changeThemeMode(ThemeMode.light);
