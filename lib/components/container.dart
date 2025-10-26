@@ -573,9 +573,8 @@ class UCard extends StatelessWidget {
 
 class UListView extends StatelessWidget {
   const UListView({
-    this.items,
-    this.itemBuilder,
-    this.itemCount,
+    required this.itemBuilder,
+    required this.itemCount,
     super.key,
     this.header,
     this.footer,
@@ -585,11 +584,10 @@ class UListView extends StatelessWidget {
     this.scrollController,
     this.primary,
     this.reverse = false,
-  }) : assert(items != null || (itemBuilder != null && itemCount != null), "Provide either items or itemBuilder with itemCount.");
+  });
 
-  final List<Widget>? items;
-  final IndexedWidgetBuilder? itemBuilder;
-  final int? itemCount;
+  final IndexedWidgetBuilder itemBuilder;
+  final int itemCount; // number of main items
   final Widget? header;
   final Widget? footer;
   final ScrollPhysics? physics;
@@ -600,21 +598,31 @@ class UListView extends StatelessWidget {
   final bool reverse;
 
   @override
-  Widget build(final BuildContext context) {
-    final List<Widget> children = <Widget>[];
-    if (header != null) children.add(header!);
-    if (items != null) children.addAll(items!);
-    if (footer != null) children.add(footer!);
+  Widget build(BuildContext context) {
+    final int totalCount = itemCount + (header != null ? 1 : 0) + (footer != null ? 1 : 0);
 
     return ListView.builder(
-      itemCount: itemBuilder != null ? itemCount : children.length,
-      itemBuilder: itemBuilder ?? (_, int index) => children[index],
+      itemCount: totalCount,
       physics: physics,
       shrinkWrap: shrinkWrap,
       padding: padding,
       controller: scrollController,
       primary: primary,
       reverse: reverse,
+      itemBuilder: (BuildContext context, int index) {
+        if (header != null && index == 0) {
+          return header!;
+        }
+
+        final int headerOffset = header != null ? 1 : 0;
+        if (footer != null && index == totalCount - 1) {
+          return footer!;
+        }
+
+        // Regular item
+        final int adjustedIndex = index - headerOffset;
+        return itemBuilder(context, adjustedIndex);
+      },
     );
   }
 }
