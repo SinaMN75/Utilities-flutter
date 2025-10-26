@@ -73,15 +73,31 @@ class UButton extends StatelessWidget {
         : _buildContent();
 
     Widget button;
+
     switch (type) {
       case UButtonType.elevated:
-        button = _buildMaterialButton(ElevatedButton(onPressed: onTap, child: content), context);
+        button = ElevatedButton(
+          onPressed: enabled && !isLoading ? onTap : null,
+          onLongPress: enabled && !isLoading ? onLongPress : null,
+          style: _buildButtonStyle(context),
+          child: content,
+        );
         break;
       case UButtonType.outlined:
-        button = _buildMaterialButton(OutlinedButton(onPressed: onTap, child: content), context);
+        button = OutlinedButton(
+          onPressed: enabled && !isLoading ? onTap : null,
+          onLongPress: enabled && !isLoading ? onLongPress : null,
+          style: _buildButtonStyle(context, isOutlined: true),
+          child: content,
+        );
         break;
       case UButtonType.text:
-        button = _buildMaterialButton(TextButton(onPressed: onTap, child: content), context);
+        button = TextButton(
+          onPressed: enabled && !isLoading ? onTap : null,
+          onLongPress: enabled && !isLoading ? onLongPress : null,
+          style: _buildButtonStyle(context),
+          child: content,
+        );
         break;
       case UButtonType.icon:
         button = IconButton(
@@ -99,14 +115,16 @@ class UButton extends StatelessWidget {
           icon: icon,
           backgroundColor: backgroundColor,
           foregroundColor: foregroundColor,
+          elevation: elevation,
         );
         break;
       case UButtonType.cupertino:
         button = CupertinoButton(
           onPressed: enabled && !isLoading ? onTap : null,
-          child: content,
           color: backgroundColor,
           padding: padding,
+          disabledColor: backgroundColor?.withValues(alpha: 0.5) ?? CupertinoColors.quaternarySystemFill,
+          child: content,
         );
         break;
       case UButtonType.custom:
@@ -134,6 +152,7 @@ class UButton extends StatelessWidget {
     if (tooltip != null && tooltip!.isNotEmpty && type != UButtonType.icon) {
       return Tooltip(message: tooltip, child: button);
     }
+
     return button;
   }
 
@@ -158,9 +177,30 @@ class UButton extends StatelessWidget {
     );
   }
 
-  Widget _buildMaterialButton(Widget button, BuildContext context) => SizedBox(
-        width: width ?? double.infinity,
-        height: height ?? 46,
-        child: button,
-      );
+  ButtonStyle _buildButtonStyle(BuildContext context, {bool isOutlined = false}) {
+    final Color effectiveBackground = backgroundColor ?? (type == UButtonType.elevated ? Theme.of(context).colorScheme.primary : Colors.transparent);
+    final Color effectiveForeground = foregroundColor ?? (type == UButtonType.elevated ? Colors.white : Theme.of(context).colorScheme.primary);
+
+    return ButtonStyle(
+      textStyle: WidgetStateProperty.all(textStyle),
+      backgroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) {
+        if (gradient != null) return null;
+        if (!enabled) return effectiveBackground.withAlpha(50);
+        if (states.contains(WidgetState.pressed)) return effectiveBackground.withAlpha(50);
+        return effectiveBackground;
+      }),
+      foregroundColor: WidgetStateProperty.all(effectiveForeground),
+      padding: WidgetStateProperty.all(padding),
+      minimumSize: WidgetStateProperty.all(Size(minWidth ?? 0, minHeight ?? 0)),
+      maximumSize: WidgetStateProperty.all(Size(maxWidth ?? double.infinity, maxHeight ?? double.infinity)),
+      fixedSize: WidgetStateProperty.all(Size(width ?? double.infinity, height ?? 46)),
+      elevation: WidgetStateProperty.all(type == UButtonType.elevated ? elevation : 0),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+          side: isOutlined ? BorderSide(color: borderColor ?? effectiveForeground, width: borderWidth) : BorderSide.none,
+        ),
+      ),
+    );
+  }
 }
