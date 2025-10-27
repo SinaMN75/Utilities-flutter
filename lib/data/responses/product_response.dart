@@ -136,6 +136,8 @@ class UProductJson {
     this.visitCounts,
     this.pointCounts,
     this.relatedProducts,
+    this.phoneNumber,
+    this.address,
   });
 
   factory UProductJson.fromJson(String str) => UProductJson.fromMap(json.decode(str));
@@ -148,6 +150,8 @@ class UProductJson {
         visitCounts: json["visitCounts"] == null ? <UVisitCount>[] : List<UVisitCount>.from(json["visitCounts"].map((dynamic x) => UVisitCount.fromMap(x))),
         pointCounts: json["pointCounts"] == null ? <UPointCount>[] : List<UPointCount>.from(json["pointCounts"].map((dynamic x) => UPointCount.fromMap(x))),
         relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
+        phoneNumber: json["phoneNumber"],
+        address: json["address"],
       );
   final String? actionType;
   final String? actionTitle;
@@ -156,6 +160,8 @@ class UProductJson {
   final List<UVisitCount>? visitCounts;
   final List<UPointCount>? pointCounts;
   final List<String>? relatedProducts;
+  final String? phoneNumber;
+  final String? address;
 
   String toJson() => json.encode(toMap());
 
@@ -167,5 +173,7 @@ class UProductJson {
         "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((UVisitCount x) => x.toMap())),
         "pointCounts": pointCounts == null ? null : List<dynamic>.from(pointCounts!.map((UPointCount x) => x.toMap())),
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
+        "phoneNumber": phoneNumber,
+        "address": address,
       };
 }

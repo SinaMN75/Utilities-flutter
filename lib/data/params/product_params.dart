@@ -23,6 +23,8 @@ class UProductCreateParams {
     this.parentId,
     this.userId,
     this.point,
+    this.phoneNumber,
+    this.address,
   });
 
   factory UProductCreateParams.fromJson(String str) => UProductCreateParams.fromMap(json.decode(str));
@@ -49,6 +51,8 @@ class UProductCreateParams {
         relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
         parentId: json["parentId"],
         userId: json["userId"],
+        phoneNumber: json["phoneNumber"],
+        address: json["address"],
       );
   final String title;
   final String? code;
@@ -71,6 +75,8 @@ class UProductCreateParams {
   final String? parentId;
   final String? userId;
   final int? point;
+  final String? phoneNumber;
+  final String? address;
 
   String toJson() => json.encode(toMap());
 
@@ -96,6 +102,8 @@ class UProductCreateParams {
         "parentId": parentId,
         "userId": userId,
         "point": point,
+        "phoneNumber": phoneNumber,
+        "address": address,
       };
 }
 
@@ -128,6 +136,8 @@ class UProductUpdateParams {
     this.removeTags,
     this.tags,
     this.point,
+    this.phoneNumber,
+    this.address,
   });
 
   factory UProductUpdateParams.fromJson(String str) => UProductUpdateParams.fromMap(json.decode(str));
@@ -157,6 +167,8 @@ class UProductUpdateParams {
         addCategories: json["addCategories"] == null ? null : List<String>.from(json["addCategories"].map((dynamic x) => x)),
         removeCategories: json["removeCategories"] == null ? null : List<String>.from(json["removeCategories"].map((dynamic x) => x)),
         id: json["id"],
+        phoneNumber: json["phoneNumber"],
+        address: json["address"],
         addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
@@ -188,6 +200,8 @@ class UProductUpdateParams {
   final List<int>? removeTags;
   final List<int>? tags;
   final int? point;
+  final String? phoneNumber;
+  final String? address;
 
   String toJson() => json.encode(toMap());
 
@@ -216,6 +230,8 @@ class UProductUpdateParams {
         "addCategories": addCategories == null ? null : List<dynamic>.from(addCategories!.map((dynamic x) => x)),
         "removeCategories": removeCategories == null ? null : List<dynamic>.from(removeCategories!.map((dynamic x) => x)),
         "id": id,
+        "phoneNumber": phoneNumber,
+        "address": address,
         "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
         "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
