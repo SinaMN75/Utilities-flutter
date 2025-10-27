@@ -1,8 +1,26 @@
 mixin NumericIdentifiable {
   int get number;
+
+  String get titleFa;
+
+  String get titleEn;
 }
 
 extension NumericEnumExtension<T extends Enum> on Iterable<T> {
+  List<int> get numbers => map((dynamic e) => (e as dynamic).number as int).toList();
+
+  List<String> get titlesFa => map((dynamic e) => (e as dynamic).titleFa as String).toList();
+
+  List<String> get titlesEn => map((dynamic e) => (e as dynamic).titleEn as String).toList();
+
+  List<Map<String, dynamic>> toMapList() => map(
+        (dynamic e) => <String, dynamic>{
+          "number": (e as dynamic).number,
+          "titleFa": (e as dynamic).titleFa,
+          "titleEn": (e as dynamic).titleEn,
+        },
+      ).toList();
+
   T? fromNumber(final int id) {
     try {
       return firstWhere((final dynamic element) => (element as dynamic).number == id);
@@ -32,9 +50,10 @@ enum TagUser with NumericIdentifiable {
 
   const TagUser(this.titleFa, this.titleEn, this.number);
 
+  @override
   final String titleFa;
+  @override
   final String titleEn;
-
   @override
   final int number;
 
@@ -48,9 +67,10 @@ enum TagContent with NumericIdentifiable {
 
   const TagContent(this.titleFa, this.titleEn, this.number);
 
+  @override
   final String titleFa;
+  @override
   final String titleEn;
-
   @override
   final int number;
 }
@@ -67,9 +87,10 @@ enum TagCategory with NumericIdentifiable {
 
   const TagCategory(this.titleFa, this.titleEn, this.number);
 
+  @override
   final String titleFa;
+  @override
   final String titleEn;
-
   @override
   final int number;
 }
@@ -81,7 +102,9 @@ enum TagMedia with NumericIdentifiable {
 
   const TagMedia(this.titleFa, this.titleEn, this.number);
 
+  @override
   final String titleFa;
+  @override
   final String titleEn;
   @override
   final int number;
@@ -107,7 +130,9 @@ enum TagProduct with NumericIdentifiable {
 
   const TagProduct(this.titleFa, this.titleEn, this.number);
 
+  @override
   final String titleFa;
+  @override
   final String titleEn;
   @override
   final int number;
@@ -121,7 +146,9 @@ enum TagComment with NumericIdentifiable {
 
   const TagComment(this.titleFa, this.titleEn, this.number);
 
+  @override
   final String titleFa;
+  @override
   final String titleEn;
   @override
   final int number;
