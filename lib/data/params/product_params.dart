@@ -256,7 +256,6 @@ class UProductReadParams {
     this.showUserMedia,
     this.showUserCategory,
     this.showChildren,
-    this.showChildrenDepth,
     this.ids,
     this.pageSize,
     this.pageNumber,
@@ -291,7 +290,6 @@ class UProductReadParams {
         showUserMedia: json["showUserMedia"] ?? false,
         showUserCategory: json["showUserCategory"] ?? false,
         showChildren: json["showChildren"] ?? false,
-        showChildrenDepth: json["showChildrenDepth"] ?? false,
         ids: json["ids"] == null ? null : List<String>.from(json["ids"].map((dynamic x) => x)),
         pageSize: json["pageSize"] ?? 0,
         pageNumber: json["pageNumber"] ?? 0,
@@ -322,7 +320,6 @@ class UProductReadParams {
   final bool? showUserMedia;
   final bool? showUserCategory;
   final bool? showChildren;
-  final bool? showChildrenDepth;
   final List<String>? ids;
   final int? pageSize;
   final int? pageNumber;
@@ -356,7 +353,6 @@ class UProductReadParams {
         "showUserMedia": showUserMedia,
         "showUserCategory": showUserCategory,
         "showChildren": showChildren,
-        "showChildrenDepth": showChildrenDepth,
         "ids": ids == null ? null : List<dynamic>.from(ids!.map((dynamic x) => x)),
         "pageSize": pageSize,
         "pageNumber": pageNumber,

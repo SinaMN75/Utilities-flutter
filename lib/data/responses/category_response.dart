@@ -14,6 +14,7 @@ class UCategoryResponse {
     required this.jsonData,
     required this.tags,
     required this.title,
+    this.code,
     this.parentId,
     this.parent,
     this.order,
@@ -30,6 +31,7 @@ class UCategoryResponse {
         jsonData: UCategoryJson.fromMap(json["jsonData"]),
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         title: json["title"],
+        code: json["code"],
         parentId: json["parentId"],
         parent: json["parent"] == null ? null : UCategoryResponse.fromMap(json["parent"]),
         order: json["order"],
@@ -42,6 +44,7 @@ class UCategoryResponse {
   final UCategoryJson jsonData;
   final List<int> tags;
   final String title;
+  final String? code;
   final String? parentId;
   final UCategoryResponse? parent;
   final int? order;
@@ -60,6 +63,7 @@ class UCategoryResponse {
         "parentId": parentId,
         "parent": parent?.toMap(),
         "order": order,
+        "code": code,
         "children": children == null ? null : List<dynamic>.from(children!.map((UCategoryResponse x) => x.toMap())),
         "media": children == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
       };
@@ -71,6 +75,8 @@ class UCategoryJson {
     this.link,
     this.location,
     this.type,
+    this.address,
+    this.phoneNumber,
     this.relatedProducts,
   });
 
@@ -81,12 +87,16 @@ class UCategoryJson {
         link: json["link"],
         location: json["location"],
         type: json["type"],
+        address: json["address"],
+        phoneNumber: json["phoneNumber"],
         relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
       );
   final String? subtitle;
   final String? link;
   final String? location;
   final String? type;
+  final String? address;
+  final String? phoneNumber;
   final List<String>? relatedProducts;
 
   String toJson() => json.encode(toMap());
@@ -96,6 +106,8 @@ class UCategoryJson {
         "link": link,
         "location": location,
         "type": type,
+        "phoneNumber": phoneNumber,
+        "address": address,
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
       };
 }

@@ -8,6 +8,9 @@ class UCategoryCreateParams {
     this.subtitle,
     this.parentId,
     this.order,
+    this.address,
+    this.phoneNumber,
+    this.code,
     this.location,
     this.type,
     this.link,
@@ -23,6 +26,9 @@ class UCategoryCreateParams {
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
         parentId: json["parentId"],
         order: json["order"],
+        address: json["address"],
+        phoneNumber: json["phoneNumber"],
+        code: json["code"],
         location: json["location"],
         type: json["type"],
         link: json["link"],
@@ -33,6 +39,9 @@ class UCategoryCreateParams {
   final String? subtitle;
   final List<int> tags;
   final String? parentId;
+  final String? address;
+  final String? phoneNumber;
+  final String? code;
   final int? order;
   final String? location;
   final String? type;
@@ -51,6 +60,9 @@ class UCategoryCreateParams {
         "location": location,
         "type": type,
         "link": link,
+    "address": address,
+    "phoneNumber": phoneNumber,
+    "code": code,
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
       };
 }
@@ -62,6 +74,9 @@ class UCategoryUpdateParams {
     this.subtitle,
     this.link,
     this.location,
+    this.address,
+    this.phoneNumber,
+    this.code,
     this.type,
     this.order,
     this.parentId,
@@ -80,6 +95,9 @@ class UCategoryUpdateParams {
         subtitle: json["subtitle"],
         link: json["link"],
         location: json["location"],
+    address: json["address"],
+    phoneNumber: json["phoneNumber"],
+    code: json["code"],
         type: json["type"],
         order: json["order"],
         parentId: json["parentId"],
@@ -95,6 +113,9 @@ class UCategoryUpdateParams {
   final String? subtitle;
   final String? link;
   final String? location;
+  final String? address;
+  final String? phoneNumber;
+  final String? code;
   final String? type;
   final int? order;
   final String? parentId;
@@ -115,6 +136,9 @@ class UCategoryUpdateParams {
         "location": location,
         "type": type,
         "order": order,
+    "phoneNumber": phoneNumber,
+    "address": address,
+    "code": code,
         "parentId": parentId,
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
         "addRelatedProducts": addRelatedProducts == null ? null : List<dynamic>.from(addRelatedProducts!.map((String x) => x)),

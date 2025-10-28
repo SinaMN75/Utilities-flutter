@@ -81,6 +81,9 @@ enum TagCategory with NumericIdentifiable {
   user("کاربران", "User", 102),
   menu("کاربران", "Menu", 103),
   speciality("تخصص", "Speciality", 104),
+  dorm("خوابگاه", "Dorm", 105),
+  room("اتاق", "Room", 106),
+  bed("تخت", "Bed", 107),
   enabled("فعال", "Enabled", 201),
   disabled("غیر فعال", "Disabled", 202),
   hidden("مخفی", "Hidden", 203);
