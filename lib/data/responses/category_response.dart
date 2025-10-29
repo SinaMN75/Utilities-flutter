@@ -1,9 +1,7 @@
 part of "../data.dart";
 
 extension CategoryListExtension on Iterable<UCategoryResponse> {
-  UCategoryResponse? get speciality => firstWhereOrNull((final UCategoryResponse i) => i.tags.contains(TagCategory.speciality.number));
-
-  List<UCategoryResponse> get specialities => where((final UCategoryResponse i) => i.tags.contains(TagCategory.speciality.number)).toList();
+  List<UCategoryResponse> whereByTag(int tag) => where((final UCategoryResponse i) => i.tags.contains(tag)).toList();
 }
 
 class UCategoryResponse {
