@@ -141,7 +141,7 @@ class UMaterialApp extends StatelessWidget {
           thumbColor: WidgetStateProperty.all(data.primaryColor),
         ),
         snackBarTheme: SnackBarThemeData(
-          backgroundColor: Colors.black38,
+          backgroundColor: Colors.black87,
           contentTextStyle: TextStyle(color: Colors.white, fontFamily: data.fontFamily),
         ),
       );
@@ -233,7 +233,7 @@ class UMaterialApp extends StatelessWidget {
           thumbColor: WidgetStateProperty.all(data.primaryColor),
         ),
         snackBarTheme: SnackBarThemeData(
-          backgroundColor: Colors.white30,
+          backgroundColor: Colors.white70,
           contentTextStyle: TextStyle(color: Colors.black, fontFamily: data.fontFamily),
         ),
       );

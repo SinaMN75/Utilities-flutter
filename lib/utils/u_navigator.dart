@@ -217,7 +217,7 @@ abstract class UNavigator {
     String? title,
     Duration duration = const Duration(seconds: 4),
     Color? backgroundColor,
-    Color? textColor,
+    TextStyle? textStyle,
     SnackBarAction? action,
     DismissDirection dismissDirection = DismissDirection.down,
     EdgeInsets? margin,
@@ -225,16 +225,18 @@ abstract class UNavigator {
     VoidCallback? onDismiss,
   }) =>
       ScaffoldMessenger.of(navigatorKey.currentContext!)
-          .showSnackBar(SnackBar(
-            content: Text(message, style: TextStyle(color: textColor ?? (UApp.isDarkMode ? Colors.white : Colors.black))),
-            backgroundColor: backgroundColor ?? theme.snackBarTheme.backgroundColor,
-            duration: duration,
-            action: action,
-            dismissDirection: dismissDirection,
-            behavior: margin != null ? SnackBarBehavior.floating : null,
-            margin: margin,
-            width: width,
-          ))
+          .showSnackBar(
+            SnackBar(
+              content: Text(message, style: textStyle),
+              backgroundColor: backgroundColor ?? theme.snackBarTheme.backgroundColor,
+              duration: duration,
+              action: action,
+              dismissDirection: dismissDirection,
+              behavior: margin != null ? SnackBarBehavior.floating : null,
+              margin: margin,
+              width: width,
+            ),
+          )
           .closed
           .then((_) {
         onDismiss?.call();
@@ -250,7 +252,6 @@ abstract class UNavigator {
       snackBar(
         message: message,
         backgroundColor: theme.colorScheme.error,
-        textColor: theme.colorScheme.onError,
         action: actionLabel != null
             ? SnackBarAction(
                 label: actionLabel,
