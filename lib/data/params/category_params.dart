@@ -60,9 +60,9 @@ class UCategoryCreateParams {
         "location": location,
         "type": type,
         "link": link,
-    "address": address,
-    "phoneNumber": phoneNumber,
-    "code": code,
+        "address": address,
+        "phoneNumber": phoneNumber,
+        "code": code,
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
       };
 }
@@ -95,9 +95,9 @@ class UCategoryUpdateParams {
         subtitle: json["subtitle"],
         link: json["link"],
         location: json["location"],
-    address: json["address"],
-    phoneNumber: json["phoneNumber"],
-    code: json["code"],
+        address: json["address"],
+        phoneNumber: json["phoneNumber"],
+        code: json["code"],
         type: json["type"],
         order: json["order"],
         parentId: json["parentId"],
@@ -136,9 +136,9 @@ class UCategoryUpdateParams {
         "location": location,
         "type": type,
         "order": order,
-    "phoneNumber": phoneNumber,
-    "address": address,
-    "code": code,
+        "phoneNumber": phoneNumber,
+        "address": address,
+        "code": code,
         "parentId": parentId,
         "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
         "addRelatedProducts": addRelatedProducts == null ? null : List<dynamic>.from(addRelatedProducts!.map((String x) => x)),
@@ -154,6 +154,7 @@ class UCategoryReadParams {
   UCategoryReadParams({
     this.ids,
     this.showMedia,
+    this.showChildren,
     this.pageSize,
     this.pageNumber,
     this.orderByCreatedAt,
@@ -167,17 +168,19 @@ class UCategoryReadParams {
 
   factory UCategoryReadParams.fromMap(Map<String, dynamic> json) => UCategoryReadParams(
         ids: json["ids"] == null ? null : List<String>.from(json["ids"].map((dynamic x) => x)),
-        showMedia: json["showMedia"] ?? false,
-        pageSize: json["pageSize"] ?? 100,
-        pageNumber: json["pageNumber"] ?? 1,
-        orderByCreatedAt: json["orderByCreatedAt"] ?? false,
-        orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
-        orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
-        orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
+        showMedia: json["showMedia"],
+        showChildren: json["showChildren"],
+        pageSize: json["pageSize"],
+        pageNumber: json["pageNumber"],
+        orderByCreatedAt: json["orderByCreatedAt"],
+        orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
+        orderByUpdatedAt: json["orderByUpdatedAt"],
+        orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
       );
   final List<String>? ids;
   final bool? showMedia;
+  final bool? showChildren;
   final int? pageSize;
   final int? pageNumber;
   final bool? orderByCreatedAt;
@@ -191,6 +194,7 @@ class UCategoryReadParams {
   Map<String, dynamic> toMap() => <String, dynamic>{
         "ids": ids == null ? null : List<dynamic>.from(ids!.map((String x) => x)),
         "showMedia": showMedia,
+        "showChildren": showChildren,
         "pageSize": pageSize,
         "pageNumber": pageNumber,
         "orderByCreatedAt": orderByCreatedAt,
