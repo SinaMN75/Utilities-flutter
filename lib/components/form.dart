@@ -228,15 +228,15 @@ class USearchableDropdown<T> extends StatefulWidget {
     required this.items,
     required this.labelBuilder,
     required this.onChanged,
+    required this.selectedItem,
     super.key,
-    this.selectedItem,
     this.hintText = "Select item",
   });
 
   final List<T> items;
   final String Function(T) labelBuilder;
   final void Function(T?) onChanged;
-  final T? selectedItem;
+  final T selectedItem;
   final String hintText;
 
   @override
@@ -296,9 +296,7 @@ class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
             border: const OutlineInputBorder(),
             contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
           ),
-          child: Text(
-            widget.selectedItem != null ? widget.labelBuilder(widget.selectedItem as T) : "انتخاب",
-          ),
+          child: Text(widget.labelBuilder(widget.selectedItem)),
         ),
       );
 }

@@ -140,6 +140,10 @@ class UMaterialApp extends StatelessWidget {
         scrollbarTheme: ScrollbarThemeData(
           thumbColor: WidgetStateProperty.all(data.primaryColor),
         ),
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: Colors.black38,
+          contentTextStyle: TextStyle(color: Colors.white, fontFamily: data.fontFamily),
+        ),
       );
 
   ThemeData uDarkTheme(UThemeData data) => ThemeData(
@@ -227,6 +231,10 @@ class UMaterialApp extends StatelessWidget {
         ),
         scrollbarTheme: ScrollbarThemeData(
           thumbColor: WidgetStateProperty.all(data.primaryColor),
+        ),
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: Colors.white30,
+          contentTextStyle: TextStyle(color: Colors.black, fontFamily: data.fontFamily),
         ),
       );
 }
