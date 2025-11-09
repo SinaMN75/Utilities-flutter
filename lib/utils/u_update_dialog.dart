@@ -36,7 +36,7 @@ class UUpdateResponse {
 
 class Os {
   final int? min;
-  final String? current;
+  final int? current;
   final String? link1;
   final String? link2;
   final String? link1Title;
@@ -86,14 +86,13 @@ class UUpdateDialog {
 
     // ✅ Skip check is ONLY for optional update
     if (type == UpdateType.optional) {
-      final String? skipped = ULocalStorage.getString(_skipKey);
+      final int? skipped = ULocalStorage.getInt(_skipKey);
       if (skipped == info.current) {
         onSkipOrNotAvailable();
         return;
       }
     }
 
-    // ✅ Show dialog
     await showDialog(
       barrierDismissible: type == UpdateType.optional,
       context: navigatorKey.currentContext!,
@@ -159,7 +158,7 @@ class UUpdateDialog {
     final int localCode = int.tryParse(pkgInfo.buildNumber) ?? 0;
 
     final int minCode = info.min!;
-    final int currentCode = int.parse(info.current!.replaceAll(".", ""));
+    final int currentCode = info.current!;
 
     if (localCode < minCode) return UpdateType.force;
     if (localCode < currentCode) return UpdateType.optional;
