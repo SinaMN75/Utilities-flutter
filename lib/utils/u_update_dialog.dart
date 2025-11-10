@@ -73,16 +73,20 @@ class Os {
 class UUpdateDialog {
   static const String _skipKey = "skip_update_version";
 
-  static Future<void> checkAndShow(
-    UUpdateResponse serverData,
-    VoidCallback onSkipOrNotAvailable,
-  ) async {
+  static Future<void> checkAndShow(UUpdateResponse serverData,
+      VoidCallback onSkipOrNotAvailable,) async {
     final Os? info = _platformUpdate(serverData);
-    if (info == null) return;
+    if (info == null) {
+      onSkipOrNotAvailable();
+      return;
+    }
 
     final UpdateType type = await _checkUpdate(info);
 
-    if (type == UpdateType.none) return;
+    if (type == UpdateType.none) {
+      onSkipOrNotAvailable();
+      return;
+    }
 
     // ✅ Skip check is ONLY for optional update
     if (type == UpdateType.optional) {
@@ -109,16 +113,19 @@ class UUpdateDialog {
               ),
               if (info.link1 != null && info.link1Title != null)
                 UButton(
+                  width: MediaQuery.sizeOf(navigatorKey.currentContext!).width,
                   onTap: () => ULaunch.launchURL(info.link1!),
                   title: info.link1Title ?? "---",
                 ).pOnly(top: 8),
               if (info.link2 != null && info.link2Title != null)
                 UButton(
+                  width: MediaQuery.sizeOf(navigatorKey.currentContext!).width,
                   onTap: () => ULaunch.launchURL(info.link2!),
                   title: info.link2Title ?? "",
                 ).pOnly(top: 8),
               if (type == UpdateType.optional)
                 UButton(
+                  width: MediaQuery.sizeOf(navigatorKey.currentContext!).width,
                   type: UButtonType.text,
                   textStyle: Theme.of(navigatorKey.currentContext!).textTheme.bodyMedium!.copyWith(color: Colors.red),
                   onTap: () => exit(0),
@@ -126,6 +133,7 @@ class UUpdateDialog {
                 ).pOnly(top: 8)
               else
                 UButton(
+                  width: MediaQuery.sizeOf(navigatorKey.currentContext!).width,
                   type: UButtonType.text,
                   title: "Later",
                   onTap: () {
@@ -144,24 +152,17 @@ class UUpdateDialog {
   }
 
   static Os? _platformUpdate(UUpdateResponse x) {
-    if (Platform.isAndroid) return x.android;
-    if (Platform.isIOS) return x.ios;
-    if (Platform.isWindows) return x.windows;
-    if (Platform.isMacOS) return x.macos;
+    if (UApp.isAndroid) return x.android;
+    if (UApp.isIos) return x.ios;
+    if (UApp.isWindows) return x.windows;
+    if (UApp.isMacOs) return x.macos;
     return null;
   }
 
   static Future<UpdateType> _checkUpdate(Os info) async {
     if (info.min == null || info.current == null) return UpdateType.none;
-
-    final PackageInfo pkgInfo = await PackageInfo.fromPlatform();
-    final int localCode = int.tryParse(pkgInfo.buildNumber) ?? 0;
-
-    final int minCode = info.min!;
-    final int currentCode = info.current!;
-
-    if (localCode < minCode) return UpdateType.force;
-    if (localCode < currentCode) return UpdateType.optional;
+    if (UApp.buildNumber.toInt() < info.min!) return UpdateType.force;
+    if (UApp.buildNumber.toInt() < info.current!) return UpdateType.optional;
     return UpdateType.none;
   }
 }
