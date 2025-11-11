@@ -1,12 +1,10 @@
 part of "../data.dart";
 
 class UContractCreateParams {
-  final String? apiKey;
-  final String? token;
-  final List<int>? tags;
+  final List<int> tags;
   final String? id;
-  final DateTime? startDate;
-  final DateTime? endDate;
+  final DateTime startDate;
+  final DateTime endDate;
   final int? price1;
   final int? price2;
   final String? userId;
@@ -14,12 +12,10 @@ class UContractCreateParams {
   final String? description;
 
   UContractCreateParams({
-    this.apiKey,
-    this.token,
-    this.tags,
+    required this.tags,
+    required this.startDate,
+    required this.endDate,
     this.id,
-    this.startDate,
-    this.endDate,
     this.price1,
     this.price2,
     this.userId,
@@ -32,12 +28,10 @@ class UContractCreateParams {
   String toJson() => json.encode(toMap());
 
   factory UContractCreateParams.fromMap(Map<String, dynamic> json) => UContractCreateParams(
-        apiKey: json["apiKey"],
-        token: json["token"],
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
         id: json["id"],
-        startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
-        endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+    startDate: DateTime.parse(json["startDate"]),
+    endDate: DateTime.parse(json["endDate"]),
         price1: json["price1"],
         price2: json["price2"],
         userId: json["userId"],
@@ -46,12 +40,10 @@ class UContractCreateParams {
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "apiKey": apiKey,
-        "token": token,
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
         "id": id,
-        "startDate": startDate?.toIso8601String(),
-        "endDate": endDate?.toIso8601String(),
+    "startDate": startDate.toIso8601String(),
+    "endDate": endDate.toIso8601String(),
         "price1": price1,
         "price2": price2,
         "userId": userId,
@@ -61,8 +53,6 @@ class UContractCreateParams {
 }
 
 class UContractReadParams {
-  final String? apiKey;
-  final String? token;
   final int? pageSize;
   final int? pageNumber;
   final DateTime? fromCreatedAt;
@@ -80,8 +70,6 @@ class UContractReadParams {
   final DateTime? endDate;
 
   UContractReadParams({
-    this.apiKey,
-    this.token,
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
@@ -104,8 +92,6 @@ class UContractReadParams {
   String toJson() => json.encode(toMap());
 
   factory UContractReadParams.fromMap(Map<String, dynamic> json) => UContractReadParams(
-        apiKey: json["apiKey"],
-        token: json["token"],
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
         fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
@@ -124,8 +110,6 @@ class UContractReadParams {
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "apiKey": apiKey,
-        "token": token,
         "pageSize": pageSize,
         "pageNumber": pageNumber,
         "fromCreatedAt": fromCreatedAt?.toIso8601String(),
@@ -145,9 +129,7 @@ class UContractReadParams {
 }
 
 class UContractUpdateParams {
-  final String? apiKey;
-  final String? token;
-  final String? id;
+  final String id;
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
@@ -157,9 +139,7 @@ class UContractUpdateParams {
   final int? price2;
 
   UContractUpdateParams({
-    this.apiKey,
-    this.token,
-    this.id,
+    required this.id,
     this.addTags,
     this.removeTags,
     this.tags,
@@ -174,8 +154,6 @@ class UContractUpdateParams {
   String toJson() => json.encode(toMap());
 
   factory UContractUpdateParams.fromMap(Map<String, dynamic> json) => UContractUpdateParams(
-        apiKey: json["apiKey"],
-        token: json["token"],
         id: json["id"],
         addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
@@ -187,8 +165,6 @@ class UContractUpdateParams {
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "apiKey": apiKey,
-        "token": token,
         "id": id,
         "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
         "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),

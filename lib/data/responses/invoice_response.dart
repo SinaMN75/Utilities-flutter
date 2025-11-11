@@ -1,12 +1,12 @@
 part of "../data.dart";
 
 class UInvoiceResponse {
-  final String? id;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final String id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
   final DateTime? deletedAt;
-  final UInvoiceJsonData? jsonData;
-  final List<int>? tags;
+  final UInvoiceJsonData jsonData;
+  final List<int> tags;
   final int? debtAmount;
   final int? creditorAmount;
   final int? paidAmount;
@@ -21,12 +21,12 @@ class UInvoiceResponse {
   final String? contractId;
 
   UInvoiceResponse({
-    this.id,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.jsonData,
+    required this.tags,
     this.deletedAt,
-    this.jsonData,
-    this.tags,
     this.debtAmount,
     this.creditorAmount,
     this.paidAmount,
@@ -47,10 +47,10 @@ class UInvoiceResponse {
 
   factory UInvoiceResponse.fromMap(Map<String, dynamic> json) => UInvoiceResponse(
         id: json["id"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
         deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
-        jsonData: json["jsonData"] == null ? null : UInvoiceJsonData.fromMap(json["jsonData"]),
+        jsonData: UInvoiceJsonData.fromMap(json["jsonData"]),
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
         debtAmount: json["debtAmount"],
         creditorAmount: json["creditorAmount"],
@@ -68,11 +68,11 @@ class UInvoiceResponse {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
         "deletedAt": deletedAt?.toIso8601String(),
-        "jsonData": jsonData?.toMap(),
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+        "jsonData": jsonData.toMap(),
+        "tags": List<dynamic>.from(tags.map((int x) => x)),
         "debtAmount": debtAmount,
         "creditorAmount": creditorAmount,
         "paidAmount": paidAmount,

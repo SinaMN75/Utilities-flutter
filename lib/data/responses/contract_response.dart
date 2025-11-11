@@ -1,14 +1,14 @@
 part of "../data.dart";
 
 class UContractResponse {
-  final String? id;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final String id;
+  final DateTime createdAt;
+  final DateTime updatedAt;
   final DateTime? deletedAt;
-  final UContractJsonData? jsonData;
-  final List<int>? tags;
-  final DateTime? startDate;
-  final DateTime? endDate;
+  final UContractJsonData jsonData;
+  final List<int> tags;
+  final DateTime startDate;
+  final DateTime endDate;
   final int? price1;
   final int? price2;
   final UUserResponse? user;
@@ -20,14 +20,14 @@ class UContractResponse {
   final List<UInvoiceResponse>? invoices;
 
   UContractResponse({
-    this.id,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.jsonData,
+    required this.tags,
+    required this.startDate,
+    required this.endDate,
     this.deletedAt,
-    this.jsonData,
-    this.tags,
-    this.startDate,
-    this.endDate,
     this.price1,
     this.price2,
     this.user,
@@ -45,13 +45,13 @@ class UContractResponse {
 
   factory UContractResponse.fromMap(Map<String, dynamic> json) => UContractResponse(
         id: json["id"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
         deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
-        jsonData: json["jsonData"] == null ? null : UContractJsonData.fromMap(json["jsonData"]),
+        jsonData: UContractJsonData.fromMap(json["jsonData"]),
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
-        endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+        startDate: DateTime.parse(json["startDate"]),
+        endDate: DateTime.parse(json["endDate"]),
         price1: json["price1"],
         price2: json["price2"],
         user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
@@ -65,13 +65,13 @@ class UContractResponse {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         "id": id,
-        "createdAt": createdAt?.toIso8601String(),
-        "updatedAt": updatedAt?.toIso8601String(),
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
         "deletedAt": deletedAt?.toIso8601String(),
-        "jsonData": jsonData?.toMap(),
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-        "startDate": startDate?.toIso8601String(),
-        "endDate": endDate?.toIso8601String(),
+        "jsonData": jsonData.toMap(),
+        "tags": List<dynamic>.from(tags.map((int x) => x)),
+        "startDate": startDate.toIso8601String(),
+        "endDate": endDate.toIso8601String(),
         "price1": price1,
         "price2": price2,
         "user": user?.toMap(),

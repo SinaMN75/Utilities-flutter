@@ -1,8 +1,6 @@
 part of "../data.dart";
 
 class UInvoiceCreateParams {
-  final String? apiKey;
-  final String? token;
   final List<int>? tags;
   final String? id;
   final int? debtAmount;
@@ -16,8 +14,6 @@ class UInvoiceCreateParams {
   final String? description;
 
   UInvoiceCreateParams({
-    this.apiKey,
-    this.token,
     this.tags,
     this.id,
     this.debtAmount,
@@ -36,8 +32,6 @@ class UInvoiceCreateParams {
   String toJson() => json.encode(toMap());
 
   factory UInvoiceCreateParams.fromMap(Map<String, dynamic> json) => UInvoiceCreateParams(
-        apiKey: json["apiKey"],
-        token: json["token"],
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
         id: json["id"],
         debtAmount: json["debtAmount"],
@@ -52,8 +46,6 @@ class UInvoiceCreateParams {
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "apiKey": apiKey,
-        "token": token,
         "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
         "id": id,
         "debtAmount": debtAmount,
@@ -69,8 +61,6 @@ class UInvoiceCreateParams {
 }
 
 class UInvoiceReadParams {
-  final String? apiKey;
-  final String? token;
   final int? pageSize;
   final int? pageNumber;
   final DateTime? fromCreatedAt;
@@ -84,8 +74,6 @@ class UInvoiceReadParams {
   final String? userId;
 
   UInvoiceReadParams({
-    this.apiKey,
-    this.token,
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
@@ -104,8 +92,6 @@ class UInvoiceReadParams {
   String toJson() => json.encode(toMap());
 
   factory UInvoiceReadParams.fromMap(Map<String, dynamic> json) => UInvoiceReadParams(
-        apiKey: json["apiKey"],
-        token: json["token"],
         pageSize: json["pageSize"],
         pageNumber: json["pageNumber"],
         fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
@@ -120,8 +106,6 @@ class UInvoiceReadParams {
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "apiKey": apiKey,
-        "token": token,
         "pageSize": pageSize,
         "pageNumber": pageNumber,
         "fromCreatedAt": fromCreatedAt?.toIso8601String(),
@@ -137,8 +121,6 @@ class UInvoiceReadParams {
 }
 
 class UInvoiceUpdateParams {
-  final String? apiKey;
-  final String? token;
   final String? id;
   final List<int>? addTags;
   final List<int>? removeTags;
@@ -149,8 +131,6 @@ class UInvoiceUpdateParams {
   final int? penaltyAmount;
 
   UInvoiceUpdateParams({
-    this.apiKey,
-    this.token,
     this.id,
     this.addTags,
     this.removeTags,
@@ -166,8 +146,6 @@ class UInvoiceUpdateParams {
   String toJson() => json.encode(toMap());
 
   factory UInvoiceUpdateParams.fromMap(Map<String, dynamic> json) => UInvoiceUpdateParams(
-        apiKey: json["apiKey"],
-        token: json["token"],
         id: json["id"],
         addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
@@ -179,8 +157,6 @@ class UInvoiceUpdateParams {
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "apiKey": apiKey,
-        "token": token,
         "id": id,
         "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
         "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
