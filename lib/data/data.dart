@@ -53,6 +53,8 @@ class UServices {
     content = ContentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
     comment = CommentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
     follow = FollowService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    contract = ContractService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+    invoice = InvoiceService(baseUrl: baseUrl, apiKey: apiKey, token: token);
   }
 
   String baseUrl;
@@ -68,4 +70,6 @@ class UServices {
   late ContentService content;
   late CommentService comment;
   late FollowService follow;
+  late ContractService contract;
+  late InvoiceService invoice;
 }
