@@ -34,10 +34,10 @@ class UInvoiceCreateParams {
   factory UInvoiceCreateParams.fromMap(Map<String, dynamic> json) => UInvoiceCreateParams(
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
         id: json["id"],
-        debtAmount: json["debtAmount"],
-        creditorAmount: json["creditorAmount"],
-        paidAmount: json["paidAmount"],
-        penaltyAmount: json["penaltyAmount"],
+        debtAmount: json["debtAmount"].toString().toDouble(),
+        creditorAmount: json["creditorAmount"].toString().toDouble(),
+        paidAmount: json["paidAmount"].toString().toDouble(),
+        penaltyAmount: json["penaltyAmount"].toString().toDouble(),
         userId: json["userId"],
         contractId: json["contractId"],
         paidDate: json["paidDate"] == null ? null : DateTime.parse(json["paidDate"]),
@@ -150,10 +150,10 @@ class UInvoiceUpdateParams {
         addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
         removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        debtAmount: json["debtAmount"],
-        creditorAmount: json["creditorAmount"],
-        paidAmount: json["paidAmount"],
-        penaltyAmount: json["penaltyAmount"],
+        debtAmount: json["debtAmount"].toString().toDouble(),
+        creditorAmount: json["creditorAmount"].toString().toDouble(),
+        paidAmount: json["paidAmount"].toString().toDouble(),
+        penaltyAmount: json["penaltyAmount"].toString().toDouble(),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
