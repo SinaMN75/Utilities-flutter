@@ -9,8 +9,8 @@ class UContractResponse {
   final List<int> tags;
   final DateTime startDate;
   final DateTime endDate;
-  final int? price1;
-  final int? price2;
+  final double? price1;
+  final double? price2;
   final UUserResponse? user;
   final String? userId;
   final UUserResponse? creator;

@@ -3,10 +3,10 @@ part of "../data.dart";
 class UInvoiceCreateParams {
   final List<int>? tags;
   final String? id;
-  final int? debtAmount;
-  final int? creditorAmount;
-  final int? paidAmount;
-  final int? penaltyAmount;
+  final double? debtAmount;
+  final double? creditorAmount;
+  final double? paidAmount;
+  final double? penaltyAmount;
   final String? userId;
   final String? contractId;
   final DateTime? paidDate;
@@ -125,10 +125,10 @@ class UInvoiceUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final int? debtAmount;
-  final int? creditorAmount;
-  final int? paidAmount;
-  final int? penaltyAmount;
+  final double? debtAmount;
+  final double? creditorAmount;
+  final double? paidAmount;
+  final double? penaltyAmount;
 
   UInvoiceUpdateParams({
     this.id,

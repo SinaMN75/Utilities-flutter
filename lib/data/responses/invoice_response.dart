@@ -7,10 +7,10 @@ class UInvoiceResponse {
   final DateTime? deletedAt;
   final UInvoiceJsonData jsonData;
   final List<int> tags;
-  final int? debtAmount;
-  final int? creditorAmount;
-  final int? paidAmount;
-  final int? penaltyAmount;
+  final double? debtAmount;
+  final double? creditorAmount;
+  final double? paidAmount;
+  final double? penaltyAmount;
   final DateTime? paidDate;
   final DateTime? dueDate;
   final DateTime? nextInvoiceIssueDate;

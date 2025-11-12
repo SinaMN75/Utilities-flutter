@@ -5,8 +5,8 @@ class UContractCreateParams {
   final String? id;
   final DateTime startDate;
   final DateTime endDate;
-  final int? price1;
-  final int? price2;
+  final double? price1;
+  final double? price2;
   final String? userId;
   final String? productId;
   final String? description;
@@ -135,8 +135,8 @@ class UContractUpdateParams {
   final List<int>? tags;
   final DateTime? startDate;
   final DateTime? endDate;
-  final int? price1;
-  final int? price2;
+  final double? price1;
+  final double? price2;
 
   UContractUpdateParams({
     required this.id,
