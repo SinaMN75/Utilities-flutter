@@ -20,7 +20,8 @@ class UProductResponse {
     this.latitude,
     this.longitude,
     this.stock,
-    this.price,
+    this.price1,
+    this.price2,
     this.parentId,
     this.parent,
     this.user,
@@ -50,7 +51,8 @@ class UProductResponse {
         latitude: json["latitude"],
         longitude: json["longitude"],
         stock: json["stock"],
-        price: json["price"],
+        price1: json["price1"],
+        price2: json["price2"],
         point: json["point"],
         parentId: json["parentId"],
         parent: json["parent"] == null ? null : UProductResponse.fromMap(json["parent"]),
@@ -79,7 +81,8 @@ class UProductResponse {
   final double? latitude;
   final double? longitude;
   final int? stock;
-  final double? price;
+  final double? price1;
+  final double? price2;
   final int point;
   final String? parentId;
   final UProductResponse? parent;
@@ -112,7 +115,8 @@ class UProductResponse {
         "latitude": latitude,
         "longitude": longitude,
         "stock": stock,
-        "price": price,
+        "price1": price1,
+        "price2": price2,
         "parentId": parentId,
         "parent": parent?.toMap(),
         "userId": userId,
