@@ -32,8 +32,8 @@ class UContractCreateParams {
         id: json["id"],
     startDate: DateTime.parse(json["startDate"]),
     endDate: DateTime.parse(json["endDate"]),
-        price1: json["price1"],
-        price2: json["price2"],
+        price1: json["price1"].toString().toDouble(),
+        price2: json["price2"].toString().toDouble(),
         userId: json["userId"],
         productId: json["productId"],
         description: json["description"],
@@ -160,8 +160,8 @@ class UContractUpdateParams {
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
-        price1: json["price1"],
-        price2: json["price2"],
+        price1: json["price1"].toString().toDouble(),
+        price2: json["price2"].toString().toDouble(),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
