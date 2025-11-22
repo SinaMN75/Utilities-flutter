@@ -280,7 +280,84 @@ extension HTTP on Response {
   }
 }
 
+// class UDownload {
+//   static final Map<String, CancelableOperation<Uint8List>> _downloadOperations = <String, CancelableOperation<Uint8List>>{};
+//
+//   static Future<Uint8List?> downloadFile({
+//     required String url,
+//     required String cacheKey,
+//     required void Function(int progress) onProgress,
+//   }) async {
+//     if (_downloadOperations.containsKey(cacheKey)) {
+//       await _downloadOperations[cacheKey]?.cancel();
+//     }
+//
+//     final CancelableOperation<Uint8List> operation = CancelableOperation<Uint8List>.fromFuture(
+//       _performDownload(url: url, onProgress: onProgress),
+//       onCancel: () => _cleanup(cacheKey),
+//     );
+//
+//     _downloadOperations[cacheKey] = operation;
+//
+//     try {
+//       final Uint8List result = await operation.value;
+//       _downloadOperations.remove(cacheKey);
+//       return result;
+//     } catch (e) {
+//       _downloadOperations.remove(cacheKey);
+//       rethrow;
+//     }
+//   }
+//
+//   static Future<Uint8List> _performDownload({
+//     required String url,
+//     required void Function(int progress) onProgress,
+//   }) async {
+//     final Client client = Client();
+//     try {
+//       final Request request = Request("GET", Uri.parse(url));
+//       final StreamedResponse response = await client.send(request);
+//
+//       if (response.statusCode != 200) {
+//         throw Exception("Failed to download file: ${response.statusCode}");
+//       }
+//
+//       final int? contentLength = response.contentLength;
+//       final List<int> bytes = <int>[];
+//       int receivedLength = 0;
+//
+//       await for (List<int> data in response.stream) {
+//         bytes.addAll(data);
+//         receivedLength += data.length;
+//
+//         if (contentLength != null) {
+//           final int progress = (receivedLength / contentLength * 100).round();
+//           onProgress(progress);
+//         }
+//       }
+//
+//       return Uint8List.fromList(bytes);
+//     } finally {
+//       client.close();
+//     }
+//   }
+//
+//   static void cancelDownload(String cacheKey) {
+//     if (_downloadOperations.containsKey(cacheKey)) {
+//       _downloadOperations[cacheKey]?.cancel();
+//       _downloadOperations.remove(cacheKey);
+//     }
+//   }
+//
+//   static bool isDownloading(String cacheKey) => _downloadOperations.containsKey(cacheKey);
+//
+//   static void _cleanup(String cacheKey) {
+//     _downloadOperations.remove(cacheKey);
+//   }
+// }
+
 class UDownload {
+  static const int _maxRetries = 10;
   static final Map<String, CancelableOperation<Uint8List>> _downloadOperations = <String, CancelableOperation<Uint8List>>{};
 
   static Future<Uint8List?> downloadFile({
@@ -293,7 +370,7 @@ class UDownload {
     }
 
     final CancelableOperation<Uint8List> operation = CancelableOperation<Uint8List>.fromFuture(
-      _performDownload(url: url, onProgress: onProgress),
+      _performDownload(url: url, cacheKey: cacheKey, onProgress: onProgress),
       onCancel: () => _cleanup(cacheKey),
     );
 
@@ -311,35 +388,58 @@ class UDownload {
 
   static Future<Uint8List> _performDownload({
     required String url,
+    required String cacheKey,
     required void Function(int progress) onProgress,
   }) async {
-    final Client client = Client();
-    try {
-      final Request request = Request("GET", Uri.parse(url));
-      final StreamedResponse response = await client.send(request);
+    int attempt = 0;
+    final List<int> bytes = <int>[];
+    int? totalLength;
 
-      if (response.statusCode != 200) {
-        throw Exception("Failed to download file: ${response.statusCode}");
-      }
+    while (attempt < _maxRetries) {
+      attempt++;
+      final Client client = Client();
 
-      final int? contentLength = response.contentLength;
-      final List<int> bytes = <int>[];
-      int receivedLength = 0;
-
-      await for (List<int> data in response.stream) {
-        bytes.addAll(data);
-        receivedLength += data.length;
-
-        if (contentLength != null) {
-          final int progress = (receivedLength / contentLength * 100).round();
-          onProgress(progress);
+      try {
+        // If we already downloaded some bytes, request the remaining range
+        final Map<String, String> headers = <String, String>{};
+        if (bytes.isNotEmpty) {
+          headers["Range"] = "bytes=${bytes.length}-";
         }
-      }
 
-      return Uint8List.fromList(bytes);
-    } finally {
-      client.close();
+        final Request request = Request("GET", Uri.parse(url))..headers.addAll(headers);
+        final StreamedResponse response = await client.send(request);
+
+        if (response.statusCode != 200 && response.statusCode != 206) {
+          throw Exception("Bad status: ${response.statusCode}");
+        }
+
+        totalLength ??= response.contentLength != null ? response.contentLength! + bytes.length : null;
+
+        int received = bytes.length;
+
+        await for (final List<int> chunk in response.stream) {
+          bytes.addAll(chunk);
+          received += chunk.length;
+
+          if (totalLength != null) {
+            final int progress = (received / totalLength * 100).clamp(0, 100).round();
+            onProgress(progress);
+          }
+        }
+
+        // Completed successfully
+        return Uint8List.fromList(bytes);
+      } catch (e) {
+        // Wait before retrying
+        final Duration delay = Duration(seconds: 1 * attempt);
+        await Future<void>.delayed(delay);
+        // Retry loop continues
+      } finally {
+        client.close();
+      }
     }
+
+    throw Exception("Failed to download after $_maxRetries retries");
   }
 
   static void cancelDownload(String cacheKey) {
