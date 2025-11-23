@@ -302,6 +302,20 @@ class UFileStorage {
     }
   }
 
+  static Future<List<String>> getDatPaths() async {
+    try {
+      return _bigFilesDirectory
+          .listSync()
+          .where((FileSystemEntity file) => file is File && file.path.endsWith(".dat"))
+          .map(
+            (FileSystemEntity file) => file.uri.pathSegments.last,
+          )
+          .toList();
+    } catch (e) {
+      return <String>[];
+    }
+  }
+
   /// New utility: Copies a file to a new key.
   static Future<void> copyFile(String sourceKey, String destinationKey) async {
     try {
