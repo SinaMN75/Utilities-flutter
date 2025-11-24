@@ -25,10 +25,12 @@ extension OptionalStringExtension on String? {
 
   String toJalaliDateString() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatFullDate();
 
-  String toJalaliDateTimeFull() {
+  String toJalaliDateTime() {
     final DateTime dateTime = DateTime.parse(this ?? DateTime.now().toString());
     return "${Jalali.fromDateTime(dateTime).formatCompactDate()} ${dateTime.hour}:${dateTime.minute}";
   }
+
+  String toJalaliDate() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatCompactDate();
 
   String toRialMoneyPersian({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "" : "-", "");
 
