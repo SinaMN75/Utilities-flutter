@@ -1,10 +1,6 @@
 part of "../u_admin.dart";
 
 class UAdminContractController {
-  final UServices uServices;
-
-  UAdminContractController({required this.uServices});
-
   List<UContractResponse> list = <UContractResponse>[];
   List<UContractResponse> filteredList = <UContractResponse>[];
   final Rx<PageState> state = PageState.initial.obs;
@@ -27,7 +23,7 @@ class UAdminContractController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    uServices.contract.read(
+    UCore.services.contract.read(
       p: UContractReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
@@ -66,7 +62,7 @@ class UAdminContractController {
         message: "Are You Sure You Want To Delete This Contract?",
         onConfirm: () {
           ULoading.show();
-          uServices.contract.delete(
+          UCore.services.contract.delete(
             p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
               UNavigator.back();
@@ -83,7 +79,7 @@ class UAdminContractController {
       );
 
   void create({required UContractCreateParams p}) {
-    uServices.contract.create(
+    UCore.services.contract.create(
       p: p,
       onOk: (UResponse<UContractResponse> r) {
         UNavigator.snackBar(message: "Submitted");
@@ -101,7 +97,7 @@ class UAdminContractController {
   }
 
   void update({required UContractUpdateParams p}) {
-    uServices.contract.update(
+    UCore.services.contract.update(
       p: p,
       onOk: (UResponse<UContractResponse> r) {
         UNavigator.snackBar(message: "Submitted");

@@ -1,10 +1,6 @@
 part of "../u_admin.dart";
 
 class UAdminDashboardController {
-  final UServices uServices;
-
-  UAdminDashboardController({required this.uServices});
-
   void init() {
     read();
     startMetricsPolling();
@@ -17,7 +13,7 @@ class UAdminDashboardController {
 
   void startMetricsPolling() => _timer = Timer.periodic(
         const Duration(seconds: 10),
-        (_) => uServices.dashboard.readSystemMetrics(
+        (_) => UCore.services.dashboard.readSystemMetrics(
           onOk: (UMetricsResponse response) => metrics(response),
           onError: () {},
           onException: (String e) {},
@@ -26,7 +22,7 @@ class UAdminDashboardController {
 
   void read() {
     state.loading();
-    uServices.dashboard.read(
+    UCore.services.dashboard.read(
       onOk: (UDashboardResponse response) {
         dashboard = response;
         state.loaded();

@@ -1,10 +1,6 @@
 part of "../u_admin.dart";
 
 class UAdminProductController {
-  final UServices uServices;
-
-  UAdminProductController({required this.uServices});
-
   List<UProductResponse> list = <UProductResponse>[];
   List<UProductResponse> filteredList = <UProductResponse>[];
   final Rx<PageState> state = PageState.initial.obs;
@@ -27,7 +23,7 @@ class UAdminProductController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    uServices.product.read(
+    UCore.services.product.read(
       p: UProductReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
@@ -69,7 +65,7 @@ class UAdminProductController {
         title: "Delete",
         message: "Are You Sure You Want To Delete This Product?",
         onConfirm: () {
-          uServices.product.delete(
+          UCore.services.product.delete(
             p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
               UNavigator.back();
@@ -87,7 +83,7 @@ class UAdminProductController {
 
   void create({required UProductCreateParams p}) {
     state.loading();
-    uServices.product.create(
+    UCore.services.product.create(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
         UNavigator.snackBar(message: "Submitted");
@@ -105,7 +101,7 @@ class UAdminProductController {
   }
 
   void update({required UProductUpdateParams p}) {
-    uServices.product.update(
+    UCore.services.product.update(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
         UNavigator.snackBar(message: "Submitted");

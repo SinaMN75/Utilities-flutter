@@ -1,10 +1,6 @@
 part of "../u_admin.dart";
 
 class UAdminCategoryController {
-  final UServices uServices;
-
-  UAdminCategoryController({required this.uServices});
-
   late TagCategory tag;
 
   final Rx<PageState> state = PageState.initial.obs;
@@ -17,7 +13,7 @@ class UAdminCategoryController {
 
   Future<void> loadCategories() async {
     state.loading();
-    uServices.category.read(
+    UCore.services.category.read(
       p: UCategoryReadParams(
         tags: <int>[tag.number],
         showChildren: true,
@@ -37,7 +33,7 @@ class UAdminCategoryController {
 
   void create({required UCategoryCreateParams p}) {
     ULoading.show();
-    uServices.category.create(
+    UCore.services.category.create(
       p: p,
       onOk: (UResponse<UCategoryResponse> response) async {
         UNavigator.back();
@@ -55,7 +51,7 @@ class UAdminCategoryController {
 
   void update({required UCategoryUpdateParams p}) {
     ULoading.show();
-    uServices.category.update(
+    UCore.services.category.update(
       p: p,
       onOk: (UResponse<UCategoryResponse> response) {
         UNavigator.back();
@@ -77,7 +73,7 @@ class UAdminCategoryController {
         message: "Are You Sure You Want To Delete This Category?",
         onConfirm: () {
           ULoading.show();
-          uServices.category.delete(
+          UCore.services.category.delete(
             p: UIdParams(id: category.id),
             onOk: (UResponse<dynamic> response) {
               UNavigator.back();

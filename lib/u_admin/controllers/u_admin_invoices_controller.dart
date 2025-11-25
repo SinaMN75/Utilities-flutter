@@ -1,10 +1,6 @@
 part of "../u_admin.dart";
 
 class UAdminInvoiceController {
-  final UServices uServices;
-
-  UAdminInvoiceController({required this.uServices});
-
   List<UInvoiceResponse> list = <UInvoiceResponse>[];
   List<UInvoiceResponse> filteredList = <UInvoiceResponse>[];
   final Rx<PageState> state = PageState.initial.obs;
@@ -27,7 +23,7 @@ class UAdminInvoiceController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    uServices.invoice.read(
+    UCore.services.invoice.read(
       p: UInvoiceReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
@@ -66,7 +62,7 @@ class UAdminInvoiceController {
         message: "Are You Sure You Want To Delete This Invoice?",
         onConfirm: () {
           ULoading.show();
-          uServices.invoice.delete(
+          UCore.services.invoice.delete(
             p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
               UNavigator.back();
@@ -83,7 +79,7 @@ class UAdminInvoiceController {
       );
 
   void create({required UInvoiceCreateParams p}) {
-    uServices.invoice.create(
+    UCore.services.invoice.create(
       p: p,
       onOk: (UResponse<UInvoiceResponse> r) {
         UNavigator.snackBar(message: "Submitted");
@@ -101,7 +97,7 @@ class UAdminInvoiceController {
   }
 
   void update({required UInvoiceUpdateParams p}) {
-    uServices.invoice.update(
+    UCore.services.invoice.update(
       p: p,
       onOk: (UResponse<UInvoiceResponse> r) {
         UNavigator.snackBar(message: "Submitted");

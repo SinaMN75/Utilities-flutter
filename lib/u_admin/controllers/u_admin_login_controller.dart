@@ -1,10 +1,6 @@
 part of "../u_admin.dart";
 
 class UAdminLoginController {
-  final UServices uServices;
-
-  UAdminLoginController({required this.uServices});
-
   Rx<PageState> state = PageState.initial.obs;
   final GlobalKey<FormState> formKey = GlobalKey();
 
@@ -21,7 +17,7 @@ class UAdminLoginController {
         key: formKey,
         action: () {
           ULoading.show();
-          uServices.auth.loginWithEmailPassword(
+          UCore.services.auth.loginWithEmailPassword(
             p: ULoginWithEmailPasswordParams(
               email: controllerUserName.text,
               password: controllerPassword.text.englishNumber(),
