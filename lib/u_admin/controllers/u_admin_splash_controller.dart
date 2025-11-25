@@ -2,7 +2,7 @@ part of "../u_admin.dart";
 
 class UAdminSplashController {
   Future<void> init({
-    required Function(UUserResponse, List<UCategoryResponse>, List<UProductResponse>) onFinish,
+    required VoidCallback onFinish,
     required VoidCallback onError,
   }) async {
     if (ULocalStorage.getString(UConstants.token) == null) {
@@ -17,7 +17,10 @@ class UAdminSplashController {
               UCore.services.product.read(
                 p: UProductReadParams(),
                 onOk: (UResponse<List<UProductResponse>> products) {
-                  onFinish(user.result!, categories.result!, products.result!);
+                  UCore.products = products.result!;
+                  UCore.categories = categories.result!;
+                  UCore.user = user.result!;
+                  onFinish();
                 },
                 onError: (UResponse<dynamic> r) => onError,
                 onException: (String r) => onError,
