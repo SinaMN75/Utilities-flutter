@@ -2,10 +2,16 @@ import "package:u/utilities.dart";
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
+abstract class UCore {
+  static late UUserResponse user;
+  static List<UCategoryResponse> categories = <UCategoryResponse>[];
+  static List<UProductResponse> products = <UProductResponse>[];
+  static late UServices services;
+}
+
 Future<void> initU({
   String? baseUrl,
   String? apiKey,
-  Function(UServices)? onUServicesReady,
   List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +27,8 @@ Future<void> initU({
   if (UApp.isLinux) UApp.linuxDeviceInfo = await UApp.deviceInfo.linuxInfo;
   ULoading.initialize(key: navigatorKey, blurAmount: 1, overlayColor: Colors.black12);
 
-  if (onUServicesReady != null) {
-    onUServicesReady(UServices(baseUrl: baseUrl!, apiKey: apiKey!));
+  if (baseUrl != null && apiKey != null) {
+    UCore.services = UServices(baseUrl: baseUrl, apiKey: apiKey);
   }
 }
 
