@@ -48,7 +48,7 @@ class MediaService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Media/Read",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UMediaResponse>>.fromJson(
             r.body,
@@ -71,7 +71,7 @@ class MediaService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Media/Update",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<UMediaResponse>.fromJson(
             r.body,
@@ -92,7 +92,7 @@ class MediaService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Media/Delete",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),

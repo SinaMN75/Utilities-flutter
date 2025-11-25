@@ -17,7 +17,7 @@ class UserService {
   }) =>
       UHttpClient.post(
         "$baseUrl/user/Create",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -31,7 +31,7 @@ class UserService {
   }) =>
       UHttpClient.post(
         "$baseUrl/user/BulkCreate",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -45,7 +45,7 @@ class UserService {
   }) =>
       UHttpClient.post(
         "$baseUrl/User/Read",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UUserResponse>>.fromJson(
             r.body,
@@ -66,7 +66,7 @@ class UserService {
   }) {
     UHttpClient.post(
       "$baseUrl/user/ReadById",
-      body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+      body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (String e) => onException(e),
@@ -81,7 +81,7 @@ class UserService {
   }) {
     UHttpClient.post(
       "$baseUrl/user/Update",
-      body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+      body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (String e) => onException(e),
@@ -96,7 +96,7 @@ class UserService {
   }) {
     UHttpClient.post(
       "$baseUrl/user/Delete",
-      body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+      body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (String e) => onException(e),

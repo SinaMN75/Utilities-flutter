@@ -17,7 +17,7 @@ class InvoiceService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Invoice/Create",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -31,7 +31,7 @@ class InvoiceService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Invoice/Read",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UInvoiceResponse>>.fromJson(
             r.body,
@@ -50,7 +50,7 @@ class InvoiceService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Invoice/ReadById",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -64,7 +64,7 @@ class InvoiceService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Invoice/Update",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -78,7 +78,7 @@ class InvoiceService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Invoice/Delete",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),

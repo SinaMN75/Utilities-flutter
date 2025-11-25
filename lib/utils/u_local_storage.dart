@@ -64,7 +64,11 @@ class ULocalStorage {
 
   static void setToken(String value, {Duration? expireTime}) => set(UConstants.token, value, expireTime: expireTime);
 
+  static void setLocale(String value) => set(UConstants.locale, value);
+
   static String? getToken() => getIfNotExpired(UConstants.token);
+
+  static String? getLocale() => getIfNotExpired(UConstants.locale);
 
   static bool hasToken() => getIfNotExpired(UConstants.token) != null;
 

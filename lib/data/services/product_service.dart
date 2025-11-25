@@ -17,7 +17,7 @@ class ProductService {
   }) =>
       UHttpClient.post(
         "$baseUrl/product/Create",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UProductResponse>.fromJson(r.body, (final dynamic i) => UProductResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -31,7 +31,7 @@ class ProductService {
   }) =>
       UHttpClient.post(
         "$baseUrl/product/Read",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UProductResponse>>.fromJson(
             r.body,
@@ -50,7 +50,7 @@ class ProductService {
   }) =>
       UHttpClient.post(
         "$baseUrl/product/ReadById",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UProductResponse>.fromJson(r.body, (final dynamic i) => UProductResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -64,7 +64,7 @@ class ProductService {
   }) =>
       UHttpClient.post(
         "$baseUrl/product/Update",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UProductResponse>.fromJson(r.body, (final dynamic i) => UProductResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -78,7 +78,7 @@ class ProductService {
   }) =>
       UHttpClient.post(
         "$baseUrl/product/Delete",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
