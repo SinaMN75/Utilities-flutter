@@ -1,7 +1,7 @@
 import "package:u/utilities.dart";
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({required this.onFinish, super.key});
+class UAdminSettingsPage extends StatelessWidget {
+  const UAdminSettingsPage({required this.onFinish, super.key});
 
   final VoidCallback onFinish;
 

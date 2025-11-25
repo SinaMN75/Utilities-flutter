@@ -1,7 +1,7 @@
 import "package:u/utilities.dart";
 
-class SplashPage extends StatefulWidget {
-  const SplashPage({
+class UAdminSplashPage extends StatefulWidget {
+  const UAdminSplashPage({
     required this.logo,
     required this.onError,
     required this.onFinish,
@@ -13,20 +13,18 @@ class SplashPage extends StatefulWidget {
   final String logo;
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  State<UAdminSplashPage> createState() => _UAdminSplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _UAdminSplashPageState extends State<UAdminSplashPage> {
   final UAdminSplashController c = UAdminSplashController();
 
   @override
   void initState() {
     c.init(
-      // onFinish: () =>  UNavigator.offAll(const MainPage()),
       onFinish: widget.onFinish,
       onError: () async {
         await ULocalStorage.clear();
-        // await delay(100, () => UNavigator.offAll(const LoginPage()));
         widget.onError();
       },
     );
