@@ -3,10 +3,10 @@ import "package:u/utilities.dart";
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> initU({
-  final List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ],
+  String? baseUrl,
+  String? apiKey,
+  Function(UServices)? onUServicesReady,
+  List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(deviceOrientations);
@@ -20,8 +20,10 @@ Future<void> initU({
   if (UApp.isMacOs) UApp.macOsDeviceInfo = await UApp.deviceInfo.macOsInfo;
   if (UApp.isLinux) UApp.linuxDeviceInfo = await UApp.deviceInfo.linuxInfo;
   ULoading.initialize(key: navigatorKey, blurAmount: 1, overlayColor: Colors.black12);
-  // await CustomCrashlytics.initialize();
-  return;
+
+  if (onUServicesReady != null) {
+    onUServicesReady(UServices(baseUrl: baseUrl!, apiKey: apiKey!));
+  }
 }
 
 class UMaterialApp extends StatelessWidget {

@@ -3,11 +3,9 @@ part of "../data.dart";
 class ContentService {
   ContentService({
     required this.apiKey,
-    required this.token,
     required this.baseUrl,
   });
 
-  final String? token;
   final String apiKey;
   final String baseUrl;
 
@@ -19,7 +17,7 @@ class ContentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/content/Create",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<UContentResponse>.fromJson(r.body, (final dynamic i) => UContentResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -33,7 +31,7 @@ class ContentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/content/Read",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UContentResponse>>.fromJson(
             r.body,
@@ -52,7 +50,7 @@ class ContentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/content/ReadById",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<UContentResponse>.fromJson(r.body, (final dynamic i) => UContentResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -66,7 +64,7 @@ class ContentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/content/Update",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<UContentResponse>.fromJson(r.body, (final dynamic i) => UContentResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -80,7 +78,7 @@ class ContentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/content/Delete",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),

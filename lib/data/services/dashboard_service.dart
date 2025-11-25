@@ -3,11 +3,9 @@ part of "../data.dart";
 class DashboardService {
   DashboardService({
     required this.apiKey,
-    required this.token,
     required this.baseUrl,
   });
 
-  final String? token;
   final String apiKey;
   final String baseUrl;
 

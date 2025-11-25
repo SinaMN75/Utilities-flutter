@@ -3,11 +3,9 @@ part of "../data.dart";
 class FollowService {
   FollowService({
     required this.apiKey,
-    required this.token,
     required this.baseUrl,
   });
 
-  final String? token;
   final String apiKey;
   final String baseUrl;
 
@@ -19,7 +17,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/Follow",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -33,7 +31,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/Unfollow",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -47,7 +45,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/ReadFollowers",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UUserResponse>>.fromJson(
             r.body,
@@ -66,7 +64,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/ReadFollowedUsers",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UUserResponse>>.fromJson(
             r.body,
@@ -85,7 +83,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/ReadFollowedProducts",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UProductResponse>>.fromJson(
             r.body,
@@ -104,7 +102,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/ReadFollowedCategories",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UCategoryResponse>>.fromJson(
             r.body,
@@ -123,7 +121,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/ReadFollowerFollowingCount",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<UFollowerFollowingCountResponse>.fromJson(r.body, (final dynamic i) => UFollowerFollowingCountResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -137,7 +135,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/IsFollowingUser",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -151,7 +149,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/isFollowingProduct",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -165,7 +163,7 @@ class FollowService {
   }) =>
       UHttpClient.post(
         "$baseUrl/follow/isFollowingCategory",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),

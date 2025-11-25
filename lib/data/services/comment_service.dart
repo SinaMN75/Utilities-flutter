@@ -3,11 +3,9 @@ part of "../data.dart";
 class CommentService {
   CommentService({
     required this.apiKey,
-    required this.token,
     required this.baseUrl,
   });
 
-  final String? token;
   final String apiKey;
   final String baseUrl;
 
@@ -19,7 +17,7 @@ class CommentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/comment/Create",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -33,7 +31,7 @@ class CommentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/comment/Read",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UCommentResponse>>.fromJson(
             r.body,
@@ -52,7 +50,7 @@ class CommentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/comment/ReadById",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -66,7 +64,7 @@ class CommentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/comment/Update",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -80,7 +78,7 @@ class CommentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/comment/Delete",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -94,7 +92,7 @@ class CommentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/comment/ReadProductCommentCount",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -108,7 +106,7 @@ class CommentService {
   }) =>
       UHttpClient.post(
         "$baseUrl/comment/ReadUserCommentCount",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),

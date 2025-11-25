@@ -39,27 +39,22 @@ part "services/product_service.dart";
 part "services/user_service.dart";
 
 class UServices {
-  UServices({
-    required this.baseUrl,
-    required this.apiKey,
-    required this.token,
-  }) {
-    dashboard = DashboardService(baseUrl: baseUrl, apiKey: apiKey, token: apiKey);
-    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    user = UserService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    product = ProductService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    content = ContentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    comment = CommentService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    follow = FollowService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    contract = ContractService(baseUrl: baseUrl, apiKey: apiKey, token: token);
-    invoice = InvoiceService(baseUrl: baseUrl, apiKey: apiKey, token: token);
+  UServices({required this.baseUrl, required this.apiKey}) {
+    dashboard = DashboardService(baseUrl: baseUrl, apiKey: apiKey);
+    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey);
+    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey);
+    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey);
+    user = UserService(baseUrl: baseUrl, apiKey: apiKey);
+    product = ProductService(baseUrl: baseUrl, apiKey: apiKey);
+    content = ContentService(baseUrl: baseUrl, apiKey: apiKey);
+    comment = CommentService(baseUrl: baseUrl, apiKey: apiKey);
+    follow = FollowService(baseUrl: baseUrl, apiKey: apiKey);
+    contract = ContractService(baseUrl: baseUrl, apiKey: apiKey);
+    invoice = InvoiceService(baseUrl: baseUrl, apiKey: apiKey);
   }
 
   String baseUrl;
   String apiKey;
-  String? token;
 
   late AuthService auth;
   late CategoryService category;

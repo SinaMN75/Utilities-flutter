@@ -36,9 +36,4 @@ class UAdminSplashController {
       );
     }
   }
-
-// Future<void> _clearAndRestart() async {
-//   await ULocalStorage.clear();
-//   await delay(100, () => UNavigator.offAll(const LoginPage()));
-// }
 }

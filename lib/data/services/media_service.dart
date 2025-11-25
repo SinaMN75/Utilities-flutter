@@ -3,11 +3,9 @@ part of "../data.dart";
 class MediaService {
   MediaService({
     required this.apiKey,
-    required this.token,
     required this.baseUrl,
   });
 
-  final String? token;
   final String apiKey;
   final String baseUrl;
 
@@ -28,7 +26,7 @@ class MediaService {
     await UHttpClient.upload(
       endpoint: "$baseUrl/Media/Create",
       files: files,
-      fields: p.toMap()..addAll(<String, dynamic>{"apiKey": apiKey, "token": token}),
+      fields: p.toMap()..addAll(<String, dynamic>{"apiKey": apiKey, "token": ULocalStorage.getToken()}),
       onSuccess: (final Response r) => onOk(
         UResponse<UMediaResponse>.fromJson(
           r.body,
@@ -50,7 +48,7 @@ class MediaService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Media/Read",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UMediaResponse>>.fromJson(
             r.body,
@@ -73,7 +71,7 @@ class MediaService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Media/Update",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(
           UResponse<UMediaResponse>.fromJson(
             r.body,
@@ -94,7 +92,7 @@ class MediaService {
   }) =>
       UHttpClient.post(
         "$baseUrl/Media/Delete",
-        body: p.toMap().add("apiKey", apiKey).add("token", token),
+        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()),
         onSuccess: (final Response r) => onOk(
           UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),

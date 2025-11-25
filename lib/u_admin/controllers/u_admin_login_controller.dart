@@ -29,11 +29,8 @@ class UAdminLoginController {
             onOk: (final UResponse<ULoginResponse> r) {
               ULocalStorage.set(UConstants.token, r.result!.token);
               ULocalStorage.set(UConstants.userId, r.result!.user.id);
-              uServices.token = r.result!.token;
               ULoading.dismiss();
               onFinish(r.result!.user);
-              // Core.user = r.result!.user;
-              // UNavigator.offAll(const MainPage());
             },
             onError: (final UResponse<dynamic> r) {
               ULoading.dismiss();
