@@ -105,7 +105,6 @@ class UFileStorage {
   static late Directory _directory;
   static late Directory _bigFilesDirectory;
 
-  /// Initializes file storage directories.
   static Future<void> init() async {
     if (!kIsWeb) {
       _directory = await getApplicationDocumentsDirectory();
@@ -116,29 +115,37 @@ class UFileStorage {
     }
   }
 
-  /// Stores bytes as a base64-encoded string in a .dat file.
-  static Future<void> setBytes(String key, List<int> bytes) async {
-    try {
-      await File("${_bigFilesDirectory.path}/$key.dat").writeAsString(base64Encode(bytes));
-    } catch (e) {
-      return;
-    }
-  }
+  static Future<void> setBytes(String key, List<int> bytes) async => File(
+        "${_bigFilesDirectory.path}/$key.dat",
+      ).writeAsBytes(bytes, flush: true);
 
-  /// Retrieves bytes from a base64-encoded .dat file.
   static Future<Uint8List?> getBytes(String key) async {
-    try {
-      final File file = File("${_bigFilesDirectory.path}/$key.dat");
-      if (await file.exists()) {
-        return base64Decode(await file.readAsString());
-      }
-      return null;
-    } catch (e) {
-      return null;
+    final File file = File("${_bigFilesDirectory.path}/$key.dat");
+
+    if (!await file.exists()) return null;
+
+    final int size = file.lengthSync();
+    final Uint8List output = Uint8List(size);
+
+    final RandomAccessFile raf = file.openSync();
+    int offset = 0;
+    const int chunkSize = 1024 * 1024;
+
+    while (offset < size) {
+      final int remaining = size - offset;
+      final int readSize = remaining < chunkSize ? remaining : chunkSize;
+
+      final List<int> chunk = raf.readSync(readSize);
+      if (chunk.isEmpty) break;
+
+      output.setRange(offset, offset + chunk.length, chunk);
+      offset += chunk.length;
     }
+
+    raf.closeSync();
+    return output;
   }
 
-  /// Checks if a .dat file exists for the given key.
   static Future<bool> fileExists(String key) async {
     try {
       final File file = File("${_bigFilesDirectory.path}/$key.dat");
@@ -148,7 +155,6 @@ class UFileStorage {
     }
   }
 
-  /// Retrieves the file size for a .dat file.
   static Future<int> fileSize(String key) async {
     try {
       final File file = File("${_bigFilesDirectory.path}/$key.dat");
@@ -162,7 +168,6 @@ class UFileStorage {
     }
   }
 
-  /// Calculates the total storage used by all .dat files.
   static int totalStorageUsed() {
     try {
       final List<FileSystemEntity> files = _bigFilesDirectory.listSync();
@@ -179,7 +184,6 @@ class UFileStorage {
     }
   }
 
-  /// Retrieves storage info for all .dat files.
   static Map<String, int> allFilesStorageInfo() {
     try {
       final List<FileSystemEntity> files = _bigFilesDirectory.listSync();
@@ -198,7 +202,6 @@ class UFileStorage {
     }
   }
 
-  /// Removes a specific .dat file and legacy .txt file.
   static Future<void> remove(String key) async {
     try {
       final File datFile = File("${_bigFilesDirectory.path}/$key.dat");
@@ -214,7 +217,6 @@ class UFileStorage {
     }
   }
 
-  /// Clears all .dat files and legacy .txt files.
   static Future<void> clear() async {
     try {
       final List<FileSystemEntity> files = _bigFilesDirectory.listSync();
@@ -234,7 +236,6 @@ class UFileStorage {
     }
   }
 
-  /// Legacy method: Stores a string in a .txt file (for backward compatibility).
   static Future<void> set(String key, String value) async {
     try {
       await File("${_directory.path}/$key.txt").writeAsString(value);
@@ -243,7 +244,6 @@ class UFileStorage {
     }
   }
 
-  /// Legacy method: Retrieves a string from a .txt file (for backward compatibility).
   static Future<String?> getString(String key) async {
     try {
       final File file = File("${_directory.path}/$key.txt");
@@ -256,7 +256,6 @@ class UFileStorage {
     }
   }
 
-  /// Legacy method: Retrieves all keys for .txt files (for backward compatibility).
   static Future<List<String>> getKeys() async {
     try {
       final List<FileSystemEntity> files = _directory.listSync();
@@ -269,7 +268,6 @@ class UFileStorage {
     }
   }
 
-  /// New utility: Stores JSON-serializable data as a .dat file.
   static Future<void> setJson(String key, Map<String, dynamic> jsonData) async {
     try {
       final String jsonString = jsonEncode(jsonData);
@@ -279,7 +277,6 @@ class UFileStorage {
     }
   }
 
-  /// New utility: Retrieves and decodes JSON from a .dat file.
   static Future<Map<String, dynamic>?> getJson(String key) async {
     try {
       final File file = File("${_bigFilesDirectory.path}/$key.dat");
@@ -293,7 +290,6 @@ class UFileStorage {
     }
   }
 
-  /// New utility: Lists all keys for .dat files.
   static Future<List<String>> getDatKeys() async {
     try {
       final List<FileSystemEntity> files = _bigFilesDirectory.listSync();
@@ -320,13 +316,10 @@ class UFileStorage {
     }
   }
 
-  /// New utility: Copies a file to a new key.
   static Future<void> copyFile(String sourceKey, String destinationKey) async {
-    try {
-      final File sourceFile = File("${_bigFilesDirectory.path}/$sourceKey.dat");
-      if (await sourceFile.exists()) {
-        await sourceFile.copy("${_bigFilesDirectory.path}/$destinationKey.dat");
-      } else {}
-    } catch (e) {}
+    final File sourceFile = File("${_bigFilesDirectory.path}/$sourceKey.dat");
+    if (await sourceFile.exists()) {
+      await sourceFile.copy("${_bigFilesDirectory.path}/$destinationKey.dat");
+    }
   }
 }
