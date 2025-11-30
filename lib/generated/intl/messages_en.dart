@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPointDetail": MessageLookupByLibrary.simpleMessage("Add Point Detail"),
     "addQuestion": MessageLookupByLibrary.simpleMessage("Add Question"),
     "addRooms": MessageLookupByLibrary.simpleMessage("Add Rooms"),
+    "amount": MessageLookupByLibrary.simpleMessage("Amount"),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "Are You Sure You Want To Delete",
     ),
@@ -63,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "dorm": MessageLookupByLibrary.simpleMessage("Dorm"),
     "dorms": MessageLookupByLibrary.simpleMessage("Dorms"),
+    "dueDate": MessageLookupByLibrary.simpleMessage("Due Date"),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "editExam": MessageLookupByLibrary.simpleMessage("Edit Exam"),
     "editQuestion": MessageLookupByLibrary.simpleMessage("Edit Question"),

@@ -847,6 +847,16 @@ class S {
   String get ok {
     return Intl.message('OK', name: 'ok', desc: '', args: []);
   }
+
+  /// `Due Date`
+  String get dueDate {
+    return Intl.message('Due Date', name: 'dueDate', desc: '', args: []);
+  }
+
+  /// `Amount`
+  String get amount {
+    return Intl.message('Amount', name: 'amount', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

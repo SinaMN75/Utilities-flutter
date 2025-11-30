@@ -108,5 +108,7 @@
   "failedToLoadLogStructure": "خطا در بارگزاری لاگ‌ها",
   "failedToLoadLogContent": "خطا در بارگزاری اطلاعات لاگ‌ها",
   "selectAColor": "یک رنگ انتخاب کنید",
-  "ok": "بله"
+  "ok": "بله",
+  "dueDate": "سررسید پرداخت",
+  "amount": "مبلغ"
 }

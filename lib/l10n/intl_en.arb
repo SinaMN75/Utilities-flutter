@@ -108,5 +108,7 @@
   "failedToLoadLogStructure": "Failed to load log structure",
   "failedToLoadLogContent": "Failed to load log content",
   "selectAColor": "Select a Color",
-  "ok": "OK"
+  "ok": "OK",
+  "dueDate": "Due Date",
+  "amount": "Amount"
 }
