@@ -11,24 +11,8 @@ class UAdminSplashController {
       UCore.services.user.readById(
         p: UIdParams(id: ULocalStorage.getString(UConstants.userId)!),
         onOk: (final UResponse<UUserResponse> user) {
-          UCore.services.category.read(
-            p: UCategoryReadParams(showChildren: true),
-            onOk: (UResponse<List<UCategoryResponse>> categories) {
-              UCore.services.product.read(
-                p: UProductReadParams(),
-                onOk: (UResponse<List<UProductResponse>> products) {
-                  UCore.products = products.result!;
-                  UCore.categories = categories.result!;
-                  UCore.user = user.result!;
-                  onFinish();
-                },
-                onError: (UResponse<dynamic> r) => onError,
-                onException: (String r) => onError,
-              );
-            },
-            onError: (UResponse<dynamic> r) => onError,
-            onException: (String r) => onError,
-          );
+          UCore.user = user.result!;
+          onFinish();
         },
         onError: (final UResponse<dynamic> r) => onError,
         onException: (String e) => onError,
