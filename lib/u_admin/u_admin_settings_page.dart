@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_admin.dart";
 
 class UAdminSettingsPage extends StatelessWidget {
   const UAdminSettingsPage({required this.onFinish, super.key});

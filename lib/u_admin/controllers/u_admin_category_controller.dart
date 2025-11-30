@@ -6,7 +6,6 @@ class UAdminCategoryController {
   final Rx<PageState> state = PageState.initial.obs;
   final RxList<UCategoryResponse> list = <UCategoryResponse>[].obs;
 
-
   void init() {
     loadCategories();
   }
@@ -38,7 +37,7 @@ class UAdminCategoryController {
       onOk: (UResponse<UCategoryResponse> response) async {
         UNavigator.back();
         ULoading.dismiss();
-        UNavigator.snackBar(message: "Category Created");
+        UNavigator.snackBar(message: UCore.s.created);
         await loadCategories();
       },
       onError: (UResponse<dynamic> error) {
@@ -67,27 +66,26 @@ class UAdminCategoryController {
     );
   }
 
-  void delete(UCategoryResponse category) =>
-      UNavigator.confirm(
-        title: "Delete",
-        message: "Are You Sure You Want To Delete This Category?",
-        onConfirm: () {
-          ULoading.show();
-          UCore.services.category.delete(
-            p: UIdParams(id: category.id),
-            onOk: (UResponse<dynamic> response) {
-              UNavigator.back();
-              ULoading.dismiss();
-              UNavigator.snackBar(message: "Category Deleted");
-              loadCategories();
-            },
-            onError: (UResponse<dynamic> error) {
-              UNavigator.back();
-              ULoading.dismiss();
-              UNavigator.error(message: error.message);
-            },
-            onException: (String e) {},
-          );
+  void delete(UCategoryResponse category) => UNavigator.confirm(
+    title: "Delete",
+    message: "Are You Sure You Want To Delete This Category?",
+    onConfirm: () {
+      ULoading.show();
+      UCore.services.category.delete(
+        p: UIdParams(id: category.id),
+        onOk: (UResponse<dynamic> response) {
+          UNavigator.back();
+          ULoading.dismiss();
+          UNavigator.snackBar(message: "Category Deleted");
+          loadCategories();
         },
+        onError: (UResponse<dynamic> error) {
+          UNavigator.back();
+          ULoading.dismiss();
+          UNavigator.error(message: error.message);
+        },
+        onException: (String e) {},
       );
+    },
+  );
 }

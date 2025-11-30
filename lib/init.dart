@@ -1,8 +1,10 @@
+import "package:u/generated/l10n.dart";
 import "package:u/utilities.dart";
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 abstract class UCore {
+  static S s = S.of(navigatorKey.currentState!.context);
   static late UUserResponse user;
   static List<UCategoryResponse> categories = <UCategoryResponse>[];
   static List<UProductResponse> products = <UProductResponse>[];
@@ -52,199 +54,199 @@ class UMaterialApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GetMaterialApp(
-        navigatorKey: navigatorKey,
-        enableLog: false,
-        localizationsDelegates: localizationsDelegates,
-        supportedLocales: supportedLocales,
-        home: home,
-        locale: Locale(ULocalStorage.getString(UConstants.locale) ?? locale.languageCode),
-        themeMode: (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) ? ThemeMode.dark : ThemeMode.light,
-        theme: uLightTheme(lightThemeData),
-        darkTheme: uDarkTheme(lightThemeData),
-      );
+    navigatorKey: navigatorKey,
+    enableLog: false,
+    localizationsDelegates: localizationsDelegates,
+    supportedLocales: supportedLocales,
+    home: home,
+    locale: Locale(ULocalStorage.getString(UConstants.locale) ?? locale.languageCode),
+    themeMode: (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) ? ThemeMode.dark : ThemeMode.light,
+    theme: uLightTheme(lightThemeData),
+    darkTheme: uDarkTheme(lightThemeData),
+  );
 
   ThemeData uLightTheme(UThemeData data) => ThemeData(
-        disabledColor: data.disabledColor,
-        fontFamily: data.fontFamily,
-        highlightColor: Colors.green,
-        appBarTheme: AppBarThemeData(
-          backgroundColor: data.appbarColor,
-          titleTextStyle: data.appbarTitleTextStyle,
-          actionsIconTheme: IconThemeData(color: data.appbarIconColor),
-          iconTheme: IconThemeData(color: data.appbarIconColor),
+    disabledColor: data.disabledColor,
+    fontFamily: data.fontFamily,
+    highlightColor: Colors.green,
+    appBarTheme: AppBarThemeData(
+      backgroundColor: data.appbarColor,
+      titleTextStyle: data.appbarTitleTextStyle,
+      actionsIconTheme: IconThemeData(color: data.appbarIconColor),
+      iconTheme: IconThemeData(color: data.appbarIconColor),
+    ),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: data.primaryColor,
+      primary: data.primaryColor,
+      secondary: data.secondaryColor,
+      error: data.errorColor,
+      surface: data.surface,
+      surfaceContainer: data.surfaceContainer,
+    ),
+    cardTheme: CardThemeData(
+      elevation: data.cardElevation,
+      shadowColor: data.primaryColor.withValues(alpha: 0.2),
+      color: data.cardColor ?? Colors.white,
+      clipBehavior: Clip.antiAlias,
+    ),
+    tabBarTheme: TabBarThemeData(
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
+      labelPadding: const EdgeInsets.symmetric(vertical: 12),
+      unselectedLabelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
+        textStyle: WidgetStatePropertyAll<TextStyle>(
+          TextStyle(fontFamily: data.fontFamily, color: Colors.white, fontSize: 16),
         ),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: data.primaryColor,
-          primary: data.primaryColor,
-          secondary: data.secondaryColor,
-          error: data.errorColor,
-          surface: data.surface,
-          surfaceContainer: data.surfaceContainer,
+        shape: WidgetStatePropertyAll<OutlinedBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        cardTheme: CardThemeData(
-          elevation: data.cardElevation,
-          shadowColor: data.primaryColor.withValues(alpha: 0.2),
-          color: data.cardColor ?? Colors.white,
-          clipBehavior: Clip.antiAlias,
+        padding: const WidgetStatePropertyAll<EdgeInsets>(
+          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         ),
-        tabBarTheme: TabBarThemeData(
-          indicatorSize: TabBarIndicatorSize.tab,
-          labelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
-          labelPadding: const EdgeInsets.symmetric(vertical: 12),
-          unselectedLabelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
+        backgroundColor: WidgetStateProperty.resolveWith((
+          final Set<WidgetState> states,
+        ) {
+          if (states.contains(WidgetState.disabled)) {
+            return data.disabledColor;
+          } else {
+            return data.secondaryColor;
+          }
+        }),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStatePropertyAll<OutlinedBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
-            textStyle: WidgetStatePropertyAll<TextStyle>(
-              TextStyle(fontFamily: data.fontFamily, color: Colors.white, fontSize: 16),
-            ),
-            shape: WidgetStatePropertyAll<OutlinedBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            ),
-            padding: const WidgetStatePropertyAll<EdgeInsets>(
-              EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-            ),
-            backgroundColor: WidgetStateProperty.resolveWith((
-              final Set<WidgetState> states,
-            ) {
-              if (states.contains(WidgetState.disabled)) {
-                return data.disabledColor;
-              } else {
-                return data.secondaryColor;
-              }
-            }),
-          ),
+        padding: const WidgetStatePropertyAll<EdgeInsets>(
+          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: ButtonStyle(
-            shape: WidgetStatePropertyAll<OutlinedBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            ),
-            padding: const WidgetStatePropertyAll<EdgeInsets>(
-              EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-            ),
-          ),
-        ),
-        drawerTheme: DrawerThemeData(
-          shape: Border.all(color: Colors.transparent, width: 0.1),
-          backgroundColor: data.drawerColor,
-        ),
-        listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(color: data.primaryColor),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(color: data.disabledColor.withValues(alpha: 0.5)),
-          ),
-          labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor),
-          filled: true,
-          fillColor: Colors.white,
-          contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-        ),
-        scrollbarTheme: ScrollbarThemeData(
-          thumbColor: WidgetStateProperty.all(data.primaryColor),
-        ),
-        snackBarTheme: SnackBarThemeData(
-          backgroundColor: Colors.black87,
-          contentTextStyle: TextStyle(color: Colors.white, fontFamily: data.fontFamily),
-        ),
-      );
+      ),
+    ),
+    drawerTheme: DrawerThemeData(
+      shape: Border.all(color: Colors.transparent, width: 0.1),
+      backgroundColor: data.drawerColor,
+    ),
+    listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: data.primaryColor),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: data.disabledColor.withValues(alpha: 0.5)),
+      ),
+      labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor),
+      filled: true,
+      fillColor: Colors.white,
+      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+    ),
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: WidgetStateProperty.all(data.primaryColor),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: Colors.black87,
+      contentTextStyle: TextStyle(color: Colors.white, fontFamily: data.fontFamily),
+    ),
+  );
 
   ThemeData uDarkTheme(UThemeData data) => ThemeData(
-        disabledColor: data.disabledColor,
-        fontFamily: data.fontFamily,
-        highlightColor: Colors.green,
-        appBarTheme: AppBarThemeData(
-          backgroundColor: data.appbarColor,
-          titleTextStyle: data.appbarTitleTextStyle,
-          actionsIconTheme: IconThemeData(color: data.appbarIconColor),
-          iconTheme: IconThemeData(color: data.appbarIconColor),
+    disabledColor: data.disabledColor,
+    fontFamily: data.fontFamily,
+    highlightColor: Colors.green,
+    appBarTheme: AppBarThemeData(
+      backgroundColor: data.appbarColor,
+      titleTextStyle: data.appbarTitleTextStyle,
+      actionsIconTheme: IconThemeData(color: data.appbarIconColor),
+      iconTheme: IconThemeData(color: data.appbarIconColor),
+    ),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: data.primaryColor,
+      primary: data.primaryColor,
+      secondary: data.secondaryColor,
+      error: data.errorColor,
+      surface: data.surface,
+      surfaceContainer: data.surfaceContainer,
+      brightness: Brightness.dark,
+    ),
+    cardTheme: CardThemeData(
+      elevation: data.cardElevation,
+      shadowColor: data.primaryColor.withValues(alpha: 0.2),
+      color: data.cardColor ?? Colors.black,
+      clipBehavior: Clip.antiAlias,
+    ),
+    tabBarTheme: TabBarThemeData(
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
+      labelPadding: const EdgeInsets.symmetric(vertical: 12),
+      unselectedLabelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
+        textStyle: WidgetStatePropertyAll<TextStyle>(
+          TextStyle(fontFamily: data.fontFamily, color: Colors.white, fontSize: 16),
         ),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: data.primaryColor,
-          primary: data.primaryColor,
-          secondary: data.secondaryColor,
-          error: data.errorColor,
-          surface: data.surface,
-          surfaceContainer: data.surfaceContainer,
-          brightness: Brightness.dark,
+        shape: WidgetStatePropertyAll<OutlinedBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        cardTheme: CardThemeData(
-          elevation: data.cardElevation,
-          shadowColor: data.primaryColor.withValues(alpha: 0.2),
-          color: data.cardColor ?? Colors.black,
-          clipBehavior: Clip.antiAlias,
+        padding: const WidgetStatePropertyAll<EdgeInsets>(
+          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         ),
-        tabBarTheme: TabBarThemeData(
-          indicatorSize: TabBarIndicatorSize.tab,
-          labelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
-          labelPadding: const EdgeInsets.symmetric(vertical: 12),
-          unselectedLabelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
+        backgroundColor: WidgetStateProperty.resolveWith((
+          final Set<WidgetState> states,
+        ) {
+          if (states.contains(WidgetState.disabled)) {
+            return data.disabledColor;
+          } else {
+            return data.secondaryColor;
+          }
+        }),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStatePropertyAll<OutlinedBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
-            textStyle: WidgetStatePropertyAll<TextStyle>(
-              TextStyle(fontFamily: data.fontFamily, color: Colors.white, fontSize: 16),
-            ),
-            shape: WidgetStatePropertyAll<OutlinedBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-            ),
-            padding: const WidgetStatePropertyAll<EdgeInsets>(
-              EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-            ),
-            backgroundColor: WidgetStateProperty.resolveWith((
-              final Set<WidgetState> states,
-            ) {
-              if (states.contains(WidgetState.disabled)) {
-                return data.disabledColor;
-              } else {
-                return data.secondaryColor;
-              }
-            }),
-          ),
+        padding: const WidgetStatePropertyAll<EdgeInsets>(
+          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: ButtonStyle(
-            shape: WidgetStatePropertyAll<OutlinedBorder>(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            ),
-            padding: const WidgetStatePropertyAll<EdgeInsets>(
-              EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-            ),
-          ),
-        ),
-        drawerTheme: DrawerThemeData(
-          shape: Border.all(color: Colors.transparent, width: 0.1),
-          backgroundColor: data.drawerColor,
-        ),
-        listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(color: data.primaryColor),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(color: data.disabledColor.withValues(alpha: 0.5)),
-          ),
-          labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor),
-          filled: true,
-          fillColor: Colors.black,
-          contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-        ),
-        scrollbarTheme: ScrollbarThemeData(
-          thumbColor: WidgetStateProperty.all(data.primaryColor),
-        ),
-        snackBarTheme: SnackBarThemeData(
-          backgroundColor: Colors.white70,
-          contentTextStyle: TextStyle(color: Colors.black, fontFamily: data.fontFamily),
-        ),
-      );
+      ),
+    ),
+    drawerTheme: DrawerThemeData(
+      shape: Border.all(color: Colors.transparent, width: 0.1),
+      backgroundColor: data.drawerColor,
+    ),
+    listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: data.primaryColor),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide(color: data.disabledColor.withValues(alpha: 0.5)),
+      ),
+      labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor),
+      filled: true,
+      fillColor: Colors.black,
+      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+    ),
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: WidgetStateProperty.all(data.primaryColor),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: Colors.white70,
+      contentTextStyle: TextStyle(color: Colors.black, fontFamily: data.fontFamily),
+    ),
+  );
 }
 
 class UThemeData {

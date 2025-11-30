@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_admin.dart";
 
 class UAdminSplashPage extends StatefulWidget {
   const UAdminSplashPage({
