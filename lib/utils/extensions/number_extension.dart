@@ -181,9 +181,9 @@ extension OptionalIntExtension on int? {
 }
 
 extension OptionalDoubleExtension on double? {
-  String rial({final bool removeNegative = false}) => "${(this ?? 0).toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "" : "-", "").trim();
+  String rial({final bool removeNegative = false}) => "${(this ?? 0).toInt().toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "" : "-", "").trim();
 
-  String toman({final bool removeNegative = false}) => "${(this ?? 0).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
+  String toman({final bool removeNegative = false}) => "${(this ?? 0).toInt().toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
 
   String rialToTomanMoneyPersian({final bool removeNegative = false}) => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
 
