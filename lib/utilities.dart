@@ -78,6 +78,7 @@ export "components/webview.dart";
 export "components/widget_to_image.dart";
 export "data/data.dart";
 export "enums.dart";
+export "generated/l10n.dart";
 export "init.dart";
 export "models/countries.dart";
 export "u_admin/u_admin.dart";
