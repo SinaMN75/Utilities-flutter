@@ -35,7 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "areYouSureYouWantToDeleteThisExam": MessageLookupByLibrary.simpleMessage(
       "آیا مطمئن هستید که می‌خواهید این آزمون را حذف کنید؟",
     ),
-    "beds": MessageLookupByLibrary.simpleMessage("Beds"),
+    "beds": MessageLookupByLibrary.simpleMessage("تخت‌ها"),
     "cancel": MessageLookupByLibrary.simpleMessage("انصراف"),
     "categories": MessageLookupByLibrary.simpleMessage("دسته‌بندی‌ها"),
     "categoriesNotFound": MessageLookupByLibrary.simpleMessage(
