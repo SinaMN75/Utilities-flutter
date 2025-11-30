@@ -32,32 +32,32 @@ class UInvoiceCreateParams {
   String toJson() => json.encode(toMap());
 
   factory UInvoiceCreateParams.fromMap(Map<String, dynamic> json) => UInvoiceCreateParams(
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        id: json["id"],
-        debtAmount: json["debtAmount"].toString().toDouble(),
-        creditorAmount: json["creditorAmount"].toString().toDouble(),
-        paidAmount: json["paidAmount"].toString().toDouble(),
-        penaltyAmount: json["penaltyAmount"].toString().toDouble(),
-        userId: json["userId"],
-        contractId: json["contractId"],
-        paidDate: json["paidDate"] == null ? null : DateTime.parse(json["paidDate"]),
-        dueDate: json["dueDate"] == null ? null : DateTime.parse(json["dueDate"]),
-        description: json["description"],
-      );
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    id: json["id"],
+    debtAmount: json["debtAmount"].toString().toDouble(),
+    creditorAmount: json["creditorAmount"].toString().toDouble(),
+    paidAmount: json["paidAmount"].toString().toDouble(),
+    penaltyAmount: json["penaltyAmount"].toString().toDouble(),
+    userId: json["userId"],
+    contractId: json["contractId"],
+    paidDate: json["paidDate"] == null ? null : DateTime.parse(json["paidDate"]),
+    dueDate: json["dueDate"] == null ? null : DateTime.parse(json["dueDate"]),
+    description: json["description"],
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-        "id": id,
-        "debtAmount": debtAmount,
-        "creditorAmount": creditorAmount,
-        "paidAmount": paidAmount,
-        "penaltyAmount": penaltyAmount,
-        "userId": userId,
-        "contractId": contractId,
-        "paidDate": paidDate?.toIso8601String(),
-        "dueDate": dueDate?.toIso8601String(),
-        "description": description,
-      };
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "id": id,
+    "debtAmount": debtAmount,
+    "creditorAmount": creditorAmount,
+    "paidAmount": paidAmount,
+    "penaltyAmount": penaltyAmount,
+    "userId": userId,
+    "contractId": contractId,
+    "paidDate": paidDate?.toIso8601String(),
+    "dueDate": dueDate?.toIso8601String(),
+    "description": description,
+  };
 }
 
 class UInvoiceReadParams {
@@ -69,6 +69,8 @@ class UInvoiceReadParams {
   final bool? orderByCreatedAtDesc;
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
+  final bool? showUser;
+  final bool? showContract;
   final List<int>? tags;
   final List<String>? ids;
   final String? userId;
@@ -82,6 +84,8 @@ class UInvoiceReadParams {
     this.orderByCreatedAtDesc,
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
+    this.showContract,
+    this.showUser,
     this.tags,
     this.ids,
     this.userId,
@@ -92,32 +96,36 @@ class UInvoiceReadParams {
   String toJson() => json.encode(toMap());
 
   factory UInvoiceReadParams.fromMap(Map<String, dynamic> json) => UInvoiceReadParams(
-        pageSize: json["pageSize"],
-        pageNumber: json["pageNumber"],
-        fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
-        toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-        orderByCreatedAt: json["orderByCreatedAt"],
-        orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
-        orderByUpdatedAt: json["orderByUpdatedAt"],
-        orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
-        userId: json["userId"],
-      );
+    pageSize: json["pageSize"],
+    pageNumber: json["pageNumber"],
+    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
+    toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
+    orderByCreatedAt: json["orderByCreatedAt"],
+    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
+    showContract: json["showContract"],
+    showUser: json["showUser"],
+    orderByUpdatedAt: json["orderByUpdatedAt"],
+    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
+    userId: json["userId"],
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "pageSize": pageSize,
-        "pageNumber": pageNumber,
-        "fromCreatedAt": fromCreatedAt?.toIso8601String(),
-        "toCreatedAt": toCreatedAt?.toIso8601String(),
-        "orderByCreatedAt": orderByCreatedAt,
-        "orderByCreatedAtDesc": orderByCreatedAtDesc,
-        "orderByUpdatedAt": orderByUpdatedAt,
-        "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-        "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
-        "userId": userId,
-      };
+    "pageSize": pageSize,
+    "pageNumber": pageNumber,
+    "fromCreatedAt": fromCreatedAt?.toIso8601String(),
+    "toCreatedAt": toCreatedAt?.toIso8601String(),
+    "orderByCreatedAt": orderByCreatedAt,
+    "orderByCreatedAtDesc": orderByCreatedAtDesc,
+    "showContract": showContract,
+    "showUser": showUser,
+    "orderByUpdatedAt": orderByUpdatedAt,
+    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
+    "userId": userId,
+  };
 }
 
 class UInvoiceUpdateParams {
@@ -146,24 +154,24 @@ class UInvoiceUpdateParams {
   String toJson() => json.encode(toMap());
 
   factory UInvoiceUpdateParams.fromMap(Map<String, dynamic> json) => UInvoiceUpdateParams(
-        id: json["id"],
-        addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
-        removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        debtAmount: json["debtAmount"].toString().toDouble(),
-        creditorAmount: json["creditorAmount"].toString().toDouble(),
-        paidAmount: json["paidAmount"].toString().toDouble(),
-        penaltyAmount: json["penaltyAmount"].toString().toDouble(),
-      );
+    id: json["id"],
+    addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
+    removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    debtAmount: json["debtAmount"].toString().toDouble(),
+    creditorAmount: json["creditorAmount"].toString().toDouble(),
+    paidAmount: json["paidAmount"].toString().toDouble(),
+    penaltyAmount: json["penaltyAmount"].toString().toDouble(),
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "id": id,
-        "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
-        "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-        "debtAmount": debtAmount,
-        "creditorAmount": creditorAmount,
-        "paidAmount": paidAmount,
-        "penaltyAmount": penaltyAmount,
-      };
+    "id": id,
+    "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
+    "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "debtAmount": debtAmount,
+    "creditorAmount": creditorAmount,
+    "paidAmount": paidAmount,
+    "penaltyAmount": penaltyAmount,
+  };
 }

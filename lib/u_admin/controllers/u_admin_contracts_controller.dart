@@ -20,7 +20,7 @@ class UAdminContractController {
     read();
   }
 
-  Future<void> read({String? parentId}) async {
+  Future<void> read() async {
     state.loading();
 
     UCore.services.contract.read(
@@ -100,14 +100,18 @@ class UAdminContractController {
     UCore.services.contract.update(
       p: p,
       onOk: (UResponse<UContractResponse> r) {
+        UNavigator.back();
         UNavigator.snackBar(message: UCore.s.submitted);
         ULoading.dismiss();
+        read();
       },
       onError: (UResponse<dynamic> r) {
+        UNavigator.back();
         UNavigator.error(message: r.message);
         ULoading.dismiss();
       },
       onException: (String r) {
+        UNavigator.back();
         UNavigator.error(message: UCore.s.errorSubmittingForm);
         ULoading.dismiss();
       },
