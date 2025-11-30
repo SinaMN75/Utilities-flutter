@@ -30,6 +30,8 @@ class UAdminInvoiceController {
         toCreatedAt: toCreatedAt,
         orderByCreatedAt: orderByCreatedAt,
         orderByCreatedAtDesc: orderByCreatedAtDesc,
+        showUser: true,
+        showContract: true,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
       ),

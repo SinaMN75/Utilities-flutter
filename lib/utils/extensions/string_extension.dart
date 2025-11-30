@@ -32,9 +32,9 @@ extension OptionalStringExtension on String? {
 
   String toJalaliDate() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatCompactDate();
 
-  String toRialMoneyPersian({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "" : "-", "");
+  String rial({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "" : "-", "");
 
-  String toTomanMoneyPersian({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} تومان".trim().replaceAll(removeNegative ? "" : "-", "");
+  String toman({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} تومان".trim().replaceAll(removeNegative ? "" : "-", "");
 
   String rialToTomanMoneyPersian() => "${((this ?? "0").toInt() / 10).toString().separateNumbers3By3()} تومان ".trim();
 
@@ -65,9 +65,9 @@ extension StringExtensions on String {
 
   String? nullIfEmpty() => isEmpty ? null : this;
 
-  String toRialMoneyPersian() => "${separateNumbers3By3()} ریال ";
+  String rial() => "${separateNumbers3By3()} ریال ";
 
-  String toTomanMoneyPersian() => "${separateNumbers3By3()} تومان ";
+  String toman() => "${separateNumbers3By3()} تومان ";
 
   bool isTrue() => toLowerCase() == "true";
 
