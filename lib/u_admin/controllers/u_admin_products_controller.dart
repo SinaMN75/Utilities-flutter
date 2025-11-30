@@ -73,11 +73,15 @@ class UAdminProductController {
               read();
             },
             onError: (final UResponse<dynamic> r) {
-              UNavigator.error(message: r.message);
+          UNavigator.back();
+          UNavigator.error(message: r.message);
               read();
             },
-            onException: (String e) {},
-          );
+        onException: (String e) {
+          UNavigator.back();
+          UNavigator.error(message: e);
+        },
+      );
         },
       );
 
