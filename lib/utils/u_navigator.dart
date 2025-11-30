@@ -317,8 +317,6 @@ abstract class UNavigator {
     required String hint,
     Function(String)? onSubmit,
     VoidCallback? onCancel,
-    String cancelTitle = "Cancel",
-    String submitTitle = "Submit",
     String defaultValue = "",
   }) async {
     final TextEditingController controller = TextEditingController(text: defaultValue);
@@ -336,10 +334,10 @@ abstract class UNavigator {
           ),
         ),
         actions: <Widget>[
-          TextButton(onPressed: onCancel ?? back, child: Text(cancelTitle)),
+          TextButton(onPressed: onCancel ?? back, child: Text(UCore.s.cancel)),
           TextButton(
             onPressed: () => back(controller.text),
-            child: Text(submitTitle),
+            child: Text(UCore.s.submit),
           ),
         ],
       ),
@@ -358,12 +356,10 @@ abstract class UNavigator {
   static Future<Color?> colorPicker({
     required Color defaultColor,
     final List<Color>? colors,
-    final String title = "Select a Color",
-    final String cancelTitle = "Cancel",
   }) async =>
       UNavigator.dialog<Color>(
         AlertDialog(
-          title: Text(title),
+          title: Text(UCore.s.selectAColor),
           content: SizedBox(
             width: 200,
             height: 100,
@@ -398,7 +394,7 @@ abstract class UNavigator {
             ),
           ),
           actions: <Widget>[
-            TextButton(onPressed: UNavigator.back, child: Text(cancelTitle)),
+            TextButton(onPressed: UNavigator.back, child: Text(UCore.s.cancel)),
           ],
         ),
       );

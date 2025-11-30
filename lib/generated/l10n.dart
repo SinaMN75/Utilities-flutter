@@ -832,6 +832,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Select a Color`
+  String get selectAColor {
+    return Intl.message(
+      'Select a Color',
+      name: 'selectAColor',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

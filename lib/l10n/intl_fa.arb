@@ -106,5 +106,6 @@
   "submitted": "ثبت شد",
   "errorSubmittingForm": "خطا در ارسال اطلاعات",
   "failedToLoadLogStructure": "خطا در بارگزاری لاگ‌ها",
-  "failedToLoadLogContent": "خطا در بارگزاری اطلاعات لاگ‌ها"
+  "failedToLoadLogContent": "خطا در بارگزاری اطلاعات لاگ‌ها",
+  "selectAColor": "یک رنگ انتخاب کنید"
 }
