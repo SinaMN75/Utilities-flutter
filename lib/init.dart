@@ -1,4 +1,3 @@
-import "package:u/generated/l10n.dart";
 import "package:u/utilities.dart";
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -6,8 +5,6 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 abstract class UCore {
   static S s = S.of(navigatorKey.currentState!.context);
   static late UUserResponse user;
-  static List<UCategoryResponse> categories = <UCategoryResponse>[];
-  static List<UProductResponse> products = <UProductResponse>[];
   static late UServices services;
 }
 
