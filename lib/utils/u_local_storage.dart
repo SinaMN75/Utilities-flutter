@@ -105,6 +105,7 @@ class UFileStorage {
   static late Directory _directory;
   static late Directory _bigFilesDirectory;
 
+  /// Initializes file storage directories.
   static Future<void> init() async {
     if (!kIsWeb) {
       _directory = await getApplicationDocumentsDirectory();
@@ -115,9 +116,10 @@ class UFileStorage {
     }
   }
 
-  static Future<void> setBytes(String key, List<int> bytes) async => File(
-        "${_bigFilesDirectory.path}/$key.dat",
-      ).writeAsBytes(bytes, flush: true);
+  static Future<void> setBytes(String key, List<int> bytes) async => File("${_bigFilesDirectory.path}/$key.dat").writeAsBytes(
+    bytes,
+    flush: true,
+  );
 
   static Future<Uint8List?> getBytes(String key) async {
     final File file = File("${_bigFilesDirectory.path}/$key.dat");

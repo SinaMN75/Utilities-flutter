@@ -108,6 +108,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "hddUsage": MessageLookupByLibrary.simpleMessage("HDD Usage"),
     "hintOptional": MessageLookupByLibrary.simpleMessage("Hint (Optional)"),
+    "invalidMessage": MessageLookupByLibrary.simpleMessage(
+      "This field is invalid.",
+    ),
     "invoices": MessageLookupByLibrary.simpleMessage("Invoices"),
     "joinedDate": MessageLookupByLibrary.simpleMessage("Joined Date"),
     "logs": MessageLookupByLibrary.simpleMessage("Logs"),
@@ -154,6 +157,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "recentlyJoined": MessageLookupByLibrary.simpleMessage("Recently Joined"),
     "rent": MessageLookupByLibrary.simpleMessage("Rent"),
     "required": MessageLookupByLibrary.simpleMessage("Required"),
+    "requiredMessage": MessageLookupByLibrary.simpleMessage(
+      "This field is required.",
+    ),
     "room": MessageLookupByLibrary.simpleMessage("Room"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "score": MessageLookupByLibrary.simpleMessage("Score"),

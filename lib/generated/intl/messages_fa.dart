@@ -112,6 +112,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "gender": MessageLookupByLibrary.simpleMessage("جنسیت"),
     "hddUsage": MessageLookupByLibrary.simpleMessage("مصرف HDD"),
     "hintOptional": MessageLookupByLibrary.simpleMessage("راهنما (اختیاری)"),
+    "invalidMessage": MessageLookupByLibrary.simpleMessage(
+      "مقدار وارد شده صحیح نیست",
+    ),
     "invoices": MessageLookupByLibrary.simpleMessage("فاکتورها"),
     "joinedDate": MessageLookupByLibrary.simpleMessage("تاریخ عضویت"),
     "logs": MessageLookupByLibrary.simpleMessage("لاگ‌ها"),
@@ -162,6 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "recentlyJoined": MessageLookupByLibrary.simpleMessage("تازه‌واردها"),
     "rent": MessageLookupByLibrary.simpleMessage("اجاره"),
     "required": MessageLookupByLibrary.simpleMessage("ضروری"),
+    "requiredMessage": MessageLookupByLibrary.simpleMessage("فیلد ضروری است"),
     "room": MessageLookupByLibrary.simpleMessage("اتاق"),
     "save": MessageLookupByLibrary.simpleMessage("ذخیره"),
     "score": MessageLookupByLibrary.simpleMessage("امتیاز"),

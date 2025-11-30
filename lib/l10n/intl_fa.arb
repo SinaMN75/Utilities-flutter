@@ -110,5 +110,7 @@
   "selectAColor": "یک رنگ انتخاب کنید",
   "ok": "بله",
   "dueDate": "سررسید پرداخت",
-  "amount": "مبلغ"
+  "amount": "مبلغ",
+  "requiredMessage": "فیلد ضروری است",
+  "invalidMessage": "مقدار وارد شده صحیح نیست"
 }

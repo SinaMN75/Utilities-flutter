@@ -110,5 +110,7 @@
   "selectAColor": "Select a Color",
   "ok": "OK",
   "dueDate": "Due Date",
-  "amount": "Amount"
+  "amount": "Amount",
+  "requiredMessage": "This field is required.",
+  "invalidMessage": "This field is invalid."
 }

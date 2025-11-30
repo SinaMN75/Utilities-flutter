@@ -857,6 +857,26 @@ class S {
   String get amount {
     return Intl.message('Amount', name: 'amount', desc: '', args: []);
   }
+
+  /// `This field is required.`
+  String get requiredMessage {
+    return Intl.message(
+      'This field is required.',
+      name: 'requiredMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field is invalid.`
+  String get invalidMessage {
+    return Intl.message(
+      'This field is invalid.',
+      name: 'invalidMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
