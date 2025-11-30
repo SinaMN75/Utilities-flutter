@@ -20,8 +20,8 @@ class UProductResponse {
     this.latitude,
     this.longitude,
     this.stock,
-    this.price1,
-    this.price2,
+    this.deposit,
+    this.rent,
     this.parentId,
     this.parent,
     this.user,
@@ -51,9 +51,9 @@ class UProductResponse {
         latitude: json["latitude"],
         longitude: json["longitude"],
         stock: json["stock"],
-        price1: json["price1"].toString().toDouble(),
-        price2: json["price2"].toString().toDouble(),
-        point: json["point"],
+    deposit: json["deposit"].toString().toDouble(),
+    rent: json["rent"].toString().toDouble(),
+    point: json["point"],
         parentId: json["parentId"],
         parent: json["parent"] == null ? null : UProductResponse.fromMap(json["parent"]),
         userId: json["userId"],
@@ -81,8 +81,8 @@ class UProductResponse {
   final double? latitude;
   final double? longitude;
   final int? stock;
-  final double? price1;
-  final double? price2;
+  final double? deposit;
+  final double? rent;
   final int point;
   final String? parentId;
   final UProductResponse? parent;
@@ -115,9 +115,9 @@ class UProductResponse {
         "latitude": latitude,
         "longitude": longitude,
         "stock": stock,
-        "price1": price1,
-        "price2": price2,
-        "parentId": parentId,
+    "deposit": deposit,
+    "rent": rent,
+    "parentId": parentId,
         "parent": parent?.toMap(),
         "userId": userId,
         "commentCount": commentCount,

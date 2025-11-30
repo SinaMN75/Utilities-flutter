@@ -9,8 +9,8 @@ class UContractResponse {
   final List<int> tags;
   final DateTime startDate;
   final DateTime endDate;
-  final double? price1;
-  final double? price2;
+  final double? deposit;
+  final double? rent;
   final UUserResponse? user;
   final String? userId;
   final UUserResponse? creator;
@@ -28,8 +28,8 @@ class UContractResponse {
     required this.startDate,
     required this.endDate,
     this.deletedAt,
-    this.price1,
-    this.price2,
+    this.deposit,
+    this.rent,
     this.user,
     this.userId,
     this.creator,
@@ -52,9 +52,9 @@ class UContractResponse {
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
         startDate: DateTime.parse(json["startDate"]),
         endDate: DateTime.parse(json["endDate"]),
-        price1: json["price1"].toString().toDouble(),
-        price2: json["price2"].toString().toDouble(),
-        user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
+    deposit: json["deposit"].toString().toDouble(),
+    rent: json["rent"].toString().toDouble(),
+    user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
         userId: json["userId"],
         creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
         creatorId: json["creatorId"],
@@ -72,9 +72,9 @@ class UContractResponse {
         "tags": List<dynamic>.from(tags.map((int x) => x)),
         "startDate": startDate.toIso8601String(),
         "endDate": endDate.toIso8601String(),
-        "price1": price1,
-        "price2": price2,
-        "user": user?.toMap(),
+    "deposit": deposit,
+    "rent": rent,
+    "user": user?.toMap(),
         "userId": userId,
         "creator": creator?.toMap(),
         "creatorId": creatorId,
