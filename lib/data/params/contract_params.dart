@@ -5,8 +5,6 @@ class UContractCreateParams {
   final String? id;
   final DateTime startDate;
   final DateTime endDate;
-  final double? deposit;
-  final double? rent;
   final String? userId;
   final String? productId;
   final String? description;
@@ -16,8 +14,6 @@ class UContractCreateParams {
     required this.startDate,
     required this.endDate,
     this.id,
-    this.deposit,
-    this.rent,
     this.userId,
     this.productId,
     this.description,
@@ -28,28 +24,24 @@ class UContractCreateParams {
   String toJson() => json.encode(toMap());
 
   factory UContractCreateParams.fromMap(Map<String, dynamic> json) => UContractCreateParams(
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        id: json["id"],
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    id: json["id"],
     startDate: DateTime.parse(json["startDate"]),
     endDate: DateTime.parse(json["endDate"]),
-        deposit: json["deposit"].toString().toDouble(),
-        rent: json["rent"].toString().toDouble(),
-        userId: json["userId"],
-        productId: json["productId"],
-        description: json["description"],
-      );
+    userId: json["userId"],
+    productId: json["productId"],
+    description: json["description"],
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "tags": List<dynamic>.from(tags.map((int x) => x)),
-        "id": id,
+    "id": id,
     "startDate": startDate.toIso8601String(),
     "endDate": endDate.toIso8601String(),
-        "deposit": deposit,
-        "rent": rent,
-        "userId": userId,
-        "productId": productId,
-        "description": description,
-      };
+    "userId": userId,
+    "productId": productId,
+    "description": description,
+  };
 }
 
 class UContractReadParams {
@@ -92,40 +84,40 @@ class UContractReadParams {
   String toJson() => json.encode(toMap());
 
   factory UContractReadParams.fromMap(Map<String, dynamic> json) => UContractReadParams(
-        pageSize: json["pageSize"],
-        pageNumber: json["pageNumber"],
-        fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
-        toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-        orderByCreatedAt: json["orderByCreatedAt"],
-        orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
-        orderByUpdatedAt: json["orderByUpdatedAt"],
-        orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
-        userId: json["userId"],
-        creatorId: json["creatorId"],
-        productId: json["productId"],
-        startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
-        endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
-      );
+    pageSize: json["pageSize"],
+    pageNumber: json["pageNumber"],
+    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
+    toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
+    orderByCreatedAt: json["orderByCreatedAt"],
+    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
+    orderByUpdatedAt: json["orderByUpdatedAt"],
+    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
+    userId: json["userId"],
+    creatorId: json["creatorId"],
+    productId: json["productId"],
+    startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
+    endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "pageSize": pageSize,
-        "pageNumber": pageNumber,
-        "fromCreatedAt": fromCreatedAt?.toIso8601String(),
-        "toCreatedAt": toCreatedAt?.toIso8601String(),
-        "orderByCreatedAt": orderByCreatedAt,
-        "orderByCreatedAtDesc": orderByCreatedAtDesc,
-        "orderByUpdatedAt": orderByUpdatedAt,
-        "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-        "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
-        "userId": userId,
-        "creatorId": creatorId,
-        "productId": productId,
-        "startDate": startDate?.toIso8601String(),
-        "endDate": endDate?.toIso8601String(),
-      };
+    "pageSize": pageSize,
+    "pageNumber": pageNumber,
+    "fromCreatedAt": fromCreatedAt?.toIso8601String(),
+    "toCreatedAt": toCreatedAt?.toIso8601String(),
+    "orderByCreatedAt": orderByCreatedAt,
+    "orderByCreatedAtDesc": orderByCreatedAtDesc,
+    "orderByUpdatedAt": orderByUpdatedAt,
+    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
+    "userId": userId,
+    "creatorId": creatorId,
+    "productId": productId,
+    "startDate": startDate?.toIso8601String(),
+    "endDate": endDate?.toIso8601String(),
+  };
 }
 
 class UContractUpdateParams {
@@ -154,24 +146,24 @@ class UContractUpdateParams {
   String toJson() => json.encode(toMap());
 
   factory UContractUpdateParams.fromMap(Map<String, dynamic> json) => UContractUpdateParams(
-        id: json["id"],
-        addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
-        removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
-        tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-        startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
-        endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
-        deposit: json["deposit"].toString().toDouble(),
-        rent: json["rent"].toString().toDouble(),
-      );
+    id: json["id"],
+    addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
+    removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
+    endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+    deposit: json["deposit"].toString().toDouble(),
+    rent: json["rent"].toString().toDouble(),
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "id": id,
-        "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
-        "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
-        "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-        "startDate": startDate?.toIso8601String(),
-        "endDate": endDate?.toIso8601String(),
-        "deposit": deposit,
-        "rent": rent,
-      };
+    "id": id,
+    "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
+    "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "startDate": startDate?.toIso8601String(),
+    "endDate": endDate?.toIso8601String(),
+    "deposit": deposit,
+    "rent": rent,
+  };
 }
