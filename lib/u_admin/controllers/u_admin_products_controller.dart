@@ -62,9 +62,9 @@ class UAdminProductController {
   }
 
   void delete(UProductResponse i) => UNavigator.confirm(
-        title: "Delete",
-        message: "Are You Sure You Want To Delete This Product?",
-        onConfirm: () {
+    title: UCore.s.delete,
+    message: UCore.s.areYouSureYouWantToDelete,
+    onConfirm: () {
           UCore.services.product.delete(
             p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
@@ -86,7 +86,7 @@ class UAdminProductController {
     UCore.services.product.create(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
-        UNavigator.snackBar(message: "Submitted");
+        UNavigator.snackBar(message: UCore.s.submitted);
         read();
       },
       onError: (UResponse<dynamic> r) {
@@ -94,7 +94,7 @@ class UAdminProductController {
         read();
       },
       onException: (String r) {
-        UNavigator.error(message: "Error Submitting Form");
+        UNavigator.error(message: UCore.s.errorSubmittingForm);
         read();
       },
     );
@@ -104,7 +104,7 @@ class UAdminProductController {
     UCore.services.product.update(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
-        UNavigator.snackBar(message: "Submitted");
+        UNavigator.snackBar(message: UCore.s.submitted);
         read();
       },
       onError: (UResponse<dynamic> r) {
@@ -112,7 +112,7 @@ class UAdminProductController {
         read();
       },
       onException: (String r) {
-        UNavigator.error(message: "Error Submitting Form");
+        UNavigator.error(message: UCore.s.errorSubmittingForm);
         read();
       },
     );

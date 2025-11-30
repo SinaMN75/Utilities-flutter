@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'fa';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "accenting": MessageLookupByLibrary.simpleMessage("صعودی"),
     "addOption": MessageLookupByLibrary.simpleMessage("افزودن گزینه"),
@@ -30,10 +29,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addQuestion": MessageLookupByLibrary.simpleMessage("افزودن سؤال"),
     "addRooms": MessageLookupByLibrary.simpleMessage("افزودن اتاق"),
+    "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
+      "از حذف اطمینان دارید؟",
+    ),
     "areYouSureYouWantToDeleteThisExam": MessageLookupByLibrary.simpleMessage(
       "آیا مطمئن هستید که می‌خواهید این آزمون را حذف کنید؟",
     ),
-    "beds": MessageLookupByLibrary.simpleMessage("تخت‌ها"),
+    "beds": MessageLookupByLibrary.simpleMessage("Beds"),
     "cancel": MessageLookupByLibrary.simpleMessage("انصراف"),
     "categories": MessageLookupByLibrary.simpleMessage("دسته‌بندی‌ها"),
     "categoriesNotFound": MessageLookupByLibrary.simpleMessage(
@@ -54,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createdDate": MessageLookupByLibrary.simpleMessage("تاریخ ایجاد"),
     "dashboard": MessageLookupByLibrary.simpleMessage("داشبورد"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
+    "deleted": MessageLookupByLibrary.simpleMessage("حذف شد"),
     "deposit": MessageLookupByLibrary.simpleMessage("رهن"),
     "descending": MessageLookupByLibrary.simpleMessage("نزولی"),
     "description": MessageLookupByLibrary.simpleMessage("توضیحات"),
@@ -65,6 +68,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "edit": MessageLookupByLibrary.simpleMessage("ویرایش"),
     "editExam": MessageLookupByLibrary.simpleMessage("ویرایش آزمون"),
     "editQuestion": MessageLookupByLibrary.simpleMessage("ویرایش سؤال"),
+    "edited": MessageLookupByLibrary.simpleMessage("ویرایش شد"),
     "email": MessageLookupByLibrary.simpleMessage("ایمیل"),
     "endDate": MessageLookupByLibrary.simpleMessage("تاریخ پایان"),
     "enter": MessageLookupByLibrary.simpleMessage("ورود"),
@@ -78,6 +82,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorReadingData": MessageLookupByLibrary.simpleMessage(
       "خطا در خواندن داده‌ها",
     ),
+    "errorSubmittingForm": MessageLookupByLibrary.simpleMessage(
+      "خطا در ارسال اطلاعات",
+    ),
     "examCategories": MessageLookupByLibrary.simpleMessage(
       "دسته‌بندی‌های آزمون",
     ),
@@ -88,6 +95,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "آزمون با موفقیت حذف شد!",
     ),
     "exams": MessageLookupByLibrary.simpleMessage("آزمون‌ها"),
+    "failedToLoadLogContent": MessageLookupByLibrary.simpleMessage(
+      "خطا در بارگزاری اطلاعات لاگ‌ها",
+    ),
+    "failedToLoadLogStructure": MessageLookupByLibrary.simpleMessage(
+      "خطا در بارگزاری لاگ‌ها",
+    ),
     "filter": MessageLookupByLibrary.simpleMessage("فیلتر"),
     "filterContracts": MessageLookupByLibrary.simpleMessage("فیلتر قراردادها"),
     "filterInvoices": MessageLookupByLibrary.simpleMessage("فیلتر فاکتورها"),
@@ -155,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings": MessageLookupByLibrary.simpleMessage("تنظیمات"),
     "startDate": MessageLookupByLibrary.simpleMessage("تاریخ شروع"),
     "submit": MessageLookupByLibrary.simpleMessage("ثبت"),
+    "submitted": MessageLookupByLibrary.simpleMessage("ثبت شد"),
     "subtitle": MessageLookupByLibrary.simpleMessage("زیرعنوان"),
     "tags": MessageLookupByLibrary.simpleMessage("برچسب‌ها"),
     "title": MessageLookupByLibrary.simpleMessage("عنوان"),

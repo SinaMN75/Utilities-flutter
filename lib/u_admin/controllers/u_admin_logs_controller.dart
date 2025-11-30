@@ -16,7 +16,7 @@ class UAdminLogsController {
       },
       onError: () {
         state.error();
-        UNavigator.error(message: "Failed to load log structure");
+        UNavigator.error(message: UCore.s.failedToLoadLogStructure);
       },
       onException: (String e) {},
     );
@@ -33,7 +33,7 @@ class UAdminLogsController {
       },
       onError: () {
         state.error();
-        UNavigator.error(message: "Failed to load log content");
+        UNavigator.error(message: UCore.s.failedToLoadLogContent);
       },
       onException: (String e) {},
     );

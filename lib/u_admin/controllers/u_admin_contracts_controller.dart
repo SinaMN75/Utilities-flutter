@@ -58,9 +58,9 @@ class UAdminContractController {
   }
 
   void delete(UContractResponse i) => UNavigator.confirm(
-        title: "Delete",
-        message: "Are You Sure You Want To Delete This Contract?",
-        onConfirm: () {
+    title: UCore.s.delete,
+    message: UCore.s.areYouSureYouWantToDelete,
+    onConfirm: () {
           ULoading.show();
           UCore.services.contract.delete(
             p: UIdParams(id: i.id),
@@ -82,7 +82,7 @@ class UAdminContractController {
     UCore.services.contract.create(
       p: p,
       onOk: (UResponse<UContractResponse> r) {
-        UNavigator.snackBar(message: "Submitted");
+        UNavigator.snackBar(message: UCore.s.submitted);
         ULoading.dismiss();
       },
       onError: (UResponse<dynamic> r) {
@@ -90,7 +90,7 @@ class UAdminContractController {
         ULoading.dismiss();
       },
       onException: (String r) {
-        UNavigator.error(message: "Error Submitting Form");
+        UNavigator.error(message: UCore.s.errorSubmittingForm);
         ULoading.dismiss();
       },
     );
@@ -100,7 +100,7 @@ class UAdminContractController {
     UCore.services.contract.update(
       p: p,
       onOk: (UResponse<UContractResponse> r) {
-        UNavigator.snackBar(message: "Submitted");
+        UNavigator.snackBar(message: UCore.s.submitted);
         ULoading.dismiss();
       },
       onError: (UResponse<dynamic> r) {
@@ -108,7 +108,7 @@ class UAdminContractController {
         ULoading.dismiss();
       },
       onException: (String r) {
-        UNavigator.error(message: "Error Submitting Form");
+        UNavigator.error(message: UCore.s.errorSubmittingForm);
         ULoading.dismiss();
       },
     );

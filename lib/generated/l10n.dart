@@ -777,6 +777,61 @@ class S {
   String get beds {
     return Intl.message('Beds', name: 'beds', desc: '', args: []);
   }
+
+  /// `Edited`
+  String get edited {
+    return Intl.message('Edited', name: 'edited', desc: '', args: []);
+  }
+
+  /// `Are You Sure You Want To Delete`
+  String get areYouSureYouWantToDelete {
+    return Intl.message(
+      'Are You Sure You Want To Delete',
+      name: 'areYouSureYouWantToDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleted`
+  String get deleted {
+    return Intl.message('Deleted', name: 'deleted', desc: '', args: []);
+  }
+
+  /// `Submitted`
+  String get submitted {
+    return Intl.message('Submitted', name: 'submitted', desc: '', args: []);
+  }
+
+  /// `Error Submitting Form`
+  String get errorSubmittingForm {
+    return Intl.message(
+      'Error Submitting Form',
+      name: 'errorSubmittingForm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load log structure`
+  String get failedToLoadLogStructure {
+    return Intl.message(
+      'Failed to load log structure',
+      name: 'failedToLoadLogStructure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load log content`
+  String get failedToLoadLogContent {
+    return Intl.message(
+      'Failed to load log content',
+      name: 'failedToLoadLogContent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -791,10 +846,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

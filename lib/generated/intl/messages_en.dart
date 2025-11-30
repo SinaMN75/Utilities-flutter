@@ -21,13 +21,15 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "accenting": MessageLookupByLibrary.simpleMessage("Accenting"),
     "addOption": MessageLookupByLibrary.simpleMessage("Add Option"),
     "addPointDetail": MessageLookupByLibrary.simpleMessage("Add Point Detail"),
     "addQuestion": MessageLookupByLibrary.simpleMessage("Add Question"),
     "addRooms": MessageLookupByLibrary.simpleMessage("Add Rooms"),
+    "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
+      "Are You Sure You Want To Delete",
+    ),
     "areYouSureYouWantToDeleteThisExam": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this exam?",
     ),
@@ -52,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createdDate": MessageLookupByLibrary.simpleMessage("Created Date"),
     "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "deleted": MessageLookupByLibrary.simpleMessage("Deleted"),
     "deposit": MessageLookupByLibrary.simpleMessage("Deposit"),
     "descending": MessageLookupByLibrary.simpleMessage("Descending"),
     "description": MessageLookupByLibrary.simpleMessage("Description"),
@@ -63,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "editExam": MessageLookupByLibrary.simpleMessage("Edit Exam"),
     "editQuestion": MessageLookupByLibrary.simpleMessage("Edit Question"),
+    "edited": MessageLookupByLibrary.simpleMessage("Edited"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "endDate": MessageLookupByLibrary.simpleMessage("End Date"),
     "enter": MessageLookupByLibrary.simpleMessage("Enter"),
@@ -76,6 +80,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorReadingData": MessageLookupByLibrary.simpleMessage(
       "Error reading Data",
     ),
+    "errorSubmittingForm": MessageLookupByLibrary.simpleMessage(
+      "Error Submitting Form",
+    ),
     "examCategories": MessageLookupByLibrary.simpleMessage("Exam Categories"),
     "examCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
       "Exam created successfully!",
@@ -84,6 +91,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Exam deleted successfully!",
     ),
     "exams": MessageLookupByLibrary.simpleMessage("Exams"),
+    "failedToLoadLogContent": MessageLookupByLibrary.simpleMessage(
+      "Failed to load log content",
+    ),
+    "failedToLoadLogStructure": MessageLookupByLibrary.simpleMessage(
+      "Failed to load log structure",
+    ),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
     "filterContracts": MessageLookupByLibrary.simpleMessage("Filter Contracts"),
     "filterInvoices": MessageLookupByLibrary.simpleMessage("Filter Invoices"),
@@ -147,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
     "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+    "submitted": MessageLookupByLibrary.simpleMessage("Submitted"),
     "subtitle": MessageLookupByLibrary.simpleMessage("Subtitle"),
     "tags": MessageLookupByLibrary.simpleMessage("Tags"),
     "title": MessageLookupByLibrary.simpleMessage("Title"),

@@ -99,5 +99,12 @@
   "pointDetails": "جزئیات امتیاز",
   "addPointDetail": "افزودن جزئیات امتیاز",
   "questions": "سؤال‌ها",
-  "beds": "تخت‌ها"
+  "beds": "Beds",
+  "edited": "ویرایش شد",
+  "areYouSureYouWantToDelete": "از حذف اطمینان دارید؟",
+  "deleted": "حذف شد",
+  "submitted": "ثبت شد",
+  "errorSubmittingForm": "خطا در ارسال اطلاعات",
+  "failedToLoadLogStructure": "خطا در بارگزاری لاگ‌ها",
+  "failedToLoadLogContent": "خطا در بارگزاری اطلاعات لاگ‌ها"
 }

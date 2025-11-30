@@ -99,5 +99,12 @@
   "pointDetails": "Point Details",
   "addPointDetail": "Add Point Detail",
   "questions": "Questions",
-  "beds": "Beds"
+  "beds": "Beds",
+  "edited": "Edited",
+  "areYouSureYouWantToDelete": "Are You Sure You Want To Delete",
+  "deleted": "Deleted",
+  "submitted": "Submitted",
+  "errorSubmittingForm": "Error Submitting Form",
+  "failedToLoadLogStructure": "Failed to load log structure",
+  "failedToLoadLogContent": "Failed to load log content"
 }

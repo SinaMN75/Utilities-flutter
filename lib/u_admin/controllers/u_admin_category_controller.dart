@@ -55,7 +55,7 @@ class UAdminCategoryController {
       onOk: (UResponse<UCategoryResponse> response) {
         UNavigator.back();
         ULoading.dismiss();
-        UNavigator.snackBar(message: "Category Edited");
+        UNavigator.snackBar(message: UCore.s.edited);
         loadCategories();
       },
       onError: (UResponse<dynamic> error) {
@@ -67,8 +67,8 @@ class UAdminCategoryController {
   }
 
   void delete(UCategoryResponse category) => UNavigator.confirm(
-    title: "Delete",
-    message: "Are You Sure You Want To Delete This Category?",
+    title: UCore.s.delete,
+    message: UCore.s.areYouSureYouWantToDelete,
     onConfirm: () {
       ULoading.show();
       UCore.services.category.delete(
@@ -76,7 +76,7 @@ class UAdminCategoryController {
         onOk: (UResponse<dynamic> response) {
           UNavigator.back();
           ULoading.dismiss();
-          UNavigator.snackBar(message: "Category Deleted");
+          UNavigator.snackBar(message: UCore.s.deleted);
           loadCategories();
         },
         onError: (UResponse<dynamic> error) {

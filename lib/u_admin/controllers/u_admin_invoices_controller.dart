@@ -58,9 +58,9 @@ class UAdminInvoiceController {
   }
 
   void delete(UInvoiceResponse i) => UNavigator.confirm(
-        title: "Delete",
-        message: "Are You Sure You Want To Delete This Invoice?",
-        onConfirm: () {
+    title: UCore.s.delete,
+    message: UCore.s.areYouSureYouWantToDelete,
+    onConfirm: () {
           ULoading.show();
           UCore.services.invoice.delete(
             p: UIdParams(id: i.id),
@@ -82,7 +82,7 @@ class UAdminInvoiceController {
     UCore.services.invoice.create(
       p: p,
       onOk: (UResponse<UInvoiceResponse> r) {
-        UNavigator.snackBar(message: "Submitted");
+        UNavigator.snackBar(message: UCore.s.submitted);
         ULoading.dismiss();
       },
       onError: (UResponse<dynamic> r) {
@@ -90,7 +90,7 @@ class UAdminInvoiceController {
         ULoading.dismiss();
       },
       onException: (String r) {
-        UNavigator.error(message: "Error Submitting Form");
+        UNavigator.error(message: UCore.s.errorSubmittingForm);
         ULoading.dismiss();
       },
     );
