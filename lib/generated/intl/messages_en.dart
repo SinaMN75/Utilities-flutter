@@ -122,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noInvoiceFound": MessageLookupByLibrary.simpleMessage("No Invoice Found"),
     "noProductFound": MessageLookupByLibrary.simpleMessage("No Product Found"),
     "noUserFound": MessageLookupByLibrary.simpleMessage("No User Found"),
+    "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "operations": MessageLookupByLibrary.simpleMessage("Operations"),
     "optionTitle": MessageLookupByLibrary.simpleMessage("Option Title"),
     "optionTitleAndScoreAreRequired": MessageLookupByLibrary.simpleMessage(

@@ -130,6 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "هیچ محصولی یافت نشد",
     ),
     "noUserFound": MessageLookupByLibrary.simpleMessage("هیچ کاربری یافت نشد"),
+    "ok": MessageLookupByLibrary.simpleMessage("بله"),
     "operations": MessageLookupByLibrary.simpleMessage("عملیات"),
     "optionTitle": MessageLookupByLibrary.simpleMessage("عنوان گزینه"),
     "optionTitleAndScoreAreRequired": MessageLookupByLibrary.simpleMessage(

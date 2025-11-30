@@ -107,5 +107,6 @@
   "errorSubmittingForm": "Error Submitting Form",
   "failedToLoadLogStructure": "Failed to load log structure",
   "failedToLoadLogContent": "Failed to load log content",
-  "selectAColor": "Select a Color"
+  "selectAColor": "Select a Color",
+  "ok": "OK"
 }

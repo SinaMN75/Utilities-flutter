@@ -117,8 +117,6 @@ abstract class UNavigator {
   static void confirm({
     required String title,
     required String message,
-    String confirmText = "OK",
-    String cancelText = "Cancel",
     bool destructive = false,
     VoidCallback? onDismiss,
     VoidCallback? onCancel,
@@ -129,7 +127,7 @@ abstract class UNavigator {
           title: Text(title),
           content: Text(message),
           actions: <Widget>[
-            TextButton(onPressed: onCancel ?? back, child: Text(cancelText)),
+            TextButton(onPressed: onCancel ?? back, child: Text(UCore.s.cancel)),
             TextButton(
               onPressed: onConfirm,
               style: destructive
@@ -137,7 +135,7 @@ abstract class UNavigator {
                       foregroundColor: theme.colorScheme.error,
                     )
                   : null,
-              child: Text(confirmText),
+              child: Text(UCore.s.ok),
             ),
           ],
         ),
