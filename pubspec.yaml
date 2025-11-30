@@ -81,3 +81,26 @@ flutter:
 
 flutter_intl:
   enabled: true
+
+#  flutter pub global activate rename
+#  flutter pub global run rename setBundleId --value ""
+#  flutter pub global run rename setAppName --value ""
+#  flutter pub run flutter_launcher_icons:main
+
+#Android only:
+#  flutter build apk --target-platform android-arm64,android-arm --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Desktop/
+
+#Web only:
+#  flutter build web --release && cd build/web && zip -r web.zip . && cd - && cp build/web/web.zip ~/Desktop/
+
+#macOS only:
+#  flutter build macos --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cp build/macos/Build/Products/Release/sinapp.zip ~/Desktop/
+
+#Android + Web:
+#  flutter build apk --target-platform android-arm64,android-arm --release && flutter build web --release && cd build/web && zip -r web.zip . && cd - && cp build/app/outputs/flutter-apk/app-release.apk build/web/web.zip ~/Desktop/
+
+#Android + macOS:
+#  flutter build apk --target-platform android-arm64,android-arm --release && flutter build macos --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cp build/app/outputs/flutter-apk/app-release.apk build/macos/Build/Products/Release/sinapp.zip ~/Desktop/
+
+#All 3 platforms:
+#  flutter build apk --target-platform android-arm64,android-arm --release && flutter build macos --release && flutter build web --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cd build/web && zip -r web.zip . && cd - && cp build/app/outputs/flutter-apk/app-release.apk build/macos/Build/Products/Release/sinapp.zip build/web/web.zip ~/Desktop/
