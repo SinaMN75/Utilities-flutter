@@ -5,8 +5,8 @@ class UContractCreateParams {
   final String? id;
   final DateTime startDate;
   final DateTime endDate;
-  final double? price1;
-  final double? price2;
+  final double? deposit;
+  final double? rent;
   final String? userId;
   final String? productId;
   final String? description;
@@ -16,8 +16,8 @@ class UContractCreateParams {
     required this.startDate,
     required this.endDate,
     this.id,
-    this.price1,
-    this.price2,
+    this.deposit,
+    this.rent,
     this.userId,
     this.productId,
     this.description,
@@ -32,8 +32,8 @@ class UContractCreateParams {
         id: json["id"],
     startDate: DateTime.parse(json["startDate"]),
     endDate: DateTime.parse(json["endDate"]),
-        price1: json["price1"].toString().toDouble(),
-        price2: json["price2"].toString().toDouble(),
+        deposit: json["deposit"].toString().toDouble(),
+        rent: json["rent"].toString().toDouble(),
         userId: json["userId"],
         productId: json["productId"],
         description: json["description"],
@@ -44,8 +44,8 @@ class UContractCreateParams {
         "id": id,
     "startDate": startDate.toIso8601String(),
     "endDate": endDate.toIso8601String(),
-        "price1": price1,
-        "price2": price2,
+        "deposit": deposit,
+        "rent": rent,
         "userId": userId,
         "productId": productId,
         "description": description,
@@ -135,8 +135,8 @@ class UContractUpdateParams {
   final List<int>? tags;
   final DateTime? startDate;
   final DateTime? endDate;
-  final double? price1;
-  final double? price2;
+  final double? deposit;
+  final double? rent;
 
   UContractUpdateParams({
     required this.id,
@@ -145,8 +145,8 @@ class UContractUpdateParams {
     this.tags,
     this.startDate,
     this.endDate,
-    this.price1,
-    this.price2,
+    this.deposit,
+    this.rent,
   });
 
   factory UContractUpdateParams.fromJson(String str) => UContractUpdateParams.fromMap(json.decode(str));
@@ -160,8 +160,8 @@ class UContractUpdateParams {
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
         startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
         endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
-        price1: json["price1"].toString().toDouble(),
-        price2: json["price2"].toString().toDouble(),
+        deposit: json["deposit"].toString().toDouble(),
+        rent: json["rent"].toString().toDouble(),
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -171,7 +171,7 @@ class UContractUpdateParams {
         "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
         "startDate": startDate?.toIso8601String(),
         "endDate": endDate?.toIso8601String(),
-        "price1": price1,
-        "price2": price2,
+        "deposit": deposit,
+        "rent": rent,
       };
 }

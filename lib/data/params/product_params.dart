@@ -16,8 +16,8 @@ class UProductCreateParams {
     this.latitude,
     this.longitude,
     this.stock,
-    this.price1,
-    this.price2,
+    this.deposit,
+    this.rent,
     this.details,
     this.categories,
     this.relatedProducts,
@@ -44,8 +44,8 @@ class UProductCreateParams {
         latitude: json["latitude"],
         longitude: json["longitude"],
         stock: json["stock"],
-        price1: json["price1"].toString().toDouble(),
-        price2: json["price2"].toString().toDouble(),
+        deposit: json["deposit"].toString().toDouble(),
+        rent: json["rent"].toString().toDouble(),
         details: json["details"],
         point: json["point"],
         tags: List<int>.from(json["tags"].map((dynamic x) => x)),
@@ -69,8 +69,8 @@ class UProductCreateParams {
   final double? latitude;
   final double? longitude;
   final int? stock;
-  final double? price1;
-  final double? price2;
+  final double? deposit;
+  final double? rent;
   final String? details;
   final List<int> tags;
   final List<String>? categories;
@@ -97,8 +97,8 @@ class UProductCreateParams {
         "latitude": latitude,
         "longitude": longitude,
         "stock": stock,
-        "price1": price1,
-        "price2": price2,
+        "deposit": deposit,
+        "rent": rent,
         "details": details,
         "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
@@ -124,8 +124,8 @@ class UProductUpdateParams {
     this.latitude,
     this.longitude,
     this.stock,
-    this.price1,
-    this.price2,
+    this.deposit,
+    this.rent,
     this.parentId,
     this.userId,
     this.actionType,
@@ -158,8 +158,8 @@ class UProductUpdateParams {
         latitude: json["latitude"],
         longitude: json["longitude"],
         stock: json["stock"],
-        price1: json["price1"].toString().toDouble(),
-        price2: json["price2"].toString().toDouble(),
+        deposit: json["deposit"].toString().toDouble(),
+        rent: json["rent"].toString().toDouble(),
         point: json["point"],
         parentId: json["parentId"],
         userId: json["userId"],
@@ -189,8 +189,8 @@ class UProductUpdateParams {
   final double? latitude;
   final double? longitude;
   final int? stock;
-  final double? price1;
-  final double? price2;
+  final double? deposit;
+  final double? rent;
   final String? parentId;
   final String? userId;
   final String? actionType;
@@ -223,8 +223,8 @@ class UProductUpdateParams {
         "latitude": latitude,
         "longitude": longitude,
         "stock": stock,
-        "price1": price1,
-        "price2": price2,
+        "deposit": deposit,
+        "rent": rent,
         "parentId": parentId,
         "userId": userId,
         "point": point,
@@ -255,10 +255,10 @@ class UProductReadParams {
     this.userId,
     this.minStock,
     this.maxStock,
-    this.minPrice1,
-    this.maxPrice1,
-    this.minPrice2,
-    this.maxPrice2,
+    this.mindeposit,
+    this.maxdeposit,
+    this.minrent,
+    this.maxrent,
     this.showCategories,
     this.showCategoriesMedia,
     this.showMedia,
@@ -291,10 +291,10 @@ class UProductReadParams {
         userId: json["userId"],
         minStock: json["minStock"],
         maxStock: json["maxStock"],
-        minPrice1: json["minPrice1"],
-        maxPrice1: json["maxPrice1"],
-        minPrice2: json["minPrice2"],
-        maxPrice2: json["maxPrice2"],
+        mindeposit: json["mindeposit"],
+        maxdeposit: json["maxdeposit"],
+        minrent: json["minrent"],
+        maxrent: json["maxrent"],
         showCategories: json["showCategories"] ?? false,
         showCategoriesMedia: json["showCategoriesMedia"] ?? false,
         showMedia: json["showMedia"] ?? false,
@@ -323,10 +323,10 @@ class UProductReadParams {
   final String? userId;
   final int? minStock;
   final int? maxStock;
-  final double? minPrice1;
-  final double? maxPrice1;
-  final double? minPrice2;
-  final double? maxPrice2;
+  final double? mindeposit;
+  final double? maxdeposit;
+  final double? minrent;
+  final double? maxrent;
   final bool? showCategories;
   final bool? showCategoriesMedia;
   final bool? showMedia;
@@ -358,10 +358,10 @@ class UProductReadParams {
         "userId": userId,
         "minStock": minStock,
         "maxStock": maxStock,
-        "minPrice1": minPrice1,
-        "maxPrice1": maxPrice1,
-        "minPrice2": minPrice2,
-        "maxPrice2": maxPrice2,
+        "mindeposit": mindeposit,
+        "maxdeposit": maxdeposit,
+        "minrent": minrent,
+        "maxrent": maxrent,
         "showCategories": showCategories,
         "showCategoriesMedia": showCategoriesMedia,
         "showMedia": showMedia,

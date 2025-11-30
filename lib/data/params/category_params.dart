@@ -86,8 +86,8 @@ class UCategoryUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    this.productPrice1,
-    this.productPrice2,
+    this.productDeposit,
+    this.productRent,
   });
 
   factory UCategoryUpdateParams.fromJson(String str) => UCategoryUpdateParams.fromMap(json.decode(str));
@@ -102,8 +102,8 @@ class UCategoryUpdateParams {
         code: json["code"],
         type: json["type"],
         order: json["order"],
-        productPrice1: json["productPrice1"],
-        productPrice2: json["productPrice2"],
+        productDeposit: json["productDeposit"],
+        productRent: json["productRent"],
         parentId: json["parentId"],
         relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
         addRelatedProducts: json["addRelatedProducts"] == null ? null : List<String>.from(json["addRelatedProducts"].map((dynamic x) => x)),
@@ -130,8 +130,8 @@ class UCategoryUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final double? productPrice1;
-  final double? productPrice2;
+  final double? productDeposit;
+  final double? productRent;
 
   String toJson() => json.encode(toMap());
 
@@ -150,8 +150,8 @@ class UCategoryUpdateParams {
         "addRelatedProducts": addRelatedProducts == null ? null : List<dynamic>.from(addRelatedProducts!.map((String x) => x)),
         "removeRelatedProducts": removeRelatedProducts == null ? null : List<dynamic>.from(removeRelatedProducts!.map((String x) => x)),
         "id": id,
-        "productPrice1": productPrice1,
-        "productPrice2": productPrice2,
+        "productDeposit": productDeposit,
+        "productRent": productRent,
         "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
         "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
