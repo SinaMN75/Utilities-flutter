@@ -140,7 +140,7 @@ abstract class UHttpClient {
     final Duration cacheDuration = const Duration(minutes: 60),
     final String noNetworkMessage = "Connection to Network was Not possible",
     final bool returnCacheIfExist = false,
-  }) async =>
+      }) async =>
       _request(
         method: "GET",
         endpoint: endpoint,
@@ -165,7 +165,7 @@ abstract class UHttpClient {
     final Duration cacheDuration = const Duration(minutes: 60),
     final String noNetworkMessage = "Connection to Network was Not possible",
     final bool offline = false,
-  }) async =>
+      }) async =>
       _request(
         method: "POST",
         endpoint: endpoint,
@@ -190,7 +190,7 @@ abstract class UHttpClient {
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
     final String noNetworkMessage = "Connection to Network was Not possible",
-  }) async =>
+      }) async =>
       _request(
         method: "PUT",
         endpoint: endpoint,
@@ -211,7 +211,7 @@ abstract class UHttpClient {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
     final String noNetworkMessage = "Connection to Network was Not possible",
-  }) async =>
+      }) async =>
       _request(
         method: "DELETE",
         endpoint: endpoint,
@@ -268,14 +268,14 @@ abstract class UHttpClient {
   }
 }
 
-extension HTTP on Response {
-  bool isSuccessful() => statusCode >= 200 && statusCode <= 299 || false;
+extension HTTP on Response? {
+  bool isSuccessful() => (this?.statusCode ?? 999) >= 200 && (this?.statusCode ?? 999) <= 299 || false;
 
-  bool isServerError() => statusCode >= 500 && statusCode <= 599 || false;
+  bool isServerError() => (this?.statusCode ?? 999) >= 500 && (this?.statusCode ?? 999) <= 599 || false;
 
   void prettyLog({final String params = ""}) {
     developer.log(
-      "${request?.method} - ${request?.url} - $statusCode \nPARAMS: $params \nRESPONSE: $body",
+      "${this?.request?.method} - ${this?.request?.url} - ${this?.statusCode} \nPARAMS: $params \nRESPONSE: ${this?.body}",
     );
   }
 }
