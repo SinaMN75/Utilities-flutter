@@ -137,6 +137,11 @@ class UInvoiceUpdateParams {
   final double? creditorAmount;
   final double? paidAmount;
   final double? penaltyAmount;
+  final String? userId;
+  final String? contractId;
+  final DateTime? paidDate;
+  final DateTime? dueDate;
+  final String? description;
 
   UInvoiceUpdateParams({
     this.id,
@@ -147,6 +152,11 @@ class UInvoiceUpdateParams {
     this.creditorAmount,
     this.paidAmount,
     this.penaltyAmount,
+    this.userId,
+    this.contractId,
+    this.paidDate,
+    this.dueDate,
+    this.description,
   });
 
   factory UInvoiceUpdateParams.fromJson(String str) => UInvoiceUpdateParams.fromMap(json.decode(str));
@@ -162,6 +172,11 @@ class UInvoiceUpdateParams {
     creditorAmount: json["creditorAmount"].toString().toDouble(),
     paidAmount: json["paidAmount"].toString().toDouble(),
     penaltyAmount: json["penaltyAmount"].toString().toDouble(),
+    userId: json["userId"],
+    contractId: json["contractId"],
+    paidDate: json["paidDate"] == null ? null : DateTime.parse(json["paidDate"]),
+    dueDate: json["dueDate"] == null ? null : DateTime.parse(json["dueDate"]),
+    description: json["description"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -173,5 +188,10 @@ class UInvoiceUpdateParams {
     "creditorAmount": creditorAmount,
     "paidAmount": paidAmount,
     "penaltyAmount": penaltyAmount,
+    "userId": userId,
+    "contractId": contractId,
+    "paidDate": paidDate?.toIso8601String(),
+    "dueDate": dueDate?.toIso8601String(),
+    "description": description,
   };
 }

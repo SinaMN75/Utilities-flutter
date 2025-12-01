@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'fa';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
+
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "accenting": MessageLookupByLibrary.simpleMessage("صعودی"),
     "addOption": MessageLookupByLibrary.simpleMessage("افزودن گزینه"),
