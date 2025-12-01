@@ -103,4 +103,4 @@ flutter_intl:
 #  flutter build apk --target-platform android-arm64,android-arm --release && flutter build macos --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cp build/app/outputs/flutter-apk/app-release.apk build/macos/Build/Products/Release/sinapp.zip ~/Desktop/
 
 #All 3 platforms:
-#  flutter build apk --target-platform android-arm64,android-arm --release && flutter build macos --release && flutter build web --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cd build/web && zip -r web.zip . && cd - && cp build/app/outputs/flutter-apk/app-release.apk build/macos/Build/Products/Release/sinapp.zip build/web/web.zip ~/Desktop/
+#  flutter clean && flutter build apk --target-platform android-arm64,android-arm --release && flutter build macos --release && flutter build web --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cd build/web && zip -r web.zip . && cd - && cp build/app/outputs/flutter-apk/app-release.apk build/macos/Build/Products/Release/sinapp.zip build/web/web.zip ~/Desktop/

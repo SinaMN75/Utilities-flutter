@@ -112,5 +112,9 @@
   "dueDate": "سررسید پرداخت",
   "amount": "مبلغ",
   "requiredMessage": "فیلد ضروری است",
-  "invalidMessage": "مقدار وارد شده صحیح نیست"
+  "invalidMessage": "مقدار وارد شده صحیح نیست",
+  "debt": "بدهکار",
+  "creditor": "بستانکار",
+  "penalty": "جریمه",
+  "paid": "پرداخت شده"
 }

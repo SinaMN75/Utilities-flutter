@@ -877,6 +877,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Debt`
+  String get debt {
+    return Intl.message('Debt', name: 'debt', desc: '', args: []);
+  }
+
+  /// `Creditor`
+  String get creditor {
+    return Intl.message('Creditor', name: 'creditor', desc: '', args: []);
+  }
+
+  /// `Penalty`
+  String get penalty {
+    return Intl.message('Penalty', name: 'penalty', desc: '', args: []);
+  }
+
+  /// `Paid`
+  String get paid {
+    return Intl.message('Paid', name: 'paid', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

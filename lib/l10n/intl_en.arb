@@ -112,5 +112,9 @@
   "dueDate": "Due Date",
   "amount": "Amount",
   "requiredMessage": "This field is required.",
-  "invalidMessage": "This field is invalid."
+  "invalidMessage": "This field is invalid.",
+  "debt": "Debt",
+  "creditor": "Creditor",
+  "penalty": "Penalty",
+  "paid": "Paid"
 }
