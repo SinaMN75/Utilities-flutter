@@ -60,10 +60,10 @@ class UContractReadParams {
   final String? productId;
   final DateTime? startDate;
   final DateTime? endDate;
-  final DateTime? userName;
-  final DateTime? showInvoices;
-  final DateTime? showUser;
-  final DateTime? showProduct;
+  final String? userName;
+  final bool? showInvoices;
+  final bool? showUser;
+  final bool? showProduct;
 
   UContractReadParams({
     this.pageSize,
