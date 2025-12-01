@@ -74,51 +74,51 @@ class _UTextFieldState extends State<UTextField> {
 
   @override
   Widget build(final BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          if (widget.text != null)
-            UIconTextHorizontal(
-              leading: Text(widget.text!, style: Theme.of(context).textTheme.titleSmall),
-              trailing: widget.required ? const Text("*").bodyMedium(color: Theme.of(context).colorScheme.error) : const SizedBox(),
-            ).pSymmetric(vertical: 8),
-          TextFormField(
-            autofillHints: widget.autoFillHints,
-            textDirection: widget.keyboardType == TextInputType.number ? TextDirection.ltr : null,
-            inputFormatters: widget.formatters,
-            style: TextStyle(fontSize: widget.fontSize),
-            maxLength: widget.maxLength,
-            onChanged: widget.onChanged,
-            readOnly: widget.readOnly,
-            initialValue: widget.initialValue,
-            textAlign: widget.textAlign,
-            onSaved: widget.onSave,
-            onTap: widget.onTap,
-            controller: widget.controller,
-            keyboardType: widget.keyboardType,
-            obscureText: obscure,
-            validator: widget.validator,
-            minLines: widget.lines,
-            onFieldSubmitted: widget.onFieldSubmitted,
-            maxLines: widget.lines == 1 ? 1 : 20,
-            decoration: InputDecoration(
-              labelText: widget.labelText,
-              isDense: widget.isDense,
-              helperStyle: const TextStyle(fontSize: 0),
-              hintText: widget.hintText,
-              contentPadding: widget.contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              suffixIcon: widget.obscureText
-                  ? IconButton(
-                      splashRadius: 1,
-                      onPressed: () => setState(() => obscure = !obscure),
-                      icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
-                    )
-                  : widget.suffix,
-              prefixIcon: widget.prefix,
-            ),
-          ),
-        ],
-      );
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      if (widget.text != null)
+        UIconTextHorizontal(
+          leading: Text(widget.text!, style: Theme.of(context).textTheme.titleSmall),
+          trailing: widget.required ? const Text("*").bodyMedium(color: Theme.of(context).colorScheme.error) : const SizedBox(),
+        ).pSymmetric(vertical: 8),
+      TextFormField(
+        autofillHints: widget.autoFillHints,
+        textDirection: widget.keyboardType == TextInputType.number ? TextDirection.ltr : null,
+        inputFormatters: widget.formatters,
+        style: TextStyle(fontSize: widget.fontSize),
+        maxLength: widget.maxLength,
+        onChanged: widget.onChanged,
+        readOnly: widget.readOnly,
+        initialValue: widget.initialValue,
+        textAlign: widget.textAlign,
+        onSaved: widget.onSave,
+        onTap: widget.onTap,
+        controller: widget.controller,
+        keyboardType: widget.keyboardType,
+        obscureText: obscure,
+        validator: widget.validator,
+        minLines: widget.lines,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        maxLines: widget.lines == 1 ? 1 : 20,
+        decoration: InputDecoration(
+          labelText: widget.labelText,
+          isDense: widget.isDense,
+          helperStyle: const TextStyle(fontSize: 0),
+          hintText: widget.hintText,
+          contentPadding: widget.contentPadding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          suffixIcon: widget.obscureText
+              ? IconButton(
+                  splashRadius: 1,
+                  onPressed: () => setState(() => obscure = !obscure),
+                  icon: obscure ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                )
+              : widget.suffix,
+          prefixIcon: widget.prefix,
+        ),
+      ),
+    ],
+  );
 }
 
 class UTextFieldPersianDatePicker extends StatefulWidget {
@@ -180,47 +180,49 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
 
   @override
   Widget build(BuildContext context) => UTextField(
-        controller: widget.controller,
-        text: widget.text,
-        prefix: widget.prefix,
-        suffix: widget.suffix,
-        labelText: widget.labelText,
-        fontSize: widget.fontSize,
-        hintText: widget.hintText,
-        textAlign: widget.textAlign,
-        readOnly: true,
-        textHeight: widget.textHeight,
-        validator: widget.validator,
-        onTap: () async {
-          if (!widget.readOnly) {
-            if (widget.date) {
-              await UNavigator.dialog(JalaliDatePickerDialog(
-                initialDate: Jalali.now(),
-                onDateSelected: (DateTime d, Jalali j) {
-                  jalali = j;
-                  setState(() => jalali = jalali);
-                  widget.onChange(jalali.toDateTime(), jalali);
-                },
-              ));
-              if (widget.time) {
-                final TimeOfDay? timeOfDay = await showTimePicker(
-                  context: context,
-                  initialTime: const TimeOfDay(hour: 0, minute: 0),
-                );
-                jalali = Jalali(
-                  jalali.year,
-                  jalali.month,
-                  jalali.day,
-                  timeOfDay!.hour,
-                  timeOfDay.minute,
-                );
+    controller: widget.controller,
+    text: widget.text,
+    prefix: widget.prefix,
+    suffix: widget.suffix,
+    labelText: widget.labelText,
+    fontSize: widget.fontSize,
+    hintText: widget.hintText,
+    textAlign: widget.textAlign,
+    readOnly: true,
+    textHeight: widget.textHeight,
+    validator: widget.validator,
+    onTap: () async {
+      if (!widget.readOnly) {
+        if (widget.date) {
+          await UNavigator.dialog(
+            JalaliDatePickerDialog(
+              initialDate: Jalali.now(),
+              onDateSelected: (DateTime d, Jalali j) {
+                jalali = j;
                 setState(() => jalali = jalali);
                 widget.onChange(jalali.toDateTime(), jalali);
-              }
-            }
+              },
+            ),
+          );
+          if (widget.time) {
+            final TimeOfDay? timeOfDay = await showTimePicker(
+              context: context,
+              initialTime: const TimeOfDay(hour: 0, minute: 0),
+            );
+            jalali = Jalali(
+              jalali.year,
+              jalali.month,
+              jalali.day,
+              timeOfDay!.hour,
+              timeOfDay.minute,
+            );
+            setState(() => jalali = jalali);
+            widget.onChange(jalali.toDateTime(), jalali);
           }
-        },
-      );
+        }
+      }
+    },
+  );
 }
 
 class UTextFieldAutoComplete<T> extends StatefulWidget {
@@ -289,16 +291,110 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
 
   @override
   Widget build(BuildContext context) => InkWell(
-        onTap: _openSearchDialog,
-        child: InputDecorator(
-          decoration: InputDecoration(
-            labelText: widget.hintText,
-            border: const OutlineInputBorder(),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+    onTap: _openSearchDialog,
+    child: InputDecorator(
+      decoration: InputDecoration(
+        labelText: widget.hintText,
+        border: const OutlineInputBorder(),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      ),
+      child: Text(widget.labelBuilder(widget.selectedItem)),
+    ),
+  );
+}
+
+class UTextFieldAutoCompleteRemote<T> extends StatefulWidget {
+  const UTextFieldAutoCompleteRemote({
+    required this.fetchItems, // Future<List<T>> Function(String search)
+    required this.labelBuilder, // String Function(T item)
+    required this.onChanged, // void Function(T? item)
+    this.hintText = "Select item",
+    super.key,
+  });
+
+  final Future<List<T>> Function(String search) fetchItems;
+  final String Function(T) labelBuilder;
+  final void Function(T?) onChanged;
+  final String hintText;
+
+  @override
+  State<UTextFieldAutoCompleteRemote<T>> createState() => _UTextFieldAutoCompleteRemoteState<T>();
+}
+
+class _UTextFieldAutoCompleteRemoteState<T> extends State<UTextFieldAutoCompleteRemote<T>> {
+  final RxList<T> remoteItems = <T>[].obs;
+  Timer? _debounce;
+
+  void _onSearchChanged(String text) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(seconds: 1), () async {
+      if (text.trim().isEmpty) {
+        remoteItems(<T>[]);
+        return;
+      }
+
+      final List<T> items = await widget.fetchItems(text);
+      remoteItems(items);
+    });
+  }
+
+  Future<void> _openSearchDialog() async {
+    await showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text("جستجو"),
+        content: SizedBox(
+          width: 200,
+          height: 400,
+          child: Column(
+            children: <Widget>[
+              UTextField(
+                hintText: "جستجو...",
+                onChanged: (String s) => _onSearchChanged(s),
+              ),
+              const SizedBox(height: 12),
+              Obx(
+                () => Expanded(
+                  child: ListView.builder(
+                    itemCount: remoteItems.length,
+                    itemBuilder: (_, int index) {
+                      final T item = remoteItems[index];
+                      return ListTile(
+                        title: Text(widget.labelBuilder(item)),
+                        onTap: () {
+                          widget.onChanged(item);
+                          Navigator.pop(context);
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
-          child: Text(widget.labelBuilder(widget.selectedItem)),
         ),
-      );
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => InkWell(
+    onTap: _openSearchDialog,
+    child: InputDecorator(
+      decoration: InputDecoration(
+        labelText: widget.hintText,
+        border: const OutlineInputBorder(),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      ),
+      child: const Text("انتخاب کنید"),
+    ),
+  );
 }
 
 class UTextFieldPhoneNumber extends StatefulWidget {
@@ -338,17 +434,19 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
   void _onPhoneChanged() {
     setState(() {
       _phoneNumber = _phoneController.text;
-      widget.onChanged(PhoneNumberData(
-        countryCode: _selectedCountry.dialCode,
-        phoneNumber: "${_selectedCountry.dialCode}$_phoneNumber",
-        phoneWithoutCode: _phoneNumber,
-        countryName: _selectedCountry.name,
-        capital: _selectedCountry.capital,
-        continent: _selectedCountry.continent,
-        primaryReligion: _selectedCountry.primaryReligion,
-        currency: _selectedCountry.currency,
-        primaryLanguage: _selectedCountry.primaryLanguage,
-      ));
+      widget.onChanged(
+        PhoneNumberData(
+          countryCode: _selectedCountry.dialCode,
+          phoneNumber: "${_selectedCountry.dialCode}$_phoneNumber",
+          phoneWithoutCode: _phoneNumber,
+          countryName: _selectedCountry.name,
+          capital: _selectedCountry.capital,
+          continent: _selectedCountry.continent,
+          primaryReligion: _selectedCountry.primaryReligion,
+          currency: _selectedCountry.currency,
+          primaryLanguage: _selectedCountry.primaryLanguage,
+        ),
+      );
     });
   }
 
@@ -493,85 +591,85 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
   }
 
   void _filterCountries(String query) => setState(
-        () => _filteredCountries = UCountry.list
-            .where(
-              (UCountry i) =>
-                  i.name.toLowerCase().contains(query.toLowerCase()) ||
-                  i.dialCode.contains(query) ||
-                  i.code.toLowerCase().contains(query.toLowerCase()) ||
-                  i.capital.toLowerCase().contains(
-                        query.toLowerCase(),
-                      ),
-            )
-            .toList(),
-      );
+    () => _filteredCountries = UCountry.list
+        .where(
+          (UCountry i) =>
+              i.name.toLowerCase().contains(query.toLowerCase()) ||
+              i.dialCode.contains(query) ||
+              i.code.toLowerCase().contains(query.toLowerCase()) ||
+              i.capital.toLowerCase().contains(
+                query.toLowerCase(),
+              ),
+        )
+        .toList(),
+  );
 
   @override
   Widget build(BuildContext context) => UTextField(
-        controller: _phoneController,
-        hintText: "Enter phone number",
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        prefix: Builder(
-          builder: (_) => widget.pickerMode == CountryPickerMode.dropdown
-              ? DropdownButton<UCountry>(
-                  value: _selectedCountry,
-                  items: UCountry.list
-                      .map(
-                        (UCountry i) => DropdownMenuItem<UCountry>(
-                          value: i,
-                          child: Row(
-                            children: <Widget>[
-                              Image.asset(
-                                "packages/u/lib/assets/flags/${i.flag}",
-                                width: 24,
-                                height: 24,
-                                errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 24),
-                              ),
-                              const SizedBox(width: 8),
-                              Text(i.dialCode),
-                            ],
+    controller: _phoneController,
+    hintText: "Enter phone number",
+    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+    prefix: Builder(
+      builder: (_) => widget.pickerMode == CountryPickerMode.dropdown
+          ? DropdownButton<UCountry>(
+              value: _selectedCountry,
+              items: UCountry.list
+                  .map(
+                    (UCountry i) => DropdownMenuItem<UCountry>(
+                      value: i,
+                      child: Row(
+                        children: <Widget>[
+                          Image.asset(
+                            "packages/u/lib/assets/flags/${i.flag}",
+                            width: 24,
+                            height: 24,
+                            errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 24),
                           ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (UCountry? country) {
-                    if (country != null) {
-                      setState(() {
-                        _selectedCountry = country;
-                        _onPhoneChanged();
-                      });
-                    }
-                  },
-                  underline: const SizedBox(),
-                  icon: Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
-                )
-              : GestureDetector(
-                  onTap: widget.pickerMode == CountryPickerMode.dialog ? _showCountryPickerDialog : _showCountryPickerBottomSheet,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey[400]!),
-                      borderRadius: BorderRadius.circular(12),
+                          const SizedBox(width: 8),
+                          Text(i.dialCode),
+                        ],
+                      ),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Image.asset(
-                          "packages/u/lib/assets/flags/${_selectedCountry.flag}",
-                          width: 24,
-                          height: 24,
-                          errorBuilder: (_, __, ___) => const Icon(Icons.flag, size: 24),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(_selectedCountry.dialCode),
-                        const SizedBox(width: 4),
-                        Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
-                      ],
-                    ),
-                  ),
+                  )
+                  .toList(),
+              onChanged: (UCountry? country) {
+                if (country != null) {
+                  setState(() {
+                    _selectedCountry = country;
+                    _onPhoneChanged();
+                  });
+                }
+              },
+              underline: const SizedBox(),
+              icon: Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
+            )
+          : GestureDetector(
+              onTap: widget.pickerMode == CountryPickerMode.dialog ? _showCountryPickerDialog : _showCountryPickerBottomSheet,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[400]!),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-        ),
-      );
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Image.asset(
+                      "packages/u/lib/assets/flags/${_selectedCountry.flag}",
+                      width: 24,
+                      height: 24,
+                      errorBuilder: (_, __, ___) => const Icon(Icons.flag, size: 24),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(_selectedCountry.dialCode),
+                    const SizedBox(width: 4),
+                    Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
+                  ],
+                ),
+              ),
+            ),
+    ),
+  );
 }
 
 enum CountryPickerMode { dropdown, dialog, bottomSheet }
