@@ -223,8 +223,8 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
       );
 }
 
-class USearchableDropdown<T> extends StatefulWidget {
-  const USearchableDropdown({
+class UTextFieldAutoComplete<T> extends StatefulWidget {
+  const UTextFieldAutoComplete({
     required this.items,
     required this.labelBuilder,
     required this.onChanged,
@@ -240,10 +240,10 @@ class USearchableDropdown<T> extends StatefulWidget {
   final String hintText;
 
   @override
-  State<USearchableDropdown<T>> createState() => _USearchableDropdownState<T>();
+  State<UTextFieldAutoComplete<T>> createState() => _UTextFieldAutoCompleteState<T>();
 }
 
-class _USearchableDropdownState<T> extends State<USearchableDropdown<T>> {
+class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
   late RxList<T> filteredItems = widget.items.obs;
 
   Future<void> _openSearchDialog() async {
