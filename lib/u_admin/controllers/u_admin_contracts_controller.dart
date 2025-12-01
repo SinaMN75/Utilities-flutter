@@ -23,7 +23,7 @@ class UAdminContractController {
   Future<void> read() async {
     state.loading();
 
-    UCore.services.contract.read(
+    await UCore.services.contract.read(
       p: UContractReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,

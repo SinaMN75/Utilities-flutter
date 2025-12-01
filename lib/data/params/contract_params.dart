@@ -60,6 +60,10 @@ class UContractReadParams {
   final String? productId;
   final DateTime? startDate;
   final DateTime? endDate;
+  final DateTime? userName;
+  final DateTime? showInvoices;
+  final DateTime? showUser;
+  final DateTime? showProduct;
 
   UContractReadParams({
     this.pageSize,
@@ -77,6 +81,10 @@ class UContractReadParams {
     this.productId,
     this.startDate,
     this.endDate,
+    this.userName,
+    this.showInvoices,
+    this.showUser,
+    this.showProduct,
   });
 
   factory UContractReadParams.fromJson(String str) => UContractReadParams.fromMap(json.decode(str));
@@ -97,6 +105,10 @@ class UContractReadParams {
     userId: json["userId"],
     creatorId: json["creatorId"],
     productId: json["productId"],
+    userName: json["userName"],
+    showInvoices: json["showInvoices"],
+    showUser: json["showUser"],
+    showProduct: json["showProduct"],
     startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
   );
@@ -115,6 +127,10 @@ class UContractReadParams {
     "userId": userId,
     "creatorId": creatorId,
     "productId": productId,
+    "userName": userName,
+    "showInvoices": showInvoices,
+    "showUser": showUser,
+    "showProduct": showProduct,
     "startDate": startDate?.toIso8601String(),
     "endDate": endDate?.toIso8601String(),
   };

@@ -44,24 +44,12 @@ class UserService {
     final Response? r = await UHttpClient.post(
       "$baseUrl/User/Read",
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-      onSuccess: (final Response r) => onOk(
-        UResponse<List<UUserResponse>>.fromJson(
-          r.body,
-          (final dynamic i) => List<UUserResponse>.from(
-            (i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x)),
-          ),
-        ),
-      ),
+      onSuccess: (final Response r) => onOk(UResponse<List<UUserResponse>>.fromJson(r.body, (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onException: (String e) => onException(e),
     );
     if (r.isSuccessful()) {
-      return UResponse<List<UUserResponse>>.fromJson(
-        r!.body,
-        (final dynamic i) => List<UUserResponse>.from(
-          (i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x)),
-        ),
-      );
+      return UResponse<List<UUserResponse>>.fromJson(r!.body, (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))));
     }
     return null;
   }
