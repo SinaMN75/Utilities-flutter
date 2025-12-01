@@ -2,31 +2,51 @@ import "package:u/utilities.dart";
 
 abstract class UNetwork {
   static Future<bool> hasCellular() async {
-    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
-    return connectivityResult.contains(ConnectivityResult.mobile);
+    if (!kIsWeb) {
+      final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+      return connectivityResult.contains(ConnectivityResult.mobile);
+    }
+    return true;
   }
 
   static Future<bool> hasWifi() async {
-    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
-    return connectivityResult.contains(ConnectivityResult.wifi);
+    if (!kIsWeb) {
+      final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+      return connectivityResult.contains(ConnectivityResult.wifi);
+    }
+    return true;
   }
 
   static Future<bool> hasVpn() async {
-    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
-    return connectivityResult.contains(ConnectivityResult.vpn);
+    if (!kIsWeb) {
+      final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+      return connectivityResult.contains(ConnectivityResult.vpn);
+    }
+    return true;
   }
 
   static Future<bool> hasEthernet() async {
-    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
-    return connectivityResult.contains(ConnectivityResult.ethernet);
+    if (!kIsWeb) {
+      final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+      return connectivityResult.contains(ConnectivityResult.ethernet);
+    }
+    return true;
   }
 
   static Future<bool> hasBluetooth() async {
-    final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
-    return connectivityResult.contains(ConnectivityResult.bluetooth);
+    if (!kIsWeb) {
+      final List<ConnectivityResult> connectivityResult = await Connectivity().checkConnectivity();
+      return connectivityResult.contains(ConnectivityResult.bluetooth);
+    }
+    return true;
   }
 
-  static Future<bool> hasNetworkConnection() async => InternetConnectionChecker().hasConnection;
+  static Future<bool> hasNetworkConnection() async {
+    if (!kIsWeb) {
+      return InternetConnectionChecker().hasConnection;
+    }
+    return true;
+  }
 }
 
 class AddressCheckOptions {
@@ -91,12 +111,13 @@ class InternetConnectionChecker {
   Future<AddressCheckResult> isHostReachable(final AddressCheckOptions options) async {
     Socket? sock;
     try {
-      sock = await Socket.connect(
-        options.address,
-        options.port,
-        timeout: options.timeout,
-      )
-        ..destroy();
+      sock =
+          await Socket.connect(
+              options.address,
+              options.port,
+              timeout: options.timeout,
+            )
+            ..destroy();
       return AddressCheckResult(
         options,
         true,
@@ -121,7 +142,8 @@ class InternetConnectionChecker {
           if (!result.isCompleted) {
             if (request.isSuccess) {
               result.complete(true);
-            } else if (length == 0) result.complete(false);
+            } else if (length == 0)
+              result.complete(false);
           }
         },
       );
