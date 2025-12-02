@@ -17,7 +17,7 @@ class UInvoiceResponse {
   final String? trackingNumber;
   final UUserResponse? user;
   final String? userId;
-  final String? contract;
+  final UContractResponse? contract;
   final String? contractId;
 
   UInvoiceResponse({
@@ -62,7 +62,7 @@ class UInvoiceResponse {
     trackingNumber: json["trackingNumber"],
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
     userId: json["userId"],
-    contract: json["contract"],
+    contract: json["contract"] == null ? null : UContractResponse.fromMap(json["contract"]),
     contractId: json["contractId"],
   );
 
@@ -83,7 +83,7 @@ class UInvoiceResponse {
     "trackingNumber": trackingNumber,
     "user": user?.toMap(),
     "userId": userId,
-    "contract": contract,
+    "contract": contract?.toMap(),
     "contractId": contractId,
   };
 }

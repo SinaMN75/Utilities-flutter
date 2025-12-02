@@ -1,30 +1,30 @@
 part of "../data.dart";
 
 class UInvoiceCreateParams {
-  final List<int>? tags;
+  final List<int> tags;
   final String? id;
-  final double? debtAmount;
+  final double debtAmount;
   final double? creditorAmount;
   final double? paidAmount;
   final double? penaltyAmount;
-  final String? userId;
-  final String? contractId;
+  final String userId;
+  final String contractId;
   final DateTime? paidDate;
-  final DateTime? dueDate;
-  final String? description;
+  final DateTime dueDate;
+  final String description;
 
   UInvoiceCreateParams({
-    this.tags,
+    required this.tags,
+    required this.debtAmount,
+    required this.userId,
+    required this.contractId,
+    required this.dueDate,
+    required this.description,
     this.id,
-    this.debtAmount,
     this.creditorAmount,
     this.paidAmount,
     this.penaltyAmount,
-    this.userId,
-    this.contractId,
     this.paidDate,
-    this.dueDate,
-    this.description,
   });
 
   factory UInvoiceCreateParams.fromJson(String str) => UInvoiceCreateParams.fromMap(json.decode(str));
@@ -41,12 +41,12 @@ class UInvoiceCreateParams {
     userId: json["userId"],
     contractId: json["contractId"],
     paidDate: json["paidDate"] == null ? null : DateTime.parse(json["paidDate"]),
-    dueDate: json["dueDate"] == null ? null : DateTime.parse(json["dueDate"]),
+    dueDate: DateTime.parse(json["dueDate"]),
     description: json["description"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
     "debtAmount": debtAmount,
     "creditorAmount": creditorAmount,
@@ -55,7 +55,7 @@ class UInvoiceCreateParams {
     "userId": userId,
     "contractId": contractId,
     "paidDate": paidDate?.toIso8601String(),
-    "dueDate": dueDate?.toIso8601String(),
+    "dueDate": dueDate.toIso8601String(),
     "description": description,
   };
 }
