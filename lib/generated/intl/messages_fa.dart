@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'fa';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "accenting": MessageLookupByLibrary.simpleMessage("صعودی"),
     "addOption": MessageLookupByLibrary.simpleMessage("افزودن گزینه"),
@@ -146,6 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "options": MessageLookupByLibrary.simpleMessage("گزینه‌ها:"),
     "paid": MessageLookupByLibrary.simpleMessage("پرداخت شده"),
+    "paidDate": MessageLookupByLibrary.simpleMessage("تاریخ پرداخت"),
     "password": MessageLookupByLibrary.simpleMessage("رمز عبور"),
     "penalty": MessageLookupByLibrary.simpleMessage("جریمه"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("شماره تلفن"),
@@ -184,8 +184,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "submitted": MessageLookupByLibrary.simpleMessage("ثبت شد"),
     "subtitle": MessageLookupByLibrary.simpleMessage("زیرعنوان"),
     "tags": MessageLookupByLibrary.simpleMessage("برچسب‌ها"),
+    "thisUserDoesNotHaveAnActiveContract": MessageLookupByLibrary.simpleMessage(
+      "این کاربر قرارداد فعال ندارد.",
+    ),
     "title": MessageLookupByLibrary.simpleMessage("عنوان"),
     "toDate": MessageLookupByLibrary.simpleMessage("تا تاریخ"),
+    "trackingNumber": MessageLookupByLibrary.simpleMessage("کد رهگیری"),
     "tryAgain": MessageLookupByLibrary.simpleMessage("تلاش مجدد"),
     "updateFunctionalityWouldGoHere": MessageLookupByLibrary.simpleMessage(
       "عملکرد به‌روزرسانی در اینجا قرار می‌گیرد",

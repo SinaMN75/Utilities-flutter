@@ -897,6 +897,31 @@ class S {
   String get paid {
     return Intl.message('Paid', name: 'paid', desc: '', args: []);
   }
+
+  /// `Tracking Number`
+  String get trackingNumber {
+    return Intl.message(
+      'Tracking Number',
+      name: 'trackingNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paid Date`
+  String get paidDate {
+    return Intl.message('Paid Date', name: 'paidDate', desc: '', args: []);
+  }
+
+  /// `This User does not have an Active Contract.`
+  String get thisUserDoesNotHaveAnActiveContract {
+    return Intl.message(
+      'This User does not have an Active Contract.',
+      name: 'thisUserDoesNotHaveAnActiveContract',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -911,10 +936,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "accenting": MessageLookupByLibrary.simpleMessage("Accenting"),
     "addOption": MessageLookupByLibrary.simpleMessage("Add Option"),
@@ -138,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "options": MessageLookupByLibrary.simpleMessage("Options:"),
     "paid": MessageLookupByLibrary.simpleMessage("Paid"),
+    "paidDate": MessageLookupByLibrary.simpleMessage("Paid Date"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "penalty": MessageLookupByLibrary.simpleMessage("Penalty"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
@@ -178,8 +178,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "submitted": MessageLookupByLibrary.simpleMessage("Submitted"),
     "subtitle": MessageLookupByLibrary.simpleMessage("Subtitle"),
     "tags": MessageLookupByLibrary.simpleMessage("Tags"),
+    "thisUserDoesNotHaveAnActiveContract": MessageLookupByLibrary.simpleMessage(
+      "This User does not have an Active Contract.",
+    ),
     "title": MessageLookupByLibrary.simpleMessage("Title"),
     "toDate": MessageLookupByLibrary.simpleMessage("To Date"),
+    "trackingNumber": MessageLookupByLibrary.simpleMessage("Tracking Number"),
     "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
     "updateFunctionalityWouldGoHere": MessageLookupByLibrary.simpleMessage(
       "Update functionality would go here",

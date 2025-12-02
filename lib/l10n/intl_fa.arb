@@ -116,5 +116,8 @@
   "debt": "بدهکار",
   "creditor": "بستانکار",
   "penalty": "جریمه",
-  "paid": "پرداخت شده"
+  "paid": "پرداخت شده",
+  "trackingNumber": "کد رهگیری",
+  "paidDate": "تاریخ پرداخت",
+  "thisUserDoesNotHaveAnActiveContract": "این کاربر قرارداد فعال ندارد."
 }

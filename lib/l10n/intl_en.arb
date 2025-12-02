@@ -116,5 +116,8 @@
   "debt": "Debt",
   "creditor": "Creditor",
   "penalty": "Penalty",
-  "paid": "Paid"
+  "paid": "Paid",
+  "trackingNumber": "Tracking Number",
+  "paidDate": "Paid Date",
+  "thisUserDoesNotHaveAnActiveContract": "This User does not have an Active Contract."
 }
