@@ -84,9 +84,9 @@ abstract class UHttpClient {
         onError(response);
         return response;
       }
-    } catch (e) {
+    } catch (e, stack) {
       onException(unexpectedErrorMessage);
-      developer.log(e.toString());
+      developer.log(e.toString(), stackTrace: stack);
       return null;
     }
   }
