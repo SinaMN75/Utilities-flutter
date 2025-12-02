@@ -13,8 +13,8 @@ class UAdminDashboardController {
 
   void startMetricsPolling() => _timer = Timer.periodic(
         const Duration(seconds: 10),
-        (_) => UCore.services.dashboard.readSystemMetrics(
-          onOk: (UMetricsResponse response) => metrics(response),
+    (_) => U.services.dashboard.readSystemMetrics(
+      onOk: (UMetricsResponse response) => metrics(response),
           onError: () {},
           onException: (String e) {},
         ),
@@ -22,7 +22,7 @@ class UAdminDashboardController {
 
   void read() {
     state.loading();
-    UCore.services.dashboard.read(
+    U.services.dashboard.read(
       onOk: (UDashboardResponse response) {
         dashboard = response;
         state.loaded();

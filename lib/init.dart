@@ -2,7 +2,7 @@ import "package:u/utilities.dart";
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-abstract class UCore {
+abstract class U {
   static S s = S.of(navigatorKey.currentState!.context);
   static late UUserResponse user;
   static late UServices services;
@@ -27,7 +27,7 @@ Future<void> initU({
   ULoading.initialize(key: navigatorKey, blurAmount: 1, overlayColor: Colors.black12);
 
   if (baseUrl != null && apiKey != null) {
-    UCore.services = UServices(baseUrl: baseUrl, apiKey: apiKey);
+    U.services = UServices(baseUrl: baseUrl, apiKey: apiKey);
   }
 }
 

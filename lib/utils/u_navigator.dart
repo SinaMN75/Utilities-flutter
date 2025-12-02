@@ -127,7 +127,7 @@ abstract class UNavigator {
           title: Text(title),
           content: Text(message),
           actions: <Widget>[
-            TextButton(onPressed: onCancel ?? back, child: Text(UCore.s.cancel)),
+            TextButton(onPressed: onCancel ?? back, child: Text(U.s.cancel)),
             TextButton(
               onPressed: onConfirm,
               style: destructive
@@ -135,7 +135,7 @@ abstract class UNavigator {
                       foregroundColor: theme.colorScheme.error,
                     )
                   : null,
-              child: Text(UCore.s.ok),
+              child: Text(U.s.ok),
             ),
           ],
         ),
@@ -332,10 +332,10 @@ abstract class UNavigator {
           ),
         ),
         actions: <Widget>[
-          TextButton(onPressed: onCancel ?? back, child: Text(UCore.s.cancel)),
+          TextButton(onPressed: onCancel ?? back, child: Text(U.s.cancel)),
           TextButton(
             onPressed: () => back(controller.text),
-            child: Text(UCore.s.submit),
+            child: Text(U.s.submit),
           ),
         ],
       ),
@@ -357,7 +357,7 @@ abstract class UNavigator {
   }) async =>
       UNavigator.dialog<Color>(
         AlertDialog(
-          title: Text(UCore.s.selectAColor),
+          title: Text(U.s.selectAColor),
           content: SizedBox(
             width: 200,
             height: 100,
@@ -392,7 +392,7 @@ abstract class UNavigator {
             ),
           ),
           actions: <Widget>[
-            TextButton(onPressed: UNavigator.back, child: Text(UCore.s.cancel)),
+            TextButton(onPressed: UNavigator.back, child: Text(U.s.cancel)),
           ],
         ),
       );

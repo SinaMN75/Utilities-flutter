@@ -9,14 +9,14 @@ class UAdminLogsController {
 
   Future<void> fetchLogStructure() async {
     state.loading();
-    UCore.services.dashboard.getLogStructure(
+    U.services.dashboard.getLogStructure(
       onOk: (LogStructureResponse structure) {
         logs(structure.logs);
         state.loaded();
       },
       onError: () {
         state.error();
-        UNavigator.error(message: UCore.s.failedToLoadLogStructure);
+        UNavigator.error(message: U.s.failedToLoadLogStructure);
       },
       onException: (String e) {},
     );
@@ -24,7 +24,7 @@ class UAdminLogsController {
 
   Future<void> fetchLogContent(String logId, Function(List<LogContentResponse>) onOk) async {
     ULoading.show();
-    UCore.services.dashboard.getLogContent(
+    U.services.dashboard.getLogContent(
       logId: logId,
       onOk: (List<LogContentResponse> contents) {
         onOk(contents);
@@ -33,7 +33,7 @@ class UAdminLogsController {
       },
       onError: () {
         state.error();
-        UNavigator.error(message: UCore.s.failedToLoadLogContent);
+        UNavigator.error(message: U.s.failedToLoadLogContent);
       },
       onException: (String e) {},
     );

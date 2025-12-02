@@ -23,7 +23,7 @@ class UAdminInvoiceController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    UCore.services.invoice.read(
+    U.services.invoice.read(
       p: UInvoiceReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
@@ -60,12 +60,12 @@ class UAdminInvoiceController {
   }
 
   void delete(UInvoiceResponse i) => UNavigator.confirm(
-    title: UCore.s.delete,
-    message: UCore.s.areYouSureYouWantToDelete,
+    title: U.s.delete,
+    message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
           ULoading.show();
-          UCore.services.invoice.delete(
-            p: UIdParams(id: i.id),
+      U.services.invoice.delete(
+        p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
               UNavigator.back();
               UNavigator.snackBar(message: r.message);
@@ -81,10 +81,10 @@ class UAdminInvoiceController {
       );
 
   void create({required UInvoiceCreateParams p}) {
-    UCore.services.invoice.create(
+    U.services.invoice.create(
       p: p,
       onOk: (UResponse<UInvoiceResponse> r) {
-        UNavigator.snackBar(message: UCore.s.submitted);
+        UNavigator.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
       onError: (UResponse<dynamic> r) {
@@ -92,14 +92,14 @@ class UAdminInvoiceController {
         ULoading.dismiss();
       },
       onException: (String r) {
-        UNavigator.error(message: UCore.s.errorSubmittingForm);
+        UNavigator.error(message: U.s.errorSubmittingForm);
         ULoading.dismiss();
       },
     );
   }
 
   void update({required UInvoiceUpdateParams p}) {
-    UCore.services.invoice.update(
+    U.services.invoice.update(
       p: p,
       onOk: (UResponse<UInvoiceResponse> r) {
         UNavigator.snackBar(message: "Submitted");

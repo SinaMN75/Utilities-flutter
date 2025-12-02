@@ -23,7 +23,7 @@ class UAdminContractController {
   Future<void> read() async {
     state.loading();
 
-    await UCore.services.contract.read(
+    await U.services.contract.read(
       p: UContractReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
@@ -58,12 +58,12 @@ class UAdminContractController {
   }
 
   void delete(UContractResponse i) => UNavigator.confirm(
-    title: UCore.s.delete,
-    message: UCore.s.areYouSureYouWantToDelete,
+    title: U.s.delete,
+    message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
           ULoading.show();
-          UCore.services.contract.delete(
-            p: UIdParams(id: i.id),
+      U.services.contract.delete(
+        p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
               UNavigator.back();
               UNavigator.snackBar(message: r.message);
@@ -79,10 +79,10 @@ class UAdminContractController {
       );
 
   void create({required UContractCreateParams p}) {
-    UCore.services.contract.create(
+    U.services.contract.create(
       p: p,
       onOk: (UResponse<UContractResponse> r) {
-        UNavigator.snackBar(message: UCore.s.submitted);
+        UNavigator.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
       onError: (UResponse<dynamic> r) {
@@ -90,18 +90,18 @@ class UAdminContractController {
         ULoading.dismiss();
       },
       onException: (String r) {
-        UNavigator.error(message: UCore.s.errorSubmittingForm);
+        UNavigator.error(message: U.s.errorSubmittingForm);
         ULoading.dismiss();
       },
     );
   }
 
   void update({required UContractUpdateParams p}) {
-    UCore.services.contract.update(
+    U.services.contract.update(
       p: p,
       onOk: (UResponse<UContractResponse> r) {
         UNavigator.back();
-        UNavigator.snackBar(message: UCore.s.submitted);
+        UNavigator.snackBar(message: U.s.submitted);
         ULoading.dismiss();
         read();
       },
@@ -112,7 +112,7 @@ class UAdminContractController {
       },
       onException: (String r) {
         UNavigator.back();
-        UNavigator.error(message: UCore.s.errorSubmittingForm);
+        UNavigator.error(message: U.s.errorSubmittingForm);
         ULoading.dismiss();
       },
     );

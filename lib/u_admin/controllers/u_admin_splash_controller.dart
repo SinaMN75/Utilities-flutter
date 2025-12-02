@@ -8,10 +8,10 @@ class UAdminSplashController {
     if (ULocalStorage.getString(UConstants.token) == null) {
       onError();
     } else {
-      UCore.services.user.readById(
+      U.services.user.readById(
         p: UIdParams(id: ULocalStorage.getString(UConstants.userId)!),
         onOk: (final UResponse<UUserResponse> user) {
-          UCore.user = user.result!;
+          U.user = user.result!;
           onFinish();
         },
         onError: (final UResponse<dynamic> r) => onError,

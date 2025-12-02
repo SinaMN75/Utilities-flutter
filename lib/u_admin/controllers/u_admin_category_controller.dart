@@ -12,7 +12,7 @@ class UAdminCategoryController {
 
   Future<void> loadCategories() async {
     state.loading();
-    UCore.services.category.read(
+    U.services.category.read(
       p: UCategoryReadParams(
         tags: <int>[tag.number],
         showChildren: true,
@@ -32,12 +32,12 @@ class UAdminCategoryController {
 
   void create({required UCategoryCreateParams p}) {
     ULoading.show();
-    UCore.services.category.create(
+    U.services.category.create(
       p: p,
       onOk: (UResponse<UCategoryResponse> response) async {
         UNavigator.back();
         ULoading.dismiss();
-        UNavigator.snackBar(message: UCore.s.created);
+        UNavigator.snackBar(message: U.s.created);
         await loadCategories();
       },
       onError: (UResponse<dynamic> error) {
@@ -50,12 +50,12 @@ class UAdminCategoryController {
 
   void update({required UCategoryUpdateParams p}) {
     ULoading.show();
-    UCore.services.category.update(
+    U.services.category.update(
       p: p,
       onOk: (UResponse<UCategoryResponse> response) {
         UNavigator.back();
         ULoading.dismiss();
-        UNavigator.snackBar(message: UCore.s.edited);
+        UNavigator.snackBar(message: U.s.edited);
         loadCategories();
       },
       onError: (UResponse<dynamic> error) {
@@ -67,16 +67,16 @@ class UAdminCategoryController {
   }
 
   void delete(UCategoryResponse category) => UNavigator.confirm(
-    title: UCore.s.delete,
-    message: UCore.s.areYouSureYouWantToDelete,
+    title: U.s.delete,
+    message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
       ULoading.show();
-      UCore.services.category.delete(
+      U.services.category.delete(
         p: UIdParams(id: category.id),
         onOk: (UResponse<dynamic> response) {
           UNavigator.back();
           ULoading.dismiss();
-          UNavigator.snackBar(message: UCore.s.deleted);
+          UNavigator.snackBar(message: U.s.deleted);
           loadCategories();
         },
         onError: (UResponse<dynamic> error) {

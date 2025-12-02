@@ -17,8 +17,8 @@ class UAdminLoginController {
         key: formKey,
         action: () {
           ULoading.show();
-          UCore.services.auth.loginWithEmailPassword(
-            p: ULoginWithEmailPasswordParams(
+      U.services.auth.loginWithEmailPassword(
+        p: ULoginWithEmailPasswordParams(
               email: controllerUserName.text,
               password: controllerPassword.text.englishNumber(),
             ),

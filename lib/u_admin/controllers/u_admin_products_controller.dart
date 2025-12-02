@@ -23,7 +23,7 @@ class UAdminProductController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    UCore.services.product.read(
+    U.services.product.read(
       p: UProductReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
@@ -62,11 +62,11 @@ class UAdminProductController {
   }
 
   void delete(UProductResponse i) => UNavigator.confirm(
-    title: UCore.s.delete,
-    message: UCore.s.areYouSureYouWantToDelete,
+    title: U.s.delete,
+    message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
-          UCore.services.product.delete(
-            p: UIdParams(id: i.id),
+      U.services.product.delete(
+        p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
               UNavigator.back();
               UNavigator.snackBar(message: r.message);
@@ -87,10 +87,10 @@ class UAdminProductController {
 
   void create({required UProductCreateParams p}) {
     state.loading();
-    UCore.services.product.create(
+    U.services.product.create(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
-        UNavigator.snackBar(message: UCore.s.submitted);
+        UNavigator.snackBar(message: U.s.submitted);
         read();
       },
       onError: (UResponse<dynamic> r) {
@@ -98,17 +98,17 @@ class UAdminProductController {
         read();
       },
       onException: (String r) {
-        UNavigator.error(message: UCore.s.errorSubmittingForm);
+        UNavigator.error(message: U.s.errorSubmittingForm);
         read();
       },
     );
   }
 
   void update({required UProductUpdateParams p}) {
-    UCore.services.product.update(
+    U.services.product.update(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
-        UNavigator.snackBar(message: UCore.s.submitted);
+        UNavigator.snackBar(message: U.s.submitted);
         read();
       },
       onError: (UResponse<dynamic> r) {
@@ -116,7 +116,7 @@ class UAdminProductController {
         read();
       },
       onException: (String r) {
-        UNavigator.error(message: UCore.s.errorSubmittingForm);
+        UNavigator.error(message: U.s.errorSubmittingForm);
         read();
       },
     );
