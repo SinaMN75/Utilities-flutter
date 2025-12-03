@@ -18,7 +18,7 @@ class CommentService {
     method: "POST",
     endpoint: "$baseUrl/comment/Create",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
@@ -32,7 +32,7 @@ class CommentService {
     method: "POST",
     endpoint: "$baseUrl/comment/Read",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(
+    onSuccess: (final Response r) => onOk(
       UResponse<List<UCommentResponse>>.fromJson(
             r.body,
             (final dynamic i) => List<UCommentResponse>.from((i as List<dynamic>).map((final dynamic x) => UCommentResponse.fromMap(x))),
@@ -51,7 +51,7 @@ class CommentService {
     method: "POST",
     endpoint: "$baseUrl/comment/ReadById",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
@@ -65,7 +65,7 @@ class CommentService {
     method: "POST",
     endpoint: "$baseUrl/comment/Update",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
@@ -79,7 +79,7 @@ class CommentService {
     method: "POST",
     endpoint: "$baseUrl/comment/Delete",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
@@ -93,7 +93,7 @@ class CommentService {
     method: "POST",
     endpoint: "$baseUrl/comment/ReadProductCommentCount",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
+    onSuccess: (final Response r) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
@@ -107,7 +107,7 @@ class CommentService {
     method: "POST",
     endpoint: "$baseUrl/comment/ReadUserCommentCount",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
+    onSuccess: (final Response r) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );

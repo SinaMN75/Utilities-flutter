@@ -7,55 +7,52 @@ enum URequestBodyType { json, formData }
 abstract class UHttpClient {
   static final Client _client = Client();
 
+  static String _generateCacheKey(String endpoint, Map<String, dynamic>? q) => 'cache_${_buildUri(endpoint, q).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
+
   static Future<Response?> send({
-    required String method,
-    required String endpoint,
-    required void Function(Response api, Response? cached) onSuccess,
-    required Function(Response) onError,
-    required Function(String) onException,
-    Map<String, String>? headers,
-    Map<String, dynamic>? queryParams,
-    dynamic body,
-    URequestBodyType bodyType = URequestBodyType.json,
-    String noNetworkMessage = "Connection to Network was Not possible",
-    String unexpectedErrorMessage = "Unexpected Error, Please try again",
+    required final String method,
+    required final String endpoint,
+    required final Function(Response) onSuccess,
+    required final Function(Response) onError,
+    required final Function(String) onException,
+    final Map<String, String>? headers,
+    final Map<String, dynamic>? queryParams,
+    final dynamic body,
+    final URequestBodyType bodyType = URequestBodyType.json,
+    final String noNetworkMessage = "Connection to Network was Not possible",
+    final String unexpectedErrorMessage = "Unexpected Error, Please try again",
+    final bool offline = false,
   }) async {
     final bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
 
-    if (!hasNetworkConnection) {
+    if (!hasNetworkConnection && offline == false) {
       onException(noNetworkMessage);
       return null;
     }
-
-    Response? cachedResponse;
-
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
-      final String cacheKey = "cache_${uri.toString().replaceAll(RegExp(r'[^\w]'), '_')}";
+      final String cacheKey = _generateCacheKey(endpoint, queryParams);
 
-      final String? cachedBody = ULocalStorage.getString(cacheKey);
-      if (cachedBody != null) {
-        cachedResponse = Response(
-          cachedBody,
-          200,
-          request: Request(method, uri)..headers["X-From-Cache"] = "1",
-        );
+      if (offline) {
+        final String? cachedData = ULocalStorage.getString(cacheKey);
+        if (cachedData != null) {
+          final Response response = Response(cachedData, 200, request: Request(method, uri));
+          response.prettyLog(params: jsonEncode(body));
+          onSuccess(response);
+          return response;
+        }
       }
 
       final Request request = Request(method, uri);
       if (headers != null) request.headers.addAll(headers);
-      request.headers["Locale"] = UApp.locale();
-
-      String? encodedBody;
 
       if (body != null) {
         if (bodyType == URequestBodyType.json) {
           if (body is Map) {
-            encodedBody = jsonEncode(removeNullEntries(body));
-            request.body = encodedBody;
+            request.body = jsonEncode(removeNullEntries(body));
             request.headers["Content-Type"] = "application/json";
+            request.headers["Locale"] = UApp.locale();
           } else if (body is String) {
-            encodedBody = body;
             request.body = body;
           } else if (body is List<int>) {
             request.bodyBytes = body;
@@ -63,27 +60,29 @@ abstract class UHttpClient {
         } else if (bodyType == URequestBodyType.formData && body is Map<String, dynamic>) {
           final Map<String, String> formFields = <String, String>{};
           body.forEach((String key, dynamic value) {
-            if (value != null) formFields[key] = value.toString();
+            if (value != null) {
+              formFields[key] = value.toString();
+            }
           });
-
           request.bodyFields = formFields;
           request.headers["Content-Type"] = "application/x-www-form-urlencoded";
         }
       }
 
-      final StreamedResponse streamed = await _client.send(request).timeout(const Duration(seconds: 30));
+      final Response response = await _client.send(request).timeout(const Duration(seconds: 30)).then(Response.fromStream);
+      response.prettyLog(params: jsonEncode(body));
 
-      final Response apiResponse = await Response.fromStream(streamed);
-
-      final bool ok = apiResponse.statusCode >= 200 && apiResponse.statusCode <= 299;
-      if (ok) {
-        ULocalStorage.set(cacheKey, apiResponse.body);
-        onSuccess(apiResponse, cachedResponse);
-      } else {
-        onError(apiResponse);
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        ULocalStorage.set(cacheKey, response.body);
       }
 
-      return apiResponse;
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        onSuccess(response);
+        return response;
+      } else {
+        onError(response);
+        return response;
+      }
     } catch (e, stack) {
       onException(unexpectedErrorMessage);
       developer.log(e.toString(), stackTrace: stack);

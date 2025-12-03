@@ -18,7 +18,7 @@ class ExamService {
     method: "POST",
     endpoint: "$baseUrl/exam/Create",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<UExamResponse>.fromJson(r.body, (final dynamic i) => UExamResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk(UResponse<UExamResponse>.fromJson(r.body, (final dynamic i) => UExamResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
@@ -32,7 +32,7 @@ class ExamService {
     method: "POST",
     endpoint: "$baseUrl/exam/Read",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(
+    onSuccess: (final Response r) => onOk(
       UResponse<List<UExamResponse>>.fromJson(
             r.body,
             (final dynamic i) => List<UExamResponse>.from((i as List<dynamic>).map((final dynamic x) => UExamResponse.fromMap(x))),
@@ -51,7 +51,7 @@ class ExamService {
     method: "POST",
     endpoint: "$baseUrl/exam/ReadById",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<UExamResponse>.fromJson(r.body, (final dynamic i) => UExamResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk(UResponse<UExamResponse>.fromJson(r.body, (final dynamic i) => UExamResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
@@ -65,7 +65,7 @@ class ExamService {
     method: "POST",
     endpoint: "$baseUrl/category/Delete",
     body: p.toIdListMap(),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
@@ -79,7 +79,7 @@ class ExamService {
     method: "POST",
     endpoint: "$baseUrl/exam/SubmitAnswers",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r, Response? c) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
