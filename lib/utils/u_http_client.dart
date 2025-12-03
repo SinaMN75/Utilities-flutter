@@ -244,14 +244,29 @@ class UDownload {
 
         final StreamedResponse response = await client.send(request);
 
+        if (response.statusCode == 416) {
+          if (await file.exists() && downloadedBytes > 0) {
+            return file.readAsBytes();
+          } else {
+            await file.delete();
+            downloadedBytes = 0;
+            continue;
+          }
+        }
+
         if (response.statusCode != 200 && response.statusCode != 206) {
           throw Exception("Bad status: ${response.statusCode}");
+        }
+
+        if (response.statusCode == 200 && downloadedBytes > 0) {
+          await file.delete();
+          downloadedBytes = 0;
+          headers.remove("Range");
         }
 
         final int? totalBytes = response.contentLength != null ? response.contentLength! + downloadedBytes : null;
 
         final IOSink sink = file.openWrite(mode: FileMode.append);
-
         int received = downloadedBytes;
 
         await for (final List<int> chunk in response.stream) {
@@ -265,11 +280,28 @@ class UDownload {
         }
 
         await sink.close();
-        return await file.readAsBytes();
-      } catch (e) {
-        await Future<void>.delayed(Duration(seconds: attempt));
-      } finally {
         client.close();
+
+        final int finalSize = await file.length();
+        if (totalBytes != null && finalSize != totalBytes) {
+          throw Exception("Download incomplete: $finalSize/$totalBytes bytes");
+        }
+
+        return file.readAsBytes();
+      } catch (e) {
+        client.close();
+
+        if (attempt == _maxRetries) {
+          rethrow;
+        }
+
+        await Future<void>.delayed(Duration(seconds: attempt * 2));
+        if (e.toString().contains("416") || e.toString().contains("4")) {
+          try {
+            await file.delete();
+            downloadedBytes = 0;
+          } catch (_) {}
+        }
       }
     }
 
