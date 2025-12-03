@@ -14,8 +14,9 @@ class UserService {
     required final Function(UResponse<UUserResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) => UHttpClient.post(
-    "$baseUrl/user/Create",
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/user/Create",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -27,8 +28,9 @@ class UserService {
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) => UHttpClient.post(
-    "$baseUrl/user/BulkCreate",
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/user/BulkCreate",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -41,8 +43,9 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
   }) async {
-    final Response? r = await UHttpClient.post(
-      "$baseUrl/User/Read",
+    final Response? r = await UHttpClient.send(
+      method: "POST",
+      endpoint: "$baseUrl/User/Read",
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<List<UUserResponse>>.fromJson(r.body, (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -60,8 +63,9 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
   }) {
-    UHttpClient.post(
-      "$baseUrl/user/ReadById",
+    UHttpClient.send(
+      method: "POST",
+      endpoint: "$baseUrl/user/ReadById",
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -75,8 +79,9 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
   }) {
-    UHttpClient.post(
-      "$baseUrl/user/Update",
+    UHttpClient.send(
+      method: "POST",
+      endpoint: "$baseUrl/user/Update",
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -90,8 +95,9 @@ class UserService {
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
   }) {
-    UHttpClient.post(
-      "$baseUrl/user/Delete",
+    UHttpClient.send(
+      method: "POST",
+      endpoint: "$baseUrl/user/Delete",
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

@@ -14,8 +14,9 @@ class ContractService {
     required final Function(UResponse<UContractResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) => UHttpClient.post(
-    "$baseUrl/Contract/Create",
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/Contract/Create",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UContractResponse>.fromJson(r.body, (final dynamic i) => UContractResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -28,8 +29,9 @@ class ContractService {
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
   }) async {
-    final Response? r = await UHttpClient.post(
-      "$baseUrl/Contract/Read",
+    final Response? r = await UHttpClient.send(
+      method: "POST",
+      endpoint: "$baseUrl/Contract/Read",
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<List<UContractResponse>>.fromJson(r.body, (final dynamic i) => List<UContractResponse>.from((i as List<dynamic>).map((final dynamic x) => UContractResponse.fromMap(x))))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -47,8 +49,9 @@ class ContractService {
     required final Function(UResponse<UContractResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) => UHttpClient.post(
-    "$baseUrl/Contract/ReadById",
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/Contract/ReadById",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UContractResponse>.fromJson(r.body, (final dynamic i) => UContractResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -60,8 +63,9 @@ class ContractService {
     required final Function(UResponse<UContractResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) => UHttpClient.post(
-    "$baseUrl/Contract/Update",
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/Contract/Update",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UContractResponse>.fromJson(r.body, (final dynamic i) => UContractResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -73,8 +77,9 @@ class ContractService {
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) => UHttpClient.post(
-    "$baseUrl/Contract/Delete",
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/Contract/Delete",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

@@ -45,10 +45,10 @@ class MediaService {
     required final Function(UResponse<List<UMediaResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/Media/Read",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/Media/Read",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UMediaResponse>>.fromJson(
             r.body,
@@ -68,10 +68,10 @@ class MediaService {
     required final Function(UResponse<UMediaResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/Media/Update",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/Media/Update",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<UMediaResponse>.fromJson(
             r.body,
@@ -89,10 +89,10 @@ class MediaService {
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/Media/Delete",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/Media/Delete",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),

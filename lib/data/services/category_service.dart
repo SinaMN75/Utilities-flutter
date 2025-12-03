@@ -14,10 +14,10 @@ class CategoryService {
     required final Function(UResponse<UCategoryResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/category/Create",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/category/Create",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UCategoryResponse>.fromJson(r.body, (final dynamic i) => UCategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -28,10 +28,10 @@ class CategoryService {
     required final Function(UResponse<List<UCategoryResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/category/Read",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/category/Read",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UCategoryResponse>>.fromJson(
             r.body,
@@ -47,10 +47,10 @@ class CategoryService {
     required final Function(UResponse<UCategoryResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/category/ReadById",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/category/ReadById",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UCategoryResponse>.fromJson(r.body, (final dynamic i) => UCategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -61,10 +61,10 @@ class CategoryService {
     required final Function(UResponse<UCategoryResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/category/Update",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/category/Update",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UCategoryResponse>.fromJson(r.body, (final dynamic i) => UCategoryResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -75,10 +75,10 @@ class CategoryService {
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/category/Delete",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/category/Delete",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),

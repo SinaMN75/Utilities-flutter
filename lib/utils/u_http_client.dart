@@ -7,9 +7,7 @@ enum URequestBodyType { json, formData }
 abstract class UHttpClient {
   static final Client _client = Client();
 
-  static String _generateCacheKey(String endpoint, Map<String, dynamic>? q) => 'cache_${_buildUri(endpoint, q).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
-
-  static Future<Response?> _request({
+  static Future<Response?> send({
     required final String method,
     required final String endpoint,
     required final Function(Response) onSuccess,
@@ -32,7 +30,7 @@ abstract class UHttpClient {
     }
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
-      final String cacheKey = _generateCacheKey(endpoint, queryParams);
+      final String cacheKey = 'cache_${_buildUri(endpoint, queryParams).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
 
       if (!hasNetworkConnection && offline) {
         final String? cachedData = ULocalStorage.getString(cacheKey);
@@ -129,98 +127,6 @@ abstract class UHttpClient {
       onException();
     }
   }
-
-  static Future<Response?> get(
-    final String endpoint, {
-    required final Function(Response) onSuccess,
-    required final Function(Response) onError,
-    required final Function(String) onException,
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
-    final Duration cacheDuration = const Duration(minutes: 60),
-    final String noNetworkMessage = "Connection to Network was Not possible",
-    final bool returnCacheIfExist = false,
-      }) async =>
-      _request(
-        method: "GET",
-        endpoint: endpoint,
-        headers: headers,
-        queryParams: queryParams,
-        onSuccess: onSuccess,
-        onError: onError,
-        onException: onException,
-        cacheDuration: cacheDuration,
-        offline: returnCacheIfExist,
-      );
-
-  static Future<Response?> post(
-    final String endpoint, {
-    required final Function(Response) onSuccess,
-    required final Function(Response) onError,
-    required final Function(String) onException,
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
-    final dynamic body,
-    final URequestBodyType bodyType = URequestBodyType.json,
-    final Duration cacheDuration = const Duration(minutes: 60),
-    final String noNetworkMessage = "Connection to Network was Not possible",
-    final bool offline = false,
-      }) async =>
-      _request(
-        method: "POST",
-        endpoint: endpoint,
-        headers: headers,
-        queryParams: queryParams,
-        body: body,
-        bodyType: bodyType,
-        onSuccess: (Response r) => onSuccess(r),
-        onError: (Response r) => onError(r),
-        onException: onException,
-        cacheDuration: cacheDuration,
-        offline: offline,
-      );
-
-  static Future<Response?> put(
-    final String endpoint, {
-    required final Function(Response) onSuccess,
-    required final Function(Response) onError,
-    required final Function(String) onException,
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
-    final dynamic body,
-    final URequestBodyType bodyType = URequestBodyType.json,
-    final String noNetworkMessage = "Connection to Network was Not possible",
-      }) async =>
-      _request(
-        method: "PUT",
-        endpoint: endpoint,
-        headers: headers,
-        queryParams: queryParams,
-        body: body,
-        bodyType: bodyType,
-        onSuccess: onSuccess,
-        onError: onError,
-        onException: onException,
-      );
-
-  static Future<Response?> delete(
-    final String endpoint, {
-    required final Function(Response) onSuccess,
-    required final Function(Response) onError,
-    required final Function(String) onException,
-    final Map<String, String>? headers,
-    final Map<String, dynamic>? queryParams,
-    final String noNetworkMessage = "Connection to Network was Not possible",
-      }) async =>
-      _request(
-        method: "DELETE",
-        endpoint: endpoint,
-        headers: headers,
-        queryParams: queryParams,
-        onSuccess: onSuccess,
-        onError: onError,
-        onException: onException,
-      );
 
   static Uri _buildUri(final String endpoint, final Map<String, dynamic>? queryParams) {
     final Uri uri = Uri.parse(endpoint);

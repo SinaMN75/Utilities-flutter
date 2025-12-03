@@ -14,10 +14,10 @@ class FollowService {
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/Follow",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/Follow",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -28,10 +28,10 @@ class FollowService {
     required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/Unfollow",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/Unfollow",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -42,10 +42,10 @@ class FollowService {
     required final Function(UResponse<List<UUserResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/ReadFollowers",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/ReadFollowers",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UUserResponse>>.fromJson(
             r.body,
@@ -61,10 +61,10 @@ class FollowService {
     required final Function(UResponse<List<UUserResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/ReadFollowedUsers",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/ReadFollowedUsers",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UUserResponse>>.fromJson(
             r.body,
@@ -80,10 +80,10 @@ class FollowService {
     required final Function(UResponse<List<UProductResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/ReadFollowedProducts",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/ReadFollowedProducts",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UProductResponse>>.fromJson(
             r.body,
@@ -99,10 +99,10 @@ class FollowService {
     required final Function(UResponse<List<UCategoryResponse>> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/ReadFollowedCategories",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/ReadFollowedCategories",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(
           UResponse<List<UCategoryResponse>>.fromJson(
             r.body,
@@ -118,10 +118,10 @@ class FollowService {
     required final Function(UResponse<UFollowerFollowingCountResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/ReadFollowerFollowingCount",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/ReadFollowerFollowingCount",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UFollowerFollowingCountResponse>.fromJson(r.body, (final dynamic i) => UFollowerFollowingCountResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -132,10 +132,10 @@ class FollowService {
     required final Function(UResponse<bool> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/IsFollowingUser",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/IsFollowingUser",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -146,10 +146,10 @@ class FollowService {
     required final Function(UResponse<bool> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/isFollowingProduct",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/isFollowingProduct",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -160,10 +160,10 @@ class FollowService {
     required final Function(UResponse<bool> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/follow/isFollowingCategory",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/follow/isFollowingCategory",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),

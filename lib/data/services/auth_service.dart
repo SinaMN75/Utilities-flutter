@@ -15,8 +15,9 @@ class AuthService {
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
   }) {
-    UHttpClient.post(
-      "$baseUrl/auth/Register",
+    UHttpClient.send(
+      method: "POST",
+      endpoint: "$baseUrl/auth/Register",
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
@@ -29,10 +30,10 @@ class AuthService {
     required final Function(UResponse<ULoginResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/auth/LoginWithUserNamePassword",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/auth/LoginWithUserNamePassword",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -43,10 +44,10 @@ class AuthService {
     required final Function(UResponse<ULoginResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/auth/LoginWithEmailPassword",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/auth/LoginWithEmailPassword",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
@@ -57,10 +58,10 @@ class AuthService {
     required final Function(UResponse<UUserResponse> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
-  }) =>
-      UHttpClient.post(
-        "$baseUrl/auth/ReadUserByToken",
-        body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "$baseUrl/auth/ReadUserByToken",
+    body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
         onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
         onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
