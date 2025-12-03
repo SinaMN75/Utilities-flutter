@@ -49,8 +49,8 @@ class MediaService {
     method: "POST",
     endpoint: "$baseUrl/Media/Read",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-        onSuccess: (final Response r) => onOk(
-          UResponse<List<UMediaResponse>>.fromJson(
+    onSuccess: (final Response r, Response? c) => onOk(
+      UResponse<List<UMediaResponse>>.fromJson(
             r.body,
             (dynamic i) => List<UMediaResponse>.from(
               (i as List<dynamic>).map((dynamic x) => UMediaResponse.fromMap(x)),
@@ -72,8 +72,8 @@ class MediaService {
     method: "POST",
     endpoint: "$baseUrl/Media/Update",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-        onSuccess: (final Response r) => onOk(
-          UResponse<UMediaResponse>.fromJson(
+    onSuccess: (final Response r, Response? c) => onOk(
+      UResponse<UMediaResponse>.fromJson(
             r.body,
             (dynamic i) => UMediaResponse.fromMap(i),
           ),
@@ -93,8 +93,8 @@ class MediaService {
     method: "POST",
     endpoint: "$baseUrl/Media/Delete",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-        onSuccess: (final Response r) => onOk(
-          UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
+    onSuccess: (final Response r, Response? c) => onOk(
+      UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),
         ),
         onError: (final Response r) => onError(
           UResponse<dynamic>.fromJson(r.body, (dynamic i) => i),

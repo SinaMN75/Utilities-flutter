@@ -18,8 +18,8 @@ class InvoiceService {
     method: "POST",
     endpoint: "$baseUrl/Invoice/Create",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-        onSuccess: (final Response r) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onSuccess: (final Response r, Response? c) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
 
@@ -32,8 +32,8 @@ class InvoiceService {
     method: "POST",
     endpoint: "$baseUrl/Invoice/Read",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-        onSuccess: (final Response r) => onOk(
-          UResponse<List<UInvoiceResponse>>.fromJson(
+    onSuccess: (final Response r, Response? c) => onOk(
+      UResponse<List<UInvoiceResponse>>.fromJson(
             r.body,
             (final dynamic i) => List<UInvoiceResponse>.from((i as List<dynamic>).map((final dynamic x) => UInvoiceResponse.fromMap(x))),
           ),
@@ -51,8 +51,8 @@ class InvoiceService {
     method: "POST",
     endpoint: "$baseUrl/Invoice/ReadById",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-        onSuccess: (final Response r) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onSuccess: (final Response r, Response? c) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
 
@@ -65,8 +65,8 @@ class InvoiceService {
     method: "POST",
     endpoint: "$baseUrl/Invoice/Update",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-        onSuccess: (final Response r) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onSuccess: (final Response r, Response? c) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
 
@@ -79,8 +79,8 @@ class InvoiceService {
     method: "POST",
     endpoint: "$baseUrl/Invoice/Delete",
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-        onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onSuccess: (final Response r, Response? c) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
         onException: (String e) => onException(e),
       );
 }

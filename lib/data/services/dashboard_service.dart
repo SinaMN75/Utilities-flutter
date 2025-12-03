@@ -16,8 +16,8 @@ class DashboardService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "$baseUrl/dashboard/ReadSystemMetrics",
-    onSuccess: (final Response r) => onOk(UMetricsResponse.fromJson(r.body)),
-        onError: (final Response r) => onError(),
+    onSuccess: (final Response r, Response? c) => onOk(UMetricsResponse.fromJson(r.body)),
+    onError: (final Response r) => onError(),
         onException: (String e) => onException(e),
       );
 
@@ -28,8 +28,8 @@ class DashboardService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "$baseUrl/dashboard/Read",
-    onSuccess: (final Response r) => onOk(UDashboardResponse.fromJson(r.body)),
-        onError: (final Response r) => onError(),
+    onSuccess: (final Response r, Response? c) => onOk(UDashboardResponse.fromJson(r.body)),
+    onError: (final Response r) => onError(),
         onException: (String e) => onException(e),
       );
 
@@ -40,8 +40,8 @@ class DashboardService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "$baseUrl/api/logs/structure",
-    onSuccess: (final Response r) => onOk(LogStructureResponse.fromJson(r.body)),
-        onError: (final Response r) => onError(),
+    onSuccess: (final Response r, Response? c) => onOk(LogStructureResponse.fromJson(r.body)),
+    onError: (final Response r) => onError(),
         onException: (String e) => onException(e),
       );
 
@@ -54,8 +54,8 @@ class DashboardService {
     method: "POST",
     endpoint: "$baseUrl/api/logs/content",
     body: <String, String>{"id": logId},
-        onSuccess: (final Response r) => onOk(json.decode(r.body).map((dynamic e) => LogContentResponse.fromMap(e)).toList()),
-        onError: (final Response r) => onError(),
+    onSuccess: (final Response r, Response? c) => onOk(json.decode(r.body).map((dynamic e) => LogContentResponse.fromMap(e)).toList()),
+    onError: (final Response r) => onError(),
         onException: (String e) => onException(e),
       );
 }
