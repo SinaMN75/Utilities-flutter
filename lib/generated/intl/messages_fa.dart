@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addQuestion": MessageLookupByLibrary.simpleMessage("افزودن سؤال"),
     "addRooms": MessageLookupByLibrary.simpleMessage("افزودن اتاق"),
+    "admin": MessageLookupByLibrary.simpleMessage("ادکین"),
     "amount": MessageLookupByLibrary.simpleMessage("مبلغ"),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "از حذف اطمینان دارید؟",
@@ -37,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "آیا مطمئن هستید که می‌خواهید این آزمون را حذف کنید؟",
     ),
     "beds": MessageLookupByLibrary.simpleMessage("تخت‌ها"),
+    "birthdate": MessageLookupByLibrary.simpleMessage("تاریخ تولد"),
     "cancel": MessageLookupByLibrary.simpleMessage("انصراف"),
     "categories": MessageLookupByLibrary.simpleMessage("دسته‌بندی‌ها"),
     "categoriesNotFound": MessageLookupByLibrary.simpleMessage(
@@ -105,13 +107,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "failedToLoadLogStructure": MessageLookupByLibrary.simpleMessage(
       "خطا در بارگزاری لاگ‌ها",
     ),
+    "fatherName": MessageLookupByLibrary.simpleMessage("نام پدر"),
+    "female": MessageLookupByLibrary.simpleMessage("خانم"),
     "filter": MessageLookupByLibrary.simpleMessage("فیلتر"),
     "filterContracts": MessageLookupByLibrary.simpleMessage("فیلتر قراردادها"),
     "filterInvoices": MessageLookupByLibrary.simpleMessage("فیلتر فاکتورها"),
     "filterProducts": MessageLookupByLibrary.simpleMessage("فیلتر محصولات"),
     "filterUsers": MessageLookupByLibrary.simpleMessage("فیلتر کاربران"),
+    "firstName": MessageLookupByLibrary.simpleMessage("نام"),
     "fromDate": MessageLookupByLibrary.simpleMessage("از تاریخ"),
     "gender": MessageLookupByLibrary.simpleMessage("جنسیت"),
+    "guest": MessageLookupByLibrary.simpleMessage("مهمان"),
     "hddUsage": MessageLookupByLibrary.simpleMessage("مصرف HDD"),
     "hintOptional": MessageLookupByLibrary.simpleMessage("راهنما (اختیاری)"),
     "invalidMessage": MessageLookupByLibrary.simpleMessage(
@@ -119,7 +125,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "invoices": MessageLookupByLibrary.simpleMessage("فاکتورها"),
     "joinedDate": MessageLookupByLibrary.simpleMessage("تاریخ عضویت"),
+    "lastName": MessageLookupByLibrary.simpleMessage("نام خانوادگی"),
     "logs": MessageLookupByLibrary.simpleMessage("لاگ‌ها"),
+    "male": MessageLookupByLibrary.simpleMessage("آقا"),
     "monthlyActiveUsers": MessageLookupByLibrary.simpleMessage(
       "کاربران فعال ماهانه",
     ),

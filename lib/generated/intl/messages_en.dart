@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addPointDetail": MessageLookupByLibrary.simpleMessage("Add Point Detail"),
     "addQuestion": MessageLookupByLibrary.simpleMessage("Add Question"),
     "addRooms": MessageLookupByLibrary.simpleMessage("Add Rooms"),
+    "admin": MessageLookupByLibrary.simpleMessage("Admin"),
     "amount": MessageLookupByLibrary.simpleMessage("Amount"),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "Are You Sure You Want To Delete",
@@ -35,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Are you sure you want to delete this exam?",
     ),
     "beds": MessageLookupByLibrary.simpleMessage("Beds"),
+    "birthdate": MessageLookupByLibrary.simpleMessage("Birthdate"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "categoriesNotFound": MessageLookupByLibrary.simpleMessage(
@@ -101,13 +103,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "failedToLoadLogStructure": MessageLookupByLibrary.simpleMessage(
       "Failed to load log structure",
     ),
+    "fatherName": MessageLookupByLibrary.simpleMessage("Father Name"),
+    "female": MessageLookupByLibrary.simpleMessage("Female"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
     "filterContracts": MessageLookupByLibrary.simpleMessage("Filter Contracts"),
     "filterInvoices": MessageLookupByLibrary.simpleMessage("Filter Invoices"),
     "filterProducts": MessageLookupByLibrary.simpleMessage("Filter Products"),
     "filterUsers": MessageLookupByLibrary.simpleMessage("Filter Users"),
+    "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
     "fromDate": MessageLookupByLibrary.simpleMessage("From Date"),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+    "guest": MessageLookupByLibrary.simpleMessage("Guest"),
     "hddUsage": MessageLookupByLibrary.simpleMessage("HDD Usage"),
     "hintOptional": MessageLookupByLibrary.simpleMessage("Hint (Optional)"),
     "invalidMessage": MessageLookupByLibrary.simpleMessage(
@@ -115,7 +121,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "invoices": MessageLookupByLibrary.simpleMessage("Invoices"),
     "joinedDate": MessageLookupByLibrary.simpleMessage("Joined Date"),
+    "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
     "logs": MessageLookupByLibrary.simpleMessage("Logs"),
+    "male": MessageLookupByLibrary.simpleMessage("Male"),
     "monthlyActiveUsers": MessageLookupByLibrary.simpleMessage(
       "Monthly Active Users",
     ),

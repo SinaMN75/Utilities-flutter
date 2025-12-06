@@ -119,5 +119,13 @@
   "paid": "پرداخت شده",
   "trackingNumber": "کد رهگیری",
   "paidDate": "تاریخ پرداخت",
-  "thisUserDoesNotHaveAnActiveContract": "این کاربر قرارداد فعال ندارد."
+  "thisUserDoesNotHaveAnActiveContract": "این کاربر قرارداد فعال ندارد.",
+  "birthdate": "تاریخ تولد",
+  "male": "آقا",
+  "female": "خانم",
+  "admin": "ادکین",
+  "guest": "مهمان",
+  "fatherName": "نام پدر",
+  "lastName": "نام خانوادگی",
+  "firstName": "نام"
 }

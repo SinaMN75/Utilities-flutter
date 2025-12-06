@@ -922,6 +922,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Birthdate`
+  String get birthdate {
+    return Intl.message('Birthdate', name: 'birthdate', desc: '', args: []);
+  }
+
+  /// `Male`
+  String get male {
+    return Intl.message('Male', name: 'male', desc: '', args: []);
+  }
+
+  /// `Female`
+  String get female {
+    return Intl.message('Female', name: 'female', desc: '', args: []);
+  }
+
+  /// `Admin`
+  String get admin {
+    return Intl.message('Admin', name: 'admin', desc: '', args: []);
+  }
+
+  /// `Guest`
+  String get guest {
+    return Intl.message('Guest', name: 'guest', desc: '', args: []);
+  }
+
+  /// `Father Name`
+  String get fatherName {
+    return Intl.message('Father Name', name: 'fatherName', desc: '', args: []);
+  }
+
+  /// `Last Name`
+  String get lastName {
+    return Intl.message('Last Name', name: 'lastName', desc: '', args: []);
+  }
+
+  /// `First Name`
+  String get firstName {
+    return Intl.message('First Name', name: 'firstName', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
