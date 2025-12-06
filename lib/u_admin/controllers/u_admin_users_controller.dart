@@ -1,7 +1,7 @@
 part of "../u_admin.dart";
 
 class UAdminUsersController {
-  List<UUserResponse> list = <UUserResponse>[];
+  RxList<UUserResponse> list = <UUserResponse>[].obs;
   final Rx<PageState> state = PageState.initial.obs;
 
   RxInt pageNumber = 1.obs;
@@ -39,7 +39,7 @@ class UAdminUsersController {
         pageSize: pageSize,
       ),
       onOk: (UResponse<List<UUserResponse>> response) {
-        list = response.result!;
+        list(response.result);
         totalPages((response.totalCount / pageSize).toInt() + 1);
         state.loaded();
       },
@@ -95,6 +95,7 @@ class UAdminUsersController {
       U.services.user.create(
         p: p,
         onOk: (final UResponse<UUserResponse> r) {
+          list.insert(0, r.result!);
           ULoading.dismiss();
           Get.back();
           UToast.snackBar(message: "User created successfully");
@@ -121,6 +122,7 @@ class UAdminUsersController {
       U.services.user.update(
         p: p,
         onOk: (final UResponse<UUserResponse> r) {
+          read();
           ULoading.dismiss();
           Get.back();
           UToast.snackBar(message: "User created successfully");
