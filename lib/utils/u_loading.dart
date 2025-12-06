@@ -130,8 +130,8 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
             if (ULoading._dismissible)
               Positioned.fill(
                 child: GestureDetector(
-                  onTap: () => ULoading.dismiss(),
-                  behavior: HitTestBehavior.opaque,
+              onTap: ULoading.dismiss,
+              behavior: HitTestBehavior.opaque,
                   child: Container(color: Colors.transparent),
                 ),
               ),

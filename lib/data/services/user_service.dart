@@ -20,7 +20,7 @@ class UserService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-    onException: (String e) => onException(e),
+    onException: onException,
   );
 
   void bulkCreate({
@@ -34,7 +34,7 @@ class UserService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-    onException: (String e) => onException(e),
+    onException: onException,
   );
 
   Future<UResponse<List<UUserResponse>>?> read({
@@ -49,7 +49,7 @@ class UserService {
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<List<UUserResponse>>.fromJson(r.body, (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (String e) => onException(e),
+      onException: onException,
     );
     if (r.isSuccessful()) {
       return UResponse<List<UUserResponse>>.fromJson(r!.body, (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))));
@@ -69,7 +69,7 @@ class UserService {
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (String e) => onException(e),
+      onException: onException,
     );
   }
 
@@ -85,7 +85,7 @@ class UserService {
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (String e) => onException(e),
+      onException: onException,
     );
   }
 
@@ -101,7 +101,7 @@ class UserService {
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (String e) => onException(e),
+      onException: onException,
     );
   }
 }

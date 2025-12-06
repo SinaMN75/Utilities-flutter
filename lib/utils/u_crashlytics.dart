@@ -7,7 +7,7 @@ class UCrashlytics {
       return true;
     };
 
-    FlutterError.onError = (FlutterErrorDetails details) => _recordFlutterError(details);
+    FlutterError.onError = _recordFlutterError;
   }
 
   static Future<void> _recordError(dynamic error, StackTrace stack) async {

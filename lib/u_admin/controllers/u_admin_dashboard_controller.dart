@@ -27,7 +27,7 @@ class UAdminDashboardController {
         dashboard = response;
         state.loaded();
       },
-      onError: () => state.error(),
+      onError: state.error,
       onException: (String e) => state.error(),
     );
   }

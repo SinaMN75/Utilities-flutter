@@ -20,8 +20,8 @@ class InvoiceService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void read({
     required final UInvoiceReadParams p,
@@ -34,13 +34,13 @@ class InvoiceService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(
       UResponse<List<UInvoiceResponse>>.fromJson(
-            r.body,
-            (final dynamic i) => List<UInvoiceResponse>.from((i as List<dynamic>).map((final dynamic x) => UInvoiceResponse.fromMap(x))),
-          ),
-        ),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+        r.body,
+        (final dynamic i) => List<UInvoiceResponse>.from((i as List<dynamic>).map((final dynamic x) => UInvoiceResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: onException,
+  );
 
   void readById({
     required final UIdParams p,
@@ -53,8 +53,8 @@ class InvoiceService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void update({
     required final UInvoiceUpdateParams p,
@@ -67,8 +67,8 @@ class InvoiceService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void delete({
     required final UIdParams p,
@@ -81,6 +81,6 @@ class InvoiceService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 }

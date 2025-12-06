@@ -21,7 +21,7 @@ class AuthService {
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (String e) => onException(e),
+      onException: onException,
     );
   }
 
@@ -36,8 +36,8 @@ class AuthService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void loginWithEmailPassword({
     required final ULoginWithEmailPasswordParams p,
@@ -50,8 +50,8 @@ class AuthService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void readUserByToken({
     required final UBaseParams p,
@@ -64,6 +64,6 @@ class AuthService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 }

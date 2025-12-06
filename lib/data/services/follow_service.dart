@@ -20,8 +20,8 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void unfollow({
     required final UFollowParams p,
@@ -34,8 +34,8 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void readFollowers({
     required final UIdParams p,
@@ -48,13 +48,13 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(
       UResponse<List<UUserResponse>>.fromJson(
-            r.body,
-            (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))),
-          ),
-        ),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+        r.body,
+        (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: onException,
+  );
 
   void readFollowedUsers({
     required final UIdParams p,
@@ -67,13 +67,13 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(
       UResponse<List<UUserResponse>>.fromJson(
-            r.body,
-            (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))),
-          ),
-        ),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+        r.body,
+        (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: onException,
+  );
 
   void readFollowedProducts({
     required final UIdParams p,
@@ -86,13 +86,13 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(
       UResponse<List<UProductResponse>>.fromJson(
-            r.body,
-            (final dynamic i) => List<UProductResponse>.from((i as List<dynamic>).map((final dynamic x) => UProductResponse.fromMap(x))),
-          ),
-        ),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+        r.body,
+        (final dynamic i) => List<UProductResponse>.from((i as List<dynamic>).map((final dynamic x) => UProductResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: onException,
+  );
 
   void readFollowedCategories({
     required final UIdParams p,
@@ -105,13 +105,13 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(
       UResponse<List<UCategoryResponse>>.fromJson(
-            r.body,
-            (final dynamic i) => List<UCategoryResponse>.from((i as List<dynamic>).map((final dynamic x) => UCategoryResponse.fromMap(x))),
-          ),
-        ),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+        r.body,
+        (final dynamic i) => List<UCategoryResponse>.from((i as List<dynamic>).map((final dynamic x) => UCategoryResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: onException,
+  );
 
   void readFollowerFollowingCount({
     required final UIdParams p,
@@ -124,8 +124,8 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UFollowerFollowingCountResponse>.fromJson(r.body, (final dynamic i) => UFollowerFollowingCountResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void isFollowingUser({
     required final UFollowParams p,
@@ -138,8 +138,8 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void isFollowingProduct({
     required final UFollowParams p,
@@ -152,8 +152,8 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void isFollowingCategory({
     required final UFollowParams p,
@@ -166,6 +166,6 @@ class FollowService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 }

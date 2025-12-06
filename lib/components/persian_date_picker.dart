@@ -279,9 +279,9 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
           ],
         ).container(width: 350, height: 500),
         actions: <Widget>[
-          TextButton(
-            onPressed: () => UNavigator.back(),
-            child: const Text("انصراف"),
+          const TextButton(
+            onPressed: UNavigator.back,
+            child: Text("انصراف"),
           ),
           TextButton(
             onPressed: () {

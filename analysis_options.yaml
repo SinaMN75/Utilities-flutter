@@ -66,6 +66,8 @@ analyzer:
     prefer_int_literals: error
     prefer_expression_function_bodies: error
     prefer_double_quotes: error
+    implicit_call_tearoffs: error
+    unnecessary_lambdas: error
 
 linter:
   rules:
@@ -123,3 +125,5 @@ linter:
     prefer_int_literals: true
     prefer_expression_function_bodies: true
     prefer_double_quotes: true
+    implicit_call_tearoffs: true
+    unnecessary_lambdas: true

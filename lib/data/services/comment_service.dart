@@ -20,8 +20,8 @@ class CommentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void read({
     required final UCommentReadParams p,
@@ -34,13 +34,13 @@ class CommentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(
       UResponse<List<UCommentResponse>>.fromJson(
-            r.body,
-            (final dynamic i) => List<UCommentResponse>.from((i as List<dynamic>).map((final dynamic x) => UCommentResponse.fromMap(x))),
-          ),
-        ),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+        r.body,
+        (final dynamic i) => List<UCommentResponse>.from((i as List<dynamic>).map((final dynamic x) => UCommentResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: onException,
+  );
 
   void readById({
     required final UIdParams p,
@@ -53,8 +53,8 @@ class CommentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void update({
     required final UCommentUpdateParams p,
@@ -67,8 +67,8 @@ class CommentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void delete({
     required final UIdParams p,
@@ -81,8 +81,8 @@ class CommentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void readProductCommentCount({
     required final UIdParams p,
@@ -95,8 +95,8 @@ class CommentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void readUserCommentCount({
     required final UIdParams p,
@@ -109,6 +109,6 @@ class CommentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 }

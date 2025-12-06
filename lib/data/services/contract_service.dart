@@ -20,7 +20,7 @@ class ContractService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UContractResponse>.fromJson(r.body, (final dynamic i) => UContractResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-    onException: (String e) => onException(e),
+    onException: onException,
   );
 
   Future<UResponse<List<UContractResponse>>?> read({
@@ -35,7 +35,7 @@ class ContractService {
       body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) => onOk(UResponse<List<UContractResponse>>.fromJson(r.body, (final dynamic i) => List<UContractResponse>.from((i as List<dynamic>).map((final dynamic x) => UContractResponse.fromMap(x))))),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-      onException: (String e) => onException(e),
+      onException: onException,
     );
 
     if (r.isSuccessful()) {
@@ -55,7 +55,7 @@ class ContractService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UContractResponse>.fromJson(r.body, (final dynamic i) => UContractResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-    onException: (String e) => onException(e),
+    onException: onException,
   );
 
   void update({
@@ -69,7 +69,7 @@ class ContractService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UContractResponse>.fromJson(r.body, (final dynamic i) => UContractResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-    onException: (String e) => onException(e),
+    onException: onException,
   );
 
   void delete({
@@ -83,6 +83,6 @@ class ContractService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-    onException: (String e) => onException(e),
+    onException: onException,
   );
 }

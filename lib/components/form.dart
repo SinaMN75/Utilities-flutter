@@ -350,7 +350,7 @@ class _UTextFieldAutoCompleteRemoteState<T> extends State<UTextFieldAutoComplete
             children: <Widget>[
               UTextField(
                 hintText: "جستجو...",
-                onChanged: (String s) => _onSearchChanged(s),
+                onChanged: _onSearchChanged,
               ),
               const SizedBox(height: 12),
               Obx(

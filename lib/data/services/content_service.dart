@@ -20,8 +20,8 @@ class ContentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UContentResponse>.fromJson(r.body, (final dynamic i) => UContentResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void read({
     required final UContentReadParams p,
@@ -34,13 +34,13 @@ class ContentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(
       UResponse<List<UContentResponse>>.fromJson(
-            r.body,
-            (final dynamic i) => List<UContentResponse>.from((i as List<dynamic>).map((final dynamic x) => UContentResponse.fromMap(x))),
-          ),
-        ),
-        onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+        r.body,
+        (final dynamic i) => List<UContentResponse>.from((i as List<dynamic>).map((final dynamic x) => UContentResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: onException,
+  );
 
   void readById({
     required final UIdParams p,
@@ -53,8 +53,8 @@ class ContentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UContentResponse>.fromJson(r.body, (final dynamic i) => UContentResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void update({
     required final UContentUpdateParams p,
@@ -67,8 +67,8 @@ class ContentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<UContentResponse>.fromJson(r.body, (final dynamic i) => UContentResponse.fromMap(i))),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 
   void delete({
     required final UIdParams p,
@@ -81,6 +81,6 @@ class ContentService {
     body: p.toMap().add("apiKey", apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-        onException: (String e) => onException(e),
-      );
+    onException: onException,
+  );
 }
