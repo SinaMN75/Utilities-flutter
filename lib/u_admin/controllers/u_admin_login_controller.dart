@@ -30,8 +30,8 @@ class UAdminLoginController {
             },
             onError: (final UResponse<dynamic> r) {
               ULoading.dismiss();
-              UNavigator.error(message: r.message);
-            },
+          UToast.error(message: r.message);
+        },
             onException: (String e) => ULoading.dismiss(),
           );
         },

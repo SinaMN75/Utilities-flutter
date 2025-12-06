@@ -24,7 +24,7 @@ class UAdminCategoryController {
       },
       onError: (UResponse<dynamic> error) {
         state.error();
-        UNavigator.error(message: error.message);
+        UToast.error(message: error.message);
       },
       onException: (String e) {},
     );
@@ -37,12 +37,12 @@ class UAdminCategoryController {
       onOk: (UResponse<UCategoryResponse> response) async {
         UNavigator.back();
         ULoading.dismiss();
-        UNavigator.snackBar(message: U.s.created);
+        UToast.snackBar(message: U.s.created);
         await loadCategories();
       },
       onError: (UResponse<dynamic> error) {
         ULoading.dismiss();
-        UNavigator.error(message: error.message);
+        UToast.error(message: error.message);
       },
       onException: (String e) {},
     );
@@ -55,12 +55,12 @@ class UAdminCategoryController {
       onOk: (UResponse<UCategoryResponse> response) {
         UNavigator.back();
         ULoading.dismiss();
-        UNavigator.snackBar(message: U.s.edited);
+        UToast.snackBar(message: U.s.edited);
         loadCategories();
       },
       onError: (UResponse<dynamic> error) {
         ULoading.dismiss();
-        UNavigator.error(message: error.message);
+        UToast.error(message: error.message);
       },
       onException: (String e) {},
     );
@@ -76,13 +76,13 @@ class UAdminCategoryController {
         onOk: (UResponse<dynamic> response) {
           UNavigator.back();
           ULoading.dismiss();
-          UNavigator.snackBar(message: U.s.deleted);
+          UToast.snackBar(message: U.s.deleted);
           loadCategories();
         },
         onError: (UResponse<dynamic> error) {
           UNavigator.back();
           ULoading.dismiss();
-          UNavigator.error(message: error.message);
+          UToast.error(message: error.message);
         },
         onException: (String e) {},
       );

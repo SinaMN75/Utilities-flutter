@@ -44,7 +44,7 @@ class UAdminProductController {
       },
       onError: (UResponse<dynamic> error) {
         state.error();
-        UNavigator.error(message: error.message);
+        UToast.error(message: error.message);
       },
       onException: (String e) {},
     );
@@ -69,17 +69,17 @@ class UAdminProductController {
         p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
               UNavigator.back();
-              UNavigator.snackBar(message: r.message);
-              read();
+          UToast.snackBar(message: r.message);
+          read();
             },
             onError: (final UResponse<dynamic> r) {
           UNavigator.back();
-          UNavigator.error(message: r.message);
-              read();
+          UToast.error(message: r.message);
+          read();
             },
         onException: (String e) {
           UNavigator.back();
-          UNavigator.error(message: e);
+          UToast.error(message: e);
         },
       );
         },
@@ -90,15 +90,15 @@ class UAdminProductController {
     U.services.product.create(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
-        UNavigator.snackBar(message: U.s.submitted);
+        UToast.snackBar(message: U.s.submitted);
         read();
       },
       onError: (UResponse<dynamic> r) {
-        UNavigator.error(message: r.message);
+        UToast.error(message: r.message);
         read();
       },
       onException: (String r) {
-        UNavigator.error(message: U.s.errorSubmittingForm);
+        UToast.error(message: U.s.errorSubmittingForm);
         read();
       },
     );
@@ -108,15 +108,15 @@ class UAdminProductController {
     U.services.product.update(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
-        UNavigator.snackBar(message: U.s.submitted);
+        UToast.snackBar(message: U.s.submitted);
         read();
       },
       onError: (UResponse<dynamic> r) {
-        UNavigator.error(message: r.message);
+        UToast.error(message: r.message);
         read();
       },
       onException: (String r) {
-        UNavigator.error(message: U.s.errorSubmittingForm);
+        UToast.error(message: U.s.errorSubmittingForm);
         read();
       },
     );

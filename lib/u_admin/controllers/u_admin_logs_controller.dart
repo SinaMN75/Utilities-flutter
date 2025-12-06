@@ -16,7 +16,7 @@ class UAdminLogsController {
       },
       onError: () {
         state.error();
-        UNavigator.error(message: U.s.failedToLoadLogStructure);
+        UToast.error(message: U.s.failedToLoadLogStructure);
       },
       onException: (String e) {},
     );
@@ -33,7 +33,7 @@ class UAdminLogsController {
       },
       onError: () {
         state.error();
-        UNavigator.error(message: U.s.failedToLoadLogContent);
+        UToast.error(message: U.s.failedToLoadLogContent);
       },
       onException: (String e) {},
     );

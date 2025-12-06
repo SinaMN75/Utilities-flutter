@@ -263,8 +263,8 @@ class _CalendarDemoState extends State<CalendarDemo> {
           ),
           onTap: (CalendarTapDetails details) {
             if (details.appointments != null && details.appointments!.isNotEmpty) {
-              UNavigator.snackBar(message: "Tapped: ${details.appointments!.first.subject}");
-            }
+          UToast.snackBar(message: "Tapped: ${details.appointments!.first.subject}");
+        }
           },
         ),
       );

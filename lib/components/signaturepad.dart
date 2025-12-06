@@ -105,7 +105,7 @@ class SignaturePad extends StatelessWidget {
     } catch (e) {
       onError?.call("Error saving signature: $e");
       if (context.mounted) {
-        UNavigator.snackBar(message: "Error saving signature");
+        UToast.snackBar(message: "Error saving signature");
       }
     }
   }

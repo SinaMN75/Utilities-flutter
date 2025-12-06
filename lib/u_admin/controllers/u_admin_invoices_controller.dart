@@ -42,7 +42,7 @@ class UAdminInvoiceController {
       },
       onError: (UResponse<dynamic> error) {
         state.error();
-        UNavigator.error(message: error.message);
+        UToast.error(message: error.message);
       },
       onException: (String e) {},
     );
@@ -68,12 +68,12 @@ class UAdminInvoiceController {
         p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
               UNavigator.back();
-              UNavigator.snackBar(message: r.message);
-              ULoading.dismiss();
+          UToast.snackBar(message: r.message);
+          ULoading.dismiss();
             },
             onError: (final UResponse<dynamic> r) {
-              UNavigator.error(message: r.message);
-              ULoading.dismiss();
+          UToast.error(message: r.message);
+          ULoading.dismiss();
             },
             onException: (String e) {},
           );
@@ -84,15 +84,15 @@ class UAdminInvoiceController {
     U.services.invoice.create(
       p: p,
       onOk: (UResponse<UInvoiceResponse> r) {
-        UNavigator.snackBar(message: U.s.submitted);
+        UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
       onError: (UResponse<dynamic> r) {
-        UNavigator.error(message: r.message);
+        UToast.error(message: r.message);
         ULoading.dismiss();
       },
       onException: (String r) {
-        UNavigator.error(message: U.s.errorSubmittingForm);
+        UToast.error(message: U.s.errorSubmittingForm);
         ULoading.dismiss();
       },
     );
@@ -102,15 +102,15 @@ class UAdminInvoiceController {
     U.services.invoice.update(
       p: p,
       onOk: (UResponse<UInvoiceResponse> r) {
-        UNavigator.snackBar(message: "Submitted");
+        UToast.snackBar(message: "Submitted");
         ULoading.dismiss();
       },
       onError: (UResponse<dynamic> r) {
-        UNavigator.error(message: r.message);
+        UToast.error(message: r.message);
         ULoading.dismiss();
       },
       onException: (String r) {
-        UNavigator.error(message: "Error Submitting Form");
+        UToast.error(message: "Error Submitting Form");
         ULoading.dismiss();
       },
     );

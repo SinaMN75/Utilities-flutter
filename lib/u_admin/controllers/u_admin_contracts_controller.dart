@@ -40,7 +40,7 @@ class UAdminContractController {
       },
       onError: (UResponse<dynamic> error) {
         state.error();
-        UNavigator.error(message: error.message);
+        UToast.error(message: error.message);
       },
       onException: (String e) {},
     );
@@ -66,12 +66,12 @@ class UAdminContractController {
         p: UIdParams(id: i.id),
             onOk: (final UResponse<dynamic> r) {
               UNavigator.back();
-              UNavigator.snackBar(message: r.message);
-              ULoading.dismiss();
+          UToast.snackBar(message: r.message);
+          ULoading.dismiss();
             },
             onError: (final UResponse<dynamic> r) {
-              UNavigator.error(message: r.message);
-              ULoading.dismiss();
+          UToast.error(message: r.message);
+          ULoading.dismiss();
             },
             onException: (String e) {},
           );
@@ -82,15 +82,15 @@ class UAdminContractController {
     U.services.contract.create(
       p: p,
       onOk: (UResponse<UContractResponse> r) {
-        UNavigator.snackBar(message: U.s.submitted);
+        UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
       onError: (UResponse<dynamic> r) {
-        UNavigator.error(message: r.message);
+        UToast.error(message: r.message);
         ULoading.dismiss();
       },
       onException: (String r) {
-        UNavigator.error(message: U.s.errorSubmittingForm);
+        UToast.error(message: U.s.errorSubmittingForm);
         ULoading.dismiss();
       },
     );
@@ -101,18 +101,18 @@ class UAdminContractController {
       p: p,
       onOk: (UResponse<UContractResponse> r) {
         UNavigator.back();
-        UNavigator.snackBar(message: U.s.submitted);
+        UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
         read();
       },
       onError: (UResponse<dynamic> r) {
         UNavigator.back();
-        UNavigator.error(message: r.message);
+        UToast.error(message: r.message);
         ULoading.dismiss();
       },
       onException: (String r) {
         UNavigator.back();
-        UNavigator.error(message: U.s.errorSubmittingForm);
+        UToast.error(message: U.s.errorSubmittingForm);
         ULoading.dismiss();
       },
     );

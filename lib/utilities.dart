@@ -106,5 +106,6 @@ export "utils/u_network.dart";
 export "utils/u_notification.dart";
 export "utils/u_persian_tools.dart";
 export "utils/u_shamsi.dart";
+export "utils/u_toast.dart";
 export "utils/u_update_dialog.dart";
 export "utils/u_utils.dart";

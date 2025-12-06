@@ -21,7 +21,7 @@ abstract class UNavigator {
     Curve curve = Curves.easeOut,
     RouteSettings? settings,
   }) {
-    if (preventDuplicates && _isCurrentRoute(page)) {
+    if (preventDuplicates && ModalRoute.of(navigatorKey.currentContext!)?.settings.name == page.runtimeType.toString()) {
       return Future<T?>.value();
     }
 
@@ -38,7 +38,6 @@ abstract class UNavigator {
     );
   }
 
-  /// Replace current route
   static Future<T?> off<T>(
     Widget page, {
     RouteTransitions transition = RouteTransitions.fade,
@@ -57,7 +56,6 @@ abstract class UNavigator {
         return value;
       });
 
-  /// Clear all routes and start fresh
   static Future<void> offAll(
     Widget page, {
     RouteTransitions transition = RouteTransitions.fade,
@@ -75,14 +73,12 @@ abstract class UNavigator {
     ).then((_) => onDismiss?.call());
   }
 
-  /// Pop with optional result
   static void back<T>([T? result]) {
     if (canPop) {
       Navigator.pop<T>(navigatorKey.currentContext!, result);
     }
   }
 
-  /// Adaptive dialog (Material/Cupertino)
   static Future<T?> dialog<T>(
     Widget child, {
     bool barrierDismissible = true,
@@ -113,7 +109,6 @@ abstract class UNavigator {
     });
   }
 
-  /// Confirmation dialog with actions
   static void confirm({
     required String title,
     required String message,
@@ -121,28 +116,26 @@ abstract class UNavigator {
     VoidCallback? onDismiss,
     VoidCallback? onCancel,
     VoidCallback? onConfirm,
-  }) =>
-      dialog(
-        AlertDialog.adaptive(
-          title: Text(title),
-          content: Text(message),
-          actions: <Widget>[
-            TextButton(onPressed: onCancel ?? back, child: Text(U.s.cancel)),
-            TextButton(
-              onPressed: onConfirm,
-              style: destructive
-                  ? TextButton.styleFrom(
-                      foregroundColor: theme.colorScheme.error,
-                    )
-                  : null,
-              child: Text(U.s.ok),
-            ),
-          ],
+  }) => dialog(
+    AlertDialog.adaptive(
+      title: Text(title),
+      content: Text(message),
+      actions: <Widget>[
+        TextButton(onPressed: onCancel ?? back, child: Text(U.s.cancel)),
+        TextButton(
+          onPressed: onConfirm,
+          style: destructive
+              ? TextButton.styleFrom(
+                  foregroundColor: theme.colorScheme.error,
+                )
+              : null,
+          child: Text(U.s.ok),
         ),
-        onDismiss: onDismiss,
-      );
+      ],
+    ),
+    onDismiss: onDismiss,
+  );
 
-  /// Adaptive bottom sheet
   static Future<T?> bottomSheet<T>(
     Widget child, {
     bool isScrollControlled = true,
@@ -160,7 +153,8 @@ abstract class UNavigator {
       useSafeArea: useSafeArea,
       backgroundColor: backgroundColor ?? theme.canvasColor,
       elevation: elevation,
-      shape: shape ??
+      shape:
+          shape ??
           const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
           ),
@@ -209,70 +203,15 @@ abstract class UNavigator {
         return value;
       });
 
-  /// Standard snackbar
-  static void snackBar({
-    required String message,
-    String? title,
-    Duration duration = const Duration(seconds: 4),
-    Color? backgroundColor,
-    TextStyle? textStyle,
-    SnackBarAction? action,
-    DismissDirection dismissDirection = DismissDirection.down,
-    EdgeInsets? margin,
-    double? width,
-    VoidCallback? onDismiss,
-  }) =>
-      ScaffoldMessenger.of(navigatorKey.currentContext!)
-          .showSnackBar(
-            SnackBar(
-              content: Text(message, style: textStyle),
-              backgroundColor: backgroundColor ?? theme.snackBarTheme.backgroundColor,
-              duration: duration,
-              action: action,
-              dismissDirection: dismissDirection,
-              behavior: margin != null ? SnackBarBehavior.floating : null,
-              margin: margin,
-              width: width,
-            ),
-          )
-          .closed
-          .then((_) {
-        onDismiss?.call();
-      });
-
-  static void error({
-    required String message,
-    Duration duration = const Duration(seconds: 4),
-    String? actionLabel,
-    VoidCallback? onAction,
-    VoidCallback? onDismiss,
-  }) =>
-      snackBar(
-        message: message,
-        backgroundColor: theme.colorScheme.error,
-        action: actionLabel != null
-            ? SnackBarAction(
-                label: actionLabel,
-                onPressed: onAction ?? () {},
-                textColor: theme.colorScheme.onError,
-              )
-            : null,
-        duration: duration,
-        onDismiss: onDismiss,
-      );
-
-  /// Full-screen dialog
   static Future<T?> fullScreenDialog<T>(
     Widget page, {
     RouteTransitions transition = RouteTransitions.upToDown,
     VoidCallback? onDismiss,
-  }) =>
-      push<T>(page, fullscreenDialog: true, transition: transition).then((T? value) {
-        onDismiss?.call();
-        return value;
-      });
+  }) => push<T>(page, fullscreenDialog: true, transition: transition).then((T? value) {
+    onDismiss?.call();
+    return value;
+  });
 
-  /// Overlay notification (non-intrusive)
   static OverlayEntry? _currentOverlay;
 
   static void showOverlay({
@@ -354,112 +293,79 @@ abstract class UNavigator {
   static Future<Color?> colorPicker({
     required Color defaultColor,
     final List<Color>? colors,
-  }) async =>
-      UNavigator.dialog<Color>(
-        AlertDialog(
-          title: Text(U.s.selectAColor),
-          content: SizedBox(
-            width: 200,
-            height: 100,
-            child: GridView.count(
-              shrinkWrap: true,
-              crossAxisCount: 5,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-              children: (colors ??
-                      <Color>[
-                        Colors.red,
-                        Colors.green,
-                        Colors.blue,
-                        Colors.yellow,
-                        Colors.orange,
-                        Colors.purple,
-                        Colors.pink,
-                        Colors.cyan,
-                        Colors.black,
-                        Colors.teal,
-                      ])
-                  .map(
-                    (Color color) => UContainer(
-                      width: 40,
-                      height: 40,
-                      color: color,
-                      radius: 100,
-                      border: color == defaultColor ? Border.all(width: 3) : null,
-                    ).onTap(() => UNavigator.back(color)),
-                  )
-                  .toList(),
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(onPressed: UNavigator.back, child: Text(U.s.cancel)),
-          ],
+  }) async => UNavigator.dialog<Color>(
+    AlertDialog(
+      title: Text(U.s.selectAColor),
+      content: SizedBox(
+        width: 200,
+        height: 100,
+        child: GridView.count(
+          shrinkWrap: true,
+          crossAxisCount: 5,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          children: (colors ?? <Color>[Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange, Colors.purple, Colors.pink, Colors.cyan, Colors.black, Colors.teal])
+              .map(
+                (Color color) => UContainer(
+                  width: 40,
+                  height: 40,
+                  color: color,
+                  radius: 100,
+                  border: color == defaultColor ? Border.all(width: 3) : null,
+                ).onTap(() => UNavigator.back(color)),
+              )
+              .toList(),
         ),
-      );
+      ),
+      actions: <Widget>[
+        TextButton(onPressed: UNavigator.back, child: Text(U.s.cancel)),
+      ],
+    ),
+  );
 
   static Widget Function(BuildContext, Animation<double>, Animation<double>, Widget) _getTransition(RouteTransitions transition) {
     switch (transition) {
       case RouteTransitions.fade:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => FadeTransition(
-              opacity: animation,
-              child: child,
-            );
+          opacity: animation,
+          child: child,
+        );
       case RouteTransitions.rightToLeft:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(1, 0),
-                end: Offset.zero,
-              ).animate(CurvedAnimation(
-                parent: animation,
-                curve: Curves.fastOutSlowIn,
-              )),
-              child: child,
-            );
+          position: Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero).animate(CurvedAnimation(parent: animation, curve: Curves.fastOutSlowIn)),
+          child: child,
+        );
       case RouteTransitions.leftToRight:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(-1, 0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
+          position: Tween<Offset>(begin: const Offset(-1, 0), end: Offset.zero).animate(animation),
+          child: child,
+        );
       case RouteTransitions.upToDown:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0, -1),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
+          position: Tween<Offset>(begin: const Offset(0, -1), end: Offset.zero).animate(animation),
+          child: child,
+        );
       case RouteTransitions.downToUp:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0, 1),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
+          position: Tween<Offset>(begin: const Offset(0, 1), end: Offset.zero).animate(animation),
+          child: child,
+        );
       case RouteTransitions.scale:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => ScaleTransition(
-              scale: animation,
-              child: child,
-            );
+          scale: animation,
+          child: child,
+        );
       case RouteTransitions.rotate:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => RotationTransition(
-              turns: animation,
-              child: child,
-            );
+          turns: animation,
+          child: child,
+        );
       case RouteTransitions.size:
         return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SizeTransition(
-              sizeFactor: animation,
-              child: child,
-            );
+          sizeFactor: animation,
+          child: child,
+        );
     }
-  }
-
-  static bool _isCurrentRoute(Widget page) {
-    final ModalRoute<dynamic>? currentRoute = ModalRoute.of(navigatorKey.currentContext!);
-    return currentRoute?.settings.name == page.runtimeType.toString();
   }
 }
 
