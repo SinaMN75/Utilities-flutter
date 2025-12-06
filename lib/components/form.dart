@@ -134,14 +134,12 @@ class UTextFieldPersianDatePicker extends StatefulWidget {
     this.textHeight,
     this.controller,
     this.initialDate,
-    this.startDate,
-    this.endDate,
+    this.startYear = 1350,
+    this.endYear = 1410,
     this.validator,
     this.readOnly = false,
     this.date = true,
     this.time = false,
-    this.submitButtonText = "Submit",
-    this.cancelButtonText = "Cancel",
     this.textAlign = TextAlign.start,
   });
 
@@ -157,10 +155,8 @@ class UTextFieldPersianDatePicker extends StatefulWidget {
   final double? textHeight;
   final TextEditingController? controller;
   final Jalali? initialDate;
-  final Jalali? startDate;
-  final Jalali? endDate;
-  final String submitButtonText;
-  final String cancelButtonText;
+  final int startYear;
+  final int endYear;
   final String? Function(String?)? validator;
   final bool date;
   final bool time;
@@ -196,6 +192,8 @@ class _UTextFieldPersianDatePickerState extends State<UTextFieldPersianDatePicke
         if (widget.date) {
           await UNavigator.dialog(
             JalaliDatePickerDialog(
+              startYear: widget.startYear,
+              endYear: widget.endYear,
               initialDate: Jalali.now(),
               onDateSelected: (DateTime d, Jalali j) {
                 jalali = j;

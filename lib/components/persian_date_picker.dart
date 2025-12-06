@@ -6,10 +6,14 @@ class JalaliDatePickerDialog extends StatefulWidget {
   const JalaliDatePickerDialog({
     required this.initialDate,
     required this.onDateSelected,
+    this.endYear = 1350,
+    this.startYear = 1410,
     super.key,
   });
 
   final Jalali initialDate;
+  final int startYear;
+  final int endYear;
   final Function(DateTime, Jalali) onDateSelected;
 
   @override
@@ -45,7 +49,8 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     currentMonth = selectedDate.month;
   }
 
-  Widget _buildHeader() => Column(
+  Widget _buildHeader() =>
+      Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
@@ -72,42 +77,42 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
       );
 
   Widget _buildCalendarNavigation() => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          IconButton(
-            onPressed: () {
-              setState(() {
-                // Go to previous month
-                if (currentMonth == 1) {
-                  currentMonth = 12;
-                  currentYear--;
-                } else {
-                  currentMonth--;
-                }
-              });
-            },
-            icon: const Icon(Icons.arrow_back),
-          ),
-          Text(
-            "${monthNames[currentMonth - 1]} $currentYear",
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                // Go to next month
-                if (currentMonth == 12) {
-                  currentMonth = 1;
-                  currentYear++;
-                } else {
-                  currentMonth++;
-                }
-              });
-            },
-            icon: const Icon(Icons.arrow_forward),
-          ),
-        ],
-      );
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: <Widget>[
+      IconButton(
+        onPressed: () {
+          setState(() {
+            // Go to previous month
+            if (currentMonth == 1) {
+              currentMonth = 12;
+              currentYear--;
+            } else {
+              currentMonth--;
+            }
+          });
+        },
+        icon: const Icon(Icons.arrow_back),
+      ),
+      Text(
+        "${monthNames[currentMonth - 1]} $currentYear",
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      ),
+      IconButton(
+        onPressed: () {
+          setState(() {
+            // Go to next month
+            if (currentMonth == 12) {
+              currentMonth = 1;
+              currentYear++;
+            } else {
+              currentMonth++;
+            }
+          });
+        },
+        icon: const Icon(Icons.arrow_forward),
+      ),
+    ],
+  );
 
   /// Builds the calendar grid of days.
   Widget _buildCalendarGrid() {
@@ -118,7 +123,9 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     dayWidgets.addAll(
       weekDays
           .map(
-            (String day) => Text(day).labelSmall(fontWeight: FontWeight.bold).container(
+            (String day) => Text(day)
+                .labelSmall(fontWeight: FontWeight.bold)
+                .container(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   alignment: Alignment.center,
                 ),
@@ -175,8 +182,8 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
 
   /// Builds a grid view for selecting the year.
   Widget _buildYearSelection() {
-    final int startYear = currentYear - 20;
-    final int endYear = currentYear + 20;
+    final int startYear = widget.startYear;
+    final int endYear = widget.endYear;
     final List<Widget> yearWidgets = <Widget>[];
     for (int year = startYear; year <= endYear; year++) {
       yearWidgets.add(
@@ -186,15 +193,16 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
             selectedDate = Jalali(currentYear, currentMonth, selectedDate.day);
             mode = _PickerMode.selectMonth;
           }),
-          child: Text(
-            "$year",
-            style: TextStyle(color: (year == currentYear) ? Colors.white : Colors.black87),
-          ).container(
-            backgroundColor: (year == currentYear) ? Colors.blueAccent : Colors.grey.shade200,
-            radius: 6,
-            margin: const EdgeInsets.all(2),
-            alignment: Alignment.center,
-          ),
+          child:
+              Text(
+                "$year",
+                style: TextStyle(color: (year == currentYear) ? Colors.white : Colors.black87),
+              ).container(
+                backgroundColor: (year == currentYear) ? Colors.blueAccent : Colors.grey.shade200,
+                radius: 6,
+                margin: const EdgeInsets.all(2),
+                alignment: Alignment.center,
+              ),
         ),
       );
     }
@@ -219,18 +227,19 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
             selectedDate = Jalali(currentYear, currentMonth, selectedDate.day);
             mode = _PickerMode.calendar;
           }),
-          child: Text(
-            monthNames[i],
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: (currentMonth == i + 1) ? Colors.white : Colors.black87,
-            ),
-          ).container(
-            backgroundColor: (currentMonth == i + 1) ? Colors.blueAccent : Colors.grey.shade200,
-            radius: 6,
-            margin: const EdgeInsets.all(2),
-            alignment: Alignment.center,
-          ),
+          child:
+              Text(
+                monthNames[i],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: (currentMonth == i + 1) ? Colors.white : Colors.black87,
+                ),
+              ).container(
+                backgroundColor: (currentMonth == i + 1) ? Colors.blueAccent : Colors.grey.shade200,
+                radius: 6,
+                margin: const EdgeInsets.all(2),
+                alignment: Alignment.center,
+              ),
         ),
       );
     }
@@ -263,33 +272,33 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-        contentPadding: EdgeInsets.zero,
-        content: Column(
+    contentPadding: EdgeInsets.zero,
+    content: Column(
+      children: <Widget>[
+        Stack(
           children: <Widget>[
-            Stack(
-              children: <Widget>[
-                _buildHeader().alignAtCenter(),
-                IconButton(
-                  onPressed: () => setState(() => mode = _PickerMode.selectYear),
-                  icon: const Icon(Icons.calendar_month),
-                ).alignAtCenterLeft().pOnly(top: 12, left: 12),
-              ],
-            ),
-            Expanded(child: _buildContent()),
+            _buildHeader().alignAtCenter(),
+            IconButton(
+              onPressed: () => setState(() => mode = _PickerMode.selectYear),
+              icon: const Icon(Icons.calendar_month),
+            ).alignAtCenterLeft().pOnly(top: 12, left: 12),
           ],
-        ).container(width: 350, height: 500),
-        actions: <Widget>[
-          const TextButton(
-            onPressed: UNavigator.back,
-            child: Text("انصراف"),
-          ),
-          TextButton(
-            onPressed: () {
-              widget.onDateSelected.call(selectedDate.toDateTime(), selectedDate);
-              UNavigator.back(selectedDate);
-            },
-            child: const Text("تایید"),
-          )
-        ],
-      );
+        ),
+        Expanded(child: _buildContent()),
+      ],
+    ).container(width: 350, height: 500),
+    actions: <Widget>[
+      TextButton(
+        onPressed: UNavigator.back,
+        child: Text(U.s.cancel),
+      ),
+      TextButton(
+        onPressed: () {
+          widget.onDateSelected.call(selectedDate.toDateTime(), selectedDate);
+          UNavigator.back(selectedDate);
+        },
+        child: Text(U.s.submit),
+      ),
+    ],
+  );
 }
