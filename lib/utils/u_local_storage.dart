@@ -1,6 +1,6 @@
 import "package:u/utilities.dart";
 
-class ULocalStorage {
+abstract class ULocalStorage {
   static late SharedPreferences _sp;
 
   static Future<void> init() async => _sp = await SharedPreferences.getInstance();

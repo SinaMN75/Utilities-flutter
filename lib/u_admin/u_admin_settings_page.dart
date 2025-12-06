@@ -26,7 +26,7 @@ class UAdminSettingsPage extends StatelessWidget {
             icon: Icons.language_outlined,
             title: "Language",
             trailing: DropdownButton<String>(
-              value: "persian",
+              value: ULocalStorage.getLocale() ?? "en",
               items: const <DropdownMenuItem<String>>[
                 DropdownMenuItem<String>(value: "fa", child: Text("Persian")),
                 DropdownMenuItem<String>(value: "en", child: Text("English")),
@@ -52,7 +52,12 @@ class UAdminSettingsPage extends StatelessWidget {
   }
 
   Widget settingTile({required IconData icon, required String title, Widget? trailing, VoidCallback? onTap}) => Card(
-        elevation: 1,
-        child: ListTile(leading: Icon(icon), title: Text(title), trailing: trailing, onTap: onTap, contentPadding: const EdgeInsets.symmetric(horizontal: 16), minLeadingWidth: 24),
-      );
+    elevation: 1,
+    child: ListTile(leading: Icon(icon),
+        title: Text(title),
+        trailing: trailing,
+        onTap: onTap,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+        minLeadingWidth: 24),
+  );
 }
