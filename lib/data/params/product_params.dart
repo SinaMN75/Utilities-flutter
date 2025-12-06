@@ -259,13 +259,6 @@ class UProductReadParams {
     this.maxdeposit,
     this.minrent,
     this.maxrent,
-    this.showCategories,
-    this.showCategoriesMedia,
-    this.showMedia,
-    this.showUser,
-    this.showUserMedia,
-    this.showUserCategory,
-    this.showChildren,
     this.ids,
     this.pageSize,
     this.pageNumber,
@@ -276,9 +269,7 @@ class UProductReadParams {
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
-    this.showCommentCount,
-    this.showIsFollowing,
-    this.showChildrenCount,
+    this.selectorArgs,
   });
 
   factory UProductReadParams.fromJson(String str) => UProductReadParams.fromMap(json.decode(str));
@@ -291,18 +282,11 @@ class UProductReadParams {
         userId: json["userId"],
         minStock: json["minStock"],
         maxStock: json["maxStock"],
-        mindeposit: json["mindeposit"],
-        maxdeposit: json["maxdeposit"],
-        minrent: json["minrent"],
-        maxrent: json["maxrent"],
-        showCategories: json["showCategories"] ?? false,
-        showCategoriesMedia: json["showCategoriesMedia"] ?? false,
-        showMedia: json["showMedia"] ?? false,
-        showUser: json["showUser"] ?? false,
-        showUserMedia: json["showUserMedia"] ?? false,
-        showUserCategory: json["showUserCategory"] ?? false,
-        showChildren: json["showChildren"] ?? false,
-        ids: json["ids"] == null ? null : List<String>.from(json["ids"].map((dynamic x) => x)),
+    mindeposit: json["minDeposit"],
+    maxdeposit: json["maxDeposit"],
+    minrent: json["minRent"],
+    maxrent: json["maxRent"],
+    ids: json["ids"] == null ? null : List<String>.from(json["ids"].map((dynamic x) => x)),
         pageSize: json["pageSize"] ?? 0,
         pageNumber: json["pageNumber"] ?? 0,
         fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
@@ -311,11 +295,9 @@ class UProductReadParams {
         orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
         orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
         orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
-        showCommentCount: json["showCommentCount"] ?? false,
-        showIsFollowing: json["showIsFollowing"] ?? false,
-        showChildrenCount: json["showChildrenCount"] ?? false,
         tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-      );
+    selectorArgs: json["selectorArgs"] == null ? null : ProductSelectorArgs.fromMap(json["selectorArgs"]),
+  );
   final String? query;
   final String? title;
   final String? code;
@@ -327,13 +309,6 @@ class UProductReadParams {
   final double? maxdeposit;
   final double? minrent;
   final double? maxrent;
-  final bool? showCategories;
-  final bool? showCategoriesMedia;
-  final bool? showMedia;
-  final bool? showUser;
-  final bool? showUserMedia;
-  final bool? showUserCategory;
-  final bool? showChildren;
   final List<String>? ids;
   final int? pageSize;
   final int? pageNumber;
@@ -343,10 +318,8 @@ class UProductReadParams {
   final bool? orderByCreatedAtDesc;
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
-  final bool? showCommentCount;
-  final bool? showIsFollowing;
-  final bool? showChildrenCount;
   final List<int>? tags;
+  final ProductSelectorArgs? selectorArgs;
 
   String toJson() => json.encode(toMap());
 
@@ -358,18 +331,11 @@ class UProductReadParams {
         "userId": userId,
         "minStock": minStock,
         "maxStock": maxStock,
-        "mindeposit": mindeposit,
-        "maxdeposit": maxdeposit,
-        "minrent": minrent,
-        "maxrent": maxrent,
-        "showCategories": showCategories,
-        "showCategoriesMedia": showCategoriesMedia,
-        "showMedia": showMedia,
-        "showUser": showUser,
-        "showUserMedia": showUserMedia,
-        "showUserCategory": showUserCategory,
-        "showChildren": showChildren,
-        "ids": ids == null ? null : List<dynamic>.from(ids!.map((dynamic x) => x)),
+    "minDeposit": mindeposit,
+    "maxDeposit": maxdeposit,
+    "minRent": minrent,
+    "maxRent": maxrent,
+    "ids": ids == null ? null : List<dynamic>.from(ids!.map((dynamic x) => x)),
         "pageSize": pageSize,
         "pageNumber": pageNumber,
         "fromCreatedAt": fromCreatedAt?.toIso8601String(),
@@ -378,9 +344,7 @@ class UProductReadParams {
         "orderByCreatedAtDesc": orderByCreatedAtDesc,
         "orderByUpdatedAt": orderByUpdatedAt,
         "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
-        "showIsFollowing": showIsFollowing,
-        "showChildrenCount": showChildrenCount,
-        "showCommentCount": showCommentCount,
         "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-      };
+    "selectorArgs": selectorArgs?.toMap(),
+  };
 }

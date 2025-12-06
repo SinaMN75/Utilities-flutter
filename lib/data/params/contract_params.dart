@@ -61,9 +61,6 @@ class UContractReadParams {
   final DateTime? startDate;
   final DateTime? endDate;
   final String? userName;
-  final bool? showInvoices;
-  final bool? showUser;
-  final bool? showProduct;
 
   UContractReadParams({
     this.pageSize,
@@ -82,9 +79,6 @@ class UContractReadParams {
     this.startDate,
     this.endDate,
     this.userName,
-    this.showInvoices,
-    this.showUser,
-    this.showProduct,
   });
 
   factory UContractReadParams.fromJson(String str) => UContractReadParams.fromMap(json.decode(str));
@@ -106,9 +100,6 @@ class UContractReadParams {
     creatorId: json["creatorId"],
     productId: json["productId"],
     userName: json["userName"],
-    showInvoices: json["showInvoices"],
-    showUser: json["showUser"],
-    showProduct: json["showProduct"],
     startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
   );
@@ -128,9 +119,6 @@ class UContractReadParams {
     "creatorId": creatorId,
     "productId": productId,
     "userName": userName,
-    "showInvoices": showInvoices,
-    "showUser": showUser,
-    "showProduct": showProduct,
     "startDate": startDate?.toIso8601String(),
     "endDate": endDate?.toIso8601String(),
   };
@@ -145,6 +133,7 @@ class UContractUpdateParams {
   final DateTime? endDate;
   final double? deposit;
   final double? rent;
+  final ContractSelectorArgs? selectorArgs;
 
   UContractUpdateParams({
     required this.id,
@@ -155,6 +144,7 @@ class UContractUpdateParams {
     this.endDate,
     this.deposit,
     this.rent,
+    this.selectorArgs,
   });
 
   factory UContractUpdateParams.fromJson(String str) => UContractUpdateParams.fromMap(json.decode(str));
@@ -170,6 +160,7 @@ class UContractUpdateParams {
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
     deposit: json["deposit"].toString().toDouble(),
     rent: json["rent"].toString().toDouble(),
+    selectorArgs: json["selectorArgs"] == null ? null : ContractSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -181,5 +172,6 @@ class UContractUpdateParams {
     "endDate": endDate?.toIso8601String(),
     "deposit": deposit,
     "rent": rent,
+    "selectorArgs": selectorArgs?.toMap(),
   };
 }

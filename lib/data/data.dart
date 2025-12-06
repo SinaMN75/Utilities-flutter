@@ -12,6 +12,7 @@ part "params/follow_params.dart";
 part "params/invoice_params.dart";
 part "params/media_params.dart";
 part "params/product_params.dart";
+part "params/selectors.dart";
 part "params/user_params.dart";
 part "responses/auth_response.dart";
 part "responses/base_response.dart";

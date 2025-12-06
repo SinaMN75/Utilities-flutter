@@ -32,10 +32,8 @@ class UAdminProductController {
         orderByCreatedAtDesc: orderByCreatedAtDesc,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
-        showChildren: true,
-        showCategories: true,
-        showChildrenCount: true,
         parentId: parentId,
+        selectorArgs: ProductSelectorArgs(children: true, categories: true),
       ),
       onOk: (UResponse<List<UProductResponse>> response) {
         list = response.result!;

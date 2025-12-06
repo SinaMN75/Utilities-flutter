@@ -30,10 +30,9 @@ class UAdminInvoiceController {
         toCreatedAt: toCreatedAt,
         orderByCreatedAt: orderByCreatedAt,
         orderByCreatedAtDesc: orderByCreatedAtDesc,
-        showUser: true,
-        showContract: true,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
+        selectorArgs: InvoiceSelectorArgs(user: true, contract: true),
       ),
       onOk: (UResponse<List<UInvoiceResponse>> response) {
         list = response.result!;

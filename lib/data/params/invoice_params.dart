@@ -69,11 +69,10 @@ class UInvoiceReadParams {
   final bool? orderByCreatedAtDesc;
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
-  final bool? showUser;
-  final bool? showContract;
   final List<int>? tags;
   final List<String>? ids;
   final String? userId;
+  final InvoiceSelectorArgs? selectorArgs;
 
   UInvoiceReadParams({
     this.pageSize,
@@ -84,11 +83,10 @@ class UInvoiceReadParams {
     this.orderByCreatedAtDesc,
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
-    this.showContract,
-    this.showUser,
     this.tags,
     this.ids,
     this.userId,
+    this.selectorArgs,
   });
 
   factory UInvoiceReadParams.fromJson(String str) => UInvoiceReadParams.fromMap(json.decode(str));
@@ -102,13 +100,12 @@ class UInvoiceReadParams {
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
     orderByCreatedAt: json["orderByCreatedAt"],
     orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
-    showContract: json["showContract"],
-    showUser: json["showUser"],
     orderByUpdatedAt: json["orderByUpdatedAt"],
     orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
+    selectorArgs: json["selectorArgs"] == null ? null : InvoiceSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -118,13 +115,12 @@ class UInvoiceReadParams {
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "orderByCreatedAt": orderByCreatedAt,
     "orderByCreatedAtDesc": orderByCreatedAtDesc,
-    "showContract": showContract,
-    "showUser": showUser,
     "orderByUpdatedAt": orderByUpdatedAt,
     "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
+    "selectorArgs": selectorArgs?.toMap(),
   };
 }
 
