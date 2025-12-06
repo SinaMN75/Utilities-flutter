@@ -54,6 +54,7 @@ class UServices {
     follow = FollowService(baseUrl: baseUrl, apiKey: apiKey);
     contract = ContractService(baseUrl: baseUrl, apiKey: apiKey);
     invoice = InvoiceService(baseUrl: baseUrl, apiKey: apiKey);
+    chatBot = ChatBotService(baseUrl: baseUrl, apiKey: apiKey);
   }
 
   String baseUrl;
@@ -70,4 +71,5 @@ class UServices {
   late FollowService follow;
   late ContractService contract;
   late InvoiceService invoice;
+  late ChatBotService chatBot;
 }
