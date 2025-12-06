@@ -8,6 +8,7 @@ part "controllers/u_admin_login_controller.dart";
 part "controllers/u_admin_logs_controller.dart";
 part "controllers/u_admin_products_controller.dart";
 part "controllers/u_admin_splash_controller.dart";
+part "controllers/u_admin_users_controller.dart";
 part "u_admin_settings_page.dart";
 part "u_admin_splash_page.dart";
 part "u_admin_utils.dart";

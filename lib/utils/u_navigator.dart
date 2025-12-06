@@ -75,27 +75,66 @@ abstract class UNavigator {
     Color? barrierColor,
     RouteSettings? settings,
     VoidCallback? onDismiss,
-  }) {
-    final Future<T?> dialogFuture = UApp.isIos
-        ? showCupertinoDialog<T>(
-            context: navigatorKey.currentContext!,
-            barrierDismissible: barrierDismissible,
-            useRootNavigator: useRootNavigator,
-            builder: (BuildContext context) => child,
-          )
-        : showDialog<T>(
-            context: navigatorKey.currentContext!,
-            barrierDismissible: barrierDismissible,
-            useRootNavigator: useRootNavigator,
-            barrierColor: barrierColor ?? Colors.black54,
-            routeSettings: settings,
-            builder: (BuildContext context) => child,
-          );
+  }) => UApp.isIos
+      ? showCupertinoDialog<T>(
+          context: navigatorKey.currentContext!,
+          barrierDismissible: barrierDismissible,
+          useRootNavigator: useRootNavigator,
+          builder: (BuildContext context) => child,
+        )
+      : showDialog<T>(
+          context: navigatorKey.currentContext!,
+          barrierDismissible: barrierDismissible,
+          useRootNavigator: useRootNavigator,
+          barrierColor: barrierColor ?? Colors.black54,
+          routeSettings: settings,
+          builder: (BuildContext context) => child,
+        ).then((T? value) {
+          onDismiss?.call();
+          return value;
+        });
 
-    return dialogFuture.then((T? value) {
-      onDismiss?.call();
-      return value;
-    });
+  static Future<T?> dialogResponsive<T>({
+    required Widget child,
+    Widget? title,
+    bool barrierDismissible = true,
+    bool useRootNavigator = true,
+    Color? barrierColor,
+    RouteSettings? settings,
+    VoidCallback? onDismiss,
+    double initialChildSize = 0.5,
+    double minChildSize = 0.25,
+    double maxChildSize = 0.9,
+    bool expand = false,
+  }) {
+    if (UApp.isMobileSize()) {
+      return showModalBottomSheet<T>(
+        context: navigatorKey.currentContext!,
+        isScrollControlled: true,
+        useRootNavigator: useRootNavigator,
+        builder: (BuildContext context) => DraggableScrollableSheet(
+          expand: expand,
+          initialChildSize: initialChildSize,
+          minChildSize: minChildSize,
+          maxChildSize: maxChildSize,
+          builder: (BuildContext context, ScrollController controller) => UScaffold(
+            appBar: AppBar(title: title),
+            body: SingleChildScrollView(controller: controller, child: child),
+          ),
+        ),
+      ).then((T? value) {
+        onDismiss?.call();
+        return value;
+      });
+    }
+    return dialog(
+      AlertDialog(title: title, content: child),
+      barrierDismissible: barrierDismissible,
+      useRootNavigator: useRootNavigator,
+      barrierColor: barrierColor,
+      settings: settings,
+      onDismiss: onDismiss,
+    );
   }
 
   static void confirm({
