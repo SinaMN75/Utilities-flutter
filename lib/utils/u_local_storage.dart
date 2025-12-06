@@ -101,7 +101,7 @@ abstract class ULocalStorage {
   }
 }
 
-class UFileStorage {
+abstract class UFileStorage {
   static late Directory _directory;
   static late Directory _bigFilesDirectory;
 
