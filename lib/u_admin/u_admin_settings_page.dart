@@ -1,9 +1,7 @@
 part of "u_admin.dart";
 
 class UAdminSettingsPage extends StatelessWidget {
-  const UAdminSettingsPage({required this.onFinish, super.key});
-
-  final VoidCallback onFinish;
+  const UAdminSettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +18,7 @@ class UAdminSettingsPage extends StatelessWidget {
               value: isDarkMode,
               onChanged: (_) {
                 UApp.switchTheme();
-                delay(100, onFinish);
+                delay(100, () {});
               },
             ),
           ).pSymmetric(vertical: 12),
@@ -30,10 +28,13 @@ class UAdminSettingsPage extends StatelessWidget {
             trailing: DropdownButton<String>(
               value: "persian",
               items: const <DropdownMenuItem<String>>[
-                DropdownMenuItem<String>(value: "persian", child: Text("Persian")),
-                DropdownMenuItem<String>(value: "english", child: Text("English")),
+                DropdownMenuItem<String>(value: "fa", child: Text("Persian")),
+                DropdownMenuItem<String>(value: "en", child: Text("English")),
               ],
-              onChanged: (_) {},
+              onChanged: (String? i) {
+                UApp.updateLocale(Locale(i!));
+                delay(100, () {});
+              },
             ),
           ).pSymmetric(vertical: 12),
           settingTile(
@@ -42,7 +43,7 @@ class UAdminSettingsPage extends StatelessWidget {
             onTap: () {},
           ).pSymmetric(vertical: 12),
           UButton(
-            onTap: () => UAdminUtils.signOut(onFinish: onFinish),
+            onTap: () => UAdminUtils.signOut(onFinish: () {}),
             title: "Logout",
           ),
         ],
