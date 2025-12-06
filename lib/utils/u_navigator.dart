@@ -1,17 +1,6 @@
 import "package:u/utilities.dart";
 
 abstract class UNavigator {
-  static ThemeData get theme => Theme.of(navigatorKey.currentContext!);
-
-  static MediaQueryData get mediaQuery => MediaQuery.of(navigatorKey.currentContext!);
-
-  static bool get canPop => Navigator.of(navigatorKey.currentContext!).canPop();
-
-  static bool get isAndroid => theme.platform == TargetPlatform.android;
-
-  static bool get isIOS => theme.platform == TargetPlatform.iOS;
-
-  /// Push with optional custom transition
   static Future<T?> push<T>(
     Widget page, {
     bool fullscreenDialog = false,
@@ -74,7 +63,7 @@ abstract class UNavigator {
   }
 
   static void back<T>([T? result]) {
-    if (canPop) {
+    if (Navigator.of(navigatorKey.currentContext!).canPop()) {
       Navigator.pop<T>(navigatorKey.currentContext!, result);
     }
   }
@@ -87,7 +76,7 @@ abstract class UNavigator {
     RouteSettings? settings,
     VoidCallback? onDismiss,
   }) {
-    final Future<T?> dialogFuture = isIOS
+    final Future<T?> dialogFuture = UApp.isIos
         ? showCupertinoDialog<T>(
             context: navigatorKey.currentContext!,
             barrierDismissible: barrierDismissible,
@@ -124,11 +113,7 @@ abstract class UNavigator {
         TextButton(onPressed: onCancel ?? back, child: Text(U.s.cancel)),
         TextButton(
           onPressed: onConfirm,
-          style: destructive
-              ? TextButton.styleFrom(
-                  foregroundColor: theme.colorScheme.error,
-                )
-              : null,
+          style: destructive ? TextButton.styleFrom(foregroundColor: Theme.of(navigatorKey.currentContext!).colorScheme.error) : null,
           child: Text(U.s.ok),
         ),
       ],
@@ -151,7 +136,7 @@ abstract class UNavigator {
       context: navigatorKey.currentContext!,
       isScrollControlled: isScrollControlled,
       useSafeArea: useSafeArea,
-      backgroundColor: backgroundColor ?? theme.canvasColor,
+      backgroundColor: backgroundColor ?? Theme.of(navigatorKey.currentContext!).canvasColor,
       elevation: elevation,
       shape:
           shape ??
@@ -162,7 +147,7 @@ abstract class UNavigator {
       constraints: constraints,
       builder: (BuildContext context) => Padding(
         padding: EdgeInsets.only(
-          bottom: mediaQuery.viewInsets.bottom,
+          bottom: MediaQuery.of(navigatorKey.currentContext!).viewInsets.bottom,
         ),
         child: child,
       ),
@@ -174,7 +159,6 @@ abstract class UNavigator {
     });
   }
 
-  /// Draggable scrollable sheet
   static Future<T?> draggableSheet<T>(
     Widget child, {
     double initialChildSize = 0.5,
