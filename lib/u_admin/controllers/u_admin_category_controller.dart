@@ -15,7 +15,7 @@ class UAdminCategoryController {
     U.services.category.read(
       p: UCategoryReadParams(
         tags: <int>[tag.number],
-        selectorArgs: CategorySelectorArgs(children: true),
+        selectorArgs: const CategorySelectorArgs(children: true),
       ),
       onOk: (UResponse<List<UCategoryResponse>> response) {
         list.clear();

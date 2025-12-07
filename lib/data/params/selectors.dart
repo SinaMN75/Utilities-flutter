@@ -1,49 +1,42 @@
 part of "../data.dart";
 
 class CategorySelectorArgs {
-  CategorySelectorArgs? childrenSelectorArgs;
-  bool media;
-  bool children;
-  bool childrenMedia;
+  final bool? media;
+  final bool? children;
+  final bool? childrenMedia;
 
-  CategorySelectorArgs({
-    this.childrenSelectorArgs,
-    this.media = false,
-    this.children = false,
-    this.childrenMedia = false,
+  const CategorySelectorArgs({
+    this.media,
+    this.children,
+    this.childrenMedia,
   });
 
   factory CategorySelectorArgs.fromJson(String str) => CategorySelectorArgs.fromMap(json.decode(str));
 
   factory CategorySelectorArgs.fromMap(Map<String, dynamic> json) => CategorySelectorArgs(
-    childrenSelectorArgs: json["childrenSelectorArgs"] == null ? null : CategorySelectorArgs.fromMap(json["childrenSelectorArgs"]),
-    media: json["media"] ?? false,
-    children: json["children"] ?? false,
-    childrenMedia: json["childrenMedia"] ?? false,
+    media: json["media"],
+    children: json["children"],
+    childrenMedia: json["childrenMedia"],
   );
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "childrenSelectorArgs": childrenSelectorArgs?.toMap(),
     "media": media,
     "children": children,
     "childrenMedia": childrenMedia,
   };
 }
 
-// ------------------------------------------------------
-// ContentSelectorArgs
-// ------------------------------------------------------
 class ContentSelectorArgs {
-  bool media;
+  final bool? media;
 
-  ContentSelectorArgs({this.media = false});
+  ContentSelectorArgs({this.media});
 
   factory ContentSelectorArgs.fromJson(String str) => ContentSelectorArgs.fromMap(json.decode(str));
 
   factory ContentSelectorArgs.fromMap(Map<String, dynamic> json) => ContentSelectorArgs(
-    media: json["media"] ?? false,
+    media: json["media"],
   );
 
   String toJson() => json.encode(toMap());
@@ -53,68 +46,60 @@ class ContentSelectorArgs {
   };
 }
 
-// ------------------------------------------------------
-// UserSelectorArgs
-// ------------------------------------------------------
 class UserSelectorArgs {
-  CategorySelectorArgs categorySelectorArgs;
-  bool categories;
-  bool media;
+  final CategorySelectorArgs? categorySelectorArgs;
+  final bool? categories;
+  final bool? media;
 
-  UserSelectorArgs({
-    CategorySelectorArgs? categorySelectorArgs,
-    this.categories = false,
-    this.media = false,
-  }) : categorySelectorArgs = categorySelectorArgs ?? CategorySelectorArgs();
+  const UserSelectorArgs({
+    this.categorySelectorArgs,
+    this.categories,
+    this.media,
+  });
 
   factory UserSelectorArgs.fromJson(String str) => UserSelectorArgs.fromMap(json.decode(str));
 
   factory UserSelectorArgs.fromMap(Map<String, dynamic> json) => UserSelectorArgs(
     categorySelectorArgs: CategorySelectorArgs.fromMap(json["categorySelectorArgs"]),
-    categories: json["categories"] ?? false,
-    media: json["media"] ?? false,
+    categories: json["categories"],
+    media: json["media"],
   );
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "categorySelectorArgs": categorySelectorArgs.toMap(),
+    "categorySelectorArgs": categorySelectorArgs?.toMap(),
     "categories": categories,
     "media": media,
   };
 }
 
-// ------------------------------------------------------
-// ProductSelectorArgs
-// ------------------------------------------------------
 class ProductSelectorArgs {
-  String? userId;
-  ProductSelectorArgs? childrenSelectorArgs;
-  CategorySelectorArgs categorySelectorArgs;
-  UserSelectorArgs userSelectorArgs;
-
-  bool categories;
-  bool media;
-  bool user;
-  bool children;
-  bool childrenCount;
-  bool commentsCount;
-  bool isFollowing;
+  final String? userId;
+  final ProductSelectorArgs? childrenSelectorArgs;
+  final CategorySelectorArgs? categorySelectorArgs;
+  final UserSelectorArgs? userSelectorArgs;
+  final bool? categories;
+  final bool? media;
+  final bool? user;
+  final bool? children;
+  final bool? childrenCount;
+  final bool? commentsCount;
+  final bool? isFollowing;
 
   ProductSelectorArgs({
     this.userId,
     this.childrenSelectorArgs,
-    CategorySelectorArgs? categorySelectorArgs,
-    UserSelectorArgs? userSelectorArgs,
-    this.categories = false,
-    this.media = false,
-    this.user = false,
-    this.children = false,
-    this.childrenCount = false,
-    this.commentsCount = false,
-    this.isFollowing = false,
-  }) : categorySelectorArgs = categorySelectorArgs ?? CategorySelectorArgs(),
-       userSelectorArgs = userSelectorArgs ?? UserSelectorArgs();
+    this.categorySelectorArgs,
+    this.userSelectorArgs,
+    this.categories,
+    this.media,
+    this.user,
+    this.children,
+    this.childrenCount,
+    this.commentsCount,
+    this.isFollowing,
+  });
 
   factory ProductSelectorArgs.fromJson(String str) => ProductSelectorArgs.fromMap(json.decode(str));
 
@@ -123,13 +108,13 @@ class ProductSelectorArgs {
     childrenSelectorArgs: json["childrenSelectorArgs"] == null ? null : ProductSelectorArgs.fromMap(json["childrenSelectorArgs"]),
     categorySelectorArgs: CategorySelectorArgs.fromMap(json["categorySelectorArgs"]),
     userSelectorArgs: UserSelectorArgs.fromMap(json["userSelectorArgs"]),
-    categories: json["categories"] ?? false,
-    media: json["media"] ?? false,
-    user: json["user"] ?? false,
-    children: json["children"] ?? false,
-    childrenCount: json["childrenCount"] ?? false,
-    commentsCount: json["commentsCount"] ?? false,
-    isFollowing: json["isFollowing"] ?? false,
+    categories: json["categories"],
+    media: json["media"],
+    user: json["user"],
+    children: json["children"],
+    childrenCount: json["childrenCount"],
+    commentsCount: json["commentsCount"],
+    isFollowing: json["isFollowing"],
   );
 
   String toJson() => json.encode(toMap());
@@ -137,8 +122,8 @@ class ProductSelectorArgs {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "userId": userId,
     "childrenSelectorArgs": childrenSelectorArgs?.toMap(),
-    "categorySelectorArgs": categorySelectorArgs.toMap(),
-    "userSelectorArgs": userSelectorArgs.toMap(),
+    "categorySelectorArgs": categorySelectorArgs?.toMap(),
+    "userSelectorArgs": userSelectorArgs?.toMap(),
     "categories": categories,
     "media": media,
     "user": user,
@@ -149,29 +134,26 @@ class ProductSelectorArgs {
   };
 }
 
-// ------------------------------------------------------
-// ContractSelectorArgs
-// ------------------------------------------------------
 class ContractSelectorArgs {
-  bool invoices;
-  bool product;
-  bool user;
-  bool creator;
+  final bool? invoices;
+  final bool? product;
+  final bool? user;
+  final bool? creator;
 
   ContractSelectorArgs({
-    this.invoices = false,
-    this.product = false,
-    this.user = false,
-    this.creator = false,
+    this.invoices,
+    this.product,
+    this.user,
+    this.creator,
   });
 
   factory ContractSelectorArgs.fromJson(String str) => ContractSelectorArgs.fromMap(json.decode(str));
 
   factory ContractSelectorArgs.fromMap(Map<String, dynamic> json) => ContractSelectorArgs(
-    invoices: json["invoices"] ?? false,
-    product: json["product"] ?? false,
-    user: json["user"] ?? false,
-    creator: json["creator"] ?? false,
+    invoices: json["invoices"],
+    product: json["product"],
+    user: json["user"],
+    creator: json["creator"],
   );
 
   String toJson() => json.encode(toMap());
@@ -184,71 +166,64 @@ class ContractSelectorArgs {
   };
 }
 
-// ------------------------------------------------------
-// InvoiceSelectorArgs
-// ------------------------------------------------------
 class InvoiceSelectorArgs {
-  UserSelectorArgs userSelectorArgs;
-  bool user;
-  bool creator;
-  bool contract;
+  final UserSelectorArgs? userSelectorArgs;
+  final bool? user;
+  final bool? creator;
+  final bool? contract;
 
   InvoiceSelectorArgs({
-    UserSelectorArgs? userSelectorArgs,
-    this.user = false,
-    this.creator = false,
-    this.contract = false,
-  }) : userSelectorArgs = userSelectorArgs ?? UserSelectorArgs();
+    this.userSelectorArgs,
+    this.user,
+    this.creator,
+    this.contract,
+  });
 
   factory InvoiceSelectorArgs.fromJson(String str) => InvoiceSelectorArgs.fromMap(json.decode(str));
 
   factory InvoiceSelectorArgs.fromMap(Map<String, dynamic> json) => InvoiceSelectorArgs(
     userSelectorArgs: UserSelectorArgs.fromMap(json["userSelectorArgs"]),
-    user: json["user"] ?? false,
-    creator: json["creator"] ?? false,
-    contract: json["contract"] ?? false,
+    user: json["user"],
+    creator: json["creator"],
+    contract: json["contract"],
   );
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "userSelectorArgs": userSelectorArgs.toMap(),
+    "userSelectorArgs": userSelectorArgs?.toMap(),
     "user": user,
     "creator": creator,
     "contract": contract,
   };
 }
 
-// ------------------------------------------------------
-// CommentSelectorArgs
-// ------------------------------------------------------
 class CommentSelectorArgs {
-  CommentSelectorArgs? childrenSelectorArgs;
-
-  bool media;
-  bool user;
-  bool targetUser;
-  bool product;
-  bool children;
+  final CommentSelectorArgs? childrenSelectorArgs;
+  final bool? media;
+  final bool? user;
+  final bool? targetUser;
+  final bool? product;
+  final bool? children;
 
   CommentSelectorArgs({
     this.childrenSelectorArgs,
-    this.media = false,
-    this.user = false,
-    this.targetUser = false,
-    this.product = false,
-    this.children = false,
+    this.media,
+    this.user,
+    this.targetUser,
+    this.product,
+    this.children,
   });
 
   factory CommentSelectorArgs.fromJson(String str) => CommentSelectorArgs.fromMap(json.decode(str));
 
   factory CommentSelectorArgs.fromMap(Map<String, dynamic> json) => CommentSelectorArgs(
     childrenSelectorArgs: json["childrenSelectorArgs"] == null ? null : CommentSelectorArgs.fromMap(json["childrenSelectorArgs"]),
-    media: json["media"] ?? false,
-    user: json["user"] ?? false,
-    targetUser: json["targetUser"] ?? false,
-    product: json["product"] ?? false,
-    children: json["children"] ?? false,
+    media: json["media"],
+    user: json["user"],
+    targetUser: json["targetUser"],
+    product: json["product"],
+    children: json["children"],
   );
 
   String toJson() => json.encode(toMap());
