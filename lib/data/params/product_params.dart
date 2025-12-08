@@ -248,6 +248,7 @@ class UProductUpdateParams {
 
 class UProductReadParams {
   UProductReadParams({
+    this.hasActiveContract,
     this.query,
     this.title,
     this.code,
@@ -275,6 +276,7 @@ class UProductReadParams {
   factory UProductReadParams.fromJson(String str) => UProductReadParams.fromMap(json.decode(str));
 
   factory UProductReadParams.fromMap(Map<String, dynamic> json) => UProductReadParams(
+    hasActiveContract: json["hasActiveContract"],
     query: json["query"],
     title: json["title"],
     code: json["code"],
@@ -298,6 +300,7 @@ class UProductReadParams {
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : ProductSelectorArgs.fromMap(json["selectorArgs"]),
   );
+  final bool? hasActiveContract;
   final String? query;
   final String? title;
   final String? code;
@@ -324,6 +327,7 @@ class UProductReadParams {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
+    "hasActiveContract": hasActiveContract,
     "query": query,
     "title": title,
     "code": code,
