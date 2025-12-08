@@ -129,7 +129,18 @@ enum TagProduct with NumericIdentifiable {
   inQueue("در حال بررسی", "In Queue", 303),
   deleted("حذف شده", "Deleted", 304),
   notAccepted("تایید نشده", "Not Accepted", 305),
-  awaitingPayment("در انتظار پرداخت", "Awaiting Payment", 306);
+  awaitingPayment("در انتظار پرداخت", "Awaiting Payment", 306),
+  room1("اتاق ۱ تخته", "1 Bed Room", 401),
+  room2("اتاق ۲ تخته", "2 Bed Room", 402),
+  room3("اتاق ۳ تخته", "3 Bed Room", 403),
+  room4("اتاق ۴ تخته", "4 Bed Room", 404),
+  room5("اتاق ۵ تخته", "5 Bed Room", 405),
+  room6("اتاق ۶ تخته", "6 Bed Room", 406),
+  room7("اتاق ۷ تخته", "7 Bed Room", 407),
+  room8("اتاق ۸ تخته", "8 Bed Room", 408),
+  room9("اتاق ۹ تخته", "9 Bed Room", 409),
+  room10("اتاق ۱۰ تخته", "10 Bed Room", 410)
+  ;
 
   const TagProduct(this.titleFa, this.titleEn, this.number);
 
