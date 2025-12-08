@@ -71,12 +71,12 @@ abstract class UApp {
   static void isDarkTheme() => Get.isDarkMode;
 
   static void switchTheme() {
-    if (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) {
+    if (ULocalStorage.isDarkMode()) {
       Get.changeThemeMode(ThemeMode.light);
-      ULocalStorage.set(UConstants.isDarkMode, false);
+      ULocalStorage.setDarkMode(false);
     } else {
       Get.changeThemeMode(ThemeMode.dark);
-      ULocalStorage.set(UConstants.isDarkMode, true);
+      ULocalStorage.setDarkMode(true);
     }
   }
 }
