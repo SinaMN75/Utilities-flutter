@@ -33,7 +33,7 @@ class UAdminProductController {
         pageNumber: pageNumber.value,
         pageSize: pageSize,
         parentId: parentId,
-        selectorArgs: ProductSelectorArgs(children: true, categories: true),
+        selectorArgs: const ProductSelectorArgs(category: CategorySelectorArgs()),
       ),
       onOk: (UResponse<List<UProductResponse>> response) {
         list = response.result!;
