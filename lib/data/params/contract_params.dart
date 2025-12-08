@@ -61,6 +61,7 @@ class UContractReadParams {
   final DateTime? startDate;
   final DateTime? endDate;
   final String? userName;
+  final ContractSelectorArgs? selectorArgs;
 
   UContractReadParams({
     this.pageSize,
@@ -79,6 +80,7 @@ class UContractReadParams {
     this.startDate,
     this.endDate,
     this.userName,
+    this.selectorArgs,
   });
 
   factory UContractReadParams.fromJson(String str) => UContractReadParams.fromMap(json.decode(str));
@@ -102,6 +104,7 @@ class UContractReadParams {
     userName: json["userName"],
     startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+    selectorArgs: json["selectorArgs"] == null ? null : ContractSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -121,6 +124,7 @@ class UContractReadParams {
     "userName": userName,
     "startDate": startDate?.toIso8601String(),
     "endDate": endDate?.toIso8601String(),
+    "selectorArgs": selectorArgs?.toMap(),
   };
 }
 
@@ -133,7 +137,6 @@ class UContractUpdateParams {
   final DateTime? endDate;
   final double? deposit;
   final double? rent;
-  final ContractSelectorArgs? selectorArgs;
 
   UContractUpdateParams({
     required this.id,
@@ -144,7 +147,6 @@ class UContractUpdateParams {
     this.endDate,
     this.deposit,
     this.rent,
-    this.selectorArgs,
   });
 
   factory UContractUpdateParams.fromJson(String str) => UContractUpdateParams.fromMap(json.decode(str));
@@ -160,7 +162,6 @@ class UContractUpdateParams {
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
     deposit: json["deposit"].toString().toDouble(),
     rent: json["rent"].toString().toDouble(),
-    selectorArgs: json["selectorArgs"] == null ? null : ContractSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -172,6 +173,5 @@ class UContractUpdateParams {
     "endDate": endDate?.toIso8601String(),
     "deposit": deposit,
     "rent": rent,
-    "selectorArgs": selectorArgs?.toMap(),
   };
 }
