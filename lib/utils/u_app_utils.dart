@@ -57,6 +57,7 @@ abstract class UApp {
   static bool isTabletSize() => MediaQuery.of(navigatorKey.currentContext!).size.width < 1100 && MediaQuery.of(navigatorKey.currentContext!).size.width >= 850;
 
   static bool isDesktopSize() => MediaQuery.of(navigatorKey.currentContext!).size.width >= 1100;
+
   static bool isPwa = html.window.matchMedia("(display-mode: standalone)").matches;
 
   static void reloadWeb() => html.window.location.reload();
@@ -70,12 +71,14 @@ abstract class UApp {
 
   static void isDarkTheme() => Get.isDarkMode;
 
-  static void switchTheme() {
+  static void switchTheme({required final UThemeData uThemeData}) {
     if (ULocalStorage.isDarkMode()) {
       Get.changeThemeMode(ThemeMode.light);
+      Get.changeTheme(UThemes().uLightTheme(uThemeData));
       ULocalStorage.setDarkMode(false);
     } else {
       Get.changeThemeMode(ThemeMode.dark);
+      Get.changeTheme(UThemes().uLightTheme(uThemeData));
       ULocalStorage.setDarkMode(true);
     }
   }

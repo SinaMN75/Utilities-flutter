@@ -17,7 +17,7 @@ class UAdminSettingsPage extends StatelessWidget {
             trailing: Switch(
               value: isDarkMode,
               onChanged: (_) {
-                UApp.switchTheme();
+                // UApp.switchTheme(uThemeData: );
                 delay(100, () {});
               },
             ),
