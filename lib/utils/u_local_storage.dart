@@ -72,6 +72,10 @@ abstract class ULocalStorage {
 
   static bool hasToken() => getIfNotExpired(UConstants.token) != null;
 
+  static bool isDarkMode() => getIfNotExpired(UConstants.isDarkMode) != null;
+
+  static void setDarkMode(bool isDarkMode) => set(UConstants.isDarkMode, isDarkMode);
+
   static String? getUserId() => getIfNotExpired(UConstants.userId);
 
   static bool containsKey(String key) => _sp.containsKey(key);
