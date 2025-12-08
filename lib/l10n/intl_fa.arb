@@ -127,5 +127,8 @@
   "guest": "مهمان",
   "fatherName": "نام پدر",
   "lastName": "نام خانوادگی",
-  "firstName": "نام"
+  "firstName": "نام",
+  "deleteUser": "حذف کاربر",
+  "areYouSureToDeleteThisUser": "آیا از حذف این کاربر اطمینان دارید؟",
+  "userCreatedSuccessfully": "کاربر با موفقعیت ساخته شد"
 }

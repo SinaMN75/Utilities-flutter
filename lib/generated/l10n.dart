@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -961,6 +960,31 @@ class S {
   /// `First Name`
   String get firstName {
     return Intl.message('First Name', name: 'firstName', desc: '', args: []);
+  }
+
+  /// `Delete User`
+  String get deleteUser {
+    return Intl.message('Delete User', name: 'deleteUser', desc: '', args: []);
+  }
+
+  /// `Are you sure to Delete this User?`
+  String get areYouSureToDeleteThisUser {
+    return Intl.message(
+      'Are you sure to Delete this User?',
+      name: 'areYouSureToDeleteThisUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User created successfully`
+  String get userCreatedSuccessfully {
+    return Intl.message(
+      'User created successfully',
+      name: 'userCreatedSuccessfully',
+      desc: '',
+      args: [],
+    );
   }
 }
 

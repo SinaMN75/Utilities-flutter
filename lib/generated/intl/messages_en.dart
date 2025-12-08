@@ -29,6 +29,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "addRooms": MessageLookupByLibrary.simpleMessage("Add Rooms"),
     "admin": MessageLookupByLibrary.simpleMessage("Admin"),
     "amount": MessageLookupByLibrary.simpleMessage("Amount"),
+    "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
+      "Are you sure to Delete this User?",
+    ),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "Are You Sure You Want To Delete",
     ),
@@ -59,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
     "debt": MessageLookupByLibrary.simpleMessage("Debt"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "deleteUser": MessageLookupByLibrary.simpleMessage("Delete User"),
     "deleted": MessageLookupByLibrary.simpleMessage("Deleted"),
     "deposit": MessageLookupByLibrary.simpleMessage("Deposit"),
     "descending": MessageLookupByLibrary.simpleMessage("Descending"),
@@ -198,6 +202,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "uploadFailed": MessageLookupByLibrary.simpleMessage("Upload Failed"),
     "userCategories": MessageLookupByLibrary.simpleMessage("User Categories"),
+    "userCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "User created successfully",
+    ),
     "username": MessageLookupByLibrary.simpleMessage("Username"),
     "users": MessageLookupByLibrary.simpleMessage("Users"),
     "usersManagement": MessageLookupByLibrary.simpleMessage("Users Management"),

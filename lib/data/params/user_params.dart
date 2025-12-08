@@ -129,6 +129,8 @@ class UUserCreateParams {
 class UUserReadParams {
   UUserReadParams({
     this.userName,
+    this.firstName,
+    this.lastName,
     this.phoneNumber,
     this.email,
     this.bio,
@@ -153,6 +155,8 @@ class UUserReadParams {
 
   factory UUserReadParams.fromMap(Map<String, dynamic> json) => UUserReadParams(
     userName: json["userName"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
     phoneNumber: json["phoneNumber"],
     email: json["email"],
     bio: json["bio"],
@@ -173,6 +177,8 @@ class UUserReadParams {
     selectorArgs: json["selectorArgs"] == null ? null : UserSelectorArgs.fromMap(json["selectorArgs"]),
   );
   final String? userName;
+  final String? firstName;
+  final String? lastName;
   final String? phoneNumber;
   final String? email;
   final String? bio;
@@ -196,6 +202,8 @@ class UUserReadParams {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "userName": userName,
+    "firstName": firstName,
+    "lastName": lastName,
     "phoneNumber": phoneNumber,
     "email": email,
     "bio": bio,

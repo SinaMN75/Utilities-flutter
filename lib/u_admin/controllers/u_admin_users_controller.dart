@@ -14,6 +14,8 @@ class UAdminUsersController {
   bool orderByCreatedAt = false;
   bool orderByCreatedAtDesc = false;
 
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController fromCreatedAtController = TextEditingController();
@@ -28,8 +30,10 @@ class UAdminUsersController {
 
     await U.services.user.read(
       p: UUserReadParams(
-        userName: userNameController.text.isEmpty ? null : userNameController.text,
-        phoneNumber: phoneNumberController.text.isEmpty ? null : phoneNumberController.text,
+        firstName: firstNameController.valueOrNull(),
+        lastName: lastNameController.valueOrNull(),
+        userName: userNameController.valueOrNull(),
+        phoneNumber: phoneNumberController.valueOrNull(),
         tags: selectedTag != null ? <int>[selectedTag!.number] : null,
         fromCreatedAt: fromCreatedAt,
         toCreatedAt: toCreatedAt,
@@ -45,7 +49,7 @@ class UAdminUsersController {
       },
       onError: (UResponse<dynamic> error) {
         state.error();
-        Get.snackbar("خطا", error.message);
+        UToast.error(message: error.message);
       },
       onException: (String e) {},
     );
@@ -58,6 +62,8 @@ class UAdminUsersController {
   void clearFilters() {
     userNameController.clear();
     phoneNumberController.clear();
+    firstNameController.clear();
+    lastNameController.clear();
     selectedTag = null;
     fromCreatedAt = null;
     toCreatedAt = null;
@@ -65,8 +71,8 @@ class UAdminUsersController {
   }
 
   void delete(UUserResponse user) => UNavigator.confirm(
-    title: "حذف کاربر",
-    message: "آیا از حذف این کاربر اطمینان دارید؟",
+    title: U.s.deleteUser,
+    message: U.s.areYouSureToDeleteThisUser,
     onConfirm: () {
       ULoading.show();
       U.services.user.delete(
@@ -98,7 +104,7 @@ class UAdminUsersController {
           list.insert(0, r.result!);
           ULoading.dismiss();
           Get.back();
-          UToast.snackBar(message: "User created successfully");
+          UToast.snackBar(message: U.s.userCreatedSuccessfully);
         },
         onError: (final UResponse<dynamic> r) {
           ULoading.dismiss();

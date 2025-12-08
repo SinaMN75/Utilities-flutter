@@ -5,6 +5,8 @@ extension TextEditingControllerExtension on TextEditingController {
   String numberString() => text.replaceAll(RegExp("[^0-9]"), "");
 
   int number() => text.replaceAll(RegExp("[^0-9]"), "").toInt();
+
+  String? valueOrNull() => text.isEmpty ? null : text;
 }
 
 extension OptionalStringExtension on String? {
@@ -82,9 +84,9 @@ extension StringExtensions on String {
   String separateNumbers3By3() => replaceAllMapped(RegExp(r"(\d{1,3})(?=(\d{3})+(?!\d))"), (final Match m) => "${m[1]},");
 
   String separateCharacters(final int number, final String separator) => replaceAllMapped(
-        RegExp("(\\d{1,$number})(?=(\\d{$number})+(?!\\d))"),
-        (final Match m) => "${m[1]}$separator",
-      );
+    RegExp("(\\d{1,$number})(?=(\\d{$number})+(?!\\d))"),
+    (final Match m) => "${m[1]}$separator",
+  );
 
   String toJalaliCompactDateString() => Jalali.fromDateTime(DateTime.parse(this)).formatCompactDate();
 
@@ -124,41 +126,41 @@ extension StringExtensions on String {
       } else if ((difference.inDays / 7).floor() >= 1)
         return persian
             ? numericDates
-                ? "۱ هفته پیش"
-                : "هفته پیش"
+                  ? "۱ هفته پیش"
+                  : "هفته پیش"
             : numericDates
-                ? "1 week ago"
-                : "Last week";
+            ? "1 week ago"
+            : "Last week";
       else if (difference.inDays >= 2)
         return persian ? "${difference.inDays.toString().toPersianNumber()} روز پیش" : "${difference.inDays} days ago";
       else if (difference.inDays >= 1)
         return persian
             ? numericDates
-                ? "۱ روز پیش"
-                : "دیروز"
+                  ? "۱ روز پیش"
+                  : "دیروز"
             : numericDates
-                ? "1 day ago"
-                : "Yesterday";
+            ? "1 day ago"
+            : "Yesterday";
       else if (difference.inHours >= 2)
         return persian ? "${difference.inHours.toString().toPersianNumber()} ساعت پیش" : "${difference.inHours} hours ago";
       else if (difference.inHours >= 1)
         return persian
             ? numericDates
-                ? "۱ ساعت پیش"
-                : "یک ساعت پیش"
+                  ? "۱ ساعت پیش"
+                  : "یک ساعت پیش"
             : numericDates
-                ? "1 hour ago"
-                : "An hour ago";
+            ? "1 hour ago"
+            : "An hour ago";
       else if (difference.inMinutes >= 2)
         return persian ? "${difference.inMinutes.toString().toPersianNumber()} دقیقه پیش" : "${difference.inMinutes} minutes ago";
       else if (difference.inMinutes >= 1)
         return persian
             ? numericDates
-                ? "۱ دقیقه پیش"
-                : "یک دقیقه پیش"
+                  ? "۱ دقیقه پیش"
+                  : "یک دقیقه پیش"
             : numericDates
-                ? "1 minute ago"
-                : "A minute ago";
+            ? "1 minute ago"
+            : "A minute ago";
       else if (difference.inSeconds >= 3)
         return persian ? "${difference.inSeconds.toString().toPersianNumber()} ثانیه پیش" : "${difference.inSeconds} seconds ago";
       else
@@ -324,22 +326,22 @@ extension StringExtensions on String {
   String englishNumber() => replaceAll(RegExp(r"[^\d]"), "");
 
   bool get isValidEmail => RegExp(
-        r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
-      ).hasMatch(this);
+    r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+  ).hasMatch(this);
 
   bool get isValidUrl => GetUtils.isURL(this);
 
   bool get isValidPhone => RegExp(
-        r"^\+?[\d\s-]{8,15}$",
-      ).hasMatch(this);
+    r"^\+?[\d\s-]{8,15}$",
+  ).hasMatch(this);
 
   bool get isAlphanumeric => RegExp(
-        r"^[a-zA-Z0-9]+$",
-      ).hasMatch(this);
+    r"^[a-zA-Z0-9]+$",
+  ).hasMatch(this);
 
   bool get isStrongPassword => RegExp(
-        r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
-      ).hasMatch(this);
+    r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+  ).hasMatch(this);
 }
 
 extension Base64BytesExtensions on Uint8List {

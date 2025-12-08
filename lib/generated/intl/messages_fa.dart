@@ -31,6 +31,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "addRooms": MessageLookupByLibrary.simpleMessage("افزودن اتاق"),
     "admin": MessageLookupByLibrary.simpleMessage("ادکین"),
     "amount": MessageLookupByLibrary.simpleMessage("مبلغ"),
+    "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
+      "آیا از حذف این کاربر اطمینان دارید؟",
+    ),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "از حذف اطمینان دارید؟",
     ),
@@ -61,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dashboard": MessageLookupByLibrary.simpleMessage("داشبورد"),
     "debt": MessageLookupByLibrary.simpleMessage("بدهکار"),
     "delete": MessageLookupByLibrary.simpleMessage("حذف"),
+    "deleteUser": MessageLookupByLibrary.simpleMessage("حذف کاربر"),
     "deleted": MessageLookupByLibrary.simpleMessage("حذف شد"),
     "deposit": MessageLookupByLibrary.simpleMessage("رهن"),
     "descending": MessageLookupByLibrary.simpleMessage("نزولی"),
@@ -205,6 +209,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "uploadFailed": MessageLookupByLibrary.simpleMessage("آپلود انجام نشد"),
     "userCategories": MessageLookupByLibrary.simpleMessage(
       "دسته‌بندی‌های کاربر",
+    ),
+    "userCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "کاربر با موفقعیت ساخته شد",
     ),
     "username": MessageLookupByLibrary.simpleMessage("نام کاربری"),
     "users": MessageLookupByLibrary.simpleMessage("کاربران"),
