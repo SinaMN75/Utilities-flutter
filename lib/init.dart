@@ -58,13 +58,14 @@ class UMaterialApp extends StatelessWidget {
     home: home,
     locale: Locale(ULocalStorage.getString(UConstants.locale) ?? locale.languageCode),
     themeMode: (ULocalStorage.getBool(UConstants.isDarkMode) ?? false) ? ThemeMode.dark : ThemeMode.light,
-    theme: UThemes().uLightTheme(lightThemeData),
-    darkTheme: UThemes().uDarkTheme(lightThemeData),
+    theme: UThemes.uLightTheme(lightThemeData),
+    darkTheme: UThemes.uDarkTheme(darkThemeData),
   );
 }
 
-class UThemes {
-  ThemeData uLightTheme(UThemeData data) => ThemeData(
+abstract class UThemes {
+  static ThemeData uLightTheme(UThemeData data) =>
+      ThemeData(
     disabledColor: data.disabledColor,
     fontFamily: data.fontFamily,
     highlightColor: Colors.green,
@@ -155,7 +156,8 @@ class UThemes {
     ),
   );
 
-  ThemeData uDarkTheme(UThemeData data) => ThemeData(
+  static ThemeData uDarkTheme(UThemeData data) =>
+      ThemeData(
     disabledColor: data.disabledColor,
     fontFamily: data.fontFamily,
     highlightColor: Colors.green,
