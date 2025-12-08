@@ -22,6 +22,7 @@ abstract class UHttpClient {
     final String noNetworkMessage = "Connection to Network was Not possible",
     final String unexpectedErrorMessage = "Unexpected Error, Please try again",
     final bool offline = false,
+    final int retryAmount = 3,
   }) async {
     final bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
 
@@ -84,8 +85,26 @@ abstract class UHttpClient {
         return response;
       }
     } catch (e, stack) {
-      onException(unexpectedErrorMessage);
       developer.log(e.toString(), stackTrace: stack);
+      if (retryAmount > 0) {
+        return send(
+          method: method,
+          endpoint: endpoint,
+          onSuccess: onSuccess,
+          onError: onError,
+          onException: onException,
+          headers: headers,
+          offline: offline,
+          body: body,
+          bodyType: bodyType,
+          noNetworkMessage: noNetworkMessage,
+          queryParams: queryParams,
+          retryAmount: retryAmount - 1,
+          unexpectedErrorMessage: unexpectedErrorMessage,
+        );
+      } else {
+        onException(unexpectedErrorMessage);
+      }
       return null;
     }
   }
@@ -180,11 +199,9 @@ extension HTTP on Response? {
 
   bool isServerError() => (this?.statusCode ?? 999) >= 500 && (this?.statusCode ?? 999) <= 599 || false;
 
-  void prettyLog({final String params = ""}) {
-    developer.log(
-      "${this?.request?.method} - ${this?.request?.url} - ${this?.statusCode} \nPARAMS: $params \nRESPONSE: ${this?.body}",
-    );
-  }
+  void prettyLog({final String params = ""}) => developer.log(
+    "${this?.request?.method} - ${this?.request?.url} - ${this?.statusCode} \nPARAMS: $params \nRESPONSE: ${this?.body}",
+  );
 }
 
 class UDownload {

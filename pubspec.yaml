@@ -93,6 +93,9 @@ flutter_intl:
 #Web only:
 #  flutter build web --release && cd build/web && zip -r web.zip . && cd - && cp build/web/web.zip ~/Desktop/
 
+#Web and ftp:
+#  flutter build web --release && cd build/web && lftp -u sinapp_sinamn75_com,sinapp_sinamn75_com ftp://46.249.98.145:21 -e "set ssl:verify-certificate no; mirror -R ./ ./; bye"
+
 #macOS only:
 #  flutter build macos --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cp build/macos/Build/Products/Release/sinapp.zip ~/Desktop/
 
