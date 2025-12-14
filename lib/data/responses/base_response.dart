@@ -48,9 +48,9 @@ class UVisitCount {
   factory UVisitCount.fromJson(String str) => UVisitCount.fromMap(json.decode(str));
 
   factory UVisitCount.fromMap(Map<String, dynamic> json) => UVisitCount(
-        userId: json["userId"],
-        count: json["count"],
-      );
+    userId: json["userId"],
+    count: json["count"],
+  );
 
   final String userId;
   final int count;
@@ -58,9 +58,9 @@ class UVisitCount {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "userId": userId,
-        "count": count,
-      };
+    "userId": userId,
+    "count": count,
+  };
 }
 
 class UPointCount {
@@ -72,9 +72,9 @@ class UPointCount {
   factory UPointCount.fromJson(String str) => UPointCount.fromMap(json.decode(str));
 
   factory UPointCount.fromMap(Map<String, dynamic> json) => UPointCount(
-        userId: json["userId"],
-        point: json["point"],
-      );
+    userId: json["userId"],
+    point: json["point"],
+  );
 
   final String userId;
   final int point;
@@ -82,7 +82,7 @@ class UPointCount {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "userId": userId,
-        "point": point,
-      };
+    "userId": userId,
+    "point": point,
+  };
 }

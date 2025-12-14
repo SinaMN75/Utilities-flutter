@@ -36,36 +36,36 @@ class UProductResponse {
   factory UProductResponse.fromJson(String str) => UProductResponse.fromMap(json.decode(str));
 
   factory UProductResponse.fromMap(Map<String, dynamic> json) => UProductResponse(
-        id: json["id"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        jsonData: UProductJson.fromMap(json["jsonData"]),
-        tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-        title: json["title"],
-        code: json["code"],
-        subtitle: json["subtitle"],
-        description: json["description"],
-        slug: json["slug"],
-        type: json["type"],
-        content: json["content"],
-        latitude: json["latitude"],
-        longitude: json["longitude"],
-        stock: json["stock"],
+    id: json["id"],
+    createdAt: DateTime.parse(json["createdAt"]),
+    updatedAt: DateTime.parse(json["updatedAt"]),
+    jsonData: UProductJson.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"].map((dynamic x) => x)),
+    title: json["title"],
+    code: json["code"],
+    subtitle: json["subtitle"],
+    description: json["description"],
+    slug: json["slug"],
+    type: json["type"],
+    content: json["content"],
+    latitude: json["latitude"],
+    longitude: json["longitude"],
+    stock: json["stock"],
     deposit: json["deposit"].toString().toDouble(),
     rent: json["rent"].toString().toDouble(),
     point: json["point"],
-        parentId: json["parentId"],
-        parent: json["parent"] == null ? null : UProductResponse.fromMap(json["parent"]),
+    parentId: json["parentId"],
+    parent: json["parent"] == null ? null : UProductResponse.fromMap(json["parent"]),
     creatorId: json["creatorId"],
     commentCount: json["commentCount"],
-        isFollowing: json["isFollowing"],
-        visitCount: json["visitCount"],
-        childrenCount: json["childrenCount"],
+    isFollowing: json["isFollowing"],
+    visitCount: json["visitCount"],
+    childrenCount: json["childrenCount"],
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     children: json["children"] == null ? <UProductResponse>[] : List<UProductResponse>.from(json["children"].map((dynamic x) => UProductResponse.fromMap(x))),
-        media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
-        categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
-      );
+    media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
+    categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
+  );
   final String id;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -99,36 +99,36 @@ class UProductResponse {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "id": id,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "jsonData": jsonData.toMap(),
-        "tags": List<dynamic>.from(tags.map((int x) => x)),
-        "title": title,
-        "code": code,
-        "subtitle": subtitle,
-        "description": description,
-        "slug": slug,
-        "type": type,
-        "point": point,
-        "content": content,
-        "latitude": latitude,
-        "longitude": longitude,
-        "stock": stock,
+    "id": id,
+    "createdAt": createdAt.toIso8601String(),
+    "updatedAt": updatedAt.toIso8601String(),
+    "jsonData": jsonData.toMap(),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
+    "title": title,
+    "code": code,
+    "subtitle": subtitle,
+    "description": description,
+    "slug": slug,
+    "type": type,
+    "point": point,
+    "content": content,
+    "latitude": latitude,
+    "longitude": longitude,
+    "stock": stock,
     "deposit": deposit,
     "rent": rent,
     "parentId": parentId,
-        "parent": parent?.toMap(),
+    "parent": parent?.toMap(),
     "creatorId": creatorId,
     "commentCount": commentCount,
-        "isFollowing": isFollowing,
-        "visitCount": visitCount,
-        "childrenCount": childrenCount,
+    "isFollowing": isFollowing,
+    "visitCount": visitCount,
+    "childrenCount": childrenCount,
     "creator": creator?.toMap(),
     "children": children == null ? null : List<dynamic>.from(children!.map((UProductResponse x) => x.toMap())),
-        "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
-        "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
-      };
+    "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
+    "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
+  };
 }
 
 class UProductJson {
@@ -147,16 +147,16 @@ class UProductJson {
   factory UProductJson.fromJson(String str) => UProductJson.fromMap(json.decode(str));
 
   factory UProductJson.fromMap(Map<String, dynamic> json) => UProductJson(
-        actionType: json["actionType"],
-        actionTitle: json["actionTitle"],
-        actionUri: json["actionUri"],
-        details: json["details"],
-        visitCounts: json["visitCounts"] == null ? <UVisitCount>[] : List<UVisitCount>.from(json["visitCounts"].map((dynamic x) => UVisitCount.fromMap(x))),
-        pointCounts: json["pointCounts"] == null ? <UPointCount>[] : List<UPointCount>.from(json["pointCounts"].map((dynamic x) => UPointCount.fromMap(x))),
-        relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
-        phoneNumber: json["phoneNumber"],
-        address: json["address"],
-      );
+    actionType: json["actionType"],
+    actionTitle: json["actionTitle"],
+    actionUri: json["actionUri"],
+    details: json["details"],
+    visitCounts: json["visitCounts"] == null ? <UVisitCount>[] : List<UVisitCount>.from(json["visitCounts"].map((dynamic x) => UVisitCount.fromMap(x))),
+    pointCounts: json["pointCounts"] == null ? <UPointCount>[] : List<UPointCount>.from(json["pointCounts"].map((dynamic x) => UPointCount.fromMap(x))),
+    relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
+    phoneNumber: json["phoneNumber"],
+    address: json["address"],
+  );
   final String? actionType;
   final String? actionTitle;
   final String? actionUri;
@@ -170,14 +170,14 @@ class UProductJson {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "actionType": actionType,
-        "actionTitle": actionTitle,
-        "actionUri": actionUri,
-        "details": details,
-        "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((UVisitCount x) => x.toMap())),
-        "pointCounts": pointCounts == null ? null : List<dynamic>.from(pointCounts!.map((UPointCount x) => x.toMap())),
-        "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
-        "phoneNumber": phoneNumber,
-        "address": address,
-      };
+    "actionType": actionType,
+    "actionTitle": actionTitle,
+    "actionUri": actionUri,
+    "details": details,
+    "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((UVisitCount x) => x.toMap())),
+    "pointCounts": pointCounts == null ? null : List<dynamic>.from(pointCounts!.map((UPointCount x) => x.toMap())),
+    "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
+    "phoneNumber": phoneNumber,
+    "address": address,
+  };
 }

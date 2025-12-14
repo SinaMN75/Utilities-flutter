@@ -14,15 +14,15 @@ class UIdParams {
   factory UIdParams.fromJson(String str) => UIdParams.fromMap(json.decode(str));
 
   factory UIdParams.fromMap(Map<String, dynamic> json) => UIdParams(
-        id: json["id"],
-      );
+    id: json["id"],
+  );
   final String id;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "id": id,
-      };
+    "id": id,
+  };
 }
 
 class UIdListParams {
@@ -31,17 +31,17 @@ class UIdListParams {
   });
 
   factory UIdListParams.fromJson(String str) => UIdListParams.fromMap(
-        json.decode(str),
-      );
+    json.decode(str),
+  );
 
   factory UIdListParams.fromMap(Map<String, dynamic> json) => UIdListParams(
-        ids: List<String>.from(json["ids"]!.map((dynamic x) => x)),
-      );
+    ids: List<String>.from(json["ids"]!.map((dynamic x) => x)),
+  );
   final List<String> ids;
 
   String toJson() => json.encode(toIdListMap());
 
   Map<String, dynamic> toIdListMap() => <String, dynamic>{
-        "ids": List<dynamic>.from(ids.map((String x) => x)),
-      };
+    "ids": List<dynamic>.from(ids.map((String x) => x)),
+  };
 }

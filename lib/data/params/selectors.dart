@@ -27,14 +27,13 @@ class CategorySelectorArgs {
     childrenDebt: json["childrenDebt"],
   );
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
-        "media": media?.toMap(),
-        "children": children?.toMap(),
-        "product": product?.toMap(),
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "media": media?.toMap(),
+    "children": children?.toMap(),
+    "product": product?.toMap(),
     "creator": creator?.toMap(),
     "childrenDebt": childrenDebt,
-      };
+  };
 }
 
 class MediaSelectorArgs {
@@ -48,10 +47,9 @@ class MediaSelectorArgs {
 
   String toJson() => json.encode(toMap());
 
-  factory MediaSelectorArgs.fromMap(Map<String, dynamic> json) =>
-      MediaSelectorArgs(
-        children: json["children"] == null ? null : MediaSelectorArgs.fromMap(json["children"]),
-      );
+  factory MediaSelectorArgs.fromMap(Map<String, dynamic> json) => MediaSelectorArgs(
+    children: json["children"] == null ? null : MediaSelectorArgs.fromMap(json["children"]),
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "children": children?.toMap(),
@@ -69,10 +67,9 @@ class ContentSelectorArgs {
 
   String toJson() => json.encode(toMap());
 
-  factory ContentSelectorArgs.fromMap(Map<String, dynamic> json) =>
-      ContentSelectorArgs(
-        media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
-      );
+  factory ContentSelectorArgs.fromMap(Map<String, dynamic> json) => ContentSelectorArgs(
+    media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "media": media?.toMap(),
@@ -96,13 +93,12 @@ class UserSelectorArgs {
 
   String toJson() => json.encode(toMap());
 
-  factory UserSelectorArgs.fromMap(Map<String, dynamic> json) =>
-      UserSelectorArgs(
-        category: json["category"] == null ? null : CategorySelectorArgs.fromMap(json["category"]),
-        contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
-        media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
-        invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
-      );
+  factory UserSelectorArgs.fromMap(Map<String, dynamic> json) => UserSelectorArgs(
+    category: json["category"] == null ? null : CategorySelectorArgs.fromMap(json["category"]),
+    contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
+    media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+    invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "category": category?.toMap(),
@@ -181,13 +177,12 @@ class ContractSelectorArgs {
 
   String toJson() => json.encode(toMap());
 
-  factory ContractSelectorArgs.fromMap(Map<String, dynamic> json) =>
-      ContractSelectorArgs(
-        creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+  factory ContractSelectorArgs.fromMap(Map<String, dynamic> json) => ContractSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
     user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
     product: json["product"] == null ? null : ProductSelectorArgs.fromMap(json["product"]),
-        invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
-      );
+    invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "creator": creator?.toMap(),
@@ -210,9 +205,8 @@ class InvoiceSelectorArgs {
 
   String toJson() => json.encode(toMap());
 
-  factory InvoiceSelectorArgs.fromMap(Map<String, dynamic> json) =>
-      InvoiceSelectorArgs(
-        contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
+  factory InvoiceSelectorArgs.fromMap(Map<String, dynamic> json) => InvoiceSelectorArgs(
+    contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
   );
 
@@ -241,14 +235,13 @@ class CommentSelectorArgs {
 
   String toJson() => json.encode(toMap());
 
-  factory CommentSelectorArgs.fromMap(Map<String, dynamic> json) =>
-      CommentSelectorArgs(
-        children: json["children"] == null ? null : CommentSelectorArgs.fromMap(json["children"]),
-        user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+  factory CommentSelectorArgs.fromMap(Map<String, dynamic> json) => CommentSelectorArgs(
+    children: json["children"] == null ? null : CommentSelectorArgs.fromMap(json["children"]),
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
     product: json["product"] == null ? null : ProductSelectorArgs.fromMap(json["product"]),
-        media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
-      );
+    media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "children": children?.toMap(),

@@ -24,18 +24,18 @@ class UMediaResponse {
   factory UMediaResponse.fromJson(String str) => UMediaResponse.fromMap(json.decode(str));
 
   factory UMediaResponse.fromMap(Map<String, dynamic> json) => UMediaResponse(
-        id: json["id"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        jsonData: UMediaJson.fromMap(json["jsonData"]),
-        tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-        path: json["path"],
-        userId: json["userId"],
-        contentId: json["contentId"],
-        categoryId: json["categoryId"],
-        commentId: json["commentId"],
-        productId: json["productId"],
-      );
+    id: json["id"],
+    createdAt: DateTime.parse(json["createdAt"]),
+    updatedAt: DateTime.parse(json["updatedAt"]),
+    jsonData: UMediaJson.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"].map((dynamic x) => x)),
+    path: json["path"],
+    userId: json["userId"],
+    contentId: json["contentId"],
+    categoryId: json["categoryId"],
+    commentId: json["commentId"],
+    productId: json["productId"],
+  );
   final String id;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -53,18 +53,18 @@ class UMediaResponse {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "id": id,
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
-        "jsonData": jsonData.toMap(),
-        "tags": List<dynamic>.from(tags.map((int x) => x)),
-        "path": path,
-        "userId": userId,
-        "contentId": contentId,
-        "categoryId": categoryId,
-        "commentId": commentId,
-        "productId": productId,
-      };
+    "id": id,
+    "createdAt": createdAt.toIso8601String(),
+    "updatedAt": updatedAt.toIso8601String(),
+    "jsonData": jsonData.toMap(),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
+    "path": path,
+    "userId": userId,
+    "contentId": contentId,
+    "categoryId": categoryId,
+    "commentId": commentId,
+    "productId": productId,
+  };
 }
 
 class UMediaJson {
@@ -76,16 +76,16 @@ class UMediaJson {
   factory UMediaJson.fromJson(String str) => UMediaJson.fromMap(json.decode(str));
 
   factory UMediaJson.fromMap(Map<String, dynamic> json) => UMediaJson(
-        title: json["title"],
-        description: json["description"],
-      );
+    title: json["title"],
+    description: json["description"],
+  );
   final String? title;
   final String? description;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "title": title,
-        "description": description,
-      };
+    "title": title,
+    "description": description,
+  };
 }

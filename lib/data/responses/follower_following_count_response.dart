@@ -11,11 +11,11 @@ class UFollowerFollowingCountResponse {
   factory UFollowerFollowingCountResponse.fromJson(String str) => UFollowerFollowingCountResponse.fromMap(json.decode(str));
 
   factory UFollowerFollowingCountResponse.fromMap(Map<String, dynamic> json) => UFollowerFollowingCountResponse(
-        followers: json["followers"],
-        followedUsers: json["followedUsers"],
-        followedProducts: json["followedProducts"],
-        followedCategories: json["followedCategories"],
-      );
+    followers: json["followers"],
+    followedUsers: json["followedUsers"],
+    followedProducts: json["followedProducts"],
+    followedCategories: json["followedCategories"],
+  );
   final int followers;
   final int followedUsers;
   final int followedProducts;
@@ -24,9 +24,9 @@ class UFollowerFollowingCountResponse {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "followers": followers,
-        "followedUsers": followedUsers,
-        "followedProducts": followedProducts,
-        "followedCategories": followedCategories,
-      };
+    "followers": followers,
+    "followedUsers": followedUsers,
+    "followedProducts": followedProducts,
+    "followedCategories": followedCategories,
+  };
 }

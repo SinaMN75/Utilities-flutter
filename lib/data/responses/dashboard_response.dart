@@ -15,15 +15,15 @@ class UMetricsResponse {
   factory UMetricsResponse.fromJson(String str) => UMetricsResponse.fromMap(json.decode(str));
 
   factory UMetricsResponse.fromMap(Map<String, dynamic> json) => UMetricsResponse(
-        cpuUsage: json["cpuUsage"].toString().toDouble(),
-        memoryUsage: json["memoryUsage"].toString().toDouble(),
-        diskUsage: json["diskUsage"].toString().toDouble(),
-        totalMemory: json["totalMemory"].toString().toDouble(),
-        freeMemory: json["freeMemory"].toString().toDouble(),
-        totalDisk: json["totalDisk"].toString().toDouble(),
-        freeDisk: json["freeDisk"].toString().toDouble(),
-        date: json["date"],
-      );
+    cpuUsage: json["cpuUsage"].toString().toDouble(),
+    memoryUsage: json["memoryUsage"].toString().toDouble(),
+    diskUsage: json["diskUsage"].toString().toDouble(),
+    totalMemory: json["totalMemory"].toString().toDouble(),
+    freeMemory: json["freeMemory"].toString().toDouble(),
+    totalDisk: json["totalDisk"].toString().toDouble(),
+    freeDisk: json["freeDisk"].toString().toDouble(),
+    date: json["date"],
+  );
   final double cpuUsage;
   final double memoryUsage;
   final double diskUsage;
@@ -59,21 +59,21 @@ class UDashboardResponse {
   factory UDashboardResponse.fromJson(String str) => UDashboardResponse.fromMap(json.decode(str));
 
   factory UDashboardResponse.fromMap(Map<String, dynamic> json) => UDashboardResponse(
-        categories: json["categories"],
-        comments: json["comments"],
-        contents: json["contents"],
-        exams: json["exams"],
-        media: json["media"],
-        products: json["products"],
-        users: json["users"],
-        newUsers: List<UUserResponse>.from(json["newUsers"].map((dynamic x) => UUserResponse.fromMap(x))),
-        newCategories: List<UCategoryResponse>.from(json["newCategories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
-        newExams: List<UExamResponse>.from(json["newExams"].map((dynamic x) => UExamResponse.fromMap(x))),
-        newMedia: List<UMediaResponse>.from(json["newMedia"].map((dynamic x) => UMediaResponse.fromMap(x))),
-        // newComments: List<NewComment>.from(json["newComments"].map((dynamic x) => NewComment.fromMap(x))),
-        // newContents: List<NewContent>.from(json["newContents"].map((dynamic x) => NewContent.fromMap(x))),
-        // newProducts: List<NewProduct>.from(json["newProducts"].map((dynamic x) => NewProduct.fromMap(x))),
-      );
+    categories: json["categories"],
+    comments: json["comments"],
+    contents: json["contents"],
+    exams: json["exams"],
+    media: json["media"],
+    products: json["products"],
+    users: json["users"],
+    newUsers: List<UUserResponse>.from(json["newUsers"].map((dynamic x) => UUserResponse.fromMap(x))),
+    newCategories: List<UCategoryResponse>.from(json["newCategories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
+    newExams: List<UExamResponse>.from(json["newExams"].map((dynamic x) => UExamResponse.fromMap(x))),
+    newMedia: List<UMediaResponse>.from(json["newMedia"].map((dynamic x) => UMediaResponse.fromMap(x))),
+    // newComments: List<NewComment>.from(json["newComments"].map((dynamic x) => NewComment.fromMap(x))),
+    // newContents: List<NewContent>.from(json["newContents"].map((dynamic x) => NewContent.fromMap(x))),
+    // newProducts: List<NewProduct>.from(json["newProducts"].map((dynamic x) => NewProduct.fromMap(x))),
+  );
   final int categories;
   final int comments;
   final int contents;
@@ -89,21 +89,21 @@ class UDashboardResponse {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "categories": categories,
-        "comments": comments,
-        "contents": contents,
-        "exams": exams,
-        "media": media,
-        "products": products,
-        "users": users,
-        "newUsers": List<dynamic>.from(newUsers.map((UUserResponse x) => x.toMap())),
-        "newCategories": List<dynamic>.from(newCategories.map((UCategoryResponse x) => x.toMap())),
-        "newExams": List<dynamic>.from(newExams.map((UExamResponse x) => x.toMap())),
-        "newMedia": List<dynamic>.from(newMedia.map((UMediaResponse x) => x.toMap())),
-        // "newContents": List<dynamic>.from(newContents.map((dynamic x) => x.toMap())),
-        // "newComments": List<dynamic>.from(newComments.map((dynamic x) => x.toMap())),
-        // "newProducts": List<dynamic>.from(newProducts.map((dynamic x) => x.toMap())),
-      };
+    "categories": categories,
+    "comments": comments,
+    "contents": contents,
+    "exams": exams,
+    "media": media,
+    "products": products,
+    "users": users,
+    "newUsers": List<dynamic>.from(newUsers.map((UUserResponse x) => x.toMap())),
+    "newCategories": List<dynamic>.from(newCategories.map((UCategoryResponse x) => x.toMap())),
+    "newExams": List<dynamic>.from(newExams.map((UExamResponse x) => x.toMap())),
+    "newMedia": List<dynamic>.from(newMedia.map((UMediaResponse x) => x.toMap())),
+    // "newContents": List<dynamic>.from(newContents.map((dynamic x) => x.toMap())),
+    // "newComments": List<dynamic>.from(newComments.map((dynamic x) => x.toMap())),
+    // "newProducts": List<dynamic>.from(newProducts.map((dynamic x) => x.toMap())),
+  };
 }
 
 class LogStructureResponse {
@@ -114,15 +114,15 @@ class LogStructureResponse {
   factory LogStructureResponse.fromJson(String str) => LogStructureResponse.fromMap(json.decode(str));
 
   factory LogStructureResponse.fromMap(Map<String, dynamic> json) => LogStructureResponse(
-        logs: List<YearLog>.from(json["logs"].map((dynamic x) => YearLog.fromMap(x))),
-      );
+    logs: List<YearLog>.from(json["logs"].map((dynamic x) => YearLog.fromMap(x))),
+  );
   final List<YearLog> logs;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "logs": List<dynamic>.from(logs.map((YearLog x) => x.toMap())),
-      };
+    "logs": List<dynamic>.from(logs.map((YearLog x) => x.toMap())),
+  };
 }
 
 class YearLog {
@@ -134,18 +134,18 @@ class YearLog {
   factory YearLog.fromJson(String str) => YearLog.fromMap(json.decode(str));
 
   factory YearLog.fromMap(Map<String, dynamic> json) => YearLog(
-        year: json["year"],
-        months: List<MonthLog>.from(json["months"].map((dynamic x) => MonthLog.fromMap(x))),
-      );
+    year: json["year"],
+    months: List<MonthLog>.from(json["months"].map((dynamic x) => MonthLog.fromMap(x))),
+  );
   final int year;
   final List<MonthLog> months;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "year": year,
-        "months": List<dynamic>.from(months.map((MonthLog x) => x.toMap())),
-      };
+    "year": year,
+    "months": List<dynamic>.from(months.map((MonthLog x) => x.toMap())),
+  };
 }
 
 class MonthLog {
@@ -157,18 +157,18 @@ class MonthLog {
   factory MonthLog.fromJson(String str) => MonthLog.fromMap(json.decode(str));
 
   factory MonthLog.fromMap(Map<String, dynamic> json) => MonthLog(
-        month: json["month"],
-        days: List<DayLog>.from(json["days"].map((dynamic x) => DayLog.fromMap(x))),
-      );
+    month: json["month"],
+    days: List<DayLog>.from(json["days"].map((dynamic x) => DayLog.fromMap(x))),
+  );
   final int month;
   final List<DayLog> days;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "month": month,
-        "days": List<dynamic>.from(days.map((DayLog x) => x.toMap())),
-      };
+    "month": month,
+    "days": List<dynamic>.from(days.map((DayLog x) => x.toMap())),
+  };
 }
 
 class DayLog {
@@ -181,10 +181,10 @@ class DayLog {
   factory DayLog.fromJson(String str) => DayLog.fromMap(json.decode(str));
 
   factory DayLog.fromMap(Map<String, dynamic> json) => DayLog(
-        day: json["day"],
-        success: json["success"],
-        failed: json["failed"],
-      );
+    day: json["day"],
+    success: json["success"],
+    failed: json["failed"],
+  );
   final int day;
   final String? success;
   final String? failed;
@@ -192,10 +192,10 @@ class DayLog {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "day": day,
-        "success": success,
-        "failed": failed,
-      };
+    "day": day,
+    "success": success,
+    "failed": failed,
+  };
 }
 
 class LogContentResponse {
@@ -209,11 +209,11 @@ class LogContentResponse {
   factory LogContentResponse.fromJson(String str) => LogContentResponse.fromMap(json.decode(str));
 
   factory LogContentResponse.fromMap(Map<String, dynamic> json) => LogContentResponse(
-        summary: json["summary"],
-        requestBody: json["requestBody"],
-        responseBody: json["responseBody"],
-        exception: json["exception"] == null ? null : LogException.fromMap(json["exception"]),
-      );
+    summary: json["summary"],
+    requestBody: json["requestBody"],
+    responseBody: json["responseBody"],
+    exception: json["exception"] == null ? null : LogException.fromMap(json["exception"]),
+  );
   final String summary;
   final String requestBody;
   final String responseBody;
@@ -222,11 +222,11 @@ class LogContentResponse {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "summary": summary,
-        "requestBody": requestBody,
-        "responseBody": responseBody,
-        "exception": exception?.toMap(),
-      };
+    "summary": summary,
+    "requestBody": requestBody,
+    "responseBody": responseBody,
+    "exception": exception?.toMap(),
+  };
 }
 
 class LogException {
@@ -239,10 +239,10 @@ class LogException {
   factory LogException.fromJson(String str) => LogException.fromMap(json.decode(str));
 
   factory LogException.fromMap(Map<String, dynamic> json) => LogException(
-        type: json["type"],
-        message: json["message"],
-        stackTrace: json["stackTrace"],
-      );
+    type: json["type"],
+    message: json["message"],
+    stackTrace: json["stackTrace"],
+  );
   final String type;
   final String message;
   final String stackTrace;
@@ -250,8 +250,8 @@ class LogException {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "type": type,
-        "message": message,
-        "stackTrace": stackTrace,
-      };
+    "type": type,
+    "message": message,
+    "stackTrace": stackTrace,
+  };
 }

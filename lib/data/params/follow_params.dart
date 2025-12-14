@@ -11,7 +11,7 @@ class UFollowParams {
   factory UFollowParams.fromJson(String str) => UFollowParams.fromMap(json.decode(str));
 
   factory UFollowParams.fromMap(Map<String, dynamic> json) => UFollowParams(
-        userId: json["userId"],
+    userId: json["userId"],
     creatorId: json["creatorId"],
     productId: json["productId"],
     categoryId: json["categoryId"],
@@ -24,7 +24,7 @@ class UFollowParams {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "userId": userId,
+    "userId": userId,
     "creatorId": creatorId,
     "productId": productId,
     "categoryId": categoryId,

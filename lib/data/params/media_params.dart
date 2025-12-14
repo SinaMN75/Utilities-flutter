@@ -26,15 +26,15 @@ class UMediaCreateParams {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "userId": userId,
-        "contentId": contentId,
-        "commentId": commentId,
-        "categoryId": categoryId,
-        "productId": productId,
-        "title": title,
-        "description": description,
-        "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
-      };
+    "userId": userId,
+    "contentId": contentId,
+    "commentId": commentId,
+    "categoryId": categoryId,
+    "productId": productId,
+    "title": title,
+    "description": description,
+    "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
+  };
 }
 
 class UMediaUpdateParams {
@@ -54,17 +54,17 @@ class UMediaUpdateParams {
   factory UMediaUpdateParams.fromJson(String str) => UMediaUpdateParams.fromMap(json.decode(str));
 
   factory UMediaUpdateParams.fromMap(Map<String, dynamic> json) => UMediaUpdateParams(
-        id: json["id"],
-        addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
-        removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
-        title: json["title"],
-        description: json["description"],
-        userId: json["userId"],
-        contentId: json["contentId"],
-        commentId: json["commentId"],
-        categoryId: json["categoryId"],
-        productId: json["productId"],
-      );
+    id: json["id"],
+    addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
+    removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
+    title: json["title"],
+    description: json["description"],
+    userId: json["userId"],
+    contentId: json["contentId"],
+    commentId: json["commentId"],
+    categoryId: json["categoryId"],
+    productId: json["productId"],
+  );
 
   final String id;
   final List<int>? addTags;
@@ -80,17 +80,17 @@ class UMediaUpdateParams {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "id": id,
-        "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
-        "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
-        "title": title,
-        "description": description,
-        "userId": userId,
-        "contentId": contentId,
-        "commentId": commentId,
-        "categoryId": categoryId,
-        "productId": productId,
-      };
+    "id": id,
+    "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
+    "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
+    "title": title,
+    "description": description,
+    "userId": userId,
+    "contentId": contentId,
+    "commentId": commentId,
+    "categoryId": categoryId,
+    "productId": productId,
+  };
 }
 
 class UMediaReadParams {
@@ -109,16 +109,16 @@ class UMediaReadParams {
   factory UMediaReadParams.fromJson(String str) => UMediaReadParams.fromMap(json.decode(str));
 
   factory UMediaReadParams.fromMap(Map<String, dynamic> json) => UMediaReadParams(
-        pageSize: json["pageSize"] ?? 0,
-        pageNumber: json["pageNumber"] ?? 0,
-        fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
-        toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-        orderByCreatedAt: json["orderByCreatedAt"] ?? false,
-        orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
-        orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
-        orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
-        tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-      );
+    pageSize: json["pageSize"] ?? 0,
+    pageNumber: json["pageNumber"] ?? 0,
+    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
+    toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
+    orderByCreatedAt: json["orderByCreatedAt"] ?? false,
+    orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
+    orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
+    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
+    tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+  );
 
   final int? pageSize;
   final int? pageNumber;
@@ -133,14 +133,14 @@ class UMediaReadParams {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "pageSize": pageSize,
-        "pageNumber": pageNumber,
-        "fromCreatedAt": fromCreatedAt?.toIso8601String(),
-        "toCreatedAt": toCreatedAt?.toIso8601String(),
-        "orderByCreatedAt": orderByCreatedAt,
-        "orderByCreatedAtDesc": orderByCreatedAtDesc,
-        "orderByUpdatedAt": orderByUpdatedAt,
-        "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
-        "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
-      };
+    "pageSize": pageSize,
+    "pageNumber": pageNumber,
+    "fromCreatedAt": fromCreatedAt?.toIso8601String(),
+    "toCreatedAt": toCreatedAt?.toIso8601String(),
+    "orderByCreatedAt": orderByCreatedAt,
+    "orderByCreatedAtDesc": orderByCreatedAtDesc,
+    "orderByUpdatedAt": orderByUpdatedAt,
+    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
+    "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
+  };
 }
