@@ -9,7 +9,7 @@ class UProductResponse {
     required this.tags,
     required this.title,
     required this.point,
-    required this.userId,
+    required this.creatorId,
     required this.visitCount,
     this.code,
     this.subtitle,
@@ -24,7 +24,7 @@ class UProductResponse {
     this.rent,
     this.parentId,
     this.parent,
-    this.user,
+    this.creator,
     this.children,
     this.media,
     this.categories,
@@ -56,13 +56,13 @@ class UProductResponse {
     point: json["point"],
         parentId: json["parentId"],
         parent: json["parent"] == null ? null : UProductResponse.fromMap(json["parent"]),
-        userId: json["userId"],
-        commentCount: json["commentCount"],
+    creatorId: json["creatorId"],
+    commentCount: json["commentCount"],
         isFollowing: json["isFollowing"],
         visitCount: json["visitCount"],
         childrenCount: json["childrenCount"],
-        user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
-        children: json["children"] == null ? <UProductResponse>[] : List<UProductResponse>.from(json["children"].map((dynamic x) => UProductResponse.fromMap(x))),
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    children: json["children"] == null ? <UProductResponse>[] : List<UProductResponse>.from(json["children"].map((dynamic x) => UProductResponse.fromMap(x))),
         media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
         categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
       );
@@ -86,8 +86,8 @@ class UProductResponse {
   final int point;
   final String? parentId;
   final UProductResponse? parent;
-  final String userId;
-  final UUserResponse? user;
+  final String creatorId;
+  final UUserResponse? creator;
   final List<UProductResponse>? children;
   final List<UMediaResponse>? media;
   final List<UCategoryResponse>? categories;
@@ -119,13 +119,13 @@ class UProductResponse {
     "rent": rent,
     "parentId": parentId,
         "parent": parent?.toMap(),
-        "userId": userId,
-        "commentCount": commentCount,
+    "creatorId": creatorId,
+    "commentCount": commentCount,
         "isFollowing": isFollowing,
         "visitCount": visitCount,
         "childrenCount": childrenCount,
-        "user": user?.toMap(),
-        "children": children == null ? null : List<dynamic>.from(children!.map((UProductResponse x) => x.toMap())),
+    "creator": creator?.toMap(),
+    "children": children == null ? null : List<dynamic>.from(children!.map((UProductResponse x) => x.toMap())),
         "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
         "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
       };

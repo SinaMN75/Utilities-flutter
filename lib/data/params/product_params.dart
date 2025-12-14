@@ -22,7 +22,7 @@ class UProductCreateParams {
     this.categories,
     this.relatedProducts,
     this.parentId,
-    this.userId,
+    this.creatorId,
     this.point,
     this.phoneNumber,
     this.address,
@@ -52,7 +52,7 @@ class UProductCreateParams {
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
     relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
     parentId: json["parentId"],
-    userId: json["userId"],
+    creatorId: json["creatorId"],
     phoneNumber: json["phoneNumber"],
     address: json["address"],
   );
@@ -76,7 +76,7 @@ class UProductCreateParams {
   final List<String>? categories;
   final List<String>? relatedProducts;
   final String? parentId;
-  final String? userId;
+  final String? creatorId;
   final int? point;
   final String? phoneNumber;
   final String? address;
@@ -104,7 +104,7 @@ class UProductCreateParams {
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
     "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((dynamic x) => x)),
     "parentId": parentId,
-    "userId": userId,
+    "creatorId": creatorId,
     "point": point,
     "phoneNumber": phoneNumber,
     "address": address,
@@ -127,7 +127,7 @@ class UProductUpdateParams {
     this.deposit,
     this.rent,
     this.parentId,
-    this.userId,
+    this.creatorId,
     this.actionType,
     this.actionTitle,
     this.actionUri,
@@ -162,7 +162,7 @@ class UProductUpdateParams {
     rent: json["rent"].toString().toDouble(),
     point: json["point"],
     parentId: json["parentId"],
-    userId: json["userId"],
+    creatorId: json["creatorId"],
     actionType: json["actionType"],
     actionTitle: json["actionTitle"],
     actionUri: json["actionUri"],
@@ -192,7 +192,7 @@ class UProductUpdateParams {
   final double? deposit;
   final double? rent;
   final String? parentId;
-  final String? userId;
+  final String? creatorId;
   final String? actionType;
   final String? actionTitle;
   final String? actionUri;
@@ -226,7 +226,7 @@ class UProductUpdateParams {
     "deposit": deposit,
     "rent": rent,
     "parentId": parentId,
-    "userId": userId,
+    "creatorId": creatorId,
     "point": point,
     "actionType": actionType,
     "actionTitle": actionTitle,
@@ -253,7 +253,7 @@ class UProductReadParams {
     this.title,
     this.code,
     this.parentId,
-    this.userId,
+    this.creatorId,
     this.minStock,
     this.maxStock,
     this.minDeposit,
@@ -281,7 +281,7 @@ class UProductReadParams {
     title: json["title"],
     code: json["code"],
     parentId: json["parentId"],
-    userId: json["userId"],
+    creatorId: json["creatorId"],
     minStock: json["minStock"],
     maxStock: json["maxStock"],
     minDeposit: json["minDeposit"],
@@ -305,7 +305,7 @@ class UProductReadParams {
   final String? title;
   final String? code;
   final String? parentId;
-  final String? userId;
+  final String? creatorId;
   final int? minStock;
   final int? maxStock;
   final double? minDeposit;
@@ -332,7 +332,7 @@ class UProductReadParams {
     "title": title,
     "code": code,
     "parentId": parentId,
-    "userId": userId,
+    "creatorId": creatorId,
     "minStock": minStock,
     "maxStock": maxStock,
     "minDeposit": minDeposit,

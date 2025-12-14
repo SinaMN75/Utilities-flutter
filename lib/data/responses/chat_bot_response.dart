@@ -1,7 +1,7 @@
 part of "../data.dart";
 
 class UChatBotResponse {
-  final String? userId;
+  final String? creatorId;
   final String? id;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -9,7 +9,7 @@ class UChatBotResponse {
   final List<int>? tags;
 
   UChatBotResponse({
-    this.userId,
+    this.creatorId,
     this.id,
     this.createdAt,
     this.updatedAt,
@@ -22,7 +22,7 @@ class UChatBotResponse {
   String toJson() => json.encode(toMap());
 
   factory UChatBotResponse.fromMap(Map<String, dynamic> json) => UChatBotResponse(
-    userId: json["userId"],
+    creatorId: json["creatorId"],
     id: json["id"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -31,7 +31,7 @@ class UChatBotResponse {
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "userId": userId,
+    "creatorId": creatorId,
     "id": id,
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
