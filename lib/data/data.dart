@@ -27,6 +27,8 @@ part "responses/follower_following_count_response.dart";
 part "responses/invoice_response.dart";
 part "responses/media_response.dart";
 part "responses/product_response.dart";
+part "responses/ticket_response.dart";
+part "responses/txn_response.dart";
 part "responses/user_response.dart";
 part "services/auth_service.dart";
 part "services/category_service.dart";
