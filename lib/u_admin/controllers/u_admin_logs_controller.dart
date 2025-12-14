@@ -22,11 +22,11 @@ class UAdminLogsController {
     );
   }
 
-  Future<void> fetchLogContent(String logId, Function(List<LogContentResponse>) onOk) async {
+  Future<void> fetchLogContent(String logId, Function(String) onOk) async {
     ULoading.show();
     U.services.dashboard.getLogContent(
       logId: logId,
-      onOk: (List<LogContentResponse> contents) {
+      onOk: (String contents) {
         onOk(contents);
         state.loaded();
         ULoading.dismiss();

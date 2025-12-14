@@ -39,7 +39,7 @@ class DashboardService {
     required final Function(String e) onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "$baseUrl/api/logs/structure",
+    endpoint: "$baseUrl/dashboard/Logs/structure",
     onSuccess: (final Response r) => onOk(LogStructureResponse.fromJson(r.body)),
     onError: (final Response r) => onError(),
     onException: onException,
@@ -47,14 +47,14 @@ class DashboardService {
 
   void getLogContent({
     required final String logId,
-    required final Function(List<LogContentResponse> r) onOk,
+    required final Function(String r) onOk,
     required final VoidCallback onError,
     required final Function(String e) onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "$baseUrl/api/logs/content",
+    endpoint: "$baseUrl/dashboard/Logs/content",
     body: <String, String>{"id": logId},
-    onSuccess: (final Response r) => onOk(json.decode(r.body).map((dynamic e) => LogContentResponse.fromMap(e)).toList()),
+    onSuccess: (final Response r) => onOk(r.body),
     onError: (final Response r) => onError(),
     onException: onException,
   );
