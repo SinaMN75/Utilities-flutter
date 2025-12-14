@@ -13,8 +13,8 @@ class UCommentResponse {
     this.parentId,
     this.parent,
     this.user,
-    this.targetUser,
-    this.targetUserId,
+    this.creator,
+    this.creatorId,
     this.product,
     this.productId,
     this.children,
@@ -35,9 +35,9 @@ class UCommentResponse {
         parent: json["parent"] == null ? null : UCommentResponse.fromMap(json["parent"]),
         user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
         userId: json["userId"],
-        targetUser: json["targetUser"] == null ? null : UUserResponse.fromMap(json["targetUser"]),
-        targetUserId: json["targetUserId"],
-        product: json["product"] == null ? null : UProductResponse.fromMap(json["product"]),
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    creatorId: json["creatorId"],
+    product: json["product"] == null ? null : UProductResponse.fromMap(json["product"]),
         productId: json["productId"],
         children: json["children"] == null ? <UCommentResponse>[] : List<UCommentResponse>.from(json["children"].map((dynamic x) => UCommentResponse.fromMap(x))),
         media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
@@ -53,8 +53,8 @@ class UCommentResponse {
   final UCommentResponse? parent;
   final UUserResponse? user;
   final String userId;
-  final UUserResponse? targetUser;
-  final String? targetUserId;
+  final UUserResponse? creator;
+  final String? creatorId;
   final UProductResponse? product;
   final String? productId;
   final List<UCommentResponse>? children;
@@ -74,9 +74,9 @@ class UCommentResponse {
         "parent": parent?.toMap(),
         "user": user?.toMap(),
         "userId": userId,
-        "targetUser": targetUser?.toMap(),
-        "targetUserId": targetUserId,
-        "product": product?.toMap(),
+    "creator": creator?.toMap(),
+    "creatorId": creatorId,
+    "product": product?.toMap(),
         "productId": productId,
         "children": children == null ? null : List<dynamic>.from(children!.map((UCommentResponse x) => x.toMap())),
         "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),

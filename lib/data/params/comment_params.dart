@@ -8,8 +8,8 @@ class UCommentCreateParams {
     this.reaction,
     this.parentId,
     this.productId,
-    this.targetUserId,
     this.userId,
+    this.creatorId,
   });
 
   factory UCommentCreateParams.fromJson(String str) => UCommentCreateParams.fromMap(json.decode(str));
@@ -20,8 +20,8 @@ class UCommentCreateParams {
     reaction: json["reaction"],
     parentId: json["parentId"],
     productId: json["productId"],
-    targetUserId: json["targetUserId"],
     userId: json["userId"],
+    creatorId: json["creatorId"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
   );
   final String description;
@@ -29,8 +29,8 @@ class UCommentCreateParams {
   final int? reaction;
   final String? parentId;
   final String? productId;
-  final String? targetUserId;
   final String? userId;
+  final String? creatorId;
   final List<int> tags;
 
   String toJson() => json.encode(toMap());
@@ -41,8 +41,8 @@ class UCommentCreateParams {
     "reaction": reaction,
     "parentId": parentId,
     "productId": productId,
-    "targetUserId": targetUserId,
     "userId": userId,
+    "creatorId": creatorId,
     "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
   };
 }
@@ -88,9 +88,9 @@ class UCommentUpdateParams {
 
 class UCommentReadParams {
   UCommentReadParams({
-    this.userId,
+    this.creatorId,
     this.productId,
-    this.targetUserId,
+    this.userId,
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
@@ -106,9 +106,9 @@ class UCommentReadParams {
   factory UCommentReadParams.fromJson(String str) => UCommentReadParams.fromMap(json.decode(str));
 
   factory UCommentReadParams.fromMap(Map<String, dynamic> json) => UCommentReadParams(
-    userId: json["userId"],
+    creatorId: json["creatorId"],
     productId: json["productId"],
-    targetUserId: json["targetUserId"],
+    userId: json["userId"],
     pageSize: json["pageSize"] ?? 0,
     pageNumber: json["pageNumber"] ?? 0,
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
@@ -120,9 +120,9 @@ class UCommentReadParams {
     selectorArgs: json["selectorArgs"] == null ? null : CommentSelectorArgs.fromMap(json["selectorArgs"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
   );
-  final String? userId;
+  final String? creatorId;
   final String? productId;
-  final String? targetUserId;
+  final String? userId;
   final int? pageSize;
   final int? pageNumber;
   final DateTime? fromCreatedAt;
@@ -137,9 +137,9 @@ class UCommentReadParams {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "userId": userId,
+    "creatorId": creatorId,
     "productId": productId,
-    "targetUserId": targetUserId,
+    "userId": userId,
     "pageSize": pageSize,
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
