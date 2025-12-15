@@ -62,6 +62,7 @@ export "components/form.dart";
 export "components/gauge.dart";
 export "components/image.dart";
 export "components/image_slider.dart";
+export "components/json_viewer.dart";
 export "components/link_previewer.dart";
 export "components/map.dart";
 export "components/number_pagination.dart";

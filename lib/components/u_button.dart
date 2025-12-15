@@ -1,5 +1,6 @@
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
+import "package:u/init.dart";
 
 enum UButtonType { elevated, text, outlined, icon, fab, cupertino, custom }
 
@@ -65,10 +66,7 @@ class UButton extends StatelessWidget {
         ? SizedBox(
             width: 24,
             height: 24,
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              color: foregroundColor ?? Colors.white,
-            ),
+            child: CircularProgressIndicator(strokeWidth: 2, color: foregroundColor ?? Colors.white),
           )
         : _buildContent();
 
@@ -79,7 +77,7 @@ class UButton extends StatelessWidget {
         button = ElevatedButton(
           onPressed: enabled && !isLoading ? onTap : null,
           onLongPress: enabled && !isLoading ? onLongPress : null,
-          style: _buildButtonStyle(context),
+          style: _buildButtonStyle(),
           child: content,
         );
         break;
@@ -87,7 +85,7 @@ class UButton extends StatelessWidget {
         button = OutlinedButton(
           onPressed: enabled && !isLoading ? onTap : null,
           onLongPress: enabled && !isLoading ? onLongPress : null,
-          style: _buildButtonStyle(context, isOutlined: true),
+          style: _buildButtonStyle(isOutlined: true),
           child: content,
         );
         break;
@@ -95,7 +93,7 @@ class UButton extends StatelessWidget {
         button = TextButton(
           onPressed: enabled && !isLoading ? onTap : null,
           onLongPress: enabled && !isLoading ? onLongPress : null,
-          style: _buildButtonStyle(context),
+          style: _buildButtonStyle(),
           child: content,
         );
         break;
@@ -164,7 +162,11 @@ class UButton extends StatelessWidget {
       children.add(icon!);
       children.add(const SizedBox(width: 8));
     }
-    children.add(Flexible(child: Text(title, textAlign: TextAlign.center, style: textStyle)));
+    children.add(
+      Flexible(
+        child: Text(title, textAlign: TextAlign.center, style: textStyle),
+      ),
+    );
     if (iconPosition == UButtonIconPosition.trailing) {
       children.add(const SizedBox(width: 8));
       children.add(icon!);
@@ -177,9 +179,9 @@ class UButton extends StatelessWidget {
     );
   }
 
-  ButtonStyle _buildButtonStyle(BuildContext context, {bool isOutlined = false}) {
-    final Color effectiveBackground = backgroundColor ?? (type == UButtonType.elevated ? Theme.of(context).colorScheme.primary : Colors.transparent);
-    final Color effectiveForeground = foregroundColor ?? (type == UButtonType.elevated ? Colors.white : Theme.of(context).colorScheme.primary);
+  ButtonStyle _buildButtonStyle({bool isOutlined = false}) {
+    final Color effectiveBackground = backgroundColor ?? (type == UButtonType.elevated ? Theme.of(navigatorKey.currentContext!).colorScheme.primary : Colors.transparent);
+    final Color effectiveForeground = foregroundColor ?? (type == UButtonType.elevated ? Colors.white : Theme.of(navigatorKey.currentContext!).colorScheme.primary);
 
     return ButtonStyle(
       textStyle: WidgetStateProperty.all(textStyle),
@@ -195,12 +197,7 @@ class UButton extends StatelessWidget {
       maximumSize: WidgetStateProperty.all(Size(maxWidth ?? double.infinity, maxHeight ?? double.infinity)),
       fixedSize: WidgetStateProperty.all(Size(width ?? double.infinity, height ?? 46)),
       elevation: WidgetStateProperty.all(type == UButtonType.elevated ? elevation : 0),
-      shape: WidgetStateProperty.all(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-          side: isOutlined ? BorderSide(color: borderColor ?? effectiveForeground, width: borderWidth) : BorderSide.none,
-        ),
-      ),
+      side: WidgetStateProperty.all(BorderSide(color: borderColor ?? Colors.transparent, width: borderWidth)),
     );
   }
 }
