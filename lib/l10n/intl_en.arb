@@ -130,5 +130,8 @@
   "firstName": "First Name",
   "deleteUser": "Delete User",
   "areYouSureToDeleteThisUser": "Are you sure to Delete this User?",
-  "userCreatedSuccessfully": "User created successfully"
+  "userCreatedSuccessfully": "User created successfully",
+  "search": "Search",
+  "search___": "Search...",
+  "select": "Select"
 }

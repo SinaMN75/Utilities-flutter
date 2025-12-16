@@ -183,6 +183,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "scoreOptionscore": MessageLookupByLibrary.simpleMessage(
       "Score: \${option.score}",
     ),
+    "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "search___": MessageLookupByLibrary.simpleMessage("Search..."),
+    "select": MessageLookupByLibrary.simpleMessage("Select"),
     "selectAColor": MessageLookupByLibrary.simpleMessage("Select a Color"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),

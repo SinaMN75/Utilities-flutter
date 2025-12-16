@@ -189,6 +189,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "scoreOptionscore": MessageLookupByLibrary.simpleMessage(
       "امتیاز: \${option.score}",
     ),
+    "search": MessageLookupByLibrary.simpleMessage("جستجو"),
+    "search___": MessageLookupByLibrary.simpleMessage("جستجو..."),
+    "select": MessageLookupByLibrary.simpleMessage("انتخاب"),
     "selectAColor": MessageLookupByLibrary.simpleMessage("یک رنگ انتخاب کنید"),
     "settings": MessageLookupByLibrary.simpleMessage("تنظیمات"),
     "startDate": MessageLookupByLibrary.simpleMessage("تاریخ شروع"),

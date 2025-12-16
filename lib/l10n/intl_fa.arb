@@ -130,5 +130,8 @@
   "firstName": "نام",
   "deleteUser": "حذف کاربر",
   "areYouSureToDeleteThisUser": "آیا از حذف این کاربر اطمینان دارید؟",
-  "userCreatedSuccessfully": "کاربر با موفقعیت ساخته شد"
+  "userCreatedSuccessfully": "کاربر با موفقعیت ساخته شد",
+  "search": "جستجو",
+  "search___": "جستجو...",
+  "select": "انتخاب"
 }
