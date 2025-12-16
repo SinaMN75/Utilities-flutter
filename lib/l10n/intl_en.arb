@@ -133,5 +133,9 @@
   "userCreatedSuccessfully": "User created successfully",
   "search": "Search",
   "search___": "Search...",
-  "select": "Select"
+  "select": "Select",
+  "searchAndSelect": "Search and Select",
+  "selectCountry": "Select Country",
+  "searchCountryCodeOrDialCode": "Search country, code, or dial code",
+  "enterPhoneNumber": "Enter phone number"
 }

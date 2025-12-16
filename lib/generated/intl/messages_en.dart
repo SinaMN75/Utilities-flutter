@@ -80,6 +80,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "endDate": MessageLookupByLibrary.simpleMessage("End Date"),
     "enter": MessageLookupByLibrary.simpleMessage("Enter"),
+    "enterPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Enter phone number",
+    ),
     "error": MessageLookupByLibrary.simpleMessage("Error"),
     "errorFetchingCategories": MessageLookupByLibrary.simpleMessage(
       "Error Fetching Categories",
@@ -184,9 +187,16 @@ class MessageLookup extends MessageLookupByLibrary {
       "Score: \${option.score}",
     ),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
+    "searchAndSelect": MessageLookupByLibrary.simpleMessage(
+      "Search and Select",
+    ),
+    "searchCountryCodeOrDialCode": MessageLookupByLibrary.simpleMessage(
+      "Search country, code, or dial code",
+    ),
     "search___": MessageLookupByLibrary.simpleMessage("Search..."),
     "select": MessageLookupByLibrary.simpleMessage("Select"),
     "selectAColor": MessageLookupByLibrary.simpleMessage("Select a Color"),
+    "selectCountry": MessageLookupByLibrary.simpleMessage("Select Country"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
     "submit": MessageLookupByLibrary.simpleMessage("Submit"),

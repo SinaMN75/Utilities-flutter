@@ -133,5 +133,9 @@
   "userCreatedSuccessfully": "کاربر با موفقعیت ساخته شد",
   "search": "جستجو",
   "search___": "جستجو...",
-  "select": "انتخاب"
+  "select": "انتخاب",
+  "searchAndSelect": "جستجو و انتخاب",
+  "selectCountry": "انتخاب کشور",
+  "searchCountryCodeOrDialCode": "جستجو کشور، کد تلفن",
+  "enterPhoneNumber": "شماره موبایل وارد نمایید"
 }

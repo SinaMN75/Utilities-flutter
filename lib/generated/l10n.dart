@@ -1002,6 +1002,46 @@ class S {
   String get select {
     return Intl.message('Select', name: 'select', desc: '', args: []);
   }
+
+  /// `Search and Select`
+  String get searchAndSelect {
+    return Intl.message(
+      'Search and Select',
+      name: 'searchAndSelect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Country`
+  String get selectCountry {
+    return Intl.message(
+      'Select Country',
+      name: 'selectCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search country, code, or dial code`
+  String get searchCountryCodeOrDialCode {
+    return Intl.message(
+      'Search country, code, or dial code',
+      name: 'searchCountryCodeOrDialCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter phone number`
+  String get enterPhoneNumber {
+    return Intl.message(
+      'Enter phone number',
+      name: 'enterPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

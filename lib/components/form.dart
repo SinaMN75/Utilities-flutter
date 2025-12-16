@@ -230,14 +230,14 @@ class UTextFieldAutoComplete<T> extends StatefulWidget {
     required this.onChanged,
     required this.selectedItem,
     super.key,
-    this.hintText = "Select item",
+    this.hintText,
   });
 
   final List<T> items;
   final String Function(T) labelBuilder;
   final void Function(T?) onChanged;
   final T selectedItem;
-  final String hintText;
+  final String? hintText;
 
   @override
   State<UTextFieldAutoComplete<T>> createState() => _UTextFieldAutoCompleteState<T>();
@@ -250,7 +250,7 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
     await showDialog<T>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text("Search and select"),
+        title: Text(U.s.searchAndSelect),
         content: SizedBox(
           width: 200,
           height: 400,
@@ -258,7 +258,7 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               UTextField(
-                hintText: "جستجو",
+                hintText: U.s.search,
                 onChanged: (final String? i) => filteredItems(
                   widget.items.where((T item) => widget.labelBuilder(item).toLowerCase().contains(i!.toLowerCase())).toList(),
                 ),
@@ -575,14 +575,12 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: <Widget>[
-              const Text(
-                "Select Country",
-              ),
+              Text(U.s.selectCountry),
               const SizedBox(height: 16),
               TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  hintText: "Search country, code, or dial code",
+                  hintText: U.s.searchCountryCodeOrDialCode,
                   prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
                   filled: true,
                   fillColor: Colors.grey[100],
@@ -654,13 +652,13 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 12),
-                child: const Text("Select Country"),
+                child: Text(U.s.selectCountry),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: UTextField(
                   controller: _searchController,
-                  hintText: "Search country, code, or dial code",
+                  hintText: U.s.searchCountryCodeOrDialCode,
                   prefix: Icon(Icons.search, color: Colors.grey[600]),
                   contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   onChanged: _filterCountries,
@@ -722,7 +720,7 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
   @override
   Widget build(BuildContext context) => UTextField(
     controller: _phoneController,
-    hintText: "Enter phone number",
+    hintText: U.s.enterPhoneNumber,
     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
     prefix: Builder(
       builder: (_) => widget.pickerMode == CountryPickerMode.dropdown

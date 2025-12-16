@@ -82,6 +82,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "email": MessageLookupByLibrary.simpleMessage("ایمیل"),
     "endDate": MessageLookupByLibrary.simpleMessage("تاریخ پایان"),
     "enter": MessageLookupByLibrary.simpleMessage("ورود"),
+    "enterPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "شماره موبایل وارد نمایید",
+    ),
     "error": MessageLookupByLibrary.simpleMessage("خطا"),
     "errorFetchingCategories": MessageLookupByLibrary.simpleMessage(
       "خطا در دریافت دسته‌بندی‌ها",
@@ -190,9 +193,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "امتیاز: \${option.score}",
     ),
     "search": MessageLookupByLibrary.simpleMessage("جستجو"),
+    "searchAndSelect": MessageLookupByLibrary.simpleMessage("جستجو و انتخاب"),
+    "searchCountryCodeOrDialCode": MessageLookupByLibrary.simpleMessage(
+      "جستجو کشور، کد تلفن",
+    ),
     "search___": MessageLookupByLibrary.simpleMessage("جستجو..."),
     "select": MessageLookupByLibrary.simpleMessage("انتخاب"),
     "selectAColor": MessageLookupByLibrary.simpleMessage("یک رنگ انتخاب کنید"),
+    "selectCountry": MessageLookupByLibrary.simpleMessage("انتخاب کشور"),
     "settings": MessageLookupByLibrary.simpleMessage("تنظیمات"),
     "startDate": MessageLookupByLibrary.simpleMessage("تاریخ شروع"),
     "submit": MessageLookupByLibrary.simpleMessage("ثبت"),
