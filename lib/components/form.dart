@@ -403,7 +403,7 @@ class UCategorySelector extends StatefulWidget {
   });
 
   final void Function(UCategoryResponse category) onCategorySelected;
-  final void Function(UCategoryResponse subCategory) onSubCategorySelected;
+  final void Function(UCategoryResponse? subCategory) onSubCategorySelected;
 
   @override
   State<UCategorySelector> createState() => _UCategorySelectorState();
@@ -467,10 +467,11 @@ class _UCategorySelectorState extends State<UCategorySelector> {
       _selectSubCategory(children.first);
     } else {
       selectedSubCategory.value = null;
+      _selectSubCategory(null);
     }
   }
 
-  void _selectSubCategory(UCategoryResponse subCategory) {
+  void _selectSubCategory(UCategoryResponse? subCategory) {
     selectedSubCategory.value = subCategory;
     widget.onSubCategorySelected(subCategory);
   }

@@ -136,6 +136,7 @@ class UProductUpdateParams {
     this.addRelatedProducts,
     this.removeRelatedProducts,
     this.addCategories,
+    this.categories,
     this.removeCategories,
     this.addTags,
     this.removeTags,
@@ -172,6 +173,7 @@ class UProductUpdateParams {
     removeRelatedProducts: json["removeRelatedProducts"] == null ? null : List<String>.from(json["removeRelatedProducts"].map((dynamic x) => x)),
     addCategories: json["addCategories"] == null ? null : List<String>.from(json["addCategories"].map((dynamic x) => x)),
     removeCategories: json["removeCategories"] == null ? null : List<String>.from(json["removeCategories"].map((dynamic x) => x)),
+    categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
     id: json["id"],
     phoneNumber: json["phoneNumber"],
     address: json["address"],
@@ -202,6 +204,7 @@ class UProductUpdateParams {
   final List<String>? removeRelatedProducts;
   final List<String>? addCategories;
   final List<String>? removeCategories;
+  final List<String>? categories;
   final String id;
   final List<int>? addTags;
   final List<int>? removeTags;
@@ -237,6 +240,7 @@ class UProductUpdateParams {
     "removeRelatedProducts": removeRelatedProducts == null ? null : List<dynamic>.from(removeRelatedProducts!.map((dynamic x) => x)),
     "addCategories": addCategories == null ? null : List<dynamic>.from(addCategories!.map((dynamic x) => x)),
     "removeCategories": removeCategories == null ? null : List<dynamic>.from(removeCategories!.map((dynamic x) => x)),
+    "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
     "id": id,
     "phoneNumber": phoneNumber,
     "address": address,
