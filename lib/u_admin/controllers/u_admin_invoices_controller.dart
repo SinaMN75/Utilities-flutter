@@ -32,7 +32,7 @@ class UAdminInvoiceController {
         orderByCreatedAtDesc: orderByCreatedAtDesc,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
-        selectorArgs: const InvoiceSelectorArgs(contract: ContractSelectorArgs()),
+        selectorArgs: const InvoiceSelectorArgs(contract: ContractSelectorArgs(user: UserSelectorArgs(), product: ProductSelectorArgs())),
       ),
       onOk: (UResponse<List<UInvoiceResponse>> response) {
         list = response.result!;
