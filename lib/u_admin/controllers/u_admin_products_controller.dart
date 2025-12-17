@@ -36,7 +36,7 @@ class UAdminProductController {
         pageSize: pageSize,
         parentId: parentId,
         categories: <String>[?category?.id, ?subCategory?.id],
-        selectorArgs: const ProductSelectorArgs(category: CategorySelectorArgs()),
+        selectorArgs: const ProductSelectorArgs(category: CategorySelectorArgs(), contract: ContractSelectorArgs()),
       ),
       onOk: (UResponse<List<UProductResponse>> response) {
         list = response.result!;
