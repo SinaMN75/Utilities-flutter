@@ -308,7 +308,7 @@ class UCategorySelector extends StatefulWidget {
     super.key,
   });
 
-  final void Function(UCategoryResponse category) onCategorySelected;
+  final void Function(UCategoryResponse? category) onCategorySelected;
   final void Function(UCategoryResponse? subCategory) onSubCategorySelected;
 
   @override
@@ -323,6 +323,15 @@ class _UCategorySelectorState extends State<UCategorySelector> {
 
   final Rxn<UCategoryResponse> selectedCategory = Rxn<UCategoryResponse>();
   final Rxn<UCategoryResponse> selectedSubCategory = Rxn<UCategoryResponse>();
+
+  final UCategoryResponse nullCategory = UCategoryResponse(
+    id: "___",
+    createdAt: DateTime.now(),
+    updatedAt: DateTime.now(),
+    jsonData: UCategoryJson(),
+    tags: <int>[],
+    title: "___",
+  );
 
   @override
   void initState() {
@@ -347,6 +356,7 @@ class _UCategorySelectorState extends State<UCategorySelector> {
         }
 
         categories.assignAll(res.result!);
+        categories.insert(0, nullCategory);
         _selectCategory(categories.first);
         pageState.loaded();
       },
@@ -362,12 +372,19 @@ class _UCategorySelectorState extends State<UCategorySelector> {
   }
 
   void _selectCategory(UCategoryResponse category) {
-    selectedCategory.value = category;
+    if (category.id == "___") {
+      selectedCategory(category);
+      selectedSubCategory(null);
+      widget.onCategorySelected(null);
+      _selectSubCategory(null);
+      return;
+    }
+    selectedCategory(category);
     widget.onCategorySelected(category);
 
     final List<UCategoryResponse> children = category.children ?? <UCategoryResponse>[];
-
     subCategories.assignAll(children);
+    subCategories.insert(0, nullCategory);
 
     if (children.isNotEmpty) {
       _selectSubCategory(children.first);
