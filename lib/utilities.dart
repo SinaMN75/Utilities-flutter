@@ -72,6 +72,7 @@ export "components/scrolling_text.dart";
 export "components/segmented_control.dart";
 export "components/signaturepad.dart";
 export "components/u_button.dart";
+export "components/u_drop_down.dart";
 export "components/u_slider.dart";
 export "components/u_text.dart";
 export "components/u_text_field.dart";

@@ -17,6 +17,10 @@ class UAdminProductController {
   bool? hasActiveContract;
   UCategoryResponse? category;
   UCategoryResponse? subCategory;
+  TextEditingController controllerMinPrice = TextEditingController();
+  TextEditingController controllerMaxPrice = TextEditingController();
+  TextEditingController controllerCode = TextEditingController();
+  TextEditingController controllerTitle = TextEditingController();
 
   void init({List<TagProduct> tags = const <TagProduct>[]}) {
     selectedTags = tags;
@@ -38,6 +42,10 @@ class UAdminProductController {
         parentId: parentId,
         hasActiveContract: hasActiveContract,
         categories: <String>[?category?.id, ?subCategory?.id],
+        minRent: controllerMinPrice.text.englishNumber().toDouble(),
+        maxRent: controllerMaxPrice.text.englishNumber().toDouble(),
+        title: controllerTitle.text,
+        code: controllerCode.text,
         selectorArgs: const ProductSelectorArgs(category: CategorySelectorArgs(), contract: ContractSelectorArgs(product: ProductSelectorArgs())),
       ),
       onOk: (UResponse<List<UProductResponse>> response) {
@@ -54,10 +62,12 @@ class UAdminProductController {
   }
 
   void applyFilters() {
+    pageNumber(1);
     read();
   }
 
   void clearFilters() {
+    pageNumber(1);
     selectedTags.clear();
     fromCreatedAt = null;
     toCreatedAt = null;

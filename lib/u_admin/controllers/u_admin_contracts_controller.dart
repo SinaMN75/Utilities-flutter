@@ -32,6 +32,7 @@ class UAdminContractController {
         orderByCreatedAtDesc: orderByCreatedAtDesc,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
+        selectorArgs: const ContractSelectorArgs(user: UserSelectorArgs()),
       ),
       onOk: (UResponse<List<UContractResponse>> response) {
         list = response.result!;
@@ -61,22 +62,22 @@ class UAdminContractController {
     title: U.s.delete,
     message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
-          ULoading.show();
+      ULoading.show();
       U.services.contract.delete(
         p: UIdParams(id: i.id),
-            onOk: (final UResponse<dynamic> r) {
-              UNavigator.back();
+        onOk: (final UResponse<dynamic> r) {
+          UNavigator.back();
           UToast.snackBar(message: r.message);
           ULoading.dismiss();
-            },
-            onError: (final UResponse<dynamic> r) {
+        },
+        onError: (final UResponse<dynamic> r) {
           UToast.error(message: r.message);
           ULoading.dismiss();
-            },
-            onException: (String e) {},
-          );
         },
+        onException: (String e) {},
       );
+    },
+  );
 
   void create({required UContractCreateParams p}) {
     U.services.contract.create(
