@@ -1042,6 +1042,41 @@ class S {
       args: [],
     );
   }
+
+  /// `All`
+  String get all {
+    return Intl.message('All', name: 'all', desc: '', args: []);
+  }
+
+  /// `Busy`
+  String get busy {
+    return Intl.message('Busy', name: 'busy', desc: '', args: []);
+  }
+
+  /// `Free`
+  String get free {
+    return Intl.message('Free', name: 'free', desc: '', args: []);
+  }
+
+  /// `Contract Status`
+  String get contractStatus {
+    return Intl.message(
+      'Contract Status',
+      name: 'contractStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active Contract`
+  String get activeContract {
+    return Intl.message(
+      'Active Contract',
+      name: 'activeContract',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

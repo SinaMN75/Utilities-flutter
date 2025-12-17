@@ -1,6 +1,4 @@
-import "package:flutter/cupertino.dart";
-import "package:flutter/material.dart";
-import "package:u/init.dart";
+import "package:u/utilities.dart";
 
 enum UButtonType { elevated, text, outlined, icon, fab, cupertino, custom }
 

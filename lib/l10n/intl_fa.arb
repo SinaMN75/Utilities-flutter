@@ -137,5 +137,10 @@
   "searchAndSelect": "جستجو و انتخاب",
   "selectCountry": "انتخاب کشور",
   "searchCountryCodeOrDialCode": "جستجو کشور، کد تلفن",
-  "enterPhoneNumber": "شماره موبایل وارد نمایید"
+  "enterPhoneNumber": "شماره موبایل وارد نمایید",
+  "all": "همه",
+  "busy": "مشغول",
+  "free": "آزاد",
+  "contractStatus": "وضعیت قرارداد",
+  "activeContract": "قرارداد فعال"
 }

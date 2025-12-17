@@ -137,5 +137,10 @@
   "searchAndSelect": "Search and Select",
   "selectCountry": "Select Country",
   "searchCountryCodeOrDialCode": "Search country, code, or dial code",
-  "enterPhoneNumber": "Enter phone number"
+  "enterPhoneNumber": "Enter phone number",
+  "all": "All",
+  "busy": "Busy",
+  "free": "Free",
+  "contractStatus": "Contract Status",
+  "activeContract": "Active Contract"
 }

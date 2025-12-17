@@ -23,11 +23,13 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "accenting": MessageLookupByLibrary.simpleMessage("Accenting"),
+    "activeContract": MessageLookupByLibrary.simpleMessage("Active Contract"),
     "addOption": MessageLookupByLibrary.simpleMessage("Add Option"),
     "addPointDetail": MessageLookupByLibrary.simpleMessage("Add Point Detail"),
     "addQuestion": MessageLookupByLibrary.simpleMessage("Add Question"),
     "addRooms": MessageLookupByLibrary.simpleMessage("Add Rooms"),
     "admin": MessageLookupByLibrary.simpleMessage("Admin"),
+    "all": MessageLookupByLibrary.simpleMessage("All"),
     "amount": MessageLookupByLibrary.simpleMessage("Amount"),
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "Are you sure to Delete this User?",
@@ -40,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "beds": MessageLookupByLibrary.simpleMessage("Beds"),
     "birthdate": MessageLookupByLibrary.simpleMessage("Birthdate"),
+    "busy": MessageLookupByLibrary.simpleMessage("Busy"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "categoriesNotFound": MessageLookupByLibrary.simpleMessage(
@@ -52,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearFilters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
     "code": MessageLookupByLibrary.simpleMessage("Code"),
     "confirmDelete": MessageLookupByLibrary.simpleMessage("Confirm Delete"),
+    "contractStatus": MessageLookupByLibrary.simpleMessage("Contract Status"),
     "contracts": MessageLookupByLibrary.simpleMessage("Contracts"),
     "cpuUsage": MessageLookupByLibrary.simpleMessage("CPU Usage"),
     "create": MessageLookupByLibrary.simpleMessage("Create"),
@@ -118,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "filterProducts": MessageLookupByLibrary.simpleMessage("Filter Products"),
     "filterUsers": MessageLookupByLibrary.simpleMessage("Filter Users"),
     "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
+    "free": MessageLookupByLibrary.simpleMessage("Free"),
     "fromDate": MessageLookupByLibrary.simpleMessage("From Date"),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "guest": MessageLookupByLibrary.simpleMessage("Guest"),

@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "accenting": MessageLookupByLibrary.simpleMessage("صعودی"),
+    "activeContract": MessageLookupByLibrary.simpleMessage("قرارداد فعال"),
     "addOption": MessageLookupByLibrary.simpleMessage("افزودن گزینه"),
     "addPointDetail": MessageLookupByLibrary.simpleMessage(
       "افزودن جزئیات امتیاز",
@@ -30,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addQuestion": MessageLookupByLibrary.simpleMessage("افزودن سؤال"),
     "addRooms": MessageLookupByLibrary.simpleMessage("افزودن اتاق"),
     "admin": MessageLookupByLibrary.simpleMessage("ادکین"),
+    "all": MessageLookupByLibrary.simpleMessage("همه"),
     "amount": MessageLookupByLibrary.simpleMessage("مبلغ"),
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "آیا از حذف این کاربر اطمینان دارید؟",
@@ -42,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "beds": MessageLookupByLibrary.simpleMessage("تخت‌ها"),
     "birthdate": MessageLookupByLibrary.simpleMessage("تاریخ تولد"),
+    "busy": MessageLookupByLibrary.simpleMessage("مشغول"),
     "cancel": MessageLookupByLibrary.simpleMessage("انصراف"),
     "categories": MessageLookupByLibrary.simpleMessage("دسته‌بندی‌ها"),
     "categoriesNotFound": MessageLookupByLibrary.simpleMessage(
@@ -54,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearFilters": MessageLookupByLibrary.simpleMessage("حذف فیلترها"),
     "code": MessageLookupByLibrary.simpleMessage("کد"),
     "confirmDelete": MessageLookupByLibrary.simpleMessage("تأیید حذف"),
+    "contractStatus": MessageLookupByLibrary.simpleMessage("وضعیت قرارداد"),
     "contracts": MessageLookupByLibrary.simpleMessage("قراردادها"),
     "cpuUsage": MessageLookupByLibrary.simpleMessage("مصرف CPU"),
     "create": MessageLookupByLibrary.simpleMessage("ایجاد"),
@@ -122,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "filterProducts": MessageLookupByLibrary.simpleMessage("فیلتر محصولات"),
     "filterUsers": MessageLookupByLibrary.simpleMessage("فیلتر کاربران"),
     "firstName": MessageLookupByLibrary.simpleMessage("نام"),
+    "free": MessageLookupByLibrary.simpleMessage("آزاد"),
     "fromDate": MessageLookupByLibrary.simpleMessage("از تاریخ"),
     "gender": MessageLookupByLibrary.simpleMessage("جنسیت"),
     "guest": MessageLookupByLibrary.simpleMessage("مهمان"),
