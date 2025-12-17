@@ -6,6 +6,48 @@ abstract class U {
   static S s = S.of(navigatorKey.currentState!.context);
   static late UUserResponse user;
   static late UServices services;
+  static SideMenuController sideMenu = SideMenuController();
+  static final RxList<TabData> tabs = <TabData>[].obs;
+  static TabController? tabController;
+
+  static void addTab(String title, Widget page) {
+    tabs.value = <TabData>[...tabs, TabData(title: title, page: page)];
+    updateTabController();
+  }
+
+  static void removeTab(int index) {
+    if (index >= 0 && index < tabs.length) {
+      tabs(<TabData>[...tabs]..removeAt(index));
+      if (tabController != null && tabController!.index >= tabs.length) {
+        tabController!.animateTo(tabs.length - 1);
+      }
+      updateTabController();
+    }
+  }
+
+  static void updateTabController() {
+    if (tabController != null) {
+      tabController!.dispose();
+      tabController = null;
+    }
+    if (tabs.isNotEmpty && navigatorKey.currentState != null) {
+      tabController = TabController(
+        length: tabs.length,
+        vsync: navigatorKey.currentState!.overlay!,
+      );
+    }
+  }
+
+  static void addOrSwitchTab(int index, String title, Widget page) {
+    final int existingIndex = tabs.indexWhere((TabData tab) => tab.title == title);
+    if (existingIndex != -1) {
+      tabController?.animateTo(existingIndex);
+    } else {
+      addTab(title, page);
+      tabController?.animateTo(tabs.length - 1);
+    }
+    sideMenu.changePage(index);
+  }
 }
 
 Future<void> initU({
@@ -280,4 +322,11 @@ class UThemeData {
   final TextStyle? appbarTitleTextStyle;
   final Color? appbarIconColor;
   final Color? drawerColor;
+}
+
+class TabData {
+  final String title;
+  final Widget page;
+
+  TabData({required this.title, required this.page});
 }
