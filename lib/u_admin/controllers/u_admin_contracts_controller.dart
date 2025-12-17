@@ -14,6 +14,7 @@ class UAdminContractController {
   DateTime? toCreatedAt;
   bool orderByCreatedAt = false;
   bool orderByCreatedAtDesc = false;
+  Rxn<UUserResponse>? selectedUser = Rxn<UUserResponse>();
 
   void init({List<TagContract> tags = const <TagContract>[]}) {
     selectedTags = tags;

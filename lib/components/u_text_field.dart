@@ -329,11 +329,18 @@ class UTextFieldAutoCompleteAsync<T> extends StatefulWidget {
 class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteAsync<T>> {
   late RxList<T> list = <T>[].obs;
   final Rxn<T> selectedItem = Rxn<T>();
+  final Debouncer _debouncer = Debouncer(delay: const Duration(seconds: 1));
 
   @override
   void initState() {
     selectedItem(widget.selectedItem);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _debouncer.dispose();
+    super.dispose();
   }
 
   void _search({required String query}) {
@@ -342,7 +349,9 @@ class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteA
       return;
     }
 
-    widget.fetchData(query: query, onSuccess: (List<T> items) => list(items), onError: () => list.clear());
+    _debouncer.run(() {
+      widget.fetchData(query: query, onSuccess: (List<T> items) => list(items), onError: () => list.clear());
+    });
   }
 
   Future<void> _openSearchDialog() async => UNavigator.dialog(
