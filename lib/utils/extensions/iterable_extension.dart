@@ -91,5 +91,14 @@ extension NullableIterableExtentions on Iterable<dynamic>? {
     return false;
   }
 
+  bool isNotNullOrEmpty() {
+    if (this == null) {
+      return false;
+    } else if (this!.isEmpty) {
+      return false;
+    }
+    return true;
+  }
+
   bool containsAll<T>(final List<T> list) => (this ?? <T>[]).toSet().containsAll(this ?? <T>[]);
 }
