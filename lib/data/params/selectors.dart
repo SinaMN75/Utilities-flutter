@@ -115,6 +115,7 @@ class ProductSelectorArgs {
   final UserSelectorArgs? creator;
   final MediaSelectorArgs? media;
   final CommentSelectorArgs? comment;
+  final ContractSelectorArgs? contract;
   final bool? childrenCount;
   final bool? commentsCount;
   final bool? isFollowing;
@@ -126,6 +127,7 @@ class ProductSelectorArgs {
     this.creator,
     this.media,
     this.comment,
+    this.contract,
     this.childrenCount,
     this.commentsCount,
     this.isFollowing,
@@ -142,6 +144,7 @@ class ProductSelectorArgs {
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
     media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
     comment: json["comment"] == null ? null : CommentSelectorArgs.fromMap(json["comment"]),
+    contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
     childrenCount: json["childrenCount"] ?? false,
     commentsCount: json["commentsCount"] ?? false,
     isFollowing: json["isFollowing"] ?? false,
@@ -154,6 +157,7 @@ class ProductSelectorArgs {
     "creator": creator?.toMap(),
     "media": media?.toMap(),
     "comment": comment?.toMap(),
+    "contract": contract?.toMap(),
     "childrenCount": childrenCount,
     "commentsCount": commentsCount,
     "isFollowing": isFollowing,
