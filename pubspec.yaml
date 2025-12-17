@@ -43,11 +43,8 @@ dependencies:
   easy_sidemenu: ^0.7.1
   syncfusion_flutter_charts: ^32.1.19
   syncfusion_flutter_barcodes: ^32.1.19
-  syncfusion_flutter_signaturepad: ^32.1.19
   syncfusion_flutter_gauges: ^32.1.19
   syncfusion_flutter_chat: ^32.1.19
-  syncfusion_flutter_calendar: ^32.1.19
-  syncfusion_flutter_sliders: ^32.1.19
 
   any_link_preview: ^3.0.3
   universal_html: ^2.3.0
