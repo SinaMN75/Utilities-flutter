@@ -161,10 +161,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "penalty": MessageLookupByLibrary.simpleMessage("Penalty"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
-    "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
+    "pleaseCreateACategoryBeforeCreatingAProduct":
+    MessageLookupByLibrary.simpleMessage(
       "Please Create a Category before creating a Product.",
     ),
-    "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
+    "pleaseCreateAProductBeforeSigningAContract":
+    MessageLookupByLibrary.simpleMessage(
       "Please Create a Product before Signing a Contract",
     ),
     "pointDetails": MessageLookupByLibrary.simpleMessage("Point Details"),
@@ -173,7 +175,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("Question Title"),
-    "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
+    "questionTitleAndAtLeastOneOptionAreRequired":
+    MessageLookupByLibrary.simpleMessage(
       "Question title and at least one option are required",
     ),
     "questionnaire": MessageLookupByLibrary.simpleMessage("Questionnaire"),

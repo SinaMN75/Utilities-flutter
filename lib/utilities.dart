@@ -3,9 +3,7 @@ export "dart:convert";
 export "dart:io";
 export "dart:math";
 
-export "package:any_link_preview/any_link_preview.dart";
 export "package:async/async.dart";
-export "package:chewie/chewie.dart";
 export "package:collection/collection.dart" hide binarySearch, mergeSort;
 export "package:connectivity_plus/connectivity_plus.dart";
 export "package:crypto/crypto.dart";
@@ -42,8 +40,6 @@ export "package:syncfusion_flutter_charts/charts.dart" hide AnimationType, Posit
 export "package:syncfusion_flutter_chat/chat.dart";
 export "package:u/utilities.dart";
 export "package:url_launcher/url_launcher.dart";
-export "package:uuid/uuid.dart";
-export "package:video_player/video_player.dart";
 export "package:webview_flutter/webview_flutter.dart" hide X509Certificate;
 
 export "components/badges.dart";
@@ -59,7 +55,6 @@ export "components/gauge.dart";
 export "components/image.dart";
 export "components/image_slider.dart";
 export "components/json_viewer.dart";
-export "components/link_previewer.dart";
 export "components/map.dart";
 export "components/number_pagination.dart";
 export "components/percent_indicator.dart";
@@ -72,7 +67,6 @@ export "components/u_drop_down.dart";
 export "components/u_text.dart";
 export "components/u_text_field.dart";
 export "components/u_text_field_formatter.dart";
-export "components/video_player.dart";
 export "components/webview.dart";
 export "components/widget_to_image.dart";
 export "data/data.dart";

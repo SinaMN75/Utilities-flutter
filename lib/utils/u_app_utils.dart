@@ -1,5 +1,4 @@
 import "package:u/utilities.dart";
-import "package:universal_html/html.dart" as html;
 
 abstract class UApp {
   static late PackageInfo packageInfo;
@@ -57,10 +56,6 @@ abstract class UApp {
   static bool isTabletSize() => MediaQuery.of(navigatorKey.currentContext!).size.width < 1100 && MediaQuery.of(navigatorKey.currentContext!).size.width >= 850;
 
   static bool isDesktopSize() => MediaQuery.of(navigatorKey.currentContext!).size.width >= 1100;
-
-  static bool isPwa = html.window.matchMedia("(display-mode: standalone)").matches;
-
-  static void reloadWeb() => html.window.location.reload();
 
   static String locale() => Get.locale?.languageCode ?? "en";
 

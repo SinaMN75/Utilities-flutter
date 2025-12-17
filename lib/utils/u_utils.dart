@@ -1,4 +1,7 @@
-import "package:u/utilities.dart";
+import "package:flutter/material.dart";
+import "package:get/get_utils/src/get_utils/get_utils.dart";
+import "package:u/utils/extensions/string_extension.dart";
+import "package:uuid/uuid.dart";
 
 abstract class UUUID {
   static const Uuid _uuid = Uuid();
