@@ -275,6 +275,7 @@ class UProductReadParams {
     this.orderByUpdatedAtDesc,
     this.tags,
     this.selectorArgs,
+    this.categories,
   });
 
   factory UProductReadParams.fromJson(String str) => UProductReadParams.fromMap(json.decode(str));
@@ -303,6 +304,7 @@ class UProductReadParams {
     orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : ProductSelectorArgs.fromMap(json["selectorArgs"]),
+    categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
   );
   final bool? hasActiveContract;
   final String? query;
@@ -326,6 +328,7 @@ class UProductReadParams {
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
+  final List<String>? categories;
   final ProductSelectorArgs? selectorArgs;
 
   String toJson() => json.encode(toMap());
@@ -354,5 +357,6 @@ class UProductReadParams {
     "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
+    "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
   };
 }
