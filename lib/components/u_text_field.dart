@@ -301,77 +301,90 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
   );
 }
 
-class UTextFieldAutoCompleteAsync extends StatefulWidget {
+class UTextFieldAutoCompleteAsync<T> extends StatefulWidget {
   const UTextFieldAutoCompleteAsync({
     required this.labelBuilder,
     required this.onChanged,
     required this.selectedItem,
+    required this.fetchData,
     super.key,
     this.hintText,
   });
 
-  final String Function(UUserResponse) labelBuilder;
-  final void Function(UUserResponse?) onChanged;
-  final UUserResponse selectedItem;
+  final String Function(T) labelBuilder;
+  final void Function(T?) onChanged;
+  final T? selectedItem;
   final String? hintText;
+  final void Function({
+    required String query,
+    required void Function(List<T>) onSuccess,
+    void Function()? onError,
+  })
+  fetchData;
 
   @override
-  State<UTextFieldAutoCompleteAsync> createState() => _UTextFieldAutoCompleteAsyncState();
+  State<UTextFieldAutoCompleteAsync<T>> createState() => _UTextFieldAutoCompleteAsyncState<T>();
 }
 
-class _UTextFieldAutoCompleteAsyncState extends State<UTextFieldAutoCompleteAsync> {
-  late RxList<UUserResponse> list = <UUserResponse>[].obs;
+class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteAsync<T>> {
+  late RxList<T> list = <T>[].obs;
+  final Rxn<T> selectedItem = Rxn<T>();
 
-  void _search() {
-    U.services.user.read(
-      p: UUserReadParams(),
-      onOk: (UResponse<List<UUserResponse>> i) {
-        list(i.result);
-      },
-      onError: (UResponse<dynamic> i) {},
-      onException: (String i) {},
-    );
+  @override
+  void initState() {
+    selectedItem(widget.selectedItem);
+    super.initState();
   }
 
-  Future<void> _openSearchDialog() async {
-    await UNavigator.dialog(
-      AlertDialog(
-        title: Text(U.s.searchAndSelect),
-        content: SizedBox(
-          width: 200,
-          height: 400,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              UTextField(
-                hintText: U.s.search,
-                onChanged: (final String? i) {
-                  _search();
-                },
-              ),
-              const SizedBox(height: 12),
-              Obx(
-                () => ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: list.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final UUserResponse item = list[index];
-                    return ListTile(
-                      title: Text(widget.labelBuilder(item)),
-                      onTap: () {
-                        widget.onChanged(item);
-                        Navigator.of(context).pop(item);
+  void _search({required String query}) {
+    if (query.isEmpty) {
+      list.clear();
+      return;
+    }
+
+    widget.fetchData(query: query, onSuccess: (List<T> items) => list(items), onError: () => list.clear());
+  }
+
+  Future<void> _openSearchDialog() async => UNavigator.dialog(
+    AlertDialog(
+      title: Text(U.s.searchAndSelect),
+      content: SizedBox(
+        width: 200,
+        height: 400,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            UTextField(
+              hintText: U.s.search,
+              onChanged: (final String? i) {
+                _search(query: i ?? "");
+              },
+            ),
+            const SizedBox(height: 12),
+            Obx(
+              () => list.isEmpty
+                  ? const Text("---")
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: list.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final T item = list[index];
+                        return ListTile(
+                          title: Text(widget.labelBuilder(item)),
+                          onTap: () {
+                            selectedItem(item);
+                            widget.onChanged(item);
+                            UNavigator.back();
+                          },
+                        );
                       },
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+                    ),
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
 
   @override
   Widget build(BuildContext context) => InkWell(
@@ -382,7 +395,7 @@ class _UTextFieldAutoCompleteAsyncState extends State<UTextFieldAutoCompleteAsyn
         border: const OutlineInputBorder(),
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       ),
-      child: Text(widget.labelBuilder(widget.selectedItem)),
+      child: Obx(() => selectedItem.value == null ? const Text("___") : Text(widget.labelBuilder(selectedItem.value as T))),
     ),
   );
 }
