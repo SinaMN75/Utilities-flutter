@@ -14,6 +14,8 @@ class UAdminProductController {
   DateTime? toCreatedAt;
   bool orderByCreatedAt = false;
   bool orderByCreatedAtDesc = false;
+  UCategoryResponse? category;
+  UCategoryResponse? subCategory;
 
   void init({List<TagProduct> tags = const <TagProduct>[]}) {
     selectedTags = tags;
@@ -33,6 +35,7 @@ class UAdminProductController {
         pageNumber: pageNumber.value,
         pageSize: pageSize,
         parentId: parentId,
+        categories: <String>[?category?.id, ?subCategory?.id],
         selectorArgs: const ProductSelectorArgs(category: CategorySelectorArgs()),
       ),
       onOk: (UResponse<List<UProductResponse>> response) {
@@ -65,23 +68,23 @@ class UAdminProductController {
     onConfirm: () {
       U.services.product.delete(
         p: UIdParams(id: i.id),
-            onOk: (final UResponse<dynamic> r) {
-              UNavigator.back();
+        onOk: (final UResponse<dynamic> r) {
+          UNavigator.back();
           UToast.snackBar(message: r.message);
           read();
-            },
-            onError: (final UResponse<dynamic> r) {
+        },
+        onError: (final UResponse<dynamic> r) {
           UNavigator.back();
           UToast.error(message: r.message);
           read();
-            },
+        },
         onException: (String e) {
           UNavigator.back();
           UToast.error(message: e);
         },
       );
-        },
-      );
+    },
+  );
 
   void create({required UProductCreateParams p}) {
     state.loading();
