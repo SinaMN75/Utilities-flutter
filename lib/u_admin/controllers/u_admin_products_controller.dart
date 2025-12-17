@@ -14,6 +14,7 @@ class UAdminProductController {
   DateTime? toCreatedAt;
   bool orderByCreatedAt = false;
   bool orderByCreatedAtDesc = false;
+  bool? hasActiveContract;
   UCategoryResponse? category;
   UCategoryResponse? subCategory;
 
@@ -35,8 +36,9 @@ class UAdminProductController {
         pageNumber: pageNumber.value,
         pageSize: pageSize,
         parentId: parentId,
+        hasActiveContract: hasActiveContract,
         categories: <String>[?category?.id, ?subCategory?.id],
-        selectorArgs: const ProductSelectorArgs(category: CategorySelectorArgs(), contract: ContractSelectorArgs()),
+        selectorArgs: const ProductSelectorArgs(category: CategorySelectorArgs(), contract: ContractSelectorArgs(product: ProductSelectorArgs())),
       ),
       onOk: (UResponse<List<UProductResponse>> response) {
         list = response.result!;

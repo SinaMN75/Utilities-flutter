@@ -305,9 +305,13 @@ class UCategorySelector extends StatefulWidget {
   const UCategorySelector({
     required this.onCategorySelected,
     required this.onSubCategorySelected,
+    this.hint1,
+    this.hint2,
     super.key,
   });
 
+  final String? hint1;
+  final String? hint2;
   final void Function(UCategoryResponse? category) onCategorySelected;
   final void Function(UCategoryResponse? subCategory) onSubCategorySelected;
 
@@ -409,6 +413,7 @@ class _UCategorySelectorState extends State<UCategorySelector> {
       return Column(
         children: <Widget>[
           UTextFieldAutoComplete<UCategoryResponse>(
+            hintText: widget.hint1,
             selectedItem: selectedCategory.value!,
             items: categories,
             labelBuilder: (UCategoryResponse i) => i.title,
@@ -418,9 +423,9 @@ class _UCategorySelectorState extends State<UCategorySelector> {
               }
             },
           ).pSymmetric(vertical: 4),
-
           if (subCategories.isNotEmpty && selectedSubCategory.value != null)
             UTextFieldAutoComplete<UCategoryResponse>(
+              hintText: widget.hint2,
               selectedItem: selectedSubCategory.value!,
               items: subCategories,
               labelBuilder: (UCategoryResponse i) => i.title,
