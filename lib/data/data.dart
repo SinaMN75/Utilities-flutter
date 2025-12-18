@@ -45,34 +45,16 @@ part "services/product_service.dart";
 part "services/user_service.dart";
 
 class UServices {
-  UServices({required this.baseUrl, required this.apiKey}) {
-    dashboard = DashboardService(baseUrl: baseUrl, apiKey: apiKey);
-    auth = AuthService(baseUrl: baseUrl, apiKey: apiKey);
-    category = CategoryService(baseUrl: baseUrl, apiKey: apiKey);
-    exam = ExamService(baseUrl: baseUrl, apiKey: apiKey);
-    user = UserService(baseUrl: baseUrl, apiKey: apiKey);
-    product = ProductService(baseUrl: baseUrl, apiKey: apiKey);
-    content = ContentService(baseUrl: baseUrl, apiKey: apiKey);
-    comment = CommentService(baseUrl: baseUrl, apiKey: apiKey);
-    follow = FollowService(baseUrl: baseUrl, apiKey: apiKey);
-    contract = ContractService(baseUrl: baseUrl, apiKey: apiKey);
-    invoice = InvoiceService(baseUrl: baseUrl, apiKey: apiKey);
-    chatBot = ChatBotService(baseUrl: baseUrl, apiKey: apiKey);
-  }
-
-  String baseUrl;
-  String apiKey;
-
-  late AuthService auth;
-  late CategoryService category;
-  late DashboardService dashboard;
-  late ExamService exam;
-  late UserService user;
-  late ProductService product;
-  late ContentService content;
-  late CommentService comment;
-  late FollowService follow;
-  late ContractService contract;
-  late InvoiceService invoice;
-  late ChatBotService chatBot;
+  late AuthService auth = AuthService();
+  late CategoryService category = CategoryService();
+  late DashboardService dashboard = DashboardService();
+  late ExamService exam = ExamService();
+  late UserService user = UserService();
+  late ProductService product = ProductService();
+  late ContentService content = ContentService();
+  late CommentService comment = CommentService();
+  late FollowService follow = FollowService();
+  late ContractService contract = ContractService();
+  late InvoiceService invoice = InvoiceService();
+  late ChatBotService chatBot = ChatBotService();
 }

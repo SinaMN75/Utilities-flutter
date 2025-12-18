@@ -4,12 +4,24 @@ import "package:u/utilities.dart";
 
 enum URequestBodyType { json, formData }
 
+class UHttpClientResponse {
+  final String? response;
+  final String? error;
+  final String? exception;
+
+  UHttpClientResponse({this.response, this.error, this.exception});
+
+  bool get isSuccessful => response != null;
+
+  bool get isError => error != null;
+
+  bool get isException => exception != null;
+}
+
 abstract class UHttpClient {
   static final Client _client = Client();
 
-  static String _generateCacheKey(String endpoint, Map<String, dynamic>? q) => 'cache_${_buildUri(endpoint, q).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
-
-  static Future<Response?> send({
+  static Future<UHttpClientResponse> send({
     required final String method,
     required final String endpoint,
     required final Function(Response) onSuccess,
@@ -28,11 +40,11 @@ abstract class UHttpClient {
 
     if (!hasNetworkConnection && offline == false) {
       onException(noNetworkMessage);
-      return null;
+      return UHttpClientResponse(exception: noNetworkMessage);
     }
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
-      final String cacheKey = _generateCacheKey(endpoint, queryParams);
+      final String cacheKey = 'cache_${_buildUri(endpoint, queryParams).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
 
       if (offline) {
         final String? cachedData = ULocalStorage.getString(cacheKey);
@@ -40,7 +52,7 @@ abstract class UHttpClient {
           final Response response = Response(cachedData, 200, request: Request(method, uri));
           response.prettyLog(params: jsonEncode(body));
           onSuccess(response);
-          return response;
+          return UHttpClientResponse(response: cachedData);
         }
       }
 
@@ -79,10 +91,10 @@ abstract class UHttpClient {
 
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         onSuccess(response);
-        return response;
+        return UHttpClientResponse(response: response.body);
       } else {
         onError(response);
-        return response;
+        return UHttpClientResponse(error: response.body);
       }
     } catch (e, stack) {
       developer.log(e.toString(), stackTrace: stack);
@@ -104,8 +116,8 @@ abstract class UHttpClient {
         );
       } else {
         onException(unexpectedErrorMessage);
+        return UHttpClientResponse(exception: unexpectedErrorMessage);
       }
-      return null;
     }
   }
 

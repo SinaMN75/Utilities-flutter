@@ -30,7 +30,7 @@ class UAdminProductController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    U.services.product.read(
+    await U.services.product.read(
       p: UProductReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,

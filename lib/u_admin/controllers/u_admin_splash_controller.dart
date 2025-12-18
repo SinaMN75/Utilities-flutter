@@ -1,10 +1,10 @@
 part of "../u_admin.dart";
 
 class UAdminSplashController {
-  Future<void> init({
+  void init({
     required VoidCallback onFinish,
     required VoidCallback onError,
-  }) async {
+  }) {
     if (ULocalStorage.getString(UConstants.token) == null) {
       onError();
     } else {

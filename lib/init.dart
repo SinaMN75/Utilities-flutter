@@ -3,10 +3,12 @@ import "package:u/utilities.dart";
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 abstract class U {
+  static late String baseUrl;
+  static late String apiKey;
   static S s = S.of(navigatorKey.currentState!.context);
   static late UUserResponse user;
   static late UServices services;
-  static SideMenuController sideMenu = SideMenuController();
+  static final SideMenuController sideMenu = SideMenuController();
   static final RxList<TabData> tabs = <TabData>[].obs;
   static TabController? tabController;
 
@@ -31,10 +33,7 @@ abstract class U {
       tabController = null;
     }
     if (tabs.isNotEmpty && navigatorKey.currentState != null) {
-      tabController = TabController(
-        length: tabs.length,
-        vsync: navigatorKey.currentState!.overlay!,
-      );
+      tabController = TabController(length: tabs.length, vsync: navigatorKey.currentState!.overlay!);
     }
   }
 
@@ -55,6 +54,8 @@ Future<void> initU({
   String? apiKey,
   List<DeviceOrientation> deviceOrientations = const <DeviceOrientation>[DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
 }) async {
+  U.baseUrl = baseUrl ?? "";
+  U.apiKey = apiKey ?? "";
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(deviceOrientations);
   await ULocalStorage.init();
@@ -67,10 +68,7 @@ Future<void> initU({
   if (UApp.isMacOs) UApp.macOsDeviceInfo = await UApp.deviceInfo.macOsInfo;
   if (UApp.isLinux) UApp.linuxDeviceInfo = await UApp.deviceInfo.linuxInfo;
   ULoading.initialize(key: navigatorKey, blurAmount: 1, overlayColor: Colors.black12);
-
-  if (baseUrl != null && apiKey != null) {
-    U.services = UServices(baseUrl: baseUrl, apiKey: apiKey);
-  }
+  U.services = UServices();
 }
 
 class UMaterialApp extends StatelessWidget {
@@ -106,8 +104,7 @@ class UMaterialApp extends StatelessWidget {
 }
 
 abstract class UThemes {
-  static ThemeData uLightTheme(UThemeData data) =>
-      ThemeData(
+  static ThemeData uLightTheme(UThemeData data) => ThemeData(
     disabledColor: data.disabledColor,
     fontFamily: data.fontFamily,
     highlightColor: Colors.green,
@@ -198,8 +195,7 @@ abstract class UThemes {
     ),
   );
 
-  static ThemeData uDarkTheme(UThemeData data) =>
-      ThemeData(
+  static ThemeData uDarkTheme(UThemeData data) => ThemeData(
     disabledColor: data.disabledColor,
     fontFamily: data.fontFamily,
     highlightColor: Colors.green,

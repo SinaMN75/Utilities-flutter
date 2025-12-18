@@ -23,7 +23,7 @@ class UAdminInvoiceController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    U.services.invoice.read(
+    await U.services.invoice.read(
       p: UInvoiceReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,

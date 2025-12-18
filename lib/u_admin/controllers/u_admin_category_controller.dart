@@ -12,7 +12,7 @@ class UAdminCategoryController {
 
   Future<void> loadCategories() async {
     state.loading();
-    U.services.category.read(
+    await U.services.category.read(
       p: UCategoryReadParams(
         tags: <int>[tag.number],
         selectorArgs: const CategorySelectorArgs(
