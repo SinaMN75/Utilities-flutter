@@ -17,13 +17,15 @@ class UAdminContractController extends UAdminBaseController {
 
     await U.services.contract.read(
       p: UContractReadParams(
+        pageNumber: pageNumber.value,
+        pageSize: pageSize,
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
         toCreatedAt: toCreatedAt,
         orderByCreatedAt: orderByCreatedAt,
         orderByCreatedAtDesc: orderByCreatedAtDesc,
-        pageNumber: pageNumber.value,
-        pageSize: pageSize,
+        startDate: startDate,
+        endDate: endDate,
         selectorArgs: const ContractSelectorArgs(user: UserSelectorArgs()),
       ),
       onOk: (UResponse<List<UContractResponse>> response) {
