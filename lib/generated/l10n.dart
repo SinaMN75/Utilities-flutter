@@ -1087,6 +1087,21 @@ class S {
       args: [],
     );
   }
+
+  /// `Paid Factors`
+  String get paidFactors {
+    return Intl.message(
+      'Paid Factors',
+      name: 'paidFactors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Due Factors`
+  String get dueFactors {
+    return Intl.message('Due Factors', name: 'dueFactors', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

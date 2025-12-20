@@ -205,10 +205,10 @@ enum TagContract with NumericIdentifiable {
 enum TagInvoice with NumericIdentifiable {
   deposit("", "", 101),
   rent("", "", 102),
-  paidOnline("", "", 201),
-  paidManual("", "", 202),
-  notPaid("", "", 203),
-  notPaidDue("", "", 204)
+  paid("", "", 201),
+  paidOnline("", "", 202),
+  paidManual("", "", 203),
+  notPaid("", "", 204)
   ;
 
   const TagInvoice(this.titleFa, this.titleEn, this.number);
