@@ -343,16 +343,9 @@ class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteA
     super.dispose();
   }
 
-  void _search({required String query}) {
-    if (query.isEmpty) {
-      list.clear();
-      return;
-    }
-
-    _debouncer.run(() {
-      widget.fetchData(query: query, onSuccess: (List<T> items) => list(items), onError: () => list.clear());
-    });
-  }
+  void _search({required String query}) => _debouncer.run(
+    () => widget.fetchData(query: query, onSuccess: (List<T> items) => list(items), onError: () => list.clear()),
+  );
 
   Future<void> _openSearchDialog() async => UNavigator.dialog(
     AlertDialog(
