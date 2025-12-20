@@ -301,8 +301,8 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
   );
 }
 
-class UTextFieldAutoCompleteAsync<T> extends StatefulWidget {
-  const UTextFieldAutoCompleteAsync({
+class UTextFieldAutoCompleteCallBack<T> extends StatefulWidget {
+  const UTextFieldAutoCompleteCallBack({
     required this.labelBuilder,
     required this.onChanged,
     required this.selectedItem,
@@ -323,10 +323,10 @@ class UTextFieldAutoCompleteAsync<T> extends StatefulWidget {
   fetchData;
 
   @override
-  State<UTextFieldAutoCompleteAsync<T>> createState() => _UTextFieldAutoCompleteAsyncState<T>();
+  State<UTextFieldAutoCompleteCallBack<T>> createState() => _UTextFieldAutoCompleteCallBackState<T>();
 }
 
-class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteAsync<T>> {
+class _UTextFieldAutoCompleteCallBackState<T> extends State<UTextFieldAutoCompleteCallBack<T>> {
   late RxList<T> list = <T>[].obs;
   final Rxn<T> selectedItem = Rxn<T>();
   final Debouncer _debouncer = Debouncer(delay: const Duration(seconds: 1));
@@ -398,6 +398,145 @@ class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteA
         contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       ),
       child: Obx(() => selectedItem.value == null ? const Text("___") : Text(widget.labelBuilder(selectedItem.value as T))),
+    ),
+  );
+}
+
+class UTextFieldAutoCompleteAsync<T> extends StatefulWidget {
+  const UTextFieldAutoCompleteAsync({
+    required this.labelBuilder,
+    required this.onChanged,
+    required this.selectedItem,
+    required this.fetchData,
+    super.key,
+    this.hintText,
+    this.debounceDuration = const Duration(milliseconds: 500),
+  });
+
+  final String Function(T) labelBuilder;
+  final void Function(T?) onChanged;
+  final T? selectedItem;
+  final String? hintText;
+  final Duration debounceDuration;
+  final Future<List<T>> Function(String query) fetchData;
+
+  @override
+  State<UTextFieldAutoCompleteAsync<T>> createState() => _UTextFieldAutoCompleteAsyncState<T>();
+}
+
+class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteAsync<T>> {
+  final List<T> _list = <T>[];
+  T? _selectedItem;
+  Timer? _debounceTimer;
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    _selectedItem = widget.selectedItem;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _debounceTimer?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _search(String query) async {
+    if (query.isEmpty) {
+      setState(() {
+        _list.clear();
+        _isLoading = false;
+      });
+      return;
+    }
+
+    _debounceTimer?.cancel();
+    _debounceTimer = Timer(widget.debounceDuration, () async {
+      setState(() => _isLoading = true);
+
+      try {
+        final List<T> results = await widget.fetchData(query);
+        setState(() {
+          _list.clear();
+          _list.addAll(results);
+          _isLoading = false;
+        });
+      } catch (e) {
+        setState(() {
+          _list.clear();
+          _isLoading = false;
+        });
+      }
+    });
+  }
+
+  Future<void> _openSearchDialog() async {
+    final T? result = await showDialog<T?>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(U.s.search),
+        content: SizedBox(
+          width: 200,
+          height: 400,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextField(
+                decoration: InputDecoration(
+                  hintText: U.s.search___,
+                  border: const OutlineInputBorder(),
+                ),
+                onChanged: _search,
+              ),
+              const SizedBox(height: 12),
+              Expanded(
+                child: _buildResultsList(),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    if (result != null) {
+      setState(() => _selectedItem = result);
+      widget.onChanged(result);
+    }
+  }
+
+  Widget _buildResultsList() {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (_list.isEmpty) {
+      return const Center(child: Text("---"));
+    }
+
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: _list.length,
+      itemBuilder: (BuildContext context, int index) {
+        final T item = _list[index];
+        return ListTile(
+          title: Text(widget.labelBuilder(item)),
+          onTap: () => Navigator.of(context).pop(item),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) => InkWell(
+    onTap: _openSearchDialog,
+    child: InputDecorator(
+      decoration: InputDecoration(
+        labelText: widget.hintText,
+        border: const OutlineInputBorder(),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      ),
+      child: _selectedItem == null ? const Text("___") : Text(widget.labelBuilder(_selectedItem as T)),
     ),
   );
 }
