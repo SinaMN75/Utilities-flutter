@@ -145,5 +145,6 @@
   "activeContract": "Active Contract",
   "selectAUser": "Select a user",
   "paidFactors": "Paid Factors",
+  "dueFactors": "Due Factors",
   "selectABed": "Select a Bed"
 }

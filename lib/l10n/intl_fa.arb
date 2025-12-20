@@ -145,5 +145,6 @@
   "activeContract": "قرارداد فعال",
   "selectAUser": "انتخاب کاربر",
   "paidFactors": "فاکتور‌های پرداخت شده",
+  "dueFactors": "فاکتور‌های پرداخت نشده",
   "selectABed": "انتخاب تخت"
 }

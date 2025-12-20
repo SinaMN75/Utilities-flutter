@@ -79,6 +79,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "dorm": MessageLookupByLibrary.simpleMessage("خوابگاه"),
     "dorms": MessageLookupByLibrary.simpleMessage("خوابگاه‌ها"),
     "dueDate": MessageLookupByLibrary.simpleMessage("سررسید پرداخت"),
+    "dueFactors": MessageLookupByLibrary.simpleMessage(
+      "فاکتور‌های پرداخت نشده",
+    ),
     "edit": MessageLookupByLibrary.simpleMessage("ویرایش"),
     "editExam": MessageLookupByLibrary.simpleMessage("ویرایش آزمون"),
     "editQuestion": MessageLookupByLibrary.simpleMessage("ویرایش سؤال"),

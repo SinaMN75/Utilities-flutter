@@ -77,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dorm": MessageLookupByLibrary.simpleMessage("Dorm"),
     "dorms": MessageLookupByLibrary.simpleMessage("Dorms"),
     "dueDate": MessageLookupByLibrary.simpleMessage("Due Date"),
+    "dueFactors": MessageLookupByLibrary.simpleMessage("Due Factors"),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "editExam": MessageLookupByLibrary.simpleMessage("Edit Exam"),
     "editQuestion": MessageLookupByLibrary.simpleMessage("Edit Question"),
