@@ -2,10 +2,14 @@ part of "../data.dart";
 
 extension CategoryListExtension on Iterable<UCategoryResponse> {
   List<UCategoryResponse> whereByTag(int tag) => where((final UCategoryResponse i) => i.tags.contains(tag)).toList();
+
+  UCategoryResponse? firstWhereByTagOrNull(int tag) => firstWhereOrNull((final UCategoryResponse i) => i.tags.contains(tag));
 }
 
 extension NullableCategoryListExtension on Iterable<UCategoryResponse>? {
   List<UCategoryResponse> whereByTag(int tag) => (this ?? <UCategoryResponse>[]).where((final UCategoryResponse i) => i.tags.contains(tag)).toList();
+
+  UCategoryResponse? firstWhereByTagOrNull(int tag) => (this ?? <UCategoryResponse>[]).firstWhereOrNull((final UCategoryResponse i) => i.tags.contains(tag));
 }
 
 class UCategoryResponse {

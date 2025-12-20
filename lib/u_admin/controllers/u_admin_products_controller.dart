@@ -38,7 +38,7 @@ class UAdminProductController extends UAdminBaseController {
         title: controllerTitle.text,
         code: controllerCode.text,
         selectorArgs: const ProductSelectorArgs(
-          category: CategorySelectorArgs(),
+          category: CategorySelectorArgs(children: CategorySelectorArgs(), childrenDebt: 2),
           contract: ContractSelectorArgs(product: ProductSelectorArgs()),
         ),
       ),

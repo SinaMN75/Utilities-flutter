@@ -6,13 +6,18 @@ class UCategorySelector extends StatefulWidget {
     required this.onSubCategorySelected,
     this.hint1,
     this.hint2,
+    this.category,
+    this.subCategory,
     super.key,
   });
 
   final String? hint1;
   final String? hint2;
-  final void Function(UCategoryResponse? category) onCategorySelected;
-  final void Function(UCategoryResponse? subCategory) onSubCategorySelected;
+  final Function(UCategoryResponse? category) onCategorySelected;
+  final Function(UCategoryResponse? subCategory) onSubCategorySelected;
+
+  final UCategoryResponse? category;
+  final UCategoryResponse? subCategory;
 
   @override
   State<UCategorySelector> createState() => _UCategorySelectorState();
@@ -62,6 +67,13 @@ class _UCategorySelectorState extends State<UCategorySelector> {
         categories.insert(0, nullCategory);
         _selectCategory(categories.first);
         pageState.loaded();
+        if (widget.category != null) {
+          selectedCategory(widget.category);
+          subCategories.assignAll(widget.category!.children ?? <UCategoryResponse>[]);
+        }
+        if (widget.subCategory != null) {
+          selectedSubCategory(widget.subCategory);
+        }
       },
       onError: (UResponse<dynamic> res) {
         pageState.error();
