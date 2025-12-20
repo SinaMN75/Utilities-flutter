@@ -115,16 +115,17 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
         vsync: this,
         duration: Duration(milliseconds: widget.animationDuration),
       );
-      _animation = Tween<double>(begin: 0, end: widget.percent).animate(
-        CurvedAnimation(parent: _animationController!, curve: widget.curve),
-      )..addListener(() {
-          setState(() {
-            _percent = _animation.value;
+      _animation =
+          Tween<double>(begin: 0, end: widget.percent).animate(
+            CurvedAnimation(parent: _animationController!, curve: widget.curve),
+          )..addListener(() {
+            setState(() {
+              _percent = _animation.value;
+            });
+            if (widget.restartAnimation && _percent == 1.0) {
+              _animationController!.repeat(min: 0, max: 1);
+            }
           });
-          if (widget.restartAnimation && _percent == 1.0) {
-            _animationController!.repeat(min: 0, max: 1);
-          }
-        });
       _animationController!.addStatusListener((AnimationStatus status) {
         if (widget.onAnimationEnd != null && status == AnimationStatus.completed) {
           widget.onAnimationEnd!();
@@ -150,12 +151,13 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator> wit
     if (oldWidget.percent != widget.percent || oldWidget.startAngle != widget.startAngle) {
       if (_animationController != null) {
         _animationController!.duration = Duration(milliseconds: widget.animationDuration);
-        _animation = Tween<double>(
-          begin: widget.animateFromLastPercent ? oldWidget.percent : 0.0,
-          end: widget.percent,
-        ).animate(
-          CurvedAnimation(parent: _animationController!, curve: widget.curve),
-        );
+        _animation =
+            Tween<double>(
+              begin: widget.animateFromLastPercent ? oldWidget.percent : 0.0,
+              end: widget.percent,
+            ).animate(
+              CurvedAnimation(parent: _animationController!, curve: widget.curve),
+            );
         _animationController!.forward(from: 0);
       } else {
         _updateProgress();
@@ -350,14 +352,15 @@ class _CirclePainter extends CustomPainter {
         if (_paintLine.strokeCap != StrokeCap.butt) {
           correction = atan(_paintLine.strokeWidth / 2 / radius);
         }
-        _paintLine.shader = SweepGradient(
-          transform: reverse ? GradientRotation(radians(-90 - progress + startAngle) - correction) : GradientRotation(radians(-90.0 + startAngle) - correction),
-          startAngle: radians(0).toDouble(),
-          endAngle: radians(progress).toDouble(),
-          colors: reverse ? linearGradient!.colors.reversed.toList() : linearGradient!.colors,
-        ).createShader(
-          Rect.fromCircle(center: center, radius: radius),
-        );
+        _paintLine.shader =
+            SweepGradient(
+              transform: reverse ? GradientRotation(radians(-90 - progress + startAngle) - correction) : GradientRotation(radians(-90.0 + startAngle) - correction),
+              startAngle: radians(0).toDouble(),
+              endAngle: radians(progress).toDouble(),
+              colors: reverse ? linearGradient!.colors.reversed.toList() : linearGradient!.colors,
+            ).createShader(
+              Rect.fromCircle(center: center, radius: radius),
+            );
       } else if (!rotateLinearGradient) {
         _paintLine.shader = linearGradient!.createShader(
           Rect.fromCircle(center: center, radius: radius),
@@ -508,17 +511,21 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
       }
     });
     if (widget.animation) {
-      _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: widget.animationDuration));
-      _animation = Tween<double>(begin: 0, end: widget.percent).animate(
-        CurvedAnimation(parent: _animationController!, curve: widget.curve),
-      )..addListener(() {
-          setState(() {
-            _percent = _animation.value;
+      _animationController = AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: widget.animationDuration),
+      );
+      _animation =
+          Tween<double>(begin: 0, end: widget.percent).animate(
+            CurvedAnimation(parent: _animationController!, curve: widget.curve),
+          )..addListener(() {
+            setState(() {
+              _percent = _animation.value;
+            });
+            if (widget.restartAnimation && _percent == 1.0) {
+              _animationController!.repeat(min: 0, max: 1);
+            }
           });
-          if (widget.restartAnimation && _percent == 1.0) {
-            _animationController!.repeat(min: 0, max: 1);
-          }
-        });
       _animationController!.addStatusListener((AnimationStatus status) {
         if (widget.onAnimationEnd != null && status == AnimationStatus.completed) {
           widget.onAnimationEnd!();
@@ -610,9 +617,11 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator> with Si
     if (hasSetWidth) {
       items.add(containerWidget);
     } else {
-      items.add(Expanded(
-        child: containerWidget,
-      ));
+      items.add(
+        Expanded(
+          child: containerWidget,
+        ),
+      );
     }
     if (widget.trailing != null) {
       items.add(widget.trailing!);

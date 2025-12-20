@@ -72,9 +72,7 @@ class UTextDisplayLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .displayLarge!
+        style: Theme.of(context).textTheme.displayLarge!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -108,9 +106,7 @@ class UTextDisplayLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .displayLarge!
+      style: Theme.of(context).textTheme.displayLarge!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -206,9 +202,7 @@ class UTextDisplayMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .displayMedium!
+        style: Theme.of(context).textTheme.displayMedium!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -242,9 +236,7 @@ class UTextDisplayMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .displayMedium!
+      style: Theme.of(context).textTheme.displayMedium!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -340,9 +332,7 @@ class UTextDisplaySmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .displaySmall!
+        style: Theme.of(context).textTheme.displaySmall!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -376,9 +366,7 @@ class UTextDisplaySmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .displaySmall!
+      style: Theme.of(context).textTheme.displaySmall!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -474,9 +462,7 @@ class UTextHeadlineLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .headlineLarge!
+        style: Theme.of(context).textTheme.headlineLarge!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -510,9 +496,7 @@ class UTextHeadlineLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .headlineLarge!
+      style: Theme.of(context).textTheme.headlineLarge!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -608,9 +592,7 @@ class UTextHeadlineMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .headlineMedium!
+        style: Theme.of(context).textTheme.headlineMedium!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -644,9 +626,7 @@ class UTextHeadlineMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .headlineMedium!
+      style: Theme.of(context).textTheme.headlineMedium!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -742,9 +722,7 @@ class UTextHeadlineSmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .headlineSmall!
+        style: Theme.of(context).textTheme.headlineSmall!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -778,9 +756,7 @@ class UTextHeadlineSmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .headlineSmall!
+      style: Theme.of(context).textTheme.headlineSmall!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -876,9 +852,7 @@ class UTextTitleLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .titleLarge!
+        style: Theme.of(context).textTheme.titleLarge!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -912,9 +886,7 @@ class UTextTitleLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .titleLarge!
+      style: Theme.of(context).textTheme.titleLarge!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -1010,9 +982,7 @@ class UTextTitleMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .titleMedium!
+        style: Theme.of(context).textTheme.titleMedium!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -1046,9 +1016,7 @@ class UTextTitleMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .titleMedium!
+      style: Theme.of(context).textTheme.titleMedium!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -1144,9 +1112,7 @@ class UTextTitleSmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .titleSmall!
+        style: Theme.of(context).textTheme.titleSmall!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -1180,9 +1146,7 @@ class UTextTitleSmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .titleSmall!
+      style: Theme.of(context).textTheme.titleSmall!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -1278,9 +1242,7 @@ class UTextBodyLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .bodyLarge!
+        style: Theme.of(context).textTheme.bodyLarge!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -1314,9 +1276,7 @@ class UTextBodyLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .bodyLarge!
+      style: Theme.of(context).textTheme.bodyLarge!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -1412,9 +1372,7 @@ class UTextBodyMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .bodyMedium!
+        style: Theme.of(context).textTheme.bodyMedium!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -1448,9 +1406,7 @@ class UTextBodyMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .bodyMedium!
+      style: Theme.of(context).textTheme.bodyMedium!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -1546,9 +1502,7 @@ class UTextBodySmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .bodySmall!
+        style: Theme.of(context).textTheme.bodySmall!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -1582,9 +1536,7 @@ class UTextBodySmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .bodySmall!
+      style: Theme.of(context).textTheme.bodySmall!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -1680,9 +1632,7 @@ class UTextLabelLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .labelLarge!
+        style: Theme.of(context).textTheme.labelLarge!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -1716,9 +1666,7 @@ class UTextLabelLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .labelLarge!
+      style: Theme.of(context).textTheme.labelLarge!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -1814,9 +1762,7 @@ class UTextLabelMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .labelMedium!
+        style: Theme.of(context).textTheme.labelMedium!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -1850,9 +1796,7 @@ class UTextLabelMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .labelMedium!
+      style: Theme.of(context).textTheme.labelMedium!
           .copyWith(
             color: color,
             fontSize: fontSize,
@@ -1948,9 +1892,7 @@ class UTextLabelSmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context)
-            .textTheme
-            .labelSmall!
+        style: Theme.of(context).textTheme.labelSmall!
             .copyWith(
               color: color,
               fontSize: fontSize,
@@ -1984,9 +1926,7 @@ class UTextLabelSmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context)
-          .textTheme
-          .labelSmall!
+      style: Theme.of(context).textTheme.labelSmall!
           .copyWith(
             color: color,
             fontSize: fontSize,

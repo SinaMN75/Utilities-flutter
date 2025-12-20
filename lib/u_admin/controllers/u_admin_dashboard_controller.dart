@@ -12,13 +12,13 @@ class UAdminDashboardController {
   late UDashboardResponse dashboard;
 
   void startMetricsPolling() => _timer = Timer.periodic(
-        const Duration(seconds: 10),
+    const Duration(seconds: 10),
     (_) => U.services.dashboard.readSystemMetrics(
       onOk: (UMetricsResponse response) => metrics(response),
-          onError: () {},
-          onException: (String e) {},
-        ),
-      );
+      onError: () {},
+      onException: (String e) {},
+    ),
+  );
 
   void read() {
     state.loading();

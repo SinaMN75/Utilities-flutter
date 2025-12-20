@@ -36,8 +36,8 @@ class RatingBar extends StatefulWidget {
     this.tapOnlyMode = false,
     this.updateOnDrag = false,
     this.wrapAlignment = WrapAlignment.start,
-  })  : _itemBuilder = null,
-        _ratingWidget = ratingWidget;
+  }) : _itemBuilder = null,
+       _ratingWidget = ratingWidget;
 
   const RatingBar.builder({
     required this.onRatingUpdate,
@@ -60,8 +60,8 @@ class RatingBar extends StatefulWidget {
     this.tapOnlyMode = false,
     this.updateOnDrag = false,
     this.wrapAlignment = WrapAlignment.start,
-  })  : _itemBuilder = itemBuilder,
-        _ratingWidget = null;
+  }) : _itemBuilder = itemBuilder,
+       _ratingWidget = null;
 
   final ValueChanged<double> onRatingUpdate;
 
@@ -328,34 +328,34 @@ class _HalfRatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        height: size,
-        width: size,
-        child: enableMask
-            ? Stack(
-                fit: StackFit.expand,
-                children: <Widget>[
-                  FittedBox(
-                    child: _NoRatingWidget(
-                      size: size,
-                      unratedColor: unratedColor,
-                      enableMask: enableMask,
-                      child: child,
-                    ),
-                  ),
-                  FittedBox(
-                    child: ClipRect(
-                      clipper: _HalfClipper(
-                        rtlMode: rtlMode,
-                      ),
-                      child: child,
-                    ),
-                  ),
-                ],
-              )
-            : FittedBox(
-                child: child,
+    height: size,
+    width: size,
+    child: enableMask
+        ? Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              FittedBox(
+                child: _NoRatingWidget(
+                  size: size,
+                  unratedColor: unratedColor,
+                  enableMask: enableMask,
+                  child: child,
+                ),
               ),
-      );
+              FittedBox(
+                child: ClipRect(
+                  clipper: _HalfClipper(
+                    rtlMode: rtlMode,
+                  ),
+                  child: child,
+                ),
+              ),
+            ],
+          )
+        : FittedBox(
+            child: child,
+          ),
+  );
 }
 
 class _HalfClipper extends CustomClipper<Rect> {
@@ -397,20 +397,20 @@ class _NoRatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        height: size,
-        width: size,
-        child: FittedBox(
-          child: enableMask
-              ? ColorFiltered(
-                  colorFilter: ColorFilter.mode(
-                    unratedColor,
-                    BlendMode.srcIn,
-                  ),
-                  child: child,
-                )
-              : child,
-        ),
-      );
+    height: size,
+    width: size,
+    child: FittedBox(
+      child: enableMask
+          ? ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                unratedColor,
+                BlendMode.srcIn,
+              ),
+              child: child,
+            )
+          : child,
+    ),
+  );
 }
 
 class RatingBarIndicator extends StatefulWidget {
@@ -485,65 +485,65 @@ class _RatingBarIndicatorState extends State<RatingBarIndicator> {
   }
 
   List<Widget> get _children => List<Widget>.generate(
-        widget.itemCount,
-        (int index) {
-          if (widget.textDirection != null) {
-            if (widget.textDirection == TextDirection.rtl && Directionality.of(navigatorKey.currentContext!) != TextDirection.rtl) {
-              return Transform(
-                transform: Matrix4.identity()..scale(-1.0, 1, 1),
-                alignment: Alignment.center,
-                transformHitTests: false,
-                child: _buildItems(index),
-              );
-            }
-          }
-          return _buildItems(index);
-        },
-      );
+    widget.itemCount,
+    (int index) {
+      if (widget.textDirection != null) {
+        if (widget.textDirection == TextDirection.rtl && Directionality.of(navigatorKey.currentContext!) != TextDirection.rtl) {
+          return Transform(
+            transform: Matrix4.identity()..scale(-1.0, 1, 1),
+            alignment: Alignment.center,
+            transformHitTests: false,
+            child: _buildItems(index),
+          );
+        }
+      }
+      return _buildItems(index);
+    },
+  );
 
   Widget _buildItems(int index) => Padding(
-        padding: widget.itemPadding,
-        child: SizedBox(
-          width: widget.itemSize,
-          height: widget.itemSize,
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              FittedBox(
-                child: index + 1 < _ratingNumber
-                    ? widget.itemBuilder(navigatorKey.currentContext!, index)
-                    : ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                          widget.unratedColor ?? Theme.of(navigatorKey.currentContext!).disabledColor,
-                          BlendMode.srcIn,
-                        ),
-                        child: widget.itemBuilder(navigatorKey.currentContext!, index),
-                      ),
-              ),
-              if (index + 1 == _ratingNumber)
-                if (_isRTL)
-                  FittedBox(
-                    child: ClipRect(
-                      clipper: _IndicatorClipper(
-                        ratingFraction: _ratingFraction,
-                        rtlMode: _isRTL,
-                      ),
-                      child: widget.itemBuilder(navigatorKey.currentContext!, index),
+    padding: widget.itemPadding,
+    child: SizedBox(
+      width: widget.itemSize,
+      height: widget.itemSize,
+      child: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          FittedBox(
+            child: index + 1 < _ratingNumber
+                ? widget.itemBuilder(navigatorKey.currentContext!, index)
+                : ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      widget.unratedColor ?? Theme.of(navigatorKey.currentContext!).disabledColor,
+                      BlendMode.srcIn,
                     ),
-                  )
-                else
-                  FittedBox(
-                    child: ClipRect(
-                      clipper: _IndicatorClipper(
-                        ratingFraction: _ratingFraction,
-                      ),
-                      child: widget.itemBuilder(navigatorKey.currentContext!, index),
-                    ),
+                    child: widget.itemBuilder(navigatorKey.currentContext!, index),
                   ),
-            ],
           ),
-        ),
-      );
+          if (index + 1 == _ratingNumber)
+            if (_isRTL)
+              FittedBox(
+                child: ClipRect(
+                  clipper: _IndicatorClipper(
+                    ratingFraction: _ratingFraction,
+                    rtlMode: _isRTL,
+                  ),
+                  child: widget.itemBuilder(navigatorKey.currentContext!, index),
+                ),
+              )
+            else
+              FittedBox(
+                child: ClipRect(
+                  clipper: _IndicatorClipper(
+                    ratingFraction: _ratingFraction,
+                  ),
+                  child: widget.itemBuilder(navigatorKey.currentContext!, index),
+                ),
+              ),
+        ],
+      ),
+    ),
+  );
 }
 
 class _IndicatorClipper extends CustomClipper<Rect> {

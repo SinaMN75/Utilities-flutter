@@ -46,14 +46,13 @@ class OperatorDetail {
     String? model,
     SimCardType? type,
     Operator? operator,
-  }) =>
-      OperatorDetail(
-        base: base ?? this.base,
-        provinces: provinces ?? this.provinces,
-        model: model ?? this.model,
-        type: type ?? this.type,
-        operator: operator ?? this.operator,
-      );
+  }) => OperatorDetail(
+    base: base ?? this.base,
+    provinces: provinces ?? this.provinces,
+    model: model ?? this.model,
+    type: type ?? this.type,
+    operator: operator ?? this.operator,
+  );
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is OperatorDetail && base == other.base && provinces == other.provinces && model == other.model && type == other.type && operator == other.operator;
@@ -108,16 +107,15 @@ class BankInfo {
     AccountNumberModel Function(String)? process,
     String? accountNumber,
     String? formattedAccountNumber,
-  }) =>
-      BankInfo(
-        nickname: nickname ?? this.nickname,
-        name: name ?? this.name,
-        persianName: persianName ?? this.persianName,
-        isAccountNumberAvailable: isAccountNumberAvailable ?? this.isAccountNumberAvailable,
-        process: process ?? this.process,
-        accountNumber: accountNumber ?? this.accountNumber,
-        formattedAccountNumber: formattedAccountNumber ?? this.formattedAccountNumber,
-      );
+  }) => BankInfo(
+    nickname: nickname ?? this.nickname,
+    name: name ?? this.name,
+    persianName: persianName ?? this.persianName,
+    isAccountNumberAvailable: isAccountNumberAvailable ?? this.isAccountNumberAvailable,
+    process: process ?? this.process,
+    accountNumber: accountNumber ?? this.accountNumber,
+    formattedAccountNumber: formattedAccountNumber ?? this.formattedAccountNumber,
+  );
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is BankInfo && nickname == other.nickname && name == other.name && persianName == other.persianName && isAccountNumberAvailable == other.isAccountNumberAvailable && accountNumber == other.accountNumber && formattedAccountNumber == other.formattedAccountNumber;
@@ -127,11 +125,11 @@ class BankInfo {
 }
 
 class PersianTools {
-// Persian character sets
+  // Persian character sets
   static const String _faText = "ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی۰۱۲۳۴۵۶۷۸۹َُِآاً";
   static const String _faComplexText = "$_faTextًٌٍَُِّْٰٔءك‌ةۀأإيـئؤ،";
 
-// Number conversion constants
+  // Number conversion constants
   static const String _faNumber = "۰۱۲۳۴۵۶۷۸۹";
   static const String _arNumber = "۰۱۲۳٤٥٦۷۸۹";
   static const Map<int, String> _numberToWord = <int, String>{
@@ -217,7 +215,7 @@ class PersianTools {
     "نهصد": 900,
   };
 
-// Bank data
+  // Bank data
   static final Map<String, BankInfo> _bankInfo = <String, BankInfo>{
     "010": const BankInfo(nickname: "central-bank", name: "Central Bank of Iran", persianName: "بانک مرکزی جمهوری اسلامی ایران"),
     "011": const BankInfo(nickname: "sanat-o-madan", name: "Sanat O Madan Bank", persianName: "بانک صنعت و معدن"),
@@ -349,7 +347,7 @@ class PersianTools {
     "585947": "بانک خاورمیانه",
   };
 
-// Phone number constants
+  // Phone number constants
   static final RegExp _mobileRegex = RegExp(r"^(?:[+|0{2}]?98)?0?(\d{3})+(\d{3})+(\d{4})$");
   static final Map<String, OperatorDetail> _operators = <String, OperatorDetail>{
     "910": const OperatorDetail(base: "کشوری", operator: Operator.MCI),
@@ -464,9 +462,9 @@ class PersianTools {
   /// @returns String String with replaced patterns
   /// Example: PersianTools.replaceMapValue("شیش صد", {"شیش صد": "ششصد"}) => "ششصد"
   static String replaceMapValue(String input, Map<String, String> mapPattern) => input.replaceAllMapped(
-        RegExp(mapPattern.keys.join("|"), caseSensitive: false),
-        (Match match) => mapPattern[match.group(0)]!,
-      );
+    RegExp(mapPattern.keys.join("|"), caseSensitive: false),
+    (Match match) => mapPattern[match.group(0)]!,
+  );
 
   /// Validates Iranian national ID
   /// @param id The national ID to validate
@@ -618,7 +616,7 @@ class PersianTools {
     return "${cardNumber.substring(0, 4)}-${cardNumber.substring(4, 8)}-${cardNumber.substring(8, 12)}-${cardNumber.substring(12)}";
   }
 
-// Helper methods
+  // Helper methods
   static String _addCommas(num number) {
     final String str = number.toString();
     final List<String> parts = str.split(".");

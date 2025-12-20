@@ -88,37 +88,37 @@ class _UImageSliderState extends State<UImageSlider> {
 
   @override
   Widget build(BuildContext context) => Column(
-        children: <Widget>[
-          PageView.builder(
-            controller: _pageController,
-            onPageChanged: _onPageChanged,
-            itemCount: widget.images.length,
-            itemBuilder: (BuildContext context, int index) => UImage(
-              widget.images[index],
-              fit: widget.imageFit,
-              borderRadius: widget.radius,
-            ).pSymmetric(horizontal: 4),
-          ).container(height: widget.height),
-          if (widget.images.length > 1)
-            SizedBox(
-              height: widget.indicatorHeight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List<Widget>.generate(
-                  widget.images.length,
-                  (int index) => AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    width: _currentPage == index ? widget.indicatorActiveSize : widget.indicatorInactiveSize,
-                    height: _currentPage == index ? widget.indicatorActiveSize : widget.indicatorInactiveSize,
-                    decoration: BoxDecoration(
-                      color: _currentPage == index ? widget.activeIndicatorColor : widget.inactiveIndicatorColor,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
+    children: <Widget>[
+      PageView.builder(
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        itemCount: widget.images.length,
+        itemBuilder: (BuildContext context, int index) => UImage(
+          widget.images[index],
+          fit: widget.imageFit,
+          borderRadius: widget.radius,
+        ).pSymmetric(horizontal: 4),
+      ).container(height: widget.height),
+      if (widget.images.length > 1)
+        SizedBox(
+          height: widget.indicatorHeight,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List<Widget>.generate(
+              widget.images.length,
+              (int index) => AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                width: _currentPage == index ? widget.indicatorActiveSize : widget.indicatorInactiveSize,
+                height: _currentPage == index ? widget.indicatorActiveSize : widget.indicatorInactiveSize,
+                decoration: BoxDecoration(
+                  color: _currentPage == index ? widget.activeIndicatorColor : widget.inactiveIndicatorColor,
+                  shape: BoxShape.circle,
                 ),
-              ).alignAtCenter(),
+              ),
             ),
-        ],
-      );
+          ).alignAtCenter(),
+        ),
+    ],
+  );
 }

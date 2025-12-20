@@ -107,8 +107,8 @@ class ReadMoreTextState extends State<ReadMoreText> {
     final TextSpan delimiter = TextSpan(
       text: _readMore
           ? widget.trimCollapsedText.isNotEmpty
-              ? widget.delimiter
-              : ""
+                ? widget.delimiter
+                : ""
           : "",
       style: defaultDelimiterStyle,
       recognizer: TapGestureRecognizer()..onTap = _onTapLink,
@@ -134,7 +134,11 @@ class ReadMoreTextState extends State<ReadMoreText> {
           );
         }
         final TextSpan text = TextSpan(
-          children: <InlineSpan>[if (preTextSpan != null) preTextSpan, TextSpan(text: widget.data, style: effectiveTextStyle), if (postTextSpan != null) postTextSpan],
+          children: <InlineSpan>[
+            if (preTextSpan != null) preTextSpan,
+            TextSpan(text: widget.data, style: effectiveTextStyle),
+            if (postTextSpan != null) postTextSpan,
+          ],
         );
         final TextPainter textPainter = TextPainter(
           text: link,
@@ -157,10 +161,12 @@ class ReadMoreTextState extends State<ReadMoreText> {
 
         if (linkSize.width < maxWidth) {
           final double readMoreSize = linkSize.width + delimiterSize.width;
-          final TextPosition pos = textPainter.getPositionForOffset(Offset(
-            textDirection == TextDirection.rtl ? readMoreSize : textSize.width - readMoreSize,
-            textSize.height,
-          ));
+          final TextPosition pos = textPainter.getPositionForOffset(
+            Offset(
+              textDirection == TextDirection.rtl ? readMoreSize : textSize.width - readMoreSize,
+              textSize.height,
+            ),
+          );
           endIndex = textPainter.getOffsetBefore(pos.offset) ?? 0;
         } else {
           final TextPosition pos = textPainter.getPositionForOffset(

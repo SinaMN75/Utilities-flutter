@@ -32,7 +32,9 @@ class UAdminInvoiceController {
         orderByCreatedAtDesc: orderByCreatedAtDesc,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
-        selectorArgs: const InvoiceSelectorArgs(contract: ContractSelectorArgs(user: UserSelectorArgs(), product: ProductSelectorArgs())),
+        selectorArgs: const InvoiceSelectorArgs(
+          contract: ContractSelectorArgs(user: UserSelectorArgs(), product: ProductSelectorArgs()),
+        ),
       ),
       onOk: (UResponse<List<UInvoiceResponse>> response) {
         list = response.result!;
@@ -62,22 +64,22 @@ class UAdminInvoiceController {
     title: U.s.delete,
     message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
-          ULoading.show();
+      ULoading.show();
       U.services.invoice.delete(
         p: UIdParams(id: i.id),
-            onOk: (final UResponse<dynamic> r) {
-              UNavigator.back();
+        onOk: (final UResponse<dynamic> r) {
+          UNavigator.back();
           UToast.snackBar(message: r.message);
           ULoading.dismiss();
-            },
-            onError: (final UResponse<dynamic> r) {
+        },
+        onError: (final UResponse<dynamic> r) {
           UToast.error(message: r.message);
           ULoading.dismiss();
-            },
-            onException: (String e) {},
-          );
         },
+        onException: (String e) {},
       );
+    },
+  );
 
   void create({required UInvoiceCreateParams p}) {
     U.services.invoice.create(

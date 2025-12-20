@@ -7,8 +7,8 @@ class UWebView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => WebViewWidget(
-        controller: WebViewController()
-          ..setJavaScriptMode(JavaScriptMode.unrestricted)
-          ..loadRequest(Uri.parse(url)),
-      );
+    controller: WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(Uri.parse(url)),
+  );
 }

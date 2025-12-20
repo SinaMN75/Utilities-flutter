@@ -64,7 +64,11 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
           scrollController.jumpTo(position);
         }
         position += _moveDistance;
-        scrollController.animateTo(position, duration: Duration(milliseconds: _timerRest), curve: Curves.linear);
+        scrollController.animateTo(
+          position,
+          duration: Duration(milliseconds: _timerRest),
+          curve: Curves.linear,
+        );
       });
     }
   }
@@ -87,7 +91,9 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
         ),
       );
     }
-    return Center(child: Text(widget.text, style: widget.textStyle, textAlign: widget.textAlign ?? TextAlign.center));
+    return Center(
+      child: Text(widget.text, style: widget.textStyle, textAlign: widget.textAlign ?? TextAlign.center),
+    );
   }
 
   Widget getCenterChild() {
@@ -108,25 +114,25 @@ class ScrollingTextState extends State<ScrollingText> with SingleTickerProviderS
 
   @override
   Widget build(final BuildContext context) => Container(
-        height: widget.height ?? 30,
-        width: widget.width,
-        color: widget.color,
-        child: widget.text.length > widget.maxLengthForScrolling
-            ? ListView(
-                key: _key,
-                scrollDirection: widget.scrollAxis,
-                controller: scrollController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: <Widget>[
-                  getBothEndsChild(),
-                  getCenterChild(),
-                  getBothEndsChild(),
-                ],
-              )
-            : Text(
-                widget.text,
-                style: widget.textStyle,
-                textAlign: widget.textAlign ?? TextAlign.start,
-              ),
-      );
+    height: widget.height ?? 30,
+    width: widget.width,
+    color: widget.color,
+    child: widget.text.length > widget.maxLengthForScrolling
+        ? ListView(
+            key: _key,
+            scrollDirection: widget.scrollAxis,
+            controller: scrollController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              getBothEndsChild(),
+              getCenterChild(),
+              getBothEndsChild(),
+            ],
+          )
+        : Text(
+            widget.text,
+            style: widget.textStyle,
+            textAlign: widget.textAlign ?? TextAlign.start,
+          ),
+  );
 }

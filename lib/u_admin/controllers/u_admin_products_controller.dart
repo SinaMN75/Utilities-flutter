@@ -46,7 +46,10 @@ class UAdminProductController {
         maxRent: controllerMaxPrice.text.englishNumber().toDouble(),
         title: controllerTitle.text,
         code: controllerCode.text,
-        selectorArgs: const ProductSelectorArgs(category: CategorySelectorArgs(), contract: ContractSelectorArgs(product: ProductSelectorArgs())),
+        selectorArgs: const ProductSelectorArgs(
+          category: CategorySelectorArgs(),
+          contract: ContractSelectorArgs(product: ProductSelectorArgs()),
+        ),
       ),
       onOk: (UResponse<List<UProductResponse>> response) {
         list = response.result!;

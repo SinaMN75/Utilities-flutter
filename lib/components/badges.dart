@@ -121,33 +121,33 @@ class BadgeState extends State<BadgeWidget> with SingleTickerProviderStateMixin 
           );
 
     Widget badgeView() => AnimatedOpacity(
-          opacity: widget.showBadge ? 1 : 0,
-          duration: const Duration(milliseconds: 200),
-          child: Material(
-            shape: border,
-            elevation: widget.elevation,
-            color: widget.badgeColor,
-            child: Padding(padding: widget.padding, child: widget.badgeContent),
-          ),
-        );
+      opacity: widget.showBadge ? 1 : 0,
+      duration: const Duration(milliseconds: 200),
+      child: Material(
+        shape: border,
+        elevation: widget.elevation,
+        color: widget.badgeColor,
+        child: Padding(padding: widget.padding, child: widget.badgeContent),
+      ),
+    );
 
     Widget badgeViewGradient() => AnimatedOpacity(
-          opacity: widget.showBadge ? 1 : 0,
-          duration: const Duration(milliseconds: 200),
-          child: Material(
-            shape: border,
-            elevation: widget.elevation,
-            child: DecoratedBox(
-              decoration: widget.shape == BadgeShape.circle
-                  ? BoxDecoration(gradient: widget.gradient, shape: BoxShape.circle)
-                  : BoxDecoration(
-                      gradient: widget.gradient,
-                      borderRadius: widget.borderRadius,
-                    ),
-              child: Padding(padding: widget.padding, child: widget.badgeContent),
-            ),
-          ),
-        );
+      opacity: widget.showBadge ? 1 : 0,
+      duration: const Duration(milliseconds: 200),
+      child: Material(
+        shape: border,
+        elevation: widget.elevation,
+        child: DecoratedBox(
+          decoration: widget.shape == BadgeShape.circle
+              ? BoxDecoration(gradient: widget.gradient, shape: BoxShape.circle)
+              : BoxDecoration(
+                  gradient: widget.gradient,
+                  borderRadius: widget.borderRadius,
+                ),
+          child: Padding(padding: widget.padding, child: widget.badgeContent),
+        ),
+      ),
+    );
 
     if (widget.toAnimate) {
       if (widget.animationType == BadgeAnimationType.slide) {

@@ -27,76 +27,76 @@ class UImage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DecoratedBox(
-        decoration: BoxDecoration(
-          border: border,
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
-        child: Builder(
-          builder: (final BuildContext context) {
-            if (fileData != null) {
-              if (UApp.isWeb) {
-                return UImageMemory(
-                  fileData!.bytes!,
-                  width: width,
-                  height: height,
-                  borderRadius: borderRadius,
-                  color: color,
-                  fit: fit,
-                );
-              } else {
-                return UImageFile(
-                  File(fileData!.path!),
-                  width: width,
-                  height: height,
-                  borderRadius: borderRadius,
-                  color: color,
-                  fit: fit,
-                );
-              }
-            } else if (source.length <= 5) {
-              if (placeholder == null) {
-                return SizedBox(width: width, height: height);
-              } else {
-                return UImageAsset(
-                  placeholder!,
-                  width: width,
-                  height: height,
-                  borderRadius: borderRadius,
-                  placeholder: placeholder,
-                  color: color,
-                  fit: fit,
-                );
-              }
-            } else {
-              if (source.startsWith("http")) {
-                return UImageNetwork(
-                  source,
-                  width: width,
-                  height: height,
-                  fit: fit,
-                  borderRadius: borderRadius,
-                  color: color,
-                  placeholder: placeholder,
-                );
-              } else if (source.startsWith("http") && source.endsWith(".json")) {
-                return Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
-              } else if (source.endsWith(".json")) {
-                return Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
-              } else {
-                return UImageAsset(
-                  source,
-                  width: width,
-                  height: height,
-                  fit: fit,
-                  borderRadius: borderRadius,
-                  placeholder: placeholder,
-                  color: color,
-                );
-              }
-            }
-          },
-        ),
-      );
+    decoration: BoxDecoration(
+      border: border,
+      borderRadius: BorderRadius.circular(borderRadius),
+    ),
+    child: Builder(
+      builder: (final BuildContext context) {
+        if (fileData != null) {
+          if (UApp.isWeb) {
+            return UImageMemory(
+              fileData!.bytes!,
+              width: width,
+              height: height,
+              borderRadius: borderRadius,
+              color: color,
+              fit: fit,
+            );
+          } else {
+            return UImageFile(
+              File(fileData!.path!),
+              width: width,
+              height: height,
+              borderRadius: borderRadius,
+              color: color,
+              fit: fit,
+            );
+          }
+        } else if (source.length <= 5) {
+          if (placeholder == null) {
+            return SizedBox(width: width, height: height);
+          } else {
+            return UImageAsset(
+              placeholder!,
+              width: width,
+              height: height,
+              borderRadius: borderRadius,
+              placeholder: placeholder,
+              color: color,
+              fit: fit,
+            );
+          }
+        } else {
+          if (source.startsWith("http")) {
+            return UImageNetwork(
+              source,
+              width: width,
+              height: height,
+              fit: fit,
+              borderRadius: borderRadius,
+              color: color,
+              placeholder: placeholder,
+            );
+          } else if (source.startsWith("http") && source.endsWith(".json")) {
+            return Lottie.network(source, width: width, height: height, fit: fit, repeat: true);
+          } else if (source.endsWith(".json")) {
+            return Lottie.asset(source, width: width, height: height, fit: fit, repeat: true);
+          } else {
+            return UImageAsset(
+              source,
+              width: width,
+              height: height,
+              fit: fit,
+              borderRadius: borderRadius,
+              placeholder: placeholder,
+              color: color,
+            );
+          }
+        }
+      },
+    ),
+  );
 }
 
 class UIconPrimary extends StatelessWidget {
@@ -121,14 +121,14 @@ class UIconPrimary extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => UImage(
-        source,
-        color: color ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
-        width: width,
-        height: height,
-        fit: fit,
-        borderRadius: borderRadius,
-        placeholder: placeholder,
-      );
+    source,
+    color: color ?? Theme.of(navigatorKey.currentContext!).colorScheme.primary,
+    width: width,
+    height: height,
+    fit: fit,
+    borderRadius: borderRadius,
+    placeholder: placeholder,
+  );
 }
 
 class UImageAsset extends StatelessWidget {
@@ -216,60 +216,60 @@ class UImageNetwork extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Builder(
-        builder: (final BuildContext context) => url.length <= 10
-            ? placeholder == null
-                ? SizedBox(width: width, height: height)
-                : UImageAsset(
+    builder: (final BuildContext context) => url.length <= 10
+        ? placeholder == null
+              ? SizedBox(width: width, height: height)
+              : UImageAsset(
+                  placeholder!,
+                  width: width,
+                  height: height,
+                  color: color,
+                  fit: fit,
+                  clipBehavior: clipBehavior,
+                  borderRadius: borderRadius,
+                )
+        : url.substring(url.length - 3) == "svg"
+        ? SvgPicture.network(
+            url,
+            width: width,
+            height: height,
+            fit: fit,
+            placeholderBuilder: placeholder == null
+                ? null
+                : (final _) => UImageAsset(
                     placeholder!,
                     width: width,
                     height: height,
-                    color: color,
                     fit: fit,
                     clipBehavior: clipBehavior,
                     borderRadius: borderRadius,
-                  )
-            : url.substring(url.length - 3) == "svg"
-                ? SvgPicture.network(
-                    url,
-                    width: width,
-                    height: height,
-                    fit: fit,
-                    placeholderBuilder: placeholder == null
-                        ? null
-                        : (final _) => UImageAsset(
-                              placeholder!,
-                              width: width,
-                              height: height,
-                              fit: fit,
-                              clipBehavior: clipBehavior,
-                              borderRadius: borderRadius,
-                            ),
-                  )
-                : CachedNetworkImage(
-                    imageUrl: url,
-                    width: width,
-                    height: height,
-                    fit: fit,
-                    errorWidget: placeholder == null
-                        ? null
-                        : UImage(
-                            placeholder!,
-                            color: color,
-                            width: width,
-                            height: height,
-                            fit: fit,
-                          ),
-                    placeholder: placeholder == null
-                        ? null
-                        : UImage(
-                            placeholder!,
-                            color: color,
-                            width: width,
-                            height: height,
-                            fit: fit,
-                          ),
                   ),
-      ).container(radius: borderRadius);
+          )
+        : CachedNetworkImage(
+            imageUrl: url,
+            width: width,
+            height: height,
+            fit: fit,
+            errorWidget: placeholder == null
+                ? null
+                : UImage(
+                    placeholder!,
+                    color: color,
+                    width: width,
+                    height: height,
+                    fit: fit,
+                  ),
+            placeholder: placeholder == null
+                ? null
+                : UImage(
+                    placeholder!,
+                    color: color,
+                    width: width,
+                    height: height,
+                    fit: fit,
+                  ),
+          ),
+  ).container(radius: borderRadius);
 }
 
 class UImageFile extends StatelessWidget {
@@ -292,12 +292,12 @@ class UImageFile extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Image.file(
-        file,
-        color: color,
-        width: width,
-        height: height,
-        fit: fit,
-      ).container(radius: borderRadius);
+    file,
+    color: color,
+    width: width,
+    height: height,
+    fit: fit,
+  ).container(radius: borderRadius);
 }
 
 class UImageMemory extends StatelessWidget {
@@ -320,10 +320,10 @@ class UImageMemory extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Image.memory(
-        file,
-        color: color,
-        width: width,
-        height: height,
-        fit: fit,
-      ).container(radius: borderRadius);
+    file,
+    color: color,
+    width: width,
+    height: height,
+    fit: fit,
+  ).container(radius: borderRadius);
 }

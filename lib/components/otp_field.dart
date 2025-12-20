@@ -154,73 +154,75 @@ class _UOtpFieldState extends State<UOtpField> {
 
   @override
   Widget build(final BuildContext context) => FormField<String>(
-        validator: widget.validator,
-        builder: (final FormFieldState<String> formFieldState) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: widget.mainAxisAlignment,
-              children: List<Widget>.generate(
-                  widget.length,
-                  (final int index) => SizedBox(
-                        width: widget.fieldWidth,
-                        height: widget.fieldHeight,
-                        child: KeyboardListener(
-                          focusNode: FocusNode(),
-                          onKeyEvent: (final KeyEvent event) => _onKeyDown(index, event),
-                          child: TextField(
-                            controller: _controllers[index],
-                            focusNode: _focusNodes[index],
-                            autofocus: widget.autoFocus && index == 0,
-                            textAlign: TextAlign.center,
-                            style: widget.textStyle ?? Theme.of(context).textTheme.headlineSmall,
-                            keyboardType: widget.keyboardType,
-                            cursorColor: widget.cursorColor,
-                            showCursor: widget.showCursor,
-                            readOnly: widget.readOnly,
-                            obscureText: widget.obscureText,
-                            obscuringCharacter: widget.obscuringCharacter,
-                            maxLength: 1,
-                            decoration: widget.decoration ??
-                                InputDecoration(
-                                  counterText: "",
-                                  filled: true,
-                                  fillColor: widget.fillColor,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(widget.borderRadius),
-                                    borderSide: BorderSide(
-                                      color: _getBorderColor(index),
-                                      width: widget.borderWidth,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(widget.borderRadius),
-                                    borderSide: BorderSide(
-                                      color: widget.activeColor,
-                                      width: widget.borderWidth,
-                                    ),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(widget.borderRadius),
-                                    borderSide: BorderSide(
-                                      color: Theme.of(context).colorScheme.error,
-                                      width: widget.borderWidth,
-                                    ),
-                                  ),
-                                ),
-                            onChanged: (final String value) => _onChanged(index, value),
+    validator: widget.validator,
+    builder: (final FormFieldState<String> formFieldState) => Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: widget.mainAxisAlignment,
+          children: List<Widget>.generate(
+            widget.length,
+            (final int index) => SizedBox(
+              width: widget.fieldWidth,
+              height: widget.fieldHeight,
+              child: KeyboardListener(
+                focusNode: FocusNode(),
+                onKeyEvent: (final KeyEvent event) => _onKeyDown(index, event),
+                child: TextField(
+                  controller: _controllers[index],
+                  focusNode: _focusNodes[index],
+                  autofocus: widget.autoFocus && index == 0,
+                  textAlign: TextAlign.center,
+                  style: widget.textStyle ?? Theme.of(context).textTheme.headlineSmall,
+                  keyboardType: widget.keyboardType,
+                  cursorColor: widget.cursorColor,
+                  showCursor: widget.showCursor,
+                  readOnly: widget.readOnly,
+                  obscureText: widget.obscureText,
+                  obscuringCharacter: widget.obscuringCharacter,
+                  maxLength: 1,
+                  decoration:
+                      widget.decoration ??
+                      InputDecoration(
+                        counterText: "",
+                        filled: true,
+                        fillColor: widget.fillColor,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(widget.borderRadius),
+                          borderSide: BorderSide(
+                            color: _getBorderColor(index),
+                            width: widget.borderWidth,
                           ),
                         ),
-                      )),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(widget.borderRadius),
+                          borderSide: BorderSide(
+                            color: widget.activeColor,
+                            width: widget.borderWidth,
+                          ),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(widget.borderRadius),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.error,
+                            width: widget.borderWidth,
+                          ),
+                        ),
+                      ),
+                  onChanged: (final String value) => _onChanged(index, value),
+                ),
+              ),
             ),
-            if (formFieldState.hasError)
-              Text(
-                formFieldState.errorText!,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-              ).pOnly(top: 8),
-          ],
+          ),
         ),
-      ).ltr();
+        if (formFieldState.hasError)
+          Text(
+            formFieldState.errorText!,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: Theme.of(context).colorScheme.error,
+            ),
+          ).pOnly(top: 8),
+      ],
+    ),
+  ).ltr();
 }

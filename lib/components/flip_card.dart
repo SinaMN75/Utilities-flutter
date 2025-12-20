@@ -15,23 +15,23 @@ class UAnimationCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => AnimatedBuilder(
-        animation: animation!,
-        builder: (final BuildContext context, final Widget? child) {
-          final Matrix4 transform = Matrix4.identity();
-          transform.setEntry(3, 2, 0.001);
-          if (direction == FlipDirection.VERTICAL) {
-            transform.rotateX(animation!.value);
-          } else {
-            transform.rotateY(animation!.value);
-          }
-          return Transform(
-            transform: transform,
-            alignment: Alignment.center,
-            child: child,
-          );
-        },
+    animation: animation!,
+    builder: (final BuildContext context, final Widget? child) {
+      final Matrix4 transform = Matrix4.identity();
+      transform.setEntry(3, 2, 0.001);
+      if (direction == FlipDirection.VERTICAL) {
+        transform.rotateX(animation!.value);
+      } else {
+        transform.rotateY(animation!.value);
+      }
+      return Transform(
+        transform: transform,
+        alignment: Alignment.center,
         child: child,
       );
+    },
+    child: child,
+  );
 }
 
 typedef BoolCallback = void Function(bool isFront);
@@ -101,7 +101,10 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
     _backRotation = TweenSequence<double>(
       <TweenSequenceItem<double>>[
         TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50),
-        TweenSequenceItem<double>(tween: Tween<double>(begin: -pi / 2, end: 0).chain(CurveTween(curve: Curves.easeOut)), weight: 50),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: -pi / 2, end: 0).chain(CurveTween(curve: Curves.easeOut)),
+          weight: 50,
+        ),
       ],
     ).animate(controller!);
 
@@ -166,13 +169,13 @@ class FlipCardState extends State<FlipCard> with SingleTickerProviderStateMixin 
   }
 
   Widget _buildContent({required final bool front}) => IgnorePointer(
-        ignoring: front ? !isFront : isFront,
-        child: UAnimationCard(
-          animation: front ? _frontRotation : _backRotation,
-          direction: widget.direction,
-          child: front ? widget.front : widget.back,
-        ),
-      );
+    ignoring: front ? !isFront : isFront,
+    child: UAnimationCard(
+      animation: front ? _frontRotation : _backRotation,
+      direction: widget.direction,
+      child: front ? widget.front : widget.back,
+    ),
+  );
 
   @override
   void dispose() {

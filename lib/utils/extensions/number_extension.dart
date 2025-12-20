@@ -59,11 +59,10 @@ extension IntExtesion on int {
     final int subtract, {
     final int minValue = 0,
     final int maxValue = 999999999,
-  }) =>
-      (this - subtract).clamp(
-        minValue,
-        maxValue,
-      );
+  }) => (this - subtract).clamp(
+    minValue,
+    maxValue,
+  );
 
   String toKMB() {
     if (this > 999 && this < 99999) {

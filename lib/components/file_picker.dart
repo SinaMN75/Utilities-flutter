@@ -107,21 +107,23 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
             padding: const EdgeInsets.all(8),
             child: Column(
               children: files
-                  .map((FileData file) => ListTile(
-                        leading: Icon(_getFileIcon(file.extension)),
-                        title: Text(
-                          _getFileName(file),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        subtitle: Text(
-                          _formatFileSize(file.bytes?.length ?? 0),
-                          style: const TextStyle(color: Colors.grey),
-                        ),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.close, color: Colors.red),
-                          onPressed: () => _removeFile(file),
-                        ),
-                      ))
+                  .map(
+                    (FileData file) => ListTile(
+                      leading: Icon(_getFileIcon(file.extension)),
+                      title: Text(
+                        _getFileName(file),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text(
+                        _formatFileSize(file.bytes?.length ?? 0),
+                        style: const TextStyle(color: Colors.grey),
+                      ),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.close, color: Colors.red),
+                        onPressed: () => _removeFile(file),
+                      ),
+                    ),
+                  )
                   .toList(),
             ),
           ),
@@ -168,36 +170,36 @@ class _FilePickerComponentState extends State<FilePickerComponent> {
 
   @override
   Widget build(BuildContext context) => Column(
-        children: <Widget>[
-          ElevatedButton(
-            onPressed: _pickFiles,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 12,
-              ),
-              elevation: 2,
-            ),
-            child: const Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(Icons.attach_file),
-                SizedBox(width: 8),
-                Text("Select Files"),
-              ],
-            ),
+    children: <Widget>[
+      ElevatedButton(
+        onPressed: _pickFiles,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-          const SizedBox(height: 20),
-          if (_selectedFiles.isNotEmpty) ...<Widget>[
-            _buildFileList("Images", "image", Icons.photo_library),
-            _buildFileList("Videos", "video", Icons.video_library),
-            _buildFileList("Documents", "document", Icons.library_books),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 24,
+            vertical: 12,
+          ),
+          elevation: 2,
+        ),
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(Icons.attach_file),
+            SizedBox(width: 8),
+            Text("Select Files"),
           ],
-        ],
-      );
+        ),
+      ),
+      const SizedBox(height: 20),
+      if (_selectedFiles.isNotEmpty) ...<Widget>[
+        _buildFileList("Images", "image", Icons.photo_library),
+        _buildFileList("Videos", "video", Icons.video_library),
+        _buildFileList("Documents", "document", Icons.library_books),
+      ],
+    ],
+  );
 }

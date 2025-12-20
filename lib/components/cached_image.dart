@@ -51,20 +51,20 @@ class _CachedNetworkImageState extends State<CachedNetworkImage> {
 
   @override
   Widget build(BuildContext context) => FutureBuilder<Uint8List?>(
-        future: _imageDataFuture,
-        builder: (BuildContext context, AsyncSnapshot<Uint8List?> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return widget.placeholder ?? const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError || snapshot.data == null) {
-            return widget.errorWidget ?? const Icon(Icons.error);
-          } else {
-            return Image.memory(
-              snapshot.data!,
-              width: widget.width,
-              height: widget.height,
-              fit: widget.fit,
-            );
-          }
-        },
-      );
+    future: _imageDataFuture,
+    builder: (BuildContext context, AsyncSnapshot<Uint8List?> snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return widget.placeholder ?? const Center(child: CircularProgressIndicator());
+      } else if (snapshot.hasError || snapshot.data == null) {
+        return widget.errorWidget ?? const Icon(Icons.error);
+      } else {
+        return Image.memory(
+          snapshot.data!,
+          width: widget.width,
+          height: widget.height,
+          fit: widget.fit,
+        );
+      }
+    },
+  );
 }

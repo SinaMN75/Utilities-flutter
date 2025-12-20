@@ -53,11 +53,6 @@ class UAdminSettingsPage extends StatelessWidget {
 
   Widget settingTile({required IconData icon, required String title, Widget? trailing, VoidCallback? onTap}) => Card(
     elevation: 1,
-    child: ListTile(leading: Icon(icon),
-        title: Text(title),
-        trailing: trailing,
-        onTap: onTap,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-        minLeadingWidth: 24),
+    child: ListTile(leading: Icon(icon), title: Text(title), trailing: trailing, onTap: onTap, contentPadding: const EdgeInsets.symmetric(horizontal: 16), minLeadingWidth: 24),
   );
 }

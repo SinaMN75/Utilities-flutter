@@ -98,14 +98,16 @@ class _UChipChoiceState<T> extends State<UChipChoice<T>> {
 
   Widget _defaultChipBuilder(T item, bool isSelected, int index) {
     final ThemeData theme = Theme.of(context);
-    final ChipThemeData selectedStyle = widget.selectedChipStyle ??
+    final ChipThemeData selectedStyle =
+        widget.selectedChipStyle ??
         ChipThemeData(
           backgroundColor: theme.colorScheme.primary,
           labelStyle: TextStyle(color: theme.colorScheme.onPrimary),
           side: BorderSide.none,
         );
 
-    final ChipThemeData unselectedStyle = widget.unselectedChipStyle ??
+    final ChipThemeData unselectedStyle =
+        widget.unselectedChipStyle ??
         ChipThemeData(
           backgroundColor: theme.colorScheme.surfaceContainerHighest,
           labelStyle: TextStyle(color: theme.colorScheme.onSurfaceVariant),

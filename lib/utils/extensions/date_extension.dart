@@ -23,62 +23,62 @@ extension DateTimeExtensions on DateTime {
       } else if ((difference.inDays / 365).floor() >= 1)
         return persian
             ? numericDates
-                ? "۱ سال پیش"
-                : "سال پیش"
+                  ? "۱ سال پیش"
+                  : "سال پیش"
             : numericDates
-                ? "1y"
-                : "Last year";
+            ? "1y"
+            : "Last year";
       else if ((difference.inDays / 30).floor() >= 2)
         // return persian ? '${difference.inDays.toString().toPersianNumber()} ماه پیش' : '${(difference.inDays / 30).floor()}M';
         return persian ? "${(difference.inDays / 30).floor()} ماه پیش" : "${(difference.inDays / 30).floor()}M";
       else if ((difference.inDays / 30).floor() >= 1)
         return persian
             ? numericDates
-                ? "۱ ماه پیش"
-                : "ماه پیش"
+                  ? "۱ ماه پیش"
+                  : "ماه پیش"
             : numericDates
-                ? "1M"
-                : "Last month";
+            ? "1M"
+            : "Last month";
       else if ((difference.inDays / 7).floor() >= 2)
         return persian ? "${difference.inDays.toString().toPersianNumber()} روز پیش" : "${(difference.inDays / 7).floor()}w";
       else if ((difference.inDays / 7).floor() >= 1)
         return persian
             ? numericDates
-                ? "۱ هفته پیش"
-                : "هفته پیش"
+                  ? "۱ هفته پیش"
+                  : "هفته پیش"
             : numericDates
-                ? "1w"
-                : "Last week";
+            ? "1w"
+            : "Last week";
       else if (difference.inDays >= 2)
         return persian ? "${difference.inDays.toString().toPersianNumber()} روز پیش" : "${difference.inDays}d";
       else if (difference.inDays >= 1)
         return persian
             ? numericDates
-                ? "۱ روز پیش"
-                : "دیروز"
+                  ? "۱ روز پیش"
+                  : "دیروز"
             : numericDates
-                ? "1d"
-                : "Yesterday";
+            ? "1d"
+            : "Yesterday";
       else if (difference.inHours >= 2)
         return persian ? "${difference.inHours.toString().toPersianNumber()} ساعت پیش" : "${difference.inHours}h";
       else if (difference.inHours >= 1)
         return persian
             ? numericDates
-                ? "۱ ساعت پیش"
-                : "یک ساعت پیش"
+                  ? "۱ ساعت پیش"
+                  : "یک ساعت پیش"
             : numericDates
-                ? "1h"
-                : "An hour ago";
+            ? "1h"
+            : "An hour ago";
       else if (difference.inMinutes >= 2)
         return persian ? "${difference.inMinutes.toString().toPersianNumber()} دقیقه پیش" : "${difference.inMinutes}m";
       else if (difference.inMinutes >= 1)
         return persian
             ? numericDates
-                ? "۱ دقیقه پیش"
-                : "یک دقیقه پیش"
+                  ? "۱ دقیقه پیش"
+                  : "یک دقیقه پیش"
             : numericDates
-                ? "1m"
-                : "A minute ago";
+            ? "1m"
+            : "A minute ago";
       else if (difference.inSeconds >= 3)
         return persian ? "${difference.inSeconds.toString().toPersianNumber()} ثانیه پیش" : "${difference.inSeconds}s";
       else

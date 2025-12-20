@@ -14,12 +14,12 @@ extension NumericEnumExtension<T extends Enum> on Iterable<T> {
   List<String> get titlesEn => map((dynamic e) => (e as dynamic).titleEn as String).toList();
 
   List<Map<String, dynamic>> toMapList() => map(
-        (dynamic e) => <String, dynamic>{
-          "number": (e as dynamic).number,
-          "titleFa": (e as dynamic).titleFa,
-          "titleEn": (e as dynamic).titleEn,
-        },
-      ).toList();
+    (dynamic e) => <String, dynamic>{
+      "number": (e as dynamic).number,
+      "titleFa": (e as dynamic).titleFa,
+      "titleEn": (e as dynamic).titleEn,
+    },
+  ).toList();
 
   T? fromNumber(final int id) {
     try {
@@ -46,7 +46,8 @@ enum TagUser with NumericIdentifiable {
   male("مرد", "Male", 100),
   female("زن", "Female", 101),
   superAdmin("سوپر ادمین", "Super Admin", 201),
-  guest("مهمان", "Guest", 202);
+  guest("مهمان", "Guest", 202)
+  ;
 
   const TagUser(this.titleFa, this.titleEn, this.number);
 
@@ -63,7 +64,8 @@ enum TagUser with NumericIdentifiable {
 enum TagContent with NumericIdentifiable {
   aboutUs("درباره ما", "About Us", 101),
   terms("قوانین و مقررات", "Terms and Conditions", 102),
-  homeSlider1("اسلایدر", "Slider", 103);
+  homeSlider1("اسلایدر", "Slider", 103)
+  ;
 
   const TagContent(this.titleFa, this.titleEn, this.number);
 
@@ -86,7 +88,8 @@ enum TagCategory with NumericIdentifiable {
   bed("تخت", "Bed", 107),
   enabled("فعال", "Enabled", 201),
   disabled("غیر فعال", "Disabled", 202),
-  hidden("مخفی", "Hidden", 203);
+  hidden("مخفی", "Hidden", 203)
+  ;
 
   const TagCategory(this.titleFa, this.titleEn, this.number);
 
@@ -101,7 +104,8 @@ enum TagCategory with NumericIdentifiable {
 enum TagMedia with NumericIdentifiable {
   image("تصویر", "Image", 100),
   profile("پروفایل", "Profile", 101),
-  test("", "", 999);
+  test("", "", 999)
+  ;
 
   const TagMedia(this.titleFa, this.titleEn, this.number);
 
@@ -156,7 +160,8 @@ enum TagComment with NumericIdentifiable {
   released("منتشر شده", "Released", 100),
   inQueue("در حال بررسی", "In Queue", 101),
   rejected("رد شده", "Rejected", 102),
-  private("خصوصی", "Private", 501);
+  private("خصوصی", "Private", 501)
+  ;
 
   const TagComment(this.titleFa, this.titleEn, this.number);
 
@@ -170,7 +175,8 @@ enum TagComment with NumericIdentifiable {
 
 enum TagReaction with NumericIdentifiable {
   like("پسندیدن", "Like", 101),
-  disLike("نپسندیدن", "Dislike", 102);
+  disLike("نپسندیدن", "Dislike", 102)
+  ;
 
   const TagReaction(this.titleFa, this.titleEn, this.number);
 
@@ -183,7 +189,8 @@ enum TagReaction with NumericIdentifiable {
 }
 
 enum TagContract with NumericIdentifiable {
-  test("", "", 999);
+  test("", "", 999)
+  ;
 
   const TagContract(this.titleFa, this.titleEn, this.number);
 
@@ -201,7 +208,8 @@ enum TagInvoice with NumericIdentifiable {
   paidOnline("", "", 201),
   paidManual("", "", 202),
   notPaid("", "", 203),
-  notPaidDue("", "", 204);
+  notPaidDue("", "", 204)
+  ;
 
   const TagInvoice(this.titleFa, this.titleEn, this.number);
 

@@ -164,10 +164,10 @@ class Jalali extends Date {
   int get monthLength => month <= 6
       ? 31
       : month <= 11
-          ? 30
-          : _isLeap
-              ? 30
-              : 29;
+      ? 30
+      : _isLeap
+      ? 30
+      : 29;
 
   @override
   JalaliFormatter get formatter => JalaliFormatter(this);
@@ -194,25 +194,25 @@ class Jalali extends Date {
 
   @override
   Jalali copy({int? year, int? month, int? day, int? hour, int? minute, int? second, int? millisecond}) => Jalali(
-        year ?? this.year,
-        month ?? this.month,
-        day ?? this.day,
-        hour ?? this.hour,
-        minute ?? this.minute,
-        second ?? this.second,
-        millisecond ?? this.millisecond,
-      );
+    year ?? this.year,
+    month ?? this.month,
+    day ?? this.day,
+    hour ?? this.hour,
+    minute ?? this.minute,
+    second ?? this.second,
+    millisecond ?? this.millisecond,
+  );
 
   @override
   Jalali add({int years = 0, int months = 0, int days = 0, int hours = 0, int minutes = 0, int seconds = 0, int milliseconds = 0}) => Jalali(
-        year + years,
-        month + months,
-        day + days,
-        hour + hours,
-        minute + minutes,
-        second + seconds,
-        millisecond + milliseconds,
-      );
+    year + years,
+    month + months,
+    day + days,
+    hour + hours,
+    minute + minutes,
+    second + seconds,
+    millisecond + milliseconds,
+  );
 
   Jalali addDays(int days) => days == 0 ? this : Jalali.fromJulianDayNumber(julianDayNumber + days, hour, minute, second, millisecond);
 }
@@ -280,8 +280,8 @@ class _JAlgo {
     final int ml = month == 12
         ? (r.leap == 0 ? 30 : 29)
         : month > 6
-            ? 30
-            : 31;
+        ? 30
+        : 31;
     if (day > ml) throw RangeError("Day out of range");
     if (hour < 0 || hour > 23 || minute < 0 || minute > 59 || second < 0 || second > 59 || millisecond < 0 || millisecond > 999) {
       throw RangeError("Time out of range");
@@ -375,25 +375,25 @@ class Gregorian extends Date {
 
   @override
   Gregorian copy({int? year, int? month, int? day, int? hour, int? minute, int? second, int? millisecond}) => Gregorian(
-        year ?? this.year,
-        month ?? this.month,
-        day ?? this.day,
-        hour ?? this.hour,
-        minute ?? this.minute,
-        second ?? this.second,
-        millisecond ?? this.millisecond,
-      );
+    year ?? this.year,
+    month ?? this.month,
+    day ?? this.day,
+    hour ?? this.hour,
+    minute ?? this.minute,
+    second ?? this.second,
+    millisecond ?? this.millisecond,
+  );
 
   @override
   Gregorian add({int years = 0, int months = 0, int days = 0, int hours = 0, int minutes = 0, int seconds = 0, int milliseconds = 0}) => Gregorian(
-        year + years,
-        month + months,
-        day + days,
-        hour + hours,
-        minute + minutes,
-        second + seconds,
-        millisecond + milliseconds,
-      );
+    year + years,
+    month + months,
+    day + days,
+    hour + hours,
+    minute + minutes,
+    second + seconds,
+    millisecond + milliseconds,
+  );
 
   Gregorian addDays(int days) => days == 0 ? this : Gregorian.fromJulianDayNumber(julianDayNumber + days, hour, minute, second, millisecond);
 }

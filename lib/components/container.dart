@@ -145,30 +145,30 @@ class UDefaultTabBar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DefaultTabController(
-        initialIndex: initialIndex,
-        length: children.length,
-        child: Column(
-          children: <Widget>[
-            tabBar,
-            Expanded(
-              child: ConstrainedBox(
-                constraints: constraints ?? const BoxConstraints(),
-                child: SizedBox(
-                  width: width ?? MediaQuery.of(context).size.width,
-                  height: height ?? MediaQuery.of(context).size.height,
-                  child: TabBarView(
-                    physics: physics,
-                    controller: controller,
-                    dragStartBehavior: dragStartBehavior,
-                    viewportFraction: viewportFraction,
-                    children: children,
-                  ),
-                ),
+    initialIndex: initialIndex,
+    length: children.length,
+    child: Column(
+      children: <Widget>[
+        tabBar,
+        Expanded(
+          child: ConstrainedBox(
+            constraints: constraints ?? const BoxConstraints(),
+            child: SizedBox(
+              width: width ?? MediaQuery.of(context).size.width,
+              height: height ?? MediaQuery.of(context).size.height,
+              child: TabBarView(
+                physics: physics,
+                controller: controller,
+                dragStartBehavior: dragStartBehavior,
+                viewportFraction: viewportFraction,
+                children: children,
               ),
             ),
-          ],
+          ),
         ),
-      );
+      ],
+    ),
+  );
 }
 
 class UIconTextHorizontal extends StatelessWidget {
@@ -205,7 +205,11 @@ class UIconTextHorizontal extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
-      children: <Widget>[leading, SizedBox(width: spaceBetween), trailing],
+      children: <Widget>[
+        leading,
+        SizedBox(width: spaceBetween),
+        trailing,
+      ],
     );
 
     content = Padding(padding: padding, child: content);
@@ -257,7 +261,11 @@ class UIconTextVertical extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
-      children: <Widget>[leading, SizedBox(height: spaceBetween), trailing],
+      children: <Widget>[
+        leading,
+        SizedBox(height: spaceBetween),
+        trailing,
+      ],
     );
 
     content = Padding(padding: padding, child: content);
@@ -315,25 +323,25 @@ class UContainer extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Container(
-        padding: padding,
-        margin: margin,
-        width: width,
-        height: height,
-        constraints: constraints,
-        alignment: alignment,
-        transform: transform,
-        foregroundDecoration: foregroundDecoration,
-        decoration: BoxDecoration(
-          color: color,
-          gradient: gradient,
-          image: image,
-          border: border,
-          borderRadius: BorderRadius.circular(radius ?? 0),
-          boxShadow: boxShadow,
-        ),
-        clipBehavior: clipBehavior,
-        child: child,
-      );
+    padding: padding,
+    margin: margin,
+    width: width,
+    height: height,
+    constraints: constraints,
+    alignment: alignment,
+    transform: transform,
+    foregroundDecoration: foregroundDecoration,
+    decoration: BoxDecoration(
+      color: color,
+      gradient: gradient,
+      image: image,
+      border: border,
+      borderRadius: BorderRadius.circular(radius ?? 0),
+      boxShadow: boxShadow,
+    ),
+    clipBehavior: clipBehavior,
+    child: child,
+  );
 }
 
 class UColumn extends StatelessWidget {
@@ -538,37 +546,37 @@ class UCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Card(
-        elevation: elevation,
-        color: color,
-        shape: RoundedRectangleBorder(borderRadius: borderRadius),
-        margin: margin,
-        shadowColor: shadowColor,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: borderRadius,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              if (header != null) ...<Widget>[
-                header!,
-                const SizedBox(height: 8),
-              ],
-              Padding(padding: padding, child: child),
-              if (footer != null) ...<Widget>[
-                const SizedBox(height: 8),
-                footer!,
-              ],
-              if (actions != null) ...<Widget>[
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: actions!,
-                ),
-              ],
-            ],
-          ),
-        ),
-      );
+    elevation: elevation,
+    color: color,
+    shape: RoundedRectangleBorder(borderRadius: borderRadius),
+    margin: margin,
+    shadowColor: shadowColor,
+    child: InkWell(
+      onTap: onTap,
+      borderRadius: borderRadius,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          if (header != null) ...<Widget>[
+            header!,
+            const SizedBox(height: 8),
+          ],
+          Padding(padding: padding, child: child),
+          if (footer != null) ...<Widget>[
+            const SizedBox(height: 8),
+            footer!,
+          ],
+          if (actions != null) ...<Widget>[
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: actions!,
+            ),
+          ],
+        ],
+      ),
+    ),
+  );
 }
 
 class UListView extends StatelessWidget {

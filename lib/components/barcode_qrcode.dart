@@ -102,71 +102,43 @@ class _UBarcodeState extends State<UBarcode> {
         );
         break;
       case UBarcodeType.dataMatrix:
-        symbology = DataMatrix(
-          module: widget.module,
-        );
+        symbology = DataMatrix(module: widget.module);
         break;
       case UBarcodeType.code128:
-        symbology = Code128(
-          module: widget.module,
-        );
+        symbology = Code128(module: widget.module);
         break;
       case UBarcodeType.code128A:
-        symbology = Code128A(
-          module: widget.module,
-        );
+        symbology = Code128A(module: widget.module);
         break;
       case UBarcodeType.code128B:
-        symbology = Code128B(
-          module: widget.module,
-        );
+        symbology = Code128B(module: widget.module);
         break;
       case UBarcodeType.code128C:
-        symbology = Code128C(
-          module: widget.module,
-        );
+        symbology = Code128C(module: widget.module);
         break;
       case UBarcodeType.code39:
-        symbology = Code39(
-          enableCheckSum: widget.enableCheckSum ?? false,
-          module: widget.module,
-        );
+        symbology = Code39(enableCheckSum: widget.enableCheckSum ?? false, module: widget.module);
         break;
       case UBarcodeType.code39Extended:
-        symbology = Code39Extended(
-          enableCheckSum: widget.enableCheckSum ?? false,
-          module: widget.module,
-        );
+        symbology = Code39Extended(enableCheckSum: widget.enableCheckSum ?? false, module: widget.module);
         break;
       case UBarcodeType.code93:
-        symbology = Code93(
-          module: widget.module,
-        );
+        symbology = Code93(module: widget.module);
         break;
       case UBarcodeType.codabar:
-        symbology = Codabar(
-          module: widget.module,
-        );
+        symbology = Codabar(module: widget.module);
         break;
       case UBarcodeType.ean8:
-        symbology = EAN8(
-          module: widget.module,
-        );
+        symbology = EAN8(module: widget.module);
         break;
       case UBarcodeType.ean13:
-        symbology = EAN13(
-          module: widget.module,
-        );
+        symbology = EAN13(module: widget.module);
         break;
       case UBarcodeType.upcA:
-        symbology = UPCA(
-          module: widget.module,
-        );
+        symbology = UPCA(module: widget.module);
         break;
       case UBarcodeType.upcE:
-        symbology = UPCE(
-          module: widget.module,
-        );
+        symbology = UPCE(module: widget.module);
         break;
     }
   }
@@ -186,9 +158,9 @@ class _UBarcodeState extends State<UBarcode> {
 
   @override
   Widget build(BuildContext context) => SfBarcodeGenerator(
-        value: widget.value,
-        symbology: symbology,
-        barColor: widget.barColor,
+    value: widget.value,
+    symbology: symbology,
+    barColor: widget.barColor,
     backgroundColor: widget.backgroundColor,
     showValue: widget.showValue,
     textSpacing: widget.textSpacing,
@@ -213,14 +185,7 @@ class DemoBarcodes extends StatelessWidget {
             Text("QR Code", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 200,
-              child: UBarcode(value: qrSampleValue,
-                  barColor: Colors.blue,
-                  backgroundColor: Colors.white,
-                  showValue: true,
-                  textSpacing: 10,
-                  module: 2,
-                  errorCorrectionLevel: UErrorCorrectionLevel.high,
-                  qrCodeVersion: 5),
+              child: UBarcode(value: qrSampleValue, barColor: Colors.blue, backgroundColor: Colors.white, showValue: true, textSpacing: 10, module: 2, errorCorrectionLevel: UErrorCorrectionLevel.high, qrCodeVersion: 5),
             ),
             SizedBox(height: 20),
             Text("Data Matrix", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),

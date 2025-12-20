@@ -73,21 +73,21 @@ class UNumberPagination extends StatelessWidget {
   }
 
   Widget _buildPageNumber(int page, Color selectedColor, Color unselectedColor) => InkWell(
-        onTap: () => onPageChanged(page),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          decoration: BoxDecoration(
-            color: currentPage == page ? selectedColor : null,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Text(
-            "$page",
-            style: TextStyle(
-              color: currentPage == page ? Colors.white : unselectedColor,
-              fontWeight: currentPage == page ? FontWeight.bold : FontWeight.normal,
-            ),
-          ),
+    onTap: () => onPageChanged(page),
+    child: Container(
+      margin: const EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: currentPage == page ? selectedColor : null,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Text(
+        "$page",
+        style: TextStyle(
+          color: currentPage == page ? Colors.white : unselectedColor,
+          fontWeight: currentPage == page ? FontWeight.bold : FontWeight.normal,
         ),
-      );
+      ),
+    ),
+  );
 }

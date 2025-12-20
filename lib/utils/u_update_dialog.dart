@@ -18,18 +18,18 @@ class UUpdateResponse {
   factory UUpdateResponse.fromJson(String str) => UUpdateResponse.fromMap(json.decode(str));
 
   factory UUpdateResponse.fromMap(Map<String, dynamic> json) => UUpdateResponse(
-        android: json["android"] == null ? null : Os.fromMap(json["android"]),
-        ios: json["ios"] == null ? null : Os.fromMap(json["ios"]),
-        windows: json["windows"] == null ? null : Os.fromMap(json["windows"]),
-        macos: json["macos"] == null ? null : Os.fromMap(json["macos"]),
-      );
+    android: json["android"] == null ? null : Os.fromMap(json["android"]),
+    ios: json["ios"] == null ? null : Os.fromMap(json["ios"]),
+    windows: json["windows"] == null ? null : Os.fromMap(json["windows"]),
+    macos: json["macos"] == null ? null : Os.fromMap(json["macos"]),
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "android": android?.toMap(),
-        "ios": ios?.toMap(),
-        "windows": windows?.toMap(),
-        "macos": macos?.toMap(),
-      };
+    "android": android?.toMap(),
+    "ios": ios?.toMap(),
+    "windows": windows?.toMap(),
+    "macos": macos?.toMap(),
+  };
 
   String toJson() => json.encode(toMap());
 }
@@ -52,29 +52,31 @@ class Os {
   });
 
   factory Os.fromMap(Map<String, dynamic> json) => Os(
-        min: json["min"],
-        current: json["current"],
-        link1: json["link1"],
-        link2: json["link2"],
-        link1Title: json["link1Title"],
-        link2Title: json["link2Title"],
-      );
+    min: json["min"],
+    current: json["current"],
+    link1: json["link1"],
+    link2: json["link2"],
+    link1Title: json["link1Title"],
+    link2Title: json["link2Title"],
+  );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        "min": min,
-        "current": current,
-        "link1": link1,
-        "link2": link2,
-        "link1Title": link1Title,
-        "link2Title": link2Title,
-      };
+    "min": min,
+    "current": current,
+    "link1": link1,
+    "link2": link2,
+    "link1Title": link1Title,
+    "link2Title": link2Title,
+  };
 }
 
 class UUpdateDialog {
   static const String _skipKey = "skip_update_version";
 
-  static Future<void> checkAndShow(UUpdateResponse serverData,
-      VoidCallback onSkipOrNotAvailable,) async {
+  static Future<void> checkAndShow(
+    UUpdateResponse serverData,
+    VoidCallback onSkipOrNotAvailable,
+  ) async {
     final Os? info = _platformUpdate(serverData);
     if (info == null) {
       onSkipOrNotAvailable();

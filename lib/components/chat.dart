@@ -49,60 +49,61 @@ class _UChatState extends State<UChat> {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: widget.padding,
-        constraints: widget.constraints,
-        color: widget.backgroundColor,
-        child: Stack(
-          children: <Widget>[
-            if (_hasError && widget.errorIndicator != null)
-              widget.errorIndicator!
-            else if (_hasError)
-              Center(
-                child: Text(
-                  _errorMessage ?? "Chat error occurred",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.red),
-                ),
-              )
-            else
-              SfChat(
-                messages: widget.messages,
-                outgoingUser: widget.outgoingUserId,
-                composer: widget.composer,
-                actionButton: widget.actionButton ??
-                    (widget.onMessageSent != null
-                        ? ChatActionButton(
-                            onPressed: (String message) {
-                              try {
-                                widget.onMessageSent!(message);
-                                setState(() {
-                                  widget.messages.add(
-                                    ChatMessage(
-                                      text: message,
-                                      time: DateTime.now(),
-                                      author: ChatAuthor(id: widget.outgoingUserId, name: "You"),
-                                    ),
-                                  );
-                                });
-                              } catch (e) {
-                                setState(() {
-                                  _hasError = true;
-                                  _errorMessage = "Failed to send message: $e";
-                                });
-                                if (context.mounted) {
+    padding: widget.padding,
+    constraints: widget.constraints,
+    color: widget.backgroundColor,
+    child: Stack(
+      children: <Widget>[
+        if (_hasError && widget.errorIndicator != null)
+          widget.errorIndicator!
+        else if (_hasError)
+          Center(
+            child: Text(
+              _errorMessage ?? "Chat error occurred",
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.red),
+            ),
+          )
+        else
+          SfChat(
+            messages: widget.messages,
+            outgoingUser: widget.outgoingUserId,
+            composer: widget.composer,
+            actionButton:
+                widget.actionButton ??
+                (widget.onMessageSent != null
+                    ? ChatActionButton(
+                        onPressed: (String message) {
+                          try {
+                            widget.onMessageSent!(message);
+                            setState(() {
+                              widget.messages.add(
+                                ChatMessage(
+                                  text: message,
+                                  time: DateTime.now(),
+                                  author: ChatAuthor(id: widget.outgoingUserId, name: "You"),
+                                ),
+                              );
+                            });
+                          } catch (e) {
+                            setState(() {
+                              _hasError = true;
+                              _errorMessage = "Failed to send message: $e";
+                            });
+                            if (context.mounted) {
                               UToast.snackBar(message: _errorMessage ?? "Message send failed");
                             }
-                              }
-                            },
-                          )
-                        : null),
-                messageHeaderBuilder: widget.headerBuilder,
-                messageFooterBuilder: widget.footerBuilder,
-                messageAvatarBuilder: widget.avatarBuilder,
-                messageContentBuilder: widget.messageBuilder,
-                placeholderBuilder: widget.emptyBuilder,
-              ),
-            if (widget.showLoading && _isLoading && !_hasError) widget.loadingIndicator ?? const Center(child: CircularProgressIndicator()),
-          ],
-        ),
-      );
+                          }
+                        },
+                      )
+                    : null),
+            messageHeaderBuilder: widget.headerBuilder,
+            messageFooterBuilder: widget.footerBuilder,
+            messageAvatarBuilder: widget.avatarBuilder,
+            messageContentBuilder: widget.messageBuilder,
+            placeholderBuilder: widget.emptyBuilder,
+          ),
+        if (widget.showLoading && _isLoading && !_hasError) widget.loadingIndicator ?? const Center(child: CircularProgressIndicator()),
+      ],
+    ),
+  );
 }
