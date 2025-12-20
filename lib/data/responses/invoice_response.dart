@@ -1,5 +1,9 @@
 part of "../data.dart";
 
+extension InvoiceListExtension on Iterable<UInvoiceResponse> {
+  List<UInvoiceResponse> whereByTag(int tag) => where((final UInvoiceResponse i) => i.tags.contains(tag)).toList();
+}
+
 class UInvoiceResponse {
   final String id;
   final DateTime createdAt;
