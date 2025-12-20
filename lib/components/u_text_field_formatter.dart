@@ -31,8 +31,8 @@ class UCurrencyInputFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    final String cleanedOld = oldValue.text.toEnglishNumber().replaceAll(thousandSeparator, "").replaceAll(decimalSeparator, ".");
-    final String cleanedNew = newValue.text.toEnglishNumber().replaceAll(thousandSeparator, "").replaceAll(decimalSeparator, ".");
+    final String cleanedOld = oldValue.text.toLatinNumber().replaceAll(thousandSeparator, "").replaceAll(decimalSeparator, ".");
+    final String cleanedNew = newValue.text.toLatinNumber().replaceAll(thousandSeparator, "").replaceAll(decimalSeparator, ".");
 
     if (cleanedNew.length == cleanedOld.length) {
       final int oldCursorPos = oldValue.selection.baseOffset;
@@ -70,7 +70,7 @@ class UCurrencyInputFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) {
-    final String cleanedText = newValue.text.toEnglishNumber().replaceAll(RegExp(r"[^\d.]"), "");
+    final String cleanedText = newValue.text.toLatinNumber().replaceAll(RegExp(r"[^\d.]"), "");
 
     final List<String> parts = cleanedText.split(".");
     String integerPart = parts[0];
@@ -111,7 +111,7 @@ class UCurrencyInputFormatter extends TextInputFormatter {
   String _formatText(String text) {
     if (text.isEmpty) return "";
 
-    final String cleanedText = text.toEnglishNumber().replaceAll(RegExp(r"[^\d.]"), "");
+    final String cleanedText = text.toLatinNumber().replaceAll(RegExp(r"[^\d.]"), "");
 
     final List<String> parts = cleanedText.split(".");
     String integerPart = parts[0];

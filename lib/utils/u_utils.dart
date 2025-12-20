@@ -109,7 +109,7 @@ abstract class UValidators {
     if (isRequired && (value == null || value.isEmpty)) {
       return requiredMessage;
     }
-    if (value != null && value.isNotEmpty && !GetUtils.isNumericOnly(value.englishNumber())) {
+    if (value != null && value.isNotEmpty && !GetUtils.isNumericOnly(value.extractLatinNumber())) {
       return invalidMessage;
     }
     return null;
@@ -126,7 +126,7 @@ abstract class UValidators {
       return invalidNumberMessage;
     }
     if (value != null && value.isNotEmpty) {
-      final double? numValue = double.tryParse(value.englishNumber());
+      final double? numValue = double.tryParse(value.extractLatinNumber());
       if (numValue == null) return invalidNumberMessage;
       if (numValue < min || numValue > max) return rangeMessage;
     }

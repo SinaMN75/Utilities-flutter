@@ -33,8 +33,8 @@ class UAdminProductController extends UAdminBaseController {
         parentId: parentId,
         hasActiveContract: hasActiveContract,
         categories: <String>[?category?.id, ?subCategory?.id],
-        minRent: controllerMinPrice.text.englishNumber().toDouble(),
-        maxRent: controllerMaxPrice.text.englishNumber().toDouble(),
+        minRent: controllerMinPrice.text.extractLatinNumber().toDouble(),
+        maxRent: controllerMaxPrice.text.extractLatinNumber().toDouble(),
         title: controllerTitle.text,
         code: controllerCode.text,
         selectorArgs: const ProductSelectorArgs(

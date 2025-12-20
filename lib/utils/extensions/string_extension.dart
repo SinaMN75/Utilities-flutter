@@ -2,7 +2,7 @@ import "package:intl/intl.dart" as intl;
 import "package:u/utilities.dart";
 
 extension TextEditingControllerExtension on TextEditingController {
-  String numberString() => text.replaceAll(RegExp("[^0-9]"), "");
+  String numberString() => text.toLatinNumber().extractLatinNumber();
 
   int number() => text.replaceAll(RegExp("[^0-9]"), "").toInt();
 
@@ -185,7 +185,7 @@ extension StringExtensions on String {
     return number;
   }
 
-  String toEnglishNumber() {
+  String toLatinNumber() {
     String number = this;
     number = number.replaceAll("۱", "1");
     number = number.replaceAll("۲", "2");
@@ -323,7 +323,7 @@ extension StringExtensions on String {
     return utf8.decode(bytes);
   }
 
-  String englishNumber() => replaceAll(RegExp(r"[^\d]"), "");
+  String extractLatinNumber() => replaceAll(RegExp(r"[^\d]"), "");
 
   bool get isValidEmail => RegExp(
     r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",

@@ -19,7 +19,7 @@ class UAdminLoginController extends UAdminBaseController {
       U.services.auth.loginWithEmailPassword(
         p: ULoginWithEmailPasswordParams(
           email: controllerUserName.text,
-          password: controllerPassword.text.englishNumber(),
+          password: controllerPassword.text.extractLatinNumber(),
         ),
         onOk: (final UResponse<ULoginResponse> r) {
           ULocalStorage.set(UConstants.token, r.result!.token);
