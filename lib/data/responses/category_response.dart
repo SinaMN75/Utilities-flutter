@@ -4,6 +4,10 @@ extension CategoryListExtension on Iterable<UCategoryResponse> {
   List<UCategoryResponse> whereByTag(int tag) => where((final UCategoryResponse i) => i.tags.contains(tag)).toList();
 }
 
+extension NullableCategoryListExtension on Iterable<UCategoryResponse>? {
+  List<UCategoryResponse> whereByTag(int tag) => (this ?? <UCategoryResponse>[]).where((final UCategoryResponse i) => i.tags.contains(tag)).toList();
+}
+
 class UCategoryResponse {
   UCategoryResponse({
     required this.id,
