@@ -134,8 +134,8 @@ class UTextFieldDatePicker extends StatefulWidget {
     this.textHeight,
     this.controller,
     this.initialDate,
-    this.startYear = 1950,
-    this.endYear = 2030,
+    this.startYear,
+    this.endYear,
     this.validator,
     this.readOnly = false,
     this.date = true,
@@ -156,8 +156,8 @@ class UTextFieldDatePicker extends StatefulWidget {
   final double? textHeight;
   final TextEditingController? controller;
   final Jalali? initialDate;
-  final int startYear;
-  final int endYear;
+  final int? startYear;
+  final int? endYear;
   final String? Function(String?)? validator;
   final bool date;
   final bool time;
@@ -193,11 +193,10 @@ class _UTextFieldDatePickerState extends State<UTextFieldDatePicker> {
       if (!widget.readOnly) {
         if (widget.date) {
           if (widget.jalali) {
-            // Show Persian (Jalali) date picker
             await UNavigator.dialog(
               JalaliDatePickerDialog(
-                startYear: widget.startYear,
-                endYear: widget.endYear,
+                startYear: widget.startYear ?? 1350,
+                endYear: widget.endYear ?? 1420,
                 initialDate: Jalali.now(),
                 onDateSelected: (DateTime d, Jalali j) {
                   selectedDateTime = d;
@@ -207,12 +206,11 @@ class _UTextFieldDatePickerState extends State<UTextFieldDatePicker> {
               ),
             );
           } else {
-            // Show normal (Gregorian) date picker
             final DateTime? pickedDate = await showDatePicker(
               context: context,
               initialDate: selectedDateTime,
-              firstDate: DateTime(widget.startYear),
-              lastDate: DateTime(widget.endYear),
+              firstDate: DateTime(widget.startYear ?? 1950),
+              lastDate: DateTime(widget.endYear ?? 2040),
             );
 
             if (pickedDate != null) {
