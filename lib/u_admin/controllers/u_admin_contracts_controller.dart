@@ -26,7 +26,10 @@ class UAdminContractController extends UAdminBaseController {
         orderByCreatedAtDesc: orderByCreatedAtDesc,
         startDate: startDate,
         endDate: endDate,
-        selectorArgs: const ContractSelectorArgs(user: UserSelectorArgs()),
+        selectorArgs: const ContractSelectorArgs(
+          user: UserSelectorArgs(),
+          invoice: InvoiceSelectorArgs(),
+        ),
       ),
       onOk: (UResponse<List<UContractResponse>> response) {
         list = response.result!;
