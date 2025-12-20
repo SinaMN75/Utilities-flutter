@@ -2,10 +2,13 @@ import "package:intl/intl.dart" as intl;
 import "package:u/utilities.dart";
 
 extension TextEditingControllerExtension on TextEditingController {
-  String numberString() => text.toLatinNumber().extractLatinNumber();
+  String numString() => text.toLatinNumber().extractLatinNumber();
 
-  int number() => text.replaceAll(RegExp("[^0-9]"), "").toInt();
+  String numDouble() => text.toLatinNumber().extractLatinNumber();
 
+  String numInt() => text.toLatinNumber().extractLatinNumber();
+
+  int num() => text.replaceAll(RegExp("[^0-9]"), "").toInt();
   String? valueOrNull() => text.isEmpty ? null : text;
 }
 
