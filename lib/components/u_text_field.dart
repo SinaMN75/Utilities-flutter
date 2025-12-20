@@ -334,6 +334,7 @@ class _UTextFieldAutoCompleteCallBackState<T> extends State<UTextFieldAutoComple
   @override
   void initState() {
     selectedItem(widget.selectedItem);
+    _search(query: "");
     super.initState();
   }
 
@@ -358,9 +359,7 @@ class _UTextFieldAutoCompleteCallBackState<T> extends State<UTextFieldAutoComple
           children: <Widget>[
             UTextField(
               hintText: U.s.search,
-              onChanged: (final String? i) {
-                _search(query: i ?? "");
-              },
+              onChanged: (final String? i) => _search(query: i ?? ""),
             ),
             const SizedBox(height: 12),
             Obx(
@@ -433,6 +432,7 @@ class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteA
   @override
   void initState() {
     _selectedItem = widget.selectedItem;
+    _search("");
     super.initState();
   }
 
@@ -443,13 +443,10 @@ class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteA
   }
 
   Future<void> _search(String query) async {
-    if (query.isEmpty) {
-      setState(() {
-        _list.clear();
-        _isLoading = false;
-      });
-      return;
-    }
+    setState(() {
+      _list.clear();
+      _isLoading = false;
+    });
 
     _debounceTimer?.cancel();
     _debounceTimer = Timer(widget.debounceDuration, () async {

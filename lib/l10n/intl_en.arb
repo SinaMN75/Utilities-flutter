@@ -142,5 +142,6 @@
   "busy": "Busy",
   "free": "Free",
   "contractStatus": "Contract Status",
-  "activeContract": "Active Contract"
+  "activeContract": "Active Contract",
+  "selectAUser": "Select a user"
 }
