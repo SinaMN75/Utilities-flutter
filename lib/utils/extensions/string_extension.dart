@@ -4,11 +4,10 @@ import "package:u/utilities.dart";
 extension TextEditingControllerExtension on TextEditingController {
   String numString() => text.toLatinNumber().extractLatinNumber();
 
-  String numDouble() => text.toLatinNumber().extractLatinNumber();
+  double numDouble() => text.toLatinNumber().extractLatinNumber().toDouble();
 
-  String numInt() => text.toLatinNumber().extractLatinNumber();
+  int numInt() => text.toLatinNumber().extractLatinNumber().toInt();
 
-  int num() => text.replaceAll(RegExp("[^0-9]"), "").toInt();
   String? valueOrNull() => text.isEmpty ? null : text;
 }
 
