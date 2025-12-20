@@ -1,7 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminLoginController {
-  Rx<PageState> state = PageState.initial.obs;
+class UAdminLoginController extends UAdminBaseController {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   final TextEditingController controllerUserName = TextEditingController(

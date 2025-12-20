@@ -1,12 +1,11 @@
 part of "../u_admin.dart";
 
-class UAdminDashboardController {
+class UAdminDashboardController extends UAdminBaseController {
   void init() {
     read();
     startMetricsPolling();
   }
 
-  final Rx<PageState> state = PageState.initial.obs;
   Timer? _timer;
   Rx<UMetricsResponse> metrics = UMetricsResponse().obs;
   late UDashboardResponse dashboard;

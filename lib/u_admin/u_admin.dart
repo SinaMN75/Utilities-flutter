@@ -1,5 +1,6 @@
 import "package:u/utilities.dart";
 
+part "controllers/u_admin_base_controller.dart";
 part "controllers/u_admin_category_controller.dart";
 part "controllers/u_admin_contracts_controller.dart";
 part "controllers/u_admin_dashboard_controller.dart";

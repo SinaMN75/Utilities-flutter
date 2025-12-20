@@ -1,19 +1,10 @@
 part of "../u_admin.dart";
 
-class UAdminProductController {
+class UAdminProductController extends UAdminBaseController {
   List<UProductResponse> list = <UProductResponse>[];
   List<UProductResponse> filteredList = <UProductResponse>[];
-  final Rx<PageState> state = PageState.initial.obs;
-
-  RxInt pageNumber = 1.obs;
-  RxInt totalPages = 1.obs;
-  int pageSize = 20;
 
   List<TagProduct> selectedTags = <TagProduct>[];
-  DateTime? fromCreatedAt;
-  DateTime? toCreatedAt;
-  bool orderByCreatedAt = false;
-  bool orderByCreatedAtDesc = false;
   bool? hasActiveContract;
   UCategoryResponse? category;
   UCategoryResponse? subCategory;

@@ -1,10 +1,8 @@
 part of "../u_admin.dart";
 
-class UAdminLogsController {
-  Rx<PageState> state = PageState.initial.obs;
+class UAdminLogsController extends UAdminBaseController {
   RxList<YearLog> logs = <YearLog>[].obs;
 
-  // RxList<LogContentResponse> logContents = <LogContentResponse>[].obs;
   RxInt selectedTabIndex = 0.obs;
 
   Future<void> fetchLogStructure() async {

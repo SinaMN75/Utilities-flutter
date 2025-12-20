@@ -1,19 +1,10 @@
 part of "../u_admin.dart";
 
-class UAdminContractController {
+class UAdminContractController extends UAdminBaseController {
   List<UContractResponse> list = <UContractResponse>[];
   List<UContractResponse> filteredList = <UContractResponse>[];
-  final Rx<PageState> state = PageState.initial.obs;
-
-  RxInt pageNumber = 1.obs;
-  RxInt totalPages = 1.obs;
-  int pageSize = 20;
 
   List<TagContract> selectedTags = <TagContract>[];
-  DateTime? fromCreatedAt;
-  DateTime? toCreatedAt;
-  bool orderByCreatedAt = false;
-  bool orderByCreatedAtDesc = false;
   Rxn<UUserResponse>? selectedUser = Rxn<UUserResponse>();
 
   void init({List<TagContract> tags = const <TagContract>[]}) {

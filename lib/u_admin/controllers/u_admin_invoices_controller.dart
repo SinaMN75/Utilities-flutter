@@ -1,19 +1,10 @@
 part of "../u_admin.dart";
 
-class UAdminInvoiceController {
+class UAdminInvoiceController extends UAdminBaseController {
   List<UInvoiceResponse> list = <UInvoiceResponse>[];
   List<UInvoiceResponse> filteredList = <UInvoiceResponse>[];
-  final Rx<PageState> state = PageState.initial.obs;
-
-  RxInt pageNumber = 1.obs;
-  RxInt totalPages = 1.obs;
-  int pageSize = 20;
 
   List<TagInvoice> selectedTags = <TagInvoice>[];
-  DateTime? fromCreatedAt;
-  DateTime? toCreatedAt;
-  bool orderByCreatedAt = false;
-  bool orderByCreatedAtDesc = false;
 
   void init({List<TagInvoice> tags = const <TagInvoice>[]}) {
     selectedTags = tags;
