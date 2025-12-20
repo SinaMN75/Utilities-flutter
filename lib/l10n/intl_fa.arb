@@ -142,5 +142,8 @@
   "busy": "مشغول",
   "free": "آزاد",
   "contractStatus": "وضعیت قرارداد",
-  "activeContract": "قرارداد فعال"
+  "activeContract": "قرارداد فعال",
+  "selectAUser": "انتخاب کاربر",
+  "paidFactors": "فاکتور‌های پرداخت شده",
+  "selectABed": "انتخاب تخت"
 }

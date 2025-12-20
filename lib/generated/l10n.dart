@@ -1098,9 +1098,9 @@ class S {
     );
   }
 
-  /// `Due Factors`
-  String get dueFactors {
-    return Intl.message('Due Factors', name: 'dueFactors', desc: '', args: []);
+  /// `Select a Bed`
+  String get selectABed {
+    return Intl.message('Select a Bed', name: 'selectABed', desc: '', args: []);
   }
 }
 
