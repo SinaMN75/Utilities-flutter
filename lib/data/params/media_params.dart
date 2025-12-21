@@ -3,7 +3,9 @@ part of "../data.dart";
 class UMediaCreateParams {
   UMediaCreateParams({
     required this.file,
-    required this.tags,
+    required this.tag1,
+    this.tag2,
+    this.tag3,
     this.userId,
     this.contentId,
     this.commentId,
@@ -21,7 +23,9 @@ class UMediaCreateParams {
   final String? productId;
   final String? title;
   final String? description;
-  final List<int>? tags;
+  final int tag1;
+  final int? tag2;
+  final int? tag3;
 
   String toJson() => json.encode(toMap());
 
@@ -33,7 +37,9 @@ class UMediaCreateParams {
     "productId": productId,
     "title": title,
     "description": description,
-    "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
+    "tag1": tag1,
+    "tag2": tag2,
+    "tag3": tag3,
   };
 }
 

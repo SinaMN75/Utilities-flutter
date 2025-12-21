@@ -96,7 +96,7 @@ class UAdminUsersController extends UAdminBaseController {
           list.insert(0, r.result!);
           files?.forEach(
             (FileData i) async => U.services.media.create(
-              p: UMediaCreateParams(file: i, userId: r.result!.id, tags: <int>[TagMedia.image.number]),
+              p: UMediaCreateParams(file: i, userId: r.result!.id, tag1: TagMedia.image.number),
               onOk: (UResponse<UMediaResponse> r) {},
               onError: (UResponse<dynamic> r) {},
               onException: (String r) {},
@@ -121,16 +121,25 @@ class UAdminUsersController extends UAdminBaseController {
   void update({
     required final GlobalKey<FormState> formKey,
     required final UUserUpdateParams p,
+    List<FileData>? files,
   }) => UValidators.validateForm(
     key: formKey,
     action: () {
       ULoading.show();
+      files?.forEach(
+        (FileData i) async => U.services.media.create(
+          p: UMediaCreateParams(file: i, userId: p.id, tag1: TagMedia.image.number),
+          onOk: (UResponse<UMediaResponse> r) {},
+          onError: (UResponse<dynamic> r) {},
+          onException: (String r) {},
+        ),
+      );
       U.services.user.update(
         p: p,
         onOk: (final UResponse<UUserResponse> r) {
           read();
           ULoading.dismiss();
-          Get.back();
+          UNavigator.back();
           UToast.snackBar(message: "User created successfully");
         },
         onError: (final UResponse<dynamic> r) {

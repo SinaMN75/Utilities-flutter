@@ -50,7 +50,7 @@ abstract class UHttpClient {
         final String? cachedData = ULocalStorage.getString(cacheKey);
         if (cachedData != null) {
           final Response response = Response(cachedData, 200, request: Request(method, uri));
-          response.prettyLog(params: jsonEncode(body));
+          // response.prettyLog(params: jsonEncode(body));
           onSuccess(response);
           return UHttpClientResponse(response: cachedData);
         }
@@ -83,7 +83,7 @@ abstract class UHttpClient {
       }
 
       final Response response = await _client.send(request).timeout(const Duration(seconds: 30)).then(Response.fromStream);
-      response.prettyLog(params: jsonEncode(body));
+      // response.prettyLog(params: jsonEncode(body));
 
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         ULocalStorage.set(cacheKey, response.body);
@@ -131,33 +131,24 @@ abstract class UHttpClient {
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
   }) async {
-    try {
-      final MultipartRequest request = MultipartRequest("POST", _buildUri(endpoint, queryParams));
-      request.headers.addAll(<String, String>{...?headers});
-
-      if (fields != null) {
-        request.fields.addAll(
-          fields.map(
-            (String key, dynamic value) => MapEntry<String, String>(
-              key,
-              value is String ? value : jsonEncode(value),
-            ),
-          ),
-        );
-      }
-
-      request.files.addAll(files);
-
-      final Response response = await request.send().timeout(const Duration(seconds: 30)).then(Response.fromStream);
-
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        onSuccess?.call(response);
-      } else {
-        onError?.call(response);
-      }
-    } catch (e) {
-      onException();
+    // try {
+    final MultipartRequest request = MultipartRequest("POST", _buildUri(endpoint, queryParams));
+    request.headers.addAll(<String, String>{...?headers});
+    if (fields != null) {
+      request.fields.addAll(removeNullEntries(fields)!.map((String key, dynamic value) => MapEntry<String, String>(key, value is String ? value : jsonEncode(value))));
     }
+    request.files.addAll(files);
+    final Response response = await request.send().timeout(const Duration(seconds: 30)).then(Response.fromStream);
+    response.prettyLog(params: jsonEncode(fields));
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      onSuccess?.call(response);
+    } else {
+      onError?.call(response);
+    }
+    // } catch (e, stack) {
+    //   onException();
+    //   developer.log(e.toString(), stackTrace: stack);
+    // }
   }
 
   static Uri _buildUri(final String endpoint, final Map<String, dynamic>? queryParams) {
@@ -173,12 +164,11 @@ abstract class UHttpClient {
     return uri;
   }
 
-  static Future<MultipartFile> multipartFileFromFile(
-    final String fieldName,
-    final File file, {
-    String? filename,
-    final MediaType? contentType,
-  }) async {
+  static Future<MultipartFile> multipartFileFromFile(final String fieldName,
+      final File file, {
+        String? filename,
+        final MediaType? contentType,
+      }) async {
     filename ??= file.path.split("/").last;
     final Stream<List<int>> stream = file.openRead();
     final int length = await file.length();
@@ -191,12 +181,11 @@ abstract class UHttpClient {
     );
   }
 
-  static Future<MultipartFile> multipartFileFromUint8List(
-    final String fieldName,
-    final Uint8List bytes, {
-    String? filename,
-    final MediaType? contentType,
-  }) async => MultipartFile.fromBytes(fieldName, bytes, contentType: contentType, filename: filename);
+  static Future<MultipartFile> multipartFileFromUint8List(final String fieldName,
+      final Uint8List bytes, {
+        String? filename,
+        final MediaType? contentType,
+      }) async => MultipartFile.fromBytes(fieldName, bytes, contentType: contentType, filename: filename);
 
   static T? removeNullEntries<T>(T? json) {
     if (json == null) return null;
