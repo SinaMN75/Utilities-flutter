@@ -13,7 +13,7 @@ class UMediaCreateParams {
     this.description,
   });
 
-  final File file;
+  final FileData file;
   final String? userId;
   final String? contentId;
   final String? commentId;

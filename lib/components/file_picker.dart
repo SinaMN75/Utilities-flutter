@@ -1,8 +1,8 @@
 import "package:path/path.dart" as path;
 import "package:u/utilities.dart";
 
-class FilePickerComponent extends StatefulWidget {
-  const FilePickerComponent({
+class UFilePicker extends StatefulWidget {
+  const UFilePicker({
     required this.onFilesChanged,
     super.key,
     this.initialFiles = const <FileData>[],
@@ -14,10 +14,10 @@ class FilePickerComponent extends StatefulWidget {
   final bool allowMultipleSelection;
 
   @override
-  State<FilePickerComponent> createState() => _FilePickerComponentState();
+  State<UFilePicker> createState() => _UFilePickerState();
 }
 
-class _FilePickerComponentState extends State<FilePickerComponent> {
+class _UFilePickerState extends State<UFilePicker> {
   late List<FileData> _selectedFiles;
 
   final List<String> _imageExtensions = <String>["jpg", "jpeg", "png", "gif", "bmp", "webp"];

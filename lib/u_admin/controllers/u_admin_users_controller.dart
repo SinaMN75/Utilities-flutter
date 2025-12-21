@@ -83,18 +83,27 @@ class UAdminUsersController extends UAdminBaseController {
   );
 
   void create({
-    required final GlobalKey<FormState> formKey,
-    required final UUserCreateParams p,
+    required GlobalKey<FormState> formKey,
+    required UUserCreateParams p,
+    List<FileData>? files,
   }) => UValidators.validateForm(
     key: formKey,
     action: () {
       ULoading.show();
       U.services.user.create(
         p: p,
-        onOk: (final UResponse<UUserResponse> r) {
+        onOk: (final UResponse<UUserResponse> r) async {
           list.insert(0, r.result!);
+          files?.forEach(
+            (FileData i) async => U.services.media.create(
+              p: UMediaCreateParams(file: i, userId: r.result!.id, tags: <int>[TagMedia.image.number]),
+              onOk: (UResponse<UMediaResponse> r) {},
+              onError: (UResponse<dynamic> r) {},
+              onException: (String r) {},
+            ),
+          );
           ULoading.dismiss();
-          Get.back();
+          UNavigator.back();
           UToast.snackBar(message: U.s.userCreatedSuccessfully);
         },
         onError: (final UResponse<dynamic> r) {

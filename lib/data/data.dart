@@ -57,4 +57,5 @@ class UServices {
   late ContractService contract = ContractService();
   late InvoiceService invoice = InvoiceService();
   late ChatBotService chatBot = ChatBotService();
+  late MediaService media = MediaService();
 }

@@ -1,45 +1,9 @@
-mixin NumericIdentifiable {
-  int get number;
-
-  String get titleFa;
-
-  String get titleEn;
-}
-
-extension NumericEnumExtension<T extends Enum> on Iterable<T> {
-  List<int> get numbers => map((dynamic e) => (e as dynamic).number as int).toList();
-
-  List<String> get titlesFa => map((dynamic e) => (e as dynamic).titleFa as String).toList();
-
-  List<String> get titlesEn => map((dynamic e) => (e as dynamic).titleEn as String).toList();
-
-  List<Map<String, dynamic>> toMapList() => map(
-    (dynamic e) => <String, dynamic>{
-      "number": (e as dynamic).number,
-      "titleFa": (e as dynamic).titleFa,
-      "titleEn": (e as dynamic).titleEn,
-    },
-  ).toList();
-
-  T? fromNumber(final int id) {
-    try {
-      return firstWhere((final dynamic element) => (element as dynamic).number == id);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  T fromNumericIdOrThrow(final int id) {
-    final dynamic result = fromNumber(id);
-    if (result == null) {
-      throw ArgumentError.value(id, "id", 'No ${T.toString().split('.').first} found with numericId $id');
-    }
-    return result;
-  }
-}
-
 extension TagListExtension on Iterable<int> {
   bool isMale() => contains(TagUser.male.number);
+
+  bool isFemaleMale() => contains(TagUser.female.number);
+
+  bool isSuperAdmin() => contains(TagUser.superAdmin.number);
 }
 
 enum TagUser with NumericIdentifiable {
@@ -219,4 +183,44 @@ enum TagInvoice with NumericIdentifiable {
   final String titleEn;
   @override
   final int number;
+}
+
+mixin NumericIdentifiable {
+  int get number;
+
+  String get titleFa;
+
+  String get titleEn;
+}
+
+extension NumericEnumExtension<T extends Enum> on Iterable<T> {
+  List<int> get numbers => map((dynamic e) => (e as dynamic).number as int).toList();
+
+  List<String> get titlesFa => map((dynamic e) => (e as dynamic).titleFa as String).toList();
+
+  List<String> get titlesEn => map((dynamic e) => (e as dynamic).titleEn as String).toList();
+
+  List<Map<String, dynamic>> toMapList() => map(
+    (dynamic e) => <String, dynamic>{
+      "number": (e as dynamic).number,
+      "titleFa": (e as dynamic).titleFa,
+      "titleEn": (e as dynamic).titleEn,
+    },
+  ).toList();
+
+  T? fromNumber(final int id) {
+    try {
+      return firstWhere((final dynamic element) => (element as dynamic).number == id);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  T fromNumericIdOrThrow(final int id) {
+    final dynamic result = fromNumber(id);
+    if (result == null) {
+      throw ArgumentError.value(id, "id", 'No ${T.toString().split('.').first} found with numericId $id');
+    }
+    return result;
+  }
 }

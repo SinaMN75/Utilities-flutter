@@ -30,7 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addQuestion": MessageLookupByLibrary.simpleMessage("افزودن سؤال"),
     "addRooms": MessageLookupByLibrary.simpleMessage("افزودن اتاق"),
-    "admin": MessageLookupByLibrary.simpleMessage("ادکین"),
+    "admin": MessageLookupByLibrary.simpleMessage("ادمین"),
     "all": MessageLookupByLibrary.simpleMessage("همه"),
     "amount": MessageLookupByLibrary.simpleMessage("مبلغ"),
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(

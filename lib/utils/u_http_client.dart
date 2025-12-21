@@ -191,6 +191,13 @@ abstract class UHttpClient {
     );
   }
 
+  static Future<MultipartFile> multipartFileFromUint8List(
+    final String fieldName,
+    final Uint8List bytes, {
+    String? filename,
+    final MediaType? contentType,
+  }) async => MultipartFile.fromBytes(fieldName, bytes, contentType: contentType, filename: filename);
+
   static T? removeNullEntries<T>(T? json) {
     if (json == null) return null;
 
