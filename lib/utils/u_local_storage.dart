@@ -152,6 +152,33 @@ abstract class UFileStorage {
     return output;
   }
 
+  static Uint8List? getBytesSync(String key) {
+    final File file = File("${_bigFilesDirectory.path}/$key.dat");
+
+    if (!file.existsSync()) return null;
+
+    final int size = file.lengthSync();
+    final Uint8List output = Uint8List(size);
+
+    final RandomAccessFile raf = file.openSync();
+    int offset = 0;
+    const int chunkSize = 1024 * 1024;
+
+    while (offset < size) {
+      final int remaining = size - offset;
+      final int readSize = remaining < chunkSize ? remaining : chunkSize;
+
+      final List<int> chunk = raf.readSync(readSize);
+      if (chunk.isEmpty) break;
+
+      output.setRange(offset, offset + chunk.length, chunk);
+      offset += chunk.length;
+    }
+
+    raf.closeSync();
+    return output;
+  }
+
   static Future<bool> fileExists(String key) async {
     try {
       final File file = File("${_bigFilesDirectory.path}/$key.dat");

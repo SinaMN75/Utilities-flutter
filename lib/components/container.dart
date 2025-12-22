@@ -519,9 +519,6 @@ class URow extends StatelessWidget {
 class UCard extends StatelessWidget {
   const UCard({
     required this.child,
-    this.header,
-    this.footer,
-    this.actions,
     super.key,
     this.elevation = 2.0,
     this.color,
@@ -530,13 +527,14 @@ class UCard extends StatelessWidget {
     this.padding = const EdgeInsets.all(16),
     this.onTap,
     this.shadowColor,
+    this.width,
+    this.height,
   });
 
-  final Widget? header;
   final Widget child;
-  final Widget? footer;
-  final List<Widget>? actions;
   final double elevation;
+  final double? width;
+  final double? height;
   final Color? color;
   final BorderRadius borderRadius;
   final EdgeInsets margin;
@@ -551,30 +549,10 @@ class UCard extends StatelessWidget {
     shape: RoundedRectangleBorder(borderRadius: borderRadius),
     margin: margin,
     shadowColor: shadowColor,
-    child: InkWell(
-      onTap: onTap,
-      borderRadius: borderRadius,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          if (header != null) ...<Widget>[
-            header!,
-            const SizedBox(height: 8),
-          ],
-          Padding(padding: padding, child: child),
-          if (footer != null) ...<Widget>[
-            const SizedBox(height: 8),
-            footer!,
-          ],
-          if (actions != null) ...<Widget>[
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: actions!,
-            ),
-          ],
-        ],
-      ),
+    child: SizedBox(
+      width: width,
+      height: height,
+      child: child,
     ),
   );
 }
@@ -627,7 +605,6 @@ class UListView extends StatelessWidget {
           return footer!;
         }
 
-        // Regular item
         final int adjustedIndex = index - headerOffset;
         return itemBuilder(context, adjustedIndex);
       },
