@@ -1,14 +1,22 @@
 part of "../u_admin.dart";
 
+class ContractsPageArgs {
+  final String? productId;
+
+  ContractsPageArgs({
+    this.productId,
+  });
+}
+
 class UAdminContractController extends UAdminBaseController {
+  late ContractsPageArgs args;
+
   List<UContractResponse> list = <UContractResponse>[];
   List<UContractResponse> filteredList = <UContractResponse>[];
-
-  List<TagContract> selectedTags = <TagContract>[];
   Rxn<UUserResponse>? selectedUser = Rxn<UUserResponse>();
 
-  void init({List<TagContract> tags = const <TagContract>[]}) {
-    selectedTags = tags;
+  void init({required final ContractsPageArgs args}) {
+    this.args = args;
     read();
   }
 
@@ -19,13 +27,13 @@ class UAdminContractController extends UAdminBaseController {
       p: UContractReadParams(
         pageNumber: pageNumber.value,
         pageSize: pageSize,
-        tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
         toCreatedAt: toCreatedAt,
         orderByCreatedAt: orderByCreatedAt,
         orderByCreatedAtDesc: orderByCreatedAtDesc,
         startDate: startDate,
         endDate: endDate,
+        productId: args.productId,
         selectorArgs: const ContractSelectorArgs(
           user: UserSelectorArgs(),
           invoice: InvoiceSelectorArgs(),
@@ -49,7 +57,6 @@ class UAdminContractController extends UAdminBaseController {
   }
 
   void clearFilters() {
-    selectedTags.clear();
     fromCreatedAt = null;
     toCreatedAt = null;
     read();
