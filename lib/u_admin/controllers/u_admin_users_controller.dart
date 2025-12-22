@@ -1,5 +1,9 @@
 part of "../u_admin.dart";
 
+class UsersPageArgs {
+  UsersPageArgs();
+}
+
 class UAdminUsersController extends UAdminBaseController {
   RxList<UUserResponse> list = <UUserResponse>[].obs;
 

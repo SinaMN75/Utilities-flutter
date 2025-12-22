@@ -1,8 +1,15 @@
 part of "../u_admin.dart";
 
-class UAdminInvoiceController extends UAdminBaseController {
+class InvoicesPageArgs {
+  final String? contractId;
+
+  InvoicesPageArgs({
+    this.contractId,
+  });
+}
+
+class UAdminInvoicesController extends UAdminBaseController {
   List<UInvoiceResponse> list = <UInvoiceResponse>[];
-  List<UInvoiceResponse> filteredList = <UInvoiceResponse>[];
 
   List<TagInvoice> selectedTags = <TagInvoice>[];
 

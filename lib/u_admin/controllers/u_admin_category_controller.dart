@@ -1,6 +1,8 @@
 part of "../u_admin.dart";
 
-class UAdminCategoryController extends UAdminBaseController {
+class CategoriesPageArgs {}
+
+class UAdminCategoriesController extends UAdminBaseController {
   late TagCategory tag;
 
   final RxList<UCategoryResponse> list = <UCategoryResponse>[].obs;

@@ -72,6 +72,7 @@ class UInvoiceReadParams {
   final List<int>? tags;
   final List<String>? ids;
   final String? userId;
+  final String? contractId;
   final InvoiceSelectorArgs? selectorArgs;
 
   UInvoiceReadParams({
@@ -87,6 +88,7 @@ class UInvoiceReadParams {
     this.ids,
     this.userId,
     this.selectorArgs,
+    this.contractId,
   });
 
   factory UInvoiceReadParams.fromJson(String str) => UInvoiceReadParams.fromMap(json.decode(str));
@@ -105,6 +107,7 @@ class UInvoiceReadParams {
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
+    contractId: json["contractId"],
     selectorArgs: json["selectorArgs"] == null ? null : InvoiceSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
@@ -120,6 +123,7 @@ class UInvoiceReadParams {
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
+    "contractId": contractId,
     "selectorArgs": selectorArgs?.toMap(),
   };
 }

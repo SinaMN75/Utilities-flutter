@@ -1,6 +1,14 @@
 part of "../u_admin.dart";
 
-class UAdminProductController extends UAdminBaseController {
+class ProductsPageArgs {
+  final String? categoryId;
+
+  ProductsPageArgs({
+    this.categoryId,
+  });
+}
+
+class UAdminProductsController extends UAdminBaseController {
   List<UProductResponse> list = <UProductResponse>[];
   List<UProductResponse> filteredList = <UProductResponse>[];
 

@@ -8,7 +8,7 @@ class ContractsPageArgs {
   });
 }
 
-class UAdminContractController extends UAdminBaseController {
+class UAdminContractsController extends UAdminBaseController {
   late ContractsPageArgs args;
 
   List<UContractResponse> list = <UContractResponse>[];
