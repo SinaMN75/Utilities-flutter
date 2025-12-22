@@ -1,3 +1,4 @@
+import "package:easy_sidemenu/easy_sidemenu.dart";
 import "package:u/utilities.dart";
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
