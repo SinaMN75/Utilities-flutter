@@ -37,7 +37,7 @@ abstract class U {
     }
   }
 
-  static void addOrSwitchTab(int index, String title, Widget page) {
+  static void addOrSwitchTab(String title, Widget page) {
     final int existingIndex = tabs.indexWhere((TabData tab) => tab.title == title);
     if (existingIndex != -1) {
       tabController?.animateTo(existingIndex);
@@ -45,7 +45,29 @@ abstract class U {
       addTab(title, page);
       tabController?.animateTo(tabs.length - 1);
     }
-    sideMenu.changePage(index);
+  }
+
+  static void replaceTab(String title, Widget page) {
+    final int existingIndex = tabs.indexWhere((TabData tab) => tab.title == title);
+
+    if (existingIndex != -1) {
+      tabs.value = <TabData>[...tabs]..removeAt(existingIndex);
+
+      tabs.value = <TabData>[
+        ...tabs.sublist(0, existingIndex),
+        TabData(title: title, page: page),
+        ...tabs.sublist(existingIndex),
+      ];
+
+      if (tabController != null) {
+        delay(100, () => tabController!.animateTo(existingIndex));
+      }
+    } else {
+      addTab(title, page);
+      if (tabController != null) {
+        delay(100, () => tabController!.animateTo(tabs.length - 1));
+      }
+    }
   }
 }
 
