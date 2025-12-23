@@ -1,22 +1,29 @@
 part of "../u_admin.dart";
 
-class ContractsPageArgs {
+class UAdminContractsPageArgs {
   final String? productId;
+  final String? userId;
 
-  ContractsPageArgs({
+  UAdminContractsPageArgs({
     this.productId,
+    this.userId,
   });
 }
 
 class UAdminContractsController extends UAdminBaseController {
-  late ContractsPageArgs args;
+  late UAdminContractsPageArgs args;
 
   List<UContractResponse> list = <UContractResponse>[];
   List<UContractResponse> filteredList = <UContractResponse>[];
   Rxn<UUserResponse>? selectedUser = Rxn<UUserResponse>();
 
-  void init({required final ContractsPageArgs args}) {
+  String? userId;
+  String? productId;
+
+  void init({required final UAdminContractsPageArgs args}) {
     this.args = args;
+    userId = args.userId;
+    productId = args.productId;
     read();
   }
 
@@ -33,7 +40,8 @@ class UAdminContractsController extends UAdminBaseController {
         orderByCreatedAtDesc: orderByCreatedAtDesc,
         startDate: startDate,
         endDate: endDate,
-        productId: args.productId,
+        productId: productId,
+        userId: userId,
         selectorArgs: const ContractSelectorArgs(
           user: UserSelectorArgs(),
           invoice: InvoiceSelectorArgs(),

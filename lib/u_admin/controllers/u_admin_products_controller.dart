@@ -1,15 +1,15 @@
 part of "../u_admin.dart";
 
-class ProductsPageArgs {
+class UAdminProductsPageArgs {
   final String? categoryId;
 
-  ProductsPageArgs({
+  UAdminProductsPageArgs({
     this.categoryId,
   });
 }
 
 class UAdminProductsController extends UAdminBaseController {
-  late ProductsPageArgs args;
+  late UAdminProductsPageArgs args;
 
   List<UProductResponse> list = <UProductResponse>[];
 
@@ -22,7 +22,7 @@ class UAdminProductsController extends UAdminBaseController {
   TextEditingController controllerCode = TextEditingController();
   TextEditingController controllerTitle = TextEditingController();
 
-  void init({required final ProductsPageArgs args}) {
+  void init({required final UAdminProductsPageArgs args}) {
     this.args = args;
     read();
   }

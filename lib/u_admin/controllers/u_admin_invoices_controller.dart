@@ -1,22 +1,27 @@
 part of "../u_admin.dart";
 
-class InvoicesPageArgs {
+class UAdminInvoicesPageArgs {
   final String? contractId;
+  final String? userId;
 
-  InvoicesPageArgs({
+  UAdminInvoicesPageArgs({
     this.contractId,
+    this.userId,
   });
 }
 
 class UAdminInvoicesController extends UAdminBaseController {
-  late InvoicesPageArgs args;
-
+  late UAdminInvoicesPageArgs args;
   List<UInvoiceResponse> list = <UInvoiceResponse>[];
 
   List<TagInvoice> selectedTags = <TagInvoice>[];
+  String? userId;
+  String? contractId;
 
-  void init({required final InvoicesPageArgs args}) {
+  void init({required final UAdminInvoicesPageArgs args}) {
     this.args = args;
+    userId = args.userId;
+    contractId = args.contractId;
     read();
   }
 
@@ -32,6 +37,8 @@ class UAdminInvoicesController extends UAdminBaseController {
         orderByCreatedAtDesc: orderByCreatedAtDesc,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
+        userId: userId,
+        contractId: contractId,
         selectorArgs: const InvoiceSelectorArgs(
           contract: ContractSelectorArgs(user: UserSelectorArgs(), product: ProductSelectorArgs()),
         ),

@@ -1,10 +1,12 @@
 part of "../u_admin.dart";
 
-class UsersPageArgs {
-  UsersPageArgs();
+class UAdminUsersPageArgs {
+  UAdminUsersPageArgs();
 }
 
 class UAdminUsersController extends UAdminBaseController {
+  late UAdminUsersPageArgs args;
+  final GlobalKey<FormState> filterFormKey = GlobalKey<FormState>();
   RxList<UUserResponse> list = <UUserResponse>[].obs;
 
   TagUser? selectedTag;
@@ -16,7 +18,8 @@ class UAdminUsersController extends UAdminBaseController {
   final TextEditingController fromCreatedAtController = TextEditingController();
   final TextEditingController toCreatedAtController = TextEditingController();
 
-  void init() {
+  void init({required final UAdminUsersPageArgs args}) {
+    this.args = args;
     read();
   }
 

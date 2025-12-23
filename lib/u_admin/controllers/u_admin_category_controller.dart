@@ -1,15 +1,15 @@
 part of "../u_admin.dart";
 
-class CategoriesPageArgs {}
+class UAdminCategoriesPageArgs {}
 
 class UAdminCategoriesController extends UAdminBaseController {
-  late CategoriesPageArgs args;
+  late UAdminCategoriesPageArgs args;
 
   late TagCategory tag;
 
   final RxList<UCategoryResponse> list = <UCategoryResponse>[].obs;
 
-  void init({required CategoriesPageArgs args}) {
+  void init({required UAdminCategoriesPageArgs args}) {
     this.args = args;
     read();
   }
