@@ -9,8 +9,9 @@ class ProductsPageArgs {
 }
 
 class UAdminProductsController extends UAdminBaseController {
+  late ProductsPageArgs args;
+
   List<UProductResponse> list = <UProductResponse>[];
-  List<UProductResponse> filteredList = <UProductResponse>[];
 
   List<TagProduct> selectedTags = <TagProduct>[];
   bool? hasActiveContract;
@@ -21,8 +22,8 @@ class UAdminProductsController extends UAdminBaseController {
   TextEditingController controllerCode = TextEditingController();
   TextEditingController controllerTitle = TextEditingController();
 
-  void init({List<TagProduct> tags = const <TagProduct>[]}) {
-    selectedTags = tags;
+  void init({required final ProductsPageArgs args}) {
+    this.args = args;
     read();
   }
 

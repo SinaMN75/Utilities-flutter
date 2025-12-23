@@ -3,15 +3,18 @@ part of "../u_admin.dart";
 class CategoriesPageArgs {}
 
 class UAdminCategoriesController extends UAdminBaseController {
+  late CategoriesPageArgs args;
+
   late TagCategory tag;
 
   final RxList<UCategoryResponse> list = <UCategoryResponse>[].obs;
 
-  void init() {
-    loadCategories();
+  void init({required CategoriesPageArgs args}) {
+    this.args = args;
+    read();
   }
 
-  Future<void> loadCategories() async {
+  Future<void> read() async {
     state.loading();
     await U.services.category.read(
       p: UCategoryReadParams(
@@ -42,7 +45,7 @@ class UAdminCategoriesController extends UAdminBaseController {
         UNavigator.back();
         ULoading.dismiss();
         UToast.snackBar(message: U.s.created);
-        await loadCategories();
+        await read();
       },
       onError: (UResponse<dynamic> error) {
         ULoading.dismiss();
@@ -60,7 +63,7 @@ class UAdminCategoriesController extends UAdminBaseController {
         UNavigator.back();
         ULoading.dismiss();
         UToast.snackBar(message: U.s.edited);
-        loadCategories();
+        read();
       },
       onError: (UResponse<dynamic> error) {
         ULoading.dismiss();
@@ -81,7 +84,7 @@ class UAdminCategoriesController extends UAdminBaseController {
           UNavigator.back();
           ULoading.dismiss();
           UToast.snackBar(message: U.s.deleted);
-          loadCategories();
+          read();
         },
         onError: (UResponse<dynamic> error) {
           UNavigator.back();

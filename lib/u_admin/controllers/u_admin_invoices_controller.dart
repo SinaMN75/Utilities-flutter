@@ -9,12 +9,14 @@ class InvoicesPageArgs {
 }
 
 class UAdminInvoicesController extends UAdminBaseController {
+  late InvoicesPageArgs args;
+
   List<UInvoiceResponse> list = <UInvoiceResponse>[];
 
   List<TagInvoice> selectedTags = <TagInvoice>[];
 
-  void init({List<TagInvoice> tags = const <TagInvoice>[]}) {
-    selectedTags = tags;
+  void init({required final InvoicesPageArgs args}) {
+    this.args = args;
     read();
   }
 
