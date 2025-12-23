@@ -1,14 +1,31 @@
 part of "../u_admin.dart";
 
 class UAdminDashboardController extends UAdminBaseController {
-  void init() {
-    read();
-    startMetricsPolling();
-  }
-
   Timer? _timer;
   Rx<UMetricsResponse> metrics = UMetricsResponse().obs;
   late UDashboardResponse dashboard;
+
+  final Rx<PageState> chartState = PageState.initial.obs;
+  List<InvoiceChartDataResponse> chartData = <InvoiceChartDataResponse>[];
+
+  void init() {
+    read();
+    startMetricsPolling();
+    readInvoiceChartData();
+  }
+
+  void readInvoiceChartData() {
+    chartState.loading();
+    U.services.invoice.chartData(
+      p: UBaseParams(),
+      onOk: (UResponse<List<InvoiceChartDataResponse>> r) {
+        chartData = r.result!;
+        chartState.loaded();
+      },
+      onError: (UResponse<dynamic> r) {},
+      onException: (String e) {},
+    );
+  }
 
   void startMetricsPolling() => _timer = Timer.periodic(
     const Duration(seconds: 10),

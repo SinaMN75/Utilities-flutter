@@ -77,7 +77,7 @@ class InvoiceService {
   );
 
   Future<UHttpClientResponse> chartData({
-    required final UInvoiceReadParams p,
+    required final UBaseParams p,
     final Function(UResponse<List<InvoiceChartDataResponse>> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
@@ -88,7 +88,7 @@ class InvoiceService {
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<InvoiceChartDataResponse>>.fromJson(
         r.body,
-        (final dynamic i) => List<InvoiceChartDataResponse>.from((i as List<dynamic>).map((final dynamic x) => UInvoiceResponse.fromMap(x))),
+            (final dynamic i) => List<InvoiceChartDataResponse>.from((i as List<dynamic>).map((final dynamic x) => InvoiceChartDataResponse.fromMap(x))),
       ),
     ),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
