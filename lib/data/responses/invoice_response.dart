@@ -115,3 +115,43 @@ class UInvoiceJsonData {
     "description": description,
   };
 }
+
+class InvoiceChartDataResponse {
+  final String? month;
+  final double? totalDebt;
+  final int? totalPaid;
+  final int? totalPenalty;
+  final double? totalRemaining;
+  final int? invoiceCount;
+
+  InvoiceChartDataResponse({
+    this.month,
+    this.totalDebt,
+    this.totalPaid,
+    this.totalPenalty,
+    this.totalRemaining,
+    this.invoiceCount,
+  });
+
+  factory InvoiceChartDataResponse.fromJson(String str) => InvoiceChartDataResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory InvoiceChartDataResponse.fromMap(Map<String, dynamic> json) => InvoiceChartDataResponse(
+    month: json["month"],
+    totalDebt: json["totalDebt"]?.toDouble(),
+    totalPaid: json["totalPaid"],
+    totalPenalty: json["totalPenalty"],
+    totalRemaining: json["totalRemaining"]?.toDouble(),
+    invoiceCount: json["invoiceCount"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "month": month,
+    "totalDebt": totalDebt,
+    "totalPaid": totalPaid,
+    "totalPenalty": totalPenalty,
+    "totalRemaining": totalRemaining,
+    "invoiceCount": invoiceCount,
+  };
+}
