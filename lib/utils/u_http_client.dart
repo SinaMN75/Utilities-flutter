@@ -46,14 +46,11 @@ abstract class UHttpClient {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = 'cache_${_buildUri(endpoint, queryParams).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
 
-      if (offline) {
-        final String? cachedData = ULocalStorage.getString(cacheKey);
-        if (cachedData != null) {
-          final Response response = Response(cachedData, 200, request: Request(method, uri));
-          response.prettyLog(params: jsonEncode(body));
-          onSuccess(response);
-          return UHttpClientResponse(response: cachedData);
-        }
+      final String? cachedData = ULocalStorage.getString(cacheKey);
+      if (offline && cachedData != null) {
+        final Response response = Response(cachedData, 200, request: Request(method, uri));
+        onSuccess(response);
+        return UHttpClientResponse(response: cachedData);
       }
 
       final Request request = Request(method, uri);
@@ -209,9 +206,13 @@ extension HTTP on Response? {
 
   bool isServerError() => (this?.statusCode ?? 999) >= 500 && (this?.statusCode ?? 999) <= 599 || false;
 
-  void prettyLog({final String params = ""}) => developer.log(
-    "${this?.request?.method} - ${this?.request?.url} - ${this?.statusCode} \nPARAMS: $params \nRESPONSE: ${this?.body}",
-  );
+  void prettyLog({final String params = ""}) {
+    if (kDebugMode) {
+      developer.log(
+        "${this?.request?.method} - ${this?.request?.url} - ${this?.statusCode} \nPARAMS: $params \nRESPONSE: ${this?.body}",
+      );
+    }
+  }
 }
 
 class UDownload {
