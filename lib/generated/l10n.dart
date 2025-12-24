@@ -1107,6 +1107,26 @@ class S {
   String get selectABed {
     return Intl.message('Select a Bed', name: 'selectABed', desc: '', args: []);
   }
+
+  /// `Connection to Network was Not possible`
+  String get connectionToNetworkWasNotPossible {
+    return Intl.message(
+      'Connection to Network was Not possible',
+      name: 'connectionToNetworkWasNotPossible',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unexpected Error, Please try again`
+  String get unexpectedErrorPleaseTryAgain {
+    return Intl.message(
+      'Unexpected Error, Please try again',
+      name: 'unexpectedErrorPleaseTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

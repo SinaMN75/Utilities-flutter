@@ -146,5 +146,7 @@
   "selectAUser": "Select a user",
   "paidFactors": "Paid Factors",
   "dueFactors": "Due Factors",
-  "selectABed": "Select a Bed"
+  "selectABed": "Select a Bed",
+  "connectionToNetworkWasNotPossible": "Connection to Network was Not possible",
+  "unexpectedErrorPleaseTryAgain": "Unexpected Error, Please try again"
 }

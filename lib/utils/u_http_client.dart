@@ -31,16 +31,16 @@ abstract class UHttpClient {
     final Map<String, dynamic>? queryParams,
     final dynamic body,
     final URequestBodyType bodyType = URequestBodyType.json,
-    final String noNetworkMessage = "Connection to Network was Not possible",
-    final String unexpectedErrorMessage = "Unexpected Error, Please try again",
+    final String? noNetworkMessage,
+    final String? unexpectedErrorMessage,
     final bool offline = false,
     final int retryAmount = 3,
   }) async {
     final bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
 
     if (!hasNetworkConnection && offline == false) {
-      onException(noNetworkMessage);
-      return UHttpClientResponse(exception: noNetworkMessage);
+      onException(U.s.connectionToNetworkWasNotPossible);
+      return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
     }
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
@@ -115,7 +115,7 @@ abstract class UHttpClient {
           unexpectedErrorMessage: unexpectedErrorMessage,
         );
       } else {
-        onException(unexpectedErrorMessage);
+        onException(U.s.unexpectedErrorPleaseTryAgain);
         return UHttpClientResponse(exception: unexpectedErrorMessage);
       }
     }

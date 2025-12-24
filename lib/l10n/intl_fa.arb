@@ -146,5 +146,7 @@
   "selectAUser": "انتخاب کاربر",
   "paidFactors": "فاکتور‌های پرداخت شده",
   "dueFactors": "فاکتور‌های پرداخت نشده",
-  "selectABed": "انتخاب تخت"
+  "selectABed": "انتخاب تخت",
+  "connectionToNetworkWasNotPossible": "ارتباط با اینترنت برقرار نیست",
+  "unexpectedErrorPleaseTryAgain": "خطای ناشناخته، لطفا دوباره تلاش کنید"
 }

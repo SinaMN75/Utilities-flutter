@@ -55,6 +55,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearFilters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
     "code": MessageLookupByLibrary.simpleMessage("Code"),
     "confirmDelete": MessageLookupByLibrary.simpleMessage("Confirm Delete"),
+    "connectionToNetworkWasNotPossible": MessageLookupByLibrary.simpleMessage(
+      "Connection to Network was Not possible",
+    ),
     "contractStatus": MessageLookupByLibrary.simpleMessage("Contract Status"),
     "contracts": MessageLookupByLibrary.simpleMessage("Contracts"),
     "cpuUsage": MessageLookupByLibrary.simpleMessage("CPU Usage"),
@@ -219,6 +222,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "toDate": MessageLookupByLibrary.simpleMessage("To Date"),
     "trackingNumber": MessageLookupByLibrary.simpleMessage("Tracking Number"),
     "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
+    "unexpectedErrorPleaseTryAgain": MessageLookupByLibrary.simpleMessage(
+      "Unexpected Error, Please try again",
+    ),
     "updateFunctionalityWouldGoHere": MessageLookupByLibrary.simpleMessage(
       "Update functionality would go here",
     ),

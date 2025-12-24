@@ -57,6 +57,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "clearFilters": MessageLookupByLibrary.simpleMessage("حذف فیلترها"),
     "code": MessageLookupByLibrary.simpleMessage("کد"),
     "confirmDelete": MessageLookupByLibrary.simpleMessage("تأیید حذف"),
+    "connectionToNetworkWasNotPossible": MessageLookupByLibrary.simpleMessage(
+      "ارتباط با اینترنت برقرار نیست",
+    ),
     "contractStatus": MessageLookupByLibrary.simpleMessage("وضعیت قرارداد"),
     "contracts": MessageLookupByLibrary.simpleMessage("قراردادها"),
     "cpuUsage": MessageLookupByLibrary.simpleMessage("مصرف CPU"),
@@ -227,6 +230,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "toDate": MessageLookupByLibrary.simpleMessage("تا تاریخ"),
     "trackingNumber": MessageLookupByLibrary.simpleMessage("کد رهگیری"),
     "tryAgain": MessageLookupByLibrary.simpleMessage("تلاش مجدد"),
+    "unexpectedErrorPleaseTryAgain": MessageLookupByLibrary.simpleMessage(
+      "خطای ناشناخته، لطفا دوباره تلاش کنید",
+    ),
     "updateFunctionalityWouldGoHere": MessageLookupByLibrary.simpleMessage(
       "عملکرد به‌روزرسانی در اینجا قرار می‌گیرد",
     ),
