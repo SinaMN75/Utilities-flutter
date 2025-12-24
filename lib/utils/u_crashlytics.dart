@@ -1,7 +1,13 @@
 import "package:u/utilities.dart";
 
+typedef CrashListener = void Function(Map<String, dynamic> errorData);
+
 class UCrashlytics {
-  static Future<void> initialize() async {
+  static CrashListener? _crashListener;
+
+  static Future<void> initialize({CrashListener? onCrash}) async {
+    _crashListener = onCrash;
+
     PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
       _recordError(error, stack);
       return true;
@@ -22,7 +28,7 @@ class UCrashlytics {
       "systemInfo": await _getSystemInfo(),
     };
 
-    _writeToLogFile(jsonEncode(errorData));
+    _crashListener?.call(errorData);
   }
 
   static Future<void> _recordFlutterError(FlutterErrorDetails details) async {
@@ -40,7 +46,7 @@ class UCrashlytics {
       "systemInfo": await _getSystemInfo(),
     };
 
-    _writeToLogFile(jsonEncode(errorData));
+    _crashListener?.call(errorData);
   }
 
   static String _formatStackTrace(StackTrace? stack) {
@@ -163,19 +169,6 @@ class UCrashlytics {
       return "Desktop";
     }
     return "Unknown";
-  }
-
-  static void _writeToLogFile(String jsonMessage) {
-    try {
-      final String prettyJson = const JsonEncoder.withIndent("  ").convert(jsonDecode(jsonMessage));
-      UNavigator.draggableSheet(
-        SingleChildScrollView(
-          child: Text(prettyJson),
-        ),
-      );
-    } catch (e) {
-      debugPrint("Failed to display error: $e");
-    }
   }
 
   static void reportError(dynamic error, StackTrace stackTrace) {
