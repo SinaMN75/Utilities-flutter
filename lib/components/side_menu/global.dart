@@ -1,33 +1,85 @@
-import "package:flutter/material.dart";
-import "package:u/components/side_menu/src/global/global.dart";
-import "package:u/components/side_menu/src/side_menu_controller.dart";
-import "package:u/components/side_menu/src/side_menu_display_mode.dart";
-import "package:u/components/side_menu/src/side_menu_item_with_global.dart";
+part of "side_menu.dart";
+
+enum SideMenuHamburgerMode { open, close }
+
+enum SideMenuDisplayMode { auto, open, compact }
+
+class SideMenuController {
+  late int _currentPage;
+
+  int get currentPage => _currentPage;
+
+  SideMenuController({int initialPage = 0}) {
+    _currentPage = initialPage;
+  }
+
+  final StreamController<int> _streamController = StreamController<int>.broadcast();
+
+  Stream<int> get stream => _streamController.stream;
+
+  void changePage(int index) {
+    _currentPage = index;
+    _streamController.sink.add(index);
+  }
+
+  void dispose() => _streamController.close();
+
+  void addListener(void Function(int index) listener) => _streamController.stream.listen(listener);
+
+  void removeListener(void Function(int) listener) => _streamController.stream.listen(listener).cancel();
+}
+
+class SideMenuExpansionItem {
+  final String? title;
+  final void Function(int index, SideMenuController sideMenuController, bool isExpanded)? onTap;
+  final Icon? icon;
+  final Widget? iconWidget;
+  final List<SideMenuItem> children;
+  final bool? initialExpanded;
+
+  const SideMenuExpansionItem({
+    required this.children,
+    this.onTap,
+    this.title,
+    this.icon,
+    this.iconWidget,
+    this.initialExpanded,
+  }) : assert(title != null || icon != null, "Title and icon should not be empty at the same time"),
+       super();
+}
+
+class SideMenuItem {
+  final String? title;
+  final void Function(int index, SideMenuController sideMenuController)? onTap;
+  final Icon? icon;
+  final Widget? iconWidget;
+  final Widget? badgeContent;
+  final Color? badgeColor;
+  final String? tooltipContent;
+  final Widget? trailing;
+  final Widget Function(BuildContext context, SideMenuDisplayMode displayMode)? builder;
+
+  const SideMenuItem({
+    this.onTap,
+    this.title,
+    this.icon,
+    this.iconWidget,
+    this.badgeContent,
+    this.badgeColor,
+    this.tooltipContent,
+    this.trailing,
+    this.builder,
+  }) : assert(title != null || icon != null || builder != null, "Title, icon and builder should not be empty at the same time"),
+       super();
+}
 
 class SideMenuExpansionItemWithGlobal extends StatefulWidget {
-  /// #### Side Menu Item
-  ///
-  /// This is a widget as [SideMenu] items with text and icon
-  /// Fold name
   final String? title;
-
-  /// Global object of [SideMenu]
   final Global global;
-
-  /// A Icon to display before [title]
   final Icon? icon;
-
-  /// This is displayed instead if [icon] is null
   final Widget? iconWidget;
-
-  /// The Children widgets
   final List<SideMenuItemWithGlobal> children;
-
-  /// for maintaining record of the state
   final int index;
-
-  /// A function that will be called when tap on [SideMenuExpansionItem] corresponding
-  /// to this [SideMenuExpansionItem]
   final void Function(int index, SideMenuController sideMenuController, bool isExpanded)? onTap;
 
   const SideMenuExpansionItemWithGlobal({
@@ -39,17 +91,13 @@ class SideMenuExpansionItemWithGlobal extends StatefulWidget {
     this.icon,
     this.iconWidget,
     this.onTap,
-  }) : assert(
-         title != null || icon != null,
-         "Title and icon should not be empty at the same time",
-       );
+  }) : assert(title != null || icon != null, "Title and icon should not be empty at the same time");
 
   @override
   State<SideMenuExpansionItemWithGlobal> createState() => _SideMenuExpansionState();
 }
 
 class _SideMenuExpansionState extends State<SideMenuExpansionItemWithGlobal> {
-  /// Set icon for of [SideMenuExpansionItemWithGlobal]
   late bool isExpanded;
 
   @override
@@ -58,10 +106,6 @@ class _SideMenuExpansionState extends State<SideMenuExpansionItemWithGlobal> {
     isExpanded = widget.global.expansionStateList[widget.index];
   }
 
-  // Generates an icon widget based on the main icon and icon widget provided.
-  // If the main icon is null, returns the icon widget or a SizedBox if no icon widget is provided.
-  // Determines the icon color and size based on the expansion state and global styling.
-  // Returns an Icon widget with the specified icon, color, and size.
   Widget _generateIconWidget(Icon? mainIcon, Widget? iconWidget) {
     if (mainIcon == null) return iconWidget ?? const SizedBox();
 
@@ -81,12 +125,7 @@ class _SideMenuExpansionState extends State<SideMenuExpansionItemWithGlobal> {
       ),
       horizontalTitleGap: 0,
       child: ExpansionTile(
-        leading: SizedBox(
-          // Ensures the icon does not take the full tile width
-          width: 40, // Adjust size constraints as required
-          child: _generateIconWidget(widget.icon, widget.iconWidget),
-        ),
-        // The title should only take space when SideMenuDisplayMode is open
+        leading: SizedBox(width: 40, child: _generateIconWidget(widget.icon, widget.iconWidget)),
         maintainState: true,
         onExpansionChanged: (bool value) {
           setState(() {
@@ -110,4 +149,25 @@ class _SideMenuExpansionState extends State<SideMenuExpansionItemWithGlobal> {
       ),
     ),
   );
+}
+
+class Global {
+  late SideMenuController controller;
+  late SideMenuStyle style;
+  DisplayModeNotifier displayModeState = DisplayModeNotifier(SideMenuDisplayMode.auto);
+  bool showTrailing = true;
+  List<Function> itemsUpdate = <Function>[];
+  List<dynamic> items = <dynamic>[];
+  List<bool> expansionStateList = <bool>[];
+}
+
+class DisplayModeNotifier extends ValueNotifier<SideMenuDisplayMode> {
+  DisplayModeNotifier(super.value);
+
+  void change(SideMenuDisplayMode mode) {
+    if (value != mode) {
+      value = mode;
+      notifyListeners();
+    }
+  }
 }

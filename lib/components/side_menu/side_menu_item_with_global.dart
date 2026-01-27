@@ -1,9 +1,4 @@
-import "package:flutter/material.dart";
-import "package:u/components/side_menu/src/global/global.dart";
-import "package:u/components/side_menu/src/side_menu_controller.dart";
-import "package:u/components/side_menu/src/side_menu_display_mode.dart";
-
-typedef SideMenuItemBuilder = Widget Function(BuildContext context, SideMenuDisplayMode displayMode);
+part of "side_menu.dart";
 
 class SideMenuItemList {
   late List<dynamic> items;
@@ -67,7 +62,7 @@ class SideMenuItemWithGlobal extends StatefulWidget {
   /// Create custom sideMenuItem widget with builder
   ///
   /// Builder has `(BuildContext context, SideMenuDisplayMode displayMode)`
-  final SideMenuItemBuilder? builder;
+  final Widget Function(BuildContext context, SideMenuDisplayMode displayMode)? builder;
 
   @override
   State<SideMenuItemWithGlobal> createState() => _SideMenuItemState();

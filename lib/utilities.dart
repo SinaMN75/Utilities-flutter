@@ -61,7 +61,7 @@ export "components/rating_bar.dart";
 export "components/readmore.dart";
 export "components/scrolling_text.dart";
 export "components/segmented_control.dart";
-export "components/side_menu/easy_sidemenu.dart";
+export "components/side_menu/side_menu.dart";
 export "components/u_button.dart";
 export "components/u_drop_down.dart";
 export "components/u_sidemenu.dart";

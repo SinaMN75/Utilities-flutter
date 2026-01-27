@@ -19,16 +19,16 @@ abstract class UNotification {
       macOS: DarwinInitializationSettings(),
     );
     flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
+      settings: initializationSettings,
       onDidReceiveNotificationResponse: onNotificationTap,
       onDidReceiveBackgroundNotificationResponse: onNotificationTap,
     );
     flutterLocalNotificationsPlugin.show(
-      0,
-      title,
-      message,
+      id: 0,
+      title: title,
+      body: message,
       payload: payload,
-      NotificationDetails(
+      notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           channelId,
           channelName,

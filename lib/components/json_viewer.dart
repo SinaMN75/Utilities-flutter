@@ -1,11 +1,11 @@
 import "package:u/utilities.dart";
 
-class JsonViewer extends StatelessWidget {
+class UJsonViewer extends StatelessWidget {
   final String jsonString;
   final double fontSize;
   final EdgeInsets padding;
 
-  const JsonViewer({
+  const UJsonViewer({
     required this.jsonString,
     super.key,
     this.fontSize = 13,

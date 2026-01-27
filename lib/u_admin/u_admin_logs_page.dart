@@ -153,7 +153,7 @@ class _LogContentDialog extends StatelessWidget {
         ),
       ),
       const Divider(height: 1),
-      JsonViewer(jsonString: logContents).expanded().ltr(),
+      UJsonViewer(jsonString: logContents).expanded().ltr(),
     ],
   );
 }
