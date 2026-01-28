@@ -12,7 +12,7 @@ class USendAgainCountDown extends StatefulWidget {
   final int counter;
   final VoidCallback onSendAgainTap;
   final String buttonTitle;
-  final VoidCallback counterDescription;
+  final String counterDescription;
 
   @override
   State<USendAgainCountDown> createState() => _USendAgainCountDownState();

@@ -2,12 +2,11 @@ import "package:u/utilities.dart";
 
 class UOtpField extends StatefulWidget {
   const UOtpField({
-    required this.cursorColor,
-    required this.fillColor,
-    required this.activeColor,
-    required this.borderColor,
     required this.controller,
-    super.key,
+    this.cursorColor,
+    this.fillColor,
+    this.activeColor,
+    this.borderColor,
     this.length = 6,
     this.autoFocus = false,
     this.onChanged,
@@ -26,6 +25,7 @@ class UOtpField extends StatefulWidget {
     this.decoration,
     this.autoDismissKeyboard = true,
     this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
+    super.key,
   });
 
   final TextEditingController controller;
@@ -37,10 +37,10 @@ class UOtpField extends StatefulWidget {
   final TextStyle? textStyle;
   final double fieldWidth;
   final double fieldHeight;
-  final Color cursorColor;
-  final Color fillColor;
-  final Color activeColor;
-  final Color borderColor;
+  final Color? cursorColor;
+  final Color? fillColor;
+  final Color? activeColor;
+  final Color? borderColor;
   final double borderRadius;
   final double borderWidth;
   final bool obscureText;
@@ -145,11 +145,11 @@ class _UOtpFieldState extends State<UOtpField> {
 
   Color _getBorderColor(final int index) {
     if (_focusNodes[index].hasFocus) {
-      return widget.activeColor;
+      return widget.activeColor ?? Theme.of(context).colorScheme.primary;
     } else if (_controllers[index].text.isNotEmpty) {
-      return widget.activeColor.withValues(alpha: 0.5);
+      return (widget.activeColor ?? Theme.of(context).colorScheme.primary).withValues(alpha: 0.5);
     }
-    return widget.borderColor;
+    return widget.borderColor ?? Theme.of(context).colorScheme.secondary;
   }
 
   @override
@@ -197,7 +197,7 @@ class _UOtpFieldState extends State<UOtpField> {
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(widget.borderRadius),
                           borderSide: BorderSide(
-                            color: widget.activeColor,
+                            color: widget.activeColor ?? Theme.of(context).colorScheme.primary,
                             width: widget.borderWidth,
                           ),
                         ),

@@ -160,6 +160,7 @@ class UImageAsset extends StatelessWidget {
           width: width,
           height: height,
           fit: fit,
+          color: color,
           placeholderBuilder: (BuildContext context) => placeholder == null
               ? SizedBox(width: width, height: height)
               : UImageAsset(
