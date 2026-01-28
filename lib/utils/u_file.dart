@@ -62,7 +62,7 @@ abstract class UFile {
     final List<String>? allowedExtensions,
   }) async {
     try {
-      final FilePickerResult? result = await FilePicker.pickFiles(
+      final FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: fileType,
         allowMultiple: allowMultiple,
         allowedExtensions: allowedExtensions,
