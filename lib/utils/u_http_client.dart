@@ -36,12 +36,16 @@ abstract class UHttpClient {
     final bool offline = false,
     final int retryAmount = 3,
   }) async {
-    final bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
+    // final bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
 
-    if (!hasNetworkConnection && offline == false) {
-      onException(U.s.connectionToNetworkWasNotPossible);
-      return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
-    }
+    // if (!hasNetworkConnection && offline == false) {
+    //   onException(U.s.connectionToNetworkWasNotPossible);
+    //   return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
+    // }
+    // if (offline == false) {
+    //   onException(U.s.connectionToNetworkWasNotPossible);
+    //   return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
+    // }
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = 'cache_${_buildUri(endpoint, queryParams).toString().replaceAll(RegExp(r'[^\w]'), '_')}';

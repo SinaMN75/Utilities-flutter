@@ -578,7 +578,7 @@ class UTextFieldPhoneNumber extends StatefulWidget {
   });
 
   @override
-  _UTextFieldPhoneNumberState createState() => _UTextFieldPhoneNumberState();
+  State<UTextFieldPhoneNumber> createState() => _UTextFieldPhoneNumberState();
 }
 
 class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {

@@ -15,6 +15,7 @@ class UImageSlider extends StatefulWidget {
     this.radius = 0,
     this.imagePlaceholderColor = Colors.grey,
     this.errorWidget,
+    this.withIndicator = true,
   });
 
   final List<String> images;
@@ -29,6 +30,7 @@ class UImageSlider extends StatefulWidget {
   final double radius;
   final Color imagePlaceholderColor;
   final Widget? errorWidget;
+  final bool withIndicator;
 
   @override
   State<UImageSlider> createState() => _UImageSliderState();
@@ -89,17 +91,22 @@ class _UImageSliderState extends State<UImageSlider> {
   @override
   Widget build(BuildContext context) => Column(
     children: <Widget>[
-      PageView.builder(
-        controller: _pageController,
-        onPageChanged: _onPageChanged,
-        itemCount: widget.images.length,
-        itemBuilder: (BuildContext context, int index) => UImage(
-          widget.images[index],
-          fit: widget.imageFit,
-          borderRadius: widget.radius,
-        ).pSymmetric(horizontal: 4),
-      ).container(height: widget.height),
-      if (widget.images.length > 1)
+      UContainer(
+        height: widget.height,
+        color: widget.imagePlaceholderColor,
+        radius: widget.radius,
+        child: PageView.builder(
+          controller: _pageController,
+          onPageChanged: _onPageChanged,
+          itemCount: widget.images.length,
+          itemBuilder: (BuildContext context, int index) => UImage(
+            widget.images[index],
+            fit: widget.imageFit,
+            borderRadius: widget.radius,
+          ),
+        ),
+      ),
+      if (widget.images.length > 1 && widget.withIndicator)
         SizedBox(
           height: widget.indicatorHeight,
           child: Row(

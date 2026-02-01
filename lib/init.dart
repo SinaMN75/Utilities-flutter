@@ -227,6 +227,7 @@ abstract class UThemes {
       actionsIconTheme: IconThemeData(color: data.appbarIconColor),
       iconTheme: IconThemeData(color: data.appbarIconColor),
     ),
+
     colorScheme: ColorScheme.fromSeed(
       seedColor: data.primaryColor,
       primary: data.primaryColor,
@@ -295,7 +296,7 @@ abstract class UThemes {
         borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(color: data.disabledColor.withValues(alpha: 0.5)),
       ),
-      labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor),
+      labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor, fontSize: 12),
       filled: true,
       fillColor: Colors.black,
       contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
