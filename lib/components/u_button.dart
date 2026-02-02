@@ -33,7 +33,8 @@ class UButton extends StatefulWidget {
     this.tooltip,
     this.counter,
     this.counterDescription = "",
-    this.onCounting,
+    this.counterOnCounting,
+    this.counterResetCounterOnTap,
   });
 
   final String title;
@@ -62,7 +63,8 @@ class UButton extends StatefulWidget {
   final String? tooltip;
   final int? counter;
   final String? counterDescription;
-  final Function(int)? onCounting;
+  final Function(int)? counterOnCounting;
+  final bool? counterResetCounterOnTap;
 
   @override
   State<UButton> createState() => _UButtonState();
@@ -73,13 +75,11 @@ class _UButtonState extends State<UButton> {
   late Timer timer;
   late String title;
   VoidCallback? onTap;
-  bool enabled = true;
 
   @override
   void initState() {
     title = widget.title;
     onTap = widget.onTap;
-    enabled = widget.enabled;
     if (widget.counter != null) {
       startTimer();
     }
@@ -89,16 +89,14 @@ class _UButtonState extends State<UButton> {
   void startTimer() {
     counter = widget.counter!;
     onTap = null;
-    enabled = false;
     timer = Timer.periodic(const Duration(seconds: 1), (final Timer timer) {
       setState(() {
         counter--;
         title = "$counter ${widget.counterDescription}";
-        if (widget.onCounting != null) widget.onCounting!(counter);
+        if (widget.counterOnCounting != null) widget.counterOnCounting!(counter);
         if (counter <= 1) {
           title = widget.title;
           timer.cancel();
-          enabled = true;
           onTap = widget.onTap;
         }
       });
@@ -120,31 +118,59 @@ class _UButtonState extends State<UButton> {
     switch (widget.type) {
       case UButtonType.elevated:
         button = ElevatedButton(
-          onPressed: enabled && !widget.isLoading ? onTap : null,
-          onLongPress: enabled && !widget.isLoading ? widget.onLongPress : null,
+          onPressed: onTap != null && !widget.isLoading
+              ? () {
+                  onTap!();
+                  if (widget.counterResetCounterOnTap == true) {
+                    startTimer();
+                  }
+                }
+              : null,
+          onLongPress: widget.onLongPress != null || !widget.isLoading ? widget.onLongPress : null,
           style: _buildButtonStyle(),
           child: content,
         );
         break;
       case UButtonType.outlined:
         button = OutlinedButton(
-          onPressed: enabled && !widget.isLoading ? onTap : null,
-          onLongPress: enabled && !widget.isLoading ? widget.onLongPress : null,
-          style: _buildButtonStyle(isOutlined: true),
+          onPressed: onTap != null && !widget.isLoading
+              ? () {
+                  onTap!();
+                  if (widget.counterResetCounterOnTap == true) {
+                    startTimer();
+                  }
+                }
+              : null,
+          onLongPress: widget.onLongPress != null || !widget.isLoading ? widget.onLongPress : null,
+          style: _buildButtonStyle(),
           child: content,
         );
         break;
       case UButtonType.text:
         button = TextButton(
-          onPressed: enabled && !widget.isLoading ? onTap : null,
-          onLongPress: enabled && !widget.isLoading ? widget.onLongPress : null,
+          onPressed: onTap != null && !widget.isLoading
+              ? () {
+                  onTap!();
+                  if (widget.counterResetCounterOnTap == true) {
+                    startTimer();
+                  }
+                }
+              : null,
+          onLongPress: widget.onLongPress != null || !widget.isLoading ? widget.onLongPress : null,
           style: _buildButtonStyle(),
           child: content,
         );
         break;
       case UButtonType.icon:
         button = IconButton(
-          onPressed: enabled && !widget.isLoading ? onTap : null,
+          onPressed: onTap != null && !widget.isLoading
+              ? () {
+                  onTap!();
+                  if (widget.counterResetCounterOnTap == true) {
+                    startTimer();
+                  }
+                }
+              : null,
           icon: widget.icon ?? const SizedBox(),
           tooltip: widget.tooltip,
           color: widget.foregroundColor,
@@ -153,7 +179,14 @@ class _UButtonState extends State<UButton> {
         break;
       case UButtonType.fab:
         button = FloatingActionButton.extended(
-          onPressed: enabled && !widget.isLoading ? onTap : null,
+          onPressed: onTap != null && !widget.isLoading
+              ? () {
+                  onTap!();
+                  if (widget.counterResetCounterOnTap == true) {
+                    startTimer();
+                  }
+                }
+              : null,
           label: content,
           icon: widget.icon,
           backgroundColor: widget.backgroundColor,
@@ -163,7 +196,14 @@ class _UButtonState extends State<UButton> {
         break;
       case UButtonType.cupertino:
         button = CupertinoButton(
-          onPressed: enabled && !widget.isLoading ? onTap : null,
+          onPressed: onTap != null && !widget.isLoading
+              ? () {
+                  onTap!();
+                  if (widget.counterResetCounterOnTap == true) {
+                    startTimer();
+                  }
+                }
+              : null,
           color: widget.backgroundColor,
           padding: widget.padding,
           disabledColor: widget.backgroundColor?.withValues(alpha: 0.5) ?? CupertinoColors.quaternarySystemFill,
@@ -172,8 +212,15 @@ class _UButtonState extends State<UButton> {
         break;
       case UButtonType.custom:
         button = InkWell(
-          onTap: enabled && !widget.isLoading ? onTap : null,
-          onLongPress: enabled && !widget.isLoading ? widget.onLongPress : null,
+          onTap: onTap != null && !widget.isLoading
+              ? () {
+                  onTap!();
+                  if (widget.counterResetCounterOnTap == true) {
+                    startTimer();
+                  }
+                }
+              : null,
+          onLongPress: widget.onLongPress != null || !widget.isLoading ? widget.onLongPress : null,
           borderRadius: BorderRadius.circular(widget.borderRadius),
           child: Container(
             width: widget.width ?? double.infinity,
@@ -224,25 +271,16 @@ class _UButtonState extends State<UButton> {
     );
   }
 
-  ButtonStyle _buildButtonStyle({bool isOutlined = false}) {
-    final Color effectiveBackground = widget.backgroundColor ?? (widget.type == UButtonType.elevated ? Theme.of(navigatorKey.currentContext!).colorScheme.primary : Colors.transparent);
-    final Color effectiveForeground = widget.foregroundColor ?? (widget.type == UButtonType.elevated ? Colors.white : Theme.of(navigatorKey.currentContext!).colorScheme.primary);
-
-    return ButtonStyle(
-      textStyle: WidgetStateProperty.all(widget.textStyle),
-      backgroundColor: WidgetStateProperty.resolveWith((Set<WidgetState> states) {
-        if (widget.gradient != null) return null;
-        if (!enabled) return effectiveBackground.withAlpha(50);
-        if (states.contains(WidgetState.pressed)) return effectiveBackground.withAlpha(50);
-        return effectiveBackground;
-      }),
-      foregroundColor: WidgetStateProperty.all(effectiveForeground),
-      padding: WidgetStateProperty.all(widget.padding),
-      minimumSize: WidgetStateProperty.all(Size(widget.minWidth ?? 0, widget.minHeight ?? 0)),
-      maximumSize: WidgetStateProperty.all(Size(widget.maxWidth ?? double.infinity, widget.maxHeight ?? double.infinity)),
-      fixedSize: WidgetStateProperty.all(Size(widget.width ?? double.infinity, widget.height ?? 46)),
-      elevation: WidgetStateProperty.all(widget.type == UButtonType.elevated ? widget.elevation : 0),
-      side: WidgetStateProperty.all(BorderSide(color: widget.borderColor ?? Colors.transparent, width: widget.borderWidth)),
-    );
-  }
+  ButtonStyle _buildButtonStyle() => ButtonStyle(
+    textStyle: WidgetStateProperty.all(widget.textStyle),
+    backgroundColor: widget.backgroundColor == null ? null : WidgetStateProperty.all(widget.backgroundColor),
+    foregroundColor: widget.foregroundColor == null ? null : WidgetStateProperty.all(widget.foregroundColor),
+    overlayColor: widget.backgroundColor == null ? WidgetStateProperty.all(widget.backgroundColor) : null,
+    padding: WidgetStateProperty.all(widget.padding),
+    minimumSize: WidgetStateProperty.all(Size(widget.minWidth ?? 0, widget.minHeight ?? 0)),
+    maximumSize: WidgetStateProperty.all(Size(widget.maxWidth ?? double.infinity, widget.maxHeight ?? double.infinity)),
+    fixedSize: WidgetStateProperty.all(Size(widget.width ?? double.infinity, widget.height ?? 46)),
+    elevation: WidgetStateProperty.all(widget.type == UButtonType.elevated ? widget.elevation : 0),
+    side: WidgetStateProperty.all(BorderSide(color: widget.borderColor ?? Colors.transparent, width: widget.borderWidth)),
+  );
 }

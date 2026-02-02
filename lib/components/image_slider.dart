@@ -100,6 +100,7 @@ class _UImageSliderState extends State<UImageSlider> {
           onPageChanged: _onPageChanged,
           itemCount: widget.images.length,
           itemBuilder: (BuildContext context, int index) => UImage(
+            height: widget.height,
             widget.images[index],
             fit: widget.imageFit,
             borderRadius: widget.radius,

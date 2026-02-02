@@ -36,16 +36,12 @@ abstract class UHttpClient {
     final bool offline = false,
     final int retryAmount = 3,
   }) async {
-    // final bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
+    final bool hasNetworkConnection = await UNetwork.hasNetworkConnection();
 
-    // if (!hasNetworkConnection && offline == false) {
-    //   onException(U.s.connectionToNetworkWasNotPossible);
-    //   return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
-    // }
-    // if (offline == false) {
-    //   onException(U.s.connectionToNetworkWasNotPossible);
-    //   return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
-    // }
+    if (!hasNetworkConnection && offline == false) {
+      onException(U.s.connectionToNetworkWasNotPossible);
+      return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
+    }
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = 'cache_${_buildUri(endpoint, queryParams).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
@@ -255,29 +251,18 @@ class UDownload {
     required void Function(int progress) onProgress,
   }) async {
     final Directory dir = await getTemporaryDirectory();
-
-    // FIX 1: Use shorter filename for Windows (avoid path issues)
-    final String safeCacheKey = _getSafeCacheKey(cacheKey);
-    final File file = File("${dir.path}/$safeCacheKey.tmp");
+    final File file = File("${dir.path}/$cacheKey.tmp");
 
     int downloadedBytes = 0;
     if (await file.exists()) {
-      try {
-        downloadedBytes = await file.length();
-      } catch (e) {
-        // FIX 2: Windows file lock issue - delete corrupted file
-        await _safeDelete(file);
-        downloadedBytes = 0;
-      }
+      downloadedBytes = await file.length();
     }
 
     for (int attempt = 1; attempt <= _maxRetries; attempt++) {
       final Client client = Client();
 
       try {
-        final Map<String, String> headers = <String, String>{
-          "User-Agent": "Dart/2.0 (Windows)", // FIX 3: Add User-Agent for Windows
-        };
+        final Map<String, String> headers = <String, String>{};
 
         if (downloadedBytes > 0) {
           headers["Range"] = "bytes=$downloadedBytes-";
@@ -285,21 +270,13 @@ class UDownload {
 
         final Request request = Request("GET", Uri.parse(url))..headers.addAll(headers);
 
-        // FIX 4: Add timeout for Windows connections
-        final StreamedResponse response = await client
-            .send(request)
-            .timeout(
-              const Duration(seconds: 60),
-              onTimeout: () {
-                throw TimeoutException("Connection timeout on attempt $attempt");
-              },
-            );
+        final StreamedResponse response = await client.send(request);
 
         if (response.statusCode == 416) {
           if (await file.exists() && downloadedBytes > 0) {
-            return await _readFileWithRetry(file);
+            return file.readAsBytes();
           } else {
-            await _safeDelete(file);
+            await file.delete();
             downloadedBytes = 0;
             continue;
           }
@@ -310,49 +287,26 @@ class UDownload {
         }
 
         if (response.statusCode == 200 && downloadedBytes > 0) {
-          await _safeDelete(file);
+          await file.delete();
           downloadedBytes = 0;
           headers.remove("Range");
         }
 
         final int? totalBytes = response.contentLength != null ? response.contentLength! + downloadedBytes : null;
 
-        // FIX 5: Use try-catch for file operations on Windows
-        IOSink? sink;
-        try {
-          sink = file.openWrite(mode: FileMode.append);
-        } catch (e) {
-          await _safeDelete(file);
-          downloadedBytes = 0;
-          continue;
-        }
-
+        final IOSink sink = file.openWrite(mode: FileMode.append);
         int received = downloadedBytes;
-        int chunkCounter = 0;
 
         await for (final List<int> chunk in response.stream) {
-          try {
-            sink.add(chunk);
-            received += chunk.length;
-            chunkCounter++;
+          sink.add(chunk);
+          received += chunk.length;
 
-            // FIX 6: Flush periodically for Windows to avoid memory issues
-            if (chunkCounter % 50 == 0) {
-              await sink.flush();
-            }
-
-            if (totalBytes != null) {
-              final int p = (received / totalBytes * 100).clamp(0, 100).round();
-              onProgress(p);
-            }
-          } catch (e) {
-            await sink.close();
-            await _safeDelete(file);
-            throw Exception("Write error on chunk $chunkCounter: $e");
+          if (totalBytes != null) {
+            final int p = (received / totalBytes * 100).clamp(0, 100).round();
+            onProgress(p);
           }
         }
 
-        await sink.flush();
         await sink.close();
         client.close();
 
@@ -361,7 +315,7 @@ class UDownload {
           throw Exception("Download incomplete: $finalSize/$totalBytes bytes");
         }
 
-        return await _readFileWithRetry(file);
+        return file.readAsBytes();
       } catch (e) {
         client.close();
 
@@ -369,54 +323,17 @@ class UDownload {
           rethrow;
         }
 
-        // FIX 7: Longer delay for Windows on retry
-        await Future<void>.delayed(Duration(seconds: attempt * 3));
-
-        if (e.toString().contains("416") || e.toString().contains("4") || e is TimeoutException) {
-          await _safeDelete(file);
-          downloadedBytes = 0;
+        await Future<void>.delayed(Duration(seconds: attempt * 2));
+        if (e.toString().contains("416") || e.toString().contains("4")) {
+          try {
+            await file.delete();
+            downloadedBytes = 0;
+          } catch (_) {}
         }
       }
     }
 
     throw Exception("Failed to download after $_maxRetries retries");
-  }
-
-  // FIX 8: Safe filename for Windows
-  static String _getSafeCacheKey(String original) {
-    if (!Platform.isWindows) return original;
-
-    // Remove invalid Windows characters and limit length
-    final String safe = original.replaceAll(RegExp(r'[<>:"/\\|?*]'), "_");
-    return safe.length > 50 ? "${safe.substring(0, 45)}_${original.hashCode.abs()}" : safe;
-  }
-
-  // FIX 9: Safe file delete with retry for Windows
-  static Future<void> _safeDelete(File file) async {
-    if (!await file.exists()) return;
-
-    for (int i = 0; i < 3; i++) {
-      try {
-        await file.delete();
-        break;
-      } catch (e) {
-        if (i == 2) rethrow;
-        await Future<void>.delayed(Duration(milliseconds: 100 * (i + 1)));
-      }
-    }
-  }
-
-  // FIX 10: Read file with retry for Windows file locks
-  static Future<Uint8List> _readFileWithRetry(File file) async {
-    for (int i = 0; i < 3; i++) {
-      try {
-        return await file.readAsBytes();
-      } catch (e) {
-        if (i == 2) rethrow;
-        await Future<void>.delayed(Duration(milliseconds: 100 * (i + 1)));
-      }
-    }
-    throw Exception("Could not read file");
   }
 
   static bool isDownloading(String cacheKey) => _operations.containsKey(cacheKey);

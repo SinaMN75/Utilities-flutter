@@ -104,12 +104,20 @@ abstract class UValidators {
   static FormFieldValidator<String> number({
     required String requiredMessage,
     required String invalidMessage,
+    int? minLength,
+    int? maxLength,
     bool isRequired = true,
   }) => (String? value) {
     if (isRequired && (value == null || value.isEmpty)) {
       return requiredMessage;
     }
     if (value != null && value.isNotEmpty && !GetUtils.isNumericOnly(value.extractLatinNumber())) {
+      return invalidMessage;
+    }
+    if (minLength != null && value != null && value.isNotEmpty && value.length < minLength) {
+      return invalidMessage;
+    }
+    if (maxLength != null && value != null && value.isNotEmpty && value.length > maxLength) {
       return invalidMessage;
     }
     return null;

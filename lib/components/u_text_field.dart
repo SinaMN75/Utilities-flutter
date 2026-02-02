@@ -121,6 +121,81 @@ class _UTextFieldState extends State<UTextField> {
   );
 }
 
+class UDropDownField<T> extends StatefulWidget {
+  const UDropDownField({
+    super.key,
+    this.initialValue,
+    this.items,
+    this.onChanged,
+    this.text,
+    this.labelText,
+    this.hintText,
+    this.contentPadding,
+    this.fontSize,
+    this.onTap,
+    this.validator,
+    this.prefix,
+    this.suffix,
+    this.onSave,
+    this.textHeight,
+    this.required = false,
+    this.isDense = true,
+  });
+
+  final List<DropdownMenuItem<T>>? items;
+  final ValueChanged<T?>? onChanged;
+  final T? initialValue;
+
+  final bool required;
+  final bool isDense;
+  final String? text;
+  final String? labelText;
+  final String? hintText;
+  final String? Function(T?)? validator;
+  final double? fontSize;
+  final double? textHeight;
+  final EdgeInsetsGeometry? contentPadding;
+  final VoidCallback? onTap;
+  final Widget? prefix;
+  final Widget? suffix;
+  final Function(T? value)? onSave;
+
+  @override
+  State<UDropDownField<T>> createState() => _UDropDownFieldState<T>();
+}
+
+class _UDropDownFieldState<T> extends State<UDropDownField<T>> {
+  @override
+  Widget build(BuildContext context) => Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      if (widget.text != null)
+        UIconTextHorizontal(
+          leading: Text(widget.text!, style: Theme.of(context).textTheme.titleSmall),
+          trailing: widget.required ? const Text("*").bodyMedium(color: Theme.of(context).colorScheme.error) : const SizedBox(),
+        ).pSymmetric(vertical: 8),
+      DropdownButtonFormField<T>(
+        initialValue: widget.initialValue,
+        items: widget.items,
+        onChanged: widget.onChanged,
+        onSaved: widget.onSave,
+        onTap: widget.onTap,
+        validator: widget.validator,
+        decoration: InputDecoration(
+          filled: true,
+          labelText: widget.labelText,
+          isDense: widget.isDense,
+          hintText: widget.hintText,
+          contentPadding: widget.contentPadding ?? const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+          suffixIcon: widget.suffix,
+          prefixIcon: widget.prefix,
+        ),
+      ),
+    ],
+  );
+}
+
 class UTextFieldDatePicker extends StatefulWidget {
   const UTextFieldDatePicker({
     required this.onChange,
@@ -578,7 +653,7 @@ class UTextFieldPhoneNumber extends StatefulWidget {
   });
 
   @override
-  State<UTextFieldPhoneNumber> createState() => _UTextFieldPhoneNumberState();
+  _UTextFieldPhoneNumberState createState() => _UTextFieldPhoneNumberState();
 }
 
 class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {

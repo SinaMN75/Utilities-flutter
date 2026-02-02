@@ -2,7 +2,7 @@ import "package:u/utilities.dart";
 
 class UOtpField extends StatefulWidget {
   const UOtpField({
-    required this.controller,
+    this.controller,
     this.cursorColor,
     this.fillColor,
     this.activeColor,
@@ -11,7 +11,6 @@ class UOtpField extends StatefulWidget {
     this.autoFocus = false,
     this.onChanged,
     this.onCompleted,
-    this.validator,
     this.textStyle,
     this.fieldWidth = 48,
     this.fieldHeight = 60,
@@ -28,12 +27,11 @@ class UOtpField extends StatefulWidget {
     super.key,
   });
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final int length;
   final bool autoFocus;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onCompleted;
-  final FormFieldValidator<String>? validator;
   final TextStyle? textStyle;
   final double fieldWidth;
   final double fieldHeight;
@@ -57,12 +55,14 @@ class UOtpField extends StatefulWidget {
 }
 
 class _UOtpFieldState extends State<UOtpField> {
+  late TextEditingController controller;
   late List<FocusNode> _focusNodes;
   late List<TextEditingController> _controllers;
   late List<String> _otp;
 
   @override
   void initState() {
+    controller = widget.controller ?? TextEditingController();
     super.initState();
     _initializeOtpFields();
   }
@@ -81,11 +81,11 @@ class _UOtpFieldState extends State<UOtpField> {
       (final int index) => "",
     );
 
-    widget.controller.addListener(_syncControllersWithMain);
+    controller.addListener(_syncControllersWithMain);
   }
 
   void _syncControllersWithMain() {
-    final String text = widget.controller.text;
+    final String text = controller.text;
     for (int i = 0; i < widget.length; i++) {
       if (i < text.length) {
         _controllers[i].text = text[i];
@@ -103,7 +103,7 @@ class _UOtpFieldState extends State<UOtpField> {
     for (final TextEditingController controller in _controllers) {
       controller.dispose();
     }
-    widget.controller.removeListener(_syncControllersWithMain);
+    controller.removeListener(_syncControllersWithMain);
     super.dispose();
   }
 
@@ -115,25 +115,25 @@ class _UOtpFieldState extends State<UOtpField> {
           _controllers[i].text = value[i];
           _otp[i] = value[i];
         }
-        widget.controller.text = value;
+        controller.text = value;
         _focusNodes.last.requestFocus();
       }
       return;
     }
 
     _otp[index] = value;
-    widget.controller.text = _otp.join();
+    controller.text = _otp.join();
 
     if (value.isNotEmpty && index < widget.length - 1) {
       _focusNodes[index + 1].requestFocus();
     }
 
     if (widget.onChanged != null) {
-      widget.onChanged!(widget.controller.text);
+      widget.onChanged!(controller.text);
     }
 
-    if (widget.controller.text.length == widget.length && widget.onCompleted != null) {
-      widget.onCompleted!(widget.controller.text);
+    if (controller.text.length == widget.length && widget.onCompleted != null) {
+      widget.onCompleted!(controller.text);
     }
   }
 
@@ -154,7 +154,6 @@ class _UOtpFieldState extends State<UOtpField> {
 
   @override
   Widget build(final BuildContext context) => FormField<String>(
-    validator: widget.validator,
     builder: (final FormFieldState<String> formFieldState) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
