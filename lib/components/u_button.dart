@@ -6,7 +6,7 @@ enum UButtonIconPosition { leading, trailing }
 
 class UButton extends StatefulWidget {
   const UButton({
-    required this.title,
+    this.title,
     super.key,
     this.type = UButtonType.elevated,
     this.onTap,
@@ -35,9 +35,10 @@ class UButton extends StatefulWidget {
     this.counterDescription = "",
     this.counterOnCounting,
     this.counterResetCounterOnTap,
+    this.heroTag,
   });
 
-  final String title;
+  final String? title;
   final UButtonType type;
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
@@ -65,6 +66,7 @@ class UButton extends StatefulWidget {
   final String? counterDescription;
   final Function(int)? counterOnCounting;
   final bool? counterResetCounterOnTap;
+  final String? heroTag;
 
   @override
   State<UButton> createState() => _UButtonState();
@@ -73,7 +75,7 @@ class UButton extends StatefulWidget {
 class _UButtonState extends State<UButton> {
   int counter = 0;
   late Timer timer;
-  late String title;
+  String? title;
   VoidCallback? onTap;
 
   @override
@@ -178,7 +180,8 @@ class _UButtonState extends State<UButton> {
         );
         break;
       case UButtonType.fab:
-        button = FloatingActionButton.extended(
+        button = FloatingActionButton(
+          heroTag: widget.heroTag,
           onPressed: onTap != null && !widget.isLoading
               ? () {
                   onTap!();
@@ -187,11 +190,10 @@ class _UButtonState extends State<UButton> {
                   }
                 }
               : null,
-          label: content,
-          icon: widget.icon,
           backgroundColor: widget.backgroundColor,
           foregroundColor: widget.foregroundColor,
           elevation: widget.elevation,
+          child: widget.icon,
         );
         break;
       case UButtonType.cupertino:
@@ -247,7 +249,7 @@ class _UButtonState extends State<UButton> {
   }
 
   Widget _buildContent() {
-    if (widget.icon == null) return Text(title, textAlign: TextAlign.center, style: widget.textStyle);
+    if (widget.icon == null) return Text(title ?? "", textAlign: TextAlign.center, style: widget.textStyle);
 
     final List<Widget> children = <Widget>[];
     if (widget.iconPosition == UButtonIconPosition.leading) {
@@ -256,7 +258,7 @@ class _UButtonState extends State<UButton> {
     }
     children.add(
       Flexible(
-        child: Text(title, textAlign: TextAlign.center, style: widget.textStyle),
+        child: Text(title ?? "", textAlign: TextAlign.center, style: widget.textStyle),
       ),
     );
     if (widget.iconPosition == UButtonIconPosition.trailing) {
