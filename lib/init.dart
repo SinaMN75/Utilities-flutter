@@ -201,7 +201,6 @@ abstract class UThemes {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
-        borderSide: BorderSide(color: data.disabledColor.withValues(alpha: 0.5)),
       ),
       labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor, fontSize: 12),
       filled: true,
@@ -293,7 +292,6 @@ abstract class UThemes {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
-        borderSide: BorderSide(color: data.disabledColor.withValues(alpha: 0.5)),
       ),
       labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor, fontSize: 12),
       filled: true,
@@ -312,34 +310,34 @@ abstract class UThemes {
 
 class UThemeData {
   UThemeData({
-    required this.fontFamily,
-    required this.disabledColor,
     required this.primaryColor,
     required this.secondaryColor,
-    this.errorColor = Colors.red,
+    this.disabledColor,
+    this.errorColor,
     this.cardColor,
-    this.appbarColor,
     this.surface,
     this.surfaceContainer,
-    this.cardElevation = 1,
-    this.appbarTitleTextStyle,
+    this.appbarColor,
     this.appbarIconColor,
     this.drawerColor,
+    this.fontFamily,
+    this.appbarTitleTextStyle,
+    this.cardElevation = 1,
   });
 
-  final String fontFamily;
-  final Color disabledColor;
   final Color primaryColor;
   final Color secondaryColor;
-  final Color errorColor;
+  final Color? disabledColor;
+  final Color? errorColor;
   final Color? cardColor;
-  final double cardElevation;
   final Color? surface;
   final Color? surfaceContainer;
   final Color? appbarColor;
-  final TextStyle? appbarTitleTextStyle;
   final Color? appbarIconColor;
   final Color? drawerColor;
+  final String? fontFamily;
+  final TextStyle? appbarTitleTextStyle;
+  final double cardElevation;
 }
 
 class TabData {
