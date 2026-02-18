@@ -79,6 +79,8 @@ extension IntExtesion on int {
 
   String rial({final bool removeNegative = false}) => "${toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "" : "-", "");
 
+  String separate3By3({final bool removeNegative = false}) => toString().separateNumbers3By3().replaceAll(removeNegative ? "" : "-", "");
+
   String toman({final bool removeNegative = false}) => "${toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "");
 
   String rialToTomanMoneyPersian({final bool removeNegative = false}) => "${(this / 10).toString().separateNumbers3By3()} تومان ";

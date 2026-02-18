@@ -156,39 +156,6 @@ abstract class UThemes {
       labelPadding: const EdgeInsets.symmetric(vertical: 12),
       unselectedLabelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
-        textStyle: WidgetStatePropertyAll<TextStyle>(
-          TextStyle(fontFamily: data.fontFamily, color: Colors.white, fontSize: 16),
-        ),
-        shape: WidgetStatePropertyAll<OutlinedBorder>(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        padding: const WidgetStatePropertyAll<EdgeInsets>(
-          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-        ),
-        backgroundColor: WidgetStateProperty.resolveWith((
-          final Set<WidgetState> states,
-        ) {
-          if (states.contains(WidgetState.disabled)) {
-            return data.disabledColor;
-          } else {
-            return data.secondaryColor;
-          }
-        }),
-      ),
-    ),
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: ButtonStyle(
-        shape: WidgetStatePropertyAll<OutlinedBorder>(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        ),
-        padding: const WidgetStatePropertyAll<EdgeInsets>(
-          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-        ),
-      ),
-    ),
     drawerTheme: DrawerThemeData(
       shape: Border.all(color: Colors.transparent, width: 0.1),
       backgroundColor: data.drawerColor,
@@ -196,11 +163,15 @@ abstract class UThemes {
     listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
-        borderSide: BorderSide(color: data.primaryColor),
+        borderRadius: BorderRadius.circular(data.baseRadius),
+        borderSide: BorderSide(color: data.baseBorderColor),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(data.baseRadius),
+        borderSide: BorderSide(color: data.baseBorderColor),
+      ),
+      outlineBorder: BorderSide(
+        color: data.baseBorderColor,
       ),
       labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor, fontSize: 12),
       filled: true,
@@ -213,6 +184,28 @@ abstract class UThemes {
     snackBarTheme: SnackBarThemeData(
       backgroundColor: Colors.black87,
       contentTextStyle: TextStyle(color: Colors.white, fontFamily: data.fontFamily),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
+        textStyle: WidgetStatePropertyAll<TextStyle>(
+          TextStyle(fontFamily: data.fontFamily, color: data.elevatedButtonColor, fontSize: 16),
+        ),
+        shape: WidgetStatePropertyAll<OutlinedBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(data.baseRadius)),
+        ),
+        backgroundColor: data.elevatedButtonColor == null
+            ? null
+            : WidgetStateProperty.resolveWith(
+                (final Set<WidgetState> states) {
+                  if (states.contains(WidgetState.disabled)) {
+                    return data.disabledColor;
+                  } else {
+                    return data.elevatedButtonColor;
+                  }
+                },
+              ),
+      ),
     ),
   );
 
@@ -247,39 +240,6 @@ abstract class UThemes {
       labelPadding: const EdgeInsets.symmetric(vertical: 12),
       unselectedLabelStyle: TextStyle(fontFamily: data.fontFamily, fontSize: 18),
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
-        textStyle: WidgetStatePropertyAll<TextStyle>(
-          TextStyle(fontFamily: data.fontFamily, color: Colors.white, fontSize: 16),
-        ),
-        shape: WidgetStatePropertyAll<OutlinedBorder>(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        padding: const WidgetStatePropertyAll<EdgeInsets>(
-          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-        ),
-        backgroundColor: WidgetStateProperty.resolveWith((
-          final Set<WidgetState> states,
-        ) {
-          if (states.contains(WidgetState.disabled)) {
-            return data.disabledColor;
-          } else {
-            return data.secondaryColor;
-          }
-        }),
-      ),
-    ),
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: ButtonStyle(
-        shape: WidgetStatePropertyAll<OutlinedBorder>(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        ),
-        padding: const WidgetStatePropertyAll<EdgeInsets>(
-          EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-        ),
-      ),
-    ),
     drawerTheme: DrawerThemeData(
       shape: Border.all(color: Colors.transparent, width: 0.1),
       backgroundColor: data.drawerColor,
@@ -287,11 +247,15 @@ abstract class UThemes {
     listTileTheme: const ListTileThemeData(contentPadding: EdgeInsets.zero),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
-        borderSide: BorderSide(color: data.primaryColor),
+        borderRadius: BorderRadius.circular(data.baseRadius),
+        borderSide: BorderSide(color: data.baseBorderColor),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(data.baseRadius),
+        borderSide: BorderSide(color: data.baseBorderColor),
+      ),
+      outlineBorder: BorderSide(
+        color: data.baseBorderColor,
       ),
       labelStyle: TextStyle(fontFamily: data.fontFamily, color: data.disabledColor, fontSize: 12),
       filled: true,
@@ -304,6 +268,28 @@ abstract class UThemes {
     snackBarTheme: SnackBarThemeData(
       backgroundColor: Colors.white70,
       contentTextStyle: TextStyle(color: Colors.black, fontFamily: data.fontFamily),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
+        textStyle: WidgetStatePropertyAll<TextStyle>(
+          TextStyle(fontFamily: data.fontFamily, color: data.elevatedButtonColor, fontSize: 16),
+        ),
+        shape: WidgetStatePropertyAll<OutlinedBorder>(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(data.baseRadius)),
+        ),
+        backgroundColor: data.elevatedButtonColor == null
+            ? null
+            : WidgetStateProperty.resolveWith(
+                (final Set<WidgetState> states) {
+                  if (states.contains(WidgetState.disabled)) {
+                    return data.disabledColor;
+                  } else {
+                    return data.elevatedButtonColor;
+                  }
+                },
+              ),
+      ),
     ),
   );
 }
@@ -320,9 +306,13 @@ class UThemeData {
     this.appbarColor,
     this.appbarIconColor,
     this.drawerColor,
-    this.fontFamily,
+    this.elevatedButtonColor,
+    this.baseBorderColor = Colors.transparent,
     this.appbarTitleTextStyle,
     this.cardElevation = 1,
+    this.baseRadius = 12,
+    this.elevatedButtonTextStyle,
+    this.fontFamily,
   });
 
   final Color primaryColor;
@@ -335,9 +325,13 @@ class UThemeData {
   final Color? appbarColor;
   final Color? appbarIconColor;
   final Color? drawerColor;
-  final String? fontFamily;
+  final Color? elevatedButtonColor;
+  final Color baseBorderColor;
   final TextStyle? appbarTitleTextStyle;
-  final double cardElevation;
+  final double? cardElevation;
+  final double baseRadius;
+  final TextStyle? elevatedButtonTextStyle;
+  final String? fontFamily;
 }
 
 class TabData {
