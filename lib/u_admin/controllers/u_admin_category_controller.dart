@@ -16,7 +16,7 @@ class UAdminCategoriesController extends UAdminBaseController {
 
   Future<void> read() async {
     state.loading();
-    await U.services.category.read(
+    await UServices.category.read(
       p: UCategoryReadParams(
         tags: <int>[tag.number],
         selectorArgs: const CategorySelectorArgs(
@@ -39,7 +39,7 @@ class UAdminCategoriesController extends UAdminBaseController {
 
   void create({required UCategoryCreateParams p}) {
     ULoading.show();
-    U.services.category.create(
+    UServices.category.create(
       p: p,
       onOk: (UResponse<UCategoryResponse> response) async {
         UNavigator.back();
@@ -57,7 +57,7 @@ class UAdminCategoriesController extends UAdminBaseController {
 
   void update({required UCategoryUpdateParams p}) {
     ULoading.show();
-    U.services.category.update(
+    UServices.category.update(
       p: p,
       onOk: (UResponse<UCategoryResponse> response) {
         UNavigator.back();
@@ -78,7 +78,7 @@ class UAdminCategoriesController extends UAdminBaseController {
     message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
       ULoading.show();
-      U.services.category.delete(
+      UServices.category.delete(
         p: UIdParams(id: category.id),
         onOk: (UResponse<dynamic> response) {
           UNavigator.back();

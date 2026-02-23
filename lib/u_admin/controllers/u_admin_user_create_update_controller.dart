@@ -47,11 +47,11 @@ class UAdminUserCreateUpdateController {
     key: formKey,
     action: () {
       ULoading.show();
-      U.services.user.create(
+      UServices.user.create(
         p: p,
         onOk: (final UResponse<UUserResponse> r) async {
           files?.forEach(
-            (FileData i) async => U.services.media.create(
+            (FileData i) async => UServices.media.create(
               p: UMediaCreateParams(file: i, userId: r.result!.id, tag1: TagMedia.image.number),
               onOk: (UResponse<UMediaResponse> r) {},
               onError: (UResponse<dynamic> r) {},
@@ -83,14 +83,14 @@ class UAdminUserCreateUpdateController {
     action: () {
       ULoading.show();
       files?.forEach(
-        (FileData i) async => U.services.media.create(
+        (FileData i) async => UServices.media.create(
           p: UMediaCreateParams(file: i, userId: p.id, tag1: TagMedia.image.number),
           onOk: (UResponse<UMediaResponse> r) {},
           onError: (UResponse<dynamic> r) {},
           onException: (String r) {},
         ),
       );
-      U.services.user.update(
+      UServices.user.update(
         p: p,
         onOk: (final UResponse<UUserResponse> r) {
           ULoading.dismiss();

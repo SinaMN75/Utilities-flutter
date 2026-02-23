@@ -7,7 +7,6 @@ abstract class U {
   static late String apiKey;
   static S s = S.of(navigatorKey.currentState!.context);
   static late UUserResponse user;
-  static late UServices services;
   static final SideMenuController sideMenu = SideMenuController();
   static final RxList<TabData> tabs = <TabData>[].obs;
   static TabController? tabController;
@@ -90,7 +89,6 @@ Future<void> initU({
   if (UApp.isMacOs) UApp.macOsDeviceInfo = await UApp.deviceInfo.macOsInfo;
   if (UApp.isLinux) UApp.linuxDeviceInfo = await UApp.deviceInfo.linuxInfo;
   ULoading.initialize(key: navigatorKey, blurAmount: 1, overlayColor: Colors.black12);
-  U.services = UServices();
 }
 
 class UMaterialApp extends StatelessWidget {

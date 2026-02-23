@@ -7,7 +7,7 @@ class UAdminLogsController extends UAdminBaseController {
 
   Future<void> fetchLogStructure() async {
     state.loading();
-    U.services.dashboard.getLogStructure(
+    UServices.dashboard.getLogStructure(
       onOk: (LogStructureResponse structure) {
         logs(structure.logs);
         state.loaded();
@@ -22,7 +22,7 @@ class UAdminLogsController extends UAdminBaseController {
 
   Future<void> fetchLogContent(String logId, Function(String) onOk) async {
     ULoading.show();
-    U.services.dashboard.getLogContent(
+    UServices.dashboard.getLogContent(
       logId: logId,
       onOk: (String contents) {
         onOk(contents);

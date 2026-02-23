@@ -1,6 +1,4 @@
-import "package:flutter/material.dart";
-import "package:get/get_utils/src/get_utils/get_utils.dart";
-import "package:u/utils/extensions/string_extension.dart";
+import "package:u/utilities.dart";
 import "package:uuid/uuid.dart";
 
 abstract class UUUID {
@@ -24,14 +22,15 @@ abstract class UValidators {
     if (key.currentState!.validate()) action();
   }
 
-  static FormFieldValidator<T> combineValidators<T>(List<FormFieldValidator<T>> validators,) =>
-          (T? value) {
-        for (final FormFieldValidator<T> validator in validators) {
-          final String? result = validator(value);
-          if (result != null) return result;
-        }
-        return null;
-      };
+  static FormFieldValidator<T> combineValidators<T>(
+    List<FormFieldValidator<T>> validators,
+  ) => (T? value) {
+    for (final FormFieldValidator<T> validator in validators) {
+      final String? result = validator(value);
+      if (result != null) return result;
+    }
+    return null;
+  };
 
   static FormFieldValidator<T> required<T>({
     required String message,
@@ -120,6 +119,16 @@ abstract class UValidators {
     if (maxLength != null && value != null && value.isNotEmpty && value.length > maxLength) {
       return invalidMessage;
     }
+    return null;
+  };
+
+  static FormFieldValidator<String> iranianNationalCode({
+    required String requiredMessage,
+    required String invalidMessage,
+    bool isRequired = true,
+  }) => (String? value) {
+    if (isRequired && (value == null || value.isEmpty)) return requiredMessage;
+    if (!PersianTools.validateNationalCode(value)) return invalidMessage;
     return null;
   };
 

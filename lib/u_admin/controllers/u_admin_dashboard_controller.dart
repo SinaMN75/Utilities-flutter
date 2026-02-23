@@ -16,7 +16,7 @@ class UAdminDashboardController extends UAdminBaseController {
 
   void readInvoiceChartData() {
     chartState.loading();
-    U.services.invoice.chartData(
+    UServices.invoice.chartData(
       p: UBaseParams(),
       onOk: (UResponse<List<InvoiceChartDataResponse>> r) {
         chartData = r.result!;
@@ -29,7 +29,7 @@ class UAdminDashboardController extends UAdminBaseController {
 
   void startMetricsPolling() => _timer = Timer.periodic(
     const Duration(seconds: 10),
-    (_) => U.services.dashboard.readSystemMetrics(
+    (_) => UServices.dashboard.readSystemMetrics(
       onOk: (UMetricsResponse response) => metrics(response),
       onError: () {},
       onException: (String e) {},
@@ -38,7 +38,7 @@ class UAdminDashboardController extends UAdminBaseController {
 
   void read() {
     state.loading();
-    U.services.dashboard.read(
+    UServices.dashboard.read(
       onOk: (UDashboardResponse response) {
         dashboard = response;
         state.loaded();

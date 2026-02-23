@@ -56,4 +56,46 @@ class AuthService {
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );
+
+  Future<UHttpClientResponse> getVerificationCodeForLogin({
+    required final UGetMobileVerificationCodeForLoginParams p,
+    final Function(UResponse<dynamic> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/auth/GetVerificationCodeForLogin",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> verifyCodeForLogin({
+    required final UVerifyMobileForLoginParams p,
+    final Function(UResponse<ULoginResponse> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/auth/VerifyCodeForLogin",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> completeProfile({
+    required final UCompleteProfileParams p,
+    final Function(UResponse<UUserResponse> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/auth/CompleteProfile",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
 }

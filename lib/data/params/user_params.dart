@@ -28,6 +28,7 @@ class UUserCreateParams {
     required this.tags,
     this.firstName,
     this.lastName,
+    this.nationalCode,
     this.bio,
     this.country,
     this.state,
@@ -55,6 +56,7 @@ class UUserCreateParams {
     email: json["email"],
     firstName: json["firstName"],
     lastName: json["lastName"],
+    nationalCode: json["nationalCode"],
     bio: json["bio"],
     country: json["country"],
     state: json["state"],
@@ -79,6 +81,7 @@ class UUserCreateParams {
   final String email;
   final String? firstName;
   final String? lastName;
+  final String? nationalCode;
   final String? bio;
   final String? country;
   final String? state;
@@ -106,6 +109,7 @@ class UUserCreateParams {
     "email": email,
     "firstName": firstName,
     "lastName": lastName,
+    "nationalCode": nationalCode,
     "bio": bio,
     "country": country,
     "state": state,
@@ -131,6 +135,7 @@ class UUserReadParams {
     this.userName,
     this.firstName,
     this.lastName,
+    this.nationalCode,
     this.phoneNumber,
     this.email,
     this.bio,
@@ -157,6 +162,7 @@ class UUserReadParams {
     userName: json["userName"],
     firstName: json["firstName"],
     lastName: json["lastName"],
+    nationalCode: json["nationalCode"],
     phoneNumber: json["phoneNumber"],
     email: json["email"],
     bio: json["bio"],
@@ -179,6 +185,7 @@ class UUserReadParams {
   final String? userName;
   final String? firstName;
   final String? lastName;
+  final String? nationalCode;
   final String? phoneNumber;
   final String? email;
   final String? bio;
@@ -204,6 +211,7 @@ class UUserReadParams {
     "userName": userName,
     "firstName": firstName,
     "lastName": lastName,
+    "nationalCode": nationalCode,
     "phoneNumber": phoneNumber,
     "email": email,
     "bio": bio,
@@ -231,6 +239,7 @@ class UUserUpdateParams {
     this.password,
     this.firstName,
     this.lastName,
+    this.nationalCode,
     this.country,
     this.state,
     this.city,
@@ -262,6 +271,7 @@ class UUserUpdateParams {
     password: json["password"],
     firstName: json["firstName"],
     lastName: json["lastName"],
+    nationalCode: json["nationalCode"],
     country: json["country"],
     state: json["state"],
     city: json["city"],
@@ -290,6 +300,7 @@ class UUserUpdateParams {
   final String? password;
   final String? firstName;
   final String? lastName;
+  final String? nationalCode;
   final String? country;
   final String? state;
   final String? city;
@@ -321,6 +332,7 @@ class UUserUpdateParams {
     "password": password,
     "firstName": firstName,
     "lastName": lastName,
+    "nationalCode": nationalCode,
     "country": country,
     "state": state,
     "city": city,

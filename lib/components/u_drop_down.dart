@@ -49,7 +49,7 @@ class _UCategorySelectorState extends State<UCategorySelector> {
 
   void _loadCategories() {
     pageState.loading();
-    U.services.category.read(
+    UServices.category.read(
       p: UCategoryReadParams(
         tags: <int>[TagCategory.dorm.number],
         selectorArgs: const CategorySelectorArgs(

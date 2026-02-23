@@ -14,6 +14,7 @@ class UUserResponse {
     this.email,
     this.firstName,
     this.lastName,
+    this.nationalCode,
     this.bio,
     this.country,
     this.state,
@@ -38,6 +39,7 @@ class UUserResponse {
     email: json["email"],
     firstName: json["firstName"],
     lastName: json["lastName"],
+    nationalCode: json["nationalCode"],
     bio: json["bio"],
     country: json["country"],
     state: json["state"],
@@ -58,6 +60,7 @@ class UUserResponse {
   final String? email;
   final String? firstName;
   final String? lastName;
+  final String? nationalCode;
   final String? bio;
   final String? country;
   final String? state;
@@ -81,6 +84,7 @@ class UUserResponse {
     "email": email,
     "firstName": firstName,
     "lastName": lastName,
+    "nationalCode": nationalCode,
     "bio": bio,
     "country": country,
     "state": state,

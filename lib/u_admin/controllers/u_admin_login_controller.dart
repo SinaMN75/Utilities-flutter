@@ -16,7 +16,7 @@ class UAdminLoginController extends UAdminBaseController {
     key: formKey,
     action: () {
       ULoading.show();
-      U.services.auth.loginWithEmailPassword(
+      UServices.auth.loginWithEmailPassword(
         p: ULoginWithEmailPasswordParams(
           email: controllerUserName.text,
           password: controllerPassword.text.extractLatinNumber(),

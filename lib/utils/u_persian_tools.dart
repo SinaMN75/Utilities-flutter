@@ -470,13 +470,17 @@ class PersianTools {
   /// @param id The national ID to validate
   /// @returns bool True if valid
   /// Example: PersianTools.verifyNationalId("1234567890") => false
-  static bool verifyNationalId(String id) {
-    if (!RegExp(r"^\d{10}$").hasMatch(id)) return false;
-    final String paddedId = "0000$id".substring(id.length);
-    if (int.parse(paddedId.substring(3, 9)) == 0) return false;
-    final int lastDigit = int.parse(paddedId[9]);
-    final int sum = List<int>.generate(9, (int i) => int.parse(paddedId[i]) * (10 - i)).reduce((int a, int b) => a + b) % 11;
-    return (sum < 2 && lastDigit == sum) || (sum >= 2 && lastDigit == 11 - sum);
+  static bool validateNationalCode(String? input) {
+    if (input == null) return false;
+    final String code = input.trim();
+    if (code.length != 10 || RegExp(r"[^0-9]").hasMatch(code)) return false;
+    if (RegExp(r"^(\d)\1{9}$").hasMatch(code)) return false;
+    final List<int> digits = code.split("").map(int.parse).toList();
+    int sum = 0;
+    for (int i = 0; i < 9; i++) sum += digits[i] * (10 - i);
+    final int remainder = sum % 11;
+    final int expected = remainder < 2 ? remainder : 11 - remainder;
+    return expected == digits[9];
   }
 
   /// Validates Iranian bank card number

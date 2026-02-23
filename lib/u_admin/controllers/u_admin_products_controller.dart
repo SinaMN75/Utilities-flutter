@@ -30,7 +30,7 @@ class UAdminProductsController extends UAdminBaseController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    await U.services.product.read(
+    await UServices.product.read(
       p: UProductReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
@@ -81,7 +81,7 @@ class UAdminProductsController extends UAdminBaseController {
     title: U.s.delete,
     message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
-      U.services.product.delete(
+      UServices.product.delete(
         p: UIdParams(id: i.id),
         onOk: (final UResponse<dynamic> r) {
           UNavigator.back();
@@ -103,7 +103,7 @@ class UAdminProductsController extends UAdminBaseController {
 
   void create({required UProductCreateParams p}) {
     state.loading();
-    U.services.product.create(
+    UServices.product.create(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
         UToast.snackBar(message: U.s.submitted);
@@ -121,7 +121,7 @@ class UAdminProductsController extends UAdminBaseController {
   }
 
   void update({required UProductUpdateParams p}) {
-    U.services.product.update(
+    UServices.product.update(
       p: p,
       onOk: (UResponse<UProductResponse> r) {
         UToast.snackBar(message: U.s.submitted);

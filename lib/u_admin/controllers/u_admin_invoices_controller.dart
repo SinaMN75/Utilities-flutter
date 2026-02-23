@@ -28,7 +28,7 @@ class UAdminInvoicesController extends UAdminBaseController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    await U.services.invoice.read(
+    await UServices.invoice.read(
       p: UInvoiceReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
@@ -72,7 +72,7 @@ class UAdminInvoicesController extends UAdminBaseController {
     message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
       ULoading.show();
-      U.services.invoice.delete(
+      UServices.invoice.delete(
         p: UIdParams(id: i.id),
         onOk: (final UResponse<dynamic> r) {
           UNavigator.back();
@@ -89,7 +89,7 @@ class UAdminInvoicesController extends UAdminBaseController {
   );
 
   void create({required UInvoiceCreateParams p}) {
-    U.services.invoice.create(
+    UServices.invoice.create(
       p: p,
       onOk: (UResponse<UInvoiceResponse> r) {
         UToast.snackBar(message: U.s.submitted);
@@ -107,7 +107,7 @@ class UAdminInvoicesController extends UAdminBaseController {
   }
 
   void update({required UInvoiceUpdateParams p}) {
-    U.services.invoice.update(
+    UServices.invoice.update(
       p: p,
       onOk: (UResponse<UInvoiceResponse> r) {
         UToast.snackBar(message: "Submitted");

@@ -45,17 +45,17 @@ part "services/product_service.dart";
 part "services/user_service.dart";
 
 class UServices {
-  late AuthService auth = AuthService();
-  late CategoryService category = CategoryService();
-  late DashboardService dashboard = DashboardService();
-  late ExamService exam = ExamService();
-  late UserService user = UserService();
-  late ProductService product = ProductService();
-  late ContentService content = ContentService();
-  late CommentService comment = CommentService();
-  late FollowService follow = FollowService();
-  late ContractService contract = ContractService();
-  late InvoiceService invoice = InvoiceService();
-  late ChatBotService chatBot = ChatBotService();
-  late MediaService media = MediaService();
+  static AuthService auth = AuthService();
+  static CategoryService category = CategoryService();
+  static DashboardService dashboard = DashboardService();
+  static ExamService exam = ExamService();
+  static UserService user = UserService();
+  static ProductService product = ProductService();
+  static ContentService content = ContentService();
+  static CommentService comment = CommentService();
+  static FollowService follow = FollowService();
+  static ContractService contract = ContractService();
+  static InvoiceService invoice = InvoiceService();
+  static ChatBotService chatBot = ChatBotService();
+  static MediaService media = MediaService();
 }

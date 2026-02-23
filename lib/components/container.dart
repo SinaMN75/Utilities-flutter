@@ -236,11 +236,6 @@ class UIconTextVertical extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.min,
-    this.onTap,
-    this.backgroundColor,
-    this.borderRadius,
-    this.elevation = 0.0,
-    this.padding = EdgeInsets.zero,
   });
 
   final Widget leading;
@@ -249,16 +244,10 @@ class UIconTextVertical extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
-  final VoidCallback? onTap;
-  final Color? backgroundColor;
-  final BorderRadius? borderRadius;
-  final double elevation;
-  final EdgeInsets padding;
 
   @override
-  Widget build(final BuildContext context) {
-    Widget content = Column(
-      mainAxisAlignment: mainAxisAlignment,
+  Widget build(final BuildContext context) => Column(
+    mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
       children: <Widget>[
@@ -267,20 +256,6 @@ class UIconTextVertical extends StatelessWidget {
         trailing,
       ],
     );
-
-    content = Padding(padding: padding, child: content);
-
-    if (onTap != null || elevation > 0 || backgroundColor != null || borderRadius != null) {
-      content = Card(
-        elevation: elevation,
-        color: backgroundColor,
-        shape: RoundedRectangleBorder(borderRadius: borderRadius ?? BorderRadius.circular(8)),
-        child: InkWell(onTap: onTap, child: content),
-      );
-    }
-
-    return content;
-  }
 }
 
 class UContainer extends StatelessWidget {
