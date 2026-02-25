@@ -255,3 +255,23 @@ class CommentSelectorArgs {
     "media": media?.toMap(),
   };
 }
+
+class AddressSelectorArgs {
+  final UserSelectorArgs? creator;
+
+  const AddressSelectorArgs({
+    this.creator,
+  });
+
+  factory AddressSelectorArgs.fromJson(String str) => AddressSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory AddressSelectorArgs.fromMap(Map<String, dynamic> json) => AddressSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+  };
+}

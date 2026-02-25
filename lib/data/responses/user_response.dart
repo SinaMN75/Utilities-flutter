@@ -22,6 +22,7 @@ class UUserResponse {
     this.birthdate,
     this.categories,
     this.media,
+    this.addresses,
   });
 
   factory UUserResponse.fromJson(String str) => UUserResponse.fromMap(json.decode(str));
@@ -68,6 +69,7 @@ class UUserResponse {
   final DateTime? birthdate;
   final List<UCategoryResponse>? categories;
   final List<UMediaResponse>? media;
+  final List<UAddressResponse>? addresses;
 
   String toJson() => json.encode(toMap());
 
@@ -92,6 +94,7 @@ class UUserResponse {
     "birthdate": birthdate?.toIso8601String(),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
     "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
+    "addresses": addresses == null ? null : List<dynamic>.from(addresses!.map((UAddressResponse x) => x.toMap())),
   };
 }
 

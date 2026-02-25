@@ -186,8 +186,10 @@ class UAddressReadParams {
   final bool? orderByOrder;
   final bool? orderByOrderDesc;
   final String? creatorId;
+  final AddressSelectorArgs? selectorArgs;
 
   UAddressReadParams({
+    required this.selectorArgs,
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
@@ -221,6 +223,7 @@ class UAddressReadParams {
     orderByOrder: json["orderByOrder"],
     orderByOrderDesc: json["orderByOrderDesc"],
     creatorId: json["creatorId"],
+    selectorArgs: json["selectorArgs"] == null ? null : AddressSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -237,5 +240,6 @@ class UAddressReadParams {
     "orderByOrder": orderByOrder,
     "orderByOrderDesc": orderByOrderDesc,
     "creatorId": creatorId,
+    "selectorArgs": selectorArgs?.toMap(),
   };
 }
