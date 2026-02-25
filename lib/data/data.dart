@@ -1,5 +1,6 @@
 import "package:u/utilities.dart";
 
+part "params/address_params.dart";
 part "params/auth_params.dart";
 part "params/base_params.dart";
 part "params/category_params.dart";
@@ -14,6 +15,7 @@ part "params/media_params.dart";
 part "params/product_params.dart";
 part "params/selectors.dart";
 part "params/user_params.dart";
+part "responses/address_response.dart";
 part "responses/auth_response.dart";
 part "responses/base_response.dart";
 part "responses/category_response.dart";
@@ -30,6 +32,7 @@ part "responses/product_response.dart";
 part "responses/ticket_response.dart";
 part "responses/txn_response.dart";
 part "responses/user_response.dart";
+part "services/address_service.dart";
 part "services/auth_service.dart";
 part "services/category_service.dart";
 part "services/chat_bot_service.dart";
