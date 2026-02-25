@@ -1,9 +1,9 @@
 part of "../data.dart";
 
 class UAddressCreateParams {
-  final List<int>? tags;
+  final String title;
+  final List<int> tags;
   final String? id;
-  final String? title;
   final String? province;
   final String? township;
   final String? street;
@@ -16,9 +16,9 @@ class UAddressCreateParams {
   final String? creatorId;
 
   UAddressCreateParams({
-    this.tags,
+    required this.title,
+    required this.tags,
     this.id,
-    this.title,
     this.province,
     this.township,
     this.street,
@@ -36,7 +36,7 @@ class UAddressCreateParams {
   String toJson() => json.encode(toMap());
 
   factory UAddressCreateParams.fromMap(Map<String, dynamic> json) => UAddressCreateParams(
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     id: json["id"],
     title: json["title"],
     province: json["province"],
@@ -52,7 +52,7 @@ class UAddressCreateParams {
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
     "title": title,
     "province": province,
@@ -69,16 +69,16 @@ class UAddressCreateParams {
 }
 
 class UAddressCreateFromZipCodeParams {
-  final List<int>? tags;
+  final List<int> tags;
   final String? id;
-  final String? title;
-  final String? zipCode;
+  final String title;
+  final String zipCode;
 
   UAddressCreateFromZipCodeParams({
-    this.tags,
+    required this.title,
+    required this.zipCode,
+    required this.tags,
     this.id,
-    this.title,
-    this.zipCode,
   });
 
   factory UAddressCreateFromZipCodeParams.fromJson(String str) => UAddressCreateFromZipCodeParams.fromMap(json.decode(str));
@@ -86,14 +86,14 @@ class UAddressCreateFromZipCodeParams {
   String toJson() => json.encode(toMap());
 
   factory UAddressCreateFromZipCodeParams.fromMap(Map<String, dynamic> json) => UAddressCreateFromZipCodeParams(
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     id: json["id"],
     title: json["title"],
     zipCode: json["zipCode"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
     "title": title,
     "zipCode": zipCode,
@@ -101,7 +101,7 @@ class UAddressCreateFromZipCodeParams {
 }
 
 class UAddressUpdateParams {
-  final String? id;
+  final String id;
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
@@ -117,7 +117,7 @@ class UAddressUpdateParams {
   final String? description;
 
   UAddressUpdateParams({
-    this.id,
+    required this.id,
     this.addTags,
     this.removeTags,
     this.tags,

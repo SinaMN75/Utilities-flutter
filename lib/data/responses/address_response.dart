@@ -1,25 +1,25 @@
 part of "../data.dart";
 
 class UAddressResponse {
-  final String? id;
+  final String id;
+  final String title;
+  final List<int> tags;
+  final UAddressResponseJsonData jsonData;
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final DateTime? deletedAt;
-  final UAddressResponseJsonData? jsonData;
-  final List<int>? tags;
-  final String? title;
   final String? zipCode;
   final UUserResponse? creator;
   final String? creatorId;
 
   UAddressResponse({
-    this.id,
+    required this.id,
+    required this.title,
+    required this.tags,
+    required this.jsonData,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
-    this.jsonData,
-    this.tags,
-    this.title,
     this.zipCode,
     this.creator,
     this.creatorId,
@@ -34,8 +34,8 @@ class UAddressResponse {
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
-    jsonData: json["jsonData"] == null ? null : UAddressResponseJsonData.fromMap(json["jsonData"]),
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    jsonData: UAddressResponseJsonData.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     title: json["title"],
     zipCode: json["zipCode"],
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
@@ -47,8 +47,8 @@ class UAddressResponse {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "deletedAt": deletedAt?.toIso8601String(),
-    "jsonData": jsonData?.toMap(),
-    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "jsonData": jsonData.toMap(),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
     "title": title,
     "zipCode": zipCode,
     "creator": creator?.toMap(),
