@@ -185,6 +185,21 @@ enum TagInvoice with NumericIdentifiable {
   final int number;
 }
 
+enum TagAddress with NumericIdentifiable {
+  verified("احراز شده", "Verified", 101),
+  test("تست", "Test", 999)
+  ;
+
+  const TagAddress(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 mixin NumericIdentifiable {
   int get number;
 
