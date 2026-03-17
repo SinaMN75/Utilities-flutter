@@ -91,7 +91,7 @@ class UAdminInvoicesController extends UAdminBaseController {
   void create({required UInvoiceCreateParams p}) {
     UServices.invoice.create(
       p: p,
-      onOk: (UResponse<UInvoiceResponse> r) {
+      onOk: (UResponse<dynamic> r) {
         UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
@@ -109,7 +109,7 @@ class UAdminInvoicesController extends UAdminBaseController {
   void update({required UInvoiceUpdateParams p}) {
     UServices.invoice.update(
       p: p,
-      onOk: (UResponse<UInvoiceResponse> r) {
+      onOk: (UResponse<dynamic> r) {
         UToast.snackBar(message: "Submitted");
         ULoading.dismiss();
       },

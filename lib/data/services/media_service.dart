@@ -3,7 +3,7 @@ part of "../data.dart";
 class MediaService {
   Future<void> create({
     required final UMediaCreateParams p,
-    required final Function(UResponse<UMediaResponse> r) onOk,
+    required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
   }) async {
@@ -16,7 +16,7 @@ class MediaService {
       endpoint: "${U.baseUrl}/Media/Create",
       files: files,
       fields: p.toMap()..addAll(<String, dynamic>{"apiKey": U.apiKey, "token": ULocalStorage.getToken()}),
-      onSuccess: (final Response r) => onOk(UResponse<UMediaResponse>.fromJson(r.body, (dynamic i) => UMediaResponse.fromMap(i))),
+      onSuccess: (final Response r) => onOk.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
       onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (dynamic i) => i)),
       onException: () => onException(""),
     );
@@ -38,14 +38,14 @@ class MediaService {
 
   Future<UHttpClientResponse> update({
     required final UMediaUpdateParams p,
-    required final Function(UResponse<UMediaResponse> r) onOk,
+    required final Function(UResponse<dynamic> r) onOk,
     required final Function(UResponse<dynamic> e) onError,
     required final Function(String e) onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/Media/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk(UResponse<UMediaResponse>.fromJson(r.body, (dynamic i) => UMediaResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError(UResponse<dynamic>.fromJson(r.body, (dynamic i) => i)),
     onException: onException,
   );

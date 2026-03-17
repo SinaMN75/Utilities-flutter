@@ -87,14 +87,14 @@ class AuthService {
 
   Future<UHttpClientResponse> completeProfile({
     required final UCompleteProfileParams p,
-    final Function(UResponse<UUserResponse> r)? onOk,
+    final Function(UResponse<dynamic> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/auth/CompleteProfile",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );

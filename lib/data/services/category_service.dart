@@ -3,14 +3,14 @@ part of "../data.dart";
 class CategoryService {
   Future<UHttpClientResponse> create({
     required final UCategoryCreateParams p,
-    final Function(UResponse<UCategoryResponse> r)? onOk,
+    final Function(UResponse<dynamic> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/category/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UCategoryResponse>.fromJson(r.body, (final dynamic i) => UCategoryResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );
@@ -50,14 +50,14 @@ class CategoryService {
 
   Future<UHttpClientResponse> update({
     required final UCategoryUpdateParams p,
-    final Function(UResponse<UCategoryResponse> r)? onOk,
+    final Function(UResponse<dynamic> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/category/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UCategoryResponse>.fromJson(r.body, (final dynamic i) => UCategoryResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );

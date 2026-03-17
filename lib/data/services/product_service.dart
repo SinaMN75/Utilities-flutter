@@ -3,14 +3,14 @@ part of "../data.dart";
 class ProductService {
   Future<UHttpClientResponse> create({
     required final UProductCreateParams p,
-    final Function(UResponse<UProductResponse> r)? onOk,
+    final Function(UResponse<dynamic> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/product/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UProductResponse>.fromJson(r.body, (final dynamic i) => UProductResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );
@@ -50,14 +50,14 @@ class ProductService {
 
   Future<UHttpClientResponse> update({
     required final UProductUpdateParams p,
-    final Function(UResponse<UProductResponse> r)? onOk,
+    final Function(UResponse<dynamic> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/product/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UProductResponse>.fromJson(r.body, (final dynamic i) => UProductResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );

@@ -105,7 +105,7 @@ class UAdminProductsController extends UAdminBaseController {
     state.loading();
     UServices.product.create(
       p: p,
-      onOk: (UResponse<UProductResponse> r) {
+      onOk: (UResponse<dynamic> r) {
         UToast.snackBar(message: U.s.submitted);
         read();
       },
@@ -123,7 +123,7 @@ class UAdminProductsController extends UAdminBaseController {
   void update({required UProductUpdateParams p}) {
     UServices.product.update(
       p: p,
-      onOk: (UResponse<UProductResponse> r) {
+      onOk: (UResponse<dynamic> r) {
         UToast.snackBar(message: U.s.submitted);
         read();
       },

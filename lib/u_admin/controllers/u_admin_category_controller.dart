@@ -41,7 +41,7 @@ class UAdminCategoriesController extends UAdminBaseController {
     ULoading.show();
     UServices.category.create(
       p: p,
-      onOk: (UResponse<UCategoryResponse> response) async {
+      onOk: (UResponse<dynamic> response) async {
         UNavigator.back();
         ULoading.dismiss();
         UToast.snackBar(message: U.s.created);
@@ -59,7 +59,7 @@ class UAdminCategoriesController extends UAdminBaseController {
     ULoading.show();
     UServices.category.update(
       p: p,
-      onOk: (UResponse<UCategoryResponse> response) {
+      onOk: (UResponse<dynamic> response) {
         UNavigator.back();
         ULoading.dismiss();
         UToast.snackBar(message: U.s.edited);

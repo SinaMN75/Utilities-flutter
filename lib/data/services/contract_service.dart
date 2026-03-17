@@ -3,14 +3,14 @@ part of "../data.dart";
 class ContractService {
   Future<UHttpClientResponse> create({
     required final UContractCreateParams p,
-    final Function(UResponse<UContractResponse> r)? onOk,
+    final Function(UResponse<dynamic> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/Contract/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UContractResponse>.fromJson(r.body, (final dynamic i) => UContractResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );
@@ -45,14 +45,14 @@ class ContractService {
 
   Future<UHttpClientResponse> update({
     required final UContractUpdateParams p,
-    final Function(UResponse<UContractResponse> r)? onOk,
+    final Function(UResponse<dynamic> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/Contract/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UContractResponse>.fromJson(r.body, (final dynamic i) => UContractResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );

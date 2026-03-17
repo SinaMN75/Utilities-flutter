@@ -40,7 +40,6 @@ part "services/comment_service.dart";
 part "services/content_service.dart";
 part "services/contract_service.dart";
 part "services/dashboard_service.dart";
-part "services/exam_service.dart";
 part "services/follow_service.dart";
 part "services/invoice_service.dart";
 part "services/media_service.dart";
@@ -51,7 +50,6 @@ class UServices {
   static AuthService auth = AuthService();
   static CategoryService category = CategoryService();
   static DashboardService dashboard = DashboardService();
-  static ExamService exam = ExamService();
   static UserService user = UserService();
   static ProductService product = ProductService();
   static ContentService content = ContentService();

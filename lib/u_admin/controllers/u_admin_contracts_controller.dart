@@ -94,7 +94,7 @@ class UAdminContractsController extends UAdminBaseController {
   void create({required UContractCreateParams p}) {
     UServices.contract.create(
       p: p,
-      onOk: (UResponse<UContractResponse> r) {
+      onOk: (UResponse<dynamic> r) {
         UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
@@ -112,7 +112,7 @@ class UAdminContractsController extends UAdminBaseController {
   void update({required UContractUpdateParams p}) {
     UServices.contract.update(
       p: p,
-      onOk: (UResponse<UContractResponse> r) {
+      onOk: (UResponse<dynamic> r) {
         UNavigator.back();
         UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();

@@ -3,14 +3,14 @@ part of "../data.dart";
 class UserService {
   Future<UHttpClientResponse> create({
     required final UUserCreateParams p,
-    final Function(UResponse<UUserResponse> r)? onOk,
+    final Function(UResponse<dynamic> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/user/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );
@@ -59,14 +59,14 @@ class UserService {
 
   Future<UHttpClientResponse> update({
     required final UUserUpdateParams p,
-    final Function(UResponse<UUserResponse> r)? onOk,
+    final Function(UResponse<dynamic> r)? onOk,
     final Function(UResponse<dynamic> e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/user/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );
@@ -79,6 +79,34 @@ class UserService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/user/Delete",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> readExtraById({
+    required final UIdParams p,
+    final Function(UResponse<UUserExtraResponse> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/user/ReadExtraById",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UUserExtraResponse>.fromJson(r.body, (final dynamic i) => UUserExtraResponse.fromMap(i))),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> updateExtra({
+    required final UUserExtraUpdateParams p,
+    final Function(UResponse<dynamic> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/user/UpdateExtra",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),

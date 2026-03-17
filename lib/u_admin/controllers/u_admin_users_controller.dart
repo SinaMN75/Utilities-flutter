@@ -99,12 +99,12 @@ class UAdminUsersController extends UAdminBaseController {
       ULoading.show();
       UServices.user.create(
         p: p,
-        onOk: (final UResponse<UUserResponse> r) async {
+        onOk: (final UResponse<dynamic> r) async {
           list.insert(0, r.result!);
           files?.forEach(
             (FileData i) async => UServices.media.create(
               p: UMediaCreateParams(file: i, userId: r.result!.id, tag1: TagMedia.image.number),
-              onOk: (UResponse<UMediaResponse> r) {},
+              onOk: (UResponse<dynamic> r) {},
               onError: (UResponse<dynamic> r) {},
               onException: (String r) {},
             ),
@@ -136,14 +136,14 @@ class UAdminUsersController extends UAdminBaseController {
       files?.forEach(
         (FileData i) async => UServices.media.create(
           p: UMediaCreateParams(file: i, userId: p.id, tag1: TagMedia.image.number),
-          onOk: (UResponse<UMediaResponse> r) {},
+          onOk: (UResponse<dynamic> r) {},
           onError: (UResponse<dynamic> r) {},
           onException: (String r) {},
         ),
       );
       UServices.user.update(
         p: p,
-        onOk: (final UResponse<UUserResponse> r) {
+        onOk: (final UResponse<dynamic> r) {
           read();
           ULoading.dismiss();
           UNavigator.back();
