@@ -27,7 +27,7 @@ class UAdminLoginController extends UAdminBaseController {
           ULoading.dismiss();
           onFinish(r.result!.user);
         },
-        onError: (final UResponse<dynamic> r) {
+        onError: (final UEmptyResponse r) {
           ULoading.dismiss();
           UToast.error(message: r.message);
         },

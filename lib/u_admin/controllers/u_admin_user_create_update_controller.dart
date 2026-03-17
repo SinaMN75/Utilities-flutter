@@ -49,12 +49,12 @@ class UAdminUserCreateUpdateController {
       ULoading.show();
       UServices.user.create(
         p: p,
-        onOk: (final UResponse<dynamic> r) async {
+        onOk: (final UResponse<String> r) async {
           files?.forEach(
             (FileData i) async => UServices.media.create(
-              p: UMediaCreateParams(file: i, userId: r.result!.id, tag1: TagMedia.image.number),
-              onOk: (UResponse<dynamic> r) {},
-              onError: (UResponse<dynamic> r) {},
+              p: UMediaCreateParams(file: i, userId: r.result, tag1: TagMedia.image.number),
+              onOk: (UResponse<String> r) {},
+              onError: (UEmptyResponse r) {},
               onException: (String r) {},
             ),
           );
@@ -62,7 +62,7 @@ class UAdminUserCreateUpdateController {
           UNavigator.back();
           UToast.snackBar(message: U.s.userCreatedSuccessfully);
         },
-        onError: (final UResponse<dynamic> r) {
+        onError: (final UEmptyResponse r) {
           ULoading.dismiss();
           UToast.snackBar(message: r.message);
         },
@@ -85,19 +85,19 @@ class UAdminUserCreateUpdateController {
       files?.forEach(
         (FileData i) async => UServices.media.create(
           p: UMediaCreateParams(file: i, userId: p.id, tag1: TagMedia.image.number),
-          onOk: (UResponse<dynamic> r) {},
-          onError: (UResponse<dynamic> r) {},
+          onOk: (UResponse<String> r) {},
+          onError: (UEmptyResponse r) {},
           onException: (String r) {},
         ),
       );
       UServices.user.update(
         p: p,
-        onOk: (final UResponse<dynamic> r) {
+        onOk: (final UEmptyResponse r) {
           ULoading.dismiss();
           UNavigator.back();
           UToast.snackBar(message: "User created successfully");
         },
-        onError: (final UResponse<dynamic> r) {
+        onError: (final UEmptyResponse r) {
           ULoading.dismiss();
           UToast.snackBar(message: r.message);
         },

@@ -56,7 +56,7 @@ class UAdminProductsController extends UAdminBaseController {
         totalPages((response.totalCount / pageSize).toInt() + 1);
         state.loaded();
       },
-      onError: (UResponse<dynamic> error) {
+      onError: (UEmptyResponse error) {
         state.error();
         UToast.error(message: error.message);
       },
@@ -83,12 +83,12 @@ class UAdminProductsController extends UAdminBaseController {
     onConfirm: () {
       UServices.product.delete(
         p: UIdParams(id: i.id),
-        onOk: (final UResponse<dynamic> r) {
+        onOk: (final UEmptyResponse r) {
           UNavigator.back();
           UToast.snackBar(message: r.message);
           read();
         },
-        onError: (final UResponse<dynamic> r) {
+        onError: (final UEmptyResponse r) {
           UNavigator.back();
           UToast.error(message: r.message);
           read();
@@ -105,11 +105,11 @@ class UAdminProductsController extends UAdminBaseController {
     state.loading();
     UServices.product.create(
       p: p,
-      onOk: (UResponse<dynamic> r) {
+      onOk: (UResponse<String> r) {
         UToast.snackBar(message: U.s.submitted);
         read();
       },
-      onError: (UResponse<dynamic> r) {
+      onError: (UEmptyResponse r) {
         UToast.error(message: r.message);
         read();
       },
@@ -123,11 +123,11 @@ class UAdminProductsController extends UAdminBaseController {
   void update({required UProductUpdateParams p}) {
     UServices.product.update(
       p: p,
-      onOk: (UResponse<dynamic> r) {
+      onOk: (UEmptyResponse r) {
         UToast.snackBar(message: U.s.submitted);
         read();
       },
-      onError: (UResponse<dynamic> r) {
+      onError: (UEmptyResponse r) {
         UToast.error(message: r.message);
         read();
       },

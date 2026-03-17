@@ -45,7 +45,7 @@ class UAdminUsersController extends UAdminBaseController {
         totalPages((response.totalCount / pageSize).toInt() + 1);
         state.loaded();
       },
-      onError: (UResponse<dynamic> error) {
+      onError: (UEmptyResponse error) {
         state.error();
         UToast.error(message: error.message);
       },
@@ -75,12 +75,12 @@ class UAdminUsersController extends UAdminBaseController {
       ULoading.show();
       UServices.user.delete(
         p: UIdParams(id: user.id),
-        onOk: (final UResponse<dynamic> r) {
+        onOk: (final UEmptyResponse r) {
           UNavigator.back();
           UToast.snackBar(message: r.message);
           ULoading.dismiss();
         },
-        onError: (final UResponse<dynamic> r) {
+        onError: (final UEmptyResponse r) {
           UToast.error(message: r.message);
           ULoading.dismiss();
         },
@@ -99,13 +99,12 @@ class UAdminUsersController extends UAdminBaseController {
       ULoading.show();
       UServices.user.create(
         p: p,
-        onOk: (final UResponse<dynamic> r) async {
-          list.insert(0, r.result!);
+        onOk: (final UResponse<String> r) async {
           files?.forEach(
             (FileData i) async => UServices.media.create(
-              p: UMediaCreateParams(file: i, userId: r.result!.id, tag1: TagMedia.image.number),
-              onOk: (UResponse<dynamic> r) {},
-              onError: (UResponse<dynamic> r) {},
+              p: UMediaCreateParams(file: i, userId: r.result, tag1: TagMedia.image.number),
+              onOk: (UResponse<String> r) {},
+              onError: (UEmptyResponse r) {},
               onException: (String r) {},
             ),
           );
@@ -113,7 +112,7 @@ class UAdminUsersController extends UAdminBaseController {
           UNavigator.back();
           UToast.snackBar(message: U.s.userCreatedSuccessfully);
         },
-        onError: (final UResponse<dynamic> r) {
+        onError: (final UEmptyResponse r) {
           ULoading.dismiss();
           UToast.snackBar(message: r.message);
         },
@@ -136,20 +135,20 @@ class UAdminUsersController extends UAdminBaseController {
       files?.forEach(
         (FileData i) async => UServices.media.create(
           p: UMediaCreateParams(file: i, userId: p.id, tag1: TagMedia.image.number),
-          onOk: (UResponse<dynamic> r) {},
-          onError: (UResponse<dynamic> r) {},
+          onOk: (UResponse<String> r) {},
+          onError: (UEmptyResponse r) {},
           onException: (String r) {},
         ),
       );
       UServices.user.update(
         p: p,
-        onOk: (final UResponse<dynamic> r) {
+        onOk: (final UEmptyResponse r) {
           read();
           ULoading.dismiss();
           UNavigator.back();
           UToast.snackBar(message: "User created successfully");
         },
-        onError: (final UResponse<dynamic> r) {
+        onError: (final UEmptyResponse r) {
           ULoading.dismiss();
           UToast.snackBar(message: r.message);
         },

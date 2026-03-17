@@ -14,7 +14,7 @@ class UAdminSplashController extends UAdminBaseController {
           U.user = user.result!;
           onFinish();
         },
-        onError: (final UResponse<dynamic> r) => onError,
+        onError: (final UEmptyResponse r) => onError,
         onException: (String e) => onError,
       );
     }

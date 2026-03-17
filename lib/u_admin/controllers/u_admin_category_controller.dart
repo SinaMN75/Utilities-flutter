@@ -29,7 +29,7 @@ class UAdminCategoriesController extends UAdminBaseController {
         list.addAll(response.result ?? <UCategoryResponse>[]);
         state.loaded();
       },
-      onError: (UResponse<dynamic> error) {
+      onError: (UEmptyResponse error) {
         state.error();
         UToast.error(message: error.message);
       },
@@ -41,13 +41,13 @@ class UAdminCategoriesController extends UAdminBaseController {
     ULoading.show();
     UServices.category.create(
       p: p,
-      onOk: (UResponse<dynamic> response) async {
+      onOk: (UResponse<String> response) async {
         UNavigator.back();
         ULoading.dismiss();
         UToast.snackBar(message: U.s.created);
         await read();
       },
-      onError: (UResponse<dynamic> error) {
+      onError: (UEmptyResponse error) {
         ULoading.dismiss();
         UToast.error(message: error.message);
       },
@@ -59,13 +59,13 @@ class UAdminCategoriesController extends UAdminBaseController {
     ULoading.show();
     UServices.category.update(
       p: p,
-      onOk: (UResponse<dynamic> response) {
+      onOk: (UEmptyResponse response) {
         UNavigator.back();
         ULoading.dismiss();
         UToast.snackBar(message: U.s.edited);
         read();
       },
-      onError: (UResponse<dynamic> error) {
+      onError: (UEmptyResponse error) {
         ULoading.dismiss();
         UToast.error(message: error.message);
       },
@@ -80,13 +80,13 @@ class UAdminCategoriesController extends UAdminBaseController {
       ULoading.show();
       UServices.category.delete(
         p: UIdParams(id: category.id),
-        onOk: (UResponse<dynamic> response) {
+        onOk: (UEmptyResponse response) {
           UNavigator.back();
           ULoading.dismiss();
           UToast.snackBar(message: U.s.deleted);
           read();
         },
-        onError: (UResponse<dynamic> error) {
+        onError: (UEmptyResponse error) {
           UNavigator.back();
           ULoading.dismiss();
           UToast.error(message: error.message);

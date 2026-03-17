@@ -52,7 +52,7 @@ class UAdminContractsController extends UAdminBaseController {
         totalPages((response.totalCount / pageSize).toInt() + 1);
         state.loaded();
       },
-      onError: (UResponse<dynamic> error) {
+      onError: (UEmptyResponse error) {
         state.error();
         UToast.error(message: error.message);
       },
@@ -77,12 +77,12 @@ class UAdminContractsController extends UAdminBaseController {
       ULoading.show();
       UServices.contract.delete(
         p: UIdParams(id: i.id),
-        onOk: (final UResponse<dynamic> r) {
+        onOk: (final UEmptyResponse r) {
           UNavigator.back();
           UToast.snackBar(message: r.message);
           ULoading.dismiss();
         },
-        onError: (final UResponse<dynamic> r) {
+        onError: (final UEmptyResponse r) {
           UToast.error(message: r.message);
           ULoading.dismiss();
         },
@@ -94,11 +94,11 @@ class UAdminContractsController extends UAdminBaseController {
   void create({required UContractCreateParams p}) {
     UServices.contract.create(
       p: p,
-      onOk: (UResponse<dynamic> r) {
+      onOk: (UResponse<String> r) {
         UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
-      onError: (UResponse<dynamic> r) {
+      onError: (UEmptyResponse r) {
         UToast.error(message: r.message);
         ULoading.dismiss();
       },
@@ -112,13 +112,13 @@ class UAdminContractsController extends UAdminBaseController {
   void update({required UContractUpdateParams p}) {
     UServices.contract.update(
       p: p,
-      onOk: (UResponse<dynamic> r) {
+      onOk: (UEmptyResponse r) {
         UNavigator.back();
         UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
         read();
       },
-      onError: (UResponse<dynamic> r) {
+      onError: (UEmptyResponse r) {
         UNavigator.back();
         UToast.error(message: r.message);
         ULoading.dismiss();

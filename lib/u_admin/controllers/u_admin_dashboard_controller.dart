@@ -22,7 +22,7 @@ class UAdminDashboardController extends UAdminBaseController {
         chartData = r.result!;
         chartState.loaded();
       },
-      onError: (UResponse<dynamic> r) {},
+      onError: (UEmptyResponse r) {},
       onException: (String e) {},
     );
   }

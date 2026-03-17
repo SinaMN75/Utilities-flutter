@@ -75,7 +75,7 @@ class _UCategorySelectorState extends State<UCategorySelector> {
           selectedSubCategory(widget.subCategory);
         }
       },
-      onError: (UResponse<dynamic> res) {
+      onError: (UEmptyResponse res) {
         pageState.error();
         UToast.snackBar(message: res.message);
       },

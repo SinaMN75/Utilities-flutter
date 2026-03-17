@@ -1,5 +1,25 @@
 part of "../data.dart";
 
+class UEmptyResponse {
+  UEmptyResponse({
+    required this.status,
+    required this.message,
+  });
+
+  factory UEmptyResponse.fromJson(String str) {
+    final Map<String, dynamic> jsonMap = json.decode(str);
+    final dynamic rawResult = jsonMap["result"];
+
+    return UEmptyResponse(
+      status: jsonMap["status"],
+      message: jsonMap["message"] ?? "",
+    );
+  }
+
+  final int status;
+  final String message;
+}
+
 class UResponse<T> {
   UResponse({
     required this.result,

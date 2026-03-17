@@ -48,7 +48,7 @@ class UAdminInvoicesController extends UAdminBaseController {
         totalPages((response.totalCount / pageSize).toInt() + 1);
         state.loaded();
       },
-      onError: (UResponse<dynamic> error) {
+      onError: (UEmptyResponse error) {
         state.error();
         UToast.error(message: error.message);
       },
@@ -74,12 +74,12 @@ class UAdminInvoicesController extends UAdminBaseController {
       ULoading.show();
       UServices.invoice.delete(
         p: UIdParams(id: i.id),
-        onOk: (final UResponse<dynamic> r) {
+        onOk: (final UEmptyResponse r) {
           UNavigator.back();
           UToast.snackBar(message: r.message);
           ULoading.dismiss();
         },
-        onError: (final UResponse<dynamic> r) {
+        onError: (final UEmptyResponse r) {
           UToast.error(message: r.message);
           ULoading.dismiss();
         },
@@ -91,11 +91,11 @@ class UAdminInvoicesController extends UAdminBaseController {
   void create({required UInvoiceCreateParams p}) {
     UServices.invoice.create(
       p: p,
-      onOk: (UResponse<dynamic> r) {
+      onOk: (UResponse<String> r) {
         UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
-      onError: (UResponse<dynamic> r) {
+      onError: (UEmptyResponse r) {
         UToast.error(message: r.message);
         ULoading.dismiss();
       },
@@ -109,11 +109,11 @@ class UAdminInvoicesController extends UAdminBaseController {
   void update({required UInvoiceUpdateParams p}) {
     UServices.invoice.update(
       p: p,
-      onOk: (UResponse<dynamic> r) {
+      onOk: (UEmptyResponse r) {
         UToast.snackBar(message: "Submitted");
         ULoading.dismiss();
       },
-      onError: (UResponse<dynamic> r) {
+      onError: (UEmptyResponse r) {
         UToast.error(message: r.message);
         ULoading.dismiss();
       },
