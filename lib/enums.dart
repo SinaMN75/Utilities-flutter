@@ -10,7 +10,15 @@ enum TagUser with NumericIdentifiable {
   male("مرد", "Male", 100),
   female("زن", "Female", 101),
   superAdmin("سوپر ادمین", "Super Admin", 201),
-  guest("مهمان", "Guest", 202)
+  guest("مهمان", "Guest", 202),
+  eSignatureVerified("تایید امضای دیجیتال", "ESignature Verified", 30),
+  birthCertificate1Verified("تایید صفحه اول شناسنامه", "BirthCertificate1 Verified", 30),
+  birthCertificate2Verified("تایید صفحه دوم شناسنامه", "BirthCertificate2 Verified", 30),
+  birthCertificate3Verified("تایید صفحه سوم شناسنامه", "BirthCertificate3 Verified", 30),
+  birthCertificate4Verified("تایید صفحه چهارم شناسنامه", "BirthCertificate4 Verified", 30),
+  nationalCardFrontVerified("تایید روی کارت ملی", "NationalCardFront Verified", 30),
+  nationalCardBackVerified("تایید پشت کارت ملی", "NationalCardBack Verified", 30),
+  visualAuthenticationVerified("تایید احراز هویت تصویری", "VisualAuthentication Verified", 30),
   ;
 
   const TagUser(this.titleFa, this.titleEn, this.number);
@@ -191,6 +199,20 @@ enum TagAddress with NumericIdentifiable {
   ;
 
   const TagAddress(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagWallet with NumericIdentifiable {
+  verified("کیف پول اصلی", "Primary", 101),
+  ;
+
+  const TagWallet(this.titleFa, this.titleEn, this.number);
 
   @override
   final String titleFa;

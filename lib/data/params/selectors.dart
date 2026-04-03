@@ -275,3 +275,23 @@ class AddressSelectorArgs {
     "creator": creator?.toMap(),
   };
 }
+
+class WalletSelectorArgs {
+  final UserSelectorArgs? user;
+
+  const WalletSelectorArgs({
+    this.user,
+  });
+
+  factory WalletSelectorArgs.fromJson(String str) => WalletSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory WalletSelectorArgs.fromMap(Map<String, dynamic> json) => WalletSelectorArgs(
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "user": user?.toMap(),
+  };
+}
