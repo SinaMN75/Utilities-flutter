@@ -295,3 +295,27 @@ class WalletSelectorArgs {
     "user": user?.toMap(),
   };
 }
+
+class WalletTxnSelectorArgs {
+  final UserSelectorArgs? sender;
+  final UserSelectorArgs? receiver;
+
+  const WalletTxnSelectorArgs({
+    this.sender,
+    this.receiver,
+  });
+
+  factory WalletTxnSelectorArgs.fromJson(String str) => WalletTxnSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory WalletTxnSelectorArgs.fromMap(Map<String, dynamic> json) => WalletTxnSelectorArgs(
+    sender: json["sender"] == null ? null : UserSelectorArgs.fromMap(json["sender"]),
+    receiver: json["receiver"] == null ? null : UserSelectorArgs.fromMap(json["receiver"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "sender": sender?.toMap(),
+    "receiver": receiver?.toMap(),
+  };
+}

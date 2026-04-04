@@ -1,0 +1,41 @@
+part of "../data.dart";
+
+class WalletService {
+  Future<UHttpClientResponse> readByUserId({
+    required final UWalletReadParams p,
+    final Function(UResponse<List<UWalletResponse>> r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/wallet/ReadByUserId",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(
+      UResponse<List<UWalletResponse>>.fromJson(
+        r.body,
+        (final dynamic i) => List<UWalletResponse>.from((i as List<dynamic>).map((final dynamic x) => UWalletResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> readTxn({
+    required final UWalletTxnReadParams p,
+    final Function(UResponse<List<UWalletTxnResponse>> r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/wallet/ReadTxn",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(
+      UResponse<List<UWalletTxnResponse>>.fromJson(
+        r.body,
+        (final dynamic i) => List<UWalletTxnResponse>.from((i as List<dynamic>).map((final dynamic x) => UWalletTxnResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+}

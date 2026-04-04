@@ -34,6 +34,7 @@ part "responses/product_response.dart";
 part "responses/ticket_response.dart";
 part "responses/txn_response.dart";
 part "responses/user_response.dart";
+part "responses/wallet_response.dart";
 part "services/address_service.dart";
 part "services/auth_service.dart";
 part "services/category_service.dart";
@@ -47,6 +48,7 @@ part "services/invoice_service.dart";
 part "services/media_service.dart";
 part "services/product_service.dart";
 part "services/user_service.dart";
+part "services/wallet_service.dart";
 
 class UServices {
   static AuthService auth = AuthService();
@@ -61,4 +63,6 @@ class UServices {
   static InvoiceService invoice = InvoiceService();
   static ChatBotService chatBot = ChatBotService();
   static MediaService media = MediaService();
+  static WalletService wallet = WalletService();
+  static AddressService address = AddressService();
 }
