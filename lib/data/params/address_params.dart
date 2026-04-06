@@ -14,10 +14,24 @@ class UAddressCreateParams {
   final String? zipCode;
   final String? description;
   final String? creatorId;
+  final String? buildingName;
+  final String? localityType;
+  final String? sideFloor;
+  final String? subLocality;
+  final String? townShip;
+  final String? village;
+  final String? localityCode;
 
   UAddressCreateParams({
     required this.title,
     required this.tags,
+    this.buildingName,
+    this.localityCode,
+    this.localityType,
+    this.sideFloor,
+    this.subLocality,
+    this.townShip,
+    this.village,
     this.id,
     this.province,
     this.township,
@@ -49,6 +63,13 @@ class UAddressCreateParams {
     zipCode: json["zipCode"],
     description: json["description"],
     creatorId: json["creatorId"],
+    buildingName: json["buildingName"],
+    localityCode: json["localityCode"],
+    localityType: json["localityType"],
+    sideFloor: json["sideFloor"],
+    subLocality: json["subLocality"],
+    townShip: json["townShip"],
+    village: json["village"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -65,6 +86,13 @@ class UAddressCreateParams {
     "zipCode": zipCode,
     "description": description,
     "creatorId": creatorId,
+    "buildingName": buildingName,
+    "localityCode": localityCode,
+    "localityType": localityType,
+    "sideFloor": sideFloor,
+    "subLocality": subLocality,
+    "townShip": townShip,
+    "village": village,
   };
 }
 
@@ -83,6 +111,13 @@ class UAddressUpdateParams {
   final String? floor;
   final String? zipCode;
   final String? description;
+  final String? buildingName;
+  final String? localityType;
+  final String? sideFloor;
+  final String? subLocality;
+  final String? townShip;
+  final String? village;
+  final String? localityCode;
 
   UAddressUpdateParams({
     required this.id,
@@ -99,6 +134,13 @@ class UAddressUpdateParams {
     this.floor,
     this.zipCode,
     this.description,
+    this.buildingName,
+    this.localityCode,
+    this.localityType,
+    this.sideFloor,
+    this.subLocality,
+    this.townShip,
+    this.village,
   });
 
   factory UAddressUpdateParams.fromJson(String str) => UAddressUpdateParams.fromMap(json.decode(str));
@@ -120,6 +162,13 @@ class UAddressUpdateParams {
     floor: json["floor"],
     zipCode: json["zipCode"],
     description: json["description"],
+    buildingName: json["buildingName"],
+    localityCode: json["localityCode"],
+    localityType: json["localityType"],
+    sideFloor: json["sideFloor"],
+    subLocality: json["subLocality"],
+    townShip: json["townShip"],
+    village: json["village"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -137,6 +186,13 @@ class UAddressUpdateParams {
     "floor": floor,
     "zipCode": zipCode,
     "description": description,
+    "buildingName": buildingName,
+    "localityCode": localityCode,
+    "localityType": localityType,
+    "sideFloor": sideFloor,
+    "subLocality": subLocality,
+    "townShip": townShip,
+    "village": village,
   };
 }
 

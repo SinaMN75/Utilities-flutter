@@ -65,6 +65,13 @@ class UAddressResponseJsonData {
   final String? houseNumber;
   final String? floor;
   final String? description;
+  final String? buildingName;
+  final String? localityType;
+  final String? sideFloor;
+  final String? subLocality;
+  final String? townShip;
+  final String? village;
+  final String? localityCode;
 
   UAddressResponseJsonData({
     this.province,
@@ -75,6 +82,13 @@ class UAddressResponseJsonData {
     this.houseNumber,
     this.floor,
     this.description,
+    this.buildingName,
+    this.localityCode,
+    this.localityType,
+    this.sideFloor,
+    this.subLocality,
+    this.townShip,
+    this.village,
   });
 
   factory UAddressResponseJsonData.fromJson(String str) => UAddressResponseJsonData.fromMap(json.decode(str));
@@ -90,6 +104,13 @@ class UAddressResponseJsonData {
     houseNumber: json["houseNumber"],
     floor: json["floor"],
     description: json["description"],
+    buildingName: json["buildingName"],
+    localityCode: json["localityCode"],
+    localityType: json["localityType"],
+    sideFloor: json["sideFloor"],
+    subLocality: json["subLocality"],
+    townShip: json["townShip"],
+    village: json["village"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -101,5 +122,12 @@ class UAddressResponseJsonData {
     "houseNumber": houseNumber,
     "floor": floor,
     "description": description,
+    "buildingName": buildingName,
+    "localityCode": localityCode,
+    "localityType": localityType,
+    "sideFloor": sideFloor,
+    "subLocality": subLocality,
+    "townShip": townShip,
+    "village": village,
   };
 }
