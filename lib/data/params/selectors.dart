@@ -220,6 +220,26 @@ class InvoiceSelectorArgs {
   };
 }
 
+class VehicleSelectorArgs {
+  final UserSelectorArgs? creator;
+
+  const VehicleSelectorArgs({
+    this.creator,
+  });
+
+  factory VehicleSelectorArgs.fromJson(String str) => VehicleSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory VehicleSelectorArgs.fromMap(Map<String, dynamic> json) => VehicleSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+  };
+}
+
 class CommentSelectorArgs {
   final CommentSelectorArgs? children;
   final UserSelectorArgs? user;

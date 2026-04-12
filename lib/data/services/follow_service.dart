@@ -9,7 +9,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/Follow",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
@@ -23,7 +23,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/Unfollow",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
@@ -37,7 +37,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/ReadFollowers",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UUserResponse>>.fromJson(
         r.body,
@@ -56,7 +56,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/ReadFollowedUsers",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UUserResponse>>.fromJson(
         r.body,
@@ -75,7 +75,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/ReadFollowedProducts",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UProductResponse>>.fromJson(
         r.body,
@@ -94,7 +94,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/ReadFollowedCategories",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UCategoryResponse>>.fromJson(
         r.body,
@@ -113,7 +113,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/ReadFollowerFollowingCount",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<UFollowerFollowingCountResponse>.fromJson(r.body, (final dynamic i) => UFollowerFollowingCountResponse.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
@@ -127,7 +127,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/IsFollowingUser",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
@@ -141,7 +141,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/isFollowingProduct",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
@@ -155,7 +155,7 @@ class FollowService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/follow/isFollowingCategory",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<bool>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),

@@ -8,8 +8,10 @@ class UTxnResponse {
     required this.jsonData,
     required this.tags,
     required this.amount,
-    required this.invoiceId,
+    this.invoiceId,
     this.invoice,
+    this.userId,
+    this.user,
   });
 
   factory UTxnResponse.fromMap(Map<String, dynamic> json) => UTxnResponse(
@@ -21,6 +23,8 @@ class UTxnResponse {
     amount: json["amount"].toString().toDouble(),
     invoiceId: json["invoiceId"],
     invoice: json["invoice"] == null ? null : UInvoiceResponse.fromMap(json["invoice"]),
+    userId: json["userId"],
+    user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
   );
 
   final String id;
@@ -29,8 +33,10 @@ class UTxnResponse {
   final UTxnJson jsonData;
   final List<int> tags;
   final double amount;
-  final String invoiceId;
+  final String? invoiceId;
   final UInvoiceResponse? invoice;
+  final String? userId;
+  final UUserResponse? user;
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
@@ -41,6 +47,8 @@ class UTxnResponse {
     "amount": amount,
     "invoiceId": invoiceId,
     "invoice": invoice?.toMap(),
+    "userId": userId,
+    "user": user?.toMap(),
   };
 }
 

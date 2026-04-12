@@ -30,7 +30,7 @@ class MediaService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/Media/Read",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk(UResponse<List<UMediaResponse>>.fromJson(r.body, (dynamic i) => List<UMediaResponse>.from((i as List<dynamic>).map((dynamic x) => UMediaResponse.fromMap(x))))),
     onError: (final Response r) => onError(UEmptyResponse.fromJson(r.body)),
     onException: onException,
@@ -44,7 +44,7 @@ class MediaService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/Media/Update",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError(UEmptyResponse.fromJson(r.body)),
     onException: onException,
@@ -58,7 +58,7 @@ class MediaService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/Media/Delete",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError(UEmptyResponse.fromJson(r.body)),
     onException: onException,

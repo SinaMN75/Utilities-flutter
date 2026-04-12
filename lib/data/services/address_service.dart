@@ -9,7 +9,7 @@ class AddressService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/address/Create",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
@@ -23,7 +23,7 @@ class AddressService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/address/Read",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UAddressResponse>>.fromJson(
         r.body,
@@ -42,7 +42,7 @@ class AddressService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/address/ReadById",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<UAddressResponse>.fromJson(r.body, (final dynamic i) => UAddressResponse.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
@@ -56,7 +56,7 @@ class AddressService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/address/Update",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
@@ -70,7 +70,7 @@ class AddressService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/address/Delete",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),

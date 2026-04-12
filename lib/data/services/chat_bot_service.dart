@@ -9,7 +9,7 @@ class ChatBotService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/ChatBot/Create",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
@@ -23,7 +23,7 @@ class ChatBotService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/ChatBot/Read",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UChatBotResponse>>.fromJson(
         r.body,

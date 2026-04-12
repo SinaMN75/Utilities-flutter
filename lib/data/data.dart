@@ -17,6 +17,7 @@ part "params/product_params.dart";
 part "params/selectors.dart";
 part "params/terminal_params.dart";
 part "params/user_params.dart";
+part "params/vehicle_params.dart";
 part "params/wallet_params.dart";
 part "responses/address_response.dart";
 part "responses/auth_response.dart";
@@ -36,6 +37,7 @@ part "responses/product_response.dart";
 part "responses/ticket_response.dart";
 part "responses/txn_response.dart";
 part "responses/user_response.dart";
+part "responses/vehicle_response.dart";
 part "responses/wallet_response.dart";
 part "services/address_service.dart";
 part "services/auth_service.dart";
@@ -51,6 +53,7 @@ part "services/invoice_service.dart";
 part "services/media_service.dart";
 part "services/product_service.dart";
 part "services/user_service.dart";
+part "services/vehicle_service.dart";
 part "services/wallet_service.dart";
 
 class UServices {
@@ -69,4 +72,5 @@ class UServices {
   static WalletService wallet = WalletService();
   static AddressService address = AddressService();
   static InquiryService inquiry = InquiryService();
+  static VehicleService vehicle = VehicleService();
 }

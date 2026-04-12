@@ -9,7 +9,7 @@ class WalletService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/wallet/ReadByUserId",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UWalletResponse>>.fromJson(
         r.body,
@@ -28,7 +28,7 @@ class WalletService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/wallet/ReadTxn",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UWalletTxnResponse>>.fromJson(
         r.body,
