@@ -79,7 +79,7 @@ class UPostalCodeToAddressDetailResponse {
   };
 }
 
-class VehicleViolationDetailResponse {
+class UVehicleViolationDetailResponse {
   final String? plateDictation;
   final String? plateChar;
   final String? complaintStatus;
@@ -94,9 +94,9 @@ class VehicleViolationDetailResponse {
   final String? ejrInquireNo;
   final String? warningId;
   final String? inquirePriceDictation;
-  final List<VehicleViolationDetailItem> items;
+  final List<UVehicleViolationDetailItem> items;
 
-  VehicleViolationDetailResponse({
+  UVehicleViolationDetailResponse({
     required this.items,
     this.plateDictation,
     this.plateChar,
@@ -114,11 +114,11 @@ class VehicleViolationDetailResponse {
     this.inquirePriceDictation,
   });
 
-  factory VehicleViolationDetailResponse.fromJson(String str) => VehicleViolationDetailResponse.fromMap(json.decode(str));
+  factory UVehicleViolationDetailResponse.fromJson(String str) => UVehicleViolationDetailResponse.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory VehicleViolationDetailResponse.fromMap(Map<String, dynamic> json) => VehicleViolationDetailResponse(
+  factory UVehicleViolationDetailResponse.fromMap(Map<String, dynamic> json) => UVehicleViolationDetailResponse(
     plateDictation: json["plateDictation"],
     plateChar: json["plateChar"],
     complaintStatus: json["complaintStatus"],
@@ -134,10 +134,10 @@ class VehicleViolationDetailResponse {
     warningId: json["warningId"],
     inquirePriceDictation: json["inquirePriceDictation"],
     items: json["items"] == null
-        ? <VehicleViolationDetailItem>[]
-        : List<VehicleViolationDetailItem>.from(
+        ? <UVehicleViolationDetailItem>[]
+        : List<UVehicleViolationDetailItem>.from(
             json["items"]!.map(
-              (dynamic x) => VehicleViolationDetailItem.fromMap(x),
+              (dynamic x) => UVehicleViolationDetailItem.fromMap(x),
             ),
           ),
   );
@@ -157,11 +157,11 @@ class VehicleViolationDetailResponse {
     "ejrInquireNo": ejrInquireNo,
     "warningId": warningId,
     "inquirePriceDictation": inquirePriceDictation,
-    "items": List<dynamic>.from(items.map((VehicleViolationDetailItem x) => x.toMap())),
+    "items": List<dynamic>.from(items.map((UVehicleViolationDetailItem x) => x.toMap())),
   };
 }
 
-class VehicleViolationDetailItem {
+class UVehicleViolationDetailItem {
   final String? serialNo;
   final String? date;
   final String? type;
@@ -174,7 +174,7 @@ class VehicleViolationDetailItem {
   final String? investigationAbility;
   final bool? hasImage;
 
-  VehicleViolationDetailItem({
+  UVehicleViolationDetailItem({
     this.serialNo,
     this.date,
     this.type,
@@ -188,11 +188,11 @@ class VehicleViolationDetailItem {
     this.hasImage,
   });
 
-  factory VehicleViolationDetailItem.fromJson(String str) => VehicleViolationDetailItem.fromMap(json.decode(str));
+  factory UVehicleViolationDetailItem.fromJson(String str) => UVehicleViolationDetailItem.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory VehicleViolationDetailItem.fromMap(Map<String, dynamic> json) => VehicleViolationDetailItem(
+  factory UVehicleViolationDetailItem.fromMap(Map<String, dynamic> json) => UVehicleViolationDetailItem(
     serialNo: json["serialNo"],
     date: json["date"],
     type: json["type"],

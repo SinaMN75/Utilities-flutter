@@ -9,7 +9,9 @@ class UAdminSplashController extends UAdminBaseController {
       onError();
     } else {
       UServices.user.readById(
-        p: UIdParams(id: ULocalStorage.getString(UConstants.userId)!),
+        p: UIdParams(
+          id: ULocalStorage.getString(UConstants.userId)!,
+        ),
         onOk: (final UResponse<UUserResponse> user) {
           U.user = user.result!;
           onFinish();

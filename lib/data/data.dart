@@ -34,6 +34,7 @@ part "responses/inquiry_response.dart";
 part "responses/invoice_response.dart";
 part "responses/media_response.dart";
 part "responses/product_response.dart";
+part "responses/terminal_response.dart";
 part "responses/ticket_response.dart";
 part "responses/txn_response.dart";
 part "responses/user_response.dart";
@@ -52,6 +53,7 @@ part "services/inquiry_service.dart";
 part "services/invoice_service.dart";
 part "services/media_service.dart";
 part "services/product_service.dart";
+part "services/terminal_service.dart";
 part "services/user_service.dart";
 part "services/vehicle_service.dart";
 part "services/wallet_service.dart";
@@ -73,4 +75,5 @@ class UServices {
   static AddressService address = AddressService();
   static InquiryService inquiry = InquiryService();
   static VehicleService vehicle = VehicleService();
+  static TerminalService terminal = TerminalService();
 }

@@ -23,6 +23,8 @@ class UUserResponse {
     this.categories,
     this.media,
     this.addresses,
+    this.terminals,
+    this.extra,
   });
 
   factory UUserResponse.fromJson(String str) => UUserResponse.fromMap(json.decode(str));
@@ -45,9 +47,11 @@ class UUserResponse {
     country: json["country"],
     state: json["state"],
     city: json["city"],
+    extra: json["extra"] == null ? null : UUserExtraResponse.fromMap(json["extra"]),
     birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
     categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
+    terminals: json["terminals"] == null ? <UTerminalResponse>[] : List<UTerminalResponse>.from(json["terminals"].map((dynamic x) => UTerminalResponse.fromMap(x))),
   );
   final String id;
   final DateTime createdAt;
@@ -70,6 +74,8 @@ class UUserResponse {
   final List<UCategoryResponse>? categories;
   final List<UMediaResponse>? media;
   final List<UAddressResponse>? addresses;
+  final List<UTerminalResponse>? terminals;
+  final UUserExtraResponse? extra;
 
   String toJson() => json.encode(toMap());
 
@@ -91,10 +97,12 @@ class UUserResponse {
     "country": country,
     "state": state,
     "city": city,
+    "extra": extra?.toMap(),
     "birthdate": birthdate?.toIso8601String(),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
     "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
     "addresses": addresses == null ? null : List<dynamic>.from(addresses!.map((UAddressResponse x) => x.toMap())),
+    "terminals": terminals == null ? null : List<dynamic>.from(terminals!.map((UTerminalResponse x) => x.toMap())),
   };
 }
 

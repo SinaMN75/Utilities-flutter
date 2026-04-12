@@ -81,12 +81,18 @@ class UserSelectorArgs {
   final ContractSelectorArgs? contract;
   final MediaSelectorArgs? media;
   final InvoiceSelectorArgs? invoice;
+  final AddressSelectorArgs? address;
+  final TerminalSelectorArgs? terminal;
+  final bool extra;
 
   const UserSelectorArgs({
     this.category,
     this.contract,
     this.media,
     this.invoice,
+    this.address,
+    this.terminal,
+    this.extra = false,
   });
 
   factory UserSelectorArgs.fromJson(String str) => UserSelectorArgs.fromMap(json.decode(str));
@@ -98,6 +104,9 @@ class UserSelectorArgs {
     contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
     media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
     invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
+    address: json["address"] == null ? null : AddressSelectorArgs.fromMap(json["address"]),
+    terminal: json["terminal"] == null ? null : TerminalSelectorArgs.fromMap(json["terminal"]),
+    extra: json["extra"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -105,6 +114,9 @@ class UserSelectorArgs {
     "contract": contract?.toMap(),
     "media": media?.toMap(),
     "invoice": invoice?.toMap(),
+    "address": address?.toMap(),
+    "terminal": terminal?.toMap(),
+    "extra": extra,
   };
 }
 
@@ -232,6 +244,26 @@ class VehicleSelectorArgs {
   String toJson() => json.encode(toMap());
 
   factory VehicleSelectorArgs.fromMap(Map<String, dynamic> json) => VehicleSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+  };
+}
+
+class TerminalSelectorArgs {
+  final UserSelectorArgs? creator;
+
+  const TerminalSelectorArgs({
+    this.creator,
+  });
+
+  factory TerminalSelectorArgs.fromJson(String str) => TerminalSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory TerminalSelectorArgs.fromMap(Map<String, dynamic> json) => TerminalSelectorArgs(
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
   );
 

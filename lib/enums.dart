@@ -236,6 +236,20 @@ enum TagWallet with NumericIdentifiable {
   final int number;
 }
 
+enum TagTerminal with NumericIdentifiable {
+  verified("کیف پول اصلی", "Primary", 101),
+  ;
+
+  const TagTerminal(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 mixin NumericIdentifiable {
   int get number;
 
