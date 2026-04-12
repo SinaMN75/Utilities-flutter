@@ -2,19 +2,19 @@ part of "../data.dart";
 
 class UChatBotResponse {
   final String? creatorId;
-  final String? id;
+  final String id;
   final DateTime? createdAt;
   final DateTime? updatedAt;
-  final UChatBotResponseJsonData? jsonData;
-  final List<int>? tags;
+  final UChatBotResponseJsonData jsonData;
+  final List<int> tags;
 
   UChatBotResponse({
+    required this.id,
+    required this.tags,
+    required this.jsonData,
     this.creatorId,
-    this.id,
     this.createdAt,
     this.updatedAt,
-    this.jsonData,
-    this.tags,
   });
 
   factory UChatBotResponse.fromJson(String str) => UChatBotResponse.fromMap(json.decode(str));
@@ -26,7 +26,7 @@ class UChatBotResponse {
     id: json["id"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    jsonData: json["jsonData"] == null ? null : UChatBotResponseJsonData.fromMap(json["jsonData"]),
+    jsonData: UChatBotResponseJsonData.fromMap(json["jsonData"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
   );
 
@@ -35,8 +35,8 @@ class UChatBotResponse {
     "id": id,
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
-    "jsonData": jsonData?.toMap(),
-    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "jsonData": jsonData.toMap(),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
   };
 }
 

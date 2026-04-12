@@ -208,6 +208,20 @@ enum TagAddress with NumericIdentifiable {
   final int number;
 }
 
+enum TagVehicle with NumericIdentifiable {
+  test("تست", "Test", 999)
+  ;
+
+  const TagVehicle(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 enum TagWallet with NumericIdentifiable {
   verified("کیف پول اصلی", "Primary", 101),
   ;

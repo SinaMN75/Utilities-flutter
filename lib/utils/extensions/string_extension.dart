@@ -49,7 +49,7 @@ extension OptionalStringExtension on String? {
     return "${dateTime.hour}:${dateTime.minute}:${dateTime.second} ${jalali.year}/${jalali.month}/${jalali.day}";
   }
 
-  bool isNullOrEmpty() => this == null && this == "";
+  bool isNullOrEmpty() => this == null || this == "";
 
   bool isNotNullOrEmpty() => this != null && this != "";
 

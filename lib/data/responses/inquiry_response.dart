@@ -78,3 +78,145 @@ class UPostalCodeToAddressDetailResponse {
     "localityCode": localityCode,
   };
 }
+
+class VehicleViolationDetailResponse {
+  final String? plateDictation;
+  final String? plateChar;
+  final String? complaintStatus;
+  final String? complaint;
+  final String? dateTime;
+  final String? priceStatus;
+  final String? traceId;
+  final String? paperId;
+  final String? paymentId;
+  final String? warningPrice;
+  final String? inquirePrice;
+  final String? ejrInquireNo;
+  final String? warningId;
+  final String? inquirePriceDictation;
+  final List<VehicleViolationDetailItem> items;
+
+  VehicleViolationDetailResponse({
+    required this.items,
+    this.plateDictation,
+    this.plateChar,
+    this.complaintStatus,
+    this.complaint,
+    this.dateTime,
+    this.priceStatus,
+    this.traceId,
+    this.paperId,
+    this.paymentId,
+    this.warningPrice,
+    this.inquirePrice,
+    this.ejrInquireNo,
+    this.warningId,
+    this.inquirePriceDictation,
+  });
+
+  factory VehicleViolationDetailResponse.fromJson(String str) => VehicleViolationDetailResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory VehicleViolationDetailResponse.fromMap(Map<String, dynamic> json) => VehicleViolationDetailResponse(
+    plateDictation: json["plateDictation"],
+    plateChar: json["plateChar"],
+    complaintStatus: json["complaintStatus"],
+    complaint: json["complaint"],
+    dateTime: json["dateTime"],
+    priceStatus: json["priceStatus"],
+    traceId: json["traceId"],
+    paperId: json["paperId"],
+    paymentId: json["paymentId"],
+    warningPrice: json["warningPrice"],
+    inquirePrice: json["inquirePrice"],
+    ejrInquireNo: json["ejrInquireNo"],
+    warningId: json["warningId"],
+    inquirePriceDictation: json["inquirePriceDictation"],
+    items: json["items"] == null
+        ? <VehicleViolationDetailItem>[]
+        : List<VehicleViolationDetailItem>.from(
+            json["items"]!.map(
+              (dynamic x) => VehicleViolationDetailItem.fromMap(x),
+            ),
+          ),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "plateDictation": plateDictation,
+    "plateChar": plateChar,
+    "complaintStatus": complaintStatus,
+    "complaint": complaint,
+    "dateTime": dateTime,
+    "priceStatus": priceStatus,
+    "traceId": traceId,
+    "paperId": paperId,
+    "paymentId": paymentId,
+    "warningPrice": warningPrice,
+    "inquirePrice": inquirePrice,
+    "ejrInquireNo": ejrInquireNo,
+    "warningId": warningId,
+    "inquirePriceDictation": inquirePriceDictation,
+    "items": List<dynamic>.from(items.map((VehicleViolationDetailItem x) => x.toMap())),
+  };
+}
+
+class VehicleViolationDetailItem {
+  final String? serialNo;
+  final String? date;
+  final String? type;
+  final String? address;
+  final String? violationType;
+  final String? finalPrice;
+  final String? paperId;
+  final String? paymentId;
+  final String? warningId;
+  final String? investigationAbility;
+  final bool? hasImage;
+
+  VehicleViolationDetailItem({
+    this.serialNo,
+    this.date,
+    this.type,
+    this.address,
+    this.violationType,
+    this.finalPrice,
+    this.paperId,
+    this.paymentId,
+    this.warningId,
+    this.investigationAbility,
+    this.hasImage,
+  });
+
+  factory VehicleViolationDetailItem.fromJson(String str) => VehicleViolationDetailItem.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory VehicleViolationDetailItem.fromMap(Map<String, dynamic> json) => VehicleViolationDetailItem(
+    serialNo: json["serialNo"],
+    date: json["date"],
+    type: json["type"],
+    address: json["address"],
+    violationType: json["violationType"],
+    finalPrice: json["finalPrice"],
+    paperId: json["paperId"],
+    paymentId: json["paymentId"],
+    warningId: json["warningId"],
+    investigationAbility: json["investigationAbility"],
+    hasImage: json["hasImage"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "serialNo": serialNo,
+    "date": date,
+    "type": type,
+    "address": address,
+    "violationType": violationType,
+    "finalPrice": finalPrice,
+    "paperId": paperId,
+    "paymentId": paymentId,
+    "warningId": warningId,
+    "investigationAbility": investigationAbility,
+    "hasImage": hasImage,
+  };
+}

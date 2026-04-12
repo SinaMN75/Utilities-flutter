@@ -3,18 +3,18 @@ part of "../data.dart";
 class UVehicleResponse {
   final String licencePlate;
   final List<int> tags;
-  final String? id;
-  final String? title;
+  final String id;
   final String? brand;
   final String? color;
   final UUserResponse? creator;
   final String? creatorId;
+  final UGeneralJson jsonData;
 
   UVehicleResponse({
     required this.licencePlate,
     required this.tags,
-    this.id,
-    this.title,
+    required this.id,
+    required this.jsonData,
     this.brand,
     this.color,
     this.creator,
@@ -27,9 +27,9 @@ class UVehicleResponse {
 
   factory UVehicleResponse.fromMap(Map<String, dynamic> json) => UVehicleResponse(
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    jsonData: UGeneralJson.fromMap(json["jsonData"]),
     id: json["id"],
     licencePlate: json["licencePlate"],
-    title: json["title"],
     brand: json["brand"],
     color: json["color"],
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
@@ -40,10 +40,10 @@ class UVehicleResponse {
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
     "licencePlate": licencePlate,
-    "title": title,
     "brand": brand,
     "color": color,
     "creator": creator?.toMap(),
     "creatorId": creatorId,
+    "jsonData": jsonData.toMap(),
   };
 }
