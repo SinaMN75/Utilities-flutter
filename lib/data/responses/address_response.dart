@@ -2,7 +2,6 @@ part of "../data.dart";
 
 class UAddressResponse {
   final String id;
-  final String title;
   final List<int> tags;
   final UAddressResponseJsonData jsonData;
   final DateTime? createdAt;
@@ -14,7 +13,6 @@ class UAddressResponse {
 
   UAddressResponse({
     required this.id,
-    required this.title,
     required this.tags,
     required this.jsonData,
     this.createdAt,
@@ -36,7 +34,6 @@ class UAddressResponse {
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UAddressResponseJsonData.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
-    title: json["title"],
     zipCode: json["zipCode"],
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
@@ -49,7 +46,6 @@ class UAddressResponse {
     "deletedAt": deletedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
-    "title": title,
     "zipCode": zipCode,
     "creator": creator?.toMap(),
     "creatorId": creatorId,
@@ -57,6 +53,7 @@ class UAddressResponse {
 }
 
 class UAddressResponseJsonData {
+  final String? title;
   final String? province;
   final String? township;
   final String? street;
@@ -74,6 +71,7 @@ class UAddressResponseJsonData {
   final String? localityCode;
 
   UAddressResponseJsonData({
+    this.title,
     this.province,
     this.township,
     this.street,
@@ -96,6 +94,7 @@ class UAddressResponseJsonData {
   String toJson() => json.encode(toMap());
 
   factory UAddressResponseJsonData.fromMap(Map<String, dynamic> json) => UAddressResponseJsonData(
+    title: json["title"],
     province: json["province"],
     township: json["township"],
     street: json["street"],
@@ -114,6 +113,7 @@ class UAddressResponseJsonData {
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
+    "title": title,
     "province": province,
     "township": township,
     "street": street,

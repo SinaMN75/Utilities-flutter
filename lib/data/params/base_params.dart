@@ -19,7 +19,7 @@ class UIdParams {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
-    "selectorArgs": selectorArgs.toMap(),
+    "selectorArgs": selectorArgs?.toMap(),
   };
 }
 
