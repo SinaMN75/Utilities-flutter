@@ -2,6 +2,7 @@ import "package:u/utilities.dart";
 
 part "params/address_params.dart";
 part "params/auth_params.dart";
+part "params/bank_account_params.dart";
 part "params/base_params.dart";
 part "params/category_params.dart";
 part "params/chat_bot_params.dart";
@@ -21,6 +22,7 @@ part "params/vehicle_params.dart";
 part "params/wallet_params.dart";
 part "responses/address_response.dart";
 part "responses/auth_response.dart";
+part "responses/bank_account_response.dart";
 part "responses/base_response.dart";
 part "responses/category_response.dart";
 part "responses/chat_bot_response.dart";
@@ -42,6 +44,7 @@ part "responses/vehicle_response.dart";
 part "responses/wallet_response.dart";
 part "services/address_service.dart";
 part "services/auth_service.dart";
+part "services/bank_account_service.dart";
 part "services/category_service.dart";
 part "services/chat_bot_service.dart";
 part "services/comment_service.dart";
@@ -76,4 +79,5 @@ class UServices {
   static InquiryService inquiry = InquiryService();
   static VehicleService vehicle = VehicleService();
   static TerminalService terminal = TerminalService();
+  static BankAccountService bankAccount = BankAccountService();
 }

@@ -1,7 +1,7 @@
 part of "../data.dart";
 
 class UAddressCreateParams {
-  final String title;
+  final String? title;
   final List<int> tags;
   final String? id;
   final String? province;
@@ -23,8 +23,9 @@ class UAddressCreateParams {
   final String? localityCode;
 
   UAddressCreateParams({
-    required this.title,
     required this.tags,
+    required this.zipCode,
+    this.title,
     this.buildingName,
     this.localityCode,
     this.localityType,
@@ -40,7 +41,6 @@ class UAddressCreateParams {
     this.localityName,
     this.houseNumber,
     this.floor,
-    this.zipCode,
     this.description,
     this.creatorId,
   });

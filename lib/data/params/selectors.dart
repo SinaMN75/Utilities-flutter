@@ -252,6 +252,26 @@ class VehicleSelectorArgs {
   };
 }
 
+class BankAccountSelectorArgs {
+  final UserSelectorArgs? creator;
+
+  const BankAccountSelectorArgs({
+    this.creator,
+  });
+
+  factory BankAccountSelectorArgs.fromJson(String str) => BankAccountSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory BankAccountSelectorArgs.fromMap(Map<String, dynamic> json) => BankAccountSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+  };
+}
+
 class TerminalSelectorArgs {
   final UserSelectorArgs? creator;
 
