@@ -7,9 +7,12 @@ extension TagListExtension on Iterable<int> {
 }
 
 enum TagUser with NumericIdentifiable {
-  male("مرد", "Male", 100),
-  female("زن", "Female", 101),
+  male("مرد", "Male", 101),
+  female("زن", "Female", 102),
+  unspecified("نامشخص", "Unspecified", 103),
   superAdmin("سوپر ادمین", "Super Admin", 201),
+  systemAdmin("سیستم ادمین", "System Admin", 201),
+  systemUser("کاربر سیستمی", "System User", 201),
   guest("مهمان", "Guest", 202),
   eSignatureVerified("تایید امضای دیجیتال", "ESignature Verified", 30),
   birthCertificate1Verified("تایید صفحه اول شناسنامه", "BirthCertificate1 Verified", 30),
@@ -50,14 +53,14 @@ enum TagContent with NumericIdentifiable {
 }
 
 enum TagCategory with NumericIdentifiable {
-  category("دسته‌بندی", "Category", 100),
-  exam("پرشسنامه", "Exam", 101),
-  user("کاربران", "User", 102),
-  menu("کاربران", "Menu", 103),
-  speciality("تخصص", "Speciality", 104),
-  dorm("خوابگاه", "Dorm", 105),
-  room("اتاق", "Room", 106),
-  bed("تخت", "Bed", 107),
+  category("دسته‌بندی", "Category", 101),
+  exam("پرشسنامه", "Exam", 102),
+  user("کاربران", "User", 103),
+  menu("کاربران", "Menu", 104),
+  speciality("تخصص", "Speciality", 105),
+  dorm("خوابگاه", "Dorm", 106),
+  room("اتاق", "Room", 107),
+  bed("تخت", "Bed", 108),
   enabled("فعال", "Enabled", 201),
   disabled("غیر فعال", "Disabled", 202),
   hidden("مخفی", "Hidden", 203)
@@ -74,8 +77,8 @@ enum TagCategory with NumericIdentifiable {
 }
 
 enum TagMedia with NumericIdentifiable {
-  image("تصویر", "Image", 100),
-  profile("پروفایل", "Profile", 101),
+  image("تصویر", "Image", 101),
+  profile("پروفایل", "Profile", 102),
   test("", "", 999)
   ;
 
@@ -129,10 +132,10 @@ enum TagProduct with NumericIdentifiable {
 }
 
 enum TagComment with NumericIdentifiable {
-  released("منتشر شده", "Released", 100),
-  inQueue("در حال بررسی", "In Queue", 101),
-  rejected("رد شده", "Rejected", 102),
-  private("خصوصی", "Private", 501)
+  released("منتشر شده", "Released", 101),
+  inQueue("در حال بررسی", "In Queue", 102),
+  rejected("رد شده", "Rejected", 103),
+  private("خصوصی", "Private", 201)
   ;
 
   const TagComment(this.titleFa, this.titleEn, this.number);

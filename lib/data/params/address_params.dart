@@ -1,9 +1,11 @@
 part of "../data.dart";
 
 class UAddressCreateParams {
-  final String? title;
-  final List<int> tags;
   final String? id;
+  final String? detail1;
+  final String? detail2;
+  final String? title;
+  final String? description;
   final String? province;
   final String? township;
   final String? street;
@@ -12,7 +14,6 @@ class UAddressCreateParams {
   final String? houseNumber;
   final String? floor;
   final String? zipCode;
-  final String? description;
   final String? creatorId;
   final String? buildingName;
   final String? localityType;
@@ -21,11 +22,15 @@ class UAddressCreateParams {
   final String? townShip;
   final String? village;
   final String? localityCode;
+  final List<int> tags;
 
   UAddressCreateParams({
     required this.tags,
     required this.zipCode,
     this.title,
+    this.description,
+    this.detail1,
+    this.detail2,
     this.buildingName,
     this.localityCode,
     this.localityType,
@@ -41,7 +46,6 @@ class UAddressCreateParams {
     this.localityName,
     this.houseNumber,
     this.floor,
-    this.description,
     this.creatorId,
   });
 
@@ -53,6 +57,9 @@ class UAddressCreateParams {
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     id: json["id"],
     title: json["title"],
+    description: json["description"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
     province: json["province"],
     township: json["township"],
     street: json["street"],
@@ -61,7 +68,6 @@ class UAddressCreateParams {
     houseNumber: json["houseNumber"],
     floor: json["floor"],
     zipCode: json["zipCode"],
-    description: json["description"],
     creatorId: json["creatorId"],
     buildingName: json["buildingName"],
     localityCode: json["localityCode"],
@@ -76,6 +82,9 @@ class UAddressCreateParams {
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
     "title": title,
+    "description": description,
+    "detail1": detail1,
+    "detail2": detail2,
     "province": province,
     "township": township,
     "street": street,
@@ -84,7 +93,6 @@ class UAddressCreateParams {
     "houseNumber": houseNumber,
     "floor": floor,
     "zipCode": zipCode,
-    "description": description,
     "creatorId": creatorId,
     "buildingName": buildingName,
     "localityCode": localityCode,
@@ -98,6 +106,8 @@ class UAddressCreateParams {
 
 class UAddressUpdateParams {
   final String id;
+  final String? detail1;
+  final String? detail2;
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
@@ -123,6 +133,8 @@ class UAddressUpdateParams {
     required this.id,
     this.addTags,
     this.removeTags,
+    this.detail1,
+    this.detail2,
     this.tags,
     this.title,
     this.province,
@@ -153,6 +165,8 @@ class UAddressUpdateParams {
     removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     title: json["title"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
     province: json["province"],
     township: json["township"],
     street: json["street"],
@@ -193,6 +207,8 @@ class UAddressUpdateParams {
     "subLocality": subLocality,
     "townShip": townShip,
     "village": village,
+    "detail1": detail1,
+    "detail2": detail2,
   };
 }
 

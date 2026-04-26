@@ -328,6 +328,30 @@ class CommentSelectorArgs {
   };
 }
 
+class NotificationSelectorArgs {
+  final UserSelectorArgs? user;
+  final UserSelectorArgs? creator;
+
+  const NotificationSelectorArgs({
+    this.user,
+    this.creator,
+  });
+
+  factory NotificationSelectorArgs.fromJson(String str) => NotificationSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory NotificationSelectorArgs.fromMap(Map<String, dynamic> json) => NotificationSelectorArgs(
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "user": user?.toMap(),
+    "creator": creator?.toMap(),
+  };
+}
+
 class AddressSelectorArgs {
   final UserSelectorArgs? creator;
 
