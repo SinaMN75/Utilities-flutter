@@ -43,20 +43,6 @@ class AuthService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> readUserByToken({
-    required final UBaseParams p,
-    final Function(UResponse<UUserResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/auth/ReadUserByToken",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UUserResponse>.fromJson(r.body, (final dynamic i) => UUserResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
   Future<UHttpClientResponse> getVerificationCodeForLogin({
     required final UGetMobileVerificationCodeForLoginParams p,
     final Function(UEmptyResponse r)? onOk,
