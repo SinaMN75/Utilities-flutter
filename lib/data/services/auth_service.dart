@@ -10,35 +10,31 @@ class AuthService {
     method: "POST",
     endpoint: "${U.baseUrl}/auth/Register",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
+    onSuccess: (final Response r) {
+      final UResponse<ULoginResponse> response = UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i));
+      ULocalStorage.setUserId(response.result!.user.id);
+      ULocalStorage.setToken(response.result!.token);
+      return onOk?.call(response);
+    },
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> loginWithUserNamePassword({
-    required final ULoginWithUserNamePasswordParams p,
+  Future<UHttpClientResponse> login({
+    required final ULoginParams p,
     final Function(UResponse<ULoginResponse> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/auth/LoginWithUserNamePassword",
+    endpoint: "${U.baseUrl}/auth/Login",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
-  Future<UHttpClientResponse> loginWithEmailPassword({
-    required final ULoginWithEmailPasswordParams p,
-    final Function(UResponse<ULoginResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/auth/LoginWithEmailPassword",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
+    onSuccess: (final Response r) {
+      final UResponse<ULoginResponse> response = UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i));
+      ULocalStorage.setUserId(response.result!.user.id);
+      ULocalStorage.setToken(response.result!.token);
+      return onOk?.call(response);
+    },
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
@@ -66,7 +62,12 @@ class AuthService {
     method: "POST",
     endpoint: "${U.baseUrl}/auth/VerifyCodeForLogin",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i))),
+    onSuccess: (final Response r) {
+      final UResponse<ULoginResponse> response = UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i));
+      ULocalStorage.setUserId(response.result!.user.id);
+      ULocalStorage.setToken(response.result!.token);
+      return onOk?.call(response);
+    },
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );

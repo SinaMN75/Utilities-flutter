@@ -66,6 +66,10 @@ abstract class ULocalStorage {
 
   static void setLocale(String value) => set(UConstants.locale, value);
 
+  static void setDarkMode(bool isDarkMode) => set(UConstants.isDarkMode, isDarkMode);
+
+  static void setUserId(String userId) => set(UConstants.userId, userId);
+
   static String? getToken() => getIfNotExpired(UConstants.token);
 
   static String? getLocale() => getIfNotExpired(UConstants.locale);
@@ -73,8 +77,6 @@ abstract class ULocalStorage {
   static bool hasToken() => getIfNotExpired(UConstants.token) != null;
 
   static bool isDarkMode() => getIfNotExpired(UConstants.isDarkMode) ?? false;
-
-  static void setDarkMode(bool isDarkMode) => set(UConstants.isDarkMode, isDarkMode);
 
   static String? getUserId() => getIfNotExpired(UConstants.userId);
 

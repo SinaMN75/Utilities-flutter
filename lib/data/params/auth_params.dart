@@ -40,50 +40,30 @@ class UGetMobileVerificationCodeForLoginParams {
   };
 }
 
-class ULoginWithEmailPasswordParams {
-  ULoginWithEmailPasswordParams({
-    required this.email,
+class ULoginParams {
+  ULoginParams({
     required this.password,
+    this.username,
+    this.email,
   });
 
-  factory ULoginWithEmailPasswordParams.fromJson(String str) => ULoginWithEmailPasswordParams.fromMap(json.decode(str));
+  factory ULoginParams.fromJson(String str) => ULoginParams.fromMap(json.decode(str));
 
-  factory ULoginWithEmailPasswordParams.fromMap(Map<String, dynamic> json) => ULoginWithEmailPasswordParams(
+  factory ULoginParams.fromMap(Map<String, dynamic> json) =>
+      ULoginParams(
+        username: json["username"],
     email: json["email"],
     password: json["password"],
   );
-  final String email;
+  final String? username;
+  final String? email;
   final String password;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
+    "username": username,
     "email": email,
-    "password": password,
-  };
-}
-
-class ULoginWithUserNamePasswordParams {
-  ULoginWithUserNamePasswordParams({
-    required this.userName,
-    required this.password,
-  });
-
-  factory ULoginWithUserNamePasswordParams.fromJson(String str) => ULoginWithUserNamePasswordParams.fromMap(
-    json.decode(str),
-  );
-
-  factory ULoginWithUserNamePasswordParams.fromMap(Map<String, dynamic> json) => ULoginWithUserNamePasswordParams(
-    userName: json["userName"],
-    password: json["password"],
-  );
-  final String userName;
-  final String password;
-
-  String toJson() => json.encode(toMap());
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "userName": userName,
     "password": password,
   };
 }
