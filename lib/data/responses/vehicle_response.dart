@@ -5,6 +5,7 @@ class UVehicleResponse {
   final List<int> tags;
   final String id;
   final String? brand;
+  final String? title;
   final String? color;
   final UUserResponse? creator;
   final String? creatorId;
@@ -16,6 +17,7 @@ class UVehicleResponse {
     required this.id,
     required this.jsonData,
     this.brand,
+    this.title,
     this.color,
     this.creator,
     this.creatorId,
@@ -29,6 +31,7 @@ class UVehicleResponse {
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     jsonData: UBaseJson.fromMap(json["jsonData"]),
     id: json["id"],
+    title: json["title"],
     licencePlate: json["licencePlate"],
     brand: json["brand"],
     color: json["color"],
@@ -39,6 +42,7 @@ class UVehicleResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
+    "title": title,
     "licencePlate": licencePlate,
     "brand": brand,
     "color": color,
