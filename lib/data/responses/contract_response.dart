@@ -3,7 +3,6 @@ part of "../data.dart";
 class UContractResponse {
   final String id;
   final DateTime createdAt;
-  final DateTime updatedAt;
   final DateTime? deletedAt;
   final UContractJsonData jsonData;
   final List<int> tags;
@@ -22,7 +21,6 @@ class UContractResponse {
   UContractResponse({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.jsonData,
     required this.tags,
     required this.startDate,
@@ -46,7 +44,6 @@ class UContractResponse {
   factory UContractResponse.fromMap(Map<String, dynamic> json) => UContractResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UContractJsonData.fromMap(json["jsonData"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
@@ -66,7 +63,6 @@ class UContractResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
     "deletedAt": deletedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),

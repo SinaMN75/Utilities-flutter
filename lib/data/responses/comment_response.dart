@@ -4,7 +4,6 @@ class UCommentResponse {
   UCommentResponse({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.jsonData,
     required this.tags,
     required this.score,
@@ -26,7 +25,6 @@ class UCommentResponse {
   factory UCommentResponse.fromMap(Map<String, dynamic> json) => UCommentResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
     jsonData: UCommentJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     score: json["score"],
@@ -44,7 +42,6 @@ class UCommentResponse {
   );
   final String id;
   final DateTime createdAt;
-  final DateTime updatedAt;
   final UCommentJson jsonData;
   final List<int> tags;
   final double score;
@@ -65,7 +62,6 @@ class UCommentResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "score": score,

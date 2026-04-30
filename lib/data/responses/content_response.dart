@@ -10,7 +10,6 @@ class UContentResponse {
   UContentResponse({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.jsonData,
     required this.tags,
     this.media = const <UMediaResponse>[],
@@ -21,14 +20,12 @@ class UContentResponse {
   factory UContentResponse.fromMap(Map<String, dynamic> json) => UContentResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
     jsonData: UContentJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
   );
   final String id;
   final DateTime createdAt;
-  final DateTime updatedAt;
   final UContentJson jsonData;
   final List<int> tags;
   final List<UMediaResponse> media;
@@ -38,7 +35,6 @@ class UContentResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "media": List<dynamic>.from(media.map((UMediaResponse x) => x.toMap())),

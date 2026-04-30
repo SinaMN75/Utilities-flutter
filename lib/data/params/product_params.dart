@@ -271,8 +271,6 @@ class UProductReadParams {
     this.toCreatedAt,
     this.orderByCreatedAt,
     this.orderByCreatedAtDesc,
-    this.orderByUpdatedAt,
-    this.orderByUpdatedAtDesc,
     this.tags,
     this.selectorArgs,
     this.categories,
@@ -300,8 +298,6 @@ class UProductReadParams {
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
     orderByCreatedAt: json["orderByCreatedAt"] ?? false,
     orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
-    orderByUpdatedAt: json["orderByUpdatedAt"] ?? false,
-    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"] ?? false,
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : ProductSelectorArgs.fromMap(json["selectorArgs"]),
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
@@ -325,8 +321,6 @@ class UProductReadParams {
   final DateTime? toCreatedAt;
   final bool? orderByCreatedAt;
   final bool? orderByCreatedAtDesc;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
   final List<String>? categories;
   final ProductSelectorArgs? selectorArgs;
@@ -353,8 +347,6 @@ class UProductReadParams {
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "orderByCreatedAt": orderByCreatedAt,
     "orderByCreatedAtDesc": orderByCreatedAtDesc,
-    "orderByUpdatedAt": orderByUpdatedAt,
-    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),

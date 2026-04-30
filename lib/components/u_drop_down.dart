@@ -35,7 +35,6 @@ class _UCategorySelectorState extends State<UCategorySelector> {
   final UCategoryResponse nullCategory = UCategoryResponse(
     id: "___",
     createdAt: DateTime.now(),
-    updatedAt: DateTime.now(),
     jsonData: UCategoryJson(),
     tags: <int>[],
     title: "___",

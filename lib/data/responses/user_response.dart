@@ -4,7 +4,6 @@ class UUserResponse {
   UUserResponse({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.jsonData,
     required this.tags,
     required this.userName,
@@ -32,7 +31,6 @@ class UUserResponse {
   factory UUserResponse.fromMap(Map<String, dynamic> json) => UUserResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
     jsonData: UUserJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     userName: json["userName"],
@@ -55,7 +53,6 @@ class UUserResponse {
   );
   final String id;
   final DateTime createdAt;
-  final DateTime updatedAt;
   final UUserJson jsonData;
   final List<int> tags;
   final String userName;
@@ -82,7 +79,6 @@ class UUserResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "userName": userName,

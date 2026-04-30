@@ -5,7 +5,6 @@ class UWalletResponse {
   final List<int> tags;
   final UGeneralJson jsonData;
   final DateTime? createdAt;
-  final DateTime? updatedAt;
   final DateTime? deletedAt;
   final double balance;
   final UUserResponse? user;
@@ -18,7 +17,6 @@ class UWalletResponse {
     required this.balance,
     required this.userId,
     this.createdAt,
-    this.updatedAt,
     this.deletedAt,
     this.user,
   });
@@ -30,7 +28,6 @@ class UWalletResponse {
   factory UWalletResponse.fromMap(Map<String, dynamic> json) => UWalletResponse(
     id: json["id"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UGeneralJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
@@ -42,7 +39,6 @@ class UWalletResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
     "deletedAt": deletedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
@@ -57,7 +53,6 @@ class UWalletTxnResponse {
   final List<int> tags;
   final UGeneralJson jsonData;
   final DateTime createdAt;
-  final DateTime? updatedAt;
   final DateTime? deletedAt;
   final double? amount;
   final UUserResponse? sender;
@@ -70,7 +65,6 @@ class UWalletTxnResponse {
     required this.tags,
     required this.jsonData,
     required this.createdAt,
-    this.updatedAt,
     this.deletedAt,
     this.amount,
     this.sender,
@@ -86,7 +80,6 @@ class UWalletTxnResponse {
   factory UWalletTxnResponse.fromMap(Map<String, dynamic> json) => UWalletTxnResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UGeneralJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
@@ -100,7 +93,6 @@ class UWalletTxnResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
     "deletedAt": deletedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),

@@ -9,14 +9,12 @@ class UTerminalResponse {
   final String serial;
   final UGeneralJson jsonData;
   final DateTime createdAt;
-  final DateTime updatedAt;
 
   UTerminalResponse({
     required this.tags,
     required this.jsonData,
     required this.serial,
     required this.createdAt,
-    required this.updatedAt,
     this.id,
     this.simCardNumber,
     this.simCardSerial,
@@ -36,7 +34,6 @@ class UTerminalResponse {
     simCardSerial: json["simCardSerial"],
     imei: json["imei"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -48,6 +45,5 @@ class UTerminalResponse {
     "imei": imei,
     "jsonData": jsonData.toMap(),
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
   };
 }

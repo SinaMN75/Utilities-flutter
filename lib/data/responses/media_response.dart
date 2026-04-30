@@ -10,7 +10,6 @@ class UMediaResponse {
   UMediaResponse({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.jsonData,
     required this.tags,
     required this.path,
@@ -26,7 +25,6 @@ class UMediaResponse {
   factory UMediaResponse.fromMap(Map<String, dynamic> json) => UMediaResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
     jsonData: UMediaJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     path: json["path"],
@@ -38,7 +36,6 @@ class UMediaResponse {
   );
   final String id;
   final DateTime createdAt;
-  final DateTime updatedAt;
   final UMediaJson jsonData;
   final List<int> tags;
   final String path;
@@ -55,7 +52,6 @@ class UMediaResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "path": path,

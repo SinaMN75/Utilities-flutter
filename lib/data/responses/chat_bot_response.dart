@@ -4,7 +4,6 @@ class UChatBotResponse {
   final String? creatorId;
   final String id;
   final DateTime? createdAt;
-  final DateTime? updatedAt;
   final UChatBotResponseJsonData jsonData;
   final List<int> tags;
 
@@ -14,7 +13,6 @@ class UChatBotResponse {
     required this.jsonData,
     this.creatorId,
     this.createdAt,
-    this.updatedAt,
   });
 
   factory UChatBotResponse.fromJson(String str) => UChatBotResponse.fromMap(json.decode(str));
@@ -25,7 +23,6 @@ class UChatBotResponse {
     creatorId: json["creatorId"],
     id: json["id"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     jsonData: UChatBotResponseJsonData.fromMap(json["jsonData"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
   );
@@ -34,7 +31,6 @@ class UChatBotResponse {
     "creatorId": creatorId,
     "id": id,
     "createdAt": createdAt?.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
   };

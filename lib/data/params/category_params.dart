@@ -165,8 +165,6 @@ class UCategoryReadParams {
     this.pageNumber,
     this.orderByCreatedAt,
     this.orderByCreatedAtDesc,
-    this.orderByUpdatedAt,
-    this.orderByUpdatedAtDesc,
     this.tags,
     this.selectorArgs,
   });
@@ -179,8 +177,6 @@ class UCategoryReadParams {
     pageNumber: json["pageNumber"],
     orderByCreatedAt: json["orderByCreatedAt"],
     orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
-    orderByUpdatedAt: json["orderByUpdatedAt"],
-    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
     selectorArgs: json["selectorArgs"] == null ? null : CategorySelectorArgs.fromMap(json["selectorArgs"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
   );
@@ -189,8 +185,6 @@ class UCategoryReadParams {
   final int? pageNumber;
   final bool? orderByCreatedAt;
   final bool? orderByCreatedAtDesc;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
   final CategorySelectorArgs? selectorArgs;
 
@@ -202,8 +196,6 @@ class UCategoryReadParams {
     "pageNumber": pageNumber,
     "orderByCreatedAt": orderByCreatedAt,
     "orderByCreatedAtDesc": orderByCreatedAtDesc,
-    "orderByUpdatedAt": orderByUpdatedAt,
-    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
     "selectorArgs": selectorArgs?.toMap(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
   };

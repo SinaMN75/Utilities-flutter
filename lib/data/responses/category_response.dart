@@ -16,7 +16,6 @@ class UCategoryResponse {
   UCategoryResponse({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.jsonData,
     required this.tags,
     required this.title,
@@ -33,7 +32,6 @@ class UCategoryResponse {
   factory UCategoryResponse.fromMap(Map<String, dynamic> json) => UCategoryResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
     jsonData: UCategoryJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     title: json["title"],
@@ -46,7 +44,6 @@ class UCategoryResponse {
   );
   final String id;
   final DateTime createdAt;
-  final DateTime updatedAt;
   final UCategoryJson jsonData;
   final List<int> tags;
   final String title;
@@ -62,7 +59,6 @@ class UCategoryResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "title": title,

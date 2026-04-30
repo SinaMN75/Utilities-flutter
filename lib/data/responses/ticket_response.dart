@@ -4,7 +4,6 @@ class UTicketResponse {
   UTicketResponse({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.jsonData,
     required this.tags,
     required this.creatorId,
@@ -15,7 +14,6 @@ class UTicketResponse {
   factory UTicketResponse.fromMap(Map<String, dynamic> json) => UTicketResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
     jsonData: UTicketJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]),
     creatorId: json["creatorId"],
@@ -25,7 +23,6 @@ class UTicketResponse {
 
   final String id;
   final DateTime createdAt;
-  final DateTime updatedAt;
   final UTicketJson jsonData;
   final List<int> tags;
   final String creatorId;
@@ -35,7 +32,6 @@ class UTicketResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": tags,
     "creatorId": creatorId,

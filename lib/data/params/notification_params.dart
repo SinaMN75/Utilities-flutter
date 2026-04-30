@@ -81,8 +81,6 @@ class UNotificationReadParams {
   final DateTime? toCreatedAt;
   final bool? orderByCreatedAt;
   final bool? orderByCreatedAtDesc;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
   final bool? orderByOrder;
@@ -98,8 +96,6 @@ class UNotificationReadParams {
     this.toCreatedAt,
     this.orderByCreatedAt,
     this.orderByCreatedAtDesc,
-    this.orderByUpdatedAt,
-    this.orderByUpdatedAtDesc,
     this.tags,
     this.ids,
     this.orderByOrder,
@@ -118,8 +114,6 @@ class UNotificationReadParams {
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
     orderByCreatedAt: json["orderByCreatedAt"],
     orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
-    orderByUpdatedAt: json["orderByUpdatedAt"],
-    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     orderByOrder: json["orderByOrder"],
@@ -135,8 +129,6 @@ class UNotificationReadParams {
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "orderByCreatedAt": orderByCreatedAt,
     "orderByCreatedAtDesc": orderByCreatedAtDesc,
-    "orderByUpdatedAt": orderByUpdatedAt,
-    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "orderByOrder": orderByOrder,
