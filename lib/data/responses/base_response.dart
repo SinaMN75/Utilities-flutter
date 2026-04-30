@@ -109,23 +109,23 @@ class UPointCount {
 
 class UGeneralJson {
   UGeneralJson({
-    required this.title,
-    required this.description,
+    this.detail1,
+    this.detail2,
   });
 
   factory UGeneralJson.fromJson(String str) => UGeneralJson.fromMap(json.decode(str));
 
   factory UGeneralJson.fromMap(Map<String, dynamic> json) => UGeneralJson(
-    title: json["title"],
-    description: json["description"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
   );
-  final String title;
-  final String description;
+  final String? detail1;
+  final String? detail2;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "title": title,
-    "description": description,
+    "detail1": detail1,
+    "detail2": detail2,
   };
 }

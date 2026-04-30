@@ -1,5 +1,29 @@
 part of "../data.dart";
 
+class UWalletChargeParams {
+  final String? userId;
+  final String? amount;
+
+  UWalletChargeParams({
+    this.userId,
+    this.amount,
+  });
+
+  factory UWalletChargeParams.fromJson(String str) => UWalletChargeParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UWalletChargeParams.fromMap(Map<String, dynamic> json) => UWalletChargeParams(
+    userId: json["userId"],
+    amount: json["amount"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "userId": userId,
+    "amount": amount,
+  };
+}
+
 class UWalletReadParams {
   final int? pageSize;
   final int? pageNumber;

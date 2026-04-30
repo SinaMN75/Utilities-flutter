@@ -8,14 +8,14 @@ class UWalletResponse {
   final DateTime? deletedAt;
   final double balance;
   final UUserResponse? user;
-  final String userId;
+  final String creatorId;
 
   UWalletResponse({
     required this.id,
     required this.tags,
     required this.jsonData,
     required this.balance,
-    required this.userId,
+    required this.creatorId,
     this.createdAt,
     this.deletedAt,
     this.user,
@@ -33,7 +33,7 @@ class UWalletResponse {
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     balance: json["balance"].toString().toDouble(),
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
-    userId: json["userId"],
+    creatorId: json["creatorId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -44,7 +44,7 @@ class UWalletResponse {
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "balance": balance,
     "user": user?.toMap(),
-    "userId": userId,
+    "creatorId": creatorId,
   };
 }
 
