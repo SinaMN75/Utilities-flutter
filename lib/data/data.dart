@@ -83,4 +83,5 @@ class UServices {
   static VehicleService vehicle = VehicleService();
   static TerminalService terminal = TerminalService();
   static BankAccountService bankAccount = BankAccountService();
+  static NotificationService notification = NotificationService();
 }
