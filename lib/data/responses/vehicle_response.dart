@@ -8,7 +8,7 @@ class UVehicleResponse {
   final String? color;
   final UUserResponse? creator;
   final String? creatorId;
-  final UGeneralJson jsonData;
+  final UBaseJson jsonData;
 
   UVehicleResponse({
     required this.licencePlate,
@@ -27,7 +27,7 @@ class UVehicleResponse {
 
   factory UVehicleResponse.fromMap(Map<String, dynamic> json) => UVehicleResponse(
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
-    jsonData: UGeneralJson.fromMap(json["jsonData"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
     id: json["id"],
     licencePlate: json["licencePlate"],
     brand: json["brand"],

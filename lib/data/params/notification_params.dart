@@ -1,18 +1,18 @@
 part of "../data.dart";
 
 class UNotificationCreateParams {
-  final String? cardNumber;
   final List<int> tags;
   final String? id;
-  final String? title;
-  final String? description;
+  final String? detail1;
+  final String? detail2;
+  final String? userId;
 
   UNotificationCreateParams({
     required this.tags,
-    this.cardNumber,
     this.id,
-    this.title,
-    this.description,
+    this.detail1,
+    this.userId,
+    this.detail2,
   });
 
   factory UNotificationCreateParams.fromJson(String str) => UNotificationCreateParams.fromMap(json.decode(str));
@@ -22,15 +22,17 @@ class UNotificationCreateParams {
   factory UNotificationCreateParams.fromMap(Map<String, dynamic> json) => UNotificationCreateParams(
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     id: json["id"],
-    title: json["title"],
-    description: json["description"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    userId: json["userId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
-    "title": title,
-    "description": description,
+    "detail1": detail1,
+    "detail2": detail2,
+    "userId": userId,
   };
 }
 
@@ -39,16 +41,16 @@ class UNotificationUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String? title;
-  final String? description;
+  final String? detail1;
+  final String? detail2;
 
   UNotificationUpdateParams({
     required this.id,
     this.addTags,
     this.removeTags,
     this.tags,
-    this.title,
-    this.description,
+    this.detail1,
+    this.detail2,
   });
 
   factory UNotificationUpdateParams.fromJson(String str) => UNotificationUpdateParams.fromMap(json.decode(str));
@@ -60,8 +62,8 @@ class UNotificationUpdateParams {
     addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-    title: json["title"],
-    description: json["description"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -69,8 +71,8 @@ class UNotificationUpdateParams {
     "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
     "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-    "title": title,
-    "description": description,
+    "detail1": detail1,
+    "detail2": detail2,
   };
 }
 
@@ -86,6 +88,7 @@ class UNotificationReadParams {
   final bool? orderByOrder;
   final bool? orderByOrderDesc;
   final String? creatorId;
+  final String? userId;
   final NotificationSelectorArgs? selectorArgs;
 
   UNotificationReadParams({
@@ -101,6 +104,7 @@ class UNotificationReadParams {
     this.orderByOrder,
     this.orderByOrderDesc,
     this.creatorId,
+    this.userId,
   });
 
   factory UNotificationReadParams.fromJson(String str) => UNotificationReadParams.fromMap(json.decode(str));
@@ -119,6 +123,7 @@ class UNotificationReadParams {
     orderByOrder: json["orderByOrder"],
     orderByOrderDesc: json["orderByOrderDesc"],
     creatorId: json["creatorId"],
+    userId: json["userId"],
     selectorArgs: json["selectorArgs"] == null ? null : NotificationSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
@@ -134,6 +139,7 @@ class UNotificationReadParams {
     "orderByOrder": orderByOrder,
     "orderByOrderDesc": orderByOrderDesc,
     "creatorId": creatorId,
+    "userId": userId,
     "selectorArgs": selectorArgs?.toMap(),
   };
 }

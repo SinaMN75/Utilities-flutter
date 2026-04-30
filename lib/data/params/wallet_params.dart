@@ -2,7 +2,7 @@ part of "../data.dart";
 
 class UWalletChargeParams {
   final String? userId;
-  final String? amount;
+  final double? amount;
 
   UWalletChargeParams({
     this.userId,

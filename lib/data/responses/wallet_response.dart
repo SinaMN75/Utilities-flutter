@@ -3,7 +3,7 @@ part of "../data.dart";
 class UWalletResponse {
   final String id;
   final List<int> tags;
-  final UGeneralJson jsonData;
+  final UBaseJson jsonData;
   final DateTime? createdAt;
   final DateTime? deletedAt;
   final double balance;
@@ -29,7 +29,7 @@ class UWalletResponse {
     id: json["id"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
-    jsonData: UGeneralJson.fromMap(json["jsonData"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     balance: json["balance"].toString().toDouble(),
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
@@ -51,7 +51,7 @@ class UWalletResponse {
 class UWalletTxnResponse {
   final String id;
   final List<int> tags;
-  final UGeneralJson jsonData;
+  final UBaseJson jsonData;
   final DateTime createdAt;
   final DateTime? deletedAt;
   final double? amount;
@@ -81,7 +81,7 @@ class UWalletTxnResponse {
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
-    jsonData: UGeneralJson.fromMap(json["jsonData"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     amount: json["amount"].toString().toDouble(),
     sender: json["sender"] == null ? null : UUserResponse.fromMap(json["sender"]),

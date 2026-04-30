@@ -7,7 +7,7 @@ class UTerminalResponse {
   final String? simCardSerial;
   final String? imei;
   final String serial;
-  final UGeneralJson jsonData;
+  final UBaseJson jsonData;
   final DateTime createdAt;
 
   UTerminalResponse({
@@ -29,7 +29,7 @@ class UTerminalResponse {
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     id: json["id"],
     serial: json["serial"],
-    jsonData: UGeneralJson.fromMap(json["jsonData"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
     simCardNumber: json["simCardNumber"],
     simCardSerial: json["simCardSerial"],
     imei: json["imei"],

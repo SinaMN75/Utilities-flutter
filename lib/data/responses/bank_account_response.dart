@@ -8,7 +8,7 @@ class UBankAccountResponse {
   final String? iBanNumber;
   final String? bankName;
   final String? ownerName;
-  final UGeneralJson jsonData;
+  final UBaseJson jsonData;
 
   UBankAccountResponse({
     required this.tags,
@@ -33,7 +33,7 @@ class UBankAccountResponse {
     iBanNumber: json["iBanNumber"],
     bankName: json["bankName"],
     ownerName: json["ownerName"],
-    jsonData: UGeneralJson.fromMap(json["jsonData"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
