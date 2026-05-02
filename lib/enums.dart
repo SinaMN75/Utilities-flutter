@@ -39,7 +39,8 @@ enum TagUser with NumericIdentifiable {
 enum TagContent with NumericIdentifiable {
   aboutUs("درباره ما", "About Us", 101),
   terms("قوانین و مقررات", "Terms and Conditions", 102),
-  homeSlider1("اسلایدر", "Slider", 103)
+  homeSlider1("اسلایدر", "Slider", 103),
+  homeSlider2("اسلایدر ۲", "Slider 2", 104),
   ;
 
   const TagContent(this.titleFa, this.titleEn, this.number);
