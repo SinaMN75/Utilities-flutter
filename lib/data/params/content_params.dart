@@ -4,6 +4,7 @@ class UContentCreateParams {
   UContentCreateParams({
     required this.tags,
     this.title,
+    this.link,
     this.detail1,
     this.detail2,
     this.instagram,
@@ -14,11 +15,13 @@ class UContentCreateParams {
   factory UContentCreateParams.fromMap(Map<String, dynamic> json) => UContentCreateParams(
     title: json["title"],
     detail1: json["detail1"],
+    link: json["link"],
     detail2: json["detail2"],
     instagram: json["instagram"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
   );
   final String? title;
+  final String? link;
   final String? detail1;
   final String? detail2;
   final String? instagram;
@@ -28,6 +31,7 @@ class UContentCreateParams {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
+    "link": link,
     "detail1": detail1,
     "detail2": detail2,
     "instagram": instagram,
@@ -40,6 +44,7 @@ class UContentUpdateParams {
     required this.id,
     this.title,
     this.detail1,
+    this.link,
     this.detail2,
     this.instagram,
     this.addTags,
@@ -51,6 +56,7 @@ class UContentUpdateParams {
   factory UContentUpdateParams.fromMap(Map<String, dynamic> json) => UContentUpdateParams(
     id: json["id"],
     title: json["title"],
+    link: json["link"],
     detail1: json["detail1"],
     detail2: json["detail2"],
     instagram: json["instagram"],
@@ -59,6 +65,7 @@ class UContentUpdateParams {
   );
   final String id;
   final String? title;
+  final String? link;
   final String? detail1;
   final String? detail2;
   final String? instagram;
@@ -70,6 +77,7 @@ class UContentUpdateParams {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "title": title,
+    "link": link,
     "detail1": detail1,
     "detail2": detail2,
     "instagram": instagram,
