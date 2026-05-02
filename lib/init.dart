@@ -7,6 +7,8 @@ abstract class U {
   static late String apiKey;
   static S s = S.of(navigatorKey.currentState!.context);
   static late UUserResponse user;
+  static List<UContentResponse> contents = <UContentResponse>[];
+  static List<UCategoryResponse> categories = <UCategoryResponse>[];
   static final SideMenuController sideMenu = SideMenuController();
   static final RxList<TabData> tabs = <TabData>[].obs;
   static TabController? tabController;

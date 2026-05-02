@@ -1,7 +1,7 @@
 import "package:u/utilities.dart";
 
-class UImageSlider extends StatefulWidget {
-  const UImageSlider({
+class USlider extends StatefulWidget {
+  const USlider({
     required this.images,
     super.key,
     this.height = 200,
@@ -18,7 +18,7 @@ class UImageSlider extends StatefulWidget {
     this.withIndicator = true,
   });
 
-  final List<String> images;
+  final List<Widget> images;
   final double height;
   final double indicatorHeight;
   final Color activeIndicatorColor;
@@ -33,10 +33,10 @@ class UImageSlider extends StatefulWidget {
   final bool withIndicator;
 
   @override
-  State<UImageSlider> createState() => _UImageSliderState();
+  State<USlider> createState() => _USliderState();
 }
 
-class _UImageSliderState extends State<UImageSlider> {
+class _USliderState extends State<USlider> {
   late PageController _pageController;
   int _currentPage = 0;
   Timer? _autoPlayTimer;
@@ -99,12 +99,7 @@ class _UImageSliderState extends State<UImageSlider> {
           controller: _pageController,
           onPageChanged: _onPageChanged,
           itemCount: widget.images.length,
-          itemBuilder: (BuildContext context, int index) => UImage(
-            height: widget.height,
-            widget.images[index],
-            fit: widget.imageFit,
-            borderRadius: widget.radius,
-          ),
+          itemBuilder: (BuildContext context, int index) => widget.images[index],
         ),
       ),
       if (widget.images.length > 1 && widget.withIndicator)

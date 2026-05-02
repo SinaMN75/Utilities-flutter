@@ -108,7 +108,7 @@ class UContentReadParams {
     orderByCreatedAt: json["orderByCreatedAt"] ?? false,
     orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-    selectorArgs: json["selectorArgs"] == null ? null : CategorySelectorArgs.fromMap(json["selectorArgs"]),
+    selectorArgs: json["selectorArgs"] == null ? null : ContentSelectorArgs.fromMap(json["selectorArgs"]),
   );
   final int? pageSize;
   final int? pageNumber;
@@ -117,7 +117,7 @@ class UContentReadParams {
   final bool? orderByCreatedAt;
   final bool? orderByCreatedAtDesc;
   final List<int>? tags;
-  final CategorySelectorArgs? selectorArgs;
+  final ContentSelectorArgs? selectorArgs;
 
   String toJson() => json.encode(toMap());
 

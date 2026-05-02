@@ -7,11 +7,21 @@ class UFilePicker extends StatefulWidget {
     super.key,
     this.initialFiles = const <FileData>[],
     this.allowMultipleSelection = true,
+    this.selectFileTitle = "Select Files",
+    this.imageTypes = const <String>["jpg", "jpeg", "png", "gif", "bmp", "webp"],
+    this.videoTypes = const <String>["mp4", "mov", "avi", "mkv", "webm"],
+    this.documentTypes = const <String>["pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt"],
+    this.fileType = FileType.custom,
   });
 
   final List<FileData> initialFiles;
   final ValueChanged<List<FileData>> onFilesChanged;
   final bool allowMultipleSelection;
+  final String selectFileTitle;
+  final List<String> imageTypes;
+  final List<String> videoTypes;
+  final List<String> documentTypes;
+  final FileType fileType;
 
   @override
   State<UFilePicker> createState() => _UFilePickerState();
@@ -19,10 +29,6 @@ class UFilePicker extends StatefulWidget {
 
 class _UFilePickerState extends State<UFilePicker> {
   late List<FileData> _selectedFiles;
-
-  final List<String> _imageExtensions = <String>["jpg", "jpeg", "png", "gif", "bmp", "webp"];
-  final List<String> _videoExtensions = <String>["mp4", "mov", "avi", "mkv", "webm"];
-  final List<String> _documentExtensions = <String>["pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt"];
 
   @override
   void initState() {
@@ -36,39 +42,34 @@ class _UFilePickerState extends State<UFilePicker> {
         if (newFiles.isEmpty) return;
 
         setState(() {
-          if (widget.allowMultipleSelection) {
+          if (widget.allowMultipleSelection)
             _selectedFiles.addAll(newFiles);
-          } else {
+          else
             _selectedFiles = newFiles;
-          }
           _notifyParent();
         });
       },
       allowMultiple: widget.allowMultipleSelection,
-      fileType: FileType.custom,
-      allowedExtensions: <String>[..._imageExtensions, ..._videoExtensions, ..._documentExtensions],
+      fileType: widget.fileType,
+      allowedExtensions: <String>[...widget.imageTypes, ...widget.videoTypes, ...widget.documentTypes],
     );
   }
 
-  void _removeFile(FileData file) {
-    setState(() {
-      _selectedFiles.remove(file);
-      _notifyParent();
-    });
-  }
+  void _removeFile(FileData file) => setState(() {
+    _selectedFiles.remove(file);
+    _notifyParent();
+  });
 
-  void _notifyParent() {
-    widget.onFilesChanged(List<FileData>.from(_selectedFiles));
-  }
+  void _notifyParent() => widget.onFilesChanged(List<FileData>.from(_selectedFiles));
 
   List<FileData> _getFilesByType(String type) {
     switch (type) {
       case "image":
-        return _selectedFiles.where((FileData file) => _imageExtensions.contains(file.extension?.toLowerCase())).toList();
+        return _selectedFiles.where((FileData file) => widget.imageTypes.contains(file.extension?.toLowerCase())).toList();
       case "video":
-        return _selectedFiles.where((FileData file) => _videoExtensions.contains(file.extension?.toLowerCase())).toList();
+        return _selectedFiles.where((FileData file) => widget.videoTypes.contains(file.extension?.toLowerCase())).toList();
       case "document":
-        return _selectedFiles.where((FileData file) => _documentExtensions.contains(file.extension?.toLowerCase())).toList();
+        return _selectedFiles.where((FileData file) => widget.documentTypes.contains(file.extension?.toLowerCase())).toList();
       default:
         return <FileData>[];
     }
@@ -143,9 +144,9 @@ class _UFilePickerState extends State<UFilePicker> {
     if (extension == null) return Icons.insert_drive_file;
 
     final String ext = extension.toLowerCase();
-    if (_imageExtensions.contains(ext)) {
+    if (widget.imageTypes.contains(ext)) {
       return Icons.image;
-    } else if (_videoExtensions.contains(ext)) {
+    } else if (widget.videoTypes.contains(ext)) {
       return Icons.videocam;
     } else if (ext == "pdf") {
       return Icons.picture_as_pdf;
@@ -185,12 +186,12 @@ class _UFilePickerState extends State<UFilePicker> {
           ),
           elevation: 2,
         ),
-        child: const Row(
+        child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(Icons.attach_file),
-            SizedBox(width: 8),
-            Text("Select Files"),
+            const Icon(Icons.attach_file),
+            const SizedBox(width: 8),
+            Text(widget.selectFileTitle),
           ],
         ),
       ),
