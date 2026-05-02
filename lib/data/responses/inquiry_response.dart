@@ -1,7 +1,7 @@
 part of "../data.dart";
 
-class UPostalCodeToAddressDetailResponse {
-  UPostalCodeToAddressDetailResponse({
+class UZipCodeToAddressDetailResponse {
+  UZipCodeToAddressDetailResponse({
     required this.buildingName,
     required this.description,
     required this.floor,
@@ -20,9 +20,9 @@ class UPostalCodeToAddressDetailResponse {
     required this.localityCode,
   });
 
-  factory UPostalCodeToAddressDetailResponse.fromJson(String str) => UPostalCodeToAddressDetailResponse.fromMap(json.decode(str));
+  factory UZipCodeToAddressDetailResponse.fromJson(String str) => UZipCodeToAddressDetailResponse.fromMap(json.decode(str));
 
-  factory UPostalCodeToAddressDetailResponse.fromMap(Map<String, dynamic> json) => UPostalCodeToAddressDetailResponse(
+  factory UZipCodeToAddressDetailResponse.fromMap(Map<String, dynamic> json) => UZipCodeToAddressDetailResponse(
     buildingName: json["buildingName"],
     description: json["description"],
     floor: json["floor"],
@@ -218,5 +218,253 @@ class UVehicleViolationDetailItem {
     "warningId": warningId,
     "investigationAbility": investigationAbility,
     "hasImage": hasImage,
+  };
+}
+
+class UDrivingLicenceNegativePointResponse {
+  final String? point;
+  final bool? allowable;
+  final String? ruleId;
+
+  UDrivingLicenceNegativePointResponse({
+    this.point,
+    this.allowable,
+    this.ruleId,
+  });
+
+  factory UDrivingLicenceNegativePointResponse.fromJson(String str) => UDrivingLicenceNegativePointResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UDrivingLicenceNegativePointResponse.fromMap(Map<String, dynamic> json) => UDrivingLicenceNegativePointResponse(
+    point: json["point"],
+    allowable: json["allowable"],
+    ruleId: json["ruleId"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "point": point,
+    "allowable": allowable,
+    "ruleId": ruleId,
+  };
+}
+
+class UDrivingLicenceDetailResponse {
+  final String? nationalCode;
+  final String? firstName;
+  final String? lastName;
+  final String? requestDate;
+  final String? title;
+  final String? confirmDate;
+  final String? rahvarStatus;
+  final String? packetNo;
+  final String? barcode;
+  final String? printNnumber;
+  final String? printDate;
+  final String? validYears;
+
+  UDrivingLicenceDetailResponse({
+    this.nationalCode,
+    this.firstName,
+    this.lastName,
+    this.requestDate,
+    this.title,
+    this.confirmDate,
+    this.rahvarStatus,
+    this.packetNo,
+    this.barcode,
+    this.printNnumber,
+    this.printDate,
+    this.validYears,
+  });
+
+  factory UDrivingLicenceDetailResponse.fromJson(String str) => UDrivingLicenceDetailResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UDrivingLicenceDetailResponse.fromMap(Map<String, dynamic> json) => UDrivingLicenceDetailResponse(
+    nationalCode: json["nationalCode"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
+    requestDate: json["requestDate"],
+    title: json["title"],
+    confirmDate: json["confirmDate"],
+    rahvarStatus: json["rahvarStatus"],
+    packetNo: json["packetNo"],
+    barcode: json["barcode"],
+    printNnumber: json["printNnumber"],
+    printDate: json["printDate"],
+    validYears: json["validYears"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "nationalCode": nationalCode,
+    "firstName": firstName,
+    "lastName": lastName,
+    "requestDate": requestDate,
+    "title": title,
+    "confirmDate": confirmDate,
+    "rahvarStatus": rahvarStatus,
+    "packetNo": packetNo,
+    "barcode": barcode,
+    "printNnumber": printNnumber,
+    "printDate": printDate,
+    "validYears": validYears,
+  };
+}
+
+class UFreewayTollsResponse {
+  final String? totalPrice;
+  final List<UFreewayTollsItem>? items;
+
+  UFreewayTollsResponse({
+    this.totalPrice,
+    this.items,
+  });
+
+  factory UFreewayTollsResponse.fromJson(String str) => UFreewayTollsResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UFreewayTollsResponse.fromMap(Map<String, dynamic> json) => UFreewayTollsResponse(
+    totalPrice: json["totalPrice"],
+    items: json["items"] == null ? <UFreewayTollsItem>[] : List<UFreewayTollsItem>.from(json["items"]!.map((dynamic x) => UFreewayTollsItem.fromMap(x))),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "totalPrice": totalPrice,
+    "items": items == null ? <dynamic>[] : List<dynamic>.from(items!.map((UFreewayTollsItem x) => x.toMap())),
+  };
+}
+
+class UFreewayTollsItem {
+  final String? id;
+  final String? date;
+  final String? price;
+  final String? gateway;
+  final String? freeway;
+
+  UFreewayTollsItem({
+    this.id,
+    this.date,
+    this.price,
+    this.gateway,
+    this.freeway,
+  });
+
+  factory UFreewayTollsItem.fromJson(String str) => UFreewayTollsItem.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UFreewayTollsItem.fromMap(Map<String, dynamic> json) => UFreewayTollsItem(
+    id: json["id"],
+    date: json["date"],
+    price: json["price"],
+    gateway: json["gateway"],
+    freeway: json["freeway"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "date": date,
+    "price": price,
+    "gateway": gateway,
+    "freeway": freeway,
+  };
+}
+
+class UIBanToBankAccountDetailResponse {
+  final String? depositNumber;
+  final String? iBanType;
+  final String? bankCode;
+  final String? bankName;
+  final String? ownerName;
+
+  UIBanToBankAccountDetailResponse({
+    this.depositNumber,
+    this.iBanType,
+    this.bankCode,
+    this.bankName,
+    this.ownerName,
+  });
+
+  factory UIBanToBankAccountDetailResponse.fromJson(String str) => UIBanToBankAccountDetailResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UIBanToBankAccountDetailResponse.fromMap(Map<String, dynamic> json) => UIBanToBankAccountDetailResponse(
+    depositNumber: json["depositNumber"],
+    iBanType: json["iBanType"],
+    bankCode: json["bankCode"],
+    bankName: json["bankName"],
+    ownerName: json["ownerName"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "depositNumber": depositNumber,
+    "iBanType": iBanType,
+    "bankCode": bankCode,
+    "bankName": bankName,
+    "ownerName": ownerName,
+  };
+}
+
+class ULicencePlateDetailResponse {
+  final String? status;
+  final String? tracePlate;
+  final List<ULicencePlateDetailItem>? items;
+
+  ULicencePlateDetailResponse({
+    this.status,
+    this.tracePlate,
+    this.items,
+  });
+
+  factory ULicencePlateDetailResponse.fromJson(String str) => ULicencePlateDetailResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ULicencePlateDetailResponse.fromMap(Map<String, dynamic> json) => ULicencePlateDetailResponse(
+    status: json["status"],
+    tracePlate: json["tracePlate"],
+    items: json["items"] == null ? <ULicencePlateDetailItem>[] : List<ULicencePlateDetailItem>.from(json["items"]!.map((dynamic x) => ULicencePlateDetailItem.fromMap(x))),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "status": status,
+    "tracePlate": tracePlate,
+    "items": items == null ? <dynamic>[] : List<dynamic>.from(items!.map((ULicencePlateDetailItem x) => x.toMap())),
+  };
+}
+
+class ULicencePlateDetailItem {
+  final String? system;
+  final String? type;
+  final String? installDate;
+  final String? model;
+
+  ULicencePlateDetailItem({
+    this.system,
+    this.type,
+    this.installDate,
+    this.model,
+  });
+
+  factory ULicencePlateDetailItem.fromJson(String str) => ULicencePlateDetailItem.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ULicencePlateDetailItem.fromMap(Map<String, dynamic> json) => ULicencePlateDetailItem(
+    system: json["system"],
+    type: json["type"],
+    installDate: json["installDate"],
+    model: json["model"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "system": system,
+    "type": type,
+    "installDate": installDate,
+    "model": model,
   };
 }
