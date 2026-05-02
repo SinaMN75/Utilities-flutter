@@ -2,10 +2,10 @@ part of "../data.dart";
 
 class UContentCreateParams {
   UContentCreateParams({
-    required this.title,
-    required this.description,
-    required this.subTitle,
     required this.tags,
+    this.title,
+    this.detail1,
+    this.detail2,
     this.instagram,
   });
 
@@ -13,14 +13,14 @@ class UContentCreateParams {
 
   factory UContentCreateParams.fromMap(Map<String, dynamic> json) => UContentCreateParams(
     title: json["title"],
-    description: json["description"],
-    subTitle: json["subTitle"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
     instagram: json["instagram"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
   );
-  final String title;
-  final String description;
-  final String subTitle;
+  final String? title;
+  final String? detail1;
+  final String? detail2;
   final String? instagram;
   final List<int> tags;
 
@@ -28,8 +28,8 @@ class UContentCreateParams {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
-    "description": description,
-    "subTitle": subTitle,
+    "detail1": detail1,
+    "detail2": detail2,
     "instagram": instagram,
     "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
   };
@@ -39,8 +39,8 @@ class UContentUpdateParams {
   UContentUpdateParams({
     required this.id,
     this.title,
-    this.subTitle,
-    this.description,
+    this.detail1,
+    this.detail2,
     this.instagram,
     this.addTags,
     this.removeTags,
@@ -51,16 +51,16 @@ class UContentUpdateParams {
   factory UContentUpdateParams.fromMap(Map<String, dynamic> json) => UContentUpdateParams(
     id: json["id"],
     title: json["title"],
-    subTitle: json["subTitle"],
-    description: json["description"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
     instagram: json["instagram"],
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
   );
   final String id;
   final String? title;
-  final String? subTitle;
-  final String? description;
+  final String? detail1;
+  final String? detail2;
   final String? instagram;
   final List<int>? addTags;
   final List<int>? removeTags;
@@ -70,8 +70,8 @@ class UContentUpdateParams {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "title": title,
-    "subTitle": subTitle,
-    "description": description,
+    "detail1": detail1,
+    "detail2": detail2,
     "instagram": instagram,
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),

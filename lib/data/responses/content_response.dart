@@ -24,6 +24,7 @@ class UContentResponse {
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
   );
+
   final String id;
   final DateTime createdAt;
   final UContentJson jsonData;
@@ -44,8 +45,9 @@ class UContentResponse {
 class UContentJson {
   UContentJson({
     this.title,
-    this.subTitle,
-    this.description,
+    this.detail1,
+    this.detail2,
+    this.link,
     this.instagram,
     this.telegram,
     this.whatsapp,
@@ -56,16 +58,18 @@ class UContentJson {
 
   factory UContentJson.fromMap(Map<String, dynamic> json) => UContentJson(
     title: json["title"],
-    subTitle: json["subTitle"],
-    description: json["description"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    link: json["link"],
     instagram: json["instagram"],
     telegram: json["telegram"],
     whatsapp: json["whatsapp"],
     phone: json["phone"],
   );
   final String? title;
-  final String? subTitle;
-  final String? description;
+  final String? detail1;
+  final String? detail2;
+  final String? link;
   final String? instagram;
   final String? telegram;
   final String? whatsapp;
@@ -75,8 +79,9 @@ class UContentJson {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
-    "subTitle": subTitle,
-    "description": description,
+    "detail1": detail1,
+    "detail2": detail2,
+    "link": link,
     "instagram": instagram,
     "telegram": telegram,
     "whatsapp": whatsapp,
