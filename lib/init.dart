@@ -3,6 +3,7 @@ import "package:u/utilities.dart";
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 abstract class U {
+  //
   static late String baseUrl;
   static late String apiKey;
   static S s = S.of(navigatorKey.currentState!.context);
