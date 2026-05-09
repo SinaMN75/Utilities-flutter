@@ -254,6 +254,23 @@ enum TagTerminal with NumericIdentifiable {
   final int number;
 }
 
+enum TagSimCard with NumericIdentifiable {
+  irancell("ایرانسل", "Irancell", 101),
+  hamrahAvval("همراه اول", "Hamrah Avval", 102),
+  Rightel("رایتل", "Rightel", 103),
+  Shatel("شاتل موبایل", "Shatel Mobile", 104),
+  ;
+
+  const TagSimCard(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 mixin NumericIdentifiable {
   int get number;
 
