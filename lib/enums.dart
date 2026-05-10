@@ -255,13 +255,75 @@ enum TagTerminal with NumericIdentifiable {
 }
 
 enum TagSimCard with NumericIdentifiable {
-  irancell("ایرانسل", "Irancell", 101),
-  hamrahAvval("همراه اول", "Hamrah Avval", 102),
-  Rightel("رایتل", "Rightel", 103),
-  Shatel("شاتل موبایل", "Shatel Mobile", 104),
+  irancell("ایرانسل", "Irancell", 2),
+  hamrahAvval("همراه اول", "Hamrah Avval", 1),
+  Rightel("رایتل", "Rightel", 3),
+  Shatel("شاتل موبایل", "Shatel Mobile", 5),
   ;
 
   const TagSimCard(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagHamrahAvvalChargeType with NumericIdentifiable {
+  normal("معمولی", "Normal", 0),
+  youngs("جوانان", "Youngs", 2),
+  ladies("بانوان", "Ladies", 3),
+  customAmount("مبلغ دلخواه", "Custom Amount", 4),
+  ;
+
+  const TagHamrahAvvalChargeType(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagIrancellChargeType with NumericIdentifiable {
+  normal("معمولی", "Normal", 0),
+  shegeftAngiz("شگفت انگیز", "شگفت انگیز", 1),
+  payBill("پرداخت قبض سیمکارت دايمی", "Bill Payment", 2),
+  ;
+
+  const TagIrancellChargeType(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagShatelChargeType with NumericIdentifiable {
+  normal("معمولی", "Normal", 0),
+  ;
+
+  const TagShatelChargeType(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagRightelChargeType with NumericIdentifiable {
+  normal("معمولی", "Normal", 0),
+  shoorAngiz("شور انگیز", "ShoorAngiz", 1),
+  ;
+
+  const TagRightelChargeType(this.titleFa, this.titleEn, this.number);
 
   @override
   final String titleFa;
