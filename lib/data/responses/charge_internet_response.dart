@@ -11,6 +11,7 @@ class ChargeInternetReserveResponse {
   final int? affectiveAmount;
   final String? help;
   final String? messageSource;
+  final String? pin;
 
   ChargeInternetReserveResponse({
     this.reserve,
@@ -23,6 +24,7 @@ class ChargeInternetReserveResponse {
     this.affectiveAmount,
     this.help,
     this.messageSource,
+    this.pin,
   });
 
   factory ChargeInternetReserveResponse.fromJson(String str) => ChargeInternetReserveResponse.fromMap(json.decode(str));
@@ -40,6 +42,7 @@ class ChargeInternetReserveResponse {
     affectiveAmount: json["affectiveAmount"],
     help: json["help"],
     messageSource: json["messageSource"],
+    pin: json["pin"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -53,6 +56,7 @@ class ChargeInternetReserveResponse {
     "affectiveAmount": affectiveAmount,
     "help": help,
     "messageSource": messageSource,
+    "pin": pin,
   };
 }
 
