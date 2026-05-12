@@ -8,6 +8,7 @@ class UTerminalCreateParams {
   final String? serial;
   final String? simCardSerial;
   final String? imei;
+  final String? terminalId;
 
   UTerminalCreateParams({
     required this.title,
@@ -17,6 +18,7 @@ class UTerminalCreateParams {
     this.serial,
     this.simCardSerial,
     this.imei,
+    this.terminalId,
   });
 
   factory UTerminalCreateParams.fromJson(String str) => UTerminalCreateParams.fromMap(json.decode(str));
@@ -31,6 +33,7 @@ class UTerminalCreateParams {
     simCardNumber: json["simCardNumber"],
     simCardSerial: json["simCardSerial"],
     imei: json["imei"],
+    terminalId: json["terminalId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -41,54 +44,43 @@ class UTerminalCreateParams {
     "simCardNumber": simCardNumber,
     "simCardSerial": simCardSerial,
     "imei": imei,
+    "terminalId": terminalId,
   };
 }
 
-class UTerminalUpdateParams {
-  final String id;
-  final List<int>? addTags;
-  final List<int>? removeTags;
-  final List<int>? tags;
-  final String? simCardNumber;
+class UTerminalAssignParams {
+  final String? apiKey;
+  final String? token;
   final String? serial;
   final String? simCardSerial;
-  final String? imei;
+  final String? merchantId;
 
-  UTerminalUpdateParams({
-    required this.id,
-    this.addTags,
-    this.removeTags,
-    this.tags,
+  UTerminalAssignParams({
+    this.apiKey,
+    this.token,
     this.serial,
-    this.simCardNumber,
     this.simCardSerial,
-    this.imei,
+    this.merchantId,
   });
 
-  factory UTerminalUpdateParams.fromJson(String str) => UTerminalUpdateParams.fromMap(json.decode(str));
+  factory UTerminalAssignParams.fromJson(String str) => UTerminalAssignParams.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory UTerminalUpdateParams.fromMap(Map<String, dynamic> json) => UTerminalUpdateParams(
-    id: json["id"],
+  factory UTerminalAssignParams.fromMap(Map<String, dynamic> json) => UTerminalAssignParams(
+    apiKey: json["apiKey"],
+    token: json["token"],
     serial: json["serial"],
-    addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
-    removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-    simCardNumber: json["simCardNumber"],
     simCardSerial: json["simCardSerial"],
-    imei: json["imei"],
+    merchantId: json["merchantId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "id": id,
+    "apiKey": apiKey,
+    "token": token,
     "serial": serial,
-    "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
-    "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
-    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-    "simCardNumber": simCardNumber,
     "simCardSerial": simCardSerial,
-    "imei": imei,
+    "merchantId": merchantId,
   };
 }
 

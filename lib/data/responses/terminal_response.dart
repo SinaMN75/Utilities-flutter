@@ -1,12 +1,13 @@
 part of "../data.dart";
 
 class UTerminalResponse {
+  final String serial;
   final List<int> tags;
-  final String? id;
+  final String id;
   final String? simCardNumber;
   final String? simCardSerial;
   final String? imei;
-  final String serial;
+  final String? terminalId;
   final UBaseJson jsonData;
   final DateTime createdAt;
 
@@ -15,7 +16,8 @@ class UTerminalResponse {
     required this.jsonData,
     required this.serial,
     required this.createdAt,
-    this.id,
+    required this.id,
+    this.terminalId,
     this.simCardNumber,
     this.simCardSerial,
     this.imei,
@@ -28,6 +30,7 @@ class UTerminalResponse {
   factory UTerminalResponse.fromMap(Map<String, dynamic> json) => UTerminalResponse(
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     id: json["id"],
+    terminalId: json["terminalId"],
     serial: json["serial"],
     jsonData: UBaseJson.fromMap(json["jsonData"]),
     simCardNumber: json["simCardNumber"],
@@ -39,6 +42,7 @@ class UTerminalResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
+    "terminalId": terminalId,
     "serial": serial,
     "simCardNumber": simCardNumber,
     "simCardSerial": simCardSerial,
