@@ -91,4 +91,5 @@ class UServices {
   static BankAccountService bankAccount = BankAccountService();
   static NotificationService notification = NotificationService();
   static ChargeInternetService chargeInternet = ChargeInternetService();
+  static MerchantService merchant = MerchantService();
 }
