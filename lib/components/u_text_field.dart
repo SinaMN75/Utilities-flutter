@@ -356,7 +356,7 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
     await showDialog<T>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(U.s.searchAndSelect),
+        title: UTextBodySmall(U.s.searchAndSelect),
         content: SizedBox(
           width: 200,
           height: 400,
@@ -371,9 +371,10 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
               ),
               const SizedBox(height: 12),
               Obx(
-                () => ListView.builder(
+                () => ListView.separated(
                   shrinkWrap: true,
                   itemCount: filteredItems.length,
+                  separatorBuilder: (BuildContext context, int index) => const Divider(height: 0),
                   itemBuilder: (BuildContext context, int index) {
                     final T item = filteredItems[index];
                     return ListTile(
@@ -385,7 +386,7 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
                     );
                   },
                 ),
-              ),
+              ).expanded(),
             ],
           ),
         ),

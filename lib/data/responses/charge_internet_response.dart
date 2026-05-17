@@ -60,109 +60,79 @@ class ChargeInternetReserveResponse {
   };
 }
 
-class InternetPackageResponse {
-  final int? reserve;
-  final String? serverDateTime;
+class UInternetPackageResponse {
   final bool? status;
-  final int? code;
   final String? message;
-  final String? reference;
-  final String? traceId;
-  final String? help;
-  final List<InternetPackageItem> list;
+  final List<UInternetPackageItem>? list;
 
-  InternetPackageResponse({
-    this.reserve,
-    this.serverDateTime,
+  UInternetPackageResponse({
     this.status,
-    this.code,
     this.message,
-    this.reference,
-    this.traceId,
-    this.help,
-    this.list = const <InternetPackageItem>[],
+    this.list,
   });
 
-  factory InternetPackageResponse.fromJson(String str) => InternetPackageResponse.fromMap(json.decode(str));
+  factory UInternetPackageResponse.fromJson(String str) => UInternetPackageResponse.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory InternetPackageResponse.fromMap(Map<String, dynamic> json) => InternetPackageResponse(
-    reserve: json["reserve"],
-    serverDateTime: json["serverDateTime"],
+  factory UInternetPackageResponse.fromMap(Map<String, dynamic> json) =>
+      UInternetPackageResponse(
     status: json["status"],
-    code: json["code"],
     message: json["message"],
-    reference: json["reference"],
-    traceId: json["traceId"],
-    help: json["help"],
-    list: json["list"] == null ? <InternetPackageItem>[] : List<InternetPackageItem>.from(json["list"]!.map((dynamic x) => InternetPackageItem.fromMap(x))),
+        list: json["list"] == null ? <UInternetPackageItem>[] : List<UInternetPackageItem>.from(json["list"]!.map((dynamic x) => UInternetPackageItem.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "reserve": reserve,
-    "serverDateTime": serverDateTime,
     "status": status,
-    "code": code,
     "message": message,
-    "reference": reference,
-    "traceId": traceId,
-    "help": help,
-    "list": List<dynamic>.from(list.map((InternetPackageItem x) => x.toMap())),
+    "list": list == null ? <dynamic>[] : List<dynamic>.from(list!.map((UInternetPackageItem x) => x.toMap())),
   };
 }
 
-class InternetPackageItem {
-  final int? amount;
+class UInternetPackageItem {
   final String? id;
   final String? title;
-  final String? shortTitle;
+  final int? amount;
   final int? simType;
   final String? duration;
   final String? offerCode;
-  final double? price;
   final int? packageDType;
   final String? capacity;
 
-  InternetPackageItem({
-    this.amount,
+  UInternetPackageItem({
     this.id,
     this.title,
-    this.shortTitle,
+    this.amount,
     this.simType,
     this.duration,
     this.offerCode,
-    this.price,
     this.packageDType,
     this.capacity,
   });
 
-  factory InternetPackageItem.fromJson(String str) => InternetPackageItem.fromMap(json.decode(str));
+  factory UInternetPackageItem.fromJson(String str) => UInternetPackageItem.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory InternetPackageItem.fromMap(Map<String, dynamic> json) => InternetPackageItem(
-    amount: json["amount"],
+  factory UInternetPackageItem.fromMap(Map<String, dynamic> json) =>
+      UInternetPackageItem(
     id: json["id"],
     title: json["title"],
-    shortTitle: json["shortTitle"],
+        amount: json["amount"],
     simType: json["simType"],
     duration: json["duration"],
     offerCode: json["offerCode"],
-    price: json["price"]?.toDouble(),
     packageDType: json["packageDType"],
     capacity: json["capacity"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "amount": amount,
     "id": id,
     "title": title,
-    "shortTitle": shortTitle,
+    "amount": amount,
     "simType": simType,
     "duration": duration,
     "offerCode": offerCode,
-    "price": price,
     "packageDType": packageDType,
     "capacity": capacity,
   };

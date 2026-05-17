@@ -31,14 +31,14 @@ class ChargeInternetService {
 
   Future<UHttpClientResponse> internetList({
     required final InternetListParams p,
-    final Function(UResponse<InternetPackageResponse> r)? onOk,
+    final Function(UResponse<UInternetPackageResponse> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/ChargeInternet/InternetList",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<InternetPackageResponse>.fromJson(r.body, (final dynamic i) => InternetPackageResponse.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UInternetPackageResponse>.fromJson(r.body, (final dynamic i) => UInternetPackageResponse.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
