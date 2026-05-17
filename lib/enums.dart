@@ -14,14 +14,8 @@ enum TagUser with NumericIdentifiable {
   systemAdmin("سیستم ادمین", "System Admin", 201),
   systemUser("کاربر سیستمی", "System User", 201),
   guest("مهمان", "Guest", 202),
-  eSignatureVerified("تایید امضای دیجیتال", "ESignature Verified", 30),
-  birthCertificate1Verified("تایید صفحه اول شناسنامه", "BirthCertificate1 Verified", 30),
-  birthCertificate2Verified("تایید صفحه دوم شناسنامه", "BirthCertificate2 Verified", 30),
-  birthCertificate3Verified("تایید صفحه سوم شناسنامه", "BirthCertificate3 Verified", 30),
-  birthCertificate4Verified("تایید صفحه چهارم شناسنامه", "BirthCertificate4 Verified", 30),
-  nationalCardFrontVerified("تایید روی کارت ملی", "NationalCardFront Verified", 30),
-  nationalCardBackVerified("تایید پشت کارت ملی", "NationalCardBack Verified", 30),
-  visualAuthenticationVerified("تایید احراز هویت تصویری", "VisualAuthentication Verified", 30),
+  awaitingVerification("در انتظار تایید ادمین", "Awaiting Verification", 301),
+  verified("تایید شده", "Verified", 302),
   ;
 
   const TagUser(this.titleFa, this.titleEn, this.number);
@@ -254,14 +248,14 @@ enum TagTerminal with NumericIdentifiable {
   final int number;
 }
 
-enum TagSimCard with NumericIdentifiable {
+enum TagSimOperator with NumericIdentifiable {
   irancell("ایرانسل", "Irancell", 2),
   hamrahAvval("همراه اول", "Hamrah Avval", 1),
   Rightel("رایتل", "Rightel", 3),
   Shatel("شاتل موبایل", "Shatel Mobile", 5),
   ;
 
-  const TagSimCard(this.titleFa, this.titleEn, this.number);
+  const TagSimOperator(this.titleFa, this.titleEn, this.number);
 
   @override
   final String titleFa;
