@@ -248,14 +248,14 @@ class UIconTextVertical extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Column(
     mainAxisAlignment: mainAxisAlignment,
-      crossAxisAlignment: crossAxisAlignment,
-      mainAxisSize: mainAxisSize,
-      children: <Widget>[
-        leading,
-        SizedBox(height: spaceBetween),
-        trailing,
-      ],
-    );
+    crossAxisAlignment: crossAxisAlignment,
+    mainAxisSize: mainAxisSize,
+    children: <Widget>[
+      leading,
+      SizedBox(height: spaceBetween),
+      trailing,
+    ],
+  );
 }
 
 class UContainer extends StatelessWidget {
@@ -328,8 +328,6 @@ class UColumn extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.max,
     this.divider,
-    this.wrap = false,
-    this.runSpacing = 8.0,
     this.width,
     this.height,
     this.flexFactors,
@@ -337,6 +335,7 @@ class UColumn extends StatelessWidget {
     this.padding,
     this.margin,
     this.radius,
+    this.border,
   });
 
   final List<Widget> children;
@@ -347,13 +346,12 @@ class UColumn extends StatelessWidget {
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
   final Widget? divider;
-  final bool wrap;
-  final double runSpacing;
   final List<int>? flexFactors;
   final double? radius;
   final Color? backgroundColor;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
+  final BoxBorder? border;
 
   @override
   Widget build(final BuildContext context) {
@@ -369,25 +367,6 @@ class UColumn extends StatelessWidget {
       }
     }
 
-    if (wrap) {
-      return UContainer(
-        color: backgroundColor,
-        width: width,
-        height: height,
-        padding: padding,
-        margin: margin,
-        radius: radius,
-        child: Wrap(
-          direction: Axis.vertical,
-          spacing: spacing,
-          runSpacing: runSpacing,
-          alignment: mainAxisAlignment == MainAxisAlignment.start ? WrapAlignment.start : WrapAlignment.center,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: spacedChildren,
-        ),
-      );
-    }
-
     return UContainer(
       color: backgroundColor,
       width: width,
@@ -395,6 +374,7 @@ class UColumn extends StatelessWidget {
       padding: padding,
       margin: margin,
       radius: radius,
+      border: border,
       child: Column(
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
@@ -414,8 +394,6 @@ class URow extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.max,
     this.divider,
-    this.wrap = false,
-    this.runSpacing = 8.0,
     this.width,
     this.height,
     this.flexFactors,
@@ -423,6 +401,7 @@ class URow extends StatelessWidget {
     this.padding,
     this.margin,
     this.radius,
+    this.border,
   });
 
   final List<Widget> children;
@@ -433,47 +412,22 @@ class URow extends StatelessWidget {
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
   final Widget? divider;
-  final bool wrap;
-  final double runSpacing;
   final List<int>? flexFactors;
   final Color? backgroundColor;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
   final double? radius;
+  final BoxBorder? border;
 
   @override
   Widget build(final BuildContext context) {
     final List<Widget> spacedChildren = <Widget>[];
     for (int i = 0; i < children.length; i++) {
       Widget child = children[i];
-      if (flexFactors != null && i < flexFactors!.length && flexFactors![i] > 0) {
-        child = Expanded(flex: flexFactors![i], child: child);
-      }
+      if (flexFactors != null && i < flexFactors!.length && flexFactors![i] > 0) child = Expanded(flex: flexFactors![i], child: child);
       spacedChildren.add(child);
-      if (i < children.length - 1) {
-        spacedChildren.add(divider ?? SizedBox(height: spacing));
-      }
+      if (i < children.length - 1) spacedChildren.add(divider ?? SizedBox(height: spacing));
     }
-
-    if (wrap) {
-      return UContainer(
-        color: backgroundColor,
-        width: width,
-        height: height,
-        padding: padding,
-        margin: margin,
-        radius: radius,
-        child: Wrap(
-          direction: Axis.vertical,
-          spacing: spacing,
-          runSpacing: runSpacing,
-          alignment: mainAxisAlignment == MainAxisAlignment.start ? WrapAlignment.start : WrapAlignment.center,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          children: spacedChildren,
-        ),
-      );
-    }
-
     return UContainer(
       color: backgroundColor,
       width: width,
