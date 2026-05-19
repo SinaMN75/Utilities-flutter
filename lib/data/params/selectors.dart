@@ -83,7 +83,7 @@ class UserSelectorArgs {
   final InvoiceSelectorArgs? invoice;
   final AddressSelectorArgs? address;
   final TerminalSelectorArgs? terminal;
-  final String? nationalCardFront;
+  final bool? nationalCardFront;
   final bool? nationalCardBack;
   final bool? birthCertificateFirst;
   final bool? birthCertificateSecond;
