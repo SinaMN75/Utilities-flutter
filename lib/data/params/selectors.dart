@@ -83,7 +83,15 @@ class UserSelectorArgs {
   final InvoiceSelectorArgs? invoice;
   final AddressSelectorArgs? address;
   final TerminalSelectorArgs? terminal;
-  final bool extra;
+  final String? nationalCardFront;
+  final String? nationalCardBack;
+  final String? birthCertificateFirst;
+  final String? birthCertificateSecond;
+  final String? birthCertificateThird;
+  final String? birthCertificateForth;
+  final String? birthCertificateFifth;
+  final String? visualAuthentication;
+  final String? eSignature;
 
   const UserSelectorArgs({
     this.category,
@@ -92,7 +100,15 @@ class UserSelectorArgs {
     this.invoice,
     this.address,
     this.terminal,
-    this.extra = false,
+    this.nationalCardFront,
+    this.nationalCardBack,
+    this.birthCertificateFirst,
+    this.birthCertificateSecond,
+    this.birthCertificateThird,
+    this.birthCertificateForth,
+    this.birthCertificateFifth,
+    this.visualAuthentication,
+    this.eSignature,
   });
 
   factory UserSelectorArgs.fromJson(String str) => UserSelectorArgs.fromMap(json.decode(str));
@@ -106,7 +122,15 @@ class UserSelectorArgs {
     invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
     address: json["address"] == null ? null : AddressSelectorArgs.fromMap(json["address"]),
     terminal: json["terminal"] == null ? null : TerminalSelectorArgs.fromMap(json["terminal"]),
-    extra: json["extra"],
+    nationalCardFront: json["nationalCardFront"],
+    nationalCardBack: json["nationalCardBack"],
+    birthCertificateFirst: json["birthCertificateFirst"],
+    birthCertificateSecond: json["birthCertificateSecond"],
+    birthCertificateThird: json["birthCertificateThird"],
+    birthCertificateForth: json["birthCertificateForth"],
+    birthCertificateFifth: json["birthCertificateFifth"],
+    visualAuthentication: json["visualAuthentication"],
+    eSignature: json["eSignature"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -116,7 +140,15 @@ class UserSelectorArgs {
     "invoice": invoice?.toMap(),
     "address": address?.toMap(),
     "terminal": terminal?.toMap(),
-    "extra": extra,
+    "nationalCardFront": nationalCardFront,
+    "nationalCardBack": nationalCardBack,
+    "birthCertificateFirst": birthCertificateFirst,
+    "birthCertificateSecond": birthCertificateSecond,
+    "birthCertificateThird": birthCertificateThird,
+    "birthCertificateForth": birthCertificateForth,
+    "birthCertificateFifth": birthCertificateFifth,
+    "visualAuthentication": visualAuthentication,
+    "eSignature": eSignature,
   };
 }
 

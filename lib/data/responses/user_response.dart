@@ -23,7 +23,15 @@ class UUserResponse {
     this.media,
     this.addresses,
     this.terminals,
-    this.extra,
+    this.nationalCardFront,
+    this.nationalCardBack,
+    this.birthCertificateFirst,
+    this.birthCertificateSecond,
+    this.birthCertificateThird,
+    this.birthCertificateForth,
+    this.birthCertificateFifth,
+    this.visualAuthentication,
+    this.eSignature,
   });
 
   factory UUserResponse.fromJson(String str) => UUserResponse.fromMap(json.decode(str));
@@ -45,7 +53,15 @@ class UUserResponse {
     country: json["country"],
     state: json["state"],
     city: json["city"],
-    extra: json["extra"] == null ? null : UUserExtraResponse.fromMap(json["extra"]),
+    nationalCardFront: json["nationalCardFront"],
+    nationalCardBack: json["nationalCardBack"],
+    birthCertificateFirst: json["birthCertificateFirst"],
+    birthCertificateSecond: json["birthCertificateSecond"],
+    birthCertificateThird: json["birthCertificateThird"],
+    birthCertificateForth: json["birthCertificateForth"],
+    birthCertificateFifth: json["birthCertificateFifth"],
+    visualAuthentication: json["visualAuthentication"],
+    eSignature: json["eSignature"],
     birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
     categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
@@ -68,11 +84,19 @@ class UUserResponse {
   final String? state;
   final String? city;
   final DateTime? birthdate;
+  final String? nationalCardFront;
+  final String? nationalCardBack;
+  final String? birthCertificateFirst;
+  final String? birthCertificateSecond;
+  final String? birthCertificateThird;
+  final String? birthCertificateForth;
+  final String? birthCertificateFifth;
+  final String? visualAuthentication;
+  final String? eSignature;
   final List<UCategoryResponse>? categories;
   final List<UMediaResponse>? media;
   final List<UAddressResponse>? addresses;
   final List<UTerminalResponse>? terminals;
-  final UUserExtraResponse? extra;
 
   String toJson() => json.encode(toMap());
 
@@ -93,8 +117,16 @@ class UUserResponse {
     "country": country,
     "state": state,
     "city": city,
-    "extra": extra?.toMap(),
     "birthdate": birthdate?.toIso8601String(),
+    "nationalCardFront": nationalCardFront,
+    "nationalCardBack": nationalCardBack,
+    "birthCertificateFirst": birthCertificateFirst,
+    "birthCertificateSecond": birthCertificateSecond,
+    "birthCertificateThird": birthCertificateThird,
+    "birthCertificateForth": birthCertificateForth,
+    "birthCertificateFifth": birthCertificateFifth,
+    "visualAuthentication": visualAuthentication,
+    "eSignature": eSignature,
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
     "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
     "addresses": addresses == null ? null : List<dynamic>.from(addresses!.map((UAddressResponse x) => x.toMap())),
@@ -105,63 +137,35 @@ class UUserResponse {
 class UUserJson {
   UUserJson({
     this.fcmToken,
-    this.health1,
-    this.health2,
-    this.foodAllergies,
-    this.drugAllergies,
-    this.sickness,
     this.weight,
     this.height,
     this.address,
     this.fatherName,
-    this.visitCounts,
-    this.userAnswerJson = const <UUserAnswerJson>[],
   });
 
   factory UUserJson.fromJson(String str) => UUserJson.fromMap(json.decode(str));
 
   factory UUserJson.fromMap(Map<String, dynamic> json) => UUserJson(
     fcmToken: json["fcmToken"],
-    health1: json["health1"] == null ? <String>[] : List<String>.from(json["health1"].map((dynamic x) => x)),
-    health2: json["health2"] == null ? <String>[] : List<String>.from(json["health2"].map((dynamic x) => x)),
-    foodAllergies: json["foodAllergies"] == null ? <String>[] : List<String>.from(json["foodAllergies"].map((dynamic x) => x)),
-    drugAllergies: json["drugAllergies"] == null ? <String>[] : List<String>.from(json["drugAllergies"].map((dynamic x) => x)),
-    sickness: json["sickness"] == null ? <String>[] : List<String>.from(json["sickness"].map((dynamic x) => x)),
     weight: json["weight"],
     height: json["height"],
     address: json["address"],
     fatherName: json["fatherName"],
-    visitCounts: json["visitCounts"] == null ? <UVisitCount>[] : List<UVisitCount>.from(json["visitCounts"].map((dynamic x) => UVisitCount.fromMap(x))),
-    userAnswerJson: json["userAnswerJson"] == null ? <UUserAnswerJson>[] : List<UUserAnswerJson>.from(json["userAnswerJson"].map((dynamic x) => UUserAnswerJson.fromMap(x))),
   );
   final String? fcmToken;
-  final List<String>? health1;
-  final List<String>? health2;
-  final List<String>? foodAllergies;
-  final List<String>? drugAllergies;
-  final List<String>? sickness;
   final int? weight;
   final int? height;
   final String? address;
   final String? fatherName;
-  final List<UUserAnswerJson> userAnswerJson;
-  final List<UVisitCount>? visitCounts;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "fcmToken": fcmToken,
-    "health1": health1 == null ? null : List<dynamic>.from(health1!.map((String x) => x)),
-    "health2": health2 == null ? null : List<dynamic>.from(health2!.map((String x) => x)),
-    "foodAllergies": foodAllergies == null ? null : List<dynamic>.from(foodAllergies!.map((String x) => x)),
-    "drugAllergies": drugAllergies == null ? null : List<dynamic>.from(drugAllergies!.map((String x) => x)),
-    "sickness": sickness == null ? null : List<dynamic>.from(sickness!.map((String x) => x)),
     "weight": weight,
     "height": height,
     "address": address,
     "fatherName": fatherName,
-    "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((UVisitCount x) => x.toMap())),
-    "userAnswerJson": List<dynamic>.from(userAnswerJson.map((UUserAnswerJson x) => x.toMap())),
   };
 }
 

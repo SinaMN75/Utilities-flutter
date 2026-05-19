@@ -85,34 +85,6 @@ class UserService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> readExtraById({
-    required final UIdParams p,
-    final Function(UResponse<UUserExtraResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/user/ReadExtraById",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UUserExtraResponse>.fromJson(r.body, (final dynamic i) => UUserExtraResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
-  Future<UHttpClientResponse> updateExtra({
-    required final UUserExtraUpdateParams p,
-    final Function(UEmptyResponse r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/user/UpdateExtra",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
   Future<UHttpClientResponse> downloadUserData({
     required final UIdParams p,
     final Function(UResponse<String> r)? onOk,

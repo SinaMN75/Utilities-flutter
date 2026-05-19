@@ -34,15 +34,15 @@ enum TagUser with NumericIdentifiable {
   birthCertificateFifthAwaitingVerification("شناسنامه صفحه پنجم در انتظار تایید", "Birth Certificate Fifth Awaiting Verification", 507),
   visualAuthenticationAwaitingVerification("احراز هویت تصویری در انتظار تایید", "Visual Authentication Awaiting Verification", 508),
   eSignatureAwaitingVerification("امضای الکترونیکی در انتظار تایید", "E-Signature Awaiting Verification", 509),
-  nationalCardFrontAwaitingRejected("کارت ملی جلو رد شده", "National Card Front Rejected", 601),
-  nationalCardBackAwaitingRejected("کارت ملی پشت رد شده", "National Card Back Rejected", 602),
-  birthCertificateFirstAwaitingRejected("شناسنامه صفحه اول رد شده", "Birth Certificate First Rejected", 603),
-  birthCertificateSecondAwaitingRejected("شناسنامه صفحه دوم رد شده", "Birth Certificate Second Rejected", 604),
-  birthCertificateThirdAwaitingRejected("شناسنامه صفحه سوم رد شده", "Birth Certificate Third Rejected", 605),
-  birthCertificateForthAwaitingRejected("شناسنامه صفحه چهارم رد شده", "Birth Certificate Fourth Rejected", 606),
-  birthCertificateFifthAwaitingRejected("شناسنامه صفحه پنجم رد شده", "Birth Certificate Fifth Rejected", 607),
-  visualAuthenticationAwaitingRejected("احراز هویت تصویری رد شده", "Visual Authentication Rejected", 608),
-  eSignatureAwaitingRejected("امضای الکترونیکی رد شده", "E-Signature Rejected", 609)
+  nationalCardFrontRejected("کارت ملی جلو رد شده", "National Card Front Rejected", 601),
+  nationalCardBackRejected("کارت ملی پشت رد شده", "National Card Back Rejected", 602),
+  birthCertificateFirstRejected("شناسنامه صفحه اول رد شده", "Birth Certificate First Rejected", 603),
+  birthCertificateSecondRejected("شناسنامه صفحه دوم رد شده", "Birth Certificate Second Rejected", 604),
+  birthCertificateThirdRejected("شناسنامه صفحه سوم رد شده", "Birth Certificate Third Rejected", 605),
+  birthCertificateForthRejected("شناسنامه صفحه چهارم رد شده", "Birth Certificate Fourth Rejected", 606),
+  birthCertificateFifthRejected("شناسنامه صفحه پنجم رد شده", "Birth Certificate Fifth Rejected", 607),
+  visualAuthenticationRejected("احراز هویت تصویری رد شده", "Visual Authentication Rejected", 608),
+  eSignatureRejected("امضای الکترونیکی رد شده", "E-Signature Rejected", 609)
   ;
 
   const TagUser(this.titleFa, this.titleEn, this.number);

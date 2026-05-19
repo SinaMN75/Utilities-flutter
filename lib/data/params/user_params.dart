@@ -39,12 +39,16 @@ class UUserCreateParams {
     this.address,
     this.fatherName,
     this.fcmToken,
-    this.health1,
-    this.health2,
-    this.foodAllergies,
-    this.drugAllergies,
-    this.sickness,
     this.categories,
+    this.nationalCardFront,
+    this.nationalCardBack,
+    this.birthCertificateFirst,
+    this.birthCertificateSecond,
+    this.birthCertificateThird,
+    this.birthCertificateForth,
+    this.birthCertificateFifth,
+    this.visualAuthentication,
+    this.eSignature,
   });
 
   factory UUserCreateParams.fromJson(String str) => UUserCreateParams.fromMap(json.decode(str));
@@ -67,11 +71,15 @@ class UUserCreateParams {
     address: json["address"],
     fatherName: json["fatherName"],
     fcmToken: json["fcmToken"],
-    health1: json["health1"] == null ? null : List<String>.from(json["health1"].map((dynamic x) => x)),
-    health2: json["health1"] == null ? <String>[] : List<String>.from(json["health1"].map((dynamic x) => x)),
-    foodAllergies: json["foodAllergies"] == null ? null : List<String>.from(json["foodAllergies"].map((dynamic x) => x)),
-    drugAllergies: json["drugAllergies"] == null ? <String>[] : List<String>.from(json["drugAllergies"].map((dynamic x) => x)),
-    sickness: json["sickness"] == null ? null : List<String>.from(json["sickness"].map((dynamic x) => x)),
+    nationalCardFront: json["nationalCardFront"],
+    nationalCardBack: json["nationalCardBack"],
+    birthCertificateFirst: json["birthCertificateFirst"],
+    birthCertificateSecond: json["birthCertificateSecond"],
+    birthCertificateThird: json["birthCertificateThird"],
+    birthCertificateForth: json["birthCertificateForth"],
+    birthCertificateFifth: json["birthCertificateFifth"],
+    visualAuthentication: json["visualAuthentication"],
+    eSignature: json["eSignature"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
   );
@@ -92,11 +100,15 @@ class UUserCreateParams {
   final String? address;
   final String? fatherName;
   final String? fcmToken;
-  final List<String>? health1;
-  final List<String>? health2;
-  final List<String>? foodAllergies;
-  final List<String>? drugAllergies;
-  final List<String>? sickness;
+  final String? nationalCardFront;
+  final String? nationalCardBack;
+  final String? birthCertificateFirst;
+  final String? birthCertificateSecond;
+  final String? birthCertificateThird;
+  final String? birthCertificateForth;
+  final String? birthCertificateFifth;
+  final String? visualAuthentication;
+  final String? eSignature;
   final List<int> tags;
   final List<String>? categories;
 
@@ -120,11 +132,15 @@ class UUserCreateParams {
     "address": address,
     "fatherName": fatherName,
     "fcmToken": fcmToken,
-    "health1": health1 == null ? null : List<dynamic>.from(health1!.map((dynamic x) => x)),
-    "health2": health2 == null ? null : List<dynamic>.from(health2!.map((String x) => x)),
-    "foodAllergies": foodAllergies == null ? null : List<dynamic>.from(foodAllergies!.map((dynamic x) => x)),
-    "drugAllergies": drugAllergies == null ? null : List<dynamic>.from(drugAllergies!.map((dynamic x) => x)),
-    "sickness": sickness == null ? null : List<dynamic>.from(sickness!.map((dynamic x) => x)),
+    "nationalCardFront": nationalCardFront,
+    "nationalCardBack": nationalCardBack,
+    "birthCertificateFirst": birthCertificateFirst,
+    "birthCertificateSecond": birthCertificateSecond,
+    "birthCertificateThird": birthCertificateThird,
+    "birthCertificateForth": birthCertificateForth,
+    "birthCertificateFifth": birthCertificateFifth,
+    "visualAuthentication": visualAuthentication,
+    "eSignature": eSignature,
     "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
   };
@@ -245,16 +261,19 @@ class UUserUpdateParams {
     this.fatherName,
     this.weight,
     this.height,
-    this.addHealth1,
-    this.removeHealth1,
-    this.foodAllergies,
-    this.drugAllergies,
-    this.sickness,
-    this.health1,
     this.categories,
     this.addTags,
     this.removeTags,
     this.tags,
+    this.nationalCardFront,
+    this.nationalCardBack,
+    this.birthCertificateFirst,
+    this.birthCertificateSecond,
+    this.birthCertificateThird,
+    this.birthCertificateForth,
+    this.birthCertificateFifth,
+    this.visualAuthentication,
+    this.eSignature,
   });
 
   factory UUserUpdateParams.fromJson(String str) => UUserUpdateParams.fromMap(json.decode(str));
@@ -277,12 +296,15 @@ class UUserUpdateParams {
     fatherName: json["fatherName"],
     weight: json["weight"],
     height: json["height"],
-    addHealth1: json["addHealth1"] == null ? null : List<String>.from(json["addHealth1"].map((dynamic x) => x)),
-    removeHealth1: json["removeHealth1"] == null ? null : List<String>.from(json["removeHealth1"].map((dynamic x) => x)),
-    foodAllergies: json["foodAllergies"] == null ? null : List<String>.from(json["foodAllergies"].map((dynamic x) => x)),
-    drugAllergies: json["drugAllergies"] == null ? null : List<String>.from(json["drugAllergies"].map((dynamic x) => x)),
-    sickness: json["sickness"] == null ? null : List<String>.from(json["sickness"].map((dynamic x) => x)),
-    health1: json["health1"] == null ? null : List<String>.from(json["health1"].map((dynamic x) => x)),
+    nationalCardFront: json["nationalCardFront"],
+    nationalCardBack: json["nationalCardBack"],
+    birthCertificateFirst: json["birthCertificateFirst"],
+    birthCertificateSecond: json["birthCertificateSecond"],
+    birthCertificateThird: json["birthCertificateThird"],
+    birthCertificateForth: json["birthCertificateForth"],
+    birthCertificateFifth: json["birthCertificateFifth"],
+    visualAuthentication: json["visualAuthentication"],
+    eSignature: json["eSignature"],
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
     id: json["id"],
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
@@ -306,17 +328,20 @@ class UUserUpdateParams {
   final String? fatherName;
   final int? weight;
   final int? height;
-  final List<String>? addHealth1;
-  final List<String>? removeHealth1;
-  final List<String>? foodAllergies;
-  final List<String>? drugAllergies;
-  final List<String>? sickness;
-  final List<String>? health1;
   final List<String>? categories;
   final String id;
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
+  final String? nationalCardFront;
+  final String? nationalCardBack;
+  final String? birthCertificateFirst;
+  final String? birthCertificateSecond;
+  final String? birthCertificateThird;
+  final String? birthCertificateForth;
+  final String? birthCertificateFifth;
+  final String? visualAuthentication;
+  final String? eSignature;
 
   String toJson() => json.encode(toMap());
 
@@ -338,143 +363,19 @@ class UUserUpdateParams {
     "fatherName": fatherName,
     "weight": weight,
     "height": height,
-    "addHealth1": addHealth1 == null ? null : List<dynamic>.from(addHealth1!.map((dynamic x) => x)),
-    "removeHealth1": removeHealth1 == null ? null : List<dynamic>.from(removeHealth1!.map((dynamic x) => x)),
-    "foodAllergies": foodAllergies == null ? null : List<dynamic>.from(foodAllergies!.map((dynamic x) => x)),
-    "drugAllergies": drugAllergies == null ? null : List<dynamic>.from(drugAllergies!.map((dynamic x) => x)),
-    "sickness": sickness == null ? null : List<dynamic>.from(sickness!.map((dynamic x) => x)),
-    "health1": health1 == null ? null : List<dynamic>.from(health1!.map((dynamic x) => x)),
+    "nationalCardFront": nationalCardFront,
+    "nationalCardBack": nationalCardBack,
+    "birthCertificateFirst": birthCertificateFirst,
+    "birthCertificateSecond": birthCertificateSecond,
+    "birthCertificateThird": birthCertificateThird,
+    "birthCertificateForth": birthCertificateForth,
+    "birthCertificateFifth": birthCertificateFifth,
+    "visualAuthentication": visualAuthentication,
+    "eSignature": eSignature,
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
     "id": id,
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-  };
-}
-
-class UUserExtraUpdateParams {
-  UUserExtraUpdateParams({
-    required this.id,
-    this.nationalCardFront,
-    this.nationalCardBack,
-    this.birthCertificateFirst,
-    this.birthCertificateSecond,
-    this.birthCertificateThird,
-    this.birthCertificateForth,
-    this.birthCertificateFifth,
-    this.visualAuthentication,
-    this.eSignature,
-    this.notVerifiedNationalCodes,
-    this.addTags,
-    this.removeTags,
-    this.tags,
-  });
-
-  factory UUserExtraUpdateParams.fromJson(String str) => UUserExtraUpdateParams.fromMap(json.decode(str));
-
-  factory UUserExtraUpdateParams.fromMap(Map<String, dynamic> json) => UUserExtraUpdateParams(
-    nationalCardFront: json["nationalCardFront"],
-    nationalCardBack: json["nationalCardBack"],
-    birthCertificateFirst: json["birthCertificateFirst"],
-    birthCertificateSecond: json["birthCertificateSecond"],
-    birthCertificateThird: json["birthCertificateThird"],
-    birthCertificateForth: json["birthCertificateForth"],
-    birthCertificateFifth: json["birthCertificateFifth"],
-    visualAuthentication: json["visualAuthentication"],
-    eSignature: json["eSignature"],
-    notVerifiedNationalCodes: json["notVerifiedNationalCodes"] == null ? null : List<String>.from(json["notVerifiedNationalCodes"].map((dynamic x) => x)),
-    id: json["id"],
-    addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
-    removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
-    tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
-  );
-
-  final String id;
-  final List<int>? addTags;
-  final List<int>? removeTags;
-  final List<int>? tags;
-  final String? nationalCardFront;
-  final String? nationalCardBack;
-  final String? birthCertificateFirst;
-  final String? birthCertificateSecond;
-  final String? birthCertificateThird;
-  final String? birthCertificateForth;
-  final String? birthCertificateFifth;
-  final String? visualAuthentication;
-  final String? eSignature;
-  final List<String>? notVerifiedNationalCodes;
-
-  String toJson() => json.encode(toMap());
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "id": id,
-    "nationalCardFront": nationalCardFront,
-    "nationalCardBack": nationalCardBack,
-    "birthCertificateFirst": birthCertificateFirst,
-    "birthCertificateSecond": birthCertificateSecond,
-    "birthCertificateThird": birthCertificateThird,
-    "birthCertificateForth": birthCertificateForth,
-    "birthCertificateFifth": birthCertificateFifth,
-    "visualAuthentication": visualAuthentication,
-    "eSignature": eSignature,
-    "notVerifiedNationalCodes": notVerifiedNationalCodes == null ? null : List<dynamic>.from(notVerifiedNationalCodes!.map((dynamic x) => x)),
-    "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
-    "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
-    "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
-  };
-}
-
-class UUserExtraResponse {
-  UUserExtraResponse({
-    this.nationalCardFront,
-    this.nationalCardBack,
-    this.birthCertificateFirst,
-    this.birthCertificateSecond,
-    this.birthCertificateThird,
-    this.birthCertificateForth,
-    this.birthCertificateFifth,
-    this.visualAuthentication,
-    this.eSignature,
-    this.notVerifiedNationalCodes,
-  });
-
-  factory UUserExtraResponse.fromJson(String str) => UUserExtraResponse.fromMap(json.decode(str));
-
-  factory UUserExtraResponse.fromMap(Map<String, dynamic> json) => UUserExtraResponse(
-    nationalCardFront: json["nationalCardFront"],
-    nationalCardBack: json["nationalCardBack"],
-    birthCertificateFirst: json["birthCertificateFirst"],
-    birthCertificateSecond: json["birthCertificateSecond"],
-    birthCertificateThird: json["birthCertificateThird"],
-    birthCertificateForth: json["birthCertificateForth"],
-    birthCertificateFifth: json["birthCertificateFifth"],
-    visualAuthentication: json["visualAuthentication"],
-    eSignature: json["eSignature"],
-    notVerifiedNationalCodes: json["notVerifiedNationalCodes"] == null ? null : List<String>.from(json["notVerifiedNationalCodes"].map((dynamic x) => x)),
-  );
-  final String? nationalCardFront;
-  final String? nationalCardBack;
-  final String? birthCertificateFirst;
-  final String? birthCertificateSecond;
-  final String? birthCertificateThird;
-  final String? birthCertificateForth;
-  final String? birthCertificateFifth;
-  final String? visualAuthentication;
-  final String? eSignature;
-  final List<String>? notVerifiedNationalCodes;
-
-  String toJson() => json.encode(toMap());
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "nationalCardFront": nationalCardFront,
-    "nationalCardBack": nationalCardBack,
-    "birthCertificateFirst": birthCertificateFirst,
-    "birthCertificateSecond": birthCertificateSecond,
-    "birthCertificateThird": birthCertificateThird,
-    "birthCertificateForth": birthCertificateForth,
-    "birthCertificateFifth": birthCertificateFifth,
-    "visualAuthentication": visualAuthentication,
-    "eSignature": eSignature,
-    "notVerifiedNationalCodes": notVerifiedNationalCodes == null ? null : List<dynamic>.from(notVerifiedNationalCodes!.map((dynamic x) => x)),
   };
 }
