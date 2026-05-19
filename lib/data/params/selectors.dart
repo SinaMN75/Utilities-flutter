@@ -84,14 +84,14 @@ class UserSelectorArgs {
   final AddressSelectorArgs? address;
   final TerminalSelectorArgs? terminal;
   final String? nationalCardFront;
-  final String? nationalCardBack;
-  final String? birthCertificateFirst;
-  final String? birthCertificateSecond;
-  final String? birthCertificateThird;
-  final String? birthCertificateForth;
-  final String? birthCertificateFifth;
-  final String? visualAuthentication;
-  final String? eSignature;
+  final bool? nationalCardBack;
+  final bool? birthCertificateFirst;
+  final bool? birthCertificateSecond;
+  final bool? birthCertificateThird;
+  final bool? birthCertificateForth;
+  final bool? birthCertificateFifth;
+  final bool? visualAuthentication;
+  final bool? eSignature;
 
   const UserSelectorArgs({
     this.category,
