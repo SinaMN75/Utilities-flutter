@@ -337,6 +337,7 @@ class UTextFieldAutoComplete<T> extends StatefulWidget {
     required this.selectedItem,
     super.key,
     this.hintText,
+    this.title,
   });
 
   final List<T> items;
@@ -344,6 +345,7 @@ class UTextFieldAutoComplete<T> extends StatefulWidget {
   final void Function(T?) onChanged;
   final T selectedItem;
   final String? hintText;
+  final String? title;
 
   @override
   State<UTextFieldAutoComplete<T>> createState() => _UTextFieldAutoCompleteState<T>();
@@ -395,7 +397,15 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
   }
 
   @override
-  Widget build(BuildContext context) => InkWell(
+  Widget build(BuildContext context) => widget.title == null
+      ? _input()
+      : UIconTextVertical(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          leading: UTextBodySmall(widget.title ?? ""),
+          trailing: _input(),
+        );
+
+  Widget _input() => InkWell(
     onTap: _openSearchDialog,
     child: InputDecorator(
       decoration: InputDecoration(

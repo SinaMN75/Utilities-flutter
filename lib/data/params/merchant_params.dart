@@ -3,40 +3,40 @@ part of "../data.dart";
 class UMerchantCreateParams {
   final String? detail1;
   final String? detail2;
-  final List<int>? tags;
+  final List<int> tags;
   final String? id;
   final String? creatorId;
-  final String? zipCode;
+  final String zipCode;
   final String? userId;
   final String? businessTitle;
-  final String? cityCode;
-  final String? address;
-  final String? phoneNumber;
-  final String? title;
-  final String? landline;
-  final String? nationalCode;
-  final String? ownerPhoneNumber;
-  final String? ownerName;
+  final String cityCode;
+  final String address;
+  final String phoneNumber;
+  final String title;
+  final String landline;
+  final String nationalCode;
+  final String ownerPhoneNumber;
+  final String ownerName;
   final String? bankAccountId;
   final String? mcc;
 
   UMerchantCreateParams({
+    required this.tags,
+    required this.zipCode,
+    required this.cityCode,
+    required this.address,
+    required this.title,
+    required this.landline,
+    required this.nationalCode,
+    required this.ownerPhoneNumber,
+    required this.ownerName,
+    required this.phoneNumber,
     this.detail1,
     this.detail2,
-    this.tags,
     this.id,
     this.creatorId,
-    this.zipCode,
-    this.userId,
     this.businessTitle,
-    this.cityCode,
-    this.address,
-    this.phoneNumber,
-    this.title,
-    this.landline,
-    this.nationalCode,
-    this.ownerPhoneNumber,
-    this.ownerName,
+    this.userId,
     this.bankAccountId,
     this.mcc,
   });

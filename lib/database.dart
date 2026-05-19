@@ -31,6 +31,18 @@ class UBusinessCategory {
 }
 
 class UData {
+  static String? cityFullName(String? cityCode) {
+    if (cityCode == null) return null;
+    for (final UProvince province in provinces) {
+      for (final UCity city in province.cities) {
+        if (city.code == cityCode) {
+          return "${province.name} - ${city.name}";
+        }
+      }
+    }
+    return cityCode; // fallback if code not found
+  }
+
   static List<UProvince> get provinces => <UProvince>[
     const UProvince(
       code: "01",

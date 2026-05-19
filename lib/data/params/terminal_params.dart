@@ -1,7 +1,6 @@
 part of "../data.dart";
 
 class UTerminalCreateParams {
-  final String title;
   final List<int> tags;
   final String? id;
   final String? simCardNumber;
@@ -11,7 +10,6 @@ class UTerminalCreateParams {
   final String? terminalId;
 
   UTerminalCreateParams({
-    required this.title,
     required this.tags,
     this.id,
     this.simCardNumber,
@@ -28,7 +26,6 @@ class UTerminalCreateParams {
   factory UTerminalCreateParams.fromMap(Map<String, dynamic> json) => UTerminalCreateParams(
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     id: json["id"],
-    title: json["title"],
     serial: json["serial"],
     simCardNumber: json["simCardNumber"],
     simCardSerial: json["simCardSerial"],
@@ -39,7 +36,6 @@ class UTerminalCreateParams {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
-    "title": title,
     "serial": serial,
     "simCardNumber": simCardNumber,
     "simCardSerial": simCardSerial,
@@ -49,18 +45,16 @@ class UTerminalCreateParams {
 }
 
 class UTerminalAssignParams {
-  final String? apiKey;
-  final String? token;
   final String? serial;
   final String? simCardSerial;
   final String? merchantId;
+  final String? title;
 
   UTerminalAssignParams({
-    this.apiKey,
-    this.token,
     this.serial,
     this.simCardSerial,
     this.merchantId,
+    this.title,
   });
 
   factory UTerminalAssignParams.fromJson(String str) => UTerminalAssignParams.fromMap(json.decode(str));
@@ -68,19 +62,17 @@ class UTerminalAssignParams {
   String toJson() => json.encode(toMap());
 
   factory UTerminalAssignParams.fromMap(Map<String, dynamic> json) => UTerminalAssignParams(
-    apiKey: json["apiKey"],
-    token: json["token"],
     serial: json["serial"],
     simCardSerial: json["simCardSerial"],
     merchantId: json["merchantId"],
+    title: json["title"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "apiKey": apiKey,
-    "token": token,
     "serial": serial,
     "simCardSerial": simCardSerial,
     "merchantId": merchantId,
+    "title": title,
   };
 }
 
@@ -97,6 +89,7 @@ class UTerminalReadParams {
   final bool? orderByOrderDesc;
   final String? creatorId;
   final String? serial;
+  final String? merchantId;
   final TerminalSelectorArgs? selectorArgs;
 
   UTerminalReadParams({
@@ -113,6 +106,7 @@ class UTerminalReadParams {
     this.orderByOrderDesc,
     this.creatorId,
     this.serial,
+    this.merchantId,
   });
 
   factory UTerminalReadParams.fromJson(String str) => UTerminalReadParams.fromMap(json.decode(str));
@@ -132,6 +126,7 @@ class UTerminalReadParams {
     orderByOrder: json["orderByOrder"],
     orderByOrderDesc: json["orderByOrderDesc"],
     creatorId: json["creatorId"],
+    merchantId: json["merchantId"],
     selectorArgs: json["selectorArgs"] == null ? null : TerminalSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
@@ -148,6 +143,7 @@ class UTerminalReadParams {
     "orderByOrder": orderByOrder,
     "orderByOrderDesc": orderByOrderDesc,
     "creatorId": creatorId,
+    "merchantId": merchantId,
     "selectorArgs": selectorArgs?.toMap(),
   };
 }

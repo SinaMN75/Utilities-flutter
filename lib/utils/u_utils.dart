@@ -22,9 +22,7 @@ abstract class UValidators {
     if (key.currentState!.validate()) action();
   }
 
-  static FormFieldValidator<T> combineValidators<T>(
-    List<FormFieldValidator<T>> validators,
-  ) => (T? value) {
+  static FormFieldValidator<T> combineValidators<T>(List<FormFieldValidator<T>> validators) => (T? value) {
     for (final FormFieldValidator<T> validator in validators) {
       final String? result = validator(value);
       if (result != null) return result;
@@ -32,13 +30,11 @@ abstract class UValidators {
     return null;
   };
 
-  static FormFieldValidator<T> required<T>({
-    required String message,
-  }) => (T? value) {
+  static FormFieldValidator<T> required<T>({String? message}) => (T? value) {
     if (value == null) return message;
-    if (value is String && value.isEmpty) return message;
-    if (value is List && value.isEmpty) return message;
-    if (value is Map && value.isEmpty) return message;
+    if (value is String && value.isEmpty) return message ?? U.s.required;
+    if (value is List && value.isEmpty) return message ?? U.s.required;
+    if (value is Map && value.isEmpty) return message ?? U.s.required;
     return null;
   };
 
@@ -73,62 +69,62 @@ abstract class UValidators {
   };
 
   static FormFieldValidator<String> email({
-    required String requiredMessage,
-    required String invalidMessage,
+    String? requiredMessage,
+    String? invalidMessage,
     bool isRequired = true,
   }) => (String? value) {
     if (isRequired && (value == null || value.isEmpty)) {
-      return requiredMessage;
+      return requiredMessage ?? U.s.required;
     }
     if (value != null && value.isNotEmpty && !value.isValidEmail) {
-      return invalidMessage;
+      return invalidMessage ?? U.s.invalidMessage;
     }
     return null;
   };
 
   static FormFieldValidator<String> phone({
-    required String requiredMessage,
-    required String invalidMessage,
+    String? requiredMessage,
+    String? invalidMessage,
     bool isRequired = true,
   }) => (String? value) {
     if (isRequired && (value == null || value.isEmpty)) {
-      return requiredMessage;
+      return requiredMessage ?? U.s.required;
     }
     if (value != null && value.isNotEmpty && !value.isValidPhone) {
-      return invalidMessage;
+      return invalidMessage ?? U.s.invalidMessage;
     }
     return null;
   };
 
   static FormFieldValidator<String> number({
-    required String requiredMessage,
-    required String invalidMessage,
+    String? requiredMessage,
+    String? invalidMessage,
     int? minLength,
     int? maxLength,
     bool isRequired = true,
   }) => (String? value) {
     if (isRequired && (value == null || value.isEmpty)) {
-      return requiredMessage;
+      return requiredMessage ?? U.s.required;
     }
     if (value != null && value.isNotEmpty && !GetUtils.isNumericOnly(value.extractLatinNumber())) {
-      return invalidMessage;
+      return invalidMessage ?? U.s.invalidMessage;
     }
     if (minLength != null && value != null && value.isNotEmpty && value.length < minLength) {
-      return invalidMessage;
+      return invalidMessage ?? U.s.invalidMessage;
     }
     if (maxLength != null && value != null && value.isNotEmpty && value.length > maxLength) {
-      return invalidMessage;
+      return invalidMessage ?? U.s.invalidMessage;
     }
     return null;
   };
 
   static FormFieldValidator<String> iranianNationalCode({
-    required String requiredMessage,
-    required String invalidMessage,
+    String? requiredMessage,
+    String? invalidMessage,
     bool isRequired = true,
   }) => (String? value) {
-    if (isRequired && (value == null || value.isEmpty)) return requiredMessage;
-    if (!PersianTools.validateNationalCode(value)) return invalidMessage;
+    if (isRequired && (value == null || value.isEmpty)) return requiredMessage ?? U.s.required;
+    if (!PersianTools.validateNationalCode(value)) return invalidMessage ?? U.s.invalidMessage;
     return null;
   };
 
@@ -151,26 +147,26 @@ abstract class UValidators {
   };
 
   static FormFieldValidator<String> url({
-    required String requiredMessage,
-    required String invalidMessage,
+    String? requiredMessage,
+    String? invalidMessage,
     bool isRequired = true,
   }) => (String? value) {
     if (isRequired && (value == null || value.isEmpty)) {
-      return requiredMessage;
+      return requiredMessage ?? U.s.required;
     }
     if (value != null && value.isNotEmpty && !value.isValidUrl) {
-      return invalidMessage;
+      return invalidMessage ?? U.s.invalidMessage;
     }
     return null;
   };
 
   static FormFieldValidator<String> password({
-    required String requiredMessage,
     required String weakMessage,
+    String? requiredMessage,
     bool isRequired = true,
   }) => (String? value) {
     if (isRequired && (value == null || value.isEmpty)) {
-      return requiredMessage;
+      return requiredMessage ?? U.s.required;
     }
     if (value != null && value.isNotEmpty && !value.isStrongPassword) {
       return weakMessage;
@@ -179,15 +175,15 @@ abstract class UValidators {
   };
 
   static FormFieldValidator<String> alphanumeric({
-    required String requiredMessage,
-    required String invalidMessage,
+    String? requiredMessage,
+    String? invalidMessage,
     bool isRequired = true,
   }) => (String? value) {
     if (isRequired && (value == null || value.isEmpty)) {
-      return requiredMessage;
+      return requiredMessage ?? U.s.required;
     }
     if (value != null && value.isNotEmpty && !value.isAlphanumeric) {
-      return invalidMessage;
+      return invalidMessage ?? U.s.invalidMessage;
     }
     return null;
   };
