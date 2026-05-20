@@ -103,18 +103,10 @@ abstract class UValidators {
     int? maxLength,
     bool isRequired = true,
   }) => (String? value) {
-    if (isRequired && (value == null || value.isEmpty)) {
-      return requiredMessage ?? U.s.required;
-    }
-    if (value != null && value.isNotEmpty && !GetUtils.isNumericOnly(value.extractLatinNumber())) {
-      return invalidMessage ?? U.s.invalidMessage;
-    }
-    if (minLength != null && value != null && value.isNotEmpty && value.length < minLength) {
-      return invalidMessage ?? U.s.invalidMessage;
-    }
-    if (maxLength != null && value != null && value.isNotEmpty && value.length > maxLength) {
-      return invalidMessage ?? U.s.invalidMessage;
-    }
+    if (isRequired && (value == null || value.isEmpty)) return requiredMessage ?? U.s.required;
+    if (value != null && value.isNotEmpty && !value.extractLatinNumber().isNumericOnly) return invalidMessage ?? U.s.invalidMessage;
+    if (minLength != null && value != null && value.isNotEmpty && value.length < minLength) return invalidMessage ?? U.s.invalidMessage;
+    if (maxLength != null && value != null && value.isNotEmpty && value.length > maxLength) return invalidMessage ?? U.s.invalidMessage;
     return null;
   };
 
@@ -124,7 +116,7 @@ abstract class UValidators {
     bool isRequired = true,
   }) => (String? value) {
     if (isRequired && (value == null || value.isEmpty)) return requiredMessage ?? U.s.required;
-    if (!PersianTools.validateNationalCode(value)) return invalidMessage ?? U.s.invalidMessage;
+    if (!PersianTools.validateNationalCode(value?.toLatinNumber())) return invalidMessage ?? U.s.invalidMessage;
     return null;
   };
 

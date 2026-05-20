@@ -51,11 +51,7 @@ extension IterableExtentions<T> on Iterable<T> {
     return list;
   }
 
-  bool containsAll<T>(final List<T> list) {
-    if (list.isEmpty) return true;
-    final Set<T> setA = Set<T>.of(list);
-    return setA.containsAll(this);
-  }
+  bool containsAll<T>(final List<T> list) => toSet().containsAll(list);
 
   bool containsAny<T>(final List<T> list) {
     final Set<T> setA = Set<T>.of(list);
@@ -100,5 +96,5 @@ extension NullableIterableExtentions on Iterable<dynamic>? {
     return true;
   }
 
-  bool containsAll<T>(final List<T> list) => (this ?? <T>[]).toSet().containsAll(this ?? <T>[]);
+  bool containsAll<T>(final List<T> list) => (this ?? <T>[]).toSet().containsAll(list);
 }

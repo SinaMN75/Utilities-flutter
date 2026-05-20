@@ -248,7 +248,7 @@ enum TagVehicle with NumericIdentifiable {
 }
 
 enum TagWallet with NumericIdentifiable {
-  verified("کیف پول اصلی", "Primary", 101),
+  primary("کیف پول اصلی", "Primary", 101),
   ;
 
   const TagWallet(this.titleFa, this.titleEn, this.number);

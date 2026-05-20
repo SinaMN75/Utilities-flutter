@@ -325,7 +325,7 @@ extension StringExtensions on String {
     return utf8.decode(bytes);
   }
 
-  String extractLatinNumber() => replaceAll(RegExp(r"[^\d]"), "");
+  String extractLatinNumber() => toLatinNumber().replaceAll(RegExp(r"[^\d]"), "");
 
   bool get isValidEmail => RegExp(
     r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",

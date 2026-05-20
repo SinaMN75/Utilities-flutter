@@ -55,11 +55,11 @@ extension DoubleExtionsion on double {
 }
 
 extension IntExtesion on int {
-  int subtractClamping(
-    final int subtract, {
+  int subtractClamping(final int subtract, {
     final int minValue = 0,
     final int maxValue = 999999999,
-  }) => (this - subtract).clamp(
+  }) =>
+      (this - subtract).clamp(
     minValue,
     maxValue,
   );
@@ -83,7 +83,7 @@ extension IntExtesion on int {
 
   String toman({final bool removeNegative = false}) => "${toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "");
 
-  String rialToTomanMoneyPersian({final bool removeNegative = false}) => "${(this / 10).toString().separateNumbers3By3()} تومان ";
+  String rialToToman({final bool removeNegative = false}) => "${(this / 10).toInt().toString().separateNumbers3By3()} تومان ";
 
   String secondsToTimeLeft() {
     final int h = this ~/ 3600;
@@ -176,7 +176,7 @@ extension OptionalIntExtension on int? {
 
   String toman({final bool removeNegative = false}) => "${(this ?? 0).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
 
-  String rialToTomanMoneyPersian({final bool removeNegative = false}) => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
+  String rialToToman({final bool removeNegative = false}) => "${((this ?? 0) / 10).toInt().toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
 
   String toStringOrEmptyIfNull() => this == null ? "" : toString();
 }
