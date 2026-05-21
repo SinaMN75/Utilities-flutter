@@ -76,13 +76,42 @@ class ContentSelectorArgs {
   };
 }
 
+class MerchantSelectorArgs {
+  final TerminalSelectorArgs? terminal;
+  final UserSelectorArgs? creator;
+  final UserSelectorArgs? user;
+
+  const MerchantSelectorArgs({
+    this.creator,
+    this.user,
+    this.terminal,
+  });
+
+  factory MerchantSelectorArgs.fromJson(String str) => MerchantSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory MerchantSelectorArgs.fromMap(Map<String, dynamic> json) => MerchantSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+    terminal: json["terminal"] == null ? null : TerminalSelectorArgs.fromMap(json["terminal"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "user": user?.toMap(),
+    "terminal": terminal?.toMap(),
+  };
+}
+
 class UserSelectorArgs {
   final CategorySelectorArgs? category;
   final ContractSelectorArgs? contract;
   final MediaSelectorArgs? media;
   final InvoiceSelectorArgs? invoice;
   final AddressSelectorArgs? address;
-  final TerminalSelectorArgs? terminal;
+  final MerchantSelectorArgs? merchant;
+  final WalletSelectorArgs? wallet;
   final bool? nationalCardFront;
   final bool? nationalCardBack;
   final bool? birthCertificateFirst;
@@ -99,7 +128,8 @@ class UserSelectorArgs {
     this.media,
     this.invoice,
     this.address,
-    this.terminal,
+    this.merchant,
+    this.wallet,
     this.nationalCardFront,
     this.nationalCardBack,
     this.birthCertificateFirst,
@@ -121,7 +151,8 @@ class UserSelectorArgs {
     media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
     invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
     address: json["address"] == null ? null : AddressSelectorArgs.fromMap(json["address"]),
-    terminal: json["terminal"] == null ? null : TerminalSelectorArgs.fromMap(json["terminal"]),
+    merchant: json["merchant"] == null ? null : MerchantSelectorArgs.fromMap(json["merchant"]),
+    wallet: json["wallet"] == null ? null : WalletSelectorArgs.fromMap(json["wallet"]),
     nationalCardFront: json["nationalCardFront"],
     nationalCardBack: json["nationalCardBack"],
     birthCertificateFirst: json["birthCertificateFirst"],
@@ -139,7 +170,8 @@ class UserSelectorArgs {
     "media": media?.toMap(),
     "invoice": invoice?.toMap(),
     "address": address?.toMap(),
-    "terminal": terminal?.toMap(),
+    "merchant": merchant?.toMap(),
+    "wallet": wallet?.toMap(),
     "nationalCardFront": nationalCardFront,
     "nationalCardBack": nationalCardBack,
     "birthCertificateFirst": birthCertificateFirst,

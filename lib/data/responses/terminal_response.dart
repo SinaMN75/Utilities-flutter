@@ -8,6 +8,7 @@ class UTerminalResponse {
   final String? simCardSerial;
   final String? imei;
   final String? terminalId;
+  final String? agreement;
   final UBaseJson jsonData;
   final DateTime createdAt;
 
@@ -20,6 +21,7 @@ class UTerminalResponse {
     this.terminalId,
     this.simCardNumber,
     this.simCardSerial,
+    this.agreement,
     this.imei,
   });
 
@@ -36,6 +38,7 @@ class UTerminalResponse {
     simCardNumber: json["simCardNumber"],
     simCardSerial: json["simCardSerial"],
     imei: json["imei"],
+    agreement: json["agreement"],
     createdAt: DateTime.parse(json["createdAt"]),
   );
 
@@ -43,6 +46,7 @@ class UTerminalResponse {
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "id": id,
     "terminalId": terminalId,
+    "agreement": agreement,
     "serial": serial,
     "simCardNumber": simCardNumber,
     "simCardSerial": simCardSerial,

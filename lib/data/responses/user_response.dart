@@ -22,7 +22,8 @@ class UUserResponse {
     this.categories,
     this.media,
     this.addresses,
-    this.terminals,
+    this.merchants,
+    this.wallets,
     this.nationalCardFront,
     this.nationalCardBack,
     this.birthCertificateFirst,
@@ -65,7 +66,8 @@ class UUserResponse {
     birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
     categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
-    terminals: json["terminals"] == null ? <UTerminalResponse>[] : List<UTerminalResponse>.from(json["terminals"].map((dynamic x) => UTerminalResponse.fromMap(x))),
+    merchants: json["merchants"] == null ? <UMerchantResponse>[] : List<UMerchantResponse>.from(json["merchants"].map((dynamic x) => UMerchantResponse.fromMap(x))),
+    wallets: json["wallets"] == null ? <UWalletResponse>[] : List<UWalletResponse>.from(json["wallets"].map((dynamic x) => UWalletResponse.fromMap(x))),
   );
   final String id;
   final DateTime createdAt;
@@ -96,7 +98,8 @@ class UUserResponse {
   final List<UCategoryResponse>? categories;
   final List<UMediaResponse>? media;
   final List<UAddressResponse>? addresses;
-  final List<UTerminalResponse>? terminals;
+  final List<UMerchantResponse>? merchants;
+  final List<UWalletResponse>? wallets;
 
   String toJson() => json.encode(toMap());
 
@@ -130,7 +133,8 @@ class UUserResponse {
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
     "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
     "addresses": addresses == null ? null : List<dynamic>.from(addresses!.map((UAddressResponse x) => x.toMap())),
-    "terminals": terminals == null ? null : List<dynamic>.from(terminals!.map((UTerminalResponse x) => x.toMap())),
+    "merchants": merchants == null ? null : List<dynamic>.from(merchants!.map((UMerchantResponse x) => x.toMap())),
+    "wallets": wallets == null ? null : List<dynamic>.from(wallets!.map((UWalletResponse x) => x.toMap())),
   };
 }
 

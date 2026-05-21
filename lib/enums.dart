@@ -261,11 +261,16 @@ enum TagWallet with NumericIdentifiable {
   final int number;
 }
 
-enum TagTerminal with NumericIdentifiable {
-  verified("کیف پول اصلی", "Primary", 101),
+enum TagTerminalWithTitles with NumericIdentifiable {
+  atm("خودپرداز", "ATM", 101),
+  wallCashless("پرداخت بدون پول نقد دیواری", "Wall Cashless", 102),
+  deskCashless("پرداخت بدون پول نقد میز", "Desk Cashless", 103),
+  verified("کیف پول اصلی", "Primary", 201),
+  awaitingVerification("در انتظار تأیید", "Awaiting Verification", 202),
+  suspended("تعلیق شده", "Suspended", 203)
   ;
 
-  const TagTerminal(this.titleFa, this.titleEn, this.number);
+  const TagTerminalWithTitles(this.titleFa, this.titleEn, this.number);
 
   @override
   final String titleFa;
