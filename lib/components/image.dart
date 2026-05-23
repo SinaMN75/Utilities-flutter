@@ -34,7 +34,7 @@ class UImage extends StatelessWidget {
     child: Builder(
       builder: (final BuildContext context) {
         if (fileData != null) {
-          if (UApp.isWeb) {
+          if (fileData?.bytes != null) {
             return UImageMemory(
               fileData!.bytes!,
               width: width,
@@ -42,6 +42,7 @@ class UImage extends StatelessWidget {
               borderRadius: borderRadius,
               color: color,
               fit: fit,
+              placeholder: placeholder,
             );
           } else {
             return UImageFile(
@@ -307,6 +308,7 @@ class UImageMemory extends StatelessWidget {
     this.color,
     this.width,
     this.height,
+        this.placeholder,
     this.fit = BoxFit.contain,
     this.borderRadius = 1,
     super.key,
@@ -318,6 +320,7 @@ class UImageMemory extends StatelessWidget {
   final double? height;
   final BoxFit fit;
   final double borderRadius;
+  final String? placeholder;
 
   @override
   Widget build(final BuildContext context) => Image.memory(
@@ -326,5 +329,16 @@ class UImageMemory extends StatelessWidget {
     width: width,
     height: height,
     fit: fit,
+    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) =>
+    placeholder == null
+        ? SizedBox(width: width, height: height)
+        : UImageAsset(
+      placeholder!,
+      color: color,
+      width: width,
+      height: height,
+      fit: fit,
+      borderRadius: borderRadius,
+    ),
   ).container(radius: borderRadius);
 }
