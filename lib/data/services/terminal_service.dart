@@ -89,4 +89,18 @@ class TerminalService {
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
+
+  Future<UHttpClientResponse> readSupportPassword({
+    required final UIdParams p,
+    final Function(UResponse<UTerminalReadSupportPasswordResponse> r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/terminal/ReadSupportPassword",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UTerminalReadSupportPasswordResponse>.fromJson(r.body, (final dynamic i) => UTerminalReadSupportPasswordResponse.fromMap(i))),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
 }

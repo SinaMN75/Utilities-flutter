@@ -37,7 +37,7 @@ class UTerminalResponse {
     terminalId: json["terminalId"],
     serial: json["serial"],
     jsonData: UBaseJson.fromMap(json["jsonData"]),
-    merchant: UMerchantResponse.fromMap(json["merchant"]),
+    merchant: json["merchant"] == null ? null : UMerchantResponse.fromMap(json["merchant"]),
     simCardNumber: json["simCardNumber"],
     simCardSerial: json["simCardSerial"],
     imei: json["imei"],
@@ -58,4 +58,26 @@ class UTerminalResponse {
     "merchant": merchant?.toMap(),
     "createdAt": createdAt.toIso8601String(),
   };
+}
+
+class UTerminalReadSupportPasswordResponse {
+  final String? password;
+
+  UTerminalReadSupportPasswordResponse({
+    this.password,
+  });
+
+  factory UTerminalReadSupportPasswordResponse.fromJson(String str) => UTerminalReadSupportPasswordResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UTerminalReadSupportPasswordResponse.fromMap(Map<String, dynamic> json) =>
+      UTerminalReadSupportPasswordResponse(
+        password: json["password"],
+      );
+
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "password": password,
+      };
 }
