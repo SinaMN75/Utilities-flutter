@@ -261,7 +261,7 @@ enum TagWallet with NumericIdentifiable {
   final int number;
 }
 
-enum TagTerminalWithTitles with NumericIdentifiable {
+enum TagTerminal with NumericIdentifiable {
   atm("خودپرداز", "ATM", 101),
   wallCashless("پرداخت بدون پول نقد دیواری", "Wall Cashless", 102),
   deskCashless("پرداخت بدون پول نقد میز", "Desk Cashless", 103),
@@ -270,7 +270,7 @@ enum TagTerminalWithTitles with NumericIdentifiable {
   suspended("تعلیق شده", "Suspended", 203)
   ;
 
-  const TagTerminalWithTitles(this.titleFa, this.titleEn, this.number);
+  const TagTerminal(this.titleFa, this.titleEn, this.number);
 
   @override
   final String titleFa;

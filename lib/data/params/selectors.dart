@@ -338,9 +338,11 @@ class BankAccountSelectorArgs {
 
 class TerminalSelectorArgs {
   final UserSelectorArgs? creator;
+  final MerchantSelectorArgs? merchant;
 
   const TerminalSelectorArgs({
     this.creator,
+    this.merchant,
   });
 
   factory TerminalSelectorArgs.fromJson(String str) => TerminalSelectorArgs.fromMap(json.decode(str));
@@ -349,10 +351,12 @@ class TerminalSelectorArgs {
 
   factory TerminalSelectorArgs.fromMap(Map<String, dynamic> json) => TerminalSelectorArgs(
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    merchant: json["merchant"] == null ? null : MerchantSelectorArgs.fromMap(json["merchant"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "creator": creator?.toMap(),
+    "merchant": merchant?.toMap(),
   };
 }
 
