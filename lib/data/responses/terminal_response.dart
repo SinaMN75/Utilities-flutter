@@ -11,6 +11,7 @@ class UTerminalResponse {
   final String? agreement;
   final UBaseJson jsonData;
   final DateTime createdAt;
+  final UMerchantResponse? merchant;
 
   UTerminalResponse({
     required this.tags,
@@ -23,6 +24,7 @@ class UTerminalResponse {
     this.simCardSerial,
     this.agreement,
     this.imei,
+    this.merchant,
   });
 
   factory UTerminalResponse.fromJson(String str) => UTerminalResponse.fromMap(json.decode(str));
@@ -35,6 +37,7 @@ class UTerminalResponse {
     terminalId: json["terminalId"],
     serial: json["serial"],
     jsonData: UBaseJson.fromMap(json["jsonData"]),
+    merchant: UMerchantResponse.fromMap(json["merchant"]),
     simCardNumber: json["simCardNumber"],
     simCardSerial: json["simCardSerial"],
     imei: json["imei"],
@@ -52,6 +55,7 @@ class UTerminalResponse {
     "simCardSerial": simCardSerial,
     "imei": imei,
     "jsonData": jsonData.toMap(),
+    "merchant": merchant?.toMap(),
     "createdAt": createdAt.toIso8601String(),
   };
 }
