@@ -145,6 +145,16 @@ class UUserJson {
     this.height,
     this.address,
     this.fatherName,
+
+    this.nationalCardFrontRejectionReason,
+    this.nationalCardBackRejectionReason,
+    this.birthCertificateFirstRejectionReason,
+    this.birthCertificateSecondRejectionReason,
+    this.birthCertificateThirdRejectionReason,
+    this.birthCertificateForthRejectionReason,
+    this.birthCertificateFifthRejectionReason,
+    this.visualAuthenticationRejectionReason,
+    this.eSignatureRejectionReason,
   });
 
   factory UUserJson.fromJson(String str) => UUserJson.fromMap(json.decode(str));
@@ -155,12 +165,30 @@ class UUserJson {
     height: json["height"],
     address: json["address"],
     fatherName: json["fatherName"],
+    nationalCardFrontRejectionReason: json["nationalCardFrontRejectionReason"],
+    nationalCardBackRejectionReason: json["nationalCardBackRejectionReason"],
+    birthCertificateFirstRejectionReason: json["birthCertificateFirstRejectionReason"],
+    birthCertificateSecondRejectionReason: json["birthCertificateSecondRejectionReason"],
+    birthCertificateThirdRejectionReason: json["birthCertificateThirdRejectionReason"],
+    birthCertificateForthRejectionReason: json["birthCertificateForthRejectionReason"],
+    birthCertificateFifthRejectionReason: json["birthCertificateFifthRejectionReason"],
+    visualAuthenticationRejectionReason: json["visualAuthenticationRejectionReason"],
+    eSignatureRejectionReason: json["eSignatureRejectionReason"],
   );
   final String? fcmToken;
   final int? weight;
   final int? height;
   final String? address;
   final String? fatherName;
+  final String? nationalCardFrontRejectionReason;
+  final String? nationalCardBackRejectionReason;
+  final String? birthCertificateFirstRejectionReason;
+  final String? birthCertificateSecondRejectionReason;
+  final String? birthCertificateThirdRejectionReason;
+  final String? birthCertificateForthRejectionReason;
+  final String? birthCertificateFifthRejectionReason;
+  final String? visualAuthenticationRejectionReason;
+  final String? eSignatureRejectionReason;
 
   String toJson() => json.encode(toMap());
 
@@ -170,6 +198,15 @@ class UUserJson {
     "height": height,
     "address": address,
     "fatherName": fatherName,
+    "nationalCardFrontRejectionReason": nationalCardFrontRejectionReason,
+    "nationalCardBackRejectionReason": nationalCardBackRejectionReason,
+    "birthCertificateFirstRejectionReason": birthCertificateFirstRejectionReason,
+    "birthCertificateSecondRejectionReason": birthCertificateSecondRejectionReason,
+    "birthCertificateThirdRejectionReason": birthCertificateThirdRejectionReason,
+    "birthCertificateForthRejectionReason": birthCertificateForthRejectionReason,
+    "birthCertificateFifthRejectionReason": birthCertificateFifthRejectionReason,
+    "visualAuthenticationRejectionReason": visualAuthenticationRejectionReason,
+    "eSignatureRejectionReason": eSignatureRejectionReason,
   };
 }
 

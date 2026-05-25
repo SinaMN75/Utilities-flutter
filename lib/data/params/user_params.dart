@@ -274,6 +274,15 @@ class UUserUpdateParams {
     this.birthCertificateFifth,
     this.visualAuthentication,
     this.eSignature,
+    this.nationalCardFrontRejectionReason,
+    this.nationalCardBackRejectionReason,
+    this.birthCertificateFirstRejectionReason,
+    this.birthCertificateSecondRejectionReason,
+    this.birthCertificateThirdRejectionReason,
+    this.birthCertificateForthRejectionReason,
+    this.birthCertificateFifthRejectionReason,
+    this.visualAuthenticationRejectionReason,
+    this.eSignatureRejectionReason,
   });
 
   factory UUserUpdateParams.fromJson(String str) => UUserUpdateParams.fromMap(json.decode(str));
@@ -305,6 +314,15 @@ class UUserUpdateParams {
     birthCertificateFifth: json["birthCertificateFifth"],
     visualAuthentication: json["visualAuthentication"],
     eSignature: json["eSignature"],
+    nationalCardFrontRejectionReason: json["nationalCardFrontRejectionReason"],
+    nationalCardBackRejectionReason: json["nationalCardBackRejectionReason"],
+    birthCertificateFirstRejectionReason: json["birthCertificateFirstRejectionReason"],
+    birthCertificateSecondRejectionReason: json["birthCertificateSecondRejectionReason"],
+    birthCertificateThirdRejectionReason: json["birthCertificateThirdRejectionReason"],
+    birthCertificateForthRejectionReason: json["birthCertificateForthRejectionReason"],
+    birthCertificateFifthRejectionReason: json["birthCertificateFifthRejectionReason"],
+    visualAuthenticationRejectionReason: json["visualAuthenticationRejectionReason"],
+    eSignatureRejectionReason: json["eSignatureRejectionReason"],
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
     id: json["id"],
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
@@ -342,6 +360,15 @@ class UUserUpdateParams {
   final String? birthCertificateFifth;
   final String? visualAuthentication;
   final String? eSignature;
+  final String? nationalCardFrontRejectionReason;
+  final String? nationalCardBackRejectionReason;
+  final String? birthCertificateFirstRejectionReason;
+  final String? birthCertificateSecondRejectionReason;
+  final String? birthCertificateThirdRejectionReason;
+  final String? birthCertificateForthRejectionReason;
+  final String? birthCertificateFifthRejectionReason;
+  final String? visualAuthenticationRejectionReason;
+  final String? eSignatureRejectionReason;
 
   String toJson() => json.encode(toMap());
 
@@ -372,6 +399,15 @@ class UUserUpdateParams {
     "birthCertificateFifth": birthCertificateFifth,
     "visualAuthentication": visualAuthentication,
     "eSignature": eSignature,
+    "nationalCardFrontRejectionReason": nationalCardFrontRejectionReason,
+    "nationalCardBackRejectionReason": nationalCardBackRejectionReason,
+    "birthCertificateFirstRejectionReason": birthCertificateFirstRejectionReason,
+    "birthCertificateSecondRejectionReason": birthCertificateSecondRejectionReason,
+    "birthCertificateThirdRejectionReason": birthCertificateThirdRejectionReason,
+    "birthCertificateForthRejectionReason": birthCertificateForthRejectionReason,
+    "birthCertificateFifthRejectionReason": birthCertificateFifthRejectionReason,
+    "visualAuthenticationRejectionReason": visualAuthenticationRejectionReason,
+    "eSignatureRejectionReason": eSignatureRejectionReason,
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
     "id": id,
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
