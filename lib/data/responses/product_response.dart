@@ -27,7 +27,6 @@ class UProductResponse {
     this.children,
     this.media,
     this.categories,
-    this.contracts,
     this.commentCount,
     this.isFollowing,
     this.childrenCount,
@@ -64,7 +63,6 @@ class UProductResponse {
     children: json["children"] == null ? <UProductResponse>[] : List<UProductResponse>.from(json["children"].map((dynamic x) => UProductResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
     categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
-    contracts: json["contracts"] == null ? <UContractResponse>[] : List<UContractResponse>.from(json["contracts"].map((dynamic x) => UContractResponse.fromMap(x))),
   );
   final String id;
   final DateTime createdAt;
@@ -90,7 +88,6 @@ class UProductResponse {
   final List<UProductResponse>? children;
   final List<UMediaResponse>? media;
   final List<UCategoryResponse>? categories;
-  final List<UContractResponse>? contracts;
   final int? commentCount;
   final bool? isFollowing;
   final int? visitCount;
@@ -127,7 +124,6 @@ class UProductResponse {
     "children": children == null ? null : List<dynamic>.from(children!.map((UProductResponse x) => x.toMap())),
     "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
-    "contracts": contracts == null ? null : List<dynamic>.from(contracts!.map((UContractResponse x) => x.toMap())),
   };
 }
 

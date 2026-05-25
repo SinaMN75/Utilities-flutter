@@ -1,117 +1,14 @@
 part of "../data.dart";
 
-class CategorySelectorArgs {
-  final MediaSelectorArgs? media;
-  final CategorySelectorArgs? children;
-  final ProductSelectorArgs? product;
-  final UserSelectorArgs? creator;
-  final int? childrenDebt;
-
-  const CategorySelectorArgs({
-    this.media,
-    this.children,
-    this.product,
-    this.creator,
-    this.childrenDebt,
-  });
-
-  factory CategorySelectorArgs.fromJson(String str) => CategorySelectorArgs.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory CategorySelectorArgs.fromMap(Map<String, dynamic> json) => CategorySelectorArgs(
-    media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
-    children: json["children"] == null ? null : CategorySelectorArgs.fromMap(json["children"]),
-    product: json["product"] == null ? null : ProductSelectorArgs.fromMap(json["product"]),
-    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-    childrenDebt: json["childrenDebt"],
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "media": media?.toMap(),
-    "children": children?.toMap(),
-    "product": product?.toMap(),
-    "creator": creator?.toMap(),
-    "childrenDebt": childrenDebt,
-  };
-}
-
-class MediaSelectorArgs {
-  final MediaSelectorArgs? children;
-
-  const MediaSelectorArgs({
-    this.children,
-  });
-
-  factory MediaSelectorArgs.fromJson(String str) => MediaSelectorArgs.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory MediaSelectorArgs.fromMap(Map<String, dynamic> json) => MediaSelectorArgs(
-    children: json["children"] == null ? null : MediaSelectorArgs.fromMap(json["children"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "children": children?.toMap(),
-  };
-}
-
-class ContentSelectorArgs {
-  final MediaSelectorArgs? media;
-
-  const ContentSelectorArgs({
-    this.media,
-  });
-
-  factory ContentSelectorArgs.fromJson(String str) => ContentSelectorArgs.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory ContentSelectorArgs.fromMap(Map<String, dynamic> json) => ContentSelectorArgs(
-    media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "media": media?.toMap(),
-  };
-}
-
-class MerchantSelectorArgs {
-  final TerminalSelectorArgs? terminal;
-  final UserSelectorArgs? creator;
-  final UserSelectorArgs? user;
-
-  const MerchantSelectorArgs({
-    this.creator,
-    this.user,
-    this.terminal,
-  });
-
-  factory MerchantSelectorArgs.fromJson(String str) => MerchantSelectorArgs.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory MerchantSelectorArgs.fromMap(Map<String, dynamic> json) => MerchantSelectorArgs(
-    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
-    terminal: json["terminal"] == null ? null : TerminalSelectorArgs.fromMap(json["terminal"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "creator": creator?.toMap(),
-    "user": user?.toMap(),
-    "terminal": terminal?.toMap(),
-  };
-}
-
 class UserSelectorArgs {
   final CategorySelectorArgs? category;
-  final ContractSelectorArgs? contract;
   final MediaSelectorArgs? media;
-  final InvoiceSelectorArgs? invoice;
+  final TxnSelectorArgs? txns;
   final AddressSelectorArgs? address;
-  final MerchantSelectorArgs? merchant;
   final WalletSelectorArgs? wallet;
+  final MerchantSelectorArgs? merchant;
+  final BankAccountSelectorArgs? bankAccount;
+  final SimCardSelectorArgs? simCard;
   final bool? nationalCardFront;
   final bool? nationalCardBack;
   final bool? birthCertificateFirst;
@@ -124,12 +21,13 @@ class UserSelectorArgs {
 
   const UserSelectorArgs({
     this.category,
-    this.contract,
     this.media,
-    this.invoice,
+    this.txns,
     this.address,
-    this.merchant,
     this.wallet,
+    this.merchant,
+    this.bankAccount,
+    this.simCard,
     this.nationalCardFront,
     this.nationalCardBack,
     this.birthCertificateFirst,
@@ -147,12 +45,13 @@ class UserSelectorArgs {
 
   factory UserSelectorArgs.fromMap(Map<String, dynamic> json) => UserSelectorArgs(
     category: json["category"] == null ? null : CategorySelectorArgs.fromMap(json["category"]),
-    contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
     media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
-    invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
+    txns: json["txns"] == null ? null : TxnSelectorArgs.fromMap(json["txns"]),
     address: json["address"] == null ? null : AddressSelectorArgs.fromMap(json["address"]),
-    merchant: json["merchant"] == null ? null : MerchantSelectorArgs.fromMap(json["merchant"]),
     wallet: json["wallet"] == null ? null : WalletSelectorArgs.fromMap(json["wallet"]),
+    merchant: json["merchant"] == null ? null : MerchantSelectorArgs.fromMap(json["merchant"]),
+    bankAccount: json["bankAccount"] == null ? null : BankAccountSelectorArgs.fromMap(json["bankAccount"]),
+    simCard: json["simCard"] == null ? null : SimCardSelectorArgs.fromMap(json["simCard"]),
     nationalCardFront: json["nationalCardFront"],
     nationalCardBack: json["nationalCardBack"],
     birthCertificateFirst: json["birthCertificateFirst"],
@@ -166,12 +65,13 @@ class UserSelectorArgs {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "category": category?.toMap(),
-    "contract": contract?.toMap(),
     "media": media?.toMap(),
-    "invoice": invoice?.toMap(),
+    "txns": txns?.toMap(),
     "address": address?.toMap(),
-    "merchant": merchant?.toMap(),
     "wallet": wallet?.toMap(),
+    "merchant": merchant?.toMap(),
+    "bankAccount": bankAccount?.toMap(),
+    "simCard": simCard?.toMap(),
     "nationalCardFront": nationalCardFront,
     "nationalCardBack": nationalCardBack,
     "birthCertificateFirst": birthCertificateFirst,
@@ -184,155 +84,125 @@ class UserSelectorArgs {
   };
 }
 
-class ProductSelectorArgs {
-  final String? userId;
-  final ProductSelectorArgs? children;
-  final CategorySelectorArgs? category;
+class ParkingReportSelectorArgs {
   final UserSelectorArgs? creator;
-  final MediaSelectorArgs? media;
-  final CommentSelectorArgs? comment;
-  final ContractSelectorArgs? contract;
-  final bool? childrenCount;
-  final bool? commentsCount;
-  final bool? isFollowing;
+  final VehicleSelectorArgs? vehicle;
+  final ParkingSelectorArgs? parking;
 
-  const ProductSelectorArgs({
-    this.userId,
-    this.children,
-    this.category,
-    this.creator,
-    this.media,
-    this.comment,
-    this.contract,
-    this.childrenCount,
-    this.commentsCount,
-    this.isFollowing,
-  });
+  const ParkingReportSelectorArgs({this.creator, this.vehicle, this.parking});
 
-  factory ProductSelectorArgs.fromJson(String str) => ProductSelectorArgs.fromMap(json.decode(str));
+  factory ParkingReportSelectorArgs.fromJson(String str) => ParkingReportSelectorArgs.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ProductSelectorArgs.fromMap(Map<String, dynamic> json) => ProductSelectorArgs(
-    userId: json["userId"],
-    children: json["children"] == null ? null : ProductSelectorArgs.fromMap(json["children"]),
-    category: json["category"] == null ? null : CategorySelectorArgs.fromMap(json["category"]),
+  factory ParkingReportSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      ParkingReportSelectorArgs(
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-    media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
-    comment: json["comment"] == null ? null : CommentSelectorArgs.fromMap(json["comment"]),
-    contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
-    childrenCount: json["childrenCount"] ?? false,
-    commentsCount: json["commentsCount"] ?? false,
-    isFollowing: json["isFollowing"] ?? false,
+        vehicle: json["vehicle"] == null ? null : VehicleSelectorArgs.fromMap(json["vehicle"]),
+        parking: json["parking"] == null ? null : ParkingSelectorArgs.fromMap(json["parking"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "userId": userId,
-    "children": children?.toMap(),
-    "category": category?.toMap(),
     "creator": creator?.toMap(),
-    "media": media?.toMap(),
-    "comment": comment?.toMap(),
-    "contract": contract?.toMap(),
-    "childrenCount": childrenCount,
-    "commentsCount": commentsCount,
-    "isFollowing": isFollowing,
+    "vehicle": vehicle?.toMap(),
+    "parking": parking?.toMap(),
   };
 }
 
-class ContractSelectorArgs {
+class VasSelectorArgs {
   final UserSelectorArgs? creator;
-  final UserSelectorArgs? user;
-  final ProductSelectorArgs? product;
-  final InvoiceSelectorArgs? invoice;
+  final WalletTxnSelectorArgs? walletTxn;
+  final TxnSelectorArgs? txn;
 
-  const ContractSelectorArgs({
-    this.creator,
-    this.user,
-    this.product,
-    this.invoice,
-  });
+  const VasSelectorArgs({this.creator, this.walletTxn, this.txn});
 
-  factory ContractSelectorArgs.fromJson(String str) => ContractSelectorArgs.fromMap(json.decode(str));
+  factory VasSelectorArgs.fromJson(String str) => VasSelectorArgs.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ContractSelectorArgs.fromMap(Map<String, dynamic> json) => ContractSelectorArgs(
+  factory VasSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      VasSelectorArgs(
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
-    product: json["product"] == null ? null : ProductSelectorArgs.fromMap(json["product"]),
-    invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
+        walletTxn: json["walletTxn"] == null ? null : WalletTxnSelectorArgs.fromMap(json["walletTxn"]),
+        txn: json["txn"] == null ? null : TxnSelectorArgs.fromMap(json["txn"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "walletTxn": walletTxn?.toMap(),
+    "txn": txn?.toMap(),
+  };
+}
+
+class CategorySelectorArgs {
+  final UserSelectorArgs? creator;
+  final MediaSelectorArgs? media;
+  final CategorySelectorArgs? children;
+  final int? childrenDebt;
+
+  const CategorySelectorArgs({this.creator, this.media, this.children, this.childrenDebt});
+
+  factory CategorySelectorArgs.fromJson(String str) => CategorySelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory CategorySelectorArgs.fromMap(Map<String, dynamic> json) =>
+      CategorySelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+        media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+        children: json["children"] == null ? null : CategorySelectorArgs.fromMap(json["children"]),
+        childrenDebt: json["childrenDebt"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "media": media?.toMap(),
+    "children": children?.toMap(),
+    "childrenDebt": childrenDebt,
+  };
+}
+
+class ContentSelectorArgs {
+  final UserSelectorArgs? creator;
+  final MediaSelectorArgs? media;
+
+  const ContentSelectorArgs({this.creator, this.media});
+
+  factory ContentSelectorArgs.fromJson(String str) => ContentSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ContentSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      ContentSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+        media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "media": media?.toMap(),
+  };
+}
+
+class SimCardSelectorArgs {
+  final UserSelectorArgs? creator;
+  final UserSelectorArgs? user;
+
+  const SimCardSelectorArgs({this.creator, this.user});
+
+  factory SimCardSelectorArgs.fromJson(String str) => SimCardSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory SimCardSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      SimCardSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+        user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "creator": creator?.toMap(),
     "user": user?.toMap(),
-    "product": product?.toMap(),
-    "invoice": invoice?.toMap(),
-  };
-}
-
-class InvoiceSelectorArgs {
-  final ContractSelectorArgs? contract;
-  final UserSelectorArgs? creator;
-
-  const InvoiceSelectorArgs({
-    this.contract,
-    this.creator,
-  });
-
-  factory InvoiceSelectorArgs.fromJson(String str) => InvoiceSelectorArgs.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory InvoiceSelectorArgs.fromMap(Map<String, dynamic> json) => InvoiceSelectorArgs(
-    contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
-    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "contract": contract?.toMap(),
-    "creator": creator?.toMap(),
-  };
-}
-
-class VehicleSelectorArgs {
-  final UserSelectorArgs? creator;
-
-  const VehicleSelectorArgs({
-    this.creator,
-  });
-
-  factory VehicleSelectorArgs.fromJson(String str) => VehicleSelectorArgs.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory VehicleSelectorArgs.fromMap(Map<String, dynamic> json) => VehicleSelectorArgs(
-    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "creator": creator?.toMap(),
-  };
-}
-
-class BankAccountSelectorArgs {
-  final UserSelectorArgs? creator;
-
-  const BankAccountSelectorArgs({
-    this.creator,
-  });
-
-  factory BankAccountSelectorArgs.fromJson(String str) => BankAccountSelectorArgs.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory BankAccountSelectorArgs.fromMap(Map<String, dynamic> json) => BankAccountSelectorArgs(
-    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "creator": creator?.toMap(),
   };
 }
 
@@ -341,11 +211,7 @@ class TerminalSelectorArgs {
   final MerchantSelectorArgs? merchant;
   final bool? agreement;
 
-  const TerminalSelectorArgs({
-    this.creator,
-    this.merchant,
-    this.agreement,
-  });
+  const TerminalSelectorArgs({this.creator, this.merchant, this.agreement});
 
   factory TerminalSelectorArgs.fromJson(String str) => TerminalSelectorArgs.fromMap(json.decode(str));
 
@@ -364,126 +230,261 @@ class TerminalSelectorArgs {
   };
 }
 
-class CommentSelectorArgs {
-  final CommentSelectorArgs? children;
-  final UserSelectorArgs? user;
+class MerchantSelectorArgs {
   final UserSelectorArgs? creator;
-  final ProductSelectorArgs? product;
-  final MediaSelectorArgs? media;
+  final UserSelectorArgs? user;
+  final TerminalSelectorArgs? terminal;
 
-  const CommentSelectorArgs({
-    this.children,
-    this.user,
-    this.creator,
-    this.product,
-    this.media,
-  });
+  const MerchantSelectorArgs({this.creator, this.user, this.terminal});
 
-  factory CommentSelectorArgs.fromJson(String str) => CommentSelectorArgs.fromMap(json.decode(str));
+  factory MerchantSelectorArgs.fromJson(String str) => MerchantSelectorArgs.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory CommentSelectorArgs.fromMap(Map<String, dynamic> json) => CommentSelectorArgs(
-    children: json["children"] == null ? null : CommentSelectorArgs.fromMap(json["children"]),
-    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+  factory MerchantSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      MerchantSelectorArgs(
+        creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+        user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+        terminal: json["terminal"] == null ? null : TerminalSelectorArgs.fromMap(json["terminal"]),
+      );
+
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "creator": creator?.toMap(),
+        "user": user?.toMap(),
+        "terminal": terminal?.toMap(),
+      };
+}
+
+class WalletTxnSelectorArgs {
+  final UserSelectorArgs? creator;
+  final UserSelectorArgs? sender;
+  final UserSelectorArgs? receiver;
+
+  const WalletTxnSelectorArgs({this.creator, this.sender, this.receiver});
+
+  factory WalletTxnSelectorArgs.fromJson(String str) => WalletTxnSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory WalletTxnSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      WalletTxnSelectorArgs(
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-    product: json["product"] == null ? null : ProductSelectorArgs.fromMap(json["product"]),
-    media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+        sender: json["sender"] == null ? null : UserSelectorArgs.fromMap(json["sender"]),
+        receiver: json["receiver"] == null ? null : UserSelectorArgs.fromMap(json["receiver"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "children": children?.toMap(),
-    "user": user?.toMap(),
     "creator": creator?.toMap(),
-    "product": product?.toMap(),
-    "media": media?.toMap(),
+    "sender": sender?.toMap(),
+    "receiver": receiver?.toMap(),
   };
 }
 
 class NotificationSelectorArgs {
-  final UserSelectorArgs? user;
   final UserSelectorArgs? creator;
+  final UserSelectorArgs? user;
 
-  const NotificationSelectorArgs({
-    this.user,
-    this.creator,
-  });
+  const NotificationSelectorArgs({this.creator, this.user});
 
   factory NotificationSelectorArgs.fromJson(String str) => NotificationSelectorArgs.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
   factory NotificationSelectorArgs.fromMap(Map<String, dynamic> json) => NotificationSelectorArgs(
-    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+  );
+
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "creator": creator?.toMap(),
+        "user": user?.toMap(),
+      };
+}
+
+class TicketSelectorArgs {
+  final UserSelectorArgs? creator;
+  final MediaSelectorArgs? media;
+
+  const TicketSelectorArgs({this.creator, this.media});
+
+  factory TicketSelectorArgs.fromJson(String str) => TicketSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory TicketSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      TicketSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+        media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "user": user?.toMap(),
     "creator": creator?.toMap(),
+    "media": media?.toMap(),
   };
+}
+
+class ProductSelectorArgs {
+  final UserSelectorArgs? creator;
+  final String? userId; // Guid in C# maps to String
+  final ProductSelectorArgs? children;
+  final CategorySelectorArgs? category;
+  final MediaSelectorArgs? media;
+  final bool? childrenCount;
+  final bool? commentsCount;
+  final bool? isFollowing;
+  final int? childrenDebt;
+
+  const ProductSelectorArgs({
+    this.creator,
+    this.userId,
+    this.children,
+    this.category,
+    this.media,
+    this.childrenCount,
+    this.commentsCount,
+    this.isFollowing,
+    this.childrenDebt,
+  });
+
+  factory ProductSelectorArgs.fromJson(String str) => ProductSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ProductSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      ProductSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+        userId: json["userId"],
+        children: json["children"] == null ? null : ProductSelectorArgs.fromMap(json["children"]),
+        category: json["category"] == null ? null : CategorySelectorArgs.fromMap(json["category"]),
+        media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+        childrenCount: json["childrenCount"],
+        commentsCount: json["commentsCount"],
+        isFollowing: json["isFollowing"],
+        childrenDebt: json["childrenDebt"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "userId": userId,
+    "children": children?.toMap(),
+    "category": category?.toMap(),
+    "media": media?.toMap(),
+    "childrenCount": childrenCount,
+    "commentsCount": commentsCount,
+    "isFollowing": isFollowing,
+    "childrenDebt": childrenDebt,
+  };
+}
+
+class CommentSelectorArgs {
+  final UserSelectorArgs? creator;
+  final CommentSelectorArgs? children;
+  final UserSelectorArgs? user;
+  final MediaSelectorArgs? media;
+
+  const CommentSelectorArgs({this.creator, this.children, this.user, this.media});
+
+  factory CommentSelectorArgs.fromJson(String str) => CommentSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory CommentSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      CommentSelectorArgs(
+        creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+        children: json["children"] == null ? null : CommentSelectorArgs.fromMap(json["children"]),
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+        media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "children": children?.toMap(),
+    "user": user?.toMap(),
+    "media": media?.toMap(),
+  };
+}
+
+class TxnSelectorArgs {
+  final UserSelectorArgs? creator;
+  final UserSelectorArgs? user;
+
+  const TxnSelectorArgs({this.creator, this.user});
+
+  factory TxnSelectorArgs.fromJson(String str) => TxnSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory TxnSelectorArgs.fromMap(Map<String, dynamic> json) =>
+      TxnSelectorArgs(
+        creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+        user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "user": user?.toMap(),
+  };
+}
+
+// Classes that only inherit BaseSelectorArgs properties
+class MediaSelectorArgs {
+  final UserSelectorArgs? creator;
+
+  const MediaSelectorArgs({this.creator});
+
+  factory MediaSelectorArgs.fromMap(Map<String, dynamic> json) => MediaSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
+
+  Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+}
+
+class ParkingSelectorArgs {
+  final UserSelectorArgs? creator;
+
+  const ParkingSelectorArgs({this.creator});
+
+  factory ParkingSelectorArgs.fromMap(Map<String, dynamic> json) => ParkingSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
+
+  Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+}
+
+class VehicleSelectorArgs {
+  final UserSelectorArgs? creator;
+
+  const VehicleSelectorArgs({this.creator});
+
+  factory VehicleSelectorArgs.fromMap(Map<String, dynamic> json) => VehicleSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
+
+  Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+}
+
+class BankAccountSelectorArgs {
+  final UserSelectorArgs? creator;
+
+  const BankAccountSelectorArgs({this.creator});
+
+  factory BankAccountSelectorArgs.fromMap(Map<String, dynamic> json) => BankAccountSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
+
+  Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
 }
 
 class AddressSelectorArgs {
   final UserSelectorArgs? creator;
 
-  const AddressSelectorArgs({
-    this.creator,
-  });
+  const AddressSelectorArgs({this.creator});
 
-  factory AddressSelectorArgs.fromJson(String str) => AddressSelectorArgs.fromMap(json.decode(str));
+  factory AddressSelectorArgs.fromMap(Map<String, dynamic> json) => AddressSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
 
-  String toJson() => json.encode(toMap());
-
-  factory AddressSelectorArgs.fromMap(Map<String, dynamic> json) => AddressSelectorArgs(
-    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "creator": creator?.toMap(),
-  };
+  Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
 }
 
 class WalletSelectorArgs {
-  final UserSelectorArgs? user;
+  final UserSelectorArgs? creator;
 
-  const WalletSelectorArgs({
-    this.user,
-  });
+  const WalletSelectorArgs({this.creator});
 
-  factory WalletSelectorArgs.fromJson(String str) => WalletSelectorArgs.fromMap(json.decode(str));
+  factory WalletSelectorArgs.fromMap(Map<String, dynamic> json) => WalletSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
 
-  String toJson() => json.encode(toMap());
-
-  factory WalletSelectorArgs.fromMap(Map<String, dynamic> json) => WalletSelectorArgs(
-    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "user": user?.toMap(),
-  };
-}
-
-class WalletTxnSelectorArgs {
-  final UserSelectorArgs? sender;
-  final UserSelectorArgs? receiver;
-
-  const WalletTxnSelectorArgs({
-    this.sender,
-    this.receiver,
-  });
-
-  factory WalletTxnSelectorArgs.fromJson(String str) => WalletTxnSelectorArgs.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory WalletTxnSelectorArgs.fromMap(Map<String, dynamic> json) => WalletTxnSelectorArgs(
-    sender: json["sender"] == null ? null : UserSelectorArgs.fromMap(json["sender"]),
-    receiver: json["receiver"] == null ? null : UserSelectorArgs.fromMap(json["receiver"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "sender": sender?.toMap(),
-    "receiver": receiver?.toMap(),
-  };
+  Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
 }

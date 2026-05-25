@@ -6,7 +6,6 @@ class UAdminDashboardController extends UAdminBaseController {
   late UDashboardResponse dashboard;
 
   final Rx<PageState> chartState = PageState.initial.obs;
-  List<InvoiceChartDataResponse> chartData = <InvoiceChartDataResponse>[];
 
   void init() {
     read();
@@ -16,15 +15,6 @@ class UAdminDashboardController extends UAdminBaseController {
 
   void readInvoiceChartData() {
     chartState.loading();
-    UServices.invoice.chartData(
-      p: UBaseParams(),
-      onOk: (UResponse<List<InvoiceChartDataResponse>> r) {
-        chartData = r.result!;
-        chartState.loaded();
-      },
-      onError: (UEmptyResponse r) {},
-      onException: (String e) {},
-    );
   }
 
   void startMetricsPolling() => _timer = Timer.periodic(

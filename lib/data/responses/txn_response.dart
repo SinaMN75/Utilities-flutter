@@ -8,7 +8,6 @@ class UTxnResponse {
     required this.tags,
     required this.amount,
     this.invoiceId,
-    this.invoice,
     this.userId,
     this.user,
   });
@@ -20,7 +19,6 @@ class UTxnResponse {
     tags: List<int>.from(json["tags"]),
     amount: json["amount"].toString().toDouble(),
     invoiceId: json["invoiceId"],
-    invoice: json["invoice"] == null ? null : UInvoiceResponse.fromMap(json["invoice"]),
     userId: json["userId"],
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
   );
@@ -31,7 +29,6 @@ class UTxnResponse {
   final List<int> tags;
   final double amount;
   final String? invoiceId;
-  final UInvoiceResponse? invoice;
   final String? userId;
   final UUserResponse? user;
 
@@ -42,7 +39,6 @@ class UTxnResponse {
     "tags": tags,
     "amount": amount,
     "invoiceId": invoiceId,
-    "invoice": invoice?.toMap(),
     "userId": userId,
     "user": user?.toMap(),
   };
