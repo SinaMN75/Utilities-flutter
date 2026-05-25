@@ -9,6 +9,10 @@ extension TextEditingControllerExtension on TextEditingController {
   int numInt() => text.toLatinNumber().extractLatinNumber().toInt();
 
   String? valueOrNull() => text.isEmpty ? null : text;
+
+  bool isNullOrEmpty() => text.isEmpty;
+
+  bool isNotNullOrEmpty() => text.isNotEmpty;
 }
 
 extension OptionalStringExtension on String? {
