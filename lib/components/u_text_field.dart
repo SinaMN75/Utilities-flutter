@@ -232,7 +232,7 @@ class UTextFieldDatePicker extends StatefulWidget {
   final TextAlign textAlign;
   final double? textHeight;
   final TextEditingController? controller;
-  final Jalali? initialDate;
+  final DateTime? initialDate;
   final int? startYear;
   final int? endYear;
   final String? Function(String?)? validator;
@@ -249,7 +249,7 @@ class _UTextFieldDatePickerState extends State<UTextFieldDatePicker> {
 
   @override
   void initState() {
-    selectedDateTime = widget.initialDate?.toDateTime() ?? DateTime.now();
+    selectedDateTime = widget.initialDate ?? DateTime.now();
     super.initState();
   }
 

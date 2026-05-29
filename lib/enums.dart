@@ -373,6 +373,31 @@ enum TagMerchant with NumericIdentifiable {
   final int number;
 }
 
+enum TagFieldType with NumericIdentifiable {
+  number1("عدد", "Number", 101),
+  text("متن", "Text", 102),
+  phoneNumber("شماره تلفن", "PhoneNumber", 103),
+  dropDown("لیست کشویی", "DropDown", 104),
+  date("تاریخ", "Date", 105),
+  dateTime("تاریخ و زمان", "DateTime", 106),
+  time("زمان", "Time", 107),
+  persianDate("تاریخ شمسی", "PersianDate", 108),
+  image("تصویر", "Image", 109),
+  video("ویدیو", "Video", 111),
+  selfieVideo("ویدیوی سلفی", "SelfieVideo", 112),
+  eSignature("امضای الکترونیکی", "ESignature", 113),
+  ;
+
+  const TagFieldType(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 mixin NumericIdentifiable {
   int get number;
 
