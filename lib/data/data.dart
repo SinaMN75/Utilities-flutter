@@ -35,6 +35,8 @@ part "responses/content_response.dart";
 part "responses/dashboard_response.dart";
 part "responses/exam_response.dart";
 part "responses/follower_following_count_response.dart";
+
+part "responses/flow_response.dart";
 part "responses/inquiry_response.dart";
 part "responses/media_response.dart";
 part "responses/merchant_response.dart";
