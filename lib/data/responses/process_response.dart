@@ -8,10 +8,9 @@ class UProcessStepSend {
 
   factory UProcessStepSend.fromJson(String str) => UProcessStepSend.fromMap(json.decode(str));
 
-  factory UProcessStepSend.fromMap(Map<String, dynamic> json) =>
-      UProcessStepSend(
+  factory UProcessStepSend.fromMap(Map<String, dynamic> json) => UProcessStepSend(
     id: json["id"],
-        fields: json["fields"] == null ? <UProcessField>[] : List<UProcessField>.from(json["fields"].map((dynamic x) => UProcessField.fromMap(x))),
+    fields: json["fields"] == null ? <UProcessField>[] : List<UProcessField>.from(json["fields"].map((dynamic x) => UProcessField.fromMap(x))),
   );
 
   final String id;
@@ -19,11 +18,10 @@ class UProcessStepSend {
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
-        "id": id,
-        "fields": List<dynamic>.from(fields.map((dynamic x) => x.toMap())),
-      };
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "fields": List<dynamic>.from(fields.map((dynamic x) => x.toMap())),
+  };
 }
 
 class UProcessGetParams {
@@ -34,22 +32,20 @@ class UProcessGetParams {
 
   factory UProcessGetParams.fromJson(String str) => UProcessGetParams.fromMap(json.decode(str));
 
-  factory UProcessGetParams.fromMap(Map<String, dynamic> json) =>
-      UProcessGetParams(
-        processId: json["processId"],
-        intro: json["intro"] ?? false,
-      );
+  factory UProcessGetParams.fromMap(Map<String, dynamic> json) => UProcessGetParams(
+    processId: json["processId"],
+    intro: json["intro"] ?? false,
+  );
 
   final String processId;
   final bool intro;
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
-        "processId": processId,
-        "intro": intro,
-      };
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "processId": processId,
+    "intro": intro,
+  };
 }
 
 class UProcess {
@@ -59,19 +55,17 @@ class UProcess {
 
   factory UProcess.fromJson(String str) => UProcess.fromMap(json.decode(str));
 
-  factory UProcess.fromMap(Map<String, dynamic> json) =>
-      UProcess(
-        mainProcesses: json["mainProcesses"] == null ? <UProcessItem>[] : List<UProcessItem>.from(json["mainProcesses"].map((dynamic x) => UProcessItem.fromMap(x))),
-      );
+  factory UProcess.fromMap(Map<String, dynamic> json) => UProcess(
+    mainProcesses: json["mainProcesses"] == null ? <UProcessItem>[] : List<UProcessItem>.from(json["mainProcesses"].map((dynamic x) => UProcessItem.fromMap(x))),
+  );
 
   final List<UProcessItem> mainProcesses;
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
-        "mainProcesses": List<dynamic>.from(mainProcesses.map((dynamic x) => x.toMap())),
-      };
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "mainProcesses": List<dynamic>.from(mainProcesses.map((dynamic x) => x.toMap())),
+  };
 }
 
 class UProcessItem {
@@ -85,20 +79,19 @@ class UProcessItem {
 
   factory UProcessItem.fromJson(String str) => UProcessItem.fromMap(json.decode(str));
 
-  factory UProcessItem.fromMap(Map<String, dynamic> json) =>
-      UProcessItem(
-        id: json["id"],
-        title: json["title"],
-        description: json["description"],
-        icon: json["icon"],
-        status: json["status"],
-      );
+  factory UProcessItem.fromMap(Map<String, dynamic> json) => UProcessItem(
+    id: json["id"],
+    title: json["title"],
+    description: json["description"],
+    icon: json["icon"],
+    status: TagProcessStatus.values.firstWhere((TagProcessStatus e) => e.number == json["status"], orElse: () => TagProcessStatus.disabled),
+  );
 
   final String id;
   final String title;
   final String description;
   final String icon;
-  final int status;
+  final TagProcessStatus status;
 
   String toJson() => json.encode(toMap());
 
@@ -107,7 +100,7 @@ class UProcessItem {
     "title": title,
     "description": description,
     "icon": icon,
-    "status": status,
+    "status": status.number,
   };
 }
 
@@ -123,14 +116,13 @@ class UProcessStepGet {
 
   factory UProcessStepGet.fromJson(String str) => UProcessStepGet.fromMap(json.decode(str));
 
-  factory UProcessStepGet.fromMap(Map<String, dynamic> json) =>
-      UProcessStepGet(
+  factory UProcessStepGet.fromMap(Map<String, dynamic> json) => UProcessStepGet(
     id: json["id"],
     title: json["title"],
     description: json["description"],
-        isScrollable: json["isScrollable"] ?? false,
-        fields: json["fields"] == null ? null : List<UProcessField>.from(json["fields"].map((dynamic x) => UProcessField.fromMap(x))),
-        message: json["message"],
+    isScrollable: json["isScrollable"] ?? false,
+    fields: json["fields"] == null ? null : List<UProcessField>.from(json["fields"].map((dynamic x) => UProcessField.fromMap(x))),
+    message: json["message"],
   );
 
   final String id;
@@ -167,22 +159,21 @@ class UProcessField {
 
   factory UProcessField.fromJson(String str) => UProcessField.fromMap(json.decode(str));
 
-  factory UProcessField.fromMap(Map<String, dynamic> json) =>
-      UProcessField(
+  factory UProcessField.fromMap(Map<String, dynamic> json) => UProcessField(
     label: json["label"],
     value: json["value"],
-    type: json["type"],
+    type: TagFieldType.values.firstWhere((TagFieldType e) => e.number == json["type"], orElse: () => TagFieldType.text),
     required: json["required"],
     key: json["key"],
-        textFieldConfig: json["textFieldConfig"] == null ? null : UTextFieldConfig.fromMap(json["textFieldConfig"]),
-        fileConfig: json["fileConfig"] == null ? null : UFileConfig.fromMap(json["fileConfig"]),
-        dropDownConfig: json["dropDownConfig"] == null ? null : UDropDownConfig.fromMap(json["dropDownConfig"]),
-        options: json["options"] == null ? null : List<UOption>.from(json["options"].map((dynamic x) => UOption.fromMap(x))),
+    textFieldConfig: json["textFieldConfig"] == null ? null : UTextFieldConfig.fromMap(json["textFieldConfig"]),
+    fileConfig: json["fileConfig"] == null ? null : UFileConfig.fromMap(json["fileConfig"]),
+    dropDownConfig: json["dropDownConfig"] == null ? null : UDropDownConfig.fromMap(json["dropDownConfig"]),
+    options: json["options"] == null ? null : List<UOption>.from(json["options"].map((dynamic x) => UOption.fromMap(x))),
   );
 
   final String label;
   String? value;
-  final int type;
+  final TagFieldType type;
   final bool required;
   final String key;
 
@@ -196,7 +187,7 @@ class UProcessField {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "label": label,
     "value": value,
-    "type": type,
+    "type": type.number,
     "required": required,
     "key": key,
     "textFieldConfig": textFieldConfig?.toMap(),
@@ -208,24 +199,27 @@ class UProcessField {
 
 class UTextFieldConfig {
   UTextFieldConfig({
+    required this.type,
     this.minLength,
     this.maxLength,
   });
 
   factory UTextFieldConfig.fromJson(String str) => UTextFieldConfig.fromMap(json.decode(str));
 
-  factory UTextFieldConfig.fromMap(Map<String, dynamic> json) =>
-      UTextFieldConfig(
+  factory UTextFieldConfig.fromMap(Map<String, dynamic> json) => UTextFieldConfig(
+    type: TagTextFieldType.values.firstWhere((TagTextFieldType e) => e.number == json["type"], orElse: () => TagTextFieldType.text),
     minLength: json["minLength"],
     maxLength: json["maxLength"],
   );
 
+  final TagTextFieldType type;
   final int? minLength;
   final int? maxLength;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
+    "type": type.number,
     "minLength": minLength,
     "maxLength": maxLength,
   };
@@ -233,44 +227,34 @@ class UTextFieldConfig {
 
 class UFileConfig {
   UFileConfig({
+    required this.type,
     this.allowedExtensions,
-    this.isImage = false,
-    this.isVideo = false,
-    this.isPdf = false,
     this.isCamera = false,
     this.isSelfieCamera = false,
   });
 
   factory UFileConfig.fromJson(String str) => UFileConfig.fromMap(json.decode(str));
 
-  factory UFileConfig.fromMap(Map<String, dynamic> json) =>
-      UFileConfig(
-        allowedExtensions: json["allowedExtensions"] == null ? null : List<String>.from(json["allowedExtensions"].map((dynamic x) => x)),
-        isImage: json["isImage"] ?? false,
-        isVideo: json["isVideo"] ?? false,
-        isPdf: json["isPdf"] ?? false,
-        isCamera: json["isCamera"] ?? false,
-        isSelfieCamera: json["isSelfieCamera"] ?? false,
-      );
+  factory UFileConfig.fromMap(Map<String, dynamic> json) => UFileConfig(
+    type: TagFileFieldType.values.firstWhere((TagFileFieldType e) => e.number == json["type"], orElse: () => TagFileFieldType.image),
+    allowedExtensions: json["allowedExtensions"] == null ? null : List<String>.from(json["allowedExtensions"].map((dynamic x) => x)),
+    isCamera: json["isCamera"] ?? false,
+    isSelfieCamera: json["isSelfieCamera"] ?? false,
+  );
 
+  final TagFileFieldType type;
   final List<String>? allowedExtensions;
-  final bool isImage;
-  final bool isVideo;
-  final bool isPdf;
   final bool isCamera;
   final bool isSelfieCamera;
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
-        "allowedExtensions": allowedExtensions == null ? null : List<dynamic>.from(allowedExtensions!.map((dynamic x) => x)),
-        "isImage": isImage,
-        "isVideo": isVideo,
-        "isPdf": isPdf,
-        "isCamera": isCamera,
-        "isSelfieCamera": isSelfieCamera,
-      };
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "type": type.number,
+    "allowedExtensions": allowedExtensions == null ? null : List<dynamic>.from(allowedExtensions!.map((dynamic x) => x)),
+    "isCamera": isCamera,
+    "isSelfieCamera": isSelfieCamera,
+  };
 }
 
 class UDropDownConfig {
@@ -280,18 +264,16 @@ class UDropDownConfig {
 
   factory UDropDownConfig.fromJson(String str) => UDropDownConfig.fromMap(json.decode(str));
 
-  factory UDropDownConfig.fromMap(Map<String, dynamic> json) =>
-      UDropDownConfig(
-        isSearchable: json["isSearchable"] ?? false,
-      );
+  factory UDropDownConfig.fromMap(Map<String, dynamic> json) => UDropDownConfig(
+    isSearchable: json["isSearchable"] ?? false,
+  );
 
   final bool isSearchable;
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
-        "isSearchable": isSearchable,
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "isSearchable": isSearchable,
   };
 }
 
