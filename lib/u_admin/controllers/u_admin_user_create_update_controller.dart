@@ -34,8 +34,8 @@ class UAdminUserCreateUpdateController {
     controllerPhoneNumber = TextEditingController(text: args.user?.phoneNumber);
     controllerFatherName = TextEditingController(text: args.user?.jsonData.fatherName);
     files = (args.user?.media ?? <UMediaResponse>[]).map((UMediaResponse media) => FileData(url: media.url)).toList();
-    gender((args.user?.tags.isMale() ?? false) ? TagUser.male : TagUser.female);
-    role((args.user?.tags.isSuperAdmin() ?? false) ? TagUser.superAdmin : TagUser.guest);
+    gender((args.user?.isMale() ?? false) ? TagUser.male : TagUser.female);
+    role((args.user?.isSuperAdmin() ?? false) ? TagUser.superAdmin : TagUser.guest);
     birthdate = args.user?.birthdate ?? DateTime.now().toUtc();
   }
 

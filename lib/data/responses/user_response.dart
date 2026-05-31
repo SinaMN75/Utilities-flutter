@@ -1,5 +1,13 @@
 part of "../data.dart";
 
+extension TagListExtension on UUserResponse {
+  bool isMale() => tags.contains(TagUser.male.number);
+
+  bool isFemaleMale() => tags.contains(TagUser.female.number);
+
+  bool isSuperAdmin() => tags.contains(TagUser.superAdmin.number);
+}
+
 class UUserResponse {
   UUserResponse({
     required this.id,

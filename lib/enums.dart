@@ -1,11 +1,3 @@
-extension TagListExtension on Iterable<int> {
-  bool isMale() => contains(TagUser.male.number);
-
-  bool isFemaleMale() => contains(TagUser.female.number);
-
-  bool isSuperAdmin() => contains(TagUser.superAdmin.number);
-}
-
 enum TagUser with NumericIdentifiable {
   male("مرد", "Male", 101),
   female("زن", "Female", 102),
@@ -21,7 +13,7 @@ enum TagUser with NumericIdentifiable {
   birthCertificateFirstVerified("شناسنامه صفحه اول تایید شده", "Birth Certificate First Verified", 403),
   birthCertificateSecondVerified("شناسنامه صفحه دوم تایید شده", "Birth Certificate Second Verified", 404),
   birthCertificateThirdVerified("شناسنامه صفحه سوم تایید شده", "Birth Certificate Third Verified", 405),
-  birthCertificateForthVerified("شناسنامه صفحه چهارم تایید شده", "Birth Certificate Fourth Verified", 406),
+  birthCertificateForthVerified("شناسنامه صفحه چهارم تایید شده", "Birth Certificate Forth Verified", 406),
   birthCertificateFifthVerified("شناسنامه صفحه پنجم تایید شده", "Birth Certificate Fifth Verified", 407),
   visualAuthenticationVerified("احراز هویت تصویری تایید شده", "Visual Authentication Verified", 408),
   eSignatureVerified("امضای الکترونیکی تایید شده", "E-Signature Verified", 409),
@@ -30,7 +22,7 @@ enum TagUser with NumericIdentifiable {
   birthCertificateFirstAwaitingVerification("شناسنامه صفحه اول در انتظار تایید", "Birth Certificate First Awaiting Verification", 503),
   birthCertificateSecondAwaitingVerification("شناسنامه صفحه دوم در انتظار تایید", "Birth Certificate Second Awaiting Verification", 504),
   birthCertificateThirdAwaitingVerification("شناسنامه صفحه سوم در انتظار تایید", "Birth Certificate Third Awaiting Verification", 505),
-  birthCertificateForthAwaitingVerification("شناسنامه صفحه چهارم در انتظار تایید", "Birth Certificate Fourth Awaiting Verification", 506),
+  birthCertificateForthAwaitingVerification("شناسنامه صفحه چهارم در انتظار تایید", "Birth Certificate Forth Awaiting Verification", 506),
   birthCertificateFifthAwaitingVerification("شناسنامه صفحه پنجم در انتظار تایید", "Birth Certificate Fifth Awaiting Verification", 507),
   visualAuthenticationAwaitingVerification("احراز هویت تصویری در انتظار تایید", "Visual Authentication Awaiting Verification", 508),
   eSignatureAwaitingVerification("امضای الکترونیکی در انتظار تایید", "E-Signature Awaiting Verification", 509),
@@ -39,7 +31,7 @@ enum TagUser with NumericIdentifiable {
   birthCertificateFirstRejected("شناسنامه صفحه اول رد شده", "Birth Certificate First Rejected", 603),
   birthCertificateSecondRejected("شناسنامه صفحه دوم رد شده", "Birth Certificate Second Rejected", 604),
   birthCertificateThirdRejected("شناسنامه صفحه سوم رد شده", "Birth Certificate Third Rejected", 605),
-  birthCertificateForthRejected("شناسنامه صفحه چهارم رد شده", "Birth Certificate Fourth Rejected", 606),
+  birthCertificateForthRejected("شناسنامه صفحه چهارم رد شده", "Birth Certificate Forth Rejected", 606),
   birthCertificateFifthRejected("شناسنامه صفحه پنجم رد شده", "Birth Certificate Fifth Rejected", 607),
   visualAuthenticationRejected("احراز هویت تصویری رد شده", "Visual Authentication Rejected", 608),
   eSignatureRejected("امضای الکترونیکی رد شده", "E-Signature Rejected", 609)
@@ -60,8 +52,7 @@ enum TagUser with NumericIdentifiable {
 enum TagContent with NumericIdentifiable {
   aboutUs("درباره ما", "About Us", 101),
   terms("قوانین و مقررات", "Terms and Conditions", 102),
-  homeSlider1("اسلایدر", "Slider", 103),
-  homeSlider2("اسلایدر ۲", "Slider 2", 104),
+  homeSlider1("اسلایدر", "Slider", 103)
   ;
 
   const TagContent(this.titleFa, this.titleEn, this.number);
@@ -76,9 +67,9 @@ enum TagContent with NumericIdentifiable {
 
 enum TagCategory with NumericIdentifiable {
   category("دسته‌بندی", "Category", 101),
-  exam("پرشسنامه", "Exam", 102),
+  exam("پرسشنامه", "Exam", 102),
   user("کاربران", "User", 103),
-  menu("کاربران", "Menu", 104),
+  menu("منو", "Menu", 104),
   speciality("تخصص", "Speciality", 105),
   dorm("خوابگاه", "Dorm", 106),
   room("اتاق", "Room", 107),
@@ -100,8 +91,7 @@ enum TagCategory with NumericIdentifiable {
 
 enum TagMedia with NumericIdentifiable {
   image("تصویر", "Image", 101),
-  profile("پروفایل", "Profile", 102),
-  test("", "", 999)
+  profile("پروفایل", "Profile", 102)
   ;
 
   const TagMedia(this.titleFa, this.titleEn, this.number);
@@ -116,8 +106,8 @@ enum TagMedia with NumericIdentifiable {
 
 enum TagProduct with NumericIdentifiable {
   product("محصول", "Product", 101),
-  content("کیس", "Case", 102),
-  blog("کیس", "Case", 103),
+  content("محتوا", "Content", 102),
+  blog("وبلاگ", "Blog", 103),
   case_("کیس", "Case", 104),
   dorm("خوابگاه", "Dorm", 105),
   room("اتاق", "Room", 106),
@@ -185,42 +175,8 @@ enum TagReaction with NumericIdentifiable {
   final int number;
 }
 
-enum TagContract with NumericIdentifiable {
-  test("", "", 999)
-  ;
-
-  const TagContract(this.titleFa, this.titleEn, this.number);
-
-  @override
-  final String titleFa;
-  @override
-  final String titleEn;
-  @override
-  final int number;
-}
-
-enum TagInvoice with NumericIdentifiable {
-  deposit("", "", 101),
-  rent("", "", 102),
-  paid("", "", 201),
-  paidOnline("", "", 202),
-  paidManual("", "", 203),
-  notPaid("", "", 204)
-  ;
-
-  const TagInvoice(this.titleFa, this.titleEn, this.number);
-
-  @override
-  final String titleFa;
-  @override
-  final String titleEn;
-  @override
-  final int number;
-}
-
 enum TagAddress with NumericIdentifiable {
-  verified("احراز شده", "Verified", 101),
-  test("تست", "Test", 999)
+  verified("احراز شده", "Verified", 101)
   ;
 
   const TagAddress(this.titleFa, this.titleEn, this.number);
@@ -248,7 +204,7 @@ enum TagVehicle with NumericIdentifiable {
 }
 
 enum TagWallet with NumericIdentifiable {
-  primary("کیف پول اصلی", "Primary", 101),
+  primary("کیف پول اصلی", "Primary", 101)
   ;
 
   const TagWallet(this.titleFa, this.titleEn, this.number);
@@ -265,7 +221,7 @@ enum TagTerminal with NumericIdentifiable {
   atm("خودپرداز", "ATM", 101),
   wallCashless("پرداخت بدون پول نقد دیواری", "Wall Cashless", 102),
   deskCashless("پرداخت بدون پول نقد میز", "Desk Cashless", 103),
-  verified("کیف پول اصلی", "Primary", 201),
+  verified("تایید شده", "Verified", 201),
   awaitingVerification("در انتظار تأیید", "Awaiting Verification", 202),
   suspended("تعلیق شده", "Suspended", 203)
   ;
@@ -281,10 +237,10 @@ enum TagTerminal with NumericIdentifiable {
 }
 
 enum TagSimOperator with NumericIdentifiable {
-  irancell("ایرانسل", "Irancell", 2),
   hamrahAvval("همراه اول", "Hamrah Avval", 1),
-  Rightel("رایتل", "Rightel", 3),
-  Shatel("شاتل موبایل", "Shatel Mobile", 5),
+  irancell("ایرانسل", "Irancell", 2),
+  rightel("رایتل", "Rightel", 3),
+  shatel("شاتل موبایل", "Shatel Mobile", 5)
   ;
 
   const TagSimOperator(this.titleFa, this.titleEn, this.number);
@@ -297,95 +253,11 @@ enum TagSimOperator with NumericIdentifiable {
   final int number;
 }
 
-enum TagHamrahAvvalChargeType with NumericIdentifiable {
-  normal("معمولی", "Normal", 0),
-  youngs("جوانان", "Youngs", 2),
-  ladies("بانوان", "Ladies", 3),
-  customAmount("مبلغ دلخواه", "Custom Amount", 4),
-  ;
-
-  const TagHamrahAvvalChargeType(this.titleFa, this.titleEn, this.number);
-
-  @override
-  final String titleFa;
-  @override
-  final String titleEn;
-  @override
-  final int number;
-}
-
-enum TagIrancellChargeType with NumericIdentifiable {
-  normal("معمولی", "Normal", 0),
-  shegeftAngiz("شگفت انگیز", "شگفت انگیز", 1),
-  payBill("پرداخت قبض سیمکارت دايمی", "Bill Payment", 2),
-  ;
-
-  const TagIrancellChargeType(this.titleFa, this.titleEn, this.number);
-
-  @override
-  final String titleFa;
-  @override
-  final String titleEn;
-  @override
-  final int number;
-}
-
-enum TagShatelChargeType with NumericIdentifiable {
-  normal("معمولی", "Normal", 0),
-  ;
-
-  const TagShatelChargeType(this.titleFa, this.titleEn, this.number);
-
-  @override
-  final String titleFa;
-  @override
-  final String titleEn;
-  @override
-  final int number;
-}
-
-enum TagRightelChargeType with NumericIdentifiable {
-  normal("معمولی", "Normal", 0),
-  shoorAngiz("شور انگیز", "ShoorAngiz", 1),
-  ;
-
-  const TagRightelChargeType(this.titleFa, this.titleEn, this.number);
-
-  @override
-  final String titleFa;
-  @override
-  final String titleEn;
-  @override
-  final int number;
-}
-
-enum TagMerchant with NumericIdentifiable {
-  normal("معمولی", "Normal", 0),
-  ;
-
-  const TagMerchant(this.titleFa, this.titleEn, this.number);
-
-  @override
-  final String titleFa;
-  @override
-  final String titleEn;
-  @override
-  final int number;
-}
-
 enum TagFieldType with NumericIdentifiable {
-  number1("عدد", "Number", 101),
-  text("متن", "Text", 102),
-  phoneNumber("شماره تلفن", "PhoneNumber", 103),
-  dropDown("لیست کشویی", "DropDown", 104),
-  date("تاریخ", "Date", 105),
-  dateTime("تاریخ و زمان", "DateTime", 106),
-  time("زمان", "Time", 107),
-  persianDate("تاریخ شمسی", "PersianDate", 108),
-  image("تصویر", "Image", 109),
-  video("ویدیو", "Video", 111),
-  selfieVideo("ویدیوی سلفی", "SelfieVideo", 112),
-  eSignature("امضای الکترونیکی", "ESignature", 113),
+  text("متن", "Text", 101),
+  dropDown("لیست کشویی", "DropDown", 102),
+  file("فایل", "File", 103),
+  eSignature("امضای الکترونیکی", "ESignature", 105)
   ;
 
   const TagFieldType(this.titleFa, this.titleEn, this.number);
