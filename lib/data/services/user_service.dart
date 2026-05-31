@@ -101,28 +101,28 @@ class UserService {
 
   Future<UHttpClientResponse> authenticationGet({
     required final UBaseParams p,
-    final Function(UResponse<UFlowStepGet> r)? onOk,
+    final Function(UResponse<UProcessStepGet> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/user/AuthenticationGet",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UFlowStepGet>.fromJson(r.body, (final dynamic i) => UFlowStepGet.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UProcessStepGet>.fromJson(r.body, (final dynamic i) => UProcessStepGet.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
 
   Future<UHttpClientResponse> authenticationSend({
-    required final UFlowStepSend p,
-    final Function(UResponse<UFlowStepGet> r)? onOk,
+    required final UProcessStepSend p,
+    final Function(UResponse<UProcessStepGet> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/user/AuthenticationSend",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UFlowStepGet>.fromJson(r.body, (final dynamic i) => UFlowStepGet.fromMap(i))),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UProcessStepGet>.fromJson(r.body, (final dynamic i) => UProcessStepGet.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );

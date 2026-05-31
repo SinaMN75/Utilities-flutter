@@ -1,54 +1,104 @@
 part of "../data.dart";
 
-class UFlowStepSend {
-  UFlowStepSend({
+class UProcessStepSend {
+  UProcessStepSend({
     required this.id,
     required this.fields,
   });
 
-  factory UFlowStepSend.fromJson(String str) => UFlowStepSend.fromMap(json.decode(str));
+  factory UProcessStepSend.fromJson(String str) => UProcessStepSend.fromMap(json.decode(str));
 
-  factory UFlowStepSend.fromMap(Map<String, dynamic> json) => UFlowStepSend(
+  factory UProcessStepSend.fromMap(Map<String, dynamic> json) =>
+      UProcessStepSend(
     id: json["id"],
-    fields: json["fields"] == null ? <UFlowField>[] : List<UFlowField>.from(json["fields"].map((dynamic x) => UFlowField.fromMap(x))),
+        fields: json["fields"] == null ? <UProcessField>[] : List<UProcessField>.from(json["fields"].map((dynamic x) => UProcessField.fromMap(x))),
   );
 
   final String id;
-  final List<UFlowField> fields;
+  final List<UProcessField> fields;
 
   String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "id": id,
-    "fields": List<dynamic>.from(fields.map((UFlowField x) => x.toMap())),
-  };
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "id": id,
+        "fields": List<dynamic>.from(fields.map((dynamic x) => x.toMap())),
+      };
 }
 
-class UFlowStepGet {
-  UFlowStepGet({
+class UProcessGetParams {
+  UProcessGetParams({
+    required this.processId,
+    this.intro = false,
+  });
+
+  factory UProcessGetParams.fromJson(String str) => UProcessGetParams.fromMap(json.decode(str));
+
+  factory UProcessGetParams.fromMap(Map<String, dynamic> json) =>
+      UProcessGetParams(
+        processId: json["processId"],
+        intro: json["intro"] ?? false,
+      );
+
+  final String processId;
+  final bool intro;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "processId": processId,
+        "intro": intro,
+      };
+}
+
+class UProcess {
+  UProcess({
+    required this.mainProcesses,
+  });
+
+  factory UProcess.fromJson(String str) => UProcess.fromMap(json.decode(str));
+
+  factory UProcess.fromMap(Map<String, dynamic> json) =>
+      UProcess(
+        mainProcesses: json["mainProcesses"] == null ? <UProcessItem>[] : List<UProcessItem>.from(json["mainProcesses"].map((dynamic x) => UProcessItem.fromMap(x))),
+      );
+
+  final List<UProcessItem> mainProcesses;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "mainProcesses": List<dynamic>.from(mainProcesses.map((dynamic x) => x.toMap())),
+      };
+}
+
+class UProcessItem {
+  UProcessItem({
     required this.id,
     required this.title,
     required this.description,
-    required this.fields,
+    required this.icon,
+    required this.status,
   });
 
-  factory UFlowStepGet.fromJson(String str) => UFlowStepGet.fromMap(json.decode(str));
+  factory UProcessItem.fromJson(String str) => UProcessItem.fromMap(json.decode(str));
 
-  factory UFlowStepGet.fromMap(Map<String, dynamic> json) => UFlowStepGet(
-    id: json["id"],
-    title: json["title"],
-    description: json["description"],
-    fields: json["fields"] == null
-        ? <UFlowField>[]
-        : List<UFlowField>.from(
-            json["fields"].map((dynamic x) => UFlowField.fromMap(x)),
-          ),
-  );
+  factory UProcessItem.fromMap(Map<String, dynamic> json) =>
+      UProcessItem(
+        id: json["id"],
+        title: json["title"],
+        description: json["description"],
+        icon: json["icon"],
+        status: json["status"],
+      );
 
   final String id;
   final String title;
   final String description;
-  final List<UFlowField> fields;
+  final String icon;
+  final int status;
 
   String toJson() => json.encode(toMap());
 
@@ -56,35 +106,78 @@ class UFlowStepGet {
     "id": id,
     "title": title,
     "description": description,
-    "fields": List<dynamic>.from(fields.map((UFlowField x) => x.toMap())),
+    "icon": icon,
+    "status": status,
   };
 }
 
-class UFlowField {
-  UFlowField({
+class UProcessStepGet {
+  UProcessStepGet({
+    required this.id,
+    required this.title,
+    required this.description,
+    this.isScrollable = false,
+    this.fields,
+    this.message,
+  });
+
+  factory UProcessStepGet.fromJson(String str) => UProcessStepGet.fromMap(json.decode(str));
+
+  factory UProcessStepGet.fromMap(Map<String, dynamic> json) =>
+      UProcessStepGet(
+    id: json["id"],
+    title: json["title"],
+    description: json["description"],
+        isScrollable: json["isScrollable"] ?? false,
+        fields: json["fields"] == null ? null : List<UProcessField>.from(json["fields"].map((dynamic x) => UProcessField.fromMap(x))),
+        message: json["message"],
+  );
+
+  final String id;
+  final String title;
+  final String description;
+  final bool isScrollable;
+  final List<UProcessField>? fields;
+  final String? message;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "title": title,
+    "description": description,
+    "isScrollable": isScrollable,
+    "fields": fields == null ? null : List<dynamic>.from(fields!.map((dynamic x) => x.toMap())),
+    "message": message,
+  };
+}
+
+class UProcessField {
+  UProcessField({
     required this.label,
     required this.type,
     required this.required,
     required this.key,
     this.value,
-    this.validation,
+    this.textFieldConfig,
+    this.fileConfig,
+    this.dropDownConfig,
     this.options,
   });
 
-  factory UFlowField.fromJson(String str) => UFlowField.fromMap(json.decode(str));
+  factory UProcessField.fromJson(String str) => UProcessField.fromMap(json.decode(str));
 
-  factory UFlowField.fromMap(Map<String, dynamic> json) => UFlowField(
+  factory UProcessField.fromMap(Map<String, dynamic> json) =>
+      UProcessField(
     label: json["label"],
     value: json["value"],
     type: json["type"],
     required: json["required"],
     key: json["key"],
-    validation: json["validation"] == null ? null : UValidationRule.fromMap(json["validation"]),
-    options: json["options"] == null
-        ? <UOption>[]
-        : List<UOption>.from(
-            json["options"].map((dynamic x) => UOption.fromMap(x)),
-          ),
+        textFieldConfig: json["textFieldConfig"] == null ? null : UTextFieldConfig.fromMap(json["textFieldConfig"]),
+        fileConfig: json["fileConfig"] == null ? null : UFileConfig.fromMap(json["fileConfig"]),
+        dropDownConfig: json["dropDownConfig"] == null ? null : UDropDownConfig.fromMap(json["dropDownConfig"]),
+        options: json["options"] == null ? null : List<UOption>.from(json["options"].map((dynamic x) => UOption.fromMap(x))),
   );
 
   final String label;
@@ -92,7 +185,10 @@ class UFlowField {
   final int type;
   final bool required;
   final String key;
-  final UValidationRule? validation;
+
+  final UTextFieldConfig? textFieldConfig;
+  final UFileConfig? fileConfig;
+  final UDropDownConfig? dropDownConfig;
   final List<UOption>? options;
 
   String toJson() => json.encode(toMap());
@@ -103,44 +199,99 @@ class UFlowField {
     "type": type,
     "required": required,
     "key": key,
-    "validation": validation?.toMap(),
-    "options": options == null ? null : List<dynamic>.from(options!.map((UOption x) => x.toMap())),
+    "textFieldConfig": textFieldConfig?.toMap(),
+    "fileConfig": fileConfig?.toMap(),
+    "dropDownConfig": dropDownConfig?.toMap(),
+    "options": options == null ? null : List<dynamic>.from(options!.map((dynamic x) => x.toMap())),
   };
 }
 
-class UValidationRule {
-  UValidationRule({
+class UTextFieldConfig {
+  UTextFieldConfig({
     this.minLength,
     this.maxLength,
-    this.message,
-    this.allowedType = const <String>[],
-    this.maxSizeMb,
   });
 
-  factory UValidationRule.fromJson(String str) => UValidationRule.fromMap(json.decode(str));
+  factory UTextFieldConfig.fromJson(String str) => UTextFieldConfig.fromMap(json.decode(str));
 
-  factory UValidationRule.fromMap(Map<String, dynamic> json) => UValidationRule(
+  factory UTextFieldConfig.fromMap(Map<String, dynamic> json) =>
+      UTextFieldConfig(
     minLength: json["minLength"],
     maxLength: json["maxLength"],
-    message: json["message"],
-    allowedType: json["allowedType"] == null ? <String>[] : List<String>.from(json["allowedType"].map((dynamic x) => x)),
-    maxSizeMb: json["maxSizeMb"],
   );
 
   final int? minLength;
   final int? maxLength;
-  final String? message;
-  final List<String> allowedType;
-  final int? maxSizeMb;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "minLength": minLength,
     "maxLength": maxLength,
-    "message": message,
-    "allowedType": List<dynamic>.from(allowedType.map((String x) => x)),
-    "maxSizeMb": maxSizeMb,
+  };
+}
+
+class UFileConfig {
+  UFileConfig({
+    this.allowedExtensions,
+    this.isImage = false,
+    this.isVideo = false,
+    this.isPdf = false,
+    this.isCamera = false,
+    this.isSelfieCamera = false,
+  });
+
+  factory UFileConfig.fromJson(String str) => UFileConfig.fromMap(json.decode(str));
+
+  factory UFileConfig.fromMap(Map<String, dynamic> json) =>
+      UFileConfig(
+        allowedExtensions: json["allowedExtensions"] == null ? null : List<String>.from(json["allowedExtensions"].map((dynamic x) => x)),
+        isImage: json["isImage"] ?? false,
+        isVideo: json["isVideo"] ?? false,
+        isPdf: json["isPdf"] ?? false,
+        isCamera: json["isCamera"] ?? false,
+        isSelfieCamera: json["isSelfieCamera"] ?? false,
+      );
+
+  final List<String>? allowedExtensions;
+  final bool isImage;
+  final bool isVideo;
+  final bool isPdf;
+  final bool isCamera;
+  final bool isSelfieCamera;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "allowedExtensions": allowedExtensions == null ? null : List<dynamic>.from(allowedExtensions!.map((dynamic x) => x)),
+        "isImage": isImage,
+        "isVideo": isVideo,
+        "isPdf": isPdf,
+        "isCamera": isCamera,
+        "isSelfieCamera": isSelfieCamera,
+      };
+}
+
+class UDropDownConfig {
+  UDropDownConfig({
+    this.isSearchable = false,
+  });
+
+  factory UDropDownConfig.fromJson(String str) => UDropDownConfig.fromMap(json.decode(str));
+
+  factory UDropDownConfig.fromMap(Map<String, dynamic> json) =>
+      UDropDownConfig(
+        isSearchable: json["isSearchable"] ?? false,
+      );
+
+  final bool isSearchable;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "isSearchable": isSearchable,
   };
 }
 
