@@ -1,7 +1,6 @@
 import "package:u/utilities.dart";
 
 part "params/address_params.dart";
-part "params/agreement_params.dart";
 part "params/auth_params.dart";
 part "params/bank_account_params.dart";
 part "params/base_params.dart";
@@ -23,7 +22,6 @@ part "params/user_params.dart";
 part "params/vehicle_params.dart";
 part "params/wallet_params.dart";
 part "responses/address_response.dart";
-part "responses/agreement_response.dart";
 part "responses/auth_response.dart";
 part "responses/bank_account_response.dart";
 part "responses/base_response.dart";
@@ -35,12 +33,11 @@ part "responses/content_response.dart";
 part "responses/dashboard_response.dart";
 part "responses/exam_response.dart";
 part "responses/follower_following_count_response.dart";
-
-part "responses/process_response.dart";
 part "responses/inquiry_response.dart";
 part "responses/media_response.dart";
 part "responses/merchant_response.dart";
 part "responses/notification_response.dart";
+part "responses/process_response.dart";
 part "responses/product_response.dart";
 part "responses/terminal_response.dart";
 part "responses/ticket_response.dart";
@@ -50,7 +47,6 @@ part "responses/user_response.dart";
 part "responses/vehicle_response.dart";
 part "responses/wallet_response.dart";
 part "services/address_service.dart";
-part "services/agreement_service.dart";
 part "services/auth_service.dart";
 part "services/bank_account_service.dart";
 part "services/category_service.dart";
@@ -64,6 +60,7 @@ part "services/inquiry_service.dart";
 part "services/media_service.dart";
 part "services/merchant_service.dart";
 part "services/notification_service.dart";
+part "services/process_service.dart";
 part "services/product_service.dart";
 part "services/terminal_service.dart";
 part "services/user_service.dart";
@@ -90,5 +87,5 @@ class UServices {
   static NotificationService notification = NotificationService();
   static ChargeInternetService chargeInternet = ChargeInternetService();
   static MerchantService merchant = MerchantService();
-  static AgreementService agreement = AgreementService();
+  static ProcessService process = ProcessService();
 }
