@@ -1,5 +1,32 @@
 part of "../data.dart";
 
+class UProcessStepStatus {
+  UProcessStepStatus({
+    required this.id,
+    required this.title,
+    required this.status,
+  });
+
+  factory UProcessStepStatus.fromMap(Map<String, dynamic> json) => UProcessStepStatus(
+    id: json["id"],
+    title: json["title"],
+    status: TagProcessStepStatus.values.firstWhere(
+      (TagProcessStepStatus e) => e.number == json["status"],
+      orElse: () => TagProcessStepStatus.notStarted,
+    ),
+  );
+
+  final String id;
+  final String title;
+  final TagProcessStepStatus status;
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "title": title,
+    "status": status.number,
+  };
+}
+
 class UProcessStepSend {
   UProcessStepSend({
     required this.id,
@@ -112,17 +139,17 @@ class UProcessStepGet {
     this.isScrollable = false,
     this.fields,
     this.message,
+    this.steps = const <UProcessStepStatus>[],
   });
-
-  factory UProcessStepGet.fromJson(String str) => UProcessStepGet.fromMap(json.decode(str));
 
   factory UProcessStepGet.fromMap(Map<String, dynamic> json) => UProcessStepGet(
     id: json["id"],
     title: json["title"],
     description: json["description"],
     isScrollable: json["isScrollable"] ?? false,
-    fields: json["fields"] == null ? null : List<UProcessField>.from(json["fields"].map((dynamic x) => UProcessField.fromMap(x))),
+    fields: json["fields"] == null ? null : List<UProcessField>.from((json["fields"] as List<dynamic>).map((dynamic x) => UProcessField.fromMap(x))),
     message: json["message"],
+    steps: json["steps"] == null ? <UProcessStepStatus>[] : List<UProcessStepStatus>.from((json["steps"] as List<dynamic>).map((dynamic x) => UProcessStepStatus.fromMap(x))),
   );
 
   final String id;
@@ -131,16 +158,16 @@ class UProcessStepGet {
   final bool isScrollable;
   final List<UProcessField>? fields;
   final String? message;
-
-  String toJson() => json.encode(toMap());
+  final List<UProcessStepStatus> steps;
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "title": title,
     "description": description,
     "isScrollable": isScrollable,
-    "fields": fields == null ? null : List<dynamic>.from(fields!.map((dynamic x) => x.toMap())),
+    "fields": fields == null ? null : List<dynamic>.from(fields!.map((UProcessField x) => x.toMap())),
     "message": message,
+    "steps": List<dynamic>.from(steps.map((UProcessStepStatus x) => x.toMap())),
   };
 }
 

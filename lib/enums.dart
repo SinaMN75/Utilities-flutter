@@ -625,6 +625,22 @@ enum TagProcessStatus with NumericIdentifiable {
   final int number;
 }
 
+enum TagProcessStepStatus with NumericIdentifiable {
+  notStarted("", "", 101),
+  current("", "", 102),
+  awaitingVerification("", "", 103),
+  verified("", "", 104);
+
+  const TagProcessStepStatus(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 mixin NumericIdentifiable {
   int get number;
 
