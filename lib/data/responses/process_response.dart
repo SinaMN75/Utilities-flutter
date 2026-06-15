@@ -29,24 +29,28 @@ class UProcessStepStatus {
 
 class UProcessStepSend {
   UProcessStepSend({
-    required this.id,
+    required this.stepId,
+    required this.processId,
     required this.fields,
   });
 
   factory UProcessStepSend.fromJson(String str) => UProcessStepSend.fromMap(json.decode(str));
 
   factory UProcessStepSend.fromMap(Map<String, dynamic> json) => UProcessStepSend(
-    id: json["id"],
+    stepId: json["stepId"],
+    processId: json["processId"],
     fields: json["fields"] == null ? <UProcessField>[] : List<UProcessField>.from(json["fields"].map((dynamic x) => UProcessField.fromMap(x))),
   );
 
-  final String id;
+  final String stepId;
+  final String processId;
   final List<UProcessField> fields;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "id": id,
+    "stepId": stepId,
+    "processId": processId,
     "fields": List<dynamic>.from(fields.map((dynamic x) => x.toMap())),
   };
 }
@@ -139,6 +143,7 @@ class UProcessStepGet {
     this.isScrollable = false,
     this.fields,
     this.message,
+    this.messageBox,
     this.steps = const <UProcessStepStatus>[],
   });
 
@@ -149,6 +154,7 @@ class UProcessStepGet {
     isScrollable: json["isScrollable"] ?? false,
     fields: json["fields"] == null ? null : List<UProcessField>.from((json["fields"] as List<dynamic>).map((dynamic x) => UProcessField.fromMap(x))),
     message: json["message"],
+    messageBox: json["messageBox"] == null ? null : UMessageBox.fromMap(json["messageBox"]),
     steps: json["steps"] == null ? <UProcessStepStatus>[] : List<UProcessStepStatus>.from((json["steps"] as List<dynamic>).map((dynamic x) => UProcessStepStatus.fromMap(x))),
   );
 
@@ -158,6 +164,7 @@ class UProcessStepGet {
   final bool isScrollable;
   final List<UProcessField>? fields;
   final String? message;
+  final UMessageBox? messageBox;
   final List<UProcessStepStatus> steps;
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -167,6 +174,7 @@ class UProcessStepGet {
     "isScrollable": isScrollable,
     "fields": fields == null ? null : List<dynamic>.from(fields!.map((UProcessField x) => x.toMap())),
     "message": message,
+    "messageBox": messageBox,
     "steps": List<dynamic>.from(steps.map((UProcessStepStatus x) => x.toMap())),
   };
 }
@@ -177,6 +185,8 @@ class UProcessField {
     required this.type,
     required this.required,
     required this.key,
+    this.rejectionReason,
+    this.text1,
     this.value,
     this.textFieldConfig,
     this.fileConfig,
@@ -189,6 +199,8 @@ class UProcessField {
   factory UProcessField.fromMap(Map<String, dynamic> json) => UProcessField(
     label: json["label"],
     value: json["value"],
+    rejectionReason: json["rejectionReason"],
+    text1: json["text1"],
     type: TagFieldType.values.firstWhere((TagFieldType e) => e.number == json["type"], orElse: () => TagFieldType.text),
     required: json["required"],
     key: json["key"],
@@ -200,6 +212,8 @@ class UProcessField {
 
   final String label;
   String? value;
+  String? rejectionReason;
+  String? text1;
   final TagFieldType type;
   final bool required;
   final String key;
@@ -214,6 +228,8 @@ class UProcessField {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "label": label,
     "value": value,
+    "rejectionReason": rejectionReason,
+    "text1": text1,
     "type": type.number,
     "required": required,
     "key": key,
@@ -325,5 +341,33 @@ class UOption {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "key": key,
     "value": value,
+  };
+}
+
+class UMessageBox {
+  UMessageBox({
+    required this.title,
+    required this.description,
+    required this.svgIcon,
+  });
+
+  factory UMessageBox.fromJson(String str) => UMessageBox.fromMap(json.decode(str));
+
+  factory UMessageBox.fromMap(Map<String, dynamic> json) => UMessageBox(
+    title: json["title"],
+    description: json["description"],
+    svgIcon: json["svgIcon"],
+  );
+
+  final String title;
+  final String description;
+  final String? svgIcon;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "title": title,
+    "description": description,
+    "svgIcon": svgIcon,
   };
 }

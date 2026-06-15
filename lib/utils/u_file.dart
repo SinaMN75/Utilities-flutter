@@ -1,6 +1,11 @@
 import "package:path/path.dart" as path;
 import "package:u/utilities.dart";
 
+enum UImageSource {
+  camera,
+  gallery,
+}
+
 class FileData {
   FileData({
     this.path,
@@ -23,8 +28,9 @@ class FileData {
 
 abstract class UFile {
   static Future<List<FileData>> showImagePicker({
-    required final ImageSource source,
+    required final UImageSource source,
     final bool allowMultiple = false,
+    final bool isSelfie = false,
     final Function(List<FileData>)? action,
   }) async {
     final List<FileData> files = <FileData>[];
@@ -40,7 +46,8 @@ abstract class UFile {
       return files;
     } else {
       final XFile? image = await imagePicker.pickImage(
-        source: source,
+        source: source == UImageSource.camera ? ImageSource.camera : ImageSource.gallery,
+        preferredCameraDevice: isSelfie ? CameraDevice.front : CameraDevice.rear,
       );
       if (image == null) return <FileData>[];
       final Uint8List bytes = await image.readAsBytes();
