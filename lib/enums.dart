@@ -1,25 +1,25 @@
 enum Usc with NumericIdentifiable {
-  success("موفق", "Success", 200),
+  success("موفقیت", "Success", 200),
   created("ایجاد شده", "Created", 201),
   deleted("حذف شده", "Deleted", 211),
+  processCompleted("پردازش کامل شد", "Process Completed", 212),
   badRequest("درخواست نامعتبر", "Bad Request", 400),
-  unAuthorized("غیرمجاز", "Unauthorized", 401),
-  forbidden("ممنوع", "Forbidden", 403),
+  unAuthorized("احراز هویت نشده", "Unauthorized", 401),
+  forbidden("دسترسی ممنوع", "Forbidden", 403),
   notFound("یافت نشد", "Not Found", 404),
   conflict("تداخل", "Conflict", 409),
-  payloadTooLarge("حجم بار زیاد", "Payload Too Large", 413),
+  payloadTooLarge("حجم بار بیش از حد", "Payload Too Large", 413),
   mediaTypeNotSupported("نوع رسانه پشتیبانی نمی‌شود", "Media Type Not Supported", 451),
   securityError("خطای امنیتی", "Security Error", 452),
   internalServerError("خطای داخلی سرور", "Internal Server Error", 500),
   thirdPartyError("خطای شخص ثالث", "Third Party Error", 600),
   wrongVerificationCode("کد تایید اشتباه", "Wrong Verification Code", 601),
-  maximumLimitReached("حداکثر محدودیت رسیده", "Maximum Limit Reached", 602),
+  maximumLimitReached("حداکثر تعداد رسیده", "Maximum Limit Reached", 602),
   userNotFound("کاربر یافت نشد", "User Not Found", 603),
   expiredToken("توکن منقضی شده", "Expired Token", 604),
-  shahkarException("استثنای شاهکار", "Shahkar Exception", 605),
-  shahkarError("خطای شاهکار", "Shahkar Error", 606),
-  balanceIsLow("موجودی کم است", "Balance Is Low", 701)
-  ;
+  shahkarException("استثنای شهکار", "Shahkar Exception", 605),
+  shahkarError("خطای شهکار", "Shahkar Error", 606),
+  balanceIsLow("موجودی کم است", "Balance Is Low", 701);
 
   const Usc(this.titleFa, this.titleEn, this.number);
 
@@ -34,8 +34,7 @@ enum Usc with NumericIdentifiable {
 enum TagSmsPanel with NumericIdentifiable {
   nikSms("نیک اس ام اس", "Nik Sms", 101),
   ghasedak("قاصدک", "Ghasedak", 102),
-  kavenegar("کاوه نگار", "Kavenegar", 103)
-  ;
+  kavenegar("کاوه نگار", "Kavenegar", 103);
 
   const TagSmsPanel(this.titleFa, this.titleEn, this.number);
 
@@ -83,8 +82,7 @@ enum TagUser with NumericIdentifiable {
   birthCertificateForthRejected("شناسنامه صفحه چهارم رد شده", "Birth Certificate Forth Rejected", 606),
   birthCertificateFifthRejected("شناسنامه صفحه پنجم رد شده", "Birth Certificate Fifth Rejected", 607),
   visualAuthenticationRejected("احراز هویت تصویری رد شده", "Visual Authentication Rejected", 608),
-  eSignatureRejected("امضای الکترونیکی رد شده", "E-Signature Rejected", 609)
-  ;
+  eSignatureRejected("امضای الکترونیکی رد شده", "E-Signature Rejected", 609);
 
   const TagUser(this.titleFa, this.titleEn, this.number);
 
@@ -109,8 +107,7 @@ enum TagCategory with NumericIdentifiable {
   bed("تخت", "Bed", 108),
   enabled("فعال", "Enabled", 201),
   disabled("غیر فعال", "Disabled", 202),
-  hidden("مخفی", "Hidden", 203)
-  ;
+  hidden("مخفی", "Hidden", 203);
 
   const TagCategory(this.titleFa, this.titleEn, this.number);
 
@@ -124,8 +121,7 @@ enum TagCategory with NumericIdentifiable {
 
 enum TagMedia with NumericIdentifiable {
   image("تصویر", "Image", 101),
-  profile("پروفایل", "Profile", 102)
-  ;
+  profile("پروفایل", "Profile", 102);
 
   const TagMedia(this.titleFa, this.titleEn, this.number);
 
@@ -163,8 +159,7 @@ enum TagProduct with NumericIdentifiable {
   room7("اتاق ۷ تخته", "7 Bed Room", 407),
   room8("اتاق ۸ تخته", "8 Bed Room", 408),
   room9("اتاق ۹ تخته", "9 Bed Room", 409),
-  room10("اتاق ۱۰ تخته", "10 Bed Room", 410)
-  ;
+  room10("اتاق ۱۰ تخته", "10 Bed Room", 410);
 
   const TagProduct(this.titleFa, this.titleEn, this.number);
 
@@ -180,8 +175,7 @@ enum TagComment with NumericIdentifiable {
   released("منتشر شده", "Released", 101),
   inQueue("در حال بررسی", "In Queue", 102),
   rejected("رد شده", "Rejected", 103),
-  private("خصوصی", "Private", 201)
-  ;
+  private("خصوصی", "Private", 201);
 
   const TagComment(this.titleFa, this.titleEn, this.number);
 
@@ -195,8 +189,7 @@ enum TagComment with NumericIdentifiable {
 
 enum TagReaction with NumericIdentifiable {
   like("پسندیدن", "Like", 101),
-  dislike("نپسندیدن", "Dislike", 102)
-  ;
+  dislike("نپسندیدن", "Dislike", 102);
 
   const TagReaction(this.titleFa, this.titleEn, this.number);
 
@@ -211,8 +204,7 @@ enum TagReaction with NumericIdentifiable {
 enum TagFollow with NumericIdentifiable {
   user("کاربر", "User", 101),
   product("محصول", "Product", 102),
-  category("دسته‌بندی", "Category", 103)
-  ;
+  category("دسته‌بندی", "Category", 103);
 
   const TagFollow(this.titleFa, this.titleEn, this.number);
 
@@ -227,8 +219,7 @@ enum TagFollow with NumericIdentifiable {
 enum TagContent with NumericIdentifiable {
   aboutUs("درباره ما", "About Us", 101),
   terms("قوانین و مقررات", "Terms", 102),
-  homeSlider1("اسلایدر اصلی", "Home Slider 1", 103)
-  ;
+  homeSlider1("اسلایدر اصلی", "Home Slider 1", 103);
 
   const TagContent(this.titleFa, this.titleEn, this.number);
 
@@ -242,8 +233,7 @@ enum TagContent with NumericIdentifiable {
 
 enum TagTicket with NumericIdentifiable {
   superAdmin("سوپر ادمین", "Super Admin", 101),
-  admin("ادمین", "Admin", 102)
-  ;
+  admin("ادمین", "Admin", 102);
 
   const TagTicket(this.titleFa, this.titleEn, this.number);
 
@@ -262,8 +252,7 @@ enum TagTxn with NumericIdentifiable {
   paid("پرداخت شده", "Paid", 202),
   failed("ناموفق", "Failed", 203),
   refunded("بازگشت داده شده", "Refunded", 204),
-  chargeWallet("شارژ کیف پول", "Charge Wallet", 301)
-  ;
+  chargeWallet("شارژ کیف پول", "Charge Wallet", 301);
 
   const TagTxn(this.titleFa, this.titleEn, this.number);
 
@@ -276,8 +265,7 @@ enum TagTxn with NumericIdentifiable {
 }
 
 enum TagParking with NumericIdentifiable {
-  test("تست", "Test", 999)
-  ;
+  test("تست", "Test", 999);
 
   const TagParking(this.titleFa, this.titleEn, this.number);
 
@@ -290,8 +278,7 @@ enum TagParking with NumericIdentifiable {
 }
 
 enum TagVehicle with NumericIdentifiable {
-  test("تست", "Test", 999)
-  ;
+  test("تست", "Test", 999);
 
   const TagVehicle(this.titleFa, this.titleEn, this.number);
 
@@ -304,8 +291,7 @@ enum TagVehicle with NumericIdentifiable {
 }
 
 enum TagParkingReport with NumericIdentifiable {
-  test("تست", "Test", 999)
-  ;
+  test("تست", "Test", 999);
 
   const TagParkingReport(this.titleFa, this.titleEn, this.number);
 
@@ -318,8 +304,7 @@ enum TagParkingReport with NumericIdentifiable {
 }
 
 enum TagAddress with NumericIdentifiable {
-  verified("تایید شده", "Verified", 101)
-  ;
+  verified("تایید شده", "Verified", 101);
 
   const TagAddress(this.titleFa, this.titleEn, this.number);
 
@@ -332,8 +317,7 @@ enum TagAddress with NumericIdentifiable {
 }
 
 enum TagWallet with NumericIdentifiable {
-  primary("اصلی", "Primary", 101)
-  ;
+  primary("اصلی", "Primary", 101);
 
   const TagWallet(this.titleFa, this.titleEn, this.number);
 
@@ -358,8 +342,7 @@ enum TagWalletTxn with NumericIdentifiable {
   freewayTolls("عوارض آزادراه", "Freeway Tolls", 208),
   chargeSimPin("شارژ سیم کارت با پین", "Charge Sim Pin", 301),
   chargeSimTopup("شارژ سیم کارت", "Charge Sim Topup", 302),
-  internetSim("اینترنت سیم کارت", "Internet Sim", 303)
-  ;
+  internetSim("اینترنت سیم کارت", "Internet Sim", 303);
 
   const TagWalletTxn(this.titleFa, this.titleEn, this.number);
 
@@ -377,8 +360,7 @@ enum TagTerminal with NumericIdentifiable {
   deskCashless("پرداخت بدون پول نقد میز", "Desk Cashless", 103),
   verified("تایید شده", "Verified", 201),
   awaitingVerification("در انتظار تایید", "Awaiting Verification", 202),
-  suspended("تعلیق شده", "Suspended", 203)
-  ;
+  suspended("تعلیق شده", "Suspended", 203);
 
   const TagTerminal(this.titleFa, this.titleEn, this.number);
 
@@ -391,8 +373,7 @@ enum TagTerminal with NumericIdentifiable {
 }
 
 enum TagBankAccount with NumericIdentifiable {
-  verified("تایید شده", "Verified", 101)
-  ;
+  verified("تایید شده", "Verified", 101);
 
   const TagBankAccount(this.titleFa, this.titleEn, this.number);
 
@@ -405,8 +386,7 @@ enum TagBankAccount with NumericIdentifiable {
 }
 
 enum TagIpg with NumericIdentifiable {
-  pn("پی ان", "Pn", 101)
-  ;
+  pn("پی ان", "Pn", 101);
 
   const TagIpg(this.titleFa, this.titleEn, this.number);
 
@@ -419,8 +399,7 @@ enum TagIpg with NumericIdentifiable {
 }
 
 enum TagMpg with NumericIdentifiable {
-  pn("پی ان", "Pn", 101)
-  ;
+  pn("پی ان", "Pn", 101);
 
   const TagMpg(this.titleFa, this.titleEn, this.number);
 
@@ -433,8 +412,7 @@ enum TagMpg with NumericIdentifiable {
 }
 
 enum TagPayment with NumericIdentifiable {
-  chargeWallet("شارژ کیف پول", "Charge Wallet", 101)
-  ;
+  chargeWallet("شارژ کیف پول", "Charge Wallet", 101);
 
   const TagPayment(this.titleFa, this.titleEn, this.number);
 
@@ -458,8 +436,7 @@ enum TagInquiryHistory with NumericIdentifiable {
   verified("تایید شده", "Verified", 601),
   notVerified("تایید نشده", "Not Verified", 602),
   error("خطا", "Error", 603),
-  itHub("آی تی هاب", "It Hub", 701)
-  ;
+  itHub("آی تی هاب", "It Hub", 701);
 
   const TagInquiryHistory(this.titleFa, this.titleEn, this.number);
 
@@ -472,8 +449,7 @@ enum TagInquiryHistory with NumericIdentifiable {
 }
 
 enum TagNotification with NumericIdentifiable {
-  test("تست", "Test", 999)
-  ;
+  test("تست", "Test", 999);
 
   const TagNotification(this.titleFa, this.titleEn, this.number);
 
@@ -491,8 +467,7 @@ enum TagTxnErrorCodes with NumericIdentifiable {
   senderWalletNotFound("کیف پول فرستنده یافت نشد", "Sender Wallet Not Found", 103),
   receiverWalletNotFound("کیف پول گیرنده یافت نشد", "Receiver Wallet Not Found", 104),
   securityError("خطای امنیتی", "Security Error", 105),
-  ok("تایید", "Ok", 201)
-  ;
+  ok("تایید", "Ok", 201);
 
   const TagTxnErrorCodes(this.titleFa, this.titleEn, this.number);
 
@@ -508,8 +483,7 @@ enum TagVas with NumericIdentifiable {
   water("آب", "Water", 101),
   chargeTopup("شارژ مستقیم", "Charge Topup", 201),
   chargePin("شارژ با پین", "Charge Pin", 202),
-  internetPackage("بسته اینترنت", "Internet Package", 203)
-  ;
+  internetPackage("بسته اینترنت", "Internet Package", 203);
 
   const TagVas(this.titleFa, this.titleEn, this.number);
 
@@ -525,8 +499,7 @@ enum TagSimOperator with NumericIdentifiable {
   iranCell("ایرانسل", "Iran Cell", 1),
   hamrahAvval("همراه اول", "Hamrah Avval", 2),
   rigthel("رایتل", "Rigthel", 3),
-  shatel("شاتل", "Shatel", 5)
-  ;
+  shatel("شاتل", "Shatel", 5);
 
   const TagSimOperator(this.titleFa, this.titleEn, this.number);
 
@@ -539,8 +512,7 @@ enum TagSimOperator with NumericIdentifiable {
 }
 
 enum TagMerchant with NumericIdentifiable {
-  normal("معمولی", "Normal", 101)
-  ;
+  normal("معمولی", "Normal", 101);
 
   const TagMerchant(this.titleFa, this.titleEn, this.number);
 
@@ -556,8 +528,7 @@ enum TagFieldType with NumericIdentifiable {
   text("متن", "Text", 101),
   dropDown("لیست کشویی", "Drop Down", 102),
   file("فایل", "File", 103),
-  eSignature("امضای الکترونیکی", "E-Signature", 105)
-  ;
+  eSignature("امضای الکترونیکی", "E-Signature", 105);
 
   const TagFieldType(this.titleFa, this.titleEn, this.number);
 
@@ -578,8 +549,7 @@ enum TagTextFieldType with NumericIdentifiable {
   date("تاریخ", "Date", 401),
   dateTime("تاریخ و زمان", "DateTime", 402),
   persianDate("تاریخ شمسی", "Persian Date", 403),
-  persianDateTime("تاریخ و زمان شمسی", "Persian DateTime", 404)
-  ;
+  persianDateTime("تاریخ و زمان شمسی", "Persian DateTime", 404);
 
   const TagTextFieldType(this.titleFa, this.titleEn, this.number);
 
@@ -595,8 +565,7 @@ enum TagFileFieldType with NumericIdentifiable {
   image("تصویر", "Image", 101),
   video("ویدئو", "Video", 102),
   pdf("پی دی اف", "Pdf", 103),
-  text("متن", "Text", 104)
-  ;
+  text("متن", "Text", 104);
 
   const TagFileFieldType(this.titleFa, this.titleEn, this.number);
 
@@ -612,8 +581,7 @@ enum TagProcessStatus with NumericIdentifiable {
   available("موجود", "Available", 101),
   comingSoon("به زودی", "Coming Soon", 102),
   disabled("غیر فعال", "Disabled", 103),
-  hidden("مخفی", "Hidden", 104)
-  ;
+  hidden("مخفی", "Hidden", 104);
 
   const TagProcessStatus(this.titleFa, this.titleEn, this.number);
 
