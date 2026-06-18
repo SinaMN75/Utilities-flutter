@@ -18,6 +18,8 @@ part "params/notification_params.dart";
 part "params/product_params.dart";
 part "params/selectors.dart";
 part "params/terminal_params.dart";
+
+part "params/sim_params.dart";
 part "params/user_params.dart";
 part "params/vehicle_params.dart";
 part "params/wallet_params.dart";
@@ -32,6 +34,8 @@ part "responses/comment_response.dart";
 part "responses/content_response.dart";
 part "responses/dashboard_response.dart";
 part "responses/exam_response.dart";
+
+part "responses/sim_response.dart";
 part "responses/follower_following_count_response.dart";
 part "responses/inquiry_response.dart";
 part "responses/media_response.dart";
@@ -61,6 +65,8 @@ part "services/media_service.dart";
 part "services/merchant_service.dart";
 part "services/notification_service.dart";
 part "services/process_service.dart";
+
+part "services/sim_service.dart";
 part "services/product_service.dart";
 part "services/terminal_service.dart";
 part "services/user_service.dart";
@@ -88,4 +94,5 @@ class UServices {
   static ChargeInternetService chargeInternet = ChargeInternetService();
   static MerchantService merchant = MerchantService();
   static ProcessService process = ProcessService();
+  static SimService sim = SimService();
 }

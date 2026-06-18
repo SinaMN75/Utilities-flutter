@@ -8,7 +8,7 @@ class UserSelectorArgs {
   final WalletSelectorArgs? wallet;
   final MerchantSelectorArgs? merchant;
   final BankAccountSelectorArgs? bankAccount;
-  final SimCardSelectorArgs? simCard;
+  final SimSelectorArgs? simCard;
   final bool? nationalCardFront;
   final bool? nationalCardBack;
   final bool? birthCertificateFirst;
@@ -51,7 +51,7 @@ class UserSelectorArgs {
     wallet: json["wallet"] == null ? null : WalletSelectorArgs.fromMap(json["wallet"]),
     merchant: json["merchant"] == null ? null : MerchantSelectorArgs.fromMap(json["merchant"]),
     bankAccount: json["bankAccount"] == null ? null : BankAccountSelectorArgs.fromMap(json["bankAccount"]),
-    simCard: json["simCard"] == null ? null : SimCardSelectorArgs.fromMap(json["simCard"]),
+    simCard: json["simCard"] == null ? null : SimSelectorArgs.fromMap(json["simCard"]),
     nationalCardFront: json["nationalCardFront"],
     nationalCardBack: json["nationalCardBack"],
     birthCertificateFirst: json["birthCertificateFirst"],
@@ -181,28 +181,6 @@ class ContentSelectorArgs {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "creator": creator?.toMap(),
     "media": media?.toMap(),
-  };
-}
-
-class SimCardSelectorArgs {
-  final UserSelectorArgs? creator;
-  final UserSelectorArgs? user;
-
-  const SimCardSelectorArgs({this.creator, this.user});
-
-  factory SimCardSelectorArgs.fromJson(String str) => SimCardSelectorArgs.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory SimCardSelectorArgs.fromMap(Map<String, dynamic> json) =>
-      SimCardSelectorArgs(
-    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
-        user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
-  );
-
-  Map<String, dynamic> toMap() => <String, dynamic>{
-    "creator": creator?.toMap(),
-    "user": user?.toMap(),
   };
 }
 
@@ -428,7 +406,6 @@ class TxnSelectorArgs {
   };
 }
 
-// Classes that only inherit BaseSelectorArgs properties
 class MediaSelectorArgs {
   final UserSelectorArgs? creator;
 
@@ -487,4 +464,25 @@ class WalletSelectorArgs {
   factory WalletSelectorArgs.fromMap(Map<String, dynamic> json) => WalletSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
 
   Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+}
+
+class SimSelectorArgs {
+  final UserSelectorArgs? creator;
+  final UserSelectorArgs? user;
+
+  const SimSelectorArgs({this.creator, this.user});
+
+  factory SimSelectorArgs.fromJson(String str) => SimSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory SimSelectorArgs.fromMap(Map<String, dynamic> json) => SimSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "user": user?.toMap(),
+  };
 }
