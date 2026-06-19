@@ -542,3 +542,33 @@ class InvoiceSelectorArgs {
     "creator": creator?.toMap(),
   };
 }
+
+class BedSelectorArgs {
+  final UserSelectorArgs? creator;
+  final MediaSelectorArgs? media;
+  final BedSelectorArgs? children;
+  final ContractSelectorArgs? contract;
+  final int? childrenDebt;
+
+  const BedSelectorArgs({this.creator, this.media, this.children, this.contract, this.childrenDebt});
+
+  factory BedSelectorArgs.fromJson(String str) => BedSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory BedSelectorArgs.fromMap(Map<String, dynamic> json) => BedSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+    children: json["children"] == null ? null : BedSelectorArgs.fromMap(json["children"]),
+    contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
+    childrenDebt: json["childrenDebt"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "media": media?.toMap(),
+    "children": children?.toMap(),
+    "contract": contract?.toMap(),
+    "childrenDebt": childrenDebt,
+  };
+}
