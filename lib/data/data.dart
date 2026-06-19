@@ -19,6 +19,9 @@ part "params/product_params.dart";
 part "params/selectors.dart";
 part "params/terminal_params.dart";
 
+part "params/contract_params.dart";
+
+part "params/invoice_params.dart";
 part "params/sim_params.dart";
 part "params/user_params.dart";
 part "params/vehicle_params.dart";
@@ -50,6 +53,10 @@ part "responses/user_flow.dart";
 part "responses/user_response.dart";
 part "responses/vehicle_response.dart";
 part "responses/wallet_response.dart";
+
+part "responses/invoice_response.dart";
+
+part "responses/contract_response.dart";
 part "services/address_service.dart";
 part "services/auth_service.dart";
 part "services/bank_account_service.dart";
@@ -65,6 +72,10 @@ part "services/media_service.dart";
 part "services/merchant_service.dart";
 part "services/notification_service.dart";
 part "services/process_service.dart";
+
+part "services/invoice_service.dart";
+
+part "services/contract_service.dart";
 
 part "services/sim_service.dart";
 part "services/product_service.dart";
@@ -95,4 +106,6 @@ class UServices {
   static MerchantService merchant = MerchantService();
   static ProcessService process = ProcessService();
   static SimService sim = SimService();
+  static ContractService contract = ContractService();
+  static InvoiceService invoice = InvoiceService();
 }

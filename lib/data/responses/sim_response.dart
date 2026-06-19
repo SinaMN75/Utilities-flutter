@@ -32,14 +32,14 @@ class USimResponse {
   factory USimResponse.fromMap(Map<String, dynamic> json) => USimResponse(
     id: json["id"],
     createdAt: json["createdAt"],
-    jsonData: json["jsonData"] == null ? null : UBaseJson.fromJson(json["jsonData"]),
+    jsonData: json["jsonData"] == null ? null : UBaseJson.fromMap(json["jsonData"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-    creator: json["creator"] == null ? null : UUserResponse.fromJson(json["creator"]),
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     number: json["number"],
     serial: json["serial"],
     userId: json["userId"],
-    user: json["user"] == null ? null : UUserResponse.fromJson(json["user"]),
+    user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{

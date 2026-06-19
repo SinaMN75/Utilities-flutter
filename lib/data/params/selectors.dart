@@ -486,3 +486,59 @@ class SimSelectorArgs {
     "user": user?.toMap(),
   };
 }
+
+class ContractSelectorArgs {
+  final UserSelectorArgs? creator;
+  final UserSelectorArgs? user;
+  final ProductSelectorArgs? product;
+  final InvoiceSelectorArgs? invoice;
+
+  const ContractSelectorArgs({
+    this.creator,
+    this.user,
+    this.product,
+    this.invoice,
+  });
+
+  factory ContractSelectorArgs.fromJson(String str) => ContractSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ContractSelectorArgs.fromMap(Map<String, dynamic> json) => ContractSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+    product: json["product"] == null ? null : ProductSelectorArgs.fromMap(json["product"]),
+    invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "user": user?.toMap(),
+    "product": product?.toMap(),
+    "invoice": invoice?.toMap(),
+  };
+}
+
+class InvoiceSelectorArgs {
+  final ContractSelectorArgs? contract;
+  final UserSelectorArgs? creator;
+
+  const InvoiceSelectorArgs({
+    this.contract,
+    this.creator,
+  });
+
+  factory InvoiceSelectorArgs.fromJson(String str) => InvoiceSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory InvoiceSelectorArgs.fromMap(Map<String, dynamic> json) => InvoiceSelectorArgs(
+    contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "contract": contract?.toMap(),
+    "creator": creator?.toMap(),
+  };
+}

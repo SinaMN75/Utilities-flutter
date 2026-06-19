@@ -609,6 +609,37 @@ enum TagProcessStepStatus with NumericIdentifiable {
   final int number;
 }
 
+enum TagContract with NumericIdentifiable {
+  test("", "", 999);
+
+  const TagContract(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagInvoice with NumericIdentifiable {
+  deposit("", "", 101),
+  rent("", "", 102),
+  paid("", "", 201),
+  paidOnline("", "", 202),
+  paidManual("", "", 203),
+  notPaid("", "", 204);
+
+  const TagInvoice(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 mixin NumericIdentifiable {
   int get number;
 
