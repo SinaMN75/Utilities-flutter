@@ -1,12 +1,14 @@
 part of "../data.dart";
 
 class UWalletChargeParams {
-  final String? userId;
-  final double? amount;
+  final String userId;
+  final String? walletId;
+  final double amount;
 
   UWalletChargeParams({
-    this.userId,
-    this.amount,
+    required this.userId,
+    required this.amount,
+    this.walletId,
   });
 
   factory UWalletChargeParams.fromJson(String str) => UWalletChargeParams.fromMap(json.decode(str));
@@ -15,11 +17,13 @@ class UWalletChargeParams {
 
   factory UWalletChargeParams.fromMap(Map<String, dynamic> json) => UWalletChargeParams(
     userId: json["userId"],
-    amount: json["amount"],
+    walletId: json["walletId"],
+    amount: json["amount"].toDouble(),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "userId": userId,
+    "walletId": walletId,
     "amount": amount,
   };
 }
@@ -33,10 +37,11 @@ class UWalletReadParams {
   final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
-  final String? userId;
+  final String userId;
   final WalletSelectorArgs? selectorArgs;
 
   UWalletReadParams({
+    required this.userId,
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
@@ -45,7 +50,6 @@ class UWalletReadParams {
     this.orderByCreatedAtDesc,
     this.tags,
     this.ids,
-    this.userId,
     this.selectorArgs,
   });
 
@@ -54,6 +58,7 @@ class UWalletReadParams {
   String toJson() => json.encode(toMap());
 
   factory UWalletReadParams.fromMap(Map<String, dynamic> json) => UWalletReadParams(
+    userId: json["userId"],
     pageSize: json["pageSize"],
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
@@ -62,7 +67,6 @@ class UWalletReadParams {
     orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
-    userId: json["userId"],
     selectorArgs: json["selectorArgs"] == null ? null : WalletSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
@@ -89,10 +93,11 @@ class UWalletTxnReadParams {
   final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
-  final String? userId;
-  final WalletSelectorArgs? selectorArgs;
+  final String userId;
+  final WalletTxnSelectorArgs? selectorArgs;
 
   UWalletTxnReadParams({
+    required this.userId,
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
@@ -101,7 +106,6 @@ class UWalletTxnReadParams {
     this.orderByCreatedAtDesc,
     this.tags,
     this.ids,
-    this.userId,
     this.selectorArgs,
   });
 
@@ -119,7 +123,7 @@ class UWalletTxnReadParams {
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
-    selectorArgs: json["selectorArgs"] == null ? null : WalletSelectorArgs.fromMap(json["selectorArgs"]),
+    selectorArgs: json["selectorArgs"] == null ? null : WalletTxnSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -133,5 +137,65 @@ class UWalletTxnReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
     "selectorArgs": selectorArgs?.toMap(),
+  };
+}
+
+class UWalletTransferParams {
+  final String receiverId;
+  final double amount;
+  final String? senderId;
+  final String? detail1;
+  final List<int> tagWalletTxn;
+
+  UWalletTransferParams({
+    required this.receiverId,
+    required this.amount,
+    required this.tagWalletTxn,
+    this.senderId,
+    this.detail1,
+  });
+
+  factory UWalletTransferParams.fromJson(String str) => UWalletTransferParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UWalletTransferParams.fromMap(Map<String, dynamic> json) => UWalletTransferParams(
+    receiverId: json["receiverId"],
+    amount: json["amount"].toDouble(),
+    tagWalletTxn: List<int>.from(json["tagWalletTxn"]!.map((dynamic x) => x)),
+    senderId: json["senderId"],
+    detail1: json["detail1"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "receiverId": receiverId,
+    "amount": amount,
+    "tagWalletTxn": List<dynamic>.from(tagWalletTxn.map((int x) => x)),
+    "senderId": senderId,
+    "detail1": detail1,
+  };
+}
+
+class UWalletPurchaseParams {
+  final int tag;
+  final double? amount;
+
+  UWalletPurchaseParams({
+    required this.tag,
+    this.amount,
+  });
+
+  factory UWalletPurchaseParams.fromJson(String str) => UWalletPurchaseParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UWalletPurchaseParams.fromMap(Map<String, dynamic> json) => UWalletPurchaseParams(
+    tag: json["tag"],
+    amount: json["amount"]?.toDouble(),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "tag": tag,
+    "amount": amount,
   };
 }

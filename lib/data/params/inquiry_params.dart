@@ -11,7 +11,7 @@ class UZipCodeToAddressDetailParams {
     zipCode: json["zipCode"],
   );
 
-  final String? zipCode;
+  final String zipCode;
 
   String toJson() => json.encode(toMap());
 
@@ -35,9 +35,9 @@ class UVehicleViolationDetailParams {
     licencePlate: json["licencePlate"],
   );
 
-  final String? nationalCode;
-  final String? phoneNumber;
-  final String? licencePlate;
+  final String nationalCode;
+  final String phoneNumber;
+  final String licencePlate;
 
   String toJson() => json.encode(toMap());
 
@@ -121,10 +121,10 @@ class UFreewayTollsParams {
 }
 
 class UIBanToBankAccountDetailParams {
-  final String? iBan;
+  final String iBan;
 
   UIBanToBankAccountDetailParams({
-    this.iBan,
+    required this.iBan,
   });
 
   factory UIBanToBankAccountDetailParams.fromJson(String str) => UIBanToBankAccountDetailParams.fromMap(json.decode(str));

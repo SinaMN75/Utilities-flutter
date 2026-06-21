@@ -7,7 +7,7 @@ class UTxnResponse {
     required this.jsonData,
     required this.tags,
     required this.amount,
-    this.invoiceId,
+    this.trackingNumber,
     this.userId,
     this.user,
   });
@@ -18,7 +18,7 @@ class UTxnResponse {
     jsonData: UTxnJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]),
     amount: json["amount"].toString().toDouble(),
-    invoiceId: json["invoiceId"],
+    trackingNumber: json["trackingNumber"],
     userId: json["userId"],
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
   );
@@ -28,7 +28,7 @@ class UTxnResponse {
   final UTxnJson jsonData;
   final List<int> tags;
   final double amount;
-  final String? invoiceId;
+  final String? trackingNumber;
   final String? userId;
   final UUserResponse? user;
 
@@ -38,7 +38,7 @@ class UTxnResponse {
     "jsonData": jsonData.toMap(),
     "tags": tags,
     "amount": amount,
-    "invoiceId": invoiceId,
+    "trackingNumber": trackingNumber,
     "userId": userId,
     "user": user?.toMap(),
   };

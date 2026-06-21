@@ -62,23 +62,23 @@ class UWalletTxnResponse {
   final UBaseJson jsonData;
   final DateTime createdAt;
   final DateTime? deletedAt;
-  final double? amount;
+  final double amount;
   final UUserResponse? sender;
-  final String? senderId;
+  final String senderId;
   final UUserResponse? receiver;
-  final String? receiverId;
+  final String receiverId;
 
   UWalletTxnResponse({
     required this.id,
     required this.tags,
     required this.jsonData,
     required this.createdAt,
+    required this.amount,
+    required this.senderId,
+    required this.receiverId,
     this.deletedAt,
-    this.amount,
     this.sender,
-    this.senderId,
     this.receiver,
-    this.receiverId,
   });
 
   factory UWalletTxnResponse.fromJson(String str) => UWalletTxnResponse.fromMap(json.decode(str));
@@ -91,11 +91,11 @@ class UWalletTxnResponse {
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UBaseJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
-    amount: json["amount"].toString().toDouble(),
+    amount: (json["amount"] as num).toDouble(),
     sender: json["sender"] == null ? null : UUserResponse.fromMap(json["sender"]),
-    senderId: json["senderId"],
+    senderId: json["senderId"] as String,
     receiver: json["receiver"] == null ? null : UUserResponse.fromMap(json["receiver"]),
-    receiverId: json["receiverId"],
+    receiverId: json["receiverId"] as String,
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{

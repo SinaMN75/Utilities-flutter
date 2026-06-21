@@ -4,16 +4,16 @@ class UTerminalCreateParams {
   final List<int> tags;
   final String? id;
   final String? simCardNumber;
-  final String? serial;
+  final String serial;
   final String? simCardSerial;
   final String? imei;
   final String? terminalId;
 
   UTerminalCreateParams({
     required this.tags,
+    required this.serial,
     this.id,
     this.simCardNumber,
-    this.serial,
     this.simCardSerial,
     this.imei,
     this.terminalId,
@@ -26,7 +26,7 @@ class UTerminalCreateParams {
   factory UTerminalCreateParams.fromMap(Map<String, dynamic> json) => UTerminalCreateParams(
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     id: json["id"],
-    serial: json["serial"],
+    serial: json["serial"] as String,
     simCardNumber: json["simCardNumber"],
     simCardSerial: json["simCardSerial"],
     imei: json["imei"],
@@ -45,13 +45,13 @@ class UTerminalCreateParams {
 }
 
 class UTerminalAssignParams {
-  final String? serial;
+  final String serial;
   final String? simCardSerial;
   final String? merchantId;
   final String? title;
 
   UTerminalAssignParams({
-    this.serial,
+    required this.serial,
     this.simCardSerial,
     this.merchantId,
     this.title,
@@ -62,7 +62,7 @@ class UTerminalAssignParams {
   String toJson() => json.encode(toMap());
 
   factory UTerminalAssignParams.fromMap(Map<String, dynamic> json) => UTerminalAssignParams(
-    serial: json["serial"],
+    serial: json["serial"] as String,
     simCardSerial: json["simCardSerial"],
     merchantId: json["merchantId"],
     title: json["title"],
@@ -73,6 +73,84 @@ class UTerminalAssignParams {
     "simCardSerial": simCardSerial,
     "merchantId": merchantId,
     "title": title,
+  };
+}
+
+class UTerminalUpdateParams {
+  final String id;
+  final String? serial;
+  final String? simCardNumber;
+  final String? simCardSerial;
+  final String? imei;
+  final String? terminalId;
+  final String? insId;
+  final String? merchantId;
+  final List<int>? addTags;
+  final List<int>? removeTags;
+  final List<int>? tags;
+
+  UTerminalUpdateParams({
+    required this.id,
+    this.serial,
+    this.simCardNumber,
+    this.simCardSerial,
+    this.imei,
+    this.terminalId,
+    this.insId,
+    this.merchantId,
+    this.addTags,
+    this.removeTags,
+    this.tags,
+  });
+
+  factory UTerminalUpdateParams.fromJson(String str) => UTerminalUpdateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UTerminalUpdateParams.fromMap(Map<String, dynamic> json) => UTerminalUpdateParams(
+    id: json["id"],
+    serial: json["serial"],
+    simCardNumber: json["simCardNumber"],
+    simCardSerial: json["simCardSerial"],
+    imei: json["imei"],
+    terminalId: json["terminalId"],
+    insId: json["insId"],
+    merchantId: json["merchantId"],
+    addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
+    removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
+    tags: json["tags"] == null ? null : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "serial": serial,
+    "simCardNumber": simCardNumber,
+    "simCardSerial": simCardSerial,
+    "imei": imei,
+    "terminalId": terminalId,
+    "insId": insId,
+    "merchantId": merchantId,
+    "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
+    "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
+    "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
+  };
+}
+
+class UTerminalBulkCreateParams {
+  final List<UTerminalCreateParams> list;
+
+  UTerminalBulkCreateParams({required this.list});
+
+  factory UTerminalBulkCreateParams.fromJson(String str) => UTerminalBulkCreateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UTerminalBulkCreateParams.fromMap(Map<String, dynamic> json) => UTerminalBulkCreateParams(
+    list: List<UTerminalCreateParams>.from(json["list"].map((dynamic x) => UTerminalCreateParams.fromMap(x))),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "list": List<dynamic>.from(list.map((UTerminalCreateParams x) => x.toMap())),
   };
 }
 

@@ -18,7 +18,7 @@ class UMerchantCreateParams {
   final String ownerPhoneNumber;
   final String ownerName;
   final String? bankAccountId;
-  final String? mcc;
+  final String mcc;
 
   UMerchantCreateParams({
     required this.tags,
@@ -31,6 +31,7 @@ class UMerchantCreateParams {
     required this.ownerPhoneNumber,
     required this.ownerName,
     required this.phoneNumber,
+    required this.mcc,
     this.detail1,
     this.detail2,
     this.id,
@@ -38,7 +39,6 @@ class UMerchantCreateParams {
     this.businessTitle,
     this.userId,
     this.bankAccountId,
-    this.mcc,
   });
 
   factory UMerchantCreateParams.fromJson(String str) => UMerchantCreateParams.fromMap(json.decode(str));

@@ -5,7 +5,8 @@ class UContractCreateParams {
   final String? id;
   final DateTime startDate;
   final DateTime endDate;
-  final String? userId;
+  final String userId;
+  final String bedId;
   final String? productId;
   final String? description;
 
@@ -13,8 +14,9 @@ class UContractCreateParams {
     required this.tags,
     required this.startDate,
     required this.endDate,
+    required this.userId,
+    required this.bedId,
     this.id,
-    this.userId,
     this.productId,
     this.description,
   });
@@ -28,7 +30,8 @@ class UContractCreateParams {
     id: json["id"],
     startDate: DateTime.parse(json["startDate"]),
     endDate: DateTime.parse(json["endDate"]),
-    userId: json["userId"],
+    userId: json["userId"] as String,
+    bedId: json["bedId"] as String,
     productId: json["productId"],
     description: json["description"],
   );
@@ -39,6 +42,7 @@ class UContractCreateParams {
     "startDate": startDate.toIso8601String(),
     "endDate": endDate.toIso8601String(),
     "userId": userId,
+    "bedId": bedId,
     "productId": productId,
     "description": description,
   };

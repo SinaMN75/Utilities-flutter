@@ -62,31 +62,4 @@ class MerchantService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> readProductMerchantCount({
-    required final UIdParams p,
-    final Function(UResponse<int> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/Merchant/ReadProductMerchantCount",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
-  Future<UHttpClientResponse> readUserMerchantCount({
-    required final UIdParams p,
-    final Function(UResponse<int> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/Merchant/ReadUserMerchantCount",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
 }

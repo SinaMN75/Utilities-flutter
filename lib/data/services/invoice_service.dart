@@ -34,20 +34,6 @@ class InvoiceService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> readById({
-    required final UIdParams p,
-    final Function(UResponse<UInvoiceResponse> r)? onOk,
-    final Function(UResponse<dynamic> e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/Invoice/ReadById",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UInvoiceResponse>.fromJson(r.body, (final dynamic i) => UInvoiceResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
-    onException: (String e) => onException?.call(e),
-  );
-
   Future<UHttpClientResponse> update({
     required final UInvoiceUpdateParams p,
     final Function(UResponse<UInvoiceResponse> r)? onOk,
@@ -72,6 +58,20 @@ class InvoiceService {
     endpoint: "${U.baseUrl}/Invoice/Delete",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
     onSuccess: (final Response r) => onOk?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> pay({
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Invoice/Pay",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );

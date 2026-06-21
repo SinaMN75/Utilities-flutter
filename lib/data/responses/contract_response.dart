@@ -9,10 +9,11 @@ class UContractResponse {
   final List<int> tags;
   final DateTime startDate;
   final DateTime endDate;
-  final double? deposit;
-  final double? rent;
+  final double deposit;
+  final double rent;
   final UUserResponse? user;
-  final String? userId;
+  final String userId;
+  final String bedId;
   final UUserResponse? creator;
   final String? creatorId;
   final UProductResponse? product;
@@ -27,11 +28,12 @@ class UContractResponse {
     required this.tags,
     required this.startDate,
     required this.endDate,
+    required this.deposit,
+    required this.rent,
+    required this.userId,
+    required this.bedId,
     this.deletedAt,
-    this.deposit,
-    this.rent,
     this.user,
-    this.userId,
     this.creator,
     this.creatorId,
     this.product,
@@ -53,11 +55,12 @@ class UContractResponse {
         tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
         startDate: DateTime.parse(json["startDate"]),
         endDate: DateTime.parse(json["endDate"]),
-        deposit: json["deposit"].toString().toDouble(),
-        rent: json["rent"].toString().toDouble(),
-        user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
-        userId: json["userId"],
-        creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    deposit: (json["deposit"] as num).toDouble(),
+    rent: (json["rent"] as num).toDouble(),
+    user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
+    userId: json["userId"] as String,
+    bedId: json["bedId"] as String,
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
         creatorId: json["creatorId"],
         product: json["product"] == null ? null : UProductResponse.fromMap(json["product"]),
         productId: json["productId"],
@@ -78,7 +81,8 @@ class UContractResponse {
         "rent": rent,
         "user": user?.toMap(),
         "userId": userId,
-        "creator": creator?.toMap(),
+    "bedId": bedId,
+    "creator": creator?.toMap(),
         "creatorId": creatorId,
         "product": product?.toMap(),
         "productId": productId,

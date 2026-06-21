@@ -1,14 +1,14 @@
 part of "../data.dart";
 
-class NotificationService {
+class TicketService {
   Future<UHttpClientResponse> create({
-    required final UNotificationCreateParams p,
+    required final UTicketCreateParams p,
     final Function(UResponse<String> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Notification/Create",
+    endpoint: "${U.baseUrl}/ticket/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -16,18 +16,18 @@ class NotificationService {
   );
 
   Future<UHttpClientResponse> read({
-    required final UNotificationReadParams p,
-    final Function(UResponse<List<UNotificationResponse>> r)? onOk,
+    required final UTicketReadParams p,
+    final Function(UResponse<List<UTicketResponse>> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Notification/Read",
+    endpoint: "${U.baseUrl}/ticket/Read",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
-      UResponse<List<UNotificationResponse>>.fromJson(
+      UResponse<List<UTicketResponse>>.fromJson(
         r.body,
-        (final dynamic i) => List<UNotificationResponse>.from((i as List<dynamic>).map((final dynamic x) => UNotificationResponse.fromMap(x))),
+        (final dynamic i) => List<UTicketResponse>.from((i as List<dynamic>).map((final dynamic x) => UTicketResponse.fromMap(x))),
       ),
     ),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -35,13 +35,13 @@ class NotificationService {
   );
 
   Future<UHttpClientResponse> update({
-    required final UNotificationUpdateParams p,
+    required final UTicketUpdateParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Notification/Update",
+    endpoint: "${U.baseUrl}/ticket/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -55,7 +55,7 @@ class NotificationService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Notification/Delete",
+    endpoint: "${U.baseUrl}/ticket/Delete",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),

@@ -15,6 +15,34 @@ class WalletService {
     onException: (String e) => onException?.call(e),
   );
 
+  Future<UHttpClientResponse> transfer({
+    required final UWalletTransferParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/wallet/Transfer",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> purchase({
+    required final UWalletPurchaseParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/wallet/Purchase",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
   Future<UHttpClientResponse> readByUserId({
     required final UWalletReadParams p,
     final Function(UResponse<List<UWalletResponse>> r)? onOk,

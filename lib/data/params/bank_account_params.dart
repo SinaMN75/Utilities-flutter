@@ -52,6 +52,8 @@ class UBankAccountUpdateParams {
   final String? cardNumber;
   final String? accountNumber;
   final String? iBanNumber;
+  final String? bankName;
+  final String? ownerName;
 
   UBankAccountUpdateParams({
     required this.id,
@@ -61,6 +63,8 @@ class UBankAccountUpdateParams {
     this.cardNumber,
     this.accountNumber,
     this.iBanNumber,
+    this.bankName,
+    this.ownerName,
   });
 
   factory UBankAccountUpdateParams.fromJson(String str) => UBankAccountUpdateParams.fromMap(json.decode(str));
@@ -75,6 +79,8 @@ class UBankAccountUpdateParams {
     cardNumber: json["cardNumber"],
     accountNumber: json["accountNumber"],
     iBanNumber: json["iBanNumber"],
+    bankName: json["bankName"],
+    ownerName: json["ownerName"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -85,6 +91,8 @@ class UBankAccountUpdateParams {
     "cardNumber": cardNumber,
     "accountNumber": accountNumber,
     "iBanNumber": iBanNumber,
+    "bankName": bankName,
+    "ownerName": ownerName,
   };
 }
 
@@ -100,6 +108,11 @@ class UBankAccountReadParams {
   final bool? orderByOrder;
   final bool? orderByOrderDesc;
   final String? creatorId;
+  final String? cardNumber;
+  final String? accountNumber;
+  final String? iBanNumber;
+  final String? bankName;
+  final String? ownerName;
   final BankAccountSelectorArgs? selectorArgs;
 
   UBankAccountReadParams({
@@ -115,6 +128,11 @@ class UBankAccountReadParams {
     this.orderByOrder,
     this.orderByOrderDesc,
     this.creatorId,
+    this.cardNumber,
+    this.accountNumber,
+    this.iBanNumber,
+    this.bankName,
+    this.ownerName,
   });
 
   factory UBankAccountReadParams.fromJson(String str) => UBankAccountReadParams.fromMap(json.decode(str));
@@ -133,6 +151,11 @@ class UBankAccountReadParams {
     orderByOrder: json["orderByOrder"],
     orderByOrderDesc: json["orderByOrderDesc"],
     creatorId: json["creatorId"],
+    cardNumber: json["cardNumber"],
+    accountNumber: json["accountNumber"],
+    iBanNumber: json["iBanNumber"],
+    bankName: json["bankName"],
+    ownerName: json["ownerName"],
     selectorArgs: json["selectorArgs"] == null ? null : BankAccountSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
@@ -148,6 +171,11 @@ class UBankAccountReadParams {
     "orderByOrder": orderByOrder,
     "orderByOrderDesc": orderByOrderDesc,
     "creatorId": creatorId,
+    "cardNumber": cardNumber,
+    "accountNumber": accountNumber,
+    "iBanNumber": iBanNumber,
+    "bankName": bankName,
+    "ownerName": ownerName,
     "selectorArgs": selectorArgs?.toMap(),
   };
 }

@@ -15,6 +15,20 @@ class TerminalService {
     onException: (String e) => onException?.call(e),
   );
 
+  Future<UHttpClientResponse> bulkCreate({
+    required final UTerminalBulkCreateParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/terminal/BulkCreate",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
   Future<UHttpClientResponse> read({
     required final UTerminalReadParams p,
     final Function(UResponse<List<UTerminalResponse>> r)? onOk,
@@ -34,20 +48,6 @@ class TerminalService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> readById({
-    required final UIdParams p,
-    final Function(UResponse<UTerminalResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/terminal/ReadById",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UTerminalResponse>.fromJson(r.body, (final dynamic i) => UTerminalResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
   Future<UHttpClientResponse> assign({
     required final UTerminalAssignParams p,
     final Function(UResponse<UTerminalResponse> r)? onOk,
@@ -58,20 +58,6 @@ class TerminalService {
     endpoint: "${U.baseUrl}/terminal/Assign",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<UTerminalResponse>.fromJson(r.body, (final dynamic i) => UTerminalResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
-  Future<UHttpClientResponse> bind({
-    required final UIdParams p,
-    final Function(UEmptyResponse r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/terminal/Bind",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
@@ -90,14 +76,14 @@ class TerminalService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> reject({
-    required final UIdParams p,
+  Future<UHttpClientResponse> update({
+    required final UTerminalUpdateParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/terminal/Reject",
+    endpoint: "${U.baseUrl}/terminal/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),

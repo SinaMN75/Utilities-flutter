@@ -15,6 +15,20 @@ class CategoryService {
     onException: (String e) => onException?.call(e),
   );
 
+  Future<UHttpClientResponse> bulkCreate({
+    required final List<UCategoryCreateParams> p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/category/BulkCreate",
+    body: <String, dynamic>{"list": List<dynamic>.from(p.map((UCategoryCreateParams x) => x.toMap()))}.add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
   Future<UHttpClientResponse> read({
     required final UCategoryReadParams p,
     final Function(UResponse<List<UCategoryResponse>> r)? onOk,

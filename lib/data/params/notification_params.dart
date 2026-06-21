@@ -2,16 +2,16 @@ part of "../data.dart";
 
 class UNotificationCreateParams {
   final List<int> tags;
+  final String userId;
   final String? id;
   final String? detail1;
   final String? detail2;
-  final String? userId;
 
   UNotificationCreateParams({
     required this.tags,
+    required this.userId,
     this.id,
     this.detail1,
-    this.userId,
     this.detail2,
   });
 
@@ -21,10 +21,10 @@ class UNotificationCreateParams {
 
   factory UNotificationCreateParams.fromMap(Map<String, dynamic> json) => UNotificationCreateParams(
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    userId: json["userId"],
     id: json["id"],
     detail1: json["detail1"],
     detail2: json["detail2"],
-    userId: json["userId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{

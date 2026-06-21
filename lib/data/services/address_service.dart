@@ -34,20 +34,6 @@ class AddressService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> readById({
-    required final UIdParams p,
-    final Function(UResponse<UAddressResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/address/ReadById",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UAddressResponse>.fromJson(r.body, (final dynamic i) => UAddressResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
   Future<UHttpClientResponse> update({
     required final UAddressUpdateParams p,
     final Function(UEmptyResponse r)? onOk,

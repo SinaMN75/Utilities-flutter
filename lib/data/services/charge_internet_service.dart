@@ -57,20 +57,6 @@ class ChargeInternetService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> approve({
-    required final ApproveParams p,
-    final Function(UResponse<ApproveResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/ChargeInternet/Approve",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<ApproveResponse>.fromJson(r.body, (final dynamic i) => ApproveResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
   Future<UHttpClientResponse> getStatus({
     required final GetStatusParams p,
     final Function(UResponse<GetStatusResponse> r)? onOk,
@@ -113,17 +99,4 @@ class ChargeInternetService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> mciTopOffer({
-    required final MCITopOfferParams p,
-    final Function(UResponse<ChargeInternetReserveResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/ChargeInternet/MCITopOffer",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<ChargeInternetReserveResponse>.fromJson(r.body, (final dynamic i) => ChargeInternetReserveResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
 }

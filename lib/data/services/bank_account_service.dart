@@ -34,20 +34,6 @@ class BankAccountService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> readById({
-    required final UIdParams p,
-    final Function(UResponse<UBankAccountResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/bankAccount/ReadById",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UBankAccountResponse>.fromJson(r.body, (final dynamic i) => UBankAccountResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
   Future<UHttpClientResponse> update({
     required final UBankAccountUpdateParams p,
     final Function(UEmptyResponse r)? onOk,

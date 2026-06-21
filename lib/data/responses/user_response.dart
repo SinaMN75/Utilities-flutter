@@ -17,21 +17,22 @@ class UUserResponse {
     required this.userName,
     this.password,
     this.refreshToken,
+    this.landLine,
     this.phoneNumber,
     this.email,
     this.firstName,
     this.lastName,
     this.nationalCode,
     this.bio,
-    this.country,
-    this.state,
-    this.city,
     this.birthdate,
     this.categories,
     this.media,
     this.addresses,
     this.merchants,
     this.wallets,
+    this.txns,
+    this.bankAccounts,
+    this.simCards,
     this.nationalCardFront,
     this.nationalCardBack,
     this.birthCertificateFirst,
@@ -53,15 +54,13 @@ class UUserResponse {
     userName: json["userName"],
     password: json["password"],
     refreshToken: json["refreshToken"],
+    landLine: json["landLine"],
     phoneNumber: json["phoneNumber"],
     email: json["email"],
     firstName: json["firstName"],
     lastName: json["lastName"],
     nationalCode: json["nationalCode"],
     bio: json["bio"],
-    country: json["country"],
-    state: json["state"],
-    city: json["city"],
     nationalCardFront: json["nationalCardFront"],
     nationalCardBack: json["nationalCardBack"],
     birthCertificateFirst: json["birthCertificateFirst"],
@@ -74,8 +73,12 @@ class UUserResponse {
     birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
     categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
+    addresses: json["addresses"] == null ? <UAddressResponse>[] : List<UAddressResponse>.from(json["addresses"].map((dynamic x) => UAddressResponse.fromMap(x))),
     merchants: json["merchants"] == null ? <UMerchantResponse>[] : List<UMerchantResponse>.from(json["merchants"].map((dynamic x) => UMerchantResponse.fromMap(x))),
     wallets: json["wallets"] == null ? <UWalletResponse>[] : List<UWalletResponse>.from(json["wallets"].map((dynamic x) => UWalletResponse.fromMap(x))),
+    txns: json["txns"] == null ? <UTxnResponse>[] : List<UTxnResponse>.from(json["txns"].map((dynamic x) => UTxnResponse.fromMap(x))),
+    bankAccounts: json["bankAccounts"] == null ? <UBankAccountResponse>[] : List<UBankAccountResponse>.from(json["bankAccounts"].map((dynamic x) => UBankAccountResponse.fromMap(x))),
+    simCards: json["simCards"] == null ? <USimResponse>[] : List<USimResponse>.from(json["simCards"].map((dynamic x) => USimResponse.fromMap(x))),
   );
   final String id;
   final DateTime createdAt;
@@ -84,15 +87,13 @@ class UUserResponse {
   final String userName;
   final String? password;
   final String? refreshToken;
+  final String? landLine;
   final String? phoneNumber;
   final String? email;
   final String? firstName;
   final String? lastName;
   final String? nationalCode;
   final String? bio;
-  final String? country;
-  final String? state;
-  final String? city;
   final DateTime? birthdate;
   final String? nationalCardFront;
   final String? nationalCardBack;
@@ -108,6 +109,9 @@ class UUserResponse {
   final List<UAddressResponse>? addresses;
   final List<UMerchantResponse>? merchants;
   final List<UWalletResponse>? wallets;
+  final List<UTxnResponse>? txns;
+  final List<UBankAccountResponse>? bankAccounts;
+  final List<USimResponse>? simCards;
 
   String toJson() => json.encode(toMap());
 
@@ -119,15 +123,13 @@ class UUserResponse {
     "userName": userName,
     "password": password,
     "refreshToken": refreshToken,
+    "landLine": landLine,
     "phoneNumber": phoneNumber,
     "email": email,
     "firstName": firstName,
     "lastName": lastName,
     "nationalCode": nationalCode,
     "bio": bio,
-    "country": country,
-    "state": state,
-    "city": city,
     "birthdate": birthdate?.toIso8601String(),
     "nationalCardFront": nationalCardFront,
     "nationalCardBack": nationalCardBack,
@@ -143,6 +145,9 @@ class UUserResponse {
     "addresses": addresses == null ? null : List<dynamic>.from(addresses!.map((UAddressResponse x) => x.toMap())),
     "merchants": merchants == null ? null : List<dynamic>.from(merchants!.map((UMerchantResponse x) => x.toMap())),
     "wallets": wallets == null ? null : List<dynamic>.from(wallets!.map((UWalletResponse x) => x.toMap())),
+    "txns": txns == null ? null : List<dynamic>.from(txns!.map((UTxnResponse x) => x.toMap())),
+    "bankAccounts": bankAccounts == null ? null : List<dynamic>.from(bankAccounts!.map((UBankAccountResponse x) => x.toMap())),
+    "simCards": simCards == null ? null : List<dynamic>.from(simCards!.map((USimResponse x) => x.toMap())),
   };
 }
 
@@ -169,8 +174,8 @@ class UUserJson {
 
   factory UUserJson.fromMap(Map<String, dynamic> json) => UUserJson(
     fcmToken: json["fcmToken"],
-    weight: json["weight"],
-    height: json["height"],
+    weight: json["weight"]?.toDouble(),
+    height: json["height"]?.toDouble(),
     address: json["address"],
     fatherName: json["fatherName"],
     nationalCardFrontRejectionReason: json["nationalCardFrontRejectionReason"],
@@ -184,8 +189,8 @@ class UUserJson {
     eSignatureRejectionReason: json["eSignatureRejectionReason"],
   );
   final String? fcmToken;
-  final int? weight;
-  final int? height;
+  final double? weight;
+  final double? height;
   final String? address;
   final String? fatherName;
   final String? nationalCardFrontRejectionReason;
@@ -220,24 +225,24 @@ class UUserJson {
 
 class URegisterResponse {
   URegisterResponse({
-    this.token,
-    this.refreshToken,
-    this.expires,
-    this.user,
+    required this.token,
+    required this.refreshToken,
+    required this.expires,
+    required this.user,
   });
 
   factory URegisterResponse.fromJson(String str) => URegisterResponse.fromMap(json.decode(str));
 
   factory URegisterResponse.fromMap(Map<String, dynamic> json) => URegisterResponse(
-    token: json["token"],
-    refreshToken: json["refreshToken"],
-    expires: json["expires"],
-    user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
+    token: json["token"] as String,
+    refreshToken: json["refreshToken"] as String,
+    expires: json["expires"] as String,
+    user: UUserResponse.fromMap(json["user"]),
   );
-  final String? token;
-  final String? refreshToken;
-  final String? expires;
-  final UUserResponse? user;
+  final String token;
+  final String refreshToken;
+  final String expires;
+  final UUserResponse user;
 
   String toJson() => json.encode(toMap());
 
@@ -245,6 +250,6 @@ class URegisterResponse {
     "token": token,
     "refreshToken": refreshToken,
     "expires": expires,
-    "user": user?.toMap(),
+    "user": user.toMap(),
   };
 }

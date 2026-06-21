@@ -43,7 +43,7 @@ class UGetMobileVerificationCodeForLoginParams {
 class ULoginParams {
   ULoginParams({
     required this.password,
-    this.username,
+    this.userName,
     this.email,
   });
 
@@ -51,18 +51,18 @@ class ULoginParams {
 
   factory ULoginParams.fromMap(Map<String, dynamic> json) =>
       ULoginParams(
-        username: json["username"],
+    userName: json["userName"],
     email: json["email"],
     password: json["password"],
   );
-  final String? username;
+  final String? userName;
   final String? email;
   final String password;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "username": username,
+    "userName": userName,
     "email": email,
     "password": password,
   };
@@ -115,8 +115,6 @@ class UVerifyMobileForLoginParams {
   UVerifyMobileForLoginParams({
     required this.phoneNumber,
     required this.otp,
-    this.firstName,
-    this.lastName,
   });
 
   factory UVerifyMobileForLoginParams.fromJson(String str) => UVerifyMobileForLoginParams.fromMap(json.decode(str));
@@ -124,21 +122,15 @@ class UVerifyMobileForLoginParams {
   factory UVerifyMobileForLoginParams.fromMap(Map<String, dynamic> json) => UVerifyMobileForLoginParams(
     phoneNumber: json["phoneNumber"],
     otp: json["otp"],
-    firstName: json["firstName"],
-    lastName: json["lastName"],
   );
   final String phoneNumber;
   final String otp;
-  final String? firstName;
-  final String? lastName;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "phoneNumber": phoneNumber,
     "otp": otp,
-    "firstName": firstName,
-    "lastName": lastName,
   };
 }
 

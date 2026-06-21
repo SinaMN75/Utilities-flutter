@@ -3,7 +3,7 @@ part of "../data.dart";
 class UContentCreateParams {
   UContentCreateParams({
     required this.tags,
-    this.title,
+    required this.title,
     this.link,
     this.detail1,
     this.detail2,
@@ -13,14 +13,14 @@ class UContentCreateParams {
   factory UContentCreateParams.fromJson(String str) => UContentCreateParams.fromMap(json.decode(str));
 
   factory UContentCreateParams.fromMap(Map<String, dynamic> json) => UContentCreateParams(
-    title: json["title"],
+    title: json["title"] as String,
     detail1: json["detail1"],
     link: json["link"],
     detail2: json["detail2"],
     instagram: json["instagram"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
   );
-  final String? title;
+  final String title;
   final String? link;
   final String? detail1;
   final String? detail2;

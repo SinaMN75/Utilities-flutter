@@ -4,9 +4,9 @@ class UInvoiceCreateParams {
   final List<int> tags;
   final String? id;
   final double debtAmount;
-  final double? creditorAmount;
-  final double? paidAmount;
-  final double? penaltyAmount;
+  final double creditorAmount;
+  final double paidAmount;
+  final double penaltyAmount;
   final String userId;
   final String contractId;
   final DateTime? paidDate;
@@ -16,14 +16,14 @@ class UInvoiceCreateParams {
   UInvoiceCreateParams({
     required this.tags,
     required this.debtAmount,
+    required this.creditorAmount,
+    required this.paidAmount,
+    required this.penaltyAmount,
     required this.userId,
     required this.contractId,
     required this.dueDate,
     required this.description,
     this.id,
-    this.creditorAmount,
-    this.paidAmount,
-    this.penaltyAmount,
     this.paidDate,
   });
 

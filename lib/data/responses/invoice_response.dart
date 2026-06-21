@@ -15,10 +15,10 @@ class UInvoiceResponse {
   final DateTime? deletedAt;
   final UInvoiceJsonData jsonData;
   final List<int> tags;
-  final double? debtAmount;
-  final double? creditorAmount;
-  final double? paidAmount;
-  final double? penaltyAmount;
+  final double debtAmount;
+  final double creditorAmount;
+  final double paidAmount;
+  final double penaltyAmount;
   final DateTime? paidDate;
   final DateTime dueDate;
   final DateTime? nextInvoiceIssueDate;
@@ -35,11 +35,11 @@ class UInvoiceResponse {
     required this.jsonData,
     required this.tags,
     required this.dueDate,
+    required this.debtAmount,
+    required this.creditorAmount,
+    required this.paidAmount,
+    required this.penaltyAmount,
     this.deletedAt,
-    this.debtAmount,
-    this.creditorAmount,
-    this.paidAmount,
-    this.penaltyAmount,
     this.paidDate,
     this.nextInvoiceIssueDate,
     this.trackingNumber,
@@ -60,10 +60,10 @@ class UInvoiceResponse {
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UInvoiceJsonData.fromMap(json["jsonData"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-    debtAmount: json["debtAmount"].toString().toDouble(),
-    creditorAmount: json["creditorAmount"].toString().toDouble(),
-    paidAmount: json["paidAmount"].toString().toDouble(),
-    penaltyAmount: json["penaltyAmount"].toString().toDouble(),
+    debtAmount: (json["debtAmount"] as num).toDouble(),
+    creditorAmount: (json["creditorAmount"] as num).toDouble(),
+    paidAmount: (json["paidAmount"] as num).toDouble(),
+    penaltyAmount: (json["penaltyAmount"] as num).toDouble(),
     paidDate: json["paidDate"] == null ? null : DateTime.parse(json["paidDate"]),
     dueDate: DateTime.parse(json["dueDate"]),
     nextInvoiceIssueDate: json["nextInvoiceIssueDate"] == null ? null : DateTime.parse(json["nextInvoiceIssueDate"]),

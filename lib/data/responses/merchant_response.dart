@@ -1,46 +1,46 @@
 part of "../data.dart";
 
 class UMerchantResponse {
-  final String? id;
-  final DateTime? createdAt;
-  final MerchantJsonData? jsonData;
-  final List<int>? tags;
+  final String id;
+  final DateTime createdAt;
+  final MerchantJsonData jsonData;
+  final List<int> tags;
   final UUserResponse? creator;
   final String? creatorId;
-  final String? zipCode;
-  final String? cityCode;
-  final String? phoneNumber;
-  final String? title;
-  final String? landline;
-  final String? nationalCode;
+  final String zipCode;
+  final String cityCode;
+  final String phoneNumber;
+  final String title;
+  final String landline;
+  final String nationalCode;
   final String? bankAccountId;
-  final String? mcc;
+  final String mcc;
   final String? merchantId;
   final String? insId;
-  final String? userId;
+  final String userId;
   final UUserResponse? user;
   final List<UTerminalResponse>? terminals;
 
   // final List<Agreement>? agreements;
 
   UMerchantResponse({
-    this.id,
-    this.createdAt,
-    this.jsonData,
-    this.tags,
+    required this.id,
+    required this.createdAt,
+    required this.jsonData,
+    required this.tags,
+    required this.zipCode,
+    required this.cityCode,
+    required this.phoneNumber,
+    required this.title,
+    required this.landline,
+    required this.nationalCode,
+    required this.mcc,
+    required this.userId,
     this.creator,
     this.creatorId,
-    this.zipCode,
-    this.cityCode,
-    this.phoneNumber,
-    this.title,
-    this.landline,
-    this.nationalCode,
     this.bankAccountId,
-    this.mcc,
     this.merchantId,
     this.insId,
-    this.userId,
     this.user,
     this.terminals,
     // this.agreements,
@@ -51,23 +51,23 @@ class UMerchantResponse {
   String toJson() => json.encode(toMap());
 
   factory UMerchantResponse.fromMap(Map<String, dynamic> json) => UMerchantResponse(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    jsonData: json["jsonData"] == null ? null : MerchantJsonData.fromMap(json["jsonData"]),
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    id: json["id"] as String,
+    createdAt: DateTime.parse(json["createdAt"]),
+    jsonData: MerchantJsonData.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
-    zipCode: json["zipCode"],
-    cityCode: json["cityCode"],
-    phoneNumber: json["phoneNumber"],
-    title: json["title"],
-    landline: json["landline"],
-    nationalCode: json["nationalCode"],
+    zipCode: json["zipCode"] as String,
+    cityCode: json["cityCode"] as String,
+    phoneNumber: json["phoneNumber"] as String,
+    title: json["title"] as String,
+    landline: json["landline"] as String,
+    nationalCode: json["nationalCode"] as String,
     bankAccountId: json["bankAccountId"],
-    mcc: json["mcc"],
+    mcc: json["mcc"] as String,
     merchantId: json["merchantId"],
     insId: json["insId"],
-    userId: json["userId"],
+    userId: json["userId"] as String,
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
     terminals: json["terminals"] == null ? <UTerminalResponse>[] : List<UTerminalResponse>.from(json["terminals"]!.map((dynamic x) => UTerminalResponse.fromMap(x))),
     // agreements: json["agreements"] == null ? <dynamic>[] : List<Agreement>.from(json["agreements"]!.map((x) => Agreement.fromMap(x))),
@@ -75,9 +75,9 @@ class UMerchantResponse {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "jsonData": jsonData?.toMap(),
-    "tags": tags == null ? <int>[] : List<int>.from(tags!.map((int x) => x)),
+    "createdAt": createdAt.toIso8601String(),
+    "jsonData": jsonData.toMap(),
+    "tags": List<int>.from(tags.map((int x) => x)),
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "zipCode": zipCode,
@@ -92,7 +92,7 @@ class UMerchantResponse {
     "insId": insId,
     "userId": userId,
     "user": user?.toMap(),
-    "terminals": terminals == null ? <UTerminalResponse>[] : List<UTerminalResponse>.from(terminals!.map((UTerminalResponse x) => x.toMap())),
+    "terminals": terminals == null ? <UTerminalResponse>[] : List<UTerminalResponse>.from(terminals!.map((UTerminalResponse x) => x.toMap())), // terminals remains optional
     // "agreements": agreements == null ? <dynamic>[] : List<dynamic>.from(agreements!.map((Object? x) => x.toMap())),
   };
 }

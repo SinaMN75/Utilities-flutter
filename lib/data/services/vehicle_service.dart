@@ -34,20 +34,6 @@ class VehicleService {
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> readById({
-    required final UIdParams p,
-    final Function(UResponse<UVehicleResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/vehicle/ReadById",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UVehicleResponse>.fromJson(r.body, (final dynamic i) => UVehicleResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
   Future<UHttpClientResponse> update({
     required final UVehicleUpdateParams p,
     final Function(UEmptyResponse r)? onOk,

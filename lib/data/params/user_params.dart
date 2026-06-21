@@ -23,20 +23,17 @@ class UUserCreateParams {
   UUserCreateParams({
     required this.userName,
     required this.password,
-    required this.phoneNumber,
-    required this.email,
     required this.tags,
+    this.phoneNumber,
+    this.email,
+    this.landLine,
     this.firstName,
     this.lastName,
     this.nationalCode,
     this.bio,
-    this.country,
-    this.state,
-    this.city,
     this.birthdate,
     this.weight,
     this.height,
-    this.address,
     this.fatherName,
     this.fcmToken,
     this.categories,
@@ -58,17 +55,14 @@ class UUserCreateParams {
     password: json["password"],
     phoneNumber: json["phoneNumber"],
     email: json["email"],
+    landLine: json["landLine"],
     firstName: json["firstName"],
     lastName: json["lastName"],
     nationalCode: json["nationalCode"],
     bio: json["bio"],
-    country: json["country"],
-    state: json["state"],
-    city: json["city"],
     birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
-    weight: json["weight"],
-    height: json["height"],
-    address: json["address"],
+    weight: json["weight"]?.toDouble(),
+    height: json["height"]?.toDouble(),
     fatherName: json["fatherName"],
     fcmToken: json["fcmToken"],
     nationalCardFront: json["nationalCardFront"],
@@ -85,19 +79,16 @@ class UUserCreateParams {
   );
   final String userName;
   final String password;
-  final String phoneNumber;
-  final String email;
+  final String? phoneNumber;
+  final String? email;
+  final String? landLine;
   final String? firstName;
   final String? lastName;
   final String? nationalCode;
   final String? bio;
-  final String? country;
-  final String? state;
-  final String? city;
   final DateTime? birthdate;
-  final int? weight;
-  final int? height;
-  final String? address;
+  final double? weight;
+  final double? height;
   final String? fatherName;
   final String? fcmToken;
   final String? nationalCardFront;
@@ -119,17 +110,14 @@ class UUserCreateParams {
     "password": password,
     "phoneNumber": phoneNumber,
     "email": email,
+    "landLine": landLine,
     "firstName": firstName,
     "lastName": lastName,
     "nationalCode": nationalCode,
     "bio": bio,
-    "country": country,
-    "state": state,
-    "city": city,
     "birthdate": birthdate?.toIso8601String(),
     "weight": weight,
     "height": height,
-    "address": address,
     "fatherName": fatherName,
     "fcmToken": fcmToken,
     "nationalCardFront": nationalCardFront,
@@ -149,6 +137,7 @@ class UUserCreateParams {
 class UUserReadParams {
   UUserReadParams({
     this.userName,
+    this.landLine,
     this.firstName,
     this.lastName,
     this.nationalCode,
@@ -158,6 +147,8 @@ class UUserReadParams {
     this.startBirthDate,
     this.endBirthDate,
     this.categories,
+    this.orderByFirstName,
+    this.orderByFirstNameDesc,
     this.orderByLastName,
     this.orderByLastNameDesc,
     this.pageSize,
@@ -174,6 +165,7 @@ class UUserReadParams {
 
   factory UUserReadParams.fromMap(Map<String, dynamic> json) => UUserReadParams(
     userName: json["userName"],
+    landLine: json["landLine"],
     firstName: json["firstName"],
     lastName: json["lastName"],
     nationalCode: json["nationalCode"],
@@ -183,6 +175,8 @@ class UUserReadParams {
     startBirthDate: json["startBirthDate"] == null ? null : DateTime.parse(json["startBirthDate"]),
     endBirthDate: json["endBirthDate"] == null ? null : DateTime.parse(json["endBirthDate"]),
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
+    orderByFirstName: json["orderByFirstName"] ?? false,
+    orderByFirstNameDesc: json["orderByFirstNameDesc"] ?? false,
     orderByLastName: json["orderByLastName"] ?? false,
     orderByLastNameDesc: json["orderByLastNameDesc"] ?? false,
     pageSize: json["pageSize"] ?? 0,
@@ -195,6 +189,7 @@ class UUserReadParams {
     selectorArgs: json["selectorArgs"] == null ? null : UserSelectorArgs.fromMap(json["selectorArgs"]),
   );
   final String? userName;
+  final String? landLine;
   final String? firstName;
   final String? lastName;
   final String? nationalCode;
@@ -204,6 +199,8 @@ class UUserReadParams {
   final DateTime? startBirthDate;
   final DateTime? endBirthDate;
   final List<String>? categories;
+  final bool? orderByFirstName;
+  final bool? orderByFirstNameDesc;
   final bool? orderByLastName;
   final bool? orderByLastNameDesc;
   final int? pageSize;
@@ -219,6 +216,7 @@ class UUserReadParams {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "userName": userName,
+    "landLine": landLine,
     "firstName": firstName,
     "lastName": lastName,
     "nationalCode": nationalCode,
@@ -228,6 +226,8 @@ class UUserReadParams {
     "startBirthDate": startBirthDate?.toIso8601String(),
     "endBirthDate": endBirthDate?.toIso8601String(),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
+    "orderByFirstName": orderByFirstName,
+    "orderByFirstNameDesc": orderByFirstNameDesc,
     "orderByLastName": orderByLastName,
     "orderByLastNameDesc": orderByLastNameDesc,
     "pageSize": pageSize,
@@ -245,19 +245,16 @@ class UUserUpdateParams {
   UUserUpdateParams({
     required this.id,
     this.password,
+    this.landLine,
     this.firstName,
     this.lastName,
     this.nationalCode,
-    this.country,
-    this.state,
-    this.city,
     this.userName,
     this.phoneNumber,
     this.email,
     this.bio,
     this.birthdate,
     this.fcmToken,
-    this.address,
     this.fatherName,
     this.weight,
     this.height,
@@ -289,22 +286,19 @@ class UUserUpdateParams {
 
   factory UUserUpdateParams.fromMap(Map<String, dynamic> json) => UUserUpdateParams(
     password: json["password"],
+    landLine: json["landLine"],
     firstName: json["firstName"],
     lastName: json["lastName"],
     nationalCode: json["nationalCode"],
-    country: json["country"],
-    state: json["state"],
-    city: json["city"],
     userName: json["userName"],
     phoneNumber: json["phoneNumber"],
     email: json["email"],
     bio: json["bio"],
     birthdate: json["birthdate"] == null ? null : DateTime.parse(json["birthdate"]),
     fcmToken: json["fcmToken"],
-    address: json["address"],
     fatherName: json["fatherName"],
-    weight: json["weight"],
-    height: json["height"],
+    weight: json["weight"]?.toDouble(),
+    height: json["height"]?.toDouble(),
     nationalCardFront: json["nationalCardFront"],
     nationalCardBack: json["nationalCardBack"],
     birthCertificateFirst: json["birthCertificateFirst"],
@@ -330,22 +324,19 @@ class UUserUpdateParams {
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
   );
   final String? password;
+  final String? landLine;
   final String? firstName;
   final String? lastName;
   final String? nationalCode;
-  final String? country;
-  final String? state;
-  final String? city;
   final String? userName;
   final String? phoneNumber;
   final String? email;
   final String? bio;
   final DateTime? birthdate;
   final String? fcmToken;
-  final String? address;
   final String? fatherName;
-  final int? weight;
-  final int? height;
+  final double? weight;
+  final double? height;
   final List<String>? categories;
   final String id;
   final List<int>? addTags;
@@ -374,19 +365,16 @@ class UUserUpdateParams {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "password": password,
+    "landLine": landLine,
     "firstName": firstName,
     "lastName": lastName,
     "nationalCode": nationalCode,
-    "country": country,
-    "state": state,
-    "city": city,
     "userName": userName,
     "phoneNumber": phoneNumber,
     "email": email,
     "bio": bio,
     "birthdate": birthdate?.toIso8601String(),
     "fcmToken": fcmToken,
-    "address": address,
     "fatherName": fatherName,
     "weight": weight,
     "height": height,

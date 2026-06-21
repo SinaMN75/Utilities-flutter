@@ -1,32 +1,32 @@
 part of "../data.dart";
 
 class UDormBedResponse {
-  final String? id;
-  final DateTime? createdAt;
-  final UBaseJson? jsonData;
-  final List<int>? tags;
+  final String id;
+  final DateTime createdAt;
+  final UBaseJson jsonData;
+  final List<int> tags;
   final UUserResponse? creator;
   final String? creatorId;
-  final String? title;
-  final bool? isAvailable;
-  final double? deposit;
-  final double? monthlyRent;
-  final String? roomId;
+  final String title;
+  final bool isAvailable;
+  final double deposit;
+  final double monthlyRent;
+  final String roomId;
   final UDormRoomResponse? room;
   final List<UMediaResponse>? media;
 
   UDormBedResponse({
-    this.id,
-    this.createdAt,
-    this.jsonData,
-    this.tags,
+    required this.id,
+    required this.createdAt,
+    required this.jsonData,
+    required this.tags,
+    required this.title,
+    required this.isAvailable,
+    required this.deposit,
+    required this.monthlyRent,
+    required this.roomId,
     this.creator,
     this.creatorId,
-    this.title,
-    this.isAvailable,
-    this.deposit,
-    this.monthlyRent,
-    this.roomId,
     this.room,
     this.media,
   });
@@ -36,26 +36,26 @@ class UDormBedResponse {
   String toJson() => json.encode(toMap());
 
   factory UDormBedResponse.fromMap(Map<String, dynamic> json) => UDormBedResponse(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    jsonData: json["jsonData"] == null ? null : UBaseJson.fromMap(json["jsonData"]),
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    id: json["id"] as String,
+    createdAt: DateTime.parse(json["createdAt"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
-    title: json["title"],
-    isAvailable: json["isAvailable"],
-    deposit: json["deposit"]?.toDouble(),
-    monthlyRent: json["monthlyRent"]?.toDouble(),
-    roomId: json["roomId"],
+    title: json["title"] as String,
+    isAvailable: json["isAvailable"] as bool,
+    deposit: (json["deposit"] as num).toDouble(),
+    monthlyRent: (json["monthlyRent"] as num).toDouble(),
+    roomId: json["roomId"] as String,
     room: json["room"] == null ? null : UDormRoomResponse.fromMap(json["room"]),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "jsonData": jsonData?.toMap(),
-    "tags": tags == null ? <int>[] : List<int>.from(tags!.map((int x) => x)),
+    "createdAt": createdAt.toIso8601String(),
+    "jsonData": jsonData.toMap(),
+    "tags": List<int>.from(tags.map((int x) => x)),
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,
@@ -69,28 +69,28 @@ class UDormBedResponse {
 }
 
 class UDormResponse {
-  final String? id;
-  final DateTime? createdAt;
-  final UBaseJson? jsonData;
-  final List<int>? tags;
+  final String id;
+  final DateTime createdAt;
+  final UBaseJson jsonData;
+  final List<int> tags;
   final UUserResponse? creator;
   final String? creatorId;
-  final String? title;
-  final String? city;
-  final String? country;
+  final String title;
+  final String city;
+  final String country;
   final List<UDormRoomResponse>? rooms;
   final List<UMediaResponse>? media;
 
   UDormResponse({
-    this.id,
-    this.createdAt,
-    this.jsonData,
-    this.tags,
+    required this.id,
+    required this.createdAt,
+    required this.jsonData,
+    required this.tags,
+    required this.title,
+    required this.city,
+    required this.country,
     this.creator,
     this.creatorId,
-    this.title,
-    this.city,
-    this.country,
     this.rooms,
     this.media,
   });
@@ -100,24 +100,24 @@ class UDormResponse {
   String toJson() => json.encode(toMap());
 
   factory UDormResponse.fromMap(Map<String, dynamic> json) => UDormResponse(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    jsonData: json["jsonData"] == null ? null : UBaseJson.fromMap(json["jsonData"]),
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    id: json["id"] as String,
+    createdAt: DateTime.parse(json["createdAt"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
-    title: json["title"],
-    city: json["city"],
-    country: json["country"],
+    title: json["title"] as String,
+    city: json["city"] as String,
+    country: json["country"] as String,
     rooms: json["rooms"] == null ? <UDormRoomResponse>[] : List<UDormRoomResponse>.from(json["rooms"]!.map((dynamic x) => UDormRoomResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "jsonData": jsonData?.toMap(),
-    "tags": tags == null ? <int>[] : List<int>.from(tags!.map((int x) => x)),
+    "createdAt": createdAt.toIso8601String(),
+    "jsonData": jsonData.toMap(),
+    "tags": List<int>.from(tags.map((int x) => x)),
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,
@@ -129,28 +129,28 @@ class UDormResponse {
 }
 
 class UHotelResponse {
-  final String? id;
-  final DateTime? createdAt;
-  final UBaseJson? jsonData;
-  final List<int>? tags;
+  final String id;
+  final DateTime createdAt;
+  final UBaseJson jsonData;
+  final List<int> tags;
   final UUserResponse? creator;
   final String? creatorId;
-  final String? title;
-  final String? city;
-  final String? country;
+  final String title;
+  final String city;
+  final String country;
   final List<UHotelRoomResponse>? rooms;
   final List<UMediaResponse>? media;
 
   UHotelResponse({
-    this.id,
-    this.createdAt,
-    this.jsonData,
-    this.tags,
+    required this.id,
+    required this.createdAt,
+    required this.jsonData,
+    required this.tags,
+    required this.title,
+    required this.city,
+    required this.country,
     this.creator,
     this.creatorId,
-    this.title,
-    this.city,
-    this.country,
     this.rooms,
     this.media,
   });
@@ -160,24 +160,24 @@ class UHotelResponse {
   String toJson() => json.encode(toMap());
 
   factory UHotelResponse.fromMap(Map<String, dynamic> json) => UHotelResponse(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    jsonData: json["jsonData"] == null ? null : UBaseJson.fromMap(json["jsonData"]),
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    id: json["id"] as String,
+    createdAt: DateTime.parse(json["createdAt"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
-    title: json["title"],
-    city: json["city"],
-    country: json["country"],
+    title: json["title"] as String,
+    city: json["city"] as String,
+    country: json["country"] as String,
     rooms: json["rooms"] == null ? <UHotelRoomResponse>[] : List<UHotelRoomResponse>.from(json["rooms"]!.map((dynamic x) => UHotelRoomResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "jsonData": jsonData?.toMap(),
-    "tags": tags == null ? <int>[] : List<int>.from(tags!.map((int x) => x)),
+    "createdAt": createdAt.toIso8601String(),
+    "jsonData": jsonData.toMap(),
+    "tags": List<int>.from(tags.map((int x) => x)),
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,
@@ -189,32 +189,32 @@ class UHotelResponse {
 }
 
 class UHotelRoomResponse {
-  final String? id;
-  final DateTime? createdAt;
-  final UBaseJson? jsonData;
-  final List<int>? tags;
+  final String id;
+  final DateTime createdAt;
+  final UBaseJson jsonData;
+  final List<int> tags;
   final UUserResponse? creator;
   final String? creatorId;
-  final String? title;
-  final int? capacity;
-  final double? pricePerNight;
-  final bool? isAvailable;
-  final String? hotelId;
+  final String title;
+  final int capacity;
+  final double pricePerNight;
+  final bool isAvailable;
+  final String hotelId;
   final UHotelResponse? hotel;
   final List<UMediaResponse>? media;
 
   UHotelRoomResponse({
-    this.id,
-    this.createdAt,
-    this.jsonData,
-    this.tags,
+    required this.id,
+    required this.createdAt,
+    required this.jsonData,
+    required this.tags,
+    required this.title,
+    required this.capacity,
+    required this.pricePerNight,
+    required this.isAvailable,
+    required this.hotelId,
     this.creator,
     this.creatorId,
-    this.title,
-    this.capacity,
-    this.pricePerNight,
-    this.isAvailable,
-    this.hotelId,
     this.hotel,
     this.media,
   });
@@ -224,26 +224,26 @@ class UHotelRoomResponse {
   String toJson() => json.encode(toMap());
 
   factory UHotelRoomResponse.fromMap(Map<String, dynamic> json) => UHotelRoomResponse(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    jsonData: json["jsonData"] == null ? null : UBaseJson.fromMap(json["jsonData"]),
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    id: json["id"] as String,
+    createdAt: DateTime.parse(json["createdAt"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
-    title: json["title"],
-    capacity: json["capacity"],
-    pricePerNight: json["pricePerNight"]?.toDouble(),
-    isAvailable: json["isAvailable"],
-    hotelId: json["hotelId"],
+    title: json["title"] as String,
+    capacity: json["capacity"] as int,
+    pricePerNight: (json["pricePerNight"] as num).toDouble(),
+    isAvailable: json["isAvailable"] as bool,
+    hotelId: json["hotelId"] as String,
     hotel: json["hotel"] == null ? null : UHotelResponse.fromMap(json["hotel"]),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "jsonData": jsonData?.toMap(),
-    "tags": tags == null ? <int>[] : List<int>.from(tags!.map((int x) => x)),
+    "createdAt": createdAt.toIso8601String(),
+    "jsonData": jsonData.toMap(),
+    "tags": List<int>.from(tags.map((int x) => x)),
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,
@@ -257,27 +257,27 @@ class UHotelRoomResponse {
 }
 
 class UDormRoomResponse {
-  final String? id;
-  final DateTime? createdAt;
-  final UBaseJson? jsonData;
-  final List<int>? tags;
+  final String id;
+  final DateTime createdAt;
+  final UBaseJson jsonData;
+  final List<int> tags;
   final UUserResponse? creator;
   final String? creatorId;
-  final String? title;
-  final String? dormId;
+  final String title;
+  final String dormId;
   final UDormResponse? dorm;
   final List<UDormBedResponse>? beds;
   final List<UMediaResponse>? media;
 
   UDormRoomResponse({
-    this.id,
-    this.createdAt,
-    this.jsonData,
-    this.tags,
+    required this.id,
+    required this.createdAt,
+    required this.jsonData,
+    required this.tags,
+    required this.title,
+    required this.dormId,
     this.creator,
     this.creatorId,
-    this.title,
-    this.dormId,
     this.dorm,
     this.beds,
     this.media,
@@ -288,14 +288,14 @@ class UDormRoomResponse {
   String toJson() => json.encode(toMap());
 
   factory UDormRoomResponse.fromMap(Map<String, dynamic> json) => UDormRoomResponse(
-    id: json["id"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    jsonData: json["jsonData"] == null ? null : UBaseJson.fromMap(json["jsonData"]),
-    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    id: json["id"] as String,
+    createdAt: DateTime.parse(json["createdAt"]),
+    jsonData: UBaseJson.fromMap(json["jsonData"]),
+    tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
-    title: json["title"],
-    dormId: json["dormId"],
+    title: json["title"] as String,
+    dormId: json["dormId"] as String,
     dorm: json["dorm"] == null ? null : UDormResponse.fromMap(json["dorm"]),
     beds: json["beds"] == null ? <UDormBedResponse>[] : List<UDormBedResponse>.from(json["beds"]!.map((dynamic x) => UDormBedResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
@@ -303,9 +303,9 @@ class UDormRoomResponse {
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
-    "createdAt": createdAt?.toIso8601String(),
-    "jsonData": jsonData?.toMap(),
-    "tags": tags == null ? <int>[] : List<int>.from(tags!.map((int x) => x)),
+    "createdAt": createdAt.toIso8601String(),
+    "jsonData": jsonData.toMap(),
+    "tags": List<int>.from(tags.map((int x) => x)),
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,

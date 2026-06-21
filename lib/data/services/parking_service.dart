@@ -1,104 +1,123 @@
 part of "../data.dart";
 
-class ProductService {
-  Future<UHttpClientResponse> create({
-    required final UProductCreateParams p,
+class ParkingService {
+  Future<UHttpClientResponse> createParking({
+    required final UParkingCreateParams p,
     final Function(UResponse<String> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/product/Create",
+    endpoint: "${U.baseUrl}/parking/CreateParking",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> bulkCreate({
-    required final List<UProductCreateParams> p,
-    final Function(UEmptyResponse r)? onOk,
+  Future<UHttpClientResponse> readParking({
+    required final UParkingReadParams p,
+    final Function(UResponse<List<UParkingResponse>> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/product/BulkCreate",
-    body: <String, dynamic>{"list": List<dynamic>.from(p.map((UProductCreateParams x) => x.toMap()))}.add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
-  Future<UHttpClientResponse> read({
-    required final UProductReadParams p,
-    final Function(UResponse<List<UProductResponse>> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/product/Read",
+    endpoint: "${U.baseUrl}/parking/ReadParking",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
-      UResponse<List<UProductResponse>>.fromJson(
+      UResponse<List<UParkingResponse>>.fromJson(
         r.body,
-        (final dynamic i) => List<UProductResponse>.from((i as List<dynamic>).map((final dynamic x) => UProductResponse.fromMap(x))),
+        (final dynamic i) => List<UParkingResponse>.from((i as List<dynamic>).map((final dynamic x) => UParkingResponse.fromMap(x))),
       ),
     ),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> readById({
-    required final UIdParams p,
-    final Function(UResponse<UProductResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/product/ReadById",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UProductResponse>.fromJson(r.body, (final dynamic i) => UProductResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
-
-  Future<UHttpClientResponse> update({
-    required final UProductUpdateParams p,
+  Future<UHttpClientResponse> updateParking({
+    required final UParkingUpdateParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/product/Update",
+    endpoint: "${U.baseUrl}/parking/UpdateParking",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> delete({
+  Future<UHttpClientResponse> deleteParking({
     required final UIdParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/product/Delete",
+    endpoint: "${U.baseUrl}/parking/DeleteParking",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
 
-  Future<UHttpClientResponse> deleteRange({
-    required final UIdListParams p,
+  Future<UHttpClientResponse> createParkingReport({
+    required final UParkingReportCreateParams p,
+    final Function(UResponse<String> r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/parking/CreateParkingReport",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> readParkingReport({
+    required final UParkingReportReadParams p,
+    final Function(UResponse<List<UParkingReportResponse>> r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/parking/ReadParkingReport",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(
+      UResponse<List<UParkingReportResponse>>.fromJson(
+        r.body,
+        (final dynamic i) => List<UParkingReportResponse>.from((i as List<dynamic>).map((final dynamic x) => UParkingReportResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> updateParkingReport({
+    required final UParkingReportUpdateParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/product/DeleteRange",
-    body: p.toIdListMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    endpoint: "${U.baseUrl}/parking/UpdateParkingReport",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> deleteParkingReport({
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/parking/DeleteParkingReport",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),

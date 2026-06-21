@@ -6,7 +6,8 @@ class UNotificationResponse {
     required this.createdAt,
     required this.jsonData,
     required this.tags,
-    this.media = const <UMediaResponse>[],
+    required this.userId,
+    this.user,
   });
 
   factory UNotificationResponse.fromJson(String str) => UNotificationResponse.fromMap(json.decode(str));
@@ -16,13 +17,15 @@ class UNotificationResponse {
     createdAt: DateTime.parse(json["createdAt"]),
     jsonData: UBaseJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
-    media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
+    userId: json["userId"],
+    user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
   );
   final String id;
   final DateTime createdAt;
   final UBaseJson jsonData;
   final List<int> tags;
-  final List<UMediaResponse> media;
+  final String userId;
+  final UUserResponse? user;
 
   String toJson() => json.encode(toMap());
 
@@ -31,6 +34,7 @@ class UNotificationResponse {
     "createdAt": createdAt.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
-    "media": List<dynamic>.from(media.map((UMediaResponse x) => x.toMap())),
+    "userId": userId,
+    "user": user?.toMap(),
   };
 }
