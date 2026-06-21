@@ -1,6 +1,6 @@
 part of "../data.dart";
 
-class HospitalityService {
+class HotelService {
   // ==================== Hotel ====================
 
   Future<UHttpClientResponse> createHotel({
@@ -10,7 +10,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Hotel/Create",
+    endpoint: "${U.baseUrl}/Hotel/Hotel/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -24,7 +24,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Hotel/Read",
+    endpoint: "${U.baseUrl}/Hotel/Hotel/Read",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UHotelResponse>>.fromJson(
@@ -43,7 +43,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Hotel/ReadById",
+    endpoint: "${U.baseUrl}/Hotel/Hotel/ReadById",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<UHotelResponse>.fromJson(r.body, (final dynamic i) => UHotelResponse.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -57,7 +57,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Hotel/Update",
+    endpoint: "${U.baseUrl}/Hotel/Hotel/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -71,7 +71,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Hotel/Delete",
+    endpoint: "${U.baseUrl}/Hotel/Hotel/Delete",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -87,7 +87,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/HotelRoom/Create",
+    endpoint: "${U.baseUrl}/Hotel/HotelRoom/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -101,7 +101,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/HotelRoom/Read",
+    endpoint: "${U.baseUrl}/Hotel/HotelRoom/Read",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UHotelRoomResponse>>.fromJson(
@@ -120,7 +120,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/HotelRoom/ReadById",
+    endpoint: "${U.baseUrl}/Hotel/HotelRoom/ReadById",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<UHotelRoomResponse>.fromJson(r.body, (final dynamic i) => UHotelRoomResponse.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -134,7 +134,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/HotelRoom/Update",
+    endpoint: "${U.baseUrl}/Hotel/HotelRoom/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -148,7 +148,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/HotelRoom/Delete",
+    endpoint: "${U.baseUrl}/Hotel/HotelRoom/Delete",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -164,7 +164,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Dorm/Create",
+    endpoint: "${U.baseUrl}/Hotel/Dorm/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -178,7 +178,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Dorm/Read",
+    endpoint: "${U.baseUrl}/Hotel/Dorm/Read",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UDormResponse>>.fromJson(
@@ -197,7 +197,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Dorm/ReadById",
+    endpoint: "${U.baseUrl}/Hotel/Dorm/ReadById",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<UDormResponse>.fromJson(r.body, (final dynamic i) => UDormResponse.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -211,7 +211,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Dorm/Update",
+    endpoint: "${U.baseUrl}/Hotel/Dorm/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -225,7 +225,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/Dorm/Delete",
+    endpoint: "${U.baseUrl}/Hotel/Dorm/Delete",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -241,7 +241,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormRoom/Create",
+    endpoint: "${U.baseUrl}/Hotel/DormRoom/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -255,7 +255,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormRoom/Read",
+    endpoint: "${U.baseUrl}/Hotel/DormRoom/Read",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UDormRoomResponse>>.fromJson(
@@ -274,7 +274,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormRoom/ReadById",
+    endpoint: "${U.baseUrl}/Hotel/DormRoom/ReadById",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<UDormRoomResponse>.fromJson(r.body, (final dynamic i) => UDormRoomResponse.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -288,7 +288,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormRoom/Update",
+    endpoint: "${U.baseUrl}/Hotel/DormRoom/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -302,7 +302,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormRoom/Delete",
+    endpoint: "${U.baseUrl}/Hotel/DormRoom/Delete",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -318,7 +318,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormBed/Create",
+    endpoint: "${U.baseUrl}/Hotel/DormBed/Create",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -332,7 +332,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormBed/Read",
+    endpoint: "${U.baseUrl}/Hotel/DormBed/Read",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(
       UResponse<List<UDormBedResponse>>.fromJson(
@@ -351,7 +351,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormBed/ReadById",
+    endpoint: "${U.baseUrl}/Hotel/DormBed/ReadById",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UResponse<UDormBedResponse>.fromJson(r.body, (final dynamic i) => UDormBedResponse.fromMap(i))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -365,7 +365,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormBed/Update",
+    endpoint: "${U.baseUrl}/Hotel/DormBed/Update",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
@@ -379,7 +379,7 @@ class HospitalityService {
     final Function(String e)? onException,
   }) => UHttpClient.send(
     method: "POST",
-    endpoint: "${U.baseUrl}/Hospitality/DormBed/Delete",
+    endpoint: "${U.baseUrl}/Hotel/DormBed/Delete",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),

@@ -13,7 +13,6 @@ part "params/content_params.dart";
 part "params/contract_params.dart";
 part "params/exam_params.dart";
 part "params/follow_params.dart";
-
 part "params/hotel_params.dart";
 part "params/inquiry_params.dart";
 part "params/invoice_params.dart";
@@ -41,7 +40,6 @@ part "responses/contract_response.dart";
 part "responses/dashboard_response.dart";
 part "responses/exam_response.dart";
 part "responses/follower_following_count_response.dart";
-
 part "responses/hotel_response.dart";
 part "responses/inquiry_response.dart";
 part "responses/invoice_response.dart";
@@ -59,8 +57,6 @@ part "responses/user_response.dart";
 part "responses/vehicle_response.dart";
 part "responses/wallet_response.dart";
 part "services/address_service.dart";
-
-part "services/hotel_service.dart";
 part "services/auth_service.dart";
 part "services/bank_account_service.dart";
 part "services/bed_service.dart";
@@ -72,6 +68,7 @@ part "services/content_service.dart";
 part "services/contract_service.dart";
 part "services/dashboard_service.dart";
 part "services/follow_service.dart";
+part "services/hotel_service.dart";
 part "services/inquiry_service.dart";
 part "services/invoice_service.dart";
 part "services/media_service.dart";
@@ -109,4 +106,5 @@ class UServices {
   static SimService sim = SimService();
   static ContractService contract = ContractService();
   static InvoiceService invoice = InvoiceService();
+  static HotelService hotel = HotelService();
 }
