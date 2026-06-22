@@ -173,11 +173,12 @@ abstract class UHttpClient {
     );
   }
 
-  static Future<MultipartFile> multipartFileFromUint8List(final String fieldName,
-      final Uint8List bytes, {
-        String? filename,
-        final MediaType? contentType,
-      }) async => MultipartFile.fromBytes(fieldName, bytes, contentType: contentType, filename: filename);
+  static Future<MultipartFile> multipartFileFromUint8List(
+    final String fieldName,
+    final Uint8List bytes, {
+    String? filename,
+    final MediaType? contentType,
+  }) async => MultipartFile.fromBytes(fieldName, bytes, contentType: contentType, filename: filename);
 
   static T? removeNullEntries<T>(T? json) {
     if (json == null) return null;
@@ -224,13 +225,18 @@ class UDownload {
     required String savePath,
     required String partPath,
     required void Function(int progress) onProgress,
+    List<int>? encryptionKey,
   }) async {
     if (_operations.containsKey(cacheKey)) {
       await _operations[cacheKey]?.cancel();
     }
 
     final CancelableOperation<String?> op = CancelableOperation<String?>.fromFuture(
-      _performDownload(url: url, savePath: savePath, partPath: partPath, onProgress: onProgress),
+      _performDownload(url: url,
+          savePath: savePath,
+          partPath: partPath,
+          onProgress: onProgress,
+          encryptionKey: encryptionKey),
       onCancel: () => _operations.remove(cacheKey),
     );
 
@@ -251,6 +257,7 @@ class UDownload {
     required String savePath,
     required String partPath,
     required void Function(int progress) onProgress,
+    List<int>? encryptionKey,
   }) async {
     final File partFile = File(partPath);
 
@@ -323,9 +330,20 @@ class UDownload {
         int received = downloadedBytes;
         int chunkCounter = 0;
 
+        final int? keyLen = encryptionKey?.length;
         await for (final List<int> chunk in response.stream) {
           try {
-            sink.add(chunk);
+            // Encrypt at rest: XOR each chunk by its absolute file offset so the
+            // keystream stays aligned even across resumed downloads.
+            if (encryptionKey != null && keyLen != null && keyLen > 0) {
+              final Uint8List enc = Uint8List.fromList(chunk);
+              for (int j = 0; j < enc.length; j++) {
+                enc[j] ^= encryptionKey[(received + j) % keyLen];
+              }
+              sink.add(enc);
+            } else {
+              sink.add(chunk);
+            }
             received += chunk.length;
             chunkCounter++;
 

@@ -115,12 +115,20 @@ abstract class UFileStorage {
   static Future<void> init() async {
     if (!kIsWeb) {
       _directory = await getApplicationDocumentsDirectory();
-      _bigFilesDirectory = Directory("${_directory.path}/big_files");
+      // On Windows the Documents folder is user-browsable, so keep downloaded
+      // media in the hidden AppData\Roaming app-support folder instead. Other
+      // platforms already sandbox app files (mobile) or keep current behavior.
+      final Directory bigBase = Platform.isWindows ? await getApplicationSupportDirectory() : _directory;
+      _bigFilesDirectory = Directory("${bigBase.path}/big_files");
       if (!await _bigFilesDirectory.exists()) {
         await _bigFilesDirectory.create(recursive: true);
       }
     }
   }
+
+  /// Absolute path of the directory holding downloaded files. Exposed so the app
+  /// can run one-time migrations (e.g. moving files in from an old location).
+  static String get bigFilesDirectoryPath => _bigFilesDirectory.path;
 
   /// Absolute path of the permanent stored file for [key] (may not exist yet).
   static String bigFilePath(String key) => "${_bigFilesDirectory.path}/$key.dat";
