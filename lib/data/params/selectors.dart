@@ -478,12 +478,14 @@ class SimSelectorArgs {
 class ContractSelectorArgs {
   final UserSelectorArgs? creator;
   final UserSelectorArgs? user;
+  final DormBedSelectorArgs? bed;
   final ProductSelectorArgs? product;
   final InvoiceSelectorArgs? invoice;
 
   const ContractSelectorArgs({
     this.creator,
     this.user,
+    this.bed,
     this.product,
     this.invoice,
   });
@@ -495,6 +497,7 @@ class ContractSelectorArgs {
   factory ContractSelectorArgs.fromMap(Map<String, dynamic> json) => ContractSelectorArgs(
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
     user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+    bed: json["bed"] == null ? null : DormBedSelectorArgs.fromMap(json["bed"]),
     product: json["product"] == null ? null : ProductSelectorArgs.fromMap(json["product"]),
     invoice: json["invoice"] == null ? null : InvoiceSelectorArgs.fromMap(json["invoice"]),
   );
@@ -502,6 +505,7 @@ class ContractSelectorArgs {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "creator": creator?.toMap(),
     "user": user?.toMap(),
+    "bed": bed?.toMap(),
     "product": product?.toMap(),
     "invoice": invoice?.toMap(),
   };

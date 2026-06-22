@@ -53,6 +53,256 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Contract`
+  String get contract {
+    return Intl.message('Contract', name: 'contract', desc: '', args: []);
+  }
+
+  /// `Invoice`
+  String get invoice {
+    return Intl.message('Invoice', name: 'invoice', desc: '', args: []);
+  }
+
+  /// `Create Contract`
+  String get createContract {
+    return Intl.message(
+      'Create Contract',
+      name: 'createContract',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Contract`
+  String get editContract {
+    return Intl.message(
+      'Edit Contract',
+      name: 'editContract',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Invoice`
+  String get createInvoice {
+    return Intl.message(
+      'Create Invoice',
+      name: 'createInvoice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Invoice`
+  String get editInvoice {
+    return Intl.message(
+      'Edit Invoice',
+      name: 'editInvoice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tenant`
+  String get tenant {
+    return Intl.message('Tenant', name: 'tenant', desc: '', args: []);
+  }
+
+  /// `Bed`
+  String get bed {
+    return Intl.message('Bed', name: 'bed', desc: '', args: []);
+  }
+
+  /// `Contract Type`
+  String get contractType {
+    return Intl.message(
+      'Contract Type',
+      name: 'contractType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invoice Type`
+  String get invoiceType {
+    return Intl.message(
+      'Invoice Type',
+      name: 'invoiceType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Single Invoice`
+  String get singleInvoice {
+    return Intl.message(
+      'Single Invoice',
+      name: 'singleInvoice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Penalty %`
+  String get penaltyPercent {
+    return Intl.message(
+      'Daily Penalty %',
+      name: 'penaltyPercent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay Invoice`
+  String get payInvoice {
+    return Intl.message('Pay Invoice', name: 'payInvoice', desc: '', args: []);
+  }
+
+  /// `Mark as Paid`
+  String get markAsPaid {
+    return Intl.message('Mark as Paid', name: 'markAsPaid', desc: '', args: []);
+  }
+
+  /// `Mark this invoice as fully paid?`
+  String get payInvoiceConfirm {
+    return Intl.message(
+      'Mark this invoice as fully paid?',
+      name: 'payInvoiceConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invoice marked as paid`
+  String get invoicePaidSuccessfully {
+    return Intl.message(
+      'Invoice marked as paid',
+      name: 'invoicePaidSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Invoices`
+  String get viewInvoices {
+    return Intl.message(
+      'View Invoices',
+      name: 'viewInvoices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Contracts`
+  String get viewContracts {
+    return Intl.message(
+      'View Contracts',
+      name: 'viewContracts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remaining`
+  String get remaining {
+    return Intl.message('Remaining', name: 'remaining', desc: '', args: []);
+  }
+
+  /// `Paid Amount`
+  String get paidAmount {
+    return Intl.message('Paid Amount', name: 'paidAmount', desc: '', args: []);
+  }
+
+  /// `Debt Amount`
+  String get debtAmount {
+    return Intl.message('Debt Amount', name: 'debtAmount', desc: '', args: []);
+  }
+
+  /// `Penalty Amount`
+  String get penaltyAmount {
+    return Intl.message(
+      'Penalty Amount',
+      name: 'penaltyAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Debt`
+  String get totalDebt {
+    return Intl.message('Total Debt', name: 'totalDebt', desc: '', args: []);
+  }
+
+  /// `Total Paid`
+  String get totalPaid {
+    return Intl.message('Total Paid', name: 'totalPaid', desc: '', args: []);
+  }
+
+  /// `Total Remaining`
+  String get totalRemaining {
+    return Intl.message(
+      'Total Remaining',
+      name: 'totalRemaining',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Penalty`
+  String get totalPenalty {
+    return Intl.message(
+      'Total Penalty',
+      name: 'totalPenalty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overdue`
+  String get overdue {
+    return Intl.message('Overdue', name: 'overdue', desc: '', args: []);
+  }
+
+  /// `Unpaid`
+  String get unpaid {
+    return Intl.message('Unpaid', name: 'unpaid', desc: '', args: []);
+  }
+
+  /// `Payment Status`
+  String get paymentStatus {
+    return Intl.message(
+      'Payment Status',
+      name: 'paymentStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get active {
+    return Intl.message('Active', name: 'active', desc: '', args: []);
+  }
+
+  /// `Expired`
+  String get expired {
+    return Intl.message('Expired', name: 'expired', desc: '', args: []);
+  }
+
+  /// `Leasing`
+  String get leasing {
+    return Intl.message('Leasing', name: 'leasing', desc: '', args: []);
+  }
+
+  /// `Rent`
+  String get rentInvoice {
+    return Intl.message('Rent', name: 'rentInvoice', desc: '', args: []);
+  }
+
+  /// `Deposit`
+  String get depositInvoice {
+    return Intl.message('Deposit', name: 'depositInvoice', desc: '', args: []);
+  }
+
   /// `Created`
   String get created {
     return Intl.message('Created', name: 'created', desc: '', args: []);

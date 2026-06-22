@@ -905,6 +905,9 @@ class UDormBedContractCreateParams {
   final DateTime endDate;
   final String userId;
   final String bedId;
+  final double? deposit;
+  final double? rent;
+  final int? penaltyPrecentEveryDate;
   final String? productId;
   final String? description;
 
@@ -915,6 +918,9 @@ class UDormBedContractCreateParams {
     required this.userId,
     required this.bedId,
     this.id,
+    this.deposit,
+    this.rent,
+    this.penaltyPrecentEveryDate,
     this.productId,
     this.description,
   });
@@ -930,6 +936,9 @@ class UDormBedContractCreateParams {
     endDate: DateTime.parse(json["endDate"]),
     userId: json["userId"] as String,
     bedId: json["bedId"] as String,
+    deposit: json["deposit"] == null ? null : (json["deposit"] as num).toDouble(),
+    rent: json["rent"] == null ? null : (json["rent"] as num).toDouble(),
+    penaltyPrecentEveryDate: json["penaltyPrecentEveryDate"] == null ? null : (json["penaltyPrecentEveryDate"] as num).toInt(),
     productId: json["productId"],
     description: json["description"],
   );
@@ -941,6 +950,9 @@ class UDormBedContractCreateParams {
     "endDate": endDate.toIso8601String(),
     "userId": userId,
     "bedId": bedId,
+    "deposit": deposit,
+    "rent": rent,
+    "penaltyPrecentEveryDate": penaltyPrecentEveryDate,
     "productId": productId,
     "description": description,
   };
@@ -1087,6 +1099,7 @@ class UDormBedInvoiceCreateParams {
   final double penaltyAmount;
   final String userId;
   final String contractId;
+  final int? penaltyPrecentEveryDate;
   final DateTime? paidDate;
   final DateTime dueDate;
   final String description;
@@ -1102,6 +1115,7 @@ class UDormBedInvoiceCreateParams {
     required this.dueDate,
     required this.description,
     this.id,
+    this.penaltyPrecentEveryDate,
     this.paidDate,
   });
 
@@ -1118,6 +1132,7 @@ class UDormBedInvoiceCreateParams {
     penaltyAmount: json["penaltyAmount"].toString().toDouble(),
     userId: json["userId"],
     contractId: json["contractId"],
+    penaltyPrecentEveryDate: json["penaltyPrecentEveryDate"] == null ? null : (json["penaltyPrecentEveryDate"] as num).toInt(),
     paidDate: json["paidDate"] == null ? null : DateTime.parse(json["paidDate"]),
     dueDate: DateTime.parse(json["dueDate"]),
     description: json["description"],
@@ -1132,6 +1147,7 @@ class UDormBedInvoiceCreateParams {
     "penaltyAmount": penaltyAmount,
     "userId": userId,
     "contractId": contractId,
+    "penaltyPrecentEveryDate": penaltyPrecentEveryDate,
     "paidDate": paidDate?.toIso8601String(),
     "dueDate": dueDate.toIso8601String(),
     "description": description,
@@ -1217,6 +1233,7 @@ class UDormBedInvoiceUpdateParams {
   final double? penaltyAmount;
   final String? userId;
   final String? contractId;
+  final int? penaltyPrecentEveryDate;
   final DateTime? paidDate;
   final DateTime? dueDate;
   final String? description;
@@ -1232,6 +1249,7 @@ class UDormBedInvoiceUpdateParams {
     this.penaltyAmount,
     this.userId,
     this.contractId,
+    this.penaltyPrecentEveryDate,
     this.paidDate,
     this.dueDate,
     this.description,
@@ -1252,6 +1270,7 @@ class UDormBedInvoiceUpdateParams {
     penaltyAmount: json["penaltyAmount"].toString().toDouble(),
     userId: json["userId"],
     contractId: json["contractId"],
+    penaltyPrecentEveryDate: json["penaltyPrecentEveryDate"] == null ? null : (json["penaltyPrecentEveryDate"] as num).toInt(),
     paidDate: json["paidDate"] == null ? null : DateTime.parse(json["paidDate"]),
     dueDate: json["dueDate"] == null ? null : DateTime.parse(json["dueDate"]),
     description: json["description"],
@@ -1268,6 +1287,7 @@ class UDormBedInvoiceUpdateParams {
     "penaltyAmount": penaltyAmount,
     "userId": userId,
     "contractId": contractId,
+    "penaltyPrecentEveryDate": penaltyPrecentEveryDate,
     "paidDate": paidDate?.toIso8601String(),
     "dueDate": dueDate?.toIso8601String(),
     "description": description,

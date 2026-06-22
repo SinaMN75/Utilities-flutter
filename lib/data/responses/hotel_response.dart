@@ -330,6 +330,7 @@ class UDormBedContractResponse {
   final UUserResponse? user;
   final String userId;
   final String bedId;
+  final UDormBedResponse? bed;
   final UUserResponse? creator;
   final String? creatorId;
   final UProductResponse? product;
@@ -350,6 +351,7 @@ class UDormBedContractResponse {
     required this.bedId,
     this.deletedAt,
     this.user,
+    this.bed,
     this.creator,
     this.creatorId,
     this.product,
@@ -375,6 +377,7 @@ class UDormBedContractResponse {
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
     userId: json["userId"] as String,
     bedId: json["bedId"] as String,
+    bed: json["bed"] == null ? null : UDormBedResponse.fromMap(json["bed"]),
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     product: json["product"] == null ? null : UProductResponse.fromMap(json["product"]),
@@ -396,6 +399,7 @@ class UDormBedContractResponse {
     "user": user?.toMap(),
     "userId": userId,
     "bedId": bedId,
+    "bed": bed?.toMap(),
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "product": product?.toMap(),
@@ -514,9 +518,11 @@ class UDormBedInvoiceResponse {
 
 class UDormBedInvoiceJson {
   final String? description;
+  final int? penaltyPrecentEveryDate;
 
   UDormBedInvoiceJson({
     this.description,
+    this.penaltyPrecentEveryDate,
   });
 
   factory UDormBedInvoiceJson.fromJson(String str) => UDormBedInvoiceJson.fromMap(json.decode(str));
@@ -525,9 +531,11 @@ class UDormBedInvoiceJson {
 
   factory UDormBedInvoiceJson.fromMap(Map<String, dynamic> json) => UDormBedInvoiceJson(
     description: json["description"],
+    penaltyPrecentEveryDate: json["penaltyPrecentEveryDate"] == null ? null : (json["penaltyPrecentEveryDate"] as num).toInt(),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "description": description,
+    "penaltyPrecentEveryDate": penaltyPrecentEveryDate,
   };
 }
