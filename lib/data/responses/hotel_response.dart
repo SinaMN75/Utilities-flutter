@@ -319,7 +319,7 @@ class UDormRoomResponse {
 class UDormBedContractResponse {
   final String id;
   final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   final DateTime? deletedAt;
   final UContractJsonData jsonData;
   final List<int> tags;
@@ -340,7 +340,6 @@ class UDormBedContractResponse {
   UDormBedContractResponse({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.jsonData,
     required this.tags,
     required this.startDate,
@@ -349,6 +348,7 @@ class UDormBedContractResponse {
     required this.rent,
     required this.userId,
     required this.bedId,
+    this.updatedAt,
     this.deletedAt,
     this.user,
     this.bed,
@@ -366,7 +366,7 @@ class UDormBedContractResponse {
   factory UDormBedContractResponse.fromMap(Map<String, dynamic> json) => UDormBedContractResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UContractJsonData.fromMap(json["jsonData"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
@@ -388,7 +388,7 @@ class UDormBedContractResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
     "deletedAt": deletedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
@@ -431,7 +431,7 @@ class UContractJsonData {
 class UDormBedInvoiceResponse {
   final String id;
   final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
   final DateTime? deletedAt;
   final UDormBedInvoiceJson jsonData;
   final List<int> tags;
@@ -451,7 +451,6 @@ class UDormBedInvoiceResponse {
   UDormBedInvoiceResponse({
     required this.id,
     required this.createdAt,
-    required this.updatedAt,
     required this.jsonData,
     required this.tags,
     required this.dueDate,
@@ -459,6 +458,7 @@ class UDormBedInvoiceResponse {
     required this.creditorAmount,
     required this.paidAmount,
     required this.penaltyAmount,
+    this.updatedAt,
     this.deletedAt,
     this.paidDate,
     this.nextInvoiceIssueDate,
@@ -476,7 +476,7 @@ class UDormBedInvoiceResponse {
   factory UDormBedInvoiceResponse.fromMap(Map<String, dynamic> json) => UDormBedInvoiceResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
+    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UDormBedInvoiceJson.fromMap(json["jsonData"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
@@ -497,7 +497,7 @@ class UDormBedInvoiceResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
     "deletedAt": deletedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),

@@ -975,6 +975,7 @@ class UDormBedContractReadParams {
   final DateTime? startDate;
   final DateTime? endDate;
   final String? userName;
+  final String? bedId;
   final ContractSelectorArgs? selectorArgs;
 
   UDormBedContractReadParams({
@@ -994,6 +995,7 @@ class UDormBedContractReadParams {
     this.startDate,
     this.endDate,
     this.userName,
+    this.bedId,
     this.selectorArgs,
   });
 
@@ -1013,6 +1015,7 @@ class UDormBedContractReadParams {
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
+    bedId: json["bedId"],
     creatorId: json["creatorId"],
     productId: json["productId"],
     userName: json["userName"],
@@ -1033,6 +1036,7 @@ class UDormBedContractReadParams {
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
+    "bedId": bedId,
     "creatorId": creatorId,
     "productId": productId,
     "userName": userName,
