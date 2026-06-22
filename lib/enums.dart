@@ -54,6 +54,7 @@ enum TagUser with NumericIdentifiable {
   guest("مهمان", "Guest", 202),
   systemAdmin("سیستم ادمین", "System Admin", 203),
   systemUser("کاربر سیستمی", "System User", 204),
+  sunUser("کاربر سان", "Sun User", 205),
   awaitingVerification("در انتظار تایید", "Awaiting Verification", 301),
   verified("تایید شده", "Verified", 302),
   nationalCardFrontVerified("کارت ملی جلو تایید شده", "National Card Front Verified", 401),
@@ -73,16 +74,7 @@ enum TagUser with NumericIdentifiable {
   birthCertificateForthAwaitingVerification("شناسنامه صفحه چهارم در انتظار تایید", "Birth Certificate Forth Awaiting Verification", 506),
   birthCertificateFifthAwaitingVerification("شناسنامه صفحه پنجم در انتظار تایید", "Birth Certificate Fifth Awaiting Verification", 507),
   visualAuthenticationAwaitingVerification("احراز هویت تصویری در انتظار تایید", "Visual Authentication Awaiting Verification", 508),
-  eSignatureAwaitingVerification("امضای الکترونیکی در انتظار تایید", "E-Signature Awaiting Verification", 509),
-  nationalCardFrontRejected("کارت ملی جلو رد شده", "National Card Front Rejected", 601),
-  nationalCardBackRejected("کارت ملی پشت رد شده", "National Card Back Rejected", 602),
-  birthCertificateFirstRejected("شناسنامه صفحه اول رد شده", "Birth Certificate First Rejected", 603),
-  birthCertificateSecondRejected("شناسنامه صفحه دوم رد شده", "Birth Certificate Second Rejected", 604),
-  birthCertificateThirdRejected("شناسنامه صفحه سوم رد شده", "Birth Certificate Third Rejected", 605),
-  birthCertificateForthRejected("شناسنامه صفحه چهارم رد شده", "Birth Certificate Forth Rejected", 606),
-  birthCertificateFifthRejected("شناسنامه صفحه پنجم رد شده", "Birth Certificate Fifth Rejected", 607),
-  visualAuthenticationRejected("احراز هویت تصویری رد شده", "Visual Authentication Rejected", 608),
-  eSignatureRejected("امضای الکترونیکی رد شده", "E-Signature Rejected", 609);
+  eSignatureAwaitingVerification("امضای الکترونیکی در انتظار تایید", "E-Signature Awaiting Verification", 509);
 
   const TagUser(this.titleFa, this.titleEn, this.number);
 
@@ -252,7 +244,8 @@ enum TagTxn with NumericIdentifiable {
   paid("پرداخت شده", "Paid", 202),
   failed("ناموفق", "Failed", 203),
   refunded("بازگشت داده شده", "Refunded", 204),
-  chargeWallet("شارژ کیف پول", "Charge Wallet", 301);
+  chargeWallet("شارژ کیف پول", "Charge Wallet", 301),
+  merchantCreationFee("هزینه ایجاد پذیرنده", "Merchant Creation Fee", 302);
 
   const TagTxn(this.titleFa, this.titleEn, this.number);
 
@@ -340,6 +333,7 @@ enum TagWalletTxn with NumericIdentifiable {
   drivingLicenceNegativePoint("امتیاز منفی گواهینامه", "Driving Licence Negative Point", 206),
   iBanToBankAccountDetail("IBan به جزئیات حساب بانکی", "IBan To Bank Account Detail", 207),
   freewayTolls("عوارض آزادراه", "Freeway Tolls", 208),
+  merchantCreationFee("هزینه ایجاد پذیرنده", "Merchant Creation Fee", 209),
   chargeSimPin("شارژ سیم کارت با پین", "Charge Sim Pin", 301),
   chargeSimTopup("شارژ سیم کارت", "Charge Sim Topup", 302),
   internetSim("اینترنت سیم کارت", "Internet Sim", 303);
@@ -357,10 +351,7 @@ enum TagWalletTxn with NumericIdentifiable {
 enum TagTerminal with NumericIdentifiable {
   atm("خودپرداز", "ATM", 101),
   wallCashless("پرداخت بدون پول نقد دیواری", "Wall Cashless", 102),
-  deskCashless("پرداخت بدون پول نقد میز", "Desk Cashless", 103),
-  verified("تایید شده", "Verified", 201),
-  awaitingVerification("در انتظار تایید", "Awaiting Verification", 202),
-  suspended("تعلیق شده", "Suspended", 203);
+  deskCashless("پرداخت بدون پول نقد میز", "Desk Cashless", 103);
 
   const TagTerminal(this.titleFa, this.titleEn, this.number);
 
@@ -577,6 +568,7 @@ enum TagFileFieldType with NumericIdentifiable {
   final int number;
 }
 
+// NOTE: TagProcessStatus has no counterpart in the C# source — left as-is.
 enum TagProcessStatus with NumericIdentifiable {
   available("موجود", "Available", 101),
   comingSoon("به زودی", "Coming Soon", 102),
@@ -594,10 +586,10 @@ enum TagProcessStatus with NumericIdentifiable {
 }
 
 enum TagProcessStepStatus with NumericIdentifiable {
-  notStarted("", "", 101),
-  current("", "", 102),
-  awaitingVerification("", "", 103),
-  verified("", "", 104);
+  notStarted("شروع نشده", "Not Started", 101),
+  current("در حال انجام", "Current", 102),
+  awaitingVerification("در انتظار تایید", "Awaiting Verification", 103),
+  verified("تایید شده", "Verified", 104);
 
   const TagProcessStepStatus(this.titleFa, this.titleEn, this.number);
 
@@ -609,10 +601,14 @@ enum TagProcessStepStatus with NumericIdentifiable {
   final int number;
 }
 
-enum TagContract with NumericIdentifiable {
-  test("", "", 999);
+enum TagDormBedContract with NumericIdentifiable {
+  daily("روزانه", "Daily", 101),
+  weekly("هفتگی", "Weekly", 102),
+  monthly("ماهانه", "Monthly", 103),
+  yearly("سالانه", "Yearly", 104),
+  singleInvoice("فاکتور تکی", "Single Invoice", 201);
 
-  const TagContract(this.titleFa, this.titleEn, this.number);
+  const TagDormBedContract(this.titleFa, this.titleEn, this.number);
 
   @override
   final String titleFa;
@@ -622,15 +618,99 @@ enum TagContract with NumericIdentifiable {
   final int number;
 }
 
-enum TagInvoice with NumericIdentifiable {
-  deposit("", "", 101),
-  rent("", "", 102),
-  paid("", "", 201),
-  paidOnline("", "", 202),
-  paidManual("", "", 203),
-  notPaid("", "", 204);
+enum TagDormBedInvoice with NumericIdentifiable {
+  deposit("ودیعه", "Deposit", 101),
+  rent("اجاره", "Rent", 102),
+  paid("پرداخت شده", "Paid", 201),
+  paidOnline("پرداخت آنلاین", "Paid Online", 202),
+  paidManual("پرداخت دستی", "Paid Manual", 203),
+  notPaid("پرداخت نشده", "Not Paid", 204);
 
-  const TagInvoice(this.titleFa, this.titleEn, this.number);
+  const TagDormBedInvoice(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagBed with NumericIdentifiable {
+  test("تست", "Test", 999);
+
+  const TagBed(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagHotel with NumericIdentifiable {
+  hotel("هتل", "Hotel", 101);
+
+  const TagHotel(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagDorm with NumericIdentifiable {
+  girls("دختران", "Girls", 101),
+  boys("پسران", "Boys", 102);
+
+  const TagDorm(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagRoom with NumericIdentifiable {
+  single("یک تخته", "Single", 101),
+  double_("دو تخته", "Double", 102),
+  triple("سه تخته", "Triple", 103);
+
+  const TagRoom(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagDormRoom with NumericIdentifiable {
+  single("تک نفره", "Single", 101),
+  double_("دو نفره", "Double", 102),
+  dorm("خوابگاهی", "Dorm", 103);
+
+  const TagDormRoom(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagDormBed with NumericIdentifiable {
+  single("تک نفره", "Single", 101),
+  double_("دو نفره", "Double", 102);
+
+  const TagDormBed(this.titleFa, this.titleEn, this.number);
 
   @override
   final String titleFa;

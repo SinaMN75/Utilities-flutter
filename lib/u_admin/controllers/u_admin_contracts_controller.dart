@@ -13,8 +13,8 @@ class UAdminContractsPageArgs {
 class UAdminContractsController extends UAdminBaseController {
   late UAdminContractsPageArgs args;
 
-  List<UContractResponse> list = <UContractResponse>[];
-  List<UContractResponse> filteredList = <UContractResponse>[];
+  List<UDormBedContractResponse> list = <UDormBedContractResponse>[];
+  List<UDormBedContractResponse> filteredList = <UDormBedContractResponse>[];
   Rxn<UUserResponse>? selectedUser = Rxn<UUserResponse>();
 
   String? userId;
@@ -31,7 +31,7 @@ class UAdminContractsController extends UAdminBaseController {
     state.loading();
 
     await UServices.contract.read(
-      p: UContractReadParams(
+      p: UDormBedContractReadParams(
         pageNumber: pageNumber.value,
         pageSize: pageSize,
         fromCreatedAt: fromCreatedAt,
@@ -47,7 +47,7 @@ class UAdminContractsController extends UAdminBaseController {
           invoice: InvoiceSelectorArgs(),
         ),
       ),
-      onOk: (UResponse<List<UContractResponse>> response) {
+      onOk: (UResponse<List<UDormBedContractResponse>> response) {
         list = response.result!;
         totalPages((response.totalCount / pageSize).toInt() + 1);
         state.loaded();
@@ -70,7 +70,7 @@ class UAdminContractsController extends UAdminBaseController {
     read();
   }
 
-  void delete(UContractResponse i) => UNavigator.confirm(
+  void delete(UDormBedContractResponse i) => UNavigator.confirm(
     title: U.s.delete,
     message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
@@ -91,10 +91,10 @@ class UAdminContractsController extends UAdminBaseController {
     },
   );
 
-  void create({required UContractCreateParams p}) {
+  void create({required UDormBedContractCreateParams p}) {
     UServices.contract.create(
       p: p,
-      onOk: (UResponse<UContractResponse> r) {
+      onOk: (UResponse<UDormBedContractResponse> r) {
         UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
@@ -109,10 +109,10 @@ class UAdminContractsController extends UAdminBaseController {
     );
   }
 
-  void update({required UContractUpdateParams p}) {
+  void update({required UDormBedContractUpdateParams p}) {
     UServices.contract.update(
       p: p,
-      onOk: (UResponse<UContractResponse> r) {
+      onOk: (UResponse<UDormBedContractResponse> r) {
         UNavigator.back();
         UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();

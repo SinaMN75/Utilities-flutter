@@ -14,7 +14,7 @@ class UAdminInvoicesController extends UAdminBaseController {
   late UAdminInvoicesPageArgs args;
   List<UInvoiceResponse> list = <UInvoiceResponse>[];
 
-  List<TagInvoice> selectedTags = <TagInvoice>[];
+  List<TagDormBedInvoice> selectedTags = <TagDormBedInvoice>[];
   String? userId;
   String? contractId;
 
