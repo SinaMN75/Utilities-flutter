@@ -36,12 +36,6 @@ abstract class UHttpClient {
     final bool offline = false,
     final int retryAmount = 3,
   }) async {
-    final bool hasNetworkConnection = await UNetwork.hasEthernet() || await UNetwork.hasCellular() || await UNetwork.hasWifi();
-
-    if (!hasNetworkConnection && offline == false) {
-      onException(U.s.connectionToNetworkWasNotPossible);
-      return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
-    }
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = 'cache_${_buildUri(endpoint, queryParams).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
@@ -161,11 +155,12 @@ abstract class UHttpClient {
     return uri;
   }
 
-  static Future<MultipartFile> multipartFileFromFile(final String fieldName,
-      final File file, {
-        String? filename,
-        final MediaType? contentType,
-      }) async {
+  static Future<MultipartFile> multipartFileFromFile(
+    final String fieldName,
+    final File file, {
+    String? filename,
+    final MediaType? contentType,
+  }) async {
     filename ??= file.path.split("/").last;
     final Stream<List<int>> stream = file.openRead();
     final int length = await file.length();
@@ -215,52 +210,56 @@ extension HTTP on Response? {
 
 class UDownload {
   static const int _maxRetries = 10;
-  static final Map<String, CancelableOperation<Uint8List>> _operations = <String, CancelableOperation<Uint8List>>{};
+  static final Map<String, CancelableOperation<String?>> _operations = <String, CancelableOperation<String?>>{};
 
-  static Future<Uint8List?> downloadFile({
+  /// Downloads [url] directly to disk and returns the final file path.
+  ///
+  /// The bytes are streamed to [partPath] (a sibling ".part" file) and renamed
+  /// to [savePath] once the download completes. The file is never loaded into
+  /// memory, so this works for files of any size (including >1GB) where the
+  /// previous Uint8List-based approach ran out of memory.
+  static Future<String?> downloadFile({
     required String url,
     required String cacheKey,
+    required String savePath,
+    required String partPath,
     required void Function(int progress) onProgress,
   }) async {
     if (_operations.containsKey(cacheKey)) {
       await _operations[cacheKey]?.cancel();
     }
 
-    final CancelableOperation<Uint8List> op = CancelableOperation<Uint8List>.fromFuture(
-      _performDownload(url: url, cacheKey: cacheKey, onProgress: onProgress),
+    final CancelableOperation<String?> op = CancelableOperation<String?>.fromFuture(
+      _performDownload(url: url, savePath: savePath, partPath: partPath, onProgress: onProgress),
       onCancel: () => _operations.remove(cacheKey),
     );
 
     _operations[cacheKey] = op;
 
     try {
-      final Uint8List data = await op.value;
+      final String? path = await op.value;
       _operations.remove(cacheKey);
-      return data;
+      return path;
     } catch (e) {
       _operations.remove(cacheKey);
       rethrow;
     }
   }
 
-  static Future<Uint8List> _performDownload({
+  static Future<String> _performDownload({
     required String url,
-    required String cacheKey,
+    required String savePath,
+    required String partPath,
     required void Function(int progress) onProgress,
   }) async {
-    final Directory dir = await getTemporaryDirectory();
-
-    // FIX 1: Use shorter filename for Windows (avoid path issues)
-    final String safeCacheKey = _getSafeCacheKey(cacheKey);
-    final File file = File("${dir.path}/$safeCacheKey.tmp");
+    final File partFile = File(partPath);
 
     int downloadedBytes = 0;
-    if (await file.exists()) {
+    if (await partFile.exists()) {
       try {
-        downloadedBytes = await file.length();
+        downloadedBytes = await partFile.length();
       } catch (e) {
-        // FIX 2: Windows file lock issue - delete corrupted file
-        await _safeDelete(file);
+        await _safeDelete(partFile);
         downloadedBytes = 0;
       }
     }
@@ -270,7 +269,7 @@ class UDownload {
 
       try {
         final Map<String, String> headers = <String, String>{
-          "User-Agent": "Dart/2.0 (Windows)", // FIX 3: Add User-Agent for Windows
+          "User-Agent": "Dart/2.0 (Windows)",
         };
 
         if (downloadedBytes > 0) {
@@ -279,7 +278,6 @@ class UDownload {
 
         final Request request = Request("GET", Uri.parse(url))..headers.addAll(headers);
 
-        // FIX 4: Add timeout for Windows connections
         final StreamedResponse response = await client
             .send(request)
             .timeout(
@@ -289,11 +287,12 @@ class UDownload {
               },
             );
 
+        // Range already fully satisfied: the partial file is complete.
         if (response.statusCode == 416) {
-          if (await file.exists() && downloadedBytes > 0) {
-            return await _readFileWithRetry(file);
+          if (await partFile.exists() && downloadedBytes > 0) {
+            return await _finalize(partFile, savePath);
           } else {
-            await _safeDelete(file);
+            await _safeDelete(partFile);
             downloadedBytes = 0;
             continue;
           }
@@ -303,20 +302,20 @@ class UDownload {
           throw Exception("Bad status: ${response.statusCode}");
         }
 
+        // Server ignored our Range and is sending the whole file again: start over.
         if (response.statusCode == 200 && downloadedBytes > 0) {
-          await _safeDelete(file);
+          await _safeDelete(partFile);
           downloadedBytes = 0;
           headers.remove("Range");
         }
 
         final int? totalBytes = response.contentLength != null ? response.contentLength! + downloadedBytes : null;
 
-        // FIX 5: Use try-catch for file operations on Windows
         IOSink? sink;
         try {
-          sink = file.openWrite(mode: FileMode.append);
+          sink = partFile.openWrite(mode: FileMode.append);
         } catch (e) {
-          await _safeDelete(file);
+          await _safeDelete(partFile);
           downloadedBytes = 0;
           continue;
         }
@@ -330,7 +329,7 @@ class UDownload {
             received += chunk.length;
             chunkCounter++;
 
-            // FIX 6: Flush periodically for Windows to avoid memory issues
+            // Flush periodically so memory stays flat regardless of file size.
             if (chunkCounter % 50 == 0) {
               await sink.flush();
             }
@@ -341,7 +340,7 @@ class UDownload {
             }
           } catch (e) {
             await sink.close();
-            await _safeDelete(file);
+            await _safeDelete(partFile);
             throw Exception("Write error on chunk $chunkCounter: $e");
           }
         }
@@ -350,12 +349,12 @@ class UDownload {
         await sink.close();
         client.close();
 
-        final int finalSize = await file.length();
+        final int finalSize = await partFile.length();
         if (totalBytes != null && finalSize != totalBytes) {
           throw Exception("Download incomplete: $finalSize/$totalBytes bytes");
         }
 
-        return await _readFileWithRetry(file);
+        return await _finalize(partFile, savePath);
       } catch (e) {
         client.close();
 
@@ -363,11 +362,10 @@ class UDownload {
           rethrow;
         }
 
-        // FIX 7: Longer delay for Windows on retry
         await Future<void>.delayed(Duration(seconds: attempt * 3));
 
-        if (e.toString().contains("416") || e.toString().contains("4") || e is TimeoutException) {
-          await _safeDelete(file);
+        if (e.toString().contains("416") || e is TimeoutException) {
+          await _safeDelete(partFile);
           downloadedBytes = 0;
         }
       }
@@ -376,41 +374,40 @@ class UDownload {
     throw Exception("Failed to download after $_maxRetries retries");
   }
 
-  // FIX 8: Safe filename for Windows
-  static String _getSafeCacheKey(String original) {
-    if (!Platform.isWindows) return original;
-
-    // Remove invalid Windows characters and limit length
-    final String safe = original.replaceAll(RegExp(r'[<>:"/\\|?*]'), "_");
-    return safe.length > 50 ? "${safe.substring(0, 45)}_${original.hashCode.abs()}" : safe;
+  /// Atomically moves the completed [partFile] to [savePath] (a rename within
+  /// the same directory, so no large copy happens). Returns the final path.
+  static Future<String> _finalize(File partFile, String savePath) async {
+    final File target = File(savePath);
+    // Remove any stale target first (Windows can't rename onto an existing file).
+    await _safeDelete(target);
+    for (int i = 0; i < 5; i++) {
+      try {
+        await partFile.rename(savePath);
+        return savePath;
+      } catch (e) {
+        if (i == 4) {
+          // Fallback to copy+delete if rename is blocked (e.g. cross-volume).
+          await partFile.copy(savePath);
+          await _safeDelete(partFile);
+          return savePath;
+        }
+        await Future<void>.delayed(Duration(milliseconds: 150 * (i + 1)));
+      }
+    }
+    return savePath;
   }
 
-  // FIX 9: Safe file delete with retry for Windows
   static Future<void> _safeDelete(File file) async {
-    if (!await file.exists()) return;
-
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 5; i++) {
       try {
+        if (!await file.exists()) return;
         await file.delete();
-        break;
+        return;
       } catch (e) {
-        if (i == 2) rethrow;
-        await Future<void>.delayed(Duration(milliseconds: 100 * (i + 1)));
+        if (i == 4) return;
+        await Future<void>.delayed(Duration(milliseconds: 150 * (i + 1)));
       }
     }
-  }
-
-  // FIX 10: Read file with retry for Windows file locks
-  static Future<Uint8List> _readFileWithRetry(File file) async {
-    for (int i = 0; i < 3; i++) {
-      try {
-        return await file.readAsBytes();
-      } catch (e) {
-        if (i == 2) rethrow;
-        await Future<void>.delayed(Duration(milliseconds: 100 * (i + 1)));
-      }
-    }
-    throw Exception("Could not read file");
   }
 
   static bool isDownloading(String cacheKey) => _operations.containsKey(cacheKey);
