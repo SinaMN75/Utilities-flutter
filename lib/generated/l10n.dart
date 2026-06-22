@@ -1127,6 +1127,301 @@ class S {
       args: [],
     );
   }
+
+  /// `Hotels`
+  String get hotels {
+    return Intl.message('Hotels', name: 'hotels', desc: '', args: []);
+  }
+
+  /// `Hotel`
+  String get hotel {
+    return Intl.message('Hotel', name: 'hotel', desc: '', args: []);
+  }
+
+  /// `Hotel Rooms`
+  String get hotelRooms {
+    return Intl.message('Hotel Rooms', name: 'hotelRooms', desc: '', args: []);
+  }
+
+  /// `Dorm Rooms`
+  String get dormRooms {
+    return Intl.message('Dorm Rooms', name: 'dormRooms', desc: '', args: []);
+  }
+
+  /// `Dorm Beds`
+  String get dormBeds {
+    return Intl.message('Dorm Beds', name: 'dormBeds', desc: '', args: []);
+  }
+
+  /// `Rooms`
+  String get rooms {
+    return Intl.message('Rooms', name: 'rooms', desc: '', args: []);
+  }
+
+  /// `Capacity`
+  String get capacity {
+    return Intl.message('Capacity', name: 'capacity', desc: '', args: []);
+  }
+
+  /// `Status`
+  String get status {
+    return Intl.message('Status', name: 'status', desc: '', args: []);
+  }
+
+  /// `Price / Night`
+  String get pricePerNight {
+    return Intl.message(
+      'Price / Night',
+      name: 'pricePerNight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available`
+  String get available {
+    return Intl.message('Available', name: 'available', desc: '', args: []);
+  }
+
+  /// `Unavailable`
+  String get unavailable {
+    return Intl.message('Unavailable', name: 'unavailable', desc: '', args: []);
+  }
+
+  /// `Occupied`
+  String get occupied {
+    return Intl.message('Occupied', name: 'occupied', desc: '', args: []);
+  }
+
+  /// `Availability`
+  String get availability {
+    return Intl.message(
+      'Availability',
+      name: 'availability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City`
+  String get city {
+    return Intl.message('City', name: 'city', desc: '', args: []);
+  }
+
+  /// `Country`
+  String get country {
+    return Intl.message('Country', name: 'country', desc: '', args: []);
+  }
+
+  /// `No rooms found`
+  String get noRoomsFound {
+    return Intl.message(
+      'No rooms found',
+      name: 'noRoomsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No hotels found`
+  String get noHotelsFound {
+    return Intl.message(
+      'No hotels found',
+      name: 'noHotelsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No beds found`
+  String get noBedsFound {
+    return Intl.message(
+      'No beds found',
+      name: 'noBedsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No dorms found`
+  String get noDormsFound {
+    return Intl.message(
+      'No dorms found',
+      name: 'noDormsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Rooms`
+  String get filterRooms {
+    return Intl.message(
+      'Filter Rooms',
+      name: 'filterRooms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Hotels`
+  String get filterHotels {
+    return Intl.message(
+      'Filter Hotels',
+      name: 'filterHotels',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Beds`
+  String get filterBeds {
+    return Intl.message('Filter Beds', name: 'filterBeds', desc: '', args: []);
+  }
+
+  /// `Filter Dorms`
+  String get filterDorms {
+    return Intl.message(
+      'Filter Dorms',
+      name: 'filterDorms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min Price`
+  String get minPrice {
+    return Intl.message('Min Price', name: 'minPrice', desc: '', args: []);
+  }
+
+  /// `Max Price`
+  String get maxPrice {
+    return Intl.message('Max Price', name: 'maxPrice', desc: '', args: []);
+  }
+
+  /// `Min Rent`
+  String get minRent {
+    return Intl.message('Min Rent', name: 'minRent', desc: '', args: []);
+  }
+
+  /// `Max Rent`
+  String get maxRent {
+    return Intl.message('Max Rent', name: 'maxRent', desc: '', args: []);
+  }
+
+  /// `Minimum Rent`
+  String get minimumRent {
+    return Intl.message(
+      'Minimum Rent',
+      name: 'minimumRent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum Rent`
+  String get maximumRent {
+    return Intl.message(
+      'Maximum Rent',
+      name: 'maximumRent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Room`
+  String get createRoom {
+    return Intl.message('Create Room', name: 'createRoom', desc: '', args: []);
+  }
+
+  /// `Edit Room`
+  String get editRoom {
+    return Intl.message('Edit Room', name: 'editRoom', desc: '', args: []);
+  }
+
+  /// `Create Hotel`
+  String get createHotel {
+    return Intl.message(
+      'Create Hotel',
+      name: 'createHotel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Hotel`
+  String get editHotel {
+    return Intl.message('Edit Hotel', name: 'editHotel', desc: '', args: []);
+  }
+
+  /// `Create Bed`
+  String get createBed {
+    return Intl.message('Create Bed', name: 'createBed', desc: '', args: []);
+  }
+
+  /// `Edit Bed`
+  String get editBed {
+    return Intl.message('Edit Bed', name: 'editBed', desc: '', args: []);
+  }
+
+  /// `Create Dorm`
+  String get createDorm {
+    return Intl.message('Create Dorm', name: 'createDorm', desc: '', args: []);
+  }
+
+  /// `Edit Dorm`
+  String get editDorm {
+    return Intl.message('Edit Dorm', name: 'editDorm', desc: '', args: []);
+  }
+
+  /// `Please select a hotel`
+  String get pleaseSelectAHotel {
+    return Intl.message(
+      'Please select a hotel',
+      name: 'pleaseSelectAHotel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a room`
+  String get pleaseSelectARoom {
+    return Intl.message(
+      'Please select a room',
+      name: 'pleaseSelectARoom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a dorm`
+  String get pleaseSelectADorm {
+    return Intl.message(
+      'Please select a dorm',
+      name: 'pleaseSelectADorm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Accommodation`
+  String get accommodation {
+    return Intl.message(
+      'Accommodation',
+      name: 'accommodation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For`
+  String get regarding {
+    return Intl.message('For', name: 'regarding', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
