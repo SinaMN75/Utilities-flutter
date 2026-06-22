@@ -12,7 +12,7 @@ class UAdminInvoicesPageArgs {
 
 class UAdminInvoicesController extends UAdminBaseController {
   late UAdminInvoicesPageArgs args;
-  List<UInvoiceResponse> list = <UInvoiceResponse>[];
+  List<UDormBedInvoiceResponse> list = <UDormBedInvoiceResponse>[];
 
   List<TagDormBedInvoice> selectedTags = <TagDormBedInvoice>[];
   String? userId;
@@ -28,8 +28,8 @@ class UAdminInvoicesController extends UAdminBaseController {
   Future<void> read({String? parentId}) async {
     state.loading();
 
-    await UServices.invoice.read(
-      p: UInvoiceReadParams(
+    await UServices.hotel.readDormBedInvoice(
+      p: UDormBedInvoiceReadParams(
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
         toCreatedAt: toCreatedAt,
@@ -43,7 +43,7 @@ class UAdminInvoicesController extends UAdminBaseController {
           contract: ContractSelectorArgs(user: UserSelectorArgs(), product: ProductSelectorArgs()),
         ),
       ),
-      onOk: (UResponse<List<UInvoiceResponse>> response) {
+      onOk: (UResponse<List<UDormBedInvoiceResponse>> response) {
         list = response.result!;
         totalPages((response.totalCount / pageSize).toInt() + 1);
         state.loaded();
@@ -67,12 +67,12 @@ class UAdminInvoicesController extends UAdminBaseController {
     read();
   }
 
-  void delete(UInvoiceResponse i) => UNavigator.confirm(
+  void delete(UDormBedInvoiceResponse i) => UNavigator.confirm(
     title: U.s.delete,
     message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
       ULoading.show();
-      UServices.invoice.delete(
+      UServices.hotel.deleteDormBedInvoice(
         p: UIdParams(id: i.id),
         onOk: (final UResponse<dynamic> r) {
           UNavigator.back();
@@ -88,10 +88,10 @@ class UAdminInvoicesController extends UAdminBaseController {
     },
   );
 
-  void create({required UInvoiceCreateParams p}) {
-    UServices.invoice.create(
+  void create({required UDormBedInvoiceCreateParams p}) {
+    UServices.hotel.createDormBedInvoice(
       p: p,
-      onOk: (UResponse<UInvoiceResponse> r) {
+      onOk: (UResponse<UDormBedInvoiceResponse> r) {
         UToast.snackBar(message: U.s.submitted);
         ULoading.dismiss();
       },
@@ -106,10 +106,10 @@ class UAdminInvoicesController extends UAdminBaseController {
     );
   }
 
-  void update({required UInvoiceUpdateParams p}) {
-    UServices.invoice.update(
+  void update({required UDormBedInvoiceUpdateParams p}) {
+    UServices.hotel.updateDormBedInvoice(
       p: p,
-      onOk: (UResponse<UInvoiceResponse> r) {
+      onOk: (UResponse<UDormBedInvoiceResponse> r) {
         UToast.snackBar(message: "Submitted");
         ULoading.dismiss();
       },

@@ -30,7 +30,7 @@ class UAdminContractsController extends UAdminBaseController {
   Future<void> read() async {
     state.loading();
 
-    await UServices.contract.read(
+    await UServices.hotel.readDormBedContract(
       p: UDormBedContractReadParams(
         pageNumber: pageNumber.value,
         pageSize: pageSize,
@@ -75,7 +75,7 @@ class UAdminContractsController extends UAdminBaseController {
     message: U.s.areYouSureYouWantToDelete,
     onConfirm: () {
       ULoading.show();
-      UServices.contract.delete(
+      UServices.hotel.deleteDormBedContract(
         p: UIdParams(id: i.id),
         onOk: (final UResponse<dynamic> r) {
           UNavigator.back();
@@ -92,7 +92,7 @@ class UAdminContractsController extends UAdminBaseController {
   );
 
   void create({required UDormBedContractCreateParams p}) {
-    UServices.contract.create(
+    UServices.hotel.createDormBedContract(
       p: p,
       onOk: (UResponse<UDormBedContractResponse> r) {
         UToast.snackBar(message: U.s.submitted);
@@ -110,7 +110,7 @@ class UAdminContractsController extends UAdminBaseController {
   }
 
   void update({required UDormBedContractUpdateParams p}) {
-    UServices.contract.update(
+    UServices.hotel.updateDormBedContract(
       p: p,
       onOk: (UResponse<UDormBedContractResponse> r) {
         UNavigator.back();
