@@ -242,12 +242,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "penaltyAmount": MessageLookupByLibrary.simpleMessage("مبلغ جریمه"),
     "penaltyPercent": MessageLookupByLibrary.simpleMessage("درصد جریمه روزانه"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("شماره تلفن"),
-    "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
-      "لطفاً قبل از ایجاد محصول، یک دسته‌بندی ایجاد کنید.",
-    ),
-    "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
-      "لطفاً قبل از ثبت قرارداد، یک محصول ایجاد کنید",
-    ),
+    "pleaseCreateACategoryBeforeCreatingAProduct":
+        MessageLookupByLibrary.simpleMessage(
+          "لطفاً قبل از ایجاد محصول، یک دسته‌بندی ایجاد کنید.",
+        ),
+    "pleaseCreateAProductBeforeSigningAContract":
+        MessageLookupByLibrary.simpleMessage(
+          "لطفاً قبل از ثبت قرارداد، یک محصول ایجاد کنید",
+        ),
     "pleaseSelectADorm": MessageLookupByLibrary.simpleMessage(
       "لطفاً یک خوابگاه انتخاب کنید",
     ),
@@ -264,9 +266,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "products": MessageLookupByLibrary.simpleMessage("محصولات"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("عنوان سؤال"),
-    "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
-      "عنوان سؤال و حداقل یک گزینه الزامی است",
-    ),
+    "questionTitleAndAtLeastOneOptionAreRequired":
+        MessageLookupByLibrary.simpleMessage(
+          "عنوان سؤال و حداقل یک گزینه الزامی است",
+        ),
     "questionnaire": MessageLookupByLibrary.simpleMessage("پرسشنامه"),
     "questions": MessageLookupByLibrary.simpleMessage("سؤال‌ها"),
     "ramUsage": MessageLookupByLibrary.simpleMessage("مصرف RAM"),
