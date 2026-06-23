@@ -115,56 +115,14 @@ abstract class UFileStorage {
   static Future<void> init() async {
     if (!kIsWeb) {
       _directory = await getApplicationDocumentsDirectory();
-      // On Windows the Documents folder is user-browsable, so keep downloaded
-      // media in the hidden AppData\Roaming app-support folder instead. Other
-      // platforms already sandbox app files (mobile) or keep current behavior.
-      final Directory bigBase = Platform.isWindows ? await getApplicationSupportDirectory() : _directory;
-      _bigFilesDirectory = Directory("${bigBase.path}/big_files");
+      _bigFilesDirectory = Directory("${_directory.path}/big_files");
       if (!await _bigFilesDirectory.exists()) {
         await _bigFilesDirectory.create(recursive: true);
       }
     }
   }
 
-  /// Absolute path of the directory holding downloaded files. Exposed so the app
-  /// can run one-time migrations (e.g. moving files in from an old location).
-  static String get bigFilesDirectoryPath => _bigFilesDirectory.path;
-
-  /// Absolute path of the permanent stored file for [key] (may not exist yet).
-  static String bigFilePath(String key) => "${_bigFilesDirectory.path}/$key.dat";
-
-  /// Absolute path of the in-progress (partial) download file for [key].
-  static String partFilePath(String key) => "${_bigFilesDirectory.path}/$key.part";
-
-  /// Returns the on-disk path of the stored file for [key], or null if it does
-  /// not exist. Use this to stream large files (video/pdf) directly from disk
-  /// instead of loading the whole file into memory.
-  static Future<String?> getFilePath(String key) async {
-    final File file = File(bigFilePath(key));
-    return await file.exists() ? file.path : null;
-  }
-
-  /// Renames a stored file from [oldKey] to [newKey] in place (no copy).
-  /// Used for one-time key-format migrations so already-downloaded files are
-  /// kept instead of forcing the user to download them again.
-  static Future<void> renameKey(String oldKey, String newKey) async {
-    try {
-      if (oldKey == newKey) return;
-      final File src = File(bigFilePath(oldKey));
-      if (!await src.exists()) return;
-      final File dst = File(bigFilePath(newKey));
-      if (await dst.exists()) {
-        // New file already present: drop the duplicate old one.
-        await _safeDelete(src);
-        return;
-      }
-      await src.rename(bigFilePath(newKey));
-    } catch (_) {
-      return;
-    }
-  }
-
-  static Future<void> setBytes(String key, List<int> bytes) async => File(bigFilePath(key)).writeAsBytes(
+  static Future<void> setBytes(String key, List<int> bytes) async => File("${_bigFilesDirectory.path}/$key.dat").writeAsBytes(
     bytes,
     flush: true,
   );
@@ -279,34 +237,16 @@ abstract class UFileStorage {
     }
   }
 
-  /// Deletes a file with retries. Windows keeps a short-lived lock on files
-  /// after they are closed (and AV scanners can hold them), so a single
-  /// delete() can fail even though the file is no longer in use. Retrying a
-  /// few times makes deletion reliable on Windows.
-  static Future<bool> _safeDelete(File file) async {
-    for (int attempt = 0; attempt < 5; attempt++) {
-      try {
-        if (!await file.exists()) return true;
-        await file.delete();
-        return true;
-      } catch (_) {
-        await Future<void>.delayed(Duration(milliseconds: 150 * (attempt + 1)));
-      }
-    }
-    // Last resort: report whether the file is gone.
-    return !await file.exists();
-  }
-
   static Future<void> remove(String key) async {
     try {
-      // Permanent stored file.
-      await _safeDelete(File(bigFilePath(key)));
-      // Any leftover partial-download file for the same key. Without this the
-      // next download could "resume" from a stale partial and never hit the
-      // network, making a deleted file appear to come back.
-      await _safeDelete(File(partFilePath(key)));
-      // Legacy text sidecar.
-      await _safeDelete(File("${_directory.path}/$key.txt"));
+      final File datFile = File("${_bigFilesDirectory.path}/$key.dat");
+      if (await datFile.exists()) {
+        await datFile.delete();
+      }
+      final File txtFile = File("${_directory.path}/$key.txt");
+      if (await txtFile.exists()) {
+        await txtFile.delete();
+      }
     } catch (e) {
       return;
     }
@@ -317,13 +257,13 @@ abstract class UFileStorage {
       final List<FileSystemEntity> files = _bigFilesDirectory.listSync();
       for (final FileSystemEntity file in files) {
         if (file is File) {
-          await _safeDelete(file);
+          await file.delete();
         }
       }
       final List<FileSystemEntity> legacyFiles = _directory.listSync();
       for (final FileSystemEntity file in legacyFiles) {
         if (file is File && file.path.endsWith(".txt")) {
-          await _safeDelete(file);
+          await file.delete();
         }
       }
     } catch (e) {

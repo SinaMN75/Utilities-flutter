@@ -36,6 +36,12 @@ abstract class UHttpClient {
     final bool offline = false,
     final int retryAmount = 3,
   }) async {
+    final bool hasNetworkConnection = await UNetwork.hasEthernet() || await UNetwork.hasCellular() || await UNetwork.hasWifi();
+
+    if (!hasNetworkConnection && offline == false) {
+      onException(U.s.connectionToNetworkWasNotPossible);
+      return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
+    }
     try {
       final Uri uri = _buildUri(endpoint, queryParams);
       final String cacheKey = 'cache_${_buildUri(endpoint, queryParams).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
@@ -211,62 +217,52 @@ extension HTTP on Response? {
 
 class UDownload {
   static const int _maxRetries = 10;
-  static final Map<String, CancelableOperation<String?>> _operations = <String, CancelableOperation<String?>>{};
+  static final Map<String, CancelableOperation<Uint8List>> _operations = <String, CancelableOperation<Uint8List>>{};
 
-  /// Downloads [url] directly to disk and returns the final file path.
-  ///
-  /// The bytes are streamed to [partPath] (a sibling ".part" file) and renamed
-  /// to [savePath] once the download completes. The file is never loaded into
-  /// memory, so this works for files of any size (including >1GB) where the
-  /// previous Uint8List-based approach ran out of memory.
-  static Future<String?> downloadFile({
+  static Future<Uint8List?> downloadFile({
     required String url,
     required String cacheKey,
-    required String savePath,
-    required String partPath,
     required void Function(int progress) onProgress,
-    List<int>? encryptionKey,
   }) async {
     if (_operations.containsKey(cacheKey)) {
       await _operations[cacheKey]?.cancel();
     }
 
-    final CancelableOperation<String?> op = CancelableOperation<String?>.fromFuture(
-      _performDownload(url: url,
-          savePath: savePath,
-          partPath: partPath,
-          onProgress: onProgress,
-          encryptionKey: encryptionKey),
+    final CancelableOperation<Uint8List> op = CancelableOperation<Uint8List>.fromFuture(
+      _performDownload(url: url, cacheKey: cacheKey, onProgress: onProgress),
       onCancel: () => _operations.remove(cacheKey),
     );
 
     _operations[cacheKey] = op;
 
     try {
-      final String? path = await op.value;
+      final Uint8List data = await op.value;
       _operations.remove(cacheKey);
-      return path;
+      return data;
     } catch (e) {
       _operations.remove(cacheKey);
       rethrow;
     }
   }
 
-  static Future<String> _performDownload({
+  static Future<Uint8List> _performDownload({
     required String url,
-    required String savePath,
-    required String partPath,
+    required String cacheKey,
     required void Function(int progress) onProgress,
-    List<int>? encryptionKey,
   }) async {
-    final File partFile = File(partPath);
+    final Directory dir = await getTemporaryDirectory();
+
+    // FIX 1: Use shorter filename for Windows (avoid path issues)
+    final String safeCacheKey = _getSafeCacheKey(cacheKey);
+    final File file = File("${dir.path}/$safeCacheKey.tmp");
 
     int downloadedBytes = 0;
-    if (await partFile.exists()) {
+    if (await file.exists()) {
       try {
-        downloadedBytes = await partFile.length();
+        downloadedBytes = await file.length();
       } catch (e) {
-        await _safeDelete(partFile);
+        // FIX 2: Windows file lock issue - delete corrupted file
+        await _safeDelete(file);
         downloadedBytes = 0;
       }
     }
@@ -276,7 +272,7 @@ class UDownload {
 
       try {
         final Map<String, String> headers = <String, String>{
-          "User-Agent": "Dart/2.0 (Windows)",
+          "User-Agent": "Dart/2.0 (Windows)", // FIX 3: Add User-Agent for Windows
         };
 
         if (downloadedBytes > 0) {
@@ -285,6 +281,7 @@ class UDownload {
 
         final Request request = Request("GET", Uri.parse(url))..headers.addAll(headers);
 
+        // FIX 4: Add timeout for Windows connections
         final StreamedResponse response = await client
             .send(request)
             .timeout(
@@ -294,12 +291,11 @@ class UDownload {
               },
             );
 
-        // Range already fully satisfied: the partial file is complete.
         if (response.statusCode == 416) {
-          if (await partFile.exists() && downloadedBytes > 0) {
-            return await _finalize(partFile, savePath);
+          if (await file.exists() && downloadedBytes > 0) {
+            return await _readFileWithRetry(file);
           } else {
-            await _safeDelete(partFile);
+            await _safeDelete(file);
             downloadedBytes = 0;
             continue;
           }
@@ -309,20 +305,20 @@ class UDownload {
           throw Exception("Bad status: ${response.statusCode}");
         }
 
-        // Server ignored our Range and is sending the whole file again: start over.
         if (response.statusCode == 200 && downloadedBytes > 0) {
-          await _safeDelete(partFile);
+          await _safeDelete(file);
           downloadedBytes = 0;
           headers.remove("Range");
         }
 
         final int? totalBytes = response.contentLength != null ? response.contentLength! + downloadedBytes : null;
 
+        // FIX 5: Use try-catch for file operations on Windows
         IOSink? sink;
         try {
-          sink = partFile.openWrite(mode: FileMode.append);
+          sink = file.openWrite(mode: FileMode.append);
         } catch (e) {
-          await _safeDelete(partFile);
+          await _safeDelete(file);
           downloadedBytes = 0;
           continue;
         }
@@ -330,24 +326,13 @@ class UDownload {
         int received = downloadedBytes;
         int chunkCounter = 0;
 
-        final int? keyLen = encryptionKey?.length;
         await for (final List<int> chunk in response.stream) {
           try {
-            // Encrypt at rest: XOR each chunk by its absolute file offset so the
-            // keystream stays aligned even across resumed downloads.
-            if (encryptionKey != null && keyLen != null && keyLen > 0) {
-              final Uint8List enc = Uint8List.fromList(chunk);
-              for (int j = 0; j < enc.length; j++) {
-                enc[j] ^= encryptionKey[(received + j) % keyLen];
-              }
-              sink.add(enc);
-            } else {
-              sink.add(chunk);
-            }
+            sink.add(chunk);
             received += chunk.length;
             chunkCounter++;
 
-            // Flush periodically so memory stays flat regardless of file size.
+            // FIX 6: Flush periodically for Windows to avoid memory issues
             if (chunkCounter % 50 == 0) {
               await sink.flush();
             }
@@ -358,7 +343,7 @@ class UDownload {
             }
           } catch (e) {
             await sink.close();
-            await _safeDelete(partFile);
+            await _safeDelete(file);
             throw Exception("Write error on chunk $chunkCounter: $e");
           }
         }
@@ -367,12 +352,12 @@ class UDownload {
         await sink.close();
         client.close();
 
-        final int finalSize = await partFile.length();
+        final int finalSize = await file.length();
         if (totalBytes != null && finalSize != totalBytes) {
           throw Exception("Download incomplete: $finalSize/$totalBytes bytes");
         }
 
-        return await _finalize(partFile, savePath);
+        return await _readFileWithRetry(file);
       } catch (e) {
         client.close();
 
@@ -380,10 +365,11 @@ class UDownload {
           rethrow;
         }
 
+        // FIX 7: Longer delay for Windows on retry
         await Future<void>.delayed(Duration(seconds: attempt * 3));
 
-        if (e.toString().contains("416") || e is TimeoutException) {
-          await _safeDelete(partFile);
+        if (e.toString().contains("416") || e.toString().contains("4") || e is TimeoutException) {
+          await _safeDelete(file);
           downloadedBytes = 0;
         }
       }
@@ -392,40 +378,41 @@ class UDownload {
     throw Exception("Failed to download after $_maxRetries retries");
   }
 
-  /// Atomically moves the completed [partFile] to [savePath] (a rename within
-  /// the same directory, so no large copy happens). Returns the final path.
-  static Future<String> _finalize(File partFile, String savePath) async {
-    final File target = File(savePath);
-    // Remove any stale target first (Windows can't rename onto an existing file).
-    await _safeDelete(target);
-    for (int i = 0; i < 5; i++) {
-      try {
-        await partFile.rename(savePath);
-        return savePath;
-      } catch (e) {
-        if (i == 4) {
-          // Fallback to copy+delete if rename is blocked (e.g. cross-volume).
-          await partFile.copy(savePath);
-          await _safeDelete(partFile);
-          return savePath;
-        }
-        await Future<void>.delayed(Duration(milliseconds: 150 * (i + 1)));
-      }
-    }
-    return savePath;
+  // FIX 8: Safe filename for Windows
+  static String _getSafeCacheKey(String original) {
+    if (!Platform.isWindows) return original;
+
+    // Remove invalid Windows characters and limit length
+    final String safe = original.replaceAll(RegExp(r'[<>:"/\\|?*]'), "_");
+    return safe.length > 50 ? "${safe.substring(0, 45)}_${original.hashCode.abs()}" : safe;
   }
 
+  // FIX 9: Safe file delete with retry for Windows
   static Future<void> _safeDelete(File file) async {
-    for (int i = 0; i < 5; i++) {
+    if (!await file.exists()) return;
+
+    for (int i = 0; i < 3; i++) {
       try {
-        if (!await file.exists()) return;
         await file.delete();
-        return;
+        break;
       } catch (e) {
-        if (i == 4) return;
-        await Future<void>.delayed(Duration(milliseconds: 150 * (i + 1)));
+        if (i == 2) rethrow;
+        await Future<void>.delayed(Duration(milliseconds: 100 * (i + 1)));
       }
     }
+  }
+
+  // FIX 10: Read file with retry for Windows file locks
+  static Future<Uint8List> _readFileWithRetry(File file) async {
+    for (int i = 0; i < 3; i++) {
+      try {
+        return await file.readAsBytes();
+      } catch (e) {
+        if (i == 2) rethrow;
+        await Future<void>.delayed(Duration(milliseconds: 100 * (i + 1)));
+      }
+    }
+    throw Exception("Could not read file");
   }
 
   static bool isDownloading(String cacheKey) => _operations.containsKey(cacheKey);
