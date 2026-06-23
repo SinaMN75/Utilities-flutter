@@ -6,6 +6,12 @@ extension TagListExtension on UUserResponse {
   bool isFemaleMale() => tags.contains(TagUser.female.number);
 
   bool isSuperAdmin() => tags.contains(TagUser.superAdmin.number);
+
+  String get displayName {
+    final String full = "${firstName ?? ""} ${lastName ?? ""}".trim();
+    if (full.isNotEmpty) return full;
+    return userName;
+  }
 }
 
 class UUserResponse {

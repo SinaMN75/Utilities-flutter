@@ -1,5 +1,16 @@
 part of "../data.dart";
 
+extension UInvoiceStatusX on UDormBedInvoiceResponse {
+  double get netDue => (debtAmount + penaltyAmount - creditorAmount - paidAmount);
+
+  bool get isPaid {
+    final bool taggedPaid = tags.contains(TagDormBedInvoice.paid.number) || tags.contains(TagDormBedInvoice.paidOnline.number) || tags.contains(TagDormBedInvoice.paidManual.number);
+    return taggedPaid || netDue <= 0;
+  }
+
+  bool get isOverdue => !isPaid && dueDate.isBefore(DateTime.now());
+}
+
 class UDormBedResponse {
   final String id;
   final DateTime createdAt;
