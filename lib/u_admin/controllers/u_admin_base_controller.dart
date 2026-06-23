@@ -18,4 +18,16 @@ class UAdminBaseController {
 
   final TextEditingController controllerStartDate = TextEditingController();
   final TextEditingController controllerEndDate = TextEditingController();
+
+  bool get isFa => ULocalStorage.getLocale() == "fa";
+
+  void okCallback(String? message, void Function() reload) {
+    UToast.snackBar(message: message ?? U.s.submitted);
+    reload();
+  }
+
+  void errorCallBack(String? message, void Function() reload) {
+    UToast.error(message: message ?? "");
+    reload();
+  }
 }
