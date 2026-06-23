@@ -1672,6 +1672,591 @@ class S {
   String get regarding {
     return Intl.message('For', name: 'regarding', desc: '', args: []);
   }
+
+  /// `Payments`
+  String get payments {
+    return Intl.message('Payments', name: 'payments', desc: '', args: []);
+  }
+
+  /// `Merchants`
+  String get merchants {
+    return Intl.message('Merchants', name: 'merchants', desc: '', args: []);
+  }
+
+  /// `Merchants Management`
+  String get merchantsManagement {
+    return Intl.message(
+      'Merchants Management',
+      name: 'merchantsManagement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Merchant`
+  String get merchant {
+    return Intl.message('Merchant', name: 'merchant', desc: '', args: []);
+  }
+
+  /// `No Merchants Found`
+  String get noMerchantsFound {
+    return Intl.message(
+      'No Merchants Found',
+      name: 'noMerchantsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Merchants`
+  String get filterMerchants {
+    return Intl.message(
+      'Filter Merchants',
+      name: 'filterMerchants',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Merchant`
+  String get createMerchant {
+    return Intl.message(
+      'Create Merchant',
+      name: 'createMerchant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Merchant`
+  String get editMerchant {
+    return Intl.message(
+      'Edit Merchant',
+      name: 'editMerchant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Zip Code`
+  String get zipCode {
+    return Intl.message('Zip Code', name: 'zipCode', desc: '', args: []);
+  }
+
+  /// `City Code`
+  String get cityCode {
+    return Intl.message('City Code', name: 'cityCode', desc: '', args: []);
+  }
+
+  /// `Landline`
+  String get landline {
+    return Intl.message('Landline', name: 'landline', desc: '', args: []);
+  }
+
+  /// `MCC`
+  String get mcc {
+    return Intl.message('MCC', name: 'mcc', desc: '', args: []);
+  }
+
+  /// `Business Title`
+  String get businessTitle {
+    return Intl.message(
+      'Business Title',
+      name: 'businessTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Owner Name`
+  String get ownerName {
+    return Intl.message('Owner Name', name: 'ownerName', desc: '', args: []);
+  }
+
+  /// `Owner Phone Number`
+  String get ownerPhoneNumber {
+    return Intl.message(
+      'Owner Phone Number',
+      name: 'ownerPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Merchant ID`
+  String get merchantId {
+    return Intl.message('Merchant ID', name: 'merchantId', desc: '', args: []);
+  }
+
+  /// `Institution ID`
+  String get insId {
+    return Intl.message('Institution ID', name: 'insId', desc: '', args: []);
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message('Address', name: 'address', desc: '', args: []);
+  }
+
+  /// `View Terminals`
+  String get viewTerminals {
+    return Intl.message(
+      'View Terminals',
+      name: 'viewTerminals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terminals`
+  String get terminals {
+    return Intl.message('Terminals', name: 'terminals', desc: '', args: []);
+  }
+
+  /// `Terminals Management`
+  String get terminalsManagement {
+    return Intl.message(
+      'Terminals Management',
+      name: 'terminalsManagement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terminal`
+  String get terminal {
+    return Intl.message('Terminal', name: 'terminal', desc: '', args: []);
+  }
+
+  /// `No Terminals Found`
+  String get noTerminalsFound {
+    return Intl.message(
+      'No Terminals Found',
+      name: 'noTerminalsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Terminals`
+  String get filterTerminals {
+    return Intl.message(
+      'Filter Terminals',
+      name: 'filterTerminals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Terminal`
+  String get createTerminal {
+    return Intl.message(
+      'Create Terminal',
+      name: 'createTerminal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Terminal`
+  String get editTerminal {
+    return Intl.message(
+      'Edit Terminal',
+      name: 'editTerminal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Serial`
+  String get serial {
+    return Intl.message('Serial', name: 'serial', desc: '', args: []);
+  }
+
+  /// `SIM Card Number`
+  String get simCardNumber {
+    return Intl.message(
+      'SIM Card Number',
+      name: 'simCardNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SIM Card Serial`
+  String get simCardSerial {
+    return Intl.message(
+      'SIM Card Serial',
+      name: 'simCardSerial',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IMEI`
+  String get imei {
+    return Intl.message('IMEI', name: 'imei', desc: '', args: []);
+  }
+
+  /// `Terminal ID`
+  String get terminalId {
+    return Intl.message('Terminal ID', name: 'terminalId', desc: '', args: []);
+  }
+
+  /// `Terminal Type`
+  String get terminalType {
+    return Intl.message(
+      'Terminal Type',
+      name: 'terminalType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Assign`
+  String get assign {
+    return Intl.message('Assign', name: 'assign', desc: '', args: []);
+  }
+
+  /// `Assign Terminal`
+  String get assignTerminal {
+    return Intl.message(
+      'Assign Terminal',
+      name: 'assignTerminal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Support Password`
+  String get supportPassword {
+    return Intl.message(
+      'Support Password',
+      name: 'supportPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Support Password`
+  String get getSupportPassword {
+    return Intl.message(
+      'Get Support Password',
+      name: 'getSupportPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Merchant`
+  String get selectMerchant {
+    return Intl.message(
+      'Select Merchant',
+      name: 'selectMerchant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agreement`
+  String get agreement {
+    return Intl.message('Agreement', name: 'agreement', desc: '', args: []);
+  }
+
+  /// `Assigned`
+  String get assigned {
+    return Intl.message('Assigned', name: 'assigned', desc: '', args: []);
+  }
+
+  /// `Unassigned`
+  String get unassigned {
+    return Intl.message('Unassigned', name: 'unassigned', desc: '', args: []);
+  }
+
+  /// `No Merchant Selected`
+  String get noMerchantSelected {
+    return Intl.message(
+      'No Merchant Selected',
+      name: 'noMerchantSelected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Details`
+  String get userDetails {
+    return Intl.message(
+      'User Details',
+      name: 'userDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Details`
+  String get viewDetails {
+    return Intl.message(
+      'View Details',
+      name: 'viewDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Documents`
+  String get documents {
+    return Intl.message('Documents', name: 'documents', desc: '', args: []);
+  }
+
+  /// `User Documents`
+  String get userDocuments {
+    return Intl.message(
+      'User Documents',
+      name: 'userDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Information`
+  String get userInformation {
+    return Intl.message(
+      'User Information',
+      name: 'userInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification Status`
+  String get verificationStatus {
+    return Intl.message(
+      'Verification Status',
+      name: 'verificationStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending Verification`
+  String get pendingVerification {
+    return Intl.message(
+      'Pending Verification',
+      name: 'pendingVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Needs Review`
+  String get needsReview {
+    return Intl.message(
+      'Needs Review',
+      name: 'needsReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approve`
+  String get approve {
+    return Intl.message('Approve', name: 'approve', desc: '', args: []);
+  }
+
+  /// `Reject`
+  String get reject {
+    return Intl.message('Reject', name: 'reject', desc: '', args: []);
+  }
+
+  /// `Approved`
+  String get approved {
+    return Intl.message('Approved', name: 'approved', desc: '', args: []);
+  }
+
+  /// `Rejected`
+  String get rejected {
+    return Intl.message('Rejected', name: 'rejected', desc: '', args: []);
+  }
+
+  /// `Verified`
+  String get verified {
+    return Intl.message('Verified', name: 'verified', desc: '', args: []);
+  }
+
+  /// `Not Uploaded`
+  String get notUploaded {
+    return Intl.message(
+      'Not Uploaded',
+      name: 'notUploaded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National Card (Front)`
+  String get nationalCardFront {
+    return Intl.message(
+      'National Card (Front)',
+      name: 'nationalCardFront',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National Card (Back)`
+  String get nationalCardBack {
+    return Intl.message(
+      'National Card (Back)',
+      name: 'nationalCardBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birth Certificate`
+  String get birthCertificate {
+    return Intl.message(
+      'Birth Certificate',
+      name: 'birthCertificate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Signature`
+  String get signature {
+    return Intl.message('Signature', name: 'signature', desc: '', args: []);
+  }
+
+  /// `Video`
+  String get video {
+    return Intl.message('Video', name: 'video', desc: '', args: []);
+  }
+
+  /// `Rejection Reason`
+  String get rejectionReason {
+    return Intl.message(
+      'Rejection Reason',
+      name: 'rejectionReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download Data`
+  String get downloadData {
+    return Intl.message(
+      'Download Data',
+      name: 'downloadData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Final Approval`
+  String get finalApproval {
+    return Intl.message(
+      'Final Approval',
+      name: 'finalApproval',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to approve this user with all of their documents?`
+  String get approveConfirmMessage {
+    return Intl.message(
+      'Are you sure you want to approve this user with all of their documents?',
+      name: 'approveConfirmMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reject Documents`
+  String get rejectDocuments {
+    return Intl.message(
+      'Reject Documents',
+      name: 'rejectDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason for rejecting National Card (Front)`
+  String get reasonNationalCardFront {
+    return Intl.message(
+      'Reason for rejecting National Card (Front)',
+      name: 'reasonNationalCardFront',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason for rejecting National Card (Back)`
+  String get reasonNationalCardBack {
+    return Intl.message(
+      'Reason for rejecting National Card (Back)',
+      name: 'reasonNationalCardBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason for rejecting Birth Certificate`
+  String get reasonBirthCertificate {
+    return Intl.message(
+      'Reason for rejecting Birth Certificate',
+      name: 'reasonBirthCertificate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason for rejecting Video`
+  String get reasonVideo {
+    return Intl.message(
+      'Reason for rejecting Video',
+      name: 'reasonVideo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason for rejecting Signature`
+  String get reasonSignature {
+    return Intl.message(
+      'Reason for rejecting Signature',
+      name: 'reasonSignature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copied to clipboard`
+  String get copiedToClipboard {
+    return Intl.message(
+      'Copied to clipboard',
+      name: 'copiedToClipboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Video available`
+  String get videoAvailable {
+    return Intl.message(
+      'Video available',
+      name: 'videoAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View`
+  String get view {
+    return Intl.message('View', name: 'view', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
