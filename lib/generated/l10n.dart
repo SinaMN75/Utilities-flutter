@@ -2257,6 +2257,281 @@ class S {
   String get view {
     return Intl.message('View', name: 'view', desc: '', args: []);
   }
+
+  /// `Sort By`
+  String get sortBy {
+    return Intl.message('Sort By', name: 'sortBy', desc: '', args: []);
+  }
+
+  /// `Newest First`
+  String get sortNewest {
+    return Intl.message('Newest First', name: 'sortNewest', desc: '', args: []);
+  }
+
+  /// `Oldest First`
+  String get sortOldest {
+    return Intl.message('Oldest First', name: 'sortOldest', desc: '', args: []);
+  }
+
+  /// `First Name (A-Z)`
+  String get sortFirstNameAsc {
+    return Intl.message(
+      'First Name (A-Z)',
+      name: 'sortFirstNameAsc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First Name (Z-A)`
+  String get sortFirstNameDesc {
+    return Intl.message(
+      'First Name (Z-A)',
+      name: 'sortFirstNameDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name (A-Z)`
+  String get sortLastNameAsc {
+    return Intl.message(
+      'Last Name (A-Z)',
+      name: 'sortLastNameAsc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name (Z-A)`
+  String get sortLastNameDesc {
+    return Intl.message(
+      'Last Name (Z-A)',
+      name: 'sortLastNameDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bio`
+  String get bio {
+    return Intl.message('Bio', name: 'bio', desc: '', args: []);
+  }
+
+  /// `From Birth Date`
+  String get fromBirthDate {
+    return Intl.message(
+      'From Birth Date',
+      name: 'fromBirthDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To Birth Date`
+  String get toBirthDate {
+    return Intl.message(
+      'To Birth Date',
+      name: 'toBirthDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Creator ID`
+  String get creatorId {
+    return Intl.message('Creator ID', name: 'creatorId', desc: '', args: []);
+  }
+
+  /// `User ID`
+  String get userId {
+    return Intl.message('User ID', name: 'userId', desc: '', args: []);
+  }
+
+  /// `Bank Account ID`
+  String get bankAccountId {
+    return Intl.message(
+      'Bank Account ID',
+      name: 'bankAccountId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More Filters`
+  String get moreFilters {
+    return Intl.message(
+      'More Filters',
+      name: 'moreFilters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appearance`
+  String get appearance {
+    return Intl.message('Appearance', name: 'appearance', desc: '', args: []);
+  }
+
+  /// `Theme`
+  String get theme {
+    return Intl.message('Theme', name: 'theme', desc: '', args: []);
+  }
+
+  /// `Light`
+  String get themeLight {
+    return Intl.message('Light', name: 'themeLight', desc: '', args: []);
+  }
+
+  /// `Dark`
+  String get themeDark {
+    return Intl.message('Dark', name: 'themeDark', desc: '', args: []);
+  }
+
+  /// `System`
+  String get themeSystem {
+    return Intl.message('System', name: 'themeSystem', desc: '', args: []);
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message('Language', name: 'language', desc: '', args: []);
+  }
+
+  /// `Persian`
+  String get persian {
+    return Intl.message('Persian', name: 'persian', desc: '', args: []);
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message('English', name: 'english', desc: '', args: []);
+  }
+
+  /// `Account`
+  String get account {
+    return Intl.message('Account', name: 'account', desc: '', args: []);
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message('Profile', name: 'profile', desc: '', args: []);
+  }
+
+  /// `Update Profile`
+  String get updateProfile {
+    return Intl.message(
+      'Update Profile',
+      name: 'updateProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `App Version`
+  String get appVersion {
+    return Intl.message('App Version', name: 'appVersion', desc: '', args: []);
+  }
+
+  /// `Clear Cache`
+  String get clearCache {
+    return Intl.message('Clear Cache', name: 'clearCache', desc: '', args: []);
+  }
+
+  /// `Cache Cleared`
+  String get cacheCleared {
+    return Intl.message(
+      'Cache Cleared',
+      name: 'cacheCleared',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message('About', name: 'about', desc: '', args: []);
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message('General', name: 'general', desc: '', args: []);
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to log out?`
+  String get areYouSureLogout {
+    return Intl.message(
+      'Are you sure you want to log out?',
+      name: 'areYouSureLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark Mode`
+  String get darkMode {
+    return Intl.message('Dark Mode', name: 'darkMode', desc: '', args: []);
+  }
+
+  /// `Total Results`
+  String get totalResults {
+    return Intl.message(
+      'Total Results',
+      name: 'totalResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Results`
+  String get noResults {
+    return Intl.message('No Results', name: 'noResults', desc: '', args: []);
+  }
+
+  /// `Bulk Import`
+  String get bulkImport {
+    return Intl.message('Bulk Import', name: 'bulkImport', desc: '', args: []);
+  }
+
+  /// `Bulk Import Terminals`
+  String get bulkImportTerminals {
+    return Intl.message(
+      'Bulk Import Terminals',
+      name: 'bulkImportTerminals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `One terminal per line: serial,simNumber,simSerial,imei`
+  String get bulkImportHint {
+    return Intl.message(
+      'One terminal per line: serial,simNumber,simSerial,imei',
+      name: 'bulkImportHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No valid rows found`
+  String get noValidRows {
+    return Intl.message(
+      'No valid rows found',
+      name: 'noValidRows',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

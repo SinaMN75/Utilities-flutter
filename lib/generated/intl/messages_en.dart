@@ -22,8 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "about": MessageLookupByLibrary.simpleMessage("About"),
     "accenting": MessageLookupByLibrary.simpleMessage("Accenting"),
     "accommodation": MessageLookupByLibrary.simpleMessage("Accommodation"),
+    "account": MessageLookupByLibrary.simpleMessage("Account"),
     "active": MessageLookupByLibrary.simpleMessage("Active"),
     "activeContract": MessageLookupByLibrary.simpleMessage("Active Contract"),
     "addOption": MessageLookupByLibrary.simpleMessage("Add Option"),
@@ -35,11 +37,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "agreement": MessageLookupByLibrary.simpleMessage("Agreement"),
     "all": MessageLookupByLibrary.simpleMessage("All"),
     "amount": MessageLookupByLibrary.simpleMessage("Amount"),
+    "appVersion": MessageLookupByLibrary.simpleMessage("App Version"),
+    "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
     "approve": MessageLookupByLibrary.simpleMessage("Approve"),
     "approveConfirmMessage": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to approve this user with all of their documents?",
     ),
     "approved": MessageLookupByLibrary.simpleMessage("Approved"),
+    "areYouSureLogout": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to log out?",
+    ),
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "Are you sure to Delete this User?",
     ),
@@ -54,14 +61,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "assigned": MessageLookupByLibrary.simpleMessage("Assigned"),
     "availability": MessageLookupByLibrary.simpleMessage("Availability"),
     "available": MessageLookupByLibrary.simpleMessage("Available"),
+    "bankAccountId": MessageLookupByLibrary.simpleMessage("Bank Account ID"),
     "bed": MessageLookupByLibrary.simpleMessage("Bed"),
     "beds": MessageLookupByLibrary.simpleMessage("Beds"),
+    "bio": MessageLookupByLibrary.simpleMessage("Bio"),
     "birthCertificate": MessageLookupByLibrary.simpleMessage(
       "Birth Certificate",
     ),
     "birthdate": MessageLookupByLibrary.simpleMessage("Birthdate"),
+    "bulkImport": MessageLookupByLibrary.simpleMessage("Bulk Import"),
+    "bulkImportHint": MessageLookupByLibrary.simpleMessage(
+      "One terminal per line: serial,simNumber,simSerial,imei",
+    ),
+    "bulkImportTerminals": MessageLookupByLibrary.simpleMessage(
+      "Bulk Import Terminals",
+    ),
     "businessTitle": MessageLookupByLibrary.simpleMessage("Business Title"),
     "busy": MessageLookupByLibrary.simpleMessage("Busy"),
+    "cacheCleared": MessageLookupByLibrary.simpleMessage("Cache Cleared"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "capacity": MessageLookupByLibrary.simpleMessage("Capacity"),
     "categories": MessageLookupByLibrary.simpleMessage("Categories"),
@@ -74,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "city": MessageLookupByLibrary.simpleMessage("City"),
     "cityCode": MessageLookupByLibrary.simpleMessage("City Code"),
+    "clearCache": MessageLookupByLibrary.simpleMessage("Clear Cache"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
     "code": MessageLookupByLibrary.simpleMessage("Code"),
     "confirmDelete": MessageLookupByLibrary.simpleMessage("Confirm Delete"),
@@ -101,7 +119,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "created": MessageLookupByLibrary.simpleMessage("Created"),
     "createdAt": MessageLookupByLibrary.simpleMessage("Created At"),
     "createdDate": MessageLookupByLibrary.simpleMessage("Created Date"),
+    "creatorId": MessageLookupByLibrary.simpleMessage("Creator ID"),
     "creditor": MessageLookupByLibrary.simpleMessage("Creditor"),
+    "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
     "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
     "debt": MessageLookupByLibrary.simpleMessage("Debt"),
     "debtAmount": MessageLookupByLibrary.simpleMessage("Debt Amount"),
@@ -137,6 +157,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "edited": MessageLookupByLibrary.simpleMessage("Edited"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "endDate": MessageLookupByLibrary.simpleMessage("End Date"),
+    "english": MessageLookupByLibrary.simpleMessage("English"),
     "enter": MessageLookupByLibrary.simpleMessage("Enter"),
     "enterPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Enter phone number",
@@ -185,8 +206,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "finalApproval": MessageLookupByLibrary.simpleMessage("Final Approval"),
     "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
     "free": MessageLookupByLibrary.simpleMessage("Free"),
+    "fromBirthDate": MessageLookupByLibrary.simpleMessage("From Birth Date"),
     "fromDate": MessageLookupByLibrary.simpleMessage("From Date"),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+    "general": MessageLookupByLibrary.simpleMessage("General"),
     "getSupportPassword": MessageLookupByLibrary.simpleMessage(
       "Get Support Password",
     ),
@@ -209,6 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "invoices": MessageLookupByLibrary.simpleMessage("Invoices"),
     "joinedDate": MessageLookupByLibrary.simpleMessage("Joined Date"),
     "landline": MessageLookupByLibrary.simpleMessage("Landline"),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
     "leasing": MessageLookupByLibrary.simpleMessage("Leasing"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
@@ -231,6 +255,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "monthlyActiveUsers": MessageLookupByLibrary.simpleMessage(
       "Monthly Active Users",
     ),
+    "moreFilters": MessageLookupByLibrary.simpleMessage("More Filters"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "nationalCardBack": MessageLookupByLibrary.simpleMessage(
       "National Card (Back)",
@@ -256,12 +281,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "No Merchants Found",
     ),
     "noProductFound": MessageLookupByLibrary.simpleMessage("No Product Found"),
+    "noResults": MessageLookupByLibrary.simpleMessage("No Results"),
     "noRoomsFound": MessageLookupByLibrary.simpleMessage("No rooms found"),
     "noTerminalsFound": MessageLookupByLibrary.simpleMessage(
       "No Terminals Found",
     ),
     "noUserFound": MessageLookupByLibrary.simpleMessage("No User Found"),
+    "noValidRows": MessageLookupByLibrary.simpleMessage("No valid rows found"),
     "notUploaded": MessageLookupByLibrary.simpleMessage("Not Uploaded"),
+    "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
     "occupied": MessageLookupByLibrary.simpleMessage("Occupied"),
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "operations": MessageLookupByLibrary.simpleMessage("Operations"),
@@ -292,6 +320,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pendingVerification": MessageLookupByLibrary.simpleMessage(
       "Pending Verification",
     ),
+    "persian": MessageLookupByLibrary.simpleMessage("Persian"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
       "Please Create a Category before creating a Product.",
@@ -314,6 +343,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Product Categories",
     ),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("Question Title"),
     "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
       "Question title and at least one option are required",
@@ -376,6 +406,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "simCardNumber": MessageLookupByLibrary.simpleMessage("SIM Card Number"),
     "simCardSerial": MessageLookupByLibrary.simpleMessage("SIM Card Serial"),
     "singleInvoice": MessageLookupByLibrary.simpleMessage("Single Invoice"),
+    "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
+    "sortFirstNameAsc": MessageLookupByLibrary.simpleMessage(
+      "First Name (A-Z)",
+    ),
+    "sortFirstNameDesc": MessageLookupByLibrary.simpleMessage(
+      "First Name (Z-A)",
+    ),
+    "sortLastNameAsc": MessageLookupByLibrary.simpleMessage("Last Name (A-Z)"),
+    "sortLastNameDesc": MessageLookupByLibrary.simpleMessage("Last Name (Z-A)"),
+    "sortNewest": MessageLookupByLibrary.simpleMessage("Newest First"),
+    "sortOldest": MessageLookupByLibrary.simpleMessage("Oldest First"),
     "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
     "submit": MessageLookupByLibrary.simpleMessage("Submit"),
@@ -391,15 +432,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "terminalsManagement": MessageLookupByLibrary.simpleMessage(
       "Terminals Management",
     ),
+    "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+    "themeDark": MessageLookupByLibrary.simpleMessage("Dark"),
+    "themeLight": MessageLookupByLibrary.simpleMessage("Light"),
+    "themeSystem": MessageLookupByLibrary.simpleMessage("System"),
     "thisUserDoesNotHaveAnActiveContract": MessageLookupByLibrary.simpleMessage(
       "This User does not have an Active Contract.",
     ),
     "title": MessageLookupByLibrary.simpleMessage("Title"),
+    "toBirthDate": MessageLookupByLibrary.simpleMessage("To Birth Date"),
     "toDate": MessageLookupByLibrary.simpleMessage("To Date"),
     "totalDebt": MessageLookupByLibrary.simpleMessage("Total Debt"),
     "totalPaid": MessageLookupByLibrary.simpleMessage("Total Paid"),
     "totalPenalty": MessageLookupByLibrary.simpleMessage("Total Penalty"),
     "totalRemaining": MessageLookupByLibrary.simpleMessage("Total Remaining"),
+    "totalResults": MessageLookupByLibrary.simpleMessage("Total Results"),
     "trackingNumber": MessageLookupByLibrary.simpleMessage("Tracking Number"),
     "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
     "unassigned": MessageLookupByLibrary.simpleMessage("Unassigned"),
@@ -411,6 +458,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "updateFunctionalityWouldGoHere": MessageLookupByLibrary.simpleMessage(
       "Update functionality would go here",
     ),
+    "updateProfile": MessageLookupByLibrary.simpleMessage("Update Profile"),
     "uploadFailed": MessageLookupByLibrary.simpleMessage("Upload Failed"),
     "userCategories": MessageLookupByLibrary.simpleMessage("User Categories"),
     "userCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -418,6 +466,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "userDetails": MessageLookupByLibrary.simpleMessage("User Details"),
     "userDocuments": MessageLookupByLibrary.simpleMessage("User Documents"),
+    "userId": MessageLookupByLibrary.simpleMessage("User ID"),
     "userInformation": MessageLookupByLibrary.simpleMessage("User Information"),
     "username": MessageLookupByLibrary.simpleMessage("Username"),
     "users": MessageLookupByLibrary.simpleMessage("Users"),
