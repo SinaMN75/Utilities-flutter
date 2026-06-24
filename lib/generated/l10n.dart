@@ -144,10 +144,10 @@ class S {
   }
 
   /// `Daily Penalty %`
-  String get penaltyPercent {
+  String get dailyPenalty {
     return Intl.message(
       'Daily Penalty %',
-      name: 'penaltyPercent',
+      name: 'dailyPenalty',
       desc: '',
       args: [],
     );
@@ -164,20 +164,20 @@ class S {
   }
 
   /// `Mark this invoice as fully paid?`
-  String get payInvoiceConfirm {
+  String get markThisInvoiceAsFullyPaid {
     return Intl.message(
       'Mark this invoice as fully paid?',
-      name: 'payInvoiceConfirm',
+      name: 'markThisInvoiceAsFullyPaid',
       desc: '',
       args: [],
     );
   }
 
   /// `Invoice marked as paid`
-  String get invoicePaidSuccessfully {
+  String get invoiceMarkedAsPaid {
     return Intl.message(
       'Invoice marked as paid',
-      name: 'invoicePaidSuccessfully',
+      name: 'invoiceMarkedAsPaid',
       desc: '',
       args: [],
     );
@@ -291,16 +291,6 @@ class S {
   /// `Leasing`
   String get leasing {
     return Intl.message('Leasing', name: 'leasing', desc: '', args: []);
-  }
-
-  /// `Rent`
-  String get rentInvoice {
-    return Intl.message('Rent', name: 'rentInvoice', desc: '', args: []);
-  }
-
-  /// `Deposit`
-  String get depositInvoice {
-    return Intl.message('Deposit', name: 'depositInvoice', desc: '', args: []);
   }
 
   /// `Created`
@@ -889,10 +879,10 @@ class S {
   }
 
   /// `Score: ${option.score}`
-  String get scoreOptionscore {
+  String get scoreOptionScore {
     return Intl.message(
       'Score: \${option.score}',
-      name: 'scoreOptionscore',
+      name: 'scoreOptionScore',
       desc: '',
       args: [],
     );
@@ -1109,20 +1099,20 @@ class S {
   }
 
   /// `This field is required.`
-  String get requiredMessage {
+  String get thisFieldIsRequired {
     return Intl.message(
       'This field is required.',
-      name: 'requiredMessage',
+      name: 'thisFieldIsRequired',
       desc: '',
       args: [],
     );
   }
 
   /// `This field is invalid.`
-  String get invalidMessage {
+  String get thisFieldIsInvalid {
     return Intl.message(
       'This field is invalid.',
-      name: 'invalidMessage',
+      name: 'thisFieldIsInvalid',
       desc: '',
       args: [],
     );
@@ -1241,11 +1231,6 @@ class S {
   /// `Search`
   String get search {
     return Intl.message('Search', name: 'search', desc: '', args: []);
-  }
-
-  /// `Search...`
-  String get search___ {
-    return Intl.message('Search...', name: 'search___', desc: '', args: []);
   }
 
   /// `Select`
@@ -1419,10 +1404,10 @@ class S {
   }
 
   /// `Price / Night`
-  String get pricePerNight {
+  String get priceNight {
     return Intl.message(
       'Price / Night',
-      name: 'pricePerNight',
+      name: 'priceNight',
       desc: '',
       args: [],
     );
@@ -1789,8 +1774,13 @@ class S {
   }
 
   /// `Institution ID`
-  String get insId {
-    return Intl.message('Institution ID', name: 'insId', desc: '', args: []);
+  String get institutionId {
+    return Intl.message(
+      'Institution ID',
+      name: 'institutionId',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Address`
@@ -2164,10 +2154,10 @@ class S {
   }
 
   /// `Are you sure you want to approve this user with all of their documents?`
-  String get approveConfirmMessage {
+  String get areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments {
     return Intl.message(
       'Are you sure you want to approve this user with all of their documents?',
-      name: 'approveConfirmMessage',
+      name: 'areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments',
       desc: '',
       args: [],
     );
@@ -2184,50 +2174,50 @@ class S {
   }
 
   /// `Reason for rejecting National Card (Front)`
-  String get reasonNationalCardFront {
+  String get reasonForRejectingNationalCardFront {
     return Intl.message(
       'Reason for rejecting National Card (Front)',
-      name: 'reasonNationalCardFront',
+      name: 'reasonForRejectingNationalCardFront',
       desc: '',
       args: [],
     );
   }
 
   /// `Reason for rejecting National Card (Back)`
-  String get reasonNationalCardBack {
+  String get reasonForRejectingNationalCardBack {
     return Intl.message(
       'Reason for rejecting National Card (Back)',
-      name: 'reasonNationalCardBack',
+      name: 'reasonForRejectingNationalCardBack',
       desc: '',
       args: [],
     );
   }
 
   /// `Reason for rejecting Birth Certificate`
-  String get reasonBirthCertificate {
+  String get reasonForRejectingBirthCertificate {
     return Intl.message(
       'Reason for rejecting Birth Certificate',
-      name: 'reasonBirthCertificate',
+      name: 'reasonForRejectingBirthCertificate',
       desc: '',
       args: [],
     );
   }
 
   /// `Reason for rejecting Video`
-  String get reasonVideo {
+  String get reasonForRejectingVideo {
     return Intl.message(
       'Reason for rejecting Video',
-      name: 'reasonVideo',
+      name: 'reasonForRejectingVideo',
       desc: '',
       args: [],
     );
   }
 
   /// `Reason for rejecting Signature`
-  String get reasonSignature {
+  String get reasonForRejectingSignature {
     return Intl.message(
       'Reason for rejecting Signature',
-      name: 'reasonSignature',
+      name: 'reasonForRejectingSignature',
       desc: '',
       args: [],
     );
@@ -2264,50 +2254,60 @@ class S {
   }
 
   /// `Newest First`
-  String get sortNewest {
-    return Intl.message('Newest First', name: 'sortNewest', desc: '', args: []);
+  String get newestFirst {
+    return Intl.message(
+      'Newest First',
+      name: 'newestFirst',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Oldest First`
-  String get sortOldest {
-    return Intl.message('Oldest First', name: 'sortOldest', desc: '', args: []);
+  String get oldestFirst {
+    return Intl.message(
+      'Oldest First',
+      name: 'oldestFirst',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `First Name (A-Z)`
-  String get sortFirstNameAsc {
+  String get firstNameAZ {
     return Intl.message(
       'First Name (A-Z)',
-      name: 'sortFirstNameAsc',
+      name: 'firstNameAZ',
       desc: '',
       args: [],
     );
   }
 
   /// `First Name (Z-A)`
-  String get sortFirstNameDesc {
+  String get firstNameZA {
     return Intl.message(
       'First Name (Z-A)',
-      name: 'sortFirstNameDesc',
+      name: 'firstNameZA',
       desc: '',
       args: [],
     );
   }
 
   /// `Last Name (A-Z)`
-  String get sortLastNameAsc {
+  String get lastNameAZ {
     return Intl.message(
       'Last Name (A-Z)',
-      name: 'sortLastNameAsc',
+      name: 'lastNameAZ',
       desc: '',
       args: [],
     );
   }
 
   /// `Last Name (Z-A)`
-  String get sortLastNameDesc {
+  String get lastNameZA {
     return Intl.message(
       'Last Name (Z-A)',
-      name: 'sortLastNameDesc',
+      name: 'lastNameZA',
       desc: '',
       args: [],
     );
@@ -2379,18 +2379,18 @@ class S {
   }
 
   /// `Light`
-  String get themeLight {
-    return Intl.message('Light', name: 'themeLight', desc: '', args: []);
+  String get light {
+    return Intl.message('Light', name: 'light', desc: '', args: []);
   }
 
   /// `Dark`
-  String get themeDark {
-    return Intl.message('Dark', name: 'themeDark', desc: '', args: []);
+  String get dark {
+    return Intl.message('Dark', name: 'dark', desc: '', args: []);
   }
 
   /// `System`
-  String get themeSystem {
-    return Intl.message('System', name: 'themeSystem', desc: '', args: []);
+  String get system {
+    return Intl.message('System', name: 'system', desc: '', args: []);
   }
 
   /// `Language`
@@ -2469,10 +2469,10 @@ class S {
   }
 
   /// `Are you sure you want to log out?`
-  String get areYouSureLogout {
+  String get areYouSureYouWantToLogOut {
     return Intl.message(
       'Are you sure you want to log out?',
-      name: 'areYouSureLogout',
+      name: 'areYouSureYouWantToLogOut',
       desc: '',
       args: [],
     );
@@ -2514,20 +2514,20 @@ class S {
   }
 
   /// `One terminal per line: serial,simNumber,simSerial,imei`
-  String get bulkImportHint {
+  String get oneTerminalPerLineSerialSimnumberSimserialImei {
     return Intl.message(
       'One terminal per line: serial,simNumber,simSerial,imei',
-      name: 'bulkImportHint',
+      name: 'oneTerminalPerLineSerialSimnumberSimserialImei',
       desc: '',
       args: [],
     );
   }
 
   /// `No valid rows found`
-  String get noValidRows {
+  String get noValidRowsFound {
     return Intl.message(
       'No valid rows found',
-      name: 'noValidRows',
+      name: 'noValidRowsFound',
       desc: '',
       args: [],
     );

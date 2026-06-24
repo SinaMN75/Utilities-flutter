@@ -10,7 +10,6 @@ abstract class U {
   static late UUserResponse user;
   static List<UContentResponse> contents = <UContentResponse>[];
   static List<UCategoryResponse> categories = <UCategoryResponse>[];
-  static final SideMenuController sideMenu = SideMenuController();
   static final RxList<TabData> tabs = <TabData>[].obs;
   static TabController? tabController;
 

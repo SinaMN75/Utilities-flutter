@@ -598,7 +598,7 @@ class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteA
             children: <Widget>[
               TextField(
                 decoration: InputDecoration(
-                  hintText: U.s.search___,
+                  hintText: U.s.search,
                   border: const OutlineInputBorder(),
                 ),
                 onChanged: _search,

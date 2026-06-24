@@ -42,21 +42,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "appVersion": MessageLookupByLibrary.simpleMessage("نسخه برنامه"),
     "appearance": MessageLookupByLibrary.simpleMessage("ظاهر"),
     "approve": MessageLookupByLibrary.simpleMessage("تایید"),
-    "approveConfirmMessage": MessageLookupByLibrary.simpleMessage(
-      "آیا از تایید این کاربر با تمام مدارک آن اطمینان دارید؟",
-    ),
     "approved": MessageLookupByLibrary.simpleMessage("تایید شده"),
-    "areYouSureLogout": MessageLookupByLibrary.simpleMessage(
-      "آیا از خروج از حساب اطمینان دارید؟",
-    ),
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "آیا از حذف این کاربر اطمینان دارید؟",
+    ),
+    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments": MessageLookupByLibrary.simpleMessage(
+      "آیا از تایید این کاربر با تمام مدارک آن اطمینان دارید؟",
     ),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "از حذف اطمینان دارید؟",
     ),
     "areYouSureYouWantToDeleteThisExam": MessageLookupByLibrary.simpleMessage(
       "آیا مطمئن هستید که می‌خواهید این آزمون را حذف کنید؟",
+    ),
+    "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
+      "آیا از خروج از حساب اطمینان دارید؟",
     ),
     "assign": MessageLookupByLibrary.simpleMessage("تخصیص"),
     "assignTerminal": MessageLookupByLibrary.simpleMessage("تخصیص پایانه"),
@@ -70,9 +70,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "birthCertificate": MessageLookupByLibrary.simpleMessage("شناسنامه"),
     "birthdate": MessageLookupByLibrary.simpleMessage("تاریخ تولد"),
     "bulkImport": MessageLookupByLibrary.simpleMessage("افزودن گروهی"),
-    "bulkImportHint": MessageLookupByLibrary.simpleMessage(
-      "هر پایانه در یک خط: سریال،شماره سیم‌کارت،سریال سیم‌کارت،imei",
-    ),
     "bulkImportTerminals": MessageLookupByLibrary.simpleMessage(
       "افزودن گروهی پایانه‌ها",
     ),
@@ -121,6 +118,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "createdDate": MessageLookupByLibrary.simpleMessage("تاریخ ایجاد"),
     "creatorId": MessageLookupByLibrary.simpleMessage("شناسه ایجادکننده"),
     "creditor": MessageLookupByLibrary.simpleMessage("بستانکار"),
+    "dailyPenalty": MessageLookupByLibrary.simpleMessage("درصد جریمه روزانه"),
+    "dark": MessageLookupByLibrary.simpleMessage("تیره"),
     "darkMode": MessageLookupByLibrary.simpleMessage("حالت تیره"),
     "dashboard": MessageLookupByLibrary.simpleMessage("داشبورد"),
     "debt": MessageLookupByLibrary.simpleMessage("بدهکار"),
@@ -129,7 +128,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteUser": MessageLookupByLibrary.simpleMessage("حذف کاربر"),
     "deleted": MessageLookupByLibrary.simpleMessage("حذف شد"),
     "deposit": MessageLookupByLibrary.simpleMessage("رهن"),
-    "depositInvoice": MessageLookupByLibrary.simpleMessage("ودیعه"),
     "descending": MessageLookupByLibrary.simpleMessage("نزولی"),
     "description": MessageLookupByLibrary.simpleMessage("توضیحات"),
     "descriptionOptional": MessageLookupByLibrary.simpleMessage(
@@ -209,6 +207,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "filterUsers": MessageLookupByLibrary.simpleMessage("فیلتر کاربران"),
     "finalApproval": MessageLookupByLibrary.simpleMessage("تایید نهایی"),
     "firstName": MessageLookupByLibrary.simpleMessage("نام"),
+    "firstNameAZ": MessageLookupByLibrary.simpleMessage("نام (الف-ی)"),
+    "firstNameZA": MessageLookupByLibrary.simpleMessage("نام (ی-الف)"),
     "free": MessageLookupByLibrary.simpleMessage("آزاد"),
     "fromBirthDate": MessageLookupByLibrary.simpleMessage("از تاریخ تولد"),
     "fromDate": MessageLookupByLibrary.simpleMessage("از تاریخ"),
@@ -224,12 +224,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "hotelRooms": MessageLookupByLibrary.simpleMessage("اتاق‌های هتل"),
     "hotels": MessageLookupByLibrary.simpleMessage("هتل‌ها"),
     "imei": MessageLookupByLibrary.simpleMessage("آی‌ام‌ای‌آی"),
-    "insId": MessageLookupByLibrary.simpleMessage("شناسه موسسه"),
-    "invalidMessage": MessageLookupByLibrary.simpleMessage(
-      "مقدار وارد شده صحیح نیست",
-    ),
+    "institutionId": MessageLookupByLibrary.simpleMessage("شناسه موسسه"),
     "invoice": MessageLookupByLibrary.simpleMessage("فاکتور"),
-    "invoicePaidSuccessfully": MessageLookupByLibrary.simpleMessage(
+    "invoiceMarkedAsPaid": MessageLookupByLibrary.simpleMessage(
       "فاکتور پرداخت شد",
     ),
     "invoiceType": MessageLookupByLibrary.simpleMessage("نوع فاکتور"),
@@ -238,11 +235,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "landline": MessageLookupByLibrary.simpleMessage("تلفن ثابت"),
     "language": MessageLookupByLibrary.simpleMessage("زبان"),
     "lastName": MessageLookupByLibrary.simpleMessage("نام خانوادگی"),
+    "lastNameAZ": MessageLookupByLibrary.simpleMessage("نام خانوادگی (الف-ی)"),
+    "lastNameZA": MessageLookupByLibrary.simpleMessage("نام خانوادگی (ی-الف)"),
     "leasing": MessageLookupByLibrary.simpleMessage("اجاره"),
+    "light": MessageLookupByLibrary.simpleMessage("روشن"),
     "logout": MessageLookupByLibrary.simpleMessage("خروج"),
     "logs": MessageLookupByLibrary.simpleMessage("لاگ‌ها"),
     "male": MessageLookupByLibrary.simpleMessage("آقا"),
     "markAsPaid": MessageLookupByLibrary.simpleMessage("ثبت پرداخت"),
+    "markThisInvoiceAsFullyPaid": MessageLookupByLibrary.simpleMessage(
+      "این فاکتور به‌طور کامل پرداخت شود؟",
+    ),
     "maxPrice": MessageLookupByLibrary.simpleMessage("حداکثر قیمت"),
     "maxRent": MessageLookupByLibrary.simpleMessage("حداکثر اجاره"),
     "maximumRent": MessageLookupByLibrary.simpleMessage("حداکثر اجاره"),
@@ -266,6 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "nationalCode": MessageLookupByLibrary.simpleMessage("کد ملی"),
     "needsReview": MessageLookupByLibrary.simpleMessage("نیاز به بررسی"),
     "newExam": MessageLookupByLibrary.simpleMessage("آزمون جدید"),
+    "newestFirst": MessageLookupByLibrary.simpleMessage("جدیدترین"),
     "noBedsFound": MessageLookupByLibrary.simpleMessage("هیچ تختی یافت نشد"),
     "noContractFound": MessageLookupByLibrary.simpleMessage(
       "هیچ قراردادی یافت نشد",
@@ -293,13 +297,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "پایانه‌ای یافت نشد",
     ),
     "noUserFound": MessageLookupByLibrary.simpleMessage("هیچ کاربری یافت نشد"),
-    "noValidRows": MessageLookupByLibrary.simpleMessage(
+    "noValidRowsFound": MessageLookupByLibrary.simpleMessage(
       "هیچ ردیف معتبری یافت نشد",
     ),
     "notUploaded": MessageLookupByLibrary.simpleMessage("ثبت نشده"),
     "notifications": MessageLookupByLibrary.simpleMessage("اعلان‌ها"),
     "occupied": MessageLookupByLibrary.simpleMessage("اشغال شده"),
     "ok": MessageLookupByLibrary.simpleMessage("بله"),
+    "oldestFirst": MessageLookupByLibrary.simpleMessage("قدیمی‌ترین"),
+    "oneTerminalPerLineSerialSimnumberSimserialImei": MessageLookupByLibrary.simpleMessage(
+      "هر پایانه در یک خط: سریال،شماره سیم‌کارت،سریال سیم‌کارت،imei",
+    ),
     "operations": MessageLookupByLibrary.simpleMessage("عملیات"),
     "optionTitle": MessageLookupByLibrary.simpleMessage("عنوان گزینه"),
     "optionTitleAndScoreAreRequired": MessageLookupByLibrary.simpleMessage(
@@ -319,14 +327,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "password": MessageLookupByLibrary.simpleMessage("رمز عبور"),
     "payInvoice": MessageLookupByLibrary.simpleMessage("پرداخت فاکتور"),
-    "payInvoiceConfirm": MessageLookupByLibrary.simpleMessage(
-      "این فاکتور به‌طور کامل پرداخت شود؟",
-    ),
     "paymentStatus": MessageLookupByLibrary.simpleMessage("وضعیت پرداخت"),
     "payments": MessageLookupByLibrary.simpleMessage("پرداخت"),
     "penalty": MessageLookupByLibrary.simpleMessage("جریمه"),
     "penaltyAmount": MessageLookupByLibrary.simpleMessage("مبلغ جریمه"),
-    "penaltyPercent": MessageLookupByLibrary.simpleMessage("درصد جریمه روزانه"),
     "pendingVerification": MessageLookupByLibrary.simpleMessage(
       "در انتظار تایید",
     ),
@@ -348,7 +352,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لطفاً یک اتاق انتخاب کنید",
     ),
     "pointDetails": MessageLookupByLibrary.simpleMessage("جزئیات امتیاز"),
-    "pricePerNight": MessageLookupByLibrary.simpleMessage("قیمت / شب"),
+    "priceNight": MessageLookupByLibrary.simpleMessage("قیمت / شب"),
     "productCategories": MessageLookupByLibrary.simpleMessage(
       "دسته‌بندی‌های محصول",
     ),
@@ -361,17 +365,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "questionnaire": MessageLookupByLibrary.simpleMessage("پرسشنامه"),
     "questions": MessageLookupByLibrary.simpleMessage("سؤال‌ها"),
     "ramUsage": MessageLookupByLibrary.simpleMessage("مصرف RAM"),
-    "reasonBirthCertificate": MessageLookupByLibrary.simpleMessage(
+    "reasonForRejectingBirthCertificate": MessageLookupByLibrary.simpleMessage(
       "دلیل رد شناسنامه",
     ),
-    "reasonNationalCardBack": MessageLookupByLibrary.simpleMessage(
+    "reasonForRejectingNationalCardBack": MessageLookupByLibrary.simpleMessage(
       "دلیل رد کارت ملی (پشت)",
     ),
-    "reasonNationalCardFront": MessageLookupByLibrary.simpleMessage(
+    "reasonForRejectingNationalCardFront": MessageLookupByLibrary.simpleMessage(
       "دلیل رد کارت ملی (رو)",
     ),
-    "reasonSignature": MessageLookupByLibrary.simpleMessage("دلیل رد امضا"),
-    "reasonVideo": MessageLookupByLibrary.simpleMessage("دلیل رد ویدیو"),
+    "reasonForRejectingSignature": MessageLookupByLibrary.simpleMessage(
+      "دلیل رد امضا",
+    ),
+    "reasonForRejectingVideo": MessageLookupByLibrary.simpleMessage(
+      "دلیل رد ویدیو",
+    ),
     "recentlyJoined": MessageLookupByLibrary.simpleMessage("تازه‌واردها"),
     "regarding": MessageLookupByLibrary.simpleMessage("بابت"),
     "reject": MessageLookupByLibrary.simpleMessage("رد"),
@@ -380,14 +388,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "rejectionReason": MessageLookupByLibrary.simpleMessage("دلیل رد"),
     "remaining": MessageLookupByLibrary.simpleMessage("باقی‌مانده"),
     "rent": MessageLookupByLibrary.simpleMessage("اجاره"),
-    "rentInvoice": MessageLookupByLibrary.simpleMessage("اجاره"),
     "required": MessageLookupByLibrary.simpleMessage("ضروری"),
-    "requiredMessage": MessageLookupByLibrary.simpleMessage("فیلد ضروری است"),
     "room": MessageLookupByLibrary.simpleMessage("اتاق"),
     "rooms": MessageLookupByLibrary.simpleMessage("اتاق‌ها"),
     "save": MessageLookupByLibrary.simpleMessage("ذخیره"),
     "score": MessageLookupByLibrary.simpleMessage("امتیاز"),
-    "scoreOptionscore": MessageLookupByLibrary.simpleMessage(
+    "scoreOptionScore": MessageLookupByLibrary.simpleMessage(
       "امتیاز: \${option.score}",
     ),
     "search": MessageLookupByLibrary.simpleMessage("جستجو"),
@@ -395,7 +401,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchCountryCodeOrDialCode": MessageLookupByLibrary.simpleMessage(
       "جستجو کشور، کد تلفن",
     ),
-    "search___": MessageLookupByLibrary.simpleMessage("جستجو..."),
     "select": MessageLookupByLibrary.simpleMessage("انتخاب"),
     "selectABed": MessageLookupByLibrary.simpleMessage("انتخاب تخت"),
     "selectAColor": MessageLookupByLibrary.simpleMessage("یک رنگ انتخاب کنید"),
@@ -409,22 +414,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "simCardSerial": MessageLookupByLibrary.simpleMessage("سریال سیم‌کارت"),
     "singleInvoice": MessageLookupByLibrary.simpleMessage("فاکتور واحد"),
     "sortBy": MessageLookupByLibrary.simpleMessage("مرتب‌سازی"),
-    "sortFirstNameAsc": MessageLookupByLibrary.simpleMessage("نام (الف-ی)"),
-    "sortFirstNameDesc": MessageLookupByLibrary.simpleMessage("نام (ی-الف)"),
-    "sortLastNameAsc": MessageLookupByLibrary.simpleMessage(
-      "نام خانوادگی (الف-ی)",
-    ),
-    "sortLastNameDesc": MessageLookupByLibrary.simpleMessage(
-      "نام خانوادگی (ی-الف)",
-    ),
-    "sortNewest": MessageLookupByLibrary.simpleMessage("جدیدترین"),
-    "sortOldest": MessageLookupByLibrary.simpleMessage("قدیمی‌ترین"),
     "startDate": MessageLookupByLibrary.simpleMessage("تاریخ شروع"),
     "status": MessageLookupByLibrary.simpleMessage("وضعیت"),
     "submit": MessageLookupByLibrary.simpleMessage("ثبت"),
     "submitted": MessageLookupByLibrary.simpleMessage("ثبت شد"),
     "subtitle": MessageLookupByLibrary.simpleMessage("زیرعنوان"),
     "supportPassword": MessageLookupByLibrary.simpleMessage("رمز پشتیبانی"),
+    "system": MessageLookupByLibrary.simpleMessage("سیستم"),
     "tags": MessageLookupByLibrary.simpleMessage("برچسب‌ها"),
     "tenant": MessageLookupByLibrary.simpleMessage("مستاجر"),
     "terminal": MessageLookupByLibrary.simpleMessage("پایانه"),
@@ -435,9 +431,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "مدیریت پایانه‌ها",
     ),
     "theme": MessageLookupByLibrary.simpleMessage("پوسته"),
-    "themeDark": MessageLookupByLibrary.simpleMessage("تیره"),
-    "themeLight": MessageLookupByLibrary.simpleMessage("روشن"),
-    "themeSystem": MessageLookupByLibrary.simpleMessage("سیستم"),
+    "thisFieldIsInvalid": MessageLookupByLibrary.simpleMessage(
+      "مقدار وارد شده صحیح نیست",
+    ),
+    "thisFieldIsRequired": MessageLookupByLibrary.simpleMessage(
+      "فیلد ضروری است",
+    ),
     "thisUserDoesNotHaveAnActiveContract": MessageLookupByLibrary.simpleMessage(
       "این کاربر قرارداد فعال ندارد.",
     ),
