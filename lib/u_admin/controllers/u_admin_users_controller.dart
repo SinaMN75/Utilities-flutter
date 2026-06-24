@@ -35,8 +35,6 @@ class UAdminUsersController extends UAdminBaseController {
         tags: selectedTag != null ? <int>[selectedTag!.number] : null,
         fromCreatedAt: fromCreatedAt,
         toCreatedAt: toCreatedAt,
-        orderByCreatedAt: orderByCreatedAt,
-        orderByCreatedAtDesc: orderByCreatedAtDesc,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
       ),

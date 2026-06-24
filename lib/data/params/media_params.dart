@@ -105,8 +105,6 @@ class UMediaReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
   });
 
@@ -117,8 +115,6 @@ class UMediaReadParams {
     pageNumber: json["pageNumber"] ?? 0,
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"] ?? false,
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
   );
 
@@ -126,8 +122,6 @@ class UMediaReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final List<int>? tags;
 
   String toJson() => json.encode(toMap());
@@ -137,8 +131,6 @@ class UMediaReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
   };
 }

@@ -95,8 +95,6 @@ class UCommentReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
     this.selectorArgs,
   });
@@ -111,8 +109,6 @@ class UCommentReadParams {
     pageNumber: json["pageNumber"] ?? 0,
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"] ?? false,
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
     selectorArgs: json["selectorArgs"] == null ? null : CommentSelectorArgs.fromMap(json["selectorArgs"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
   );
@@ -123,8 +119,6 @@ class UCommentReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final CommentSelectorArgs? selectorArgs;
   final List<int>? tags;
 
@@ -138,8 +132,6 @@ class UCommentReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "selectorArgs": selectorArgs?.toMap(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
   };

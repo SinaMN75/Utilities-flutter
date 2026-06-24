@@ -35,8 +35,6 @@ class UAdminProductsController extends UAdminBaseController {
         tags: selectedTags.numbers,
         fromCreatedAt: fromCreatedAt,
         toCreatedAt: toCreatedAt,
-        orderByCreatedAt: orderByCreatedAt,
-        orderByCreatedAtDesc: orderByCreatedAtDesc,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
         parentId: parentId,

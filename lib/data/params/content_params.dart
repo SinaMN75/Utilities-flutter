@@ -92,8 +92,6 @@ class UContentReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
     this.selectorArgs,
   });
@@ -105,8 +103,6 @@ class UContentReadParams {
     pageNumber: json["pageNumber"] ?? 0,
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"] ?? false,
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : ContentSelectorArgs.fromMap(json["selectorArgs"]),
   );
@@ -114,8 +110,6 @@ class UContentReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final ContentSelectorArgs? selectorArgs;
 
@@ -126,8 +120,6 @@ class UContentReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
   };

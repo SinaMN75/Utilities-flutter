@@ -101,12 +101,8 @@ class UBankAccountReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
-  final bool? orderByOrder;
-  final bool? orderByOrderDesc;
   final String? creatorId;
   final String? cardNumber;
   final String? accountNumber;
@@ -121,12 +117,8 @@ class UBankAccountReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
     this.ids,
-    this.orderByOrder,
-    this.orderByOrderDesc,
     this.creatorId,
     this.cardNumber,
     this.accountNumber,
@@ -144,12 +136,8 @@ class UBankAccountReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"],
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
-    orderByOrder: json["orderByOrder"],
-    orderByOrderDesc: json["orderByOrderDesc"],
     creatorId: json["creatorId"],
     cardNumber: json["cardNumber"],
     accountNumber: json["accountNumber"],
@@ -164,12 +152,8 @@ class UBankAccountReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
-    "orderByOrder": orderByOrder,
-    "orderByOrderDesc": orderByOrderDesc,
     "creatorId": creatorId,
     "cardNumber": cardNumber,
     "accountNumber": accountNumber,

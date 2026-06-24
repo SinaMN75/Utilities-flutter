@@ -147,16 +147,10 @@ class UUserReadParams {
     this.startBirthDate,
     this.endBirthDate,
     this.categories,
-    this.orderByFirstName,
-    this.orderByFirstNameDesc,
-    this.orderByLastName,
-    this.orderByLastNameDesc,
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
     this.selectorArgs,
   });
@@ -175,16 +169,10 @@ class UUserReadParams {
     startBirthDate: json["startBirthDate"] == null ? null : DateTime.parse(json["startBirthDate"]),
     endBirthDate: json["endBirthDate"] == null ? null : DateTime.parse(json["endBirthDate"]),
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
-    orderByFirstName: json["orderByFirstName"] ?? false,
-    orderByFirstNameDesc: json["orderByFirstNameDesc"] ?? false,
-    orderByLastName: json["orderByLastName"] ?? false,
-    orderByLastNameDesc: json["orderByLastNameDesc"] ?? false,
     pageSize: json["pageSize"] ?? 0,
     pageNumber: json["pageNumber"] ?? 0,
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"] ?? false,
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"] ?? false,
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : UserSelectorArgs.fromMap(json["selectorArgs"]),
   );
@@ -199,16 +187,10 @@ class UUserReadParams {
   final DateTime? startBirthDate;
   final DateTime? endBirthDate;
   final List<String>? categories;
-  final bool? orderByFirstName;
-  final bool? orderByFirstNameDesc;
-  final bool? orderByLastName;
-  final bool? orderByLastNameDesc;
   final int? pageSize;
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final UserSelectorArgs? selectorArgs;
 
@@ -226,16 +208,10 @@ class UUserReadParams {
     "startBirthDate": startBirthDate?.toIso8601String(),
     "endBirthDate": endBirthDate?.toIso8601String(),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
-    "orderByFirstName": orderByFirstName,
-    "orderByFirstNameDesc": orderByFirstNameDesc,
-    "orderByLastName": orderByLastName,
-    "orderByLastNameDesc": orderByLastNameDesc,
     "pageSize": pageSize,
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
   };

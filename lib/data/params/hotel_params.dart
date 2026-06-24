@@ -123,8 +123,6 @@ class UDormBedReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
   final String? creatorId;
@@ -135,16 +133,12 @@ class UDormBedReadParams {
   final double? maxDeposit;
   final double? minMonthlyRent;
   final double? maxMonthlyRent;
-  final bool? orderByMonthlyRent;
-  final bool? orderByMonthlyRentDesc;
 
   UDormBedReadParams({
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
     this.ids,
     this.creatorId,
@@ -155,8 +149,6 @@ class UDormBedReadParams {
     this.maxDeposit,
     this.minMonthlyRent,
     this.maxMonthlyRent,
-    this.orderByMonthlyRent,
-    this.orderByMonthlyRentDesc,
   });
 
   factory UDormBedReadParams.fromJson(String str) => UDormBedReadParams.fromMap(json.decode(str));
@@ -168,8 +160,6 @@ class UDormBedReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"],
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
@@ -180,8 +170,6 @@ class UDormBedReadParams {
     maxDeposit: json["maxDeposit"]?.toDouble(),
     minMonthlyRent: json["minMonthlyRent"]?.toDouble(),
     maxMonthlyRent: json["maxMonthlyRent"]?.toDouble(),
-    orderByMonthlyRent: json["orderByMonthlyRent"],
-    orderByMonthlyRentDesc: json["orderByMonthlyRentDesc"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -189,8 +177,6 @@ class UDormBedReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
@@ -201,8 +187,6 @@ class UDormBedReadParams {
     "maxDeposit": maxDeposit,
     "minMonthlyRent": minMonthlyRent,
     "maxMonthlyRent": maxMonthlyRent,
-    "orderByMonthlyRent": orderByMonthlyRent,
-    "orderByMonthlyRentDesc": orderByMonthlyRentDesc,
   };
 }
 
@@ -313,8 +297,6 @@ class UDormReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
   final String? creatorId;
@@ -327,8 +309,6 @@ class UDormReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
     this.ids,
     this.creatorId,
@@ -346,8 +326,6 @@ class UDormReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"],
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
@@ -361,8 +339,6 @@ class UDormReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
@@ -479,8 +455,6 @@ class UHotelReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
   final String? creatorId;
@@ -493,8 +467,6 @@ class UHotelReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
     this.ids,
     this.creatorId,
@@ -512,8 +484,6 @@ class UHotelReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"],
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
@@ -527,8 +497,6 @@ class UHotelReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
@@ -661,8 +629,6 @@ class UHotelRoomReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
   final String? creatorId;
@@ -681,8 +647,6 @@ class UHotelRoomReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
     this.ids,
     this.creatorId,
@@ -706,8 +670,6 @@ class UHotelRoomReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"],
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
@@ -727,8 +689,6 @@ class UHotelRoomReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
@@ -843,8 +803,6 @@ class UDormRoomReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
   final String? creatorId;
@@ -856,8 +814,6 @@ class UDormRoomReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.tags,
     this.ids,
     this.creatorId,
@@ -874,8 +830,6 @@ class UDormRoomReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"],
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
@@ -888,8 +842,6 @@ class UDormRoomReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
@@ -963,8 +915,6 @@ class UDormBedContractReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
@@ -983,8 +933,6 @@ class UDormBedContractReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
@@ -1008,8 +956,6 @@ class UDormBedContractReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"],
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
     orderByUpdatedAt: json["orderByUpdatedAt"],
     orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
@@ -1029,8 +975,6 @@ class UDormBedContractReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "orderByUpdatedAt": orderByUpdatedAt,
     "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
@@ -1163,8 +1107,6 @@ class UDormBedInvoiceReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByCreatedAt;
-  final bool? orderByCreatedAtDesc;
   final bool? orderByUpdatedAt;
   final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
@@ -1178,8 +1120,6 @@ class UDormBedInvoiceReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByCreatedAt,
-    this.orderByCreatedAtDesc,
     this.orderByUpdatedAt,
     this.orderByUpdatedAtDesc,
     this.tags,
@@ -1198,8 +1138,6 @@ class UDormBedInvoiceReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByCreatedAt: json["orderByCreatedAt"],
-    orderByCreatedAtDesc: json["orderByCreatedAtDesc"],
     orderByUpdatedAt: json["orderByUpdatedAt"],
     orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
@@ -1214,8 +1152,6 @@ class UDormBedInvoiceReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByCreatedAt": orderByCreatedAt,
-    "orderByCreatedAtDesc": orderByCreatedAtDesc,
     "orderByUpdatedAt": orderByUpdatedAt,
     "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
