@@ -495,16 +495,17 @@ extension JalaliExt on Jalali {
 
   String formatCustom(String pattern, {bool persianDigits = false}) {
     final JalaliFormatter f = formatter;
+    // FIX: replace "mNAf" before "mN" (otherwise "mN" consumed the prefix and broke the Afghan-month token); narrow weekday now uses a distinct "wW" token (it was a duplicate "wN", which was unreachable after the full-name replacement).
     final String result = pattern
         .replaceAll("yyyy", f.yyyy)
         .replaceAll("yy", f.yy)
-        .replaceAll("mN", f.mN)
         .replaceAll("mNAf", f.mNAf)
+        .replaceAll("mN", f.mN)
         .replaceAll("mm", f.mm)
         .replaceAll("dd", f.dd)
         .replaceAll("wN", f.wN)
         .replaceAll("wS", shortDayName[weekDay - 1])
-        .replaceAll("wN", narrowWeekdays[weekDay - 1])
+        .replaceAll("wW", narrowWeekdays[weekDay - 1])
         .replaceAll("HH", hour.toString().padLeft(2, "0"))
         .replaceAll("MM", minute.toString().padLeft(2, "0"))
         .replaceAll("SS", second.toString().padLeft(2, "0"))

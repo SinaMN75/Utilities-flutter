@@ -29,18 +29,20 @@ class _USendAgainCountDownState extends State<USendAgainCountDown> {
   }
 
   @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(final BuildContext context) => counter == 0
       ? TextButton(
           onPressed: widget.onSendAgainTap,
-          child: Text(
-            widget.buttonTitle,
-          ).labelLarge(color: context.theme.colorScheme.primary),
+          child: UTextLabelLarge(widget.buttonTitle, color: Theme.of(context).colorScheme.primary),
         )
       : TextButton(
           onPressed: null,
-          child: Text(
-            "$counter ${widget.counterDescription}",
-          ).labelLarge(color: context.theme.colorScheme.primary),
+          child: UTextLabelLarge("$counter ${widget.counterDescription}", color: Theme.of(context).colorScheme.primary),
         );
 
   void startTimer() {

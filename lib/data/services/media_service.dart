@@ -8,8 +8,7 @@ class MediaService {
     required final Function(String e) onException,
   }) async {
     final List<MultipartFile> files = <MultipartFile>[
-      if (p.file.path != null) await UHttpClient.multipartFileFromFile("File", File(p.file.path!), filename: p.file.path!.split("${U.baseUrl}/").last),
-      if (p.file.bytes != null) await UHttpClient.multipartFileFromFile("File", File(p.file.path!), filename: p.file.path!.split("${U.baseUrl}/").last),
+      if (p.file.path != null) await UHttpClient.multipartFileFromFile("File", File(p.file.path!), filename: p.file.path!.split("/").last) else if (p.file.bytes != null) await UHttpClient.multipartFileFromUint8List("File", p.file.bytes!, filename: p.file.path?.split("/").last),
     ];
 
     await UHttpClient.upload(

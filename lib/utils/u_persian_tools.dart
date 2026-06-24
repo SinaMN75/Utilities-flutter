@@ -125,13 +125,11 @@ class BankInfo {
 }
 
 class PersianTools {
-  // Persian character sets
   static const String _faText = "ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی۰۱۲۳۴۵۶۷۸۹َُِآاً";
   static const String _faComplexText = "$_faTextًٌٍَُِّْٰٔءك‌ةۀأإيـئؤ،";
 
-  // Number conversion constants
   static const String _faNumber = "۰۱۲۳۴۵۶۷۸۹";
-  static const String _arNumber = "۰۱۲۳٤٥٦۷۸۹";
+  static const String _arNumber = "٠١٢٣٤٥٦٧٨٩";
   static const Map<int, String> _numberToWord = <int, String>{
     0: "",
     1: "یک",
@@ -488,7 +486,8 @@ class PersianTools {
   /// @returns bool True if valid
   /// Example: PersianTools.validateCardNumber("6219861034567890") => true
   static bool validateCardNumber(String cardNumber) {
-    if (cardNumber.length != 16 || int.parse(cardNumber.substring(1, 11)) == 0) return false;
+    // FIX: ensure the value is all digits before parsing so non-numeric input returns false instead of throwing.
+    if (!RegExp(r"^\d{16}$").hasMatch(cardNumber) || int.parse(cardNumber.substring(1, 11)) == 0) return false;
     int sum = 0;
     for (int i = 0; i < 16; i++) {
       final int multiplier = i.isEven ? 2 : 1;

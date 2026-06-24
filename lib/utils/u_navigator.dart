@@ -302,6 +302,7 @@ abstract class UNavigator {
         ],
       ),
     );
+    controller.dispose();
     if (text != null && onSubmit != null) {
       onSubmit(text);
     }

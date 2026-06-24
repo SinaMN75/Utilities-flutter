@@ -39,20 +39,23 @@ abstract class UHttpClient {
     final bool hasNetworkConnection = await UNetwork.hasEthernet() || await UNetwork.hasCellular() || await UNetwork.hasWifi();
 
     if (!hasNetworkConnection && offline == false) {
-      onException(U.s.connectionToNetworkWasNotPossible);
-      return UHttpClientResponse(exception: U.s.connectionToNetworkWasNotPossible);
+      final String message = noNetworkMessage ?? U.s.connectionToNetworkWasNotPossible;
+      onException(message);
+      return UHttpClientResponse(exception: message);
     }
+
+    final Uri uri = _buildUri(endpoint, queryParams);
+    final String cacheKey = "cache_${method}_${uri.toString().replaceAll(RegExp(r"[^\w]"), "_")}_${body == null ? "" : jsonEncode(body).hashCode}";
+
+    final String? cachedData = ULocalStorage.getString(cacheKey);
+    if (offline && cachedData != null) {
+      final Response response = Response(cachedData, 200, request: Request(method, uri));
+      onSuccess(response);
+      return UHttpClientResponse(response: cachedData);
+    }
+
+    final Response response;
     try {
-      final Uri uri = _buildUri(endpoint, queryParams);
-      final String cacheKey = 'cache_${_buildUri(endpoint, queryParams).toString().replaceAll(RegExp(r'[^\w]'), '_')}';
-
-      final String? cachedData = ULocalStorage.getString(cacheKey);
-      if (offline && cachedData != null) {
-        final Response response = Response(cachedData, 200, request: Request(method, uri));
-        onSuccess(response);
-        return UHttpClientResponse(response: cachedData);
-      }
-
       final Request request = Request(method, uri);
       if (headers != null) request.headers.addAll(headers);
 
@@ -79,20 +82,7 @@ abstract class UHttpClient {
         }
       }
 
-      final Response response = await _client.send(request).timeout(const Duration(seconds: 30)).then(Response.fromStream);
-      response.prettyLog(params: jsonEncode(body));
-
-      if (response.statusCode >= 200 && response.statusCode <= 299) {
-        ULocalStorage.set(cacheKey, response.body);
-      }
-
-      if (response.statusCode >= 200 && response.statusCode <= 299) {
-        onSuccess(response);
-        return UHttpClientResponse(response: response.body);
-      } else {
-        onError(response);
-        return UHttpClientResponse(error: response.body);
-      }
+      response = await _client.send(request).timeout(const Duration(seconds: 30)).then(Response.fromStream);
     } catch (e, stack) {
       developer.log(e.toString(), stackTrace: stack);
       if (retryAmount > 0) {
@@ -112,9 +102,28 @@ abstract class UHttpClient {
           unexpectedErrorMessage: unexpectedErrorMessage,
         );
       } else {
-        onException(U.s.unexpectedErrorPleaseTryAgain);
-        return UHttpClientResponse(exception: unexpectedErrorMessage);
+        final String message = unexpectedErrorMessage ?? U.s.unexpectedErrorPleaseTryAgain;
+        onException(message);
+        return UHttpClientResponse(exception: message);
       }
+    }
+
+    response.prettyLog(params: jsonEncode(body));
+
+    try {
+      if (response.statusCode >= 200 && response.statusCode <= 299) {
+        ULocalStorage.set(cacheKey, response.body);
+        onSuccess(response);
+        return UHttpClientResponse(response: response.body);
+      } else {
+        onError(response);
+        return UHttpClientResponse(error: response.body);
+      }
+    } catch (e, stack) {
+      developer.log(e.toString(), stackTrace: stack);
+      final String message = unexpectedErrorMessage ?? U.s.unexpectedErrorPleaseTryAgain;
+      onException(message);
+      return UHttpClientResponse(exception: message);
     }
   }
 
@@ -202,9 +211,9 @@ abstract class UHttpClient {
 }
 
 extension HTTP on Response? {
-  bool isSuccessful() => (this?.statusCode ?? 999) >= 200 && (this?.statusCode ?? 999) <= 299 || false;
+  bool isSuccessful() => (this?.statusCode ?? 999) >= 200 && (this?.statusCode ?? 999) <= 299;
 
-  bool isServerError() => (this?.statusCode ?? 999) >= 500 && (this?.statusCode ?? 999) <= 599 || false;
+  bool isServerError() => (this?.statusCode ?? 999) >= 500 && (this?.statusCode ?? 999) <= 599;
 
   void prettyLog({final String params = ""}) {
     if (kDebugMode) {
@@ -332,7 +341,6 @@ class UDownload {
             received += chunk.length;
             chunkCounter++;
 
-            // FIX 6: Flush periodically for Windows to avoid memory issues
             if (chunkCounter % 50 == 0) {
               await sink.flush();
             }
@@ -353,22 +361,14 @@ class UDownload {
         client.close();
 
         final int finalSize = await file.length();
-        if (totalBytes != null && finalSize != totalBytes) {
-          throw Exception("Download incomplete: $finalSize/$totalBytes bytes");
-        }
+        if (totalBytes != null && finalSize != totalBytes) throw Exception("Download incomplete: $finalSize/$totalBytes bytes");
 
         return await _readFileWithRetry(file);
       } catch (e) {
         client.close();
-
-        if (attempt == _maxRetries) {
-          rethrow;
-        }
-
-        // FIX 7: Longer delay for Windows on retry
+        if (attempt == _maxRetries) rethrow;
         await Future<void>.delayed(Duration(seconds: attempt * 3));
-
-        if (e.toString().contains("416") || e.toString().contains("4") || e is TimeoutException) {
+        if (e.toString().contains("416") || e is TimeoutException) {
           await _safeDelete(file);
           downloadedBytes = 0;
         }

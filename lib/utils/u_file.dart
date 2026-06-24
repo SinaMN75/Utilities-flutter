@@ -180,11 +180,8 @@ abstract class UFile {
             ),
       ],
     );
-    final FileData fileData = FileData(
-      path: result?.path,
-      bytes: await result?.readAsBytes(),
-      extension: result?.path.split(".").last,
-    );
+    if (result == null) return null;
+    final FileData fileData = FileData(path: result.path, bytes: await result.readAsBytes(), extension: result.path.split(".").last);
     if (action != null) action(fileData);
     return fileData;
   }

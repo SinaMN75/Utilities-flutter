@@ -25,7 +25,7 @@ extension OptionalStringExtension on String? {
   String? nullIfEmpty() => (this ?? "").isEmpty ? null : this;
 
   String getPrice() {
-    final int nums = this!.toInt();
+    final int nums = (this ?? "0").toInt();
     return nums > 0 ? intl.NumberFormat("###,###,###,###,000").format(nums) : "0";
   }
 
@@ -40,9 +40,9 @@ extension OptionalStringExtension on String? {
 
   String toJalaliDate() => Jalali.fromDateTime(DateTime.parse(this ?? DateTime.now().toString())).formatCompactDate();
 
-  String rial({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "" : "-", "");
+  String rial({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} ریال".trim().replaceAll(removeNegative ? "-" : "", "");
 
-  String toman({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} تومان".trim().replaceAll(removeNegative ? "" : "-", "");
+  String toman({final bool removeNegative = false}) => "${(this ?? "").separateNumbers3By3()} تومان".trim().replaceAll(removeNegative ? "-" : "", "");
 
   String rialToTomanMoneyPersian() => "${((this ?? "0").toInt() / 10).toString().separateNumbers3By3()} تومان ".trim();
 
@@ -57,7 +57,7 @@ extension OptionalStringExtension on String? {
 
   bool isNotNullOrEmpty() => this != null && this != "";
 
-  bool isNumeric() => (int.tryParse(this ?? "") ?? 10000) != 10000;
+  bool isNumeric() => this != null && double.tryParse(this!) != null;
 }
 
 extension StringExtensions on String {
@@ -223,9 +223,8 @@ extension StringExtensions on String {
     day = day.replaceAll("یک شنبه", "Sunday");
     day = day.replaceAll("دو‌شنبه", "Monday");
     day = day.replaceAll("سه‌شنبه", "Tuesday");
-    day = day.replaceAll("چهار‌شنبه", "Tuesday");
+    day = day.replaceAll("چهار‌شنبه", "Wednesday");
     day = day.replaceAll("پنج‌شنبه", "Thursday");
-    day = day.replaceAll("جمعه", "Friday");
     day = day.replaceAll("جمعه", "Friday");
     day = day.replaceAll("شنبه", "Saturday");
     return day;

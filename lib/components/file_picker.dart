@@ -40,7 +40,7 @@ class _UFilePickerState extends State<UFilePicker> {
     await UFile.showFilePicker(
       action: (List<FileData> newFiles) {
         if (newFiles.isEmpty) return;
-
+        if (!mounted) return;
         setState(() {
           if (widget.allowMultipleSelection)
             _selectedFiles.addAll(newFiles);

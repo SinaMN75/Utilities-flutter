@@ -290,6 +290,7 @@ class _UTextFieldDatePickerState extends State<UTextFieldDatePicker> {
               lastDate: DateTime(widget.endYear ?? 2040),
             );
 
+            if (!mounted) return;
             if (pickedDate != null) {
               selectedDateTime = DateTime(
                 pickedDate.year,
@@ -310,6 +311,7 @@ class _UTextFieldDatePickerState extends State<UTextFieldDatePicker> {
               initialTime: TimeOfDay.fromDateTime(selectedDateTime),
             );
 
+            if (!mounted) return;
             if (timeOfDay != null) {
               selectedDateTime = DateTime(
                 selectedDateTime.year,
@@ -571,12 +573,14 @@ class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteA
 
       try {
         final List<T> results = await widget.fetchData(query);
+        if (!mounted) return;
         setState(() {
           _list.clear();
           _list.addAll(results);
           _isLoading = false;
         });
       } catch (e) {
+        if (!mounted) return;
         setState(() {
           _list.clear();
           _isLoading = false;
@@ -613,7 +617,7 @@ class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteA
       ),
     );
 
-    if (result != null) {
+    if (result != null && mounted) {
       setState(() => _selectedItem = result);
       widget.onChanged(result);
     }

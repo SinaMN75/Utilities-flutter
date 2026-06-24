@@ -8,10 +8,8 @@ class UEmptyResponse {
 
   factory UEmptyResponse.fromJson(String str) {
     final Map<String, dynamic> jsonMap = json.decode(str);
-    final dynamic rawResult = jsonMap["result"];
-
     return UEmptyResponse(
-      status: jsonMap["status"],
+      status: jsonMap["status"] ?? 0,
       message: jsonMap["message"] ?? "",
     );
   }
@@ -33,17 +31,10 @@ class UResponse<T> {
   factory UResponse.fromJson(String str, T Function(dynamic) fromMapT) {
     final Map<String, dynamic> jsonMap = json.decode(str);
     final dynamic rawResult = jsonMap["result"];
-    T? parsedResult;
-
-    if (rawResult == null) {
-      parsedResult = null;
-    } else {
-      parsedResult = fromMapT(rawResult);
-    }
-
+    final T? parsedResult = rawResult == null ? null : fromMapT(rawResult);
     return UResponse<T>(
       result: parsedResult,
-      status: jsonMap["status"],
+      status: jsonMap["status"] ?? 0,
       pageSize: jsonMap["pageSize"] ?? 0,
       pageCount: jsonMap["pageCount"] ?? 0,
       totalCount: jsonMap["totalCount"] ?? 0,

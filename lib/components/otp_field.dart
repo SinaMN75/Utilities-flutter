@@ -57,59 +57,49 @@ class UOtpField extends StatefulWidget {
 class _UOtpFieldState extends State<UOtpField> {
   late TextEditingController controller;
   late List<FocusNode> _focusNodes;
+  late List<FocusNode> _keyboardNodes;
   late List<TextEditingController> _controllers;
   late List<String> _otp;
+  bool _ownsController = false;
 
   @override
   void initState() {
+    _ownsController = widget.controller == null;
     controller = widget.controller ?? TextEditingController();
     super.initState();
     _initializeOtpFields();
   }
 
   void _initializeOtpFields() {
-    _focusNodes = List<FocusNode>.generate(
-      widget.length,
-      (final int index) => FocusNode(),
-    );
-    _controllers = List<TextEditingController>.generate(
-      widget.length,
-      (final int index) => TextEditingController(),
-    );
-    _otp = List<String>.generate(
-      widget.length,
-      (final int index) => "",
-    );
-
+    _focusNodes = List<FocusNode>.generate(widget.length, (final int index) => FocusNode());
+    _keyboardNodes = List<FocusNode>.generate(widget.length, (final int index) => FocusNode());
+    _controllers = List<TextEditingController>.generate(widget.length, (final int index) => TextEditingController());
+    _otp = List<String>.generate(widget.length, (final int index) => "");
     controller.addListener(_syncControllersWithMain);
   }
 
   void _syncControllersWithMain() {
     final String text = controller.text;
     for (int i = 0; i < widget.length; i++) {
-      if (i < text.length) {
+      if (i < text.length)
         _controllers[i].text = text[i];
-      } else {
+      else
         _controllers[i].text = "";
-      }
     }
   }
 
   @override
   void dispose() {
-    for (final FocusNode node in _focusNodes) {
-      node.dispose();
-    }
-    for (final TextEditingController controller in _controllers) {
-      controller.dispose();
-    }
+    for (final FocusNode node in _focusNodes) node.dispose();
+    for (final FocusNode node in _keyboardNodes) node.dispose();
+    for (final TextEditingController c in _controllers) c.dispose();
     controller.removeListener(_syncControllersWithMain);
+    if (_ownsController) controller.dispose();
     super.dispose();
   }
 
   void _onChanged(final int index, final String value) {
     if (value.length > 1) {
-      // Handle paste operation
       if (value.length == widget.length) {
         for (int i = 0; i < widget.length; i++) {
           _controllers[i].text = value[i];
@@ -124,31 +114,20 @@ class _UOtpFieldState extends State<UOtpField> {
     _otp[index] = value;
     controller.text = _otp.join();
 
-    if (value.isNotEmpty && index < widget.length - 1) {
-      _focusNodes[index + 1].requestFocus();
-    }
-
-    if (widget.onChanged != null) {
-      widget.onChanged!(controller.text);
-    }
-
-    if (controller.text.length == widget.length && widget.onCompleted != null) {
-      widget.onCompleted!(controller.text);
-    }
+    if (value.isNotEmpty && index < widget.length - 1) _focusNodes[index + 1].requestFocus();
+    if (widget.onChanged != null) widget.onChanged!(controller.text);
+    if (controller.text.length == widget.length && widget.onCompleted != null) widget.onCompleted!(controller.text);
   }
 
   void _onKeyDown(final int index, final KeyEvent event) {
-    if (event.logicalKey == LogicalKeyboardKey.backspace && _controllers[index].text.isEmpty && index > 0) {
-      _focusNodes[index - 1].requestFocus();
-    }
+    if (event.logicalKey == LogicalKeyboardKey.backspace && _controllers[index].text.isEmpty && index > 0) _focusNodes[index - 1].requestFocus();
   }
 
   Color _getBorderColor(final int index) {
-    if (_focusNodes[index].hasFocus) {
+    if (_focusNodes[index].hasFocus)
       return widget.activeColor ?? Theme.of(context).colorScheme.primary;
-    } else if (_controllers[index].text.isNotEmpty) {
+    else if (_controllers[index].text.isNotEmpty)
       return (widget.activeColor ?? Theme.of(context).colorScheme.primary).withValues(alpha: 0.5);
-    }
     return widget.borderColor ?? Theme.of(context).colorScheme.secondary;
   }
 
@@ -165,7 +144,7 @@ class _UOtpFieldState extends State<UOtpField> {
               width: widget.fieldWidth,
               height: widget.fieldHeight,
               child: KeyboardListener(
-                focusNode: FocusNode(),
+                focusNode: _keyboardNodes[index],
                 onKeyEvent: (final KeyEvent event) => _onKeyDown(index, event),
                 child: TextField(
                   controller: _controllers[index],
@@ -195,17 +174,11 @@ class _UOtpFieldState extends State<UOtpField> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(widget.borderRadius),
-                          borderSide: BorderSide(
-                            color: widget.activeColor ?? Theme.of(context).colorScheme.primary,
-                            width: widget.borderWidth,
-                          ),
+                          borderSide: BorderSide(color: widget.activeColor ?? Theme.of(context).colorScheme.primary, width: widget.borderWidth),
                         ),
                         errorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(widget.borderRadius),
-                          borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.error,
-                            width: widget.borderWidth,
-                          ),
+                          borderSide: BorderSide(color: Theme.of(context).colorScheme.error, width: widget.borderWidth),
                         ),
                       ),
                   onChanged: (final String value) => _onChanged(index, value),
@@ -214,13 +187,7 @@ class _UOtpFieldState extends State<UOtpField> {
             ),
           ),
         ),
-        if (formFieldState.hasError)
-          Text(
-            formFieldState.errorText!,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.error,
-            ),
-          ).pOnly(top: 8),
+        if (formFieldState.hasError) UTextBodySmall(formFieldState.errorText!, color: Theme.of(context).colorScheme.error).pOnly(top: 8),
       ],
     ),
   ).ltr();

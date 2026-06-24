@@ -7,7 +7,7 @@ extension GenericIterableExtentions<T> on Iterable<dynamic> {
     }
   }
 
-  Iterable<dynamic> takeIfPossible(final int range) => range < length ? take(length) : take(range);
+  Iterable<dynamic> takeIfPossible(final int range) => range > length ? take(length) : take(range);
 
   List<dynamic> insertFirstReturn<T>(final T item) {
     final List<dynamic> list = toList();

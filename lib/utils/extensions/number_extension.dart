@@ -77,11 +77,11 @@ extension IntExtesion on int {
       return toString();
   }
 
-  String rial({final bool removeNegative = false}) => "${toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "" : "-", "");
+  String rial({final bool removeNegative = false}) => "${toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "-" : "", "");
 
-  String separate3By3({final bool removeNegative = false}) => toString().separateNumbers3By3().replaceAll(removeNegative ? "" : "-", "");
+  String separate3By3({final bool removeNegative = false}) => toString().separateNumbers3By3().replaceAll(removeNegative ? "-" : "", "");
 
-  String toman({final bool removeNegative = false}) => "${toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "");
+  String toman({final bool removeNegative = false}) => "${toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "-" : "", "");
 
   String rialToToman({final bool removeNegative = false}) => "${(this / 10).toInt().toString().separateNumbers3By3()} تومان ";
 
@@ -172,21 +172,21 @@ extension IntExtesion on int {
 }
 
 extension OptionalIntExtension on int? {
-  String rial({final bool removeNegative = false}) => "${(this ?? 0).toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "" : "-", "").trim();
+  String rial({final bool removeNegative = false}) => "${(this ?? 0).toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "-" : "", "").trim();
 
-  String toman({final bool removeNegative = false}) => "${(this ?? 0).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
+  String toman({final bool removeNegative = false}) => "${(this ?? 0).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "-" : "", "").trim();
 
-  String rialToToman({final bool removeNegative = false}) => "${((this ?? 0) / 10).toInt().toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
+  String rialToToman({final bool removeNegative = false}) => "${((this ?? 0) / 10).toInt().toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "-" : "", "").trim();
 
   String toStringOrEmptyIfNull() => this == null ? "" : toString();
 }
 
 extension OptionalDoubleExtension on double? {
-  String rial({final bool removeNegative = false}) => "${(this ?? 0).toInt().toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "" : "-", "").trim();
+  String rial({final bool removeNegative = false}) => "${(this ?? 0).toInt().toString().separateNumbers3By3()} ریال".replaceAll(removeNegative ? "-" : "", "").trim();
 
-  String toman({final bool removeNegative = false}) => "${(this ?? 0).toInt().toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
+  String toman({final bool removeNegative = false}) => "${(this ?? 0).toInt().toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "-" : "", "").trim();
 
-  String rialToTomanMoneyPersian({final bool removeNegative = false}) => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "" : "-", "").trim();
+  String rialToTomanMoneyPersian({final bool removeNegative = false}) => "${((this ?? 0) / 10).toString().separateNumbers3By3()} تومان".replaceAll(removeNegative ? "-" : "", "").trim();
 
   String toStringOrEmptyIfNull() => this == null ? "" : toString();
 }

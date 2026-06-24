@@ -74,7 +74,9 @@ class UButton extends StatefulWidget {
 
 class _UButtonState extends State<UButton> {
   int counter = 0;
-  late Timer timer;
+
+  // FIX: was `late Timer` which would throw in dispose when no counter was set; now nullable so it can be safely canceled.
+  Timer? timer;
   String? title;
   VoidCallback? onTap;
 
@@ -82,13 +84,18 @@ class _UButtonState extends State<UButton> {
   void initState() {
     title = widget.title;
     onTap = widget.onTap;
-    if (widget.counter != null) {
-      startTimer();
-    }
+    if (widget.counter != null) startTimer();
     super.initState();
   }
 
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
   void startTimer() {
+    timer?.cancel();
     counter = widget.counter!;
     onTap = null;
     timer = Timer.periodic(const Duration(seconds: 1), (final Timer timer) {

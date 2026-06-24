@@ -47,7 +47,7 @@ abstract class ULocalStorage {
   static String? getString(String key, {(String, String)? encryptKeyIv}) {
     final String? value = getIfNotExpired(key);
     if (value == null) return null;
-    if (encryptKeyIv == null) return getIfNotExpired(key);
+    if (encryptKeyIv == null) return value;
 
     return UEncryption.decryptString(
       base64Encrypted: value,

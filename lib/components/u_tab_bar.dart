@@ -271,12 +271,11 @@ class _UTabBarState extends State<UTabBar> {
         _menuItem(UTabMenuAction.closeAll, Icons.delete_sweep_rounded),
       ],
     );
-    if (action == null) return;
-    if (widget.onMenuAction != null) {
+    if (action == null || !mounted) return;
+    if (widget.onMenuAction != null)
       widget.onMenuAction!(action, index);
-    } else if (action == UTabMenuAction.close) {
+    else if (action == UTabMenuAction.close)
       widget.onClose(index);
-    }
   }
 
   PopupMenuItem<UTabMenuAction> _menuItem(UTabMenuAction action, IconData icon) => PopupMenuItem<UTabMenuAction>(
