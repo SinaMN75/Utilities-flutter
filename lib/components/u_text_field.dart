@@ -672,8 +672,8 @@ class UTextFieldPhoneNumber extends StatefulWidget {
 class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _searchController = TextEditingController();
-  UCountry _selectedCountry = UCountry.list[0];
-  List<UCountry> _filteredCountries = UCountry.list;
+  UCountry _selectedCountry = UData.countries[0];
+  List<UCountry> _filteredCountries = UData.countries;
   String _phoneNumber = "";
 
   @override
@@ -847,7 +847,7 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
   }
 
   void _filterCountries(String query) => setState(
-    () => _filteredCountries = UCountry.list
+    () => _filteredCountries = UData.countries
         .where(
           (UCountry i) =>
               i.name.toLowerCase().contains(query.toLowerCase()) ||
@@ -869,7 +869,7 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
       builder: (_) => widget.pickerMode == CountryPickerMode.dropdown
           ? DropdownButton<UCountry>(
               value: _selectedCountry,
-              items: UCountry.list
+              items: UData.countries
                   .map(
                     (UCountry i) => DropdownMenuItem<UCountry>(
                       value: i,

@@ -79,7 +79,6 @@ export "database.dart";
 export "enums.dart";
 export "generated/l10n.dart";
 export "init.dart";
-export "models/countries.dart";
 export "u_admin/u_admin.dart";
 export "utils/extensions/date_extension.dart";
 export "utils/extensions/iterable_extension.dart";
