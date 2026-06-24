@@ -290,7 +290,7 @@ class _UButtonState extends State<UButton> {
 class UButtonSubmitCancel extends StatefulWidget {
   const UButtonSubmitCancel({
     required this.onSubmit,
-    required this.onCancel,
+    this.onCancel,
     this.submitTitle,
     this.cancelTitle,
     super.key,
@@ -299,7 +299,7 @@ class UButtonSubmitCancel extends StatefulWidget {
   final String? submitTitle;
   final String? cancelTitle;
   final VoidCallback onSubmit;
-  final VoidCallback onCancel;
+  final VoidCallback? onCancel;
 
   @override
   State<UButtonSubmitCancel> createState() => _UButtonSubmitCancelState();
@@ -317,7 +317,7 @@ class _UButtonSubmitCancelState extends State<UButtonSubmitCancel> {
       UButton(
         type: UButtonType.text,
         title: widget.cancelTitle ?? U.s.cancel,
-        onTap: widget.onCancel,
+        onTap: widget.onCancel ?? UNavigator.back,
       ).expanded(),
     ],
   );

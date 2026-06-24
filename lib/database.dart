@@ -10701,9 +10701,7 @@ abstract class UData {
       code: "99",
       nameEn: "Unknown Province",
       nameFa: "استان ناشناخته",
-      cities: <UCity>[
-        UCity(code: "999999", nameEn: "Unknown City", nameFa: "شهر ناشناخته"),
-      ],
+      cities: <UCity>[UCity(code: "999999", nameEn: "Unknown City", nameFa: "شهر ناشناخته")],
     ),
   ];
 

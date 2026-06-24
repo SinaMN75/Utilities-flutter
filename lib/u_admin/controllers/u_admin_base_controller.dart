@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminBaseController {
+abstract class UAdminBaseController {
   final Rx<PageState> state = PageState.initial.obs;
 
   RxInt pageNumber = 1.obs;
