@@ -286,3 +286,39 @@ class _UButtonState extends State<UButton> {
     side: WidgetStateProperty.all(BorderSide(color: widget.borderColor ?? Colors.transparent, width: widget.borderWidth)),
   );
 }
+
+class UButtonSubmitCancel extends StatefulWidget {
+  const UButtonSubmitCancel({
+    required this.onSubmit,
+    required this.onCancel,
+    this.submitTitle,
+    this.cancelTitle,
+    super.key,
+  });
+
+  final String? submitTitle;
+  final String? cancelTitle;
+  final VoidCallback onSubmit;
+  final VoidCallback onCancel;
+
+  @override
+  State<UButtonSubmitCancel> createState() => _UButtonSubmitCancelState();
+}
+
+class _UButtonSubmitCancelState extends State<UButtonSubmitCancel> {
+  @override
+  Widget build(BuildContext context) => Row(
+    children: <Widget>[
+      UButton(
+        title: widget.submitTitle ?? U.s.submit,
+        onTap: widget.onSubmit,
+      ).expanded(flex: 2),
+      const SizedBox(width: 12),
+      UButton(
+        type: UButtonType.text,
+        title: widget.cancelTitle ?? U.s.cancel,
+        onTap: widget.onCancel,
+      ).expanded(),
+    ],
+  );
+}
