@@ -150,3 +150,67 @@ class _UCategorySelectorState extends State<UCategorySelector> {
     },
   );
 }
+
+class UCountryProvincePicker extends StatefulWidget {
+  const UCountryProvincePicker({
+    super.key,
+    this.initialCountry,
+    this.initialProvince,
+    this.onCountryChanged,
+    this.onProvinceChanged,
+    this.spacing = 6,
+  });
+
+  final UCountry? initialCountry;
+  final UProvince? initialProvince;
+  final void Function(UCountry country)? onCountryChanged;
+  final void Function(UProvince province)? onProvinceChanged;
+  final double spacing;
+
+  @override
+  State<UCountryProvincePicker> createState() => _UCountryProvincePickerState();
+}
+
+class _UCountryProvincePickerState extends State<UCountryProvincePicker> {
+  late final Rx<UCountry> country = (widget.initialCountry ?? UData.iran()).obs;
+  late final RxList<UProvince> provinces = country.value.provinces.obs;
+  late final Rx<UProvince> province = (widget.initialProvince ?? country.value.provinces.first).obs;
+
+  void _selectCountry(UCountry? i) {
+    if (i == null) return;
+    country(i);
+    provinces(i.provinces);
+    province(i.provinces.first);
+    widget.onCountryChanged?.call(i);
+    widget.onProvinceChanged?.call(i.provinces.first);
+  }
+
+  void _selectProvince(UProvince? i) {
+    if (i == null) return;
+    province(i);
+    widget.onProvinceChanged?.call(i);
+  }
+
+  @override
+  Widget build(BuildContext context) => Column(
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+      Obx(
+        () => UTextFieldAutoComplete<UCountry>(
+          items: UData.countries,
+          labelBuilder: (UCountry i) => i.nameFa,
+          onChanged: _selectCountry,
+          selectedItem: country.value,
+        ),
+      ).pSymmetric(vertical: widget.spacing),
+      Obx(
+        () => UTextFieldAutoComplete<UProvince>(
+          items: provinces,
+          labelBuilder: (UProvince i) => i.nameFa,
+          onChanged: _selectProvince,
+          selectedItem: province.value,
+        ),
+      ).pSymmetric(vertical: widget.spacing),
+    ],
+  );
+}

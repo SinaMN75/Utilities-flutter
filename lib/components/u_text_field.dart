@@ -697,12 +697,12 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
           countryCode: _selectedCountry.dialCode,
           phoneNumber: "${_selectedCountry.dialCode}$_phoneNumber",
           phoneWithoutCode: _phoneNumber,
-          countryName: _selectedCountry.name,
-          capital: _selectedCountry.capital,
-          continent: _selectedCountry.continent,
-          primaryReligion: _selectedCountry.primaryReligion,
+          countryName: _selectedCountry.nameEn,
+          capital: _selectedCountry.capitalEn,
+          continent: _selectedCountry.continentEn,
+          primaryReligion: _selectedCountry.primaryReligionEn,
           currency: _selectedCountry.currency,
-          primaryLanguage: _selectedCountry.primaryLanguage,
+          primaryLanguage: _selectedCountry.primaryLanguageEn,
         ),
       );
     });
@@ -753,8 +753,8 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
                           height: 32,
                           errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 32),
                         ),
-                        title: Text(country.name),
-                        subtitle: Text("${country.dialCode} • ${country.capital}"),
+                        title: Text(country.nameEn),
+                        subtitle: Text("${country.dialCode} • ${country.capitalEn}"),
                         onTap: () {
                           setState(() {
                             _selectedCountry = country;
@@ -825,8 +825,8 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
                           height: 32,
                           errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => const Icon(Icons.flag, size: 32),
                         ),
-                        title: Text(country.name),
-                        subtitle: Text("${country.dialCode} • ${country.capital}"),
+                        title: Text(country.nameEn),
+                        subtitle: Text("${country.dialCode} • ${country.capitalEn}"),
                         onTap: () {
                           setState(() {
                             _selectedCountry = country;
@@ -850,10 +850,10 @@ class _UTextFieldPhoneNumberState extends State<UTextFieldPhoneNumber> {
     () => _filteredCountries = UData.countries
         .where(
           (UCountry i) =>
-              i.name.toLowerCase().contains(query.toLowerCase()) ||
+              i.nameEn.toLowerCase().contains(query.toLowerCase()) ||
               i.dialCode.contains(query) ||
               i.code.toLowerCase().contains(query.toLowerCase()) ||
-              i.capital.toLowerCase().contains(
+              i.capitalEn.toLowerCase().contains(
                 query.toLowerCase(),
               ),
         )
