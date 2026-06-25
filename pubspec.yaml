@@ -23,30 +23,33 @@ dependencies:
 
   url_launcher: ^6.3.2
   shared_preferences: ^2.5.5
-  webview_flutter: ^4.13.1
+  webview_flutter: ^4.14.0
   local_auth: ^3.0.1
-  flutter_svg: ^2.2.4
+  flutter_svg: ^2.3.0
   image_picker: ^1.2.2
-  share_plus: ^12.0.2
+  share_plus: ^13.1.0
   connectivity_plus: ^7.1.1
-  device_info_plus: ^12.4.0
+  device_info_plus: ^13.1.0
   encrypt: ^5.0.3
   get: ^4.7.3
   flutter_map: ^8.3.0
   flutter_map_location_marker: ^10.2.0
-  geolocator: ^14.0.2
+  geolocator: ^14.0.3
   lottie: ^3.3.3
   image_cropper: ^12.2.1
   file_picker: ^11.0.2
   flutter_credit_card: ^4.1.0
-  flutter_local_notifications: ^21.0.0
-  syncfusion_flutter_charts: ^33.2.4
-  syncfusion_flutter_barcodes: ^33.2.4
-  syncfusion_flutter_gauges: ^33.2.4
-  syncfusion_flutter_chat: ^33.2.4
+  flutter_local_notifications: ^22.0.1
+  syncfusion_flutter_charts: ^33.2.15
+  syncfusion_flutter_barcodes: ^33.2.15
+  syncfusion_flutter_gauges: ^33.2.15
+  syncfusion_flutter_chat: ^33.2.15
 
 dev_dependencies:
   flutter_lints: ^6.0.0
+
+dependency_overrides:
+  win32: ^5.9.0
 
 flutter:
   uses-material-design: true
