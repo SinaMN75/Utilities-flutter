@@ -10,7 +10,7 @@ enum UMapTileProvider {
 class UMap extends StatefulWidget {
   const UMap({
     required this.controller,
-    this.center = const LatLng(51.509364, -0.128928), // Default: London
+    this.center = const LatLng(51.509364, -0.128928),
     this.zoom = 10.0,
     this.minZoom = 3.0,
     this.maxZoom = 18.0,
@@ -237,14 +237,6 @@ class _UMapState extends State<UMap> {
           if (widget.polygons.isNotEmpty)
             PolygonLayer<Object>(
               polygons: widget.polygons,
-            ),
-          if (widget.currentLocationLayer)
-            const CurrentLocationLayer(
-              alignDirectionOnUpdate: AlignOnUpdate.always,
-              style: LocationMarkerStyle(
-                markerSize: Size(16, 16),
-                markerDirection: MarkerDirection.heading,
-              ),
             ),
         ],
       ),
