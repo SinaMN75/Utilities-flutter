@@ -125,10 +125,10 @@ class _UTextFieldState extends State<UTextField> {
 
 class UDropDownField<T> extends StatefulWidget {
   const UDropDownField({
+    required this.initialValue,
+    required this.items,
+    required this.onChanged,
     super.key,
-    this.initialValue,
-    this.items,
-    this.onChanged,
     this.text,
     this.labelText,
     this.hintText,
@@ -144,9 +144,9 @@ class UDropDownField<T> extends StatefulWidget {
     this.isDense = true,
   });
 
-  final List<DropdownMenuItem<T>>? items;
-  final ValueChanged<T?>? onChanged;
-  final T? initialValue;
+  final List<DropdownMenuItem<T>> items;
+  final ValueChanged<T?> onChanged;
+  final T initialValue;
 
   final bool required;
   final bool isDense;

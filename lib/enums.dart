@@ -1,3 +1,5 @@
+import "package:u/utilities.dart";
+
 enum Usc with NumericIdentifiable {
   success("موفقیت", "Success", 200),
   created("ایجاد شده", "Created", 201),
@@ -726,6 +728,8 @@ mixin NumericIdentifiable {
   String get titleFa;
 
   String get titleEn;
+
+  String get localizedTitle => UApp.locale() == "fa" ? titleFa : titleEn;
 }
 
 extension NumericEnumExtension<T extends Enum> on Iterable<T> {
