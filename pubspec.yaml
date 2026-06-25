@@ -38,7 +38,6 @@ dependencies:
   lottie: ^3.3.3
   image_cropper: ^12.2.1
   file_picker: ^11.0.2
-  flutter_credit_card: ^4.1.0
   flutter_local_notifications: ^22.0.1
   syncfusion_flutter_charts: ^33.2.15
   syncfusion_flutter_barcodes: ^33.2.15

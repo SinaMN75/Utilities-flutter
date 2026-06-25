@@ -15,7 +15,6 @@ export "package:flutter/gestures.dart";
 export "package:flutter/material.dart";
 export "package:flutter/rendering.dart";
 export "package:flutter/services.dart";
-export "package:flutter_credit_card/flutter_credit_card.dart";
 export "package:flutter_local_notifications/flutter_local_notifications.dart";
 export "package:flutter_localizations/flutter_localizations.dart";
 export "package:flutter_map/flutter_map.dart";
