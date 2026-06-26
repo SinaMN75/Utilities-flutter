@@ -14,6 +14,8 @@ part "params/exam_params.dart";
 part "params/follow_params.dart";
 part "params/hotel_params.dart";
 part "params/inquiry_params.dart";
+
+part "params/ipg_params.dart";
 part "params/media_params.dart";
 part "params/merchant_params.dart";
 part "params/notification_params.dart";
@@ -41,6 +43,8 @@ part "responses/exam_response.dart";
 part "responses/follower_following_count_response.dart";
 part "responses/hotel_response.dart";
 part "responses/inquiry_response.dart";
+
+part "responses/ipg_response.dart";
 part "responses/media_response.dart";
 part "responses/merchant_response.dart";
 part "responses/notification_response.dart";
@@ -67,6 +71,8 @@ part "services/dashboard_service.dart";
 part "services/follow_service.dart";
 part "services/hotel_service.dart";
 part "services/inquiry_service.dart";
+
+part "services/ipg_service.dart";
 part "services/media_service.dart";
 part "services/merchant_service.dart";
 part "services/notification_service.dart";
@@ -93,6 +99,7 @@ class UServices {
   static ChatBotService chatBot = ChatBotService();
   static MediaService media = MediaService();
   static WalletService wallet = WalletService();
+  static IpgService ipg = IpgService();
   static AddressService address = AddressService();
   static InquiryService inquiry = InquiryService();
   static VehicleService vehicle = VehicleService();
