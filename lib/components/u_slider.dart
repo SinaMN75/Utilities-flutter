@@ -95,6 +95,7 @@ class _USliderState extends State<USlider> {
         height: widget.height,
         color: widget.imagePlaceholderColor,
         radius: widget.radius,
+        clipBehavior: Clip.hardEdge,
         child: PageView.builder(
           controller: _pageController,
           onPageChanged: _onPageChanged,
