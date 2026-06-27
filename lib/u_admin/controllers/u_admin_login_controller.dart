@@ -4,10 +4,10 @@ class UAdminLoginController extends UAdminBaseController {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   final TextEditingController controllerUserName = TextEditingController(
-    text: kDebugMode ? "sinamn75@gmail.com" : "",
+    text: kDebugMode ? "SystemAdmin" : "",
   );
   final TextEditingController controllerPassword = TextEditingController(
-    text: kDebugMode ? "123456789" : "",
+    text: kDebugMode ? "SystemAdmin" : "",
   );
 
   void init() {}
@@ -18,8 +18,8 @@ class UAdminLoginController extends UAdminBaseController {
       ULoading.show();
       UServices.auth.login(
         p: ULoginParams(
-          email: controllerUserName.text,
-          password: controllerPassword.text.extractLatinNumber(),
+          userName: controllerUserName.text,
+          password: controllerPassword.text,
         ),
         onOk: (final UResponse<ULoginResponse> r) {
           ULocalStorage.set(UConstants.token, r.result!.token);

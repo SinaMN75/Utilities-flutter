@@ -53,6 +53,306 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Finance`
+  String get finance {
+    return Intl.message('Finance', name: 'finance', desc: '', args: []);
+  }
+
+  /// `Wallets`
+  String get wallets {
+    return Intl.message('Wallets', name: 'wallets', desc: '', args: []);
+  }
+
+  /// `Wallet Management`
+  String get walletManagement {
+    return Intl.message(
+      'Wallet Management',
+      name: 'walletManagement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transactions`
+  String get transactions {
+    return Intl.message(
+      'Transactions',
+      name: 'transactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accounting`
+  String get accounting {
+    return Intl.message('Accounting', name: 'accounting', desc: '', args: []);
+  }
+
+  /// `Current Balance`
+  String get currentBalance {
+    return Intl.message(
+      'Current Balance',
+      name: 'currentBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Charge`
+  String get charge {
+    return Intl.message('Charge', name: 'charge', desc: '', args: []);
+  }
+
+  /// `Transfer`
+  String get transfer {
+    return Intl.message('Transfer', name: 'transfer', desc: '', args: []);
+  }
+
+  /// `Transfer Funds`
+  String get transferFunds {
+    return Intl.message(
+      'Transfer Funds',
+      name: 'transferFunds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Charge Wallet`
+  String get chargeWallet {
+    return Intl.message(
+      'Charge Wallet',
+      name: 'chargeWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receiver`
+  String get receiver {
+    return Intl.message('Receiver', name: 'receiver', desc: '', args: []);
+  }
+
+  /// `Select a receiver`
+  String get selectAReceiver {
+    return Intl.message(
+      'Select a receiver',
+      name: 'selectAReceiver',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select a user to manage their wallet`
+  String get selectUserToManageWallet {
+    return Intl.message(
+      'Select a user to manage their wallet',
+      name: 'selectUserToManageWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Wallet Transactions`
+  String get recentWalletTransactions {
+    return Intl.message(
+      'Recent Wallet Transactions',
+      name: 'recentWalletTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No transactions`
+  String get noTransactions {
+    return Intl.message(
+      'No transactions',
+      name: 'noTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 30 Days`
+  String get last30Days {
+    return Intl.message('Last 30 Days', name: 'last30Days', desc: '', args: []);
+  }
+
+  /// `User`
+  String get user {
+    return Intl.message('User', name: 'user', desc: '', args: []);
+  }
+
+  /// `Money In`
+  String get moneyIn {
+    return Intl.message('Money In', name: 'moneyIn', desc: '', args: []);
+  }
+
+  /// `Money Out`
+  String get moneyOut {
+    return Intl.message('Money Out', name: 'moneyOut', desc: '', args: []);
+  }
+
+  /// `Net`
+  String get net {
+    return Intl.message('Net', name: 'net', desc: '', args: []);
+  }
+
+  /// `Wallet Balance`
+  String get walletBalance {
+    return Intl.message(
+      'Wallet Balance',
+      name: 'walletBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Income by Type`
+  String get incomeByType {
+    return Intl.message(
+      'Income by Type',
+      name: 'incomeByType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spending by Type`
+  String get spendingByType {
+    return Intl.message(
+      'Spending by Type',
+      name: 'spendingByType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gateway Payments by Type`
+  String get gatewayPaymentsByType {
+    return Intl.message(
+      'Gateway Payments by Type',
+      name: 'gatewayPaymentsByType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily In / Out`
+  String get dailyInOut {
+    return Intl.message(
+      'Daily In / Out',
+      name: 'dailyInOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `System-wide report`
+  String get systemWideReport {
+    return Intl.message(
+      'System-wide report',
+      name: 'systemWideReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No data`
+  String get noData {
+    return Intl.message('No data', name: 'noData', desc: '', args: []);
+  }
+
+  /// `Create Transaction`
+  String get createTransaction {
+    return Intl.message(
+      'Create Transaction',
+      name: 'createTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Transaction`
+  String get editTransaction {
+    return Intl.message(
+      'Edit Transaction',
+      name: 'editTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Transaction`
+  String get deleteTransaction {
+    return Intl.message(
+      'Delete Transaction',
+      name: 'deleteTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete this transaction?`
+  String get areYouSureToDeleteThisTransaction {
+    return Intl.message(
+      'Are you sure you want to delete this transaction?',
+      name: 'areYouSureToDeleteThisTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No transactions found`
+  String get noTransactionsFound {
+    return Intl.message(
+      'No transactions found',
+      name: 'noTransactionsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Transactions`
+  String get filterTransactions {
+    return Intl.message(
+      'Filter Transactions',
+      name: 'filterTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Report`
+  String get filterReport {
+    return Intl.message(
+      'Filter Report',
+      name: 'filterReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refresh`
+  String get refresh {
+    return Intl.message('Refresh', name: 'refresh', desc: '', args: []);
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message('Retry', name: 'retry', desc: '', args: []);
+  }
+
+  /// `User (leave empty for system-wide)`
+  String get userOptionalSystemWide {
+    return Intl.message(
+      'User (leave empty for system-wide)',
+      name: 'userOptionalSystemWide',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Contract`
   String get contract {
     return Intl.message('Contract', name: 'contract', desc: '', args: []);
