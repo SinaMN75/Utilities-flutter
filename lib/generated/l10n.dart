@@ -338,6 +338,11 @@ class S {
     return Intl.message('Refresh', name: 'refresh', desc: '', args: []);
   }
 
+  /// `Register`
+  String get register {
+    return Intl.message('Register', name: 'register', desc: '', args: []);
+  }
+
   /// `Retry`
   String get retry {
     return Intl.message('Retry', name: 'retry', desc: '', args: []);

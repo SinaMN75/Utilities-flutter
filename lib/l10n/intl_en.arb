@@ -34,6 +34,7 @@
   "filterTransactions": "Filter Transactions",
   "filterReport": "Filter Report",
   "refresh": "Refresh",
+  "register": "Register",
   "retry": "Retry",
   "userOptionalSystemWide": "User (leave empty for system-wide)",
   "contract": "Contract",

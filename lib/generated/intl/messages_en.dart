@@ -412,6 +412,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "recentlyJoined": MessageLookupByLibrary.simpleMessage("Recently Joined"),
     "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
     "regarding": MessageLookupByLibrary.simpleMessage("For"),
+    "register": MessageLookupByLibrary.simpleMessage("Register"),
     "reject": MessageLookupByLibrary.simpleMessage("Reject"),
     "rejectDocuments": MessageLookupByLibrary.simpleMessage("Reject Documents"),
     "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),

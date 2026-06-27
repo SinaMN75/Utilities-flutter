@@ -3,6 +3,7 @@ part of "../u_admin.dart";
 abstract class UAdminBaseController {
   final Rx<PageState> state = PageState.initial.obs;
 
+  int totalCount = 0;
   RxInt pageNumber = 1.obs;
   RxInt totalPages = 1.obs;
   int pageSize = 20;

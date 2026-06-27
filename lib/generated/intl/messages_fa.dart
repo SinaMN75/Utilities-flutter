@@ -418,6 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "recentlyJoined": MessageLookupByLibrary.simpleMessage("تازه‌واردها"),
     "refresh": MessageLookupByLibrary.simpleMessage("بازخوانی"),
     "regarding": MessageLookupByLibrary.simpleMessage("بابت"),
+    "register": MessageLookupByLibrary.simpleMessage("ثبت‌نام"),
     "reject": MessageLookupByLibrary.simpleMessage("رد"),
     "rejectDocuments": MessageLookupByLibrary.simpleMessage("رد مدارک"),
     "rejected": MessageLookupByLibrary.simpleMessage("رد شده"),
