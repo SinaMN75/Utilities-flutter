@@ -136,6 +136,7 @@ class UUserCreateParams {
 
 class UUserReadParams {
   UUserReadParams({
+    this.query,
     this.userName,
     this.landLine,
     this.firstName,
@@ -158,6 +159,7 @@ class UUserReadParams {
   factory UUserReadParams.fromJson(String str) => UUserReadParams.fromMap(json.decode(str));
 
   factory UUserReadParams.fromMap(Map<String, dynamic> json) => UUserReadParams(
+    query: json["query"],
     userName: json["userName"],
     landLine: json["landLine"],
     firstName: json["firstName"],
@@ -176,6 +178,7 @@ class UUserReadParams {
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : UserSelectorArgs.fromMap(json["selectorArgs"]),
   );
+  final String? query;
   final String? userName;
   final String? landLine;
   final String? firstName;
@@ -197,6 +200,7 @@ class UUserReadParams {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
+    "query": query,
     "userName": userName,
     "landLine": landLine,
     "firstName": firstName,

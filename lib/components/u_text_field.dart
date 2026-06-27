@@ -420,106 +420,6 @@ class _UTextFieldAutoCompleteState<T> extends State<UTextFieldAutoComplete<T>> {
   );
 }
 
-class UTextFieldAutoCompleteCallBack<T> extends StatefulWidget {
-  const UTextFieldAutoCompleteCallBack({
-    required this.labelBuilder,
-    required this.onChanged,
-    required this.selectedItem,
-    required this.fetchData,
-    super.key,
-    this.hintText,
-  });
-
-  final String Function(T) labelBuilder;
-  final void Function(T?) onChanged;
-  final T? selectedItem;
-  final String? hintText;
-  final void Function({
-    required String query,
-    required void Function(List<T>) onSuccess,
-    void Function()? onError,
-  })
-  fetchData;
-
-  @override
-  State<UTextFieldAutoCompleteCallBack<T>> createState() => _UTextFieldAutoCompleteCallBackState<T>();
-}
-
-class _UTextFieldAutoCompleteCallBackState<T> extends State<UTextFieldAutoCompleteCallBack<T>> {
-  late RxList<T> list = <T>[].obs;
-  final Rxn<T> selectedItem = Rxn<T>();
-  final Debouncer _debouncer = Debouncer(delay: const Duration(seconds: 1));
-
-  @override
-  void initState() {
-    selectedItem(widget.selectedItem);
-    _search(query: "");
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _debouncer.dispose();
-    super.dispose();
-  }
-
-  void _search({required String query}) => _debouncer.run(
-    () => widget.fetchData(query: query, onSuccess: (List<T> items) => list(items), onError: () => list.clear()),
-  );
-
-  Future<void> _openSearchDialog() async => UNavigator.dialog(
-    AlertDialog(
-      title: Text(U.s.searchAndSelect),
-      content: SizedBox(
-        width: 200,
-        height: 400,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            UTextField(
-              hintText: U.s.search,
-              onChanged: (final String? i) => _search(query: i ?? ""),
-            ),
-            const SizedBox(height: 12),
-            Obx(
-              () => list.isEmpty
-                  ? const Text("---")
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: list.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final T item = list[index];
-                        return ListTile(
-                          title: Text(widget.labelBuilder(item)),
-                          onTap: () {
-                            selectedItem(item);
-                            widget.onChanged(item);
-                            UNavigator.back();
-                          },
-                        );
-                      },
-                    ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-
-  @override
-  Widget build(BuildContext context) => InkWell(
-    onTap: _openSearchDialog,
-    child: InputDecorator(
-      decoration: InputDecoration(
-        labelText: widget.hintText,
-        border: const OutlineInputBorder(),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-      ),
-      child: Obx(() => selectedItem.value == null ? const Text("___") : Text(widget.labelBuilder(selectedItem.value as T))),
-    ),
-  );
-}
-
 class UTextFieldAutoCompleteAsync<T> extends StatefulWidget {
   const UTextFieldAutoCompleteAsync({
     required this.labelBuilder,
@@ -592,28 +492,53 @@ class _UTextFieldAutoCompleteAsyncState<T> extends State<UTextFieldAutoCompleteA
   Future<void> _openSearchDialog() async {
     final T? result = await showDialog<T?>(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text(U.s.search),
-        content: SizedBox(
-          width: 200,
-          height: 400,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TextField(
-                decoration: InputDecoration(
-                  hintText: U.s.search,
-                  border: const OutlineInputBorder(),
-                ),
-                onChanged: _search,
+      builder: (BuildContext context) => StatefulBuilder(
+        builder: (BuildContext context, StateSetter setDialogState) {
+          Future<void> doSearch(String query) async {
+            _debounceTimer?.cancel();
+            setDialogState(() => _isLoading = true);
+            _debounceTimer = Timer(widget.debounceDuration, () async {
+              try {
+                final List<T> results = await widget.fetchData(query);
+                if (!mounted) return;
+                setDialogState(() {
+                  _list
+                    ..clear()
+                    ..addAll(results);
+                  _isLoading = false;
+                });
+              } catch (e) {
+                if (!mounted) return;
+                setDialogState(() {
+                  _list.clear();
+                  _isLoading = false;
+                });
+              }
+            });
+          }
+
+          return AlertDialog(
+            title: Text(U.s.search),
+            content: SizedBox(
+              width: 200,
+              height: 400,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: U.s.search,
+                      border: const OutlineInputBorder(),
+                    ),
+                    onChanged: doSearch,
+                  ),
+                  const SizedBox(height: 12),
+                  Expanded(child: _buildResultsList()),
+                ],
               ),
-              const SizedBox(height: 12),
-              Expanded(
-                child: _buildResultsList(),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
 
