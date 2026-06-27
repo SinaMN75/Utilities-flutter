@@ -639,8 +639,7 @@ class UHotelRoomReadParams {
   final int? maxCapacity;
   final double? minPrice;
   final double? maxPrice;
-  final bool? orderByPrice;
-  final bool? orderByPriceDesc;
+  final HotelRoomSelectorArgs? selectorArgs;
 
   UHotelRoomReadParams({
     this.pageSize,
@@ -657,8 +656,7 @@ class UHotelRoomReadParams {
     this.maxCapacity,
     this.minPrice,
     this.maxPrice,
-    this.orderByPrice,
-    this.orderByPriceDesc,
+    this.selectorArgs,
   });
 
   factory UHotelRoomReadParams.fromJson(String str) => UHotelRoomReadParams.fromMap(json.decode(str));
@@ -680,8 +678,7 @@ class UHotelRoomReadParams {
     maxCapacity: json["maxCapacity"],
     minPrice: json["minPrice"]?.toDouble(),
     maxPrice: json["maxPrice"]?.toDouble(),
-    orderByPrice: json["orderByPrice"],
-    orderByPriceDesc: json["orderByPriceDesc"],
+    selectorArgs: json["selectorArgs"] == null ? null : HotelRoomSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -699,8 +696,7 @@ class UHotelRoomReadParams {
     "maxCapacity": maxCapacity,
     "minPrice": minPrice,
     "maxPrice": maxPrice,
-    "orderByPrice": orderByPrice,
-    "orderByPriceDesc": orderByPriceDesc,
+    "selectorArgs": selectorArgs?.toMap(),
   };
 }
 
@@ -915,8 +911,6 @@ class UDormBedContractReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
   final String? userId;
@@ -933,8 +927,6 @@ class UDormBedContractReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByUpdatedAt,
-    this.orderByUpdatedAtDesc,
     this.tags,
     this.ids,
     this.userId,
@@ -956,8 +948,6 @@ class UDormBedContractReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByUpdatedAt: json["orderByUpdatedAt"],
-    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
@@ -975,8 +965,6 @@ class UDormBedContractReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByUpdatedAt": orderByUpdatedAt,
-    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
@@ -1107,8 +1095,6 @@ class UDormBedInvoiceReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
-  final bool? orderByUpdatedAt;
-  final bool? orderByUpdatedAtDesc;
   final List<int>? tags;
   final List<String>? ids;
   final String? userId;
@@ -1120,8 +1106,6 @@ class UDormBedInvoiceReadParams {
     this.pageNumber,
     this.fromCreatedAt,
     this.toCreatedAt,
-    this.orderByUpdatedAt,
-    this.orderByUpdatedAtDesc,
     this.tags,
     this.ids,
     this.userId,
@@ -1138,8 +1122,6 @@ class UDormBedInvoiceReadParams {
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
-    orderByUpdatedAt: json["orderByUpdatedAt"],
-    orderByUpdatedAtDesc: json["orderByUpdatedAtDesc"],
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
@@ -1152,8 +1134,6 @@ class UDormBedInvoiceReadParams {
     "pageNumber": pageNumber,
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
-    "orderByUpdatedAt": orderByUpdatedAt,
-    "orderByUpdatedAtDesc": orderByUpdatedAtDesc,
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
