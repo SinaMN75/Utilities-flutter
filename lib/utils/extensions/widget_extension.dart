@@ -101,7 +101,7 @@ extension WidgetsExtension on Widget {
 
   Widget card({
     final Color? backgroundColor,
-    final double elevation = 1,
+    final double? elevation,
     final EdgeInsets? margin,
   }) => Card(
     clipBehavior: Clip.hardEdge,

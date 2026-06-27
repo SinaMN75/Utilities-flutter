@@ -187,21 +187,35 @@ class _UButtonState extends State<UButton> {
         );
         break;
       case UButtonType.fab:
-        button = FloatingActionButton(
-          heroTag: widget.heroTag,
-          onPressed: onTap != null && !widget.isLoading
-              ? () {
-                  onTap!();
-                  if (widget.counterResetCounterOnTap == true) {
-                    startTimer();
+        if (widget.title == null)
+          button = FloatingActionButton(
+            heroTag: widget.heroTag,
+            onPressed: onTap != null && !widget.isLoading
+                ? () {
+                    onTap!();
+                    if (widget.counterResetCounterOnTap == true) startTimer();
                   }
-                }
-              : null,
-          backgroundColor: widget.backgroundColor,
-          foregroundColor: widget.foregroundColor,
-          elevation: widget.elevation,
-          child: widget.icon,
-        );
+                : null,
+            backgroundColor: widget.backgroundColor,
+            foregroundColor: widget.foregroundColor,
+            elevation: widget.elevation,
+            child: widget.icon,
+          );
+        else
+          button = FloatingActionButton.extended(
+            heroTag: widget.heroTag,
+            onPressed: onTap != null && !widget.isLoading
+                ? () {
+                    onTap!();
+                    if (widget.counterResetCounterOnTap == true) startTimer();
+                  }
+                : null,
+            backgroundColor: widget.backgroundColor,
+            foregroundColor: widget.foregroundColor,
+            elevation: widget.elevation,
+            icon: widget.icon,
+            label: Text(widget.title!),
+          );
         break;
       case UButtonType.cupertino:
         button = CupertinoButton(
