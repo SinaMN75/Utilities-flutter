@@ -172,7 +172,7 @@ class UCountryProvincePicker extends StatefulWidget {
 }
 
 class _UCountryProvincePickerState extends State<UCountryProvincePicker> {
-  late final Rx<UCountry> country = (widget.initialCountry ?? UData.iran()).obs;
+  late final Rx<UCountry> country = (widget.initialCountry ?? UCountries.iran()).obs;
   late final RxList<UProvince> provinces = country.value.provinces.obs;
   late final Rx<UProvince> province = (widget.initialProvince ?? country.value.provinces.first).obs;
 
@@ -197,7 +197,7 @@ class _UCountryProvincePickerState extends State<UCountryProvincePicker> {
     children: <Widget>[
       Obx(
         () => UTextFieldAutoComplete<UCountry>(
-          items: UData.countries,
+          items: UCountries.countries,
           labelBuilder: (UCountry i) => i.nameFa,
           onChanged: _selectCountry,
           selectedItem: country.value,
