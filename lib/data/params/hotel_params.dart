@@ -133,7 +133,6 @@ class UDormBedReadParams {
   final double? maxDeposit;
   final double? minMonthlyRent;
   final double? maxMonthlyRent;
-  final int? orderBy;
 
   UDormBedReadParams({
     this.pageSize,
@@ -150,7 +149,6 @@ class UDormBedReadParams {
     this.maxDeposit,
     this.minMonthlyRent,
     this.maxMonthlyRent,
-    this.orderBy,
   });
 
   factory UDormBedReadParams.fromJson(String str) => UDormBedReadParams.fromMap(json.decode(str));
@@ -172,7 +170,6 @@ class UDormBedReadParams {
     maxDeposit: json["maxDeposit"]?.toDouble(),
     minMonthlyRent: json["minMonthlyRent"]?.toDouble(),
     maxMonthlyRent: json["maxMonthlyRent"]?.toDouble(),
-    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -190,7 +187,6 @@ class UDormBedReadParams {
     "maxDeposit": maxDeposit,
     "minMonthlyRent": minMonthlyRent,
     "maxMonthlyRent": maxMonthlyRent,
-    "orderBy": orderBy,
   };
 }
 
@@ -308,7 +304,6 @@ class UDormReadParams {
   final String? city;
   final String? country;
   final DormSelectorArgs? selectorArgs;
-  final int? orderBy;
 
   UDormReadParams({
     this.pageSize,
@@ -322,7 +317,6 @@ class UDormReadParams {
     this.city,
     this.country,
     this.selectorArgs,
-    this.orderBy,
   });
 
   factory UDormReadParams.fromJson(String str) => UDormReadParams.fromMap(json.decode(str));
@@ -341,7 +335,6 @@ class UDormReadParams {
     city: json["city"],
     country: json["country"],
     selectorArgs: json["selectorArgs"] == null ? null : DormSelectorArgs.fromMap(json["selectorArgs"]),
-    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -356,7 +349,6 @@ class UDormReadParams {
     "city": city,
     "country": country,
     "selectorArgs": selectorArgs?.toMap(),
-    "orderBy": orderBy,
   };
 }
 
@@ -473,7 +465,6 @@ class UHotelReadParams {
   final String? title;
   final String? city;
   final String? country;
-  final int? orderBy;
 
   UHotelReadParams({
     this.pageSize,
@@ -486,7 +477,6 @@ class UHotelReadParams {
     this.title,
     this.city,
     this.country,
-    this.orderBy,
   });
 
   factory UHotelReadParams.fromJson(String str) => UHotelReadParams.fromMap(json.decode(str));
@@ -504,7 +494,6 @@ class UHotelReadParams {
     title: json["title"],
     city: json["city"],
     country: json["country"],
-    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -518,7 +507,6 @@ class UHotelReadParams {
     "title": title,
     "city": city,
     "country": country,
-    "orderBy": orderBy,
   };
 }
 
@@ -656,7 +644,6 @@ class UHotelRoomReadParams {
   final double? minPrice;
   final double? maxPrice;
   final HotelRoomSelectorArgs? selectorArgs;
-  final int? orderBy;
 
   UHotelRoomReadParams({
     this.pageSize,
@@ -674,7 +661,6 @@ class UHotelRoomReadParams {
     this.minPrice,
     this.maxPrice,
     this.selectorArgs,
-    this.orderBy,
   });
 
   factory UHotelRoomReadParams.fromJson(String str) => UHotelRoomReadParams.fromMap(json.decode(str));
@@ -697,7 +683,6 @@ class UHotelRoomReadParams {
     minPrice: json["minPrice"]?.toDouble(),
     maxPrice: json["maxPrice"]?.toDouble(),
     selectorArgs: json["selectorArgs"] == null ? null : HotelRoomSelectorArgs.fromMap(json["selectorArgs"]),
-    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -716,7 +701,6 @@ class UHotelRoomReadParams {
     "minPrice": minPrice,
     "maxPrice": maxPrice,
     "selectorArgs": selectorArgs?.toMap(),
-    "orderBy": orderBy,
   };
 }
 
@@ -825,7 +809,6 @@ class UDormRoomReadParams {
   final String? title;
   final String? dormId;
   final DormRoomSelectorArgs? selectorArgs;
-  final int? orderBy;
 
   UDormRoomReadParams({
     this.pageSize,
@@ -838,7 +821,6 @@ class UDormRoomReadParams {
     this.title,
     this.dormId,
     this.selectorArgs,
-    this.orderBy,
   });
 
   factory UDormRoomReadParams.fromJson(String str) => UDormRoomReadParams.fromMap(json.decode(str));
@@ -856,7 +838,6 @@ class UDormRoomReadParams {
     title: json["title"],
     dormId: json["dormId"],
     selectorArgs: json["selectorArgs"] == null ? null : DormRoomSelectorArgs.fromMap(json["selectorArgs"]),
-    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -870,7 +851,6 @@ class UDormRoomReadParams {
     "title": title,
     "dormId": dormId,
     "selectorArgs": selectorArgs?.toMap(),
-    "orderBy": orderBy,
   };
 }
 
@@ -949,7 +929,6 @@ class UDormBedContractReadParams {
   final String? userName;
   final String? bedId;
   final ContractSelectorArgs? selectorArgs;
-  final int? orderBy;
 
   UDormBedContractReadParams({
     this.pageSize,
@@ -966,7 +945,6 @@ class UDormBedContractReadParams {
     this.userName,
     this.bedId,
     this.selectorArgs,
-    this.orderBy,
   });
 
   factory UDormBedContractReadParams.fromJson(String str) => UDormBedContractReadParams.fromMap(json.decode(str));
@@ -988,7 +966,6 @@ class UDormBedContractReadParams {
     startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
     selectorArgs: json["selectorArgs"] == null ? null : ContractSelectorArgs.fromMap(json["selectorArgs"]),
-    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -1006,7 +983,6 @@ class UDormBedContractReadParams {
     "startDate": startDate?.toIso8601String(),
     "endDate": endDate?.toIso8601String(),
     "selectorArgs": selectorArgs?.toMap(),
-    "orderBy": orderBy,
   };
 }
 
@@ -1132,7 +1108,6 @@ class UDormBedInvoiceReadParams {
   final String? userId;
   final String? contractId;
   final InvoiceSelectorArgs? selectorArgs;
-  final int? orderBy;
 
   UDormBedInvoiceReadParams({
     this.pageSize,
@@ -1144,7 +1119,6 @@ class UDormBedInvoiceReadParams {
     this.userId,
     this.selectorArgs,
     this.contractId,
-    this.orderBy,
   });
 
   factory UDormBedInvoiceReadParams.fromJson(String str) => UDormBedInvoiceReadParams.fromMap(json.decode(str));
@@ -1161,7 +1135,6 @@ class UDormBedInvoiceReadParams {
     userId: json["userId"],
     contractId: json["contractId"],
     selectorArgs: json["selectorArgs"] == null ? null : InvoiceSelectorArgs.fromMap(json["selectorArgs"]),
-    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -1174,7 +1147,6 @@ class UDormBedInvoiceReadParams {
     "userId": userId,
     "contractId": contractId,
     "selectorArgs": selectorArgs?.toMap(),
-    "orderBy": orderBy,
   };
 }
 

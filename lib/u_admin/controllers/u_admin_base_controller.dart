@@ -7,6 +7,7 @@ abstract class UAdminBaseController {
   RxInt pageNumber = 1.obs;
   RxInt totalPages = 1.obs;
   int pageSize = 20;
+  Rx<TagOrderBy> tagOrderBy = TagOrderBy.createdAt.obs;
 
   // Filter
   DateTime? fromCreatedAt;
