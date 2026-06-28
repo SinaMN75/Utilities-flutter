@@ -370,21 +370,22 @@ enum TagWallet with NumericIdentifiable {
   final int number;
 }
 
+// Polished fa/en titles so each tag reads as a clean transaction title in the wallet list/receipt (shown via localizedTitle).
 enum TagWalletTxn with NumericIdentifiable {
-  charge("شارژ", "Charge", 101),
-  transfer("انتقال", "Transfer", 102),
-  mobileAndNationalCodeVerification("اعتبارسنجی موبایل و کد ملی", "Mobile And National Code Verification", 201),
-  zipCodeToAddressDetail("کد پستی به آدرس", "Zip Code To Address Detail", 202),
-  vehicleViolationsDetail("جزئیات تخلفات وسیله نقلیه", "Vehicle Violations Detail", 203),
-  drivingLicenceStatus("وضعیت گواهینامه", "Driving Licence Status", 204),
-  licencePlateDetail("جزئیات پلاک", "Licence Plate Detail", 205),
-  drivingLicenceNegativePoint("امتیاز منفی گواهینامه", "Driving Licence Negative Point", 206),
-  iBanToBankAccountDetail("IBan به جزئیات حساب بانکی", "IBan To Bank Account Detail", 207),
-  freewayTolls("عوارض آزادراه", "Freeway Tolls", 208),
+  charge("شارژ کیف پول", "Wallet Top-up", 101),
+  transfer("انتقال وجه", "Money Transfer", 102),
+  mobileAndNationalCodeVerification("اعتبارسنجی موبایل و کد ملی", "Mobile & National ID Match", 201),
+  zipCodeToAddressDetail("استعلام کد پستی", "Postal Code to Address", 202),
+  vehicleViolationsDetail("استعلام خلافی خودرو", "Vehicle Violations", 203),
+  drivingLicenceStatus("استعلام وضعیت گواهینامه", "Driving Licence Status", 204),
+  licencePlateDetail("استعلام سوابق پلاک", "Licence Plate History", 205),
+  drivingLicenceNegativePoint("استعلام نمره منفی گواهینامه", "Licence Negative Points", 206),
+  iBanToBankAccountDetail("استعلام شبا به حساب بانکی", "IBAN to Bank Account", 207),
+  freewayTolls("استعلام عوارض آزادراه", "Freeway Tolls", 208),
   merchantCreationFee("هزینه ایجاد پذیرنده", "Merchant Creation Fee", 209),
-  chargeSimPin("شارژ سیم کارت با پین", "Charge Sim Pin", 301),
-  chargeSimTopup("شارژ سیم کارت", "Charge Sim Topup", 302),
-  internetSim("اینترنت سیم کارت", "Internet Sim", 303);
+  chargeSimPin("خرید شارژ پین سیم‌کارت", "SIM Charge (PIN)", 301),
+  chargeSimTopup("شارژ مستقیم سیم‌کارت", "SIM Top-up", 302),
+  internetSim("خرید بسته اینترنت", "Internet Package", 303);
 
   const TagWalletTxn(this.titleFa, this.titleEn, this.number);
 

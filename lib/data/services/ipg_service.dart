@@ -14,18 +14,4 @@ class IpgService {
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
-
-  Future<UHttpClientResponse> verify({
-    required final UIpgVerifyParams p,
-    final Function(UResponse<UIpgVerifyResponse> r)? onOk,
-    final Function(UEmptyResponse e)? onError,
-    final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/ipg/Verify",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UIpgVerifyResponse>.fromJson(r.body, (final dynamic i) => UIpgVerifyResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
 }

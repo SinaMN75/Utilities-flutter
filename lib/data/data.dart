@@ -2,6 +2,8 @@ import "package:u/utilities.dart";
 
 part "params/accounting_params.dart";
 
+part "params/app_settings_params.dart";
+
 part "params/address_params.dart";
 
 part "params/auth_params.dart";
@@ -58,6 +60,7 @@ part "params/vehicle_params.dart";
 
 part "params/wallet_params.dart";
 
+part "responses/app_settings_response.dart";
 part "responses/accounting_response.dart";
 
 part "responses/address_response.dart";
@@ -120,6 +123,8 @@ part "responses/wallet_response.dart";
 
 part "services/accounting_service.dart";
 
+part "services/app_settings_service.dart";
+
 part "services/address_service.dart";
 
 part "services/auth_service.dart";
@@ -175,6 +180,7 @@ part "services/wallet_service.dart";
 class UServices {
   static AuthService auth = AuthService();
   static AccountingService accounting = AccountingService();
+  static AppSettingsService appSettings = AppSettingsService();
   static CategoryService category = CategoryService();
   static DashboardService dashboard = DashboardService();
   static UserService user = UserService();
