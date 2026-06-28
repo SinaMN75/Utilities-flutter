@@ -84,6 +84,7 @@ class UParkingReadParams {
   final List<int>? tags;
   final List<String>? ids;
   final ParkingSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UParkingReadParams({
     this.pageSize,
@@ -93,6 +94,7 @@ class UParkingReadParams {
     this.tags,
     this.ids,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UParkingReadParams.fromJson(String str) => UParkingReadParams.fromMap(json.decode(str));
@@ -107,6 +109,7 @@ class UParkingReadParams {
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : ParkingSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -117,6 +120,7 @@ class UParkingReadParams {
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }
 
@@ -224,6 +228,7 @@ class UParkingReportReadParams {
   final DateTime? startDate;
   final DateTime? endDate;
   final ParkingReportSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UParkingReportReadParams({
     this.pageSize,
@@ -237,6 +242,7 @@ class UParkingReportReadParams {
     this.startDate,
     this.endDate,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UParkingReportReadParams.fromJson(String str) => UParkingReportReadParams.fromMap(json.decode(str));
@@ -255,6 +261,7 @@ class UParkingReportReadParams {
     startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
     selectorArgs: json["selectorArgs"] == null ? null : ParkingReportSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -269,5 +276,6 @@ class UParkingReportReadParams {
     "startDate": startDate?.toIso8601String(),
     "endDate": endDate?.toIso8601String(),
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

@@ -33,6 +33,52 @@ enum Usc with NumericIdentifiable {
   final int number;
 }
 
+enum TagOrderBy with NumericIdentifiable {
+  createdAt("تاریخ ایجاد", "Created At", 101),
+  cardNumber("شماره کارت", "Card Number", 102),
+  zipCode("کد پستی", "Zip Code", 103),
+  order("ترتیب", "Order", 104),
+  title("عنوان", "Title", 105),
+  capacity("ظرفیت", "Capacity", 106),
+  city("شهر", "City", 107),
+  isAvailable("در دسترس", "Is Available", 108),
+  startDate("تاریخ شروع", "Start Date", 109),
+  endDate("تاریخ پایان", "End Date", 110),
+  dueDate("تاریخ سررسید", "Due Date", 111),
+  mcc("کد بازرگانی", "Mcc", 112),
+  code("کد", "Code", 113),
+  amount("مبلغ", "Amount", 114),
+  userName("نام کاربری", "User Name", 115),
+  brand("برند", "Brand", 116),
+  balance("موجودی", "Balance", 117),
+  createdAtDescending("تاریخ ایجاد (نزولی)", "Created At Descending", 201),
+  cardNumberDescending("شماره کارت (نزولی)", "Card Number Descending", 202),
+  zipCodeDescending("کد پستی (نزولی)", "Zip Code Descending", 203),
+  orderDescending("ترتیب (نزولی)", "Order Descending", 204),
+  titleDescending("عنوان (نزولی)", "Title Descending", 205),
+  capacityDescending("ظرفیت (نزولی)", "Capacity Descending", 206),
+  cityDescending("شهر (نزولی)", "City Descending", 207),
+  isAvailableDescending("در دسترس (نزولی)", "Is Available Descending", 208),
+  startDateDescending("تاریخ شروع (نزولی)", "Start Date Descending", 209),
+  endDateDescending("تاریخ پایان (نزولی)", "End Date Descending", 210),
+  dueDateDescending("تاریخ سررسید (نزولی)", "Due Date Descending", 211),
+  mccDescending("کد بازرگانی (نزولی)", "Mcc Descending", 212),
+  codeDescending("کد (نزولی)", "Code Descending", 213),
+  amountDescending("مبلغ (نزولی)", "Amount Descending", 214),
+  userNameDescending("نام کاربری (نزولی)", "User Name Descending", 215),
+  brandDescending("برند (نزولی)", "Brand Descending", 216),
+  balanceDescending("موجودی (نزولی)", "Balance Descending", 217);
+
+  const TagOrderBy(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 enum TagSmsPanel with NumericIdentifiable {
   nikSms("نیک اس ام اس", "Nik Sms", 101),
   ghasedak("قاصدک", "Ghasedak", 102),

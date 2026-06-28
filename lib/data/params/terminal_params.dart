@@ -165,6 +165,7 @@ class UTerminalReadParams {
   final String? serial;
   final String? merchantId;
   final TerminalSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UTerminalReadParams({
     required this.selectorArgs,
@@ -177,6 +178,7 @@ class UTerminalReadParams {
     this.creatorId,
     this.serial,
     this.merchantId,
+    this.orderBy,
   });
 
   factory UTerminalReadParams.fromJson(String str) => UTerminalReadParams.fromMap(json.decode(str));
@@ -194,6 +196,7 @@ class UTerminalReadParams {
     creatorId: json["creatorId"],
     merchantId: json["merchantId"],
     selectorArgs: json["selectorArgs"] == null ? null : TerminalSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -207,5 +210,6 @@ class UTerminalReadParams {
     "creatorId": creatorId,
     "merchantId": merchantId,
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

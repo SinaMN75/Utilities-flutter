@@ -116,6 +116,7 @@ class UBedReadParams {
   final double? rent;
   final String? parentId;
   final BedSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UBedReadParams({
     this.pageSize,
@@ -129,6 +130,7 @@ class UBedReadParams {
     this.rent,
     this.parentId,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UBedReadParams.fromJson(String str) => UBedReadParams.fromMap(json.decode(str));
@@ -147,6 +149,7 @@ class UBedReadParams {
     rent: json["rent"] == null ? null : (json["rent"] as num).toDouble(),
     parentId: json["parentId"],
     selectorArgs: json["selectorArgs"] == null ? null : BedSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -161,5 +164,6 @@ class UBedReadParams {
     "rent": rent,
     "parentId": parentId,
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

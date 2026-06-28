@@ -97,6 +97,7 @@ class UCommentReadParams {
     this.toCreatedAt,
     this.tags,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UCommentReadParams.fromJson(String str) => UCommentReadParams.fromMap(json.decode(str));
@@ -111,6 +112,7 @@ class UCommentReadParams {
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
     selectorArgs: json["selectorArgs"] == null ? null : CommentSelectorArgs.fromMap(json["selectorArgs"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    orderBy: json["orderBy"],
   );
   final String? creatorId;
   final String? productId;
@@ -121,6 +123,7 @@ class UCommentReadParams {
   final DateTime? toCreatedAt;
   final CommentSelectorArgs? selectorArgs;
   final List<int>? tags;
+  final int? orderBy;
 
   String toJson() => json.encode(toMap());
 
@@ -134,5 +137,6 @@ class UCommentReadParams {
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "selectorArgs": selectorArgs?.toMap(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+    "orderBy": orderBy,
   };
 }

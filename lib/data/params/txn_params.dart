@@ -88,6 +88,7 @@ class UTxnReadParams {
   final List<int>? tags;
   final List<String>? ids;
   final TxnSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UTxnReadParams({
     this.pageSize,
@@ -97,6 +98,7 @@ class UTxnReadParams {
     this.tags,
     this.ids,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UTxnReadParams.fromJson(String str) => UTxnReadParams.fromMap(json.decode(str));
@@ -111,6 +113,7 @@ class UTxnReadParams {
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : TxnSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -121,5 +124,6 @@ class UTxnReadParams {
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

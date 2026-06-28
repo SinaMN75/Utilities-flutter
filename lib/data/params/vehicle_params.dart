@@ -93,6 +93,7 @@ class UVehicleReadParams {
   final List<String>? ids;
   final String? creatorId;
   final VehicleSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UVehicleReadParams({
     required this.selectorArgs,
@@ -103,6 +104,7 @@ class UVehicleReadParams {
     this.tags,
     this.ids,
     this.creatorId,
+    this.orderBy,
   });
 
   factory UVehicleReadParams.fromJson(String str) => UVehicleReadParams.fromMap(json.decode(str));
@@ -118,6 +120,7 @@ class UVehicleReadParams {
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
     selectorArgs: json["selectorArgs"] == null ? null : VehicleSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -129,5 +132,6 @@ class UVehicleReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

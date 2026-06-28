@@ -51,6 +51,7 @@ class UChatBotReadParams {
   final List<int>? tags;
   final List<String>? ids;
   final String? userId;
+  final int? orderBy;
 
   UChatBotReadParams({
     this.apiKey,
@@ -63,6 +64,7 @@ class UChatBotReadParams {
     this.tags,
     this.ids,
     this.userId,
+    this.orderBy,
   });
 
   factory UChatBotReadParams.fromJson(String str) => UChatBotReadParams.fromMap(json.decode(str));
@@ -80,6 +82,7 @@ class UChatBotReadParams {
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -93,5 +96,6 @@ class UChatBotReadParams {
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
+    "orderBy": orderBy,
   };
 }

@@ -154,6 +154,7 @@ class UUserReadParams {
     this.toCreatedAt,
     this.tags,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UUserReadParams.fromJson(String str) => UUserReadParams.fromMap(json.decode(str));
@@ -177,6 +178,7 @@ class UUserReadParams {
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : UserSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
   final String? query;
   final String? userName;
@@ -196,6 +198,7 @@ class UUserReadParams {
   final DateTime? toCreatedAt;
   final List<int>? tags;
   final UserSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   String toJson() => json.encode(toMap());
 
@@ -218,6 +221,7 @@ class UUserReadParams {
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }
 

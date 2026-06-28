@@ -41,6 +41,7 @@ class USimReadParams {
   final List<String>? ids;
   final String? creatorId;
   final SimSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   USimReadParams({
     this.pageSize,
@@ -51,6 +52,7 @@ class USimReadParams {
     this.ids,
     this.creatorId,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory USimReadParams.fromJson(String str) => USimReadParams.fromMap(json.decode(str));
@@ -66,6 +68,7 @@ class USimReadParams {
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
     selectorArgs: json["selectorArgs"] == null ? null : SimSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -77,6 +80,7 @@ class USimReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }
 

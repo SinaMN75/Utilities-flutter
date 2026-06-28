@@ -104,6 +104,7 @@ class UTicketReadParams {
   final List<int>? tags;
   final List<String>? ids;
   final TicketSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UTicketReadParams({
     this.pageSize,
@@ -113,6 +114,7 @@ class UTicketReadParams {
     this.tags,
     this.ids,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UTicketReadParams.fromJson(String str) => UTicketReadParams.fromMap(json.decode(str));
@@ -127,6 +129,7 @@ class UTicketReadParams {
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : TicketSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -137,5 +140,6 @@ class UTicketReadParams {
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

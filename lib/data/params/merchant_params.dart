@@ -107,6 +107,7 @@ class UMerchantReadParams {
   final String? mcc;
   final String? merchantId;
   final String? insId;
+  final int? orderBy;
 
   UMerchantReadParams({
     this.pageSize,
@@ -127,6 +128,7 @@ class UMerchantReadParams {
     this.mcc,
     this.merchantId,
     this.insId,
+    this.orderBy,
   });
 
   factory UMerchantReadParams.fromJson(String str) => UMerchantReadParams.fromMap(json.decode(str));
@@ -152,6 +154,7 @@ class UMerchantReadParams {
     mcc: json["mcc"],
     merchantId: json["merchantId"],
     insId: json["insId"],
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -173,5 +176,6 @@ class UMerchantReadParams {
     "mcc": mcc,
     "merchantId": merchantId,
     "insId": insId,
+    "orderBy": orderBy,
   };
 }

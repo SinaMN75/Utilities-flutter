@@ -221,6 +221,7 @@ class UAddressReadParams {
   final List<String>? ids;
   final String? creatorId;
   final AddressSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UAddressReadParams({
     required this.selectorArgs,
@@ -231,6 +232,7 @@ class UAddressReadParams {
     this.tags,
     this.ids,
     this.creatorId,
+    this.orderBy,
   });
 
   factory UAddressReadParams.fromJson(String str) => UAddressReadParams.fromMap(json.decode(str));
@@ -246,6 +248,7 @@ class UAddressReadParams {
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
     selectorArgs: json["selectorArgs"] == null ? null : AddressSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -257,5 +260,6 @@ class UAddressReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

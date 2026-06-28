@@ -165,6 +165,7 @@ class UCategoryReadParams {
     this.pageNumber,
     this.tags,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UCategoryReadParams.fromJson(String str) => UCategoryReadParams.fromMap(json.decode(str));
@@ -175,12 +176,14 @@ class UCategoryReadParams {
     pageNumber: json["pageNumber"],
     selectorArgs: json["selectorArgs"] == null ? null : CategorySelectorArgs.fromMap(json["selectorArgs"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    orderBy: json["orderBy"],
   );
   final List<String>? ids;
   final int? pageSize;
   final int? pageNumber;
   final List<int>? tags;
   final CategorySelectorArgs? selectorArgs;
+  final int? orderBy;
 
   String toJson() => json.encode(toMap());
 
@@ -190,5 +193,6 @@ class UCategoryReadParams {
     "pageNumber": pageNumber,
     "selectorArgs": selectorArgs?.toMap(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
+    "orderBy": orderBy,
   };
 }

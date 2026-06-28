@@ -110,6 +110,7 @@ class UBankAccountReadParams {
   final String? bankName;
   final String? ownerName;
   final BankAccountSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UBankAccountReadParams({
     required this.selectorArgs,
@@ -125,6 +126,7 @@ class UBankAccountReadParams {
     this.iBanNumber,
     this.bankName,
     this.ownerName,
+    this.orderBy,
   });
 
   factory UBankAccountReadParams.fromJson(String str) => UBankAccountReadParams.fromMap(json.decode(str));
@@ -145,6 +147,7 @@ class UBankAccountReadParams {
     bankName: json["bankName"],
     ownerName: json["ownerName"],
     selectorArgs: json["selectorArgs"] == null ? null : BankAccountSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -161,5 +164,6 @@ class UBankAccountReadParams {
     "bankName": bankName,
     "ownerName": ownerName,
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

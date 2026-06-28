@@ -1,6 +1,5 @@
 part of "../data.dart";
 
-// Params for the accounting report. Set userId for a per-user report; leave null for system-wide.
 class UAccountingReportParams {
   final String? userId;
   final DateTime? fromDate;

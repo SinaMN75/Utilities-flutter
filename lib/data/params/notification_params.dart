@@ -86,6 +86,7 @@ class UNotificationReadParams {
   final String? creatorId;
   final String? userId;
   final NotificationSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UNotificationReadParams({
     required this.selectorArgs,
@@ -97,6 +98,7 @@ class UNotificationReadParams {
     this.ids,
     this.creatorId,
     this.userId,
+    this.orderBy,
   });
 
   factory UNotificationReadParams.fromJson(String str) => UNotificationReadParams.fromMap(json.decode(str));
@@ -113,6 +115,7 @@ class UNotificationReadParams {
     creatorId: json["creatorId"],
     userId: json["userId"],
     selectorArgs: json["selectorArgs"] == null ? null : NotificationSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -125,5 +128,6 @@ class UNotificationReadParams {
     "creatorId": creatorId,
     "userId": userId,
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

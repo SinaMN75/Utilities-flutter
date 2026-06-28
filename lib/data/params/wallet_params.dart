@@ -33,6 +33,7 @@ class UWalletReadParams {
   final int? pageNumber;
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
+  final int? orderBy;
 
   final List<int>? tags;
   final List<String>? ids;
@@ -48,6 +49,7 @@ class UWalletReadParams {
     this.tags,
     this.ids,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UWalletReadParams.fromJson(String str) => UWalletReadParams.fromMap(json.decode(str));
@@ -63,6 +65,7 @@ class UWalletReadParams {
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : WalletSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -74,6 +77,7 @@ class UWalletReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }
 
@@ -86,6 +90,7 @@ class UWalletTxnReadParams {
   final List<String>? ids;
   final String userId;
   final WalletTxnSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   UWalletTxnReadParams({
     required this.userId,
@@ -96,6 +101,7 @@ class UWalletTxnReadParams {
     this.tags,
     this.ids,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UWalletTxnReadParams.fromJson(String str) => UWalletTxnReadParams.fromMap(json.decode(str));
@@ -111,6 +117,7 @@ class UWalletTxnReadParams {
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
     selectorArgs: json["selectorArgs"] == null ? null : WalletTxnSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -122,6 +129,7 @@ class UWalletTxnReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }
 

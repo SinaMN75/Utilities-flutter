@@ -94,6 +94,7 @@ class UContentReadParams {
     this.toCreatedAt,
     this.tags,
     this.selectorArgs,
+    this.orderBy,
   });
 
   factory UContentReadParams.fromJson(String str) => UContentReadParams.fromMap(json.decode(str));
@@ -105,6 +106,7 @@ class UContentReadParams {
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : ContentSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
   );
   final int? pageSize;
   final int? pageNumber;
@@ -112,6 +114,7 @@ class UContentReadParams {
   final DateTime? toCreatedAt;
   final List<int>? tags;
   final ContentSelectorArgs? selectorArgs;
+  final int? orderBy;
 
   String toJson() => json.encode(toMap());
 
@@ -122,5 +125,6 @@ class UContentReadParams {
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
   };
 }

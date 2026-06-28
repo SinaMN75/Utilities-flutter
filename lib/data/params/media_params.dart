@@ -106,6 +106,7 @@ class UMediaReadParams {
     this.fromCreatedAt,
     this.toCreatedAt,
     this.tags,
+    this.orderBy,
   });
 
   factory UMediaReadParams.fromJson(String str) => UMediaReadParams.fromMap(json.decode(str));
@@ -116,6 +117,7 @@ class UMediaReadParams {
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    orderBy: json["orderBy"],
   );
 
   final int? pageSize;
@@ -123,6 +125,7 @@ class UMediaReadParams {
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
   final List<int>? tags;
+  final int? orderBy;
 
   String toJson() => json.encode(toMap());
 
@@ -132,5 +135,6 @@ class UMediaReadParams {
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
+    "orderBy": orderBy,
   };
 }

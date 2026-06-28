@@ -47,6 +47,7 @@ class UExamReadParams {
     this.fromCreatedAt,
     this.toCreatedAt,
     this.tags,
+    this.orderBy,
   });
 
   factory UExamReadParams.fromJson(String str) => UExamReadParams.fromMap(json.decode(str));
@@ -58,6 +59,7 @@ class UExamReadParams {
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
     toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    orderBy: json["orderBy"],
   );
   final String? categoryId;
   final int? pageSize;
@@ -65,6 +67,7 @@ class UExamReadParams {
   final DateTime? fromCreatedAt;
   final DateTime? toCreatedAt;
   final List<int>? tags;
+  final int? orderBy;
 
   String toJson() => json.encode(toMap());
 
@@ -75,6 +78,7 @@ class UExamReadParams {
     "fromCreatedAt": fromCreatedAt?.toIso8601String(),
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+    "orderBy": orderBy,
   };
 }
 
