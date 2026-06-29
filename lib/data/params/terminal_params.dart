@@ -213,3 +213,17 @@ class UTerminalReadParams {
     "orderBy": orderBy,
   };
 }
+
+class UTerminalImportParams {
+  UTerminalImportParams({
+    required this.file,
+  });
+
+  final String file;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "file": file,
+  };
+}

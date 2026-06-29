@@ -71,13 +71,43 @@ class UTerminalReadSupportPasswordResponse {
 
   String toJson() => json.encode(toMap());
 
-  factory UTerminalReadSupportPasswordResponse.fromMap(Map<String, dynamic> json) =>
-      UTerminalReadSupportPasswordResponse(
-        password: json["password"],
-      );
+  factory UTerminalReadSupportPasswordResponse.fromMap(Map<String, dynamic> json) => UTerminalReadSupportPasswordResponse(
+    password: json["password"],
+  );
 
-  Map<String, dynamic> toMap() =>
-      <String, dynamic>{
-        "password": password,
-      };
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "password": password,
+  };
+}
+
+class UTerminalImportResponse {
+  final int? totalRows;
+  final int? imported;
+  final int? skipped;
+  final List<String>? skippedSerials;
+
+  UTerminalImportResponse({
+    this.totalRows,
+    this.imported,
+    this.skipped,
+    this.skippedSerials,
+  });
+
+  factory UTerminalImportResponse.fromJson(String str) => UTerminalImportResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UTerminalImportResponse.fromMap(Map<String, dynamic> json) => UTerminalImportResponse(
+    totalRows: json["totalRows"],
+    imported: json["imported"],
+    skipped: json["skipped"],
+    skippedSerials: json["skippedSerials"] == null ? <String>[] : List<String>.from(json["skippedSerials"]!.map((dynamic x) => x)),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "totalRows": totalRows,
+    "imported": imported,
+    "skipped": skipped,
+    "skippedSerials": skippedSerials == null ? <dynamic>[] : List<dynamic>.from(skippedSerials!.map((String x) => x)),
+  };
 }

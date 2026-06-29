@@ -103,4 +103,18 @@ class TerminalService {
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );
+
+  Future<UHttpClientResponse> import({
+    required final UTerminalImportParams p,
+    final Function(UResponse<UTerminalImportResponse> r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/terminal/Import",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UTerminalImportResponse>.fromJson(r.body, (final dynamic i) => UTerminalImportResponse.fromMap(i))),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
 }
