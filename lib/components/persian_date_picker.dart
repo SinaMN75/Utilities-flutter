@@ -123,9 +123,7 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     dayWidgets.addAll(
       weekDays
           .map(
-            (String day) => Text(day)
-                .labelSmall(fontWeight: FontWeight.bold)
-                .container(
+            (String day) => UTextLabelSmall(day, fontWeight: FontWeight.bold).container(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   alignment: Alignment.center,
                 ),

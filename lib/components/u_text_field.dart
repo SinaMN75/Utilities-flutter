@@ -82,7 +82,7 @@ class _UTextFieldState extends State<UTextField> {
       if (widget.text != null)
         UIconTextHorizontal(
           leading: Text(widget.text!, style: Theme.of(context).textTheme.titleSmall),
-          trailing: widget.required ? const Text("*").bodyMedium(color: Theme.of(context).colorScheme.error) : const SizedBox(),
+          trailing: widget.required ? UTextBodyMedium("*", color: Theme.of(context).colorScheme.error) : const SizedBox(),
         ).pSymmetric(vertical: 8),
       TextFormField(
         autofillHints: widget.autoFillHints,
@@ -175,7 +175,7 @@ class _UDropDownFieldState<T> extends State<UDropDownField<T>> {
       if (widget.text != null)
         UIconTextHorizontal(
           leading: Text(widget.text!, style: Theme.of(context).textTheme.titleSmall),
-          trailing: widget.required ? const Text("*").bodyMedium(color: Theme.of(context).colorScheme.error) : const SizedBox(),
+          trailing: widget.required ? UTextBodyMedium("*", color: Theme.of(context).colorScheme.error) : const SizedBox(),
         ).pSymmetric(vertical: 8),
       DropdownButtonFormField<T>(
         initialValue: widget.initialValue,

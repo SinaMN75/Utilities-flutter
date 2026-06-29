@@ -84,7 +84,6 @@ export "utils/extensions/iterable_extension.dart";
 export "utils/extensions/map_extension.dart";
 export "utils/extensions/number_extension.dart";
 export "utils/extensions/string_extension.dart";
-export "utils/extensions/text_extension.dart";
 export "utils/extensions/widget_extension.dart";
 export "utils/u_app_utils.dart";
 export "utils/u_clipboard.dart";

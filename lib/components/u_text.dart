@@ -1979,3 +1979,24 @@ class UTextLabelSmall extends StatelessWidget {
     );
   }
 }
+
+class UAnimatedCounter extends StatelessWidget {
+  const UAnimatedCounter({
+    required this.value,
+    required this.builder,
+    super.key,
+    this.duration = const Duration(milliseconds: 1500),
+  });
+
+  final double value;
+  final Widget Function(BuildContext context, double value) builder;
+  final Duration duration;
+
+  @override
+  Widget build(BuildContext context) => TweenAnimationBuilder<double>(
+    tween: Tween<double>(begin: 0, end: value),
+    duration: duration,
+    curve: Curves.easeOutCubic,
+    builder: (BuildContext context, double v, Widget? child) => builder(context, v),
+  );
+}

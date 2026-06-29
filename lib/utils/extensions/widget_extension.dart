@@ -72,6 +72,20 @@ extension WidgetsExtension on Widget {
     child: this,
   );
 
+  Widget fadeSlideIn({
+    Duration duration = const Duration(milliseconds: 1000),
+    double offset = 24,
+  }) => TweenAnimationBuilder<double>(
+    tween: Tween<double>(begin: 0, end: 1),
+    duration: duration,
+    curve: Curves.easeOutCubic,
+    builder: (BuildContext context, double value, Widget? child) => Opacity(
+      opacity: value,
+      child: Transform.translate(offset: Offset(0, offset * (1 - value)), child: child),
+    ),
+    child: this,
+  );
+
   Widget container({
     final double? width,
     final double? height,

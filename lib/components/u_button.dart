@@ -343,3 +343,41 @@ class _UButtonSubmitCancelState extends State<UButtonSubmitCancel> {
     ],
   );
 }
+
+class UPressable extends StatefulWidget {
+  const UPressable({
+    required this.child,
+    required this.onTap,
+    super.key,
+    this.pressedScale = 0.9,
+    this.duration = const Duration(milliseconds: 120),
+  });
+
+  final Widget child;
+  final VoidCallback onTap;
+  final double pressedScale;
+  final Duration duration;
+
+  @override
+  State<UPressable> createState() => _UPressableState();
+}
+
+class _UPressableState extends State<UPressable> {
+  bool _pressed = false;
+
+  void _setPressed(final bool value) => setState(() => _pressed = value);
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+    onTapDown: (final TapDownDetails _) => _setPressed(true),
+    onTapUp: (final TapUpDetails _) => _setPressed(false),
+    onTapCancel: () => _setPressed(false),
+    onTap: widget.onTap,
+    child: AnimatedScale(
+      scale: _pressed ? widget.pressedScale : 1,
+      duration: widget.duration,
+      curve: Curves.easeOut,
+      child: widget.child,
+    ),
+  );
+}
