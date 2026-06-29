@@ -453,7 +453,6 @@ class UCard extends StatelessWidget {
     this.color,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
     this.margin = const EdgeInsets.all(8),
-    this.padding = const EdgeInsets.all(16),
     this.onTap,
     this.shadowColor,
     this.width,
@@ -467,7 +466,6 @@ class UCard extends StatelessWidget {
   final Color? color;
   final BorderRadius borderRadius;
   final EdgeInsets margin;
-  final EdgeInsets padding;
   final VoidCallback? onTap;
   final Color? shadowColor;
 
@@ -525,15 +523,9 @@ class UListView extends StatelessWidget {
       primary: primary,
       reverse: reverse,
       itemBuilder: (BuildContext context, int index) {
-        if (header != null && index == 0) {
-          return header!;
-        }
-
+        if (header != null && index == 0) return header!;
         final int headerOffset = header != null ? 1 : 0;
-        if (footer != null && index == totalCount - 1) {
-          return footer!;
-        }
-
+        if (footer != null && index == totalCount - 1) return footer!;
         final int adjustedIndex = index - headerOffset;
         return itemBuilder(context, adjustedIndex);
       },

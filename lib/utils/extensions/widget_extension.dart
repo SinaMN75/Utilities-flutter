@@ -31,6 +31,12 @@ extension WidgetsExtension on Widget {
 
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
+  Widget onPress(
+    final VoidCallback onTap, {
+    double pressedScale = 0.9,
+    Duration duration = const Duration(milliseconds: 120),
+  }) => UPressable(onTap: onTap, duration: duration, pressedScale: pressedScale, child: this);
+
   Widget onTapInk(final GestureTapCallback? onPressed) => InkWell(onTap: onPressed, child: this);
 
   Widget showMenus(final List<PopupMenuEntry<int>> items) => GestureDetector(
