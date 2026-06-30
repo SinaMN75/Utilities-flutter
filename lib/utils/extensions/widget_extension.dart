@@ -31,8 +31,7 @@ extension WidgetsExtension on Widget {
 
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
-  Widget onPress(
-    final VoidCallback onTap, {
+  Widget onPress(VoidCallback onTap, {
     double pressedScale = 0.9,
     Duration duration = const Duration(milliseconds: 120),
   }) => UPressable(onTap: onTap, duration: duration, pressedScale: pressedScale, child: this);
@@ -89,11 +88,11 @@ extension WidgetsExtension on Widget {
   );
 
   Widget fadeSlideIn({
-    Duration duration = const Duration(milliseconds: 1000),
+    int milliseconds = 1000,
     double offset = 24,
   }) => TweenAnimationBuilder<double>(
     tween: Tween<double>(begin: 0, end: 1),
-    duration: duration,
+    duration: Duration(milliseconds: milliseconds),
     curve: Curves.easeOutCubic,
     builder: (BuildContext context, double value, Widget? child) => Opacity(
       opacity: value,
