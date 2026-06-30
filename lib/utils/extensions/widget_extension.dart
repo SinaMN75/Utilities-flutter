@@ -67,6 +67,16 @@ extension WidgetsExtension on Widget {
 
   Widget translate(final Offset offset) => Transform.translate(offset: offset, child: this);
 
+  Widget position({double? left, double? top, double? right, double? bottom, double? width, double? height}) => Positioned(
+    left: left,
+    top: top,
+    right: right,
+    bottom: bottom,
+    width: width,
+    height: height,
+    child: this,
+  );
+
   Widget rotate(final double scale) => Transform.rotate(angle: scale, child: this);
 
   Widget safeArea() => SafeArea(child: this);

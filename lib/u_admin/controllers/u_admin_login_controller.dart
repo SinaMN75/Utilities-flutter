@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminLoginController extends UAdminBaseController {
+class UAdminLoginController extends UBaseController {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   final TextEditingController controllerUserName = TextEditingController(

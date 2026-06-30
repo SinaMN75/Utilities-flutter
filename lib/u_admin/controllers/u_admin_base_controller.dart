@@ -1,7 +1,8 @@
 part of "../u_admin.dart";
 
-abstract class UAdminBaseController {
+abstract class UBaseController {
   final Rx<PageState> state = PageState.initial.obs;
+  Rx<PageState> state2 = PageState.initial.obs;
 
   int totalCount = 0;
   RxInt pageNumber = 1.obs;
@@ -9,7 +10,6 @@ abstract class UAdminBaseController {
   int pageSize = 20;
   Rx<TagOrderBy> tagOrderBy = TagOrderBy.createdAt.obs;
 
-  // Filter
   DateTime? fromCreatedAt;
   DateTime? toCreatedAt;
   DateTime? startDate;

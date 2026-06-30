@@ -8,6 +8,54 @@ extension NullableWalletListExtension on Iterable<UWalletResponse>? {
   UWalletResponse? firstWhereByTagOrNull(int tag) => (this ?? <UWalletResponse>[]).firstWhereOrNull((final UWalletResponse i) => i.tags.contains(tag));
 }
 
+extension NullableWalletExtension on UWalletTxnResponse {
+  bool isOutgoing({String? userId}) => senderId == (userId ?? U.user.id);
+
+  String title() => tag?.localizedTitle ?? (UApp.locale() == "fa" ? "تراکنش کیف پول" : "Wallet Transaction");
+
+  TagWalletTxn? get tag {
+    for (final int t in tags) {
+      final TagWalletTxn? tag = TagWalletTxn.values.fromNumber(t);
+      if (tag != null) return tag;
+    }
+    return null;
+  }
+
+  String? get reference {
+    for (final String d in <String>[jsonData.detail1 ?? "", jsonData.detail2 ?? ""]) if (d.toUpperCase().contains("RRN")) return d.split(":").last.trim();
+    return null;
+  }
+
+  IconData get icon {
+    switch (tag) {
+      case TagWalletTxn.charge:
+        return Icons.add_card_outlined;
+      case TagWalletTxn.transfer:
+        return Icons.swap_horiz;
+      case TagWalletTxn.chargeSimPin:
+      case TagWalletTxn.chargeSimTopup:
+        return Icons.sim_card_outlined;
+      case TagWalletTxn.internetSim:
+        return Icons.wifi;
+      case TagWalletTxn.vehicleViolationsDetail:
+      case TagWalletTxn.licencePlateDetail:
+      case TagWalletTxn.freewayTolls:
+        return Icons.directions_car_outlined;
+      case TagWalletTxn.drivingLicenceStatus:
+      case TagWalletTxn.drivingLicenceNegativePoint:
+        return Icons.badge_outlined;
+      case TagWalletTxn.merchantCreationFee:
+        return Icons.storefront_outlined;
+      case TagWalletTxn.mobileAndNationalCodeVerification:
+      case TagWalletTxn.zipCodeToAddressDetail:
+      case TagWalletTxn.iBanToBankAccountDetail:
+        return Icons.fact_check_outlined;
+      case null:
+        return isOutgoing() ? Icons.north_east : Icons.south_west;
+    }
+  }
+}
+
 class UWalletResponse {
   final String id;
   final List<int> tags;

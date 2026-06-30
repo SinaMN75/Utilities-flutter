@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminLogsController extends UAdminBaseController {
+class UAdminLogsController extends UBaseController {
   RxList<YearLog> logs = <YearLog>[].obs;
 
   RxInt selectedTabIndex = 0.obs;
