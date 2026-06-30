@@ -43,6 +43,20 @@ class WalletService {
     onException: (String e) => onException?.call(e),
   );
 
+  Future<UHttpClientResponse> read({
+    required final UWalletReadParams p,
+    final Function(UResponse<List<UWalletResponse>> r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/wallet/Read",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<List<UWalletResponse>>.fromJson(r.body, (final dynamic i) => List<UWalletResponse>.from((i as List<dynamic>).map((final dynamic x) => UWalletResponse.fromMap(x))))),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
   Future<UHttpClientResponse> readByUserId({
     required final UWalletReadParams p,
     final Function(UResponse<List<UWalletResponse>> r)? onOk,
@@ -52,12 +66,7 @@ class WalletService {
     method: "POST",
     endpoint: "${U.baseUrl}/wallet/ReadByUserId",
     body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(
-      UResponse<List<UWalletResponse>>.fromJson(
-        r.body,
-        (final dynamic i) => List<UWalletResponse>.from((i as List<dynamic>).map((final dynamic x) => UWalletResponse.fromMap(x))),
-      ),
-    ),
+    onSuccess: (final Response r) => onOk?.call(UResponse<List<UWalletResponse>>.fromJson(r.body, (final dynamic i) => List<UWalletResponse>.from((i as List<dynamic>).map((final dynamic x) => UWalletResponse.fromMap(x))))),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),
   );

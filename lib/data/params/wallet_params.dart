@@ -37,11 +37,11 @@ class UWalletReadParams {
 
   final List<int>? tags;
   final List<String>? ids;
-  final String userId;
+  final String creatorId;
   final WalletSelectorArgs? selectorArgs;
 
   UWalletReadParams({
-    required this.userId,
+    required this.creatorId,
     this.pageSize,
     this.pageNumber,
     this.fromCreatedAt,
@@ -57,7 +57,7 @@ class UWalletReadParams {
   String toJson() => json.encode(toMap());
 
   factory UWalletReadParams.fromMap(Map<String, dynamic> json) => UWalletReadParams(
-    userId: json["userId"],
+    creatorId: json["creatorId"],
     pageSize: json["pageSize"],
     pageNumber: json["pageNumber"],
     fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
@@ -75,7 +75,7 @@ class UWalletReadParams {
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
-    "userId": userId,
+    "creatorId": creatorId,
     "selectorArgs": selectorArgs?.toMap(),
     "orderBy": orderBy,
   };
