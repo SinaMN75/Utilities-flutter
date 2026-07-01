@@ -1,5 +1,29 @@
 part of "../data.dart";
 
+class UBillInfoParams {
+  final String billId;
+  final String paymentId;
+
+  UBillInfoParams({
+    required this.billId,
+    required this.paymentId,
+  });
+
+  factory UBillInfoParams.fromJson(String str) => UBillInfoParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UBillInfoParams.fromMap(Map<String, dynamic> json) => UBillInfoParams(
+    billId: json["billId"],
+    paymentId: json["paymentId"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "billId": billId,
+    "paymentId": paymentId,
+  };
+}
+
 class UZipCodeToAddressDetailParams {
   UZipCodeToAddressDetailParams({
     required this.zipCode,

@@ -1,6 +1,20 @@
 part of "../data.dart";
 
 class InquiryService {
+  Future<UHttpClientResponse> billInfo({
+    required final UBillInfoParams p,
+    final Function(UResponse<UBillInfoResponse> r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/inquiry/BillInfo",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UBillInfoResponse>.fromJson(r.body, (final dynamic i) => UBillInfoResponse.fromMap(i))),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
   Future<UHttpClientResponse> zipCodeToAddressDetail({
     required final UZipCodeToAddressDetailParams p,
     final Function(UResponse<UZipCodeToAddressDetailResponse> r)? onOk,

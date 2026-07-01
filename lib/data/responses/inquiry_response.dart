@@ -1,5 +1,83 @@
 part of "../data.dart";
 
+class UBillInfoResponse {
+  final String billId;
+  final String paymentId;
+  final String? caseCode;
+  final String? companyCode;
+  final String? serviceType;
+  final String? checkDigit;
+  final String? companyName;
+  final String? serviceName;
+  final int? billAmount;
+  final int? yearDigit;
+  final int? periodCode;
+  final int? controlDigit1;
+  final int? controlDigit2;
+  final List<String> warnings;
+  final bool isValid;
+
+  UBillInfoResponse({
+    required this.billId,
+    required this.paymentId,
+    required this.warnings,
+    required this.isValid,
+    this.caseCode,
+    this.companyCode,
+    this.serviceType,
+    this.checkDigit,
+    this.companyName,
+    this.serviceName,
+    this.billAmount,
+    this.yearDigit,
+    this.periodCode,
+    this.controlDigit1,
+    this.controlDigit2,
+  });
+
+  factory UBillInfoResponse.fromJson(String str) => UBillInfoResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UBillInfoResponse.fromMap(Map<String, dynamic> json) =>
+      UBillInfoResponse(
+        billId: json["billId"],
+        paymentId: json["paymentId"],
+        caseCode: json["caseCode"],
+        companyCode: json["companyCode"],
+        serviceType: json["serviceType"],
+        checkDigit: json["checkDigit"],
+        companyName: json["companyName"],
+        serviceName: json["serviceName"],
+        billAmount: json["billAmount"],
+        yearDigit: json["yearDigit"],
+        periodCode: json["periodCode"],
+        controlDigit1: json["controlDigit1"],
+        controlDigit2: json["controlDigit2"],
+        warnings: List<String>.from(json["warnings"]!.map((dynamic x) => x)),
+        isValid: json["isValid"],
+      );
+
+  Map<String, dynamic> toMap() =>
+      <String, dynamic>{
+        "billId": billId,
+        "paymentId": paymentId,
+        "caseCode": caseCode,
+        "companyCode": companyCode,
+        "serviceType": serviceType,
+        "checkDigit": checkDigit,
+        "companyName": companyName,
+        "serviceName": serviceName,
+        "billAmount": billAmount,
+        "yearDigit": yearDigit,
+        "periodCode": periodCode,
+        "controlDigit1": controlDigit1,
+        "controlDigit2": controlDigit2,
+        "warnings": warnings == null ? <dynamic>[] : List<dynamic>.from(warnings!.map((String x) => x)),
+        "isValid": isValid,
+      };
+}
+
 class UZipCodeToAddressDetailResponse {
   UZipCodeToAddressDetailResponse({
     required this.buildingName,
