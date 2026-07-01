@@ -34,12 +34,7 @@ class UListTile extends StatelessWidget {
 }
 
 class UIconBackground extends StatelessWidget {
-  const UIconBackground(
-    this.icon, {
-    required this.color,
-    this.size = 42,
-    super.key,
-  });
+  const UIconBackground(this.icon, {required this.color, this.size = 42, super.key});
 
   final IconData icon;
   final Color color;
@@ -54,4 +49,23 @@ class UIconBackground extends StatelessWidget {
     radius: 12,
     child: Icon(icon, color: color, size: size / 1.8),
   );
+}
+
+class UImageBackground extends StatelessWidget {
+  const UImageBackground(this.asset, {required this.color, this.size = 42, super.key});
+
+  final String asset;
+  final Color color;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) =>
+      UContainer(
+        width: size,
+        height: size,
+        alignment: Alignment.center,
+        color: color.withValues(alpha: 0.2),
+        radius: 12,
+        child: UImage(asset, color: color, width: size / 1.8, height: size / 1.8),
+      );
 }
