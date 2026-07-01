@@ -58,7 +58,7 @@ class WalletService {
   );
 
   Future<UHttpClientResponse> readByUserId({
-    required final UWalletReadParams p,
+    required UIdParams p,
     final Function(UResponse<List<UWalletResponse>> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
