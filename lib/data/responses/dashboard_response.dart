@@ -197,3 +197,311 @@ class DayLog {
     "failed": failed,
   };
 }
+
+// ── New DB-backed API request log models (ApiLogService: Logs/Search, Logs/Detail, Logs/Stats). ──
+// Lightweight row for the searchable/paginated log table.
+class UApiLogListItemResponse {
+  UApiLogListItemResponse({
+    required this.id,
+    required this.timestamp,
+    required this.method,
+    required this.path,
+    required this.statusCode,
+    required this.isSuccess,
+    required this.durationMs,
+    this.queryString,
+    this.userId,
+    this.userName,
+    this.ipAddress,
+    this.userAgent,
+    this.traceId,
+    this.host,
+    this.requestSizeBytes = 0,
+    this.responseSizeBytes = 0,
+    this.exceptionType,
+  });
+
+  factory UApiLogListItemResponse.fromJson(String str) => UApiLogListItemResponse.fromMap(json.decode(str));
+
+  factory UApiLogListItemResponse.fromMap(Map<String, dynamic> json) => UApiLogListItemResponse(
+    id: json["id"],
+    timestamp: DateTime.parse(json["timestamp"]),
+    method: json["method"] ?? "",
+    path: json["path"] ?? "",
+    queryString: json["queryString"],
+    statusCode: json["statusCode"] ?? 0,
+    isSuccess: json["isSuccess"] ?? false,
+    durationMs: json["durationMs"] is int ? json["durationMs"] : int.tryParse(json["durationMs"].toString()) ?? 0,
+    userId: json["userId"],
+    userName: json["userName"],
+    ipAddress: json["ipAddress"],
+    userAgent: json["userAgent"],
+    traceId: json["traceId"],
+    host: json["host"],
+    requestSizeBytes: json["requestSizeBytes"] ?? 0,
+    responseSizeBytes: json["responseSizeBytes"] ?? 0,
+    exceptionType: json["exceptionType"],
+  );
+
+  final String id;
+  final DateTime timestamp;
+  final String method;
+  final String path;
+  final String? queryString;
+  final int statusCode;
+  final bool isSuccess;
+  final int durationMs;
+  final String? userId;
+  final String? userName;
+  final String? ipAddress;
+  final String? userAgent;
+  final String? traceId;
+  final String? host;
+  final int requestSizeBytes;
+  final int responseSizeBytes;
+  final String? exceptionType;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "timestamp": timestamp.toIso8601String(),
+    "method": method,
+    "path": path,
+    "queryString": queryString,
+    "statusCode": statusCode,
+    "isSuccess": isSuccess,
+    "durationMs": durationMs,
+    "userId": userId,
+    "userName": userName,
+    "ipAddress": ipAddress,
+    "userAgent": userAgent,
+    "traceId": traceId,
+    "host": host,
+    "requestSizeBytes": requestSizeBytes,
+    "responseSizeBytes": responseSizeBytes,
+    "exceptionType": exceptionType,
+  };
+}
+
+// Full record for the "drill into one request" view - adds bodies, headers + exception detail.
+class UApiLogDetailResponse {
+  UApiLogDetailResponse({
+    required this.id,
+    required this.timestamp,
+    required this.method,
+    required this.path,
+    required this.statusCode,
+    required this.isSuccess,
+    required this.durationMs,
+    this.queryString,
+    this.userId,
+    this.userName,
+    this.userEmail,
+    this.userRoles,
+    this.ipAddress,
+    this.userAgent,
+    this.traceId,
+    this.host,
+    this.requestSizeBytes = 0,
+    this.responseSizeBytes = 0,
+    this.requestBody,
+    this.responseBody,
+    this.requestHeaders,
+    this.responseHeaders,
+    this.exceptionType,
+    this.exceptionMessage,
+    this.stackTrace,
+  });
+
+  factory UApiLogDetailResponse.fromJson(String str) => UApiLogDetailResponse.fromMap(json.decode(str));
+
+  factory UApiLogDetailResponse.fromMap(Map<String, dynamic> json) => UApiLogDetailResponse(
+    id: json["id"],
+    timestamp: DateTime.parse(json["timestamp"]),
+    method: json["method"] ?? "",
+    path: json["path"] ?? "",
+    queryString: json["queryString"],
+    statusCode: json["statusCode"] ?? 0,
+    isSuccess: json["isSuccess"] ?? false,
+    durationMs: json["durationMs"] is int ? json["durationMs"] : int.tryParse(json["durationMs"].toString()) ?? 0,
+    userId: json["userId"],
+    userName: json["userName"],
+    userEmail: json["userEmail"],
+    userRoles: json["userRoles"],
+    ipAddress: json["ipAddress"],
+    userAgent: json["userAgent"],
+    traceId: json["traceId"],
+    host: json["host"],
+    requestSizeBytes: json["requestSizeBytes"] ?? 0,
+    responseSizeBytes: json["responseSizeBytes"] ?? 0,
+    requestBody: json["requestBody"],
+    responseBody: json["responseBody"],
+    requestHeaders: json["requestHeaders"],
+    responseHeaders: json["responseHeaders"],
+    exceptionType: json["exceptionType"],
+    exceptionMessage: json["exceptionMessage"],
+    stackTrace: json["stackTrace"],
+  );
+
+  final String id;
+  final DateTime timestamp;
+  final String method;
+  final String path;
+  final String? queryString;
+  final int statusCode;
+  final bool isSuccess;
+  final int durationMs;
+  final String? userId;
+  final String? userName;
+  final String? userEmail;
+  final String? userRoles;
+  final String? ipAddress;
+  final String? userAgent;
+  final String? traceId;
+  final String? host;
+  final int requestSizeBytes;
+  final int responseSizeBytes;
+  final String? requestBody;
+  final String? responseBody;
+  final String? requestHeaders;
+  final String? responseHeaders;
+  final String? exceptionType;
+  final String? exceptionMessage;
+  final String? stackTrace;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "timestamp": timestamp.toIso8601String(),
+    "method": method,
+    "path": path,
+    "queryString": queryString,
+    "statusCode": statusCode,
+    "isSuccess": isSuccess,
+    "durationMs": durationMs,
+    "userId": userId,
+    "userName": userName,
+    "userEmail": userEmail,
+    "userRoles": userRoles,
+    "ipAddress": ipAddress,
+    "userAgent": userAgent,
+    "traceId": traceId,
+    "host": host,
+    "requestSizeBytes": requestSizeBytes,
+    "responseSizeBytes": responseSizeBytes,
+    "requestBody": requestBody,
+    "responseBody": responseBody,
+    "requestHeaders": requestHeaders,
+    "responseHeaders": responseHeaders,
+    "exceptionType": exceptionType,
+    "exceptionMessage": exceptionMessage,
+    "stackTrace": stackTrace,
+  };
+}
+
+// Aggregates for the dashboard's charts.
+class UApiLogStatsResponse {
+  UApiLogStatsResponse({
+    required this.totalRequests,
+    required this.totalErrors,
+    required this.errorRatePercent,
+    required this.avgDurationMs,
+    required this.maxDurationMs,
+    required this.p50DurationMs,
+    required this.p95DurationMs,
+    required this.p99DurationMs,
+    required this.timeSeries,
+    required this.statusCodeDistribution,
+    required this.topSlowEndpoints,
+    required this.topFailingEndpoints,
+    required this.slowestRequests,
+  });
+
+  factory UApiLogStatsResponse.fromJson(String str) => UApiLogStatsResponse.fromMap(json.decode(str));
+
+  factory UApiLogStatsResponse.fromMap(Map<String, dynamic> json) => UApiLogStatsResponse(
+    totalRequests: json["totalRequests"] ?? 0,
+    totalErrors: json["totalErrors"] ?? 0,
+    errorRatePercent: (json["errorRatePercent"] as num?)?.toDouble() ?? 0,
+    avgDurationMs: (json["avgDurationMs"] as num?)?.toDouble() ?? 0,
+    maxDurationMs: json["maxDurationMs"] is int ? json["maxDurationMs"] : int.tryParse(json["maxDurationMs"].toString()) ?? 0,
+    p50DurationMs: (json["p50DurationMs"] as num?)?.toDouble() ?? 0,
+    p95DurationMs: (json["p95DurationMs"] as num?)?.toDouble() ?? 0,
+    p99DurationMs: (json["p99DurationMs"] as num?)?.toDouble() ?? 0,
+    timeSeries: List<UApiLogTimeBucketResponse>.from((json["timeSeries"] ?? <dynamic>[]).map((dynamic x) => UApiLogTimeBucketResponse.fromMap(x))),
+    statusCodeDistribution: List<UApiLogStatusCountResponse>.from((json["statusCodeDistribution"] ?? <dynamic>[]).map((dynamic x) => UApiLogStatusCountResponse.fromMap(x))),
+    topSlowEndpoints: List<UApiLogEndpointStatResponse>.from((json["topSlowEndpoints"] ?? <dynamic>[]).map((dynamic x) => UApiLogEndpointStatResponse.fromMap(x))),
+    topFailingEndpoints: List<UApiLogEndpointStatResponse>.from((json["topFailingEndpoints"] ?? <dynamic>[]).map((dynamic x) => UApiLogEndpointStatResponse.fromMap(x))),
+    slowestRequests: List<UApiLogListItemResponse>.from((json["slowestRequests"] ?? <dynamic>[]).map((dynamic x) => UApiLogListItemResponse.fromMap(x))),
+  );
+
+  final int totalRequests;
+  final int totalErrors;
+  final double errorRatePercent;
+  final double avgDurationMs;
+  final int maxDurationMs;
+  final double p50DurationMs;
+  final double p95DurationMs;
+  final double p99DurationMs;
+  final List<UApiLogTimeBucketResponse> timeSeries;
+  final List<UApiLogStatusCountResponse> statusCodeDistribution;
+  final List<UApiLogEndpointStatResponse> topSlowEndpoints;
+  final List<UApiLogEndpointStatResponse> topFailingEndpoints;
+  final List<UApiLogListItemResponse> slowestRequests;
+}
+
+class UApiLogTimeBucketResponse {
+  UApiLogTimeBucketResponse({
+    required this.bucket,
+    required this.total,
+    required this.errors,
+    required this.avgDurationMs,
+  });
+
+  factory UApiLogTimeBucketResponse.fromMap(Map<String, dynamic> json) => UApiLogTimeBucketResponse(
+    bucket: DateTime.parse(json["bucket"]),
+    total: json["total"] ?? 0,
+    errors: json["errors"] ?? 0,
+    avgDurationMs: (json["avgDurationMs"] as num?)?.toDouble() ?? 0,
+  );
+
+  final DateTime bucket;
+  final int total;
+  final int errors;
+  final double avgDurationMs;
+}
+
+class UApiLogStatusCountResponse {
+  UApiLogStatusCountResponse({required this.statusCode, required this.count});
+
+  factory UApiLogStatusCountResponse.fromMap(Map<String, dynamic> json) => UApiLogStatusCountResponse(
+    statusCode: json["statusCode"] ?? 0,
+    count: json["count"] ?? 0,
+  );
+
+  final int statusCode;
+  final int count;
+}
+
+class UApiLogEndpointStatResponse {
+  UApiLogEndpointStatResponse({
+    required this.path,
+    required this.count,
+    required this.errorCount,
+    required this.avgDurationMs,
+  });
+
+  factory UApiLogEndpointStatResponse.fromMap(Map<String, dynamic> json) => UApiLogEndpointStatResponse(
+    path: json["path"] ?? "",
+    count: json["count"] ?? 0,
+    errorCount: json["errorCount"] ?? 0,
+    avgDurationMs: (json["avgDurationMs"] as num?)?.toDouble() ?? 0,
+  );
+
+  final String path;
+  final int count;
+  final int errorCount;
+  final double avgDurationMs;
+}
