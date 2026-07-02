@@ -52,6 +52,7 @@ enum TagOrderBy with NumericIdentifiable {
   userName("نام کاربری", "User Name", 115),
   brand("برند", "Brand", 116),
   balance("موجودی", "Balance", 117),
+  durationMs("مدت", "Duration", 118),
   createdAtDescending("تاریخ ایجاد (نزولی)", "Created At Descending", 201),
   cardNumberDescending("شماره کارت (نزولی)", "Card Number Descending", 202),
   zipCodeDescending("کد پستی (نزولی)", "Zip Code Descending", 203),
@@ -68,7 +69,8 @@ enum TagOrderBy with NumericIdentifiable {
   amountDescending("مبلغ (نزولی)", "Amount Descending", 214),
   userNameDescending("نام کاربری (نزولی)", "User Name Descending", 215),
   brandDescending("برند (نزولی)", "Brand Descending", 216),
-  balanceDescending("موجودی (نزولی)", "Balance Descending", 217);
+  balanceDescending("موجودی (نزولی)", "Balance Descending", 217),
+  durationMsDescending("مدت (نزولی)", "Duration Descending", 218);
 
   const TagOrderBy(this.titleFa, this.titleEn, this.number);
 
@@ -761,6 +763,28 @@ enum TagDormBed with NumericIdentifiable {
   double_("دو نفره", "Double", 102);
 
   const TagDormBed(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagApiLog with NumericIdentifiable {
+  get_("GET", "GET", 101),
+  post("POST", "POST", 102),
+  put("PUT", "PUT", 103),
+  patch("PATCH", "PATCH", 104),
+  delete("DELETE", "DELETE", 105),
+  other("سایر", "Other", 106),
+  success("موفق", "Success", 201),
+  clientError("خطای کلاینت", "Client Error", 202),
+  serverError("خطای سرور", "Server Error", 203),
+  hasException("دارای استثنا", "Has Exception", 301);
+
+  const TagApiLog(this.titleFa, this.titleEn, this.number);
 
   @override
   final String titleFa;

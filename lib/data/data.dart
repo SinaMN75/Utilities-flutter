@@ -2,6 +2,7 @@ import "package:u/utilities.dart";
 
 part "params/accounting_params.dart";
 part "params/address_params.dart";
+part "params/api_log_params.dart";
 part "params/app_settings_params.dart";
 part "params/auth_params.dart";
 part "params/bank_account_params.dart";
@@ -12,7 +13,6 @@ part "params/charge_internet_params.dart";
 part "params/chat_bot_params.dart";
 part "params/comment_params.dart";
 part "params/content_params.dart";
-part "params/dashboard_params.dart";
 part "params/exam_params.dart";
 part "params/follow_params.dart";
 part "params/hotel_params.dart";
@@ -33,6 +33,7 @@ part "params/vehicle_params.dart";
 part "params/wallet_params.dart";
 part "responses/accounting_response.dart";
 part "responses/address_response.dart";
+part "responses/api_log_response.dart";
 part "responses/app_settings_response.dart";
 part "responses/auth_response.dart";
 part "responses/bank_account_response.dart";
@@ -64,6 +65,7 @@ part "responses/vehicle_response.dart";
 part "responses/wallet_response.dart";
 part "services/accounting_service.dart";
 part "services/address_service.dart";
+part "services/api_log_service.dart";
 part "services/app_settings_service.dart";
 part "services/auth_service.dart";
 part "services/bank_account_service.dart";
@@ -120,4 +122,5 @@ class UServices {
   static TicketService ticket = TicketService();
   static ParkingService parking = ParkingService();
   static TxnService txn = TxnService();
+  static ApiLogService apiLog = ApiLogService();
 }
