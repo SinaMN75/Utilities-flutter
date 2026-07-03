@@ -8,6 +8,7 @@ class UCommentCreateParams {
     this.reaction,
     this.parentId,
     this.productId,
+    this.blogId,
     this.userId,
     this.creatorId,
   });
@@ -20,6 +21,7 @@ class UCommentCreateParams {
     reaction: json["reaction"],
     parentId: json["parentId"],
     productId: json["productId"],
+    blogId: json["blogId"],
     userId: json["userId"],
     creatorId: json["creatorId"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
@@ -29,6 +31,7 @@ class UCommentCreateParams {
   final int? reaction;
   final String? parentId;
   final String? productId;
+  final String? blogId;
   final String? userId;
   final String? creatorId;
   final List<int> tags;
@@ -41,6 +44,7 @@ class UCommentCreateParams {
     "reaction": reaction,
     "parentId": parentId,
     "productId": productId,
+    "blogId": blogId,
     "userId": userId,
     "creatorId": creatorId,
     "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
@@ -90,6 +94,7 @@ class UCommentReadParams {
   UCommentReadParams({
     this.creatorId,
     this.productId,
+    this.blogId,
     this.userId,
     this.pageSize,
     this.pageNumber,
@@ -105,6 +110,7 @@ class UCommentReadParams {
   factory UCommentReadParams.fromMap(Map<String, dynamic> json) => UCommentReadParams(
     creatorId: json["creatorId"],
     productId: json["productId"],
+    blogId: json["blogId"],
     userId: json["userId"],
     pageSize: json["pageSize"] ?? 0,
     pageNumber: json["pageNumber"] ?? 0,
@@ -116,6 +122,7 @@ class UCommentReadParams {
   );
   final String? creatorId;
   final String? productId;
+  final String? blogId;
   final String? userId;
   final int? pageSize;
   final int? pageNumber;
@@ -130,6 +137,7 @@ class UCommentReadParams {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "creatorId": creatorId,
     "productId": productId,
+    "blogId": blogId,
     "userId": userId,
     "pageSize": pageSize,
     "pageNumber": pageNumber,

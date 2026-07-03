@@ -1943,6 +1943,131 @@ class S {
     );
   }
 
+  /// `Blogs`
+  String get blogs {
+    return Intl.message('Blogs', name: 'blogs', desc: '', args: []);
+  }
+
+  /// `Blog`
+  String get blog {
+    return Intl.message('Blog', name: 'blog', desc: '', args: []);
+  }
+
+  /// `Create Blog Post`
+  String get createBlog {
+    return Intl.message(
+      'Create Blog Post',
+      name: 'createBlog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Blog Post`
+  String get editBlog {
+    return Intl.message('Edit Blog Post', name: 'editBlog', desc: '', args: []);
+  }
+
+  /// `No blog posts found`
+  String get noBlogsFound {
+    return Intl.message(
+      'No blog posts found',
+      name: 'noBlogsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Blog Posts`
+  String get filterBlogs {
+    return Intl.message(
+      'Filter Blog Posts',
+      name: 'filterBlogs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Slug`
+  String get slug {
+    return Intl.message('Slug', name: 'slug', desc: '', args: []);
+  }
+
+  /// `Content`
+  String get content {
+    return Intl.message('Content', name: 'content', desc: '', args: []);
+  }
+
+  /// `Published`
+  String get published {
+    return Intl.message('Published', name: 'published', desc: '', args: []);
+  }
+
+  /// `Draft`
+  String get draft {
+    return Intl.message('Draft', name: 'draft', desc: '', args: []);
+  }
+
+  /// `Publish`
+  String get publish {
+    return Intl.message('Publish', name: 'publish', desc: '', args: []);
+  }
+
+  /// `Unpublish`
+  String get unpublish {
+    return Intl.message('Unpublish', name: 'unpublish', desc: '', args: []);
+  }
+
+  /// `Views`
+  String get viewCount {
+    return Intl.message('Views', name: 'viewCount', desc: '', args: []);
+  }
+
+  /// `Comments`
+  String get comments {
+    return Intl.message('Comments', name: 'comments', desc: '', args: []);
+  }
+
+  /// `No comments found`
+  String get noCommentsFound {
+    return Intl.message(
+      'No comments found',
+      name: 'noCommentsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Meta Title`
+  String get metaTitle {
+    return Intl.message('Meta Title', name: 'metaTitle', desc: '', args: []);
+  }
+
+  /// `Meta Description`
+  String get metaDescription {
+    return Intl.message(
+      'Meta Description',
+      name: 'metaDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Source`
+  String get source {
+    return Intl.message('Source', name: 'source', desc: '', args: []);
+  }
+
+  /// `Reading Time (minutes)`
+  String get readingTimeMinutes {
+    return Intl.message(
+      'Reading Time (minutes)',
+      name: 'readingTimeMinutes',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Logout`
   String get logout {
     return Intl.message('Logout', name: 'logout', desc: '', args: []);

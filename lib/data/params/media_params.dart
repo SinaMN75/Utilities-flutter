@@ -11,6 +11,7 @@ class UMediaCreateParams {
     this.commentId,
     this.categoryId,
     this.productId,
+    this.blogId,
     this.title,
     this.description,
   });
@@ -21,6 +22,7 @@ class UMediaCreateParams {
   final String? commentId;
   final String? categoryId;
   final String? productId;
+  final String? blogId;
   final String? title;
   final String? description;
   final int tag1;
@@ -35,6 +37,7 @@ class UMediaCreateParams {
     "commentId": commentId,
     "categoryId": categoryId,
     "productId": productId,
+    "blogId": blogId,
     "title": title,
     "description": description,
     "tag1": tag1,
@@ -55,6 +58,7 @@ class UMediaUpdateParams {
     this.commentId,
     this.categoryId,
     this.productId,
+    this.blogId,
   });
 
   factory UMediaUpdateParams.fromJson(String str) => UMediaUpdateParams.fromMap(json.decode(str));
@@ -70,6 +74,7 @@ class UMediaUpdateParams {
     commentId: json["commentId"],
     categoryId: json["categoryId"],
     productId: json["productId"],
+    blogId: json["blogId"],
   );
 
   final String id;
@@ -82,6 +87,7 @@ class UMediaUpdateParams {
   final String? commentId;
   final String? categoryId;
   final String? productId;
+  final String? blogId;
 
   String toJson() => json.encode(toMap());
 
@@ -96,6 +102,7 @@ class UMediaUpdateParams {
     "commentId": commentId,
     "categoryId": categoryId,
     "productId": productId,
+    "blogId": blogId,
   };
 }
 

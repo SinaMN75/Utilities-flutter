@@ -714,6 +714,23 @@ enum TagHotel with NumericIdentifiable {
   final int number;
 }
 
+enum TagBlog with NumericIdentifiable {
+  draft("پیش‌نویس", "Draft", 101),
+  published("منتشر شده", "Published", 102),
+  archived("بایگانی شده", "Archived", 103),
+  featured("ویژه", "Featured", 201),
+  pinned("سنجاق شده", "Pinned", 202);
+
+  const TagBlog(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 enum TagDorm with NumericIdentifiable {
   girls("دختران", "Girls", 101),
   boys("پسران", "Boys", 102);

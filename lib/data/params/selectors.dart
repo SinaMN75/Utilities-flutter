@@ -664,6 +664,36 @@ class DormRoomSelectorArgs {
   };
 }
 
+class BlogSelectorArgs {
+  final UserSelectorArgs? creator;
+  final MediaSelectorArgs? media;
+  final CategorySelectorArgs? category;
+  final CommentSelectorArgs? comments;
+  final bool? commentsCount;
+
+  const BlogSelectorArgs({this.creator, this.media, this.category, this.comments, this.commentsCount});
+
+  factory BlogSelectorArgs.fromJson(String str) => BlogSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory BlogSelectorArgs.fromMap(Map<String, dynamic> json) => BlogSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+    category: json["category"] == null ? null : CategorySelectorArgs.fromMap(json["category"]),
+    comments: json["comments"] == null ? null : CommentSelectorArgs.fromMap(json["comments"]),
+    commentsCount: json["commentsCount"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "media": media?.toMap(),
+    "category": category?.toMap(),
+    "comments": comments?.toMap(),
+    "commentsCount": commentsCount,
+  };
+}
+
 class DormBedSelectorArgs {
   final UserSelectorArgs? creator;
   final DormRoomSelectorArgs? room;

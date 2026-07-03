@@ -8,6 +8,8 @@ part "params/auth_params.dart";
 part "params/bank_account_params.dart";
 part "params/base_params.dart";
 part "params/bed_params.dart";
+
+part "params/blog_params.dart";
 part "params/category_params.dart";
 part "params/charge_internet_params.dart";
 part "params/chat_bot_params.dart";
@@ -40,6 +42,8 @@ part "responses/app_settings_response.dart";
 part "responses/auth_response.dart";
 part "responses/bank_account_response.dart";
 part "responses/base_response.dart";
+
+part "responses/blog_response.dart";
 part "responses/category_response.dart";
 part "responses/charge_internet_response.dart";
 part "responses/chat_bot_response.dart";
@@ -75,6 +79,8 @@ part "services/api_log_service.dart";
 part "services/app_settings_service.dart";
 part "services/auth_service.dart";
 part "services/bank_account_service.dart";
+
+part "services/blog_service.dart";
 part "services/category_service.dart";
 part "services/charge_internet_service.dart";
 part "services/chat_bot_service.dart";
@@ -129,4 +135,5 @@ class UServices {
   static ParkingService parking = ParkingService();
   static TxnService txn = TxnService();
   static ApiLogService apiLog = ApiLogService();
+  static BlogService blog = BlogService();
 }
