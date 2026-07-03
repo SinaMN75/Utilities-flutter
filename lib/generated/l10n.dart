@@ -3132,6 +3132,206 @@ class S {
       args: [],
     );
   }
+
+  /// `OS Metrics`
+  String get osMetrics {
+    return Intl.message('OS Metrics', name: 'osMetrics', desc: '', args: []);
+  }
+
+  /// `Operating System`
+  String get operatingSystem {
+    return Intl.message(
+      'Operating System',
+      name: 'operatingSystem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Architecture`
+  String get architecture {
+    return Intl.message(
+      'Architecture',
+      name: 'architecture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Framework`
+  String get framework {
+    return Intl.message('Framework', name: 'framework', desc: '', args: []);
+  }
+
+  /// `Machine Name`
+  String get machineName {
+    return Intl.message(
+      'Machine Name',
+      name: 'machineName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `System Uptime`
+  String get systemUptime {
+    return Intl.message(
+      'System Uptime',
+      name: 'systemUptime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Process Uptime`
+  String get processUptime {
+    return Intl.message(
+      'Process Uptime',
+      name: 'processUptime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Memory Usage`
+  String get memoryUsage {
+    return Intl.message(
+      'Memory Usage',
+      name: 'memoryUsage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Disk Usage`
+  String get diskUsage {
+    return Intl.message('Disk Usage', name: 'diskUsage', desc: '', args: []);
+  }
+
+  /// `Load Average`
+  String get loadAverage {
+    return Intl.message(
+      'Load Average',
+      name: 'loadAverage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Disks`
+  String get disks {
+    return Intl.message('Disks', name: 'disks', desc: '', args: []);
+  }
+
+  /// `Network`
+  String get network {
+    return Intl.message('Network', name: 'network', desc: '', args: []);
+  }
+
+  /// `Process`
+  String get process {
+    return Intl.message('Process', name: 'process', desc: '', args: []);
+  }
+
+  /// `Garbage Collector`
+  String get garbageCollector {
+    return Intl.message(
+      'Garbage Collector',
+      name: 'garbageCollector',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Threads`
+  String get threads {
+    return Intl.message('Threads', name: 'threads', desc: '', args: []);
+  }
+
+  /// `Handles`
+  String get handles {
+    return Intl.message('Handles', name: 'handles', desc: '', args: []);
+  }
+
+  /// `Working Set`
+  String get workingSet {
+    return Intl.message('Working Set', name: 'workingSet', desc: '', args: []);
+  }
+
+  /// `Private Memory`
+  String get privateMemory {
+    return Intl.message(
+      'Private Memory',
+      name: 'privateMemory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sent`
+  String get sent {
+    return Intl.message('Sent', name: 'sent', desc: '', args: []);
+  }
+
+  /// `Received`
+  String get received {
+    return Intl.message('Received', name: 'received', desc: '', args: []);
+  }
+
+  /// `Speed`
+  String get speed {
+    return Intl.message('Speed', name: 'speed', desc: '', args: []);
+  }
+
+  /// `Total Memory`
+  String get totalMemory {
+    return Intl.message(
+      'Total Memory',
+      name: 'totalMemory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Free Memory`
+  String get freeMemory {
+    return Intl.message('Free Memory', name: 'freeMemory', desc: '', args: []);
+  }
+
+  /// `Details`
+  String get details {
+    return Intl.message('Details', name: 'details', desc: '', args: []);
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message('Yes', name: 'yes', desc: '', args: []);
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message('No', name: 'no', desc: '', args: []);
+  }
+
+  /// `Server GC`
+  String get serverGc {
+    return Intl.message('Server GC', name: 'serverGc', desc: '', args: []);
+  }
+
+  /// `Gen0 / Gen1 / Gen2`
+  String get gcGenerations {
+    return Intl.message(
+      'Gen0 / Gen1 / Gen2',
+      name: 'gcGenerations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cores`
+  String get cores {
+    return Intl.message('cores', name: 'cores', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

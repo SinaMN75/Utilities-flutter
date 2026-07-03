@@ -48,6 +48,8 @@ part "responses/content_response.dart";
 part "responses/dashboard_response.dart";
 
 part "responses/dashboard_analytics_response.dart";
+
+part "responses/os_metrics_response.dart";
 part "responses/exam_response.dart";
 part "responses/follower_following_count_response.dart";
 part "responses/hotel_response.dart";

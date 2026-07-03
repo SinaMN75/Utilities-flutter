@@ -65,6 +65,25 @@ class DashboardService {
     onException: (String e) => onException?.call(e),
   );
 
+  // Rich, cross-platform OS/server metrics (CPU, memory, disks, process, GC, network).
+  Future<UHttpClientResponse> readOsMetrics({
+    final Function(UResponse<UOsMetricsResponse> r)? onOk,
+    final Function(UEmptyResponse e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/dashboard/ReadOsMetrics",
+    body: <String, dynamic>{}.add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    onSuccess: (final Response r) => onOk?.call(
+      UResponse<UOsMetricsResponse>.fromJson(
+        r.body,
+        (final dynamic i) => UOsMetricsResponse.fromMap(i),
+      ),
+    ),
+    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
+    onException: (String e) => onException?.call(e),
+  );
+
   void getLogStructure({
     final Function(LogStructureResponse r)? onOk,
     final VoidCallback? onError,

@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "appearance": MessageLookupByLibrary.simpleMessage("ظاهر"),
     "approve": MessageLookupByLibrary.simpleMessage("تایید"),
     "approved": MessageLookupByLibrary.simpleMessage("تایید شده"),
+    "architecture": MessageLookupByLibrary.simpleMessage("معماری"),
     "areYouSureToDeleteThisTransaction": MessageLookupByLibrary.simpleMessage(
       "آیا از حذف این تراکنش مطمئن هستید؟",
     ),
@@ -114,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "copiedToClipboard": MessageLookupByLibrary.simpleMessage(
       "در کلیپ‌بورد کپی شد",
     ),
+    "cores": MessageLookupByLibrary.simpleMessage("هسته"),
     "country": MessageLookupByLibrary.simpleMessage("کشور"),
     "cpuUsage": MessageLookupByLibrary.simpleMessage("مصرف CPU"),
     "create": MessageLookupByLibrary.simpleMessage("ایجاد"),
@@ -150,6 +152,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "descriptionOptional": MessageLookupByLibrary.simpleMessage(
       "توضیحات (اختیاری)",
     ),
+    "details": MessageLookupByLibrary.simpleMessage("جزئیات"),
+    "diskUsage": MessageLookupByLibrary.simpleMessage("میزان استفاده دیسک"),
+    "disks": MessageLookupByLibrary.simpleMessage("دیسک‌ها"),
     "documents": MessageLookupByLibrary.simpleMessage("مدارک"),
     "dorm": MessageLookupByLibrary.simpleMessage("خوابگاه"),
     "dormAvailable": MessageLookupByLibrary.simpleMessage("خوابگاه خالی"),
@@ -247,11 +252,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "firstName": MessageLookupByLibrary.simpleMessage("نام"),
     "firstNameAZ": MessageLookupByLibrary.simpleMessage("نام (الف-ی)"),
     "firstNameZA": MessageLookupByLibrary.simpleMessage("نام (ی-الف)"),
+    "framework": MessageLookupByLibrary.simpleMessage("فریم‌ورک"),
     "free": MessageLookupByLibrary.simpleMessage("آزاد"),
+    "freeMemory": MessageLookupByLibrary.simpleMessage("حافظه آزاد"),
     "fromBirthDate": MessageLookupByLibrary.simpleMessage("از تاریخ تولد"),
     "fromDate": MessageLookupByLibrary.simpleMessage("از تاریخ"),
+    "garbageCollector": MessageLookupByLibrary.simpleMessage("جمع‌آوری زباله"),
     "gatewayPaymentsByType": MessageLookupByLibrary.simpleMessage(
       "پرداخت‌های درگاه بر اساس نوع",
+    ),
+    "gcGenerations": MessageLookupByLibrary.simpleMessage(
+      "نسل ۰ / نسل ۱ / نسل ۲",
     ),
     "gender": MessageLookupByLibrary.simpleMessage("جنسیت"),
     "general": MessageLookupByLibrary.simpleMessage("عمومی"),
@@ -259,6 +270,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "دریافت رمز پشتیبانی",
     ),
     "guest": MessageLookupByLibrary.simpleMessage("مهمان"),
+    "handles": MessageLookupByLibrary.simpleMessage("هندل‌ها"),
     "hddUsage": MessageLookupByLibrary.simpleMessage("مصرف HDD"),
     "hintOptional": MessageLookupByLibrary.simpleMessage("راهنما (اختیاری)"),
     "hotel": MessageLookupByLibrary.simpleMessage("هتل"),
@@ -286,8 +298,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "lastNameZA": MessageLookupByLibrary.simpleMessage("نام خانوادگی (ی-الف)"),
     "leasing": MessageLookupByLibrary.simpleMessage("اجاره"),
     "light": MessageLookupByLibrary.simpleMessage("روشن"),
+    "loadAverage": MessageLookupByLibrary.simpleMessage("میانگین بار"),
     "logout": MessageLookupByLibrary.simpleMessage("خروج"),
     "logs": MessageLookupByLibrary.simpleMessage("لاگ‌ها"),
+    "machineName": MessageLookupByLibrary.simpleMessage("نام سرور"),
     "male": MessageLookupByLibrary.simpleMessage("آقا"),
     "markAsPaid": MessageLookupByLibrary.simpleMessage("ثبت پرداخت"),
     "markThisInvoiceAsFullyPaid": MessageLookupByLibrary.simpleMessage(
@@ -297,6 +311,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "maxRent": MessageLookupByLibrary.simpleMessage("حداکثر اجاره"),
     "maximumRent": MessageLookupByLibrary.simpleMessage("حداکثر اجاره"),
     "mcc": MessageLookupByLibrary.simpleMessage("کد MCC"),
+    "memoryUsage": MessageLookupByLibrary.simpleMessage("میزان استفاده حافظه"),
     "merchant": MessageLookupByLibrary.simpleMessage("پذیرنده"),
     "merchantId": MessageLookupByLibrary.simpleMessage("شناسه پذیرنده"),
     "merchants": MessageLookupByLibrary.simpleMessage("پذیرنده‌ها"),
@@ -322,10 +337,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "nationalCode": MessageLookupByLibrary.simpleMessage("کد ملی"),
     "needsReview": MessageLookupByLibrary.simpleMessage("نیاز به بررسی"),
     "net": MessageLookupByLibrary.simpleMessage("خالص"),
+    "network": MessageLookupByLibrary.simpleMessage("شبکه"),
     "newExam": MessageLookupByLibrary.simpleMessage("آزمون جدید"),
     "newThisPeriod": MessageLookupByLibrary.simpleMessage("جدید"),
     "newestFirst": MessageLookupByLibrary.simpleMessage("جدیدترین"),
     "next30Days": MessageLookupByLibrary.simpleMessage("۳۰ روز آینده"),
+    "no": MessageLookupByLibrary.simpleMessage("خیر"),
     "noBedsFound": MessageLookupByLibrary.simpleMessage("هیچ تختی یافت نشد"),
     "noContractFound": MessageLookupByLibrary.simpleMessage(
       "هیچ قراردادی یافت نشد",
@@ -372,12 +389,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "oneTerminalPerLineSerialSimnumberSimserialImei": MessageLookupByLibrary.simpleMessage(
       "هر پایانه در یک خط: سریال،شماره سیم‌کارت،سریال سیم‌کارت،imei",
     ),
+    "operatingSystem": MessageLookupByLibrary.simpleMessage("سیستم‌عامل"),
     "operations": MessageLookupByLibrary.simpleMessage("عملیات"),
     "optionTitle": MessageLookupByLibrary.simpleMessage("عنوان گزینه"),
     "optionTitleAndScoreAreRequired": MessageLookupByLibrary.simpleMessage(
       "عنوان گزینه و امتیاز الزامی است",
     ),
     "options": MessageLookupByLibrary.simpleMessage("گزینه‌ها:"),
+    "osMetrics": MessageLookupByLibrary.simpleMessage("متریک‌های سرور"),
     "overdue": MessageLookupByLibrary.simpleMessage("معوق"),
     "overdueInvoicesTitle": MessageLookupByLibrary.simpleMessage(
       "فاکتورهای معوق",
@@ -420,6 +439,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pointDetails": MessageLookupByLibrary.simpleMessage("جزئیات امتیاز"),
     "priceNight": MessageLookupByLibrary.simpleMessage("قیمت / شب"),
+    "privateMemory": MessageLookupByLibrary.simpleMessage("حافظه اختصاصی"),
+    "process": MessageLookupByLibrary.simpleMessage("پردازش"),
+    "processUptime": MessageLookupByLibrary.simpleMessage("زمان کارکرد سرویس"),
     "productCategories": MessageLookupByLibrary.simpleMessage(
       "دسته‌بندی‌های محصول",
     ),
@@ -448,6 +470,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reasonForRejectingVideo": MessageLookupByLibrary.simpleMessage(
       "دلیل رد ویدیو",
     ),
+    "received": MessageLookupByLibrary.simpleMessage("دریافتی"),
     "receiver": MessageLookupByLibrary.simpleMessage("گیرنده"),
     "recentContracts": MessageLookupByLibrary.simpleMessage("قراردادهای اخیر"),
     "recentTransactions": MessageLookupByLibrary.simpleMessage(
@@ -495,13 +518,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectUserToManageWallet": MessageLookupByLibrary.simpleMessage(
       "برای مدیریت کیف پول، کاربری را انتخاب کنید",
     ),
+    "sent": MessageLookupByLibrary.simpleMessage("ارسالی"),
     "serial": MessageLookupByLibrary.simpleMessage("سریال"),
+    "serverGc": MessageLookupByLibrary.simpleMessage("Server GC"),
     "settings": MessageLookupByLibrary.simpleMessage("تنظیمات"),
     "signature": MessageLookupByLibrary.simpleMessage("امضا"),
     "simCardNumber": MessageLookupByLibrary.simpleMessage("شماره سیم‌کارت"),
     "simCardSerial": MessageLookupByLibrary.simpleMessage("سریال سیم‌کارت"),
     "singleInvoice": MessageLookupByLibrary.simpleMessage("فاکتور واحد"),
     "sortBy": MessageLookupByLibrary.simpleMessage("مرتب‌سازی"),
+    "speed": MessageLookupByLibrary.simpleMessage("سرعت"),
     "spendingByType": MessageLookupByLibrary.simpleMessage("هزینه بر اساس نوع"),
     "startDate": MessageLookupByLibrary.simpleMessage("تاریخ شروع"),
     "status": MessageLookupByLibrary.simpleMessage("وضعیت"),
@@ -510,6 +536,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "subtitle": MessageLookupByLibrary.simpleMessage("زیرعنوان"),
     "supportPassword": MessageLookupByLibrary.simpleMessage("رمز پشتیبانی"),
     "system": MessageLookupByLibrary.simpleMessage("سیستم"),
+    "systemUptime": MessageLookupByLibrary.simpleMessage("زمان کارکرد سیستم"),
     "systemWideReport": MessageLookupByLibrary.simpleMessage("گزارش کل سیستم"),
     "tags": MessageLookupByLibrary.simpleMessage("برچسب‌ها"),
     "tenant": MessageLookupByLibrary.simpleMessage("مستاجر"),
@@ -533,6 +560,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "thisUserDoesNotHaveAnActiveContract": MessageLookupByLibrary.simpleMessage(
       "این کاربر قرارداد فعال ندارد.",
     ),
+    "threads": MessageLookupByLibrary.simpleMessage("ریسمان‌ها"),
     "title": MessageLookupByLibrary.simpleMessage("عنوان"),
     "toBirthDate": MessageLookupByLibrary.simpleMessage("تا تاریخ تولد"),
     "toDate": MessageLookupByLibrary.simpleMessage("تا تاریخ"),
@@ -541,6 +569,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "برترین پذیرندگان (بر اساس تعداد پایانه)",
     ),
     "totalDebt": MessageLookupByLibrary.simpleMessage("کل بدهی"),
+    "totalMemory": MessageLookupByLibrary.simpleMessage("کل حافظه"),
     "totalPaid": MessageLookupByLibrary.simpleMessage("کل پرداختی"),
     "totalPenalty": MessageLookupByLibrary.simpleMessage("کل جریمه"),
     "totalRemaining": MessageLookupByLibrary.simpleMessage("کل باقی‌مانده"),
@@ -599,74 +628,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "walletBalance": MessageLookupByLibrary.simpleMessage("موجودی کیف پول"),
     "walletManagement": MessageLookupByLibrary.simpleMessage("مدیریت کیف پول"),
     "wallets": MessageLookupByLibrary.simpleMessage("کیف پول‌ها"),
+    "workingSet": MessageLookupByLibrary.simpleMessage("حافظه در حال استفاده"),
+    "yes": MessageLookupByLibrary.simpleMessage("بله"),
     "zipCode": MessageLookupByLibrary.simpleMessage("کد پستی"),
-    "financialOpsDashboard": MessageLookupByLibrary.simpleMessage(
-      "مالی و عملیات",
-    ),
-    "propertyDashboard": MessageLookupByLibrary.simpleMessage(
-      "داشبورد املاک",
-    ),
-    "entityOverview": MessageLookupByLibrary.simpleMessage(
-      "نمای کلی موجودیت‌ها",
-    ),
-    "transactionsByStatus": MessageLookupByLibrary.simpleMessage(
-      "تراکنش‌ها بر اساس وضعیت",
-    ),
-    "transactionsByMethod": MessageLookupByLibrary.simpleMessage(
-      "تراکنش‌ها بر اساس روش پرداخت",
-    ),
-    "terminalsByType": MessageLookupByLibrary.simpleMessage(
-      "پایانه‌ها بر اساس نوع",
-    ),
-    "topMerchants": MessageLookupByLibrary.simpleMessage("برترین پذیرندگان"),
-    "topMerchantsByTerminalCount": MessageLookupByLibrary.simpleMessage(
-      "برترین پذیرندگان (بر اساس تعداد پایانه)",
-    ),
-    "recentTransactions": MessageLookupByLibrary.simpleMessage(
-      "تراکنش‌های اخیر",
-    ),
-    "recentlyOnboardedMerchants": MessageLookupByLibrary.simpleMessage(
-      "پذیرندگان اخیراً ثبت‌شده",
-    ),
-    "unassignedTerminals": MessageLookupByLibrary.simpleMessage(
-      "پایانه‌های تخصیص‌نیافته",
-    ),
-    "newThisPeriod": MessageLookupByLibrary.simpleMessage("جدید"),
-    "hotelOccupancy": MessageLookupByLibrary.simpleMessage("اشغال هتل"),
-    "dormOccupancy": MessageLookupByLibrary.simpleMessage("اشغال خوابگاه"),
-    "expiringSoon": MessageLookupByLibrary.simpleMessage("در حال انقضا"),
-    "monthlyRevenue": MessageLookupByLibrary.simpleMessage("درآمد ماهانه"),
-    "monthlyRevenueBreakdown": MessageLookupByLibrary.simpleMessage(
-      "درآمد ماهانه (بدهی / پرداخت‌شده / جریمه)",
-    ),
-    "occupancy": MessageLookupByLibrary.simpleMessage("اشغال"),
-    "hotelOccupied": MessageLookupByLibrary.simpleMessage("هتل اشغال‌شده"),
-    "hotelAvailable": MessageLookupByLibrary.simpleMessage("هتل خالی"),
-    "dormOccupied": MessageLookupByLibrary.simpleMessage(
-      "خوابگاه اشغال‌شده",
-    ),
-    "dormAvailable": MessageLookupByLibrary.simpleMessage("خوابگاه خالی"),
-    "hotelsByCity": MessageLookupByLibrary.simpleMessage(
-      "هتل‌ها بر اساس شهر",
-    ),
-    "dormsByCity": MessageLookupByLibrary.simpleMessage(
-      "خوابگاه‌ها بر اساس شهر",
-    ),
-    "contractsExpiringSoon": MessageLookupByLibrary.simpleMessage(
-      "قراردادهای در حال انقضا",
-    ),
-    "overdueInvoicesTitle": MessageLookupByLibrary.simpleMessage(
-      "فاکتورهای معوق",
-    ),
-    "endsOn": MessageLookupByLibrary.simpleMessage("پایان"),
-    "dueOn": MessageLookupByLibrary.simpleMessage("سررسید"),
-    "daysOverdue": MessageLookupByLibrary.simpleMessage("روز تأخیر"),
-    "recentContracts": MessageLookupByLibrary.simpleMessage(
-      "قراردادهای اخیر",
-    ),
-    "next30Days": MessageLookupByLibrary.simpleMessage("۳۰ روز آینده"),
-    "assignedTerminalsCount": MessageLookupByLibrary.simpleMessage(
-      "تخصیص‌یافته",
-    ),
   };
 }

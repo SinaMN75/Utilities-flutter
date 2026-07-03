@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
     "approve": MessageLookupByLibrary.simpleMessage("Approve"),
     "approved": MessageLookupByLibrary.simpleMessage("Approved"),
+    "architecture": MessageLookupByLibrary.simpleMessage("Architecture"),
     "areYouSureToDeleteThisTransaction": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this transaction?",
     ),
@@ -112,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "copiedToClipboard": MessageLookupByLibrary.simpleMessage(
       "Copied to clipboard",
     ),
+    "cores": MessageLookupByLibrary.simpleMessage("cores"),
     "country": MessageLookupByLibrary.simpleMessage("Country"),
     "cpuUsage": MessageLookupByLibrary.simpleMessage("CPU Usage"),
     "create": MessageLookupByLibrary.simpleMessage("Create"),
@@ -152,6 +154,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "descriptionOptional": MessageLookupByLibrary.simpleMessage(
       "Description (Optional)",
     ),
+    "details": MessageLookupByLibrary.simpleMessage("Details"),
+    "diskUsage": MessageLookupByLibrary.simpleMessage("Disk Usage"),
+    "disks": MessageLookupByLibrary.simpleMessage("Disks"),
     "documents": MessageLookupByLibrary.simpleMessage("Documents"),
     "dorm": MessageLookupByLibrary.simpleMessage("Dorm"),
     "dormAvailable": MessageLookupByLibrary.simpleMessage("Dorm Available"),
@@ -241,18 +246,25 @@ class MessageLookup extends MessageLookupByLibrary {
     "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
     "firstNameAZ": MessageLookupByLibrary.simpleMessage("First Name (A-Z)"),
     "firstNameZA": MessageLookupByLibrary.simpleMessage("First Name (Z-A)"),
+    "framework": MessageLookupByLibrary.simpleMessage("Framework"),
     "free": MessageLookupByLibrary.simpleMessage("Free"),
+    "freeMemory": MessageLookupByLibrary.simpleMessage("Free Memory"),
     "fromBirthDate": MessageLookupByLibrary.simpleMessage("From Birth Date"),
     "fromDate": MessageLookupByLibrary.simpleMessage("From Date"),
+    "garbageCollector": MessageLookupByLibrary.simpleMessage(
+      "Garbage Collector",
+    ),
     "gatewayPaymentsByType": MessageLookupByLibrary.simpleMessage(
       "Gateway Payments by Type",
     ),
+    "gcGenerations": MessageLookupByLibrary.simpleMessage("Gen0 / Gen1 / Gen2"),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "general": MessageLookupByLibrary.simpleMessage("General"),
     "getSupportPassword": MessageLookupByLibrary.simpleMessage(
       "Get Support Password",
     ),
     "guest": MessageLookupByLibrary.simpleMessage("Guest"),
+    "handles": MessageLookupByLibrary.simpleMessage("Handles"),
     "hddUsage": MessageLookupByLibrary.simpleMessage("HDD Usage"),
     "hintOptional": MessageLookupByLibrary.simpleMessage("Hint (Optional)"),
     "hotel": MessageLookupByLibrary.simpleMessage("Hotel"),
@@ -280,8 +292,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "lastNameZA": MessageLookupByLibrary.simpleMessage("Last Name (Z-A)"),
     "leasing": MessageLookupByLibrary.simpleMessage("Leasing"),
     "light": MessageLookupByLibrary.simpleMessage("Light"),
+    "loadAverage": MessageLookupByLibrary.simpleMessage("Load Average"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "logs": MessageLookupByLibrary.simpleMessage("Logs"),
+    "machineName": MessageLookupByLibrary.simpleMessage("Machine Name"),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
     "markAsPaid": MessageLookupByLibrary.simpleMessage("Mark as Paid"),
     "markThisInvoiceAsFullyPaid": MessageLookupByLibrary.simpleMessage(
@@ -291,6 +305,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "maxRent": MessageLookupByLibrary.simpleMessage("Max Rent"),
     "maximumRent": MessageLookupByLibrary.simpleMessage("Maximum Rent"),
     "mcc": MessageLookupByLibrary.simpleMessage("MCC"),
+    "memoryUsage": MessageLookupByLibrary.simpleMessage("Memory Usage"),
     "merchant": MessageLookupByLibrary.simpleMessage("Merchant"),
     "merchantId": MessageLookupByLibrary.simpleMessage("Merchant ID"),
     "merchants": MessageLookupByLibrary.simpleMessage("Merchants"),
@@ -320,10 +335,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "nationalCode": MessageLookupByLibrary.simpleMessage("National Code"),
     "needsReview": MessageLookupByLibrary.simpleMessage("Needs Review"),
     "net": MessageLookupByLibrary.simpleMessage("Net"),
+    "network": MessageLookupByLibrary.simpleMessage("Network"),
     "newExam": MessageLookupByLibrary.simpleMessage("New Exam"),
     "newThisPeriod": MessageLookupByLibrary.simpleMessage("New"),
     "newestFirst": MessageLookupByLibrary.simpleMessage("Newest First"),
     "next30Days": MessageLookupByLibrary.simpleMessage("Next 30 Days"),
+    "no": MessageLookupByLibrary.simpleMessage("No"),
     "noBedsFound": MessageLookupByLibrary.simpleMessage("No beds found"),
     "noContractFound": MessageLookupByLibrary.simpleMessage(
       "No Contract Found",
@@ -362,12 +379,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "oneTerminalPerLineSerialSimnumberSimserialImei": MessageLookupByLibrary.simpleMessage(
       "One terminal per line: serial,simNumber,simSerial,imei",
     ),
+    "operatingSystem": MessageLookupByLibrary.simpleMessage("Operating System"),
     "operations": MessageLookupByLibrary.simpleMessage("Operations"),
     "optionTitle": MessageLookupByLibrary.simpleMessage("Option Title"),
     "optionTitleAndScoreAreRequired": MessageLookupByLibrary.simpleMessage(
       "Option title and score are required",
     ),
     "options": MessageLookupByLibrary.simpleMessage("Options:"),
+    "osMetrics": MessageLookupByLibrary.simpleMessage("OS Metrics"),
     "overdue": MessageLookupByLibrary.simpleMessage("Overdue"),
     "overdueInvoicesTitle": MessageLookupByLibrary.simpleMessage(
       "Overdue Invoices",
@@ -408,6 +427,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pointDetails": MessageLookupByLibrary.simpleMessage("Point Details"),
     "priceNight": MessageLookupByLibrary.simpleMessage("Price / Night"),
+    "privateMemory": MessageLookupByLibrary.simpleMessage("Private Memory"),
+    "process": MessageLookupByLibrary.simpleMessage("Process"),
+    "processUptime": MessageLookupByLibrary.simpleMessage("Process Uptime"),
     "productCategories": MessageLookupByLibrary.simpleMessage(
       "Product Categories",
     ),
@@ -438,6 +460,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reasonForRejectingVideo": MessageLookupByLibrary.simpleMessage(
       "Reason for rejecting Video",
     ),
+    "received": MessageLookupByLibrary.simpleMessage("Received"),
     "receiver": MessageLookupByLibrary.simpleMessage("Receiver"),
     "recentContracts": MessageLookupByLibrary.simpleMessage("Recent Contracts"),
     "recentTransactions": MessageLookupByLibrary.simpleMessage(
@@ -487,13 +510,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectUserToManageWallet": MessageLookupByLibrary.simpleMessage(
       "Select a user to manage their wallet",
     ),
+    "sent": MessageLookupByLibrary.simpleMessage("Sent"),
     "serial": MessageLookupByLibrary.simpleMessage("Serial"),
+    "serverGc": MessageLookupByLibrary.simpleMessage("Server GC"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "signature": MessageLookupByLibrary.simpleMessage("Signature"),
     "simCardNumber": MessageLookupByLibrary.simpleMessage("SIM Card Number"),
     "simCardSerial": MessageLookupByLibrary.simpleMessage("SIM Card Serial"),
     "singleInvoice": MessageLookupByLibrary.simpleMessage("Single Invoice"),
     "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
+    "speed": MessageLookupByLibrary.simpleMessage("Speed"),
     "spendingByType": MessageLookupByLibrary.simpleMessage("Spending by Type"),
     "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
@@ -502,6 +528,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "subtitle": MessageLookupByLibrary.simpleMessage("Subtitle"),
     "supportPassword": MessageLookupByLibrary.simpleMessage("Support Password"),
     "system": MessageLookupByLibrary.simpleMessage("System"),
+    "systemUptime": MessageLookupByLibrary.simpleMessage("System Uptime"),
     "systemWideReport": MessageLookupByLibrary.simpleMessage(
       "System-wide report",
     ),
@@ -527,6 +554,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "thisUserDoesNotHaveAnActiveContract": MessageLookupByLibrary.simpleMessage(
       "This User does not have an Active Contract.",
     ),
+    "threads": MessageLookupByLibrary.simpleMessage("Threads"),
     "title": MessageLookupByLibrary.simpleMessage("Title"),
     "toBirthDate": MessageLookupByLibrary.simpleMessage("To Birth Date"),
     "toDate": MessageLookupByLibrary.simpleMessage("To Date"),
@@ -535,6 +563,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Top Merchants (by terminal count)",
     ),
     "totalDebt": MessageLookupByLibrary.simpleMessage("Total Debt"),
+    "totalMemory": MessageLookupByLibrary.simpleMessage("Total Memory"),
     "totalPaid": MessageLookupByLibrary.simpleMessage("Total Paid"),
     "totalPenalty": MessageLookupByLibrary.simpleMessage("Total Penalty"),
     "totalRemaining": MessageLookupByLibrary.simpleMessage("Total Remaining"),
@@ -595,74 +624,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Wallet Management",
     ),
     "wallets": MessageLookupByLibrary.simpleMessage("Wallets"),
+    "workingSet": MessageLookupByLibrary.simpleMessage("Working Set"),
+    "yes": MessageLookupByLibrary.simpleMessage("Yes"),
     "zipCode": MessageLookupByLibrary.simpleMessage("Zip Code"),
-    "financialOpsDashboard": MessageLookupByLibrary.simpleMessage(
-      "Financial & Operations",
-    ),
-    "propertyDashboard": MessageLookupByLibrary.simpleMessage(
-      "Property Dashboard",
-    ),
-    "entityOverview": MessageLookupByLibrary.simpleMessage(
-      "Entity Overview",
-    ),
-    "transactionsByStatus": MessageLookupByLibrary.simpleMessage(
-      "Transactions by Status",
-    ),
-    "transactionsByMethod": MessageLookupByLibrary.simpleMessage(
-      "Transactions by Method",
-    ),
-    "terminalsByType": MessageLookupByLibrary.simpleMessage(
-      "Terminals by Type",
-    ),
-    "topMerchants": MessageLookupByLibrary.simpleMessage("Top Merchants"),
-    "topMerchantsByTerminalCount": MessageLookupByLibrary.simpleMessage(
-      "Top Merchants (by terminal count)",
-    ),
-    "recentTransactions": MessageLookupByLibrary.simpleMessage(
-      "Recent Transactions",
-    ),
-    "recentlyOnboardedMerchants": MessageLookupByLibrary.simpleMessage(
-      "Recently Onboarded Merchants",
-    ),
-    "unassignedTerminals": MessageLookupByLibrary.simpleMessage(
-      "Unassigned Terminals",
-    ),
-    "newThisPeriod": MessageLookupByLibrary.simpleMessage("New"),
-    "hotelOccupancy": MessageLookupByLibrary.simpleMessage(
-      "Hotel Occupancy",
-    ),
-    "dormOccupancy": MessageLookupByLibrary.simpleMessage("Dorm Occupancy"),
-    "expiringSoon": MessageLookupByLibrary.simpleMessage("Expiring Soon"),
-    "monthlyRevenue": MessageLookupByLibrary.simpleMessage(
-      "Monthly Revenue",
-    ),
-    "monthlyRevenueBreakdown": MessageLookupByLibrary.simpleMessage(
-      "Monthly Revenue (Debt / Paid / Penalty)",
-    ),
-    "occupancy": MessageLookupByLibrary.simpleMessage("Occupancy"),
-    "hotelOccupied": MessageLookupByLibrary.simpleMessage("Hotel Occupied"),
-    "hotelAvailable": MessageLookupByLibrary.simpleMessage(
-      "Hotel Available",
-    ),
-    "dormOccupied": MessageLookupByLibrary.simpleMessage("Dorm Occupied"),
-    "dormAvailable": MessageLookupByLibrary.simpleMessage("Dorm Available"),
-    "hotelsByCity": MessageLookupByLibrary.simpleMessage("Hotels by City"),
-    "dormsByCity": MessageLookupByLibrary.simpleMessage("Dorms by City"),
-    "contractsExpiringSoon": MessageLookupByLibrary.simpleMessage(
-      "Contracts Expiring Soon",
-    ),
-    "overdueInvoicesTitle": MessageLookupByLibrary.simpleMessage(
-      "Overdue Invoices",
-    ),
-    "endsOn": MessageLookupByLibrary.simpleMessage("Ends"),
-    "dueOn": MessageLookupByLibrary.simpleMessage("Due"),
-    "daysOverdue": MessageLookupByLibrary.simpleMessage("Days Overdue"),
-    "recentContracts": MessageLookupByLibrary.simpleMessage(
-      "Recent Contracts",
-    ),
-    "next30Days": MessageLookupByLibrary.simpleMessage("Next 30 Days"),
-    "assignedTerminalsCount": MessageLookupByLibrary.simpleMessage(
-      "Assigned",
-    ),
   };
 }
