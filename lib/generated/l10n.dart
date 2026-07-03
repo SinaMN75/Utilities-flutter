@@ -2837,6 +2837,301 @@ class S {
       args: [],
     );
   }
+
+  /// `Financial & Operations`
+  String get financialOpsDashboard {
+    return Intl.message(
+      'Financial & Operations',
+      name: 'financialOpsDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property Dashboard`
+  String get propertyDashboard {
+    return Intl.message(
+      'Property Dashboard',
+      name: 'propertyDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entity Overview`
+  String get entityOverview {
+    return Intl.message(
+      'Entity Overview',
+      name: 'entityOverview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transactions by Status`
+  String get transactionsByStatus {
+    return Intl.message(
+      'Transactions by Status',
+      name: 'transactionsByStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transactions by Method`
+  String get transactionsByMethod {
+    return Intl.message(
+      'Transactions by Method',
+      name: 'transactionsByMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terminals by Type`
+  String get terminalsByType {
+    return Intl.message(
+      'Terminals by Type',
+      name: 'terminalsByType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top Merchants`
+  String get topMerchants {
+    return Intl.message(
+      'Top Merchants',
+      name: 'topMerchants',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top Merchants (by terminal count)`
+  String get topMerchantsByTerminalCount {
+    return Intl.message(
+      'Top Merchants (by terminal count)',
+      name: 'topMerchantsByTerminalCount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Transactions`
+  String get recentTransactions {
+    return Intl.message(
+      'Recent Transactions',
+      name: 'recentTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recently Onboarded Merchants`
+  String get recentlyOnboardedMerchants {
+    return Intl.message(
+      'Recently Onboarded Merchants',
+      name: 'recentlyOnboardedMerchants',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unassigned Terminals`
+  String get unassignedTerminals {
+    return Intl.message(
+      'Unassigned Terminals',
+      name: 'unassignedTerminals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New`
+  String get newThisPeriod {
+    return Intl.message('New', name: 'newThisPeriod', desc: '', args: []);
+  }
+
+  /// `Hotel Occupancy`
+  String get hotelOccupancy {
+    return Intl.message(
+      'Hotel Occupancy',
+      name: 'hotelOccupancy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dorm Occupancy`
+  String get dormOccupancy {
+    return Intl.message(
+      'Dorm Occupancy',
+      name: 'dormOccupancy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiring Soon`
+  String get expiringSoon {
+    return Intl.message(
+      'Expiring Soon',
+      name: 'expiringSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly Revenue`
+  String get monthlyRevenue {
+    return Intl.message(
+      'Monthly Revenue',
+      name: 'monthlyRevenue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly Revenue (Debt / Paid / Penalty)`
+  String get monthlyRevenueBreakdown {
+    return Intl.message(
+      'Monthly Revenue (Debt / Paid / Penalty)',
+      name: 'monthlyRevenueBreakdown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Occupancy`
+  String get occupancy {
+    return Intl.message('Occupancy', name: 'occupancy', desc: '', args: []);
+  }
+
+  /// `Hotel Occupied`
+  String get hotelOccupied {
+    return Intl.message(
+      'Hotel Occupied',
+      name: 'hotelOccupied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hotel Available`
+  String get hotelAvailable {
+    return Intl.message(
+      'Hotel Available',
+      name: 'hotelAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dorm Occupied`
+  String get dormOccupied {
+    return Intl.message(
+      'Dorm Occupied',
+      name: 'dormOccupied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dorm Available`
+  String get dormAvailable {
+    return Intl.message(
+      'Dorm Available',
+      name: 'dormAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hotels by City`
+  String get hotelsByCity {
+    return Intl.message(
+      'Hotels by City',
+      name: 'hotelsByCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dorms by City`
+  String get dormsByCity {
+    return Intl.message(
+      'Dorms by City',
+      name: 'dormsByCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contracts Expiring Soon`
+  String get contractsExpiringSoon {
+    return Intl.message(
+      'Contracts Expiring Soon',
+      name: 'contractsExpiringSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overdue Invoices`
+  String get overdueInvoicesTitle {
+    return Intl.message(
+      'Overdue Invoices',
+      name: 'overdueInvoicesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ends`
+  String get endsOn {
+    return Intl.message('Ends', name: 'endsOn', desc: '', args: []);
+  }
+
+  /// `Due`
+  String get dueOn {
+    return Intl.message('Due', name: 'dueOn', desc: '', args: []);
+  }
+
+  /// `Days Overdue`
+  String get daysOverdue {
+    return Intl.message(
+      'Days Overdue',
+      name: 'daysOverdue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent Contracts`
+  String get recentContracts {
+    return Intl.message(
+      'Recent Contracts',
+      name: 'recentContracts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next 30 Days`
+  String get next30Days {
+    return Intl.message('Next 30 Days', name: 'next30Days', desc: '', args: []);
+  }
+
+  /// `Assigned`
+  String get assignedTerminalsCount {
+    return Intl.message(
+      'Assigned',
+      name: 'assignedTerminalsCount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
