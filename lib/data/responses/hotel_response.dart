@@ -89,6 +89,7 @@ class UDormResponse {
   final String title;
   final String city;
   final String country;
+  final List<String> adminUserIds;
   final List<UDormRoomResponse>? rooms;
   final List<UMediaResponse>? media;
 
@@ -100,6 +101,7 @@ class UDormResponse {
     required this.title,
     required this.city,
     required this.country,
+    this.adminUserIds = const <String>[],
     this.creator,
     this.creatorId,
     this.rooms,
@@ -120,6 +122,7 @@ class UDormResponse {
     title: json["title"] as String,
     city: json["city"] as String,
     country: json["country"] as String,
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
     rooms: json["rooms"] == null ? <UDormRoomResponse>[] : List<UDormRoomResponse>.from(json["rooms"]!.map((dynamic x) => UDormRoomResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
   );
@@ -134,6 +137,7 @@ class UDormResponse {
     "title": title,
     "city": city,
     "country": country,
+    "adminUserIds": List<String>.from(adminUserIds.map((String x) => x)),
     "rooms": rooms == null ? <UDormRoomResponse>[] : List<UDormRoomResponse>.from(rooms!.map((UDormRoomResponse x) => x.toMap())),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
   };
@@ -149,6 +153,7 @@ class UHotelResponse {
   final String title;
   final String city;
   final String country;
+  final List<String> adminUserIds;
   final List<UHotelRoomResponse>? rooms;
   final List<UMediaResponse>? media;
 
@@ -160,6 +165,7 @@ class UHotelResponse {
     required this.title,
     required this.city,
     required this.country,
+    this.adminUserIds = const <String>[],
     this.creator,
     this.creatorId,
     this.rooms,
@@ -180,6 +186,7 @@ class UHotelResponse {
     title: json["title"] as String,
     city: json["city"] as String,
     country: json["country"] as String,
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
     rooms: json["rooms"] == null ? <UHotelRoomResponse>[] : List<UHotelRoomResponse>.from(json["rooms"]!.map((dynamic x) => UHotelRoomResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
   );
@@ -194,6 +201,7 @@ class UHotelResponse {
     "title": title,
     "city": city,
     "country": country,
+    "adminUserIds": List<String>.from(adminUserIds.map((String x) => x)),
     "rooms": rooms == null ? <UHotelRoomResponse>[] : List<UHotelRoomResponse>.from(rooms!.map((UHotelRoomResponse x) => x.toMap())),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
   };

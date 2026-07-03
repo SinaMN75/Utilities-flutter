@@ -201,6 +201,7 @@ class UDormCreateParams {
   final String title;
   final String city;
   final String country;
+  final List<String>? adminUserIds;
 
   UDormCreateParams({
     required this.tags,
@@ -211,6 +212,7 @@ class UDormCreateParams {
     this.detail2,
     this.id,
     this.creatorId,
+    this.adminUserIds,
   });
 
   factory UDormCreateParams.fromJson(String str) => UDormCreateParams.fromMap(json.decode(str));
@@ -226,6 +228,7 @@ class UDormCreateParams {
     title: json["title"],
     city: json["city"],
     country: json["country"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -237,6 +240,7 @@ class UDormCreateParams {
     "title": title,
     "city": city,
     "country": country,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -250,6 +254,9 @@ class UDormUpdateParams {
   final String? title;
   final String? city;
   final String? country;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   UDormUpdateParams({
     required this.id,
@@ -261,6 +268,9 @@ class UDormUpdateParams {
     this.title,
     this.city,
     this.country,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UDormUpdateParams.fromJson(String str) => UDormUpdateParams.fromMap(json.decode(str));
@@ -277,6 +287,9 @@ class UDormUpdateParams {
     title: json["title"],
     city: json["city"],
     country: json["country"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -289,6 +302,9 @@ class UDormUpdateParams {
     "title": title,
     "city": city,
     "country": country,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }
 
@@ -363,6 +379,7 @@ class UHotelCreateParams {
   final String title;
   final String city;
   final String country;
+  final List<String>? adminUserIds;
 
   UHotelCreateParams({
     required this.tags,
@@ -373,6 +390,7 @@ class UHotelCreateParams {
     this.detail2,
     this.id,
     this.creatorId,
+    this.adminUserIds,
   });
 
   factory UHotelCreateParams.fromJson(String str) => UHotelCreateParams.fromMap(json.decode(str));
@@ -388,6 +406,7 @@ class UHotelCreateParams {
     title: json["title"],
     city: json["city"],
     country: json["country"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -399,6 +418,7 @@ class UHotelCreateParams {
     "title": title,
     "city": city,
     "country": country,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -412,6 +432,9 @@ class UHotelUpdateParams {
   final String? title;
   final String? city;
   final String? country;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   UHotelUpdateParams({
     required this.id,
@@ -423,6 +446,9 @@ class UHotelUpdateParams {
     this.title,
     this.city,
     this.country,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UHotelUpdateParams.fromJson(String str) => UHotelUpdateParams.fromMap(json.decode(str));
@@ -439,6 +465,9 @@ class UHotelUpdateParams {
     title: json["title"],
     city: json["city"],
     country: json["country"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -451,6 +480,9 @@ class UHotelUpdateParams {
     "title": title,
     "city": city,
     "country": country,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }
 
