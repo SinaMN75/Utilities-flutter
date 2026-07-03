@@ -13,6 +13,8 @@ part "params/charge_internet_params.dart";
 part "params/chat_bot_params.dart";
 part "params/comment_params.dart";
 part "params/content_params.dart";
+
+part "params/dashboard_analytics_params.dart";
 part "params/exam_params.dart";
 part "params/follow_params.dart";
 part "params/hotel_params.dart";
@@ -44,6 +46,8 @@ part "responses/chat_bot_response.dart";
 part "responses/comment_response.dart";
 part "responses/content_response.dart";
 part "responses/dashboard_response.dart";
+
+part "responses/dashboard_analytics_response.dart";
 part "responses/exam_response.dart";
 part "responses/follower_following_count_response.dart";
 part "responses/hotel_response.dart";
