@@ -698,8 +698,9 @@ class DormBedSelectorArgs {
   final UserSelectorArgs? creator;
   final DormRoomSelectorArgs? room;
   final MediaSelectorArgs? media;
+  final ContractSelectorArgs? contract;
 
-  const DormBedSelectorArgs({this.creator, this.room, this.media});
+  const DormBedSelectorArgs({this.creator, this.room, this.media, this.contract});
 
   factory DormBedSelectorArgs.fromJson(String str) => DormBedSelectorArgs.fromMap(json.decode(str));
 
@@ -709,11 +710,13 @@ class DormBedSelectorArgs {
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
     room: json["room"] == null ? null : DormRoomSelectorArgs.fromMap(json["room"]),
     media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
+    contract: json["contract"] == null ? null : ContractSelectorArgs.fromMap(json["contract"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "creator": creator?.toMap(),
     "room": room?.toMap(),
     "media": media?.toMap(),
+    "contract": contract?.toMap(),
   };
 }

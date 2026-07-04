@@ -203,7 +203,7 @@ class UHotelRoomResponse {
   final UUserResponse? creator;
   final String? creatorId;
   final String title;
-  final int capacityCode;
+  final int capacity;
   final double pricePerNight;
   final String hotelId;
   final UHotelResponse? hotel;
@@ -215,7 +215,7 @@ class UHotelRoomResponse {
     required this.jsonData,
     required this.tags,
     required this.title,
-    required this.capacityCode,
+    required this.capacity,
     required this.pricePerNight,
     required this.hotelId,
     this.creator,
@@ -236,7 +236,7 @@ class UHotelRoomResponse {
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     title: json["title"] as String,
-    capacityCode: json["capacityCode"] as int,
+    capacity: json["capacity"] as int,
     pricePerNight: (json["pricePerNight"] as num).toDouble(),
     hotelId: json["hotelId"] as String,
     hotel: json["hotel"] == null ? null : UHotelResponse.fromMap(json["hotel"]),
@@ -251,7 +251,7 @@ class UHotelRoomResponse {
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,
-    "capacityCode": capacityCode,
+    "capacity": capacity,
     "pricePerNight": pricePerNight,
     "hotelId": hotelId,
     "hotel": hotel?.toMap(),

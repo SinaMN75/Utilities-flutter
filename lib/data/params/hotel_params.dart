@@ -124,6 +124,7 @@ class UDormBedReadParams {
   final double? maxDeposit;
   final double? minMonthlyRent;
   final double? maxMonthlyRent;
+  final DormBedSelectorArgs? selectorArgs;
 
   UDormBedReadParams({
     this.pageSize,
@@ -139,6 +140,7 @@ class UDormBedReadParams {
     this.maxDeposit,
     this.minMonthlyRent,
     this.maxMonthlyRent,
+    this.selectorArgs,
   });
 
   factory UDormBedReadParams.fromJson(String str) => UDormBedReadParams.fromMap(json.decode(str));
@@ -159,6 +161,7 @@ class UDormBedReadParams {
     maxDeposit: json["maxDeposit"]?.toDouble(),
     minMonthlyRent: json["minMonthlyRent"]?.toDouble(),
     maxMonthlyRent: json["maxMonthlyRent"]?.toDouble(),
+    selectorArgs: json["selectorArgs"] == null ? null : DormBedSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -175,6 +178,7 @@ class UDormBedReadParams {
     "maxDeposit": maxDeposit,
     "minMonthlyRent": minMonthlyRent,
     "maxMonthlyRent": maxMonthlyRent,
+    "selectorArgs": selectorArgs?.toMap(),
   };
 }
 
@@ -515,14 +519,14 @@ class UHotelRoomCreateParams {
   final String? id;
   final String? creatorId;
   final String title;
-  final int capacityCode;
+  final int capacity;
   final double pricePerNight;
   final String hotelId;
 
   UHotelRoomCreateParams({
     required this.tags,
     required this.title,
-    required this.capacityCode,
+    required this.capacity,
     required this.pricePerNight,
     required this.hotelId,
     this.detail1,
@@ -542,7 +546,7 @@ class UHotelRoomCreateParams {
     id: json["id"],
     creatorId: json["creatorId"],
     title: json["title"],
-    capacityCode: json["capacityCode"],
+    capacity: json["capacity"],
     pricePerNight: json["pricePerNight"]?.toDouble(),
     hotelId: json["hotelId"],
   );
@@ -554,7 +558,7 @@ class UHotelRoomCreateParams {
     "id": id,
     "creatorId": creatorId,
     "title": title,
-    "capacityCode": capacityCode,
+    "capacity": capacity,
     "pricePerNight": pricePerNight,
     "hotelId": hotelId,
   };
@@ -568,7 +572,7 @@ class UHotelRoomUpdateParams {
   final List<int>? removeTags;
   final List<int>? tags;
   final String? title;
-  final int? capacityCode;
+  final int? capacity;
   final double? pricePerNight;
   final String? hotelId;
 
@@ -580,7 +584,7 @@ class UHotelRoomUpdateParams {
     this.removeTags,
     this.tags,
     this.title,
-    this.capacityCode,
+    this.capacity,
     this.pricePerNight,
     this.hotelId,
   });
@@ -597,7 +601,7 @@ class UHotelRoomUpdateParams {
     removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     title: json["title"],
-    capacityCode: json["capacityCode"],
+    capacity: json["capacity"],
     pricePerNight: json["pricePerNight"]?.toDouble(),
     hotelId: json["hotelId"],
   );
@@ -610,7 +614,7 @@ class UHotelRoomUpdateParams {
     "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "title": title,
-    "capacityCode": capacityCode,
+    "capacity": capacity,
     "pricePerNight": pricePerNight,
     "hotelId": hotelId,
   };
@@ -626,8 +630,8 @@ class UHotelRoomReadParams {
   final String? creatorId;
   final String? title;
   final String? hotelId;
-  final int? minCapacityCode;
-  final int? maxCapacityCode;
+  final int? mincapacity;
+  final int? maxcapacity;
   final double? minPrice;
   final double? maxPrice;
   final HotelRoomSelectorArgs? selectorArgs;
@@ -642,8 +646,8 @@ class UHotelRoomReadParams {
     this.creatorId,
     this.title,
     this.hotelId,
-    this.minCapacityCode,
-    this.maxCapacityCode,
+    this.mincapacity,
+    this.maxcapacity,
     this.minPrice,
     this.maxPrice,
     this.selectorArgs,
@@ -663,8 +667,8 @@ class UHotelRoomReadParams {
     creatorId: json["creatorId"],
     title: json["title"],
     hotelId: json["hotelId"],
-    minCapacityCode: json["minCapacityCode"],
-    maxCapacityCode: json["maxCapacityCode"],
+    mincapacity: json["mincapacity"],
+    maxcapacity: json["maxcapacity"],
     minPrice: json["minPrice"]?.toDouble(),
     maxPrice: json["maxPrice"]?.toDouble(),
     selectorArgs: json["selectorArgs"] == null ? null : HotelRoomSelectorArgs.fromMap(json["selectorArgs"]),
@@ -680,8 +684,8 @@ class UHotelRoomReadParams {
     "creatorId": creatorId,
     "title": title,
     "hotelId": hotelId,
-    "minCapacityCode": minCapacityCode,
-    "maxCapacityCode": maxCapacityCode,
+    "mincapacity": mincapacity,
+    "maxcapacity": maxcapacity,
     "minPrice": minPrice,
     "maxPrice": maxPrice,
     "selectorArgs": selectorArgs?.toMap(),
