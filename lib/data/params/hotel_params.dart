@@ -960,6 +960,11 @@ class UDormBedContractReadParams {
   final DateTime? endDate;
   final String? userName;
   final String? bedId;
+  final String? dormId;
+  final bool? activeOnly;
+  final bool? upcomingOnly;
+  final bool? expiredOnly;
+  final int? expiringWithinDays;
   final ContractSelectorArgs? selectorArgs;
 
   UDormBedContractReadParams({
@@ -976,6 +981,11 @@ class UDormBedContractReadParams {
     this.endDate,
     this.userName,
     this.bedId,
+    this.dormId,
+    this.activeOnly,
+    this.upcomingOnly,
+    this.expiredOnly,
+    this.expiringWithinDays,
     this.selectorArgs,
   });
 
@@ -992,11 +1002,16 @@ class UDormBedContractReadParams {
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
     bedId: json["bedId"],
+    dormId: json["dormId"],
     creatorId: json["creatorId"],
     productId: json["productId"],
     userName: json["userName"],
     startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+    activeOnly: json["activeOnly"],
+    upcomingOnly: json["upcomingOnly"],
+    expiredOnly: json["expiredOnly"],
+    expiringWithinDays: json["expiringWithinDays"] == null ? null : (json["expiringWithinDays"] as num).toInt(),
     selectorArgs: json["selectorArgs"] == null ? null : ContractSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
@@ -1009,11 +1024,16 @@ class UDormBedContractReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
     "bedId": bedId,
+    "dormId": dormId,
     "creatorId": creatorId,
     "productId": productId,
     "userName": userName,
     "startDate": startDate?.toIso8601String(),
     "endDate": endDate?.toIso8601String(),
+    "activeOnly": activeOnly,
+    "upcomingOnly": upcomingOnly,
+    "expiredOnly": expiredOnly,
+    "expiringWithinDays": expiringWithinDays,
     "selectorArgs": selectorArgs?.toMap(),
   };
 }
@@ -1139,6 +1159,13 @@ class UDormBedInvoiceReadParams {
   final List<String>? ids;
   final String? userId;
   final String? contractId;
+  final String? dormId;
+  final bool? isPaid;
+  final bool? isOverdue;
+  final DateTime? minDueDate;
+  final DateTime? maxDueDate;
+  final double? minDebtAmount;
+  final double? maxDebtAmount;
   final InvoiceSelectorArgs? selectorArgs;
 
   UDormBedInvoiceReadParams({
@@ -1151,6 +1178,13 @@ class UDormBedInvoiceReadParams {
     this.userId,
     this.selectorArgs,
     this.contractId,
+    this.dormId,
+    this.isPaid,
+    this.isOverdue,
+    this.minDueDate,
+    this.maxDueDate,
+    this.minDebtAmount,
+    this.maxDebtAmount,
   });
 
   factory UDormBedInvoiceReadParams.fromJson(String str) => UDormBedInvoiceReadParams.fromMap(json.decode(str));
@@ -1166,6 +1200,13 @@ class UDormBedInvoiceReadParams {
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     userId: json["userId"],
     contractId: json["contractId"],
+    dormId: json["dormId"],
+    isPaid: json["isPaid"],
+    isOverdue: json["isOverdue"],
+    minDueDate: json["minDueDate"] == null ? null : DateTime.parse(json["minDueDate"]),
+    maxDueDate: json["maxDueDate"] == null ? null : DateTime.parse(json["maxDueDate"]),
+    minDebtAmount: json["minDebtAmount"] == null ? null : (json["minDebtAmount"] as num).toDouble(),
+    maxDebtAmount: json["maxDebtAmount"] == null ? null : (json["maxDebtAmount"] as num).toDouble(),
     selectorArgs: json["selectorArgs"] == null ? null : InvoiceSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
@@ -1178,6 +1219,13 @@ class UDormBedInvoiceReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "userId": userId,
     "contractId": contractId,
+    "dormId": dormId,
+    "isPaid": isPaid,
+    "isOverdue": isOverdue,
+    "minDueDate": minDueDate?.toIso8601String(),
+    "maxDueDate": maxDueDate?.toIso8601String(),
+    "minDebtAmount": minDebtAmount,
+    "maxDebtAmount": maxDebtAmount,
     "selectorArgs": selectorArgs?.toMap(),
   };
 }

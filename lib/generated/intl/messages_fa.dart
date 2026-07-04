@@ -616,6 +616,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "unpaid": MessageLookupByLibrary.simpleMessage("پرداخت‌نشده"),
     "unpublish": MessageLookupByLibrary.simpleMessage("لغو انتشار"),
+    "upcoming": MessageLookupByLibrary.simpleMessage("آتی"),
     "updateFunctionalityWouldGoHere": MessageLookupByLibrary.simpleMessage(
       "عملکرد به‌روزرسانی در اینجا قرار می‌گیرد",
     ),

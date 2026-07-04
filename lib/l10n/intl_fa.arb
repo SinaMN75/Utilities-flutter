@@ -68,6 +68,7 @@
   "paymentStatus": "وضعیت پرداخت",
   "active": "فعال",
   "expired": "منقضی",
+  "upcoming": "آتی",
   "leasing": "اجاره",
   "created": "ساخته شد",
   "username": "نام کاربری",

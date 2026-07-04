@@ -68,6 +68,7 @@
   "paymentStatus": "Payment Status",
   "active": "Active",
   "expired": "Expired",
+  "upcoming": "Upcoming",
   "leasing": "Leasing",
   "created": "Created",
   "username": "Username",

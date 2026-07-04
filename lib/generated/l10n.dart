@@ -593,6 +593,11 @@ class S {
     return Intl.message('Expired', name: 'expired', desc: '', args: []);
   }
 
+  /// `Upcoming`
+  String get upcoming {
+    return Intl.message('Upcoming', name: 'upcoming', desc: '', args: []);
+  }
+
   /// `Leasing`
   String get leasing {
     return Intl.message('Leasing', name: 'leasing', desc: '', args: []);

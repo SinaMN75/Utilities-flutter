@@ -612,6 +612,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "unpaid": MessageLookupByLibrary.simpleMessage("Unpaid"),
     "unpublish": MessageLookupByLibrary.simpleMessage("Unpublish"),
+    "upcoming": MessageLookupByLibrary.simpleMessage("Upcoming"),
     "updateFunctionalityWouldGoHere": MessageLookupByLibrary.simpleMessage(
       "Update functionality would go here",
     ),
