@@ -51,6 +51,14 @@ class UCity {
   const UCity({required this.code, required this.nameEn, required this.nameFa});
 }
 
+class UCountryCityInfo {
+  final UCountry? country;
+  final UProvince? province;
+  final UCity? city;
+
+  const UCountryCityInfo({this.country, this.province, this.city});
+}
+
 enum UCodeType { country, province, city, unknown }
 
 abstract class UCountries {
@@ -128,6 +136,8 @@ abstract class UCountries {
     for (final UCity city in p.cities) if (city.code == code) return city;
     return null;
   }
+
+  static UCountryCityInfo infoByCode(String? code) => UCountryCityInfo(country: countryByCode(code), province: provinceByCode(code), city: cityByCode(code));
 
   static List<UCountry> countries = <UCountry>[
     UCountry(
