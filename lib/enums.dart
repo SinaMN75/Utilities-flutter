@@ -106,6 +106,7 @@ enum TagUser with NumericIdentifiable {
   systemAdmin("سیستم ادمین", "System Admin", 203),
   systemUser("کاربر سیستمی", "System User", 204),
   sunUser("کاربر سان", "Sun User", 205),
+  subAdmin("زیرمجموعه ادمین", "Sub Admin", 206),
   awaitingVerification("در انتظار تایید", "Awaiting Verification", 301),
   verified("تایید شده", "Verified", 302),
   nationalCardFrontVerified("کارت ملی جلو تایید شده", "National Card Front Verified", 401),
@@ -125,7 +126,20 @@ enum TagUser with NumericIdentifiable {
   birthCertificateForthAwaitingVerification("شناسنامه صفحه چهارم در انتظار تایید", "Birth Certificate Forth Awaiting Verification", 506),
   birthCertificateFifthAwaitingVerification("شناسنامه صفحه پنجم در انتظار تایید", "Birth Certificate Fifth Awaiting Verification", 507),
   visualAuthenticationAwaitingVerification("احراز هویت تصویری در انتظار تایید", "Visual Authentication Awaiting Verification", 508),
-  eSignatureAwaitingVerification("امضای الکترونیکی در انتظار تایید", "E-Signature Awaiting Verification", 509);
+  eSignatureAwaitingVerification("امضای الکترونیکی در انتظار تایید", "E-Signature Awaiting Verification", 509),
+
+  // ---- Granular admin-panel permissions (only enforced for non-full-admins, e.g. subAdmin) ----
+  permissionManageHotels("مدیریت هتل‌ها", "Manage Hotels", 601),
+  permissionDeleteHotels("حذف هتل‌ها", "Delete Hotels", 602),
+  permissionManageDorms("مدیریت خوابگاه‌ها", "Manage Dorms", 603),
+  permissionDeleteDorms("حذف خوابگاه‌ها", "Delete Dorms", 604),
+  permissionManageContracts("مدیریت قراردادها", "Manage Contracts", 605),
+  permissionDeleteContracts("حذف قراردادها", "Delete Contracts", 606),
+  permissionManageInvoices("مدیریت فاکتورها", "Manage Invoices", 607),
+  permissionDeleteInvoices("حذف فاکتورها", "Delete Invoices", 608),
+  permissionPayInvoices("ثبت پرداخت فاکتور", "Pay Invoices", 609),
+  permissionManageUsers("مدیریت کاربران", "Manage Users", 610),
+  permissionDeleteUsers("حذف کاربران", "Delete Users", 611);
 
   const TagUser(this.titleFa, this.titleEn, this.number);
 
@@ -137,6 +151,21 @@ enum TagUser with NumericIdentifiable {
   final int number;
 
   bool isMale() => this == TagUser.male;
+
+  /// Permission tags that a full admin can grant to a subAdmin to unlock a specific restricted action.
+  static const List<TagUser> permissions = <TagUser>[
+    permissionManageHotels,
+    permissionDeleteHotels,
+    permissionManageDorms,
+    permissionDeleteDorms,
+    permissionManageContracts,
+    permissionDeleteContracts,
+    permissionManageInvoices,
+    permissionDeleteInvoices,
+    permissionPayInvoices,
+    permissionManageUsers,
+    permissionDeleteUsers,
+  ];
 }
 
 enum TagCategory with NumericIdentifiable {

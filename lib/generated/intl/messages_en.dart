@@ -422,6 +422,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pendingVerification": MessageLookupByLibrary.simpleMessage(
       "Pending Verification",
     ),
+    "permissions": MessageLookupByLibrary.simpleMessage("Permissions"),
     "persian": MessageLookupByLibrary.simpleMessage("Persian"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
     "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
@@ -544,6 +545,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "spendingByType": MessageLookupByLibrary.simpleMessage("Spending by Type"),
     "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
+    "subAdmin": MessageLookupByLibrary.simpleMessage("Sub Admin"),
     "submit": MessageLookupByLibrary.simpleMessage("Submit"),
     "submitted": MessageLookupByLibrary.simpleMessage("Submitted"),
     "subtitle": MessageLookupByLibrary.simpleMessage("Subtitle"),

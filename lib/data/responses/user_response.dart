@@ -7,6 +7,15 @@ extension TagListExtension on UUserResponse {
 
   bool isSuperAdmin() => tags.contains(TagUser.superAdmin.number);
 
+  /// SystemAdmin/SystemUser/SuperAdmin are "full" admins - they bypass every granular permission check.
+  bool isFullAdmin() => isSuperAdmin() || tags.contains(TagUser.systemAdmin.number) || tags.contains(TagUser.systemUser.number);
+
+  bool isSubAdmin() => tags.contains(TagUser.subAdmin.number);
+
+  /// Mirrors the backend's JwtClaimData.HasPermission: full admins always pass, everyone else
+  /// (subAdmin or a plain co-manager) needs the specific permission tag granted on their account.
+  bool hasPermission(TagUser permission) => isFullAdmin() || tags.contains(permission.number);
+
   String get displayName {
     final String full = "${firstName ?? ""} ${lastName ?? ""}".trim();
     if (full.isNotEmpty) return full;

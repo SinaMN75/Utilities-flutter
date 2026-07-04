@@ -432,6 +432,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pendingVerification": MessageLookupByLibrary.simpleMessage(
       "در انتظار تایید",
     ),
+    "permissions": MessageLookupByLibrary.simpleMessage("دسترسی‌ها"),
     "persian": MessageLookupByLibrary.simpleMessage("فارسی"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("شماره تلفن"),
     "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
@@ -550,6 +551,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "spendingByType": MessageLookupByLibrary.simpleMessage("هزینه بر اساس نوع"),
     "startDate": MessageLookupByLibrary.simpleMessage("تاریخ شروع"),
     "status": MessageLookupByLibrary.simpleMessage("وضعیت"),
+    "subAdmin": MessageLookupByLibrary.simpleMessage("زیرمجموعه ادمین"),
     "submit": MessageLookupByLibrary.simpleMessage("ثبت"),
     "submitted": MessageLookupByLibrary.simpleMessage("ثبت شد"),
     "subtitle": MessageLookupByLibrary.simpleMessage("زیرعنوان"),

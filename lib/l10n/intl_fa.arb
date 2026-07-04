@@ -195,6 +195,8 @@
   "female": "خانم",
   "admin": "ادمین",
   "guest": "مهمان",
+  "subAdmin": "زیرمجموعه ادمین",
+  "permissions": "دسترسی‌ها",
   "fatherName": "نام پدر",
   "lastName": "نام خانوادگی",
   "firstName": "نام",

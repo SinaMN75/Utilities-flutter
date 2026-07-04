@@ -1493,6 +1493,16 @@ class S {
     return Intl.message('Guest', name: 'guest', desc: '', args: []);
   }
 
+  /// `Sub Admin`
+  String get subAdmin {
+    return Intl.message('Sub Admin', name: 'subAdmin', desc: '', args: []);
+  }
+
+  /// `Permissions`
+  String get permissions {
+    return Intl.message('Permissions', name: 'permissions', desc: '', args: []);
+  }
+
   /// `Father Name`
   String get fatherName {
     return Intl.message('Father Name', name: 'fatherName', desc: '', args: []);
