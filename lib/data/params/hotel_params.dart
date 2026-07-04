@@ -120,6 +120,7 @@ class UDormBedReadParams {
   final String? creatorId;
   final String? title;
   final String? roomId;
+  final String? dormId;
   final double? minDeposit;
   final double? maxDeposit;
   final double? minMonthlyRent;
@@ -136,6 +137,7 @@ class UDormBedReadParams {
     this.creatorId,
     this.title,
     this.roomId,
+    this.dormId,
     this.minDeposit,
     this.maxDeposit,
     this.minMonthlyRent,
@@ -157,6 +159,7 @@ class UDormBedReadParams {
     creatorId: json["creatorId"],
     title: json["title"],
     roomId: json["roomId"],
+    dormId: json["dormId"],
     minDeposit: json["minDeposit"]?.toDouble(),
     maxDeposit: json["maxDeposit"]?.toDouble(),
     minMonthlyRent: json["minMonthlyRent"]?.toDouble(),
@@ -174,6 +177,7 @@ class UDormBedReadParams {
     "creatorId": creatorId,
     "title": title,
     "roomId": roomId,
+    "dormId": dormId,
     "minDeposit": minDeposit,
     "maxDeposit": maxDeposit,
     "minMonthlyRent": minMonthlyRent,

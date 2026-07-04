@@ -90,6 +90,7 @@ class UDormResponse {
   final String cityCode;
   final List<String> adminUserIds;
   final List<UDormRoomResponse>? rooms;
+  final List<UDormBedResponse>? beds;
   final List<UMediaResponse>? media;
 
   UDormResponse({
@@ -103,6 +104,7 @@ class UDormResponse {
     this.creator,
     this.creatorId,
     this.rooms,
+    this.beds,
     this.media,
   });
 
@@ -121,6 +123,7 @@ class UDormResponse {
     cityCode: json["cityCode"] as String,
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
     rooms: json["rooms"] == null ? <UDormRoomResponse>[] : List<UDormRoomResponse>.from(json["rooms"]!.map((dynamic x) => UDormRoomResponse.fromMap(x))),
+    beds: json["beds"] == null ? <UDormBedResponse>[] : List<UDormBedResponse>.from(json["beds"]!.map((dynamic x) => UDormBedResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
   );
 
@@ -135,6 +138,7 @@ class UDormResponse {
     "cityCode": cityCode,
     "adminUserIds": List<String>.from(adminUserIds.map((String x) => x)),
     "rooms": rooms == null ? <UDormRoomResponse>[] : List<UDormRoomResponse>.from(rooms!.map((UDormRoomResponse x) => x.toMap())),
+    "beds": beds == null ? <UDormBedResponse>[] : List<UDormBedResponse>.from(beds!.map((UDormBedResponse x) => x.toMap())),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
   };
 }
