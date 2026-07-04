@@ -9,7 +9,6 @@ class UDormBedCreateParams {
   final String? id;
   final String? creatorId;
   final String title;
-  final bool isAvailable;
   final double deposit;
   final double monthlyRent;
   final String roomId;
@@ -17,7 +16,6 @@ class UDormBedCreateParams {
   UDormBedCreateParams({
     required this.tags,
     required this.title,
-    required this.isAvailable,
     required this.deposit,
     required this.monthlyRent,
     required this.roomId,
@@ -38,7 +36,6 @@ class UDormBedCreateParams {
     id: json["id"],
     creatorId: json["creatorId"],
     title: json["title"],
-    isAvailable: json["isAvailable"],
     deposit: json["deposit"]?.toDouble(),
     monthlyRent: json["monthlyRent"]?.toDouble(),
     roomId: json["roomId"],
@@ -51,7 +48,6 @@ class UDormBedCreateParams {
     "id": id,
     "creatorId": creatorId,
     "title": title,
-    "isAvailable": isAvailable,
     "deposit": deposit,
     "monthlyRent": monthlyRent,
     "roomId": roomId,
@@ -66,7 +62,6 @@ class UDormBedUpdateParams {
   final List<int>? removeTags;
   final List<int>? tags;
   final String? title;
-  final bool? isAvailable;
   final double? deposit;
   final double? monthlyRent;
   final String? roomId;
@@ -79,7 +74,6 @@ class UDormBedUpdateParams {
     this.removeTags,
     this.tags,
     this.title,
-    this.isAvailable,
     this.deposit,
     this.monthlyRent,
     this.roomId,
@@ -97,7 +91,6 @@ class UDormBedUpdateParams {
     removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     title: json["title"],
-    isAvailable: json["isAvailable"],
     deposit: json["deposit"]?.toDouble(),
     monthlyRent: json["monthlyRent"]?.toDouble(),
     roomId: json["roomId"],
@@ -111,7 +104,6 @@ class UDormBedUpdateParams {
     "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "title": title,
-    "isAvailable": isAvailable,
     "deposit": deposit,
     "monthlyRent": monthlyRent,
     "roomId": roomId,
@@ -128,7 +120,6 @@ class UDormBedReadParams {
   final String? creatorId;
   final String? title;
   final String? roomId;
-  final bool? isAvailable;
   final double? minDeposit;
   final double? maxDeposit;
   final double? minMonthlyRent;
@@ -144,7 +135,6 @@ class UDormBedReadParams {
     this.creatorId,
     this.title,
     this.roomId,
-    this.isAvailable,
     this.minDeposit,
     this.maxDeposit,
     this.minMonthlyRent,
@@ -165,7 +155,6 @@ class UDormBedReadParams {
     creatorId: json["creatorId"],
     title: json["title"],
     roomId: json["roomId"],
-    isAvailable: json["isAvailable"],
     minDeposit: json["minDeposit"]?.toDouble(),
     maxDeposit: json["maxDeposit"]?.toDouble(),
     minMonthlyRent: json["minMonthlyRent"]?.toDouble(),
@@ -182,7 +171,6 @@ class UDormBedReadParams {
     "creatorId": creatorId,
     "title": title,
     "roomId": roomId,
-    "isAvailable": isAvailable,
     "minDeposit": minDeposit,
     "maxDeposit": maxDeposit,
     "minMonthlyRent": minMonthlyRent,
@@ -553,7 +541,6 @@ class UHotelRoomCreateParams {
   final String title;
   final int capacity;
   final double pricePerNight;
-  final bool isAvailable;
   final String hotelId;
 
   UHotelRoomCreateParams({
@@ -561,7 +548,6 @@ class UHotelRoomCreateParams {
     required this.title,
     required this.capacity,
     required this.pricePerNight,
-    required this.isAvailable,
     required this.hotelId,
     this.detail1,
     this.detail2,
@@ -582,7 +568,6 @@ class UHotelRoomCreateParams {
     title: json["title"],
     capacity: json["capacity"],
     pricePerNight: json["pricePerNight"]?.toDouble(),
-    isAvailable: json["isAvailable"],
     hotelId: json["hotelId"],
   );
 
@@ -595,7 +580,6 @@ class UHotelRoomCreateParams {
     "title": title,
     "capacity": capacity,
     "pricePerNight": pricePerNight,
-    "isAvailable": isAvailable,
     "hotelId": hotelId,
   };
 }
@@ -610,7 +594,6 @@ class UHotelRoomUpdateParams {
   final String? title;
   final int? capacity;
   final double? pricePerNight;
-  final bool? isAvailable;
   final String? hotelId;
 
   UHotelRoomUpdateParams({
@@ -623,7 +606,6 @@ class UHotelRoomUpdateParams {
     this.title,
     this.capacity,
     this.pricePerNight,
-    this.isAvailable,
     this.hotelId,
   });
 
@@ -641,7 +623,6 @@ class UHotelRoomUpdateParams {
     title: json["title"],
     capacity: json["capacity"],
     pricePerNight: json["pricePerNight"]?.toDouble(),
-    isAvailable: json["isAvailable"],
     hotelId: json["hotelId"],
   );
 
@@ -655,7 +636,6 @@ class UHotelRoomUpdateParams {
     "title": title,
     "capacity": capacity,
     "pricePerNight": pricePerNight,
-    "isAvailable": isAvailable,
     "hotelId": hotelId,
   };
 }
@@ -670,7 +650,6 @@ class UHotelRoomReadParams {
   final String? creatorId;
   final String? title;
   final String? hotelId;
-  final bool? isAvailable;
   final int? minCapacity;
   final int? maxCapacity;
   final double? minPrice;
@@ -687,7 +666,6 @@ class UHotelRoomReadParams {
     this.creatorId,
     this.title,
     this.hotelId,
-    this.isAvailable,
     this.minCapacity,
     this.maxCapacity,
     this.minPrice,
@@ -709,7 +687,6 @@ class UHotelRoomReadParams {
     creatorId: json["creatorId"],
     title: json["title"],
     hotelId: json["hotelId"],
-    isAvailable: json["isAvailable"],
     minCapacity: json["minCapacity"],
     maxCapacity: json["maxCapacity"],
     minPrice: json["minPrice"]?.toDouble(),
@@ -727,7 +704,6 @@ class UHotelRoomReadParams {
     "creatorId": creatorId,
     "title": title,
     "hotelId": hotelId,
-    "isAvailable": isAvailable,
     "minCapacity": minCapacity,
     "maxCapacity": maxCapacity,
     "minPrice": minPrice,

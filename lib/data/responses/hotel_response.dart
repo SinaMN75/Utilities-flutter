@@ -19,7 +19,6 @@ class UDormBedResponse {
   final UUserResponse? creator;
   final String? creatorId;
   final String title;
-  final bool isAvailable;
   final double deposit;
   final double monthlyRent;
   final String roomId;
@@ -32,7 +31,6 @@ class UDormBedResponse {
     required this.jsonData,
     required this.tags,
     required this.title,
-    required this.isAvailable,
     required this.deposit,
     required this.monthlyRent,
     required this.roomId,
@@ -54,7 +52,6 @@ class UDormBedResponse {
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     title: json["title"] as String,
-    isAvailable: json["isAvailable"] as bool,
     deposit: (json["deposit"] as num).toDouble(),
     monthlyRent: (json["monthlyRent"] as num).toDouble(),
     roomId: json["roomId"] as String,
@@ -70,7 +67,6 @@ class UDormBedResponse {
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,
-    "isAvailable": isAvailable,
     "deposit": deposit,
     "monthlyRent": monthlyRent,
     "roomId": roomId,
@@ -217,7 +213,6 @@ class UHotelRoomResponse {
   final String title;
   final int capacity;
   final double pricePerNight;
-  final bool isAvailable;
   final String hotelId;
   final UHotelResponse? hotel;
   final List<UMediaResponse>? media;
@@ -230,7 +225,6 @@ class UHotelRoomResponse {
     required this.title,
     required this.capacity,
     required this.pricePerNight,
-    required this.isAvailable,
     required this.hotelId,
     this.creator,
     this.creatorId,
@@ -252,7 +246,6 @@ class UHotelRoomResponse {
     title: json["title"] as String,
     capacity: json["capacity"] as int,
     pricePerNight: (json["pricePerNight"] as num).toDouble(),
-    isAvailable: json["isAvailable"] as bool,
     hotelId: json["hotelId"] as String,
     hotel: json["hotel"] == null ? null : UHotelResponse.fromMap(json["hotel"]),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
@@ -268,7 +261,6 @@ class UHotelRoomResponse {
     "title": title,
     "capacity": capacity,
     "pricePerNight": pricePerNight,
-    "isAvailable": isAvailable,
     "hotelId": hotelId,
     "hotel": hotel?.toMap(),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
