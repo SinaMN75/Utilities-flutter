@@ -71,7 +71,7 @@ class MediaService {
   }) => UHttpClient.send(
     method: "POST",
     endpoint: "${U.baseUrl}/Media/DeleteRange",
-    body: p.toIdListMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
     onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
     onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
     onException: (String e) => onException?.call(e),

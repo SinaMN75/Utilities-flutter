@@ -37,9 +37,9 @@ class UIdListParams {
   );
   final List<String> ids;
 
-  String toJson() => json.encode(toIdListMap());
+  String toJson() => json.encode(toMap());
 
-  Map<String, dynamic> toIdListMap() => <String, dynamic>{
+  Map<String, dynamic> toMap() => <String, dynamic>{
     "ids": List<dynamic>.from(ids.map((String x) => x)),
   };
 }
