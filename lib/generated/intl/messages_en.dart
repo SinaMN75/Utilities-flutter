@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "about": MessageLookupByLibrary.simpleMessage("About"),
     "accenting": MessageLookupByLibrary.simpleMessage("Accenting"),
     "accommodation": MessageLookupByLibrary.simpleMessage("Accommodation"),
+    "accommodationDashboard": MessageLookupByLibrary.simpleMessage(
+      "Accommodation\'s Dashboard",
+    ),
     "account": MessageLookupByLibrary.simpleMessage("Account"),
     "accounting": MessageLookupByLibrary.simpleMessage("Accounting"),
     "active": MessageLookupByLibrary.simpleMessage("Active"),

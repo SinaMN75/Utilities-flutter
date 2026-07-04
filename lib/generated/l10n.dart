@@ -2098,6 +2098,16 @@ class S {
     );
   }
 
+  /// `Accommodation's Dashboard`
+  String get accommodationDashboard {
+    return Intl.message(
+      'Accommodation\'s Dashboard',
+      name: 'accommodationDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `For`
   String get regarding {
     return Intl.message('For', name: 'regarding', desc: '', args: []);
