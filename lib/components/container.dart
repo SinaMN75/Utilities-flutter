@@ -452,7 +452,7 @@ class UCard extends StatelessWidget {
     this.elevation = 2.0,
     this.color,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
-    this.margin = const EdgeInsets.all(8),
+    this.margin = EdgeInsets.zero,
     this.onTap,
     this.shadowColor,
     this.width,
