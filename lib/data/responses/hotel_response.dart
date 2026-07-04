@@ -342,6 +342,7 @@ class UDormBedContractResponse {
   final String? creatorId;
   final UProductResponse? product;
   final String? productId;
+  final bool isActive;
   final List<UDormBedInvoiceResponse>? invoices;
 
   UDormBedContractResponse({
@@ -355,6 +356,7 @@ class UDormBedContractResponse {
     required this.rent,
     required this.userId,
     required this.bedId,
+    required this.isActive,
     this.updatedAt,
     this.deletedAt,
     this.user,
@@ -389,6 +391,7 @@ class UDormBedContractResponse {
     creatorId: json["creatorId"],
     product: json["product"] == null ? null : UProductResponse.fromMap(json["product"]),
     productId: json["productId"],
+    isActive: json["isActive"],
     invoices: json["invoices"] == null ? <UDormBedInvoiceResponse>[] : List<UDormBedInvoiceResponse>.from(json["invoices"]!.map((dynamic x) => UDormBedInvoiceResponse.fromMap(x))),
   );
 
@@ -411,6 +414,7 @@ class UDormBedContractResponse {
     "creatorId": creatorId,
     "product": product?.toMap(),
     "productId": productId,
+    "isActive": isActive,
     "invoices": invoices == null ? <dynamic>[] : List<dynamic>.from(invoices!.map((UDormBedInvoiceResponse x) => x.toMap())),
   };
 }
