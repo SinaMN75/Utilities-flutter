@@ -158,6 +158,7 @@ class UCountryProvincePicker extends StatefulWidget {
     this.initialProvince,
     this.onCountryChanged,
     this.onProvinceChanged,
+    this.onCityChanged,
     this.spacing = 6,
   });
 
@@ -165,6 +166,7 @@ class UCountryProvincePicker extends StatefulWidget {
   final UProvince? initialProvince;
   final void Function(UCountry country)? onCountryChanged;
   final void Function(UProvince province)? onProvinceChanged;
+  final void Function(UCity? city)? onCityChanged;
   final double spacing;
 
   @override
@@ -174,21 +176,37 @@ class UCountryProvincePicker extends StatefulWidget {
 class _UCountryProvincePickerState extends State<UCountryProvincePicker> {
   late final Rx<UCountry> country = (widget.initialCountry ?? UCountries.iran()).obs;
   late final RxList<UProvince> provinces = country.value.provinces.obs;
+  late final RxList<UCity> cities = province.value.cities.obs;
   late final Rx<UProvince> province = (widget.initialProvince ?? country.value.provinces.first).obs;
+  late final Rxn<UCity?> city = Rxn<UCity>(province.value.cities.firstOrNull);
 
   void _selectCountry(UCountry? i) {
     if (i == null) return;
     country(i);
     provinces(i.provinces);
+    cities(i.provinces.first.cities);
     province(i.provinces.first);
+    city(i.provinces.first.cities.firstOrNull);
     widget.onCountryChanged?.call(i);
     widget.onProvinceChanged?.call(i.provinces.first);
+    widget.onCityChanged?.call(i.provinces.first.cities.firstOrNull);
+    Get.forceAppUpdate();
   }
 
   void _selectProvince(UProvince? i) {
     if (i == null) return;
     province(i);
+    city(i.cities.firstOrNull);
+    cities(i.cities);
     widget.onProvinceChanged?.call(i);
+    Get.forceAppUpdate();
+  }
+
+  void _selectCity(UCity? i) {
+    if (i == null) return;
+    city(i);
+    widget.onCityChanged?.call(i);
+    Get.forceAppUpdate();
   }
 
   @override
@@ -210,6 +228,18 @@ class _UCountryProvincePickerState extends State<UCountryProvincePicker> {
           onChanged: _selectProvince,
           selectedItem: province.value,
         ),
+      ).pSymmetric(vertical: widget.spacing),
+      Obx(
+        () {
+          if (cities.isNotNullOrEmpty())
+            return UTextFieldAutoComplete<UCity>(
+              items: cities,
+              labelBuilder: (UCity i) => i.nameFa,
+              onChanged: _selectCity,
+              selectedItem: city.value!,
+            );
+          return const SizedBox.shrink();
+        },
       ).pSymmetric(vertical: widget.spacing),
     ],
   );
