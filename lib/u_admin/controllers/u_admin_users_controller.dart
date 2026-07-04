@@ -11,10 +11,17 @@ class UAdminUsersController extends UBaseController {
 
   TagUser? selectedTag;
 
+  // Extra filters surfaced in the filter dialog.
+  TagUser? selectedGender;
+  bool verifiedOnly = false;
+
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController nationalCodeController = TextEditingController();
+  final TextEditingController queryController = TextEditingController();
   final TextEditingController fromCreatedAtController = TextEditingController();
   final TextEditingController toCreatedAtController = TextEditingController();
 
@@ -26,15 +33,26 @@ class UAdminUsersController extends UBaseController {
   Future<void> read() async {
     state.loading();
 
+    // Tag filters are AND-ed on the backend, so role + gender + verified combine.
+    final List<int> tagFilters = <int>[
+      if (selectedTag != null) selectedTag!.number,
+      if (selectedGender != null) selectedGender!.number,
+      if (verifiedOnly) TagUser.verified.number,
+    ];
+
     await UServices.user.read(
       p: UUserReadParams(
+        query: queryController.valueOrNull(),
         firstName: firstNameController.valueOrNull(),
         lastName: lastNameController.valueOrNull(),
         userName: userNameController.valueOrNull(),
         phoneNumber: phoneNumberController.valueOrNull(),
-        tags: selectedTag != null ? <int>[selectedTag!.number] : null,
+        email: emailController.valueOrNull(),
+        nationalCode: nationalCodeController.valueOrNull(),
+        tags: tagFilters.isEmpty ? null : tagFilters,
         fromCreatedAt: fromCreatedAt,
         toCreatedAt: toCreatedAt,
+        orderBy: orderByCreatedAtDesc ? TagOrderBy.createdAtDescending.number : TagOrderBy.createdAt.number,
         pageNumber: pageNumber.value,
         pageSize: pageSize,
       ),
@@ -61,9 +79,18 @@ class UAdminUsersController extends UBaseController {
     phoneNumberController.clear();
     firstNameController.clear();
     lastNameController.clear();
+    emailController.clear();
+    nationalCodeController.clear();
+    queryController.clear();
+    fromCreatedAtController.clear();
+    toCreatedAtController.clear();
     selectedTag = null;
+    selectedGender = null;
+    verifiedOnly = false;
     fromCreatedAt = null;
     toCreatedAt = null;
+    orderByCreatedAt = false;
+    orderByCreatedAtDesc = false;
     read();
   }
 

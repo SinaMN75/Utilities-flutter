@@ -17,7 +17,6 @@ class UAdminUserCreateUpdateController {
   late TextEditingController controllerEmail;
   late TextEditingController controllerPhoneNumber;
   late TextEditingController controllerFatherName;
-  late List<FileData> files;
   late Rx<TagUser> gender = TagUser.female.obs;
   late Rx<TagUser> role = TagUser.guest.obs;
   late DateTime birthdate;
@@ -33,7 +32,6 @@ class UAdminUserCreateUpdateController {
     controllerEmail = TextEditingController(text: args.user?.email);
     controllerPhoneNumber = TextEditingController(text: args.user?.phoneNumber);
     controllerFatherName = TextEditingController(text: args.user?.jsonData.fatherName);
-    files = (args.user?.media ?? <UMediaResponse>[]).map((UMediaResponse media) => FileData(url: media.url)).toList();
     gender((args.user?.isMale() ?? false) ? TagUser.male : TagUser.female);
     role((args.user?.isSuperAdmin() ?? false) ? TagUser.superAdmin : TagUser.guest);
     birthdate = args.user?.birthdate ?? DateTime.now().toUtc();
@@ -42,7 +40,6 @@ class UAdminUserCreateUpdateController {
   void create({
     required GlobalKey<FormState> formKey,
     required UUserCreateParams p,
-    List<FileData>? files,
   }) => UValidators.validateForm(
     key: formKey,
     action: () {
@@ -50,14 +47,6 @@ class UAdminUserCreateUpdateController {
       UServices.user.create(
         p: p,
         onOk: (final UResponse<String> r) async {
-          files?.forEach(
-            (FileData i) async => UServices.media.create(
-              p: UMediaCreateParams(file: i, userId: r.result, tag1: TagMedia.image.number),
-              onOk: (UResponse<String> r) {},
-              onError: (UEmptyResponse r) {},
-              onException: (String r) {},
-            ),
-          );
           ULoading.dismiss();
           UNavigator.back();
           UToast.snackBar(message: U.s.userCreatedSuccessfully);
@@ -77,19 +66,10 @@ class UAdminUserCreateUpdateController {
   void update({
     required final GlobalKey<FormState> formKey,
     required final UUserUpdateParams p,
-    List<FileData>? files,
   }) => UValidators.validateForm(
     key: formKey,
     action: () {
       ULoading.show();
-      files?.forEach(
-        (FileData i) async => UServices.media.create(
-          p: UMediaCreateParams(file: i, userId: p.id, tag1: TagMedia.image.number),
-          onOk: (UResponse<String> r) {},
-          onError: (UEmptyResponse r) {},
-          onException: (String r) {},
-        ),
-      );
       UServices.user.update(
         p: p,
         onOk: (final UEmptyResponse r) {
