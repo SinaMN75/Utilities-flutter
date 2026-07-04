@@ -187,15 +187,13 @@ class UDormCreateParams {
   final String? id;
   final String? creatorId;
   final String title;
-  final String city;
-  final String country;
+  final String cityCode;
   final List<String>? adminUserIds;
 
   UDormCreateParams({
     required this.tags,
     required this.title,
-    required this.city,
-    required this.country,
+    required this.cityCode,
     this.detail1,
     this.detail2,
     this.id,
@@ -214,8 +212,7 @@ class UDormCreateParams {
     id: json["id"],
     creatorId: json["creatorId"],
     title: json["title"],
-    city: json["city"],
-    country: json["country"],
+    cityCode: json["cityCode"],
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
@@ -226,8 +223,7 @@ class UDormCreateParams {
     "id": id,
     "creatorId": creatorId,
     "title": title,
-    "city": city,
-    "country": country,
+    "cityCode": cityCode,
     "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
@@ -240,8 +236,7 @@ class UDormUpdateParams {
   final List<int>? removeTags;
   final List<int>? tags;
   final String? title;
-  final String? city;
-  final String? country;
+  final String? cityCode;
   final List<String>? adminUserIds;
   final List<String>? addAdminUserIds;
   final List<String>? removeAdminUserIds;
@@ -254,8 +249,7 @@ class UDormUpdateParams {
     this.removeTags,
     this.tags,
     this.title,
-    this.city,
-    this.country,
+    this.cityCode,
     this.adminUserIds,
     this.addAdminUserIds,
     this.removeAdminUserIds,
@@ -273,8 +267,7 @@ class UDormUpdateParams {
     removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     title: json["title"],
-    city: json["city"],
-    country: json["country"],
+    cityCode: json["cityCode"],
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
     addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
     removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
@@ -288,8 +281,7 @@ class UDormUpdateParams {
     "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "title": title,
-    "city": city,
-    "country": country,
+    "cityCode": cityCode,
     "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
     "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
     "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
@@ -305,8 +297,7 @@ class UDormReadParams {
   final List<String>? ids;
   final String? creatorId;
   final String? title;
-  final String? city;
-  final String? country;
+  final String? cityCode;
   final DormSelectorArgs? selectorArgs;
 
   UDormReadParams({
@@ -318,8 +309,7 @@ class UDormReadParams {
     this.ids,
     this.creatorId,
     this.title,
-    this.city,
-    this.country,
+    this.cityCode,
     this.selectorArgs,
   });
 
@@ -336,8 +326,7 @@ class UDormReadParams {
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
     title: json["title"],
-    city: json["city"],
-    country: json["country"],
+    cityCode: json["cityCode"],
     selectorArgs: json["selectorArgs"] == null ? null : DormSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
@@ -350,8 +339,7 @@ class UDormReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
     "title": title,
-    "city": city,
-    "country": country,
+    "cityCode": cityCode,
     "selectorArgs": selectorArgs?.toMap(),
   };
 }
@@ -365,15 +353,13 @@ class UHotelCreateParams {
   final String? id;
   final String? creatorId;
   final String title;
-  final String city;
-  final String country;
+  final String cityCode;
   final List<String>? adminUserIds;
 
   UHotelCreateParams({
     required this.tags,
     required this.title,
-    required this.city,
-    required this.country,
+    required this.cityCode,
     this.detail1,
     this.detail2,
     this.id,
@@ -392,8 +378,7 @@ class UHotelCreateParams {
     id: json["id"],
     creatorId: json["creatorId"],
     title: json["title"],
-    city: json["city"],
-    country: json["country"],
+    cityCode: json["cityCode"],
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
@@ -404,8 +389,7 @@ class UHotelCreateParams {
     "id": id,
     "creatorId": creatorId,
     "title": title,
-    "city": city,
-    "country": country,
+    "cityCode": cityCode,
     "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
@@ -418,8 +402,7 @@ class UHotelUpdateParams {
   final List<int>? removeTags;
   final List<int>? tags;
   final String? title;
-  final String? city;
-  final String? country;
+  final String? cityCode;
   final List<String>? adminUserIds;
   final List<String>? addAdminUserIds;
   final List<String>? removeAdminUserIds;
@@ -432,8 +415,7 @@ class UHotelUpdateParams {
     this.removeTags,
     this.tags,
     this.title,
-    this.city,
-    this.country,
+    this.cityCode,
     this.adminUserIds,
     this.addAdminUserIds,
     this.removeAdminUserIds,
@@ -451,8 +433,7 @@ class UHotelUpdateParams {
     removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     title: json["title"],
-    city: json["city"],
-    country: json["country"],
+    cityCode: json["cityCode"],
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
     addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
     removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
@@ -466,8 +447,7 @@ class UHotelUpdateParams {
     "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "title": title,
-    "city": city,
-    "country": country,
+    "cityCode": cityCode,
     "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
     "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
     "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
@@ -483,8 +463,7 @@ class UHotelReadParams {
   final List<String>? ids;
   final String? creatorId;
   final String? title;
-  final String? city;
-  final String? country;
+  final String? cityCode;
 
   UHotelReadParams({
     this.pageSize,
@@ -495,8 +474,7 @@ class UHotelReadParams {
     this.ids,
     this.creatorId,
     this.title,
-    this.city,
-    this.country,
+    this.cityCode,
   });
 
   factory UHotelReadParams.fromJson(String str) => UHotelReadParams.fromMap(json.decode(str));
@@ -512,8 +490,7 @@ class UHotelReadParams {
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
     title: json["title"],
-    city: json["city"],
-    country: json["country"],
+    cityCode: json["cityCode"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -525,8 +502,7 @@ class UHotelReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
     "title": title,
-    "city": city,
-    "country": country,
+    "cityCode": cityCode,
   };
 }
 
@@ -539,14 +515,14 @@ class UHotelRoomCreateParams {
   final String? id;
   final String? creatorId;
   final String title;
-  final int capacity;
+  final int capacityCode;
   final double pricePerNight;
   final String hotelId;
 
   UHotelRoomCreateParams({
     required this.tags,
     required this.title,
-    required this.capacity,
+    required this.capacityCode,
     required this.pricePerNight,
     required this.hotelId,
     this.detail1,
@@ -566,7 +542,7 @@ class UHotelRoomCreateParams {
     id: json["id"],
     creatorId: json["creatorId"],
     title: json["title"],
-    capacity: json["capacity"],
+    capacityCode: json["capacityCode"],
     pricePerNight: json["pricePerNight"]?.toDouble(),
     hotelId: json["hotelId"],
   );
@@ -578,7 +554,7 @@ class UHotelRoomCreateParams {
     "id": id,
     "creatorId": creatorId,
     "title": title,
-    "capacity": capacity,
+    "capacityCode": capacityCode,
     "pricePerNight": pricePerNight,
     "hotelId": hotelId,
   };
@@ -592,7 +568,7 @@ class UHotelRoomUpdateParams {
   final List<int>? removeTags;
   final List<int>? tags;
   final String? title;
-  final int? capacity;
+  final int? capacityCode;
   final double? pricePerNight;
   final String? hotelId;
 
@@ -604,7 +580,7 @@ class UHotelRoomUpdateParams {
     this.removeTags,
     this.tags,
     this.title,
-    this.capacity,
+    this.capacityCode,
     this.pricePerNight,
     this.hotelId,
   });
@@ -621,7 +597,7 @@ class UHotelRoomUpdateParams {
     removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     title: json["title"],
-    capacity: json["capacity"],
+    capacityCode: json["capacityCode"],
     pricePerNight: json["pricePerNight"]?.toDouble(),
     hotelId: json["hotelId"],
   );
@@ -634,7 +610,7 @@ class UHotelRoomUpdateParams {
     "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "title": title,
-    "capacity": capacity,
+    "capacityCode": capacityCode,
     "pricePerNight": pricePerNight,
     "hotelId": hotelId,
   };
@@ -650,8 +626,8 @@ class UHotelRoomReadParams {
   final String? creatorId;
   final String? title;
   final String? hotelId;
-  final int? minCapacity;
-  final int? maxCapacity;
+  final int? minCapacityCode;
+  final int? maxCapacityCode;
   final double? minPrice;
   final double? maxPrice;
   final HotelRoomSelectorArgs? selectorArgs;
@@ -666,8 +642,8 @@ class UHotelRoomReadParams {
     this.creatorId,
     this.title,
     this.hotelId,
-    this.minCapacity,
-    this.maxCapacity,
+    this.minCapacityCode,
+    this.maxCapacityCode,
     this.minPrice,
     this.maxPrice,
     this.selectorArgs,
@@ -687,8 +663,8 @@ class UHotelRoomReadParams {
     creatorId: json["creatorId"],
     title: json["title"],
     hotelId: json["hotelId"],
-    minCapacity: json["minCapacity"],
-    maxCapacity: json["maxCapacity"],
+    minCapacityCode: json["minCapacityCode"],
+    maxCapacityCode: json["maxCapacityCode"],
     minPrice: json["minPrice"]?.toDouble(),
     maxPrice: json["maxPrice"]?.toDouble(),
     selectorArgs: json["selectorArgs"] == null ? null : HotelRoomSelectorArgs.fromMap(json["selectorArgs"]),
@@ -704,8 +680,8 @@ class UHotelRoomReadParams {
     "creatorId": creatorId,
     "title": title,
     "hotelId": hotelId,
-    "minCapacity": minCapacity,
-    "maxCapacity": maxCapacity,
+    "minCapacityCode": minCapacityCode,
+    "maxCapacityCode": maxCapacityCode,
     "minPrice": minPrice,
     "maxPrice": maxPrice,
     "selectorArgs": selectorArgs?.toMap(),

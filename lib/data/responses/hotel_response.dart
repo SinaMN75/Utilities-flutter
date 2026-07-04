@@ -83,8 +83,7 @@ class UDormResponse {
   final UUserResponse? creator;
   final String? creatorId;
   final String title;
-  final String city;
-  final String country;
+  final String cityCode;
   final List<String> adminUserIds;
   final List<UDormRoomResponse>? rooms;
   final List<UMediaResponse>? media;
@@ -95,8 +94,7 @@ class UDormResponse {
     required this.jsonData,
     required this.tags,
     required this.title,
-    required this.city,
-    required this.country,
+    required this.cityCode,
     this.adminUserIds = const <String>[],
     this.creator,
     this.creatorId,
@@ -116,8 +114,7 @@ class UDormResponse {
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     title: json["title"] as String,
-    city: json["city"] as String,
-    country: json["country"] as String,
+    cityCode: json["cityCode"] as String,
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
     rooms: json["rooms"] == null ? <UDormRoomResponse>[] : List<UDormRoomResponse>.from(json["rooms"]!.map((dynamic x) => UDormRoomResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
@@ -131,8 +128,7 @@ class UDormResponse {
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,
-    "city": city,
-    "country": country,
+    "cityCode": cityCode,
     "adminUserIds": List<String>.from(adminUserIds.map((String x) => x)),
     "rooms": rooms == null ? <UDormRoomResponse>[] : List<UDormRoomResponse>.from(rooms!.map((UDormRoomResponse x) => x.toMap())),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
@@ -147,8 +143,7 @@ class UHotelResponse {
   final UUserResponse? creator;
   final String? creatorId;
   final String title;
-  final String city;
-  final String country;
+  final String cityCode;
   final List<String> adminUserIds;
   final List<UHotelRoomResponse>? rooms;
   final List<UMediaResponse>? media;
@@ -159,8 +154,7 @@ class UHotelResponse {
     required this.jsonData,
     required this.tags,
     required this.title,
-    required this.city,
-    required this.country,
+    required this.cityCode,
     this.adminUserIds = const <String>[],
     this.creator,
     this.creatorId,
@@ -180,8 +174,7 @@ class UHotelResponse {
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     title: json["title"] as String,
-    city: json["city"] as String,
-    country: json["country"] as String,
+    cityCode: json["cityCode"] as String,
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
     rooms: json["rooms"] == null ? <UHotelRoomResponse>[] : List<UHotelRoomResponse>.from(json["rooms"]!.map((dynamic x) => UHotelRoomResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
@@ -195,8 +188,7 @@ class UHotelResponse {
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,
-    "city": city,
-    "country": country,
+    "cityCode": cityCode,
     "adminUserIds": List<String>.from(adminUserIds.map((String x) => x)),
     "rooms": rooms == null ? <UHotelRoomResponse>[] : List<UHotelRoomResponse>.from(rooms!.map((UHotelRoomResponse x) => x.toMap())),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
@@ -211,7 +203,7 @@ class UHotelRoomResponse {
   final UUserResponse? creator;
   final String? creatorId;
   final String title;
-  final int capacity;
+  final int capacityCode;
   final double pricePerNight;
   final String hotelId;
   final UHotelResponse? hotel;
@@ -223,7 +215,7 @@ class UHotelRoomResponse {
     required this.jsonData,
     required this.tags,
     required this.title,
-    required this.capacity,
+    required this.capacityCode,
     required this.pricePerNight,
     required this.hotelId,
     this.creator,
@@ -244,7 +236,7 @@ class UHotelRoomResponse {
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     title: json["title"] as String,
-    capacity: json["capacity"] as int,
+    capacityCode: json["capacityCode"] as int,
     pricePerNight: (json["pricePerNight"] as num).toDouble(),
     hotelId: json["hotelId"] as String,
     hotel: json["hotel"] == null ? null : UHotelResponse.fromMap(json["hotel"]),
@@ -259,7 +251,7 @@ class UHotelRoomResponse {
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "title": title,
-    "capacity": capacity,
+    "capacityCode": capacityCode,
     "pricePerNight": pricePerNight,
     "hotelId": hotelId,
     "hotel": hotel?.toMap(),
