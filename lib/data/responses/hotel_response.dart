@@ -24,6 +24,7 @@ class UDormBedResponse {
   final String roomId;
   final UDormRoomResponse? room;
   final List<UMediaResponse>? media;
+  final List<UDormBedContractResponse>? contracts;
 
   UDormBedResponse({
     required this.id,
@@ -38,6 +39,7 @@ class UDormBedResponse {
     this.creatorId,
     this.room,
     this.media,
+    this.contracts,
   });
 
   factory UDormBedResponse.fromJson(String str) => UDormBedResponse.fromMap(json.decode(str));
@@ -57,6 +59,7 @@ class UDormBedResponse {
     roomId: json["roomId"] as String,
     room: json["room"] == null ? null : UDormRoomResponse.fromMap(json["room"]),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
+    contracts: json["contracts"] == null ? <UDormBedContractResponse>[] : List<UDormBedContractResponse>.from(json["contracts"]!.map((dynamic x) => UDormBedContractResponse.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -72,6 +75,7 @@ class UDormBedResponse {
     "roomId": roomId,
     "room": room?.toMap(),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
+    "contracts": contracts == null ? <UDormBedContractResponse>[] : List<UDormBedContractResponse>.from(contracts!.map((UDormBedContractResponse x) => x.toMap())),
   };
 }
 
