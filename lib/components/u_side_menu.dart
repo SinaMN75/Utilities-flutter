@@ -129,6 +129,25 @@ class USideMenuController extends ChangeNotifier {
     if (!_pinnedIds.remove(id)) _pinnedIds.add(id);
     notifyListeners();
   }
+
+  // External drawer hooks so a parent (e.g. a mobile hamburger button) can open
+  // or close the overlay drawer without the built-in rail being visible.
+  VoidCallback? _openDrawerCb;
+  VoidCallback? _closeDrawerCb;
+
+  void attachDrawer(VoidCallback open, VoidCallback close) {
+    _openDrawerCb = open;
+    _closeDrawerCb = close;
+  }
+
+  void detachDrawer() {
+    _openDrawerCb = null;
+    _closeDrawerCb = null;
+  }
+
+  void openDrawer() => _openDrawerCb?.call();
+
+  void closeDrawer() => _closeDrawerCb?.call();
 }
 
 class USideMenuTheme {
@@ -296,6 +315,7 @@ class USideMenu extends StatefulWidget {
     this.enablePinning = true,
     this.pinnedSectionLabel = "PINNED",
     this.enableToggleButton = true,
+    this.showRailOnMobile = true,
     this.mobileBreakpoint = 720,
     this.autoCollapseBreakpoint = 1000,
     this.profileName,
@@ -320,6 +340,11 @@ class USideMenu extends StatefulWidget {
   final bool enablePinning;
   final String pinnedSectionLabel;
   final bool enableToggleButton;
+
+  /// When false, the persistent icon rail is hidden on mobile and the drawer is
+  /// only reachable via [USideMenuController.openDrawer] (e.g. an app-bar
+  /// hamburger), letting page content use the full width.
+  final bool showRailOnMobile;
 
   final double mobileBreakpoint;
 
@@ -356,6 +381,8 @@ class _USideMenuState extends State<USideMenu> with TickerProviderStateMixin {
     _reveal = AnimationController(vsync: this, duration: const Duration(milliseconds: 700))..forward();
     _drawer = AnimationController(vsync: this, duration: const Duration(milliseconds: 280));
     widget.controller.addListener(_onControllerChanged);
+    // Expose drawer open/close to the parent for external hamburger triggers.
+    widget.controller.attachDrawer(_openDrawer, _closeDrawer);
   }
 
   void _onControllerChanged() {
@@ -367,13 +394,16 @@ class _USideMenuState extends State<USideMenu> with TickerProviderStateMixin {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.controller != widget.controller) {
       oldWidget.controller.removeListener(_onControllerChanged);
+      oldWidget.controller.detachDrawer();
       widget.controller.addListener(_onControllerChanged);
+      widget.controller.attachDrawer(_openDrawer, _closeDrawer);
     }
   }
 
   @override
   void dispose() {
     widget.controller.removeListener(_onControllerChanged);
+    widget.controller.detachDrawer();
     _reveal.dispose();
     _drawer.dispose();
     _searchCtrl.dispose();
@@ -404,7 +434,9 @@ class _USideMenuState extends State<USideMenu> with TickerProviderStateMixin {
       return OverlayPortal(
         controller: _portal,
         overlayChildBuilder: _buildMobileOverlay,
-        child: _buildRail(showHamburger: true),
+        // When the rail is suppressed the widget occupies no width; the drawer
+        // is then opened externally via controller.openDrawer().
+        child: widget.showRailOnMobile ? _buildRail(showHamburger: true) : const SizedBox.shrink(),
       );
     }
     return _buildPanel(_effectiveCollapsed, inOverlay: false);
