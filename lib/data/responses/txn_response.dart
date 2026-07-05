@@ -10,6 +10,8 @@ class UTxnResponse {
   final UUserResponse? user;
   final String? createdAt;
   final String? creatorId;
+  final UUserResponse? creator;
+  final List<String> adminUserIds;
 
   UTxnResponse({
     required this.id,
@@ -18,9 +20,11 @@ class UTxnResponse {
     required this.amount,
     required this.userId,
     required this.trackingNumber,
+    required this.adminUserIds,
     this.user,
     this.createdAt,
     this.creatorId,
+    this.creator,
   });
 
   factory UTxnResponse.fromJson(String str) => UTxnResponse.fromMap(json.decode(str));
@@ -37,6 +41,8 @@ class UTxnResponse {
     jsonData: UBaseJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -49,5 +55,7 @@ class UTxnResponse {
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "creatorId": creatorId,
+    "creator": creator?.toMap(),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }

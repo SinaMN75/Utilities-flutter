@@ -38,6 +38,7 @@ class _UCategorySelectorState extends State<UCategorySelector> {
     jsonData: UCategoryJson(),
     tags: <int>[],
     title: "___",
+    adminUserIds: <String>[],
   );
 
   @override

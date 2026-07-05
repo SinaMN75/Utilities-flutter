@@ -46,6 +46,11 @@ class UUserCreateParams {
     this.birthCertificateFifth,
     this.visualAuthentication,
     this.eSignature,
+    this.detail1,
+    this.detail2,
+    this.id,
+    this.creatorId,
+    this.adminUserIds,
   });
 
   factory UUserCreateParams.fromJson(String str) => UUserCreateParams.fromMap(json.decode(str));
@@ -76,6 +81,11 @@ class UUserCreateParams {
     eSignature: json["eSignature"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    id: json["id"],
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
   final String userName;
   final String password;
@@ -102,6 +112,11 @@ class UUserCreateParams {
   final String? eSignature;
   final List<int> tags;
   final List<String>? categories;
+  final String? detail1;
+  final String? detail2;
+  final String? id;
+  final String? creatorId;
+  final List<String>? adminUserIds;
 
   String toJson() => json.encode(toMap());
 
@@ -131,6 +146,11 @@ class UUserCreateParams {
     "eSignature": eSignature,
     "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "id": id,
+    "creatorId": creatorId,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -155,6 +175,8 @@ class UUserReadParams {
     this.tags,
     this.selectorArgs,
     this.orderBy,
+    this.ids,
+    this.creatorId,
   });
 
   factory UUserReadParams.fromJson(String str) => UUserReadParams.fromMap(json.decode(str));
@@ -179,6 +201,8 @@ class UUserReadParams {
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : UserSelectorArgs.fromMap(json["selectorArgs"]),
     orderBy: json["orderBy"],
+    ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
+    creatorId: json["creatorId"],
   );
   final String? query;
   final String? userName;
@@ -199,6 +223,8 @@ class UUserReadParams {
   final List<int>? tags;
   final UserSelectorArgs? selectorArgs;
   final int? orderBy;
+  final List<String>? ids;
+  final String? creatorId;
 
   String toJson() => json.encode(toMap());
 
@@ -222,6 +248,8 @@ class UUserReadParams {
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
     "orderBy": orderBy,
+    "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
+    "creatorId": creatorId,
   };
 }
 
@@ -264,6 +292,11 @@ class UUserUpdateParams {
     this.birthCertificateFifthRejectionReason,
     this.visualAuthenticationRejectionReason,
     this.eSignatureRejectionReason,
+    this.detail1,
+    this.detail2,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UUserUpdateParams.fromJson(String str) => UUserUpdateParams.fromMap(json.decode(str));
@@ -306,6 +339,11 @@ class UUserUpdateParams {
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
   final String? password;
   final String? landLine;
@@ -344,6 +382,11 @@ class UUserUpdateParams {
   final String? birthCertificateFifthRejectionReason;
   final String? visualAuthenticationRejectionReason;
   final String? eSignatureRejectionReason;
+  final String? detail1;
+  final String? detail2;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   String toJson() => json.encode(toMap());
 
@@ -385,5 +428,10 @@ class UUserUpdateParams {
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }

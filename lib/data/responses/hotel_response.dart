@@ -25,6 +25,7 @@ class UDormBedResponse {
   final UDormRoomResponse? room;
   final List<UMediaResponse>? media;
   final List<UDormBedContractResponse>? contracts;
+  final List<String> adminUserIds;
 
   UDormBedResponse({
     required this.id,
@@ -35,6 +36,7 @@ class UDormBedResponse {
     required this.deposit,
     required this.monthlyRent,
     required this.roomId,
+    required this.adminUserIds,
     this.creator,
     this.creatorId,
     this.room,
@@ -60,6 +62,7 @@ class UDormBedResponse {
     room: json["room"] == null ? null : UDormRoomResponse.fromMap(json["room"]),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
     contracts: json["contracts"] == null ? <UDormBedContractResponse>[] : List<UDormBedContractResponse>.from(json["contracts"]!.map((dynamic x) => UDormBedContractResponse.fromMap(x))),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -76,6 +79,7 @@ class UDormBedResponse {
     "room": room?.toMap(),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
     "contracts": contracts == null ? <UDormBedContractResponse>[] : List<UDormBedContractResponse>.from(contracts!.map((UDormBedContractResponse x) => x.toMap())),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
@@ -216,6 +220,7 @@ class UHotelRoomResponse {
   final String hotelId;
   final UHotelResponse? hotel;
   final List<UMediaResponse>? media;
+  final List<String> adminUserIds;
 
   UHotelRoomResponse({
     required this.id,
@@ -226,6 +231,7 @@ class UHotelRoomResponse {
     required this.capacity,
     required this.pricePerNight,
     required this.hotelId,
+    required this.adminUserIds,
     this.creator,
     this.creatorId,
     this.hotel,
@@ -249,6 +255,7 @@ class UHotelRoomResponse {
     hotelId: json["hotelId"] as String,
     hotel: json["hotel"] == null ? null : UHotelResponse.fromMap(json["hotel"]),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -264,6 +271,7 @@ class UHotelRoomResponse {
     "hotelId": hotelId,
     "hotel": hotel?.toMap(),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
@@ -279,6 +287,7 @@ class UDormRoomResponse {
   final UDormResponse? dorm;
   final List<UDormBedResponse>? beds;
   final List<UMediaResponse>? media;
+  final List<String> adminUserIds;
 
   UDormRoomResponse({
     required this.id,
@@ -287,6 +296,7 @@ class UDormRoomResponse {
     required this.tags,
     required this.title,
     required this.dormId,
+    required this.adminUserIds,
     this.creator,
     this.creatorId,
     this.dorm,
@@ -310,6 +320,7 @@ class UDormRoomResponse {
     dorm: json["dorm"] == null ? null : UDormResponse.fromMap(json["dorm"]),
     beds: json["beds"] == null ? <UDormBedResponse>[] : List<UDormBedResponse>.from(json["beds"]!.map((dynamic x) => UDormBedResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -324,6 +335,7 @@ class UDormRoomResponse {
     "dorm": dorm?.toMap(),
     "beds": beds == null ? <UDormBedResponse>[] : List<UDormBedResponse>.from(beds!.map((UDormBedResponse x) => x.toMap())),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
@@ -348,6 +360,7 @@ class UDormBedContractResponse {
   final String? productId;
   final bool isActive;
   final List<UDormBedInvoiceResponse>? invoices;
+  final List<String> adminUserIds;
 
   UDormBedContractResponse({
     required this.id,
@@ -361,6 +374,7 @@ class UDormBedContractResponse {
     required this.userId,
     required this.bedId,
     required this.isActive,
+    required this.adminUserIds,
     this.updatedAt,
     this.deletedAt,
     this.user,
@@ -397,6 +411,7 @@ class UDormBedContractResponse {
     productId: json["productId"],
     isActive: json["isActive"],
     invoices: json["invoices"] == null ? <UDormBedInvoiceResponse>[] : List<UDormBedInvoiceResponse>.from(json["invoices"]!.map((dynamic x) => UDormBedInvoiceResponse.fromMap(x))),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -420,6 +435,7 @@ class UDormBedContractResponse {
     "productId": productId,
     "isActive": isActive,
     "invoices": invoices == null ? <dynamic>[] : List<dynamic>.from(invoices!.map((UDormBedInvoiceResponse x) => x.toMap())),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
@@ -462,6 +478,9 @@ class UDormBedInvoiceResponse {
   final String? userId;
   final UDormBedContractResponse? contract;
   final String? contractId;
+  final UUserResponse? creator;
+  final String? creatorId;
+  final List<String> adminUserIds;
 
   UDormBedInvoiceResponse({
     required this.id,
@@ -473,6 +492,7 @@ class UDormBedInvoiceResponse {
     required this.creditorAmount,
     required this.paidAmount,
     required this.penaltyAmount,
+    required this.adminUserIds,
     this.updatedAt,
     this.deletedAt,
     this.paidDate,
@@ -482,6 +502,8 @@ class UDormBedInvoiceResponse {
     this.userId,
     this.contract,
     this.contractId,
+    this.creator,
+    this.creatorId,
   });
 
   factory UDormBedInvoiceResponse.fromJson(String str) => UDormBedInvoiceResponse.fromMap(json.decode(str));
@@ -507,6 +529,9 @@ class UDormBedInvoiceResponse {
     userId: json["userId"],
     contract: json["contract"] == null ? null : UDormBedContractResponse.fromMap(json["contract"]),
     contractId: json["contractId"],
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -528,16 +553,23 @@ class UDormBedInvoiceResponse {
     "userId": userId,
     "contract": contract?.toMap(),
     "contractId": contractId,
+    "creator": creator?.toMap(),
+    "creatorId": creatorId,
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
 class UDormBedInvoiceJson {
   final String? description;
   final int? penaltyPrecentEveryDate;
+  final String? detail1;
+  final String? detail2;
 
   UDormBedInvoiceJson({
     this.description,
     this.penaltyPrecentEveryDate,
+    this.detail1,
+    this.detail2,
   });
 
   factory UDormBedInvoiceJson.fromJson(String str) => UDormBedInvoiceJson.fromMap(json.decode(str));
@@ -547,10 +579,54 @@ class UDormBedInvoiceJson {
   factory UDormBedInvoiceJson.fromMap(Map<String, dynamic> json) => UDormBedInvoiceJson(
     description: json["description"],
     penaltyPrecentEveryDate: json["penaltyPrecentEveryDate"] == null ? null : (json["penaltyPrecentEveryDate"] as num).toInt(),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "description": description,
     "penaltyPrecentEveryDate": penaltyPrecentEveryDate,
+    "detail1": detail1,
+    "detail2": detail2,
+  };
+}
+
+class UDormBedInvoiceChartResponse {
+  final String month;
+  final double totalDebt;
+  final double totalPaid;
+  final double totalPenalty;
+  final double totalRemaining;
+  final int invoiceCount;
+
+  UDormBedInvoiceChartResponse({
+    required this.month,
+    required this.totalDebt,
+    required this.totalPaid,
+    required this.totalPenalty,
+    required this.totalRemaining,
+    required this.invoiceCount,
+  });
+
+  factory UDormBedInvoiceChartResponse.fromJson(String str) => UDormBedInvoiceChartResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UDormBedInvoiceChartResponse.fromMap(Map<String, dynamic> json) => UDormBedInvoiceChartResponse(
+    month: json["month"] as String,
+    totalDebt: json["totalDebt"],
+    totalPaid: json["totalPaid"],
+    totalPenalty: json["totalPenalty"],
+    totalRemaining: json["totalRemaining"],
+    invoiceCount: json["invoiceCount"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "month": month,
+    "totalDebt": totalDebt,
+    "totalPaid": totalPaid,
+    "totalPenalty": totalPenalty,
+    "totalRemaining": totalRemaining,
+    "invoiceCount": invoiceCount,
   };
 }

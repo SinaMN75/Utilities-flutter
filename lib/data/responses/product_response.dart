@@ -10,6 +10,8 @@ class UProductResponse {
     required this.point,
     required this.creatorId,
     required this.visitCount,
+    required this.adminUserIds,
+    required this.order,
     this.code,
     this.subtitle,
     this.description,
@@ -63,6 +65,8 @@ class UProductResponse {
     children: json["children"] == null ? <UProductResponse>[] : List<UProductResponse>.from(json["children"].map((dynamic x) => UProductResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
     categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    order: json["order"],
   );
   final String id;
   final DateTime createdAt;
@@ -92,6 +96,8 @@ class UProductResponse {
   final bool? isFollowing;
   final int? visitCount;
   final int? childrenCount;
+  final List<String> adminUserIds;
+  final int order;
 
   String toJson() => json.encode(toMap());
 
@@ -124,6 +130,8 @@ class UProductResponse {
     "children": children == null ? null : List<dynamic>.from(children!.map((UProductResponse x) => x.toMap())),
     "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((UCategoryResponse x) => x.toMap())),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
+    "order": order,
   };
 }
 
@@ -138,6 +146,8 @@ class UProductJson {
     this.relatedProducts,
     this.phoneNumber,
     this.address,
+    this.detail1,
+    this.detail2,
   });
 
   factory UProductJson.fromJson(String str) => UProductJson.fromMap(json.decode(str));
@@ -152,6 +162,8 @@ class UProductJson {
     relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
     phoneNumber: json["phoneNumber"],
     address: json["address"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
   );
   final String? actionType;
   final String? actionTitle;
@@ -162,6 +174,8 @@ class UProductJson {
   final List<String>? relatedProducts;
   final String? phoneNumber;
   final String? address;
+  final String? detail1;
+  final String? detail2;
 
   String toJson() => json.encode(toMap());
 
@@ -175,5 +189,7 @@ class UProductJson {
     "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
     "phoneNumber": phoneNumber,
     "address": address,
+    "detail1": detail1,
+    "detail2": detail2,
   };
 }

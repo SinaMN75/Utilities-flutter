@@ -65,6 +65,8 @@ class UWalletResponse {
   final double balance;
   final UUserResponse? user;
   final String creatorId;
+  final UUserResponse? creator;
+  final List<String> adminUserIds;
 
   UWalletResponse({
     required this.id,
@@ -72,9 +74,11 @@ class UWalletResponse {
     required this.jsonData,
     required this.balance,
     required this.creatorId,
+    required this.adminUserIds,
     this.createdAt,
     this.deletedAt,
     this.user,
+    this.creator,
   });
 
   factory UWalletResponse.fromJson(String str) => UWalletResponse.fromMap(json.decode(str));
@@ -90,6 +94,8 @@ class UWalletResponse {
     balance: json["balance"].toString().toDouble(),
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
     creatorId: json["creatorId"],
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -101,6 +107,8 @@ class UWalletResponse {
     "balance": balance,
     "user": user?.toMap(),
     "creatorId": creatorId,
+    "creator": creator?.toMap(),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
@@ -115,6 +123,9 @@ class UWalletTxnResponse {
   final String senderId;
   final UUserResponse? receiver;
   final String receiverId;
+  final UUserResponse? creator;
+  final String? creatorId;
+  final List<String> adminUserIds;
 
   UWalletTxnResponse({
     required this.id,
@@ -124,9 +135,12 @@ class UWalletTxnResponse {
     required this.amount,
     required this.senderId,
     required this.receiverId,
+    required this.adminUserIds,
     this.deletedAt,
     this.sender,
     this.receiver,
+    this.creator,
+    this.creatorId,
   });
 
   factory UWalletTxnResponse.fromJson(String str) => UWalletTxnResponse.fromMap(json.decode(str));
@@ -144,6 +158,9 @@ class UWalletTxnResponse {
     senderId: json["senderId"] as String,
     receiver: json["receiver"] == null ? null : UUserResponse.fromMap(json["receiver"]),
     receiverId: json["receiverId"] as String,
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -157,5 +174,8 @@ class UWalletTxnResponse {
     "senderId": senderId,
     "receiver": receiver?.toMap(),
     "receiverId": receiverId,
+    "creator": creator?.toMap(),
+    "creatorId": creatorId,
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }

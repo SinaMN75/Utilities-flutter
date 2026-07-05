@@ -8,6 +8,13 @@ class UTerminalCreateParams {
   final String? simCardSerial;
   final String? imei;
   final String? terminalId;
+  final String? detail1;
+  final String? detail2;
+  final String? creatorId;
+  final List<String>? adminUserIds;
+  final String? insId;
+  final String? agreement;
+  final String? merchantId;
 
   UTerminalCreateParams({
     required this.tags,
@@ -17,6 +24,13 @@ class UTerminalCreateParams {
     this.simCardSerial,
     this.imei,
     this.terminalId,
+    this.detail1,
+    this.detail2,
+    this.creatorId,
+    this.adminUserIds,
+    this.insId,
+    this.agreement,
+    this.merchantId,
   });
 
   factory UTerminalCreateParams.fromJson(String str) => UTerminalCreateParams.fromMap(json.decode(str));
@@ -31,6 +45,13 @@ class UTerminalCreateParams {
     simCardSerial: json["simCardSerial"],
     imei: json["imei"],
     terminalId: json["terminalId"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    insId: json["insId"],
+    agreement: json["agreement"],
+    merchantId: json["merchantId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -41,6 +62,13 @@ class UTerminalCreateParams {
     "simCardSerial": simCardSerial,
     "imei": imei,
     "terminalId": terminalId,
+    "detail1": detail1,
+    "detail2": detail2,
+    "creatorId": creatorId,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "insId": insId,
+    "agreement": agreement,
+    "merchantId": merchantId,
   };
 }
 
@@ -88,6 +116,11 @@ class UTerminalUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
+  final String? detail1;
+  final String? detail2;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   UTerminalUpdateParams({
     required this.id,
@@ -101,6 +134,11 @@ class UTerminalUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
+    this.detail1,
+    this.detail2,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UTerminalUpdateParams.fromJson(String str) => UTerminalUpdateParams.fromMap(json.decode(str));
@@ -119,6 +157,11 @@ class UTerminalUpdateParams {
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -133,6 +176,11 @@ class UTerminalUpdateParams {
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }
 
@@ -166,6 +214,11 @@ class UTerminalReadParams {
   final String? merchantId;
   final TerminalSelectorArgs? selectorArgs;
   final int? orderBy;
+  final String? simCardNumber;
+  final String? simCardSerial;
+  final String? imei;
+  final String? terminalId;
+  final String? insId;
 
   UTerminalReadParams({
     required this.selectorArgs,
@@ -179,6 +232,11 @@ class UTerminalReadParams {
     this.serial,
     this.merchantId,
     this.orderBy,
+    this.simCardNumber,
+    this.simCardSerial,
+    this.imei,
+    this.terminalId,
+    this.insId,
   });
 
   factory UTerminalReadParams.fromJson(String str) => UTerminalReadParams.fromMap(json.decode(str));
@@ -197,6 +255,11 @@ class UTerminalReadParams {
     merchantId: json["merchantId"],
     selectorArgs: json["selectorArgs"] == null ? null : TerminalSelectorArgs.fromMap(json["selectorArgs"]),
     orderBy: json["orderBy"],
+    simCardNumber: json["simCardNumber"],
+    simCardSerial: json["simCardSerial"],
+    imei: json["imei"],
+    terminalId: json["terminalId"],
+    insId: json["insId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -211,6 +274,11 @@ class UTerminalReadParams {
     "merchantId": merchantId,
     "selectorArgs": selectorArgs?.toMap(),
     "orderBy": orderBy,
+    "simCardNumber": simCardNumber,
+    "simCardSerial": simCardSerial,
+    "imei": imei,
+    "terminalId": terminalId,
+    "insId": insId,
   };
 }
 

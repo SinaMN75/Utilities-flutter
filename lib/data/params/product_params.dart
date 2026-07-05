@@ -26,6 +26,13 @@ class UProductCreateParams {
     this.point,
     this.phoneNumber,
     this.address,
+    this.detail1,
+    this.detail2,
+    this.id,
+    this.adminUserIds,
+    this.order,
+    this.children,
+    this.media,
   });
 
   factory UProductCreateParams.fromJson(String str) => UProductCreateParams.fromMap(json.decode(str));
@@ -55,6 +62,13 @@ class UProductCreateParams {
     creatorId: json["creatorId"],
     phoneNumber: json["phoneNumber"],
     address: json["address"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    id: json["id"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    order: json["order"],
+    children: json["children"] == null ? <UProductCreateParams>[] : List<UProductCreateParams>.from(json["children"]!.map((dynamic x) => UProductCreateParams.fromMap(x))),
+    media: json["media"] == null ? <String>[] : List<String>.from(json["media"]!.map((dynamic x) => x)),
   );
   final String title;
   final String? code;
@@ -80,6 +94,13 @@ class UProductCreateParams {
   final int? point;
   final String? phoneNumber;
   final String? address;
+  final String? detail1;
+  final String? detail2;
+  final String? id;
+  final List<String>? adminUserIds;
+  final int? order;
+  final List<UProductCreateParams>? children;
+  final List<String>? media;
 
   String toJson() => json.encode(toMap());
 
@@ -108,6 +129,13 @@ class UProductCreateParams {
     "point": point,
     "phoneNumber": phoneNumber,
     "address": address,
+    "detail1": detail1,
+    "detail2": detail2,
+    "id": id,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "order": order,
+    "children": children == null ? <UProductCreateParams>[] : List<UProductCreateParams>.from(children!.map((UProductCreateParams x) => x.toMap())),
+    "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((String x) => x)),
   };
 }
 
@@ -144,6 +172,13 @@ class UProductUpdateParams {
     this.point,
     this.phoneNumber,
     this.address,
+    this.detail1,
+    this.detail2,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
+    this.order,
+    this.media,
   });
 
   factory UProductUpdateParams.fromJson(String str) => UProductUpdateParams.fromMap(json.decode(str));
@@ -180,6 +215,13 @@ class UProductUpdateParams {
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
+    order: json["order"],
+    media: json["media"] == null ? <String>[] : List<String>.from(json["media"]!.map((dynamic x) => x)),
   );
   final String? title;
   final String? code;
@@ -212,6 +254,13 @@ class UProductUpdateParams {
   final int? point;
   final String? phoneNumber;
   final String? address;
+  final String? detail1;
+  final String? detail2;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
+  final int? order;
+  final List<String>? media;
 
   String toJson() => json.encode(toMap());
 
@@ -247,6 +296,13 @@ class UProductUpdateParams {
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
+    "order": order,
+    "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((String x) => x)),
   };
 }
 
@@ -273,6 +329,7 @@ class UProductReadParams {
     this.selectorArgs,
     this.categories,
     this.orderBy,
+    this.slug,
   });
 
   factory UProductReadParams.fromJson(String str) => UProductReadParams.fromMap(json.decode(str));
@@ -299,6 +356,7 @@ class UProductReadParams {
     selectorArgs: json["selectorArgs"] == null ? null : ProductSelectorArgs.fromMap(json["selectorArgs"]),
     categories: json["categories"] == null ? null : List<String>.from(json["categories"].map((dynamic x) => x)),
     orderBy: json["orderBy"],
+    slug: json["slug"],
   );
   final bool? hasActiveContract;
   final String? query;
@@ -321,6 +379,7 @@ class UProductReadParams {
   final List<String>? categories;
   final ProductSelectorArgs? selectorArgs;
   final int? orderBy;
+  final String? slug;
 
   String toJson() => json.encode(toMap());
 
@@ -346,5 +405,6 @@ class UProductReadParams {
     "selectorArgs": selectorArgs?.toMap(),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
     "orderBy": orderBy,
+    "slug": slug,
   };
 }

@@ -18,6 +18,14 @@ class UBlogResponse {
   final List<UCategoryResponse>? categories;
   final List<UCommentResponse>? comments;
   final int? commentCount;
+  final String? code;
+  final String? description;
+  final String? type;
+  final double? latitude;
+  final double? longitude;
+  final String? parentId;
+  final List<UBlogResponse>? children;
+  final int? childrenCount;
 
   UBlogResponse({
     required this.id,
@@ -37,6 +45,14 @@ class UBlogResponse {
     this.categories,
     this.comments,
     this.commentCount,
+    this.code,
+    this.description,
+    this.type,
+    this.latitude,
+    this.longitude,
+    this.parentId,
+    this.children,
+    this.childrenCount,
   });
 
   factory UBlogResponse.fromJson(String str) => UBlogResponse.fromMap(json.decode(str));
@@ -61,6 +77,14 @@ class UBlogResponse {
     categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"]!.map((dynamic x) => UCategoryResponse.fromMap(x))),
     comments: json["comments"] == null ? <UCommentResponse>[] : List<UCommentResponse>.from(json["comments"]!.map((dynamic x) => UCommentResponse.fromMap(x))),
     commentCount: json["commentCount"],
+    code: json["code"],
+    description: json["description"],
+    type: json["type"],
+    latitude: json["latitude"],
+    longitude: json["longitude"],
+    parentId: json["parentId"],
+    children: json["children"] == null ? <UBlogResponse>[] : List<UBlogResponse>.from(json["children"]!.map((dynamic x) => UBlogResponse.fromMap(x))),
+    childrenCount: json["childrenCount"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -81,6 +105,14 @@ class UBlogResponse {
     "categories": categories == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(categories!.map((UCategoryResponse x) => x.toMap())),
     "comments": comments == null ? <UCommentResponse>[] : List<UCommentResponse>.from(comments!.map((UCommentResponse x) => x.toMap())),
     "commentCount": commentCount,
+    "code": code,
+    "description": description,
+    "type": type,
+    "latitude": latitude,
+    "longitude": longitude,
+    "parentId": parentId,
+    "children": children == null ? <UBlogResponse>[] : List<UBlogResponse>.from(children!.map((UBlogResponse x) => x.toMap())),
+    "childrenCount": childrenCount,
   };
 }
 
@@ -89,12 +121,24 @@ class UBlogJson {
   final String? metaDescription;
   final String? source;
   final int? readingTimeMinutes;
+  final String? detail1;
+  final String? detail2;
+  final String? actionType;
+  final String? actionTitle;
+  final String? actionUri;
+  final List<String>? relatedBlogs;
 
   UBlogJson({
     this.metaTitle,
     this.metaDescription,
     this.source,
     this.readingTimeMinutes,
+    this.detail1,
+    this.detail2,
+    this.actionType,
+    this.actionTitle,
+    this.actionUri,
+    this.relatedBlogs,
   });
 
   factory UBlogJson.fromJson(String str) => UBlogJson.fromMap(json.decode(str));
@@ -106,6 +150,12 @@ class UBlogJson {
     metaDescription: json["metaDescription"],
     source: json["source"],
     readingTimeMinutes: json["readingTimeMinutes"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    actionType: json["actionType"],
+    actionTitle: json["actionTitle"],
+    actionUri: json["actionUri"],
+    relatedBlogs: json["relatedBlogs"] == null ? <String>[] : List<String>.from(json["relatedBlogs"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -113,5 +163,11 @@ class UBlogJson {
     "metaDescription": metaDescription,
     "source": source,
     "readingTimeMinutes": readingTimeMinutes,
+    "detail1": detail1,
+    "detail2": detail2,
+    "actionType": actionType,
+    "actionTitle": actionTitle,
+    "actionUri": actionUri,
+    "relatedBlogs": relatedBlogs == null ? <dynamic>[] : List<dynamic>.from(relatedBlogs!.map((String x) => x)),
   };
 }

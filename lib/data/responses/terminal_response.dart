@@ -12,6 +12,10 @@ class UTerminalResponse {
   final UBaseJson jsonData;
   final DateTime createdAt;
   final UMerchantResponse? merchant;
+  final UUserResponse? creator;
+  final String? creatorId;
+  final List<String> adminUserIds;
+  final String? merchantId;
 
   UTerminalResponse({
     required this.tags,
@@ -19,12 +23,16 @@ class UTerminalResponse {
     required this.serial,
     required this.createdAt,
     required this.id,
+    required this.adminUserIds,
     this.terminalId,
     this.simCardNumber,
     this.simCardSerial,
     this.agreement,
     this.imei,
     this.merchant,
+    this.creator,
+    this.creatorId,
+    this.merchantId,
   });
 
   factory UTerminalResponse.fromJson(String str) => UTerminalResponse.fromMap(json.decode(str));
@@ -43,6 +51,10 @@ class UTerminalResponse {
     imei: json["imei"],
     agreement: json["agreement"],
     createdAt: DateTime.parse(json["createdAt"]),
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    merchantId: json["merchantId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -57,6 +69,10 @@ class UTerminalResponse {
     "jsonData": jsonData.toMap(),
     "merchant": merchant?.toMap(),
     "createdAt": createdAt.toIso8601String(),
+    "creator": creator?.toMap(),
+    "creatorId": creatorId,
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
+    "merchantId": merchantId,
   };
 }
 
@@ -109,5 +125,25 @@ class UTerminalImportResponse {
     "imported": imported,
     "skipped": skipped,
     "skippedSerials": skippedSerials == null ? <dynamic>[] : List<dynamic>.from(skippedSerials!.map((String x) => x)),
+  };
+}
+
+class UTerminalSupportPasswordResponse {
+  final String? password;
+
+  UTerminalSupportPasswordResponse({
+    this.password,
+  });
+
+  factory UTerminalSupportPasswordResponse.fromJson(String str) => UTerminalSupportPasswordResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UTerminalSupportPasswordResponse.fromMap(Map<String, dynamic> json) => UTerminalSupportPasswordResponse(
+    password: json["password"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "password": password,
   };
 }

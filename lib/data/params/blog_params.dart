@@ -18,6 +18,17 @@ class UBlogCreateParams {
   final DateTime? publishedAt;
   final List<String>? categories;
   final List<String>? media;
+  final String? code;
+  final String? description;
+  final String? type;
+  final String? actionType;
+  final String? actionTitle;
+  final String? actionUri;
+  final double? latitude;
+  final double? longitude;
+  final String? parentId;
+  final List<String>? relatedBlogs;
+  final List<UBlogCreateParams>? children;
 
   UBlogCreateParams({
     required this.tags,
@@ -37,6 +48,17 @@ class UBlogCreateParams {
     this.publishedAt,
     this.categories,
     this.media,
+    this.code,
+    this.description,
+    this.type,
+    this.actionType,
+    this.actionTitle,
+    this.actionUri,
+    this.latitude,
+    this.longitude,
+    this.parentId,
+    this.relatedBlogs,
+    this.children,
   });
 
   factory UBlogCreateParams.fromJson(String str) => UBlogCreateParams.fromMap(json.decode(str));
@@ -61,6 +83,17 @@ class UBlogCreateParams {
     publishedAt: json["publishedAt"] == null ? null : DateTime.parse(json["publishedAt"]),
     categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((dynamic x) => x)),
     media: json["media"] == null ? <String>[] : List<String>.from(json["media"]!.map((dynamic x) => x)),
+    code: json["code"],
+    description: json["description"],
+    type: json["type"],
+    actionType: json["actionType"],
+    actionTitle: json["actionTitle"],
+    actionUri: json["actionUri"],
+    latitude: json["latitude"],
+    longitude: json["longitude"],
+    parentId: json["parentId"],
+    relatedBlogs: json["relatedBlogs"] == null ? <String>[] : List<String>.from(json["relatedBlogs"]!.map((dynamic x) => x)),
+    children: json["children"] == null ? <UBlogCreateParams>[] : List<UBlogCreateParams>.from(json["children"]!.map((dynamic x) => UBlogCreateParams.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -81,6 +114,17 @@ class UBlogCreateParams {
     "publishedAt": publishedAt?.toIso8601String(),
     "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
     "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((String x) => x)),
+    "code": code,
+    "description": description,
+    "type": type,
+    "actionType": actionType,
+    "actionTitle": actionTitle,
+    "actionUri": actionUri,
+    "latitude": latitude,
+    "longitude": longitude,
+    "parentId": parentId,
+    "relatedBlogs": relatedBlogs == null ? <dynamic>[] : List<dynamic>.from(relatedBlogs!.map((String x) => x)),
+    "children": children == null ? <UBlogCreateParams>[] : List<UBlogCreateParams>.from(children!.map((UBlogCreateParams x) => x.toMap())),
   };
 }
 
@@ -107,6 +151,19 @@ class UBlogUpdateParams {
   final List<String>? removeCategories;
   final List<String>? categories;
   final List<String>? media;
+  final String? code;
+  final String? description;
+  final String? type;
+  final String? actionType;
+  final String? actionTitle;
+  final String? actionUri;
+  final double? latitude;
+  final double? longitude;
+  final String? parentId;
+  final String? creatorId;
+  final List<String>? relatedBlogs;
+  final List<String>? addRelatedBlogs;
+  final List<String>? removeRelatedBlogs;
 
   UBlogUpdateParams({
     required this.id,
@@ -131,6 +188,19 @@ class UBlogUpdateParams {
     this.removeCategories,
     this.categories,
     this.media,
+    this.code,
+    this.description,
+    this.type,
+    this.actionType,
+    this.actionTitle,
+    this.actionUri,
+    this.latitude,
+    this.longitude,
+    this.parentId,
+    this.creatorId,
+    this.relatedBlogs,
+    this.addRelatedBlogs,
+    this.removeRelatedBlogs,
   });
 
   factory UBlogUpdateParams.fromJson(String str) => UBlogUpdateParams.fromMap(json.decode(str));
@@ -160,6 +230,19 @@ class UBlogUpdateParams {
     removeCategories: json["removeCategories"] == null ? <String>[] : List<String>.from(json["removeCategories"]!.map((dynamic x) => x)),
     categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((dynamic x) => x)),
     media: json["media"] == null ? <String>[] : List<String>.from(json["media"]!.map((dynamic x) => x)),
+    code: json["code"],
+    description: json["description"],
+    type: json["type"],
+    actionType: json["actionType"],
+    actionTitle: json["actionTitle"],
+    actionUri: json["actionUri"],
+    latitude: json["latitude"],
+    longitude: json["longitude"],
+    parentId: json["parentId"],
+    creatorId: json["creatorId"],
+    relatedBlogs: json["relatedBlogs"] == null ? <String>[] : List<String>.from(json["relatedBlogs"]!.map((dynamic x) => x)),
+    addRelatedBlogs: json["addRelatedBlogs"] == null ? <String>[] : List<String>.from(json["addRelatedBlogs"]!.map((dynamic x) => x)),
+    removeRelatedBlogs: json["removeRelatedBlogs"] == null ? <String>[] : List<String>.from(json["removeRelatedBlogs"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -185,6 +268,19 @@ class UBlogUpdateParams {
     "removeCategories": removeCategories == null ? <dynamic>[] : List<dynamic>.from(removeCategories!.map((String x) => x)),
     "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
     "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((String x) => x)),
+    "code": code,
+    "description": description,
+    "type": type,
+    "actionType": actionType,
+    "actionTitle": actionTitle,
+    "actionUri": actionUri,
+    "latitude": latitude,
+    "longitude": longitude,
+    "parentId": parentId,
+    "creatorId": creatorId,
+    "relatedBlogs": relatedBlogs == null ? <dynamic>[] : List<dynamic>.from(relatedBlogs!.map((String x) => x)),
+    "addRelatedBlogs": addRelatedBlogs == null ? <dynamic>[] : List<dynamic>.from(addRelatedBlogs!.map((String x) => x)),
+    "removeRelatedBlogs": removeRelatedBlogs == null ? <dynamic>[] : List<dynamic>.from(removeRelatedBlogs!.map((String x) => x)),
   };
 }
 
@@ -202,6 +298,9 @@ class UBlogReadParams {
   final bool? onlyPublished;
   final List<String>? categories;
   final BlogSelectorArgs? selectorArgs;
+  final int? orderBy;
+  final String? code;
+  final String? parentId;
 
   UBlogReadParams({
     this.pageSize,
@@ -217,6 +316,9 @@ class UBlogReadParams {
     this.onlyPublished,
     this.categories,
     this.selectorArgs,
+    this.orderBy,
+    this.code,
+    this.parentId,
   });
 
   factory UBlogReadParams.fromJson(String str) => UBlogReadParams.fromMap(json.decode(str));
@@ -237,6 +339,9 @@ class UBlogReadParams {
     onlyPublished: json["onlyPublished"],
     categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : BlogSelectorArgs.fromMap(json["selectorArgs"]),
+    orderBy: json["orderBy"],
+    code: json["code"],
+    parentId: json["parentId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -253,5 +358,8 @@ class UBlogReadParams {
     "onlyPublished": onlyPublished,
     "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
+    "orderBy": orderBy,
+    "code": code,
+    "parentId": parentId,
   };
 }

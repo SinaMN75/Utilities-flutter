@@ -9,6 +9,7 @@ class UCommentResponse {
     required this.score,
     required this.description,
     required this.userId,
+    required this.adminUserIds,
     this.parentId,
     this.parent,
     this.user,
@@ -41,6 +42,7 @@ class UCommentResponse {
     blogId: json["blogId"],
     children: json["children"] == null ? <UCommentResponse>[] : List<UCommentResponse>.from(json["children"].map((dynamic x) => UCommentResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
   final String id;
   final DateTime createdAt;
@@ -59,6 +61,7 @@ class UCommentResponse {
   final String? blogId;
   final List<UCommentResponse>? children;
   final List<UMediaResponse>? media;
+  final List<String> adminUserIds;
 
   String toJson() => json.encode(toMap());
 
@@ -80,25 +83,34 @@ class UCommentResponse {
     "blogId": blogId,
     "children": children == null ? null : List<dynamic>.from(children!.map((UCommentResponse x) => x.toMap())),
     "media": media == null ? null : List<dynamic>.from(media!.map((UMediaResponse x) => x.toMap())),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
 class UCommentJson {
   UCommentJson({
     this.reacts,
+    this.detail1,
+    this.detail2,
   });
 
   factory UCommentJson.fromJson(String str) => UCommentJson.fromMap(json.decode(str));
 
   factory UCommentJson.fromMap(Map<String, dynamic> json) => UCommentJson(
     reacts: json["reacts"] == null ? <UCommentReacts>[] : List<UCommentReacts>.from(json["reacts"].map((dynamic x) => UCommentReacts.fromMap(x))),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
   );
   final List<UCommentReacts>? reacts;
+  final String? detail1;
+  final String? detail2;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "reacts": reacts == null ? null : List<dynamic>.from(reacts!.map((UCommentReacts x) => x.toMap())),
+    "detail1": detail1,
+    "detail2": detail2,
   };
 }
 

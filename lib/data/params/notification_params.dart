@@ -6,6 +6,8 @@ class UNotificationCreateParams {
   final String? id;
   final String? detail1;
   final String? detail2;
+  final String? creatorId;
+  final List<String>? adminUserIds;
 
   UNotificationCreateParams({
     required this.tags,
@@ -13,6 +15,8 @@ class UNotificationCreateParams {
     this.id,
     this.detail1,
     this.detail2,
+    this.creatorId,
+    this.adminUserIds,
   });
 
   factory UNotificationCreateParams.fromJson(String str) => UNotificationCreateParams.fromMap(json.decode(str));
@@ -25,6 +29,8 @@ class UNotificationCreateParams {
     id: json["id"],
     detail1: json["detail1"],
     detail2: json["detail2"],
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -33,6 +39,8 @@ class UNotificationCreateParams {
     "detail1": detail1,
     "detail2": detail2,
     "userId": userId,
+    "creatorId": creatorId,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -43,6 +51,11 @@ class UNotificationUpdateParams {
   final List<int>? tags;
   final String? detail1;
   final String? detail2;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
+  final String? userId;
+  final NotificationSelectorArgs? selectorArgs;
 
   UNotificationUpdateParams({
     required this.id,
@@ -51,6 +64,11 @@ class UNotificationUpdateParams {
     this.tags,
     this.detail1,
     this.detail2,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
+    this.userId,
+    this.selectorArgs,
   });
 
   factory UNotificationUpdateParams.fromJson(String str) => UNotificationUpdateParams.fromMap(json.decode(str));
@@ -64,6 +82,11 @@ class UNotificationUpdateParams {
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     detail1: json["detail1"],
     detail2: json["detail2"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
+    userId: json["userId"],
+    selectorArgs: json["selectorArgs"] == null ? null : NotificationSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -73,6 +96,11 @@ class UNotificationUpdateParams {
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
     "detail1": detail1,
     "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
+    "userId": userId,
+    "selectorArgs": selectorArgs?.toMap(),
   };
 }
 

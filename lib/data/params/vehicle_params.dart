@@ -7,6 +7,10 @@ class UVehicleCreateParams {
   final String? title;
   final String? brand;
   final String? color;
+  final String? detail1;
+  final String? detail2;
+  final String? creatorId;
+  final List<String>? adminUserIds;
 
   UVehicleCreateParams({
     required this.licencePlate,
@@ -15,6 +19,10 @@ class UVehicleCreateParams {
     this.title,
     this.brand,
     this.color,
+    this.detail1,
+    this.detail2,
+    this.creatorId,
+    this.adminUserIds,
   });
 
   factory UVehicleCreateParams.fromJson(String str) => UVehicleCreateParams.fromMap(json.decode(str));
@@ -28,6 +36,10 @@ class UVehicleCreateParams {
     title: json["title"],
     brand: json["brand"],
     color: json["color"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -37,6 +49,10 @@ class UVehicleCreateParams {
     "title": title,
     "brand": brand,
     "color": color,
+    "detail1": detail1,
+    "detail2": detail2,
+    "creatorId": creatorId,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -48,6 +64,12 @@ class UVehicleUpdateParams {
   final String? title;
   final String? brand;
   final String? color;
+  final String? detail1;
+  final String? detail2;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
+  final String? licencePlate;
 
   UVehicleUpdateParams({
     required this.id,
@@ -57,6 +79,12 @@ class UVehicleUpdateParams {
     this.title,
     this.brand,
     this.color,
+    this.detail1,
+    this.detail2,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
+    this.licencePlate,
   });
 
   factory UVehicleUpdateParams.fromJson(String str) => UVehicleUpdateParams.fromMap(json.decode(str));
@@ -71,6 +99,12 @@ class UVehicleUpdateParams {
     title: json["title"],
     brand: json["brand"],
     color: json["color"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
+    licencePlate: json["licencePlate"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -81,6 +115,12 @@ class UVehicleUpdateParams {
     "title": title,
     "brand": brand,
     "color": color,
+    "detail1": detail1,
+    "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
+    "licencePlate": licencePlate,
   };
 }
 
@@ -94,6 +134,9 @@ class UVehicleReadParams {
   final String? creatorId;
   final VehicleSelectorArgs? selectorArgs;
   final int? orderBy;
+  final String? licencePlate;
+  final String? brand;
+  final String? color;
 
   UVehicleReadParams({
     required this.selectorArgs,
@@ -105,6 +148,9 @@ class UVehicleReadParams {
     this.ids,
     this.creatorId,
     this.orderBy,
+    this.licencePlate,
+    this.brand,
+    this.color,
   });
 
   factory UVehicleReadParams.fromJson(String str) => UVehicleReadParams.fromMap(json.decode(str));
@@ -121,6 +167,9 @@ class UVehicleReadParams {
     creatorId: json["creatorId"],
     selectorArgs: json["selectorArgs"] == null ? null : VehicleSelectorArgs.fromMap(json["selectorArgs"]),
     orderBy: json["orderBy"],
+    licencePlate: json["licencePlate"],
+    brand: json["brand"],
+    color: json["color"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -133,5 +182,8 @@ class UVehicleReadParams {
     "creatorId": creatorId,
     "selectorArgs": selectorArgs?.toMap(),
     "orderBy": orderBy,
+    "licencePlate": licencePlate,
+    "brand": brand,
+    "color": color,
   };
 }

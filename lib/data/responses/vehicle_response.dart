@@ -10,12 +10,16 @@ class UVehicleResponse {
   final UUserResponse? creator;
   final String? creatorId;
   final UBaseJson jsonData;
+  final DateTime createdAt;
+  final List<String> adminUserIds;
 
   UVehicleResponse({
     required this.licencePlate,
     required this.tags,
     required this.id,
     required this.jsonData,
+    required this.createdAt,
+    required this.adminUserIds,
     this.brand,
     this.title,
     this.color,
@@ -37,6 +41,8 @@ class UVehicleResponse {
     color: json["color"],
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
+    createdAt: DateTime.parse(json["createdAt"]),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -49,5 +55,7 @@ class UVehicleResponse {
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "jsonData": jsonData.toMap(),
+    "createdAt": createdAt.toIso8601String(),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }

@@ -11,6 +11,10 @@ class UCommentCreateParams {
     this.blogId,
     this.userId,
     this.creatorId,
+    this.detail1,
+    this.detail2,
+    this.id,
+    this.adminUserIds,
   });
 
   factory UCommentCreateParams.fromJson(String str) => UCommentCreateParams.fromMap(json.decode(str));
@@ -25,6 +29,10 @@ class UCommentCreateParams {
     userId: json["userId"],
     creatorId: json["creatorId"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    id: json["id"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
   final String description;
   final double score;
@@ -35,6 +43,10 @@ class UCommentCreateParams {
   final String? userId;
   final String? creatorId;
   final List<int> tags;
+  final String? detail1;
+  final String? detail2;
+  final String? id;
+  final List<String>? adminUserIds;
 
   String toJson() => json.encode(toMap());
 
@@ -48,6 +60,10 @@ class UCommentCreateParams {
     "userId": userId,
     "creatorId": creatorId,
     "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "id": id,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -59,6 +75,11 @@ class UCommentUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
+    this.detail1,
+    this.detail2,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UCommentUpdateParams.fromJson(String str) => UCommentUpdateParams.fromMap(json.decode(str));
@@ -70,6 +91,11 @@ class UCommentUpdateParams {
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
   final String? description;
   final double? score;
@@ -77,6 +103,11 @@ class UCommentUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
+  final String? detail1;
+  final String? detail2;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   String toJson() => json.encode(toMap());
 
@@ -87,6 +118,11 @@ class UCommentUpdateParams {
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }
 
@@ -103,6 +139,7 @@ class UCommentReadParams {
     this.tags,
     this.selectorArgs,
     this.orderBy,
+    this.ids,
   });
 
   factory UCommentReadParams.fromJson(String str) => UCommentReadParams.fromMap(json.decode(str));
@@ -119,6 +156,7 @@ class UCommentReadParams {
     selectorArgs: json["selectorArgs"] == null ? null : CommentSelectorArgs.fromMap(json["selectorArgs"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     orderBy: json["orderBy"],
+    ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
   );
   final String? creatorId;
   final String? productId;
@@ -131,6 +169,7 @@ class UCommentReadParams {
   final CommentSelectorArgs? selectorArgs;
   final List<int>? tags;
   final int? orderBy;
+  final List<String>? ids;
 
   String toJson() => json.encode(toMap());
 
@@ -146,5 +185,6 @@ class UCommentReadParams {
     "selectorArgs": selectorArgs?.toMap(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((dynamic x) => x)),
     "orderBy": orderBy,
+    "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
   };
 }

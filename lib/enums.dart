@@ -276,7 +276,8 @@ enum TagReaction with NumericIdentifiable {
 enum TagFollow with NumericIdentifiable {
   user("کاربر", "User", 101),
   product("محصول", "Product", 102),
-  category("دسته‌بندی", "Category", 103);
+  category("دسته‌بندی", "Category", 103),
+  blog("وبلاگ", "Blog", 104);
 
   const TagFollow(this.titleFa, this.titleEn, this.number);
 
@@ -291,7 +292,9 @@ enum TagFollow with NumericIdentifiable {
 enum TagContent with NumericIdentifiable {
   aboutUs("درباره ما", "About Us", 101),
   terms("قوانین و مقررات", "Terms", 102),
-  homeSlider1("اسلایدر اصلی", "Home Slider 1", 103);
+  contactUs("تماس با ما", "Contact Us", 103),
+  homeSlider1("اسلایدر اصلی ۱", "Home Slider 1", 201),
+  homeSlider2("اسلایدر اصلی ۲", "Home Slider 2", 202);
 
   const TagContent(this.titleFa, this.titleEn, this.number);
 

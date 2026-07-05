@@ -15,6 +15,12 @@ class UCategoryCreateParams {
     this.type,
     this.link,
     this.relatedProducts,
+    this.detail1,
+    this.detail2,
+    this.creatorId,
+    this.adminUserIds,
+    this.children,
+    this.media,
   });
 
   factory UCategoryCreateParams.fromJson(String str) => UCategoryCreateParams.fromMap(json.decode(str));
@@ -33,6 +39,12 @@ class UCategoryCreateParams {
     type: json["type"],
     link: json["link"],
     relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    children: json["children"] == null ? <UCategoryCreateParams>[] : List<UCategoryCreateParams>.from(json["children"]!.map((dynamic x) => UCategoryCreateParams.fromMap(x))),
+    media: json["media"] == null ? <String>[] : List<String>.from(json["media"]!.map((dynamic x) => x)),
   );
   final String? id;
   final String title;
@@ -47,6 +59,12 @@ class UCategoryCreateParams {
   final String? type;
   final String? link;
   final List<String>? relatedProducts;
+  final String? detail1;
+  final String? detail2;
+  final String? creatorId;
+  final List<String>? adminUserIds;
+  final List<UCategoryCreateParams>? children;
+  final List<String>? media;
 
   String toJson() => json.encode(toMap());
 
@@ -64,6 +82,12 @@ class UCategoryCreateParams {
     "phoneNumber": phoneNumber,
     "code": code,
     "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "creatorId": creatorId,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "children": children == null ? <UCategoryCreateParams>[] : List<UCategoryCreateParams>.from(children!.map((UCategoryCreateParams x) => x.toMap())),
+    "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((String x) => x)),
   };
 }
 
@@ -88,6 +112,12 @@ class UCategoryUpdateParams {
     this.tags,
     this.productDeposit,
     this.productRent,
+    this.detail1,
+    this.detail2,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
+    this.media,
   });
 
   factory UCategoryUpdateParams.fromJson(String str) => UCategoryUpdateParams.fromMap(json.decode(str));
@@ -112,6 +142,12 @@ class UCategoryUpdateParams {
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
+    media: json["media"] == null ? <String>[] : List<String>.from(json["media"]!.map((dynamic x) => x)),
   );
   final String? title;
   final String? subtitle;
@@ -132,6 +168,12 @@ class UCategoryUpdateParams {
   final List<int>? tags;
   final double? productDeposit;
   final double? productRent;
+  final String? detail1;
+  final String? detail2;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
+  final List<String>? media;
 
   String toJson() => json.encode(toMap());
 
@@ -155,6 +197,12 @@ class UCategoryUpdateParams {
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
+    "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((String x) => x)),
   };
 }
 
@@ -166,6 +214,9 @@ class UCategoryReadParams {
     this.tags,
     this.selectorArgs,
     this.orderBy,
+    this.fromCreatedAt,
+    this.toCreatedAt,
+    this.creatorId,
   });
 
   factory UCategoryReadParams.fromJson(String str) => UCategoryReadParams.fromMap(json.decode(str));
@@ -177,6 +228,9 @@ class UCategoryReadParams {
     selectorArgs: json["selectorArgs"] == null ? null : CategorySelectorArgs.fromMap(json["selectorArgs"]),
     tags: json["tags"] == null ? null : List<int>.from(json["tags"].map((dynamic x) => x)),
     orderBy: json["orderBy"],
+    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
+    toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
+    creatorId: json["creatorId"],
   );
   final List<String>? ids;
   final int? pageSize;
@@ -184,6 +238,9 @@ class UCategoryReadParams {
   final List<int>? tags;
   final CategorySelectorArgs? selectorArgs;
   final int? orderBy;
+  final DateTime? fromCreatedAt;
+  final DateTime? toCreatedAt;
+  final String? creatorId;
 
   String toJson() => json.encode(toMap());
 
@@ -194,5 +251,8 @@ class UCategoryReadParams {
     "selectorArgs": selectorArgs?.toMap(),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
     "orderBy": orderBy,
+    "fromCreatedAt": fromCreatedAt?.toIso8601String(),
+    "toCreatedAt": toCreatedAt?.toIso8601String(),
+    "creatorId": creatorId,
   };
 }

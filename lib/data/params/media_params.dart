@@ -14,6 +14,12 @@ class UMediaCreateParams {
     this.blogId,
     this.title,
     this.description,
+    this.creatorId,
+    this.hotelId,
+    this.hotelRoomId,
+    this.dormId,
+    this.dormRoomId,
+    this.dormBedId,
   });
 
   final FileData file;
@@ -28,6 +34,12 @@ class UMediaCreateParams {
   final int tag1;
   final int? tag2;
   final int? tag3;
+  final String? creatorId;
+  final String? hotelId;
+  final String? hotelRoomId;
+  final String? dormId;
+  final String? dormRoomId;
+  final String? dormBedId;
 
   String toJson() => json.encode(toMap());
 
@@ -43,6 +55,12 @@ class UMediaCreateParams {
     "tag1": tag1,
     "tag2": tag2,
     "tag3": tag3,
+    "creatorId": creatorId,
+    "hotelId": hotelId,
+    "hotelRoomId": hotelRoomId,
+    "dormId": dormId,
+    "dormRoomId": dormRoomId,
+    "dormBedId": dormBedId,
   };
 }
 
@@ -59,6 +77,17 @@ class UMediaUpdateParams {
     this.categoryId,
     this.productId,
     this.blogId,
+    this.detail1,
+    this.detail2,
+    this.tags,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
+    this.hotelId,
+    this.hotelRoomId,
+    this.dormId,
+    this.dormRoomId,
+    this.dormBedId,
   });
 
   factory UMediaUpdateParams.fromJson(String str) => UMediaUpdateParams.fromMap(json.decode(str));
@@ -75,6 +104,17 @@ class UMediaUpdateParams {
     categoryId: json["categoryId"],
     productId: json["productId"],
     blogId: json["blogId"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
+    hotelId: json["hotelId"],
+    hotelRoomId: json["hotelRoomId"],
+    dormId: json["dormId"],
+    dormRoomId: json["dormRoomId"],
+    dormBedId: json["dormBedId"],
   );
 
   final String id;
@@ -88,6 +128,17 @@ class UMediaUpdateParams {
   final String? categoryId;
   final String? productId;
   final String? blogId;
+  final String? detail1;
+  final String? detail2;
+  final List<int>? tags;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
+  final String? hotelId;
+  final String? hotelRoomId;
+  final String? dormId;
+  final String? dormRoomId;
+  final String? dormBedId;
 
   String toJson() => json.encode(toMap());
 
@@ -103,6 +154,17 @@ class UMediaUpdateParams {
     "categoryId": categoryId,
     "productId": productId,
     "blogId": blogId,
+    "detail1": detail1,
+    "detail2": detail2,
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
+    "hotelId": hotelId,
+    "hotelRoomId": hotelRoomId,
+    "dormId": dormId,
+    "dormRoomId": dormRoomId,
+    "dormBedId": dormBedId,
   };
 }
 

@@ -19,6 +19,7 @@ class UMerchantCreateParams {
   final String ownerName;
   final String? bankAccountId;
   final String mcc;
+  final List<String>? adminUserIds;
 
   UMerchantCreateParams({
     required this.tags,
@@ -39,6 +40,7 @@ class UMerchantCreateParams {
     this.businessTitle,
     this.userId,
     this.bankAccountId,
+    this.adminUserIds,
   });
 
   factory UMerchantCreateParams.fromJson(String str) => UMerchantCreateParams.fromMap(json.decode(str));
@@ -64,6 +66,7 @@ class UMerchantCreateParams {
     ownerName: json["ownerName"],
     bankAccountId: json["bankAccountId"],
     mcc: json["mcc"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -85,6 +88,7 @@ class UMerchantCreateParams {
     "ownerName": ownerName,
     "bankAccountId": bankAccountId,
     "mcc": mcc,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -108,6 +112,7 @@ class UMerchantReadParams {
   final String? merchantId;
   final String? insId;
   final int? orderBy;
+  final MerchantSelectorArgs? selectorArgs;
 
   UMerchantReadParams({
     this.pageSize,
@@ -129,6 +134,7 @@ class UMerchantReadParams {
     this.merchantId,
     this.insId,
     this.orderBy,
+    this.selectorArgs,
   });
 
   factory UMerchantReadParams.fromJson(String str) => UMerchantReadParams.fromMap(json.decode(str));
@@ -155,6 +161,7 @@ class UMerchantReadParams {
     merchantId: json["merchantId"],
     insId: json["insId"],
     orderBy: json["orderBy"],
+    selectorArgs: json["selectorArgs"] == null ? null : MerchantSelectorArgs.fromMap(json["selectorArgs"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -177,5 +184,30 @@ class UMerchantReadParams {
     "merchantId": merchantId,
     "insId": insId,
     "orderBy": orderBy,
+    "selectorArgs": selectorArgs?.toMap(),
+  };
+}
+
+class UMerchantBindParams {
+  final String? userId;
+  final String? merchantId;
+
+  UMerchantBindParams({
+    this.userId,
+    this.merchantId,
+  });
+
+  factory UMerchantBindParams.fromJson(String str) => UMerchantBindParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UMerchantBindParams.fromMap(Map<String, dynamic> json) => UMerchantBindParams(
+    userId: json["userId"],
+    merchantId: json["merchantId"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "userId": userId,
+    "merchantId": merchantId,
   };
 }

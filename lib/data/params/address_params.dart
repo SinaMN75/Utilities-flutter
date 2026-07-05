@@ -23,6 +23,7 @@ class UAddressCreateParams {
   final String? village;
   final String? localityCode;
   final List<int> tags;
+  final List<String>? adminUserIds;
 
   UAddressCreateParams({
     required this.tags,
@@ -47,6 +48,7 @@ class UAddressCreateParams {
     this.houseNumber,
     this.floor,
     this.creatorId,
+    this.adminUserIds,
   });
 
   factory UAddressCreateParams.fromJson(String str) => UAddressCreateParams.fromMap(json.decode(str));
@@ -76,6 +78,7 @@ class UAddressCreateParams {
     subLocality: json["subLocality"],
     townShip: json["townShip"],
     village: json["village"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -101,6 +104,7 @@ class UAddressCreateParams {
     "subLocality": subLocality,
     "townShip": townShip,
     "village": village,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -128,6 +132,9 @@ class UAddressUpdateParams {
   final String? townShip;
   final String? village;
   final String? localityCode;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   UAddressUpdateParams({
     required this.id,
@@ -153,6 +160,9 @@ class UAddressUpdateParams {
     this.subLocality,
     this.townShip,
     this.village,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UAddressUpdateParams.fromJson(String str) => UAddressUpdateParams.fromMap(json.decode(str));
@@ -183,6 +193,9 @@ class UAddressUpdateParams {
     subLocality: json["subLocality"],
     townShip: json["townShip"],
     village: json["village"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -209,6 +222,9 @@ class UAddressUpdateParams {
     "village": village,
     "detail1": detail1,
     "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }
 
@@ -222,6 +238,7 @@ class UAddressReadParams {
   final String? creatorId;
   final AddressSelectorArgs? selectorArgs;
   final int? orderBy;
+  final String? zipCode;
 
   UAddressReadParams({
     required this.selectorArgs,
@@ -233,6 +250,7 @@ class UAddressReadParams {
     this.ids,
     this.creatorId,
     this.orderBy,
+    this.zipCode,
   });
 
   factory UAddressReadParams.fromJson(String str) => UAddressReadParams.fromMap(json.decode(str));
@@ -249,6 +267,7 @@ class UAddressReadParams {
     creatorId: json["creatorId"],
     selectorArgs: json["selectorArgs"] == null ? null : AddressSelectorArgs.fromMap(json["selectorArgs"]),
     orderBy: json["orderBy"],
+    zipCode: json["zipCode"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -261,5 +280,6 @@ class UAddressReadParams {
     "creatorId": creatorId,
     "selectorArgs": selectorArgs?.toMap(),
     "orderBy": orderBy,
+    "zipCode": zipCode,
   };
 }

@@ -7,13 +7,10 @@ extension TagListExtension on UUserResponse {
 
   bool isSuperAdmin() => tags.contains(TagUser.superAdmin.number);
 
-  /// SystemAdmin/SystemUser/SuperAdmin are "full" admins - they bypass every granular permission check.
   bool isFullAdmin() => isSuperAdmin() || tags.contains(TagUser.systemAdmin.number) || tags.contains(TagUser.systemUser.number);
 
   bool isSubAdmin() => tags.contains(TagUser.subAdmin.number);
 
-  /// Mirrors the backend's JwtClaimData.HasPermission: full admins always pass, everyone else
-  /// (subAdmin or a plain co-manager) needs the specific permission tag granted on their account.
   bool hasPermission(TagUser permission) => isFullAdmin() || tags.contains(permission.number);
 
   String get displayName {
@@ -30,6 +27,7 @@ class UUserResponse {
     required this.jsonData,
     required this.tags,
     required this.userName,
+    required this.adminUserIds,
     this.password,
     this.refreshToken,
     this.landLine,
@@ -57,6 +55,8 @@ class UUserResponse {
     this.birthCertificateFifth,
     this.visualAuthentication,
     this.eSignature,
+    this.creator,
+    this.creatorId,
   });
 
   factory UUserResponse.fromJson(String str) => UUserResponse.fromMap(json.decode(str));
@@ -94,6 +94,9 @@ class UUserResponse {
     txns: json["txns"] == null ? <UTxnResponse>[] : List<UTxnResponse>.from(json["txns"].map((dynamic x) => UTxnResponse.fromMap(x))),
     bankAccounts: json["bankAccounts"] == null ? <UBankAccountResponse>[] : List<UBankAccountResponse>.from(json["bankAccounts"].map((dynamic x) => UBankAccountResponse.fromMap(x))),
     simCards: json["simCards"] == null ? <USimResponse>[] : List<USimResponse>.from(json["simCards"].map((dynamic x) => USimResponse.fromMap(x))),
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
   final String id;
   final DateTime createdAt;
@@ -127,6 +130,9 @@ class UUserResponse {
   final List<UTxnResponse>? txns;
   final List<UBankAccountResponse>? bankAccounts;
   final List<USimResponse>? simCards;
+  final UUserResponse? creator;
+  final String? creatorId;
+  final List<String> adminUserIds;
 
   String toJson() => json.encode(toMap());
 
@@ -163,6 +169,9 @@ class UUserResponse {
     "txns": txns == null ? null : List<dynamic>.from(txns!.map((UTxnResponse x) => x.toMap())),
     "bankAccounts": bankAccounts == null ? null : List<dynamic>.from(bankAccounts!.map((UBankAccountResponse x) => x.toMap())),
     "simCards": simCards == null ? null : List<dynamic>.from(simCards!.map((USimResponse x) => x.toMap())),
+    "creator": creator?.toMap(),
+    "creatorId": creatorId,
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
@@ -183,6 +192,8 @@ class UUserJson {
     this.birthCertificateFifthRejectionReason,
     this.visualAuthenticationRejectionReason,
     this.eSignatureRejectionReason,
+    this.detail1,
+    this.detail2,
   });
 
   factory UUserJson.fromJson(String str) => UUserJson.fromMap(json.decode(str));
@@ -202,6 +213,8 @@ class UUserJson {
     birthCertificateFifthRejectionReason: json["birthCertificateFifthRejectionReason"],
     visualAuthenticationRejectionReason: json["visualAuthenticationRejectionReason"],
     eSignatureRejectionReason: json["eSignatureRejectionReason"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
   );
   final String? fcmToken;
   final double? weight;
@@ -217,6 +230,8 @@ class UUserJson {
   final String? birthCertificateFifthRejectionReason;
   final String? visualAuthenticationRejectionReason;
   final String? eSignatureRejectionReason;
+  final String? detail1;
+  final String? detail2;
 
   String toJson() => json.encode(toMap());
 
@@ -235,6 +250,8 @@ class UUserJson {
     "birthCertificateFifthRejectionReason": birthCertificateFifthRejectionReason,
     "visualAuthenticationRejectionReason": visualAuthenticationRejectionReason,
     "eSignatureRejectionReason": eSignatureRejectionReason,
+    "detail1": detail1,
+    "detail2": detail2,
   };
 }
 
@@ -266,5 +283,25 @@ class URegisterResponse {
     "refreshToken": refreshToken,
     "expires": expires,
     "user": user.toMap(),
+  };
+}
+
+class UUserDataDownloadResponse {
+  final String link;
+
+  UUserDataDownloadResponse({
+    required this.link,
+  });
+
+  factory UUserDataDownloadResponse.fromJson(String str) => UUserDataDownloadResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UUserDataDownloadResponse.fromMap(Map<String, dynamic> json) => UUserDataDownloadResponse(
+    link: json["link"] as String,
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "link": link,
   };
 }

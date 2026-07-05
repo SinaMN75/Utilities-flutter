@@ -12,6 +12,9 @@ class UContentResponse {
     required this.createdAt,
     required this.jsonData,
     required this.tags,
+    required this.adminUserIds,
+    this.creator,
+    this.creatorId,
     this.media = const <UMediaResponse>[],
   });
 
@@ -23,6 +26,9 @@ class UContentResponse {
     jsonData: UContentJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
+    creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   final String id;
@@ -30,6 +36,9 @@ class UContentResponse {
   final UContentJson jsonData;
   final List<int> tags;
   final List<UMediaResponse> media;
+  final UUserResponse? creator;
+  final String? creatorId;
+  final List<String> adminUserIds;
 
   String toJson() => json.encode(toMap());
 
@@ -39,6 +48,9 @@ class UContentResponse {
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "media": List<dynamic>.from(media.map((UMediaResponse x) => x.toMap())),
+    "creator": creator?.toMap(),
+    "creatorId": creatorId,
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
@@ -52,6 +64,8 @@ class UContentJson {
     this.telegram,
     this.whatsapp,
     this.phone,
+    this.subTitle,
+    this.description,
   });
 
   factory UContentJson.fromJson(String str) => UContentJson.fromMap(json.decode(str));
@@ -65,6 +79,8 @@ class UContentJson {
     telegram: json["telegram"],
     whatsapp: json["whatsapp"],
     phone: json["phone"],
+    subTitle: json["subTitle"],
+    description: json["description"],
   );
   final String? title;
   final String? detail1;
@@ -74,6 +90,8 @@ class UContentJson {
   final String? telegram;
   final String? whatsapp;
   final String? phone;
+  final String? subTitle;
+  final String? description;
 
   String toJson() => json.encode(toMap());
 
@@ -86,5 +104,7 @@ class UContentJson {
     "telegram": telegram,
     "whatsapp": whatsapp,
     "phone": phone,
+    "subTitle": subTitle,
+    "description": description,
   };
 }

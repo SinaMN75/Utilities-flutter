@@ -6,6 +6,11 @@ class UParkingCreateParams {
   final double hourlyPrice;
   final double dailyPrice;
   final List<int> tags;
+  final String? detail1;
+  final String? detail2;
+  final String? id;
+  final String? creatorId;
+  final List<String>? adminUserIds;
 
   UParkingCreateParams({
     required this.title,
@@ -13,6 +18,11 @@ class UParkingCreateParams {
     required this.hourlyPrice,
     required this.dailyPrice,
     required this.tags,
+    this.detail1,
+    this.detail2,
+    this.id,
+    this.creatorId,
+    this.adminUserIds,
   });
 
   factory UParkingCreateParams.fromJson(String str) => UParkingCreateParams.fromMap(json.decode(str));
@@ -25,6 +35,11 @@ class UParkingCreateParams {
     hourlyPrice: json["hourlyPrice"].toDouble(),
     dailyPrice: json["dailyPrice"].toDouble(),
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    id: json["id"],
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -33,6 +48,11 @@ class UParkingCreateParams {
     "hourlyPrice": hourlyPrice,
     "dailyPrice": dailyPrice,
     "tags": List<dynamic>.from(tags.map((int x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "id": id,
+    "creatorId": creatorId,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -43,6 +63,12 @@ class UParkingUpdateParams {
   final double? dailyPrice;
   final List<int>? addTags;
   final List<int>? removeTags;
+  final String? detail1;
+  final String? detail2;
+  final List<int>? tags;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   UParkingUpdateParams({
     required this.id,
@@ -51,6 +77,12 @@ class UParkingUpdateParams {
     this.dailyPrice,
     this.addTags,
     this.removeTags,
+    this.detail1,
+    this.detail2,
+    this.tags,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UParkingUpdateParams.fromJson(String str) => UParkingUpdateParams.fromMap(json.decode(str));
@@ -64,6 +96,12 @@ class UParkingUpdateParams {
     dailyPrice: json["dailyPrice"]?.toDouble(),
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -73,6 +111,12 @@ class UParkingUpdateParams {
     "dailyPrice": dailyPrice,
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }
 
@@ -85,6 +129,7 @@ class UParkingReadParams {
   final List<String>? ids;
   final ParkingSelectorArgs? selectorArgs;
   final int? orderBy;
+  final String? creatorId;
 
   UParkingReadParams({
     this.pageSize,
@@ -95,6 +140,7 @@ class UParkingReadParams {
     this.ids,
     this.selectorArgs,
     this.orderBy,
+    this.creatorId,
   });
 
   factory UParkingReadParams.fromJson(String str) => UParkingReadParams.fromMap(json.decode(str));
@@ -110,6 +156,7 @@ class UParkingReadParams {
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : ParkingSelectorArgs.fromMap(json["selectorArgs"]),
     orderBy: json["orderBy"],
+    creatorId: json["creatorId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -121,6 +168,7 @@ class UParkingReadParams {
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
     "orderBy": orderBy,
+    "creatorId": creatorId,
   };
 }
 
@@ -131,6 +179,11 @@ class UParkingReportCreateParams {
   final List<int> tags;
   final DateTime? endDate;
   final double? amount;
+  final String? detail1;
+  final String? detail2;
+  final String? id;
+  final String? creatorId;
+  final List<String>? adminUserIds;
 
   UParkingReportCreateParams({
     required this.parkingId,
@@ -139,6 +192,11 @@ class UParkingReportCreateParams {
     required this.tags,
     this.endDate,
     this.amount,
+    this.detail1,
+    this.detail2,
+    this.id,
+    this.creatorId,
+    this.adminUserIds,
   });
 
   factory UParkingReportCreateParams.fromJson(String str) => UParkingReportCreateParams.fromMap(json.decode(str));
@@ -152,6 +210,11 @@ class UParkingReportCreateParams {
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
     amount: json["amount"]?.toDouble(),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    id: json["id"],
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -161,6 +224,11 @@ class UParkingReportCreateParams {
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "endDate": endDate?.toIso8601String(),
     "amount": amount,
+    "detail1": detail1,
+    "detail2": detail2,
+    "id": id,
+    "creatorId": creatorId,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -174,6 +242,12 @@ class UParkingReportUpdateParams {
   final double? amount;
   final List<int>? addTags;
   final List<int>? removeTags;
+  final String? detail1;
+  final String? detail2;
+  final List<int>? tags;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   UParkingReportUpdateParams({
     required this.id,
@@ -185,6 +259,12 @@ class UParkingReportUpdateParams {
     this.amount,
     this.addTags,
     this.removeTags,
+    this.detail1,
+    this.detail2,
+    this.tags,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UParkingReportUpdateParams.fromJson(String str) => UParkingReportUpdateParams.fromMap(json.decode(str));
@@ -201,6 +281,12 @@ class UParkingReportUpdateParams {
     amount: json["amount"]?.toDouble(),
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -213,6 +299,12 @@ class UParkingReportUpdateParams {
     "amount": amount,
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }
 
@@ -229,6 +321,7 @@ class UParkingReportReadParams {
   final DateTime? endDate;
   final ParkingReportSelectorArgs? selectorArgs;
   final int? orderBy;
+  final String? creatorId;
 
   UParkingReportReadParams({
     this.pageSize,
@@ -243,6 +336,7 @@ class UParkingReportReadParams {
     this.endDate,
     this.selectorArgs,
     this.orderBy,
+    this.creatorId,
   });
 
   factory UParkingReportReadParams.fromJson(String str) => UParkingReportReadParams.fromMap(json.decode(str));
@@ -262,6 +356,7 @@ class UParkingReportReadParams {
     endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
     selectorArgs: json["selectorArgs"] == null ? null : ParkingReportSelectorArgs.fromMap(json["selectorArgs"]),
     orderBy: json["orderBy"],
+    creatorId: json["creatorId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -277,5 +372,6 @@ class UParkingReportReadParams {
     "endDate": endDate?.toIso8601String(),
     "selectorArgs": selectorArgs?.toMap(),
     "orderBy": orderBy,
+    "creatorId": creatorId,
   };
 }

@@ -7,6 +7,7 @@ class UTicketResponse {
     required this.jsonData,
     required this.tags,
     required this.creatorId,
+    required this.adminUserIds,
     this.creator,
     this.media,
   });
@@ -19,6 +20,7 @@ class UTicketResponse {
     creatorId: json["creatorId"],
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   final String id;
@@ -28,6 +30,7 @@ class UTicketResponse {
   final String creatorId;
   final UUserResponse? creator;
   final List<UMediaResponse>? media;
+  final List<String> adminUserIds;
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
@@ -37,6 +40,7 @@ class UTicketResponse {
     "creatorId": creatorId,
     "creator": creator?.toMap(),
     "media": media?.map((UMediaResponse e) => e.toMap()).toList(),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }
 
@@ -45,21 +49,45 @@ class UTicketJson {
     required this.title,
     required this.description,
     this.answer,
+    this.detail1,
+    this.detail2,
+    this.instagram,
+    this.telegram,
+    this.whatsapp,
+    this.phone,
   });
 
   factory UTicketJson.fromMap(Map<String, dynamic> json) => UTicketJson(
     title: json["title"],
     description: json["description"],
     answer: json["answer"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    instagram: json["instagram"],
+    telegram: json["telegram"],
+    whatsapp: json["whatsapp"],
+    phone: json["phone"],
   );
 
   final String title;
   final String description;
   final String? answer;
+  final String? detail1;
+  final String? detail2;
+  final String? instagram;
+  final String? telegram;
+  final String? whatsapp;
+  final String? phone;
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
     "description": description,
     "answer": answer,
+    "detail1": detail1,
+    "detail2": detail2,
+    "instagram": instagram,
+    "telegram": telegram,
+    "whatsapp": whatsapp,
+    "phone": phone,
   };
 }

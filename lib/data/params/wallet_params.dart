@@ -91,6 +91,7 @@ class UWalletTxnReadParams {
   final String userId;
   final WalletTxnSelectorArgs? selectorArgs;
   final int? orderBy;
+  final String? creatorId;
 
   UWalletTxnReadParams({
     required this.userId,
@@ -102,6 +103,7 @@ class UWalletTxnReadParams {
     this.ids,
     this.selectorArgs,
     this.orderBy,
+    this.creatorId,
   });
 
   factory UWalletTxnReadParams.fromJson(String str) => UWalletTxnReadParams.fromMap(json.decode(str));
@@ -118,6 +120,7 @@ class UWalletTxnReadParams {
     userId: json["userId"],
     selectorArgs: json["selectorArgs"] == null ? null : WalletTxnSelectorArgs.fromMap(json["selectorArgs"]),
     orderBy: json["orderBy"],
+    creatorId: json["creatorId"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -130,6 +133,7 @@ class UWalletTxnReadParams {
     "userId": userId,
     "selectorArgs": selectorArgs?.toMap(),
     "orderBy": orderBy,
+    "creatorId": creatorId,
   };
 }
 

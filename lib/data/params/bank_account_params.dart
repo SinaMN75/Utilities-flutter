@@ -8,6 +8,10 @@ class UBankAccountCreateParams {
   final String? iBanNumber;
   final String? bankName;
   final String? ownerName;
+  final String? detail1;
+  final String? detail2;
+  final String? creatorId;
+  final List<String>? adminUserIds;
 
   UBankAccountCreateParams({
     required this.tags,
@@ -17,6 +21,10 @@ class UBankAccountCreateParams {
     this.bankName,
     this.ownerName,
     this.iBanNumber,
+    this.detail1,
+    this.detail2,
+    this.creatorId,
+    this.adminUserIds,
   });
 
   factory UBankAccountCreateParams.fromJson(String str) => UBankAccountCreateParams.fromMap(json.decode(str));
@@ -31,6 +39,10 @@ class UBankAccountCreateParams {
     iBanNumber: json["iBanNumber"],
     bankName: json["bankName"],
     ownerName: json["ownerName"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    creatorId: json["creatorId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -41,6 +53,10 @@ class UBankAccountCreateParams {
     "iBanNumber": iBanNumber,
     "bankName": bankName,
     "ownerName": ownerName,
+    "detail1": detail1,
+    "detail2": detail2,
+    "creatorId": creatorId,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
 }
 
@@ -54,6 +70,11 @@ class UBankAccountUpdateParams {
   final String? iBanNumber;
   final String? bankName;
   final String? ownerName;
+  final String? detail1;
+  final String? detail2;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   UBankAccountUpdateParams({
     required this.id,
@@ -65,6 +86,11 @@ class UBankAccountUpdateParams {
     this.iBanNumber,
     this.bankName,
     this.ownerName,
+    this.detail1,
+    this.detail2,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UBankAccountUpdateParams.fromJson(String str) => UBankAccountUpdateParams.fromMap(json.decode(str));
@@ -81,6 +107,11 @@ class UBankAccountUpdateParams {
     iBanNumber: json["iBanNumber"],
     bankName: json["bankName"],
     ownerName: json["ownerName"],
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -93,6 +124,11 @@ class UBankAccountUpdateParams {
     "iBanNumber": iBanNumber,
     "bankName": bankName,
     "ownerName": ownerName,
+    "detail1": detail1,
+    "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }
 
