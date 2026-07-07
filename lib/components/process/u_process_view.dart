@@ -1,19 +1,29 @@
 part of "u_process.dart";
 
-/// Full-screen, self-contained multi-step process flow. Give it a [processId]
-/// and an [onCompleted] callback (invoked when the backend reports the process
-/// is finished); optionally pass a [style] to match the host app's brand.
+/// Full-screen, self-contained multi-step process flow. Fully generic: give it
+/// a [processId] and it works with no wrapper. [onCompleted] is optional — when
+/// omitted the screen simply closes on completion; pass it only when a specific
+/// process needs custom post-completion routing. Optionally pass a [style] to
+/// match the host app's brand.
 class UProcessView extends StatefulWidget {
   const UProcessView({
     required this.processId,
-    required this.onCompleted,
+    this.onCompleted,
     this.style = const UProcessStyle(),
     super.key,
   });
 
   final String processId;
-  final VoidCallback onCompleted;
+  final VoidCallback? onCompleted;
   final UProcessStyle style;
+
+  /// One-liner to push any process: `UProcessView.open("kyc")`. Avoids needing a
+  /// dedicated page per process.
+  static Future<void> open(
+    String processId, {
+    VoidCallback? onCompleted,
+    UProcessStyle style = const UProcessStyle(),
+  }) => UNavigator.push(UProcessView(processId: processId, onCompleted: onCompleted, style: style));
 
   @override
   State<UProcessView> createState() => _UProcessViewState();

@@ -1,14 +1,23 @@
 part of "u_process.dart";
 
 /// Drives a server-defined multi-step process: loads the current step, holds an
-/// editable copy of its fields, and submits them. App-agnostic — the host app
-/// decides what happens once the backend reports the process is finished via
-/// [onCompleted].
+/// editable copy of its fields, and submits them. App-agnostic — when the
+/// backend reports the process is finished it calls [onCompleted]; if none was
+/// supplied it simply closes the current screen ([UNavigator.back]).
 class UProcessController {
-  UProcessController({required this.onCompleted});
+  UProcessController({this.onCompleted});
 
-  /// Invoked when the backend reports the whole process is complete.
-  final VoidCallback onCompleted;
+  /// Invoked when the backend reports the whole process is complete. When null,
+  /// the process screen is popped so any process is reusable with zero config.
+  final VoidCallback? onCompleted;
+
+  // Single place that decides the "process finished" behavior.
+  void _complete() {
+    if (onCompleted != null)
+      onCompleted!();
+    else
+      UNavigator.back();
+  }
 
   late String processId;
 
@@ -28,7 +37,7 @@ class UProcessController {
       onOk: (UResponse<UProcessStepGet> response) {
         // Backend signals the process is done -> hand control back to the host.
         if (response.status == Usc.processCompleted.number)
-          onCompleted();
+          _complete();
         else {
           _applyStep(response.result!);
           state.loaded();
@@ -50,7 +59,7 @@ class UProcessController {
         ULoading.dismiss();
         // A submit can also finish the process; guard against a null next step.
         if (response.status == Usc.processCompleted.number || response.result == null) {
-          onCompleted();
+          _complete();
           return;
         }
         _applyStep(response.result!);
