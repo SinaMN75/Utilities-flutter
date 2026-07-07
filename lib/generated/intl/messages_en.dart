@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addRooms": MessageLookupByLibrary.simpleMessage("Add Rooms"),
     "address": MessageLookupByLibrary.simpleMessage("Address"),
     "admin": MessageLookupByLibrary.simpleMessage("Admin"),
+    "adminMessage": MessageLookupByLibrary.simpleMessage("Admin message"),
     "agreement": MessageLookupByLibrary.simpleMessage("Agreement"),
     "all": MessageLookupByLibrary.simpleMessage("All"),
     "amount": MessageLookupByLibrary.simpleMessage("Amount"),
@@ -68,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "assignTerminal": MessageLookupByLibrary.simpleMessage("Assign Terminal"),
     "assigned": MessageLookupByLibrary.simpleMessage("Assigned"),
     "assignedTerminalsCount": MessageLookupByLibrary.simpleMessage("Assigned"),
+    "atLeast": MessageLookupByLibrary.simpleMessage("At least"),
+    "atMost": MessageLookupByLibrary.simpleMessage("At most"),
     "availability": MessageLookupByLibrary.simpleMessage("Availability"),
     "available": MessageLookupByLibrary.simpleMessage("Available"),
     "bankAccountId": MessageLookupByLibrary.simpleMessage("Bank Account ID"),
@@ -94,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Categories Not Found",
     ),
     "category": MessageLookupByLibrary.simpleMessage("Category"),
+    "characters": MessageLookupByLibrary.simpleMessage("characters"),
     "charge": MessageLookupByLibrary.simpleMessage("Charge"),
     "chargeWallet": MessageLookupByLibrary.simpleMessage("Charge Wallet"),
     "chooseACategory": MessageLookupByLibrary.simpleMessage(
@@ -101,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "city": MessageLookupByLibrary.simpleMessage("City"),
     "cityCode": MessageLookupByLibrary.simpleMessage("City Code"),
+    "clear": MessageLookupByLibrary.simpleMessage("Clear"),
     "clearCache": MessageLookupByLibrary.simpleMessage("Clear Cache"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("Clear Filters"),
     "code": MessageLookupByLibrary.simpleMessage("Code"),
@@ -206,6 +211,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorFetchingCategories": MessageLookupByLibrary.simpleMessage(
       "Error Fetching Categories",
     ),
+    "errorLoadingData": MessageLookupByLibrary.simpleMessage(
+      "Error loading data",
+    ),
     "errorReadingDashboardData": MessageLookupByLibrary.simpleMessage(
       "Error Reading Dashboard Data",
     ),
@@ -233,6 +241,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "fatherName": MessageLookupByLibrary.simpleMessage("Father Name"),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
+    "fieldRequired": MessageLookupByLibrary.simpleMessage(
+      "This field is required",
+    ),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
     "filterBeds": MessageLookupByLibrary.simpleMessage("Filter Beds"),
     "filterBlogs": MessageLookupByLibrary.simpleMessage("Filter Blog Posts"),
@@ -496,6 +507,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "recentlyOnboardedMerchants": MessageLookupByLibrary.simpleMessage(
       "Recently Onboarded Merchants",
     ),
+    "recordAgain": MessageLookupByLibrary.simpleMessage("Record again"),
     "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
     "regarding": MessageLookupByLibrary.simpleMessage("For"),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
@@ -510,6 +522,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "room": MessageLookupByLibrary.simpleMessage("Room"),
     "rooms": MessageLookupByLibrary.simpleMessage("Rooms"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
+    "saveSignature": MessageLookupByLibrary.simpleMessage("Save signature"),
     "score": MessageLookupByLibrary.simpleMessage("Score"),
     "scoreOptionScore": MessageLookupByLibrary.simpleMessage(
       "Score: \${option.score}",
@@ -537,6 +550,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "serial": MessageLookupByLibrary.simpleMessage("Serial"),
     "serverGc": MessageLookupByLibrary.simpleMessage("Server GC"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "signFirst": MessageLookupByLibrary.simpleMessage(
+      "Please add your signature first",
+    ),
+    "signHere": MessageLookupByLibrary.simpleMessage(
+      "Please draw your signature in the box below",
+    ),
     "signature": MessageLookupByLibrary.simpleMessage("Signature"),
     "simCardNumber": MessageLookupByLibrary.simpleMessage("SIM Card Number"),
     "simCardSerial": MessageLookupByLibrary.simpleMessage("SIM Card Serial"),
@@ -642,6 +661,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "verified": MessageLookupByLibrary.simpleMessage("Verified"),
     "video": MessageLookupByLibrary.simpleMessage("Video"),
     "videoAvailable": MessageLookupByLibrary.simpleMessage("Video available"),
+    "videoMinDurationError": MessageLookupByLibrary.simpleMessage(
+      "The video must be at least 4 seconds",
+    ),
     "view": MessageLookupByLibrary.simpleMessage("View"),
     "viewContracts": MessageLookupByLibrary.simpleMessage("View Contracts"),
     "viewCount": MessageLookupByLibrary.simpleMessage("Views"),

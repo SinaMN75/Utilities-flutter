@@ -395,7 +395,6 @@
   "bulkImport": "افزودن گروهی",
   "bulkImportTerminals": "افزودن گروهی پایانه‌ها",
   "oneTerminalPerLineSerialSimnumberSimserialImei": "هر پایانه در یک خط: سریال،شماره سیم‌کارت،سریال سیم‌کارت،imei",
-  "noValidRowsFound": "هیچ ردیف معتبری یافت نشد",
   "financialOpsDashboard": "مالی و عملیات",
   "propertyDashboard": "داشبورد املاک",
   "entityOverview": "نمای کلی موجودیت‌ها",
@@ -456,5 +455,18 @@
   "no": "خیر",
   "serverGc": "Server GC",
   "gcGenerations": "نسل ۰ / نسل ۱ / نسل ۲",
-  "cores": "هسته"
+  "cores": "هسته",
+  "noValidRowsFound": "هیچ ردیف معتبری یافت نشد",
+  "fieldRequired": "این فیلد الزامی است",
+  "atLeast": "حداقل",
+  "atMost": "حداکثر",
+  "characters": "کاراکتر",
+  "adminMessage": "پیام ادمین",
+  "recordAgain": "ضبط دوباره",
+  "videoMinDurationError": "ویدیو باید حداقل ۴ ثانیه باشد",
+  "signHere": "لطفاً امضای خود را در کادر زیر بکشید",
+  "saveSignature": "ثبت امضا",
+  "clear": "پاک کردن",
+  "signFirst": "لطفا اول امضای خود را ثبت کنید",
+  "errorLoadingData": "خطا در بارگزاری اطلاعات"
 }

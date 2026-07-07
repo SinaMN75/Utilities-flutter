@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addRooms": MessageLookupByLibrary.simpleMessage("افزودن اتاق"),
     "address": MessageLookupByLibrary.simpleMessage("آدرس"),
     "admin": MessageLookupByLibrary.simpleMessage("ادمین"),
+    "adminMessage": MessageLookupByLibrary.simpleMessage("پیام ادمین"),
     "agreement": MessageLookupByLibrary.simpleMessage("قرارداد"),
     "all": MessageLookupByLibrary.simpleMessage("همه"),
     "amount": MessageLookupByLibrary.simpleMessage("مبلغ"),
@@ -72,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "assignedTerminalsCount": MessageLookupByLibrary.simpleMessage(
       "تخصیص‌یافته",
     ),
+    "atLeast": MessageLookupByLibrary.simpleMessage("حداقل"),
+    "atMost": MessageLookupByLibrary.simpleMessage("حداکثر"),
     "availability": MessageLookupByLibrary.simpleMessage("وضعیت موجودی"),
     "available": MessageLookupByLibrary.simpleMessage("موجود"),
     "bankAccountId": MessageLookupByLibrary.simpleMessage("شناسه حساب بانکی"),
@@ -96,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "هیچ دسته‌بندی‌ای یافت نشد",
     ),
     "category": MessageLookupByLibrary.simpleMessage("دسته‌بندی"),
+    "characters": MessageLookupByLibrary.simpleMessage("کاراکتر"),
     "charge": MessageLookupByLibrary.simpleMessage("شارژ"),
     "chargeWallet": MessageLookupByLibrary.simpleMessage("شارژ کیف پول"),
     "chooseACategory": MessageLookupByLibrary.simpleMessage(
@@ -103,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "city": MessageLookupByLibrary.simpleMessage("شهر"),
     "cityCode": MessageLookupByLibrary.simpleMessage("کد شهر"),
+    "clear": MessageLookupByLibrary.simpleMessage("پاک کردن"),
     "clearCache": MessageLookupByLibrary.simpleMessage("پاک‌کردن حافظه پنهان"),
     "clearFilters": MessageLookupByLibrary.simpleMessage("حذف فیلترها"),
     "code": MessageLookupByLibrary.simpleMessage("کد"),
@@ -210,6 +215,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorFetchingCategories": MessageLookupByLibrary.simpleMessage(
       "خطا در دریافت دسته‌بندی‌ها",
     ),
+    "errorLoadingData": MessageLookupByLibrary.simpleMessage(
+      "خطا در بارگزاری اطلاعات",
+    ),
     "errorReadingDashboardData": MessageLookupByLibrary.simpleMessage(
       "خطا در خواندن داده‌های داشبورد",
     ),
@@ -239,6 +247,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "fatherName": MessageLookupByLibrary.simpleMessage("نام پدر"),
     "female": MessageLookupByLibrary.simpleMessage("خانم"),
+    "fieldRequired": MessageLookupByLibrary.simpleMessage(
+      "این فیلد الزامی است",
+    ),
     "filter": MessageLookupByLibrary.simpleMessage("فیلتر"),
     "filterBeds": MessageLookupByLibrary.simpleMessage("فیلتر تخت‌ها"),
     "filterBlogs": MessageLookupByLibrary.simpleMessage("فیلتر پست‌های وبلاگ"),
@@ -504,6 +515,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "recentlyOnboardedMerchants": MessageLookupByLibrary.simpleMessage(
       "پذیرندگان اخیراً ثبت‌شده",
     ),
+    "recordAgain": MessageLookupByLibrary.simpleMessage("ضبط دوباره"),
     "refresh": MessageLookupByLibrary.simpleMessage("بازخوانی"),
     "regarding": MessageLookupByLibrary.simpleMessage("بابت"),
     "register": MessageLookupByLibrary.simpleMessage("ثبت‌نام"),
@@ -518,6 +530,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "room": MessageLookupByLibrary.simpleMessage("اتاق"),
     "rooms": MessageLookupByLibrary.simpleMessage("اتاق‌ها"),
     "save": MessageLookupByLibrary.simpleMessage("ذخیره"),
+    "saveSignature": MessageLookupByLibrary.simpleMessage("ثبت امضا"),
     "score": MessageLookupByLibrary.simpleMessage("امتیاز"),
     "scoreOptionScore": MessageLookupByLibrary.simpleMessage(
       "امتیاز: \${option.score}",
@@ -543,6 +556,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "serial": MessageLookupByLibrary.simpleMessage("سریال"),
     "serverGc": MessageLookupByLibrary.simpleMessage("Server GC"),
     "settings": MessageLookupByLibrary.simpleMessage("تنظیمات"),
+    "signFirst": MessageLookupByLibrary.simpleMessage(
+      "لطفا اول امضای خود را ثبت کنید",
+    ),
+    "signHere": MessageLookupByLibrary.simpleMessage(
+      "لطفاً امضای خود را در کادر زیر بکشید",
+    ),
     "signature": MessageLookupByLibrary.simpleMessage("امضا"),
     "simCardNumber": MessageLookupByLibrary.simpleMessage("شماره سیم‌کارت"),
     "simCardSerial": MessageLookupByLibrary.simpleMessage("سریال سیم‌کارت"),
@@ -646,6 +665,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "verified": MessageLookupByLibrary.simpleMessage("تایید شده"),
     "video": MessageLookupByLibrary.simpleMessage("ویدیو"),
     "videoAvailable": MessageLookupByLibrary.simpleMessage("ویدیو موجود است"),
+    "videoMinDurationError": MessageLookupByLibrary.simpleMessage(
+      "ویدیو باید حداقل ۴ ثانیه باشد",
+    ),
     "view": MessageLookupByLibrary.simpleMessage("مشاهده"),
     "viewContracts": MessageLookupByLibrary.simpleMessage("مشاهده قراردادها"),
     "viewCount": MessageLookupByLibrary.simpleMessage("بازدیدها"),

@@ -2978,16 +2978,6 @@ class S {
     );
   }
 
-  /// `No valid rows found`
-  String get noValidRowsFound {
-    return Intl.message(
-      'No valid rows found',
-      name: 'noValidRowsFound',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Financial & Operations`
   String get financialOpsDashboard {
     return Intl.message(
@@ -3481,6 +3471,116 @@ class S {
   /// `cores`
   String get cores {
     return Intl.message('cores', name: 'cores', desc: '', args: []);
+  }
+
+  /// `No valid rows found`
+  String get noValidRowsFound {
+    return Intl.message(
+      'No valid rows found',
+      name: 'noValidRowsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field is required`
+  String get fieldRequired {
+    return Intl.message(
+      'This field is required',
+      name: 'fieldRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `At least`
+  String get atLeast {
+    return Intl.message('At least', name: 'atLeast', desc: '', args: []);
+  }
+
+  /// `At most`
+  String get atMost {
+    return Intl.message('At most', name: 'atMost', desc: '', args: []);
+  }
+
+  /// `characters`
+  String get characters {
+    return Intl.message('characters', name: 'characters', desc: '', args: []);
+  }
+
+  /// `Admin message`
+  String get adminMessage {
+    return Intl.message(
+      'Admin message',
+      name: 'adminMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Record again`
+  String get recordAgain {
+    return Intl.message(
+      'Record again',
+      name: 'recordAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The video must be at least 4 seconds`
+  String get videoMinDurationError {
+    return Intl.message(
+      'The video must be at least 4 seconds',
+      name: 'videoMinDurationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please draw your signature in the box below`
+  String get signHere {
+    return Intl.message(
+      'Please draw your signature in the box below',
+      name: 'signHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save signature`
+  String get saveSignature {
+    return Intl.message(
+      'Save signature',
+      name: 'saveSignature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear`
+  String get clear {
+    return Intl.message('Clear', name: 'clear', desc: '', args: []);
+  }
+
+  /// `Please add your signature first`
+  String get signFirst {
+    return Intl.message(
+      'Please add your signature first',
+      name: 'signFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error loading data`
+  String get errorLoadingData {
+    return Intl.message(
+      'Error loading data',
+      name: 'errorLoadingData',
+      desc: '',
+      args: [],
+    );
   }
 }
 

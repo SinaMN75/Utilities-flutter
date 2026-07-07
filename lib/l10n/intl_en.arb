@@ -395,7 +395,6 @@
   "bulkImport": "Bulk Import",
   "bulkImportTerminals": "Bulk Import Terminals",
   "oneTerminalPerLineSerialSimnumberSimserialImei": "One terminal per line: serial,simNumber,simSerial,imei",
-  "noValidRowsFound": "No valid rows found",
   "financialOpsDashboard": "Financial & Operations",
   "propertyDashboard": "Property Dashboard",
   "entityOverview": "Entity Overview",
@@ -456,5 +455,18 @@
   "no": "No",
   "serverGc": "Server GC",
   "gcGenerations": "Gen0 / Gen1 / Gen2",
-  "cores": "cores"
+  "cores": "cores",
+  "noValidRowsFound": "No valid rows found",
+  "fieldRequired": "This field is required",
+  "atLeast": "At least",
+  "atMost": "At most",
+  "characters": "characters",
+  "adminMessage": "Admin message",
+  "recordAgain": "Record again",
+  "videoMinDurationError": "The video must be at least 4 seconds",
+  "signHere": "Please draw your signature in the box below",
+  "saveSignature": "Save signature",
+  "clear": "Clear",
+  "signFirst": "Please add your signature first",
+  "errorLoadingData": "Error loading data"
 }
