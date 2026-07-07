@@ -4,7 +4,6 @@ class UContentCreateParams {
   UContentCreateParams({
     required this.tags,
     required this.title,
-    this.link,
     this.detail1,
     this.detail2,
     this.instagram,
@@ -16,6 +15,7 @@ class UContentCreateParams {
     this.telegram,
     this.whatsapp,
     this.phone,
+    this.extra = const <UContentExtra>[],
   });
 
   factory UContentCreateParams.fromJson(String str) => UContentCreateParams.fromMap(json.decode(str));
@@ -23,7 +23,6 @@ class UContentCreateParams {
   factory UContentCreateParams.fromMap(Map<String, dynamic> json) => UContentCreateParams(
     title: json["title"] as String,
     detail1: json["detail1"],
-    link: json["link"],
     detail2: json["detail2"],
     instagram: json["instagram"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
@@ -35,9 +34,9 @@ class UContentCreateParams {
     telegram: json["telegram"],
     whatsapp: json["whatsapp"],
     phone: json["phone"],
+    extra: json["extra"] == null ? <UContentExtra>[] : List<UContentExtra>.from(json["extra"].map((dynamic x) => UContentExtra.fromMap(x))),
   );
   final String title;
-  final String? link;
   final String? detail1;
   final String? detail2;
   final String? instagram;
@@ -50,12 +49,12 @@ class UContentCreateParams {
   final String? telegram;
   final String? whatsapp;
   final String? phone;
+  final List<UContentExtra> extra;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
-    "link": link,
     "detail1": detail1,
     "detail2": detail2,
     "instagram": instagram,
@@ -68,6 +67,7 @@ class UContentCreateParams {
     "telegram": telegram,
     "whatsapp": whatsapp,
     "phone": phone,
+    "extra": List<dynamic>.from(extra.map((UContentExtra x) => x.toMap())),
   };
 }
 
@@ -76,7 +76,6 @@ class UContentUpdateParams {
     required this.id,
     this.title,
     this.detail1,
-    this.link,
     this.detail2,
     this.instagram,
     this.addTags,
@@ -90,6 +89,7 @@ class UContentUpdateParams {
     this.telegram,
     this.whatsapp,
     this.phone,
+    this.extra,
   });
 
   factory UContentUpdateParams.fromJson(String str) => UContentUpdateParams.fromMap(json.decode(str));
@@ -97,7 +97,6 @@ class UContentUpdateParams {
   factory UContentUpdateParams.fromMap(Map<String, dynamic> json) => UContentUpdateParams(
     id: json["id"],
     title: json["title"],
-    link: json["link"],
     detail1: json["detail1"],
     detail2: json["detail2"],
     instagram: json["instagram"],
@@ -112,10 +111,10 @@ class UContentUpdateParams {
     telegram: json["telegram"],
     whatsapp: json["whatsapp"],
     phone: json["phone"],
+    extra: json["extra"] == null ? null : List<UContentExtra>.from(json["extra"].map((dynamic x) => UContentExtra.fromMap(x))),
   );
   final String id;
   final String? title;
-  final String? link;
   final String? detail1;
   final String? detail2;
   final String? instagram;
@@ -130,13 +129,13 @@ class UContentUpdateParams {
   final String? telegram;
   final String? whatsapp;
   final String? phone;
+  final List<UContentExtra>? extra;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "title": title,
-    "link": link,
     "detail1": detail1,
     "detail2": detail2,
     "instagram": instagram,
@@ -151,6 +150,7 @@ class UContentUpdateParams {
     "telegram": telegram,
     "whatsapp": whatsapp,
     "phone": phone,
+    "extra": extra == null ? null : List<dynamic>.from(extra!.map((UContentExtra x) => x.toMap())),
   };
 }
 

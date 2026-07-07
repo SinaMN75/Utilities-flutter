@@ -59,13 +59,13 @@ class UContentJson {
     this.title,
     this.detail1,
     this.detail2,
-    this.link,
     this.instagram,
     this.telegram,
     this.whatsapp,
     this.phone,
     this.subTitle,
     this.description,
+    this.extra = const <UContentExtra>[],
   });
 
   factory UContentJson.fromJson(String str) => UContentJson.fromMap(json.decode(str));
@@ -74,24 +74,24 @@ class UContentJson {
     title: json["title"],
     detail1: json["detail1"],
     detail2: json["detail2"],
-    link: json["link"],
     instagram: json["instagram"],
     telegram: json["telegram"],
     whatsapp: json["whatsapp"],
     phone: json["phone"],
     subTitle: json["subTitle"],
     description: json["description"],
+    extra: json["extra"] == null ? <UContentExtra>[] : List<UContentExtra>.from(json["extra"].map((dynamic x) => UContentExtra.fromMap(x))),
   );
   final String? title;
   final String? detail1;
   final String? detail2;
-  final String? link;
   final String? instagram;
   final String? telegram;
   final String? whatsapp;
   final String? phone;
   final String? subTitle;
   final String? description;
+  final List<UContentExtra> extra;
 
   String toJson() => json.encode(toMap());
 
@@ -99,12 +99,52 @@ class UContentJson {
     "title": title,
     "detail1": detail1,
     "detail2": detail2,
-    "link": link,
     "instagram": instagram,
     "telegram": telegram,
     "whatsapp": whatsapp,
     "phone": phone,
     "subTitle": subTitle,
     "description": description,
+    "extra": List<dynamic>.from(extra.map((UContentExtra x) => x.toMap())),
+  };
+}
+
+class UContentExtra {
+  UContentExtra({
+    required this.title,
+    required this.subtitle,
+    required this.description,
+    this.icon1,
+    this.icon2,
+    this.icon3,
+  });
+
+  factory UContentExtra.fromJson(String str) => UContentExtra.fromMap(json.decode(str));
+
+  factory UContentExtra.fromMap(Map<String, dynamic> json) => UContentExtra(
+    title: json["title"] ?? "",
+    subtitle: json["subtitle"] ?? "",
+    description: json["description"] ?? "",
+    icon1: json["icon1"],
+    icon2: json["icon2"],
+    icon3: json["icon3"],
+  );
+
+  final String title;
+  final String subtitle;
+  final String description;
+  final String? icon1;
+  final String? icon2;
+  final String? icon3;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "title": title,
+    "subtitle": subtitle,
+    "description": description,
+    "icon1": icon1,
+    "icon2": icon2,
+    "icon3": icon3,
   };
 }

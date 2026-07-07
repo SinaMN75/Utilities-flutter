@@ -3582,6 +3582,141 @@ class S {
       args: [],
     );
   }
+
+  /// `Instagram`
+  String get instagram {
+    return Intl.message('Instagram', name: 'instagram', desc: '', args: []);
+  }
+
+  /// `Telegram`
+  String get telegram {
+    return Intl.message('Telegram', name: 'telegram', desc: '', args: []);
+  }
+
+  /// `WhatsApp`
+  String get whatsapp {
+    return Intl.message('WhatsApp', name: 'whatsapp', desc: '', args: []);
+  }
+
+  /// `Detail 1`
+  String get detail1 {
+    return Intl.message('Detail 1', name: 'detail1', desc: '', args: []);
+  }
+
+  /// `Detail 2`
+  String get detail2 {
+    return Intl.message('Detail 2', name: 'detail2', desc: '', args: []);
+  }
+
+  /// `Social Media`
+  String get socialMedia {
+    return Intl.message(
+      'Social Media',
+      name: 'socialMedia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Extra Sections`
+  String get extraSections {
+    return Intl.message(
+      'Extra Sections',
+      name: 'extraSections',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Section`
+  String get addSection {
+    return Intl.message('Add Section', name: 'addSection', desc: '', args: []);
+  }
+
+  /// `No content found`
+  String get noContentFound {
+    return Intl.message(
+      'No content found',
+      name: 'noContentFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Content`
+  String get createContent {
+    return Intl.message(
+      'Create Content',
+      name: 'createContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Content`
+  String get editContent {
+    return Intl.message(
+      'Edit Content',
+      name: 'editContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contents`
+  String get contents {
+    return Intl.message('Contents', name: 'contents', desc: '', args: []);
+  }
+
+  /// `Filter Contents`
+  String get filterContents {
+    return Intl.message(
+      'Filter Contents',
+      name: 'filterContents',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Content Type`
+  String get contentType {
+    return Intl.message(
+      'Content Type',
+      name: 'contentType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Icon 1`
+  String get icon1 {
+    return Intl.message('Icon 1', name: 'icon1', desc: '', args: []);
+  }
+
+  /// `Icon 2`
+  String get icon2 {
+    return Intl.message('Icon 2', name: 'icon2', desc: '', args: []);
+  }
+
+  /// `Icon 3`
+  String get icon3 {
+    return Intl.message('Icon 3', name: 'icon3', desc: '', args: []);
+  }
+
+  /// `Section`
+  String get section {
+    return Intl.message('Section', name: 'section', desc: '', args: []);
+  }
+
+  /// `Images`
+  String get images {
+    return Intl.message('Images', name: 'images', desc: '', args: []);
+  }
+
+  /// `Image`
+  String get image {
+    return Intl.message('Image', name: 'image', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
