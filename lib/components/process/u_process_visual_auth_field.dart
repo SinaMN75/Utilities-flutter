@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// Selfie video-capture field used for visual (liveness) authentication.
 /// Records a short front-camera clip, stores it as base64 on the matching

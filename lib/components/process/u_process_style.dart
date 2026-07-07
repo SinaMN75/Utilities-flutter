@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// Semantic colors for the process UI. Every value is optional: when null the
 /// widgets fall back to the current [Theme] / material defaults, so the process

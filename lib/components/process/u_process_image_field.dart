@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// Camera image field for a process step. Captures a photo, stores it as base64
 /// on the matching [processStepSend] field, and shows any admin rejection note.

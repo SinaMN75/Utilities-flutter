@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// Renders the body of a single process step: an optional message / message-box
 /// followed by the step's fields, each mapped to its matching input widget.

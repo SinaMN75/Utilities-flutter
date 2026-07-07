@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// Horizontal stepper showing each step's verification status.
 class UProcessStepsIndicator extends StatelessWidget {

@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// Drives a server-defined multi-step process: loads the current step, holds an
 /// editable copy of its fields, and submits them. App-agnostic — the host app

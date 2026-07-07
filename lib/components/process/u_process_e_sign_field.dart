@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// E-signature field for a process step. Wraps [USignaturePad] and forwards the
 /// captured signature (base64 PNG) to [onSubmit].

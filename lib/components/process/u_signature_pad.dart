@@ -1,7 +1,4 @@
-import "dart:ui" as ui;
-
-import "package:syncfusion_flutter_signaturepad/signaturepad.dart";
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// Signature capture pad. Renders a drawable canvas plus save / clear buttons
 /// and returns the drawing as a PNG [FileData].

@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// Full-screen, self-contained multi-step process flow. Give it a [processId]
 /// and an [onCompleted] callback (invoked when the backend reports the process

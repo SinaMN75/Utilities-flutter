@@ -1,4 +1,4 @@
-import "package:u/utilities.dart";
+part of "u_process.dart";
 
 /// Renders a process text field (plain text or Persian/Jalali date) and writes
 /// user input straight into the matching field of [processStepSend].
