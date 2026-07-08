@@ -3717,6 +3717,231 @@ class S {
   String get image {
     return Intl.message('Image', name: 'image', desc: '', args: []);
   }
+
+  /// `Rich Text Editor`
+  String get richTextEditor {
+    return Intl.message(
+      'Rich Text Editor',
+      name: 'richTextEditor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bold`
+  String get bold {
+    return Intl.message('Bold', name: 'bold', desc: '', args: []);
+  }
+
+  /// `Italic`
+  String get italic {
+    return Intl.message('Italic', name: 'italic', desc: '', args: []);
+  }
+
+  /// `Underline`
+  String get underline {
+    return Intl.message('Underline', name: 'underline', desc: '', args: []);
+  }
+
+  /// `Strikethrough`
+  String get strikethrough {
+    return Intl.message(
+      'Strikethrough',
+      name: 'strikethrough',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Text Color`
+  String get textColor {
+    return Intl.message('Text Color', name: 'textColor', desc: '', args: []);
+  }
+
+  /// `Font Size`
+  String get fontSize {
+    return Intl.message('Font Size', name: 'fontSize', desc: '', args: []);
+  }
+
+  /// `Heading 1`
+  String get heading1 {
+    return Intl.message('Heading 1', name: 'heading1', desc: '', args: []);
+  }
+
+  /// `Heading 2`
+  String get heading2 {
+    return Intl.message('Heading 2', name: 'heading2', desc: '', args: []);
+  }
+
+  /// `Heading 3`
+  String get heading3 {
+    return Intl.message('Heading 3', name: 'heading3', desc: '', args: []);
+  }
+
+  /// `Paragraph`
+  String get paragraph {
+    return Intl.message('Paragraph', name: 'paragraph', desc: '', args: []);
+  }
+
+  /// `Normal Text`
+  String get normalText {
+    return Intl.message('Normal Text', name: 'normalText', desc: '', args: []);
+  }
+
+  /// `Quote`
+  String get quote {
+    return Intl.message('Quote', name: 'quote', desc: '', args: []);
+  }
+
+  /// `Bulleted List`
+  String get bulletedList {
+    return Intl.message(
+      'Bulleted List',
+      name: 'bulletedList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Numbered List`
+  String get numberedList {
+    return Intl.message(
+      'Numbered List',
+      name: 'numberedList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Code Block`
+  String get codeBlock {
+    return Intl.message('Code Block', name: 'codeBlock', desc: '', args: []);
+  }
+
+  /// `Divider`
+  String get divider {
+    return Intl.message('Divider', name: 'divider', desc: '', args: []);
+  }
+
+  /// `Insert Image`
+  String get insertImage {
+    return Intl.message(
+      'Insert Image',
+      name: 'insertImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insert Link`
+  String get insertLink {
+    return Intl.message('Insert Link', name: 'insertLink', desc: '', args: []);
+  }
+
+  /// `Remove Link`
+  String get removeLink {
+    return Intl.message('Remove Link', name: 'removeLink', desc: '', args: []);
+  }
+
+  /// `Link`
+  String get link {
+    return Intl.message('Link', name: 'link', desc: '', args: []);
+  }
+
+  /// `URL`
+  String get url {
+    return Intl.message('URL', name: 'url', desc: '', args: []);
+  }
+
+  /// `Align Left`
+  String get alignLeft {
+    return Intl.message('Align Left', name: 'alignLeft', desc: '', args: []);
+  }
+
+  /// `Align Center`
+  String get alignCenter {
+    return Intl.message(
+      'Align Center',
+      name: 'alignCenter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Align Right`
+  String get alignRight {
+    return Intl.message('Align Right', name: 'alignRight', desc: '', args: []);
+  }
+
+  /// `Justify`
+  String get alignJustify {
+    return Intl.message('Justify', name: 'alignJustify', desc: '', args: []);
+  }
+
+  /// `Uploading image...`
+  String get uploadingImage {
+    return Intl.message(
+      'Uploading image...',
+      name: 'uploadingImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preview`
+  String get preview {
+    return Intl.message('Preview', name: 'preview', desc: '', args: []);
+  }
+
+  /// `Remove Block`
+  String get removeBlock {
+    return Intl.message(
+      'Remove Block',
+      name: 'removeBlock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Move Up`
+  String get moveUp {
+    return Intl.message('Move Up', name: 'moveUp', desc: '', args: []);
+  }
+
+  /// `Move Down`
+  String get moveDown {
+    return Intl.message('Move Down', name: 'moveDown', desc: '', args: []);
+  }
+
+  /// `Clear Formatting`
+  String get clearFormatting {
+    return Intl.message(
+      'Clear Formatting',
+      name: 'clearFormatting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Image description`
+  String get imageAltText {
+    return Intl.message(
+      'Image description',
+      name: 'imageAltText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write something...`
+  String get writeSomething {
+    return Intl.message(
+      'Write something...',
+      name: 'writeSomething',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
