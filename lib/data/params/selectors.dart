@@ -568,9 +568,10 @@ class BedSelectorArgs {
 class HotelSelectorArgs {
   final UserSelectorArgs? creator;
   final HotelRoomSelectorArgs? rooms;
+  final HotelReservationSelectorArgs? reservations;
   final MediaSelectorArgs? media;
 
-  const HotelSelectorArgs({this.creator, this.rooms, this.media});
+  const HotelSelectorArgs({this.creator, this.rooms, this.reservations, this.media});
 
   factory HotelSelectorArgs.fromJson(String str) => HotelSelectorArgs.fromMap(json.decode(str));
 
@@ -579,12 +580,14 @@ class HotelSelectorArgs {
   factory HotelSelectorArgs.fromMap(Map<String, dynamic> json) => HotelSelectorArgs(
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
     rooms: json["rooms"] == null ? null : HotelRoomSelectorArgs.fromMap(json["rooms"]),
+    reservations: json["reservations"] == null ? null : HotelReservationSelectorArgs.fromMap(json["reservations"]),
     media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "creator": creator?.toMap(),
     "rooms": rooms?.toMap(),
+    "reservations": reservations?.toMap(),
     "media": media?.toMap(),
   };
 }
@@ -592,9 +595,10 @@ class HotelSelectorArgs {
 class HotelRoomSelectorArgs {
   final UserSelectorArgs? creator;
   final HotelSelectorArgs? hotel;
+  final HotelReservationSelectorArgs? reservations;
   final MediaSelectorArgs? media;
 
-  const HotelRoomSelectorArgs({this.creator, this.hotel, this.media});
+  const HotelRoomSelectorArgs({this.creator, this.hotel, this.reservations, this.media});
 
   factory HotelRoomSelectorArgs.fromJson(String str) => HotelRoomSelectorArgs.fromMap(json.decode(str));
 
@@ -603,13 +607,66 @@ class HotelRoomSelectorArgs {
   factory HotelRoomSelectorArgs.fromMap(Map<String, dynamic> json) => HotelRoomSelectorArgs(
     creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
     hotel: json["hotel"] == null ? null : HotelSelectorArgs.fromMap(json["hotel"]),
+    reservations: json["reservations"] == null ? null : HotelReservationSelectorArgs.fromMap(json["reservations"]),
     media: json["media"] == null ? null : MediaSelectorArgs.fromMap(json["media"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "creator": creator?.toMap(),
     "hotel": hotel?.toMap(),
+    "reservations": reservations?.toMap(),
     "media": media?.toMap(),
+  };
+}
+
+class HotelReservationSelectorArgs {
+  final UserSelectorArgs? creator;
+  final UserSelectorArgs? user;
+  final HotelRoomSelectorArgs? room;
+  final HotelSelectorArgs? hotel;
+  final HotelInvoiceSelectorArgs? invoice;
+
+  const HotelReservationSelectorArgs({this.creator, this.user, this.room, this.hotel, this.invoice});
+
+  factory HotelReservationSelectorArgs.fromJson(String str) => HotelReservationSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory HotelReservationSelectorArgs.fromMap(Map<String, dynamic> json) => HotelReservationSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+    room: json["room"] == null ? null : HotelRoomSelectorArgs.fromMap(json["room"]),
+    hotel: json["hotel"] == null ? null : HotelSelectorArgs.fromMap(json["hotel"]),
+    invoice: json["invoice"] == null ? null : HotelInvoiceSelectorArgs.fromMap(json["invoice"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "user": user?.toMap(),
+    "room": room?.toMap(),
+    "hotel": hotel?.toMap(),
+    "invoice": invoice?.toMap(),
+  };
+}
+
+class HotelInvoiceSelectorArgs {
+  final UserSelectorArgs? creator;
+  final HotelReservationSelectorArgs? reservation;
+
+  const HotelInvoiceSelectorArgs({this.creator, this.reservation});
+
+  factory HotelInvoiceSelectorArgs.fromJson(String str) => HotelInvoiceSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory HotelInvoiceSelectorArgs.fromMap(Map<String, dynamic> json) => HotelInvoiceSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    reservation: json["reservation"] == null ? null : HotelReservationSelectorArgs.fromMap(json["reservation"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "reservation": reservation?.toMap(),
   };
 }
 

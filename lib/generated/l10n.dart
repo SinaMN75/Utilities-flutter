@@ -3942,6 +3942,166 @@ class S {
       args: [],
     );
   }
+
+  String get reservations {
+    return Intl.message('Reservations', name: 'reservations', desc: '', args: []);
+  }
+
+  String get reservation {
+    return Intl.message('Reservation', name: 'reservation', desc: '', args: []);
+  }
+
+  String get createReservation {
+    return Intl.message('Create Reservation', name: 'createReservation', desc: '', args: []);
+  }
+
+  String get editReservation {
+    return Intl.message('Edit Reservation', name: 'editReservation', desc: '', args: []);
+  }
+
+  String get filterReservations {
+    return Intl.message('Filter Reservations', name: 'filterReservations', desc: '', args: []);
+  }
+
+  String get noReservationsFound {
+    return Intl.message('No reservations found', name: 'noReservationsFound', desc: '', args: []);
+  }
+
+  String get checkIn {
+    return Intl.message('Check In', name: 'checkIn', desc: '', args: []);
+  }
+
+  String get checkOut {
+    return Intl.message('Check Out', name: 'checkOut', desc: '', args: []);
+  }
+
+  String get checkInDate {
+    return Intl.message('Check-in Date', name: 'checkInDate', desc: '', args: []);
+  }
+
+  String get checkOutDate {
+    return Intl.message('Check-out Date', name: 'checkOutDate', desc: '', args: []);
+  }
+
+  String get guests {
+    return Intl.message('Guests', name: 'guests', desc: '', args: []);
+  }
+
+  String get guestCount {
+    return Intl.message('Number of Guests', name: 'guestCount', desc: '', args: []);
+  }
+
+  String get nights {
+    return Intl.message('Nights', name: 'nights', desc: '', args: []);
+  }
+
+  String get totalPrice {
+    return Intl.message('Total Price', name: 'totalPrice', desc: '', args: []);
+  }
+
+  String get confirm {
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
+  }
+
+  String get pending {
+    return Intl.message('Pending', name: 'pending', desc: '', args: []);
+  }
+
+  String get confirmed {
+    return Intl.message('Confirmed', name: 'confirmed', desc: '', args: []);
+  }
+
+  String get checkedIn {
+    return Intl.message('Checked In', name: 'checkedIn', desc: '', args: []);
+  }
+
+  String get checkedOut {
+    return Intl.message('Checked Out', name: 'checkedOut', desc: '', args: []);
+  }
+
+  String get cancelled {
+    return Intl.message('Cancelled', name: 'cancelled', desc: '', args: []);
+  }
+
+  String get noShow {
+    return Intl.message('No Show', name: 'noShow', desc: '', args: []);
+  }
+
+  String get selectARoom {
+    return Intl.message('Please select a room', name: 'selectARoom', desc: '', args: []);
+  }
+
+  String get guestName {
+    return Intl.message('Guest Name', name: 'guestName', desc: '', args: []);
+  }
+
+  String get guestPhone {
+    return Intl.message('Guest Phone', name: 'guestPhone', desc: '', args: []);
+  }
+
+  String get notes {
+    return Intl.message('Notes', name: 'notes', desc: '', args: []);
+  }
+
+  String get pricePerNight {
+    return Intl.message('Price per Night', name: 'pricePerNight', desc: '', args: []);
+  }
+
+  String get stars {
+    return Intl.message('Stars', name: 'stars', desc: '', args: []);
+  }
+
+  String get amenities {
+    return Intl.message('Amenities', name: 'amenities', desc: '', args: []);
+  }
+
+  String get policies {
+    return Intl.message('Policies', name: 'policies', desc: '', args: []);
+  }
+
+  String get checkInTime {
+    return Intl.message('Check-in Time', name: 'checkInTime', desc: '', args: []);
+  }
+
+  String get checkOutTime {
+    return Intl.message('Check-out Time', name: 'checkOutTime', desc: '', args: []);
+  }
+
+  String get bedType {
+    return Intl.message('Bed Type', name: 'bedType', desc: '', args: []);
+  }
+
+  String get roomNumber {
+    return Intl.message('Room Number', name: 'roomNumber', desc: '', args: []);
+  }
+
+  String get floor {
+    return Intl.message('Floor', name: 'floor', desc: '', args: []);
+  }
+
+  String get size {
+    return Intl.message('Size (m2)', name: 'size', desc: '', args: []);
+  }
+
+  String get maxOccupancy {
+    return Intl.message('Max Occupancy', name: 'maxOccupancy', desc: '', args: []);
+  }
+
+  String get quantity {
+    return Intl.message('Quantity', name: 'quantity', desc: '', args: []);
+  }
+
+  String get outOfService {
+    return Intl.message('Out of Service', name: 'outOfService', desc: '', args: []);
+  }
+
+  String get pay {
+    return Intl.message('Pay', name: 'pay', desc: '', args: []);
+  }
+
+  String get price {
+    return Intl.message('Price', name: 'price', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

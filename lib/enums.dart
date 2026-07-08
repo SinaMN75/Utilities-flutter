@@ -139,7 +139,9 @@ enum TagUser with NumericIdentifiable {
   permissionDeleteInvoices("حذف فاکتورها", "Delete Invoices", 608),
   permissionPayInvoices("ثبت پرداخت فاکتور", "Pay Invoices", 609),
   permissionManageUsers("مدیریت کاربران", "Manage Users", 610),
-  permissionDeleteUsers("حذف کاربران", "Delete Users", 611);
+  permissionDeleteUsers("حذف کاربران", "Delete Users", 611),
+  permissionManageReservations("مدیریت رزروها", "Manage Reservations", 612),
+  permissionDeleteReservations("حذف رزروها", "Delete Reservations", 613);
 
   const TagUser(this.titleFa, this.titleEn, this.number);
 
@@ -165,6 +167,8 @@ enum TagUser with NumericIdentifiable {
     permissionPayInvoices,
     permissionManageUsers,
     permissionDeleteUsers,
+    permissionManageReservations,
+    permissionDeleteReservations,
   ];
 }
 
@@ -734,9 +738,47 @@ enum TagBed with NumericIdentifiable {
 }
 
 enum TagHotel with NumericIdentifiable {
-  hotel("هتل", "Hotel", 101);
+  hotel("هتل", "Hotel", 101),
+  featured("ویژه", "Featured", 201),
+  active("فعال", "Active", 202),
+  inactive("غیرفعال", "Inactive", 203);
 
   const TagHotel(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagHotelReservation with NumericIdentifiable {
+  pending("در انتظار", "Pending", 101),
+  confirmed("تایید شده", "Confirmed", 102),
+  checkedIn("پذیرش شده", "Checked In", 103),
+  checkedOut("تسویه شده", "Checked Out", 104),
+  cancelled("لغو شده", "Cancelled", 201),
+  noShow("عدم حضور", "No Show", 202);
+
+  const TagHotelReservation(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
+enum TagHotelInvoice with NumericIdentifiable {
+  full("کامل", "Full", 101),
+  paid("پرداخت شده", "Paid", 201),
+  paidOnline("پرداخت آنلاین", "Paid Online", 202),
+  paidManual("پرداخت دستی", "Paid Manual", 203),
+  notPaid("پرداخت نشده", "Not Paid", 204);
+
+  const TagHotelInvoice(this.titleFa, this.titleEn, this.number);
 
   @override
   final String titleFa;
@@ -780,7 +822,13 @@ enum TagDorm with NumericIdentifiable {
 enum TagRoom with NumericIdentifiable {
   single("یک تخته", "Single", 101),
   double_("دو تخته", "Double", 102),
-  triple("سه تخته", "Triple", 103);
+  triple("سه تخته", "Triple", 103),
+  twin("دو تخته توئین", "Twin", 104),
+  suite("سوئیت", "Suite", 105),
+  family("خانوادگی", "Family", 106),
+  deluxe("دلوکس", "Deluxe", 107),
+  available("در دسترس", "Available", 201),
+  outOfService("خارج از سرویس", "Out Of Service", 202);
 
   const TagRoom(this.titleFa, this.titleEn, this.number);
 

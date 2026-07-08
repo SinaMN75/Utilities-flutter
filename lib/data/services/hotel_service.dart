@@ -516,4 +516,181 @@ class HotelService {
     onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
     onException: (String e) => onException?.call(e),
   );
+
+  // ==================== HotelReservation ====================
+
+  Future<UHttpClientResponse> createHotelReservation({
+    required final UHotelReservationCreateParams p,
+    final Function(UResponse<String> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelReservation/Create",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> readHotelReservations({
+    required final UHotelReservationReadParams p,
+    final Function(UResponse<List<UHotelReservationResponse>> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelReservation/Read",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(
+      UResponse<List<UHotelReservationResponse>>.fromJson(
+        r.body,
+        (final dynamic i) => List<UHotelReservationResponse>.from((i as List<dynamic>).map((final dynamic x) => UHotelReservationResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> readHotelReservationById({
+    required final UIdParams p,
+    final Function(UResponse<UHotelReservationResponse> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelReservation/ReadById",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<UHotelReservationResponse>.fromJson(r.body, (final dynamic i) => UHotelReservationResponse.fromMap(i))),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> updateHotelReservation({
+    required final UHotelReservationUpdateParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelReservation/Update",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> deleteHotelReservation({
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelReservation/Delete",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> _reservationAction({
+    required final String action,
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelReservation/$action",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> confirmHotelReservation({required final UIdParams p, final Function(UEmptyResponse r)? onOk, final Function(UResponse<dynamic> e)? onError, final Function(String e)? onException}) => _reservationAction(action: "Confirm", p: p, onOk: onOk, onError: onError, onException: onException);
+
+  Future<UHttpClientResponse> checkInHotelReservation({required final UIdParams p, final Function(UEmptyResponse r)? onOk, final Function(UResponse<dynamic> e)? onError, final Function(String e)? onException}) => _reservationAction(action: "CheckIn", p: p, onOk: onOk, onError: onError, onException: onException);
+
+  Future<UHttpClientResponse> checkOutHotelReservation({required final UIdParams p, final Function(UEmptyResponse r)? onOk, final Function(UResponse<dynamic> e)? onError, final Function(String e)? onException}) => _reservationAction(action: "CheckOut", p: p, onOk: onOk, onError: onError, onException: onException);
+
+  Future<UHttpClientResponse> cancelHotelReservation({required final UIdParams p, final Function(UEmptyResponse r)? onOk, final Function(UResponse<dynamic> e)? onError, final Function(String e)? onException}) => _reservationAction(action: "Cancel", p: p, onOk: onOk, onError: onError, onException: onException);
+
+  // ==================== HotelInvoice ====================
+
+  Future<UHttpClientResponse> createHotelInvoice({
+    required final UHotelInvoiceCreateParams p,
+    final Function(UResponse<String> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelInvoice/Create",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> readHotelInvoices({
+    required final UHotelInvoiceReadParams p,
+    final Function(UResponse<List<UHotelInvoiceResponse>> r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelInvoice/Read",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(
+      UResponse<List<UHotelInvoiceResponse>>.fromJson(
+        r.body,
+        (final dynamic i) => List<UHotelInvoiceResponse>.from((i as List<dynamic>).map((final dynamic x) => UHotelInvoiceResponse.fromMap(x))),
+      ),
+    ),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> updateHotelInvoice({
+    required final UHotelInvoiceUpdateParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelInvoice/Update",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> deleteHotelInvoice({
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelInvoice/Delete",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
+
+  Future<UHttpClientResponse> payHotelInvoice({
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => UHttpClient.send(
+    method: "POST",
+    endpoint: "${U.baseUrl}/Hotel/HotelInvoice/Pay",
+    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
+    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
+    onError: (final Response r) => onError?.call(UResponse<dynamic>.fromJson(r.body, (final dynamic i) => i)),
+    onException: (String e) => onException?.call(e),
+  );
 }
