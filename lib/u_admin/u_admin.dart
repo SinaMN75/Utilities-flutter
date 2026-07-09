@@ -1,12 +1,32 @@
 import "package:u/utilities.dart";
 
+part "controllers/u_admin_api_log_controller.dart";
 part "controllers/u_admin_base_controller.dart";
+// Controllers relocated from the u_admin app so business logic is shared across projects.
+part "controllers/u_admin_blog_controller.dart";
 part "controllers/u_admin_category_controller.dart";
+part "controllers/u_admin_contents_controller.dart";
+part "controllers/u_admin_contract_controller.dart";
 part "controllers/u_admin_dashboard_controller.dart";
+part "controllers/u_admin_dorm_bed_controller.dart";
+part "controllers/u_admin_dorm_controller.dart";
+part "controllers/u_admin_dorm_room_controller.dart";
+part "controllers/u_admin_financial_ops_dashboard_controller.dart";
+part "controllers/u_admin_hotel_controller.dart";
+part "controllers/u_admin_hotel_dashboard_controller.dart";
+part "controllers/u_admin_hotel_room_controller.dart";
+part "controllers/u_admin_hotel_user_detail_controller.dart";
+part "controllers/u_admin_invoice_controller.dart";
 part "controllers/u_admin_login_controller.dart";
+part "controllers/u_admin_merchant_controller.dart";
+part "controllers/u_admin_payment_users_controller.dart";
 part "controllers/u_admin_products_controller.dart";
+part "controllers/u_admin_reservation_controller.dart";
 part "controllers/u_admin_splash_controller.dart";
+part "controllers/u_admin_terminal_controller.dart";
+part "controllers/u_admin_user_detail_controller.dart";
 part "controllers/u_admin_users_controller.dart";
+part "controllers/u_admin_wallet_controller.dart";
 part "u_admin_settings_page.dart";
 part "u_admin_splash_page.dart";
 part "u_admin_utils.dart";
