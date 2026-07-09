@@ -1,6 +1,6 @@
 import "dart:math" as math;
 
-import "package:flutter/material.dart";
+import "package:u/utilities.dart";
 
 enum USideMenuIndicatorStyle { bar, pill, filled, gradient, none }
 
@@ -1101,43 +1101,24 @@ class _GroupTile extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: <Widget>[
-      Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: theme.itemPadding.horizontal / 2,
-          vertical: theme.itemSpacing / 2,
+      ListTile(
+        onTap: forceExpanded ? null : onToggle,
+        leading: Icon(group.icon, size: theme.iconSize, color: theme.unselectedIconColor),
+        title: UTextBodyMedium(
+          group.title,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          color: theme.unselectedTextColor,
         ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: theme.itemRadius,
-            onTap: forceExpanded ? null : onToggle,
-            child: SizedBox(
-              height: theme.itemHeight,
-              child: Row(
-                children: <Widget>[
-                  const SizedBox(width: 10),
-                  Icon(group.icon, size: theme.iconSize, color: theme.unselectedIconColor),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Text(
-                      group.title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyLarge!.merge(theme.itemTextStyle).copyWith(color: theme.unselectedTextColor),
-                    ),
-                  ),
-                  AnimatedRotation(
-                    turns: expanded ? 0.5 : 0,
-                    duration: theme.animationDuration,
-                    curve: theme.animationCurve,
-                    child: Icon(Icons.keyboard_arrow_down_rounded, color: theme.unselectedIconColor),
-                  ),
-                  const SizedBox(width: 8),
-                ],
-              ),
-            ),
-          ),
+        trailing: AnimatedRotation(
+          turns: expanded ? 0.5 : 0,
+          duration: theme.animationDuration,
+          curve: theme.animationCurve,
+          child: Icon(Icons.keyboard_arrow_down_rounded, color: theme.unselectedIconColor),
         ),
+      ).pSymmetric(
+        horizontal: theme.itemPadding.horizontal / 2,
+        vertical: theme.itemSpacing / 2,
       ),
       AnimatedSize(
         duration: theme.animationDuration,
