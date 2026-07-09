@@ -1,0 +1,1052 @@
+import "package:u/utilities.dart";
+
+class ApiLogPage extends StatefulWidget {
+  const ApiLogPage({super.key});
+
+  @override
+  State<ApiLogPage> createState() => _ApiLogPageState();
+}
+
+class _ApiLogPageState extends State<ApiLogPage> {
+  final UAdminApiLogController c = UAdminApiLogController();
+
+  @override
+  void initState() {
+    super.initState();
+    c.init();
+  }
+
+  @override
+  void dispose() {
+    c.dispose();
+    super.dispose();
+  }
+
+  bool get _isWide => MediaQuery.sizeOf(context).width > 1000;
+
+  @override
+  Widget build(BuildContext context) => UScaffold(
+    appBar: AppBar(
+      title: Text(U.s.apiRequestLogs),
+      centerTitle: true,
+      actions: <Widget>[
+        IconButton(tooltip: U.s.csvExport, icon: const Icon(Icons.file_download_outlined), onPressed: _exportCsv),
+        IconButton(tooltip: U.s.filter, icon: const Icon(Icons.tune_rounded), onPressed: _showFilterDialog),
+        IconButton(tooltip: U.s.refresh, icon: const Icon(Icons.refresh_rounded), onPressed: c.refreshAll),
+      ],
+    ),
+    body: SingleChildScrollView(
+      padding: EdgeInsets.all(_isWide ? 24 : 14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Obx(_hero),
+          Obx(_osMetricsSection).pSymmetric(vertical: 16),
+          Obx(_chartsSection).pSymmetric(vertical: 16),
+          Obx(_endpointsSection).pSymmetric(),
+          Obx(_slowestRequestsSection).pSymmetric(vertical: 16),
+          _quickFilters(),
+          const SizedBox(height: 16),
+          _table(),
+          Obx(
+            () => UNumberPagination(
+              currentPage: c.pageNumber.value,
+              totalPages: c.totalPages.value,
+              onPageChanged: (int page) {
+                c.pageNumber(page);
+                c.search();
+              },
+            ).pOnly(bottom: 8, top: 16),
+          ),
+        ],
+      ),
+    ),
+  );
+
+  Widget _hero() {
+    final UApiLogStatsResponse? s = c.stats.value;
+    return UContainer(
+      padding: const EdgeInsets.all(24),
+      radius: 24,
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: <Color>[Theme.of(context).colorScheme.primary, AppColors.indigo.shade400, AppColors.blueGrey.shade400],
+      ),
+      boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10))],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          UIconTextHorizontal(
+            leading: const Icon(Icons.travel_explore_rounded, color: AppColors.white, size: 34),
+            trailing: UTextHeadlineSmall(U.s.apiRequestLogs, color: AppColors.white, fontWeight: FontWeight.w800),
+          ),
+          const SizedBox(height: 16),
+          if (c.state2.value.isLoading())
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Center(child: CircularProgressIndicator(color: AppColors.white)),
+            )
+          else if (c.state2.value.isError())
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: UIconTextHorizontal(
+                leading: const Icon(Icons.cloud_off_rounded, color: AppColors.white),
+                trailing: UTextBodyMedium(U.s.errorReadingData, color: AppColors.white),
+              ),
+            )
+          else ...<Widget>[
+            Wrap(
+              spacing: 24,
+              runSpacing: 16,
+              children: <Widget>[
+                _kpi(U.s.totalRequests, "${s?.totalCount ?? 0}"),
+                _kpi(U.s.success, "${s?.successCount ?? 0}"),
+                _kpi(U.s.errors, "${s?.errorCount ?? 0}"),
+                _kpi(U.s.averageDuration, "${(s?.averageDurationMs ?? 0).toStringAsFixed(0)} ms"),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              children: <Widget>[
+                _percentileBadge("P50", s?.p50DurationMs ?? 0),
+                _percentileBadge("P95", s?.p95DurationMs ?? 0),
+                _percentileBadge("P99", s?.p99DurationMs ?? 0),
+              ],
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _kpi(String title, String value) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      UTextBodySmall(title, color: AppColors.white.withValues(alpha: 0.75)),
+      const SizedBox(height: 4),
+      UTextHeadlineSmall(value, color: AppColors.white, fontWeight: FontWeight.w800),
+    ],
+  );
+
+  Widget _percentileBadge(String label, double ms) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+    decoration: BoxDecoration(color: AppColors.white.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(20)),
+    child: UTextBodySmall("$label: ${ms.toStringAsFixed(0)} ms", color: AppColors.white, fontWeight: FontWeight.w600).ltr(),
+  );
+
+  Widget _osMetricsSection() {
+    final UOsMetricsResponse? m = c.osMetrics.value;
+    return UContainer(
+      padding: const EdgeInsets.all(20),
+      radius: 20,
+      color: Theme.of(context).cardTheme.color,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              const Icon(Icons.dns_rounded, size: 20),
+              const SizedBox(width: 8),
+              UTextTitleSmall(U.s.osMetrics, fontWeight: FontWeight.w700).expanded(),
+              if (m != null)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(color: AppColors.green.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(20)),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: const BoxDecoration(color: AppColors.green, shape: BoxShape.circle),
+                      ),
+                      const SizedBox(width: 6),
+                      UTextBodySmall(m.generatedAt.formatDate("HH:mm:ss"), color: AppColors.green, fontWeight: FontWeight.w600).ltr(),
+                    ],
+                  ),
+                ),
+            ],
+          ),
+          const Divider(height: 18),
+          if (c.osMetricsState.value.isLoading() && m == null)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 30),
+              child: Center(child: CircularProgressIndicator()),
+            )
+          else if (c.osMetricsState.value.isError() && m == null)
+            Padding(padding: const EdgeInsets.symmetric(vertical: 20), child: UTextBodyMedium(U.s.errorReadingData).alignAtCenter())
+          else if (m == null)
+            const SizedBox.shrink()
+          else ...<Widget>[
+            _osIdentityRow(m),
+            const SizedBox(height: 18),
+            _isWide ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_usageGauges(m).expanded(), const SizedBox(width: 20), _disksList(m).expanded()]) : Column(children: <Widget>[_usageGauges(m), const SizedBox(height: 16), _disksList(m)]),
+            const SizedBox(height: 12),
+            _osDetailsExpansion(m),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _osIdentityRow(UOsMetricsResponse m) => Wrap(
+    spacing: 20,
+    runSpacing: 10,
+    children: <Widget>[
+      _identityItem(Icons.computer_rounded, U.s.operatingSystem, m.osDescription),
+      _identityItem(Icons.memory_rounded, U.s.architecture, "${m.osArchitecture} (${m.processArchitecture})"),
+      _identityItem(Icons.developer_board_rounded, U.s.framework, m.frameworkDescription),
+      _identityItem(Icons.dns_outlined, U.s.machineName, m.machineName),
+      _identityItem(Icons.timer_outlined, U.s.systemUptime, _formatDuration(m.systemUptimeSeconds)),
+      _identityItem(Icons.play_circle_outline_rounded, U.s.processUptime, _formatDuration(m.processUptimeSeconds)),
+      if (m.loadAverage1Min != null) _identityItem(Icons.speed_rounded, U.s.loadAverage, "${m.loadAverage1Min!.toStringAsFixed(2)} / ${m.loadAverage5Min!.toStringAsFixed(2)} / ${m.loadAverage15Min!.toStringAsFixed(2)}"),
+    ],
+  );
+
+  Widget _identityItem(IconData icon, String label, String value) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Icon(icon, size: 14, color: Theme.of(context).disabledColor),
+          const SizedBox(width: 4),
+          UTextBodySmall(label, color: Theme.of(context).disabledColor),
+        ],
+      ),
+      const SizedBox(height: 2),
+      UTextBodyMedium(value, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).ltr(),
+    ],
+  );
+
+  Widget _usageGauges(UOsMetricsResponse m) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      _usageBar(U.s.cpuUsage, m.cpuUsagePercent, "${m.processorCount} ${U.s.cores}"),
+      const SizedBox(height: 14),
+      _usageBar(U.s.memoryUsage, m.memoryUsagePercent, "${m.memoryUsedGb.toStringAsFixed(1)} / ${m.memoryTotalGb.toStringAsFixed(1)} GB"),
+    ],
+  );
+
+  Widget _usageBar(String label, double percent, String caption) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Row(
+        children: <Widget>[
+          UTextBodyMedium(label, fontWeight: FontWeight.w600).expanded(),
+          UTextBodyMedium("${percent.toStringAsFixed(1)}%", color: _usageColor(percent), fontWeight: FontWeight.w700),
+        ],
+      ),
+      const SizedBox(height: 6),
+      ClipRRect(
+        borderRadius: BorderRadius.circular(6),
+        child: LinearProgressIndicator(value: (percent / 100).clamp(0, 1), minHeight: 8, backgroundColor: _usageColor(percent).withValues(alpha: 0.15), valueColor: AlwaysStoppedAnimation<Color>(_usageColor(percent))),
+      ),
+      const SizedBox(height: 4),
+      UTextBodySmall(caption, color: Theme.of(context).disabledColor).ltr(),
+    ],
+  );
+
+  Color _usageColor(double percent) {
+    if (percent >= 85) return AppColors.red;
+    if (percent >= 60) return AppColors.orange;
+    return AppColors.green;
+  }
+
+  Widget _disksList(UOsMetricsResponse m) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      UTextBodyMedium(U.s.disks, fontWeight: FontWeight.w600),
+      const SizedBox(height: 8),
+      if (m.disks.isEmpty)
+        UTextBodySmall(U.s.noData, color: Theme.of(context).disabledColor)
+      else
+        ...m.disks.map(
+          (UDiskMetricsItem d) => Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    UTextBodySmall(d.name, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).ltr().expanded(),
+                    UTextBodySmall("${d.usedGb.toStringAsFixed(1)} / ${d.totalGb.toStringAsFixed(1)} GB", color: Theme.of(context).disabledColor).ltr(),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: LinearProgressIndicator(value: (d.usagePercent / 100).clamp(0, 1), minHeight: 6, backgroundColor: _usageColor(d.usagePercent).withValues(alpha: 0.15), valueColor: AlwaysStoppedAnimation<Color>(_usageColor(d.usagePercent))),
+                ),
+              ],
+            ),
+          ),
+        ),
+    ],
+  );
+
+  Widget _osDetailsExpansion(UOsMetricsResponse m) => Theme(
+    data: Theme.of(context).copyWith(dividerColor: AppColors.transparent),
+    child: ExpansionTile(
+      tilePadding: EdgeInsets.zero,
+      title: UTextBodyMedium(U.s.details, fontWeight: FontWeight.w600),
+      childrenPadding: const EdgeInsets.only(top: 8, bottom: 12),
+      children: <Widget>[
+        _isWide ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_processAndGcCard(m).expanded(), const SizedBox(width: 16), _networkCard(m).expanded()]) : Column(children: <Widget>[_processAndGcCard(m), const SizedBox(height: 16), _networkCard(m)]),
+      ],
+    ),
+  );
+
+  Widget _processAndGcCard(UOsMetricsResponse m) => UContainer(
+    padding: const EdgeInsets.all(14),
+    radius: 14,
+    color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            const Icon(Icons.memory_rounded, size: 16),
+            const SizedBox(width: 6),
+            UTextBodyMedium(U.s.process, fontWeight: FontWeight.w700),
+          ],
+        ),
+        const SizedBox(height: 10),
+        _kvRow(U.s.workingSet, "${m.processWorkingSetMb.toStringAsFixed(1)} MB"),
+        _kvRow(U.s.privateMemory, "${m.processPrivateMemoryMb.toStringAsFixed(1)} MB"),
+        _kvRow(U.s.threads, "${m.processThreadCount}"),
+        if (m.processHandleCount != null) _kvRow(U.s.handles, "${m.processHandleCount}"),
+        const SizedBox(height: 14),
+        Row(
+          children: <Widget>[
+            const Icon(Icons.recycling_rounded, size: 16),
+            const SizedBox(width: 6),
+            UTextBodyMedium(U.s.garbageCollector, fontWeight: FontWeight.w700),
+          ],
+        ),
+        const SizedBox(height: 10),
+        _kvRow(U.s.totalMemory, "${m.gcTotalMemoryMb.toStringAsFixed(1)} MB"),
+        _kvRow(U.s.gcGenerations, "${m.gen0Collections} / ${m.gen1Collections} / ${m.gen2Collections}"),
+        _kvRow(U.s.serverGc, m.isServerGc ? U.s.yes : U.s.no),
+      ],
+    ),
+  );
+
+  Widget _networkCard(UOsMetricsResponse m) => UContainer(
+    padding: const EdgeInsets.all(14),
+    radius: 14,
+    color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            const Icon(Icons.lan_rounded, size: 16),
+            const SizedBox(width: 6),
+            UTextBodyMedium(U.s.network, fontWeight: FontWeight.w700),
+          ],
+        ),
+        const SizedBox(height: 10),
+        if (m.networkInterfaces.isEmpty)
+          UTextBodySmall(U.s.noData, color: Theme.of(context).disabledColor)
+        else
+          ...m.networkInterfaces.map(
+            (UNetworkInterfaceMetricsItem n) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 8,
+                        height: 8,
+                        margin: const EdgeInsets.only(right: 6),
+                        decoration: BoxDecoration(color: n.status == "Up" ? AppColors.green : AppColors.grey, shape: BoxShape.circle),
+                      ),
+                      UTextBodySmall(n.name, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).ltr().expanded(),
+                    ],
+                  ),
+                  UTextBodySmall("${n.type} · ${U.s.speed}: ${n.speedMbps.toStringAsFixed(0)} Mbps", color: Theme.of(context).disabledColor).ltr(),
+                  UTextBodySmall("${U.s.sent}: ${n.bytesSentMb.toStringAsFixed(1)} MB · ${U.s.received}: ${n.bytesReceivedMb.toStringAsFixed(1)} MB", color: Theme.of(context).disabledColor).ltr(),
+                ],
+              ),
+            ),
+          ),
+      ],
+    ),
+  );
+
+  Widget _kvRow(String label, String value) => Padding(
+    padding: const EdgeInsets.only(bottom: 6),
+    child: Row(
+      children: <Widget>[
+        UTextBodySmall(label, color: Theme.of(context).disabledColor).expanded(),
+        UTextBodyMedium(value, fontWeight: FontWeight.w600).ltr(),
+      ],
+    ),
+  );
+
+  String _formatDuration(double seconds) {
+    final Duration d = Duration(seconds: seconds.round());
+    final int days = d.inDays;
+    final int hours = d.inHours % 24;
+    final int minutes = d.inMinutes % 60;
+    if (days > 0) return "${days}d ${hours}h ${minutes}m";
+    if (hours > 0) return "${hours}h ${minutes}m";
+    return "${minutes}m";
+  }
+
+  Widget _chartsSection() {
+    final UApiLogStatsResponse? s = c.stats.value;
+    if (c.state2.value.isLoading() || s == null) return const SizedBox.shrink();
+    return _isWide ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_timelineChart().expanded(flex: 2), const SizedBox(width: 16), _distributionChart().expanded()]) : Column(children: <Widget>[_timelineChart(), const SizedBox(height: 16), _distributionChart()]);
+  }
+
+  Widget _timelineChart() => _chartCard(
+    title: U.s.requestsAndResponseDurationTrend,
+    trailing: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        _bucketButton("minute", U.s.minute),
+        _bucketButton("hour", U.s.hour),
+        _bucketButton("day", U.s.day),
+      ],
+    ),
+    child: (c.stats.value?.timeline.isEmpty ?? true)
+        ? Center(child: UTextBodyMedium(U.s.noData))
+        : SfCartesianChart(
+            primaryXAxis: const DateTimeAxis(),
+            legend: const Legend(isVisible: true, position: LegendPosition.bottom),
+            tooltipBehavior: TooltipBehavior(enable: true),
+            series: <CartesianSeries<UApiLogBucketResponse, DateTime>>[
+              SplineAreaSeries<UApiLogBucketResponse, DateTime>(
+                name: U.s.count,
+                dataSource: c.stats.value!.timeline,
+                xValueMapper: (UApiLogBucketResponse b, _) => b.time,
+                yValueMapper: (UApiLogBucketResponse b, _) => b.count,
+                color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35),
+                borderColor: Theme.of(context).colorScheme.primary,
+              ),
+              LineSeries<UApiLogBucketResponse, DateTime>(
+                name: U.s.errors,
+                dataSource: c.stats.value!.timeline,
+                xValueMapper: (UApiLogBucketResponse b, _) => b.time,
+                yValueMapper: (UApiLogBucketResponse b, _) => b.errorCount,
+                color: AppColors.red,
+              ),
+            ],
+          ),
+  );
+
+  Widget _bucketButton(String value, String label) => Obx(
+    () => TextButton(
+      onPressed: () => c.setBucket(value),
+      style: TextButton.styleFrom(foregroundColor: c.bucket.value == value ? Theme.of(context).colorScheme.primary : Theme.of(context).disabledColor),
+      child: Text(label),
+    ),
+  );
+
+  Widget _distributionChart() => _chartCard(
+    title: U.s.successErrorDistribution,
+    child: (c.stats.value?.totalCount ?? 0) == 0
+        ? Center(child: UTextBodyMedium(U.s.noData))
+        : SfCircularChart(
+            legend: const Legend(isVisible: true, position: LegendPosition.bottom),
+            tooltipBehavior: TooltipBehavior(enable: true),
+            series: <CircularSeries<_StatusSlice, String>>[
+              DoughnutSeries<_StatusSlice, String>(
+                dataSource: <_StatusSlice>[
+                  _StatusSlice(U.s.success, c.stats.value!.successCount, AppColors.green),
+                  _StatusSlice(U.s.errors, c.stats.value!.errorCount, AppColors.red),
+                ],
+                xValueMapper: (_StatusSlice s, _) => s.label,
+                yValueMapper: (_StatusSlice s, _) => s.count,
+                pointColorMapper: (_StatusSlice s, _) => s.color,
+                dataLabelSettings: const DataLabelSettings(isVisible: true),
+              ),
+            ],
+          ),
+  );
+
+  Widget _chartCard({required String title, required Widget child, Widget? trailing}) => UContainer(
+    height: 320,
+    padding: const EdgeInsets.all(18),
+    radius: 20,
+    color: Theme.of(context).cardTheme.color,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            UTextTitleSmall(title, fontWeight: FontWeight.w700).expanded(),
+            if (trailing != null) trailing,
+          ],
+        ),
+        const Divider(height: 18),
+        child.expanded(),
+      ],
+    ),
+  );
+
+  Widget _endpointsSection() {
+    final UApiLogStatsResponse? s = c.stats.value;
+    if (c.state2.value.isLoading() || s == null) return const SizedBox.shrink();
+    return _isWide
+        ? Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _endpointBarChart(title: U.s.slowestPaths, items: s.slowestEndpoints, color: AppColors.orange).expanded(),
+              const SizedBox(width: 16),
+              _endpointBarChart(title: U.s.mostFailingPaths, items: s.failingEndpoints, color: AppColors.red).expanded(),
+            ],
+          )
+        : Column(
+            children: <Widget>[
+              _endpointBarChart(title: U.s.slowestPaths, items: s.slowestEndpoints, color: AppColors.orange),
+              const SizedBox(height: 16),
+              _endpointBarChart(title: U.s.mostFailingPaths, items: s.failingEndpoints, color: AppColors.red),
+            ],
+          );
+  }
+
+  Widget _endpointBarChart({required String title, required List<UApiLogEndpointResponse> items, required Color color}) => _chartCard(
+    title: title,
+    child: items.isEmpty
+        ? Center(child: UTextBodyMedium(U.s.noData))
+        : SfCartesianChart(
+            primaryXAxis: const CategoryAxis(),
+            tooltipBehavior: TooltipBehavior(enable: true),
+            series: <CartesianSeries<UApiLogEndpointResponse, String>>[
+              BarSeries<UApiLogEndpointResponse, String>(
+                dataSource: items,
+                xValueMapper: (UApiLogEndpointResponse e, _) => e.path,
+                yValueMapper: (UApiLogEndpointResponse e, _) => e.averageDurationMs,
+                color: color,
+                dataLabelSettings: const DataLabelSettings(isVisible: true),
+                borderRadius: const BorderRadius.horizontal(right: Radius.circular(6)),
+              ),
+            ],
+          ),
+  );
+
+  Widget _slowestRequestsSection() {
+    if (c.state2.value.isLoading() || c.stats.value == null) return const SizedBox.shrink();
+    final List<UApiLogResponse> items = c.stats.value!.slowestRequests;
+    return UContainer(
+      padding: const EdgeInsets.all(18),
+      radius: 20,
+      color: Theme.of(context).cardTheme.color,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              const Icon(Icons.local_fire_department_rounded, size: 20, color: AppColors.orange),
+              const SizedBox(width: 8),
+              UTextTitleSmall(U.s.slowestRequests, fontWeight: FontWeight.w700).expanded(),
+            ],
+          ),
+          const Divider(height: 18),
+          if (items.isEmpty)
+            UTextBodySmall(U.s.noData).pSymmetric(vertical: 12)
+          else
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: items.length,
+              separatorBuilder: (BuildContext context, int index) => const Divider(height: 4),
+              itemBuilder: (BuildContext context, int index) => _slowRequestRow(items[index]),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _slowRequestRow(UApiLogResponse i) => ListTile(
+    dense: true,
+    onTap: () => _openDetail(i),
+    leading: _methodChip(i.jsonData.method),
+    title: UTextBodyMedium(i.path, maxLines: 1, overflow: TextOverflow.ellipsis).ltr(),
+    subtitle: UTextBodySmall(i.createdAt.formatDate("yyyy-MM-dd HH:mm:ss")).ltr(),
+    trailing: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        _statusChip(i.statusCode),
+        const SizedBox(width: 8),
+        UTextBodyMedium("${i.durationMs} ms", color: AppColors.orange),
+      ],
+    ),
+  );
+
+  Widget _quickFilters() => Obx(
+    () => Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: <Widget>[
+        _filterChip(U.s.all, c.methodFilter.value == null, () {
+          c.methodFilter(null);
+          c.refreshList();
+        }),
+        ...TagApiLog.values
+            .where((TagApiLog t) => t.number < 200)
+            .map(
+              (TagApiLog t) => _filterChip(t.localizedTitle, c.methodFilter.value == t, () {
+                c.methodFilter(c.methodFilter.value == t ? null : t);
+                c.refreshList();
+              }),
+            ),
+        _filterChip(U.s.onlyErrors, c.onlyErrors.value, () {
+          c.onlyErrors(!c.onlyErrors.value);
+          c.refreshList();
+        }),
+        _filterChip(U.s.onlyExceptions, c.onlyExceptions.value, () {
+          c.onlyExceptions(!c.onlyExceptions.value);
+          c.refreshList();
+        }),
+      ],
+    ),
+  );
+
+  Widget _filterChip(String label, bool selected, VoidCallback onTap) => ChoiceChip(
+    label: Text(label),
+    selected: selected,
+    onSelected: (_) => onTap(),
+  );
+
+  Widget _table() => Obx(() {
+    if (c.state.value.isError()) return _tableMessage(icon: Icons.cloud_off_rounded, text: U.s.errorReadingData, retry: true);
+    if (c.state.value.isEmpty()) return _tableMessage(icon: Icons.inbox_rounded, text: U.s.noData, retry: false);
+    if (!c.state.value.isLoaded())
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 40),
+        child: Center(child: CircularProgressIndicator()),
+      );
+
+    final List<UApiLogResponse> data = c.list;
+    final bool desktop = MediaQuery.sizeOf(context).width >= 800;
+    final Widget list = desktop
+        ? UListView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            header: URow(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              padding: const EdgeInsets.all(8),
+              children: <Widget>[
+                UTextBodyLarge(U.s.time, color: AppColors.white, textAlign: .center).expanded(),
+                UTextBodyLarge(U.s.method, color: AppColors.white, textAlign: .center).expanded(),
+                UTextBodyLarge(U.s.path, color: AppColors.white, textAlign: .center).expanded(flex: 3),
+                UTextBodyLarge(U.s.status, color: AppColors.white, textAlign: .center).expanded(),
+                UTextBodyLarge(U.s.duration, color: AppColors.white, textAlign: .center).expanded(),
+                UTextBodyLarge(U.s.userSlashIp, color: AppColors.white, textAlign: .center).expanded(flex: 2),
+              ],
+            ),
+            itemBuilder: (BuildContext context, int index) => _itemDesktop(i: data[index], index: index),
+            itemCount: data.length,
+          )
+        : UListView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) => _itemResponsive(i: data[index], index: index),
+            itemCount: data.length,
+          );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.format_list_bulleted_rounded, size: 16, color: Theme.of(context).disabledColor),
+              const SizedBox(width: 6),
+              UTextBodySmall("${U.s.totalResults}: ${c.totalCount.toString().separateNumbers3By3()}", color: Theme.of(context).disabledColor),
+            ],
+          ),
+        ),
+        list,
+      ],
+    );
+  });
+
+  Widget _tableMessage({required IconData icon, required String text, required bool retry}) => Center(
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 40),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Icon(icon, size: 56, color: retry ? Theme.of(context).colorScheme.error : Theme.of(context).disabledColor),
+          const SizedBox(height: 12),
+          UTextBodyMedium(text, color: retry ? null : Theme.of(context).disabledColor),
+          if (retry) ...<Widget>[
+            const SizedBox(height: 12),
+            UButton(title: U.s.tryAgain, icon: const Icon(Icons.refresh), onTap: c.search, width: 180),
+          ],
+        ],
+      ),
+    ),
+  );
+
+  Widget _itemDesktop({required UApiLogResponse i, required int index}) => InkWell(
+    onTap: () => _openDetail(i),
+    child: URow(
+      backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+      children: <Widget>[
+        UTextBodySmall(i.createdAt.formatDate("yyyy-MM-dd HH:mm:ss"), textAlign: .center).ltr().expanded(),
+        _methodChip(i.jsonData.method).alignAtCenter().expanded(),
+        UTextBodyMedium(i.path, textAlign: .center, maxLines: 2, overflow: TextOverflow.ellipsis).ltr().expanded(flex: 3),
+        _statusChip(i.statusCode).alignAtCenter().expanded(),
+        UTextBodyMedium("${i.durationMs} ms", textAlign: .center, color: i.durationMs > 1000 ? AppColors.orange : null).expanded(),
+        UTextBodySmall(i.ipAddress ?? "-", textAlign: .center, overflow: TextOverflow.ellipsis).ltr().expanded(flex: 2),
+      ],
+    ),
+  );
+
+  Widget _itemResponsive({required UApiLogResponse i, required int index}) => UContainer(
+    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+    margin: const EdgeInsets.symmetric(vertical: 4),
+    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
+    radius: 8,
+    child: InkWell(
+      onTap: () => _openDetail(i),
+      child: ListTile(
+        dense: true,
+        leading: _statusChip(i.statusCode),
+        title: Row(
+          children: <Widget>[
+            _methodChip(i.jsonData.method),
+            const SizedBox(width: 8),
+            UTextBodyMedium(i.path, maxLines: 1, overflow: TextOverflow.ellipsis).ltr().expanded(),
+          ],
+        ),
+        subtitle: UTextBodySmall("${i.createdAt.formatDate("yyyy-MM-dd HH:mm:ss")} • ${i.durationMs} ms${i.ipAddress != null ? " • ${i.ipAddress}" : ""}").ltr(),
+        trailing: const Icon(Icons.chevron_left_rounded),
+      ),
+    ),
+  );
+
+  Widget _methodChip(String method) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+    decoration: BoxDecoration(color: _methodColor(method).withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
+    child: UTextBodySmall(method, color: _methodColor(method), fontWeight: FontWeight.w700).ltr(),
+  );
+
+  Widget _statusChip(int statusCode) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+    decoration: BoxDecoration(color: _statusColor(statusCode).withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
+    child: UTextBodySmall(statusCode.toString(), color: _statusColor(statusCode), fontWeight: FontWeight.w700).ltr(),
+  );
+
+  Color _methodColor(String method) => switch (method.toUpperCase()) {
+    "GET" => AppColors.blue,
+    "POST" => AppColors.green,
+    "PUT" => AppColors.orange,
+    "PATCH" => AppColors.indigo,
+    "DELETE" => AppColors.red,
+    _ => AppColors.grey,
+  };
+
+  Color _statusColor(int statusCode) {
+    if (statusCode >= 500) return AppColors.red;
+    if (statusCode >= 400) return AppColors.orange;
+    if (statusCode >= 300) return AppColors.blue;
+    if (statusCode >= 200) return AppColors.green;
+    return AppColors.grey;
+  }
+
+  void _showFilterDialog() => UNavigator.dialog(
+    AlertDialog(
+      title: Text(U.s.filterLogs),
+      content: SizedBox(
+        width: context.dialogWidth(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              UTextField(controller: c.pathContainsCtrl, labelText: U.s.pathContains).pSymmetric(vertical: 6),
+              Row(
+                children: <Widget>[
+                  UTextField(controller: c.minDurationCtrl, labelText: U.s.minDurationMs, keyboardType: TextInputType.number).expanded(),
+                  const SizedBox(width: 8),
+                  UTextField(controller: c.maxDurationCtrl, labelText: U.s.maxDurationMs, keyboardType: TextInputType.number).expanded(),
+                ],
+              ).pSymmetric(vertical: 6),
+              UTextField(controller: c.statusCodeCtrl, labelText: U.s.exactStatusCode, keyboardType: TextInputType.number).pSymmetric(vertical: 6),
+              UTextField(controller: c.userIdCtrl, labelText: U.s.userId).pSymmetric(vertical: 6),
+              UTextField(controller: c.ipAddressCtrl, labelText: U.s.ipAddress).pSymmetric(vertical: 6),
+              UTextField(controller: c.traceIdCtrl, labelText: U.s.traceId).pSymmetric(vertical: 6),
+              Obx(
+                () => UDropDownField<TagApiLog?>(
+                  initialValue: c.methodFilter.value,
+                  onChanged: (TagApiLog? v) => c.methodFilter.value = v,
+                  items: <DropdownMenuItem<TagApiLog?>>[
+                    DropdownMenuItem<TagApiLog?>(child: Text(U.s.all)),
+                    ...TagApiLog.values.where((TagApiLog t) => t.number < 200).map((TagApiLog t) => DropdownMenuItem<TagApiLog?>(value: t, child: Text(t.localizedTitle))),
+                  ],
+                ),
+              ).pSymmetric(vertical: 6),
+              Obx(
+                () => UDropDownField<TagOrderBy>(
+                  initialValue: c.orderBy.value,
+                  onChanged: (TagOrderBy? v) => c.orderBy.value = v ?? c.orderBy.value,
+                  items: <DropdownMenuItem<TagOrderBy>>[
+                    DropdownMenuItem<TagOrderBy>(value: TagOrderBy.createdAtDescending, child: Text(TagOrderBy.createdAtDescending.localizedTitle)),
+                    DropdownMenuItem<TagOrderBy>(value: TagOrderBy.createdAt, child: Text(TagOrderBy.createdAt.localizedTitle)),
+                    DropdownMenuItem<TagOrderBy>(value: TagOrderBy.durationMsDescending, child: Text(TagOrderBy.durationMsDescending.localizedTitle)),
+                    DropdownMenuItem<TagOrderBy>(value: TagOrderBy.durationMs, child: Text(TagOrderBy.durationMs.localizedTitle)),
+                  ],
+                ),
+              ).pSymmetric(vertical: 6),
+              Obx(
+                () => CheckboxListTile(
+                  value: c.onlyErrors.value,
+                  onChanged: (bool? v) => c.onlyErrors.value = v ?? false,
+                  title: Text(U.s.onlyErrors),
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
+              ),
+              Obx(
+                () => CheckboxListTile(
+                  value: c.onlyExceptions.value,
+                  onChanged: (bool? v) => c.onlyExceptions.value = v ?? false,
+                  title: Text(U.s.onlyExceptions),
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
+              ),
+              const SizedBox(height: 20),
+              UButtonSubmitCancel(
+                submitTitle: U.s.filter,
+                cancelTitle: U.s.clearFilters,
+                onSubmit: () {
+                  c.applyFilters();
+                  UNavigator.back();
+                },
+                onCancel: () {
+                  c.clearFilters();
+                  UNavigator.back();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+
+  void _openDetail(UApiLogResponse item) => c.openDetail(item, (UApiLogResponse detail) {
+    UNavigator.dialog(
+      Dialog(
+        insetPadding: const EdgeInsets.all(16),
+        child: SizedBox(
+          width: context.dialogWidth(max: 820),
+          height: context.dialogHeight(max: 680),
+          child: _ApiLogDetailView(item: detail, methodColor: _methodColor(detail.jsonData.method), statusColor: _statusColor(detail.statusCode)),
+        ),
+      ),
+    );
+  });
+
+  void _exportCsv() => c.exportCsv((String csv) {
+    final int rowCount = "\n".allMatches(csv).length;
+    UNavigator.dialog(
+      AlertDialog(
+        title: Text(U.s.csvExport),
+        content: SizedBox(
+          width: context.dialogWidth(max: 640),
+          height: context.dialogHeight(max: 420),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              UTextBodySmall("$rowCount ${U.s.csvRowsHintSuffix}"),
+              const SizedBox(height: 10),
+              SingleChildScrollView(
+                child: SelectableText(csv, style: const TextStyle(fontFamily: "monospace", fontSize: 11)).ltr(),
+              ).expanded(),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          UButton(
+            title: U.s.copyToClipboard,
+            icon: const Icon(Icons.copy_rounded, size: 16),
+            onTap: () {
+              UClipboard.set(csv);
+              UToast.snackBar(message: U.s.copiedToClipboard);
+            },
+          ),
+          UButton(type: UButtonType.text, title: U.s.close, onTap: UNavigator.back),
+        ],
+      ),
+    );
+  });
+}
+
+class _StatusSlice {
+  _StatusSlice(this.label, this.count, this.color);
+
+  final String label;
+  final int count;
+  final Color color;
+}
+
+class _ApiLogDetailView extends StatelessWidget {
+  const _ApiLogDetailView({required this.item, required this.methodColor, required this.statusColor});
+
+  final UApiLogResponse item;
+  final Color methodColor;
+  final Color statusColor;
+
+  @override
+  Widget build(BuildContext context) => Column(
+    children: <Widget>[
+      _header(context),
+      const Divider(height: 1),
+      Expanded(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _metaGrid(context),
+              if (item.jsonData.queryString != null) ...<Widget>[const SizedBox(height: 10), _metaItem(context, "Query String", item.jsonData.queryString!, null)],
+              if (item.jsonData.exceptionType != null || item.jsonData.exceptionMessage != null) ...<Widget>[const SizedBox(height: 16), _exceptionBlock(context)],
+              const SizedBox(height: 16),
+              UTextTitleSmall(U.s.requestBody, fontWeight: FontWeight.w700),
+              const SizedBox(height: 8),
+              UJsonViewer(jsonString: item.jsonData.requestBody ?? "-"),
+              const SizedBox(height: 16),
+              UTextTitleSmall(U.s.responseBody, fontWeight: FontWeight.w700),
+              const SizedBox(height: 8),
+              UJsonViewer(jsonString: item.jsonData.responseBody ?? "-"),
+              if (item.jsonData.requestHeaders != null) ...<Widget>[
+                const SizedBox(height: 16),
+                UTextTitleSmall(U.s.requestHeaders, fontWeight: FontWeight.w700),
+                const SizedBox(height: 8),
+                UJsonViewer(jsonString: item.jsonData.requestHeaders!),
+              ],
+              if (item.jsonData.responseHeaders != null) ...<Widget>[
+                const SizedBox(height: 16),
+                UTextTitleSmall(U.s.responseHeaders, fontWeight: FontWeight.w700),
+                const SizedBox(height: 8),
+                UJsonViewer(jsonString: item.jsonData.responseHeaders!),
+              ],
+              if (item.jsonData.stackTrace != null) ...<Widget>[
+                const SizedBox(height: 16),
+                const UTextTitleSmall("Stack Trace", fontWeight: FontWeight.w700),
+                const SizedBox(height: 8),
+                UJsonViewer(jsonString: item.jsonData.stackTrace!),
+              ],
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
+
+  Widget _header(BuildContext context) => Material(
+    elevation: 2,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: Row(
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(color: methodColor.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
+            child: UTextBodySmall(item.jsonData.method, color: methodColor, fontWeight: FontWeight.w700).ltr(),
+          ),
+          const SizedBox(width: 8),
+          UTextBodyMedium(item.path, maxLines: 1, overflow: TextOverflow.ellipsis).ltr().expanded(),
+          const SizedBox(width: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(color: statusColor.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
+            child: UTextBodySmall(item.statusCode.toString(), color: statusColor, fontWeight: FontWeight.w700).ltr(),
+          ),
+          const SizedBox(width: 8),
+          const IconButton(icon: Icon(Icons.close_rounded), onPressed: UNavigator.back),
+        ],
+      ),
+    ),
+  );
+
+  Widget _metaGrid(BuildContext context) => Wrap(
+    spacing: 20,
+    runSpacing: 12,
+    children: <Widget>[
+      _metaItem(context, U.s.time, item.createdAt.formatDate("yyyy-MM-dd HH:mm:ss"), null),
+      _metaItem(context, U.s.duration, "${item.durationMs} ms", null),
+      if (item.jsonData.userName != null) _metaItem(context, U.s.userName, item.jsonData.userName!, null),
+      if (item.jsonData.userEmail != null) _metaItem(context, U.s.userEmail, item.jsonData.userEmail!, null),
+      if (item.userId != null) _traceIdItem(context, item.userId!, U.s.userId),
+      if (item.jsonData.userRoles != null) _metaItem(context, U.s.roles, item.jsonData.userRoles!, null),
+      if (item.ipAddress != null) _metaItem(context, "IP", item.ipAddress!, null),
+      if (item.jsonData.host != null) _metaItem(context, "Host", item.jsonData.host!, null),
+      _metaItem(context, U.s.requestSize, _formatBytes(item.jsonData.requestSizeBytes), null),
+      _metaItem(context, U.s.responseSize, _formatBytes(item.jsonData.responseSizeBytes), null),
+      if (item.jsonData.userAgent != null) SizedBox(width: 280, child: _metaItem(context, "User-Agent", item.jsonData.userAgent!, null)),
+      if (item.traceId != null) _traceIdItem(context, item.traceId!, U.s.traceId),
+    ],
+  );
+
+  Widget _metaItem(BuildContext context, String label, String value, VoidCallback? onTap) => SizedBox(
+    width: onTap == null ? null : double.infinity,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        UTextBodySmall(label, color: Theme.of(context).disabledColor),
+        const SizedBox(height: 2),
+        InkWell(onTap: onTap, child: UTextBodyMedium(value).ltr()),
+      ],
+    ),
+  );
+
+  Widget _traceIdItem(BuildContext context, String value, String label) => InkWell(
+    onTap: () {
+      UClipboard.set(value);
+      UToast.snackBar(message: U.s.copiedToClipboard);
+    },
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        UTextBodySmall(label, color: Theme.of(context).disabledColor),
+        const SizedBox(height: 2),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            UTextBodyMedium(value).ltr(),
+            const SizedBox(width: 4),
+            const Icon(Icons.copy_rounded, size: 14),
+          ],
+        ),
+      ],
+    ),
+  );
+
+  Widget _exceptionBlock(BuildContext context) => Container(
+    padding: const EdgeInsets.all(12),
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.error.withValues(alpha: 0.08),
+      borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: Theme.of(context).colorScheme.error.withValues(alpha: 0.3)),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        UTextBodyMedium(item.jsonData.exceptionType ?? "Exception", color: Theme.of(context).colorScheme.error, fontWeight: FontWeight.w700),
+        if (item.jsonData.exceptionMessage != null) ...<Widget>[const SizedBox(height: 4), SelectableText(item.jsonData.exceptionMessage!, style: const TextStyle(fontFamily: "monospace", fontSize: 12)).ltr()],
+      ],
+    ),
+  );
+
+  String _formatBytes(int bytes) {
+    if (bytes < 1024) return "$bytes B";
+    if (bytes < 1024 * 1024) return "${(bytes / 1024).toStringAsFixed(1)} KB";
+    return "${(bytes / (1024 * 1024)).toStringAsFixed(1)} MB";
+  }
+}
