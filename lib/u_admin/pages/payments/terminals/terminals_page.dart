@@ -106,25 +106,16 @@ class _TerminalsPageState extends State<TerminalsPage> {
     ),
   );
 
-  Widget _menu(UTerminalResponse i) => PopupMenuButton<String>(
-    icon: const Icon(Icons.more_vert),
-    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.password, size: 20), trailing: Text(U.s.getSupportPassword)),
-        onTap: () => c.supportPassword(i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.edit, size: 20), trailing: Text(U.s.edit)),
-        onTap: () => _showEditDialog(i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(
-          leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-          trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-        ),
-        onTap: () => c.delete(i),
-      ),
-    ],
+  // Operations are now composed by the app via UAdminConfig.actions (entity "terminals").
+  Widget _menu(UTerminalResponse i) => UAdminOps.menu<UTerminalResponse>(
+    context,
+    entity: "terminals",
+    item: i,
+    handlers: UAdminActionHandlers<UTerminalResponse>(
+      onEdit: _showEditDialog,
+      onDelete: c.delete,
+      extras: <String, void Function(UTerminalResponse)>{"supportPassword": c.supportPassword},
+    ),
   );
 
   void _showFilterDialog() => UNavigator.dialog(

@@ -19,7 +19,11 @@ class UAdminMerchantController extends UBaseController {
   final TextEditingController fromCreatedController = TextEditingController();
   final TextEditingController toCreatedController = TextEditingController();
 
-  Future<void> init() => read();
+  // Optionally scope the list to a single owner (used by user -> their merchants navigation).
+  Future<void> init({UUserResponse? user}) {
+    if (user != null) this.user.value = user;
+    return read();
+  }
 
   Future<void> read() async {
     state.loading();

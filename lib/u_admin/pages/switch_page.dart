@@ -17,7 +17,10 @@ abstract class PageSwitcher {
 
   static void adminUserDetail({required UUserResponse user}) => U.addOrSwitchTab("${user.firstName ?? ""} ${user.lastName ?? ""}".trim().nullIfEmpty() ?? user.userName, AdminUserDetailPage(user: user));
 
-  static void merchants() => U.addOrSwitchTab(U.s.merchantsManagement, const MerchantsPage());
+  static void merchants({UUserResponse? user}) => U.addOrSwitchTab(
+    user == null ? U.s.merchantsManagement : "${U.s.merchants} · ${user.displayName}",
+    MerchantsPage(user: user),
+  );
 
   static void terminals({UMerchantResponse? merchant}) => U.addOrSwitchTab(merchant == null ? U.s.terminalsManagement : "${U.s.terminals} · ${merchant.title}", TerminalsPage(merchant: merchant));
 

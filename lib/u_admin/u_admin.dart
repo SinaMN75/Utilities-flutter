@@ -26,20 +26,15 @@ part "controllers/u_admin_terminal_controller.dart";
 part "controllers/u_admin_user_detail_controller.dart";
 part "controllers/u_admin_users_controller.dart";
 part "controllers/u_admin_wallet_controller.dart";
-part "u_admin_list_view.dart";
-part "u_admin_responsive.dart";
-
-part "u_admin_colors.dart";
-
-part "u_admin_theme.dart";
-
-part "u_admin_config.dart";
-
-part "u_admin_modules.dart";
-
-part "u_admin_shell.dart";
-
+part "u_admin_actions.dart";
 part "u_admin_app.dart";
+part "u_admin_colors.dart";
+part "u_admin_config.dart";
+part "u_admin_list_view.dart";
+part "u_admin_modules.dart";
+part "u_admin_responsive.dart";
 part "u_admin_settings_page.dart";
+part "u_admin_shell.dart";
 part "u_admin_splash_page.dart";
+part "u_admin_theme.dart";
 part "u_admin_utils.dart";

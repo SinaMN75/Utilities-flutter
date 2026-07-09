@@ -17,6 +17,7 @@ class UAdminConfig {
     this.locales = const <Locale>[Locale("en"), Locale("fa")],
     this.defaultLocale = const Locale("fa"),
     this.chargeList = const <String>["200000", "500000", "700000", "1000000"],
+    this.actions,
   });
 
   // Branding / identity.
@@ -43,6 +44,9 @@ class UAdminConfig {
   // Ordered side-menu content (groups / sections / standalone modules).
   // A function so titles resolve against the active locale each build, and role gating is re-evaluated.
   final List<UAdminMenuNode> Function() menu;
+
+  // Per-entity row operations (cross-nav + edit/delete/...). Opt-in: unconfigured entities show none.
+  final UAdminActions? actions;
 }
 
 // Global access point to the active config + role-gating helper. Set once by [runUAdminApp].

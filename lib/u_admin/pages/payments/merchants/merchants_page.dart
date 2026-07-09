@@ -1,7 +1,10 @@
 import "package:u/utilities.dart";
 
 class MerchantsPage extends StatefulWidget {
-  const MerchantsPage({super.key});
+  const MerchantsPage({super.key, this.user});
+
+  // When set, the list is scoped to this owner's merchants (user -> their merchants).
+  final UUserResponse? user;
 
   @override
   State<MerchantsPage> createState() => _MerchantsPageState();
@@ -12,7 +15,7 @@ class _MerchantsPageState extends State<MerchantsPage> {
 
   @override
   void initState() {
-    c.init();
+    c.init(user: widget.user);
     super.initState();
   }
 
@@ -95,25 +98,15 @@ class _MerchantsPageState extends State<MerchantsPage> {
     ),
   );
 
-  Widget _menu(UMerchantResponse i) => PopupMenuButton<String>(
-    icon: const Icon(Icons.more_vert),
-    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.point_of_sale_outlined, size: 20), trailing: Text(U.s.viewTerminals)),
-        onTap: () => PageSwitcher.terminals(merchant: i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.info_outline, size: 20), trailing: Text(U.s.viewDetails)),
-        onTap: () => _showDetailDialog(i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(
-          leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-          trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-        ),
-        onTap: () => c.delete(i),
-      ),
-    ],
+  // Operations are now composed by the app via UAdminConfig.actions (entity "merchants").
+  Widget _menu(UMerchantResponse i) => UAdminOps.menu<UMerchantResponse>(
+    context,
+    entity: "merchants",
+    item: i,
+    handlers: UAdminActionHandlers<UMerchantResponse>(
+      onDelete: c.delete,
+      onDetail: _showDetailDialog,
+    ),
   );
 
   void _showDetailDialog(UMerchantResponse i) => UNavigator.dialog(

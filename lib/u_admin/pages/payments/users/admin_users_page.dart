@@ -107,21 +107,12 @@ class _AdminUsersPageState extends State<AdminUsersPage> {
     ),
   );
 
-  Widget _menu(UUserResponse i) => PopupMenuButton<String>(
-    icon: const Icon(Icons.more_vert),
-    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.visibility_outlined, size: 20), trailing: Text(U.s.viewDetails)),
-        onTap: () => PageSwitcher.adminUserDetail(user: i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(
-          leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-          trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-        ),
-        onTap: () => c.delete(i),
-      ),
-    ],
+  // Operations are now composed by the app via UAdminConfig.actions (entity "adminUsers").
+  Widget _menu(UUserResponse i) => UAdminOps.menu<UUserResponse>(
+    context,
+    entity: "adminUsers",
+    item: i,
+    handlers: UAdminActionHandlers<UUserResponse>(onDelete: c.delete),
   );
 
   void _showFilterDialog() => UNavigator.dialog(
