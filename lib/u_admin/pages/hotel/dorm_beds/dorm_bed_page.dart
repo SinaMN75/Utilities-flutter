@@ -183,7 +183,6 @@ class _DormBedPageState extends State<DormBedPage> {
                     validator: UValidators.required(message: ""),
                   ).pSymmetric(vertical: 6),
                   if (widget.room == null)
-                    // Async autocomplete replaces the bulk-loaded dropdown.
                     UTextFieldAutoCompleteAsync<UDormRoomResponse>(
                       labelBuilder: (UDormRoomResponse i) => i.dorm == null ? i.title : "${i.dorm!.title} · ${i.title}",
                       onChanged: room.call,
@@ -207,7 +206,6 @@ class _DormBedPageState extends State<DormBedPage> {
                   ).pSymmetric(vertical: 6),
                   UTextField(controller: detail, labelText: U.s.description, lines: 2).pSymmetric(vertical: 6),
                   const SizedBox(height: 20),
-                  // Submit/cancel moved into the dialog content.
                   UButtonSubmitCancel(
                     onSubmit: () => UValidators.validateForm(
                       key: formKey,

@@ -106,7 +106,6 @@ class _TerminalsPageState extends State<TerminalsPage> {
     ),
   );
 
-  // Operations are now composed by the app via UAdminConfig.actions (entity "terminals").
   Widget _menu(UTerminalResponse i) => UAdminOps.menu<UTerminalResponse>(
     context,
     entity: "terminals",

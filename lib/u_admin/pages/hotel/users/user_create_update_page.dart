@@ -1,15 +1,11 @@
 import "package:u/u_admin/controllers/u_admin_user_create_update_controller.dart";
 import "package:u/utilities.dart";
 
-/// Create / edit a user in a modal dialog (consistent with the other create
-/// dialogs across the admin app). Media handling was intentionally removed.
 class UserCreateUpdateDialog extends StatefulWidget {
   const UserCreateUpdateDialog({this.user, super.key});
 
   final UUserResponse? user;
 
-  /// Opens the dialog. Resolves when it is dismissed, so callers can refresh
-  /// their list afterwards.
   static Future<void> show({UUserResponse? user}) => UNavigator.dialog<void>(UserCreateUpdateDialog(user: user));
 
   @override
@@ -19,15 +15,12 @@ class UserCreateUpdateDialog extends StatefulWidget {
 class _UserCreateUpdateDialogState extends State<UserCreateUpdateDialog> {
   final UAdminUserCreateUpdateController c = UAdminUserCreateUpdateController();
 
-  // Only a full admin (SuperAdmin/SystemAdmin/SystemUser) is allowed to change roles/permissions -
-  // mirrors the backend guard in UserService (Update/Create/BulkCreate).
   bool get _canManageRoles => U.user.isFullAdmin();
 
   bool get _isEdit => widget.user != null;
 
   bool get _isFa => ULocalStorage.getLocale() == "fa";
 
-  // Granular permission tags currently granted to the user being edited (only meaningful for SubAdmin).
   late Set<TagUser> _selectedPermissions;
 
   @override
@@ -35,7 +28,6 @@ class _UserCreateUpdateDialogState extends State<UserCreateUpdateDialog> {
     c.init(args: UAdminUserCreateUpdateArgs(user: widget.user));
     final List<int> existingTags = widget.user?.tags ?? <int>[];
     _selectedPermissions = TagUser.permissions.where((TagUser t) => existingTags.contains(t.number)).toSet();
-    // UAdminUserCreateUpdateController only distinguishes superAdmin/guest on init - patch in subAdmin too.
     if (widget.user?.isSubAdmin() ?? false) c.role(TagUser.subAdmin);
     super.initState();
   }
@@ -210,8 +202,6 @@ class _UserCreateUpdateDialogState extends State<UserCreateUpdateDialog> {
       );
       return;
     }
-    // Use addTags/removeTags rather than a full tags replace, so unrelated tags already on
-    // the user (verification status, etc.) aren't wiped out by this form's limited fields.
     final List<int> roleTagNumbers = <int>[TagUser.superAdmin.number, TagUser.subAdmin.number, TagUser.guest.number];
     final List<int> addTags = <int>[c.gender.value.number];
     final List<int> removeTags = <int>[c.gender.value == TagUser.male ? TagUser.female.number : TagUser.male.number];

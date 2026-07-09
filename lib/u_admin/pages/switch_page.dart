@@ -69,7 +69,6 @@ abstract class PageSwitcher {
 
   static void settings() => U.addOrSwitchTab(U.s.settings, const AdminSettingsPage());
 
-  // New DB-backed API request log explorer (ApiLogService: Search/Detail/Stats).
   static void apiLogs() => U.addOrSwitchTab(U.s.apiRequestLogs, const ApiLogPage());
 
   static Future<void> userCreateUpdate({UUserResponse? user}) => UserCreateUpdateDialog.show(user: user);

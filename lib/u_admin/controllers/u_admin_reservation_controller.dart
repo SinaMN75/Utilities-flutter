@@ -1,13 +1,10 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
 
-// Local filter enum mapped to reservation status tags (plus "all").
 enum ReservationStatusFilter { all, pending, confirmed, checkedIn, checkedOut, cancelled }
 
 class UAdminReservationController extends UBaseController {
   List<UHotelReservationResponse> list = <UHotelReservationResponse>[];
 
-  // Optional page-context scope.
   UHotelResponse? hotel;
   UHotelRoomResponse? room;
 
@@ -23,7 +20,6 @@ class UAdminReservationController extends UBaseController {
     await read();
   }
 
-  // Maps the status filter enum to the matching reservation tag number.
   int? get _statusTag {
     switch (statusFilter) {
       case ReservationStatusFilter.pending:
@@ -158,7 +154,6 @@ class UAdminReservationController extends UBaseController {
     onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
   );
 
-  // The first still-unpaid invoice attached to a reservation, if any.
   UHotelInvoiceResponse? unpaidInvoiceOf(UHotelReservationResponse i) {
     final List<UHotelInvoiceResponse> invoices = i.invoices ?? <UHotelInvoiceResponse>[];
     for (final UHotelInvoiceResponse inv in invoices) {

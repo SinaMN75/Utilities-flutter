@@ -1,5 +1,3 @@
-// Swapped hardcoded Colors.* for centralized AppColors.* (theming consistency).
-// Redesigned admin settings page: appearance, language, account, data, about.
 import "package:u/utilities.dart";
 
 class AdminSettingsPage extends StatefulWidget {
@@ -10,7 +8,6 @@ class AdminSettingsPage extends StatefulWidget {
 }
 
 class _AdminSettingsPageState extends State<AdminSettingsPage> {
-  // Current theme mode (light/dark/system) and language code.
   late String _themeMode = ULocalStorage.getString("themeMode") ?? (ULocalStorage.isDarkMode() ? "dark" : "light");
   late String _locale = ULocalStorage.getLocale() ?? "fa";
 

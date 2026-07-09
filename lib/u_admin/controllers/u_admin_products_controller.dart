@@ -50,7 +50,6 @@ class UAdminProductsController extends UBaseController {
       ),
       onOk: (UResponse<List<UProductResponse>> response) {
         list = response.result!;
-        // FIX: was toInt()+1 which added an extra empty page when totalCount divided evenly; use the correct ceil-based helper.
         setTotalPages(response.totalCount);
         state.loaded();
       },

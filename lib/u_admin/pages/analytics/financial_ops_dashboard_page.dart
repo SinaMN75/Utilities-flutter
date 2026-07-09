@@ -1,7 +1,5 @@
 import "package:u/utilities.dart";
 
-// Fully-featured financial & operations dashboard: wallet, merchants, terminals,
-// transactions and users, all backed by a single aggregate endpoint.
 class FinancialOpsDashboardPage extends StatefulWidget {
   const FinancialOpsDashboardPage({super.key});
 
@@ -63,7 +61,6 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
           leading: const Icon(Icons.account_balance_wallet_rounded, color: AppColors.white, size: 34),
           trailing: UTextHeadlineSmall(U.s.financialOpsDashboard, color: AppColors.white, fontWeight: FontWeight.w800),
         ),
-        // Metrics reflow from 4-up on desktop to 2-up on phones.
         UResponsiveGrid(
           minTileWidth: 150,
           spacing: 8,

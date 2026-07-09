@@ -1,11 +1,8 @@
 import "package:u/utilities.dart";
 
 class DormRoomPage extends StatefulWidget {
-  // Take the full dorm object instead of id/title pair.
   const DormRoomPage({this.dorm, super.key});
 
-  /// When provided, the page only shows rooms for this dorm and pre-selects it
-  /// in the create dialog.
   final UDormResponse? dorm;
 
   @override
@@ -17,7 +14,6 @@ class _DormRoomPageState extends State<DormRoomPage> {
 
   @override
   void initState() {
-    // Pass the full dorm object to the controller.
     c.init(dorm: widget.dorm);
     super.initState();
   }

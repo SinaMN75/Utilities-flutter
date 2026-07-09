@@ -1,5 +1,4 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
 
 enum InvoiceStatusFilter { all, paid, unpaid, overdue }
 
@@ -17,7 +16,6 @@ class UAdminInvoiceController extends UBaseController {
     await read();
   }
 
-  // Extra filters, applied server-side (see UDormBedInvoiceReadParams).
   final TextEditingController minDueDateController = TextEditingController();
   final TextEditingController maxDueDateController = TextEditingController();
   DateTime? minDueDate;
@@ -32,7 +30,6 @@ class UAdminInvoiceController extends UBaseController {
         pageNumber: pageNumber.value,
         pageSize: pageSize,
         contractId: contract?.id,
-        // "unpaid" and "overdue" both imply isPaid:false; isOverdue narrows further to past-due unpaid invoices.
         isPaid: statusFilter == InvoiceStatusFilter.paid ? true : (statusFilter == InvoiceStatusFilter.all ? null : false),
         isOverdue: statusFilter == InvoiceStatusFilter.overdue ? true : null,
         minDueDate: minDueDate,
@@ -52,8 +49,6 @@ class UAdminInvoiceController extends UBaseController {
     if (contract != null) await _refreshSummary();
   }
 
-  // Summary totals need every invoice on this contract, independent of the current page/status filter -
-  // fetched separately so pagination and status filtering stay purely server-side and don't distort totals.
   Future<void> _refreshSummary() async {
     await UServices.hotel.readDormBedInvoice(
       p: UDormBedInvoiceReadParams(contractId: contract?.id, pageNumber: 1, pageSize: 1000),
@@ -130,7 +125,6 @@ class UAdminInvoiceController extends UBaseController {
     ),
   );
 
-  // Query-based search for the contract autocomplete (replaces bulk contractOptions()).
   Future<List<UDormBedContractResponse>> readContracts(String query) async {
     final List<UDormBedContractResponse> result = <UDormBedContractResponse>[];
     await UServices.hotel.readDormBedContract(

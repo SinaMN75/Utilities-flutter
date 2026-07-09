@@ -1,8 +1,5 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
 
-// Financial & Operations dashboard: wallet, merchants, terminals, transactions, users
-// aggregated in a single backend call (DashboardService.ReadFinancialOpsDashboard).
 class UAdminFinancialOpsDashboardController extends UBaseController {
   final Rxn<UFinancialOpsDashboardResponse> report = Rxn<UFinancialOpsDashboardResponse>();
 

@@ -1,16 +1,9 @@
 part of "u_admin.dart";
 
-// ---------------------------------------------------------------------------
-// Menu node model: every entry the side menu can render is produced from one of
-// these, so a project composes its shell by listing modules/groups/sections.
-// ---------------------------------------------------------------------------
-
 abstract class UAdminMenuNode {
-  // Expands this node into concrete side-menu entries, applying role gating.
   List<UMenuEntry> toEntries();
 }
 
-// A single feature: one menu item that opens its page as a tab. Optionally role-gated.
 class UAdminModule extends UAdminMenuNode {
   UAdminModule({required this.id, required this.title, required this.icon, required this.page, this.selectedIcon, this.tabTitle, this.roles});
 
@@ -30,7 +23,6 @@ class UAdminModule extends UAdminMenuNode {
   List<UMenuEntry> toEntries() => visible ? <UMenuEntry>[toItem()] : <UMenuEntry>[];
 }
 
-// A collapsible, titled group of modules; hidden entirely when the user can see none.
 class UAdminGroup extends UAdminMenuNode {
   UAdminGroup({required this.id, required this.title, required this.icon, required this.modules, this.header});
 
@@ -51,7 +43,6 @@ class UAdminGroup extends UAdminMenuNode {
   }
 }
 
-// A header followed by flat items (no collapsible group), hidden when nothing is visible.
 class UAdminSection extends UAdminMenuNode {
   UAdminSection({required this.header, required this.modules});
 
@@ -66,13 +57,7 @@ class UAdminSection extends UAdminMenuNode {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Catalog: ready-made modules & groups. A project cherry-picks from these (or
-// builds its own UAdminModule) to compose its menu + dashboard.
-// ---------------------------------------------------------------------------
-
 abstract class UAdminModules {
-  // ---- Dashboards ----
   static UAdminModule financialOpsDashboard({List<TagUser>? roles}) => UAdminModule(
     id: "paymentDashboard",
     title: () => "${U.s.financialOpsDashboard} ⚡",
@@ -89,7 +74,6 @@ abstract class UAdminModules {
     roles: roles,
   );
 
-  // ---- Accommodation ----
   static UAdminModule hotels({List<TagUser>? roles}) => UAdminModule(id: "hotels", title: () => U.s.hotels, icon: Icons.apartment_rounded, page: () => const HotelPage(), roles: roles);
 
   static UAdminModule hotelRooms({List<TagUser>? roles}) => UAdminModule(id: "hotel-rooms", title: () => U.s.hotelRooms, icon: Icons.meeting_room_rounded, page: () => const HotelRoomPage(), roles: roles);
@@ -140,7 +124,6 @@ abstract class UAdminModules {
     ],
   );
 
-  // ---- Users ----
   static UAdminModule users({List<TagUser>? roles}) => UAdminModule(
     id: "users",
     title: () => U.s.users,
@@ -157,7 +140,6 @@ abstract class UAdminModules {
     modules: <UAdminModule>[users(roles: roles)],
   );
 
-  // ---- Payments ----
   static UAdminModule adminUsers({List<TagUser>? roles}) => UAdminModule(id: "admin-users", title: () => U.s.users, tabTitle: () => U.s.usersManagement, icon: Icons.manage_accounts_rounded, page: () => const AdminUsersPage(), roles: roles);
 
   static UAdminModule merchants({List<TagUser>? roles}) => UAdminModule(id: "merchants", title: () => U.s.merchants, tabTitle: () => U.s.merchantsManagement, icon: Icons.storefront_rounded, page: () => const MerchantsPage(), roles: roles);
@@ -176,7 +158,6 @@ abstract class UAdminModules {
     ],
   );
 
-  // ---- Finance ----
   static UAdminModule wallet({List<TagUser>? roles}) => UAdminModule(id: "wallet", title: () => U.s.wallets, tabTitle: () => U.s.walletManagement, icon: Icons.account_balance_wallet_rounded, page: () => const WalletPage(), roles: roles);
 
   static UAdminModule transactions({List<TagUser>? roles}) => UAdminModule(id: "transactions", title: () => U.s.transactions, icon: Icons.swap_horiz_rounded, page: () => const TransactionsPage(), roles: roles);
@@ -195,7 +176,6 @@ abstract class UAdminModules {
     ],
   );
 
-  // ---- Content ----
   static UAdminModule blogs({List<TagUser>? roles}) => UAdminModule(id: "blogs", title: () => U.s.blogs, icon: Icons.article_rounded, page: () => const BlogPage(), roles: roles);
 
   static UAdminModule contents({List<TagUser>? roles}) => UAdminModule(id: "contents", title: () => U.s.content, icon: Icons.content_copy, selectedIcon: Icons.content_copy_outlined, page: () => const ContentsPage(), roles: roles);
@@ -208,7 +188,6 @@ abstract class UAdminModules {
     ],
   );
 
-  // ---- System ----
   static UAdminModule settings({List<TagUser>? roles}) => UAdminModule(id: "settings", title: () => U.s.settings, icon: Icons.settings_rounded, page: () => const AdminSettingsPage(), roles: roles);
 
   static UAdminModule apiLogs({List<TagUser>? roles}) => UAdminModule(id: "api-logs", title: () => U.s.apiRequestLogs, icon: Icons.travel_explore_rounded, page: () => const ApiLogPage(), roles: roles);

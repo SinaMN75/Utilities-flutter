@@ -12,13 +12,11 @@ class _UAdminLoginPageState extends State<UAdminLoginPage> {
 
   @override
   Widget build(BuildContext context) => UScaffold(
-    // Optional branded background; skipped when the app didn't configure one.
     decoration: UAdmin.loginBackground == null
         ? null
         : BoxDecoration(
             image: DecorationImage(image: AssetImage(UAdmin.loginBackground!), fit: BoxFit.cover),
           ),
-    // Centered, scrollable card that caps its width and fits any screen height.
     body: Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

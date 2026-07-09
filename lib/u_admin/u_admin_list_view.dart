@@ -1,5 +1,4 @@
 part of "u_admin.dart";
-// Shared list scaffold relocated from the u_admin app for cross-project reuse.
 
 class UAdminListView<T> extends StatelessWidget {
   const UAdminListView({required this.state, required this.items, required this.totalCount, required this.desktopHeader, required this.desktopRow, required this.mobileRow, required this.onRetry, required this.emptyText, super.key, this.desktopBreakpoint = 800});

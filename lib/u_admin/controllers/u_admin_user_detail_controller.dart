@@ -1,5 +1,4 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
 
 class UAdminUserDetailController {
   final Rx<PageState> state = PageState.initial.obs;
@@ -10,7 +9,6 @@ class UAdminUserDetailController {
     read();
   }
 
-  /// Reloads the user with all verification documents attached.
   Future<void> read() async {
     state.loading();
     await UServices.user.readById(
@@ -33,10 +31,8 @@ class UAdminUserDetailController {
     );
   }
 
-  /// True when every document has been verified.
   bool get isFullyVerified => user.tags.contains(TagUser.verified.number);
 
-  /// Approves every document and marks the user as verified.
   void approve() {
     ULoading.show();
     UServices.user.update(
@@ -66,7 +62,6 @@ class UAdminUserDetailController {
     );
   }
 
-  /// Rejects the documents whose reason was provided.
   void reject({required UUserUpdateParams p}) {
     ULoading.show();
     UServices.user.update(

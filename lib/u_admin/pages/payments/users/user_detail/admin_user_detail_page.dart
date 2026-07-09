@@ -1,10 +1,7 @@
-// Swapped hardcoded Colors.* for centralized AppColors.* (theming consistency).
 import "package:u/utilities.dart";
 
-/// Verification state of a single uploaded document.
 enum _DocStatus { verified, rejected, awaiting, missing }
 
-/// Describes one verifiable document so the UI can render it generically.
 class _Doc {
   _Doc({required this.title, required this.base64, required this.verifiedTag, required this.awaitingTag, required this.rejectionReason, this.isVideo = false});
 
@@ -34,8 +31,6 @@ class _AdminUserDetailPageState extends State<AdminUserDetailPage> {
     super.initState();
   }
 
-  // --- document model -------------------------------------------------------
-
   List<_Doc> get _docs => <_Doc>[
     _Doc(title: U.s.nationalCardFront, base64: c.user.nationalCardFront, verifiedTag: TagUser.nationalCardFrontVerified, awaitingTag: TagUser.nationalCardFrontAwaitingVerification, rejectionReason: c.user.jsonData.nationalCardFrontRejectionReason),
     _Doc(title: U.s.nationalCardBack, base64: c.user.nationalCardBack, verifiedTag: TagUser.nationalCardBackVerified, awaitingTag: TagUser.nationalCardBackAwaitingVerification, rejectionReason: c.user.jsonData.nationalCardBackRejectionReason),
@@ -63,7 +58,6 @@ class _AdminUserDetailPageState extends State<AdminUserDetailPage> {
       child: Obx(() {
         if (c.state.isLoading() || c.state.isInitial()) return const CircularProgressIndicator().alignAtCenter().pOnly(top: 80);
         if (c.state.isError()) return AppErrorRetry(onTap: c.read).pOnly(top: 80);
-        // Cap width so the detail view stays readable on wide desktops.
         return Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 900),
@@ -92,8 +86,6 @@ class _AdminUserDetailPageState extends State<AdminUserDetailPage> {
       }),
     ),
   );
-
-  // --- status card ----------------------------------------------------------
 
   Widget _statusCard() {
     final bool verified = c.isFullyVerified;
@@ -132,8 +124,6 @@ class _AdminUserDetailPageState extends State<AdminUserDetailPage> {
     );
   }
 
-  // --- user info ------------------------------------------------------------
-
   Widget _userInfo() => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -163,8 +153,6 @@ class _AdminUserDetailPageState extends State<AdminUserDetailPage> {
       ),
     ],
   );
-
-  // --- documents ------------------------------------------------------------
 
   Widget _documentsSection() => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -286,8 +274,6 @@ class _AdminUserDetailPageState extends State<AdminUserDetailPage> {
     );
   }
 
-  // --- shared pieces --------------------------------------------------------
-
   Widget _infoRow(IconData icon, String label, String value, Color color) => ListTile(
     leading: Container(
       padding: const EdgeInsets.all(8),
@@ -321,8 +307,6 @@ class _AdminUserDetailPageState extends State<AdminUserDetailPage> {
     border: Border.all(color: Theme.of(context).dividerColor.withValues(alpha: 0.4)),
     boxShadow: <BoxShadow>[BoxShadow(color: AppColors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2))],
   );
-
-  // --- actions --------------------------------------------------------------
 
   void _openImage(String base64) => UNavigator.push(UImageViewer(fileData: FileData(bytes: base64.toBytesFromBase64())));
 
@@ -389,7 +373,6 @@ class _AdminUserDetailPageState extends State<AdminUserDetailPage> {
   }
 }
 
-/// Small inline retry widget (kept local to avoid coupling to app-specific widgets).
 class AppErrorRetry extends StatelessWidget {
   const AppErrorRetry({required this.onTap, super.key});
 

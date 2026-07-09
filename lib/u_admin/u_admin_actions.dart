@@ -1,12 +1,5 @@
 part of "u_admin.dart";
 
-// ---------------------------------------------------------------------------
-// Configurable per-row operations. Every list row's "operations" popup (edit,
-// delete, and cross-page navigation) is composed from an app-supplied action
-// list, so a project decides exactly what an admin can do/reach from each row.
-// ---------------------------------------------------------------------------
-
-// One row operation: a navigation or CRUD action shown in the row's popup menu.
 class UAdminAction {
   UAdminAction({
     required this.id,
@@ -25,17 +18,14 @@ class UAdminAction {
   final VoidCallback onTap;
   final List<TagUser>? roles;
 
-  // Data-driven visibility (e.g. only show "pay" on unpaid invoices).
   final bool visible;
 
-  // Red styling for destructive actions like delete.
   final bool destructive;
   final Color? color;
 
   bool get allowed => visible && UAdmin.canAccess(roles);
 }
 
-// Callbacks a list page exposes so config actions can trigger its dialogs / controller.
 class UAdminActionHandlers<T> {
   UAdminActionHandlers({this.onEdit, this.onDelete, this.onDetail, this.extras});
 
@@ -43,12 +33,9 @@ class UAdminActionHandlers<T> {
   final void Function(T item)? onDelete;
   final void Function(T item)? onDetail;
 
-  // Entity-specific handlers keyed by name (e.g. "publish", "pay", "comments", "supportPassword").
   final Map<String, void Function(T item)>? extras;
 }
 
-// Passed to each entity's action builder: the row item plus convenience factories
-// that wire common CRUD actions to the page's handlers.
 class UAdminActionContext<T> {
   UAdminActionContext(this.item, this._handlers);
 
@@ -61,7 +48,6 @@ class UAdminActionContext<T> {
 
   UAdminAction detail({String Function()? label, IconData icon = Icons.info_outline, List<TagUser>? roles}) => UAdminAction(id: "detail", label: label ?? () => U.s.viewDetails, icon: icon, roles: roles, onTap: () => _handlers.onDetail?.call(item));
 
-  // A page-specific handler (publish, pay, ...). [key] must match a key in [UAdminActionHandlers.extras].
   UAdminAction extra(
     String key, {
     required String Function() label,
@@ -75,7 +61,6 @@ class UAdminActionContext<T> {
 
 typedef UAdminActionBuilder<T> = List<UAdminAction> Function(UAdminActionContext<T> ctx);
 
-// The app's per-entity action registry. Opt-in: an entity with no builder shows no operations.
 class UAdminActions {
   UAdminActions({
     UAdminActionBuilder<UUserResponse>? users,
@@ -113,7 +98,6 @@ class UAdminActions {
 
   final Map<String, Function> _builders;
 
-  // Builds the (ungated) action list for [entity]/[item]; returns empty when unconfigured.
   List<UAdminAction> build<T>(String entity, T item, UAdminActionHandlers<T> handlers) {
     final Function? builder = _builders[entity];
     if (builder == null) return <UAdminAction>[];
@@ -121,7 +105,6 @@ class UAdminActions {
   }
 }
 
-// Renders a row's "operations" popup from the configured actions (role + visibility gated).
 abstract class UAdminOps {
   static Widget menu<T>(BuildContext context, {required String entity, required T item, required UAdminActionHandlers<T> handlers}) {
     final List<UAdminAction> shown = (UAdmin.config.actions?.build<T>(entity, item, handlers) ?? <UAdminAction>[]).where((UAdminAction a) => a.allowed).toList();
@@ -142,13 +125,7 @@ abstract class UAdminOps {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Navigation catalog: ready-made cross-page links used inside action builders so
-// an admin can jump between related records ("navigate everywhere from everywhere").
-// ---------------------------------------------------------------------------
-
 abstract class UAdminLinks {
-  // ---- from a user ----
   static UAdminAction adminUserDetail(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(
     id: "user-detail",
     label: () => U.s.viewDetails,
@@ -181,7 +158,6 @@ abstract class UAdminLinks {
     onTap: () => PageSwitcher.contracts(user: u),
   );
 
-  // ---- from a merchant ----
   static UAdminAction merchantTerminals(UMerchantResponse m, {List<TagUser>? roles}) => UAdminAction(
     id: "merchant-terminals",
     label: () => U.s.viewTerminals,
@@ -190,7 +166,6 @@ abstract class UAdminLinks {
     onTap: () => PageSwitcher.terminals(merchant: m),
   );
 
-  // ---- from a hotel / room ----
   static UAdminAction hotelRooms(UHotelResponse h, {List<TagUser>? roles}) => UAdminAction(
     id: "hotel-rooms",
     label: () => U.s.rooms,
@@ -215,7 +190,6 @@ abstract class UAdminLinks {
     onTap: () => PageSwitcher.reservations(room: r),
   );
 
-  // ---- from a dorm / room / bed ----
   static UAdminAction dormRooms(UDormResponse d, {List<TagUser>? roles}) => UAdminAction(
     id: "dorm-rooms",
     label: () => U.s.room,
@@ -248,7 +222,6 @@ abstract class UAdminLinks {
     onTap: () => PageSwitcher.contracts(bed: b),
   );
 
-  // ---- from a contract ----
   static UAdminAction contractInvoices(UDormBedContractResponse c, {List<TagUser>? roles}) => UAdminAction(
     id: "contract-invoices",
     label: () => U.s.viewInvoices,

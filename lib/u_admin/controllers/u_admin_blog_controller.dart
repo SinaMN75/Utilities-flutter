@@ -1,5 +1,4 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
 
 class UAdminBlogController extends UBaseController {
   List<UBlogResponse> list = <UBlogResponse>[];

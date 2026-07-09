@@ -78,7 +78,7 @@ class _InvoicePageState extends State<InvoicePage> {
   );
 
   Widget _statusFilter() => Obx(() {
-    c.pageNumber.value; // keep reactive
+    c.pageNumber.value;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),

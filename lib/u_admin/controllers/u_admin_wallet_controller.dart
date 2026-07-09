@@ -1,26 +1,15 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
 
-// Wallet / Transactions / Accounting admin module controllers.
-
-// =============================================================================
-// Wallet management (per selected user): balance, charge, transfer, history.
-// =============================================================================
 class UAdminWalletController extends UBaseController {
-  // Currently selected user whose wallet we are managing.
   final Rxn<UUserResponse> selectedUser = Rxn<UUserResponse>();
 
-  // The selected user's wallet(s) and their recent wallet transactions.
   final RxList<UWalletResponse> wallets = <UWalletResponse>[].obs;
   final RxList<UWalletTxnResponse> txns = <UWalletTxnResponse>[].obs;
 
-  // Per-user accounting summary shown on the wallet page.
   final Rxn<UAccountingReportResponse> summary = Rxn<UAccountingReportResponse>();
 
-  // Convenience: total balance across the user's wallets.
   double get totalBalance => wallets.fold<double>(0, (double sum, UWalletResponse w) => sum + w.balance);
 
-  // Load everything for the selected user.
   void selectUser(UUserResponse? u) {
     selectedUser.value = u;
     if (u == null) {
@@ -72,7 +61,6 @@ class UAdminWalletController extends UBaseController {
     );
   }
 
-  // Admin top-up of the selected user's wallet (real money is added via gateway elsewhere).
   void charge(double amount) {
     final UUserResponse? u = selectedUser.value;
     if (u == null) return;
@@ -94,7 +82,6 @@ class UAdminWalletController extends UBaseController {
     );
   }
 
-  // Transfer funds from the selected user to another user.
   void transfer({required String receiverId, required double amount, String? detail}) {
     ULoading.show();
     UServices.wallet.transfer(
@@ -115,9 +102,6 @@ class UAdminWalletController extends UBaseController {
   }
 }
 
-// =============================================================================
-// Transactions (gateway / Txn records): global list with CRUD + filters.
-// =============================================================================
 class UAdminTransactionsController extends UBaseController {
   List<UTxnResponse> list = <UTxnResponse>[];
 
@@ -221,14 +205,10 @@ class UAdminTransactionsController extends UBaseController {
   );
 }
 
-// =============================================================================
-// Accounting dashboard: money-in vs money-out (system-wide or per-user).
-// =============================================================================
 class UAdminAccountingController {
   final Rx<PageState> state = PageState.initial.obs;
   final Rxn<UAccountingReportResponse> report = Rxn<UAccountingReportResponse>();
 
-  // Optional user filter (null = system-wide).
   final Rxn<UUserResponse> user = Rxn<UUserResponse>();
 
   DateTime? fromDate;

@@ -3,7 +3,6 @@ import "package:u/utilities.dart";
 class MerchantsPage extends StatefulWidget {
   const MerchantsPage({super.key, this.user});
 
-  // When set, the list is scoped to this owner's merchants (user -> their merchants).
   final UUserResponse? user;
 
   @override
@@ -98,7 +97,6 @@ class _MerchantsPageState extends State<MerchantsPage> {
     ),
   );
 
-  // Operations are now composed by the app via UAdminConfig.actions (entity "merchants").
   Widget _menu(UMerchantResponse i) => UAdminOps.menu<UMerchantResponse>(
     context,
     entity: "merchants",

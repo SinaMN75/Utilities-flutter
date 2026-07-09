@@ -1,6 +1,4 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
-
 
 class UAdminApiLogController extends UBaseController {
   UAdminApiLogController() {
@@ -11,7 +9,6 @@ class UAdminApiLogController extends UBaseController {
   final Rxn<UApiLogStatsResponse> stats = Rxn<UApiLogStatsResponse>();
   final Rx<String> bucket = "hour".obs;
 
-  // Server/OS metrics (CPU, memory, disks, process, GC, network) — polled periodically.
   final Rxn<UOsMetricsResponse> osMetrics = Rxn<UOsMetricsResponse>();
   final Rx<PageState> osMetricsState = PageState.initial.obs;
   Timer? _osMetricsTimer;

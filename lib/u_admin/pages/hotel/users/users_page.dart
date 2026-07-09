@@ -1,4 +1,3 @@
-// Swapped hardcoded Colors.* for centralized AppColors.* (theming consistency).
 import "package:u/utilities.dart";
 
 class UserPage extends StatefulWidget {
@@ -36,7 +35,6 @@ class _UserPageState extends State<UserPage> {
       children: <Widget>[
         buildUserList().expanded(),
         Obx(
-          // Simplified pagination: only the essential props.
           () => UNumberPagination(
             currentPage: c.pageNumber.value,
             totalPages: c.totalPages.value,
@@ -90,7 +88,6 @@ class _UserPageState extends State<UserPage> {
             builder: (BuildContext context, void Function(void Function()) setLocal) => Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                // Global search across username, name, phone, email and national code.
                 UTextField(controller: c.queryController, labelText: U.s.search, prefix: const Icon(Icons.search)).pSymmetric(vertical: 8),
                 UTextField(controller: c.userNameController, labelText: U.s.username).pSymmetric(vertical: 8),
                 UTextField(controller: c.phoneNumberController, labelText: U.s.phoneNumber, keyboardType: TextInputType.phone).pSymmetric(vertical: 8),
@@ -154,7 +151,6 @@ class _UserPageState extends State<UserPage> {
                   onChanged: (bool v) => setLocal(() => c.verifiedOnly = v),
                 ),
                 const SizedBox(height: 20),
-                // Filter/clear buttons moved into the dialog content.
                 UButtonSubmitCancel(
                   submitTitle: U.s.filter,
                   cancelTitle: U.s.clearFilters,
@@ -178,7 +174,6 @@ class _UserPageState extends State<UserPage> {
     ),
   );
 
-  // Compact role chip derived from the user's tags (admin/sub-admin/guest/user).
   Widget _roleChip(UUserResponse i) {
     final String label = i.isFullAdmin()
         ? U.s.admin
@@ -208,7 +203,6 @@ class _UserPageState extends State<UserPage> {
     radius: 8,
     child: ListTile(
       dense: true,
-      // Tap the row to open the user's connections (contracts, role, payments).
       onTap: () => PageSwitcher.hotelUserDetail(user: i),
       title: Row(
         children: <Widget>[
@@ -236,7 +230,6 @@ class _UserPageState extends State<UserPage> {
     backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       Center(child: _genderIcon(i)).expanded(),
-      // Role chip + name; tap to open the user's connections detail.
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -258,7 +251,6 @@ class _UserPageState extends State<UserPage> {
     ],
   );
 
-  // Small gender indicator used in the desktop "Gender" column.
   Widget _genderIcon(UUserResponse i) {
     final bool male = i.isMale();
     final bool female = i.isFemaleMale();
@@ -277,7 +269,6 @@ class _UserPageState extends State<UserPage> {
     );
   }
 
-  // Shared row actions: navigations (details, contracts), quick copy, edit, delete.
   List<PopupMenuEntry<String>> _menuItems(UUserResponse i) => <PopupMenuEntry<String>>[
     PopupMenuItem<String>(
       child: UIconTextHorizontal(leading: const Icon(Icons.badge_outlined, size: 20), trailing: Text(U.s.details)),

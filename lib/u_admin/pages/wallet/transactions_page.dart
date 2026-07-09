@@ -1,4 +1,3 @@
-// Transactions page: global gateway (Txn) records with list, filter, create, edit, delete.
 import "package:u/utilities.dart";
 
 class TransactionsPage extends StatefulWidget {

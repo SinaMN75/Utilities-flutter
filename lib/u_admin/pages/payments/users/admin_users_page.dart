@@ -1,4 +1,3 @@
-// Swapped hardcoded Colors.* for centralized AppColors.* (theming consistency).
 import "package:u/utilities.dart";
 
 class AdminUsersPage extends StatefulWidget {
@@ -107,7 +106,6 @@ class _AdminUsersPageState extends State<AdminUsersPage> {
     ),
   );
 
-  // Operations are now composed by the app via UAdminConfig.actions (entity "adminUsers").
   Widget _menu(UUserResponse i) => UAdminOps.menu<UUserResponse>(
     context,
     entity: "adminUsers",

@@ -1,28 +1,23 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
 
 enum ContractStatusFilter { all, active, upcoming, expired, expiringSoon }
 
 class UAdminContractController extends UBaseController {
   List<UDormBedContractResponse> list = <UDormBedContractResponse>[];
 
-  // Hold the full bed object instead of just its id.
   UDormBedResponse? bed;
 
-  // Optional page-context user: when set, the page shows only this user's contracts.
   UUserResponse? user;
 
   final TextEditingController tenantFilter = TextEditingController();
   int? typeFilter;
   ContractStatusFilter statusFilter = ContractStatusFilter.all;
 
-  // Extra filters surfaced in the filter dialog.
   UDormResponse? dormFilter;
   UDormBedResponse? bedFilter;
   DateTime? startDateFilter;
   DateTime? endDateFilter;
 
-  // init is now async and awaits the first read.
   Future<void> init({UDormBedResponse? bed, UUserResponse? user}) async {
     this.bed = bed;
     this.user = user;
@@ -104,7 +99,6 @@ class UAdminContractController extends UBaseController {
     ),
   );
 
-  // Query-based search for the tenant autocomplete (replaces bulk userOptions()).
   Future<List<UUserResponse>> readUsers(String query) async {
     final List<UUserResponse> result = <UUserResponse>[];
     await UServices.user.read(
@@ -114,8 +108,6 @@ class UAdminContractController extends UBaseController {
     return result;
   }
 
-  // Query-based search for the bed autocomplete (replaces bulk bedOptions()).
-  // When a dorm filter is selected, scope beds to that dorm.
   Future<List<UDormBedResponse>> readBeds(String query) async {
     final List<UDormBedResponse> result = <UDormBedResponse>[];
     await UServices.hotel.readDormBeds(
@@ -131,7 +123,6 @@ class UAdminContractController extends UBaseController {
     return result;
   }
 
-  // Query-based search for the dorm filter autocomplete.
   Future<List<UDormResponse>> readDorms(String query) async {
     final List<UDormResponse> result = <UDormResponse>[];
     await UServices.hotel.readDorms(

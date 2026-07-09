@@ -1,7 +1,5 @@
 part of "u_admin.dart";
 
-// The config-driven admin shell: top tab bar + collapsible side menu, both built from
-// UAdmin.config (dashboard + menu). Replaces each project's hand-written MainPage.
 class UAdminShell extends StatefulWidget {
   const UAdminShell({super.key});
 
@@ -15,7 +13,6 @@ class _UAdminShellState extends State<UAdminShell> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
-    // Seed the first tab with the configured dashboard module.
     final UAdminModule dash = UAdmin.config.dashboard;
     U.tabs.value = <TabData>[TabData(title: (dash.tabTitle ?? dash.title)(), page: dash.page())];
     U.updateTabController();
@@ -135,7 +132,6 @@ class _UAdminShellState extends State<UAdminShell> with SingleTickerProviderStat
     }
   }
 
-  // The side-menu content is produced from the config's module list (role-gated per node).
   List<UMenuEntry> _menuEntries() => UAdmin.config.menu().expand((UAdminMenuNode node) => node.toEntries()).toList();
 
   Widget _sideMenu() => USideMenu(

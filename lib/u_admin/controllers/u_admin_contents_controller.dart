@@ -1,11 +1,9 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
 
 class UAdminContentsController extends UBaseController {
   List<UContentResponse> list = <UContentResponse>[];
   final GlobalKey<FormState> filterFormKey = GlobalKey<FormState>();
 
-  // Filter (Content read supports filtering by tag only)
   final Rxn<TagContent> tagFilter = Rxn<TagContent>();
 
   Future<void> init() async {

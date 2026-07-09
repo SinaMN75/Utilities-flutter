@@ -1,7 +1,5 @@
 part of "u_admin.dart";
 
-// One-call bootstrap for a U-Admin project: stores the config, initializes the SDK, and runs
-// the app (splash -> login/shell) with theme + localization derived from the config.
 Future<void> runUAdminApp(UAdminConfig config) async {
   UAdmin.config = config;
   await initU(baseUrl: config.baseUrl, apiKey: config.apiKey);

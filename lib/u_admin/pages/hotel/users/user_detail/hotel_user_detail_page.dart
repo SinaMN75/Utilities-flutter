@@ -1,7 +1,5 @@
 import "package:u/utilities.dart";
 
-/// Read-only overview of everything a user is connected to: role & permissions,
-/// dorm-bed contracts (with bed/room/dorm + invoice summaries) and payments.
 class HotelUserDetailPage extends StatefulWidget {
   const HotelUserDetailPage({required this.user, super.key});
 
@@ -69,8 +67,6 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
     ],
   ).alignAtCenter();
 
-  // --- header ---------------------------------------------------------------
-
   Widget _header() {
     final UUserResponse u = c.user;
     final String name = u.displayName.nullIfEmpty() ?? u.userName;
@@ -134,8 +130,6 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
     ),
   );
 
-  // --- role & permissions ---------------------------------------------------
-
   Widget _roleSection() {
     final UUserResponse u = c.user;
     final List<Widget> chips = <Widget>[
@@ -160,8 +154,6 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
       ),
     );
   }
-
-  // --- contracts ------------------------------------------------------------
 
   Widget _contractsSection() => _card(
     title: U.s.contracts,
@@ -226,8 +218,6 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
     ContractLifecycle.expired => _chip(U.s.expired, AppColors.grey, Icons.history_rounded),
   };
 
-  // --- payments -------------------------------------------------------------
-
   Widget _paymentsSection() => _card(
     title: U.s.payments,
     icon: Icons.account_balance_wallet_outlined,
@@ -249,8 +239,6 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
       ],
     ),
   );
-
-  // --- shared building blocks ----------------------------------------------
 
   Widget _card({required String title, required IconData icon, required Widget child, Widget? trailing}) => UContainer(
     padding: const EdgeInsets.all(18),

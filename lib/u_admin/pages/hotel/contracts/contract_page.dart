@@ -1,13 +1,10 @@
-// Swapped hardcoded Colors.* for centralized AppColors.* (theming consistency).
 import "package:u/utilities.dart";
 
 class ContractPage extends StatefulWidget {
-  // Take the full bed object instead of id/title pair.
   const ContractPage({this.bed, this.user, super.key});
 
   final UDormBedResponse? bed;
 
-  /// When provided (without a bed), the page shows only this user's contracts.
   final UUserResponse? user;
 
   @override
@@ -26,7 +23,6 @@ class _ContractPageState extends State<ContractPage> {
 
   @override
   void initState() {
-    // Pass the full bed object to the controller.
     c.init(bed: widget.bed, user: widget.user);
     super.initState();
   }
@@ -189,7 +185,6 @@ class _ContractPageState extends State<ContractPage> {
   );
 
   void _showFilterDialog() {
-    // Local date-picker text controllers seeded from the controller's state.
     final TextEditingController startCtrl = TextEditingController(text: c.startDateFilter?.toJalaliDate());
     final TextEditingController endCtrl = TextEditingController(text: c.endDateFilter?.toJalaliDate());
 
@@ -202,19 +197,16 @@ class _ContractPageState extends State<ContractPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 UTextField(controller: c.tenantFilter, labelText: U.s.tenant).pSymmetric(vertical: 6),
-                // Dorm scope.
                 UTextFieldAutoCompleteAsync<UDormResponse>(
                   labelBuilder: (UDormResponse i) => i.title,
                   onChanged: (UDormResponse? i) => setLocal(() {
                     c.dormFilter = i;
-                    // A dorm change invalidates a previously chosen bed.
                     c.bedFilter = null;
                   }),
                   selectedItem: c.dormFilter,
                   fetchData: c.readDorms,
                   hintText: U.s.dorm,
                 ).pSymmetric(vertical: 6),
-                // Bed scope (respects the selected dorm).
                 UTextFieldAutoCompleteAsync<UDormBedResponse>(
                   labelBuilder: (UDormBedResponse i) => i.room?.dorm == null ? i.title : "${i.room!.dorm!.title} · ${i.title}",
                   onChanged: (UDormBedResponse? i) => setLocal(() => c.bedFilter = i),
@@ -289,7 +281,6 @@ class _ContractPageState extends State<ContractPage> {
     final TextEditingController startCtrl = TextEditingController(text: p == null ? null : p.startDate.toJalaliDate());
     final TextEditingController endCtrl = TextEditingController(text: p == null ? null : p.endDate.toJalaliDate());
 
-    // Hold the selected bed/tenant as objects for the async autocompletes.
     final Rxn<UDormBedResponse> bed = Rxn<UDormBedResponse>();
     final Rxn<UUserResponse> user = Rxn<UUserResponse>();
     DateTime? startDate = p?.startDate;
@@ -310,7 +301,6 @@ class _ContractPageState extends State<ContractPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (!isEdit && widget.bed == null)
-                    // Async autocomplete replaces the bulk-loaded bed dropdown.
                     UTextFieldAutoCompleteAsync<UDormBedResponse>(
                       labelBuilder: (UDormBedResponse i) => "${i.title} · ${i.monthlyRent.rial()}",
                       onChanged: bed.call,
@@ -319,7 +309,6 @@ class _ContractPageState extends State<ContractPage> {
                       hintText: U.s.bed,
                     ).pSymmetric(vertical: 6),
                   if (!isEdit)
-                    // Async autocomplete replaces the bulk-loaded tenant dropdown.
                     UTextFieldAutoCompleteAsync<UUserResponse>(
                       labelBuilder: (UUserResponse i) => i.phoneNumber == null ? i.displayName : "${i.displayName} · ${i.phoneNumber}",
                       onChanged: user.call,
@@ -361,7 +350,6 @@ class _ContractPageState extends State<ContractPage> {
                   if (!isEdit) ...<Widget>[UTextField(controller: penalty, labelText: U.s.dailyPenalty, keyboardType: TextInputType.number).pSymmetric(vertical: 6), SwitchListTile(contentPadding: EdgeInsets.zero, title: Text(U.s.singleInvoice), value: singleInvoice, onChanged: (bool v) => setLocal(() => singleInvoice = v))],
                   UTextField(controller: description, labelText: U.s.description, lines: 2).pSymmetric(vertical: 6),
                   const SizedBox(height: 20),
-                  // Submit/cancel moved into the dialog content.
                   UButtonSubmitCancel(
                     onSubmit: () => UValidators.validateForm(
                       key: formKey,
@@ -412,6 +400,5 @@ class _ContractPageState extends State<ContractPage> {
     );
   }
 
-  /// A throwaway contract used only so [_typeOf] can run with no tags selected.
   UDormBedContractResponse _empty() => UDormBedContractResponse(isActive: false, id: "", createdAt: DateTime.now(), updatedAt: DateTime.now(), jsonData: UContractJsonData(), tags: <int>[], startDate: DateTime.now(), endDate: DateTime.now(), deposit: 0, rent: 0, userId: "", bedId: "", adminUserIds: <String>[]);
 }

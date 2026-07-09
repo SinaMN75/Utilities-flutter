@@ -295,7 +295,6 @@ class _HotelPageState extends State<HotelPage> {
   }
 }
 
-/// Small shared helper so both the Hotel and Dorm admin pickers search/resolve users the same way.
 class HotelAdminSearchHelper {
   static Future<List<UUserResponse>> searchUsers(String query) async {
     final Completer<List<UUserResponse>> completer = Completer<List<UUserResponse>>();

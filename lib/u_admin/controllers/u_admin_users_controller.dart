@@ -11,7 +11,6 @@ class UAdminUsersController extends UBaseController {
 
   TagUser? selectedTag;
 
-  // Extra filters surfaced in the filter dialog.
   TagUser? selectedGender;
   bool verifiedOnly = false;
 
@@ -33,7 +32,6 @@ class UAdminUsersController extends UBaseController {
   Future<void> read() async {
     state.loading();
 
-    // Tag filters are AND-ed on the backend, so role + gender + verified combine.
     final List<int> tagFilters = <int>[
       if (selectedTag != null) selectedTag!.number,
       if (selectedGender != null) selectedGender!.number,
@@ -58,7 +56,6 @@ class UAdminUsersController extends UBaseController {
       ),
       onOk: (UResponse<List<UUserResponse>> response) {
         list(response.result);
-        // FIX: was toInt()+1 which added an extra empty page when totalCount divided evenly; use the correct ceil-based helper.
         setTotalPages(response.totalCount);
         state.loaded();
       },

@@ -1,6 +1,5 @@
 part of "u_admin.dart";
 
-// Shared color palette relocated from the u_admin app so pages can live in the package.
 abstract class AppColors {
   static const Color primary = Colors.blue;
   static const Color white = Colors.white;

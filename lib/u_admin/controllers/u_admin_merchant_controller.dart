@@ -1,5 +1,4 @@
 part of "../u_admin.dart";
-// Business logic relocated from the u_admin app so it can be shared across projects.
 
 class UAdminMerchantController extends UBaseController {
   List<UMerchantResponse> list = <UMerchantResponse>[];
@@ -19,7 +18,6 @@ class UAdminMerchantController extends UBaseController {
   final TextEditingController fromCreatedController = TextEditingController();
   final TextEditingController toCreatedController = TextEditingController();
 
-  // Optionally scope the list to a single owner (used by user -> their merchants navigation).
   Future<void> init({UUserResponse? user}) {
     if (user != null) this.user.value = user;
     return read();

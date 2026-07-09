@@ -53,7 +53,6 @@ class _AccountingPageState extends State<AccountingPage> {
     return to.isEmpty ? from : "$from → $to";
   }
 
-  // Responsive grid of summary cards (no manual width math; fixed-width cards wrap automatically).
   Widget _statCards(UAccountingReportResponse r) => Wrap(
     spacing: 12,
     runSpacing: 12,

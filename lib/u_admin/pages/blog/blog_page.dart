@@ -224,7 +224,6 @@ class _BlogPageState extends State<BlogPage> {
                     ).pSymmetric(vertical: 6),
                     UTextField(controller: subtitle, labelText: U.s.subtitle).pSymmetric(vertical: 6),
                     UTextField(controller: slug, labelText: U.s.slug).pSymmetric(vertical: 6),
-                    // Rich HTML content: opens the full-screen block editor and stores the exported HTML.
                     Align(
                       alignment: AlignmentDirectional.centerStart,
                       child: UTextBodyMedium(U.s.content, color: Theme.of(context).colorScheme.onSurfaceVariant),
