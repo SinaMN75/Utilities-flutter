@@ -1,9 +1,13 @@
 import "package:u/utilities.dart";
 
 class MerchantsPage extends StatefulWidget {
-  const MerchantsPage({super.key, this.user});
+  const MerchantsPage({super.key, this.user, this.actions});
 
+  // When set, the list is scoped to this owner's merchants (user -> their merchants).
   final UUserResponse? user;
+
+  // Optional per-row operations override; defaults to the page's built-in set.
+  final UAdminActionBuilder<UMerchantResponse>? actions;
 
   @override
   State<MerchantsPage> createState() => _MerchantsPageState();
@@ -97,14 +101,17 @@ class _MerchantsPageState extends State<MerchantsPage> {
     ),
   );
 
+  // Built-in operations; the app can override them via MerchantsPage(actions: ...).
   Widget _menu(UMerchantResponse i) => UAdminOps.menu<UMerchantResponse>(
     context,
-    entity: "merchants",
     item: i,
-    handlers: UAdminActionHandlers<UMerchantResponse>(
-      onDelete: c.delete,
-      onDetail: _showDetailDialog,
-    ),
+    actions: widget.actions,
+    handlers: UAdminActionHandlers<UMerchantResponse>(onDelete: c.delete, onDetail: _showDetailDialog),
+    fallback: (UAdminActionContext<UMerchantResponse> ctx) => <UAdminAction>[
+      UAdminLinks.merchantTerminals(ctx.item),
+      ctx.detail(),
+      ctx.delete(),
+    ],
   );
 
   void _showDetailDialog(UMerchantResponse i) => UNavigator.dialog(

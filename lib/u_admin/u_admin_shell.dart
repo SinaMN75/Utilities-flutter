@@ -8,13 +8,13 @@ class UAdminShell extends StatefulWidget {
 }
 
 class _UAdminShellState extends State<UAdminShell> with SingleTickerProviderStateMixin {
-  late final USideMenuController _menu = USideMenuController(selectedId: UAdmin.config.dashboard.id);
+  late final UAdminModule _dashboard = UAdmin.config.dashboard();
+  late final USideMenuController _menu = USideMenuController(selectedId: _dashboard.resolvedId);
 
   @override
   void initState() {
     super.initState();
-    final UAdminModule dash = UAdmin.config.dashboard;
-    U.tabs.value = <TabData>[TabData(title: (dash.tabTitle ?? dash.title)(), page: dash.page())];
+    U.tabs.value = <TabData>[TabData(title: _dashboard.tabTitle ?? _dashboard.title, page: _dashboard.page())];
     U.updateTabController();
   }
 
@@ -132,7 +132,7 @@ class _UAdminShellState extends State<UAdminShell> with SingleTickerProviderStat
     }
   }
 
-  List<UMenuEntry> _menuEntries() => UAdmin.config.menu().expand((UAdminMenuNode node) => node.toEntries()).toList();
+  List<UMenuEntry> _menuEntries() => UAdmin.config.menu().expand((UAdminGroup group) => group.toEntries()).toList();
 
   Widget _sideMenu() => USideMenu(
     controller: _menu,

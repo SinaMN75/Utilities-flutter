@@ -1,9 +1,12 @@
 import "package:u/utilities.dart";
 
 class TerminalsPage extends StatefulWidget {
-  const TerminalsPage({super.key, this.merchant});
+  const TerminalsPage({super.key, this.merchant, this.actions});
 
   final UMerchantResponse? merchant;
+
+  // Optional per-row operations override; defaults to the page's built-in set.
+  final UAdminActionBuilder<UTerminalResponse>? actions;
 
   @override
   State<TerminalsPage> createState() => _TerminalsPageState();
@@ -106,15 +109,21 @@ class _TerminalsPageState extends State<TerminalsPage> {
     ),
   );
 
+  // Built-in operations; overridable via TerminalsPage(actions: ...).
   Widget _menu(UTerminalResponse i) => UAdminOps.menu<UTerminalResponse>(
     context,
-    entity: "terminals",
     item: i,
+    actions: widget.actions,
     handlers: UAdminActionHandlers<UTerminalResponse>(
       onEdit: _showEditDialog,
       onDelete: c.delete,
       extras: <String, void Function(UTerminalResponse)>{"supportPassword": c.supportPassword},
     ),
+    fallback: (UAdminActionContext<UTerminalResponse> ctx) => <UAdminAction>[
+      ctx.extra("supportPassword", label: U.s.getSupportPassword, icon: Icons.password),
+      ctx.edit(),
+      ctx.delete(),
+    ],
   );
 
   void _showFilterDialog() => UNavigator.dialog(

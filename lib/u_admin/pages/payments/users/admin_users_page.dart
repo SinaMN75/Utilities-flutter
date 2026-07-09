@@ -1,7 +1,10 @@
 import "package:u/utilities.dart";
 
 class AdminUsersPage extends StatefulWidget {
-  const AdminUsersPage({super.key});
+  const AdminUsersPage({super.key, this.actions});
+
+  // Optional per-row operations override; defaults to the page's built-in set.
+  final UAdminActionBuilder<UUserResponse>? actions;
 
   @override
   State<AdminUsersPage> createState() => _AdminUsersPageState();
@@ -106,11 +109,18 @@ class _AdminUsersPageState extends State<AdminUsersPage> {
     ),
   );
 
+  // Built-in operations (incl. navigate to a user's merchants / contracts); overridable via AdminUsersPage(actions: ...).
   Widget _menu(UUserResponse i) => UAdminOps.menu<UUserResponse>(
     context,
-    entity: "adminUsers",
     item: i,
+    actions: widget.actions,
     handlers: UAdminActionHandlers<UUserResponse>(onDelete: c.delete),
+    fallback: (UAdminActionContext<UUserResponse> ctx) => <UAdminAction>[
+      UAdminLinks.adminUserDetail(ctx.item),
+      UAdminLinks.userMerchants(ctx.item),
+      UAdminLinks.userContracts(ctx.item),
+      ctx.delete(roles: <TagUser>[TagUser.permissionDeleteUsers]),
+    ],
   );
 
   void _showFilterDialog() => UNavigator.dialog(

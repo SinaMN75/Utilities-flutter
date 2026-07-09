@@ -14,7 +14,6 @@ class UAdminConfig {
     this.locales = const <Locale>[Locale("en"), Locale("fa")],
     this.defaultLocale = const Locale("fa"),
     this.chargeList = const <String>["200000", "500000", "700000", "1000000"],
-    this.actions,
   });
 
   final String appName;
@@ -31,11 +30,11 @@ class UAdminConfig {
 
   final List<String> chargeList;
 
-  final UAdminModule dashboard;
+  // The initial dashboard tab. Lazy so its title resolves after localization is ready.
+  final UAdminModule Function() dashboard;
 
-  final List<UAdminMenuNode> Function() menu;
-
-  final UAdminActions? actions;
+  // The side menu — a list of groups (the only top-level menu node).
+  final List<UAdminGroup> Function() menu;
 }
 
 abstract class UAdmin {
