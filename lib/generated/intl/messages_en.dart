@@ -61,7 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "Are you sure to Delete this User?",
     ),
-    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments": MessageLookupByLibrary.simpleMessage(
+    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments":
+    MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to approve this user with all of their documents?",
     ),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
@@ -503,7 +504,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "occupied": MessageLookupByLibrary.simpleMessage("Occupied"),
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "oldestFirst": MessageLookupByLibrary.simpleMessage("Oldest First"),
-    "oneTerminalPerLineSerialSimnumberSimserialImei": MessageLookupByLibrary.simpleMessage(
+    "oneTerminalPerLineSerialSimnumberSimserialImei":
+    MessageLookupByLibrary.simpleMessage(
       "One terminal per line: serial,simNumber,simSerial,imei",
     ),
     "onlyErrors": MessageLookupByLibrary.simpleMessage("Only Errors"),
@@ -546,10 +548,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissions": MessageLookupByLibrary.simpleMessage("Permissions"),
     "persian": MessageLookupByLibrary.simpleMessage("Persian"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
-    "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
+    "pleaseCreateACategoryBeforeCreatingAProduct":
+    MessageLookupByLibrary.simpleMessage(
       "Please Create a Category before creating a Product.",
     ),
-    "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
+    "pleaseCreateAProductBeforeSigningAContract":
+    MessageLookupByLibrary.simpleMessage(
       "Please Create a Product before Signing a Contract",
     ),
     "pleaseSelectADorm": MessageLookupByLibrary.simpleMessage(
@@ -583,7 +587,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "published": MessageLookupByLibrary.simpleMessage("Published"),
     "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("Question Title"),
-    "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
+    "questionTitleAndAtLeastOneOptionAreRequired":
+    MessageLookupByLibrary.simpleMessage(
       "Question title and at least one option are required",
     ),
     "questionnaire": MessageLookupByLibrary.simpleMessage("Questionnaire"),
