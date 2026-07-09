@@ -681,7 +681,7 @@ class UHotelRoomCreateParams {
     hotelId: json["hotelId"],
     roomNumber: json["roomNumber"],
     quantity: json["quantity"] == null ? 1 : (json["quantity"] as num).toInt(),
-    isAvailable: json["isAvailable"] == null ? true : json["isAvailable"] as bool,
+    isAvailable: json["isAvailable"] == null || json["isAvailable"] as bool,
     description: json["description"],
     bedType: json["bedType"],
     sizeSquareMeters: json["sizeSquareMeters"] == null ? null : (json["sizeSquareMeters"] as num).toDouble(),

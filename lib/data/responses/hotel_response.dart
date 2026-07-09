@@ -282,7 +282,7 @@ class UHotelRoomResponse {
     pricePerNight: (json["pricePerNight"] as num).toDouble(),
     roomNumber: json["roomNumber"],
     quantity: json["quantity"] == null ? 1 : (json["quantity"] as num).toInt(),
-    isAvailable: json["isAvailable"] == null ? true : json["isAvailable"] as bool,
+    isAvailable: json["isAvailable"] == null || json["isAvailable"] as bool,
     hotelId: json["hotelId"] as String,
     hotel: json["hotel"] == null ? null : UHotelResponse.fromMap(json["hotel"]),
     reservations: json["reservations"] == null ? <UHotelReservationResponse>[] : List<UHotelReservationResponse>.from(json["reservations"]!.map((dynamic x) => UHotelReservationResponse.fromMap(x))),
@@ -909,7 +909,7 @@ class UHotelReservationResponse {
     room: json["room"] == null ? null : UHotelRoomResponse.fromMap(json["room"]),
     hotelId: json["hotelId"] as String,
     hotel: json["hotel"] == null ? null : UHotelResponse.fromMap(json["hotel"]),
-    isActive: json["isActive"] == null ? false : json["isActive"] as bool,
+    isActive: !(json["isActive"] == null) && json["isActive"] as bool,
     invoices: json["invoices"] == null ? <UHotelInvoiceResponse>[] : List<UHotelInvoiceResponse>.from(json["invoices"]!.map((dynamic x) => UHotelInvoiceResponse.fromMap(x))),
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
