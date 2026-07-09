@@ -16,8 +16,8 @@ class UAdminSplashController extends UBaseController {
           U.user = user.result!;
           onFinish();
         },
-        onError: (final UEmptyResponse r) => onError,
-        onException: (String e) => onError,
+        onError: (final UEmptyResponse r) => onError.call,
+        onException: (String e) => onError.call,
       );
     }
   }
