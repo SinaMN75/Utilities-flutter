@@ -2,7 +2,6 @@ import "package:u/utilities.dart";
 
 part "controllers/u_admin_api_log_controller.dart";
 part "controllers/u_admin_base_controller.dart";
-// Controllers relocated from the u_admin app so business logic is shared across projects.
 part "controllers/u_admin_blog_controller.dart";
 part "controllers/u_admin_category_controller.dart";
 part "controllers/u_admin_contents_controller.dart";
@@ -27,6 +26,8 @@ part "controllers/u_admin_terminal_controller.dart";
 part "controllers/u_admin_user_detail_controller.dart";
 part "controllers/u_admin_users_controller.dart";
 part "controllers/u_admin_wallet_controller.dart";
+part "u_admin_list_view.dart";
+part "u_admin_responsive.dart";
 part "u_admin_settings_page.dart";
 part "u_admin_splash_page.dart";
 part "u_admin_utils.dart";

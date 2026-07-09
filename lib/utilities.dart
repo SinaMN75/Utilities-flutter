@@ -83,7 +83,6 @@ export "generated/l10n.dart";
 export "init.dart";
 export "models//u_country_city.dart";
 export "models/u_business_category.dart";
-export "u_admin/u_admin.dart";
 export "utils/extensions/date_extension.dart";
 export "utils/extensions/iterable_extension.dart";
 export "utils/extensions/map_extension.dart";

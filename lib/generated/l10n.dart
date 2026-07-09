@@ -53,6 +53,276 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Reservations`
+  String get reservations {
+    return Intl.message(
+      'Reservations',
+      name: 'reservations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reservation`
+  String get reservation {
+    return Intl.message('Reservation', name: 'reservation', desc: '', args: []);
+  }
+
+  /// `Create Reservation`
+  String get createReservation {
+    return Intl.message(
+      'Create Reservation',
+      name: 'createReservation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Reservation`
+  String get editReservation {
+    return Intl.message(
+      'Edit Reservation',
+      name: 'editReservation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter Reservations`
+  String get filterReservations {
+    return Intl.message(
+      'Filter Reservations',
+      name: 'filterReservations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No reservations found`
+  String get noReservationsFound {
+    return Intl.message(
+      'No reservations found',
+      name: 'noReservationsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check In`
+  String get checkIn {
+    return Intl.message('Check In', name: 'checkIn', desc: '', args: []);
+  }
+
+  /// `Check Out`
+  String get checkOut {
+    return Intl.message('Check Out', name: 'checkOut', desc: '', args: []);
+  }
+
+  /// `Check-in Date`
+  String get checkInDate {
+    return Intl.message(
+      'Check-in Date',
+      name: 'checkInDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check-out Date`
+  String get checkOutDate {
+    return Intl.message(
+      'Check-out Date',
+      name: 'checkOutDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guests`
+  String get guests {
+    return Intl.message('Guests', name: 'guests', desc: '', args: []);
+  }
+
+  /// `Number of Guests`
+  String get guestCount {
+    return Intl.message(
+      'Number of Guests',
+      name: 'guestCount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nights`
+  String get nights {
+    return Intl.message('Nights', name: 'nights', desc: '', args: []);
+  }
+
+  /// `Total Price`
+  String get totalPrice {
+    return Intl.message('Total Price', name: 'totalPrice', desc: '', args: []);
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
+  }
+
+  /// `Pending`
+  String get pending {
+    return Intl.message('Pending', name: 'pending', desc: '', args: []);
+  }
+
+  /// `Confirmed`
+  String get confirmed {
+    return Intl.message('Confirmed', name: 'confirmed', desc: '', args: []);
+  }
+
+  /// `Checked In`
+  String get checkedIn {
+    return Intl.message('Checked In', name: 'checkedIn', desc: '', args: []);
+  }
+
+  /// `Checked Out`
+  String get checkedOut {
+    return Intl.message('Checked Out', name: 'checkedOut', desc: '', args: []);
+  }
+
+  /// `Cancelled`
+  String get cancelled {
+    return Intl.message('Cancelled', name: 'cancelled', desc: '', args: []);
+  }
+
+  /// `No Show`
+  String get noShow {
+    return Intl.message('No Show', name: 'noShow', desc: '', args: []);
+  }
+
+  /// `Please select a room`
+  String get selectARoom {
+    return Intl.message(
+      'Please select a room',
+      name: 'selectARoom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Guest Name`
+  String get guestName {
+    return Intl.message('Guest Name', name: 'guestName', desc: '', args: []);
+  }
+
+  /// `Guest Phone`
+  String get guestPhone {
+    return Intl.message('Guest Phone', name: 'guestPhone', desc: '', args: []);
+  }
+
+  /// `Notes`
+  String get notes {
+    return Intl.message('Notes', name: 'notes', desc: '', args: []);
+  }
+
+  /// `Price per Night`
+  String get pricePerNight {
+    return Intl.message(
+      'Price per Night',
+      name: 'pricePerNight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stars`
+  String get stars {
+    return Intl.message('Stars', name: 'stars', desc: '', args: []);
+  }
+
+  /// `Amenities`
+  String get amenities {
+    return Intl.message('Amenities', name: 'amenities', desc: '', args: []);
+  }
+
+  /// `Policies`
+  String get policies {
+    return Intl.message('Policies', name: 'policies', desc: '', args: []);
+  }
+
+  /// `Check-in Time`
+  String get checkInTime {
+    return Intl.message(
+      'Check-in Time',
+      name: 'checkInTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check-out Time`
+  String get checkOutTime {
+    return Intl.message(
+      'Check-out Time',
+      name: 'checkOutTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bed Type`
+  String get bedType {
+    return Intl.message('Bed Type', name: 'bedType', desc: '', args: []);
+  }
+
+  /// `Room Number`
+  String get roomNumber {
+    return Intl.message('Room Number', name: 'roomNumber', desc: '', args: []);
+  }
+
+  /// `Floor`
+  String get floor {
+    return Intl.message('Floor', name: 'floor', desc: '', args: []);
+  }
+
+  /// `Size (m2)`
+  String get size {
+    return Intl.message('Size (m2)', name: 'size', desc: '', args: []);
+  }
+
+  /// `Max Occupancy`
+  String get maxOccupancy {
+    return Intl.message(
+      'Max Occupancy',
+      name: 'maxOccupancy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantity`
+  String get quantity {
+    return Intl.message('Quantity', name: 'quantity', desc: '', args: []);
+  }
+
+  /// `Out of Service`
+  String get outOfService {
+    return Intl.message(
+      'Out of Service',
+      name: 'outOfService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay`
+  String get pay {
+    return Intl.message('Pay', name: 'pay', desc: '', args: []);
+  }
+
+  /// `Price`
+  String get price {
+    return Intl.message('Price', name: 'price', desc: '', args: []);
+  }
+
   /// `Finance`
   String get finance {
     return Intl.message('Finance', name: 'finance', desc: '', args: []);
@@ -3943,164 +4213,334 @@ class S {
     );
   }
 
-  String get reservations {
-    return Intl.message('Reservations', name: 'reservations', desc: '', args: []);
+  /// `API Request Logs`
+  String get apiRequestLogs {
+    return Intl.message(
+      'API Request Logs',
+      name: 'apiRequestLogs',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get reservation {
-    return Intl.message('Reservation', name: 'reservation', desc: '', args: []);
+  /// `Not assigned`
+  String get notAssigned {
+    return Intl.message(
+      'Not assigned',
+      name: 'notAssigned',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get createReservation {
-    return Intl.message('Create Reservation', name: 'createReservation', desc: '', args: []);
+  /// `Province`
+  String get province {
+    return Intl.message('Province', name: 'province', desc: '', args: []);
   }
 
-  String get editReservation {
-    return Intl.message('Edit Reservation', name: 'editReservation', desc: '', args: []);
+  /// `Count`
+  String get count {
+    return Intl.message('Count', name: 'count', desc: '', args: []);
   }
 
-  String get filterReservations {
-    return Intl.message('Filter Reservations', name: 'filterReservations', desc: '', args: []);
+  /// `Time`
+  String get time {
+    return Intl.message('Time', name: 'time', desc: '', args: []);
   }
 
-  String get noReservationsFound {
-    return Intl.message('No reservations found', name: 'noReservationsFound', desc: '', args: []);
+  /// `Method`
+  String get method {
+    return Intl.message('Method', name: 'method', desc: '', args: []);
   }
 
-  String get checkIn {
-    return Intl.message('Check In', name: 'checkIn', desc: '', args: []);
+  /// `Path`
+  String get path {
+    return Intl.message('Path', name: 'path', desc: '', args: []);
   }
 
-  String get checkOut {
-    return Intl.message('Check Out', name: 'checkOut', desc: '', args: []);
+  /// `Duration`
+  String get duration {
+    return Intl.message('Duration', name: 'duration', desc: '', args: []);
   }
 
-  String get checkInDate {
-    return Intl.message('Check-in Date', name: 'checkInDate', desc: '', args: []);
+  /// `Success`
+  String get success {
+    return Intl.message('Success', name: 'success', desc: '', args: []);
   }
 
-  String get checkOutDate {
-    return Intl.message('Check-out Date', name: 'checkOutDate', desc: '', args: []);
+  /// `Errors`
+  String get errors {
+    return Intl.message('Errors', name: 'errors', desc: '', args: []);
   }
 
-  String get guests {
-    return Intl.message('Guests', name: 'guests', desc: '', args: []);
+  /// `Minute`
+  String get minute {
+    return Intl.message('Minute', name: 'minute', desc: '', args: []);
   }
 
-  String get guestCount {
-    return Intl.message('Number of Guests', name: 'guestCount', desc: '', args: []);
+  /// `Hour`
+  String get hour {
+    return Intl.message('Hour', name: 'hour', desc: '', args: []);
   }
 
-  String get nights {
-    return Intl.message('Nights', name: 'nights', desc: '', args: []);
+  /// `Day`
+  String get day {
+    return Intl.message('Day', name: 'day', desc: '', args: []);
   }
 
-  String get totalPrice {
-    return Intl.message('Total Price', name: 'totalPrice', desc: '', args: []);
+  /// `Roles`
+  String get roles {
+    return Intl.message('Roles', name: 'roles', desc: '', args: []);
   }
 
-  String get confirm {
-    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
+  /// `IP Address`
+  String get ipAddress {
+    return Intl.message('IP Address', name: 'ipAddress', desc: '', args: []);
   }
 
-  String get pending {
-    return Intl.message('Pending', name: 'pending', desc: '', args: []);
+  /// `User Email`
+  String get userEmail {
+    return Intl.message('User Email', name: 'userEmail', desc: '', args: []);
   }
 
-  String get confirmed {
-    return Intl.message('Confirmed', name: 'confirmed', desc: '', args: []);
+  /// `Username`
+  String get userName {
+    return Intl.message('Username', name: 'userName', desc: '', args: []);
   }
 
-  String get checkedIn {
-    return Intl.message('Checked In', name: 'checkedIn', desc: '', args: []);
+  /// `Close`
+  String get close {
+    return Intl.message('Close', name: 'close', desc: '', args: []);
   }
 
-  String get checkedOut {
-    return Intl.message('Checked Out', name: 'checkedOut', desc: '', args: []);
+  /// `CSV Export`
+  String get csvExport {
+    return Intl.message('CSV Export', name: 'csvExport', desc: '', args: []);
   }
 
-  String get cancelled {
-    return Intl.message('Cancelled', name: 'cancelled', desc: '', args: []);
+  /// `Trace Id`
+  String get traceId {
+    return Intl.message('Trace Id', name: 'traceId', desc: '', args: []);
   }
 
-  String get noShow {
-    return Intl.message('No Show', name: 'noShow', desc: '', args: []);
+  /// `Admins`
+  String get admins {
+    return Intl.message('Admins', name: 'admins', desc: '', args: []);
   }
 
-  String get selectARoom {
-    return Intl.message('Please select a room', name: 'selectARoom', desc: '', args: []);
+  /// `Request Body`
+  String get requestBody {
+    return Intl.message(
+      'Request Body',
+      name: 'requestBody',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get guestName {
-    return Intl.message('Guest Name', name: 'guestName', desc: '', args: []);
+  /// `Response Body`
+  String get responseBody {
+    return Intl.message(
+      'Response Body',
+      name: 'responseBody',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get guestPhone {
-    return Intl.message('Guest Phone', name: 'guestPhone', desc: '', args: []);
+  /// `Request Headers`
+  String get requestHeaders {
+    return Intl.message(
+      'Request Headers',
+      name: 'requestHeaders',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get notes {
-    return Intl.message('Notes', name: 'notes', desc: '', args: []);
+  /// `Response Headers`
+  String get responseHeaders {
+    return Intl.message(
+      'Response Headers',
+      name: 'responseHeaders',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get pricePerNight {
-    return Intl.message('Price per Night', name: 'pricePerNight', desc: '', args: []);
+  /// `Total Requests`
+  String get totalRequests {
+    return Intl.message(
+      'Total Requests',
+      name: 'totalRequests',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get stars {
-    return Intl.message('Stars', name: 'stars', desc: '', args: []);
+  /// `Average Duration`
+  String get averageDuration {
+    return Intl.message(
+      'Average Duration',
+      name: 'averageDuration',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get amenities {
-    return Intl.message('Amenities', name: 'amenities', desc: '', args: []);
+  /// `Requests & Response Duration Trend`
+  String get requestsAndResponseDurationTrend {
+    return Intl.message(
+      'Requests & Response Duration Trend',
+      name: 'requestsAndResponseDurationTrend',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get policies {
-    return Intl.message('Policies', name: 'policies', desc: '', args: []);
+  /// `Success / Error Distribution`
+  String get successErrorDistribution {
+    return Intl.message(
+      'Success / Error Distribution',
+      name: 'successErrorDistribution',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get checkInTime {
-    return Intl.message('Check-in Time', name: 'checkInTime', desc: '', args: []);
+  /// `Slowest Paths`
+  String get slowestPaths {
+    return Intl.message(
+      'Slowest Paths',
+      name: 'slowestPaths',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get checkOutTime {
-    return Intl.message('Check-out Time', name: 'checkOutTime', desc: '', args: []);
+  /// `Most Failing Paths`
+  String get mostFailingPaths {
+    return Intl.message(
+      'Most Failing Paths',
+      name: 'mostFailingPaths',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get bedType {
-    return Intl.message('Bed Type', name: 'bedType', desc: '', args: []);
+  /// `Slowest Requests`
+  String get slowestRequests {
+    return Intl.message(
+      'Slowest Requests',
+      name: 'slowestRequests',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get roomNumber {
-    return Intl.message('Room Number', name: 'roomNumber', desc: '', args: []);
+  /// `Only Errors`
+  String get onlyErrors {
+    return Intl.message('Only Errors', name: 'onlyErrors', desc: '', args: []);
   }
 
-  String get floor {
-    return Intl.message('Floor', name: 'floor', desc: '', args: []);
+  /// `Only Exceptions`
+  String get onlyExceptions {
+    return Intl.message(
+      'Only Exceptions',
+      name: 'onlyExceptions',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get size {
-    return Intl.message('Size (m2)', name: 'size', desc: '', args: []);
+  /// `User / IP`
+  String get userSlashIp {
+    return Intl.message('User / IP', name: 'userSlashIp', desc: '', args: []);
   }
 
-  String get maxOccupancy {
-    return Intl.message('Max Occupancy', name: 'maxOccupancy', desc: '', args: []);
+  /// `Filter Logs`
+  String get filterLogs {
+    return Intl.message('Filter Logs', name: 'filterLogs', desc: '', args: []);
   }
 
-  String get quantity {
-    return Intl.message('Quantity', name: 'quantity', desc: '', args: []);
+  /// `Path Contains`
+  String get pathContains {
+    return Intl.message(
+      'Path Contains',
+      name: 'pathContains',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get outOfService {
-    return Intl.message('Out of Service', name: 'outOfService', desc: '', args: []);
+  /// `Min Duration (ms)`
+  String get minDurationMs {
+    return Intl.message(
+      'Min Duration (ms)',
+      name: 'minDurationMs',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get pay {
-    return Intl.message('Pay', name: 'pay', desc: '', args: []);
+  /// `Max Duration (ms)`
+  String get maxDurationMs {
+    return Intl.message(
+      'Max Duration (ms)',
+      name: 'maxDurationMs',
+      desc: '',
+      args: [],
+    );
   }
 
-  String get price {
-    return Intl.message('Price', name: 'price', desc: '', args: []);
+  /// `Exact Status Code`
+  String get exactStatusCode {
+    return Intl.message(
+      'Exact Status Code',
+      name: 'exactStatusCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy to clipboard`
+  String get copyToClipboard {
+    return Intl.message(
+      'Copy to clipboard',
+      name: 'copyToClipboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Size`
+  String get requestSize {
+    return Intl.message(
+      'Request Size',
+      name: 'requestSize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Response Size`
+  String get responseSize {
+    return Intl.message(
+      'Response Size',
+      name: 'responseSize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `rows (including header) - up to 10,000 rows based on current filters.`
+  String get csvRowsHintSuffix {
+    return Intl.message(
+      'rows (including header) - up to 10,000 rows based on current filters.',
+      name: 'csvRowsHintSuffix',
+      desc: '',
+      args: [],
+    );
   }
 }
 
