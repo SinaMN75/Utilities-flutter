@@ -35,6 +35,8 @@ abstract class UHttpClient {
     final String? unexpectedErrorMessage,
     final bool offline = false,
     final int retryAmount = 3,
+    final void Function(int percent)? onSendProgress,
+    final void Function(int percent)? onReceiveProgress,
   }) async {
     final bool hasNetworkConnection = await UNetwork.hasEthernet() || await UNetwork.hasCellular() || await UNetwork.hasWifi();
 
@@ -82,7 +84,33 @@ abstract class UHttpClient {
         }
       }
 
-      response = await _client.send(request).timeout(const Duration(seconds: 30)).then(Response.fromStream);
+      final BaseRequest outgoing = onSendProgress == null
+          ? request
+          : (_UProgressRequest(method, uri, request.bodyBytes, onSendProgress)
+              ..headers.addAll(request.headers)
+              ..contentLength = request.bodyBytes.length);
+
+      final StreamedResponse streamed = await _client.send(outgoing).timeout(const Duration(seconds: 30));
+
+      final int? totalBytes = streamed.contentLength;
+      final List<int> receivedBytes = <int>[];
+      int receivedCount = 0;
+      await for (final List<int> chunk in streamed.stream) {
+        receivedBytes.addAll(chunk);
+        receivedCount += chunk.length;
+        if (onReceiveProgress != null && totalBytes != null && totalBytes > 0) {
+          onReceiveProgress((receivedCount / totalBytes * 100).round());
+        }
+      }
+      if (onReceiveProgress != null) onReceiveProgress(100);
+
+      response = Response.bytes(
+        receivedBytes,
+        streamed.statusCode,
+        request: streamed.request,
+        headers: streamed.headers,
+        reasonPhrase: streamed.reasonPhrase,
+      );
     } catch (e, stack) {
       developer.log(e.toString(), stackTrace: stack);
       if (retryAmount > 0) {
@@ -100,6 +128,9 @@ abstract class UHttpClient {
           queryParams: queryParams,
           retryAmount: retryAmount - 1,
           unexpectedErrorMessage: unexpectedErrorMessage,
+          // Forward progress callbacks so retries keep reporting
+          onSendProgress: onSendProgress,
+          onReceiveProgress: onReceiveProgress,
         );
       } else {
         final String message = unexpectedErrorMessage ?? U.s.unexpectedErrorPleaseTryAgain;
@@ -207,6 +238,36 @@ abstract class UHttpClient {
     }
 
     return json;
+  }
+}
+
+class _UProgressRequest extends BaseRequest {
+  _UProgressRequest(super.method, super.url, this._bodyBytes, this._onSendProgress);
+
+  final List<int> _bodyBytes;
+  final void Function(int percent) _onSendProgress;
+
+  @override
+  ByteStream finalize() {
+    super.finalize();
+    final int total = _bodyBytes.length;
+    if (total == 0) {
+      _onSendProgress(100);
+      return ByteStream.fromBytes(_bodyBytes);
+    }
+    const int chunkSize = 8 * 1024;
+    int sent = 0;
+    Stream<List<int>> generate() async* {
+      for (int i = 0; i < total; i += chunkSize) {
+        final int end = (i + chunkSize) < total ? i + chunkSize : total;
+        final List<int> chunk = _bodyBytes.sublist(i, end);
+        sent += chunk.length;
+        _onSendProgress((sent / total * 100).round());
+        yield chunk;
+      }
+    }
+
+    return ByteStream(generate());
   }
 }
 
