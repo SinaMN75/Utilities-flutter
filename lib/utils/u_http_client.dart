@@ -35,6 +35,7 @@ abstract class UHttpClient {
     final String? unexpectedErrorMessage,
     final bool offline = false,
     final int retryAmount = 3,
+    final Duration timeout = const Duration(seconds: 30),
     final void Function(int percent)? onSendProgress,
     final void Function(int percent)? onReceiveProgress,
   }) async {
@@ -90,7 +91,7 @@ abstract class UHttpClient {
               ..headers.addAll(request.headers)
               ..contentLength = request.bodyBytes.length);
 
-      final StreamedResponse streamed = await _client.send(outgoing).timeout(const Duration(seconds: 30));
+      final StreamedResponse streamed = await _client.send(outgoing).timeout(timeout);
 
       final int? totalBytes = streamed.contentLength;
       final List<int> receivedBytes = <int>[];
@@ -99,7 +100,7 @@ abstract class UHttpClient {
         receivedBytes.addAll(chunk);
         receivedCount += chunk.length;
         if (onReceiveProgress != null && totalBytes != null && totalBytes > 0) {
-          onReceiveProgress((receivedCount / totalBytes * 100).round());
+          onReceiveProgress((receivedCount / totalBytes * 100).clamp(0, 100).round());
         }
       }
       if (onReceiveProgress != null) onReceiveProgress(100);
@@ -114,6 +115,8 @@ abstract class UHttpClient {
     } catch (e, stack) {
       developer.log(e.toString(), stackTrace: stack);
       if (retryAmount > 0) {
+        final int attempt = retryAmount < 1 ? 1 : (4 - retryAmount).clamp(1, 4);
+        await Future<void>.delayed(Duration(milliseconds: 300 * attempt));
         return send(
           method: method,
           endpoint: endpoint,
@@ -128,7 +131,7 @@ abstract class UHttpClient {
           queryParams: queryParams,
           retryAmount: retryAmount - 1,
           unexpectedErrorMessage: unexpectedErrorMessage,
-          // Forward progress callbacks so retries keep reporting
+          timeout: timeout,
           onSendProgress: onSendProgress,
           onReceiveProgress: onReceiveProgress,
         );
@@ -167,21 +170,21 @@ abstract class UHttpClient {
     final Map<String, dynamic>? fields,
     final Map<String, String>? headers,
     final Map<String, dynamic>? queryParams,
+    final String method = "POST",
+    final Duration timeout = const Duration(minutes: 5),
+    final void Function(int percent)? onSendProgress,
   }) async {
     try {
-      final MultipartRequest request = MultipartRequest("POST", _buildUri(endpoint, queryParams));
+      final MultipartRequest request = onSendProgress == null ? MultipartRequest(method, _buildUri(endpoint, queryParams)) : _UProgressMultipartRequest(method, _buildUri(endpoint, queryParams), onSendProgress);
       request.headers.addAll(<String, String>{...?headers});
-      if (fields != null) {
-        request.fields.addAll(removeNullEntries(fields)!.map((String key, dynamic value) => MapEntry<String, String>(key, value is String ? value : jsonEncode(value))));
-      }
+      if (fields != null) request.fields.addAll(removeNullEntries(fields)!.map((String key, dynamic value) => MapEntry<String, String>(key, value is String ? value : jsonEncode(value))));
       request.files.addAll(files);
-      final Response response = await request.send().timeout(const Duration(seconds: 30)).then(Response.fromStream);
+      final Response response = await request.send().timeout(timeout).then(Response.fromStream);
       response.prettyLog(params: jsonEncode(fields));
-      if (response.statusCode >= 200 && response.statusCode < 300) {
+      if (response.statusCode >= 200 && response.statusCode < 300)
         onSuccess?.call(response);
-      } else {
+      else
         onError?.call(response);
-      }
     } catch (e, stack) {
       onException();
       developer.log(e.toString(), stackTrace: stack);
@@ -271,6 +274,28 @@ class _UProgressRequest extends BaseRequest {
   }
 }
 
+class _UProgressMultipartRequest extends MultipartRequest {
+  _UProgressMultipartRequest(super.method, super.url, this._onSendProgress);
+
+  final void Function(int percent) _onSendProgress;
+
+  @override
+  ByteStream finalize() {
+    final ByteStream byteStream = super.finalize();
+    final int total = contentLength;
+    int sent = 0;
+    final StreamTransformer<List<int>, List<int>> reporter = StreamTransformer<List<int>, List<int>>.fromHandlers(
+      handleData: (final List<int> data, final EventSink<List<int>> sink) {
+        sent += data.length;
+        if (total > 0) _onSendProgress((sent / total * 100).clamp(0, 100).round());
+        sink.add(data);
+      },
+    );
+
+    return ByteStream(byteStream.transform(reporter));
+  }
+}
+
 extension HTTP on Response? {
   bool isSuccessful() => (this?.statusCode ?? 999) >= 200 && (this?.statusCode ?? 999) <= 299;
 
@@ -293,13 +318,14 @@ class UDownload {
     required String url,
     required String cacheKey,
     required void Function(int progress) onProgress,
+    Duration timeout = const Duration(seconds: 60),
   }) async {
     if (_operations.containsKey(cacheKey)) {
       await _operations[cacheKey]?.cancel();
     }
 
     final CancelableOperation<Uint8List> op = CancelableOperation<Uint8List>.fromFuture(
-      _performDownload(url: url, cacheKey: cacheKey, onProgress: onProgress),
+      _performDownload(url: url, cacheKey: cacheKey, onProgress: onProgress, timeout: timeout),
       onCancel: () => _operations.remove(cacheKey),
     );
 
@@ -319,10 +345,9 @@ class UDownload {
     required String url,
     required String cacheKey,
     required void Function(int progress) onProgress,
+    required Duration timeout,
   }) async {
     final Directory dir = await getTemporaryDirectory();
-
-    // FIX 1: Use shorter filename for Windows (avoid path issues)
     final String safeCacheKey = _getSafeCacheKey(cacheKey);
     final File file = File("${dir.path}/$safeCacheKey.tmp");
 
@@ -331,7 +356,6 @@ class UDownload {
       try {
         downloadedBytes = await file.length();
       } catch (e) {
-        // FIX 2: Windows file lock issue - delete corrupted file
         await _safeDelete(file);
         downloadedBytes = 0;
       }
@@ -341,9 +365,8 @@ class UDownload {
       final Client client = Client();
 
       try {
-        final Map<String, String> headers = <String, String>{
-          "User-Agent": "Dart/2.0 (Windows)", // FIX 3: Add User-Agent for Windows
-        };
+        final Map<String, String> headers = <String, String>{};
+        if (Platform.isWindows) headers["User-Agent"] = "Dart/2.0 (Windows)";
 
         if (downloadedBytes > 0) {
           headers["Range"] = "bytes=$downloadedBytes-";
@@ -351,14 +374,11 @@ class UDownload {
 
         final Request request = Request("GET", Uri.parse(url))..headers.addAll(headers);
 
-        // FIX 4: Add timeout for Windows connections
         final StreamedResponse response = await client
             .send(request)
             .timeout(
-              const Duration(seconds: 60),
-              onTimeout: () {
-                throw TimeoutException("Connection timeout on attempt $attempt");
-              },
+              timeout,
+              onTimeout: () => throw TimeoutException("Connection timeout on attempt $attempt"),
             );
 
         if (response.statusCode == 416) {
@@ -383,7 +403,6 @@ class UDownload {
 
         final int? totalBytes = response.contentLength != null ? response.contentLength! + downloadedBytes : null;
 
-        // FIX 5: Use try-catch for file operations on Windows
         IOSink? sink;
         try {
           sink = file.openWrite(mode: FileMode.append);
