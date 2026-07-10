@@ -65,9 +65,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "آیا از حذف این کاربر اطمینان دارید؟",
     ),
-    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments": MessageLookupByLibrary.simpleMessage(
-      "آیا از تایید این کاربر با تمام مدارک آن اطمینان دارید؟",
-    ),
+    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments":
+        MessageLookupByLibrary.simpleMessage(
+          "آیا از تایید این کاربر با تمام مدارک آن اطمینان دارید؟",
+        ),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "از حذف اطمینان دارید؟",
     ),
@@ -507,9 +508,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "occupied": MessageLookupByLibrary.simpleMessage("اشغال شده"),
     "ok": MessageLookupByLibrary.simpleMessage("بله"),
     "oldestFirst": MessageLookupByLibrary.simpleMessage("قدیمی‌ترین"),
-    "oneTerminalPerLineSerialSimnumberSimserialImei": MessageLookupByLibrary.simpleMessage(
-      "هر پایانه در یک خط: سریال،شماره سیم‌کارت،سریال سیم‌کارت،imei",
-    ),
+    "oneTerminalPerLineSerialSimnumberSimserialImei":
+        MessageLookupByLibrary.simpleMessage(
+          "هر پایانه در یک خط: سریال،شماره سیم‌کارت،سریال سیم‌کارت،imei",
+        ),
     "onlyErrors": MessageLookupByLibrary.simpleMessage("فقط خطا"),
     "onlyExceptions": MessageLookupByLibrary.simpleMessage("فقط استثنا"),
     "operatingSystem": MessageLookupByLibrary.simpleMessage("سیستم‌عامل"),
@@ -552,12 +554,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissions": MessageLookupByLibrary.simpleMessage("دسترسی‌ها"),
     "persian": MessageLookupByLibrary.simpleMessage("فارسی"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("شماره تلفن"),
-    "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
-      "لطفاً قبل از ایجاد محصول، یک دسته‌بندی ایجاد کنید.",
-    ),
-    "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
-      "لطفاً قبل از ثبت قرارداد، یک محصول ایجاد کنید",
-    ),
+    "pleaseCreateACategoryBeforeCreatingAProduct":
+        MessageLookupByLibrary.simpleMessage(
+          "لطفاً قبل از ایجاد محصول، یک دسته‌بندی ایجاد کنید.",
+        ),
+    "pleaseCreateAProductBeforeSigningAContract":
+        MessageLookupByLibrary.simpleMessage(
+          "لطفاً قبل از ثبت قرارداد، یک محصول ایجاد کنید",
+        ),
     "pleaseSelectADorm": MessageLookupByLibrary.simpleMessage(
       "لطفاً یک خوابگاه انتخاب کنید",
     ),
@@ -587,9 +591,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "published": MessageLookupByLibrary.simpleMessage("منتشر شده"),
     "quantity": MessageLookupByLibrary.simpleMessage("تعداد"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("عنوان سؤال"),
-    "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
-      "عنوان سؤال و حداقل یک گزینه الزامی است",
-    ),
+    "questionTitleAndAtLeastOneOptionAreRequired":
+        MessageLookupByLibrary.simpleMessage(
+          "عنوان سؤال و حداقل یک گزینه الزامی است",
+        ),
     "questionnaire": MessageLookupByLibrary.simpleMessage("پرسشنامه"),
     "questions": MessageLookupByLibrary.simpleMessage("سؤال‌ها"),
     "quote": MessageLookupByLibrary.simpleMessage("نقل قول"),
