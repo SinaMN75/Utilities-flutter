@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminHotelDashboardController extends UAdminBaseController {
+class UAdminHotelDashboardController extends UBaseController {
   final Rxn<UPropertyDashboardResponse> report = Rxn<UPropertyDashboardResponse>();
 
   Future<void> init() => load();

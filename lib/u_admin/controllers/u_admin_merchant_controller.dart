@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminMerchantController extends UAdminBaseController {
+class UAdminMerchantController extends UBaseController {
   List<UMerchantResponse> list = <UMerchantResponse>[];
 
   final Rxn<UBusinessCategory> businessCategory = Rxn<UBusinessCategory>();

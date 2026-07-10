@@ -2,7 +2,7 @@ part of "../u_admin.dart";
 
 enum UAdminReservationStatusFilter { all, pending, confirmed, checkedIn, checkedOut, cancelled }
 
-class UAdminReservationController extends UAdminBaseController {
+class UAdminReservationController extends UBaseController {
   List<UHotelReservationResponse> list = <UHotelReservationResponse>[];
 
   UHotelResponse? hotel;

@@ -2,7 +2,7 @@ part of "../u_admin.dart";
 
 enum UAdminInvoiceStatusFilter { all, paid, unpaid, overdue }
 
-class UAdminInvoiceController extends UAdminBaseController {
+class UAdminInvoiceController extends UBaseController {
   List<UDormBedInvoiceResponse> list = <UDormBedInvoiceResponse>[];
   UAdminInvoiceStatusFilter statusFilter = UAdminInvoiceStatusFilter.all;
   double totalDebt = 0;

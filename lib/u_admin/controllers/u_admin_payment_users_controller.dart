@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminPaymentUsersController extends UAdminBaseController {
+class UAdminPaymentUsersController extends UBaseController {
   List<UUserResponse> list = <UUserResponse>[];
 
   final TextEditingController firstNameFilterController = TextEditingController();
