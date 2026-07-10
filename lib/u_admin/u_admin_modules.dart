@@ -68,35 +68,35 @@ class UAdminGroup {
 
 abstract class UAdminModules {
   // ---- Dashboards ----
-  static UAdminModule financialOpsDashboard({List<TagUser>? roles}) => UAdminModule(id: "paymentDashboard", title: "${U.s.financialOpsDashboard} ⚡", icon: Icons.account_balance_wallet_rounded, page: () => const FinancialOpsDashboardPage(), roles: roles);
+  static UAdminModule financialOpsDashboard({List<TagUser>? roles}) => UAdminModule(id: "paymentDashboard", title: "${U.s.financialOpsDashboard} ⚡", icon: Icons.account_balance_wallet_rounded, page: () => const UAdminFinancialOpsDashboardPage(), roles: roles);
 
-  static UAdminModule propertyDashboard({List<TagUser>? roles}) => UAdminModule(id: "hotelDashboard", title: "${U.s.propertyDashboard} ⚡", icon: Icons.apartment_rounded, page: () => const HotelDashboardPage(), roles: roles);
+  static UAdminModule propertyDashboard({List<TagUser>? roles}) => UAdminModule(id: "hotelDashboard", title: "${U.s.propertyDashboard} ⚡", icon: Icons.apartment_rounded, page: () => const UAdminHotelDashboardPage(), roles: roles);
 
   // ---- Accommodation ----
-  static UAdminModule hotels({List<TagUser>? roles}) => UAdminModule(id: "hotels", title: U.s.hotels, icon: Icons.apartment_rounded, page: () => const HotelPage(), roles: roles);
+  static UAdminModule hotels({List<TagUser>? roles}) => UAdminModule(id: "hotels", title: U.s.hotels, icon: Icons.apartment_rounded, page: () => const UAdminHotelPage(), roles: roles);
 
-  static UAdminModule hotelRooms({List<TagUser>? roles}) => UAdminModule(id: "hotel-rooms", title: U.s.hotelRooms, icon: Icons.meeting_room_rounded, page: () => const HotelRoomPage(), roles: roles);
+  static UAdminModule hotelRooms({List<TagUser>? roles}) => UAdminModule(id: "hotel-rooms", title: U.s.hotelRooms, icon: Icons.meeting_room_rounded, page: () => const UAdminHotelRoomPage(), roles: roles);
 
-  static UAdminModule reservations({List<TagUser>? roles}) => UAdminModule(id: "reservations", title: U.s.reservations, icon: Icons.event_available_rounded, page: () => const ReservationPage(), roles: roles);
+  static UAdminModule reservations({List<TagUser>? roles}) => UAdminModule(id: "reservations", title: U.s.reservations, icon: Icons.event_available_rounded, page: () => const UAdminReservationPage(), roles: roles);
 
   // ---- Dorms ----
-  static UAdminModule dorms({List<TagUser>? roles}) => UAdminModule(id: "dorm-list", title: U.s.dorms, icon: Icons.bedroom_parent_rounded, page: () => const DormPage(), roles: roles);
+  static UAdminModule dorms({List<TagUser>? roles}) => UAdminModule(id: "dorm-list", title: U.s.dorms, icon: Icons.bedroom_parent_rounded, page: () => const UAdminDormPage(), roles: roles);
 
-  static UAdminModule dormRooms({List<TagUser>? roles}) => UAdminModule(id: "dorm-rooms", title: U.s.dormRooms, icon: Icons.meeting_room_rounded, page: () => const DormRoomPage(), roles: roles);
+  static UAdminModule dormRooms({List<TagUser>? roles}) => UAdminModule(id: "dorm-rooms", title: U.s.dormRooms, icon: Icons.meeting_room_rounded, page: () => const UAdminDormRoomPage(), roles: roles);
 
-  static UAdminModule dormBeds({List<TagUser>? roles}) => UAdminModule(id: "dorm-beds", title: U.s.beds, icon: Icons.bed_rounded, page: () => const DormBedPage(), roles: roles);
+  static UAdminModule dormBeds({List<TagUser>? roles}) => UAdminModule(id: "dorm-beds", title: U.s.beds, icon: Icons.bed_rounded, page: () => const UAdminDormBedPage(), roles: roles);
 
   // ---- Leasing ----
-  static UAdminModule contracts({List<TagUser>? roles}) => UAdminModule(id: "contracts", title: U.s.contracts, icon: Icons.description_rounded, page: () => const ContractPage(), roles: roles);
+  static UAdminModule contracts({List<TagUser>? roles}) => UAdminModule(id: "contracts", title: U.s.contracts, icon: Icons.description_rounded, page: () => const UAdminContractPage(), roles: roles);
 
-  static UAdminModule invoices({List<TagUser>? roles}) => UAdminModule(id: "invoices", title: U.s.invoices, icon: Icons.receipt_long_rounded, page: () => const InvoicePage(), roles: roles);
+  static UAdminModule invoices({List<TagUser>? roles}) => UAdminModule(id: "invoices", title: U.s.invoices, icon: Icons.receipt_long_rounded, page: () => const UAdminInvoicePage(), roles: roles);
 
   // ---- Users ----
   static UAdminModule users({List<TagUser>? roles}) => UAdminModule(
     id: "users",
     title: U.s.users,
     icon: Icons.person_rounded,
-    page: () => UserPage(args: UAdminUsersPageArgs()),
+    page: () => UAdminUserPage(args: UAdminUsersPageArgs()),
     roles: roles,
   );
 
@@ -106,7 +106,7 @@ abstract class UAdminModules {
     title: U.s.users,
     tabTitle: U.s.usersManagement,
     icon: Icons.manage_accounts_rounded,
-    page: () => AdminUsersPage(actions: actions),
+    page: () => UAdminUsersPage(actions: actions),
     roles: roles,
   );
 
@@ -115,7 +115,7 @@ abstract class UAdminModules {
     title: U.s.merchants,
     tabTitle: U.s.merchantsManagement,
     icon: Icons.storefront_rounded,
-    page: () => MerchantsPage(actions: actions),
+    page: () => UAdminMerchantsPage(actions: actions),
     roles: roles,
   );
 
@@ -124,24 +124,24 @@ abstract class UAdminModules {
     title: U.s.terminals,
     tabTitle: U.s.terminalsManagement,
     icon: Icons.point_of_sale_rounded,
-    page: () => TerminalsPage(actions: actions),
+    page: () => UAdminTerminalsPage(actions: actions),
     roles: roles,
   );
 
   // ---- Finance ----
-  static UAdminModule wallet({List<TagUser>? roles}) => UAdminModule(id: "wallet", title: U.s.wallets, tabTitle: U.s.walletManagement, icon: Icons.account_balance_wallet_rounded, page: () => const WalletPage(), roles: roles);
+  static UAdminModule wallet({List<TagUser>? roles}) => UAdminModule(id: "wallet", title: U.s.wallets, tabTitle: U.s.walletManagement, icon: Icons.account_balance_wallet_rounded, page: () => const UAdminWalletPage(), roles: roles);
 
-  static UAdminModule transactions({List<TagUser>? roles}) => UAdminModule(id: "transactions", title: U.s.transactions, icon: Icons.swap_horiz_rounded, page: () => const TransactionsPage(), roles: roles);
+  static UAdminModule transactions({List<TagUser>? roles}) => UAdminModule(id: "transactions", title: U.s.transactions, icon: Icons.swap_horiz_rounded, page: () => const UAdminTransactionsPage(), roles: roles);
 
-  static UAdminModule accounting({List<TagUser>? roles}) => UAdminModule(id: "accounting", title: U.s.accounting, icon: Icons.bar_chart_rounded, page: () => const AccountingPage(), roles: roles);
+  static UAdminModule accounting({List<TagUser>? roles}) => UAdminModule(id: "accounting", title: U.s.accounting, icon: Icons.bar_chart_rounded, page: () => const UAdminAccountingPage(), roles: roles);
 
   // ---- Content ----
-  static UAdminModule blogs({List<TagUser>? roles}) => UAdminModule(id: "blogs", title: U.s.blogs, icon: Icons.article_rounded, page: () => const BlogPage(), roles: roles);
+  static UAdminModule blogs({List<TagUser>? roles}) => UAdminModule(id: "blogs", title: U.s.blogs, icon: Icons.article_rounded, page: () => const UAdminBlogPage(), roles: roles);
 
-  static UAdminModule contents({List<TagUser>? roles}) => UAdminModule(id: "contents", title: U.s.content, icon: Icons.content_copy, selectedIcon: Icons.content_copy_outlined, page: () => const ContentsPage(), roles: roles);
+  static UAdminModule contents({List<TagUser>? roles}) => UAdminModule(id: "contents", title: U.s.content, icon: Icons.content_copy, selectedIcon: Icons.content_copy_outlined, page: () => const UAdminContentsPage(), roles: roles);
 
   // ---- System ----
-  static UAdminModule settings({List<TagUser>? roles}) => UAdminModule(id: "settings", title: U.s.settings, icon: Icons.settings_rounded, page: () => const AdminSettingsPage(), roles: roles);
+  static UAdminModule settings({List<TagUser>? roles}) => UAdminModule(id: "settings", title: U.s.settings, icon: Icons.settings_rounded, page: () => const UAdminSettingsPage(), roles: roles);
 
-  static UAdminModule apiLogs({List<TagUser>? roles}) => UAdminModule(id: "api-logs", title: U.s.apiRequestLogs, icon: Icons.travel_explore_rounded, page: () => const ApiLogPage(), roles: roles);
+  static UAdminModule apiLogs({List<TagUser>? roles}) => UAdminModule(id: "api-logs", title: U.s.apiRequestLogs, icon: Icons.travel_explore_rounded, page: () => const UAdminApiLogPage(), roles: roles);
 }

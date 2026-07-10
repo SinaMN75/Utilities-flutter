@@ -1,16 +1,16 @@
 import "package:u/utilities.dart";
 
-class AdminUsersPage extends StatefulWidget {
-  const AdminUsersPage({super.key, this.actions});
+class UAdminUsersPage extends StatefulWidget {
+  const UAdminUsersPage({super.key, this.actions});
 
   // Optional per-row operations override; defaults to the page's built-in set.
   final UAdminActionBuilder<UUserResponse>? actions;
 
   @override
-  State<AdminUsersPage> createState() => _AdminUsersPageState();
+  State<UAdminUsersPage> createState() => _AdminUsersPageState();
 }
 
-class _AdminUsersPageState extends State<AdminUsersPage> {
+class _AdminUsersPageState extends State<UAdminUsersPage> {
   final UAdminPaymentUsersController c = UAdminPaymentUsersController();
 
   @override
@@ -49,13 +49,13 @@ class _AdminUsersPageState extends State<AdminUsersPage> {
     onRetry: c.read,
     emptyText: U.s.noUserFound,
     desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.name, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.username, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.phoneNumber, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.nationalCode, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.verificationStatus, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.joinedDate, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.name, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.username, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.phoneNumber, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.nationalCode, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.verificationStatus, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.joinedDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
     ],
     desktopRow: (UUserResponse i, int index) => _itemDesktop(i: i, index: index),
     mobileRow: (UUserResponse i, int index) => _itemResponsive(i: i, index: index),
@@ -65,10 +65,10 @@ class _AdminUsersPageState extends State<AdminUsersPage> {
     final bool verified = i.tags.containsAny(<int>[TagUser.nationalCardFrontVerified.number, TagUser.nationalCardBackVerified.number, TagUser.birthCertificateFirstVerified.number, TagUser.eSignatureVerified.number, TagUser.visualAuthenticationVerified.number]);
     final bool awaiting = i.tags.containsAny(<int>[TagUser.nationalCardFrontAwaitingVerification.number, TagUser.nationalCardBackAwaitingVerification.number, TagUser.birthCertificateFirstAwaitingVerification.number, TagUser.eSignatureAwaitingVerification.number, TagUser.visualAuthenticationAwaitingVerification.number]);
     final Color color = verified
-        ? AppColors.green
+        ? UAdminAppColors.green
         : awaiting
-        ? AppColors.orange
-        : AppColors.grey;
+        ? UAdminAppColors.orange
+        : UAdminAppColors.grey;
     final String label = verified
         ? U.s.verified
         : awaiting
@@ -82,7 +82,7 @@ class _AdminUsersPageState extends State<AdminUsersPage> {
   }
 
   Widget _itemDesktop({required UUserResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium("${i.firstName ?? ""} ${i.lastName ?? ""}".trim(), textAlign: .center).expanded(),
       UTextBodyMedium(i.userName, textAlign: .center).expanded(),
@@ -105,11 +105,11 @@ class _AdminUsersPageState extends State<AdminUsersPage> {
       title: UTextBodyMedium("${i.firstName ?? ""} ${i.lastName ?? ""} (${i.userName})".trim()),
       subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[UTextBodyMedium(i.phoneNumber ?? "-"), UTextBodySmall("${i.nationalCode ?? "-"} • ${i.createdAt.toJalaliDate()}"), const SizedBox(height: 4), _statusChip(i)]),
       trailing: _menu(i),
-      onTap: () => PageSwitcher.adminUserDetail(user: i),
+      onTap: () => UAdminPageSwitcher.adminUserDetail(user: i),
     ),
   );
 
-  // Built-in operations (incl. navigate to a user's merchants / contracts); overridable via AdminUsersPage(actions: ...).
+  // Built-in operations (incl. navigate to a user's merchants / contracts); overridable via UAdminUsersPage(actions: ...).
   Widget _menu(UUserResponse i) => UAdminOps.menu<UUserResponse>(
     context,
     item: i,

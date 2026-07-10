@@ -1,13 +1,13 @@
 import "package:u/utilities.dart";
 
-class TransactionsPage extends StatefulWidget {
-  const TransactionsPage({super.key});
+class UAdminTransactionsPage extends StatefulWidget {
+  const UAdminTransactionsPage({super.key});
 
   @override
-  State<TransactionsPage> createState() => _TransactionsPageState();
+  State<UAdminTransactionsPage> createState() => _TransactionsPageState();
 }
 
-class _TransactionsPageState extends State<TransactionsPage> {
+class _TransactionsPageState extends State<UAdminTransactionsPage> {
   final UAdminTransactionsController c = UAdminTransactionsController();
 
   @override
@@ -49,12 +49,12 @@ class _TransactionsPageState extends State<TransactionsPage> {
     onRetry: c.read,
     emptyText: U.s.noTransactionsFound,
     desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.amount, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.trackingNumber, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.status, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.user, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.created, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.amount, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.trackingNumber, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.user, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.created, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
     ],
     desktopRow: (UTxnResponse i, int index) => _itemDesktop(i: i, index: index),
     mobileRow: (UTxnResponse i, int index) => _itemResponsive(i: i, index: index),
@@ -63,7 +63,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
   String _statusName(UTxnResponse i) => i.tags.isEmpty ? "-" : (TagTxn.values.fromNumber(i.tags.first)?.localizedTitle ?? "-");
 
   Widget _itemDesktop({required UTxnResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.amount.rial(), textAlign: .center).expanded(),
       UTextBodyMedium(i.trackingNumber ?? "-", textAlign: .center).expanded(),

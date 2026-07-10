@@ -4,7 +4,7 @@ class UAdminUsersPageArgs {
   UAdminUsersPageArgs();
 }
 
-class UAdminUsersController extends UBaseController {
+class UAdminUsersController extends UAdminBaseController {
   late UAdminUsersPageArgs args;
   final GlobalKey<FormState> filterFormKey = GlobalKey<FormState>();
   RxList<UUserResponse> list = <UUserResponse>[].obs;

@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminDashboardController extends UBaseController {
+class UAdminDashboardController extends UAdminBaseController {
   Timer? _timer;
   Rx<UMetricsResponse> metrics = UMetricsResponse().obs;
   late UDashboardResponse dashboard;

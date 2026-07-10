@@ -33,7 +33,6 @@ part "u_admin_config.dart";
 part "u_admin_list_view.dart";
 part "u_admin_modules.dart";
 part "u_admin_responsive.dart";
-part "u_admin_settings_page.dart";
 part "u_admin_shell.dart";
 part "u_admin_splash_page.dart";
 part "u_admin_theme.dart";

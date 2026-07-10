@@ -1,13 +1,13 @@
 import "package:u/utilities.dart";
 
-class ContentsPage extends StatefulWidget {
-  const ContentsPage({super.key});
+class UAdminContentsPage extends StatefulWidget {
+  const UAdminContentsPage({super.key});
 
   @override
-  State<ContentsPage> createState() => _ContentsPageState();
+  State<UAdminContentsPage> createState() => _ContentsPageState();
 }
 
-class _ContentsPageState extends State<ContentsPage> {
+class _ContentsPageState extends State<UAdminContentsPage> {
   final UAdminContentsController c = UAdminContentsController();
 
   @override
@@ -59,12 +59,12 @@ class _ContentsPageState extends State<ContentsPage> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         padding: const EdgeInsets.all(8),
         children: <Widget>[
-          UTextBodyLarge(U.s.image, color: AppColors.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.contentType, color: AppColors.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.title, color: AppColors.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.description, color: AppColors.white, textAlign: .center).expanded(flex: 2),
-          UTextBodyLarge(U.s.createdAt, color: AppColors.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.image, color: UAdminAppColors.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.contentType, color: UAdminAppColors.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.description, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 2),
+          UTextBodyLarge(U.s.createdAt, color: UAdminAppColors.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
         ],
       ),
       itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -96,9 +96,9 @@ class _ContentsPageState extends State<ContentsPage> {
               const SizedBox(height: 4),
               UTextBodyLarge(i.jsonData.title ?? "---", maxLines: 1, overflow: TextOverflow.ellipsis),
               const SizedBox(height: 4),
-              UTextBodySmall(i.jsonData.description ?? i.jsonData.detail1 ?? "---", maxLines: 2, overflow: TextOverflow.ellipsis, color: AppColors.grey),
+              UTextBodySmall(i.jsonData.description ?? i.jsonData.detail1 ?? "---", maxLines: 2, overflow: TextOverflow.ellipsis, color: UAdminAppColors.grey),
               const SizedBox(height: 4),
-              UTextBodySmall(i.createdAt.toJalaliDate(), color: AppColors.grey),
+              UTextBodySmall(i.createdAt.toJalaliDate(), color: UAdminAppColors.grey),
             ],
           ),
         ),
@@ -108,7 +108,7 @@ class _ContentsPageState extends State<ContentsPage> {
   );
 
   Widget _itemDesktop({required UContentResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       SizedBox(width: 48, height: 48, child: UImage(i.media.firstOrNull?.url ?? "")).expanded(),
       UTextBodyMedium(_tagOf(i)?.localizedTitle ?? "---", textAlign: .center).expanded(),
@@ -349,7 +349,7 @@ class _ContentsPageState extends State<ContentsPage> {
           child: Container(
             decoration: BoxDecoration(color: Theme.of(context).colorScheme.error, shape: BoxShape.circle),
             padding: const EdgeInsets.all(2),
-            child: const Icon(Icons.close, size: 14, color: AppColors.white),
+            child: const Icon(Icons.close, size: 14, color: UAdminAppColors.white),
           ),
         ),
       ),

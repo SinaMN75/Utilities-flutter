@@ -1,10 +1,10 @@
 part of "../u_admin.dart";
 
-enum InvoiceStatusFilter { all, paid, unpaid, overdue }
+enum UAdminInvoiceStatusFilter { all, paid, unpaid, overdue }
 
-class UAdminInvoiceController extends UBaseController {
+class UAdminInvoiceController extends UAdminBaseController {
   List<UDormBedInvoiceResponse> list = <UDormBedInvoiceResponse>[];
-  InvoiceStatusFilter statusFilter = InvoiceStatusFilter.all;
+  UAdminInvoiceStatusFilter statusFilter = UAdminInvoiceStatusFilter.all;
   double totalDebt = 0;
   double totalPaid = 0;
   double totalPenalty = 0;
@@ -30,8 +30,8 @@ class UAdminInvoiceController extends UBaseController {
         pageNumber: pageNumber.value,
         pageSize: pageSize,
         contractId: contract?.id,
-        isPaid: statusFilter == InvoiceStatusFilter.paid ? true : (statusFilter == InvoiceStatusFilter.all ? null : false),
-        isOverdue: statusFilter == InvoiceStatusFilter.overdue ? true : null,
+        isPaid: statusFilter == UAdminInvoiceStatusFilter.paid ? true : (statusFilter == UAdminInvoiceStatusFilter.all ? null : false),
+        isOverdue: statusFilter == UAdminInvoiceStatusFilter.overdue ? true : null,
         minDueDate: minDueDate,
         maxDueDate: maxDueDate,
         minDebtAmount: minDebtController.isNullOrEmpty() ? null : minDebtController.numDouble(),
@@ -76,7 +76,7 @@ class UAdminInvoiceController extends UBaseController {
     reloadFirstPage(read);
   }
 
-  void setStatus(InvoiceStatusFilter f) {
+  void setStatus(UAdminInvoiceStatusFilter f) {
     statusFilter = f;
     reloadFirstPage(read);
   }

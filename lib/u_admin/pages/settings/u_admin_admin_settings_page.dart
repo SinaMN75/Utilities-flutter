@@ -1,13 +1,13 @@
 import "package:u/utilities.dart";
 
-class AdminSettingsPage extends StatefulWidget {
-  const AdminSettingsPage({super.key});
+class UAdminSettingsPage extends StatefulWidget {
+  const UAdminSettingsPage({super.key});
 
   @override
-  State<AdminSettingsPage> createState() => _AdminSettingsPageState();
+  State<UAdminSettingsPage> createState() => _AdminSettingsPageState();
 }
 
-class _AdminSettingsPageState extends State<AdminSettingsPage> {
+class _AdminSettingsPageState extends State<UAdminSettingsPage> {
   late String _themeMode = ULocalStorage.getString("themeMode") ?? (ULocalStorage.isDarkMode() ? "dark" : "light");
   late String _locale = ULocalStorage.getLocale() ?? "fa";
 
@@ -112,7 +112,7 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
             children: <Widget>[
               UTextBodyLarge("${U.user.firstName ?? ""} ${U.user.lastName ?? ""}".trim(), fontWeight: FontWeight.bold),
               const SizedBox(height: 4),
-              UTextBodySmall(U.user.email ?? U.user.phoneNumber ?? U.user.userName, color: AppColors.grey),
+              UTextBodySmall(U.user.email ?? U.user.phoneNumber ?? U.user.userName, color: UAdminAppColors.grey),
             ],
           ),
         ),
@@ -150,7 +150,7 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
 
   Widget _rowLabel(String text, IconData icon) => Row(
     children: <Widget>[
-      Icon(icon, size: 18, color: AppColors.grey),
+      Icon(icon, size: 18, color: UAdminAppColors.grey),
       const SizedBox(width: 8),
       UTextBodyMedium(text),
     ],

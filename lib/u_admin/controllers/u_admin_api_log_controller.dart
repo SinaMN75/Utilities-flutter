@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminApiLogController extends UBaseController {
+class UAdminApiLogController extends UAdminBaseController {
   UAdminApiLogController() {
     pageSize = 25;
   }

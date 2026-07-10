@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminHotelRoomController extends UBaseController {
+class UAdminHotelRoomController extends UAdminBaseController {
   List<UHotelRoomResponse> list = <UHotelRoomResponse>[];
   UHotelResponse? hotel;
 

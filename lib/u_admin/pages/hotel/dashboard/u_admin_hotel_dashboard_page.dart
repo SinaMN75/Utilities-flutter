@@ -1,13 +1,13 @@
 import "package:u/utilities.dart";
 
-class HotelDashboardPage extends StatefulWidget {
-  const HotelDashboardPage({super.key});
+class UAdminHotelDashboardPage extends StatefulWidget {
+  const UAdminHotelDashboardPage({super.key});
 
   @override
-  State<HotelDashboardPage> createState() => _HotelDashboardPageState();
+  State<UAdminHotelDashboardPage> createState() => _HotelDashboardPageState();
 }
 
-class _HotelDashboardPageState extends State<HotelDashboardPage> {
+class _HotelDashboardPageState extends State<UAdminHotelDashboardPage> {
   final UAdminHotelDashboardController c = UAdminHotelDashboardController();
 
   @override
@@ -51,17 +51,17 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
     gradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: <Color>[Theme.of(context).colorScheme.primary, AppColors.green.shade400, AppColors.blue.shade400],
+      colors: <Color>[Theme.of(context).colorScheme.primary, UAdminAppColors.green.shade400, UAdminAppColors.blue.shade400],
     ),
     boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10))],
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         UIconTextHorizontal(
-          leading: const Icon(Icons.apartment_rounded, color: AppColors.white, size: 34),
-          trailing: UTextHeadlineSmall(U.s.propertyDashboard, color: AppColors.white, fontWeight: FontWeight.w800),
+          leading: const Icon(Icons.apartment_rounded, color: UAdminAppColors.white, size: 34),
+          trailing: UTextHeadlineSmall(U.s.propertyDashboard, color: UAdminAppColors.white, fontWeight: FontWeight.w800),
         ),
-        UResponsiveGrid(
+        UAdminResponsiveGrid(
           minTileWidth: 150,
           spacing: 8,
           runSpacing: 8,
@@ -78,21 +78,21 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
   );
 
   Widget _heroMetric(String label, String value, IconData icon) => ListTile(
-    leading: UIconBackground(icon, color: AppColors.white),
-    title: UTextBodyMedium(label, color: AppColors.white),
-    subtitle: UTextBodyLarge(value, color: AppColors.white),
+    leading: UIconBackground(icon, color: UAdminAppColors.white),
+    title: UTextBodyMedium(label, color: UAdminAppColors.white),
+    subtitle: UTextBodyLarge(value, color: UAdminAppColors.white),
   );
 
-  Widget _entityCards(UPropertyDashboardResponse r) => UResponsiveGrid(
+  Widget _entityCards(UPropertyDashboardResponse r) => UAdminResponsiveGrid(
     children: <Widget>[
-      _statCard(U.s.hotels, r.hotelsCount.separate3By3(), "${r.hotelRoomsCount} ${U.s.rooms}", Icons.apartment_rounded, AppColors.indigo, PageSwitcher.hotels),
-      _statCard(U.s.hotelOccupancy, "${r.hotelOccupancyRate}%", "${r.hotelRoomsOccupiedCount}/${r.hotelRoomsCount} ${U.s.occupied}", Icons.hotel_rounded, AppColors.orange, PageSwitcher.hotelRooms),
-      _statCard(U.s.dorms, r.dormsCount.separate3By3(), "${r.dormRoomsCount} ${U.s.rooms}", Icons.bedroom_parent_rounded, AppColors.green, PageSwitcher.dormList),
-      _statCard(U.s.dormOccupancy, "${r.dormOccupancyRate}%", "${r.dormBedsOccupiedCount}/${r.dormBedsCount} ${U.s.beds}", Icons.bed_rounded, AppColors.pink, PageSwitcher.dormBeds),
-      _statCard(U.s.contracts, r.contractsCount.separate3By3(), "${r.activeContractsCount} ${U.s.active}", Icons.description_rounded, AppColors.blueGrey, PageSwitcher.contracts),
-      _statCard(U.s.contractsExpiringSoon, r.expiringSoonContractsCount.separate3By3(), U.s.next30Days, Icons.event_busy_rounded, AppColors.red, PageSwitcher.contracts),
-      _statCard(U.s.invoices, r.invoicesCount.separate3By3(), "${r.unpaidInvoicesCount} ${U.s.unpaid}", Icons.receipt_long_rounded, AppColors.yellow.shade900, PageSwitcher.invoices),
-      _statCard(U.s.overdueInvoicesTitle, r.overdueInvoicesCount.separate3By3(), r.totalOutstanding.rial(), Icons.warning_amber_rounded, AppColors.red, PageSwitcher.invoices),
+      _statCard(U.s.hotels, r.hotelsCount.separate3By3(), "${r.hotelRoomsCount} ${U.s.rooms}", Icons.apartment_rounded, UAdminAppColors.indigo, UAdminPageSwitcher.hotels),
+      _statCard(U.s.hotelOccupancy, "${r.hotelOccupancyRate}%", "${r.hotelRoomsOccupiedCount}/${r.hotelRoomsCount} ${U.s.occupied}", Icons.hotel_rounded, UAdminAppColors.orange, UAdminPageSwitcher.hotelRooms),
+      _statCard(U.s.dorms, r.dormsCount.separate3By3(), "${r.dormRoomsCount} ${U.s.rooms}", Icons.bedroom_parent_rounded, UAdminAppColors.green, UAdminPageSwitcher.dormList),
+      _statCard(U.s.dormOccupancy, "${r.dormOccupancyRate}%", "${r.dormBedsOccupiedCount}/${r.dormBedsCount} ${U.s.beds}", Icons.bed_rounded, UAdminAppColors.pink, UAdminPageSwitcher.dormBeds),
+      _statCard(U.s.contracts, r.contractsCount.separate3By3(), "${r.activeContractsCount} ${U.s.active}", Icons.description_rounded, UAdminAppColors.blueGrey, UAdminPageSwitcher.contracts),
+      _statCard(U.s.contractsExpiringSoon, r.expiringSoonContractsCount.separate3By3(), U.s.next30Days, Icons.event_busy_rounded, UAdminAppColors.red, UAdminPageSwitcher.contracts),
+      _statCard(U.s.invoices, r.invoicesCount.separate3By3(), "${r.unpaidInvoicesCount} ${U.s.unpaid}", Icons.receipt_long_rounded, UAdminAppColors.yellow.shade900, UAdminPageSwitcher.invoices),
+      _statCard(U.s.overdueInvoicesTitle, r.overdueInvoicesCount.separate3By3(), r.totalOutstanding.rial(), Icons.warning_amber_rounded, UAdminAppColors.red, UAdminPageSwitcher.invoices),
     ],
   );
 
@@ -101,7 +101,7 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
       contentPadding: const EdgeInsets.all(18),
       leading: UIconBackground(icon, color: color),
       title: UTextTitleMedium(value, fontWeight: FontWeight.w800, maxLines: 1),
-      subtitle: UTextBodySmall(title, color: AppColors.grey),
+      subtitle: UTextBodySmall(title, color: UAdminAppColors.grey),
       trailing: sub.isNullOrEmpty() ? null : UTextBodySmall(sub, color: color, fontWeight: FontWeight.w600),
       onTap: onTap,
     ),
@@ -139,21 +139,21 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
             name: U.s.debt,
             xValueMapper: (UDormBedInvoiceChartItem d, _) => d.month,
             yValueMapper: (UDormBedInvoiceChartItem d, _) => d.totalDebt,
-            color: AppColors.blueGrey,
+            color: UAdminAppColors.blueGrey,
           ),
           ColumnSeries<UDormBedInvoiceChartItem, String>(
             dataSource: r.monthlyRevenue,
             name: U.s.paid,
             xValueMapper: (UDormBedInvoiceChartItem d, _) => d.month,
             yValueMapper: (UDormBedInvoiceChartItem d, _) => d.totalPaid,
-            color: AppColors.green,
+            color: UAdminAppColors.green,
           ),
           ColumnSeries<UDormBedInvoiceChartItem, String>(
             dataSource: r.monthlyRevenue,
             name: U.s.penalty,
             xValueMapper: (UDormBedInvoiceChartItem d, _) => d.month,
             yValueMapper: (UDormBedInvoiceChartItem d, _) => d.totalPenalty,
-            color: AppColors.red,
+            color: UAdminAppColors.red,
           ),
         ],
       ),
@@ -168,10 +168,10 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
       series: <CircularSeries<_OccupancySlice, String>>[
         DoughnutSeries<_OccupancySlice, String>(
           dataSource: <_OccupancySlice>[
-            _OccupancySlice(U.s.hotelOccupied, r.hotelRoomsOccupiedCount, AppColors.orange),
-            _OccupancySlice(U.s.hotelAvailable, r.hotelRoomsAvailableCount, AppColors.orange.shade100),
-            _OccupancySlice(U.s.dormOccupied, r.dormBedsOccupiedCount, AppColors.green),
-            _OccupancySlice(U.s.dormAvailable, r.dormBedsAvailableCount, AppColors.green.shade100),
+            _OccupancySlice(U.s.hotelOccupied, r.hotelRoomsOccupiedCount, UAdminAppColors.orange),
+            _OccupancySlice(U.s.hotelAvailable, r.hotelRoomsAvailableCount, UAdminAppColors.orange.shade100),
+            _OccupancySlice(U.s.dormOccupied, r.dormBedsOccupiedCount, UAdminAppColors.green),
+            _OccupancySlice(U.s.dormAvailable, r.dormBedsAvailableCount, UAdminAppColors.green.shade100),
           ],
           xValueMapper: (_OccupancySlice d, _) => d.label,
           yValueMapper: (_OccupancySlice d, _) => d.value,
@@ -184,8 +184,8 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
   );
 
   Widget _cityBreakdownSection(UPropertyDashboardResponse r) => _isWide
-      ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_cityBarChart(U.s.hotelsByCity, r.hotelsByCity, AppColors.indigo).expanded(), const SizedBox(width: 16), _cityBarChart(U.s.dormsByCity, r.dormsByCity, AppColors.green).expanded()])
-      : Column(children: <Widget>[_cityBarChart(U.s.hotelsByCity, r.hotelsByCity, AppColors.indigo), const SizedBox(height: 16), _cityBarChart(U.s.dormsByCity, r.dormsByCity, AppColors.green)]);
+      ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_cityBarChart(U.s.hotelsByCity, r.hotelsByCity, UAdminAppColors.indigo).expanded(), const SizedBox(width: 16), _cityBarChart(U.s.dormsByCity, r.dormsByCity, UAdminAppColors.green).expanded()])
+      : Column(children: <Widget>[_cityBarChart(U.s.hotelsByCity, r.hotelsByCity, UAdminAppColors.indigo), const SizedBox(height: 16), _cityBarChart(U.s.dormsByCity, r.dormsByCity, UAdminAppColors.green)]);
 
   Widget _cityBarChart(String title, List<UPropertyBreakdownItem> items, Color color) => _chartCard(
     title: title,
@@ -236,7 +236,7 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
             const Icon(Icons.event_busy_rounded, size: 20),
             const SizedBox(width: 8),
             UTextTitleSmall(U.s.contractsExpiringSoon, fontWeight: FontWeight.w700).expanded(),
-            TextButton(onPressed: PageSwitcher.contracts, child: Text(U.s.contracts)),
+            TextButton(onPressed: UAdminPageSwitcher.contracts, child: Text(U.s.contracts)),
           ],
         ),
         const Divider(height: 16),
@@ -273,7 +273,7 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
             const Icon(Icons.warning_amber_rounded, size: 20),
             const SizedBox(width: 8),
             UTextTitleSmall(U.s.overdueInvoicesTitle, fontWeight: FontWeight.w700).expanded(),
-            TextButton(onPressed: PageSwitcher.invoices, child: Text(U.s.invoices)),
+            TextButton(onPressed: UAdminPageSwitcher.invoices, child: Text(U.s.invoices)),
           ],
         ),
         const Divider(height: 16),
@@ -289,7 +289,7 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
               final UOverdueInvoiceItem item = r.overdueInvoices[index];
               return ListTile(
                 contentPadding: EdgeInsets.zero,
-                leading: const Icon(Icons.receipt_long_rounded, color: AppColors.red),
+                leading: const Icon(Icons.receipt_long_rounded, color: UAdminAppColors.red),
                 title: Text(item.userName ?? "-"),
                 subtitle: Text("${U.s.dueOn} ${item.dueDate.toJalaliDate()} · ${item.daysOverdue} ${U.s.daysOverdue}"),
                 trailing: UTextBodyMedium(item.debtAmount.rial(), fontWeight: FontWeight.w700),
@@ -313,7 +313,7 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
             const Icon(Icons.description_rounded, size: 20),
             const SizedBox(width: 8),
             UTextTitleSmall(U.s.recentContracts, fontWeight: FontWeight.w700).expanded(),
-            TextButton(onPressed: PageSwitcher.contracts, child: Text(U.s.contracts)),
+            TextButton(onPressed: UAdminPageSwitcher.contracts, child: Text(U.s.contracts)),
           ],
         ),
         const Divider(height: 16),
@@ -350,7 +350,7 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
             const Icon(Icons.person_add_alt_1_rounded, size: 20),
             const SizedBox(width: 8),
             Text(U.s.recentlyJoined, style: const TextStyle(fontWeight: FontWeight.w700)).expanded(),
-            TextButton(onPressed: PageSwitcher.adminUsers, child: Text(U.s.users)),
+            TextButton(onPressed: UAdminPageSwitcher.adminUsers, child: Text(U.s.users)),
           ],
         ),
         const Divider(height: 16),
@@ -367,7 +367,7 @@ class _HotelDashboardPageState extends State<HotelDashboardPage> {
               return ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: CircleAvatar(
-                  backgroundColor: AppColors.primaries[index % AppColors.primaries.length].shade100,
+                  backgroundColor: UAdminAppColors.primaries[index % UAdminAppColors.primaries.length].shade100,
                   child: Text(u.displayName.isNotEmpty ? u.displayName.substring(0, 1).toUpperCase() : "?", style: const TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 title: Text(u.displayName),

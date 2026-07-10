@@ -1,13 +1,13 @@
 part of "u_admin.dart";
 
 abstract class UAdminTheme {
-  static ThemeData light({required Color primary, String? font}) => _build(primary: primary, font: font, brightness: Brightness.light, surface: AppColors.white);
+  static ThemeData light({required Color primary, String? font}) => _build(primary: primary, font: font, brightness: Brightness.light, surface: UAdminAppColors.white);
 
-  static ThemeData dark({required Color primary, String? font}) => _build(primary: primary, font: font, brightness: Brightness.dark, surface: AppColors.black);
+  static ThemeData dark({required Color primary, String? font}) => _build(primary: primary, font: font, brightness: Brightness.dark, surface: UAdminAppColors.black);
 
   static ThemeData _build({required Color primary, required Brightness brightness, required Color surface, String? font, double baseRadius = 8}) {
     final String family = font ?? UFonts.vazir.fontFamily!;
-    final Color disabled = AppColors.grey.shade400;
+    final Color disabled = UAdminAppColors.grey.shade400;
     return ThemeData(
       dividerTheme: DividerThemeData(color: disabled, space: 0),
       cardTheme: CardThemeData(
@@ -21,14 +21,14 @@ abstract class UAdminTheme {
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(baseRadius),
-          borderSide: const BorderSide(color: AppColors.transparent),
+          borderSide: const BorderSide(color: UAdminAppColors.transparent),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(baseRadius),
-          borderSide: const BorderSide(color: AppColors.transparent),
+          borderSide: const BorderSide(color: UAdminAppColors.transparent),
         ),
-        outlineBorder: const BorderSide(color: AppColors.transparent),
-        labelStyle: TextStyle(fontFamily: family, color: AppColors.grey, fontSize: 12),
+        outlineBorder: const BorderSide(color: UAdminAppColors.transparent),
+        labelStyle: TextStyle(fontFamily: family, color: UAdminAppColors.grey, fontSize: 12),
         filled: true,
         fillColor: surface,
       ),

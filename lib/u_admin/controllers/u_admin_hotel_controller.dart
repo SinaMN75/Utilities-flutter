@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminHotelController extends UBaseController {
+class UAdminHotelController extends UAdminBaseController {
   List<UHotelResponse> list = <UHotelResponse>[];
   final GlobalKey<FormState> filterFormKey = GlobalKey<FormState>();
 

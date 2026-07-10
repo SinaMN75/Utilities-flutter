@@ -1,15 +1,15 @@
 import "package:u/utilities.dart";
 
-class InvoicePage extends StatefulWidget {
-  const InvoicePage({this.contract, super.key});
+class UAdminInvoicePage extends StatefulWidget {
+  const UAdminInvoicePage({this.contract, super.key});
 
   final UDormBedContractResponse? contract;
 
   @override
-  State<InvoicePage> createState() => _InvoicePageState();
+  State<UAdminInvoicePage> createState() => _InvoicePageState();
 }
 
-class _InvoicePageState extends State<InvoicePage> {
+class _InvoicePageState extends State<UAdminInvoicePage> {
   final UAdminInvoiceController c = UAdminInvoiceController();
 
   static const List<TagDormBedInvoice> _types = <TagDormBedInvoice>[TagDormBedInvoice.deposit, TagDormBedInvoice.rent];
@@ -58,7 +58,7 @@ class _InvoicePageState extends State<InvoicePage> {
   Widget _summary() => SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    child: Row(children: <Widget>[_summaryCard(U.s.totalDebt, c.totalDebt, AppColors.blueGrey), _summaryCard(U.s.totalPaid, c.totalPaid, AppColors.green), _summaryCard(U.s.totalRemaining, c.totalRemaining, AppColors.orange), _summaryCard(U.s.totalPenalty, c.totalPenalty, AppColors.red)]),
+    child: Row(children: <Widget>[_summaryCard(U.s.totalDebt, c.totalDebt, UAdminAppColors.blueGrey), _summaryCard(U.s.totalPaid, c.totalPaid, UAdminAppColors.green), _summaryCard(U.s.totalRemaining, c.totalRemaining, UAdminAppColors.orange), _summaryCard(U.s.totalPenalty, c.totalPenalty, UAdminAppColors.red)]),
   );
 
   Widget _summaryCard(String label, double value, Color color) => UContainer(
@@ -82,11 +82,11 @@ class _InvoicePageState extends State<InvoicePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      child: Row(children: <Widget>[_chip(U.s.all, InvoiceStatusFilter.all), _chip(U.s.paid, InvoiceStatusFilter.paid), _chip(U.s.unpaid, InvoiceStatusFilter.unpaid), _chip(U.s.overdue, InvoiceStatusFilter.overdue)]),
+      child: Row(children: <Widget>[_chip(U.s.all, UAdminInvoiceStatusFilter.all), _chip(U.s.paid, UAdminInvoiceStatusFilter.paid), _chip(U.s.unpaid, UAdminInvoiceStatusFilter.unpaid), _chip(U.s.overdue, UAdminInvoiceStatusFilter.overdue)]),
     );
   });
 
-  Widget _chip(String label, InvoiceStatusFilter value) => Padding(
+  Widget _chip(String label, UAdminInvoiceStatusFilter value) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: 4),
     child: ChoiceChip(label: Text(label), selected: c.statusFilter == value, onSelected: (_) => c.setStatus(value)),
   );
@@ -101,14 +101,14 @@ class _InvoicePageState extends State<InvoicePage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.tenant, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.invoiceType, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.dueDate, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.debtAmount, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.paidAmount, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.penalty, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.paymentStatus, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.tenant, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.invoiceType, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.dueDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.debtAmount, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.paidAmount, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.penalty, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.paymentStatus, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -123,10 +123,10 @@ class _InvoicePageState extends State<InvoicePage> {
 
   Widget _statusChip(UDormBedInvoiceResponse i) {
     final Color color = i.isPaid
-        ? AppColors.green
+        ? UAdminAppColors.green
         : i.isOverdue
-        ? AppColors.red
-        : AppColors.orange;
+        ? UAdminAppColors.red
+        : UAdminAppColors.orange;
     final String label = i.isPaid
         ? U.s.paid
         : i.isOverdue
@@ -143,7 +143,7 @@ class _InvoicePageState extends State<InvoicePage> {
   String _tenantLabel(UDormBedInvoiceResponse i) => i.contract?.user?.displayName ?? widget.contract?.user?.displayName ?? "-";
 
   Widget _itemDesktop({required UDormBedInvoiceResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(_tenantLabel(i), textAlign: .center).expanded(),
       UTextBodyMedium(_typeLabel(i), textAlign: .center).expanded(),
@@ -176,8 +176,8 @@ class _InvoicePageState extends State<InvoicePage> {
       if (!i.isPaid && U.user.hasPermission(TagUser.permissionPayInvoices))
         PopupMenuItem<String>(
           child: UIconTextHorizontal(
-            leading: Icon(Icons.payments_rounded, color: AppColors.green.shade700, size: 20),
-            trailing: Text(U.s.markAsPaid, style: TextStyle(color: AppColors.green.shade700)),
+            leading: Icon(Icons.payments_rounded, color: UAdminAppColors.green.shade700, size: 20),
+            trailing: Text(U.s.markAsPaid, style: TextStyle(color: UAdminAppColors.green.shade700)),
           ),
           onTap: () => c.pay(i),
         ),

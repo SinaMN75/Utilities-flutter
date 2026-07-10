@@ -1,13 +1,13 @@
 import "package:u/utilities.dart";
 
-class AccountingPage extends StatefulWidget {
-  const AccountingPage({super.key});
+class UAdminAccountingPage extends StatefulWidget {
+  const UAdminAccountingPage({super.key});
 
   @override
-  State<AccountingPage> createState() => _AccountingPageState();
+  State<UAdminAccountingPage> createState() => _AccountingPageState();
 }
 
-class _AccountingPageState extends State<AccountingPage> {
+class _AccountingPageState extends State<UAdminAccountingPage> {
   final UAdminAccountingController c = UAdminAccountingController();
 
   @override
@@ -35,7 +35,8 @@ class _AccountingPageState extends State<AccountingPage> {
       if (r == null) return Center(child: Text(U.s.noData));
       return SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[_scopeBanner(), const SizedBox(height: 8), _statCards(r), const SizedBox(height: 8), _breakdown(U.s.incomeByType, r.incomeByType, AppColors.green), _breakdown(U.s.spendingByType, r.spendingByType, AppColors.red), _breakdown(U.s.gatewayPaymentsByType, r.gatewayByType, AppColors.blue), _timeline(r)]),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[_scopeBanner(), const SizedBox(height: 8), _statCards(r), const SizedBox(height: 8), _breakdown(U.s.incomeByType, r.incomeByType, UAdminAppColors.green), _breakdown(U.s.spendingByType, r.spendingByType, UAdminAppColors.red), _breakdown(U.s.gatewayPaymentsByType, r.gatewayByType, UAdminAppColors.blue), _timeline(r)]),
       );
     }),
   );
@@ -56,7 +57,7 @@ class _AccountingPageState extends State<AccountingPage> {
   Widget _statCards(UAccountingReportResponse r) => Wrap(
     spacing: 12,
     runSpacing: 12,
-    children: <Widget>[_stat(U.s.moneyIn, r.totalIn, AppColors.green, Icons.south_west_rounded), _stat(U.s.moneyOut, r.totalOut, AppColors.red, Icons.north_east_rounded), _stat(U.s.net, r.net, r.net >= 0 ? AppColors.green : AppColors.red, Icons.balance_rounded), _stat(U.s.walletBalance, r.totalWalletBalance, AppColors.blueGrey, Icons.account_balance_wallet_rounded)],
+    children: <Widget>[_stat(U.s.moneyIn, r.totalIn, UAdminAppColors.green, Icons.south_west_rounded), _stat(U.s.moneyOut, r.totalOut, UAdminAppColors.red, Icons.north_east_rounded), _stat(U.s.net, r.net, r.net >= 0 ? UAdminAppColors.green : UAdminAppColors.red, Icons.balance_rounded), _stat(U.s.walletBalance, r.totalWalletBalance, UAdminAppColors.blueGrey, Icons.account_balance_wallet_rounded)],
   );
 
   Widget _stat(String label, double value, Color color, IconData icon) => UCard(
@@ -120,9 +121,9 @@ class _AccountingPageState extends State<AccountingPage> {
               child: Row(
                 children: <Widget>[
                   UTextBodySmall(t.date.toJalaliDate()).expanded(),
-                  UTextBodySmall("+${t.inAmount.rial()}", color: AppColors.green),
+                  UTextBodySmall("+${t.inAmount.rial()}", color: UAdminAppColors.green),
                   const SizedBox(width: 12),
-                  UTextBodySmall("-${t.outAmount.rial()}", color: AppColors.red),
+                  UTextBodySmall("-${t.outAmount.rial()}", color: UAdminAppColors.red),
                 ],
               ),
             ),

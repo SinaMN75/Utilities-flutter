@@ -2,7 +2,7 @@ part of "../u_admin.dart";
 
 class UAdminCategoriesPageArgs {}
 
-class UAdminCategoriesController extends UBaseController {
+class UAdminCategoriesController extends UAdminBaseController {
   late UAdminCategoriesPageArgs args;
 
   late TagCategory tag;

@@ -1,6 +1,6 @@
 part of "u_admin.dart";
 
-abstract class AdminBreakpoints {
+abstract class UAdminBreakpoints {
   static const double mobile = 720;
 
   static const double desktop = 1100;
@@ -8,25 +8,25 @@ abstract class AdminBreakpoints {
   static const double maxContentWidth = 1400;
 }
 
-enum ScreenType { mobile, tablet, desktop }
+enum UAdminScreenType { mobile, tablet, desktop }
 
-extension ResponsiveContext on BuildContext {
+extension UAdminResponsiveContext on BuildContext {
   double get screenWidth => MediaQuery.sizeOf(this).width;
 
   double get screenHeight => MediaQuery.sizeOf(this).height;
 
-  ScreenType get screenType {
+  UAdminScreenType get screenType {
     final double w = screenWidth;
-    if (w < AdminBreakpoints.mobile) return ScreenType.mobile;
-    if (w < AdminBreakpoints.desktop) return ScreenType.tablet;
-    return ScreenType.desktop;
+    if (w < UAdminBreakpoints.mobile) return UAdminScreenType.mobile;
+    if (w < UAdminBreakpoints.desktop) return UAdminScreenType.tablet;
+    return UAdminScreenType.desktop;
   }
 
-  bool get isMobileWidth => screenType == ScreenType.mobile;
+  bool get isMobileWidth => screenType == UAdminScreenType.mobile;
 
-  bool get isTabletWidth => screenType == ScreenType.tablet;
+  bool get isTabletWidth => screenType == UAdminScreenType.tablet;
 
-  bool get isDesktopWidth => screenType == ScreenType.desktop;
+  bool get isDesktopWidth => screenType == UAdminScreenType.desktop;
 
   double get pagePadding => isMobileWidth ? 12 : (isTabletWidth ? 20 : 28);
 
@@ -41,14 +41,14 @@ extension ResponsiveContext on BuildContext {
   }
 
   T responsive<T>({required T mobile, required T desktop, T? tablet}) => switch (screenType) {
-    ScreenType.mobile => mobile,
-    ScreenType.tablet => tablet ?? desktop,
-    ScreenType.desktop => desktop,
+    UAdminScreenType.mobile => mobile,
+    UAdminScreenType.tablet => tablet ?? desktop,
+    UAdminScreenType.desktop => desktop,
   };
 }
 
-class UResponsiveGrid extends StatelessWidget {
-  const UResponsiveGrid({required this.children, super.key, this.minTileWidth = 260, this.spacing = 16, this.runSpacing = 16});
+class UAdminResponsiveGrid extends StatelessWidget {
+  const UAdminResponsiveGrid({required this.children, super.key, this.minTileWidth = 260, this.spacing = 16, this.runSpacing = 16});
 
   final List<Widget> children;
 
@@ -77,8 +77,8 @@ class UResponsiveGrid extends StatelessWidget {
   }
 }
 
-class AdminPageBody extends StatelessWidget {
-  const AdminPageBody({required this.child, super.key, this.maxWidth = AdminBreakpoints.maxContentWidth, this.padded = true});
+class UAdminPageBody extends StatelessWidget {
+  const UAdminPageBody({required this.child, super.key, this.maxWidth = UAdminBreakpoints.maxContentWidth, this.padded = true});
 
   final Widget child;
 

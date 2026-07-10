@@ -1,7 +1,7 @@
 import "package:u/utilities.dart";
 
-class TerminalsPage extends StatefulWidget {
-  const TerminalsPage({super.key, this.merchant, this.actions});
+class UAdminTerminalsPage extends StatefulWidget {
+  const UAdminTerminalsPage({super.key, this.merchant, this.actions});
 
   final UMerchantResponse? merchant;
 
@@ -9,10 +9,10 @@ class TerminalsPage extends StatefulWidget {
   final UAdminActionBuilder<UTerminalResponse>? actions;
 
   @override
-  State<TerminalsPage> createState() => _TerminalsPageState();
+  State<UAdminTerminalsPage> createState() => _TerminalsPageState();
 }
 
-class _TerminalsPageState extends State<TerminalsPage> {
+class _TerminalsPageState extends State<UAdminTerminalsPage> {
   final UAdminTerminalController c = UAdminTerminalController();
 
   @override
@@ -55,19 +55,19 @@ class _TerminalsPageState extends State<TerminalsPage> {
     onRetry: c.read,
     emptyText: U.s.noTerminalsFound,
     desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.serial, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.simCardSerial, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.merchant, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.terminalId, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.createdAt, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.serial, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.simCardSerial, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.merchant, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.terminalId, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.createdAt, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
     ],
     desktopRow: (UTerminalResponse i, int index) => _itemDesktop(i: i, index: index),
     mobileRow: (UTerminalResponse i, int index) => _itemResponsive(i: i, index: index),
   );
 
   Widget _statusChip(UTerminalResponse i) {
-    final Color color = i.terminalId.isNotNullOrEmpty() ? AppColors.green : AppColors.grey;
+    final Color color = i.terminalId.isNotNullOrEmpty() ? UAdminAppColors.green : UAdminAppColors.grey;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
@@ -76,7 +76,7 @@ class _TerminalsPageState extends State<TerminalsPage> {
   }
 
   Widget _itemDesktop({required UTerminalResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.serial, textAlign: .center).expanded(),
       UTextBodyMedium(i.simCardSerial ?? "-", textAlign: .center).expanded(),
@@ -109,7 +109,7 @@ class _TerminalsPageState extends State<TerminalsPage> {
     ),
   );
 
-  // Built-in operations; overridable via TerminalsPage(actions: ...).
+  // Built-in operations; overridable via UAdminTerminalsPage(actions: ...).
   Widget _menu(UTerminalResponse i) => UAdminOps.menu<UTerminalResponse>(
     context,
     item: i,

@@ -8,7 +8,7 @@ class UAdminProductsPageArgs {
   });
 }
 
-class UAdminProductsController extends UBaseController {
+class UAdminProductsController extends UAdminBaseController {
   late UAdminProductsPageArgs args;
 
   List<UProductResponse> list = <UProductResponse>[];

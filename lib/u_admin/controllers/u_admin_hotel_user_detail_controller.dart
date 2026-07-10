@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-enum ContractLifecycle { active, upcoming, expired }
+enum UAdminContractLifecycle { active, upcoming, expired }
 
 class UAdminHotelUserDetailController {
   UAdminHotelUserDetailController({required this.user});
@@ -50,15 +50,15 @@ class UAdminHotelUserDetailController {
 
   double get totalWalletBalance => wallets.fold(0, (double sum, UWalletResponse w) => sum + w.balance);
 
-  int get activeContractsCount => contracts.where((UDormBedContractResponse c) => lifecycleOf(c) == ContractLifecycle.active).length;
+  int get activeContractsCount => contracts.where((UDormBedContractResponse c) => lifecycleOf(c) == UAdminContractLifecycle.active).length;
 
   double get totalOutstanding => contracts.fold(0, (double sum, UDormBedContractResponse c) => sum + outstandingOf(c));
 
-  ContractLifecycle lifecycleOf(UDormBedContractResponse c) {
+  UAdminContractLifecycle lifecycleOf(UDormBedContractResponse c) {
     final DateTime now = DateTime.now();
-    if (now.isBefore(c.startDate)) return ContractLifecycle.upcoming;
-    if (now.isAfter(c.endDate)) return ContractLifecycle.expired;
-    return ContractLifecycle.active;
+    if (now.isBefore(c.startDate)) return UAdminContractLifecycle.upcoming;
+    if (now.isAfter(c.endDate)) return UAdminContractLifecycle.expired;
+    return UAdminContractLifecycle.active;
   }
 
   List<UDormBedInvoiceResponse> invoicesOf(UDormBedContractResponse c) => c.invoices ?? <UDormBedInvoiceResponse>[];

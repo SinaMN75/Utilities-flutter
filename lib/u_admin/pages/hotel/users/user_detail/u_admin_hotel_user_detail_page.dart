@@ -1,15 +1,15 @@
 import "package:u/utilities.dart";
 
-class HotelUserDetailPage extends StatefulWidget {
-  const HotelUserDetailPage({required this.user, super.key});
+class UAdminHotelUserDetailPage extends StatefulWidget {
+  const UAdminHotelUserDetailPage({required this.user, super.key});
 
   final UUserResponse user;
 
   @override
-  State<HotelUserDetailPage> createState() => _HotelUserDetailPageState();
+  State<UAdminHotelUserDetailPage> createState() => _HotelUserDetailPageState();
 }
 
-class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
+class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
   late final UAdminHotelUserDetailController c = UAdminHotelUserDetailController(user: widget.user);
 
   @override
@@ -27,7 +27,7 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
           IconButton(
             icon: const Icon(Icons.edit_rounded),
             tooltip: U.s.edit,
-            onPressed: () => PageSwitcher.userCreateUpdate(user: c.user).then((_) => c.read()),
+            onPressed: () => UAdminPageSwitcher.userCreateUpdate(user: c.user).then((_) => c.read()),
           ),
         IconButton(icon: const Icon(Icons.refresh_rounded), tooltip: U.s.refresh, onPressed: c.read),
       ],
@@ -37,7 +37,7 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
       if (!c.state.isLoaded()) return const CircularProgressIndicator().alignAtCenter();
       return SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        child: AdminPageBody(
+        child: UAdminPageBody(
           maxWidth: 1100,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -76,7 +76,7 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: <Color>[Theme.of(context).colorScheme.primary, AppColors.indigo.shade400],
+        colors: <Color>[Theme.of(context).colorScheme.primary, UAdminAppColors.indigo.shade400],
       ),
       boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.30), blurRadius: 22, offset: const Offset(0, 10))],
       child: Column(
@@ -86,17 +86,17 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
             children: <Widget>[
               CircleAvatar(
                 radius: 30,
-                backgroundColor: AppColors.white24,
-                child: UTextHeadlineSmall(name.isNotEmpty ? name.substring(0, 1).toUpperCase() : "?", color: AppColors.white, fontWeight: FontWeight.w800),
+                backgroundColor: UAdminAppColors.white24,
+                child: UTextHeadlineSmall(name.isNotEmpty ? name.substring(0, 1).toUpperCase() : "?", color: UAdminAppColors.white, fontWeight: FontWeight.w800),
               ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    UTextTitleLarge(name, color: AppColors.white, fontWeight: FontWeight.w800, maxLines: 1, overflow: TextOverflow.ellipsis),
+                    UTextTitleLarge(name, color: UAdminAppColors.white, fontWeight: FontWeight.w800, maxLines: 1, overflow: TextOverflow.ellipsis),
                     const SizedBox(height: 4),
-                    UTextBodyMedium("@${u.userName}", color: AppColors.white).ltr(),
+                    UTextBodyMedium("@${u.userName}", color: UAdminAppColors.white).ltr(),
                   ],
                 ),
               ),
@@ -119,13 +119,13 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
 
   Widget _pill(IconData icon, String text) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-    decoration: BoxDecoration(color: AppColors.white24, borderRadius: BorderRadius.circular(30)),
+    decoration: BoxDecoration(color: UAdminAppColors.white24, borderRadius: BorderRadius.circular(30)),
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Icon(icon, size: 15, color: AppColors.white),
+        Icon(icon, size: 15, color: UAdminAppColors.white),
         const SizedBox(width: 6),
-        UTextBodySmall(text, color: AppColors.white),
+        UTextBodySmall(text, color: UAdminAppColors.white),
       ],
     ),
   );
@@ -133,10 +133,10 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
   Widget _roleSection() {
     final UUserResponse u = c.user;
     final List<Widget> chips = <Widget>[
-      if (u.isFullAdmin()) _chip(U.s.admin, AppColors.indigo, Icons.shield_rounded) else if (u.isSubAdmin()) _chip(U.s.subAdmin, AppColors.blue, Icons.admin_panel_settings_rounded) else if (u.tags.contains(TagUser.guest.number)) _chip(U.s.guest, AppColors.blueGrey, Icons.person_outline_rounded),
-      if (c.contracts.isNotEmpty) _chip(U.s.tenant, AppColors.green, Icons.home_rounded),
-      _chip(u.isMale() ? U.s.male : U.s.female, u.isMale() ? AppColors.blue : AppColors.pink, u.isMale() ? Icons.male_rounded : Icons.female_rounded),
-      if (u.tags.contains(TagUser.verified.number)) _chip(U.s.verified, AppColors.green, Icons.verified_rounded),
+      if (u.isFullAdmin()) _chip(U.s.admin, UAdminAppColors.indigo, Icons.shield_rounded) else if (u.isSubAdmin()) _chip(U.s.subAdmin, UAdminAppColors.blue, Icons.admin_panel_settings_rounded) else if (u.tags.contains(TagUser.guest.number)) _chip(U.s.guest, UAdminAppColors.blueGrey, Icons.person_outline_rounded),
+      if (c.contracts.isNotEmpty) _chip(U.s.tenant, UAdminAppColors.green, Icons.home_rounded),
+      _chip(u.isMale() ? U.s.male : U.s.female, u.isMale() ? UAdminAppColors.blue : UAdminAppColors.pink, u.isMale() ? Icons.male_rounded : Icons.female_rounded),
+      if (u.tags.contains(TagUser.verified.number)) _chip(U.s.verified, UAdminAppColors.green, Icons.verified_rounded),
     ];
     final List<TagUser> perms = TagUser.permissions.where((TagUser t) => u.tags.contains(t.number)).toList();
     return _card(
@@ -148,7 +148,7 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
           Wrap(spacing: 8, runSpacing: 8, children: chips),
           if (u.isSubAdmin()) ...<Widget>[
             const Divider(height: 22),
-            if (perms.isEmpty) UTextBodySmall(U.s.noData, color: AppColors.grey) else Wrap(spacing: 8, runSpacing: 8, children: perms.map((TagUser t) => _chip(t.titleFa, AppColors.orange, Icons.check_rounded)).toList()),
+            if (perms.isEmpty) UTextBodySmall(U.s.noData, color: UAdminAppColors.grey) else Wrap(spacing: 8, runSpacing: 8, children: perms.map((TagUser t) => _chip(t.titleFa, UAdminAppColors.orange, Icons.check_rounded)).toList()),
           ],
         ],
       ),
@@ -160,15 +160,15 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
     icon: Icons.description_outlined,
     trailing: _countBadge(c.contracts.length),
     child: c.contracts.isEmpty
-        ? UTextBodySmall(U.s.noData, color: AppColors.grey).pSymmetric(vertical: 8)
-        : UResponsiveGrid(
+        ? UTextBodySmall(U.s.noData, color: UAdminAppColors.grey).pSymmetric(vertical: 8)
+        : UAdminResponsiveGrid(
             minTileWidth: 320,
             children: c.contracts.map(_contractCard).toList(),
           ),
   );
 
   Widget _contractCard(UDormBedContractResponse ct) {
-    final ContractLifecycle life = c.lifecycleOf(ct);
+    final UAdminContractLifecycle life = c.lifecycleOf(ct);
     final String dorm = ct.bed?.room?.dorm?.title ?? "-";
     final String room = ct.bed?.room?.title ?? "-";
     final String bed = ct.bed?.title ?? "-";
@@ -198,24 +198,24 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
           _kv(Icons.receipt_long_rounded, "${U.s.invoices}: ${c.invoicesOf(ct).length} · ${U.s.unpaid}: $unpaid"),
           if (outstanding > 0) ...<Widget>[
             const SizedBox(height: 6),
-            _kv(Icons.account_balance_wallet_rounded, "${U.s.debt}: ${outstanding.rial()}", color: AppColors.red),
+            _kv(Icons.account_balance_wallet_rounded, "${U.s.debt}: ${outstanding.rial()}", color: UAdminAppColors.red),
           ],
           const SizedBox(height: 10),
           UButton(
             type: UButtonType.text,
             title: U.s.invoices,
             icon: const Icon(Icons.open_in_new_rounded, size: 16),
-            onTap: () => PageSwitcher.invoices(contract: ct),
+            onTap: () => UAdminPageSwitcher.invoices(contract: ct),
           ),
         ],
       ),
     );
   }
 
-  Widget _lifecycleChip(ContractLifecycle life) => switch (life) {
-    ContractLifecycle.active => _chip(U.s.active, AppColors.green, Icons.check_circle_rounded),
-    ContractLifecycle.upcoming => _chip(U.s.upcoming, AppColors.orange, Icons.schedule_rounded),
-    ContractLifecycle.expired => _chip(U.s.expired, AppColors.grey, Icons.history_rounded),
+  Widget _lifecycleChip(UAdminContractLifecycle life) => switch (life) {
+    UAdminContractLifecycle.active => _chip(U.s.active, UAdminAppColors.green, Icons.check_circle_rounded),
+    UAdminContractLifecycle.upcoming => _chip(U.s.upcoming, UAdminAppColors.orange, Icons.schedule_rounded),
+    UAdminContractLifecycle.expired => _chip(U.s.expired, UAdminAppColors.grey, Icons.history_rounded),
   };
 
   Widget _paymentsSection() => _card(
@@ -224,17 +224,17 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        UResponsiveGrid(
+        UAdminResponsiveGrid(
           minTileWidth: 220,
           children: <Widget>[
-            _miniStat(U.s.walletBalance, c.totalWalletBalance.rial(), Icons.account_balance_wallet_rounded, AppColors.green),
-            _miniStat(U.s.wallets, c.wallets.length.separate3By3(), Icons.wallet_rounded, AppColors.indigo),
-            _miniStat(U.s.merchants, c.merchants.length.separate3By3(), Icons.storefront_rounded, AppColors.orange),
+            _miniStat(U.s.walletBalance, c.totalWalletBalance.rial(), Icons.account_balance_wallet_rounded, UAdminAppColors.green),
+            _miniStat(U.s.wallets, c.wallets.length.separate3By3(), Icons.wallet_rounded, UAdminAppColors.indigo),
+            _miniStat(U.s.merchants, c.merchants.length.separate3By3(), Icons.storefront_rounded, UAdminAppColors.orange),
           ],
         ),
         if (c.merchants.isNotEmpty) ...<Widget>[
           const Divider(height: 22),
-          Wrap(spacing: 8, runSpacing: 8, children: c.merchants.map((UMerchantResponse m) => _chip(m.title, AppColors.orange, Icons.storefront_rounded)).toList()),
+          Wrap(spacing: 8, runSpacing: 8, children: c.merchants.map((UMerchantResponse m) => _chip(m.title, UAdminAppColors.orange, Icons.storefront_rounded)).toList()),
         ],
       ],
     ),
@@ -283,7 +283,7 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
   Widget _kv(IconData icon, String text, {Color? color}) => Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Icon(icon, size: 15, color: color ?? AppColors.grey),
+      Icon(icon, size: 15, color: color ?? UAdminAppColors.grey),
       const SizedBox(width: 8),
       UTextBodySmall(text, color: color).expanded(),
     ],
@@ -303,7 +303,7 @@ class _HotelUserDetailPageState extends State<HotelUserDetailPage> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               UTextTitleSmall(value, fontWeight: FontWeight.w800, maxLines: 1),
-              UTextBodySmall(label, color: AppColors.grey),
+              UTextBodySmall(label, color: UAdminAppColors.grey),
             ],
           ),
         ),

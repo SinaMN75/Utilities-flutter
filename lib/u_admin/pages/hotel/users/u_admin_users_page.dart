@@ -1,15 +1,15 @@
 import "package:u/utilities.dart";
 
-class UserPage extends StatefulWidget {
-  const UserPage({required this.args, super.key});
+class UAdminUserPage extends StatefulWidget {
+  const UAdminUserPage({required this.args, super.key});
 
   final UAdminUsersPageArgs args;
 
   @override
-  State<UserPage> createState() => _UserPageState();
+  State<UAdminUserPage> createState() => _UserPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _UserPageState extends State<UAdminUserPage> {
   final UAdminUsersController c = UAdminUsersController();
 
   @override
@@ -27,7 +27,7 @@ class _UserPageState extends State<UserPage> {
         if (U.user.hasPermission(TagUser.permissionManageUsers))
           IconButton(
             icon: const Icon(Icons.add),
-            onPressed: () => PageSwitcher.userCreateUpdate().then((_) => c.read()),
+            onPressed: () => UAdminPageSwitcher.userCreateUpdate().then((_) => c.read()),
           ),
       ],
     ),
@@ -58,13 +58,13 @@ class _UserPageState extends State<UserPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.gender, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.name, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.username, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.phoneNumber, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.email, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.joinedDate, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.gender, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.name, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.username, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.phoneNumber, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.email, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.joinedDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _listItemDesktop(i: c.list[index], index: index),
@@ -183,12 +183,12 @@ class _UserPageState extends State<UserPage> {
         ? U.s.guest
         : U.s.user;
     final Color color = i.isFullAdmin()
-        ? AppColors.indigo
+        ? UAdminAppColors.indigo
         : i.isSubAdmin()
-        ? AppColors.blue
+        ? UAdminAppColors.blue
         : i.tags.contains(TagUser.guest.number)
-        ? AppColors.blueGrey
-        : AppColors.grey;
+        ? UAdminAppColors.blueGrey
+        : UAdminAppColors.grey;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(color: color.withValues(alpha: 0.16), borderRadius: BorderRadius.circular(20)),
@@ -203,7 +203,7 @@ class _UserPageState extends State<UserPage> {
     radius: 8,
     child: ListTile(
       dense: true,
-      onTap: () => PageSwitcher.hotelUserDetail(user: i),
+      onTap: () => UAdminPageSwitcher.hotelUserDetail(user: i),
       title: Row(
         children: <Widget>[
           _roleChip(i),
@@ -227,7 +227,7 @@ class _UserPageState extends State<UserPage> {
   );
 
   Widget _listItemDesktop({required UUserResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       Center(child: _genderIcon(i)).expanded(),
       Row(
@@ -239,7 +239,7 @@ class _UserPageState extends State<UserPage> {
             child: UTextBodyMedium("${i.firstName ?? ""} ${i.lastName ?? ""}".trim(), textAlign: .center, maxLines: 1, overflow: TextOverflow.ellipsis),
           ),
         ],
-      ).onTap(() => PageSwitcher.hotelUserDetail(user: i)).expanded(),
+      ).onTap(() => UAdminPageSwitcher.hotelUserDetail(user: i)).expanded(),
       UTextBodyMedium(i.userName, textAlign: .center).onTap(() => UClipboard.set(i.userName)).expanded(),
       UTextBodyMedium(i.phoneNumber ?? "", textAlign: .center).expanded(),
       UTextBodyMedium(i.email ?? "", textAlign: .center).expanded(),
@@ -261,10 +261,10 @@ class _UserPageState extends State<UserPage> {
           ? Icons.female_rounded
           : Icons.person_outline_rounded,
       color: male
-          ? AppColors.blue
+          ? UAdminAppColors.blue
           : female
-          ? AppColors.pink
-          : AppColors.grey,
+          ? UAdminAppColors.pink
+          : UAdminAppColors.grey,
       size: 20,
     );
   }
@@ -272,22 +272,22 @@ class _UserPageState extends State<UserPage> {
   List<PopupMenuEntry<String>> _menuItems(UUserResponse i) => <PopupMenuEntry<String>>[
     PopupMenuItem<String>(
       child: UIconTextHorizontal(leading: const Icon(Icons.badge_outlined, size: 20), trailing: Text(U.s.details)),
-      onTap: () => PageSwitcher.hotelUserDetail(user: i),
+      onTap: () => UAdminPageSwitcher.hotelUserDetail(user: i),
     ),
     PopupMenuItem<String>(
       child: UIconTextHorizontal(leading: const Icon(Icons.description_outlined, size: 20), trailing: Text(U.s.contracts)),
-      onTap: () => PageSwitcher.contracts(user: i),
+      onTap: () => UAdminPageSwitcher.contracts(user: i),
     ),
     if (U.user.hasPermission(TagUser.permissionManageUsers))
       PopupMenuItem<String>(
         child: UIconTextHorizontal(leading: const Icon(Icons.edit, size: 20), trailing: Text(U.s.edit)),
-        onTap: () => PageSwitcher.userCreateUpdate(user: i).then((_) => c.read()),
+        onTap: () => UAdminPageSwitcher.userCreateUpdate(user: i).then((_) => c.read()),
       ),
     if (U.user.hasPermission(TagUser.permissionDeleteUsers))
       PopupMenuItem<String>(
         child: UIconTextHorizontal(
-          leading: const Icon(Icons.delete, color: AppColors.red, size: 20),
-          trailing: Text(U.s.delete, style: const TextStyle(color: AppColors.red)),
+          leading: const Icon(Icons.delete, color: UAdminAppColors.red, size: 20),
+          trailing: Text(U.s.delete, style: const TextStyle(color: UAdminAppColors.red)),
         ),
         onTap: () => c.delete(i),
       ),

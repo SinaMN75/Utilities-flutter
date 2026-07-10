@@ -1,13 +1,13 @@
 import "package:u/utilities.dart";
 
-class FinancialOpsDashboardPage extends StatefulWidget {
-  const FinancialOpsDashboardPage({super.key});
+class UAdminFinancialOpsDashboardPage extends StatefulWidget {
+  const UAdminFinancialOpsDashboardPage({super.key});
 
   @override
-  State<FinancialOpsDashboardPage> createState() => _FinancialOpsDashboardPageState();
+  State<UAdminFinancialOpsDashboardPage> createState() => _FinancialOpsDashboardPageState();
 }
 
-class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
+class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardPage> {
   final UAdminFinancialOpsDashboardController c = UAdminFinancialOpsDashboardController();
 
   @override
@@ -51,17 +51,17 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
     gradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: <Color>[Theme.of(context).colorScheme.primary, AppColors.indigo.shade400, AppColors.blue.shade400],
+      colors: <Color>[Theme.of(context).colorScheme.primary, UAdminAppColors.indigo.shade400, UAdminAppColors.blue.shade400],
     ),
     boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10))],
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         UIconTextHorizontal(
-          leading: const Icon(Icons.account_balance_wallet_rounded, color: AppColors.white, size: 34),
-          trailing: UTextHeadlineSmall(U.s.financialOpsDashboard, color: AppColors.white, fontWeight: FontWeight.w800),
+          leading: const Icon(Icons.account_balance_wallet_rounded, color: UAdminAppColors.white, size: 34),
+          trailing: UTextHeadlineSmall(U.s.financialOpsDashboard, color: UAdminAppColors.white, fontWeight: FontWeight.w800),
         ),
-        UResponsiveGrid(
+        UAdminResponsiveGrid(
           minTileWidth: 150,
           spacing: 8,
           runSpacing: 8,
@@ -77,21 +77,21 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
   );
 
   Widget _heroMetric(String label, String value, IconData icon) => ListTile(
-    leading: Icon(icon, color: AppColors.white),
-    title: UTextBodySmall(label, color: AppColors.white),
-    subtitle: UTextBodyLarge(value, color: AppColors.white),
+    leading: Icon(icon, color: UAdminAppColors.white),
+    title: UTextBodySmall(label, color: UAdminAppColors.white),
+    subtitle: UTextBodyLarge(value, color: UAdminAppColors.white),
   );
 
-  Widget _entityCards(UFinancialOpsDashboardResponse r) => UResponsiveGrid(
+  Widget _entityCards(UFinancialOpsDashboardResponse r) => UAdminResponsiveGrid(
     children: <Widget>[
-      _statCard(U.s.users, r.usersCount.separate3By3(), "+${r.newUsersCount} ${U.s.newThisPeriod}", Icons.people_alt_rounded, AppColors.indigo, PageSwitcher.adminUsers),
-      _statCard(U.s.merchants, r.merchantsCount.separate3By3(), "+${r.newMerchantsCount} ${U.s.newThisPeriod}", Icons.storefront_rounded, AppColors.orange, PageSwitcher.merchants),
-      _statCard(U.s.terminals, r.terminalsCount.separate3By3(), "${r.terminalsAssignedCount} ${U.s.assignedTerminalsCount}", Icons.point_of_sale_rounded, AppColors.green, PageSwitcher.terminals),
-      _statCard(U.s.transactions, r.txnCount.separate3By3(), "+${r.newTxnCount} ${U.s.newThisPeriod}", Icons.swap_horiz_rounded, AppColors.pink, PageSwitcher.transactions),
-      _statCard(U.s.wallets, r.walletsCount.separate3By3(), r.totalWalletBalance.rial(), Icons.account_balance_wallet_rounded, AppColors.blueGrey, PageSwitcher.wallet),
-      _statCard(U.s.moneyIn, r.totalIn.rial(), "", Icons.south_west_rounded, AppColors.green, null),
-      _statCard(U.s.moneyOut, r.totalOut.rial(), "", Icons.north_east_rounded, AppColors.red, null),
-      _statCard(U.s.unassignedTerminals, r.terminalsUnassignedCount.separate3By3(), "", Icons.link_off_rounded, AppColors.grey, PageSwitcher.terminals),
+      _statCard(U.s.users, r.usersCount.separate3By3(), "+${r.newUsersCount} ${U.s.newThisPeriod}", Icons.people_alt_rounded, UAdminAppColors.indigo, UAdminPageSwitcher.adminUsers),
+      _statCard(U.s.merchants, r.merchantsCount.separate3By3(), "+${r.newMerchantsCount} ${U.s.newThisPeriod}", Icons.storefront_rounded, UAdminAppColors.orange, UAdminPageSwitcher.merchants),
+      _statCard(U.s.terminals, r.terminalsCount.separate3By3(), "${r.terminalsAssignedCount} ${U.s.assignedTerminalsCount}", Icons.point_of_sale_rounded, UAdminAppColors.green, UAdminPageSwitcher.terminals),
+      _statCard(U.s.transactions, r.txnCount.separate3By3(), "+${r.newTxnCount} ${U.s.newThisPeriod}", Icons.swap_horiz_rounded, UAdminAppColors.pink, UAdminPageSwitcher.transactions),
+      _statCard(U.s.wallets, r.walletsCount.separate3By3(), r.totalWalletBalance.rial(), Icons.account_balance_wallet_rounded, UAdminAppColors.blueGrey, UAdminPageSwitcher.wallet),
+      _statCard(U.s.moneyIn, r.totalIn.rial(), "", Icons.south_west_rounded, UAdminAppColors.green, null),
+      _statCard(U.s.moneyOut, r.totalOut.rial(), "", Icons.north_east_rounded, UAdminAppColors.red, null),
+      _statCard(U.s.unassignedTerminals, r.terminalsUnassignedCount.separate3By3(), "", Icons.link_off_rounded, UAdminAppColors.grey, UAdminPageSwitcher.terminals),
     ],
   );
 
@@ -104,7 +104,7 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          UTextBodySmall(title, color: AppColors.grey),
+          UTextBodySmall(title, color: UAdminAppColors.grey),
           if (sub.isNotEmpty) UTextBodySmall(sub, color: color, fontWeight: FontWeight.w600),
         ],
       ),
@@ -129,16 +129,16 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
             name: U.s.moneyIn,
             xValueMapper: (UAccountingTimelineItem d, _) => d.date.toJalaliDate(),
             yValueMapper: (UAccountingTimelineItem d, _) => d.inAmount,
-            color: AppColors.green.withValues(alpha: 0.35),
-            borderColor: AppColors.green,
+            color: UAdminAppColors.green.withValues(alpha: 0.35),
+            borderColor: UAdminAppColors.green,
           ),
           SplineAreaSeries<UAccountingTimelineItem, String>(
             dataSource: r.dailyTimeline,
             name: U.s.moneyOut,
             xValueMapper: (UAccountingTimelineItem d, _) => d.date.toJalaliDate(),
             yValueMapper: (UAccountingTimelineItem d, _) => d.outAmount,
-            color: AppColors.red.withValues(alpha: 0.30),
-            borderColor: AppColors.red,
+            color: UAdminAppColors.red.withValues(alpha: 0.30),
+            borderColor: UAdminAppColors.red,
           ),
         ],
       ),
@@ -147,10 +147,10 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
 
   Widget _entityBarChart(UFinancialOpsDashboardResponse r) {
     final List<_Bar> data = <_Bar>[
-      _Bar(U.s.users, r.usersCount, AppColors.indigo),
-      _Bar(U.s.merchants, r.merchantsCount, AppColors.orange),
-      _Bar(U.s.terminals, r.terminalsCount, AppColors.green),
-      _Bar(U.s.transactions, r.txnCount, AppColors.pink),
+      _Bar(U.s.users, r.usersCount, UAdminAppColors.indigo),
+      _Bar(U.s.merchants, r.merchantsCount, UAdminAppColors.orange),
+      _Bar(U.s.terminals, r.terminalsCount, UAdminAppColors.green),
+      _Bar(U.s.transactions, r.txnCount, UAdminAppColors.pink),
     ];
     return _chartCard(
       title: U.s.entityOverview,
@@ -258,7 +258,7 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
             const Icon(Icons.workspace_premium_rounded, size: 20),
             const SizedBox(width: 8),
             UTextTitleSmall(U.s.topMerchantsByTerminalCount, fontWeight: FontWeight.w700).expanded(),
-            TextButton(onPressed: PageSwitcher.merchants, child: Text(U.s.merchants)),
+            TextButton(onPressed: UAdminPageSwitcher.merchants, child: Text(U.s.merchants)),
           ],
         ),
         const Divider(height: 16),
@@ -275,7 +275,7 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
               return ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: CircleAvatar(
-                  backgroundColor: AppColors.primaries[index % AppColors.primaries.length].shade100,
+                  backgroundColor: UAdminAppColors.primaries[index % UAdminAppColors.primaries.length].shade100,
                   child: Text("${index + 1}", style: const TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 title: Text(m.title),
@@ -306,7 +306,7 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
             const Icon(Icons.receipt_long_rounded, size: 20),
             const SizedBox(width: 8),
             UTextTitleSmall(U.s.recentTransactions, fontWeight: FontWeight.w700).expanded(),
-            TextButton(onPressed: PageSwitcher.transactions, child: Text(U.s.transactions)),
+            TextButton(onPressed: UAdminPageSwitcher.transactions, child: Text(U.s.transactions)),
           ],
         ),
         const Divider(height: 16),
@@ -346,7 +346,7 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
                 const Icon(Icons.storefront_rounded, size: 20),
                 const SizedBox(width: 8),
                 UTextTitleSmall(U.s.recentlyOnboardedMerchants, fontWeight: FontWeight.w700).expanded(),
-                TextButton(onPressed: PageSwitcher.merchants, child: Text(U.s.merchants)),
+                TextButton(onPressed: UAdminPageSwitcher.merchants, child: Text(U.s.merchants)),
               ],
             ),
             const Divider(height: 16),
@@ -378,7 +378,7 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
                 const Icon(Icons.person_add_alt_1_rounded, size: 20),
                 const SizedBox(width: 8),
                 Text(U.s.recentlyJoined, style: const TextStyle(fontWeight: FontWeight.w700)).expanded(),
-                TextButton(onPressed: PageSwitcher.adminUsers, child: Text(U.s.users)),
+                TextButton(onPressed: UAdminPageSwitcher.adminUsers, child: Text(U.s.users)),
               ],
             ),
             const Divider(height: 16),
@@ -395,7 +395,7 @@ class _FinancialOpsDashboardPageState extends State<FinancialOpsDashboardPage> {
                   return ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: CircleAvatar(
-                      backgroundColor: AppColors.primaries[index % AppColors.primaries.length].shade100,
+                      backgroundColor: UAdminAppColors.primaries[index % UAdminAppColors.primaries.length].shade100,
                       child: Text(u.displayName.isNotEmpty ? u.displayName.substring(0, 1).toUpperCase() : "?", style: const TextStyle(fontWeight: FontWeight.bold)),
                     ),
                     title: Text(u.displayName),

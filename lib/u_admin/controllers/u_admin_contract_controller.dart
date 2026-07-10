@@ -1,8 +1,8 @@
 part of "../u_admin.dart";
 
-enum ContractStatusFilter { all, active, upcoming, expired, expiringSoon }
+enum UAdminContractStatusFilter { all, active, upcoming, expired, expiringSoon }
 
-class UAdminContractController extends UBaseController {
+class UAdminContractController extends UAdminBaseController {
   List<UDormBedContractResponse> list = <UDormBedContractResponse>[];
 
   UDormBedResponse? bed;
@@ -11,7 +11,7 @@ class UAdminContractController extends UBaseController {
 
   final TextEditingController tenantFilter = TextEditingController();
   int? typeFilter;
-  ContractStatusFilter statusFilter = ContractStatusFilter.all;
+  UAdminContractStatusFilter statusFilter = UAdminContractStatusFilter.all;
 
   UDormResponse? dormFilter;
   UDormBedResponse? bedFilter;
@@ -37,10 +37,10 @@ class UAdminContractController extends UBaseController {
         endDate: endDateFilter,
         userName: tenantFilter.text.nullIfEmpty(),
         tags: typeFilter == null ? null : <int>[typeFilter!],
-        activeOnly: statusFilter == ContractStatusFilter.active ? true : null,
-        upcomingOnly: statusFilter == ContractStatusFilter.upcoming ? true : null,
-        expiredOnly: statusFilter == ContractStatusFilter.expired ? true : null,
-        expiringWithinDays: statusFilter == ContractStatusFilter.expiringSoon ? 30 : null,
+        activeOnly: statusFilter == UAdminContractStatusFilter.active ? true : null,
+        upcomingOnly: statusFilter == UAdminContractStatusFilter.upcoming ? true : null,
+        expiredOnly: statusFilter == UAdminContractStatusFilter.expired ? true : null,
+        expiringWithinDays: statusFilter == UAdminContractStatusFilter.expiringSoon ? 30 : null,
         selectorArgs: const ContractSelectorArgs(
           user: UserSelectorArgs(),
           bed: DormBedSelectorArgs(room: DormRoomSelectorArgs(dorm: DormSelectorArgs())),
@@ -66,11 +66,11 @@ class UAdminContractController extends UBaseController {
     bedFilter = null;
     startDateFilter = null;
     endDateFilter = null;
-    statusFilter = ContractStatusFilter.all;
+    statusFilter = UAdminContractStatusFilter.all;
     reloadFirstPage(read);
   }
 
-  void setStatus(ContractStatusFilter f) {
+  void setStatus(UAdminContractStatusFilter f) {
     statusFilter = f;
     reloadFirstPage(read);
   }

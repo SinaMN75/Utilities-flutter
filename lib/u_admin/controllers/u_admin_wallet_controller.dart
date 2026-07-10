@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminWalletController extends UBaseController {
+class UAdminWalletController extends UAdminBaseController {
   final Rxn<UUserResponse> selectedUser = Rxn<UUserResponse>();
 
   final RxList<UWalletResponse> wallets = <UWalletResponse>[].obs;
@@ -102,7 +102,7 @@ class UAdminWalletController extends UBaseController {
   }
 }
 
-class UAdminTransactionsController extends UBaseController {
+class UAdminTransactionsController extends UAdminBaseController {
   List<UTxnResponse> list = <UTxnResponse>[];
 
   final TextEditingController trackingFilter = TextEditingController();

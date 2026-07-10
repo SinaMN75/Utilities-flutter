@@ -1,6 +1,6 @@
 part of "u_admin.dart";
 
-abstract class AppColors {
+abstract class UAdminAppColors {
   static const Color primary = Colors.blue;
   static const Color white = Colors.white;
   static const Color black = Colors.black;

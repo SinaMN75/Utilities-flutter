@@ -1,17 +1,17 @@
 import "package:u/utilities.dart";
 
-class ContractPage extends StatefulWidget {
-  const ContractPage({this.bed, this.user, super.key});
+class UAdminContractPage extends StatefulWidget {
+  const UAdminContractPage({this.bed, this.user, super.key});
 
   final UDormBedResponse? bed;
 
   final UUserResponse? user;
 
   @override
-  State<ContractPage> createState() => _ContractPageState();
+  State<UAdminContractPage> createState() => _ContractPageState();
 }
 
-class _ContractPageState extends State<ContractPage> {
+class _ContractPageState extends State<UAdminContractPage> {
   final UAdminContractController c = UAdminContractController();
 
   static const List<TagDormBedContract> _types = <TagDormBedContract>[TagDormBedContract.daily, TagDormBedContract.weekly, TagDormBedContract.monthly, TagDormBedContract.yearly];
@@ -59,17 +59,17 @@ class _ContractPageState extends State<ContractPage> {
     ),
   );
 
-  String _statusLabel(ContractStatusFilter f) {
+  String _statusLabel(UAdminContractStatusFilter f) {
     switch (f) {
-      case ContractStatusFilter.all:
+      case UAdminContractStatusFilter.all:
         return U.s.all;
-      case ContractStatusFilter.active:
+      case UAdminContractStatusFilter.active:
         return U.s.active;
-      case ContractStatusFilter.upcoming:
+      case UAdminContractStatusFilter.upcoming:
         return U.s.upcoming;
-      case ContractStatusFilter.expired:
+      case UAdminContractStatusFilter.expired:
         return U.s.expired;
-      case ContractStatusFilter.expiringSoon:
+      case UAdminContractStatusFilter.expiringSoon:
         return U.s.expiringSoon;
     }
   }
@@ -84,13 +84,13 @@ class _ContractPageState extends State<ContractPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.tenant, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.bed, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.startDate, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.endDate, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.rent, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.status, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.tenant, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.bed, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.startDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.endDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.rent, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -106,7 +106,7 @@ class _ContractPageState extends State<ContractPage> {
   Widget _statusChip(UDormBedContractResponse i) {
     final DateTime now = DateTime.now();
     final bool active = !i.startDate.isAfter(now) && !i.endDate.isBefore(now);
-    final Color color = active ? AppColors.green : AppColors.red;
+    final Color color = active ? UAdminAppColors.green : UAdminAppColors.red;
     return UContainer(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       radius: 20,
@@ -120,7 +120,7 @@ class _ContractPageState extends State<ContractPage> {
   String _tenantLabel(UDormBedContractResponse i) => i.user?.displayName ?? "-";
 
   Widget _itemDesktop({required UDormBedContractResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(_tenantLabel(i), textAlign: .center).expanded(),
       UTextBodyMedium(_bedLabel(i), textAlign: .center).expanded(),
@@ -152,21 +152,21 @@ class _ContractPageState extends State<ContractPage> {
       if (i.user != null)
         PopupMenuItem<String>(
           child: UIconTextHorizontal(leading: const Icon(Icons.person_outline, size: 20), trailing: Text(U.s.tenant)),
-          onTap: () => PageSwitcher.hotelUserDetail(user: i.user!),
+          onTap: () => UAdminPageSwitcher.hotelUserDetail(user: i.user!),
         ),
       PopupMenuItem<String>(
         child: UIconTextHorizontal(leading: const Icon(Icons.receipt_long_outlined, size: 20), trailing: Text(U.s.viewInvoices)),
-        onTap: () => PageSwitcher.invoices(contract: i),
+        onTap: () => UAdminPageSwitcher.invoices(contract: i),
       ),
       if (i.bed?.room != null)
         PopupMenuItem<String>(
           child: UIconTextHorizontal(leading: const Icon(Icons.bed_outlined, size: 20), trailing: Text(U.s.bed)),
-          onTap: () => PageSwitcher.dormBeds(room: i.bed!.room),
+          onTap: () => UAdminPageSwitcher.dormBeds(room: i.bed!.room),
         ),
       if (i.bed?.room?.dorm != null)
         PopupMenuItem<String>(
           child: UIconTextHorizontal(leading: const Icon(Icons.bedroom_parent_outlined, size: 20), trailing: Text(U.s.dorm)),
-          onTap: () => PageSwitcher.dormRooms(dorm: i.bed!.room!.dorm),
+          onTap: () => UAdminPageSwitcher.dormRooms(dorm: i.bed!.room!.dorm),
         ),
       if (U.user.hasPermission(TagUser.permissionManageContracts))
         PopupMenuItem<String>(
@@ -224,12 +224,12 @@ class _ContractPageState extends State<ContractPage> {
                   ],
                   onChanged: (int? v) => setLocal(() => c.typeFilter = v),
                 ).pSymmetric(vertical: 6),
-                DropdownButtonFormField<ContractStatusFilter>(
+                DropdownButtonFormField<UAdminContractStatusFilter>(
                   isExpanded: true,
                   initialValue: c.statusFilter,
                   decoration: InputDecoration(labelText: U.s.status, border: const OutlineInputBorder()),
-                  items: ContractStatusFilter.values.map((ContractStatusFilter f) => DropdownMenuItem<ContractStatusFilter>(value: f, child: Text(_statusLabel(f)))).toList(),
-                  onChanged: (ContractStatusFilter? v) => setLocal(() => c.statusFilter = v ?? ContractStatusFilter.all),
+                  items: UAdminContractStatusFilter.values.map((UAdminContractStatusFilter f) => DropdownMenuItem<UAdminContractStatusFilter>(value: f, child: Text(_statusLabel(f)))).toList(),
+                  onChanged: (UAdminContractStatusFilter? v) => setLocal(() => c.statusFilter = v ?? UAdminContractStatusFilter.all),
                 ).pSymmetric(vertical: 6),
                 UTextFieldDatePicker(
                   controller: startCtrl,

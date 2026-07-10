@@ -1,8 +1,8 @@
 part of "../u_admin.dart";
 
-enum ReservationStatusFilter { all, pending, confirmed, checkedIn, checkedOut, cancelled }
+enum UAdminReservationStatusFilter { all, pending, confirmed, checkedIn, checkedOut, cancelled }
 
-class UAdminReservationController extends UBaseController {
+class UAdminReservationController extends UAdminBaseController {
   List<UHotelReservationResponse> list = <UHotelReservationResponse>[];
 
   UHotelResponse? hotel;
@@ -10,7 +10,7 @@ class UAdminReservationController extends UBaseController {
 
   final TextEditingController guestFilter = TextEditingController();
   UHotelResponse? hotelFilter;
-  ReservationStatusFilter statusFilter = ReservationStatusFilter.all;
+  UAdminReservationStatusFilter statusFilter = UAdminReservationStatusFilter.all;
   DateTime? checkInFilter;
   DateTime? checkOutFilter;
 
@@ -22,17 +22,17 @@ class UAdminReservationController extends UBaseController {
 
   int? get _statusTag {
     switch (statusFilter) {
-      case ReservationStatusFilter.pending:
+      case UAdminReservationStatusFilter.pending:
         return TagHotelReservation.pending.number;
-      case ReservationStatusFilter.confirmed:
+      case UAdminReservationStatusFilter.confirmed:
         return TagHotelReservation.confirmed.number;
-      case ReservationStatusFilter.checkedIn:
+      case UAdminReservationStatusFilter.checkedIn:
         return TagHotelReservation.checkedIn.number;
-      case ReservationStatusFilter.checkedOut:
+      case UAdminReservationStatusFilter.checkedOut:
         return TagHotelReservation.checkedOut.number;
-      case ReservationStatusFilter.cancelled:
+      case UAdminReservationStatusFilter.cancelled:
         return TagHotelReservation.cancelled.number;
-      case ReservationStatusFilter.all:
+      case UAdminReservationStatusFilter.all:
         return null;
     }
   }
@@ -71,13 +71,13 @@ class UAdminReservationController extends UBaseController {
   void clearFilters() {
     guestFilter.clear();
     hotelFilter = null;
-    statusFilter = ReservationStatusFilter.all;
+    statusFilter = UAdminReservationStatusFilter.all;
     checkInFilter = null;
     checkOutFilter = null;
     reloadFirstPage(read);
   }
 
-  void setStatus(ReservationStatusFilter f) {
+  void setStatus(UAdminReservationStatusFilter f) {
     statusFilter = f;
     reloadFirstPage(read);
   }

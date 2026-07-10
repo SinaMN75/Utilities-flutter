@@ -1,13 +1,13 @@
 import "package:u/utilities.dart";
 
-class HotelPage extends StatefulWidget {
-  const HotelPage({super.key});
+class UAdminHotelPage extends StatefulWidget {
+  const UAdminHotelPage({super.key});
 
   @override
-  State<HotelPage> createState() => _HotelPageState();
+  State<UAdminHotelPage> createState() => _HotelPageState();
 }
 
-class _HotelPageState extends State<HotelPage> {
+class _HotelPageState extends State<UAdminHotelPage> {
   final UAdminHotelController c = UAdminHotelController();
 
   @override
@@ -52,12 +52,12 @@ class _HotelPageState extends State<HotelPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.title, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.city, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.country, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.rooms, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.created, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.city, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.country, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.rooms, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.created, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -73,7 +73,7 @@ class _HotelPageState extends State<HotelPage> {
   Widget _itemDesktop({required UHotelResponse i, required int index}) {
     final UCountryCityInfo city = UCountries.infoByCode(i.cityCode);
     return URow(
-      backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+      backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
       children: <Widget>[
         UTextBodyMedium(i.title, textAlign: .center).expanded(),
         UTextBodyMedium("${city.country?.nameFa ?? ""} - ${city.province?.nameFa ?? ""} - ${city.city?.nameFa ?? ""}", textAlign: .center).expanded(),
@@ -112,11 +112,11 @@ class _HotelPageState extends State<HotelPage> {
     itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
       PopupMenuItem<String>(
         child: UIconTextHorizontal(leading: const Icon(Icons.meeting_room_outlined, size: 20), trailing: Text(U.s.rooms)),
-        onTap: () => PageSwitcher.hotelRooms(hotel: i),
+        onTap: () => UAdminPageSwitcher.hotelRooms(hotel: i),
       ),
       PopupMenuItem<String>(
         child: UIconTextHorizontal(leading: const Icon(Icons.event_available_outlined, size: 20), trailing: Text(U.s.reservations)),
-        onTap: () => PageSwitcher.reservations(hotel: i),
+        onTap: () => UAdminPageSwitcher.reservations(hotel: i),
       ),
       if (U.user.hasPermission(TagUser.permissionManageHotels))
         PopupMenuItem<String>(
@@ -182,7 +182,7 @@ class _HotelPageState extends State<HotelPage> {
     UCity? city = province.cities.firstOrNull;
 
     if (p != null && p.adminUserIds.isNotEmpty) {
-      final List<UUserResponse?> fetched = await Future.wait(p.adminUserIds.map(HotelAdminSearchHelper.fetchUserById));
+      final List<UUserResponse?> fetched = await Future.wait(p.adminUserIds.map(UAdminHotelAdminSearchHelper.fetchUserById));
       selectedAdmins.addAll(fetched.whereType<UUserResponse>());
     }
 
@@ -220,7 +220,7 @@ class _HotelPageState extends State<HotelPage> {
                     hintText: U.s.admins,
                     selectedItem: null,
                     labelBuilder: (UUserResponse u) => u.userName,
-                    fetchData: HotelAdminSearchHelper.searchUsers,
+                    fetchData: UAdminHotelAdminSearchHelper.searchUsers,
                     onChanged: (UUserResponse? u) {
                       if (u == null) return;
                       if (selectedAdmins.any((UUserResponse x) => x.id == u.id)) return;
@@ -295,7 +295,7 @@ class _HotelPageState extends State<HotelPage> {
   }
 }
 
-class HotelAdminSearchHelper {
+class UAdminHotelAdminSearchHelper {
   static Future<List<UUserResponse>> searchUsers(String query) async {
     final Completer<List<UUserResponse>> completer = Completer<List<UUserResponse>>();
     await UServices.user.read(

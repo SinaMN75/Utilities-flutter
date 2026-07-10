@@ -1,18 +1,18 @@
 import "package:u/u_admin/controllers/u_admin_user_create_update_controller.dart";
 import "package:u/utilities.dart";
 
-class UserCreateUpdateDialog extends StatefulWidget {
-  const UserCreateUpdateDialog({this.user, super.key});
+class UAdminUserCreateUpdateDialog extends StatefulWidget {
+  const UAdminUserCreateUpdateDialog({this.user, super.key});
 
   final UUserResponse? user;
 
-  static Future<void> show({UUserResponse? user}) => UNavigator.dialog<void>(UserCreateUpdateDialog(user: user));
+  static Future<void> show({UUserResponse? user}) => UNavigator.dialog<void>(UAdminUserCreateUpdateDialog(user: user));
 
   @override
-  State<UserCreateUpdateDialog> createState() => _UserCreateUpdateDialogState();
+  State<UAdminUserCreateUpdateDialog> createState() => _UserCreateUpdateDialogState();
 }
 
-class _UserCreateUpdateDialogState extends State<UserCreateUpdateDialog> {
+class _UserCreateUpdateDialogState extends State<UAdminUserCreateUpdateDialog> {
   final UAdminUserCreateUpdateController c = UAdminUserCreateUpdateController();
 
   bool get _canManageRoles => U.user.isFullAdmin();
@@ -62,7 +62,7 @@ class _UserCreateUpdateDialogState extends State<UserCreateUpdateDialog> {
                     icon: const Icon(Icons.link_rounded, size: 18),
                     onTap: () {
                       UNavigator.back();
-                      PageSwitcher.hotelUserDetail(user: widget.user!);
+                      UAdminPageSwitcher.hotelUserDetail(user: widget.user!);
                     },
                   ),
                 ),
@@ -124,7 +124,7 @@ class _UserCreateUpdateDialogState extends State<UserCreateUpdateDialog> {
                 prefix: const Icon(Icons.lock_outline_rounded, size: 18),
               ).pSymmetric(vertical: 6),
               const Divider(height: 20),
-              UTextBodySmall(U.s.gender, color: AppColors.grey).alignAtCenterLeft(),
+              UTextBodySmall(U.s.gender, color: UAdminAppColors.grey).alignAtCenterLeft(),
               Obx(
                 () => USegmentedControl<int>(
                   selectedValue: c.gender.value.number,
@@ -150,7 +150,7 @@ class _UserCreateUpdateDialogState extends State<UserCreateUpdateDialog> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       const SizedBox(height: 6),
-                      UTextBodySmall(U.s.permissions, color: AppColors.grey),
+                      UTextBodySmall(U.s.permissions, color: UAdminAppColors.grey),
                       ...TagUser.permissions.map(
                         (TagUser permission) => CheckboxListTile(
                           dense: true,

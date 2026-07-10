@@ -1,7 +1,7 @@
 import "package:u/utilities.dart";
 
-class MerchantsPage extends StatefulWidget {
-  const MerchantsPage({super.key, this.user, this.actions});
+class UAdminMerchantsPage extends StatefulWidget {
+  const UAdminMerchantsPage({super.key, this.user, this.actions});
 
   // When set, the list is scoped to this owner's merchants (user -> their merchants).
   final UUserResponse? user;
@@ -10,10 +10,10 @@ class MerchantsPage extends StatefulWidget {
   final UAdminActionBuilder<UMerchantResponse>? actions;
 
   @override
-  State<MerchantsPage> createState() => _MerchantsPageState();
+  State<UAdminMerchantsPage> createState() => _MerchantsPageState();
 }
 
-class _MerchantsPageState extends State<MerchantsPage> {
+class _MerchantsPageState extends State<UAdminMerchantsPage> {
   final UAdminMerchantController c = UAdminMerchantController();
 
   @override
@@ -55,20 +55,20 @@ class _MerchantsPageState extends State<MerchantsPage> {
     onRetry: c.read,
     emptyText: U.s.noMerchantsFound,
     desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.title, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.nationalCode, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.phoneNumber, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.mcc, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.merchantId, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.createdAt, color: AppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.nationalCode, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.phoneNumber, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.mcc, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.merchantId, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.createdAt, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
     ],
     desktopRow: (UMerchantResponse i, int index) => _itemDesktop(i: i, index: index),
     mobileRow: (UMerchantResponse i, int index) => _itemResponsive(i: i, index: index),
   );
 
   Widget _itemDesktop({required UMerchantResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.title, textAlign: .center).expanded(),
       UTextBodyMedium(i.nationalCode, textAlign: .center).expanded(),
@@ -101,7 +101,7 @@ class _MerchantsPageState extends State<MerchantsPage> {
     ),
   );
 
-  // Built-in operations; the app can override them via MerchantsPage(actions: ...).
+  // Built-in operations; the app can override them via UAdminMerchantsPage(actions: ...).
   Widget _menu(UMerchantResponse i) => UAdminOps.menu<UMerchantResponse>(
     context,
     item: i,
@@ -144,7 +144,7 @@ class _MerchantsPageState extends State<MerchantsPage> {
   Widget _kv(String k, String v) => Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      SizedBox(width: 130, child: UTextBodySmall(k, color: AppColors.grey)),
+      SizedBox(width: 130, child: UTextBodySmall(k, color: UAdminAppColors.grey)),
       Expanded(child: UTextBodyMedium(v, fontWeight: FontWeight.w500)),
     ],
   ).pSymmetric(vertical: 6);

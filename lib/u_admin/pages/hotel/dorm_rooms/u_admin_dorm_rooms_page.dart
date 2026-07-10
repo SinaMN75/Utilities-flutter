@@ -1,15 +1,15 @@
 import "package:u/utilities.dart";
 
-class DormRoomPage extends StatefulWidget {
-  const DormRoomPage({this.dorm, super.key});
+class UAdminDormRoomPage extends StatefulWidget {
+  const UAdminDormRoomPage({this.dorm, super.key});
 
   final UDormResponse? dorm;
 
   @override
-  State<DormRoomPage> createState() => _DormRoomPageState();
+  State<UAdminDormRoomPage> createState() => _DormRoomPageState();
 }
 
-class _DormRoomPageState extends State<DormRoomPage> {
+class _DormRoomPageState extends State<UAdminDormRoomPage> {
   final UAdminDormRoomController c = UAdminDormRoomController();
 
   @override
@@ -59,11 +59,11 @@ class _DormRoomPageState extends State<DormRoomPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.title, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.dorm, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.beds, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.created, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.dorm, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.beds, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.created, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -77,7 +77,7 @@ class _DormRoomPageState extends State<DormRoomPage> {
   });
 
   Widget _itemDesktop({required UDormRoomResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.title, textAlign: .center).expanded(),
       UTextBodyMedium(i.dorm?.title ?? "-", textAlign: .center).expanded(),
@@ -112,7 +112,7 @@ class _DormRoomPageState extends State<DormRoomPage> {
     itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
       PopupMenuItem<String>(
         child: UIconTextHorizontal(leading: const Icon(Icons.bed_outlined, size: 20), trailing: Text(U.s.beds)),
-        onTap: () => PageSwitcher.dormBeds(room: i),
+        onTap: () => UAdminPageSwitcher.dormBeds(room: i),
       ),
       if (U.user.hasPermission(TagUser.permissionManageDorms))
         PopupMenuItem<String>(

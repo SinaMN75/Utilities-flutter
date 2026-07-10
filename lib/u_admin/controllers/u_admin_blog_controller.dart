@@ -1,6 +1,6 @@
 part of "../u_admin.dart";
 
-class UAdminBlogController extends UBaseController {
+class UAdminBlogController extends UAdminBaseController {
   List<UBlogResponse> list = <UBlogResponse>[];
   final GlobalKey<FormState> filterFormKey = GlobalKey<FormState>();
 

@@ -1,13 +1,13 @@
 import "package:u/utilities.dart";
 
-class DormPage extends StatefulWidget {
-  const DormPage({super.key});
+class UAdminDormPage extends StatefulWidget {
+  const UAdminDormPage({super.key});
 
   @override
-  State<DormPage> createState() => _DormPageState();
+  State<UAdminDormPage> createState() => _DormPageState();
 }
 
-class _DormPageState extends State<DormPage> {
+class _DormPageState extends State<UAdminDormPage> {
   final UAdminDormController c = UAdminDormController();
 
   @override
@@ -56,11 +56,11 @@ class _DormPageState extends State<DormPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.title, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.city, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.room, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.created, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.city, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.room, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.created, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -76,7 +76,7 @@ class _DormPageState extends State<DormPage> {
   Widget _itemDesktop({required UDormResponse i, required int index}) {
     final UCountryCityInfo city = UCountries.infoByCode(i.cityCode);
     return URow(
-      backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+      backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
       children: <Widget>[
         UTextBodyMedium(i.title, textAlign: .center).expanded(),
         UTextBodyMedium("${city.country?.nameFa ?? ""} - ${city.province?.nameFa ?? ""} - ${city.city?.nameFa ?? ""}", textAlign: .center).expanded(),
@@ -115,11 +115,11 @@ class _DormPageState extends State<DormPage> {
     itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
       PopupMenuItem<String>(
         child: UIconTextHorizontal(leading: const Icon(Icons.meeting_room_outlined, size: 20), trailing: Text(U.s.room)),
-        onTap: () => PageSwitcher.dormRooms(dorm: i),
+        onTap: () => UAdminPageSwitcher.dormRooms(dorm: i),
       ),
       PopupMenuItem<String>(
         child: UIconTextHorizontal(leading: const Icon(Icons.bed_outlined, size: 20), trailing: Text(U.s.beds)),
-        onTap: () => PageSwitcher.dormBeds(dorm: i),
+        onTap: () => UAdminPageSwitcher.dormBeds(dorm: i),
       ),
       if (U.user.hasPermission(TagUser.permissionManageDorms))
         PopupMenuItem<String>(
@@ -146,7 +146,7 @@ class _DormPageState extends State<DormPage> {
     final List<UUserResponse> selectedAdmins = <UUserResponse>[];
 
     if (p != null && p.adminUserIds.isNotEmpty) {
-      final List<UUserResponse?> fetched = await Future.wait(p.adminUserIds.map(HotelAdminSearchHelper.fetchUserById));
+      final List<UUserResponse?> fetched = await Future.wait(p.adminUserIds.map(UAdminHotelAdminSearchHelper.fetchUserById));
       selectedAdmins.addAll(fetched.whereType<UUserResponse>());
     }
 
@@ -181,7 +181,7 @@ class _DormPageState extends State<DormPage> {
                     hintText: U.s.admins,
                     selectedItem: null,
                     labelBuilder: (UUserResponse u) => u.userName,
-                    fetchData: HotelAdminSearchHelper.searchUsers,
+                    fetchData: UAdminHotelAdminSearchHelper.searchUsers,
                     onChanged: (UUserResponse? u) {
                       if (u == null) return;
                       if (selectedAdmins.any((UUserResponse x) => x.id == u.id)) return;

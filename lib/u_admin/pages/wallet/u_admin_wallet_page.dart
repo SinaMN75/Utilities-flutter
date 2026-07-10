@@ -1,13 +1,13 @@
 import "package:u/utilities.dart";
 
-class WalletPage extends StatefulWidget {
-  const WalletPage({super.key});
+class UAdminWalletPage extends StatefulWidget {
+  const UAdminWalletPage({super.key});
 
   @override
-  State<WalletPage> createState() => _WalletPageState();
+  State<UAdminWalletPage> createState() => _WalletPageState();
 }
 
-class _WalletPageState extends State<WalletPage> {
+class _WalletPageState extends State<UAdminWalletPage> {
   final UAdminWalletController c = UAdminWalletController();
 
   @override
@@ -90,9 +90,9 @@ class _WalletPageState extends State<WalletPage> {
           const Divider(height: 16),
           Row(
             children: <Widget>[
-              _miniStat(U.s.moneyIn, s.totalIn, AppColors.green),
-              _miniStat(U.s.moneyOut, s.totalOut, AppColors.red),
-              _miniStat(U.s.net, s.net, s.net >= 0 ? AppColors.green : AppColors.red),
+              _miniStat(U.s.moneyIn, s.totalIn, UAdminAppColors.green),
+              _miniStat(U.s.moneyOut, s.totalOut, UAdminAppColors.red),
+              _miniStat(U.s.net, s.net, s.net >= 0 ? UAdminAppColors.green : UAdminAppColors.red),
             ],
           ),
         ],
@@ -119,7 +119,7 @@ class _WalletPageState extends State<WalletPage> {
     return Column(
       children: c.txns.map((UWalletTxnResponse t) {
         final bool incoming = t.receiverId == c.selectedUser.value?.id;
-        final Color color = incoming ? AppColors.green : AppColors.red;
+        final Color color = incoming ? UAdminAppColors.green : UAdminAppColors.red;
         return UCard(
           margin: const EdgeInsets.symmetric(vertical: 4),
           child: ListTile(

@@ -1,16 +1,16 @@
 import "package:u/utilities.dart";
 
-class ReservationPage extends StatefulWidget {
-  const ReservationPage({this.hotel, this.room, super.key});
+class UAdminReservationPage extends StatefulWidget {
+  const UAdminReservationPage({this.hotel, this.room, super.key});
 
   final UHotelResponse? hotel;
   final UHotelRoomResponse? room;
 
   @override
-  State<ReservationPage> createState() => _ReservationPageState();
+  State<UAdminReservationPage> createState() => _ReservationPageState();
 }
 
-class _ReservationPageState extends State<ReservationPage> {
+class _ReservationPageState extends State<UAdminReservationPage> {
   final UAdminReservationController c = UAdminReservationController();
 
   @override
@@ -51,19 +51,19 @@ class _ReservationPageState extends State<ReservationPage> {
     ),
   );
 
-  String _statusFilterLabel(ReservationStatusFilter f) {
+  String _statusFilterLabel(UAdminReservationStatusFilter f) {
     switch (f) {
-      case ReservationStatusFilter.all:
+      case UAdminReservationStatusFilter.all:
         return U.s.all;
-      case ReservationStatusFilter.pending:
+      case UAdminReservationStatusFilter.pending:
         return U.s.pending;
-      case ReservationStatusFilter.confirmed:
+      case UAdminReservationStatusFilter.confirmed:
         return U.s.confirmed;
-      case ReservationStatusFilter.checkedIn:
+      case UAdminReservationStatusFilter.checkedIn:
         return U.s.checkedIn;
-      case ReservationStatusFilter.checkedOut:
+      case UAdminReservationStatusFilter.checkedOut:
         return U.s.checkedOut;
-      case ReservationStatusFilter.cancelled:
+      case UAdminReservationStatusFilter.cancelled:
         return U.s.cancelled;
     }
   }
@@ -72,15 +72,15 @@ class _ReservationPageState extends State<ReservationPage> {
     switch (s) {
       case TagHotelReservation.confirmed:
       case TagHotelReservation.checkedIn:
-        return AppColors.green;
+        return UAdminAppColors.green;
       case TagHotelReservation.cancelled:
       case TagHotelReservation.noShow:
-        return AppColors.red;
+        return UAdminAppColors.red;
       case TagHotelReservation.checkedOut:
-        return AppColors.blue;
+        return UAdminAppColors.blue;
       case TagHotelReservation.pending:
       case null:
-        return AppColors.orange;
+        return UAdminAppColors.orange;
     }
   }
 
@@ -105,13 +105,13 @@ class _ReservationPageState extends State<ReservationPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.guest, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.rooms, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.checkInDate, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.checkOutDate, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.totalPrice, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.status, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.guest, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.rooms, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.checkInDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.checkOutDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.totalPrice, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -129,7 +129,7 @@ class _ReservationPageState extends State<ReservationPage> {
   String _roomLabel(UHotelReservationResponse i) => i.room?.title ?? widget.room?.title ?? "-";
 
   Widget _itemDesktop({required UHotelReservationResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(_guestLabel(i), textAlign: .center).expanded(),
       UTextBodyMedium(_roomLabel(i), textAlign: .center).expanded(),
@@ -173,7 +173,7 @@ class _ReservationPageState extends State<ReservationPage> {
         if (i.user != null)
           PopupMenuItem<String>(
             child: UIconTextHorizontal(leading: const Icon(Icons.person_outline, size: 20), trailing: Text(U.s.guest)),
-            onTap: () => PageSwitcher.hotelUserDetail(user: i.user!),
+            onTap: () => UAdminPageSwitcher.hotelUserDetail(user: i.user!),
           ),
         if (canManage && s == TagHotelReservation.pending)
           PopupMenuItem<String>(
@@ -238,12 +238,12 @@ class _ReservationPageState extends State<ReservationPage> {
                     fetchData: c.readHotels,
                     hintText: U.s.hotel,
                   ).pSymmetric(vertical: 6),
-                DropdownButtonFormField<ReservationStatusFilter>(
+                DropdownButtonFormField<UAdminReservationStatusFilter>(
                   isExpanded: true,
                   initialValue: c.statusFilter,
                   decoration: InputDecoration(labelText: U.s.status, border: const OutlineInputBorder()),
-                  items: ReservationStatusFilter.values.map((ReservationStatusFilter f) => DropdownMenuItem<ReservationStatusFilter>(value: f, child: Text(_statusFilterLabel(f)))).toList(),
-                  onChanged: (ReservationStatusFilter? v) => setLocal(() => c.statusFilter = v ?? ReservationStatusFilter.all),
+                  items: UAdminReservationStatusFilter.values.map((UAdminReservationStatusFilter f) => DropdownMenuItem<UAdminReservationStatusFilter>(value: f, child: Text(_statusFilterLabel(f)))).toList(),
+                  onChanged: (UAdminReservationStatusFilter? v) => setLocal(() => c.statusFilter = v ?? UAdminReservationStatusFilter.all),
                 ).pSymmetric(vertical: 6),
                 UTextFieldDatePicker(
                   controller: checkInCtrl,

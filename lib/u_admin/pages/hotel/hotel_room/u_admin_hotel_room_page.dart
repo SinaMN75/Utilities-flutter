@@ -1,15 +1,15 @@
 import "package:u/utilities.dart";
 
-class HotelRoomPage extends StatefulWidget {
-  const HotelRoomPage({this.hotel, super.key});
+class UAdminHotelRoomPage extends StatefulWidget {
+  const UAdminHotelRoomPage({this.hotel, super.key});
 
   final UHotelResponse? hotel;
 
   @override
-  State<HotelRoomPage> createState() => _HotelRoomPageState();
+  State<UAdminHotelRoomPage> createState() => _HotelRoomPageState();
 }
 
-class _HotelRoomPageState extends State<HotelRoomPage> {
+class _HotelRoomPageState extends State<UAdminHotelRoomPage> {
   final UAdminHotelRoomController c = UAdminHotelRoomController();
 
   @override
@@ -54,12 +54,12 @@ class _HotelRoomPageState extends State<HotelRoomPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.title, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.hotel, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.capacity, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.priceNight, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.status, color: AppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: AppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.hotel, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.capacity, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.priceNight, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -72,7 +72,7 @@ class _HotelRoomPageState extends State<HotelRoomPage> {
   });
 
   Widget _itemDesktop({required UHotelRoomResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? AppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.title, textAlign: .center).expanded(),
       UTextBodyMedium(i.hotel?.title ?? "-", textAlign: .center).expanded(),
@@ -107,7 +107,7 @@ class _HotelRoomPageState extends State<HotelRoomPage> {
     itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
       PopupMenuItem<String>(
         child: UIconTextHorizontal(leading: const Icon(Icons.event_available_outlined, size: 20), trailing: Text(U.s.reservations)),
-        onTap: () => PageSwitcher.reservations(room: i),
+        onTap: () => UAdminPageSwitcher.reservations(room: i),
       ),
       if (U.user.hasPermission(TagUser.permissionManageHotels))
         PopupMenuItem<String>(
