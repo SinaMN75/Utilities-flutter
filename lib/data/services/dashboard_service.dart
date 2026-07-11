@@ -1,112 +1,208 @@
 part of "../data.dart";
 
 class DashboardService {
-  Future<UHttpClientResponse> readSystemMetrics({
+  Future<(UMetricsResponse?, UEmptyResponse?, String?)> readSystemMetrics({
     final Function(UMetricsResponse r)? onOk,
     final VoidCallback? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/dashboard/ReadSystemMetrics",
-    onSuccess: (final Response r) => onOk?.call(UMetricsResponse.fromJson(r.body)),
-    onError: (final Response r) => onError?.call(),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UMetricsResponse?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/dashboard/ReadSystemMetrics",
+      onSuccess: (final Response r) {
+        final UMetricsResponse ok = UMetricsResponse.fromJson(r.body);
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call();
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  Future<UHttpClientResponse> read({
+  Future<(UDashboardResponse?, UEmptyResponse?, String?)> read({
     final Function(UDashboardResponse r)? onOk,
     final VoidCallback? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/dashboard/Read",
-    onSuccess: (final Response r) => onOk?.call(UDashboardResponse.fromJson(r.body)),
-    onError: (final Response r) => onError?.call(),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UDashboardResponse?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/dashboard/Read",
+      onSuccess: (final Response r) {
+        final UDashboardResponse ok = UDashboardResponse.fromJson(r.body);
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call();
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  // System-wide wallet/merchant/terminal/txn analytics for the financial & operations dashboard.
-  Future<UHttpClientResponse> readFinancialOpsDashboard({
+  Future<(UResponse<UFinancialOpsDashboardResponse>?, UEmptyResponse?, String?)> readFinancialOpsDashboard({
     required final UDashboardRangeParams p,
     final Function(UResponse<UFinancialOpsDashboardResponse> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/dashboard/ReadFinancialOpsDashboard",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(
-      UResponse<UFinancialOpsDashboardResponse>.fromJson(
-        r.body,
-        (final dynamic i) => UFinancialOpsDashboardResponse.fromMap(i),
-      ),
-    ),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UResponse<UFinancialOpsDashboardResponse>?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/dashboard/ReadFinancialOpsDashboard",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UResponse<UFinancialOpsDashboardResponse> ok = UResponse<UFinancialOpsDashboardResponse>.fromJson(
+          r.body,
+          (final dynamic i) => UFinancialOpsDashboardResponse.fromMap(i),
+        );
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  // Users/hotels/dorms/contracts/invoices analytics for the property dashboard.
-  Future<UHttpClientResponse> readPropertyDashboard({
+  Future<(UResponse<UPropertyDashboardResponse>?, UEmptyResponse?, String?)> readPropertyDashboard({
     required final UDashboardRangeParams p,
     final Function(UResponse<UPropertyDashboardResponse> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/dashboard/ReadPropertyDashboard",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(
-      UResponse<UPropertyDashboardResponse>.fromJson(
-        r.body,
-        (final dynamic i) => UPropertyDashboardResponse.fromMap(i),
-      ),
-    ),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UResponse<UPropertyDashboardResponse>?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/dashboard/ReadPropertyDashboard",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UResponse<UPropertyDashboardResponse> ok = UResponse<UPropertyDashboardResponse>.fromJson(
+          r.body,
+          (final dynamic i) => UPropertyDashboardResponse.fromMap(i),
+        );
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  // Rich, cross-platform OS/server metrics (CPU, memory, disks, process, GC, network).
-  Future<UHttpClientResponse> readOsMetrics({
+  Future<(UResponse<UOsMetricsResponse>?, UEmptyResponse?, String?)> readOsMetrics({
     final Function(UResponse<UOsMetricsResponse> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/dashboard/ReadOsMetrics",
-    body: <String, dynamic>{}.add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(
-      UResponse<UOsMetricsResponse>.fromJson(
-        r.body,
-        (final dynamic i) => UOsMetricsResponse.fromMap(i),
-      ),
-    ),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UResponse<UOsMetricsResponse>?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/dashboard/ReadOsMetrics",
+      body: <String, dynamic>{}.add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UResponse<UOsMetricsResponse> ok = UResponse<UOsMetricsResponse>.fromJson(
+          r.body,
+          (final dynamic i) => UOsMetricsResponse.fromMap(i),
+        );
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  void getLogStructure({
+  Future<(LogStructureResponse?, UEmptyResponse?, String?)> getLogStructure({
     final Function(LogStructureResponse r)? onOk,
     final VoidCallback? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/dashboard/Logs/structure",
-    onSuccess: (final Response r) => onOk?.call(LogStructureResponse.fromJson(r.body)),
-    onError: (final Response r) => onError?.call(),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (LogStructureResponse?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/dashboard/Logs/structure",
+      onSuccess: (final Response r) {
+        final LogStructureResponse ok = LogStructureResponse.fromJson(r.body);
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call();
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  void getLogContent({
+  Future<(String?, UEmptyResponse?, String?)> getLogContent({
     required final String logId,
     final Function(String r)? onOk,
     final VoidCallback? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/dashboard/Logs/content",
-    body: <String, String>{"id": logId},
-    onSuccess: (final Response r) => onOk?.call(r.body),
-    onError: (final Response r) => onError?.call(),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (String?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/dashboard/Logs/content",
+      body: <String, String>{"id": logId},
+      onSuccess: (final Response r) {
+        final String ok = r.body;
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call();
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 }

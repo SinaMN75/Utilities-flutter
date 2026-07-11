@@ -1,106 +1,209 @@
 part of "../data.dart";
 
 class CommentService {
-  Future<UHttpClientResponse> create({
+  Future<(UResponse<String>?, UEmptyResponse?, String?)> create({
     required final UCommentCreateParams p,
     final Function(UResponse<String> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/comment/Create",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<String>.fromJson(r.body, (final dynamic i) => i)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UResponse<String>?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/comment/Create",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UResponse<String> ok = UResponse<String>.fromJson(r.body, (final dynamic i) => i);
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  Future<UHttpClientResponse> read({
+  Future<(UResponse<List<UCommentResponse>>?, UEmptyResponse?, String?)> read({
     required final UCommentReadParams p,
     final Function(UResponse<List<UCommentResponse>> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/comment/Read",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(
-      UResponse<List<UCommentResponse>>.fromJson(
-        r.body,
-        (final dynamic i) => List<UCommentResponse>.from((i as List<dynamic>).map((final dynamic x) => UCommentResponse.fromMap(x))),
-      ),
-    ),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UResponse<List<UCommentResponse>>?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/comment/Read",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UResponse<List<UCommentResponse>> ok = UResponse<List<UCommentResponse>>.fromJson(
+          r.body,
+          (final dynamic i) => List<UCommentResponse>.from((i as List<dynamic>).map((final dynamic x) => UCommentResponse.fromMap(x))),
+        );
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  Future<UHttpClientResponse> readById({
+  Future<(UResponse<UCommentResponse>?, UEmptyResponse?, String?)> readById({
     required final UIdParams p,
     final Function(UResponse<UCommentResponse> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/comment/ReadById",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i))),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UResponse<UCommentResponse>?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/comment/ReadById",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UResponse<UCommentResponse> ok = UResponse<UCommentResponse>.fromJson(r.body, (final dynamic i) => UCommentResponse.fromMap(i));
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  Future<UHttpClientResponse> update({
+  Future<(UEmptyResponse?, UEmptyResponse?, String?)> update({
     required final UCommentUpdateParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/comment/Update",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UEmptyResponse?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/comment/Update",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UEmptyResponse ok = UEmptyResponse.fromJson(r.body);
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  Future<UHttpClientResponse> delete({
+  Future<(UEmptyResponse?, UEmptyResponse?, String?)> delete({
     required final UIdParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/comment/Delete",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UEmptyResponse?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/comment/Delete",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UEmptyResponse ok = UEmptyResponse.fromJson(r.body);
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  Future<UHttpClientResponse> readProductCommentCount({
+  Future<(UResponse<int>?, UEmptyResponse?, String?)> readProductCommentCount({
     required final UIdParams p,
     final Function(UResponse<int> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/comment/ReadProductCommentCount",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UResponse<int>?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/comment/ReadProductCommentCount",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UResponse<int> ok = UResponse<int>.fromJson(r.body, (final dynamic i) => i);
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  Future<UHttpClientResponse> readUserCommentCount({
+  Future<(UResponse<int>?, UEmptyResponse?, String?)> readUserCommentCount({
     required final UIdParams p,
     final Function(UResponse<int> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/comment/ReadUserCommentCount",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UResponse<int>.fromJson(r.body, (final dynamic i) => i)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UResponse<int>?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/comment/ReadUserCommentCount",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UResponse<int> ok = UResponse<int>.fromJson(r.body, (final dynamic i) => i);
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 }

@@ -1,36 +1,64 @@
 part of "../data.dart";
 
 class ChatBotService {
-  Future<UHttpClientResponse> create({
+  Future<(UEmptyResponse?, UEmptyResponse?, String?)> create({
     required final UChatBotCreateParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/ChatBot/Create",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(UEmptyResponse.fromJson(r.body)),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UEmptyResponse?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/ChatBot/Create",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UEmptyResponse ok = UEmptyResponse.fromJson(r.body);
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 
-  Future<UHttpClientResponse> read({
+  Future<(UResponse<List<UChatBotResponse>>?, UEmptyResponse?, String?)> read({
     required final UChatBotReadParams p,
     final Function(UResponse<List<UChatBotResponse>> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
-  }) => UHttpClient.send(
-    method: "POST",
-    endpoint: "${U.baseUrl}/ChatBot/Read",
-    body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
-    onSuccess: (final Response r) => onOk?.call(
-      UResponse<List<UChatBotResponse>>.fromJson(
-        r.body,
-        (final dynamic i) => List<UChatBotResponse>.from((i as List<dynamic>).map((final dynamic x) => UChatBotResponse.fromMap(x))),
-      ),
-    ),
-    onError: (final Response r) => onError?.call(UEmptyResponse.fromJson(r.body)),
-    onException: (String e) => onException?.call(e),
-  );
+  }) async {
+    (UResponse<List<UChatBotResponse>>?, UEmptyResponse?, String?) result = (null, null, null);
+    await UHttpClient.send(
+      method: "POST",
+      endpoint: "${U.baseUrl}/ChatBot/Read",
+      body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
+      onSuccess: (final Response r) {
+        final UResponse<List<UChatBotResponse>> ok = UResponse<List<UChatBotResponse>>.fromJson(
+          r.body,
+          (final dynamic i) => List<UChatBotResponse>.from((i as List<dynamic>).map((final dynamic x) => UChatBotResponse.fromMap(x))),
+        );
+        result = (ok, null, null);
+        onOk?.call(ok);
+      },
+      onError: (final Response r) {
+        final UEmptyResponse err = UEmptyResponse.fromJson(r.body);
+        result = (null, err, null);
+        onError?.call(err);
+      },
+      onException: (final String e) {
+        result = (null, null, e);
+        onException?.call(e);
+      },
+    );
+    return result;
+  }
 }
