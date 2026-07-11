@@ -26,7 +26,7 @@ dependencies:
   url_launcher: ^6.3.2
   shared_preferences: ^2.5.5
   webview_all: ^1.2.1
-  local_auth: ^3.0.2
+  #  local_auth: ^3.0.2
   no_screenshot: ^1.1.0
   flutter_svg: ^2.3.0
   image_picker: ^1.2.3

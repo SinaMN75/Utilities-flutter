@@ -27,7 +27,8 @@ export "package:http_parser/http_parser.dart";
 export "package:image_cropper/image_cropper.dart";
 export "package:image_picker/image_picker.dart";
 export "package:latlong2/latlong.dart" hide Path, pi;
-export "package:local_auth/local_auth.dart";
+
+// export "package:local_auth/local_auth.dart";
 export "package:logging/logging.dart";
 export "package:lottie/lottie.dart" hide Marker;
 export "package:no_screenshot/no_screenshot.dart";
