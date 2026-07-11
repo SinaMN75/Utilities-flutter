@@ -61,9 +61,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "Are you sure to Delete this User?",
     ),
-    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments": MessageLookupByLibrary.simpleMessage(
-      "Are you sure you want to approve this user with all of their documents?",
-    ),
+    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments":
+        MessageLookupByLibrary.simpleMessage(
+          "Are you sure you want to approve this user with all of their documents?",
+        ),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "Are You Sure You Want To Delete",
     ),
@@ -515,9 +516,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "occupied": MessageLookupByLibrary.simpleMessage("Occupied"),
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "oldestFirst": MessageLookupByLibrary.simpleMessage("Oldest First"),
-    "oneTerminalPerLineSerialSimnumberSimserialImei": MessageLookupByLibrary.simpleMessage(
-      "One terminal per line: serial,simNumber,simSerial,imei",
-    ),
+    "oneTerminalPerLineSerialSimnumberSimserialImei":
+        MessageLookupByLibrary.simpleMessage(
+          "One terminal per line: serial,simNumber,simSerial,imei",
+        ),
     "onlyErrors": MessageLookupByLibrary.simpleMessage("Only Errors"),
     "onlyExceptions": MessageLookupByLibrary.simpleMessage("Only Exceptions"),
     "operatingSystem": MessageLookupByLibrary.simpleMessage("Operating System"),
@@ -565,12 +567,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissions": MessageLookupByLibrary.simpleMessage("Permissions"),
     "persian": MessageLookupByLibrary.simpleMessage("Persian"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
-    "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
-      "Please Create a Category before creating a Product.",
-    ),
-    "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
-      "Please Create a Product before Signing a Contract",
-    ),
+    "pleaseCreateACategoryBeforeCreatingAProduct":
+        MessageLookupByLibrary.simpleMessage(
+          "Please Create a Category before creating a Product.",
+        ),
+    "pleaseCreateAProductBeforeSigningAContract":
+        MessageLookupByLibrary.simpleMessage(
+          "Please Create a Product before Signing a Contract",
+        ),
     "pleaseSelectADorm": MessageLookupByLibrary.simpleMessage(
       "Please select a dorm",
     ),
@@ -602,9 +606,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "published": MessageLookupByLibrary.simpleMessage("Published"),
     "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("Question Title"),
-    "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
-      "Question title and at least one option are required",
-    ),
+    "questionTitleAndAtLeastOneOptionAreRequired":
+        MessageLookupByLibrary.simpleMessage(
+          "Question title and at least one option are required",
+        ),
     "questionnaire": MessageLookupByLibrary.simpleMessage("Questionnaire"),
     "questions": MessageLookupByLibrary.simpleMessage("Questions"),
     "quote": MessageLookupByLibrary.simpleMessage("Quote"),
