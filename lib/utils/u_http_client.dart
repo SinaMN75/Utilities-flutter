@@ -34,6 +34,7 @@ abstract class UHttpClient {
     final String? noNetworkMessage,
     final String? unexpectedErrorMessage,
     final bool offline = false,
+    final Duration? cacheDuration,
     final int retryAmount = 3,
     final Duration timeout = const Duration(seconds: 30),
     final void Function(int percent)? onSendProgress,
@@ -50,6 +51,7 @@ abstract class UHttpClient {
     final Uri uri = _buildUri(endpoint, queryParams);
     final String cacheKey = "cache_${method}_${uri.toString().replaceAll(RegExp(r"[^\w]"), "_")}_${body == null ? "" : jsonEncode(body).hashCode}";
 
+    // getString auto-clears and returns null once cacheDuration has elapsed, forcing a fresh fetch
     final String? cachedData = ULocalStorage.getString(cacheKey);
     if (offline && cachedData != null) {
       final Response response = Response(cachedData, 200, request: Request(method, uri));
@@ -125,6 +127,7 @@ abstract class UHttpClient {
           onException: onException,
           headers: headers,
           offline: offline,
+          cacheDuration: cacheDuration,
           body: body,
           bodyType: bodyType,
           noNetworkMessage: noNetworkMessage,
@@ -146,7 +149,7 @@ abstract class UHttpClient {
 
     try {
       if (response.statusCode >= 200 && response.statusCode <= 299) {
-        ULocalStorage.set(cacheKey, response.body);
+        ULocalStorage.set(cacheKey, response.body, expireTime: cacheDuration);
         onSuccess(response);
         return UHttpClientResponse(response: response.body);
       } else {
