@@ -606,5 +606,19 @@
   "copyToClipboard": "Copy to clipboard",
   "requestSize": "Request Size",
   "responseSize": "Response Size",
-  "csvRowsHintSuffix": "rows (including header) - up to 10,000 rows based on current filters."
+  "csvRowsHintSuffix": "rows (including header) - up to 10,000 rows based on current filters.",
+  "parking": "Parking",
+  "parkingManagement": "Parking Management",
+  "parkingReports": "Parking Reports",
+  "parkingReport": "Parking Report",
+  "createParking": "Create Parking",
+  "editParking": "Edit Parking",
+  "entrancePrice": "Entrance Price",
+  "hourlyPrice": "Hourly Price",
+  "dailyPrice": "Daily Price",
+  "owner": "Owner",
+  "noParkingsFound": "No parkings found",
+  "noParkingReportsFound": "No parking reports found",
+  "licencePlate": "Licence Plate",
+  "viewReport": "View Report"
 }

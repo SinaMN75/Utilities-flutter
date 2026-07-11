@@ -18,6 +18,8 @@ part "controllers/u_admin_hotel_user_detail_controller.dart";
 part "controllers/u_admin_invoice_controller.dart";
 part "controllers/u_admin_login_controller.dart";
 part "controllers/u_admin_merchant_controller.dart";
+part "controllers/u_admin_parking_controller.dart";
+part "controllers/u_admin_parking_report_controller.dart";
 part "controllers/u_admin_payment_users_controller.dart";
 part "controllers/u_admin_products_controller.dart";
 part "controllers/u_admin_reservation_controller.dart";

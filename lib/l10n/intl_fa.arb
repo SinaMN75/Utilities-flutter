@@ -606,5 +606,19 @@
   "copyToClipboard": "کپی به کلیپ‌بورد",
   "requestSize": "اندازه درخواست",
   "responseSize": "اندازه پاسخ",
-  "csvRowsHintSuffix": "ردیف (شامل هدر) - حداکثر ۱۰٬۰۰۰ ردیف بر اساس فیلترهای فعلی."
+  "csvRowsHintSuffix": "ردیف (شامل هدر) - حداکثر ۱۰٬۰۰۰ ردیف بر اساس فیلترهای فعلی.",
+  "parking": "پارکینگ",
+  "parkingManagement": "مدیریت پارکینگ",
+  "parkingReports": "گزارش‌های پارکینگ",
+  "parkingReport": "گزارش پارکینگ",
+  "createParking": "ایجاد پارکینگ",
+  "editParking": "ویرایش پارکینگ",
+  "entrancePrice": "هزینه ورود",
+  "hourlyPrice": "هزینه ساعتی",
+  "dailyPrice": "هزینه روزانه",
+  "owner": "مالک",
+  "noParkingsFound": "پارکینگی یافت نشد",
+  "noParkingReportsFound": "گزارشی یافت نشد",
+  "licencePlate": "پلاک",
+  "viewReport": "مشاهده گزارش"
 }

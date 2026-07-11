@@ -173,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createHotel": MessageLookupByLibrary.simpleMessage("ایجاد هتل"),
     "createInvoice": MessageLookupByLibrary.simpleMessage("ایجاد فاکتور"),
     "createMerchant": MessageLookupByLibrary.simpleMessage("ایجاد پذیرنده"),
+    "createParking": MessageLookupByLibrary.simpleMessage("ایجاد پارکینگ"),
     "createReservation": MessageLookupByLibrary.simpleMessage("ایجاد رزرو"),
     "createRoom": MessageLookupByLibrary.simpleMessage("ایجاد اتاق"),
     "createTerminal": MessageLookupByLibrary.simpleMessage("ایجاد پایانه"),
@@ -189,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "currentBalance": MessageLookupByLibrary.simpleMessage("موجودی فعلی"),
     "dailyInOut": MessageLookupByLibrary.simpleMessage("ورودی / خروجی روزانه"),
     "dailyPenalty": MessageLookupByLibrary.simpleMessage("درصد جریمه روزانه"),
+    "dailyPrice": MessageLookupByLibrary.simpleMessage("هزینه روزانه"),
     "dark": MessageLookupByLibrary.simpleMessage("تیره"),
     "darkMode": MessageLookupByLibrary.simpleMessage("حالت تیره"),
     "dashboard": MessageLookupByLibrary.simpleMessage("داشبورد"),
@@ -241,6 +243,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "editHotel": MessageLookupByLibrary.simpleMessage("ویرایش هتل"),
     "editInvoice": MessageLookupByLibrary.simpleMessage("ویرایش فاکتور"),
     "editMerchant": MessageLookupByLibrary.simpleMessage("ویرایش پذیرنده"),
+    "editParking": MessageLookupByLibrary.simpleMessage("ویرایش پارکینگ"),
     "editQuestion": MessageLookupByLibrary.simpleMessage("ویرایش سؤال"),
     "editReservation": MessageLookupByLibrary.simpleMessage("ویرایش رزرو"),
     "editRoom": MessageLookupByLibrary.simpleMessage("ویرایش اتاق"),
@@ -258,6 +261,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "entityOverview": MessageLookupByLibrary.simpleMessage(
       "نمای کلی موجودیت‌ها",
     ),
+    "entrancePrice": MessageLookupByLibrary.simpleMessage("هزینه ورود"),
     "error": MessageLookupByLibrary.simpleMessage("خطا"),
     "errorFetchingCategories": MessageLookupByLibrary.simpleMessage(
       "خطا در دریافت دسته‌بندی‌ها",
@@ -365,6 +369,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hotels": MessageLookupByLibrary.simpleMessage("هتل‌ها"),
     "hotelsByCity": MessageLookupByLibrary.simpleMessage("هتل‌ها بر اساس شهر"),
     "hour": MessageLookupByLibrary.simpleMessage("ساعت"),
+    "hourlyPrice": MessageLookupByLibrary.simpleMessage("هزینه ساعتی"),
     "icon1": MessageLookupByLibrary.simpleMessage("آیکون ۱"),
     "icon2": MessageLookupByLibrary.simpleMessage("آیکون ۲"),
     "icon3": MessageLookupByLibrary.simpleMessage("آیکون ۳"),
@@ -393,6 +398,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "lastNameAZ": MessageLookupByLibrary.simpleMessage("نام خانوادگی (الف-ی)"),
     "lastNameZA": MessageLookupByLibrary.simpleMessage("نام خانوادگی (ی-الف)"),
     "leasing": MessageLookupByLibrary.simpleMessage("اجاره"),
+    "licencePlate": MessageLookupByLibrary.simpleMessage("پلاک"),
     "light": MessageLookupByLibrary.simpleMessage("روشن"),
     "link": MessageLookupByLibrary.simpleMessage("پیوند"),
     "loadAverage": MessageLookupByLibrary.simpleMessage("میانگین بار"),
@@ -475,6 +481,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noMerchantsFound": MessageLookupByLibrary.simpleMessage(
       "پذیرنده‌ای یافت نشد",
     ),
+    "noParkingReportsFound": MessageLookupByLibrary.simpleMessage(
+      "گزارشی یافت نشد",
+    ),
+    "noParkingsFound": MessageLookupByLibrary.simpleMessage(
+      "پارکینگی یافت نشد",
+    ),
     "noProductFound": MessageLookupByLibrary.simpleMessage(
       "هیچ محصولی یافت نشد",
     ),
@@ -525,6 +537,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "overdueInvoicesTitle": MessageLookupByLibrary.simpleMessage(
       "فاکتورهای معوق",
     ),
+    "owner": MessageLookupByLibrary.simpleMessage("مالک"),
     "ownerName": MessageLookupByLibrary.simpleMessage("نام مالک"),
     "ownerPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "شماره موبایل مالک",
@@ -536,6 +549,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "فاکتور‌های پرداخت شده",
     ),
     "paragraph": MessageLookupByLibrary.simpleMessage("پاراگراف"),
+    "parking": MessageLookupByLibrary.simpleMessage("پارکینگ"),
+    "parkingManagement": MessageLookupByLibrary.simpleMessage("مدیریت پارکینگ"),
+    "parkingReport": MessageLookupByLibrary.simpleMessage("گزارش پارکینگ"),
+    "parkingReports": MessageLookupByLibrary.simpleMessage("گزارش‌های پارکینگ"),
     "password": MessageLookupByLibrary.simpleMessage("رمز عبور"),
     "path": MessageLookupByLibrary.simpleMessage("مسیر"),
     "pathContains": MessageLookupByLibrary.simpleMessage("بخشی از مسیر"),
@@ -829,6 +846,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewCount": MessageLookupByLibrary.simpleMessage("بازدیدها"),
     "viewDetails": MessageLookupByLibrary.simpleMessage("مشاهده جزئیات"),
     "viewInvoices": MessageLookupByLibrary.simpleMessage("مشاهده فاکتورها"),
+    "viewReport": MessageLookupByLibrary.simpleMessage("مشاهده گزارش"),
     "viewTerminals": MessageLookupByLibrary.simpleMessage("مشاهده پایانه‌ها"),
     "walletBalance": MessageLookupByLibrary.simpleMessage("موجودی کیف پول"),
     "walletManagement": MessageLookupByLibrary.simpleMessage("مدیریت کیف پول"),

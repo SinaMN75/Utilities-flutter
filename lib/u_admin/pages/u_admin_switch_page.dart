@@ -9,6 +9,13 @@ abstract class UAdminPageSwitcher {
 
   static void blogs() => U.addOrSwitchTab(U.s.blogs, const UAdminBlogPage());
 
+  static void parking() => U.addOrSwitchTab(U.s.parkingManagement, const UAdminParkingPage());
+
+  static void parkingReport({UParkingResponse? parking}) => U.addOrSwitchTab(
+    parking == null ? U.s.parkingReports : "${U.s.parkingReports} · ${parking.title}",
+    UAdminParkingReportPage(parking: parking),
+  );
+
   static void users({required UAdminUsersPageArgs args}) => U.addOrSwitchTab(U.s.users, UAdminUserPage(args: args));
 
   static void hotelUserDetail({required UUserResponse user}) => U.addOrSwitchTab("${user.firstName ?? ""} ${user.lastName ?? ""}".trim().nullIfEmpty() ?? user.userName, UAdminHotelUserDetailPage(user: user));

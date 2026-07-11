@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4541,6 +4540,126 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Parking`
+  String get parking {
+    return Intl.message('Parking', name: 'parking', desc: '', args: []);
+  }
+
+  /// `Parking Management`
+  String get parkingManagement {
+    return Intl.message(
+      'Parking Management',
+      name: 'parkingManagement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parking Reports`
+  String get parkingReports {
+    return Intl.message(
+      'Parking Reports',
+      name: 'parkingReports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parking Report`
+  String get parkingReport {
+    return Intl.message(
+      'Parking Report',
+      name: 'parkingReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Parking`
+  String get createParking {
+    return Intl.message(
+      'Create Parking',
+      name: 'createParking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Parking`
+  String get editParking {
+    return Intl.message(
+      'Edit Parking',
+      name: 'editParking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entrance Price`
+  String get entrancePrice {
+    return Intl.message(
+      'Entrance Price',
+      name: 'entrancePrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hourly Price`
+  String get hourlyPrice {
+    return Intl.message(
+      'Hourly Price',
+      name: 'hourlyPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Price`
+  String get dailyPrice {
+    return Intl.message('Daily Price', name: 'dailyPrice', desc: '', args: []);
+  }
+
+  /// `Owner`
+  String get owner {
+    return Intl.message('Owner', name: 'owner', desc: '', args: []);
+  }
+
+  /// `No parkings found`
+  String get noParkingsFound {
+    return Intl.message(
+      'No parkings found',
+      name: 'noParkingsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No parking reports found`
+  String get noParkingReportsFound {
+    return Intl.message(
+      'No parking reports found',
+      name: 'noParkingReportsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Licence Plate`
+  String get licencePlate {
+    return Intl.message(
+      'Licence Plate',
+      name: 'licencePlate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View Report`
+  String get viewReport {
+    return Intl.message('View Report', name: 'viewReport', desc: '', args: []);
   }
 }
 

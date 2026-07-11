@@ -169,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createHotel": MessageLookupByLibrary.simpleMessage("Create Hotel"),
     "createInvoice": MessageLookupByLibrary.simpleMessage("Create Invoice"),
     "createMerchant": MessageLookupByLibrary.simpleMessage("Create Merchant"),
+    "createParking": MessageLookupByLibrary.simpleMessage("Create Parking"),
     "createReservation": MessageLookupByLibrary.simpleMessage(
       "Create Reservation",
     ),
@@ -189,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "currentBalance": MessageLookupByLibrary.simpleMessage("Current Balance"),
     "dailyInOut": MessageLookupByLibrary.simpleMessage("Daily In / Out"),
     "dailyPenalty": MessageLookupByLibrary.simpleMessage("Daily Penalty %"),
+    "dailyPrice": MessageLookupByLibrary.simpleMessage("Daily Price"),
     "dark": MessageLookupByLibrary.simpleMessage("Dark"),
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
     "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
@@ -239,6 +241,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "editHotel": MessageLookupByLibrary.simpleMessage("Edit Hotel"),
     "editInvoice": MessageLookupByLibrary.simpleMessage("Edit Invoice"),
     "editMerchant": MessageLookupByLibrary.simpleMessage("Edit Merchant"),
+    "editParking": MessageLookupByLibrary.simpleMessage("Edit Parking"),
     "editQuestion": MessageLookupByLibrary.simpleMessage("Edit Question"),
     "editReservation": MessageLookupByLibrary.simpleMessage("Edit Reservation"),
     "editRoom": MessageLookupByLibrary.simpleMessage("Edit Room"),
@@ -254,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Enter phone number",
     ),
     "entityOverview": MessageLookupByLibrary.simpleMessage("Entity Overview"),
+    "entrancePrice": MessageLookupByLibrary.simpleMessage("Entrance Price"),
     "error": MessageLookupByLibrary.simpleMessage("Error"),
     "errorFetchingCategories": MessageLookupByLibrary.simpleMessage(
       "Error Fetching Categories",
@@ -363,6 +367,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hotels": MessageLookupByLibrary.simpleMessage("Hotels"),
     "hotelsByCity": MessageLookupByLibrary.simpleMessage("Hotels by City"),
     "hour": MessageLookupByLibrary.simpleMessage("Hour"),
+    "hourlyPrice": MessageLookupByLibrary.simpleMessage("Hourly Price"),
     "icon1": MessageLookupByLibrary.simpleMessage("Icon 1"),
     "icon2": MessageLookupByLibrary.simpleMessage("Icon 2"),
     "icon3": MessageLookupByLibrary.simpleMessage("Icon 3"),
@@ -391,6 +396,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "lastNameAZ": MessageLookupByLibrary.simpleMessage("Last Name (A-Z)"),
     "lastNameZA": MessageLookupByLibrary.simpleMessage("Last Name (Z-A)"),
     "leasing": MessageLookupByLibrary.simpleMessage("Leasing"),
+    "licencePlate": MessageLookupByLibrary.simpleMessage("Licence Plate"),
     "light": MessageLookupByLibrary.simpleMessage("Light"),
     "link": MessageLookupByLibrary.simpleMessage("Link"),
     "loadAverage": MessageLookupByLibrary.simpleMessage("Load Average"),
@@ -475,6 +481,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noMerchantsFound": MessageLookupByLibrary.simpleMessage(
       "No Merchants Found",
     ),
+    "noParkingReportsFound": MessageLookupByLibrary.simpleMessage(
+      "No parking reports found",
+    ),
+    "noParkingsFound": MessageLookupByLibrary.simpleMessage(
+      "No parkings found",
+    ),
     "noProductFound": MessageLookupByLibrary.simpleMessage("No Product Found"),
     "noReservationsFound": MessageLookupByLibrary.simpleMessage(
       "No reservations found",
@@ -521,6 +533,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "overdueInvoicesTitle": MessageLookupByLibrary.simpleMessage(
       "Overdue Invoices",
     ),
+    "owner": MessageLookupByLibrary.simpleMessage("Owner"),
     "ownerName": MessageLookupByLibrary.simpleMessage("Owner Name"),
     "ownerPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Owner Phone Number",
@@ -530,6 +543,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "paidDate": MessageLookupByLibrary.simpleMessage("Paid Date"),
     "paidFactors": MessageLookupByLibrary.simpleMessage("Paid Factors"),
     "paragraph": MessageLookupByLibrary.simpleMessage("Paragraph"),
+    "parking": MessageLookupByLibrary.simpleMessage("Parking"),
+    "parkingManagement": MessageLookupByLibrary.simpleMessage(
+      "Parking Management",
+    ),
+    "parkingReport": MessageLookupByLibrary.simpleMessage("Parking Report"),
+    "parkingReports": MessageLookupByLibrary.simpleMessage("Parking Reports"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "path": MessageLookupByLibrary.simpleMessage("Path"),
     "pathContains": MessageLookupByLibrary.simpleMessage("Path Contains"),
@@ -825,6 +844,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewCount": MessageLookupByLibrary.simpleMessage("Views"),
     "viewDetails": MessageLookupByLibrary.simpleMessage("View Details"),
     "viewInvoices": MessageLookupByLibrary.simpleMessage("View Invoices"),
+    "viewReport": MessageLookupByLibrary.simpleMessage("View Report"),
     "viewTerminals": MessageLookupByLibrary.simpleMessage("View Terminals"),
     "walletBalance": MessageLookupByLibrary.simpleMessage("Wallet Balance"),
     "walletManagement": MessageLookupByLibrary.simpleMessage(

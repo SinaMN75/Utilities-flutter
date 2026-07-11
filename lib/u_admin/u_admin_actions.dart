@@ -113,6 +113,9 @@ abstract class UAdminLinks {
   // ---- from a merchant ----
   static UAdminAction merchantTerminals(UMerchantResponse m, {List<TagUser>? roles}) => UAdminAction(label: U.s.viewTerminals, icon: Icons.point_of_sale_outlined, roles: roles, onTap: () => UAdminPageSwitcher.terminals(merchant: m));
 
+  // ---- from a parking ----
+  static UAdminAction parkingReport(UParkingResponse p, {List<TagUser>? roles}) => UAdminAction(label: U.s.viewReport, icon: Icons.assessment_outlined, roles: roles, onTap: () => UAdminPageSwitcher.parkingReport(parking: p));
+
   // ---- from a hotel / room ----
   static UAdminAction hotelRooms(UHotelResponse h, {List<TagUser>? roles}) => UAdminAction(label: U.s.rooms, icon: Icons.meeting_room_outlined, roles: roles, onTap: () => UAdminPageSwitcher.hotelRooms(hotel: h));
 

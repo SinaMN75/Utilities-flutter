@@ -100,6 +100,8 @@ export "u_admin/pages/hotel/users/u_admin_users_page.dart";
 export "u_admin/pages/hotel/users/user_detail/u_admin_hotel_user_detail_page.dart";
 export "u_admin/pages/login/u_admin_login_page.dart";
 export "u_admin/pages/logs/u_admin_api_log_page.dart";
+export "u_admin/pages/parking/u_admin_parking_page.dart";
+export "u_admin/pages/parking/u_admin_parking_report_page.dart";
 export "u_admin/pages/payments/merchants/u_admin_merchants_page.dart";
 export "u_admin/pages/payments/terminals/u_admin_terminals_page.dart";
 export "u_admin/pages/payments/users/u_admin_admin_users_page.dart";

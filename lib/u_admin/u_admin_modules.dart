@@ -135,6 +135,22 @@ abstract class UAdminModules {
 
   static UAdminModule accounting({List<TagUser>? roles}) => UAdminModule(id: "accounting", title: U.s.accounting, icon: Icons.bar_chart_rounded, page: () => const UAdminAccountingPage(), roles: roles);
 
+  // ---- Parking ----
+  static UAdminModule parking({List<TagUser>? roles, UAdminActionBuilder<UParkingResponse>? actions}) =>
+      UAdminModule(id: "parking",
+          title: U.s.parking,
+          tabTitle: U.s.parkingManagement,
+          icon: Icons.local_parking_rounded,
+          page: () => UAdminParkingPage(actions: actions),
+          roles: roles);
+
+  static UAdminModule parkingReport({List<TagUser>? roles}) =>
+      UAdminModule(id: "parking-report",
+          title: U.s.parkingReports,
+          icon: Icons.assessment_rounded,
+          page: () => const UAdminParkingReportPage(),
+          roles: roles);
+
   // ---- Content ----
   static UAdminModule blogs({List<TagUser>? roles}) => UAdminModule(id: "blogs", title: U.s.blogs, icon: Icons.article_rounded, page: () => const UAdminBlogPage(), roles: roles);
 
