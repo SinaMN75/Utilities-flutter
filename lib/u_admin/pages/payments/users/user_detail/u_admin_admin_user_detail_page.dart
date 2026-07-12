@@ -302,7 +302,6 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
   );
 
   BoxDecoration _cardDecoration() => BoxDecoration(
-    color: Theme.of(context).colorScheme.surface,
     borderRadius: BorderRadius.circular(12),
     border: Border.all(color: Theme.of(context).dividerColor.withValues(alpha: 0.4)),
     boxShadow: <BoxShadow>[BoxShadow(color: UAdminAppColors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2))],

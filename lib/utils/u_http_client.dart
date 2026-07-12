@@ -40,7 +40,7 @@ abstract class UHttpClient {
     final void Function(int percent)? onProgress,
   }) async {
     int lastPercent = -1;
-    void report(final int percent) {
+    void report(final num percent) {
       if (onProgress == null) return;
       final int p = percent.clamp(0, 100).toInt();
       if (p <= lastPercent) return;
@@ -96,8 +96,9 @@ abstract class UHttpClient {
       }
 
       final List<int> uploadBytes = request.bodyBytes;
-      final bool hasUpload = uploadBytes.isNotEmpty;
+      final bool hasUpload = uploadBytes.length >= 64 * 1024;
       final int uploadWeight = hasUpload ? 50 : 0;
+      final int downloadBand = 100 - uploadWeight;
 
       final BaseRequest outgoing = !hasUpload || onProgress == null
           ? request
@@ -111,10 +112,25 @@ abstract class UHttpClient {
       final int? totalBytes = streamed.contentLength;
       final List<int> receivedBytes = <int>[];
       int receivedCount = 0;
-      await for (final List<int> chunk in streamed.stream) {
-        receivedBytes.addAll(chunk);
-        receivedCount += chunk.length;
-        if (totalBytes != null && totalBytes > 0) report(uploadWeight + (receivedCount / totalBytes * (100 - uploadWeight)).round());
+
+      Timer? estimateTicker;
+      if (onProgress != null && (totalBytes == null || totalBytes <= 0)) {
+        const int tauMs = 7000;
+        final Stopwatch sw = Stopwatch()..start();
+        estimateTicker = Timer.periodic(const Duration(milliseconds: 200), (final Timer _) {
+          final double frac = sw.elapsedMilliseconds / (sw.elapsedMilliseconds + tauMs);
+          report(uploadWeight + (frac * downloadBand).round().clamp(0, downloadBand - 1));
+        });
+      }
+
+      try {
+        await for (final List<int> chunk in streamed.stream) {
+          receivedBytes.addAll(chunk);
+          receivedCount += chunk.length;
+          if (totalBytes != null && totalBytes > 0) report(uploadWeight + (receivedCount / totalBytes * downloadBand).round());
+        }
+      } finally {
+        estimateTicker?.cancel();
       }
       report(100);
 
