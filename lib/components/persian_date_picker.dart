@@ -1,3 +1,5 @@
+import "dart:math" as math;
+
 import "package:u/utilities.dart";
 
 enum _PickerMode { calendar, selectYear, selectMonth }
@@ -49,32 +51,28 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     currentMonth = selectedDate.month;
   }
 
-  Widget _buildHeader() =>
-      Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Text(
-            "$currentYear",
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            monthNames[currentMonth - 1],
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ).container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-        backgroundColor: Colors.blueAccent,
-      );
+  Widget _buildHeader() {
+    final ColorScheme scheme = Theme
+        .of(context)
+        .colorScheme;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Text(
+          "$currentYear",
+          style: TextStyle(color: scheme.onPrimary, fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          monthNames[currentMonth - 1],
+          style: TextStyle(color: scheme.onPrimary.withValues(alpha: 0.75), fontSize: 18, fontWeight: FontWeight.w500),
+        ),
+      ],
+    ).container(
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+      backgroundColor: scheme.primary,
+    );
+  }
 
   Widget _buildCalendarNavigation() => Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -145,13 +143,16 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     final int daysInMonth = Jalali(currentYear, currentMonth).monthLength;
     for (int day = 1; day <= daysInMonth; day++) {
       final bool isSelected = (selectedDate.year == currentYear && selectedDate.month == currentMonth && selectedDate.day == day);
+      final ColorScheme scheme = Theme
+          .of(context)
+          .colorScheme;
       dayWidgets.add(
         InkWell(
           onTap: () => setState(() => selectedDate = Jalali(currentYear, currentMonth, day)),
           child: Container(
             margin: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: isSelected ? Colors.blueAccent : Colors.grey.shade200,
+              color: isSelected ? scheme.primary : scheme.surfaceContainerHighest,
               borderRadius: BorderRadius.circular(6),
             ),
             alignment: Alignment.center,
@@ -159,7 +160,7 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
             child: Text(
               "$day",
               style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black87,
+                color: isSelected ? scheme.onPrimary : scheme.onSurface,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -178,46 +179,54 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     );
   }
 
-  /// Builds a grid view for selecting the year.
+  /// Scrollable list for selecting the year (easier to scroll to a birth year).
   Widget _buildYearSelection() {
-    final int startYear = widget.startYear;
-    final int endYear = widget.endYear;
-    final List<Widget> yearWidgets = <Widget>[];
-    for (int year = startYear; year <= endYear; year++) {
-      yearWidgets.add(
-        InkWell(
-          onTap: () => setState(() {
-            currentYear = year;
-            selectedDate = Jalali(currentYear, currentMonth, selectedDate.day);
-            mode = _PickerMode.selectMonth;
-          }),
-          child:
-              Text(
-                "$year",
-                style: TextStyle(color: (year == currentYear) ? Colors.white : Colors.black87),
-              ).container(
-                backgroundColor: (year == currentYear) ? Colors.blueAccent : Colors.grey.shade200,
-                radius: 6,
-                margin: const EdgeInsets.all(2),
-                alignment: Alignment.center,
-              ),
-        ),
-      );
-    }
+    final ColorScheme scheme = Theme
+        .of(context)
+        .colorScheme;
+    final int lo = math.min(widget.startYear, widget.endYear);
+    final int hi = math.max(widget.startYear, widget.endYear);
+    final List<int> years = <int>[for (int y = hi; y >= lo; y--) y];
     return Flexible(
-      child: GridView.count(
-        padding: const EdgeInsets.all(8),
-        crossAxisCount: 5,
-        shrinkWrap: true,
-        children: yearWidgets,
+      child: Scrollbar(
+        child: ListView.builder(
+          padding: const EdgeInsets.all(8),
+          itemCount: years.length,
+          itemBuilder: (BuildContext context, int index) {
+            final int year = years[index];
+            final bool selected = year == currentYear;
+            return InkWell(
+              onTap: () =>
+                  setState(() {
+                    currentYear = year;
+                    selectedDate = Jalali(currentYear, currentMonth, selectedDate.day);
+                    mode = _PickerMode.selectMonth;
+                  }),
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 3),
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: selected ? scheme.primary : scheme.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text("$year", style: TextStyle(color: selected ? scheme.onPrimary : scheme.onSurface, fontWeight: selected ? FontWeight.bold : FontWeight.normal)),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 
-  /// Builds a grid view for selecting the month.
+  /// Month grid arranged in 4 seasonal rows of 3 months each.
   Widget _buildMonthSelection() {
+    final ColorScheme scheme = Theme
+        .of(context)
+        .colorScheme;
     final List<Widget> monthWidgets = <Widget>[];
     for (int i = 0; i < 12; i++) {
+      final bool selected = currentMonth == i + 1;
       monthWidgets.add(
         InkWell(
           onTap: () => setState(() {
@@ -225,26 +234,24 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
             selectedDate = Jalali(currentYear, currentMonth, selectedDate.day);
             mode = _PickerMode.calendar;
           }),
-          child:
-              Text(
-                monthNames[i],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: (currentMonth == i + 1) ? Colors.white : Colors.black87,
-                ),
-              ).container(
-                backgroundColor: (currentMonth == i + 1) ? Colors.blueAccent : Colors.grey.shade200,
-                radius: 6,
-                margin: const EdgeInsets.all(2),
-                alignment: Alignment.center,
-              ),
+          child: Text(
+            monthNames[i],
+            textAlign: TextAlign.center,
+            style: TextStyle(color: selected ? scheme.onPrimary : scheme.onSurface),
+          ).container(
+            backgroundColor: selected ? scheme.primary : scheme.surfaceContainerHighest,
+            radius: 8,
+            margin: const EdgeInsets.all(4),
+            alignment: Alignment.center,
+          ),
         ),
       );
     }
     return Flexible(
       child: GridView.count(
-        padding: const EdgeInsets.all(4),
-        crossAxisCount: 4,
+        padding: const EdgeInsets.all(8),
+        crossAxisCount: 3,
+        childAspectRatio: 2.4,
         shrinkWrap: true,
         children: monthWidgets,
       ),

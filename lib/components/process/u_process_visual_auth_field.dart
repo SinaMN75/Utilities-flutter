@@ -231,9 +231,25 @@ class _UProcessVisualAuthFieldState extends State<UProcessVisualAuthField> with 
   Widget _buildMediaPreview() {
     final ColorScheme scheme = Theme.of(context).colorScheme;
     if (_videoController != null && _videoController!.value.isInitialized) {
-      return VideoPlayer(_videoController!);
+      // Cover the square frame without stretching by preserving the video's aspect ratio.
+      return FittedBox(
+        fit: BoxFit.cover,
+        child: SizedBox(
+          width: _videoController!.value.size.width,
+          height: _videoController!.value.size.height,
+          child: VideoPlayer(_videoController!),
+        ),
+      );
     } else if (_cameraController != null && _cameraController!.value.isInitialized) {
-      return CameraPreview(_cameraController!);
+      // Cover the square frame without stretching by preserving the camera's preview aspect ratio.
+      return FittedBox(
+        fit: BoxFit.cover,
+        child: SizedBox(
+          width: _cameraController!.value.previewSize?.height ?? 220,
+          height: _cameraController!.value.previewSize?.width ?? 220,
+          child: CameraPreview(_cameraController!),
+        ),
+      );
     } else if (_hasInitialValue) {
       return Container(
         color: scheme.surfaceContainerHighest,
@@ -256,7 +272,7 @@ class _UProcessVisualAuthFieldState extends State<UProcessVisualAuthField> with 
         icon: const Icon(Icons.refresh),
         label: Text(S.current.recordAgain),
         style: ElevatedButton.styleFrom(
-          backgroundColor: widget.style.awaiting(context),
+          backgroundColor: scheme.primary,
           foregroundColor: onAccent,
         ),
       );

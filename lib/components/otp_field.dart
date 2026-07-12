@@ -15,7 +15,7 @@ class UOtpField extends StatefulWidget {
     this.fieldWidth = 48,
     this.fieldHeight = 60,
     this.borderRadius = 8,
-    this.borderWidth = 1.5,
+    this.borderWidth = 1,
     this.obscureText = false,
     this.obscuringCharacter = "•",
     this.keyboardType = TextInputType.number,

@@ -31,8 +31,6 @@ class UProcessESignField extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Column(
     children: <Widget>[
-      UTextBodyMedium(title ?? S.current.signHere),
-      const SizedBox(height: 12),
       USignaturePad(
         onSave: _handleSubmit,
         saveButtonText: saveButtonText ?? S.current.saveSignature,

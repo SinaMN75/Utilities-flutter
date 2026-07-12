@@ -24,31 +24,38 @@ class USignaturePad extends StatelessWidget {
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       Card(
+        // Capture the drawing as it's completed so the step's own submit button is the only one needed.
         child: SfSignaturePad(
           key: signatureGlobalKey,
           backgroundColor: Theme.of(context).colorScheme.surface,
           strokeColor: Theme.of(context).colorScheme.onSurface,
           minimumStrokeWidth: 1,
           maximumStrokeWidth: 4,
+          onDrawEnd: _captureSilently,
         ),
       ),
       const SizedBox(height: 10),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          UButton(
-            title: saveButtonText,
-            onTap: () => handleSaveButtonPressed(message: emptyMessage ?? ""),
-          ),
-          UButton(
-            type: UButtonType.text,
-            title: clearButtonText,
-            onTap: () => signatureGlobalKey.currentState!.clear(),
-          ),
-        ],
+      Align(
+        alignment: AlignmentDirectional.centerEnd,
+        child: UButton(
+          type: UButtonType.text,
+          title: clearButtonText,
+          onTap: () => signatureGlobalKey.currentState!.clear(),
+        ),
       ),
     ],
   );
+
+  Future<void> _captureSilently() async {
+    final SfSignaturePadState? state = signatureGlobalKey.currentState;
+    if (state == null || state.toPathList().isEmpty) return;
+
+    final ui.Image data = await state.toImage(pixelRatio: 3);
+    final ByteData? bytes = await data.toByteData(format: ui.ImageByteFormat.png);
+    if (bytes == null) return;
+
+    onSave(FileData(bytes: bytes.buffer.asUint8List(), extension: "png"));
+  }
 
   Future<void> handleSaveButtonPressed({required final String message}) async {
     final SfSignaturePadState? state = signatureGlobalKey.currentState;

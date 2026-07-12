@@ -2,7 +2,7 @@ import "dart:math" as math;
 
 import "package:flutter/material.dart";
 
-typedef UProgressLabelBuilder = Widget? Function(int? value);
+typedef UProgressLabelBuilder = Widget? Function(BuildContext context, int? value);
 
 class UProgressLinear extends StatefulWidget {
   const UProgressLinear({
@@ -119,7 +119,7 @@ class _UProgressLinearState extends State<UProgressLinear> with SingleTickerProv
       child: track$,
     );
 
-    final Widget? label = widget.labelBuilder?.call(clamped);
+    final Widget? label = widget.labelBuilder?.call(context, clamped);
     return label == null ? sized : Stack(alignment: Alignment.center, children: <Widget>[sized, label]);
   }
 }
@@ -273,7 +273,7 @@ class _UProgressCircularState extends State<UProgressCircular> with SingleTicker
             ),
           );
 
-    final Widget? label = widget.labelBuilder?.call(clamped);
+    final Widget? label = widget.labelBuilder?.call(context, clamped);
     return SizedBox(
       width: widget.size,
       height: widget.size,

@@ -27,7 +27,7 @@ class UProcessStepsIndicator extends StatelessWidget {
               trailing: UTextLabelSmall(
                 step.title,
                 textAlign: TextAlign.center,
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 color: _labelColor(context, step.status),
                 fontWeight: step.status == TagProcessStepStatus.current ? FontWeight.bold : FontWeight.normal,

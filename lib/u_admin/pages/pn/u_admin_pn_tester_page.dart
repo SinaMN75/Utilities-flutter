@@ -13,10 +13,6 @@ class _UAdminPnTesterPageState extends State<UAdminPnTesterPage> {
   final TextEditingController _apiKeyController = TextEditingController(text: U.apiKey);
   final Map<String, TextEditingController> _controllers = <String, TextEditingController>{};
 
-  // Base64 payload and display name for each picked image/video field, keyed by field key.
-  final Map<String, String> _fileBase64 = <String, String>{};
-  final Map<String, String> _fileNames = <String, String>{};
-
   late List<_PnEndpoint> _endpoints;
   int _selected = 0;
 
@@ -44,26 +40,6 @@ class _UAdminPnTesterPageState extends State<UAdminPnTesterPage> {
   // A controller is created lazily per field key and reused across rebuilds.
   TextEditingController _controllerFor(final String key) => _controllers.putIfAbsent(key, TextEditingController.new);
 
-  // Pick an image or video and store its raw base64 (no data-uri prefix) for the given field.
-  Future<void> _pickFile(final String key) async {
-    await UFile.showFilePicker(
-      fileType: FileType.media,
-      action: (final List<FileData> files) {
-        if (files.isEmpty || files.first.bytes == null) return;
-        final FileData file = files.first;
-        setState(() {
-          _fileBase64[key] = file.bytes!.toBase64();
-          _fileNames[key] = "${file.extension ?? "file"} · ${(file.bytes!.lengthInBytes / 1024).toStringAsFixed(0)} KB";
-        });
-      },
-    );
-  }
-
-  void _clearFile(final String key) => setState(() {
-    _fileBase64.remove(key);
-    _fileNames.remove(key);
-  });
-
   List<_PnEndpoint> _buildEndpoints() => <_PnEndpoint>[
     _PnEndpoint(
       name: "Auth",
@@ -77,11 +53,6 @@ class _UAdminPnTesterPageState extends State<UAdminPnTesterPage> {
         _PnField(key: "fatherName", label: U.s.fatherName),
         _PnField(key: "nationalCode", label: U.s.nationalCode, keyboardType: TextInputType.number),
         _PnField(key: "email", label: U.s.email, keyboardType: TextInputType.emailAddress),
-        _PnField(key: "nationalCardFront", label: U.s.nationalCardFront, file: true),
-        _PnField(key: "nationalCardBack", label: U.s.nationalCardBack, file: true),
-        _PnField(key: "birthCertificateFirst", label: U.s.birthCertificate, file: true),
-        _PnField(key: "visualAuthentication", label: U.s.visualAuthentication, file: true),
-        _PnField(key: "eSignature", label: U.s.signature, file: true),
       ],
     ),
     _PnEndpoint(
@@ -156,8 +127,7 @@ class _UAdminPnTesterPageState extends State<UAdminPnTesterPage> {
 
     final Map<String, dynamic> body = <String, dynamic>{"apiKey": _apiKeyController.text.trim()};
     for (final _PnField f in endpoint.fields) {
-      // File fields carry their base64 payload; text fields carry their trimmed input.
-      final String value = f.file ? (_fileBase64[f.key] ?? "") : _controllerFor(f.key).text.trim();
+      final String value = _controllerFor(f.key).text.trim();
       if (f.required && value.isEmpty) {
         UToast.error(message: f.label);
         return;
@@ -304,17 +274,15 @@ class _UAdminPnTesterPageState extends State<UAdminPnTesterPage> {
                 children: endpoint.fields
                     .map(
                       (final _PnField f) => SizedBox(
-                        width: f.file || f.lines > 1 ? constraints.maxWidth : fieldWidth,
-                        child: f.file
-                            ? _fileField(f, cs)
-                            : UTextField(
-                                controller: _controllerFor(f.key),
-                                labelText: f.label,
-                                hintText: f.key,
-                                required: f.required,
-                                lines: f.lines,
-                                keyboardType: f.keyboardType,
-                              ),
+                        width: f.lines > 1 ? constraints.maxWidth : fieldWidth,
+                        child: UTextField(
+                          controller: _controllerFor(f.key),
+                          labelText: f.label,
+                          hintText: f.key,
+                          required: f.required,
+                          lines: f.lines,
+                          keyboardType: f.keyboardType,
+                        ),
                       ),
                     )
                     .toList(),
@@ -331,31 +299,6 @@ class _UAdminPnTesterPageState extends State<UAdminPnTesterPage> {
           ).alignAtCenterRight(),
         ],
       ).pAll(20),
-    );
-  }
-
-  // Upload control for a base64 image/video field: pick button on the left, selected-file chip on the right.
-  Widget _fileField(final _PnField f, final ColorScheme cs) {
-    final String? picked = _fileNames[f.key];
-    return URow(
-      spacing: 12,
-      children: <Widget>[
-        UButton(
-          title: picked == null ? "${f.label}${f.required ? " *" : ""}" : f.label,
-          icon: const Icon(Icons.upload_file_rounded),
-          type: UButtonType.outlined,
-          onTap: () => _pickFile(f.key),
-        ),
-        if (picked != null)
-          URow(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              const Icon(Icons.check_circle_rounded, size: 18, color: UAdminAppColors.green),
-              UTextBodySmall(picked, color: cs.onSurface.withValues(alpha: 0.7), maxLines: 1, overflow: TextOverflow.ellipsis),
-              Icon(Icons.close_rounded, size: 18, color: cs.error).onTap(() => _clearFile(f.key)),
-            ],
-          ).pSymmetric(horizontal: 12, vertical: 8).container(backgroundColor: cs.surfaceContainerHighest.withValues(alpha: 0.5), radius: 8, borderColor: cs.outlineVariant).expanded(),
-      ],
     );
   }
 
@@ -426,12 +369,11 @@ class _PnEndpoint {
 
 // A single editable body field for an endpoint.
 class _PnField {
-  _PnField({required this.key, required this.label, this.required = false, this.lines = 1, this.file = false, this.keyboardType = TextInputType.text});
+  _PnField({required this.key, required this.label, this.required = false, this.lines = 1, this.keyboardType = TextInputType.text});
 
   final String key;
   final String label;
   final bool required;
   final int lines;
-  final bool file;
   final TextInputType keyboardType;
 }
