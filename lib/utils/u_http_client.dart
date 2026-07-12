@@ -110,7 +110,8 @@ abstract class UHttpClient {
       report(uploadWeight);
 
       final int? totalBytes = streamed.contentLength;
-      final List<int> receivedBytes = <int>[];
+      // BytesBuilder(copy: false) avoids the repeated reallocations of a growing List<int> on large responses
+      final BytesBuilder receivedBuilder = BytesBuilder(copy: false);
       int receivedCount = 0;
 
       Timer? estimateTicker;
@@ -125,7 +126,7 @@ abstract class UHttpClient {
 
       try {
         await for (final List<int> chunk in streamed.stream) {
-          receivedBytes.addAll(chunk);
+          receivedBuilder.add(chunk);
           receivedCount += chunk.length;
           if (totalBytes != null && totalBytes > 0) report(uploadWeight + (receivedCount / totalBytes * downloadBand).round());
         }
@@ -135,7 +136,7 @@ abstract class UHttpClient {
       report(100);
 
       response = Response.bytes(
-        receivedBytes,
+        receivedBuilder.takeBytes(),
         streamed.statusCode,
         request: streamed.request,
         headers: streamed.headers,
@@ -296,7 +297,8 @@ class _UProgressRequest extends BaseRequest {
       _onSendProgress(100);
       return ByteStream.fromBytes(_bodyBytes);
     }
-    const int chunkSize = 8 * 1024;
+    // 64KB chunks cut the number of event-loop hops (and progress calls) ~8x versus 8KB, speeding large uploads
+    const int chunkSize = 64 * 1024;
     int sent = 0;
     Stream<List<int>> generate() async* {
       for (int i = 0; i < total; i += chunkSize) {
