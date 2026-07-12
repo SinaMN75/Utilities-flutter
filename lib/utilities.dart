@@ -80,6 +80,7 @@ export "components/u_text_field.dart";
 export "components/u_text_field_formatter.dart";
 export "components/u_webview.dart";
 export "components/widget_to_image.dart";
+export "components/u_progress.dart";
 export "data/data.dart";
 export "enums.dart";
 export "generated/l10n.dart";

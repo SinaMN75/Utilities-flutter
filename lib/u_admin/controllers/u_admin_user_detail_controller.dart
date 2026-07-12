@@ -1,6 +1,7 @@
 part of "../u_admin.dart";
 
 class UAdminUserDetailController {
+  final Rx<int> loadingProgress = 0.obs;
   final Rx<PageState> state = PageState.initial.obs;
   late UUserResponse user;
 
@@ -12,6 +13,9 @@ class UAdminUserDetailController {
   Future<void> read() async {
     state.loading();
     await UServices.user.readById(
+      onProgress: (int i) {
+        loadingProgress(i);
+      },
       p: UIdParams(
         id: user.id,
         selectorArgs: const UserSelectorArgs(address: AddressSelectorArgs(), nationalCardFront: true, nationalCardBack: true, birthCertificateFirst: true, eSignature: true, visualAuthentication: true),
