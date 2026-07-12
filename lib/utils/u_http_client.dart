@@ -37,9 +37,17 @@ abstract class UHttpClient {
     final Duration? cacheDuration,
     final int retryAmount = 3,
     final Duration timeout = const Duration(seconds: 30),
-    final void Function(int percent)? onSendProgress,
-    final void Function(int percent)? onReceiveProgress,
+    final void Function(int percent)? onProgress,
   }) async {
+    int lastPercent = -1;
+    void report(final int percent) {
+      if (onProgress == null) return;
+      final int p = percent.clamp(0, 100).toInt();
+      if (p <= lastPercent) return;
+      lastPercent = p;
+      onProgress(p);
+    }
+
     final bool hasNetworkConnection = await UNetwork.hasEthernet() || await UNetwork.hasCellular() || await UNetwork.hasWifi();
 
     if (!hasNetworkConnection && offline == false) {
@@ -87,13 +95,18 @@ abstract class UHttpClient {
         }
       }
 
-      final BaseRequest outgoing = onSendProgress == null
+      final List<int> uploadBytes = request.bodyBytes;
+      final bool hasUpload = uploadBytes.isNotEmpty;
+      final int uploadWeight = hasUpload ? 50 : 0;
+
+      final BaseRequest outgoing = !hasUpload || onProgress == null
           ? request
-          : (_UProgressRequest(method, uri, request.bodyBytes, onSendProgress)
+          : (_UProgressRequest(method, uri, uploadBytes, (final int uploadPercent) => report((uploadPercent / 100 * uploadWeight).round()))
               ..headers.addAll(request.headers)
-              ..contentLength = request.bodyBytes.length);
+              ..contentLength = uploadBytes.length);
 
       final StreamedResponse streamed = await _client.send(outgoing).timeout(timeout);
+      report(uploadWeight);
 
       final int? totalBytes = streamed.contentLength;
       final List<int> receivedBytes = <int>[];
@@ -101,11 +114,9 @@ abstract class UHttpClient {
       await for (final List<int> chunk in streamed.stream) {
         receivedBytes.addAll(chunk);
         receivedCount += chunk.length;
-        if (onReceiveProgress != null && totalBytes != null && totalBytes > 0) {
-          onReceiveProgress((receivedCount / totalBytes * 100).clamp(0, 100).round());
-        }
+        if (totalBytes != null && totalBytes > 0) report(uploadWeight + (receivedCount / totalBytes * (100 - uploadWeight)).round());
       }
-      if (onReceiveProgress != null) onReceiveProgress(100);
+      report(100);
 
       response = Response.bytes(
         receivedBytes,
@@ -135,8 +146,7 @@ abstract class UHttpClient {
           retryAmount: retryAmount - 1,
           unexpectedErrorMessage: unexpectedErrorMessage,
           timeout: timeout,
-          onSendProgress: onSendProgress,
-          onReceiveProgress: onReceiveProgress,
+          onProgress: onProgress,
         );
       } else {
         final String message = unexpectedErrorMessage ?? U.s.unexpectedErrorPleaseTryAgain;
@@ -175,10 +185,19 @@ abstract class UHttpClient {
     final Map<String, dynamic>? queryParams,
     final String method = "POST",
     final Duration timeout = const Duration(minutes: 5),
-    final void Function(int percent)? onSendProgress,
+    final void Function(int percent)? onProgress,
   }) async {
+    int lastPercent = -1;
+    void report(final int percent) {
+      if (onProgress == null) return;
+      final int p = percent.clamp(0, 100).toInt();
+      if (p <= lastPercent) return;
+      lastPercent = p;
+      onProgress(p);
+    }
+
     try {
-      final MultipartRequest request = onSendProgress == null ? MultipartRequest(method, _buildUri(endpoint, queryParams)) : _UProgressMultipartRequest(method, _buildUri(endpoint, queryParams), onSendProgress);
+      final MultipartRequest request = onProgress == null ? MultipartRequest(method, _buildUri(endpoint, queryParams)) : _UProgressMultipartRequest(method, _buildUri(endpoint, queryParams), report);
       request.headers.addAll(<String, String>{...?headers});
       if (fields != null) request.fields.addAll(removeNullEntries(fields)!.map((String key, dynamic value) => MapEntry<String, String>(key, value is String ? value : jsonEncode(value))));
       request.files.addAll(files);
