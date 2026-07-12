@@ -626,5 +626,6 @@
   "apiKey": "کلید API",
   "sendRequest": "ارسال درخواست",
   "request": "درخواست",
-  "response": "پاسخ"
+  "response": "پاسخ",
+  "visualAuthentication": "احراز هویت تصویری"
 }

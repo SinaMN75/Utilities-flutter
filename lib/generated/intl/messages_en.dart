@@ -852,6 +852,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewInvoices": MessageLookupByLibrary.simpleMessage("View Invoices"),
     "viewReport": MessageLookupByLibrary.simpleMessage("View Report"),
     "viewTerminals": MessageLookupByLibrary.simpleMessage("View Terminals"),
+    "visualAuthentication": MessageLookupByLibrary.simpleMessage(
+      "Visual Authentication",
+    ),
     "walletBalance": MessageLookupByLibrary.simpleMessage("Wallet Balance"),
     "walletManagement": MessageLookupByLibrary.simpleMessage(
       "Wallet Management",
@@ -864,11 +867,5 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "yes": MessageLookupByLibrary.simpleMessage("Yes"),
     "zipCode": MessageLookupByLibrary.simpleMessage("Zip Code"),
-    "externalApi": MessageLookupByLibrary.simpleMessage("External API"),
-    "pnApiTester": MessageLookupByLibrary.simpleMessage("Pn API Tester"),
-    "apiKey": MessageLookupByLibrary.simpleMessage("API Key"),
-    "sendRequest": MessageLookupByLibrary.simpleMessage("Send Request"),
-    "request": MessageLookupByLibrary.simpleMessage("Request"),
-    "response": MessageLookupByLibrary.simpleMessage("Response"),
   };
 }

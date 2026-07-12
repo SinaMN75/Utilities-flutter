@@ -626,5 +626,6 @@
   "apiKey": "API Key",
   "sendRequest": "Send Request",
   "request": "Request",
-  "response": "Response"
+  "response": "Response",
+  "visualAuthentication": "Visual Authentication"
 }
