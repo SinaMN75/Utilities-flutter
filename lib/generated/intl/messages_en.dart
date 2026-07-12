@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "all": MessageLookupByLibrary.simpleMessage("All"),
     "amenities": MessageLookupByLibrary.simpleMessage("Amenities"),
     "amount": MessageLookupByLibrary.simpleMessage("Amount"),
+    "apiKey": MessageLookupByLibrary.simpleMessage("API Key"),
     "apiRequestLogs": MessageLookupByLibrary.simpleMessage("API Request Logs"),
     "appVersion": MessageLookupByLibrary.simpleMessage("App Version"),
     "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
@@ -61,8 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "Are you sure to Delete this User?",
     ),
-    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments":
-    MessageLookupByLibrary.simpleMessage(
+    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to approve this user with all of their documents?",
     ),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
@@ -289,6 +289,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "exams": MessageLookupByLibrary.simpleMessage("Exams"),
     "expired": MessageLookupByLibrary.simpleMessage("Expired"),
     "expiringSoon": MessageLookupByLibrary.simpleMessage("Expiring Soon"),
+    "externalApi": MessageLookupByLibrary.simpleMessage("External API"),
     "extraSections": MessageLookupByLibrary.simpleMessage("Extra Sections"),
     "failedToLoadLogContent": MessageLookupByLibrary.simpleMessage(
       "Failed to load log content",
@@ -516,8 +517,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "occupied": MessageLookupByLibrary.simpleMessage("Occupied"),
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "oldestFirst": MessageLookupByLibrary.simpleMessage("Oldest First"),
-    "oneTerminalPerLineSerialSimnumberSimserialImei":
-    MessageLookupByLibrary.simpleMessage(
+    "oneTerminalPerLineSerialSimnumberSimserialImei": MessageLookupByLibrary.simpleMessage(
       "One terminal per line: serial,simNumber,simSerial,imei",
     ),
     "onlyErrors": MessageLookupByLibrary.simpleMessage("Only Errors"),
@@ -567,12 +567,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "permissions": MessageLookupByLibrary.simpleMessage("Permissions"),
     "persian": MessageLookupByLibrary.simpleMessage("Persian"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
-    "pleaseCreateACategoryBeforeCreatingAProduct":
-    MessageLookupByLibrary.simpleMessage(
+    "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
       "Please Create a Category before creating a Product.",
     ),
-    "pleaseCreateAProductBeforeSigningAContract":
-    MessageLookupByLibrary.simpleMessage(
+    "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
       "Please Create a Product before Signing a Contract",
     ),
     "pleaseSelectADorm": MessageLookupByLibrary.simpleMessage(
@@ -584,6 +582,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseSelectARoom": MessageLookupByLibrary.simpleMessage(
       "Please select a room",
     ),
+    "pnApiTester": MessageLookupByLibrary.simpleMessage("Pn API Tester"),
     "pointDetails": MessageLookupByLibrary.simpleMessage("Point Details"),
     "policies": MessageLookupByLibrary.simpleMessage("Policies"),
     "preview": MessageLookupByLibrary.simpleMessage("Preview"),
@@ -606,8 +605,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "published": MessageLookupByLibrary.simpleMessage("Published"),
     "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("Question Title"),
-    "questionTitleAndAtLeastOneOptionAreRequired":
-    MessageLookupByLibrary.simpleMessage(
+    "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
       "Question title and at least one option are required",
     ),
     "questionnaire": MessageLookupByLibrary.simpleMessage("Questionnaire"),
@@ -657,6 +655,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "removeBlock": MessageLookupByLibrary.simpleMessage("Remove Block"),
     "removeLink": MessageLookupByLibrary.simpleMessage("Remove Link"),
     "rent": MessageLookupByLibrary.simpleMessage("Rent"),
+    "request": MessageLookupByLibrary.simpleMessage("Request"),
     "requestBody": MessageLookupByLibrary.simpleMessage("Request Body"),
     "requestHeaders": MessageLookupByLibrary.simpleMessage("Request Headers"),
     "requestSize": MessageLookupByLibrary.simpleMessage("Request Size"),
@@ -666,6 +665,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "required": MessageLookupByLibrary.simpleMessage("Required"),
     "reservation": MessageLookupByLibrary.simpleMessage("Reservation"),
     "reservations": MessageLookupByLibrary.simpleMessage("Reservations"),
+    "response": MessageLookupByLibrary.simpleMessage("Response"),
     "responseBody": MessageLookupByLibrary.simpleMessage("Response Body"),
     "responseHeaders": MessageLookupByLibrary.simpleMessage("Response Headers"),
     "responseSize": MessageLookupByLibrary.simpleMessage("Response Size"),
@@ -702,6 +702,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectUserToManageWallet": MessageLookupByLibrary.simpleMessage(
       "Select a user to manage their wallet",
     ),
+    "sendRequest": MessageLookupByLibrary.simpleMessage("Send Request"),
     "sent": MessageLookupByLibrary.simpleMessage("Sent"),
     "serial": MessageLookupByLibrary.simpleMessage("Serial"),
     "serverGc": MessageLookupByLibrary.simpleMessage("Server GC"),
@@ -863,5 +864,11 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "yes": MessageLookupByLibrary.simpleMessage("Yes"),
     "zipCode": MessageLookupByLibrary.simpleMessage("Zip Code"),
+    "externalApi": MessageLookupByLibrary.simpleMessage("External API"),
+    "pnApiTester": MessageLookupByLibrary.simpleMessage("Pn API Tester"),
+    "apiKey": MessageLookupByLibrary.simpleMessage("API Key"),
+    "sendRequest": MessageLookupByLibrary.simpleMessage("Send Request"),
+    "request": MessageLookupByLibrary.simpleMessage("Request"),
+    "response": MessageLookupByLibrary.simpleMessage("Response"),
   };
 }

@@ -620,5 +620,11 @@
   "noParkingsFound": "پارکینگی یافت نشد",
   "noParkingReportsFound": "گزارشی یافت نشد",
   "licencePlate": "پلاک",
-  "viewReport": "مشاهده گزارش"
+  "viewReport": "مشاهده گزارش",
+  "externalApi": "API خارجی",
+  "pnApiTester": "تستر API پی‌ان",
+  "apiKey": "کلید API",
+  "sendRequest": "ارسال درخواست",
+  "request": "درخواست",
+  "response": "پاسخ"
 }

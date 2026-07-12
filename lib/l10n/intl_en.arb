@@ -620,5 +620,11 @@
   "noParkingsFound": "No parkings found",
   "noParkingReportsFound": "No parking reports found",
   "licencePlate": "Licence Plate",
-  "viewReport": "View Report"
+  "viewReport": "View Report",
+  "externalApi": "External API",
+  "pnApiTester": "Pn API Tester",
+  "apiKey": "API Key",
+  "sendRequest": "Send Request",
+  "request": "Request",
+  "response": "Response"
 }

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -2453,6 +2452,36 @@ class S {
     return Intl.message('Zip Code', name: 'zipCode', desc: '', args: []);
   }
 
+  /// `External API`
+  String get externalApi {
+    return Intl.message('External API', name: 'externalApi', desc: '', args: []);
+  }
+
+  /// `Pn API Tester`
+  String get pnApiTester {
+    return Intl.message('Pn API Tester', name: 'pnApiTester', desc: '', args: []);
+  }
+
+  /// `API Key`
+  String get apiKey {
+    return Intl.message('API Key', name: 'apiKey', desc: '', args: []);
+  }
+
+  /// `Send Request`
+  String get sendRequest {
+    return Intl.message('Send Request', name: 'sendRequest', desc: '', args: []);
+  }
+
+  /// `Request`
+  String get request {
+    return Intl.message('Request', name: 'request', desc: '', args: []);
+  }
+
+  /// `Response`
+  String get response {
+    return Intl.message('Response', name: 'response', desc: '', args: []);
+  }
+
   /// `City Code`
   String get cityCode {
     return Intl.message('City Code', name: 'cityCode', desc: '', args: []);
@@ -4661,6 +4690,51 @@ class S {
   /// `View Report`
   String get viewReport {
     return Intl.message('View Report', name: 'viewReport', desc: '', args: []);
+  }
+
+  /// `External API`
+  String get externalApi {
+    return Intl.message(
+      'External API',
+      name: 'externalApi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pn API Tester`
+  String get pnApiTester {
+    return Intl.message(
+      'Pn API Tester',
+      name: 'pnApiTester',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `API Key`
+  String get apiKey {
+    return Intl.message('API Key', name: 'apiKey', desc: '', args: []);
+  }
+
+  /// `Send Request`
+  String get sendRequest {
+    return Intl.message(
+      'Send Request',
+      name: 'sendRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request`
+  String get request {
+    return Intl.message('Request', name: 'request', desc: '', args: []);
+  }
+
+  /// `Response`
+  String get response {
+    return Intl.message('Response', name: 'response', desc: '', args: []);
   }
 }
 

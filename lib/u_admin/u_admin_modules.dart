@@ -156,6 +156,14 @@ abstract class UAdminModules {
 
   static UAdminModule contents({List<TagUser>? roles}) => UAdminModule(id: "contents", title: U.s.content, icon: Icons.content_copy, selectedIcon: Icons.content_copy_outlined, page: () => const UAdminContentsPage(), roles: roles);
 
+  // ---- External API ----
+  static UAdminModule pnApiTester({List<TagUser>? roles}) =>
+      UAdminModule(id: "pn-api-tester",
+          title: U.s.pnApiTester,
+          icon: Icons.api_rounded,
+          page: () => const UAdminPnTesterPage(),
+          roles: roles);
+
   // ---- System ----
   static UAdminModule settings({List<TagUser>? roles}) => UAdminModule(id: "settings", title: U.s.settings, icon: Icons.settings_rounded, page: () => const UAdminSettingsPage(), roles: roles);
 

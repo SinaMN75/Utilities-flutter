@@ -95,6 +95,8 @@ part "services/media_service.dart";
 part "services/merchant_service.dart";
 part "services/notification_service.dart";
 part "services/parking_service.dart";
+
+part "services/pn_service.dart";
 part "services/process_service.dart";
 part "services/product_service.dart";
 part "services/sim_service.dart";
@@ -136,4 +138,5 @@ class UServices {
   static TxnService txn = TxnService();
   static ApiLogService apiLog = ApiLogService();
   static BlogService blog = BlogService();
+  static PnService pn = PnService();
 }
