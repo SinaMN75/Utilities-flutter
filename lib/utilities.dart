@@ -117,7 +117,6 @@ export "u_admin/pages/wallet/u_admin_accounting_page.dart";
 export "u_admin/pages/wallet/u_admin_transactions_page.dart";
 export "u_admin/pages/wallet/u_admin_wallet_page.dart";
 export "u_admin/u_admin.dart";
-export "u_compress.dart";
 export "utils/extensions/date_extension.dart";
 export "utils/extensions/iterable_extension.dart";
 export "utils/extensions/map_extension.dart";
