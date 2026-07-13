@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 class UTextDisplayLarge extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -34,7 +33,6 @@ class UTextDisplayLarge extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -75,7 +73,6 @@ class UTextDisplayLarge extends StatelessWidget {
         style: Theme.of(context).textTheme.displayLarge!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -110,7 +107,6 @@ class UTextDisplayLarge extends StatelessWidget {
       style: Theme.of(context).textTheme.displayLarge!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -135,7 +131,6 @@ class UTextDisplayLarge extends StatelessWidget {
 class UTextDisplayMedium extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -166,7 +161,6 @@ class UTextDisplayMedium extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -207,7 +201,6 @@ class UTextDisplayMedium extends StatelessWidget {
         style: Theme.of(context).textTheme.displayMedium!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -242,7 +235,6 @@ class UTextDisplayMedium extends StatelessWidget {
       style: Theme.of(context).textTheme.displayMedium!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -267,7 +259,6 @@ class UTextDisplayMedium extends StatelessWidget {
 class UTextDisplaySmall extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -298,7 +289,6 @@ class UTextDisplaySmall extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -339,7 +329,6 @@ class UTextDisplaySmall extends StatelessWidget {
         style: Theme.of(context).textTheme.displaySmall!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -374,7 +363,6 @@ class UTextDisplaySmall extends StatelessWidget {
       style: Theme.of(context).textTheme.displaySmall!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -399,7 +387,6 @@ class UTextDisplaySmall extends StatelessWidget {
 class UTextHeadlineLarge extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -430,7 +417,6 @@ class UTextHeadlineLarge extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -471,7 +457,6 @@ class UTextHeadlineLarge extends StatelessWidget {
         style: Theme.of(context).textTheme.headlineLarge!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -506,7 +491,6 @@ class UTextHeadlineLarge extends StatelessWidget {
       style: Theme.of(context).textTheme.headlineLarge!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -531,7 +515,6 @@ class UTextHeadlineLarge extends StatelessWidget {
 class UTextHeadlineMedium extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -562,7 +545,6 @@ class UTextHeadlineMedium extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -603,7 +585,6 @@ class UTextHeadlineMedium extends StatelessWidget {
         style: Theme.of(context).textTheme.headlineMedium!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -638,7 +619,6 @@ class UTextHeadlineMedium extends StatelessWidget {
       style: Theme.of(context).textTheme.headlineMedium!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -663,7 +643,6 @@ class UTextHeadlineMedium extends StatelessWidget {
 class UTextHeadlineSmall extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -694,7 +673,6 @@ class UTextHeadlineSmall extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -735,7 +713,6 @@ class UTextHeadlineSmall extends StatelessWidget {
         style: Theme.of(context).textTheme.headlineSmall!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -770,7 +747,6 @@ class UTextHeadlineSmall extends StatelessWidget {
       style: Theme.of(context).textTheme.headlineSmall!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -795,7 +771,6 @@ class UTextHeadlineSmall extends StatelessWidget {
 class UTextTitleLarge extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -826,7 +801,6 @@ class UTextTitleLarge extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -867,7 +841,6 @@ class UTextTitleLarge extends StatelessWidget {
         style: Theme.of(context).textTheme.titleLarge!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -902,7 +875,6 @@ class UTextTitleLarge extends StatelessWidget {
       style: Theme.of(context).textTheme.titleLarge!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -927,7 +899,6 @@ class UTextTitleLarge extends StatelessWidget {
 class UTextTitleMedium extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -958,7 +929,6 @@ class UTextTitleMedium extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -999,7 +969,6 @@ class UTextTitleMedium extends StatelessWidget {
         style: Theme.of(context).textTheme.titleMedium!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -1034,7 +1003,6 @@ class UTextTitleMedium extends StatelessWidget {
       style: Theme.of(context).textTheme.titleMedium!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -1059,7 +1027,6 @@ class UTextTitleMedium extends StatelessWidget {
 class UTextTitleSmall extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -1090,7 +1057,6 @@ class UTextTitleSmall extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -1131,7 +1097,6 @@ class UTextTitleSmall extends StatelessWidget {
         style: Theme.of(context).textTheme.titleSmall!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -1166,7 +1131,6 @@ class UTextTitleSmall extends StatelessWidget {
       style: Theme.of(context).textTheme.titleSmall!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -1191,7 +1155,6 @@ class UTextTitleSmall extends StatelessWidget {
 class UTextBodyLarge extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -1222,7 +1185,6 @@ class UTextBodyLarge extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -1263,7 +1225,6 @@ class UTextBodyLarge extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyLarge!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -1298,7 +1259,6 @@ class UTextBodyLarge extends StatelessWidget {
       style: Theme.of(context).textTheme.bodyLarge!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -1323,7 +1283,6 @@ class UTextBodyLarge extends StatelessWidget {
 class UTextBodyMedium extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -1354,7 +1313,6 @@ class UTextBodyMedium extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -1395,7 +1353,6 @@ class UTextBodyMedium extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyMedium!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               overflow: TextOverflow.ellipsis,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
@@ -1430,7 +1387,6 @@ class UTextBodyMedium extends StatelessWidget {
       style: Theme.of(context).textTheme.bodyMedium!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -1455,7 +1411,6 @@ class UTextBodyMedium extends StatelessWidget {
 class UTextBodySmall extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -1486,7 +1441,6 @@ class UTextBodySmall extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -1527,7 +1481,6 @@ class UTextBodySmall extends StatelessWidget {
         style: Theme.of(context).textTheme.bodySmall!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -1562,7 +1515,6 @@ class UTextBodySmall extends StatelessWidget {
       style: Theme.of(context).textTheme.bodySmall!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -1587,7 +1539,6 @@ class UTextBodySmall extends StatelessWidget {
 class UTextLabelLarge extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -1618,7 +1569,6 @@ class UTextLabelLarge extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -1659,7 +1609,6 @@ class UTextLabelLarge extends StatelessWidget {
         style: Theme.of(context).textTheme.labelLarge!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -1694,7 +1643,6 @@ class UTextLabelLarge extends StatelessWidget {
       style: Theme.of(context).textTheme.labelLarge!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -1719,7 +1667,6 @@ class UTextLabelLarge extends StatelessWidget {
 class UTextLabelMedium extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -1750,7 +1697,6 @@ class UTextLabelMedium extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -1791,7 +1737,6 @@ class UTextLabelMedium extends StatelessWidget {
         style: Theme.of(context).textTheme.labelMedium!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -1826,7 +1771,6 @@ class UTextLabelMedium extends StatelessWidget {
       style: Theme.of(context).textTheme.labelMedium!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
@@ -1851,7 +1795,6 @@ class UTextLabelMedium extends StatelessWidget {
 class UTextLabelSmall extends StatelessWidget {
   final String text;
   final Color? color;
-  final double? fontSize;
   final FontWeight? fontWeight;
   final FontStyle? fontStyle;
   final String? fontFamily;
@@ -1882,7 +1825,6 @@ class UTextLabelSmall extends StatelessWidget {
     this.text, {
     super.key,
     this.color,
-    this.fontSize,
     this.fontWeight,
     this.fontStyle,
     this.fontFamily,
@@ -1923,7 +1865,6 @@ class UTextLabelSmall extends StatelessWidget {
         style: Theme.of(context).textTheme.labelSmall!
             .copyWith(
               color: color,
-              fontSize: fontSize,
               fontWeight: fontWeight,
               fontStyle: fontStyle,
               fontFamily: fontFamily,
@@ -1958,7 +1899,6 @@ class UTextLabelSmall extends StatelessWidget {
       style: Theme.of(context).textTheme.labelSmall!
           .copyWith(
             color: color,
-            fontSize: fontSize,
             fontWeight: fontWeight,
             fontStyle: fontStyle,
             fontFamily: fontFamily,
