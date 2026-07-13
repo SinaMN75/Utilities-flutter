@@ -1,6 +1,10 @@
 import "package:flutter/material.dart";
 
-class UTextDisplayLarge extends StatelessWidget {
+/// Shared base for every `UText*` variant. Holds all customizable styling
+/// (everything except `fontSize`, which is fixed by the theme text style each
+/// variant resolves via [_baseStyle]) and centralizes the Text/SelectableText
+/// build logic so the behavior stays identical across all variants.
+abstract class _UText extends StatelessWidget {
   final String text;
   final Color? color;
   final FontWeight? fontWeight;
@@ -12,1822 +16,708 @@ class UTextDisplayLarge extends StatelessWidget {
   final TextDecoration? decoration;
   final Color? decorationColor;
   final TextDecorationStyle? decorationStyle;
+  final double? decorationThickness;
   final TextBaseline? textBaseline;
   final TextAlign? textAlign;
   final TextOverflow? overflow;
   final int? maxLines;
   final bool? softWrap;
   final StrutStyle? strutStyle;
+  final TextScaler? textScaler;
   final TextWidthBasis? textWidthBasis;
   final TextHeightBehavior? textHeightBehavior;
   final String? semanticsLabel;
   final List<Shadow>? shadows;
+  final List<FontFeature>? fontFeatures;
+  final List<FontVariation>? fontVariations;
   final Paint? foreground;
   final Paint? background;
+  final Color? selectionColor;
   final TextDirection? textDirection;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
+  const _UText(
+    this.text, {
+    super.key,
+    this.color,
+    this.fontWeight,
+    this.fontStyle,
+    this.fontFamily,
+    this.letterSpacing,
+    this.wordSpacing,
+    this.height,
+    this.decoration,
+    this.decorationColor,
+    this.decorationStyle,
+    this.decorationThickness,
+    this.textBaseline,
+    this.textAlign,
+    this.overflow,
+    this.maxLines,
+    this.softWrap,
+    this.strutStyle,
+    this.textScaler,
+    this.textWidthBasis,
+    this.textHeightBehavior,
+    this.semanticsLabel,
+    this.shadows,
+    this.fontFeatures,
+    this.fontVariations,
+    this.foreground,
+    this.background,
+    this.selectionColor,
+    this.textDirection,
+    this.leadingDistribution,
+    this.selectable = false,
+  });
+
+  /// The theme text style (and therefore the fixed font size) for this variant.
+  TextStyle _baseStyle(BuildContext context);
+
+  @override
+  Widget build(BuildContext context) {
+    // Merge the caller's overrides onto the variant's theme style once.
+    final TextStyle style = _baseStyle(context).copyWith(
+      color: color,
+      fontWeight: fontWeight,
+      fontStyle: fontStyle,
+      fontFamily: fontFamily,
+      letterSpacing: letterSpacing,
+      wordSpacing: wordSpacing,
+      height: height,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      textBaseline: textBaseline,
+      shadows: shadows,
+      fontFeatures: fontFeatures,
+      fontVariations: fontVariations,
+      foreground: foreground,
+      background: background,
+      leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+    );
+
+    if (selectable) {
+      return SelectableText(
+        text,
+        textAlign: textAlign,
+        maxLines: maxLines,
+        textDirection: textDirection,
+        strutStyle: strutStyle,
+        textScaler: textScaler,
+        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
+        textHeightBehavior: textHeightBehavior,
+        semanticsLabel: semanticsLabel,
+        // Respect the caller's overflow instead of forcing ellipsis.
+        style: style.copyWith(overflow: overflow ?? TextOverflow.ellipsis),
+      );
+    }
+
+    return Text(
+      text,
+      textAlign: textAlign,
+      overflow: overflow ?? TextOverflow.ellipsis,
+      maxLines: maxLines,
+      softWrap: softWrap,
+      semanticsLabel: semanticsLabel,
+      textDirection: textDirection,
+      strutStyle: strutStyle,
+      textScaler: textScaler,
+      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
+      textHeightBehavior: textHeightBehavior,
+      selectionColor: selectionColor,
+      style: style,
+    );
+  }
+}
+
+class UTextDisplayLarge extends _UText {
   const UTextDisplayLarge(
-    this.text, {
+    super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.displayLarge!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.displayLarge!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.displayLarge!;
 }
 
-class UTextDisplayMedium extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
+class UTextDisplayMedium extends _UText {
   const UTextDisplayMedium(
-    this.text, {
+    super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.displayMedium!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.displayMedium!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.displayMedium!;
 }
 
-class UTextDisplaySmall extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextDisplaySmall(
-    this.text, {
+class UTextDisplaySmall extends _UText {
+  const UTextDisplaySmall(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.displaySmall!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.displaySmall!;
 }
 
-class UTextHeadlineLarge extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextHeadlineLarge(
-    this.text, {
+class UTextHeadlineLarge extends _UText {
+  const UTextHeadlineLarge(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.headlineLarge!;
 }
 
-class UTextHeadlineMedium extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextHeadlineMedium(
-    this.text, {
+class UTextHeadlineMedium extends _UText {
+  const UTextHeadlineMedium(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.headlineMedium!;
 }
 
-class UTextHeadlineSmall extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextHeadlineSmall(
-    this.text, {
+class UTextHeadlineSmall extends _UText {
+  const UTextHeadlineSmall(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.headlineSmall!;
 }
 
-class UTextTitleLarge extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextTitleLarge(
-    this.text, {
+class UTextTitleLarge extends _UText {
+  const UTextTitleLarge(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.titleLarge!;
 }
 
-class UTextTitleMedium extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextTitleMedium(
-    this.text, {
+class UTextTitleMedium extends _UText {
+  const UTextTitleMedium(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.titleMedium!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.titleMedium!;
 }
 
-class UTextTitleSmall extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextTitleSmall(
-    this.text, {
+class UTextTitleSmall extends _UText {
+  const UTextTitleSmall(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.titleSmall!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.titleSmall!;
 }
 
-class UTextBodyLarge extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextBodyLarge(
-    this.text, {
+class UTextBodyLarge extends _UText {
+  const UTextBodyLarge(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.bodyLarge!;
 }
 
-class UTextBodyMedium extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextBodyMedium(
-    this.text, {
+class UTextBodyMedium extends _UText {
+  const UTextBodyMedium(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-          color: color,
-          overflow: TextOverflow.ellipsis,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.bodyMedium!;
 }
 
-class UTextBodySmall extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextBodySmall(
-    this.text, {
+class UTextBodySmall extends _UText {
+  const UTextBodySmall(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.bodySmall!;
 }
 
-class UTextLabelLarge extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextLabelLarge(
-    this.text, {
+class UTextLabelLarge extends _UText {
+  const UTextLabelLarge(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.labelLarge!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.labelLarge!;
 }
 
-class UTextLabelMedium extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextLabelMedium(
-    this.text, {
+class UTextLabelMedium extends _UText {
+  const UTextLabelMedium(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.labelMedium!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.labelMedium!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.labelMedium!;
 }
 
-class UTextLabelSmall extends StatelessWidget {
-  final String text;
-  final Color? color;
-  final FontWeight? fontWeight;
-  final FontStyle? fontStyle;
-  final String? fontFamily;
-  final double? letterSpacing;
-  final double? wordSpacing;
-  final double? height;
-  final TextDecoration? decoration;
-  final Color? decorationColor;
-  final TextDecorationStyle? decorationStyle;
-  final TextBaseline? textBaseline;
-  final TextAlign? textAlign;
-  final TextOverflow? overflow;
-  final int? maxLines;
-  final bool? softWrap;
-  final StrutStyle? strutStyle;
-  final TextWidthBasis? textWidthBasis;
-  final TextHeightBehavior? textHeightBehavior;
-  final String? semanticsLabel;
-  final List<Shadow>? shadows;
-  final Paint? foreground;
-  final Paint? background;
-  final TextDirection? textDirection;
-  final TextLeadingDistribution? leadingDistribution;
-  final bool selectable;
-
-  const UTextLabelSmall(
-    this.text, {
+class UTextLabelSmall extends _UText {
+  const UTextLabelSmall(super.text, {
     super.key,
-    this.color,
-    this.fontWeight,
-    this.fontStyle,
-    this.fontFamily,
-    this.letterSpacing,
-    this.wordSpacing,
-    this.height,
-    this.decoration,
-    this.decorationColor,
-    this.decorationStyle,
-    this.textBaseline,
-    this.textAlign,
-    this.overflow,
-    this.maxLines,
-    this.softWrap,
-    this.strutStyle,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.semanticsLabel,
-    this.shadows,
-    this.foreground,
-    this.background,
-    this.textDirection,
-    this.leadingDistribution,
-    this.selectable = false,
+    super.color,
+    super.fontWeight,
+    super.fontStyle,
+    super.fontFamily,
+    super.letterSpacing,
+    super.wordSpacing,
+    super.height,
+    super.decoration,
+    super.decorationColor,
+    super.decorationStyle,
+    super.decorationThickness,
+    super.textBaseline,
+    super.textAlign,
+    super.overflow,
+    super.maxLines,
+    super.softWrap,
+    super.strutStyle,
+    super.textScaler,
+    super.textWidthBasis,
+    super.textHeightBehavior,
+    super.semanticsLabel,
+    super.shadows,
+    super.fontFeatures,
+    super.fontVariations,
+    super.foreground,
+    super.background,
+    super.selectionColor,
+    super.textDirection,
+    super.leadingDistribution,
+    super.selectable = false,
   });
 
   @override
-  Widget build(BuildContext context) {
-    if (selectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        textDirection: textDirection,
-        strutStyle: strutStyle,
-        textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.labelSmall!.copyWith(
-          color: color,
-          fontWeight: fontWeight,
-          fontStyle: fontStyle,
-          fontFamily: fontFamily,
-          letterSpacing: letterSpacing,
-          wordSpacing: wordSpacing,
-          height: height,
-          decoration: decoration,
-          decorationColor: decorationColor,
-          decorationStyle: decorationStyle,
-          textBaseline: textBaseline,
-          shadows: shadows,
-          overflow: TextOverflow.ellipsis,
-          foreground: foreground,
-          background: background,
-          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-        ),
-      );
-    }
-
-    return Text(
-      text,
-      textAlign: textAlign,
-      overflow: overflow,
-      maxLines: maxLines,
-      softWrap: softWrap,
-      semanticsLabel: semanticsLabel,
-      textDirection: textDirection,
-      strutStyle: strutStyle,
-      textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-      textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.labelSmall!.copyWith(
-        color: color,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        fontFamily: fontFamily,
-        letterSpacing: letterSpacing,
-        wordSpacing: wordSpacing,
-        height: height,
-        decoration: decoration,
-        decorationColor: decorationColor,
-        decorationStyle: decorationStyle,
-        textBaseline: textBaseline,
-        shadows: shadows,
-        overflow: TextOverflow.ellipsis,
-        foreground: foreground,
-        background: background,
-        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-      ),
-    );
-  }
+  TextStyle _baseStyle(BuildContext context) => Theme.of(context).textTheme.labelSmall!;
 }
 
 class UAnimatedCounter extends StatelessWidget {
