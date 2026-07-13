@@ -25,7 +25,6 @@ class UTextDisplayLarge extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -55,7 +54,6 @@ class UTextDisplayLarge extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -70,26 +68,24 @@ class UTextDisplayLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.displayLarge!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.displayLarge!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -104,26 +100,24 @@ class UTextDisplayLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.displayLarge!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.displayLarge!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -153,7 +147,6 @@ class UTextDisplayMedium extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -183,7 +176,6 @@ class UTextDisplayMedium extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -198,26 +190,24 @@ class UTextDisplayMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.displayMedium!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.displayMedium!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -232,26 +222,24 @@ class UTextDisplayMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.displayMedium!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.displayMedium!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -281,7 +269,6 @@ class UTextDisplaySmall extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -311,7 +298,6 @@ class UTextDisplaySmall extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -326,26 +312,24 @@ class UTextDisplaySmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.displaySmall!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.displaySmall!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -360,26 +344,24 @@ class UTextDisplaySmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.displaySmall!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.displaySmall!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -409,7 +391,6 @@ class UTextHeadlineLarge extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -439,7 +420,6 @@ class UTextHeadlineLarge extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -454,26 +434,24 @@ class UTextHeadlineLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.headlineLarge!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -488,26 +466,24 @@ class UTextHeadlineLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.headlineLarge!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -537,7 +513,6 @@ class UTextHeadlineMedium extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -567,7 +542,6 @@ class UTextHeadlineMedium extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -582,26 +556,24 @@ class UTextHeadlineMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.headlineMedium!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -616,26 +588,24 @@ class UTextHeadlineMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.headlineMedium!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -665,7 +635,6 @@ class UTextHeadlineSmall extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -695,7 +664,6 @@ class UTextHeadlineSmall extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -710,26 +678,24 @@ class UTextHeadlineSmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.headlineSmall!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -744,26 +710,24 @@ class UTextHeadlineSmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.headlineSmall!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -793,7 +757,6 @@ class UTextTitleLarge extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -823,7 +786,6 @@ class UTextTitleLarge extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -838,26 +800,24 @@ class UTextTitleLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.titleLarge!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -872,26 +832,24 @@ class UTextTitleLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.titleLarge!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -921,7 +879,6 @@ class UTextTitleMedium extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -951,7 +908,6 @@ class UTextTitleMedium extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -966,26 +922,24 @@ class UTextTitleMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.titleMedium!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.titleMedium!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -1000,26 +954,24 @@ class UTextTitleMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.titleMedium!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -1049,7 +1001,6 @@ class UTextTitleSmall extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -1079,7 +1030,6 @@ class UTextTitleSmall extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -1094,26 +1044,24 @@ class UTextTitleSmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.titleSmall!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -1128,26 +1076,24 @@ class UTextTitleSmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.titleSmall!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -1177,7 +1123,6 @@ class UTextBodyLarge extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -1207,7 +1152,6 @@ class UTextBodyLarge extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -1222,26 +1166,24 @@ class UTextBodyLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.bodyLarge!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -1256,26 +1198,24 @@ class UTextBodyLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.bodyLarge!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -1305,7 +1245,6 @@ class UTextBodyMedium extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -1335,7 +1274,6 @@ class UTextBodyMedium extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -1350,26 +1288,24 @@ class UTextBodyMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.bodyMedium!
-            .copyWith(
-              color: color,
-              overflow: TextOverflow.ellipsis,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          color: color,
+          overflow: TextOverflow.ellipsis,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -1384,26 +1320,24 @@ class UTextBodyMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.bodyMedium!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -1433,7 +1367,6 @@ class UTextBodySmall extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -1463,7 +1396,6 @@ class UTextBodySmall extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -1478,26 +1410,24 @@ class UTextBodySmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.bodySmall!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -1512,26 +1442,24 @@ class UTextBodySmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.bodySmall!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -1561,7 +1489,6 @@ class UTextLabelLarge extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -1591,7 +1518,6 @@ class UTextLabelLarge extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -1606,26 +1532,24 @@ class UTextLabelLarge extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.labelLarge!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -1640,26 +1564,24 @@ class UTextLabelLarge extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.labelLarge!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.labelLarge!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -1689,7 +1611,6 @@ class UTextLabelMedium extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -1719,7 +1640,6 @@ class UTextLabelMedium extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -1734,26 +1654,24 @@ class UTextLabelMedium extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.labelMedium!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.labelMedium!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -1768,26 +1686,24 @@ class UTextLabelMedium extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.labelMedium!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.labelMedium!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
@@ -1817,7 +1733,6 @@ class UTextLabelSmall extends StatelessWidget {
   final Paint? foreground;
   final Paint? background;
   final TextDirection? textDirection;
-  final TextStyle? style;
   final TextLeadingDistribution? leadingDistribution;
   final bool selectable;
 
@@ -1847,7 +1762,6 @@ class UTextLabelSmall extends StatelessWidget {
     this.foreground,
     this.background,
     this.textDirection,
-    this.style,
     this.leadingDistribution,
     this.selectable = false,
   });
@@ -1862,26 +1776,24 @@ class UTextLabelSmall extends StatelessWidget {
         textDirection: textDirection,
         strutStyle: strutStyle,
         textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
-        style: Theme.of(context).textTheme.labelSmall!
-            .copyWith(
-              color: color,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              fontFamily: fontFamily,
-              letterSpacing: letterSpacing,
-              wordSpacing: wordSpacing,
-              height: height,
-              decoration: decoration,
-              decorationColor: decorationColor,
-              decorationStyle: decorationStyle,
-              textBaseline: textBaseline,
-              shadows: shadows,
-              overflow: TextOverflow.ellipsis,
-              foreground: foreground,
-              background: background,
-              leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-            )
-            .merge(style),
+        style: Theme.of(context).textTheme.labelSmall!.copyWith(
+          color: color,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          fontFamily: fontFamily,
+          letterSpacing: letterSpacing,
+          wordSpacing: wordSpacing,
+          height: height,
+          decoration: decoration,
+          decorationColor: decorationColor,
+          decorationStyle: decorationStyle,
+          textBaseline: textBaseline,
+          shadows: shadows,
+          overflow: TextOverflow.ellipsis,
+          foreground: foreground,
+          background: background,
+          leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+        ),
       );
     }
 
@@ -1896,26 +1808,24 @@ class UTextLabelSmall extends StatelessWidget {
       strutStyle: strutStyle,
       textWidthBasis: textWidthBasis ?? TextWidthBasis.parent,
       textHeightBehavior: textHeightBehavior,
-      style: Theme.of(context).textTheme.labelSmall!
-          .copyWith(
-            color: color,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            fontFamily: fontFamily,
-            letterSpacing: letterSpacing,
-            wordSpacing: wordSpacing,
-            height: height,
-            decoration: decoration,
-            decorationColor: decorationColor,
-            decorationStyle: decorationStyle,
-            textBaseline: textBaseline,
-            shadows: shadows,
-            overflow: TextOverflow.ellipsis,
-            foreground: foreground,
-            background: background,
-            leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
-          )
-          .merge(style),
+      style: Theme.of(context).textTheme.labelSmall!.copyWith(
+        color: color,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        fontFamily: fontFamily,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        height: height,
+        decoration: decoration,
+        decorationColor: decorationColor,
+        decorationStyle: decorationStyle,
+        textBaseline: textBaseline,
+        shadows: shadows,
+        overflow: TextOverflow.ellipsis,
+        foreground: foreground,
+        background: background,
+        leadingDistribution: leadingDistribution ?? TextLeadingDistribution.proportional,
+      ),
     );
   }
 }
