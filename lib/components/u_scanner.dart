@@ -1,10 +1,5 @@
-import "package:flutter/material.dart";
-import "package:flutter/services.dart";
 import "package:mobile_scanner/mobile_scanner.dart";
-import "package:u/components/container.dart";
-import "package:u/generated/l10n.dart";
-import "package:u/utils/u_file.dart";
-import "package:u/utils/u_navigator.dart";
+import "package:u/utilities.dart" hide CameraLensType;
 
 /// Where the hint text sits relative to the scan window.
 enum UScannerHintPosition { top, bottom }

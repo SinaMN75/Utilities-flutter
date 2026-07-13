@@ -30,6 +30,7 @@ export "package:image_picker/image_picker.dart";
 export "package:latlong2/latlong.dart" hide Path, pi;
 export "package:logging/logging.dart";
 export "package:lottie/lottie.dart" hide Marker;
+export "package:mobile_scanner/mobile_scanner.dart" hide CameraLensType;
 export "package:no_screenshot/no_screenshot.dart";
 export "package:no_screenshot/screenshot_snapshot.dart";
 export "package:package_info_plus/package_info_plus.dart";
