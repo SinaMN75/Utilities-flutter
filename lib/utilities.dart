@@ -16,6 +16,7 @@ export "package:flutter/gestures.dart";
 export "package:flutter/material.dart";
 export "package:flutter/rendering.dart";
 export "package:flutter/services.dart";
+export "package:flutter_image_compress/flutter_image_compress.dart";
 export "package:flutter_local_notifications/flutter_local_notifications.dart";
 export "package:flutter_localizations/flutter_localizations.dart";
 export "package:flutter_map/flutter_map.dart";
@@ -41,6 +42,7 @@ export "package:syncfusion_flutter_charts/charts.dart" hide AnimationType, Posit
 export "package:syncfusion_flutter_chat/chat.dart";
 export "package:u/utilities.dart";
 export "package:url_launcher/url_launcher.dart";
+export "package:video_compress/video_compress.dart" hide Subscription;
 export "package:video_player/video_player.dart";
 export "package:webview_all/webview_all.dart" hide X509Certificate;
 
@@ -125,6 +127,7 @@ export "utils/extensions/string_extension.dart";
 export "utils/extensions/widget_extension.dart";
 export "utils/u_app_utils.dart";
 export "utils/u_clipboard.dart";
+export "utils/u_compress.dart";
 export "utils/u_constants.dart";
 export "utils/u_controller_mixin.dart";
 export "utils/u_debouncer.dart";
