@@ -4717,6 +4717,51 @@ class S {
       args: [],
     );
   }
+
+  /// `Scan Barcode`
+  String get scanBarcode {
+    return Intl.message(
+      'Scan Barcode',
+      name: 'scanBarcode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place the barcode inside the frame`
+  String get scanHint {
+    return Intl.message(
+      'Place the barcode inside the frame',
+      name: 'scanHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Switch Camera`
+  String get switchCamera {
+    return Intl.message(
+      'Switch Camera',
+      name: 'switchCamera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan from Gallery`
+  String get scanFromGallery {
+    return Intl.message(
+      'Scan from Gallery',
+      name: 'scanFromGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flashlight`
+  String get flashlight {
+    return Intl.message('Flashlight', name: 'flashlight', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

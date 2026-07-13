@@ -627,5 +627,10 @@
   "sendRequest": "Send Request",
   "request": "Request",
   "response": "Response",
-  "visualAuthentication": "Visual Authentication"
+  "visualAuthentication": "Visual Authentication",
+  "scanBarcode": "Scan Barcode",
+  "scanHint": "Place the barcode inside the frame",
+  "switchCamera": "Switch Camera",
+  "scanFromGallery": "Scan from Gallery",
+  "flashlight": "Flashlight"
 }

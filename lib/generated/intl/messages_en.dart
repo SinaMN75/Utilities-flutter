@@ -331,6 +331,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
     "firstNameAZ": MessageLookupByLibrary.simpleMessage("First Name (A-Z)"),
     "firstNameZA": MessageLookupByLibrary.simpleMessage("First Name (Z-A)"),
+    "flashlight": MessageLookupByLibrary.simpleMessage("Flashlight"),
     "floor": MessageLookupByLibrary.simpleMessage("Floor"),
     "fontSize": MessageLookupByLibrary.simpleMessage("Font Size"),
     "framework": MessageLookupByLibrary.simpleMessage("Framework"),
@@ -677,6 +678,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "rooms": MessageLookupByLibrary.simpleMessage("Rooms"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "saveSignature": MessageLookupByLibrary.simpleMessage("Save signature"),
+    "scanBarcode": MessageLookupByLibrary.simpleMessage("Scan Barcode"),
+    "scanFromGallery": MessageLookupByLibrary.simpleMessage(
+      "Scan from Gallery",
+    ),
+    "scanHint": MessageLookupByLibrary.simpleMessage(
+      "Place the barcode inside the frame",
+    ),
     "score": MessageLookupByLibrary.simpleMessage("Score"),
     "scoreOptionScore": MessageLookupByLibrary.simpleMessage(
       "Score: \${option.score}",
@@ -739,6 +747,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Success / Error Distribution",
     ),
     "supportPassword": MessageLookupByLibrary.simpleMessage("Support Password"),
+    "switchCamera": MessageLookupByLibrary.simpleMessage("Switch Camera"),
     "system": MessageLookupByLibrary.simpleMessage("System"),
     "systemUptime": MessageLookupByLibrary.simpleMessage("System Uptime"),
     "systemWideReport": MessageLookupByLibrary.simpleMessage(

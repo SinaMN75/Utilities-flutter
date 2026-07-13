@@ -627,5 +627,10 @@
   "sendRequest": "ارسال درخواست",
   "request": "درخواست",
   "response": "پاسخ",
-  "visualAuthentication": "احراز هویت تصویری"
+  "visualAuthentication": "احراز هویت تصویری",
+  "scanBarcode": "اسکن بارکد",
+  "scanHint": "بارکد را داخل کادر قرار دهید",
+  "switchCamera": "تعویض دوربین",
+  "scanFromGallery": "اسکن از گالری",
+  "flashlight": "چراغ قوه"
 }

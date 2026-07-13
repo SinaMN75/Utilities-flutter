@@ -333,6 +333,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "firstName": MessageLookupByLibrary.simpleMessage("نام"),
     "firstNameAZ": MessageLookupByLibrary.simpleMessage("نام (الف-ی)"),
     "firstNameZA": MessageLookupByLibrary.simpleMessage("نام (ی-الف)"),
+    "flashlight": MessageLookupByLibrary.simpleMessage("چراغ قوه"),
     "floor": MessageLookupByLibrary.simpleMessage("طبقه"),
     "fontSize": MessageLookupByLibrary.simpleMessage("اندازه فونت"),
     "framework": MessageLookupByLibrary.simpleMessage("فریم‌ورک"),
@@ -679,6 +680,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "rooms": MessageLookupByLibrary.simpleMessage("اتاق‌ها"),
     "save": MessageLookupByLibrary.simpleMessage("ذخیره"),
     "saveSignature": MessageLookupByLibrary.simpleMessage("ثبت امضا"),
+    "scanBarcode": MessageLookupByLibrary.simpleMessage("اسکن بارکد"),
+    "scanFromGallery": MessageLookupByLibrary.simpleMessage("اسکن از گالری"),
+    "scanHint": MessageLookupByLibrary.simpleMessage(
+      "بارکد را داخل کادر قرار دهید",
+    ),
     "score": MessageLookupByLibrary.simpleMessage("امتیاز"),
     "scoreOptionScore": MessageLookupByLibrary.simpleMessage(
       "امتیاز: \${option.score}",
@@ -743,6 +749,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "توزیع موفق / خطا",
     ),
     "supportPassword": MessageLookupByLibrary.simpleMessage("رمز پشتیبانی"),
+    "switchCamera": MessageLookupByLibrary.simpleMessage("تعویض دوربین"),
     "system": MessageLookupByLibrary.simpleMessage("سیستم"),
     "systemUptime": MessageLookupByLibrary.simpleMessage("زمان کارکرد سیستم"),
     "systemWideReport": MessageLookupByLibrary.simpleMessage("گزارش کل سیستم"),
