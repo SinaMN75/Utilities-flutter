@@ -70,10 +70,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: <Color>[Theme
-            .of(context)
-            .colorScheme
-            .primary, UAdminTheme.indigo.shade400, UAdminTheme.blueGrey.shade400],
+        colors: <Color>[Theme.of(context).colorScheme.primary, UAdminTheme.indigo.shade400, UAdminTheme.blueGrey.shade400],
       ),
       boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10))],
       child: Column(
@@ -185,7 +182,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
           else ...<Widget>[
             _osIdentityRow(m),
             const SizedBox(height: 18),
-            _isWide ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_usageGauges(m).expanded(), const SizedBox(width: 20), _disksList(m).expanded()]) : Column(children: <Widget>[_usageGauges(m), const SizedBox(height: 16), _disksList(m)]),
+            _usageGauges(m),
             const SizedBox(height: 12),
             _osDetailsExpansion(m),
           ],
@@ -231,6 +228,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       _usageBar(U.s.cpuUsage, m.cpuUsagePercent, "${m.processorCount} ${U.s.cores}"),
       const SizedBox(height: 14),
       _usageBar(U.s.memoryUsage, m.memoryUsagePercent, "${m.memoryUsedGb.toStringAsFixed(1)} / ${m.memoryTotalGb.toStringAsFixed(1)} GB"),
+      const SizedBox(height: 14),
+      _usageBar(U.s.diskUsage, m.disk.usagePercent, "${m.disk.usedGb.toStringAsFixed(1)} / ${m.disk.totalGb.toStringAsFixed(1)} GB"),
     ],
   );
 
@@ -258,38 +257,6 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     if (percent >= 60) return UAdminTheme.orange;
     return UAdminTheme.green;
   }
-
-  Widget _disksList(UOsMetricsResponse m) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      UTextBodyMedium(U.s.disks, fontWeight: FontWeight.w600),
-      const SizedBox(height: 8),
-      if (m.disks.isEmpty)
-        UTextBodySmall(U.s.noData, color: Theme.of(context).disabledColor)
-      else
-        ...m.disks.map(
-          (UDiskMetricsItem d) => Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    UTextBodySmall(d.name, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).ltr().expanded(),
-                    UTextBodySmall("${d.usedGb.toStringAsFixed(1)} / ${d.totalGb.toStringAsFixed(1)} GB", color: Theme.of(context).disabledColor).ltr(),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
-                  child: LinearProgressIndicator(value: (d.usagePercent / 100).clamp(0, 1), minHeight: 6, backgroundColor: _usageColor(d.usagePercent).withValues(alpha: 0.15), valueColor: AlwaysStoppedAnimation<Color>(_usageColor(d.usagePercent))),
-                ),
-              ],
-            ),
-          ),
-        ),
-    ],
-  );
 
   Widget _osDetailsExpansion(UOsMetricsResponse m) => Theme(
     data: Theme.of(context).copyWith(dividerColor: UAdminTheme.transparent),
@@ -697,11 +664,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   Widget _itemDesktop({required UApiLogResponse i, required int index}) => InkWell(
     onTap: () => _openDetail(i),
     child: URow(
-      backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme
-          .of(context)
-          .colorScheme
-          .primary
-          .withValues(alpha: 0.16),
+      backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
       children: <Widget>[
         UTextBodySmall(i.createdAt.formatDate("yyyy-MM-dd HH:mm:ss"), textAlign: .center).ltr().expanded(),
         _methodChip(i.jsonData.method).alignAtCenter().expanded(),
@@ -739,26 +702,23 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
 
   bool _hasException(UApiLogResponse i) => i.tags.contains(TagApiLog.hasException.number);
 
-  Widget _exceptionBadge() =>
-      Tooltip(
-        message: U.s.exception,
-        child: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 2, end: 6),
-          child: Icon(Icons.error_outline_rounded, size: 16, color: Theme
-              .of(context)
-              .colorScheme
-              .error),
-        ),
-      );
+  Widget _exceptionBadge() => Tooltip(
+    message: U.s.exception,
+    child: Padding(
+      padding: const EdgeInsetsDirectional.only(start: 2, end: 6),
+      child: Icon(Icons.error_outline_rounded, size: 16, color: Theme.of(context).colorScheme.error),
+    ),
+  );
 
-  Widget _pathCell(UApiLogResponse i) =>
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          if (_hasException(i)) _exceptionBadge(),
-          Flexible(child: UTextBodyMedium(i.path, textAlign: .center, maxLines: 2, overflow: TextOverflow.ellipsis).ltr()),
-        ],
-      );
+  Widget _pathCell(UApiLogResponse i) => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      if (_hasException(i)) _exceptionBadge(),
+      Flexible(
+        child: UTextBodyMedium(i.path, textAlign: .center, maxLines: 2, overflow: TextOverflow.ellipsis).ltr(),
+      ),
+    ],
+  );
 
   Widget _methodChip(String method) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -987,10 +947,7 @@ class _ApiLogDetailView extends StatelessWidget {
   ).card(elevation: 0);
 
   Widget _exceptionBlock(BuildContext context) {
-    final Color error = Theme
-        .of(context)
-        .colorScheme
-        .error;
+    final Color error = Theme.of(context).colorScheme.error;
     final String? stack = item.jsonData.stackTrace;
     return Container(
       width: double.infinity,
@@ -1021,68 +978,52 @@ class _ApiLogDetailView extends StatelessWidget {
           if (item.jsonData.exceptionMessage != null)
             Padding(
               padding: const EdgeInsets.fromLTRB(14, 0, 14, 12),
-              child: SelectableText(item.jsonData.exceptionMessage!, style: TextStyle(fontFamily: "monospace", fontSize: 12.5, height: 1.4, color: Theme
-                  .of(context)
-                  .colorScheme
-                  .onSurface)).ltr(),
+              child: SelectableText(
+                item.jsonData.exceptionMessage!,
+                style: TextStyle(fontFamily: "monospace", fontSize: 12.5, height: 1.4, color: Theme.of(context).colorScheme.onSurface),
+              ).ltr(),
             ),
-          if (stack != null && stack
-              .trim()
-              .isNotEmpty) _stackTraceTile(context, stack),
+          if (stack != null && stack.trim().isNotEmpty) _stackTraceTile(context, stack),
         ],
       ),
     );
   }
 
-  Widget _stackTraceTile(BuildContext context, String stack) =>
-      Theme(
-        data: Theme.of(context).copyWith(dividerColor: UAdminTheme.transparent),
-        child: ExpansionTile(
-          tilePadding: const EdgeInsets.symmetric(horizontal: 14),
-          leading: Icon(Icons.subject_rounded, size: 18, color: Theme
-              .of(context)
-              .disabledColor),
-          title: UTextBodyMedium(U.s.stackTrace, fontWeight: FontWeight.w700),
-          trailing: IconButton(
-            tooltip: U.s.copyToClipboard,
-            visualDensity: VisualDensity.compact,
-            icon: const Icon(Icons.copy_rounded, size: 16),
-            onPressed: () => _copy(stack),
-          ),
-          childrenPadding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
-          children: <Widget>[_codeBlock(context, stack)],
-        ),
-      );
+  Widget _stackTraceTile(BuildContext context, String stack) => Theme(
+    data: Theme.of(context).copyWith(dividerColor: UAdminTheme.transparent),
+    child: ExpansionTile(
+      tilePadding: const EdgeInsets.symmetric(horizontal: 14),
+      leading: Icon(Icons.subject_rounded, size: 18, color: Theme.of(context).disabledColor),
+      title: UTextBodyMedium(U.s.stackTrace, fontWeight: FontWeight.w700),
+      trailing: IconButton(
+        tooltip: U.s.copyToClipboard,
+        visualDensity: VisualDensity.compact,
+        icon: const Icon(Icons.copy_rounded, size: 16),
+        onPressed: () => _copy(stack),
+      ),
+      childrenPadding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
+      children: <Widget>[_codeBlock(context, stack)],
+    ),
+  );
 
-  Widget _codeBlock(BuildContext context, String text) =>
-      Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Theme
-              .of(context)
-              .colorScheme
-              .surfaceContainerHighest
-              .withValues(alpha: 0.5),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Theme
-              .of(context)
-              .dividerColor),
-        ),
-        constraints: const BoxConstraints(maxHeight: 260),
-        child: SingleChildScrollView(
-          child: SelectableText(text, style: TextStyle(fontFamily: "monospace", fontSize: 11.5, height: 1.5, color: Theme
-              .of(context)
-              .colorScheme
-              .onSurfaceVariant)).ltr(),
-        ),
-      );
+  Widget _codeBlock(BuildContext context, String text) => Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(12),
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(color: Theme.of(context).dividerColor),
+    ),
+    constraints: const BoxConstraints(maxHeight: 260),
+    child: SingleChildScrollView(
+      child: SelectableText(
+        text,
+        style: TextStyle(fontFamily: "monospace", fontSize: 11.5, height: 1.5, color: Theme.of(context).colorScheme.onSurfaceVariant),
+      ).ltr(),
+    ),
+  );
 
-  String _exceptionAsText() =>
-      <String?>[item.jsonData.exceptionType, item.jsonData.exceptionMessage, item.jsonData.stackTrace].where((String? s) =>
-      s != null && s
-          .trim()
-          .isNotEmpty).join("\n\n");
+  String _exceptionAsText() => <String?>[item.jsonData.exceptionType, item.jsonData.exceptionMessage, item.jsonData.stackTrace].where((String? s) => s != null && s.trim().isNotEmpty).join("\n\n");
 
   void _copy(String value) {
     UClipboard.set(value);

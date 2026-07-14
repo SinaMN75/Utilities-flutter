@@ -35,10 +35,6 @@ class UMetricsResponse {
 }
 
 class UDashboardResponse {
-  // final List<> newComments;
-  // final List<> newContents;
-  // final List<> newProducts;
-
   UDashboardResponse({
     required this.categories,
     required this.comments,
@@ -51,9 +47,6 @@ class UDashboardResponse {
     required this.newCategories,
     required this.newExams,
     required this.newMedia,
-    // required this.newComments,
-    // required this.newContents,
-    // required this.newProducts,
   });
 
   factory UDashboardResponse.fromJson(String str) => UDashboardResponse.fromMap(json.decode(str));
@@ -70,9 +63,6 @@ class UDashboardResponse {
     newCategories: List<UCategoryResponse>.from(json["newCategories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
     newExams: List<UExamResponse>.from(json["newExams"].map((dynamic x) => UExamResponse.fromMap(x))),
     newMedia: List<UMediaResponse>.from(json["newMedia"].map((dynamic x) => UMediaResponse.fromMap(x))),
-    // newComments: List<NewComment>.from(json["newComments"].map((dynamic x) => NewComment.fromMap(x))),
-    // newContents: List<NewContent>.from(json["newContents"].map((dynamic x) => NewContent.fromMap(x))),
-    // newProducts: List<NewProduct>.from(json["newProducts"].map((dynamic x) => NewProduct.fromMap(x))),
   );
   final int categories;
   final int comments;
@@ -100,9 +90,6 @@ class UDashboardResponse {
     "newCategories": List<dynamic>.from(newCategories.map((UCategoryResponse x) => x.toMap())),
     "newExams": List<dynamic>.from(newExams.map((UExamResponse x) => x.toMap())),
     "newMedia": List<dynamic>.from(newMedia.map((UMediaResponse x) => x.toMap())),
-    // "newContents": List<dynamic>.from(newContents.map((dynamic x) => x.toMap())),
-    // "newComments": List<dynamic>.from(newComments.map((dynamic x) => x.toMap())),
-    // "newProducts": List<dynamic>.from(newProducts.map((dynamic x) => x.toMap())),
   };
 }
 

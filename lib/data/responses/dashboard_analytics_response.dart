@@ -1,6 +1,5 @@
 part of "../data.dart";
 
-// Shared lightweight "recently joined" row used by both aggregate dashboards.
 class URecentUserItem {
   final String id;
   final String displayName;

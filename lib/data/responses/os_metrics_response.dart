@@ -28,7 +28,7 @@ class UOsMetricsResponse {
   final double memoryFreeGb;
   final double memoryUsagePercent;
 
-  final List<UDiskMetricsItem> disks;
+  final UDiskMetricsItem disk;
 
   final double processWorkingSetMb;
   final double processPrivateMemoryMb;
@@ -62,7 +62,7 @@ class UOsMetricsResponse {
     required this.memoryUsedGb,
     required this.memoryFreeGb,
     required this.memoryUsagePercent,
-    required this.disks,
+    required this.disk,
     required this.processWorkingSetMb,
     required this.processPrivateMemoryMb,
     required this.processThreadCount,
@@ -100,7 +100,7 @@ class UOsMetricsResponse {
     memoryUsedGb: (json["memoryUsedGb"] ?? 0).toString().toDouble(),
     memoryFreeGb: (json["memoryFreeGb"] ?? 0).toString().toDouble(),
     memoryUsagePercent: (json["memoryUsagePercent"] ?? 0).toString().toDouble(),
-    disks: ((json["disks"] ?? <dynamic>[]) as List<dynamic>).map((dynamic x) => UDiskMetricsItem.fromMap(x)).toList(),
+    disk: UDiskMetricsItem.fromMap(json["disk"]),
     processWorkingSetMb: (json["processWorkingSetMb"] ?? 0).toString().toDouble(),
     processPrivateMemoryMb: (json["processPrivateMemoryMb"] ?? 0).toString().toDouble(),
     processThreadCount: json["processThreadCount"] ?? 0,
