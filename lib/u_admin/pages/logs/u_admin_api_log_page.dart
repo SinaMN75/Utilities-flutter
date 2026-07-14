@@ -180,9 +180,13 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
           else if (m == null)
             const SizedBox.shrink()
           else ...<Widget>[
-            _osIdentityRow(m),
-            const SizedBox(height: 18),
-            _usageGauges(m),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _osIdentityRow(m).expanded(),
+                _usageGauges(m).expanded(),
+              ],
+            ),
             const SizedBox(height: 12),
             _osDetailsExpansion(m),
           ],
@@ -191,9 +195,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     );
   }
 
-  Widget _osIdentityRow(UOsMetricsResponse m) => Wrap(
-    spacing: 20,
-    runSpacing: 10,
+  Widget _osIdentityRow(UOsMetricsResponse m) => Column(
+    spacing: 12,
     children: <Widget>[
       _identityItem(Icons.computer_rounded, U.s.operatingSystem, m.osDescription),
       _identityItem(Icons.memory_rounded, U.s.architecture, "${m.osArchitecture} (${m.processArchitecture})"),
@@ -206,18 +209,18 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   );
 
   Widget _identityItem(IconData icon, String label, String value) => ListTile(
-    leading: Icon(icon, size: 14, color: Theme.of(context).disabledColor),
-    title: UTextBodySmall(label, color: Theme.of(context).disabledColor),
-    subtitle: UTextBodyMedium(value, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).ltr(),
+    dense: true,
+    leading: UIconBackground(icon, color: Theme.of(context).colorScheme.primary),
+    title: Text(label),
+    subtitle: Text(value),
   );
 
   Widget _usageGauges(UOsMetricsResponse m) => Column(
+    spacing: 12,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
       _usageBar(U.s.cpuUsage, m.cpuUsagePercent, "${m.processorCount} ${U.s.cores}"),
-      const SizedBox(height: 14),
       _usageBar(U.s.memoryUsage, m.memoryUsagePercent, "${m.memoryUsedGb.toStringAsFixed(1)} / ${m.memoryTotalGb.toStringAsFixed(1)} GB"),
-      const SizedBox(height: 14),
       _usageBar(U.s.diskUsage, m.disk.usagePercent, "${m.disk.usedGb.toStringAsFixed(1)} / ${m.disk.totalGb.toStringAsFixed(1)} GB"),
     ],
   );
