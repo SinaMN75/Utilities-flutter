@@ -80,7 +80,7 @@ class UAdminApiLogController extends UBaseController {
 
   Future<void> search() async {
     state.loading();
-    await UServices.apiLog.read(
+    await UServices.dashboard.readApiLogs(
       p: _buildSearchParams(),
       onOk: (UResponse<List<UApiLogResponse>> r) {
         list(r.result ?? <UApiLogResponse>[]);
@@ -95,7 +95,7 @@ class UAdminApiLogController extends UBaseController {
 
   Future<void> loadStats() async {
     state2.loading();
-    await UServices.apiLog.stats(
+    await UServices.dashboard.apiLogStats(
       p: UApiLogStatsParams(fromCreatedAt: fromCreatedAt, toCreatedAt: toCreatedAt, bucket: bucket.value),
       onOk: (UResponse<UApiLogStatsResponse> r) {
         stats.value = r.result;
@@ -140,7 +140,7 @@ class UAdminApiLogController extends UBaseController {
 
   void openDetail(UApiLogResponse item, Function(UApiLogResponse detail) onOk) {
     ULoading.show();
-    UServices.apiLog.read(
+    UServices.dashboard.readApiLogs(
       p: UApiLogReadParams(ids: <String>[item.id], pageSize: 1),
       onOk: (UResponse<List<UApiLogResponse>> r) {
         ULoading.dismiss();
@@ -159,7 +159,7 @@ class UAdminApiLogController extends UBaseController {
 
   void exportCsv(Function(String csv) onOk) {
     ULoading.show();
-    UServices.apiLog.export(
+    UServices.dashboard.exportApiLogs(
       p: _buildSearchParams(),
       onOk: (String csv) {
         ULoading.dismiss();

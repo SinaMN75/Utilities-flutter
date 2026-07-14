@@ -75,7 +75,6 @@ part "responses/vehicle_response.dart";
 part "responses/wallet_response.dart";
 part "services/accounting_service.dart";
 part "services/address_service.dart";
-part "services/api_log_service.dart";
 part "services/app_settings_service.dart";
 part "services/auth_service.dart";
 part "services/bank_account_service.dart";
@@ -136,7 +135,6 @@ class UServices {
   static TicketService ticket = TicketService();
   static ParkingService parking = ParkingService();
   static TxnService txn = TxnService();
-  static ApiLogService apiLog = ApiLogService();
   static BlogService blog = BlogService();
   static PnService pn = PnService();
 }
