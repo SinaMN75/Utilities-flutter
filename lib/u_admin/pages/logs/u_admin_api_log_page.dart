@@ -187,8 +187,6 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
                 _usageGauges(m).expanded(),
               ],
             ),
-            const SizedBox(height: 12),
-            _osDetailsExpansion(m),
           ],
         ],
       ),
@@ -221,7 +219,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     children: <Widget>[
       _usageBar(U.s.cpuUsage, m.cpuUsagePercent, "${m.processorCount} ${U.s.cores}"),
       _usageBar(U.s.memoryUsage, m.memoryUsagePercent, "${m.memoryUsedGb.toStringAsFixed(1)} / ${m.memoryTotalGb.toStringAsFixed(1)} GB"),
-      _usageBar(U.s.diskUsage, m.disk.usagePercent, "${m.disk.usedGb.toStringAsFixed(1)} / ${m.disk.totalGb.toStringAsFixed(1)} GB"),
+      _usageBar(U.s.diskUsage, m.diskUsagePercent, "${m.diskUsedGb.toStringAsFixed(1)} / ${m.diskTotalGb.toStringAsFixed(1)} GB"),
     ],
   );
 
@@ -249,108 +247,6 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     if (percent >= 60) return UAdminTheme.orange;
     return UAdminTheme.green;
   }
-
-  Widget _osDetailsExpansion(UOsMetricsResponse m) => Theme(
-    data: Theme.of(context).copyWith(dividerColor: UAdminTheme.transparent),
-    child: ExpansionTile(
-      tilePadding: EdgeInsets.zero,
-      title: UTextBodyMedium(U.s.details, fontWeight: FontWeight.w600),
-      childrenPadding: const EdgeInsets.only(top: 8, bottom: 12),
-      children: <Widget>[
-        _isWide ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_processAndGcCard(m).expanded(), const SizedBox(width: 16), _networkCard(m).expanded()]) : Column(children: <Widget>[_processAndGcCard(m), const SizedBox(height: 16), _networkCard(m)]),
-      ],
-    ),
-  );
-
-  Widget _processAndGcCard(UOsMetricsResponse m) => UContainer(
-    padding: const EdgeInsets.all(14),
-    radius: 14,
-    color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            const Icon(Icons.memory_rounded, size: 16),
-            const SizedBox(width: 6),
-            UTextBodyMedium(U.s.process, fontWeight: FontWeight.w700),
-          ],
-        ),
-        const SizedBox(height: 10),
-        _kvRow(U.s.workingSet, "${m.processWorkingSetMb.toStringAsFixed(1)} MB"),
-        _kvRow(U.s.privateMemory, "${m.processPrivateMemoryMb.toStringAsFixed(1)} MB"),
-        _kvRow(U.s.threads, "${m.processThreadCount}"),
-        if (m.processHandleCount != null) _kvRow(U.s.handles, "${m.processHandleCount}"),
-        const SizedBox(height: 14),
-        Row(
-          children: <Widget>[
-            const Icon(Icons.recycling_rounded, size: 16),
-            const SizedBox(width: 6),
-            UTextBodyMedium(U.s.garbageCollector, fontWeight: FontWeight.w700),
-          ],
-        ),
-        const SizedBox(height: 10),
-        _kvRow(U.s.totalMemory, "${m.gcTotalMemoryMb.toStringAsFixed(1)} MB"),
-        _kvRow(U.s.gcGenerations, "${m.gen0Collections} / ${m.gen1Collections} / ${m.gen2Collections}"),
-        _kvRow(U.s.serverGc, m.isServerGc ? U.s.yes : U.s.no),
-      ],
-    ),
-  );
-
-  Widget _networkCard(UOsMetricsResponse m) => UContainer(
-    padding: const EdgeInsets.all(14),
-    radius: 14,
-    color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            const Icon(Icons.lan_rounded, size: 16),
-            const SizedBox(width: 6),
-            UTextBodyMedium(U.s.network, fontWeight: FontWeight.w700),
-          ],
-        ),
-        const SizedBox(height: 10),
-        if (m.networkInterfaces.isEmpty)
-          UTextBodySmall(U.s.noData, color: Theme.of(context).disabledColor)
-        else
-          ...m.networkInterfaces.map(
-            (UNetworkInterfaceMetricsItem n) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        width: 8,
-                        height: 8,
-                        margin: const EdgeInsets.only(right: 6),
-                        decoration: BoxDecoration(color: n.status == "Up" ? UAdminTheme.green : UAdminTheme.grey, shape: BoxShape.circle),
-                      ),
-                      UTextBodySmall(n.name, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).ltr().expanded(),
-                    ],
-                  ),
-                  UTextBodySmall("${n.type} · ${U.s.speed}: ${n.speedMbps.toStringAsFixed(0)} Mbps", color: Theme.of(context).disabledColor).ltr(),
-                  UTextBodySmall("${U.s.sent}: ${n.bytesSentMb.toStringAsFixed(1)} MB · ${U.s.received}: ${n.bytesReceivedMb.toStringAsFixed(1)} MB", color: Theme.of(context).disabledColor).ltr(),
-                ],
-              ),
-            ),
-          ),
-      ],
-    ),
-  );
-
-  Widget _kvRow(String label, String value) => Padding(
-    padding: const EdgeInsets.only(bottom: 6),
-    child: Row(
-      children: <Widget>[
-        UTextBodySmall(label, color: Theme.of(context).disabledColor).expanded(),
-        UTextBodyMedium(value, fontWeight: FontWeight.w600).ltr(),
-      ],
-    ),
-  );
 
   String _formatDuration(double seconds) {
     final Duration d = Duration(seconds: seconds.round());
