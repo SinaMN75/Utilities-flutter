@@ -205,21 +205,10 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     ],
   );
 
-  Widget _identityItem(IconData icon, String label, String value) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisSize: MainAxisSize.min,
-    children: <Widget>[
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Icon(icon, size: 14, color: Theme.of(context).disabledColor),
-          const SizedBox(width: 4),
-          UTextBodySmall(label, color: Theme.of(context).disabledColor),
-        ],
-      ),
-      const SizedBox(height: 2),
-      UTextBodyMedium(value, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).ltr(),
-    ],
+  Widget _identityItem(IconData icon, String label, String value) => ListTile(
+    leading: Icon(icon, size: 14, color: Theme.of(context).disabledColor),
+    title: UTextBodySmall(label, color: Theme.of(context).disabledColor),
+    subtitle: UTextBodyMedium(value, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).ltr(),
   );
 
   Widget _usageGauges(UOsMetricsResponse m) => Column(
