@@ -291,6 +291,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "آزمون با موفقیت حذف شد!",
     ),
     "exams": MessageLookupByLibrary.simpleMessage("آزمون‌ها"),
+    "exception": MessageLookupByLibrary.simpleMessage("استثنا"),
     "expired": MessageLookupByLibrary.simpleMessage("منقضی"),
     "expiringSoon": MessageLookupByLibrary.simpleMessage("در حال انقضا"),
     "externalApi": MessageLookupByLibrary.simpleMessage("API خارجی"),
@@ -607,6 +608,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "publish": MessageLookupByLibrary.simpleMessage("انتشار"),
     "published": MessageLookupByLibrary.simpleMessage("منتشر شده"),
     "quantity": MessageLookupByLibrary.simpleMessage("تعداد"),
+    "queryString": MessageLookupByLibrary.simpleMessage("رشته پرس‌وجو"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("عنوان سؤال"),
     "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
       "عنوان سؤال و حداقل یک گزینه الزامی است",
@@ -736,6 +738,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "source": MessageLookupByLibrary.simpleMessage("منبع"),
     "speed": MessageLookupByLibrary.simpleMessage("سرعت"),
     "spendingByType": MessageLookupByLibrary.simpleMessage("هزینه بر اساس نوع"),
+    "stackTrace": MessageLookupByLibrary.simpleMessage("ردیابی پشته"),
     "stars": MessageLookupByLibrary.simpleMessage("ستاره"),
     "startDate": MessageLookupByLibrary.simpleMessage("تاریخ شروع"),
     "status": MessageLookupByLibrary.simpleMessage("وضعیت"),

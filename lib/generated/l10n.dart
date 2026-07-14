@@ -4338,6 +4338,26 @@ class S {
     );
   }
 
+  /// `Exception`
+  String get exception {
+    return Intl.message('Exception', name: 'exception', desc: '', args: []);
+  }
+
+  /// `Stack Trace`
+  String get stackTrace {
+    return Intl.message('Stack Trace', name: 'stackTrace', desc: '', args: []);
+  }
+
+  /// `Query String`
+  String get queryString {
+    return Intl.message(
+      'Query String',
+      name: 'queryString',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Response Body`
   String get responseBody {
     return Intl.message(

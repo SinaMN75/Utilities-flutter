@@ -576,6 +576,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     trailing: Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
+        if (_hasException(i)) _exceptionBadge(),
         _statusChip(i.statusCode),
         const SizedBox(width: 8),
         UTextBodyMedium("${i.durationMs} ms", color: UAdminAppColors.orange),
@@ -698,7 +699,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       children: <Widget>[
         UTextBodySmall(i.createdAt.formatDate("yyyy-MM-dd HH:mm:ss"), textAlign: .center).ltr().expanded(),
         _methodChip(i.jsonData.method).alignAtCenter().expanded(),
-        UTextBodyMedium(i.path, textAlign: .center, maxLines: 2, overflow: TextOverflow.ellipsis).ltr().expanded(flex: 3),
+        _pathCell(i).expanded(flex: 3),
         _statusChip(i.statusCode).alignAtCenter().expanded(),
         UTextBodyMedium("${i.durationMs} ms", textAlign: .center, color: i.durationMs > 1000 ? UAdminAppColors.orange : null).expanded(),
         UTextBodySmall(i.ipAddress ?? "-", textAlign: .center, overflow: TextOverflow.ellipsis).ltr().expanded(flex: 2),
@@ -721,6 +722,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
             _methodChip(i.jsonData.method),
             const SizedBox(width: 8),
             UTextBodyMedium(i.path, maxLines: 1, overflow: TextOverflow.ellipsis).ltr().expanded(),
+            if (_hasException(i)) _exceptionBadge(),
           ],
         ),
         subtitle: UTextBodySmall("${i.createdAt.formatDate("yyyy-MM-dd HH:mm:ss")} • ${i.durationMs} ms${i.ipAddress != null ? " • ${i.ipAddress}" : ""}").ltr(),
@@ -728,6 +730,29 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       ),
     ),
   );
+
+  bool _hasException(UApiLogResponse i) => i.tags.contains(TagApiLog.hasException.number);
+
+  Widget _exceptionBadge() =>
+      Tooltip(
+        message: U.s.exception,
+        child: Padding(
+          padding: const EdgeInsetsDirectional.only(start: 2, end: 6),
+          child: Icon(Icons.error_outline_rounded, size: 16, color: Theme
+              .of(context)
+              .colorScheme
+              .error),
+        ),
+      );
+
+  Widget _pathCell(UApiLogResponse i) =>
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          if (_hasException(i)) _exceptionBadge(),
+          Flexible(child: UTextBodyMedium(i.path, textAlign: .center, maxLines: 2, overflow: TextOverflow.ellipsis).ltr()),
+        ],
+      );
 
   Widget _methodChip(String method) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -911,9 +936,9 @@ class _ApiLogDetailView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              if (item.jsonData.exceptionType != null || item.jsonData.exceptionMessage != null || item.jsonData.stackTrace != null) ...<Widget>[_exceptionBlock(context), const SizedBox(height: 16)],
               _metaGrid(context),
-              if (item.jsonData.queryString != null) ...<Widget>[const SizedBox(height: 10), _metaItem(context, "Query String", item.jsonData.queryString!, null)],
-              if (item.jsonData.exceptionType != null || item.jsonData.exceptionMessage != null) ...<Widget>[const SizedBox(height: 16), _exceptionBlock(context)],
+              if (item.jsonData.queryString != null) ...<Widget>[const SizedBox(height: 10), _metaItem(context, U.s.queryString, item.jsonData.queryString!, null)],
               const SizedBox(height: 16),
               UTextTitleSmall(U.s.requestBody, fontWeight: FontWeight.w700),
               const SizedBox(height: 8),
@@ -933,12 +958,6 @@ class _ApiLogDetailView extends StatelessWidget {
                 UTextTitleSmall(U.s.responseHeaders, fontWeight: FontWeight.w700),
                 const SizedBox(height: 8),
                 UJsonViewer(jsonString: item.jsonData.responseHeaders!),
-              ],
-              if (item.jsonData.stackTrace != null) ...<Widget>[
-                const SizedBox(height: 16),
-                const UTextTitleSmall("Stack Trace", fontWeight: FontWeight.w700),
-                const SizedBox(height: 8),
-                UJsonViewer(jsonString: item.jsonData.stackTrace!),
               ],
             ],
           ),
@@ -1028,21 +1047,108 @@ class _ApiLogDetailView extends StatelessWidget {
     ),
   );
 
-  Widget _exceptionBlock(BuildContext context) => Container(
-    padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.error.withValues(alpha: 0.08),
-      borderRadius: BorderRadius.circular(12),
-      border: Border.all(color: Theme.of(context).colorScheme.error.withValues(alpha: 0.3)),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        UTextBodyMedium(item.jsonData.exceptionType ?? "Exception", color: Theme.of(context).colorScheme.error, fontWeight: FontWeight.w700),
-        if (item.jsonData.exceptionMessage != null) ...<Widget>[const SizedBox(height: 4), SelectableText(item.jsonData.exceptionMessage!, style: const TextStyle(fontFamily: "monospace", fontSize: 12)).ltr()],
-      ],
-    ),
-  );
+  Widget _exceptionBlock(BuildContext context) {
+    final Color error = Theme
+        .of(context)
+        .colorScheme
+        .error;
+    final String? stack = item.jsonData.stackTrace;
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: error.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: error.withValues(alpha: 0.35)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(14, 12, 8, 8),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.error_outline_rounded, color: error, size: 20),
+                const SizedBox(width: 8),
+                UTextBodyMedium(item.jsonData.exceptionType ?? U.s.exception, color: error, fontWeight: FontWeight.w800).ltr().expanded(),
+                IconButton(
+                  tooltip: U.s.copyToClipboard,
+                  visualDensity: VisualDensity.compact,
+                  icon: Icon(Icons.copy_rounded, size: 16, color: error),
+                  onPressed: () => _copy(_exceptionAsText()),
+                ),
+              ],
+            ),
+          ),
+          if (item.jsonData.exceptionMessage != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(14, 0, 14, 12),
+              child: SelectableText(item.jsonData.exceptionMessage!, style: TextStyle(fontFamily: "monospace", fontSize: 12.5, height: 1.4, color: Theme
+                  .of(context)
+                  .colorScheme
+                  .onSurface)).ltr(),
+            ),
+          if (stack != null && stack
+              .trim()
+              .isNotEmpty) _stackTraceTile(context, stack),
+        ],
+      ),
+    );
+  }
+
+  Widget _stackTraceTile(BuildContext context, String stack) =>
+      Theme(
+        data: Theme.of(context).copyWith(dividerColor: UAdminAppColors.transparent),
+        child: ExpansionTile(
+          tilePadding: const EdgeInsets.symmetric(horizontal: 14),
+          leading: Icon(Icons.subject_rounded, size: 18, color: Theme
+              .of(context)
+              .disabledColor),
+          title: UTextBodyMedium(U.s.stackTrace, fontWeight: FontWeight.w700),
+          trailing: IconButton(
+            tooltip: U.s.copyToClipboard,
+            visualDensity: VisualDensity.compact,
+            icon: const Icon(Icons.copy_rounded, size: 16),
+            onPressed: () => _copy(stack),
+          ),
+          childrenPadding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
+          children: <Widget>[_codeBlock(context, stack)],
+        ),
+      );
+
+  Widget _codeBlock(BuildContext context, String text) =>
+      Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Theme
+              .of(context)
+              .colorScheme
+              .surfaceContainerHighest
+              .withValues(alpha: 0.5),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Theme
+              .of(context)
+              .dividerColor),
+        ),
+        constraints: const BoxConstraints(maxHeight: 260),
+        child: SingleChildScrollView(
+          child: SelectableText(text, style: TextStyle(fontFamily: "monospace", fontSize: 11.5, height: 1.5, color: Theme
+              .of(context)
+              .colorScheme
+              .onSurfaceVariant)).ltr(),
+        ),
+      );
+
+  String _exceptionAsText() =>
+      <String?>[item.jsonData.exceptionType, item.jsonData.exceptionMessage, item.jsonData.stackTrace].where((String? s) =>
+      s != null && s
+          .trim()
+          .isNotEmpty).join("\n\n");
+
+  void _copy(String value) {
+    UClipboard.set(value);
+    UToast.snackBar(message: U.s.copiedToClipboard);
+  }
 
   String _formatBytes(int bytes) {
     if (bytes < 1024) return "$bytes B";

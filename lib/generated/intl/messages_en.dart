@@ -287,6 +287,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Exam deleted successfully!",
     ),
     "exams": MessageLookupByLibrary.simpleMessage("Exams"),
+    "exception": MessageLookupByLibrary.simpleMessage("Exception"),
     "expired": MessageLookupByLibrary.simpleMessage("Expired"),
     "expiringSoon": MessageLookupByLibrary.simpleMessage("Expiring Soon"),
     "externalApi": MessageLookupByLibrary.simpleMessage("External API"),
@@ -605,6 +606,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "publish": MessageLookupByLibrary.simpleMessage("Publish"),
     "published": MessageLookupByLibrary.simpleMessage("Published"),
     "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
+    "queryString": MessageLookupByLibrary.simpleMessage("Query String"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("Question Title"),
     "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
       "Question title and at least one option are required",
@@ -734,6 +736,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "source": MessageLookupByLibrary.simpleMessage("Source"),
     "speed": MessageLookupByLibrary.simpleMessage("Speed"),
     "spendingByType": MessageLookupByLibrary.simpleMessage("Spending by Type"),
+    "stackTrace": MessageLookupByLibrary.simpleMessage("Stack Trace"),
     "stars": MessageLookupByLibrary.simpleMessage("Stars"),
     "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
     "status": MessageLookupByLibrary.simpleMessage("Status"),
