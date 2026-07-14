@@ -28,29 +28,21 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(widget.contract == null ? U.s.invoices : "${U.s.invoices} · ${widget.contract?.user?.displayName ?? ""}"),
-      actions: <Widget>[
-        IconButton(icon: const Icon(Icons.filter_alt), tooltip: U.s.filter, onPressed: _showFilterDialog),
-        if (widget.contract != null && U.user.hasPermission(TagUser.permissionManageInvoices)) IconButton(icon: const Icon(Icons.add), tooltip: U.s.createInvoice, onPressed: _showEditDialog),
-      ],
-    ),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: widget.contract == null ? U.s.invoices : "${U.s.invoices} · ${widget.contract?.user?.displayName ?? ""}",
+    onFilter: _showFilterDialog,
+    onCreate: widget.contract != null && U.user.hasPermission(TagUser.permissionManageInvoices) ? _showEditDialog : null,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
     body: Column(
       children: <Widget>[
         if (widget.contract != null) Obx(() => c.state.isLoaded() ? _summary() : const SizedBox.shrink()),
         _statusFilter(),
         _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
       ],
     ),
   );
@@ -91,35 +83,17 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
     child: ChoiceChip(label: Text(label), selected: c.statusFilter == value, onSelected: (_) => c.setStatus(value)),
   );
 
-  Widget _list() => Obx(() {
-    if (c.state.isError()) return Center(child: Text(U.s.errorReadingData));
-    if (c.state.isEmpty()) return Center(child: Text(U.s.noInvoiceFound));
-    if (!c.state.isLoaded()) return const Center(child: CircularProgressIndicator());
-    if (MediaQuery.sizeOf(context).width >= 900) {
-      return UListView(
-        header: URow(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            UTextBodyLarge(U.s.tenant, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.invoiceType, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.dueDate, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.debtAmount, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.paidAmount, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.penalty, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.paymentStatus, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-          ],
-        ),
-        itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
-        itemCount: c.list.length,
-      );
-    }
-    return UListView(
-      itemBuilder: (BuildContext context, int index) => _itemResponsive(i: c.list[index], index: index),
-      itemCount: c.list.length,
-    );
-  });
+  Widget _list() => UAdminListView<UDormBedInvoiceResponse>(
+    state: c.state,
+    items: () => c.list,
+    totalCount: () => c.totalCount,
+    onRetry: c.read,
+    emptyText: U.s.noInvoiceFound,
+    desktopBreakpoint: 900,
+    desktopHeader: () => UAdminTable.header(<String>[U.s.tenant, U.s.invoiceType, U.s.dueDate, U.s.debtAmount, U.s.paidAmount, U.s.penalty, U.s.paymentStatus, U.s.operations]),
+    desktopRow: _itemDesktop,
+    mobileRow: _itemResponsive,
+  );
 
   Widget _statusChip(UDormBedInvoiceResponse i) {
     final Color color = i.isPaid
@@ -142,58 +116,46 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
 
   String _tenantLabel(UDormBedInvoiceResponse i) => i.contract?.user?.displayName ?? widget.contract?.user?.displayName ?? "-";
 
-  Widget _itemDesktop({required UDormBedInvoiceResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UDormBedInvoiceResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      UTextBodyMedium(_tenantLabel(i), textAlign: .center).expanded(),
-      UTextBodyMedium(_typeLabel(i), textAlign: .center).expanded(),
-      UTextBodyMedium(i.dueDate.toJalaliDate(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.debtAmount.rial(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.paidAmount.rial(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.penaltyAmount.rial(), textAlign: .center).expanded(),
+      UAdminTable.cell(_tenantLabel(i)),
+      UAdminTable.cell(_typeLabel(i)),
+      UAdminTable.cell(i.dueDate.toJalaliDate()),
+      UAdminTable.cell(i.debtAmount.rial()),
+      UAdminTable.cell(i.paidAmount.rial()),
+      UAdminTable.cell(i.penaltyAmount.rial()),
       Center(child: _statusChip(i)).expanded(),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive({required UDormBedInvoiceResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.receipt_long_rounded),
-      title: UTextBodyMedium("${_typeLabel(i)} • ${i.debtAmount.rial()}"),
-      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[UTextBodyMedium(_tenantLabel(i)), UTextBodySmall("${U.s.dueDate}: ${i.dueDate.toJalaliDate()}"), UTextBodySmall("${U.s.paidAmount}: ${i.paidAmount.rial()} • ${U.s.penalty}: ${i.penaltyAmount.rial()}"), _statusChip(i)]),
-      trailing: _menu(i),
-    ),
+  Widget _itemResponsive(UDormBedInvoiceResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.receipt_long_rounded,
+    title: "${_typeLabel(i)} • ${i.debtAmount.rial()}",
+    subtitle: <Widget>[
+      UTextBodyMedium(_tenantLabel(i)),
+      UTextBodySmall("${U.s.dueDate}: ${i.dueDate.toJalaliDate()}"),
+      UTextBodySmall("${U.s.paidAmount}: ${i.paidAmount.rial()} • ${U.s.penalty}: ${i.penaltyAmount.rial()}"),
+      _statusChip(i),
+    ],
+    trailing: _menu(i),
   );
 
-  Widget _menu(UDormBedInvoiceResponse i) => PopupMenuButton<String>(
-    icon: const Icon(Icons.more_vert),
-    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-      if (!i.isPaid && U.user.hasPermission(TagUser.permissionPayInvoices))
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(
-            leading: Icon(Icons.payments_rounded, color: UAdminTheme.green.shade700, size: 20),
-            trailing: Text(U.s.markAsPaid, style: TextStyle(color: UAdminTheme.green.shade700)),
-          ),
-          onTap: () => c.pay(i),
-        ),
-      if (U.user.hasPermission(TagUser.permissionManageInvoices))
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(leading: const Icon(Icons.edit, size: 20), trailing: Text(U.s.edit)),
-          onTap: () => _showEditDialog(p: i),
-        ),
-      if (U.user.hasPermission(TagUser.permissionDeleteInvoices))
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(
-            leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-            trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-          ),
-          onTap: () => c.delete(i),
-        ),
+  Widget _menu(UDormBedInvoiceResponse i) => UAdminOps.menu<UDormBedInvoiceResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UDormBedInvoiceResponse>(
+      onEdit: (UDormBedInvoiceResponse x) => _showEditDialog(p: x),
+      onDelete: c.delete,
+      extras: <String, void Function(UDormBedInvoiceResponse)>{"pay": c.pay},
+    ),
+    fallback: (UAdminActionContext<UDormBedInvoiceResponse> ctx) => <UAdminAction>[
+      ctx.extra("pay", label: U.s.markAsPaid, icon: Icons.payments_rounded, visible: !ctx.item.isPaid, color: UAdminTheme.green.shade700, roles: <TagUser>[TagUser.permissionPayInvoices]),
+      ctx.edit(roles: <TagUser>[TagUser.permissionManageInvoices]),
+      ctx.delete(roles: <TagUser>[TagUser.permissionDeleteInvoices]),
     ],
   );
 

@@ -17,29 +17,17 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(U.s.transactions),
-      actions: <Widget>[
-        IconButton(icon: const Icon(Icons.filter_alt), tooltip: U.s.filter, onPressed: _showFilterDialog),
-        IconButton(icon: const Icon(Icons.add), tooltip: U.s.createTransaction, onPressed: _showCreateDialog),
-      ],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
-    ),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: U.s.transactions,
+    onFilter: _showFilterDialog,
+    onCreate: _showCreateDialog,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: _list(),
   );
 
   Widget _list() => UAdminListView<UTxnResponse>(
@@ -48,61 +36,42 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
     totalCount: () => c.totalCount,
     onRetry: c.read,
     emptyText: U.s.noTransactionsFound,
-    desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.amount, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.trackingNumber, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.user, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.created, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-    ],
-    desktopRow: (UTxnResponse i, int index) => _itemDesktop(i: i, index: index),
-    mobileRow: (UTxnResponse i, int index) => _itemResponsive(i: i, index: index),
+    desktopHeader: () => UAdminTable.header(<String>[U.s.amount, U.s.trackingNumber, U.s.status, U.s.user, U.s.created, U.s.operations]),
+    desktopRow: _itemDesktop,
+    mobileRow: _itemResponsive,
   );
 
   String _statusName(UTxnResponse i) => i.tags.isEmpty ? "-" : (TagTxn.values.fromNumber(i.tags.first)?.localizedTitle ?? "-");
 
-  Widget _itemDesktop({required UTxnResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UTxnResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      UTextBodyMedium(i.amount.rial(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.trackingNumber ?? "-", textAlign: .center).expanded(),
-      UTextBodyMedium(_statusName(i), textAlign: .center).expanded(),
-      UTextBodyMedium(i.user?.displayName ?? "-", textAlign: .center).expanded(),
-      UTextBodyMedium(i.createdAt.toJalaliDate(), textAlign: .center).expanded(),
+      UAdminTable.cell(i.amount.rial()),
+      UAdminTable.cell(i.trackingNumber ?? "-"),
+      UAdminTable.cell(_statusName(i)),
+      UAdminTable.cell(i.user?.displayName ?? "-"),
+      UAdminTable.cell(i.createdAt.toJalaliDate()),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive({required UTxnResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.receipt_long_rounded),
-      title: UTextBodyMedium(i.amount.rial()),
-      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[UTextBodySmall("${_statusName(i)} • ${i.trackingNumber ?? "-"}"), UTextBodySmall("${i.user?.displayName ?? "-"} • ${i.createdAt.toJalaliDate()}")]),
-      trailing: _menu(i),
-    ),
+  Widget _itemResponsive(UTxnResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.receipt_long_rounded,
+    title: i.amount.rial(),
+    subtitle: <Widget>[
+      UTextBodySmall("${_statusName(i)} • ${i.trackingNumber ?? "-"}"),
+      UTextBodySmall("${i.user?.displayName ?? "-"} • ${i.createdAt.toJalaliDate()}"),
+    ],
+    trailing: _menu(i),
   );
 
-  Widget _menu(UTxnResponse i) => PopupMenuButton<String>(
-    icon: const Icon(Icons.more_vert),
-    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.edit, size: 20), trailing: Text(U.s.edit)),
-        onTap: () => _showEditDialog(i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(
-          leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-          trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-        ),
-        onTap: () => c.delete(i),
-      ),
-    ],
+  Widget _menu(UTxnResponse i) => UAdminOps.menu<UTxnResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UTxnResponse>(onEdit: _showEditDialog, onDelete: c.delete),
+    fallback: (UAdminActionContext<UTxnResponse> ctx) => <UAdminAction>[ctx.edit(), ctx.delete()],
   );
 
   void _showFilterDialog() => UNavigator.dialog(

@@ -28,35 +28,21 @@ class _ContractPageState extends State<UAdminContractPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(
-        widget.bed != null
-            ? "${U.s.contracts} · ${widget.bed!.title}"
-            : widget.user != null
-            ? "${U.s.contracts} · ${widget.user!.displayName}"
-            : U.s.contracts,
-      ),
-      actions: <Widget>[
-        IconButton(icon: const Icon(Icons.filter_alt), tooltip: U.s.filter, onPressed: _showFilterDialog),
-        if (U.user.hasPermission(TagUser.permissionManageContracts)) IconButton(icon: const Icon(Icons.add), tooltip: U.s.createContract, onPressed: _showEditDialog),
-      ],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
-    ),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: widget.bed != null
+        ? "${U.s.contracts} · ${widget.bed!.title}"
+        : widget.user != null
+        ? "${U.s.contracts} · ${widget.user!.displayName}"
+        : U.s.contracts,
+    onFilter: _showFilterDialog,
+    onCreate: U.user.hasPermission(TagUser.permissionManageContracts) ? _showEditDialog : null,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: _list(),
   );
 
   String _statusLabel(UAdminContractStatusFilter f) {
@@ -74,34 +60,17 @@ class _ContractPageState extends State<UAdminContractPage> {
     }
   }
 
-  Widget _list() => Obx(() {
-    if (c.state.isError()) return Center(child: Text(U.s.errorReadingData));
-    if (c.state.isEmpty()) return Center(child: Text(U.s.noContractFound));
-    if (!c.state.isLoaded()) return const Center(child: CircularProgressIndicator());
-    if (MediaQuery.sizeOf(context).width >= 900) {
-      return UListView(
-        header: URow(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            UTextBodyLarge(U.s.tenant, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.bed, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.startDate, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.endDate, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.rent, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-          ],
-        ),
-        itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
-        itemCount: c.list.length,
-      );
-    }
-    return UListView(
-      itemBuilder: (BuildContext context, int index) => _itemResponsive(i: c.list[index], index: index),
-      itemCount: c.list.length,
-    );
-  });
+  Widget _list() => UAdminListView<UDormBedContractResponse>(
+    state: c.state,
+    items: () => c.list,
+    totalCount: () => c.totalCount,
+    onRetry: c.read,
+    emptyText: U.s.noContractFound,
+    desktopBreakpoint: 900,
+    desktopHeader: () => UAdminTable.header(<String>[U.s.tenant, U.s.bed, U.s.startDate, U.s.endDate, U.s.rent, U.s.status, U.s.operations]),
+    desktopRow: _itemDesktop,
+    mobileRow: _itemResponsive,
+  );
 
   Widget _statusChip(UDormBedContractResponse i) {
     final DateTime now = DateTime.now();
@@ -119,68 +88,59 @@ class _ContractPageState extends State<UAdminContractPage> {
 
   String _tenantLabel(UDormBedContractResponse i) => i.user?.displayName ?? "-";
 
-  Widget _itemDesktop({required UDormBedContractResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UDormBedContractResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      UTextBodyMedium(_tenantLabel(i), textAlign: .center).expanded(),
-      UTextBodyMedium(_bedLabel(i), textAlign: .center).expanded(),
-      UTextBodyMedium(i.startDate.toJalaliDate(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.endDate.toJalaliDate(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.rent.rial(), textAlign: .center).expanded(),
+      UAdminTable.cell(_tenantLabel(i)),
+      UAdminTable.cell(_bedLabel(i)),
+      UAdminTable.cell(i.startDate.toJalaliDate()),
+      UAdminTable.cell(i.endDate.toJalaliDate()),
+      UAdminTable.cell(i.rent.rial()),
       Center(child: _statusChip(i)).expanded(),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive({required UDormBedContractResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.description_rounded),
-      title: UTextBodyMedium(_tenantLabel(i)),
-      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[UTextBodyMedium("${U.s.bed}: ${_bedLabel(i)}"), UTextBodySmall("${i.startDate.toJalaliDate()} → ${i.endDate.toJalaliDate()}"), UTextBodySmall("${U.s.rent}: ${i.rent.rial()} • ${i.invoices?.length ?? 0} ${U.s.invoices}"), _statusChip(i)]),
-      trailing: _menu(i),
-    ),
+  Widget _itemResponsive(UDormBedContractResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.description_rounded,
+    title: _tenantLabel(i),
+    subtitle: <Widget>[
+      UTextBodyMedium("${U.s.bed}: ${_bedLabel(i)}"),
+      UTextBodySmall("${i.startDate.toJalaliDate()} → ${i.endDate.toJalaliDate()}"),
+      UTextBodySmall("${U.s.rent}: ${i.rent.rial()} • ${i.invoices?.length ?? 0} ${U.s.invoices}"),
+      _statusChip(i),
+    ],
+    trailing: _menu(i),
   );
 
-  Widget _menu(UDormBedContractResponse i) => PopupMenuButton<String>(
-    icon: const Icon(Icons.more_vert),
-    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-      if (i.user != null)
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(leading: const Icon(Icons.person_outline, size: 20), trailing: Text(U.s.tenant)),
-          onTap: () => UAdminPageSwitcher.hotelUserDetail(user: i.user!),
-        ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.receipt_long_outlined, size: 20), trailing: Text(U.s.viewInvoices)),
-        onTap: () => UAdminPageSwitcher.invoices(contract: i),
-      ),
-      if (i.bed?.room != null)
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(leading: const Icon(Icons.bed_outlined, size: 20), trailing: Text(U.s.bed)),
-          onTap: () => UAdminPageSwitcher.dormBeds(room: i.bed!.room),
-        ),
-      if (i.bed?.room?.dorm != null)
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(leading: const Icon(Icons.bedroom_parent_outlined, size: 20), trailing: Text(U.s.dorm)),
-          onTap: () => UAdminPageSwitcher.dormRooms(dorm: i.bed!.room!.dorm),
-        ),
-      if (U.user.hasPermission(TagUser.permissionManageContracts))
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(leading: const Icon(Icons.edit, size: 20), trailing: Text(U.s.edit)),
-          onTap: () => _showEditDialog(p: i),
-        ),
-      if (U.user.hasPermission(TagUser.permissionDeleteContracts))
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(
-            leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-            trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-          ),
-          onTap: () => c.delete(i),
-        ),
+  Widget _menu(UDormBedContractResponse i) => UAdminOps.menu<UDormBedContractResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UDormBedContractResponse>(
+      onEdit: (UDormBedContractResponse x) => _showEditDialog(p: x),
+      onDelete: c.delete,
+      extras: <String, void Function(UDormBedContractResponse)>{
+        "tenant": (UDormBedContractResponse x) {
+          if (x.user != null) UAdminPageSwitcher.hotelUserDetail(user: x.user!);
+        },
+        "invoices": (UDormBedContractResponse x) => UAdminPageSwitcher.invoices(contract: x),
+        "bed": (UDormBedContractResponse x) {
+          if (x.bed?.room != null) UAdminPageSwitcher.dormBeds(room: x.bed!.room);
+        },
+        "dorm": (UDormBedContractResponse x) {
+          if (x.bed?.room?.dorm != null) UAdminPageSwitcher.dormRooms(dorm: x.bed!.room!.dorm);
+        },
+      },
+    ),
+    fallback: (UAdminActionContext<UDormBedContractResponse> ctx) => <UAdminAction>[
+      ctx.extra("tenant", label: U.s.tenant, icon: Icons.person_outline, visible: ctx.item.user != null),
+      ctx.extra("invoices", label: U.s.viewInvoices, icon: Icons.receipt_long_outlined),
+      ctx.extra("bed", label: U.s.bed, icon: Icons.bed_outlined, visible: ctx.item.bed?.room != null),
+      ctx.extra("dorm", label: U.s.dorm, icon: Icons.bedroom_parent_outlined, visible: ctx.item.bed?.room?.dorm != null),
+      ctx.edit(roles: <TagUser>[TagUser.permissionManageContracts]),
+      ctx.delete(roles: <TagUser>[TagUser.permissionDeleteContracts]),
     ],
   );
 

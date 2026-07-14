@@ -22,30 +22,18 @@ class _TerminalsPageState extends State<UAdminTerminalsPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(widget.merchant == null ? U.s.terminalsManagement : "${U.s.terminals} · ${widget.merchant?.title}"),
-      actions: <Widget>[
-        IconButton(icon: const Icon(Icons.filter_alt), tooltip: U.s.filter, onPressed: _showFilterDialog),
-        IconButton(icon: const Icon(Icons.add), tooltip: U.s.createTerminal, onPressed: _showCreateDialog),
-        IconButton(icon: const Icon(Icons.grid_4x4), tooltip: U.s.bulkImportTerminals, onPressed: c.import),
-      ],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
-    ),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: widget.merchant == null ? U.s.terminalsManagement : "${U.s.terminals} · ${widget.merchant?.title}",
+    onFilter: _showFilterDialog,
+    onCreate: _showCreateDialog,
+    extraActions: <Widget>[IconButton(icon: const Icon(Icons.grid_4x4), tooltip: U.s.bulkImportTerminals, onPressed: c.import)],
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: _list(),
   );
 
   Widget _list() => UAdminListView<UTerminalResponse>(
@@ -54,16 +42,9 @@ class _TerminalsPageState extends State<UAdminTerminalsPage> {
     totalCount: () => c.totalCount,
     onRetry: c.read,
     emptyText: U.s.noTerminalsFound,
-    desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.serial, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.simCardSerial, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.merchant, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.terminalId, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-    ],
-    desktopRow: (UTerminalResponse i, int index) => _itemDesktop(i: i, index: index),
-    mobileRow: (UTerminalResponse i, int index) => _itemResponsive(i: i, index: index),
+    desktopHeader: () => UAdminTable.header(<String>[U.s.serial, U.s.simCardSerial, U.s.merchant, U.s.terminalId, U.s.createdAt, U.s.operations]),
+    desktopRow: _itemDesktop,
+    mobileRow: _itemResponsive,
   );
 
   Widget _statusChip(UTerminalResponse i) {
@@ -75,38 +56,30 @@ class _TerminalsPageState extends State<UAdminTerminalsPage> {
     );
   }
 
-  Widget _itemDesktop({required UTerminalResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UTerminalResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      UTextBodyMedium(i.serial, textAlign: .center).expanded(),
-      UTextBodyMedium(i.simCardSerial ?? "-", textAlign: .center).expanded(),
-      UTextBodyMedium(i.merchant?.title ?? U.s.noMerchantSelected, textAlign: .center).expanded(),
+      UAdminTable.cell(i.serial),
+      UAdminTable.cell(i.simCardSerial ?? "-"),
+      UAdminTable.cell(i.merchant?.title ?? U.s.noMerchantSelected),
       _statusChip(i).alignAtCenter().expanded(),
-      UTextBodyMedium(i.createdAt.toJalaliDate(), textAlign: .center).expanded(),
+      UAdminTable.cell(i.createdAt.toJalaliDate()),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive({required UTerminalResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.point_of_sale_rounded),
-      title: UTextBodyMedium("${U.s.serial}: ${i.serial}"),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          UTextBodyMedium(i.merchant?.title ?? U.s.noMerchantSelected),
-          UTextBodySmall("${i.terminalId ?? "-"} • ${i.createdAt.toJalaliDate()}"),
-          const SizedBox(height: 4),
-          _statusChip(i),
-        ],
-      ),
-      trailing: _menu(i),
-    ),
+  Widget _itemResponsive(UTerminalResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.point_of_sale_rounded,
+    title: "${U.s.serial}: ${i.serial}",
+    subtitle: <Widget>[
+      UTextBodyMedium(i.merchant?.title ?? U.s.noMerchantSelected),
+      UTextBodySmall("${i.terminalId ?? "-"} • ${i.createdAt.toJalaliDate()}"),
+      const SizedBox(height: 4),
+      _statusChip(i),
+    ],
+    trailing: _menu(i),
   );
 
   // Built-in operations; overridable via UAdminTerminalsPage(actions: ...).

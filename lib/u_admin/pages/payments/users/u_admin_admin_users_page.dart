@@ -20,26 +20,17 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(U.s.usersManagement),
-      actions: <Widget>[IconButton(icon: const Icon(Icons.filter_alt), tooltip: U.s.filter, onPressed: _showFilterDialog)],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pAll(16),
-        ),
-      ],
-    ),
+  Widget build(BuildContext context) =>
+      UAdminScaffold(
+        title: U.s.usersManagement,
+        onFilter: _showFilterDialog,
+        pageNumber: c.pageNumber,
+        totalPages: c.totalPages,
+        onPageChanged: (int page) {
+          c.pageNumber(page);
+          c.read();
+        },
+        body: _list(),
   );
 
   Widget _list() => UAdminListView<UUserResponse>(
@@ -48,17 +39,9 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
     totalCount: () => c.totalCount,
     onRetry: c.read,
     emptyText: U.s.noUserFound,
-    desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.name, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.username, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.phoneNumber, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.nationalCode, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.verificationStatus, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.joinedDate, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-    ],
-    desktopRow: (UUserResponse i, int index) => _itemDesktop(i: i, index: index),
-    mobileRow: (UUserResponse i, int index) => _itemResponsive(i: i, index: index),
+    desktopHeader: () => UAdminTable.header(<String>[U.s.name, U.s.username, U.s.phoneNumber, U.s.nationalCode, U.s.verificationStatus, U.s.joinedDate, U.s.operations]),
+    desktopRow: _itemDesktop,
+    mobileRow: _itemResponsive,
   );
 
   Widget _statusChip(UUserResponse i) {
@@ -81,32 +64,34 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
     );
   }
 
-  Widget _itemDesktop({required UUserResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UUserResponse i, int index) =>
+      URow(
+        backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      UTextBodyMedium("${i.firstName ?? ""} ${i.lastName ?? ""}".trim(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.userName, textAlign: .center).expanded(),
-      UTextBodyMedium(i.phoneNumber ?? "-", textAlign: .center, textDirection: TextDirection.ltr).expanded(),
-      UTextBodyMedium(i.nationalCode ?? "-", textAlign: .center).expanded(),
+      UAdminTable.cell("${i.firstName ?? ""} ${i.lastName ?? ""}".trim()),
+      UAdminTable.cell(i.userName),
+      UTextBodyMedium(i.phoneNumber ?? "-", textAlign: TextAlign.center, textDirection: TextDirection.ltr).expanded(),
+      UAdminTable.cell(i.nationalCode ?? "-"),
       _statusChip(i).alignAtCenter().expanded(),
-      UTextBodyMedium(i.createdAt.toJalaliDate(), textAlign: .center).expanded(),
+      UAdminTable.cell(i.createdAt.toJalaliDate()),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive({required UUserResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.person_rounded),
-      title: UTextBodyMedium("${i.firstName ?? ""} ${i.lastName ?? ""} (${i.userName})".trim()),
-      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[UTextBodyMedium(i.phoneNumber ?? "-"), UTextBodySmall("${i.nationalCode ?? "-"} • ${i.createdAt.toJalaliDate()}"), const SizedBox(height: 4), _statusChip(i)]),
-      trailing: _menu(i),
-      onTap: () => UAdminPageSwitcher.adminUserDetail(user: i),
-    ),
+  Widget _itemResponsive(UUserResponse i, int index) =>
+      UAdminTable.mobileTile(
+        context,
+        index: index,
+        icon: Icons.person_rounded,
+        title: "${i.firstName ?? ""} ${i.lastName ?? ""} (${i.userName})".trim(),
+        subtitle: <Widget>[
+          UTextBodyMedium(i.phoneNumber ?? "-"),
+          UTextBodySmall("${i.nationalCode ?? "-"} • ${i.createdAt.toJalaliDate()}"),
+          const SizedBox(height: 4),
+          _statusChip(i),
+        ],
+        onTap: () => UAdminPageSwitcher.adminUserDetail(user: i),
+        trailing: _menu(i),
   );
 
   // Built-in operations (incl. navigate to a user's merchants / contracts); overridable via UAdminUsersPage(actions: ...).

@@ -20,82 +20,53 @@ class _UAdminParkingPageState extends State<UAdminParkingPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(U.s.parkingManagement),
-      actions: <Widget>[
-        IconButton(icon: const Icon(Icons.add), tooltip: U.s.createParking, onPressed: _showEditDialog),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: U.s.parkingManagement,
+    onCreate: _showEditDialog,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: UAdminListView<UParkingResponse>(
+      state: c.state,
+      items: () => c.list,
+      totalCount: () => c.totalCount,
+      onRetry: c.read,
+      emptyText: U.s.noParkingsFound,
+      desktopHeader: () => <Widget>[
+        UAdminTable.headerCell(U.s.title, flex: 2),
+        UAdminTable.headerCell(U.s.owner, flex: 2),
+        UAdminTable.headerCell(U.s.admins),
+        UAdminTable.headerCell(U.s.createdAt),
+        UAdminTable.headerCell(U.s.operations),
       ],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
+      desktopRow: _itemDesktop,
+      mobileRow: _itemResponsive,
     ),
   );
 
-  Widget _list() => Obx(() {
-    if (c.state.isError()) return Center(child: Text(U.s.errorReadingData));
-    if (c.state.isEmpty()) return Center(child: Text(U.s.noParkingsFound));
-    if (!c.state.isLoaded()) return const Center(child: CircularProgressIndicator());
-    if (MediaQuery.sizeOf(context).width >= 800) {
-      return UListView(
-        header: URow(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
-            UTextBodyLarge(U.s.owner, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
-            UTextBodyLarge(U.s.admins, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-          ],
-        ),
-        itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
-        itemCount: c.list.length,
-      );
-    }
-    return UListView(
-      itemBuilder: (BuildContext context, int index) => _itemResponsive(i: c.list[index], index: index),
-      itemCount: c.list.length,
-    );
-  });
-
   String _ownerLabel(UParkingResponse i) => i.creator?.displayName.nullIfEmpty() ?? i.creator?.userName ?? "-";
 
-  Widget _itemDesktop({required UParkingResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UParkingResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      UTextBodyMedium(i.title, textAlign: .center).expanded(flex: 2),
-      UTextBodyMedium(_ownerLabel(i), textAlign: .center).expanded(flex: 2),
-      UTextBodyMedium(i.adminUserIds.length.toString(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.createdAt.toJalaliDate(), textAlign: .center).expanded(),
+      UAdminTable.cell(i.title, flex: 2),
+      UAdminTable.cell(_ownerLabel(i), flex: 2),
+      UAdminTable.cell(i.adminUserIds.length.toString()),
+      UAdminTable.cell(i.createdAt.toJalaliDate()),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive({required UParkingResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.local_parking_rounded),
-      title: UTextBodyMedium(i.title),
-      subtitle: UTextBodySmall("${U.s.owner}: ${_ownerLabel(i)} • ${i.createdAt.toJalaliDate()}"),
-      trailing: _menu(i),
-    ),
+  Widget _itemResponsive(UParkingResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.local_parking_rounded,
+    title: i.title,
+    subtitle: <Widget>[UTextBodySmall("${U.s.owner}: ${_ownerLabel(i)} • ${i.createdAt.toJalaliDate()}")],
+    trailing: _menu(i),
   );
 
   // Built-in operations; overridable via UAdminParkingPage(actions: ...).

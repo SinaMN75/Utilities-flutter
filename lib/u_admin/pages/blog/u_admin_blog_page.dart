@@ -17,123 +17,82 @@ class _BlogPageState extends State<UAdminBlogPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(U.s.blogs),
-      actions: <Widget>[
-        IconButton(icon: const Icon(Icons.filter_alt), tooltip: U.s.filter, onPressed: _showFilterDialog),
-        IconButton(icon: const Icon(Icons.add), tooltip: U.s.create, onPressed: _showEditDialog),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: U.s.blogs,
+    onFilter: _showFilterDialog,
+    onCreate: _showEditDialog,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: UAdminListView<UBlogResponse>(
+      state: c.state,
+      items: () => c.list,
+      totalCount: () => c.totalCount,
+      onRetry: c.read,
+      emptyText: U.s.noBlogsFound,
+      desktopHeader: () => <Widget>[
+        UAdminTable.headerCell("", flex: 0),
+        UAdminTable.headerCell(U.s.title, flex: 3),
+        UAdminTable.headerCell(U.s.status),
+        UAdminTable.headerCell(U.s.viewCount),
+        UAdminTable.headerCell(U.s.comments),
+        UAdminTable.headerCell(U.s.createdAt),
+        UAdminTable.headerCell(U.s.operations),
       ],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
+      desktopRow: _itemDesktop,
+      mobileRow: _itemResponsive,
     ),
   );
 
-  Widget _list() => Obx(() {
-    if (c.state.isError()) return Center(child: Text(U.s.errorReadingData));
-    if (c.state.isEmpty()) return Center(child: Text(U.s.noBlogsFound));
-    if (!c.state.isLoaded()) return const Center(child: CircularProgressIndicator());
-    if (MediaQuery.sizeOf(context).width >= 800) {
-      return UListView(
-        header: URow(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            const UTextBodyLarge("", color: UAdminTheme.white, textAlign: .center).expanded(flex: 0),
-            UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(flex: 3),
-            UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.viewCount, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.comments, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-          ],
-        ),
-        itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
-        itemCount: c.list.length,
-      );
-    }
-    return UListView(
-      itemBuilder: (BuildContext context, int index) => _itemResponsive(i: c.list[index], index: index),
-      itemCount: c.list.length,
-    );
-  });
-
   bool _isPublished(UBlogResponse i) => i.tags.contains(TagBlog.published.number);
 
-  Widget _itemDesktop({required UBlogResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UBlogResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
       SizedBox(width: 48, child: i.media?.firstOrNull?.url != null ? UImage(i.media!.first.url!) : const Icon(Icons.article_outlined)).expanded(flex: 0),
-      UTextBodyMedium(i.title, textAlign: .center).expanded(flex: 3),
+      UAdminTable.cell(i.title, flex: 3),
       Chip(
         label: Text(_isPublished(i) ? U.s.published : U.s.draft),
         backgroundColor: _isPublished(i) ? Colors.green.withValues(alpha: 0.15) : Colors.grey.withValues(alpha: 0.15),
       ).expanded(),
-      UTextBodyMedium(i.viewCount.toString(), textAlign: .center).expanded(),
-      UTextBodyMedium((i.commentCount ?? 0).toString(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.createdAt.toJalaliDate(), textAlign: .center).expanded(),
+      UAdminTable.cell(i.viewCount.toString()),
+      UAdminTable.cell((i.commentCount ?? 0).toString()),
+      UAdminTable.cell(i.createdAt.toJalaliDate()),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive({required UBlogResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.article_outlined),
-      title: UTextBodyMedium(i.title),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          UTextBodyMedium(_isPublished(i) ? U.s.published : U.s.draft),
-          UTextBodySmall("${i.viewCount} ${U.s.viewCount} • ${i.commentCount ?? 0} ${U.s.comments} • ${i.createdAt.toJalaliDate()}"),
-        ],
-      ),
-      trailing: _menu(i),
-    ),
+  Widget _itemResponsive(UBlogResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.article_outlined,
+    title: i.title,
+    subtitle: <Widget>[
+      UTextBodyMedium(_isPublished(i) ? U.s.published : U.s.draft),
+      UTextBodySmall("${i.viewCount} ${U.s.viewCount} • ${i.commentCount ?? 0} ${U.s.comments} • ${i.createdAt.toJalaliDate()}"),
+    ],
+    trailing: _menu(i),
   );
 
-  Widget _menu(UBlogResponse i) => PopupMenuButton<String>(
-    icon: const Icon(Icons.more_vert),
-    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.edit, size: 20), trailing: Text(U.s.edit)),
-        onTap: () => _showEditDialog(p: i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(
-          leading: Icon(_isPublished(i) ? Icons.unpublished_outlined : Icons.publish_rounded, size: 20),
-          trailing: Text(_isPublished(i) ? U.s.unpublish : U.s.publish),
-        ),
-        onTap: () => _isPublished(i) ? c.unpublish(i) : c.publish(i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.comment_outlined, size: 20), trailing: Text(U.s.comments)),
-        onTap: () => _showCommentsDialog(i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(
-          leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-          trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-        ),
-        onTap: () => c.delete(i),
-      ),
+  Widget _menu(UBlogResponse i) => UAdminOps.menu<UBlogResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UBlogResponse>(
+      onEdit: (UBlogResponse x) => _showEditDialog(p: x),
+      onDelete: c.delete,
+      extras: <String, void Function(UBlogResponse)>{
+        "togglePublish": (UBlogResponse x) => _isPublished(x) ? c.unpublish(x) : c.publish(x),
+        "comments": _showCommentsDialog,
+      },
+    ),
+    fallback: (UAdminActionContext<UBlogResponse> ctx) => <UAdminAction>[
+      ctx.edit(),
+      ctx.extra("togglePublish", label: _isPublished(ctx.item) ? U.s.unpublish : U.s.publish, icon: _isPublished(ctx.item) ? Icons.unpublished_outlined : Icons.publish_rounded),
+      ctx.extra("comments", label: U.s.comments, icon: Icons.comment_outlined),
+      ctx.delete(),
     ],
   );
 

@@ -19,60 +19,40 @@ class _ContentsPageState extends State<UAdminContentsPage> {
   TagContent? _tagOf(UContentResponse i) => TagContent.values.firstWhereOrNull((TagContent t) => i.tags.contains(t.number));
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(U.s.contents),
-      actions: <Widget>[
-        IconButton(icon: const Icon(Icons.filter_alt), tooltip: U.s.filter, onPressed: _showFilterDialog),
-        IconButton(icon: const Icon(Icons.add), tooltip: U.s.create, onPressed: _showEditDialog),
+  Widget build(BuildContext context) =>
+      UAdminScaffold(
+        title: U.s.contents,
+        onFilter: _showFilterDialog,
+        onCreate: _showEditDialog,
+        pageNumber: c.pageNumber,
+        totalPages: c.totalPages,
+        onPageChanged: (int page) {
+          c.pageNumber(page);
+          c.read();
+        },
+        body: UAdminListView<UContentResponse>(
+          state: c.state,
+          items: () => c.list,
+          totalCount: () => c.totalCount,
+          onRetry: c.read,
+          emptyText: U.s.noContentFound,
+          desktopBreakpoint: 720,
+          desktopHeader: () =>
+          <Widget>[
+            UAdminTable.headerCell(U.s.image),
+            UAdminTable.headerCell(U.s.contentType),
+            UAdminTable.headerCell(U.s.title),
+            UAdminTable.headerCell(U.s.description, flex: 2),
+            UAdminTable.headerCell(U.s.createdAt),
+            UAdminTable.headerCell(U.s.operations),
       ],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
+          desktopRow: _itemDesktop,
+          mobileRow: _itemMobile,
     ),
   );
 
-  Widget _list() => Obx(() {
-    if (c.state.isError()) return Center(child: Text(U.s.errorReadingData));
-    if (c.state.isEmpty()) return Center(child: Text(U.s.noContentFound));
-    if (!c.state.isLoaded()) return const Center(child: CircularProgressIndicator());
-    if (context.isMobileWidth) {
-      return UListView(
-        itemBuilder: (BuildContext context, int index) => _itemMobile(i: c.list[index], index: index),
-        itemCount: c.list.length,
-      );
-    }
-    return UListView(
-      header: URow(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        padding: const EdgeInsets.all(8),
-        children: <Widget>[
-          UTextBodyLarge(U.s.image, color: UAdminTheme.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.contentType, color: UAdminTheme.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.description, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
-          UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-        ],
-      ),
-      itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
-      itemCount: c.list.length,
-    );
-  });
-
-  Widget _itemMobile({required UContentResponse i, required int index}) => UContainer(
+  Widget _itemMobile(UContentResponse i, int index) =>
+      UContainer(
     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
     margin: const EdgeInsets.symmetric(vertical: 4),
     child: Row(
@@ -107,33 +87,25 @@ class _ContentsPageState extends State<UAdminContentsPage> {
     ),
   );
 
-  Widget _itemDesktop({required UContentResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UContentResponse i, int index) =>
+      URow(
+        backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
       SizedBox(width: 48, height: 48, child: UImage(i.media.firstOrNull?.url ?? "")).expanded(),
-      UTextBodyMedium(_tagOf(i)?.localizedTitle ?? "---", textAlign: .center).expanded(),
-      UTextBodyMedium(i.jsonData.title ?? "---", textAlign: .center).expanded(),
-      UTextBodyMedium(i.jsonData.description ?? i.jsonData.detail1 ?? "---", textAlign: .center, maxLines: 2, overflow: TextOverflow.ellipsis).expanded(flex: 2),
-      UTextBodyMedium(i.createdAt.toJalaliDate(), textAlign: .center).expanded(),
+      UAdminTable.cell(_tagOf(i)?.localizedTitle ?? "---"),
+      UAdminTable.cell(i.jsonData.title ?? "---"),
+      UTextBodyMedium(i.jsonData.description ?? i.jsonData.detail1 ?? "---", textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis).expanded(flex: 2),
+      UAdminTable.cell(i.createdAt.toJalaliDate()),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _menu(UContentResponse i) => PopupMenuButton<String>(
-    icon: const Icon(Icons.more_vert),
-    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.edit, size: 20), trailing: Text(U.s.edit)),
-        onTap: () => _showEditDialog(p: i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(
-          leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-          trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-        ),
-        onTap: () => c.delete(i),
-      ),
-    ],
+  Widget _menu(UContentResponse i) =>
+      UAdminOps.menu<UContentResponse>(
+        context,
+        item: i,
+        handlers: UAdminActionHandlers<UContentResponse>(onEdit: (UContentResponse x) => _showEditDialog(p: x), onDelete: c.delete),
+        fallback: (UAdminActionContext<UContentResponse> ctx) => <UAdminAction>[ctx.edit(), ctx.delete()],
   );
 
   void _showFilterDialog() => UNavigator.dialog(

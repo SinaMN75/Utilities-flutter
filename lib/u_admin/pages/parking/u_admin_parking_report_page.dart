@@ -20,24 +20,15 @@ class _UAdminParkingReportPageState extends State<UAdminParkingReportPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(title: Text(widget.parking == null ? U.s.parkingReports : "${U.s.parkingReports} · ${widget.parking!.title}")),
-    body: Column(
-      children: <Widget>[
-        _summary(),
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
-    ),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: widget.parking == null ? U.s.parkingReports : "${U.s.parkingReports} · ${widget.parking!.title}",
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: Column(children: <Widget>[_summary(), _list().expanded()]),
   );
 
   Widget _summary() => Obx(() {
@@ -57,42 +48,32 @@ class _UAdminParkingReportPageState extends State<UAdminParkingReportPage> {
     );
   });
 
-  Widget _list() => Obx(() {
-    if (c.state.isError()) return Center(child: Text(U.s.errorReadingData));
-    if (c.state.isEmpty()) return Center(child: Text(U.s.noParkingReportsFound));
-    if (!c.state.isLoaded()) return const Center(child: CircularProgressIndicator());
-    if (MediaQuery.sizeOf(context).width >= 800) {
-      return UListView(
-        header: URow(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            UTextBodyLarge(U.s.parking, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
-            UTextBodyLarge(U.s.licencePlate, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
-            UTextBodyLarge(U.s.startDate, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.endDate, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.amount, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(flex: 0),
-          ],
-        ),
-        itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
-        itemCount: c.list.length,
-      );
-    }
-    return UListView(
-      itemBuilder: (BuildContext context, int index) => _itemResponsive(i: c.list[index], index: index),
-      itemCount: c.list.length,
-    );
-  });
+  Widget _list() => UAdminListView<UParkingReportResponse>(
+    state: c.state,
+    items: () => c.list,
+    totalCount: () => c.totalCount,
+    onRetry: c.read,
+    emptyText: U.s.noParkingReportsFound,
+    desktopHeader: () => <Widget>[
+      UAdminTable.headerCell(U.s.parking, flex: 2),
+      UAdminTable.headerCell(U.s.licencePlate, flex: 2),
+      UAdminTable.headerCell(U.s.startDate),
+      UAdminTable.headerCell(U.s.endDate),
+      UAdminTable.headerCell(U.s.amount),
+      UAdminTable.headerCell(U.s.operations, flex: 0),
+    ],
+    desktopRow: _itemDesktop,
+    mobileRow: _itemResponsive,
+  );
 
-  Widget _itemDesktop({required UParkingReportResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UParkingReportResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      UTextBodyMedium(i.parking?.title ?? "-", textAlign: .center).expanded(flex: 2),
-      UTextBodyMedium(i.vehicle?.licencePlate ?? "-", textAlign: .center).expanded(flex: 2),
-      UTextBodyMedium(i.startDate.toJalaliDate(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.endDate?.toJalaliDate() ?? "-", textAlign: .center).expanded(),
-      UTextBodyMedium((i.amount ?? 0).rial(), textAlign: .center).expanded(),
+      UAdminTable.cell(i.parking?.title ?? "-", flex: 2),
+      UAdminTable.cell(i.vehicle?.licencePlate ?? "-", flex: 2),
+      UAdminTable.cell(i.startDate.toJalaliDate()),
+      UAdminTable.cell(i.endDate?.toJalaliDate() ?? "-"),
+      UAdminTable.cell((i.amount ?? 0).rial()),
       IconButton(
         icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
         onPressed: () => c.delete(i),
@@ -100,20 +81,15 @@ class _UAdminParkingReportPageState extends State<UAdminParkingReportPage> {
     ],
   );
 
-  Widget _itemResponsive({required UParkingReportResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.directions_car_rounded),
-      title: UTextBodyMedium("${i.vehicle?.licencePlate ?? "-"} • ${i.parking?.title ?? "-"}"),
-      subtitle: UTextBodySmall("${i.startDate.toJalaliDate()} → ${i.endDate?.toJalaliDate() ?? "-"} • ${(i.amount ?? 0).rial()}"),
-      trailing: IconButton(
-        icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-        onPressed: () => c.delete(i),
-      ),
+  Widget _itemResponsive(UParkingReportResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.directions_car_rounded,
+    title: "${i.vehicle?.licencePlate ?? "-"} • ${i.parking?.title ?? "-"}",
+    subtitle: <Widget>[UTextBodySmall("${i.startDate.toJalaliDate()} → ${i.endDate?.toJalaliDate() ?? "-"} • ${(i.amount ?? 0).rial()}")],
+    trailing: IconButton(
+      icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
+      onPressed: () => c.delete(i),
     ),
   );
 }

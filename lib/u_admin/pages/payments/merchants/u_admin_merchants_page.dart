@@ -23,29 +23,17 @@ class _MerchantsPageState extends State<UAdminMerchantsPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(U.s.merchantsManagement),
-      actions: <Widget>[
-        IconButton(icon: const Icon(Icons.filter_alt), tooltip: U.s.filter, onPressed: _showFilterDialog),
-        IconButton(icon: const Icon(Icons.add), tooltip: U.s.createMerchant, onPressed: _showCreateDialog),
-      ],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
-    ),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: U.s.merchantsManagement,
+    onFilter: _showFilterDialog,
+    onCreate: _showCreateDialog,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: _list(),
   );
 
   Widget _list() => UAdminListView<UMerchantResponse>(
@@ -54,51 +42,35 @@ class _MerchantsPageState extends State<UAdminMerchantsPage> {
     totalCount: () => c.totalCount,
     onRetry: c.read,
     emptyText: U.s.noMerchantsFound,
-    desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.nationalCode, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.phoneNumber, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.mcc, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.merchantId, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-    ],
-    desktopRow: (UMerchantResponse i, int index) => _itemDesktop(i: i, index: index),
-    mobileRow: (UMerchantResponse i, int index) => _itemResponsive(i: i, index: index),
+    desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.nationalCode, U.s.phoneNumber, U.s.mcc, U.s.merchantId, U.s.createdAt, U.s.operations]),
+    desktopRow: _itemDesktop,
+    mobileRow: _itemResponsive,
   );
 
-  Widget _itemDesktop({required UMerchantResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UMerchantResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      UTextBodyMedium(i.title, textAlign: .center).expanded(),
-      UTextBodyMedium(i.nationalCode, textAlign: .center).expanded(),
-      UTextBodyMedium(i.phoneNumber, textAlign: .center).expanded(),
-      UTextBodyMedium(BusinessCategories.categories.firstWhereOrNull((UBusinessCategory j) => j.code == i.mcc)?.localizedName() ?? i.mcc, textAlign: .center).expanded(),
-      UTextBodyMedium(i.merchantId ?? U.s.unassigned, textAlign: .center).expanded(),
-      UTextBodyMedium(i.createdAt.toJalaliDate(), textAlign: .center).expanded(),
+      UAdminTable.cell(i.title),
+      UAdminTable.cell(i.nationalCode),
+      UAdminTable.cell(i.phoneNumber),
+      UAdminTable.cell(BusinessCategories.categories.firstWhereOrNull((UBusinessCategory j) => j.code == i.mcc)?.localizedName() ?? i.mcc),
+      UAdminTable.cell(i.merchantId ?? U.s.unassigned),
+      UAdminTable.cell(i.createdAt.toJalaliDate()),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive({required UMerchantResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.storefront_rounded),
-      title: UTextBodyMedium(i.title),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          UTextBodyMedium("${U.s.nationalCode}: ${i.nationalCode}"),
-          UTextBodySmall("${i.phoneNumber} • ${U.s.mcc}: ${i.mcc}"),
-          UTextBodySmall(i.createdAt.toJalaliDate()),
-        ],
-      ),
-      trailing: _menu(i),
-    ),
+  Widget _itemResponsive(UMerchantResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.storefront_rounded,
+    title: i.title,
+    subtitle: <Widget>[
+      UTextBodyMedium("${U.s.nationalCode}: ${i.nationalCode}"),
+      UTextBodySmall("${i.phoneNumber} • ${U.s.mcc}: ${i.mcc}"),
+      UTextBodySmall(i.createdAt.toJalaliDate()),
+    ],
+    trailing: _menu(i),
   );
 
   // Built-in operations; the app can override them via UAdminMerchantsPage(actions: ...).

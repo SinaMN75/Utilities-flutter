@@ -49,6 +49,38 @@ class UAdminListView<T> extends StatelessWidget {
   });
 }
 
+// Builders for the desktop table + mobile card shared by admin list pages, so each page no longer
+// hand-rolls header cells, centered body cells, zebra row colors, or the mobile ListTile card.
+abstract class UAdminTable {
+  // A single primary-colored, centered header cell (use [flex] for wider columns).
+  static Widget headerCell(String title, {int flex = 1}) => UTextBodyLarge(title, color: UAdminTheme.white, textAlign: TextAlign.center).expanded(flex: flex);
+
+  // Primary-colored, centered header cells from column titles (all equal width).
+  static List<Widget> header(List<String> titles) => titles.map(headerCell).toList();
+
+  // A centered body cell for a desktop row (use [flex] to match a wider header column).
+  static Widget cell(String text, {int flex = 1}) => UTextBodyMedium(text, textAlign: TextAlign.center).expanded(flex: flex);
+
+  // Zebra background for a desktop row.
+  static Color rowColor(BuildContext context, int index) => index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16);
+
+  // The mobile card row (UContainer + dense ListTile) used by every list page.
+  static Widget mobileTile(BuildContext context, {required int index, required IconData icon, required String title, required List<Widget> subtitle, Widget? trailing, VoidCallback? onTap}) => UContainer(
+    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+    margin: const EdgeInsets.symmetric(vertical: 4),
+    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
+    radius: 8,
+    child: ListTile(
+      dense: true,
+      onTap: onTap,
+      leading: Icon(icon),
+      title: UTextBodyMedium(title),
+      subtitle: Column(crossAxisAlignment: CrossAxisAlignment.start, children: subtitle),
+      trailing: trailing,
+    ),
+  );
+}
+
 class UAdminSortHeader extends StatelessWidget {
   const UAdminSortHeader({required this.title, required this.onTap, this.direction, super.key});
 

@@ -17,123 +17,68 @@ class _DormPageState extends State<UAdminDormPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(U.s.dorms),
-      actions: <Widget>[
-        if (U.user.hasPermission(TagUser.permissionManageDorms))
-          IconButton(
-            icon: const Icon(Icons.add),
-            tooltip: U.s.create,
-            onPressed: _showEditDialog,
-          ),
-      ],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
+  Widget build(BuildContext context) =>
+      UAdminScaffold(
+        title: U.s.dorms,
+        onCreate: U.user.hasPermission(TagUser.permissionManageDorms) ? _showEditDialog : null,
+        pageNumber: c.pageNumber,
+        totalPages: c.totalPages,
+        onPageChanged: (int page) {
+          c.pageNumber(page);
+          c.read();
+        },
+        body: UAdminListView<UDormResponse>(
+          state: c.state,
+          items: () => c.list,
+          totalCount: () => c.totalCount,
+          onRetry: c.read,
+          emptyText: U.s.noDormsFound,
+          desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.city, U.s.room, U.s.created, U.s.operations]),
+          desktopRow: _itemDesktop,
+          mobileRow: _itemResponsive,
     ),
   );
 
-  Widget _list() => Obx(() {
-    if (c.state.isError()) return Center(child: Text(U.s.errorReadingData));
-    if (c.state.isEmpty()) return Center(child: Text(U.s.noDormsFound));
-    if (!c.state.isLoaded()) return const Center(child: CircularProgressIndicator());
-    if (MediaQuery.sizeOf(context).width >= 800) {
-      return UListView(
-        header: URow(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.city, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.room, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.created, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-          ],
-        ),
-        itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
-        itemCount: c.list.length,
-      );
-    }
-    return UListView(
-      itemBuilder: (BuildContext context, int index) => _itemResponsive(i: c.list[index], index: index),
-      itemCount: c.list.length,
-    );
-  });
-
-  Widget _itemDesktop({required UDormResponse i, required int index}) {
+  Widget _itemDesktop(UDormResponse i, int index) {
     final UCountryCityInfo city = UCountries.infoByCode(i.cityCode);
     return URow(
-      backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+      backgroundColor: UAdminTable.rowColor(context, index),
       children: <Widget>[
-        UTextBodyMedium(i.title, textAlign: .center).expanded(),
-        UTextBodyMedium("${city.country?.nameFa ?? ""} - ${city.province?.nameFa ?? ""} - ${city.city?.nameFa ?? ""}", textAlign: .center).expanded(),
-        UTextBodyMedium((i.rooms?.length ?? 0).toString(), textAlign: .center).expanded(),
-        UTextBodyMedium(i.createdAt.toJalaliDate(), textAlign: .center).expanded(),
+        UAdminTable.cell(i.title),
+        UAdminTable.cell("${city.country?.nameFa ?? ""} - ${city.province?.nameFa ?? ""} - ${city.city?.nameFa ?? ""}"),
+        UAdminTable.cell((i.rooms?.length ?? 0).toString()),
+        UAdminTable.cell(i.createdAt.toJalaliDate()),
         _menu(i).expanded(),
       ],
     );
   }
 
-  Widget _itemResponsive({required UDormResponse i, required int index}) {
+  Widget _itemResponsive(UDormResponse i, int index) {
     final UCountryCityInfo city = UCountries.infoByCode(i.cityCode);
-    return UContainer(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      margin: const EdgeInsets.symmetric(vertical: 4),
-      color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-      radius: 8,
-      child: ListTile(
-        dense: true,
-        leading: const Icon(Icons.bedroom_parent_rounded),
-        title: UTextBodyMedium(i.title),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            UTextBodyMedium("${city.country?.nameFa ?? ""} - ${city.province?.nameFa ?? ""} - ${city.city?.nameFa ?? ""}"),
-            UTextBodySmall("${i.rooms?.length ?? 0} ${U.s.rooms} • ${i.createdAt.toJalaliDate()}"),
-          ],
-        ),
-        trailing: _menu(i),
-      ),
+    return UAdminTable.mobileTile(
+      context,
+      index: index,
+      icon: Icons.bedroom_parent_rounded,
+      title: i.title,
+      subtitle: <Widget>[
+        UTextBodyMedium("${city.country?.nameFa ?? ""} - ${city.province?.nameFa ?? ""} - ${city.city?.nameFa ?? ""}"),
+        UTextBodySmall("${i.rooms?.length ?? 0} ${U.s.rooms} • ${i.createdAt.toJalaliDate()}"),
+      ],
+      trailing: _menu(i),
     );
   }
 
-  Widget _menu(UDormResponse i) => PopupMenuButton<String>(
-    icon: const Icon(Icons.more_vert),
-    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.meeting_room_outlined, size: 20), trailing: Text(U.s.room)),
-        onTap: () => UAdminPageSwitcher.dormRooms(dorm: i),
-      ),
-      PopupMenuItem<String>(
-        child: UIconTextHorizontal(leading: const Icon(Icons.bed_outlined, size: 20), trailing: Text(U.s.beds)),
-        onTap: () => UAdminPageSwitcher.dormBeds(dorm: i),
-      ),
-      if (U.user.hasPermission(TagUser.permissionManageDorms))
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(leading: const Icon(Icons.edit, size: 20), trailing: Text(U.s.edit)),
-          onTap: () => _showEditDialog(p: i),
-        ),
-      if (U.user.hasPermission(TagUser.permissionDeleteDorms))
-        PopupMenuItem<String>(
-          child: UIconTextHorizontal(
-            leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-            trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-          ),
-          onTap: () => c.delete(i),
-        ),
+  Widget _menu(UDormResponse i) =>
+      UAdminOps.menu<UDormResponse>(
+        context,
+        item: i,
+        handlers: UAdminActionHandlers<UDormResponse>(onEdit: (UDormResponse d) => _showEditDialog(p: d), onDelete: c.delete),
+        fallback: (UAdminActionContext<UDormResponse> ctx) =>
+        <UAdminAction>[
+          UAdminLinks.dormRooms(ctx.item),
+          UAdminLinks.dormBeds(ctx.item),
+          ctx.edit(roles: <TagUser>[TagUser.permissionManageDorms]),
+          ctx.delete(roles: <TagUser>[TagUser.permissionDeleteDorms]),
     ],
   );
 

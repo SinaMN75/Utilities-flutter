@@ -20,35 +20,21 @@ class _ReservationPageState extends State<UAdminReservationPage> {
   }
 
   @override
-  Widget build(BuildContext context) => UScaffold(
-    appBar: AppBar(
-      title: Text(
-        widget.room != null
-            ? "${U.s.reservations} · ${widget.room!.title}"
-            : widget.hotel != null
-            ? "${U.s.reservations} · ${widget.hotel!.title}"
-            : U.s.reservations,
-      ),
-      actions: <Widget>[
-        IconButton(icon: const Icon(Icons.filter_alt), tooltip: U.s.filter, onPressed: _showFilterDialog),
-        if (U.user.hasPermission(TagUser.permissionManageReservations)) IconButton(icon: const Icon(Icons.add), tooltip: U.s.createReservation, onPressed: _showEditDialog),
-      ],
-    ),
-    body: Column(
-      children: <Widget>[
-        _list().expanded(),
-        Obx(
-          () => UNumberPagination(
-            currentPage: c.pageNumber.value,
-            totalPages: c.totalPages.value,
-            onPageChanged: (int page) {
-              c.pageNumber(page);
-              c.read();
-            },
-          ).pOnly(bottom: 16, top: 8),
-        ),
-      ],
-    ),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: widget.room != null
+        ? "${U.s.reservations} · ${widget.room!.title}"
+        : widget.hotel != null
+        ? "${U.s.reservations} · ${widget.hotel!.title}"
+        : U.s.reservations,
+    onFilter: _showFilterDialog,
+    onCreate: U.user.hasPermission(TagUser.permissionManageReservations) ? _showEditDialog : null,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: _list(),
   );
 
   String _statusFilterLabel(UAdminReservationStatusFilter f) {
@@ -95,127 +81,84 @@ class _ReservationPageState extends State<UAdminReservationPage> {
     );
   }
 
-  Widget _list() => Obx(() {
-    if (c.state.isError()) return Center(child: Text(U.s.errorReadingData));
-    if (c.state.isEmpty()) return Center(child: Text(U.s.noReservationsFound));
-    if (!c.state.isLoaded()) return const Center(child: CircularProgressIndicator());
-    if (MediaQuery.sizeOf(context).width >= 900) {
-      return UListView(
-        header: URow(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            UTextBodyLarge(U.s.guest, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.rooms, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.checkInDate, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.checkOutDate, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.totalPrice, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
-          ],
-        ),
-        itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
-        itemCount: c.list.length,
-      );
-    }
-    return UListView(
-      itemBuilder: (BuildContext context, int index) => _itemResponsive(i: c.list[index], index: index),
-      itemCount: c.list.length,
-    );
-  });
+  Widget _list() => UAdminListView<UHotelReservationResponse>(
+    state: c.state,
+    items: () => c.list,
+    totalCount: () => c.totalCount,
+    onRetry: c.read,
+    emptyText: U.s.noReservationsFound,
+    desktopBreakpoint: 900,
+    desktopHeader: () => UAdminTable.header(<String>[U.s.guest, U.s.rooms, U.s.checkInDate, U.s.checkOutDate, U.s.totalPrice, U.s.status, U.s.operations]),
+    desktopRow: _itemDesktop,
+    mobileRow: _itemResponsive,
+  );
 
   String _guestLabel(UHotelReservationResponse i) => i.user?.displayName ?? i.jsonData.guestName ?? "-";
 
   String _roomLabel(UHotelReservationResponse i) => i.room?.title ?? widget.room?.title ?? "-";
 
-  Widget _itemDesktop({required UHotelReservationResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+  Widget _itemDesktop(UHotelReservationResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      UTextBodyMedium(_guestLabel(i), textAlign: .center).expanded(),
-      UTextBodyMedium(_roomLabel(i), textAlign: .center).expanded(),
-      UTextBodyMedium(i.checkInDate.toJalaliDate(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.checkOutDate.toJalaliDate(), textAlign: .center).expanded(),
-      UTextBodyMedium(i.totalPrice.rial(), textAlign: .center).expanded(),
+      UAdminTable.cell(_guestLabel(i)),
+      UAdminTable.cell(_roomLabel(i)),
+      UAdminTable.cell(i.checkInDate.toJalaliDate()),
+      UAdminTable.cell(i.checkOutDate.toJalaliDate()),
+      UAdminTable.cell(i.totalPrice.rial()),
       Center(child: _statusChip(i)).expanded(),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive({required UHotelReservationResponse i, required int index}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      leading: const Icon(Icons.event_available_rounded),
-      title: UTextBodyMedium(_guestLabel(i)),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          UTextBodyMedium("${U.s.rooms}: ${_roomLabel(i)}"),
-          UTextBodySmall("${i.checkInDate.toJalaliDate()} → ${i.checkOutDate.toJalaliDate()} • ${i.jsonData.nightCount ?? 0} ${U.s.nights}"),
-          UTextBodySmall("${U.s.totalPrice}: ${i.totalPrice.rial()} • ${U.s.guests}: ${i.guestCount}"),
-          _statusChip(i),
-        ],
-      ),
-      trailing: _menu(i),
-    ),
+  Widget _itemResponsive(UHotelReservationResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.event_available_rounded,
+    title: _guestLabel(i),
+    subtitle: <Widget>[
+      UTextBodyMedium("${U.s.rooms}: ${_roomLabel(i)}"),
+      UTextBodySmall("${i.checkInDate.toJalaliDate()} → ${i.checkOutDate.toJalaliDate()} • ${i.jsonData.nightCount ?? 0} ${U.s.nights}"),
+      UTextBodySmall("${U.s.totalPrice}: ${i.totalPrice.rial()} • ${U.s.guests}: ${i.guestCount}"),
+      _statusChip(i),
+    ],
+    trailing: _menu(i),
   );
 
-  Widget _menu(UHotelReservationResponse i) {
-    final TagHotelReservation? s = i.status;
-    final UHotelInvoiceResponse? unpaid = c.unpaidInvoiceOf(i);
-    final bool canManage = U.user.hasPermission(TagUser.permissionManageReservations);
-    return PopupMenuButton<String>(
-      icon: const Icon(Icons.more_vert),
-      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-        if (i.user != null)
-          PopupMenuItem<String>(
-            child: UIconTextHorizontal(leading: const Icon(Icons.person_outline, size: 20), trailing: Text(U.s.guest)),
-            onTap: () => UAdminPageSwitcher.hotelUserDetail(user: i.user!),
-          ),
-        if (canManage && s == TagHotelReservation.pending)
-          PopupMenuItem<String>(
-            child: UIconTextHorizontal(leading: const Icon(Icons.check_circle_outline, size: 20), trailing: Text(U.s.confirm)),
-            onTap: () => c.confirm(i),
-          ),
-        if (canManage && s == TagHotelReservation.confirmed)
-          PopupMenuItem<String>(
-            child: UIconTextHorizontal(leading: const Icon(Icons.login_rounded, size: 20), trailing: Text(U.s.checkIn)),
-            onTap: () => c.checkIn(i),
-          ),
-        if (canManage && s == TagHotelReservation.checkedIn)
-          PopupMenuItem<String>(
-            child: UIconTextHorizontal(leading: const Icon(Icons.logout_rounded, size: 20), trailing: Text(U.s.checkOut)),
-            onTap: () => c.checkOut(i),
-          ),
-        if (canManage && (s == TagHotelReservation.pending || s == TagHotelReservation.confirmed))
-          PopupMenuItem<String>(
-            child: UIconTextHorizontal(leading: const Icon(Icons.cancel_outlined, size: 20), trailing: Text(U.s.cancel)),
-            onTap: () => c.cancel(i),
-          ),
-        if (U.user.hasPermission(TagUser.permissionPayInvoices) && unpaid != null)
-          PopupMenuItem<String>(
-            child: UIconTextHorizontal(leading: const Icon(Icons.payments_outlined, size: 20), trailing: Text("${U.s.pay} · ${unpaid.netDue.rial()}")),
-            onTap: () => c.payInvoice(unpaid),
-          ),
-        if (canManage)
-          PopupMenuItem<String>(
-            child: UIconTextHorizontal(leading: const Icon(Icons.edit, size: 20), trailing: Text(U.s.edit)),
-            onTap: () => _showEditDialog(p: i),
-          ),
-        if (U.user.hasPermission(TagUser.permissionDeleteReservations))
-          PopupMenuItem<String>(
-            child: UIconTextHorizontal(
-              leading: Icon(Icons.delete, color: Theme.of(context).colorScheme.error, size: 20),
-              trailing: Text(U.s.delete, style: TextStyle(color: Theme.of(context).colorScheme.error)),
-            ),
-            onTap: () => c.delete(i),
-          ),
-      ],
-    );
-  }
+  Widget _menu(UHotelReservationResponse i) => UAdminOps.menu<UHotelReservationResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UHotelReservationResponse>(
+      onEdit: (UHotelReservationResponse x) => _showEditDialog(p: x),
+      onDelete: c.delete,
+      extras: <String, void Function(UHotelReservationResponse)>{
+        "guest": (UHotelReservationResponse x) {
+          if (x.user != null) UAdminPageSwitcher.hotelUserDetail(user: x.user!);
+        },
+        "confirm": c.confirm,
+        "checkIn": c.checkIn,
+        "checkOut": c.checkOut,
+        "cancel": c.cancel,
+        "pay": (UHotelReservationResponse x) {
+          final UHotelInvoiceResponse? unpaid = c.unpaidInvoiceOf(x);
+          if (unpaid != null) c.payInvoice(unpaid);
+        },
+      },
+    ),
+    fallback: (UAdminActionContext<UHotelReservationResponse> ctx) {
+      final TagHotelReservation? s = ctx.item.status;
+      final UHotelInvoiceResponse? unpaid = c.unpaidInvoiceOf(ctx.item);
+      return <UAdminAction>[
+        ctx.extra("guest", label: U.s.guest, icon: Icons.person_outline, visible: ctx.item.user != null),
+        ctx.extra("confirm", label: U.s.confirm, icon: Icons.check_circle_outline, visible: s == TagHotelReservation.pending, roles: <TagUser>[TagUser.permissionManageReservations]),
+        ctx.extra("checkIn", label: U.s.checkIn, icon: Icons.login_rounded, visible: s == TagHotelReservation.confirmed, roles: <TagUser>[TagUser.permissionManageReservations]),
+        ctx.extra("checkOut", label: U.s.checkOut, icon: Icons.logout_rounded, visible: s == TagHotelReservation.checkedIn, roles: <TagUser>[TagUser.permissionManageReservations]),
+        ctx.extra("cancel", label: U.s.cancel, icon: Icons.cancel_outlined, visible: s == TagHotelReservation.pending || s == TagHotelReservation.confirmed, roles: <TagUser>[TagUser.permissionManageReservations]),
+        ctx.extra("pay", label: unpaid == null ? U.s.pay : "${U.s.pay} · ${unpaid.netDue.rial()}", icon: Icons.payments_outlined, visible: unpaid != null, roles: <TagUser>[TagUser.permissionPayInvoices]),
+        ctx.edit(roles: <TagUser>[TagUser.permissionManageReservations]),
+        ctx.delete(roles: <TagUser>[TagUser.permissionDeleteReservations]),
+      ];
+    },
+  );
 
   void _showFilterDialog() {
     final TextEditingController checkInCtrl = TextEditingController(text: c.checkInFilter?.toJalaliDate());
