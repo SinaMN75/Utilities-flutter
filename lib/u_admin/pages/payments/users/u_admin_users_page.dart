@@ -3,7 +3,6 @@ import "package:u/utilities.dart";
 class UAdminUsersPage extends StatefulWidget {
   const UAdminUsersPage({super.key, this.actions});
 
-  // Optional per-row operations override; defaults to the page's built-in set.
   final UAdminActionBuilder<UUserResponse>? actions;
 
   @override
@@ -20,33 +19,56 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      UAdminScaffold(
-        title: U.s.usersManagement,
-        onFilter: _showFilterDialog,
-        pageNumber: c.pageNumber,
-        totalPages: c.totalPages,
-        onPageChanged: (int page) {
-          c.pageNumber(page);
-          c.read();
-        },
-        body: _list(),
-  );
-
-  Widget _list() => UAdminListView<UUserResponse>(
-    state: c.state,
-    items: () => c.list,
-    totalCount: () => c.totalCount,
-    onRetry: c.read,
-    emptyText: U.s.noUserFound,
-    desktopHeader: () => UAdminTable.header(<String>[U.s.name, U.s.username, U.s.phoneNumber, U.s.nationalCode, U.s.verificationStatus, U.s.joinedDate, U.s.operations]),
-    desktopRow: _itemDesktop,
-    mobileRow: _itemResponsive,
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: U.s.usersManagement,
+    onFilter: _showFilterDialog,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: UAdminListView<UUserResponse>(
+      state: c.state,
+      items: () => c.list,
+      totalCount: () => c.totalCount,
+      onRetry: c.read,
+      emptyText: U.s.noUserFound,
+      desktopHeader: () => UAdminTable.header(
+        <String>[
+          U.s.name,
+          U.s.username,
+          U.s.phoneNumber,
+          U.s.nationalCode,
+          U.s.verificationStatus,
+          U.s.joinedDate,
+          U.s.operations,
+        ],
+      ),
+      desktopRow: _itemDesktop,
+      mobileRow: _itemResponsive,
+    ),
   );
 
   Widget _statusChip(UUserResponse i) {
-    final bool verified = i.tags.containsAny(<int>[TagUser.nationalCardFrontVerified.number, TagUser.nationalCardBackVerified.number, TagUser.birthCertificateFirstVerified.number, TagUser.eSignatureVerified.number, TagUser.visualAuthenticationVerified.number]);
-    final bool awaiting = i.tags.containsAny(<int>[TagUser.nationalCardFrontAwaitingVerification.number, TagUser.nationalCardBackAwaitingVerification.number, TagUser.birthCertificateFirstAwaitingVerification.number, TagUser.eSignatureAwaitingVerification.number, TagUser.visualAuthenticationAwaitingVerification.number]);
+    final bool verified = i.tags.containsAny(
+      <int>[
+        TagUser.nationalCardFrontVerified.number,
+        TagUser.nationalCardBackVerified.number,
+        TagUser.birthCertificateFirstVerified.number,
+        TagUser.eSignatureVerified.number,
+        TagUser.visualAuthenticationVerified.number,
+      ],
+    );
+    final bool awaiting = i.tags.containsAny(
+      <int>[
+        TagUser.nationalCardFrontAwaitingVerification.number,
+        TagUser.nationalCardBackAwaitingVerification.number,
+        TagUser.birthCertificateFirstAwaitingVerification.number,
+        TagUser.eSignatureAwaitingVerification.number,
+        TagUser.visualAuthenticationAwaitingVerification.number,
+      ],
+    );
     final Color color = verified
         ? UAdminTheme.green
         : awaiting
@@ -64,9 +86,8 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
     );
   }
 
-  Widget _itemDesktop(UUserResponse i, int index) =>
-      URow(
-        backgroundColor: UAdminTable.rowColor(context, index),
+  Widget _itemDesktop(UUserResponse i, int index) => URow(
+    backgroundColor: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell("${i.firstName ?? ""} ${i.lastName ?? ""}".trim()),
       UAdminTable.cell(i.userName),
@@ -78,23 +99,21 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
     ],
   );
 
-  Widget _itemResponsive(UUserResponse i, int index) =>
-      UAdminTable.mobileTile(
-        context,
-        index: index,
-        icon: Icons.person_rounded,
-        title: "${i.firstName ?? ""} ${i.lastName ?? ""} (${i.userName})".trim(),
-        subtitle: <Widget>[
-          UTextBodyMedium(i.phoneNumber ?? "-"),
-          UTextBodySmall("${i.nationalCode ?? "-"} • ${i.createdAt.toJalaliDate()}"),
-          const SizedBox(height: 4),
-          _statusChip(i),
-        ],
-        onTap: () => UAdminPageSwitcher.adminUserDetail(user: i),
-        trailing: _menu(i),
+  Widget _itemResponsive(UUserResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.person_rounded,
+    title: "${i.firstName ?? ""} ${i.lastName ?? ""} (${i.userName})".trim(),
+    subtitle: <Widget>[
+      UTextBodyMedium(i.phoneNumber ?? "-"),
+      UTextBodySmall("${i.nationalCode ?? "-"} • ${i.createdAt.toJalaliDate()}"),
+      const SizedBox(height: 4),
+      _statusChip(i),
+    ],
+    onTap: () => UAdminPageSwitcher.adminUserDetail(user: i),
+    trailing: _menu(i),
   );
 
-  // Built-in operations (incl. navigate to a user's merchants / contracts); overridable via UAdminUsersPage(actions: ...).
   Widget _menu(UUserResponse i) => UAdminOps.menu<UUserResponse>(
     context,
     item: i,
