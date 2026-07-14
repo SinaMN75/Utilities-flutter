@@ -9,7 +9,7 @@ class UAdminShell extends StatefulWidget {
 
 class _UAdminShellState extends State<UAdminShell> with SingleTickerProviderStateMixin {
   late final UAdminModule _dashboard = UAdmin.config.dashboard();
-  late final USideMenuController _menu = USideMenuController(selectedId: _dashboard.resolvedId);
+  late final USideMenuController _menu = USideMenuController(selectedId: _dashboard.title);
 
   @override
   void initState() {

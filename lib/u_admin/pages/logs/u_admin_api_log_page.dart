@@ -82,18 +82,12 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
           ),
           const SizedBox(height: 16),
           if (c.state2.value.isLoading())
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: Center(child: CircularProgressIndicator(color: UAdminTheme.white)),
-            )
+            const CircularProgressIndicator(color: UAdminTheme.white).alignAtCenter().pSymmetric(vertical: 20)
           else if (c.state2.value.isError())
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: UIconTextHorizontal(
-                leading: const Icon(Icons.cloud_off_rounded, color: UAdminTheme.white),
-                trailing: UTextBodyMedium(U.s.errorReadingData, color: UAdminTheme.white),
-              ),
-            )
+            UIconTextHorizontal(
+              leading: const Icon(Icons.cloud_off_rounded, color: UAdminTheme.white),
+              trailing: UTextBodyMedium(U.s.errorReadingData, color: UAdminTheme.white),
+            ).pSymmetric(vertical: 12)
           else ...<Widget>[
             Wrap(
               spacing: 24,
