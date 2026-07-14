@@ -13,7 +13,6 @@ class UAdminConfig {
     this.font,
     this.locales = const <Locale>[Locale("en"), Locale("fa")],
     this.defaultLocale = const Locale("fa"),
-    this.chargeList = const <String>["200000", "500000", "700000", "1000000"],
   });
 
   final String appName;
@@ -28,8 +27,6 @@ class UAdminConfig {
   final List<Locale> locales;
   final Locale defaultLocale;
 
-  final List<String> chargeList;
-
   // The initial dashboard tab. Lazy so its title resolves after localization is ready.
   final UAdminModule Function() dashboard;
 
@@ -43,8 +40,6 @@ abstract class UAdmin {
   static String get logo => config.logo;
 
   static String? get loginBackground => config.loginBackground;
-
-  static List<String> get chargeList => config.chargeList;
 
   static bool canAccess(List<TagUser>? roles) {
     if (roles == null || roles.isEmpty) return true;

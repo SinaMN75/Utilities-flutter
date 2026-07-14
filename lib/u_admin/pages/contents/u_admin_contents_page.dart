@@ -59,12 +59,12 @@ class _ContentsPageState extends State<UAdminContentsPage> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         padding: const EdgeInsets.all(8),
         children: <Widget>[
-          UTextBodyLarge(U.s.image, color: UAdminAppColors.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.contentType, color: UAdminAppColors.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.description, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 2),
-          UTextBodyLarge(U.s.createdAt, color: UAdminAppColors.white, textAlign: .center).expanded(),
-          UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.image, color: UAdminTheme.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.contentType, color: UAdminTheme.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.description, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
+          UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
+          UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
         ],
       ),
       itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -96,9 +96,9 @@ class _ContentsPageState extends State<UAdminContentsPage> {
               const SizedBox(height: 4),
               UTextBodyLarge(i.jsonData.title ?? "---", maxLines: 1, overflow: TextOverflow.ellipsis),
               const SizedBox(height: 4),
-              UTextBodySmall(i.jsonData.description ?? i.jsonData.detail1 ?? "---", maxLines: 2, overflow: TextOverflow.ellipsis, color: UAdminAppColors.grey),
+              UTextBodySmall(i.jsonData.description ?? i.jsonData.detail1 ?? "---", maxLines: 2, overflow: TextOverflow.ellipsis, color: UAdminTheme.grey),
               const SizedBox(height: 4),
-              UTextBodySmall(i.createdAt.toJalaliDate(), color: UAdminAppColors.grey),
+              UTextBodySmall(i.createdAt.toJalaliDate(), color: UAdminTheme.grey),
             ],
           ),
         ),
@@ -108,7 +108,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
   );
 
   Widget _itemDesktop({required UContentResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       SizedBox(width: 48, height: 48, child: UImage(i.media.firstOrNull?.url ?? "")).expanded(),
       UTextBodyMedium(_tagOf(i)?.localizedTitle ?? "---", textAlign: .center).expanded(),
@@ -349,7 +349,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
           child: Container(
             decoration: BoxDecoration(color: Theme.of(context).colorScheme.error, shape: BoxShape.circle),
             padding: const EdgeInsets.all(2),
-            child: const Icon(Icons.close, size: 14, color: UAdminAppColors.white),
+            child: const Icon(Icons.close, size: 14, color: UAdminTheme.white),
           ),
         ),
       ),

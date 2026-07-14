@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "../../../u_admin.dart";
 
 class UAdminHotelDashboardController extends UBaseController {
   final Rxn<UPropertyDashboardResponse> report = Rxn<UPropertyDashboardResponse>();

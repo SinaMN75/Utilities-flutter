@@ -58,7 +58,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
   Widget _summary() => SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    child: Row(children: <Widget>[_summaryCard(U.s.totalDebt, c.totalDebt, UAdminAppColors.blueGrey), _summaryCard(U.s.totalPaid, c.totalPaid, UAdminAppColors.green), _summaryCard(U.s.totalRemaining, c.totalRemaining, UAdminAppColors.orange), _summaryCard(U.s.totalPenalty, c.totalPenalty, UAdminAppColors.red)]),
+    child: Row(children: <Widget>[_summaryCard(U.s.totalDebt, c.totalDebt, UAdminTheme.blueGrey), _summaryCard(U.s.totalPaid, c.totalPaid, UAdminTheme.green), _summaryCard(U.s.totalRemaining, c.totalRemaining, UAdminTheme.orange), _summaryCard(U.s.totalPenalty, c.totalPenalty, UAdminTheme.red)]),
   );
 
   Widget _summaryCard(String label, double value, Color color) => UContainer(
@@ -101,14 +101,14 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.tenant, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.invoiceType, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.dueDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.debtAmount, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.paidAmount, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.penalty, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.paymentStatus, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.tenant, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.invoiceType, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.dueDate, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.debtAmount, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.paidAmount, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.penalty, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.paymentStatus, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -123,10 +123,10 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
 
   Widget _statusChip(UDormBedInvoiceResponse i) {
     final Color color = i.isPaid
-        ? UAdminAppColors.green
+        ? UAdminTheme.green
         : i.isOverdue
-        ? UAdminAppColors.red
-        : UAdminAppColors.orange;
+        ? UAdminTheme.red
+        : UAdminTheme.orange;
     final String label = i.isPaid
         ? U.s.paid
         : i.isOverdue
@@ -143,7 +143,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
   String _tenantLabel(UDormBedInvoiceResponse i) => i.contract?.user?.displayName ?? widget.contract?.user?.displayName ?? "-";
 
   Widget _itemDesktop({required UDormBedInvoiceResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(_tenantLabel(i), textAlign: .center).expanded(),
       UTextBodyMedium(_typeLabel(i), textAlign: .center).expanded(),
@@ -176,8 +176,8 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
       if (!i.isPaid && U.user.hasPermission(TagUser.permissionPayInvoices))
         PopupMenuItem<String>(
           child: UIconTextHorizontal(
-            leading: Icon(Icons.payments_rounded, color: UAdminAppColors.green.shade700, size: 20),
-            trailing: Text(U.s.markAsPaid, style: TextStyle(color: UAdminAppColors.green.shade700)),
+            leading: Icon(Icons.payments_rounded, color: UAdminTheme.green.shade700, size: 20),
+            trailing: Text(U.s.markAsPaid, style: TextStyle(color: UAdminTheme.green.shade700)),
           ),
           onTap: () => c.pay(i),
         ),

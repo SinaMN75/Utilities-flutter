@@ -90,9 +90,9 @@ class _WalletPageState extends State<UAdminWalletPage> {
           const Divider(height: 16),
           Row(
             children: <Widget>[
-              _miniStat(U.s.moneyIn, s.totalIn, UAdminAppColors.green),
-              _miniStat(U.s.moneyOut, s.totalOut, UAdminAppColors.red),
-              _miniStat(U.s.net, s.net, s.net >= 0 ? UAdminAppColors.green : UAdminAppColors.red),
+              _miniStat(U.s.moneyIn, s.totalIn, UAdminTheme.green),
+              _miniStat(U.s.moneyOut, s.totalOut, UAdminTheme.red),
+              _miniStat(U.s.net, s.net, s.net >= 0 ? UAdminTheme.green : UAdminTheme.red),
             ],
           ),
         ],
@@ -119,7 +119,7 @@ class _WalletPageState extends State<UAdminWalletPage> {
     return Column(
       children: c.txns.map((UWalletTxnResponse t) {
         final bool incoming = t.receiverId == c.selectedUser.value?.id;
-        final Color color = incoming ? UAdminAppColors.green : UAdminAppColors.red;
+        final Color color = incoming ? UAdminTheme.green : UAdminTheme.red;
         return UCard(
           margin: const EdgeInsets.symmetric(vertical: 4),
           child: ListTile(

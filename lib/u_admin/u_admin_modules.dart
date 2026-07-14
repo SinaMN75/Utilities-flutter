@@ -1,7 +1,5 @@
 part of "u_admin.dart";
 
-// A single feature: a menu item that opens its page as a tab. Used as a UAdminGroup
-// child and as the dashboard. Role-gated via [roles].
 class UAdminModule {
   UAdminModule({required this.title, required this.icon, required this.page, this.id, this.selectedIcon, this.tabTitle, this.roles});
 
@@ -20,9 +18,6 @@ class UAdminModule {
   UMenuItem toItem() => UMenuItem(id: resolvedId, title: title, icon: icon, selectedIcon: selectedIcon, onTap: () => U.addOrSwitchTab(tabTitle ?? title, page()));
 }
 
-// The one and only top-level menu node: a titled group of modules. Compose your menu
-// entirely from these. Hidden when the user is gated out of the group ([roles]) or can
-// see none of its modules. [header] is an optional uppercase section label above the group.
 class UAdminGroup {
   UAdminGroup({
     required this.title,

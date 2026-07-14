@@ -54,12 +54,12 @@ class _HotelRoomPageState extends State<UAdminHotelRoomPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.hotel, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.capacity, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.priceNight, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.hotel, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.capacity, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.priceNight, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -72,7 +72,7 @@ class _HotelRoomPageState extends State<UAdminHotelRoomPage> {
   });
 
   Widget _itemDesktop({required UHotelRoomResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.title, textAlign: .center).expanded(),
       UTextBodyMedium(i.hotel?.title ?? "-", textAlign: .center).expanded(),

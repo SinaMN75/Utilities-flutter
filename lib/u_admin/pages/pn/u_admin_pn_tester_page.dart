@@ -305,7 +305,7 @@ class _UAdminPnTesterPageState extends State<UAdminPnTesterPage> {
   Widget _responseCard(final ColorScheme cs) {
     final bool isException = _exception != null;
     final bool ok = !isException && (_statusCode ?? 0) >= 200 && (_statusCode ?? 0) < 300;
-    final Color accent = isException || !ok ? cs.error : UAdminAppColors.green;
+    final Color accent = isException || !ok ? cs.error : UAdminTheme.green;
     return UCard(
       child: UColumn(
         spacing: 14,

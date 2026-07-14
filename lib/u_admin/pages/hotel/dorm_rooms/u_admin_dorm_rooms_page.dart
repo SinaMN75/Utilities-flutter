@@ -59,11 +59,11 @@ class _DormRoomPageState extends State<UAdminDormRoomPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.dorm, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.beds, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.created, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.dorm, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.beds, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.created, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -77,7 +77,7 @@ class _DormRoomPageState extends State<UAdminDormRoomPage> {
   });
 
   Widget _itemDesktop({required UDormRoomResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.title, textAlign: .center).expanded(),
       UTextBodyMedium(i.dorm?.title ?? "-", textAlign: .center).expanded(),

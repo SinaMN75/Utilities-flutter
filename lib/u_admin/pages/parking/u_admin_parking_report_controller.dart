@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "../../u_admin.dart";
 
 // Parking reports (vehicle sessions): read-only list, optionally scoped to one parking.
 class UAdminParkingReportController extends UBaseController {

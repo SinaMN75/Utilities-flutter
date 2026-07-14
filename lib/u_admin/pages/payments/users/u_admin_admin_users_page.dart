@@ -49,13 +49,13 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
     onRetry: c.read,
     emptyText: U.s.noUserFound,
     desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.name, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.username, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.phoneNumber, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.nationalCode, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.verificationStatus, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.joinedDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.name, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.username, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.phoneNumber, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.nationalCode, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.verificationStatus, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.joinedDate, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
     ],
     desktopRow: (UUserResponse i, int index) => _itemDesktop(i: i, index: index),
     mobileRow: (UUserResponse i, int index) => _itemResponsive(i: i, index: index),
@@ -65,10 +65,10 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
     final bool verified = i.tags.containsAny(<int>[TagUser.nationalCardFrontVerified.number, TagUser.nationalCardBackVerified.number, TagUser.birthCertificateFirstVerified.number, TagUser.eSignatureVerified.number, TagUser.visualAuthenticationVerified.number]);
     final bool awaiting = i.tags.containsAny(<int>[TagUser.nationalCardFrontAwaitingVerification.number, TagUser.nationalCardBackAwaitingVerification.number, TagUser.birthCertificateFirstAwaitingVerification.number, TagUser.eSignatureAwaitingVerification.number, TagUser.visualAuthenticationAwaitingVerification.number]);
     final Color color = verified
-        ? UAdminAppColors.green
+        ? UAdminTheme.green
         : awaiting
-        ? UAdminAppColors.orange
-        : UAdminAppColors.grey;
+        ? UAdminTheme.orange
+        : UAdminTheme.grey;
     final String label = verified
         ? U.s.verified
         : awaiting
@@ -82,7 +82,7 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
   }
 
   Widget _itemDesktop({required UUserResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium("${i.firstName ?? ""} ${i.lastName ?? ""}".trim(), textAlign: .center).expanded(),
       UTextBodyMedium(i.userName, textAlign: .center).expanded(),

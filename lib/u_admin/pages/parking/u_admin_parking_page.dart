@@ -54,11 +54,11 @@ class _UAdminParkingPageState extends State<UAdminParkingPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 2),
-            UTextBodyLarge(U.s.owner, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 2),
-            UTextBodyLarge(U.s.admins, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.createdAt, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
+            UTextBodyLarge(U.s.owner, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
+            UTextBodyLarge(U.s.admins, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -74,7 +74,7 @@ class _UAdminParkingPageState extends State<UAdminParkingPage> {
   String _ownerLabel(UParkingResponse i) => i.creator?.displayName.nullIfEmpty() ?? i.creator?.userName ?? "-";
 
   Widget _itemDesktop({required UParkingResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.title, textAlign: .center).expanded(flex: 2),
       UTextBodyMedium(_ownerLabel(i), textAlign: .center).expanded(flex: 2),

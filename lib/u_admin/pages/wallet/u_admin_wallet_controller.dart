@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "../../u_admin.dart";
 
 class UAdminWalletController extends UBaseController {
   final Rxn<UUserResponse> selectedUser = Rxn<UUserResponse>();

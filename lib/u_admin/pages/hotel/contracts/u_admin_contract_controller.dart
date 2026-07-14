@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "../../../u_admin.dart";
 
 enum UAdminContractStatusFilter { all, active, upcoming, expired, expiringSoon }
 

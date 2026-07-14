@@ -55,19 +55,19 @@ class _TerminalsPageState extends State<UAdminTerminalsPage> {
     onRetry: c.read,
     emptyText: U.s.noTerminalsFound,
     desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.serial, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.simCardSerial, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.merchant, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.terminalId, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.createdAt, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.serial, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.simCardSerial, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.merchant, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.terminalId, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
     ],
     desktopRow: (UTerminalResponse i, int index) => _itemDesktop(i: i, index: index),
     mobileRow: (UTerminalResponse i, int index) => _itemResponsive(i: i, index: index),
   );
 
   Widget _statusChip(UTerminalResponse i) {
-    final Color color = i.terminalId.isNotNullOrEmpty() ? UAdminAppColors.green : UAdminAppColors.grey;
+    final Color color = i.terminalId.isNotNullOrEmpty() ? UAdminTheme.green : UAdminTheme.grey;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(color: color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(20)),
@@ -76,7 +76,7 @@ class _TerminalsPageState extends State<UAdminTerminalsPage> {
   }
 
   Widget _itemDesktop({required UTerminalResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.serial, textAlign: .center).expanded(),
       UTextBodyMedium(i.simCardSerial ?? "-", textAlign: .center).expanded(),

@@ -35,8 +35,7 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
       if (r == null) return Center(child: Text(U.s.noData));
       return SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[_scopeBanner(), const SizedBox(height: 8), _statCards(r), const SizedBox(height: 8), _breakdown(U.s.incomeByType, r.incomeByType, UAdminAppColors.green), _breakdown(U.s.spendingByType, r.spendingByType, UAdminAppColors.red), _breakdown(U.s.gatewayPaymentsByType, r.gatewayByType, UAdminAppColors.blue), _timeline(r)]),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[_scopeBanner(), const SizedBox(height: 8), _statCards(r), const SizedBox(height: 8), _breakdown(U.s.incomeByType, r.incomeByType, UAdminTheme.green), _breakdown(U.s.spendingByType, r.spendingByType, UAdminTheme.red), _breakdown(U.s.gatewayPaymentsByType, r.gatewayByType, UAdminTheme.blue), _timeline(r)]),
       );
     }),
   );
@@ -57,7 +56,7 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
   Widget _statCards(UAccountingReportResponse r) => Wrap(
     spacing: 12,
     runSpacing: 12,
-    children: <Widget>[_stat(U.s.moneyIn, r.totalIn, UAdminAppColors.green, Icons.south_west_rounded), _stat(U.s.moneyOut, r.totalOut, UAdminAppColors.red, Icons.north_east_rounded), _stat(U.s.net, r.net, r.net >= 0 ? UAdminAppColors.green : UAdminAppColors.red, Icons.balance_rounded), _stat(U.s.walletBalance, r.totalWalletBalance, UAdminAppColors.blueGrey, Icons.account_balance_wallet_rounded)],
+    children: <Widget>[_stat(U.s.moneyIn, r.totalIn, UAdminTheme.green, Icons.south_west_rounded), _stat(U.s.moneyOut, r.totalOut, UAdminTheme.red, Icons.north_east_rounded), _stat(U.s.net, r.net, r.net >= 0 ? UAdminTheme.green : UAdminTheme.red, Icons.balance_rounded), _stat(U.s.walletBalance, r.totalWalletBalance, UAdminTheme.blueGrey, Icons.account_balance_wallet_rounded)],
   );
 
   Widget _stat(String label, double value, Color color, IconData icon) => UCard(
@@ -121,9 +120,9 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
               child: Row(
                 children: <Widget>[
                   UTextBodySmall(t.date.toJalaliDate()).expanded(),
-                  UTextBodySmall("+${t.inAmount.rial()}", color: UAdminAppColors.green),
+                  UTextBodySmall("+${t.inAmount.rial()}", color: UAdminTheme.green),
                   const SizedBox(width: 12),
-                  UTextBodySmall("-${t.outAmount.rial()}", color: UAdminAppColors.red),
+                  UTextBodySmall("-${t.outAmount.rial()}", color: UAdminTheme.red),
                 ],
               ),
             ),

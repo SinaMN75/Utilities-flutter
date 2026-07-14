@@ -55,20 +55,20 @@ class _MerchantsPageState extends State<UAdminMerchantsPage> {
     onRetry: c.read,
     emptyText: U.s.noMerchantsFound,
     desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.nationalCode, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.phoneNumber, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.mcc, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.merchantId, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.createdAt, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.nationalCode, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.phoneNumber, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.mcc, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.merchantId, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
     ],
     desktopRow: (UMerchantResponse i, int index) => _itemDesktop(i: i, index: index),
     mobileRow: (UMerchantResponse i, int index) => _itemResponsive(i: i, index: index),
   );
 
   Widget _itemDesktop({required UMerchantResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.title, textAlign: .center).expanded(),
       UTextBodyMedium(i.nationalCode, textAlign: .center).expanded(),
@@ -144,7 +144,7 @@ class _MerchantsPageState extends State<UAdminMerchantsPage> {
   Widget _kv(String k, String v) => Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      SizedBox(width: 130, child: UTextBodySmall(k, color: UAdminAppColors.grey)),
+      SizedBox(width: 130, child: UTextBodySmall(k, color: UAdminTheme.grey)),
       Expanded(child: UTextBodyMedium(v, fontWeight: FontWeight.w500)),
     ],
   ).pSymmetric(vertical: 6);

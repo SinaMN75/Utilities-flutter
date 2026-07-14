@@ -56,11 +56,11 @@ class _DormPageState extends State<UAdminDormPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.city, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.room, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.created, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.city, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.room, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.created, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -76,7 +76,7 @@ class _DormPageState extends State<UAdminDormPage> {
   Widget _itemDesktop({required UDormResponse i, required int index}) {
     final UCountryCityInfo city = UCountries.infoByCode(i.cityCode);
     return URow(
-      backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+      backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
       children: <Widget>[
         UTextBodyMedium(i.title, textAlign: .center).expanded(),
         UTextBodyMedium("${city.country?.nameFa ?? ""} - ${city.province?.nameFa ?? ""} - ${city.city?.nameFa ?? ""}", textAlign: .center).expanded(),

@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "../../../u_admin.dart";
 
 class UAdminDormBedController extends UBaseController {
   List<UDormBedResponse> list = <UDormBedResponse>[];

@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "../../u_admin.dart";
 
 class UAdminLoginController extends UBaseController {
   final TextEditingController controllerUserName = TextEditingController(

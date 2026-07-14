@@ -84,13 +84,13 @@ class _ContractPageState extends State<UAdminContractPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.tenant, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.bed, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.startDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.endDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.rent, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.tenant, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.bed, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.startDate, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.endDate, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.rent, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -106,7 +106,7 @@ class _ContractPageState extends State<UAdminContractPage> {
   Widget _statusChip(UDormBedContractResponse i) {
     final DateTime now = DateTime.now();
     final bool active = !i.startDate.isAfter(now) && !i.endDate.isBefore(now);
-    final Color color = active ? UAdminAppColors.green : UAdminAppColors.red;
+    final Color color = active ? UAdminTheme.green : UAdminTheme.red;
     return UContainer(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       radius: 20,
@@ -120,7 +120,7 @@ class _ContractPageState extends State<UAdminContractPage> {
   String _tenantLabel(UDormBedContractResponse i) => i.user?.displayName ?? "-";
 
   Widget _itemDesktop({required UDormBedContractResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(_tenantLabel(i), textAlign: .center).expanded(),
       UTextBodyMedium(_bedLabel(i), textAlign: .center).expanded(),

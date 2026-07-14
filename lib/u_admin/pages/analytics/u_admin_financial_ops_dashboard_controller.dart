@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "../../u_admin.dart";
 
 class UAdminFinancialOpsDashboardController extends UBaseController {
   final Rxn<UFinancialOpsDashboardResponse> report = Rxn<UFinancialOpsDashboardResponse>();

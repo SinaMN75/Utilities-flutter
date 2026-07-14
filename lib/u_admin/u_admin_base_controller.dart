@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "u_admin.dart";
 
 abstract class UBaseController {
   final Rx<PageState> state = PageState.initial.obs;

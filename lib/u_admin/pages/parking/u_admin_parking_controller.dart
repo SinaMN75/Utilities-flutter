@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "../../u_admin.dart";
 
 // Parking management: list, create (with owner + assigned admins), update, delete.
 class UAdminParkingController extends UBaseController {

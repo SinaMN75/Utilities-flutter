@@ -1,24 +1,12 @@
 part of "u_admin.dart";
 
-abstract class UAdminBreakpoints {
-  static const double mobile = 720;
-
-  static const double desktop = 1100;
-
-  static const double maxContentWidth = 1400;
-}
-
 enum UAdminScreenType { mobile, tablet, desktop }
 
 extension UAdminResponsiveContext on BuildContext {
-  double get screenWidth => MediaQuery.sizeOf(this).width;
-
-  double get screenHeight => MediaQuery.sizeOf(this).height;
-
   UAdminScreenType get screenType {
-    final double w = screenWidth;
-    if (w < UAdminBreakpoints.mobile) return UAdminScreenType.mobile;
-    if (w < UAdminBreakpoints.desktop) return UAdminScreenType.tablet;
+    final double w = MediaQuery.sizeOf(this).width;
+    if (w < 720) return UAdminScreenType.mobile;
+    if (w < 1100) return UAdminScreenType.tablet;
     return UAdminScreenType.desktop;
   }
 
@@ -31,12 +19,12 @@ extension UAdminResponsiveContext on BuildContext {
   double get pagePadding => isMobileWidth ? 12 : (isTabletWidth ? 20 : 28);
 
   double dialogWidth({double max = 420}) {
-    final double available = screenWidth - 48;
+    final double available = MediaQuery.sizeOf(this).width - 48;
     return available < max ? available : max;
   }
 
   double dialogHeight({double max = 600}) {
-    final double available = screenHeight - 96;
+    final double available = MediaQuery.sizeOf(this).height - 96;
     return available < max ? available : max;
   }
 
@@ -78,7 +66,7 @@ class UAdminResponsiveGrid extends StatelessWidget {
 }
 
 class UAdminPageBody extends StatelessWidget {
-  const UAdminPageBody({required this.child, super.key, this.maxWidth = UAdminBreakpoints.maxContentWidth, this.padded = true});
+  const UAdminPageBody({required this.child, super.key, this.maxWidth = 1400, this.padded = true});
 
   final Widget child;
 

@@ -58,13 +58,13 @@ class _UserPageState extends State<UAdminUserPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.gender, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.name, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.username, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.phoneNumber, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.email, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.joinedDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.gender, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.name, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.username, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.phoneNumber, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.email, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.joinedDate, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _listItemDesktop(i: c.list[index], index: index),
@@ -183,12 +183,12 @@ class _UserPageState extends State<UAdminUserPage> {
         ? U.s.guest
         : U.s.user;
     final Color color = i.isFullAdmin()
-        ? UAdminAppColors.indigo
+        ? UAdminTheme.indigo
         : i.isSubAdmin()
-        ? UAdminAppColors.blue
+        ? UAdminTheme.blue
         : i.tags.contains(TagUser.guest.number)
-        ? UAdminAppColors.blueGrey
-        : UAdminAppColors.grey;
+        ? UAdminTheme.blueGrey
+        : UAdminTheme.grey;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(color: color.withValues(alpha: 0.16), borderRadius: BorderRadius.circular(20)),
@@ -227,7 +227,7 @@ class _UserPageState extends State<UAdminUserPage> {
   );
 
   Widget _listItemDesktop({required UUserResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       Center(child: _genderIcon(i)).expanded(),
       Row(
@@ -261,10 +261,10 @@ class _UserPageState extends State<UAdminUserPage> {
           ? Icons.female_rounded
           : Icons.person_outline_rounded,
       color: male
-          ? UAdminAppColors.blue
+          ? UAdminTheme.blue
           : female
-          ? UAdminAppColors.pink
-          : UAdminAppColors.grey,
+          ? UAdminTheme.pink
+          : UAdminTheme.grey,
       size: 20,
     );
   }
@@ -286,8 +286,8 @@ class _UserPageState extends State<UAdminUserPage> {
     if (U.user.hasPermission(TagUser.permissionDeleteUsers))
       PopupMenuItem<String>(
         child: UIconTextHorizontal(
-          leading: const Icon(Icons.delete, color: UAdminAppColors.red, size: 20),
-          trailing: Text(U.s.delete, style: const TextStyle(color: UAdminAppColors.red)),
+          leading: const Icon(Icons.delete, color: UAdminTheme.red, size: 20),
+          trailing: Text(U.s.delete, style: const TextStyle(color: UAdminTheme.red)),
         ),
         onTap: () => c.delete(i),
       ),

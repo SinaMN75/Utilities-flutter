@@ -89,7 +89,7 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
 
   Widget _statusCard() {
     final bool verified = c.isFullyVerified;
-    final Color color = verified ? UAdminAppColors.green : UAdminAppColors.orange;
+    final Color color = verified ? UAdminTheme.green : UAdminTheme.orange;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -108,7 +108,7 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                UTextBodySmall(U.s.verificationStatus, color: UAdminAppColors.grey),
+                UTextBodySmall(U.s.verificationStatus, color: UAdminTheme.grey),
                 const SizedBox(height: 4),
                 UTextBodyLarge(verified ? U.s.verified : U.s.pendingVerification, fontWeight: FontWeight.bold, color: color),
               ],
@@ -127,27 +127,27 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
   Widget _userInfo() => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      _sectionHeader(U.s.userInformation, Icons.person_outline, UAdminAppColors.orange),
+      _sectionHeader(U.s.userInformation, Icons.person_outline, UAdminTheme.orange),
       const SizedBox(height: 12),
       Container(
         decoration: _cardDecoration(),
         child: Column(
           children: <Widget>[
-            _infoRow(Icons.person, U.s.username, c.user.userName, UAdminAppColors.orange),
+            _infoRow(Icons.person, U.s.username, c.user.userName, UAdminTheme.orange),
             const Divider(height: 1),
-            _infoRow(Icons.badge, U.s.firstName, c.user.firstName ?? U.s.notUploaded, UAdminAppColors.orange),
+            _infoRow(Icons.badge, U.s.firstName, c.user.firstName ?? U.s.notUploaded, UAdminTheme.orange),
             const Divider(height: 1),
-            _infoRow(Icons.badge_outlined, U.s.lastName, c.user.lastName ?? U.s.notUploaded, UAdminAppColors.orange),
+            _infoRow(Icons.badge_outlined, U.s.lastName, c.user.lastName ?? U.s.notUploaded, UAdminTheme.orange),
             const Divider(height: 1),
-            _infoRow(Icons.card_membership, U.s.nationalCode, c.user.nationalCode ?? U.s.notUploaded, UAdminAppColors.orange),
+            _infoRow(Icons.card_membership, U.s.nationalCode, c.user.nationalCode ?? U.s.notUploaded, UAdminTheme.orange),
             const Divider(height: 1),
-            _infoRow(Icons.phone, U.s.phoneNumber, c.user.phoneNumber ?? U.s.notUploaded, UAdminAppColors.orange),
+            _infoRow(Icons.phone, U.s.phoneNumber, c.user.phoneNumber ?? U.s.notUploaded, UAdminTheme.orange),
             const Divider(height: 1),
-            _infoRow(Icons.email, U.s.email, c.user.email ?? U.s.notUploaded, UAdminAppColors.orange),
+            _infoRow(Icons.email, U.s.email, c.user.email ?? U.s.notUploaded, UAdminTheme.orange),
             const Divider(height: 1),
-            _infoRow(Icons.location_city, U.s.address, c.user.jsonData.address ?? U.s.notUploaded, UAdminAppColors.orange),
+            _infoRow(Icons.location_city, U.s.address, c.user.jsonData.address ?? U.s.notUploaded, UAdminTheme.orange),
             const Divider(height: 1),
-            _infoRow(Icons.person_2, U.s.fatherName, c.user.jsonData.fatherName ?? U.s.notUploaded, UAdminAppColors.orange),
+            _infoRow(Icons.person_2, U.s.fatherName, c.user.jsonData.fatherName ?? U.s.notUploaded, UAdminTheme.orange),
           ],
         ),
       ),
@@ -157,7 +157,7 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
   Widget _documentsSection() => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      _sectionHeader(U.s.userDocuments, Icons.folder_outlined, UAdminAppColors.red),
+      _sectionHeader(U.s.userDocuments, Icons.folder_outlined, UAdminTheme.red),
       const SizedBox(height: 12),
       Wrap(spacing: 12, runSpacing: 12, children: _docs.map(_documentCard).toList()),
     ],
@@ -196,9 +196,9 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Icon(d.isVideo ? (hasData ? Icons.play_circle_outline : Icons.videocam_off_outlined) : Icons.insert_drive_file, size: 44, color: UAdminAppColors.grey.shade400),
+                              Icon(d.isVideo ? (hasData ? Icons.play_circle_outline : Icons.videocam_off_outlined) : Icons.insert_drive_file, size: 44, color: UAdminTheme.grey.shade400),
                               const SizedBox(height: 6),
-                              UTextBodySmall(hasData ? U.s.videoAvailable : U.s.notUploaded, color: UAdminAppColors.grey),
+                              UTextBodySmall(hasData ? U.s.videoAvailable : U.s.notUploaded, color: UAdminTheme.grey),
                             ],
                           ),
                         ),
@@ -218,7 +218,7 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
                       ),
                       IconButton(
                         onPressed: hasData && !d.isVideo ? () => _openImage(d.base64!) : null,
-                        icon: Icon(Icons.zoom_out_map, size: 18, color: hasData && !d.isVideo ? UAdminAppColors.blue.shade700 : UAdminAppColors.grey.shade400),
+                        icon: Icon(Icons.zoom_out_map, size: 18, color: hasData && !d.isVideo ? UAdminTheme.blue.shade700 : UAdminTheme.grey.shade400),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
                       ),
@@ -244,7 +244,7 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
     late final String label;
     switch (status) {
       case _DocStatus.verified:
-        color = UAdminAppColors.green;
+        color = UAdminTheme.green;
         icon = Icons.check_circle;
         label = U.s.approved;
       case _DocStatus.rejected:
@@ -252,11 +252,11 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
         icon = Icons.cancel;
         label = U.s.rejected;
       case _DocStatus.awaiting:
-        color = UAdminAppColors.orange;
+        color = UAdminTheme.orange;
         icon = Icons.schedule;
         label = U.s.pendingVerification;
       case _DocStatus.missing:
-        color = UAdminAppColors.grey;
+        color = UAdminTheme.grey;
         icon = Icons.remove_circle_outline;
         label = U.s.notUploaded;
     }
@@ -266,9 +266,9 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Icon(icon, size: 12, color: UAdminAppColors.white),
+          Icon(icon, size: 12, color: UAdminTheme.white),
           const SizedBox(width: 4),
-          UTextBodySmall(label, color: UAdminAppColors.white, fontWeight: FontWeight.w600),
+          UTextBodySmall(label, color: UAdminTheme.white, fontWeight: FontWeight.w600),
         ],
       ),
     );
@@ -280,7 +280,7 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
       decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(10)),
       child: Icon(icon, size: 20, color: color),
     ),
-    title: UTextBodySmall(label, color: UAdminAppColors.grey),
+    title: UTextBodySmall(label, color: UAdminTheme.grey),
     subtitle: UTextBodyMedium(value, fontWeight: FontWeight.w500),
     trailing: Icon(Icons.copy, color: Theme.of(context).disabledColor, size: 18),
     onTap: () {
@@ -304,7 +304,7 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
   BoxDecoration _cardDecoration() => BoxDecoration(
     borderRadius: BorderRadius.circular(12),
     border: Border.all(color: Theme.of(context).dividerColor.withValues(alpha: 0.4)),
-    boxShadow: <BoxShadow>[BoxShadow(color: UAdminAppColors.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2))],
+    boxShadow: <BoxShadow>[BoxShadow(color: UAdminTheme.black.withValues(alpha: 0.04), blurRadius: 8, offset: const Offset(0, 2))],
   );
 
   void _openImage(String base64) => UNavigator.push(UImageViewer(fileData: FileData(bytes: base64.toBytesFromBase64())));

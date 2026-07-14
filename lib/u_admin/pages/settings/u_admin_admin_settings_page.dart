@@ -112,7 +112,7 @@ class _AdminSettingsPageState extends State<UAdminSettingsPage> {
             children: <Widget>[
               UTextBodyLarge("${U.user.firstName ?? ""} ${U.user.lastName ?? ""}".trim(), fontWeight: FontWeight.bold),
               const SizedBox(height: 4),
-              UTextBodySmall(U.user.email ?? U.user.phoneNumber ?? U.user.userName, color: UAdminAppColors.grey),
+              UTextBodySmall(U.user.email ?? U.user.phoneNumber ?? U.user.userName, color: UAdminTheme.grey),
             ],
           ),
         ),
@@ -150,7 +150,7 @@ class _AdminSettingsPageState extends State<UAdminSettingsPage> {
 
   Widget _rowLabel(String text, IconData icon) => Row(
     children: <Widget>[
-      Icon(icon, size: 18, color: UAdminAppColors.grey),
+      Icon(icon, size: 18, color: UAdminTheme.grey),
       const SizedBox(width: 8),
       UTextBodyMedium(text),
     ],

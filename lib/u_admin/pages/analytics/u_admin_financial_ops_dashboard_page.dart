@@ -51,15 +51,15 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
     gradient: LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
-      colors: <Color>[Theme.of(context).colorScheme.primary, UAdminAppColors.indigo.shade400, UAdminAppColors.blue.shade400],
+      colors: <Color>[Theme.of(context).colorScheme.primary, UAdminTheme.indigo.shade400, UAdminTheme.blue.shade400],
     ),
     boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10))],
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         UIconTextHorizontal(
-          leading: const Icon(Icons.account_balance_wallet_rounded, color: UAdminAppColors.white, size: 34),
-          trailing: UTextHeadlineSmall(U.s.financialOpsDashboard, color: UAdminAppColors.white, fontWeight: FontWeight.w800),
+          leading: const Icon(Icons.account_balance_wallet_rounded, color: UAdminTheme.white, size: 34),
+          trailing: UTextHeadlineSmall(U.s.financialOpsDashboard, color: UAdminTheme.white, fontWeight: FontWeight.w800),
         ),
         UAdminResponsiveGrid(
           minTileWidth: 150,
@@ -77,21 +77,21 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
   );
 
   Widget _heroMetric(String label, String value, IconData icon) => ListTile(
-    leading: Icon(icon, color: UAdminAppColors.white),
-    title: UTextBodySmall(label, color: UAdminAppColors.white),
-    subtitle: UTextBodyLarge(value, color: UAdminAppColors.white),
+    leading: Icon(icon, color: UAdminTheme.white),
+    title: UTextBodySmall(label, color: UAdminTheme.white),
+    subtitle: UTextBodyLarge(value, color: UAdminTheme.white),
   );
 
   Widget _entityCards(UFinancialOpsDashboardResponse r) => UAdminResponsiveGrid(
     children: <Widget>[
-      _statCard(U.s.users, r.usersCount.separate3By3(), "+${r.newUsersCount} ${U.s.newThisPeriod}", Icons.people_alt_rounded, UAdminAppColors.indigo, UAdminPageSwitcher.adminUsers),
-      _statCard(U.s.merchants, r.merchantsCount.separate3By3(), "+${r.newMerchantsCount} ${U.s.newThisPeriod}", Icons.storefront_rounded, UAdminAppColors.orange, UAdminPageSwitcher.merchants),
-      _statCard(U.s.terminals, r.terminalsCount.separate3By3(), "${r.terminalsAssignedCount} ${U.s.assignedTerminalsCount}", Icons.point_of_sale_rounded, UAdminAppColors.green, UAdminPageSwitcher.terminals),
-      _statCard(U.s.transactions, r.txnCount.separate3By3(), "+${r.newTxnCount} ${U.s.newThisPeriod}", Icons.swap_horiz_rounded, UAdminAppColors.pink, UAdminPageSwitcher.transactions),
-      _statCard(U.s.wallets, r.walletsCount.separate3By3(), r.totalWalletBalance.rial(), Icons.account_balance_wallet_rounded, UAdminAppColors.blueGrey, UAdminPageSwitcher.wallet),
-      _statCard(U.s.moneyIn, r.totalIn.rial(), "", Icons.south_west_rounded, UAdminAppColors.green, null),
-      _statCard(U.s.moneyOut, r.totalOut.rial(), "", Icons.north_east_rounded, UAdminAppColors.red, null),
-      _statCard(U.s.unassignedTerminals, r.terminalsUnassignedCount.separate3By3(), "", Icons.link_off_rounded, UAdminAppColors.grey, UAdminPageSwitcher.terminals),
+      _statCard(U.s.users, r.usersCount.separate3By3(), "+${r.newUsersCount} ${U.s.newThisPeriod}", Icons.people_alt_rounded, UAdminTheme.indigo, UAdminPageSwitcher.adminUsers),
+      _statCard(U.s.merchants, r.merchantsCount.separate3By3(), "+${r.newMerchantsCount} ${U.s.newThisPeriod}", Icons.storefront_rounded, UAdminTheme.orange, UAdminPageSwitcher.merchants),
+      _statCard(U.s.terminals, r.terminalsCount.separate3By3(), "${r.terminalsAssignedCount} ${U.s.assignedTerminalsCount}", Icons.point_of_sale_rounded, UAdminTheme.green, UAdminPageSwitcher.terminals),
+      _statCard(U.s.transactions, r.txnCount.separate3By3(), "+${r.newTxnCount} ${U.s.newThisPeriod}", Icons.swap_horiz_rounded, UAdminTheme.pink, UAdminPageSwitcher.transactions),
+      _statCard(U.s.wallets, r.walletsCount.separate3By3(), r.totalWalletBalance.rial(), Icons.account_balance_wallet_rounded, UAdminTheme.blueGrey, UAdminPageSwitcher.wallet),
+      _statCard(U.s.moneyIn, r.totalIn.rial(), "", Icons.south_west_rounded, UAdminTheme.green, null),
+      _statCard(U.s.moneyOut, r.totalOut.rial(), "", Icons.north_east_rounded, UAdminTheme.red, null),
+      _statCard(U.s.unassignedTerminals, r.terminalsUnassignedCount.separate3By3(), "", Icons.link_off_rounded, UAdminTheme.grey, UAdminPageSwitcher.terminals),
     ],
   );
 
@@ -104,7 +104,7 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          UTextBodySmall(title, color: UAdminAppColors.grey),
+          UTextBodySmall(title, color: UAdminTheme.grey),
           if (sub.isNotEmpty) UTextBodySmall(sub, color: color, fontWeight: FontWeight.w600),
         ],
       ),
@@ -129,16 +129,16 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
             name: U.s.moneyIn,
             xValueMapper: (UAccountingTimelineItem d, _) => d.date.toJalaliDate(),
             yValueMapper: (UAccountingTimelineItem d, _) => d.inAmount,
-            color: UAdminAppColors.green.withValues(alpha: 0.35),
-            borderColor: UAdminAppColors.green,
+            color: UAdminTheme.green.withValues(alpha: 0.35),
+            borderColor: UAdminTheme.green,
           ),
           SplineAreaSeries<UAccountingTimelineItem, String>(
             dataSource: r.dailyTimeline,
             name: U.s.moneyOut,
             xValueMapper: (UAccountingTimelineItem d, _) => d.date.toJalaliDate(),
             yValueMapper: (UAccountingTimelineItem d, _) => d.outAmount,
-            color: UAdminAppColors.red.withValues(alpha: 0.30),
-            borderColor: UAdminAppColors.red,
+            color: UAdminTheme.red.withValues(alpha: 0.30),
+            borderColor: UAdminTheme.red,
           ),
         ],
       ),
@@ -147,10 +147,10 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
 
   Widget _entityBarChart(UFinancialOpsDashboardResponse r) {
     final List<_Bar> data = <_Bar>[
-      _Bar(U.s.users, r.usersCount, UAdminAppColors.indigo),
-      _Bar(U.s.merchants, r.merchantsCount, UAdminAppColors.orange),
-      _Bar(U.s.terminals, r.terminalsCount, UAdminAppColors.green),
-      _Bar(U.s.transactions, r.txnCount, UAdminAppColors.pink),
+      _Bar(U.s.users, r.usersCount, UAdminTheme.indigo),
+      _Bar(U.s.merchants, r.merchantsCount, UAdminTheme.orange),
+      _Bar(U.s.terminals, r.terminalsCount, UAdminTheme.green),
+      _Bar(U.s.transactions, r.txnCount, UAdminTheme.pink),
     ];
     return _chartCard(
       title: U.s.entityOverview,
@@ -275,7 +275,7 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
               return ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: CircleAvatar(
-                  backgroundColor: UAdminAppColors.primaries[index % UAdminAppColors.primaries.length].shade100,
+                  backgroundColor: UAdminTheme.primaries[index % UAdminTheme.primaries.length].shade100,
                   child: Text("${index + 1}", style: const TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 title: Text(m.title),
@@ -395,7 +395,7 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
                   return ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: CircleAvatar(
-                      backgroundColor: UAdminAppColors.primaries[index % UAdminAppColors.primaries.length].shade100,
+                      backgroundColor: UAdminTheme.primaries[index % UAdminTheme.primaries.length].shade100,
                       child: Text(u.displayName.isNotEmpty ? u.displayName.substring(0, 1).toUpperCase() : "?", style: const TextStyle(fontWeight: FontWeight.bold)),
                     ),
                     title: Text(u.displayName),

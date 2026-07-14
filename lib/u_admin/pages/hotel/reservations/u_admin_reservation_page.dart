@@ -72,15 +72,15 @@ class _ReservationPageState extends State<UAdminReservationPage> {
     switch (s) {
       case TagHotelReservation.confirmed:
       case TagHotelReservation.checkedIn:
-        return UAdminAppColors.green;
+        return UAdminTheme.green;
       case TagHotelReservation.cancelled:
       case TagHotelReservation.noShow:
-        return UAdminAppColors.red;
+        return UAdminTheme.red;
       case TagHotelReservation.checkedOut:
-        return UAdminAppColors.blue;
+        return UAdminTheme.blue;
       case TagHotelReservation.pending:
       case null:
-        return UAdminAppColors.orange;
+        return UAdminTheme.orange;
     }
   }
 
@@ -105,13 +105,13 @@ class _ReservationPageState extends State<UAdminReservationPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.guest, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.rooms, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.checkInDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.checkOutDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.totalPrice, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.guest, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.rooms, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.checkInDate, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.checkOutDate, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.totalPrice, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -129,7 +129,7 @@ class _ReservationPageState extends State<UAdminReservationPage> {
   String _roomLabel(UHotelReservationResponse i) => i.room?.title ?? widget.room?.title ?? "-";
 
   Widget _itemDesktop({required UHotelReservationResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(_guestLabel(i), textAlign: .center).expanded(),
       UTextBodyMedium(_roomLabel(i), textAlign: .center).expanded(),

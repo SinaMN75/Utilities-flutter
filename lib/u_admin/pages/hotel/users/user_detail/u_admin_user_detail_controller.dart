@@ -1,4 +1,4 @@
-part of "../u_admin.dart";
+part of "../../../../u_admin.dart";
 
 class UAdminUserDetailController {
   final Rx<int> loadingProgress = 0.obs;

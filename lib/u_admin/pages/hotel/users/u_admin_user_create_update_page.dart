@@ -1,4 +1,4 @@
-import "package:u/u_admin/controllers/u_admin_user_create_update_controller.dart";
+import "package:u/u_admin/pages/hotel/users/u_admin_user_create_update_controller.dart";
 import "package:u/utilities.dart";
 
 class UAdminUserCreateUpdateDialog extends StatefulWidget {
@@ -124,7 +124,7 @@ class _UserCreateUpdateDialogState extends State<UAdminUserCreateUpdateDialog> {
                 prefix: const Icon(Icons.lock_outline_rounded, size: 18),
               ).pSymmetric(vertical: 6),
               const Divider(height: 20),
-              UTextBodySmall(U.s.gender, color: UAdminAppColors.grey).alignAtCenterLeft(),
+              UTextBodySmall(U.s.gender, color: UAdminTheme.grey).alignAtCenterLeft(),
               Obx(
                 () => USegmentedControl<int>(
                   selectedValue: c.gender.value.number,
@@ -150,7 +150,7 @@ class _UserCreateUpdateDialogState extends State<UAdminUserCreateUpdateDialog> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       const SizedBox(height: 6),
-                      UTextBodySmall(U.s.permissions, color: UAdminAppColors.grey),
+                      UTextBodySmall(U.s.permissions, color: UAdminTheme.grey),
                       ...TagUser.permissions.map(
                         (TagUser permission) => CheckboxListTile(
                           dense: true,

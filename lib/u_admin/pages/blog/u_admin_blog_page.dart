@@ -52,13 +52,13 @@ class _BlogPageState extends State<UAdminBlogPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            const UTextBodyLarge("", color: UAdminAppColors.white, textAlign: .center).expanded(flex: 0),
-            UTextBodyLarge(U.s.title, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 3),
-            UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.viewCount, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.comments, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.createdAt, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+            const UTextBodyLarge("", color: UAdminTheme.white, textAlign: .center).expanded(flex: 0),
+            UTextBodyLarge(U.s.title, color: UAdminTheme.white, textAlign: .center).expanded(flex: 3),
+            UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.viewCount, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.comments, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.createdAt, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -74,7 +74,7 @@ class _BlogPageState extends State<UAdminBlogPage> {
   bool _isPublished(UBlogResponse i) => i.tags.contains(TagBlog.published.number);
 
   Widget _itemDesktop({required UBlogResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       SizedBox(width: 48, child: i.media?.firstOrNull?.url != null ? UImage(i.media!.first.url!) : const Icon(Icons.article_outlined)).expanded(flex: 0),
       UTextBodyMedium(i.title, textAlign: .center).expanded(flex: 3),

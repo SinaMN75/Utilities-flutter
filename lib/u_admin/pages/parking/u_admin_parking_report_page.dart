@@ -67,12 +67,12 @@ class _UAdminParkingReportPageState extends State<UAdminParkingReportPage> {
           backgroundColor: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
-            UTextBodyLarge(U.s.parking, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 2),
-            UTextBodyLarge(U.s.licencePlate, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 2),
-            UTextBodyLarge(U.s.startDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.endDate, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.amount, color: UAdminAppColors.white, textAlign: .center).expanded(),
-            UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 0),
+            UTextBodyLarge(U.s.parking, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
+            UTextBodyLarge(U.s.licencePlate, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
+            UTextBodyLarge(U.s.startDate, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.endDate, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.amount, color: UAdminTheme.white, textAlign: .center).expanded(),
+            UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(flex: 0),
           ],
         ),
         itemBuilder: (BuildContext context, int index) => _itemDesktop(i: c.list[index], index: index),
@@ -86,7 +86,7 @@ class _UAdminParkingReportPageState extends State<UAdminParkingReportPage> {
   });
 
   Widget _itemDesktop({required UParkingReportResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.parking?.title ?? "-", textAlign: .center).expanded(flex: 2),
       UTextBodyMedium(i.vehicle?.licencePlate ?? "-", textAlign: .center).expanded(flex: 2),

@@ -49,12 +49,12 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
     onRetry: c.read,
     emptyText: U.s.noTransactionsFound,
     desktopHeader: () => <Widget>[
-      UTextBodyLarge(U.s.amount, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.trackingNumber, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.user, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.created, color: UAdminAppColors.white, textAlign: .center).expanded(),
-      UTextBodyLarge(U.s.operations, color: UAdminAppColors.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.amount, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.trackingNumber, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.user, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.created, color: UAdminTheme.white, textAlign: .center).expanded(),
+      UTextBodyLarge(U.s.operations, color: UAdminTheme.white, textAlign: .center).expanded(),
     ],
     desktopRow: (UTxnResponse i, int index) => _itemDesktop(i: i, index: index),
     mobileRow: (UTxnResponse i, int index) => _itemResponsive(i: i, index: index),
@@ -63,7 +63,7 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
   String _statusName(UTxnResponse i) => i.tags.isEmpty ? "-" : (TagTxn.values.fromNumber(i.tags.first)?.localizedTitle ?? "-");
 
   Widget _itemDesktop({required UTxnResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       UTextBodyMedium(i.amount.rial(), textAlign: .center).expanded(),
       UTextBodyMedium(i.trackingNumber ?? "-", textAlign: .center).expanded(),

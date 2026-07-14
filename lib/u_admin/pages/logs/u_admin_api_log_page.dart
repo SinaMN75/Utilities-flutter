@@ -70,28 +70,31 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: <Color>[Theme.of(context).colorScheme.primary, UAdminAppColors.indigo.shade400, UAdminAppColors.blueGrey.shade400],
+        colors: <Color>[Theme
+            .of(context)
+            .colorScheme
+            .primary, UAdminTheme.indigo.shade400, UAdminTheme.blueGrey.shade400],
       ),
       boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10))],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           UIconTextHorizontal(
-            leading: const Icon(Icons.travel_explore_rounded, color: UAdminAppColors.white, size: 34),
-            trailing: UTextHeadlineSmall(U.s.apiRequestLogs, color: UAdminAppColors.white, fontWeight: FontWeight.w800),
+            leading: const Icon(Icons.travel_explore_rounded, color: UAdminTheme.white, size: 34),
+            trailing: UTextHeadlineSmall(U.s.apiRequestLogs, color: UAdminTheme.white, fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 16),
           if (c.state2.value.isLoading())
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 20),
-              child: Center(child: CircularProgressIndicator(color: UAdminAppColors.white)),
+              child: Center(child: CircularProgressIndicator(color: UAdminTheme.white)),
             )
           else if (c.state2.value.isError())
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: UIconTextHorizontal(
-                leading: const Icon(Icons.cloud_off_rounded, color: UAdminAppColors.white),
-                trailing: UTextBodyMedium(U.s.errorReadingData, color: UAdminAppColors.white),
+                leading: const Icon(Icons.cloud_off_rounded, color: UAdminTheme.white),
+                trailing: UTextBodyMedium(U.s.errorReadingData, color: UAdminTheme.white),
               ),
             )
           else ...<Widget>[
@@ -124,16 +127,16 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   Widget _kpi(String title, String value) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      UTextBodySmall(title, color: UAdminAppColors.white.withValues(alpha: 0.75)),
+      UTextBodySmall(title, color: UAdminTheme.white.withValues(alpha: 0.75)),
       const SizedBox(height: 4),
-      UTextHeadlineSmall(value, color: UAdminAppColors.white, fontWeight: FontWeight.w800),
+      UTextHeadlineSmall(value, color: UAdminTheme.white, fontWeight: FontWeight.w800),
     ],
   );
 
   Widget _percentileBadge(String label, double ms) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-    decoration: BoxDecoration(color: UAdminAppColors.white.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(20)),
-    child: UTextBodySmall("$label: ${ms.toStringAsFixed(0)} ms", color: UAdminAppColors.white, fontWeight: FontWeight.w600).ltr(),
+    decoration: BoxDecoration(color: UAdminTheme.white.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(20)),
+    child: UTextBodySmall("$label: ${ms.toStringAsFixed(0)} ms", color: UAdminTheme.white, fontWeight: FontWeight.w600).ltr(),
   );
 
   Widget _osMetricsSection() {
@@ -153,17 +156,17 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
               if (m != null)
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(color: UAdminAppColors.green.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(20)),
+                  decoration: BoxDecoration(color: UAdminTheme.green.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Container(
                         width: 8,
                         height: 8,
-                        decoration: const BoxDecoration(color: UAdminAppColors.green, shape: BoxShape.circle),
+                        decoration: const BoxDecoration(color: UAdminTheme.green, shape: BoxShape.circle),
                       ),
                       const SizedBox(width: 6),
-                      UTextBodySmall(m.generatedAt.formatDate("HH:mm:ss"), color: UAdminAppColors.green, fontWeight: FontWeight.w600).ltr(),
+                      UTextBodySmall(m.generatedAt.formatDate("HH:mm:ss"), color: UAdminTheme.green, fontWeight: FontWeight.w600).ltr(),
                     ],
                   ),
                 ),
@@ -251,9 +254,9 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   );
 
   Color _usageColor(double percent) {
-    if (percent >= 85) return UAdminAppColors.red;
-    if (percent >= 60) return UAdminAppColors.orange;
-    return UAdminAppColors.green;
+    if (percent >= 85) return UAdminTheme.red;
+    if (percent >= 60) return UAdminTheme.orange;
+    return UAdminTheme.green;
   }
 
   Widget _disksList(UOsMetricsResponse m) => Column(
@@ -289,7 +292,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   );
 
   Widget _osDetailsExpansion(UOsMetricsResponse m) => Theme(
-    data: Theme.of(context).copyWith(dividerColor: UAdminAppColors.transparent),
+    data: Theme.of(context).copyWith(dividerColor: UAdminTheme.transparent),
     child: ExpansionTile(
       tilePadding: EdgeInsets.zero,
       title: UTextBodyMedium(U.s.details, fontWeight: FontWeight.w600),
@@ -365,7 +368,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
                         width: 8,
                         height: 8,
                         margin: const EdgeInsets.only(right: 6),
-                        decoration: BoxDecoration(color: n.status == "Up" ? UAdminAppColors.green : UAdminAppColors.grey, shape: BoxShape.circle),
+                        decoration: BoxDecoration(color: n.status == "Up" ? UAdminTheme.green : UAdminTheme.grey, shape: BoxShape.circle),
                       ),
                       UTextBodySmall(n.name, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).ltr().expanded(),
                     ],
@@ -436,7 +439,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
                 dataSource: c.stats.value!.timeline,
                 xValueMapper: (UApiLogBucketResponse b, _) => b.time,
                 yValueMapper: (UApiLogBucketResponse b, _) => b.errorCount,
-                color: UAdminAppColors.red,
+                color: UAdminTheme.red,
               ),
             ],
           ),
@@ -460,8 +463,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
             series: <CircularSeries<_StatusSlice, String>>[
               DoughnutSeries<_StatusSlice, String>(
                 dataSource: <_StatusSlice>[
-                  _StatusSlice(U.s.success, c.stats.value!.successCount, UAdminAppColors.green),
-                  _StatusSlice(U.s.errors, c.stats.value!.errorCount, UAdminAppColors.red),
+                  _StatusSlice(U.s.success, c.stats.value!.successCount, UAdminTheme.green),
+                  _StatusSlice(U.s.errors, c.stats.value!.errorCount, UAdminTheme.red),
                 ],
                 xValueMapper: (_StatusSlice s, _) => s.label,
                 yValueMapper: (_StatusSlice s, _) => s.count,
@@ -499,16 +502,16 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
         ? Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              _endpointBarChart(title: U.s.slowestPaths, items: s.slowestEndpoints, color: UAdminAppColors.orange).expanded(),
+              _endpointBarChart(title: U.s.slowestPaths, items: s.slowestEndpoints, color: UAdminTheme.orange).expanded(),
               const SizedBox(width: 16),
-              _endpointBarChart(title: U.s.mostFailingPaths, items: s.failingEndpoints, color: UAdminAppColors.red).expanded(),
+              _endpointBarChart(title: U.s.mostFailingPaths, items: s.failingEndpoints, color: UAdminTheme.red).expanded(),
             ],
           )
         : Column(
             children: <Widget>[
-              _endpointBarChart(title: U.s.slowestPaths, items: s.slowestEndpoints, color: UAdminAppColors.orange),
+              _endpointBarChart(title: U.s.slowestPaths, items: s.slowestEndpoints, color: UAdminTheme.orange),
               const SizedBox(height: 16),
-              _endpointBarChart(title: U.s.mostFailingPaths, items: s.failingEndpoints, color: UAdminAppColors.red),
+              _endpointBarChart(title: U.s.mostFailingPaths, items: s.failingEndpoints, color: UAdminTheme.red),
             ],
           );
   }
@@ -545,7 +548,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              const Icon(Icons.local_fire_department_rounded, size: 20, color: UAdminAppColors.orange),
+              const Icon(Icons.local_fire_department_rounded, size: 20, color: UAdminTheme.orange),
               const SizedBox(width: 8),
               UTextTitleSmall(U.s.slowestRequests, fontWeight: FontWeight.w700).expanded(),
             ],
@@ -578,7 +581,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
         if (_hasException(i)) _exceptionBadge(),
         _statusChip(i.statusCode),
         const SizedBox(width: 8),
-        UTextBodyMedium("${i.durationMs} ms", color: UAdminAppColors.orange),
+        UTextBodyMedium("${i.durationMs} ms", color: UAdminTheme.orange),
       ],
     ),
   );
@@ -637,12 +640,12 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
               backgroundColor: Theme.of(context).colorScheme.primary,
               padding: const EdgeInsets.all(8),
               children: <Widget>[
-                UTextBodyLarge(U.s.time, color: UAdminAppColors.white, textAlign: .center).expanded(),
-                UTextBodyLarge(U.s.method, color: UAdminAppColors.white, textAlign: .center).expanded(),
-                UTextBodyLarge(U.s.path, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 3),
-                UTextBodyLarge(U.s.status, color: UAdminAppColors.white, textAlign: .center).expanded(),
-                UTextBodyLarge(U.s.duration, color: UAdminAppColors.white, textAlign: .center).expanded(),
-                UTextBodyLarge(U.s.userSlashIp, color: UAdminAppColors.white, textAlign: .center).expanded(flex: 2),
+                UTextBodyLarge(U.s.time, color: UAdminTheme.white, textAlign: .center).expanded(),
+                UTextBodyLarge(U.s.method, color: UAdminTheme.white, textAlign: .center).expanded(),
+                UTextBodyLarge(U.s.path, color: UAdminTheme.white, textAlign: .center).expanded(flex: 3),
+                UTextBodyLarge(U.s.status, color: UAdminTheme.white, textAlign: .center).expanded(),
+                UTextBodyLarge(U.s.duration, color: UAdminTheme.white, textAlign: .center).expanded(),
+                UTextBodyLarge(U.s.userSlashIp, color: UAdminTheme.white, textAlign: .center).expanded(flex: 2),
               ],
             ),
             itemBuilder: (BuildContext context, int index) => _itemDesktop(i: data[index], index: index),
@@ -694,13 +697,17 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   Widget _itemDesktop({required UApiLogResponse i, required int index}) => InkWell(
     onTap: () => _openDetail(i),
     child: URow(
-      backgroundColor: index.isOdd ? UAdminAppColors.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+      backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme
+          .of(context)
+          .colorScheme
+          .primary
+          .withValues(alpha: 0.16),
       children: <Widget>[
         UTextBodySmall(i.createdAt.formatDate("yyyy-MM-dd HH:mm:ss"), textAlign: .center).ltr().expanded(),
         _methodChip(i.jsonData.method).alignAtCenter().expanded(),
         _pathCell(i).expanded(flex: 3),
         _statusChip(i.statusCode).alignAtCenter().expanded(),
-        UTextBodyMedium("${i.durationMs} ms", textAlign: .center, color: i.durationMs > 1000 ? UAdminAppColors.orange : null).expanded(),
+        UTextBodyMedium("${i.durationMs} ms", textAlign: .center, color: i.durationMs > 1000 ? UAdminTheme.orange : null).expanded(),
         UTextBodySmall(i.ipAddress ?? "-", textAlign: .center, overflow: TextOverflow.ellipsis).ltr().expanded(flex: 2),
       ],
     ),
@@ -732,23 +739,26 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
 
   bool _hasException(UApiLogResponse i) => i.tags.contains(TagApiLog.hasException.number);
 
-  Widget _exceptionBadge() => Tooltip(
-    message: U.s.exception,
-    child: Padding(
-      padding: const EdgeInsetsDirectional.only(start: 2, end: 6),
-      child: Icon(Icons.error_outline_rounded, size: 16, color: Theme.of(context).colorScheme.error),
-    ),
-  );
+  Widget _exceptionBadge() =>
+      Tooltip(
+        message: U.s.exception,
+        child: Padding(
+          padding: const EdgeInsetsDirectional.only(start: 2, end: 6),
+          child: Icon(Icons.error_outline_rounded, size: 16, color: Theme
+              .of(context)
+              .colorScheme
+              .error),
+        ),
+      );
 
-  Widget _pathCell(UApiLogResponse i) => Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: <Widget>[
-      if (_hasException(i)) _exceptionBadge(),
-      Flexible(
-        child: UTextBodyMedium(i.path, textAlign: .center, maxLines: 2, overflow: TextOverflow.ellipsis).ltr(),
-      ),
-    ],
-  );
+  Widget _pathCell(UApiLogResponse i) =>
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          if (_hasException(i)) _exceptionBadge(),
+          Flexible(child: UTextBodyMedium(i.path, textAlign: .center, maxLines: 2, overflow: TextOverflow.ellipsis).ltr()),
+        ],
+      );
 
   Widget _methodChip(String method) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -763,20 +773,20 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   );
 
   Color _methodColor(String method) => switch (method.toUpperCase()) {
-    "GET" => UAdminAppColors.blue,
-    "POST" => UAdminAppColors.green,
-    "PUT" => UAdminAppColors.orange,
-    "PATCH" => UAdminAppColors.indigo,
-    "DELETE" => UAdminAppColors.red,
-    _ => UAdminAppColors.grey,
+    "GET" => UAdminTheme.blue,
+    "POST" => UAdminTheme.green,
+    "PUT" => UAdminTheme.orange,
+    "PATCH" => UAdminTheme.indigo,
+    "DELETE" => UAdminTheme.red,
+    _ => UAdminTheme.grey,
   };
 
   Color _statusColor(int statusCode) {
-    if (statusCode >= 500) return UAdminAppColors.red;
-    if (statusCode >= 400) return UAdminAppColors.orange;
-    if (statusCode >= 300) return UAdminAppColors.blue;
-    if (statusCode >= 200) return UAdminAppColors.green;
-    return UAdminAppColors.grey;
+    if (statusCode >= 500) return UAdminTheme.red;
+    if (statusCode >= 400) return UAdminTheme.orange;
+    if (statusCode >= 300) return UAdminTheme.blue;
+    if (statusCode >= 200) return UAdminTheme.green;
+    return UAdminTheme.grey;
   }
 
   void _showFilterDialog() => UNavigator.dialog(
@@ -977,7 +987,10 @@ class _ApiLogDetailView extends StatelessWidget {
   ).card(elevation: 0);
 
   Widget _exceptionBlock(BuildContext context) {
-    final Color error = Theme.of(context).colorScheme.error;
+    final Color error = Theme
+        .of(context)
+        .colorScheme
+        .error;
     final String? stack = item.jsonData.stackTrace;
     return Container(
       width: double.infinity,
@@ -1008,52 +1021,68 @@ class _ApiLogDetailView extends StatelessWidget {
           if (item.jsonData.exceptionMessage != null)
             Padding(
               padding: const EdgeInsets.fromLTRB(14, 0, 14, 12),
-              child: SelectableText(
-                item.jsonData.exceptionMessage!,
-                style: TextStyle(fontFamily: "monospace", fontSize: 12.5, height: 1.4, color: Theme.of(context).colorScheme.onSurface),
-              ).ltr(),
+              child: SelectableText(item.jsonData.exceptionMessage!, style: TextStyle(fontFamily: "monospace", fontSize: 12.5, height: 1.4, color: Theme
+                  .of(context)
+                  .colorScheme
+                  .onSurface)).ltr(),
             ),
-          if (stack != null && stack.trim().isNotEmpty) _stackTraceTile(context, stack),
+          if (stack != null && stack
+              .trim()
+              .isNotEmpty) _stackTraceTile(context, stack),
         ],
       ),
     );
   }
 
-  Widget _stackTraceTile(BuildContext context, String stack) => Theme(
-    data: Theme.of(context).copyWith(dividerColor: UAdminAppColors.transparent),
-    child: ExpansionTile(
-      tilePadding: const EdgeInsets.symmetric(horizontal: 14),
-      leading: Icon(Icons.subject_rounded, size: 18, color: Theme.of(context).disabledColor),
-      title: UTextBodyMedium(U.s.stackTrace, fontWeight: FontWeight.w700),
-      trailing: IconButton(
-        tooltip: U.s.copyToClipboard,
-        visualDensity: VisualDensity.compact,
-        icon: const Icon(Icons.copy_rounded, size: 16),
-        onPressed: () => _copy(stack),
-      ),
-      childrenPadding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
-      children: <Widget>[_codeBlock(context, stack)],
-    ),
-  );
+  Widget _stackTraceTile(BuildContext context, String stack) =>
+      Theme(
+        data: Theme.of(context).copyWith(dividerColor: UAdminTheme.transparent),
+        child: ExpansionTile(
+          tilePadding: const EdgeInsets.symmetric(horizontal: 14),
+          leading: Icon(Icons.subject_rounded, size: 18, color: Theme
+              .of(context)
+              .disabledColor),
+          title: UTextBodyMedium(U.s.stackTrace, fontWeight: FontWeight.w700),
+          trailing: IconButton(
+            tooltip: U.s.copyToClipboard,
+            visualDensity: VisualDensity.compact,
+            icon: const Icon(Icons.copy_rounded, size: 16),
+            onPressed: () => _copy(stack),
+          ),
+          childrenPadding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
+          children: <Widget>[_codeBlock(context, stack)],
+        ),
+      );
 
-  Widget _codeBlock(BuildContext context, String text) => Container(
-    width: double.infinity,
-    padding: const EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
-      borderRadius: BorderRadius.circular(10),
-      border: Border.all(color: Theme.of(context).dividerColor),
-    ),
-    constraints: const BoxConstraints(maxHeight: 260),
-    child: SingleChildScrollView(
-      child: SelectableText(
-        text,
-        style: TextStyle(fontFamily: "monospace", fontSize: 11.5, height: 1.5, color: Theme.of(context).colorScheme.onSurfaceVariant),
-      ).ltr(),
-    ),
-  );
+  Widget _codeBlock(BuildContext context, String text) =>
+      Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Theme
+              .of(context)
+              .colorScheme
+              .surfaceContainerHighest
+              .withValues(alpha: 0.5),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Theme
+              .of(context)
+              .dividerColor),
+        ),
+        constraints: const BoxConstraints(maxHeight: 260),
+        child: SingleChildScrollView(
+          child: SelectableText(text, style: TextStyle(fontFamily: "monospace", fontSize: 11.5, height: 1.5, color: Theme
+              .of(context)
+              .colorScheme
+              .onSurfaceVariant)).ltr(),
+        ),
+      );
 
-  String _exceptionAsText() => <String?>[item.jsonData.exceptionType, item.jsonData.exceptionMessage, item.jsonData.stackTrace].where((String? s) => s != null && s.trim().isNotEmpty).join("\n\n");
+  String _exceptionAsText() =>
+      <String?>[item.jsonData.exceptionType, item.jsonData.exceptionMessage, item.jsonData.stackTrace].where((String? s) =>
+      s != null && s
+          .trim()
+          .isNotEmpty).join("\n\n");
 
   void _copy(String value) {
     UClipboard.set(value);

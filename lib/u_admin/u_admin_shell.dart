@@ -140,12 +140,12 @@ class _UAdminShellState extends State<UAdminShell> with SingleTickerProviderStat
     searchHint: U.s.search,
     version: "v${UApp.version}",
     header: UIconTextHorizontal(
-      leading: CircleAvatar(radius: 18, backgroundColor: UAdminAppColors.white24, child: UImage(UAdmin.logo)),
+      leading: CircleAvatar(radius: 18, backgroundColor: UAdminTheme.white24, child: UImage(UAdmin.logo)),
       trailing: UTextTitleLarge(UAdmin.config.appName, color: Theme.of(context).colorScheme.surface),
     ),
     profileName: "${U.user.firstName} ${U.user.lastName}".trim(),
     profileSubtitle: U.user.email ?? U.user.phoneNumber,
-    profileAvatar: CircleAvatar(radius: 18, backgroundColor: UAdminAppColors.white24, child: UImage(UAdmin.logo)),
+    profileAvatar: CircleAvatar(radius: 18, backgroundColor: UAdminTheme.white24, child: UImage(UAdmin.logo)),
     isDarkMode: ULocalStorage.isDarkMode(),
     onToggleTheme: (bool dark) {
       Get.changeThemeMode(dark ? ThemeMode.dark : ThemeMode.light);
