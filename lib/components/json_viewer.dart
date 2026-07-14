@@ -23,13 +23,11 @@ class UJsonViewer extends StatelessWidget {
       formatted = jsonString;
     }
 
-    return Container(
+    return UContainer(
       padding: padding,
-      decoration: BoxDecoration(
-        color: const Color(0xff0F172A),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.white12),
-      ),
+      color: const Color(0xff0F172A),
+      radius: 8,
+      border: Border.all(color: Colors.white12),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: SelectableText.rich(
@@ -39,7 +37,7 @@ class UJsonViewer extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ).ltr();
   }
 
   List<TextSpan> _highlightJson(String source) {

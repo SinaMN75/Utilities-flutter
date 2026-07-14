@@ -72,7 +72,9 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
         end: Alignment.bottomRight,
         colors: <Color>[Theme.of(context).colorScheme.primary, UAdminTheme.indigo.shade400, UAdminTheme.blueGrey.shade400],
       ),
-      boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10))],
+      boxShadow: <BoxShadow>[
+        BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10)),
+      ],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -196,7 +198,12 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       _identityItem(Icons.dns_outlined, U.s.machineName, m.machineName),
       _identityItem(Icons.timer_outlined, U.s.systemUptime, _formatDuration(m.systemUptimeSeconds)),
       _identityItem(Icons.play_circle_outline_rounded, U.s.processUptime, _formatDuration(m.processUptimeSeconds)),
-      if (m.loadAverage1Min != null) _identityItem(Icons.speed_rounded, U.s.loadAverage, "${m.loadAverage1Min!.toStringAsFixed(2)} / ${m.loadAverage5Min!.toStringAsFixed(2)} / ${m.loadAverage15Min!.toStringAsFixed(2)}"),
+      if (m.loadAverage1Min != null)
+        _identityItem(
+          Icons.speed_rounded,
+          U.s.loadAverage,
+          "${m.loadAverage1Min!.toStringAsFixed(2)} / ${m.loadAverage5Min!.toStringAsFixed(2)} / ${m.loadAverage15Min!.toStringAsFixed(2)}",
+        ),
     ],
   );
 
@@ -229,7 +236,12 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       const SizedBox(height: 6),
       ClipRRect(
         borderRadius: BorderRadius.circular(6),
-        child: LinearProgressIndicator(value: (percent / 100).clamp(0, 1), minHeight: 8, backgroundColor: _usageColor(percent).withValues(alpha: 0.15), valueColor: AlwaysStoppedAnimation<Color>(_usageColor(percent))),
+        child: LinearProgressIndicator(
+          value: (percent / 100).clamp(0, 1),
+          minHeight: 8,
+          backgroundColor: _usageColor(percent).withValues(alpha: 0.15),
+          valueColor: AlwaysStoppedAnimation<Color>(_usageColor(percent)),
+        ),
       ),
       const SizedBox(height: 4),
       UTextBodySmall(caption, color: Theme.of(context).disabledColor).ltr(),
@@ -255,7 +267,22 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   Widget _chartsSection() {
     final UApiLogStatsResponse? s = c.stats.value;
     if (c.state2.value.isLoading() || s == null) return const SizedBox.shrink();
-    return _isWide ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_timelineChart().expanded(flex: 2), const SizedBox(width: 16), _distributionChart().expanded()]) : Column(children: <Widget>[_timelineChart(), const SizedBox(height: 16), _distributionChart()]);
+    return _isWide
+        ? Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              _timelineChart().expanded(flex: 2),
+              const SizedBox(width: 16),
+              _distributionChart().expanded(),
+            ],
+          )
+        : Column(
+            children: <Widget>[
+              _timelineChart(),
+              const SizedBox(height: 16),
+              _distributionChart(),
+            ],
+          );
   }
 
   Widget _timelineChart() => _chartCard(
@@ -748,28 +775,27 @@ class _ApiLogDetailView extends StatelessWidget {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 8,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              if (item.jsonData.exceptionType != null || item.jsonData.exceptionMessage != null || item.jsonData.stackTrace != null) ...<Widget>[_exceptionBlock(context), const SizedBox(height: 16)],
-              if (item.jsonData.queryString != null) ...<Widget>[const SizedBox(height: 10), _metaItem(context, U.s.queryString, item.jsonData.queryString!)],
-              const SizedBox(height: 16),
+              if (item.jsonData.exceptionType != null || item.jsonData.exceptionMessage != null || item.jsonData.stackTrace != null) ...<Widget>[
+                _exceptionBlock(context),
+                const SizedBox(height: 16),
+              ],
+              if (item.jsonData.queryString != null) ...<Widget>[
+                const SizedBox(height: 10),
+                _metaItem(context, U.s.queryString, item.jsonData.queryString!),
+              ],
               UTextTitleSmall(U.s.requestBody, fontWeight: FontWeight.w700),
-              const SizedBox(height: 8),
               UJsonViewer(jsonString: item.jsonData.requestBody ?? "-"),
-              const SizedBox(height: 16),
               UTextTitleSmall(U.s.responseBody, fontWeight: FontWeight.w700),
-              const SizedBox(height: 8),
               UJsonViewer(jsonString: item.jsonData.responseBody ?? "-"),
               if (item.jsonData.requestHeaders != null) ...<Widget>[
-                const SizedBox(height: 16),
                 UTextTitleSmall(U.s.requestHeaders, fontWeight: FontWeight.w700),
-                const SizedBox(height: 8),
                 UJsonViewer(jsonString: item.jsonData.requestHeaders!),
               ],
               if (item.jsonData.responseHeaders != null) ...<Widget>[
-                const SizedBox(height: 16),
                 UTextTitleSmall(U.s.responseHeaders, fontWeight: FontWeight.w700),
-                const SizedBox(height: 8),
                 UJsonViewer(jsonString: item.jsonData.responseHeaders!),
               ],
               _metaGrid(context),
@@ -905,7 +931,11 @@ class _ApiLogDetailView extends StatelessWidget {
     ),
   );
 
-  String _exceptionAsText() => <String?>[item.jsonData.exceptionType, item.jsonData.exceptionMessage, item.jsonData.stackTrace].where((String? s) => s != null && s.trim().isNotEmpty).join("\n\n");
+  String _exceptionAsText() => <String?>[item.jsonData.exceptionType, item.jsonData.exceptionMessage, item.jsonData.stackTrace]
+      .where((String? s) => s != null && s.trim().isNotEmpty)
+      .join(
+        "\n\n",
+      );
 
   void _copy(String value) {
     UClipboard.set(value);

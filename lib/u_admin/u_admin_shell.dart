@@ -14,7 +14,7 @@ class _UAdminShellState extends State<UAdminShell> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
-    U.tabs.value = <TabData>[TabData(title: _dashboard.tabTitle ?? _dashboard.title, page: _dashboard.page())];
+    U.tabs.value = <TabData>[TabData(title: _dashboard.title, page: _dashboard.page())];
     U.updateTabController();
   }
 

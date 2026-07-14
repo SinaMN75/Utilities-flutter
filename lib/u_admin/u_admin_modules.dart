@@ -1,20 +1,19 @@
 part of "u_admin.dart";
 
 class UAdminModule {
-  UAdminModule({required this.title, required this.icon, required this.page, this.selectedIcon, this.tabTitle, this.roles});
+  UAdminModule({required this.title, required this.icon, required this.page, this.selectedIcon, this.roles});
 
   final String title;
   final IconData icon;
   final Widget Function() page;
   final IconData? selectedIcon;
-  final String? tabTitle;
   final List<TagUser>? roles;
 
   bool get visible => UAdmin.canAccess(
     roles,
   );
 
-  UMenuItem toItem() => UMenuItem(id: title, title: title, icon: icon, selectedIcon: selectedIcon, onTap: () => U.addOrSwitchTab(tabTitle ?? title, page()));
+  UMenuItem toItem() => UMenuItem(id: title, title: title, icon: icon, selectedIcon: selectedIcon, onTap: () => U.addOrSwitchTab(title, page()));
 }
 
 class UAdminGroup {
@@ -146,7 +145,6 @@ abstract class UAdminModules {
   // ---- Payments (list modules accept an optional per-row `actions` override) ----
   static UAdminModule adminUsers({List<TagUser>? roles, UAdminActionBuilder<UUserResponse>? actions}) => UAdminModule(
     title: U.s.users,
-    tabTitle: U.s.usersManagement,
     icon: Icons.manage_accounts_rounded,
     page: () => UAdminUsersPage(actions: actions),
     roles: roles,
@@ -154,7 +152,6 @@ abstract class UAdminModules {
 
   static UAdminModule merchants({List<TagUser>? roles, UAdminActionBuilder<UMerchantResponse>? actions}) => UAdminModule(
     title: U.s.merchants,
-    tabTitle: U.s.merchantsManagement,
     icon: Icons.storefront_rounded,
     page: () => UAdminMerchantsPage(actions: actions),
     roles: roles,
@@ -162,7 +159,6 @@ abstract class UAdminModules {
 
   static UAdminModule terminals({List<TagUser>? roles, UAdminActionBuilder<UTerminalResponse>? actions}) => UAdminModule(
     title: U.s.terminals,
-    tabTitle: U.s.terminalsManagement,
     icon: Icons.point_of_sale_rounded,
     page: () => UAdminTerminalsPage(actions: actions),
     roles: roles,
@@ -171,7 +167,6 @@ abstract class UAdminModules {
   // ---- Finance ----
   static UAdminModule wallet({List<TagUser>? roles}) => UAdminModule(
     title: U.s.wallets,
-    tabTitle: U.s.walletManagement,
     icon: Icons.account_balance_wallet_rounded,
     page: () => const UAdminWalletPage(),
     roles: roles,
@@ -194,7 +189,6 @@ abstract class UAdminModules {
   // ---- Parking ----
   static UAdminModule parking({List<TagUser>? roles, UAdminActionBuilder<UParkingResponse>? actions}) => UAdminModule(
     title: U.s.parking,
-    tabTitle: U.s.parkingManagement,
     icon: Icons.local_parking_rounded,
     page: () => UAdminParkingPage(actions: actions),
     roles: roles,
