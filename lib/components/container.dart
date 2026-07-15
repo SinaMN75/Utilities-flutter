@@ -337,10 +337,8 @@ class UColumn extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.max,
-    this.divider,
     this.width,
     this.height,
-    this.flexFactors,
     this.backgroundColor,
     this.padding,
     this.margin,
@@ -355,8 +353,6 @@ class UColumn extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
-  final Widget? divider;
-  final List<int>? flexFactors;
   final double? radius;
   final Color? backgroundColor;
   final EdgeInsets? padding;
@@ -364,21 +360,8 @@ class UColumn extends StatelessWidget {
   final BoxBorder? border;
 
   @override
-  Widget build(final BuildContext context) {
-    final List<Widget> spacedChildren = <Widget>[];
-    for (int i = 0; i < children.length; i++) {
-      Widget child = children[i];
-      if (flexFactors != null && i < flexFactors!.length && flexFactors![i] > 0) {
-        child = Expanded(flex: flexFactors![i], child: child);
-      }
-      spacedChildren.add(child);
-      if (i < children.length - 1) {
-        spacedChildren.add(divider ?? SizedBox(height: spacing));
-      }
-    }
-
-    return UContainer(
-      color: backgroundColor,
+  Widget build(final BuildContext context) => UContainer(
+    color: backgroundColor,
       width: width,
       height: height,
       padding: padding,
@@ -386,13 +369,13 @@ class UColumn extends StatelessWidget {
       radius: radius,
       border: border,
       child: Column(
-        mainAxisAlignment: mainAxisAlignment,
+      spacing: spacing,
+      mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
         mainAxisSize: mainAxisSize,
-        children: spacedChildren,
-      ),
+      children: children,
+    ),
     );
-  }
 }
 
 class URow extends StatelessWidget {
@@ -403,10 +386,8 @@ class URow extends StatelessWidget {
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.max,
-    this.divider,
     this.width,
     this.height,
-    this.flexFactors,
     this.backgroundColor,
     this.padding,
     this.margin,
@@ -421,8 +402,6 @@ class URow extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
-  final Widget? divider;
-  final List<int>? flexFactors;
   final Color? backgroundColor;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
@@ -430,29 +409,22 @@ class URow extends StatelessWidget {
   final BoxBorder? border;
 
   @override
-  Widget build(final BuildContext context) {
-    final List<Widget> spacedChildren = <Widget>[];
-    for (int i = 0; i < children.length; i++) {
-      Widget child = children[i];
-      if (flexFactors != null && i < flexFactors!.length && flexFactors![i] > 0) child = Expanded(flex: flexFactors![i], child: child);
-      spacedChildren.add(child);
-      if (i < children.length - 1) spacedChildren.add(divider ?? SizedBox(height: spacing));
-    }
-    return UContainer(
-      color: backgroundColor,
-      width: width,
-      height: height,
-      padding: padding,
-      margin: margin,
-      radius: radius,
-      child: Row(
-        mainAxisAlignment: mainAxisAlignment,
-        crossAxisAlignment: crossAxisAlignment,
-        mainAxisSize: mainAxisSize,
-        children: spacedChildren,
-      ),
-    );
-  }
+  Widget build(final BuildContext context) => UContainer(
+    color: backgroundColor,
+    width: width,
+    height: height,
+    padding: padding,
+    margin: margin,
+    radius: radius,
+    border: border,
+    child: Row(
+      spacing: spacing,
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      children: children,
+    ),
+  );
 }
 
 class UCard extends StatelessWidget {
