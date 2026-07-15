@@ -837,5 +837,9 @@
   "gridView": "Grid",
   "listView": "List",
   "previewNotAvailable": "Preview not available for this file type",
-  "openInBrowser": "Open in Browser"
+  "openInBrowser": "Open in Browser",
+  "appSettings": "App Settings",
+  "settingsInMemoryNote": "Changes apply live and reset to defaults on server restart.",
+  "secretHint": "Leave masked to keep the current value",
+  "addItem": "Add"
 }

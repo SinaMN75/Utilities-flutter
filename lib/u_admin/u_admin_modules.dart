@@ -233,6 +233,13 @@ abstract class UAdminModules {
     roles: roles,
   );
 
+  static UAdminModule appSettings({List<TagUser>? roles}) => UAdminModule(
+    title: U.s.appSettings,
+    icon: Icons.tune_rounded,
+    page: () => const UAdminAppSettingsPage(),
+    roles: roles,
+  );
+
   static UAdminModule settings({List<TagUser>? roles}) => UAdminModule(
     title: U.s.settings,
     icon: Icons.settings_rounded,

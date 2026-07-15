@@ -6446,6 +6446,41 @@ class S {
       args: [],
     );
   }
+
+  /// `App Settings`
+  String get appSettings {
+    return Intl.message(
+      'App Settings',
+      name: 'appSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Changes apply live and reset to defaults on server restart.`
+  String get settingsInMemoryNote {
+    return Intl.message(
+      'Changes apply live and reset to defaults on server restart.',
+      name: 'settingsInMemoryNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Leave masked to keep the current value`
+  String get secretHint {
+    return Intl.message(
+      'Leave masked to keep the current value',
+      name: 'secretHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get addItem {
+    return Intl.message('Add', name: 'addItem', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

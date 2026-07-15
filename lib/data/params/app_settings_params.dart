@@ -6,3 +6,12 @@ class UAppSettingsReadParams {
 
   Map<String, dynamic> toMap() => <String, dynamic>{};
 }
+
+// Body for AppSettings/Update; wraps the full editable config.
+class UAppSettingsUpdateParams {
+  UAppSettingsUpdateParams({required this.settings});
+
+  final UAppSettings settings;
+
+  Map<String, dynamic> toMap() => <String, dynamic>{"settings": settings.toMap()};
+}

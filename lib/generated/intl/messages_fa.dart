@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "accounting": MessageLookupByLibrary.simpleMessage("حسابداری"),
     "active": MessageLookupByLibrary.simpleMessage("فعال"),
     "activeContract": MessageLookupByLibrary.simpleMessage("قرارداد فعال"),
+    "addItem": MessageLookupByLibrary.simpleMessage("افزودن"),
     "addOption": MessageLookupByLibrary.simpleMessage("افزودن گزینه"),
     "addPointDetail": MessageLookupByLibrary.simpleMessage(
       "افزودن جزئیات امتیاز",
@@ -64,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "apiRequestLogs": MessageLookupByLibrary.simpleMessage(
       "لاگ درخواست‌های API",
     ),
+    "appSettings": MessageLookupByLibrary.simpleMessage("تنظیمات برنامه"),
     "appVersion": MessageLookupByLibrary.simpleMessage("نسخه برنامه"),
     "appearance": MessageLookupByLibrary.simpleMessage("ظاهر"),
     "approve": MessageLookupByLibrary.simpleMessage("تایید"),
@@ -933,6 +935,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchCountryCodeOrDialCode": MessageLookupByLibrary.simpleMessage(
       "جستجو کشور، کد تلفن",
     ),
+    "secretHint": MessageLookupByLibrary.simpleMessage(
+      "برای حفظ مقدار فعلی، ماسک را تغییر ندهید",
+    ),
     "section": MessageLookupByLibrary.simpleMessage("بخش"),
     "select": MessageLookupByLibrary.simpleMessage("انتخاب"),
     "selectABed": MessageLookupByLibrary.simpleMessage("انتخاب تخت"),
@@ -975,6 +980,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "serverGc": MessageLookupByLibrary.simpleMessage("Server GC"),
     "services": MessageLookupByLibrary.simpleMessage("خدمات"),
     "settings": MessageLookupByLibrary.simpleMessage("تنظیمات"),
+    "settingsInMemoryNote": MessageLookupByLibrary.simpleMessage(
+      "تغییرات بلافاصله اعمال شده و با ری‌استارت سرور به حالت پیش‌فرض بازمی‌گردند.",
+    ),
     "signFirst": MessageLookupByLibrary.simpleMessage(
       "لطفا اول امضای خود را ثبت کنید",
     ),

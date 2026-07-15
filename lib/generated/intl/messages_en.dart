@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "accounting": MessageLookupByLibrary.simpleMessage("Accounting"),
     "active": MessageLookupByLibrary.simpleMessage("Active"),
     "activeContract": MessageLookupByLibrary.simpleMessage("Active Contract"),
+    "addItem": MessageLookupByLibrary.simpleMessage("Add"),
     "addOption": MessageLookupByLibrary.simpleMessage("Add Option"),
     "addPointDetail": MessageLookupByLibrary.simpleMessage("Add Point Detail"),
     "addQuestion": MessageLookupByLibrary.simpleMessage("Add Question"),
@@ -60,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "apiKey": MessageLookupByLibrary.simpleMessage("API Key"),
     "apiRequestLogs": MessageLookupByLibrary.simpleMessage("API Request Logs"),
+    "appSettings": MessageLookupByLibrary.simpleMessage("App Settings"),
     "appVersion": MessageLookupByLibrary.simpleMessage("App Version"),
     "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
     "approve": MessageLookupByLibrary.simpleMessage("Approve"),
@@ -957,6 +959,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "searchCountryCodeOrDialCode": MessageLookupByLibrary.simpleMessage(
       "Search country, code, or dial code",
     ),
+    "secretHint": MessageLookupByLibrary.simpleMessage(
+      "Leave masked to keep the current value",
+    ),
     "section": MessageLookupByLibrary.simpleMessage("Section"),
     "select": MessageLookupByLibrary.simpleMessage("Select"),
     "selectABed": MessageLookupByLibrary.simpleMessage("Select a Bed"),
@@ -997,6 +1002,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "serverGc": MessageLookupByLibrary.simpleMessage("Server GC"),
     "services": MessageLookupByLibrary.simpleMessage("Services"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "settingsInMemoryNote": MessageLookupByLibrary.simpleMessage(
+      "Changes apply live and reset to defaults on server restart.",
+    ),
     "signFirst": MessageLookupByLibrary.simpleMessage(
       "Please add your signature first",
     ),

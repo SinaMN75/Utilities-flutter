@@ -41,6 +41,8 @@ part "responses/accounting_response.dart";
 part "responses/address_response.dart";
 part "responses/api_log_response.dart";
 part "responses/app_settings_response.dart";
+
+part "responses/app_settings_full_response.dart";
 part "responses/auth_response.dart";
 part "responses/bank_account_response.dart";
 part "responses/base_response.dart";
