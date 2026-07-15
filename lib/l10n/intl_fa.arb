@@ -635,5 +635,21 @@
   "scanHint": "بارکد را داخل کادر قرار دهید",
   "switchCamera": "تعویض دوربین",
   "scanFromGallery": "اسکن از گالری",
-  "flashlight": "چراغ قوه"
+  "flashlight": "چراغ قوه",
+  "letter": "حرف",
+  "iran": "ایران",
+  "noInformationFound": "اطلاعاتی یافت نشد",
+  "noViolationsFoundForThisVehicle": "خلافی برای این خودرو یافت نشد",
+  "youHaveNotRegisteredAnyVehiclesYet": "تا کنون خودرویی ثبت نکرده‌اید",
+  "enterBillIdAndPaymentIdOrScanBarcode": "شناسه قبض و شناسه پرداخت را وارد یا بارکد آن را اسکن کنید",
+  "youHaveNotRegisteredAnyTerminalsYet": "تاکنون پایانه‌ای ثبت نکرده‌اید",
+  "youHaveNotRegisteredAnyBankAccountsYet": "تا کنون حساب بانکی ثبت نکرده‌اید",
+  "noSimCardRegistered": "سیم‌کارتی ثبت نشده است",
+  "noPackagesFound": "پکیجی یافت نشد.",
+  "noNotifications": "اعلانی وجود ندارد",
+  "youHaveNotRegisteredAnyMerchantsYet": "تاکنون پذیرندگی‌ای ثبت نکرده‌اید",
+  "welcome": "خوش آمدید",
+  "pleaseEnterYourMobileNumberToLogin": "جهت ورود لطفا شماره موبایل خود را وارد کنید.",
+  "completeUserInformation": "تکمیل اطلاعات کاربری",
+  "completeYourIdentityInformationToUseAvaHamrahServices": "برای استفاده از خدمات آواهمراه، اطلاعات هویتی خود را تکمیل کنید."
 }

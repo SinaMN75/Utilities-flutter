@@ -635,5 +635,21 @@
   "scanHint": "Place the barcode inside the frame",
   "switchCamera": "Switch Camera",
   "scanFromGallery": "Scan from Gallery",
-  "flashlight": "Flashlight"
+  "flashlight": "Flashlight",
+  "letter": "Letter",
+  "iran": "Iran",
+  "noInformationFound": "No information found",
+  "noViolationsFoundForThisVehicle": "No violations found for this vehicle",
+  "youHaveNotRegisteredAnyVehiclesYet": "You have not registered any vehicles yet",
+  "enterBillIdAndPaymentIdOrScanBarcode": "Enter the bill ID and payment ID or scan its barcode",
+  "youHaveNotRegisteredAnyTerminalsYet": "You have not registered any terminals yet",
+  "youHaveNotRegisteredAnyBankAccountsYet": "You have not registered any bank accounts yet",
+  "noSimCardRegistered": "No SIM card registered",
+  "noPackagesFound": "No packages found",
+  "noNotifications": "No notifications",
+  "youHaveNotRegisteredAnyMerchantsYet": "You have not registered any merchants yet",
+  "welcome": "Welcome",
+  "pleaseEnterYourMobileNumberToLogin": "Please enter your mobile number to log in.",
+  "completeUserInformation": "Complete user information",
+  "completeYourIdentityInformationToUseAvaHamrahServices": "To use AvaHamrah services, complete your identity information."
 }

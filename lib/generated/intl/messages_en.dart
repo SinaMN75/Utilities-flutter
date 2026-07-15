@@ -135,6 +135,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "code": MessageLookupByLibrary.simpleMessage("Code"),
     "codeBlock": MessageLookupByLibrary.simpleMessage("Code Block"),
     "comments": MessageLookupByLibrary.simpleMessage("Comments"),
+    "completeUserInformation": MessageLookupByLibrary.simpleMessage(
+      "Complete user information",
+    ),
+    "completeYourIdentityInformationToUseAvaHamrahServices": MessageLookupByLibrary.simpleMessage(
+      "To use AvaHamrah services, complete your identity information.",
+    ),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirmDelete": MessageLookupByLibrary.simpleMessage("Confirm Delete"),
     "confirmed": MessageLookupByLibrary.simpleMessage("Confirmed"),
@@ -254,6 +260,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "endsOn": MessageLookupByLibrary.simpleMessage("Ends"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "enter": MessageLookupByLibrary.simpleMessage("Enter"),
+    "enterBillIdAndPaymentIdOrScanBarcode": MessageLookupByLibrary.simpleMessage(
+      "Enter the bill ID and payment ID or scan its barcode",
+    ),
     "enterPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Enter phone number",
     ),
@@ -391,6 +400,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "invoiceType": MessageLookupByLibrary.simpleMessage("Invoice Type"),
     "invoices": MessageLookupByLibrary.simpleMessage("Invoices"),
     "ipAddress": MessageLookupByLibrary.simpleMessage("IP Address"),
+    "iran": MessageLookupByLibrary.simpleMessage("Iran"),
     "italic": MessageLookupByLibrary.simpleMessage("Italic"),
     "joinedDate": MessageLookupByLibrary.simpleMessage("Joined Date"),
     "landline": MessageLookupByLibrary.simpleMessage("Landline"),
@@ -400,6 +410,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "lastNameAZ": MessageLookupByLibrary.simpleMessage("Last Name (A-Z)"),
     "lastNameZA": MessageLookupByLibrary.simpleMessage("Last Name (Z-A)"),
     "leasing": MessageLookupByLibrary.simpleMessage("Leasing"),
+    "letter": MessageLookupByLibrary.simpleMessage("Letter"),
     "licencePlate": MessageLookupByLibrary.simpleMessage("Licence Plate"),
     "light": MessageLookupByLibrary.simpleMessage("Light"),
     "link": MessageLookupByLibrary.simpleMessage("Link"),
@@ -478,12 +489,19 @@ class MessageLookup extends MessageLookupByLibrary {
     "noDormsFound": MessageLookupByLibrary.simpleMessage("No dorms found"),
     "noExamFound": MessageLookupByLibrary.simpleMessage("No Exam Found"),
     "noHotelsFound": MessageLookupByLibrary.simpleMessage("No hotels found"),
+    "noInformationFound": MessageLookupByLibrary.simpleMessage(
+      "No information found",
+    ),
     "noInvoiceFound": MessageLookupByLibrary.simpleMessage("No Invoice Found"),
     "noMerchantSelected": MessageLookupByLibrary.simpleMessage(
       "No Merchant Selected",
     ),
     "noMerchantsFound": MessageLookupByLibrary.simpleMessage(
       "No Merchants Found",
+    ),
+    "noNotifications": MessageLookupByLibrary.simpleMessage("No notifications"),
+    "noPackagesFound": MessageLookupByLibrary.simpleMessage(
+      "No packages found",
     ),
     "noParkingReportsFound": MessageLookupByLibrary.simpleMessage(
       "No parking reports found",
@@ -498,6 +516,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noResults": MessageLookupByLibrary.simpleMessage("No Results"),
     "noRoomsFound": MessageLookupByLibrary.simpleMessage("No rooms found"),
     "noShow": MessageLookupByLibrary.simpleMessage("No Show"),
+    "noSimCardRegistered": MessageLookupByLibrary.simpleMessage(
+      "No SIM card registered",
+    ),
     "noTerminalsFound": MessageLookupByLibrary.simpleMessage(
       "No Terminals Found",
     ),
@@ -508,6 +529,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noUserFound": MessageLookupByLibrary.simpleMessage("No User Found"),
     "noValidRowsFound": MessageLookupByLibrary.simpleMessage(
       "No valid rows found",
+    ),
+    "noViolationsFoundForThisVehicle": MessageLookupByLibrary.simpleMessage(
+      "No violations found for this vehicle",
     ),
     "normalText": MessageLookupByLibrary.simpleMessage("Normal Text"),
     "notAssigned": MessageLookupByLibrary.simpleMessage("Not assigned"),
@@ -574,6 +598,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
       "Please Create a Product before Signing a Contract",
+    ),
+    "pleaseEnterYourMobileNumberToLogin": MessageLookupByLibrary.simpleMessage(
+      "Please enter your mobile number to log in.",
     ),
     "pleaseSelectADorm": MessageLookupByLibrary.simpleMessage(
       "Please select a dorm",
@@ -872,12 +899,25 @@ class MessageLookup extends MessageLookupByLibrary {
       "Wallet Management",
     ),
     "wallets": MessageLookupByLibrary.simpleMessage("Wallets"),
+    "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
     "whatsapp": MessageLookupByLibrary.simpleMessage("WhatsApp"),
     "workingSet": MessageLookupByLibrary.simpleMessage("Working Set"),
     "writeSomething": MessageLookupByLibrary.simpleMessage(
       "Write something...",
     ),
     "yes": MessageLookupByLibrary.simpleMessage("Yes"),
+    "youHaveNotRegisteredAnyBankAccountsYet": MessageLookupByLibrary.simpleMessage(
+      "You have not registered any bank accounts yet",
+    ),
+    "youHaveNotRegisteredAnyMerchantsYet": MessageLookupByLibrary.simpleMessage(
+      "You have not registered any merchants yet",
+    ),
+    "youHaveNotRegisteredAnyTerminalsYet": MessageLookupByLibrary.simpleMessage(
+      "You have not registered any terminals yet",
+    ),
+    "youHaveNotRegisteredAnyVehiclesYet": MessageLookupByLibrary.simpleMessage(
+      "You have not registered any vehicles yet",
+    ),
     "zipCode": MessageLookupByLibrary.simpleMessage("Zip Code"),
   };
 }

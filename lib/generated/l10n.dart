@@ -4782,6 +4782,151 @@ class S {
   String get flashlight {
     return Intl.message('Flashlight', name: 'flashlight', desc: '', args: []);
   }
+
+  /// `Letter`
+  String get letter {
+    return Intl.message('Letter', name: 'letter', desc: '', args: []);
+  }
+
+  /// `Iran`
+  String get iran {
+    return Intl.message('Iran', name: 'iran', desc: '', args: []);
+  }
+
+  /// `No information found`
+  String get noInformationFound {
+    return Intl.message(
+      'No information found',
+      name: 'noInformationFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No violations found for this vehicle`
+  String get noViolationsFoundForThisVehicle {
+    return Intl.message(
+      'No violations found for this vehicle',
+      name: 'noViolationsFoundForThisVehicle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have not registered any vehicles yet`
+  String get youHaveNotRegisteredAnyVehiclesYet {
+    return Intl.message(
+      'You have not registered any vehicles yet',
+      name: 'youHaveNotRegisteredAnyVehiclesYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the bill ID and payment ID or scan its barcode`
+  String get enterBillIdAndPaymentIdOrScanBarcode {
+    return Intl.message(
+      'Enter the bill ID and payment ID or scan its barcode',
+      name: 'enterBillIdAndPaymentIdOrScanBarcode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have not registered any terminals yet`
+  String get youHaveNotRegisteredAnyTerminalsYet {
+    return Intl.message(
+      'You have not registered any terminals yet',
+      name: 'youHaveNotRegisteredAnyTerminalsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have not registered any bank accounts yet`
+  String get youHaveNotRegisteredAnyBankAccountsYet {
+    return Intl.message(
+      'You have not registered any bank accounts yet',
+      name: 'youHaveNotRegisteredAnyBankAccountsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No SIM card registered`
+  String get noSimCardRegistered {
+    return Intl.message(
+      'No SIM card registered',
+      name: 'noSimCardRegistered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No packages found`
+  String get noPackagesFound {
+    return Intl.message(
+      'No packages found',
+      name: 'noPackagesFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No notifications`
+  String get noNotifications {
+    return Intl.message(
+      'No notifications',
+      name: 'noNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have not registered any merchants yet`
+  String get youHaveNotRegisteredAnyMerchantsYet {
+    return Intl.message(
+      'You have not registered any merchants yet',
+      name: 'youHaveNotRegisteredAnyMerchantsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome`
+  String get welcome {
+    return Intl.message('Welcome', name: 'welcome', desc: '', args: []);
+  }
+
+  /// `Please enter your mobile number to log in.`
+  String get pleaseEnterYourMobileNumberToLogin {
+    return Intl.message(
+      'Please enter your mobile number to log in.',
+      name: 'pleaseEnterYourMobileNumberToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete user information`
+  String get completeUserInformation {
+    return Intl.message(
+      'Complete user information',
+      name: 'completeUserInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To use AvaHamrah services, complete your identity information.`
+  String get completeYourIdentityInformationToUseAvaHamrahServices {
+    return Intl.message(
+      'To use AvaHamrah services, complete your identity information.',
+      name: 'completeYourIdentityInformationToUseAvaHamrahServices',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -141,6 +141,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "code": MessageLookupByLibrary.simpleMessage("کد"),
     "codeBlock": MessageLookupByLibrary.simpleMessage("بلوک کد"),
     "comments": MessageLookupByLibrary.simpleMessage("نظرات"),
+    "completeUserInformation": MessageLookupByLibrary.simpleMessage(
+      "تکمیل اطلاعات کاربری",
+    ),
+    "completeYourIdentityInformationToUseAvaHamrahServices": MessageLookupByLibrary.simpleMessage(
+      "برای استفاده از خدمات آواهمراه، اطلاعات هویتی خود را تکمیل کنید.",
+    ),
     "confirm": MessageLookupByLibrary.simpleMessage("تایید"),
     "confirmDelete": MessageLookupByLibrary.simpleMessage("تأیید حذف"),
     "confirmed": MessageLookupByLibrary.simpleMessage("تایید شده"),
@@ -256,6 +262,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "endsOn": MessageLookupByLibrary.simpleMessage("پایان"),
     "english": MessageLookupByLibrary.simpleMessage("انگلیسی"),
     "enter": MessageLookupByLibrary.simpleMessage("ورود"),
+    "enterBillIdAndPaymentIdOrScanBarcode": MessageLookupByLibrary.simpleMessage(
+      "شناسه قبض و شناسه پرداخت را وارد یا بارکد آن را اسکن کنید",
+    ),
     "enterPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "شماره موبایل وارد نمایید",
     ),
@@ -393,6 +402,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "invoiceType": MessageLookupByLibrary.simpleMessage("نوع فاکتور"),
     "invoices": MessageLookupByLibrary.simpleMessage("فاکتورها"),
     "ipAddress": MessageLookupByLibrary.simpleMessage("آدرس IP"),
+    "iran": MessageLookupByLibrary.simpleMessage("ایران"),
     "italic": MessageLookupByLibrary.simpleMessage("کج"),
     "joinedDate": MessageLookupByLibrary.simpleMessage("تاریخ عضویت"),
     "landline": MessageLookupByLibrary.simpleMessage("تلفن ثابت"),
@@ -402,6 +412,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "lastNameAZ": MessageLookupByLibrary.simpleMessage("نام خانوادگی (الف-ی)"),
     "lastNameZA": MessageLookupByLibrary.simpleMessage("نام خانوادگی (ی-الف)"),
     "leasing": MessageLookupByLibrary.simpleMessage("اجاره"),
+    "letter": MessageLookupByLibrary.simpleMessage("حرف"),
     "licencePlate": MessageLookupByLibrary.simpleMessage("پلاک"),
     "light": MessageLookupByLibrary.simpleMessage("روشن"),
     "link": MessageLookupByLibrary.simpleMessage("پیوند"),
@@ -476,6 +487,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noExamFound": MessageLookupByLibrary.simpleMessage("هیچ آزمونی یافت نشد"),
     "noHotelsFound": MessageLookupByLibrary.simpleMessage("هیچ هتلی یافت نشد"),
+    "noInformationFound": MessageLookupByLibrary.simpleMessage(
+      "اطلاعاتی یافت نشد",
+    ),
     "noInvoiceFound": MessageLookupByLibrary.simpleMessage(
       "هیچ فاکتوری یافت نشد",
     ),
@@ -485,6 +499,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noMerchantsFound": MessageLookupByLibrary.simpleMessage(
       "پذیرنده‌ای یافت نشد",
     ),
+    "noNotifications": MessageLookupByLibrary.simpleMessage(
+      "اعلانی وجود ندارد",
+    ),
+    "noPackagesFound": MessageLookupByLibrary.simpleMessage("پکیجی یافت نشد."),
     "noParkingReportsFound": MessageLookupByLibrary.simpleMessage(
       "گزارشی یافت نشد",
     ),
@@ -500,6 +518,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noResults": MessageLookupByLibrary.simpleMessage("نتیجه‌ای یافت نشد"),
     "noRoomsFound": MessageLookupByLibrary.simpleMessage("هیچ اتاقی یافت نشد"),
     "noShow": MessageLookupByLibrary.simpleMessage("عدم حضور"),
+    "noSimCardRegistered": MessageLookupByLibrary.simpleMessage(
+      "سیم‌کارتی ثبت نشده است",
+    ),
     "noTerminalsFound": MessageLookupByLibrary.simpleMessage(
       "پایانه‌ای یافت نشد",
     ),
@@ -512,6 +533,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noUserFound": MessageLookupByLibrary.simpleMessage("هیچ کاربری یافت نشد"),
     "noValidRowsFound": MessageLookupByLibrary.simpleMessage(
       "هیچ ردیف معتبری یافت نشد",
+    ),
+    "noViolationsFoundForThisVehicle": MessageLookupByLibrary.simpleMessage(
+      "خلافی برای این خودرو یافت نشد",
     ),
     "normalText": MessageLookupByLibrary.simpleMessage("متن معمولی"),
     "notAssigned": MessageLookupByLibrary.simpleMessage("تخصیص داده نشده"),
@@ -578,6 +602,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
       "لطفاً قبل از ثبت قرارداد، یک محصول ایجاد کنید",
+    ),
+    "pleaseEnterYourMobileNumberToLogin": MessageLookupByLibrary.simpleMessage(
+      "جهت ورود لطفا شماره موبایل خود را وارد کنید.",
     ),
     "pleaseSelectADorm": MessageLookupByLibrary.simpleMessage(
       "لطفاً یک خوابگاه انتخاب کنید",
@@ -870,10 +897,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "walletBalance": MessageLookupByLibrary.simpleMessage("موجودی کیف پول"),
     "walletManagement": MessageLookupByLibrary.simpleMessage("مدیریت کیف پول"),
     "wallets": MessageLookupByLibrary.simpleMessage("کیف پول‌ها"),
+    "welcome": MessageLookupByLibrary.simpleMessage("خوش آمدید"),
     "whatsapp": MessageLookupByLibrary.simpleMessage("واتساپ"),
     "workingSet": MessageLookupByLibrary.simpleMessage("حافظه در حال استفاده"),
     "writeSomething": MessageLookupByLibrary.simpleMessage("چیزی بنویسید..."),
     "yes": MessageLookupByLibrary.simpleMessage("بله"),
+    "youHaveNotRegisteredAnyBankAccountsYet": MessageLookupByLibrary.simpleMessage(
+      "تا کنون حساب بانکی ثبت نکرده‌اید",
+    ),
+    "youHaveNotRegisteredAnyMerchantsYet": MessageLookupByLibrary.simpleMessage(
+      "تاکنون پذیرندگی‌ای ثبت نکرده‌اید",
+    ),
+    "youHaveNotRegisteredAnyTerminalsYet": MessageLookupByLibrary.simpleMessage(
+      "تاکنون پایانه‌ای ثبت نکرده‌اید",
+    ),
+    "youHaveNotRegisteredAnyVehiclesYet": MessageLookupByLibrary.simpleMessage(
+      "تا کنون خودرویی ثبت نکرده‌اید",
+    ),
     "zipCode": MessageLookupByLibrary.simpleMessage("کد پستی"),
   };
 }

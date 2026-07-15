@@ -6,7 +6,8 @@ abstract class U {
   //
   static late String baseUrl;
   static late String apiKey;
-  static S s = S.of(navigatorKey.currentState!.context);
+
+  static S get s => S.current;
   static late UUserResponse user;
   static List<UContentResponse> contents = <UContentResponse>[];
   static List<UCategoryResponse> categories = <UCategoryResponse>[];
