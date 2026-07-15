@@ -197,7 +197,6 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   }
 
   Widget _osIdentityRow(UOsMetricsResponse m) => UColumn(
-    spacing: 0,
     spacing: 12,
     children: <Widget>[
       _identityItem(Icons.computer_rounded, U.s.operatingSystem, m.osDescription),
@@ -223,7 +222,6 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   );
 
   Widget _usageGauges(UOsMetricsResponse m) => UColumn(
-    spacing: 0,
     spacing: 12,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -804,16 +802,12 @@ class _ApiLogDetailView extends StatelessWidget {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: UColumn(
-            spacing: 0,
-            spacing: 8,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               if (item.jsonData.exceptionType != null || item.jsonData.exceptionMessage != null || item.jsonData.stackTrace != null) ...<Widget>[
                 _exceptionBlock(context),
-                const SizedBox(height: 16),
               ],
               if (item.jsonData.queryString != null) ...<Widget>[
-                const SizedBox(height: 10),
                 _metaItem(context, U.s.queryString, item.jsonData.queryString!),
               ],
               UTextTitleSmall(U.s.requestBody, fontWeight: FontWeight.w700),

@@ -70,7 +70,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
           );
         }
         ULoading.dismiss();
-        _load(_path);
+        await _load(_path);
       },
     );
   }
