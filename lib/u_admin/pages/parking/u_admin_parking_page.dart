@@ -109,7 +109,7 @@ class _UAdminParkingPageState extends State<UAdminParkingPage> {
             child: SingleChildScrollView(
               child: Form(
                 key: formKey,
-                child: Column(
+                child: UColumn(spacing: 0, 
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     UTextField(

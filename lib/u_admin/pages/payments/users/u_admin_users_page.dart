@@ -133,7 +133,8 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
       content: SizedBox(
         width: context.dialogWidth(),
         child: SingleChildScrollView(
-          child: Column(
+          child: UColumn(
+            spacing: 0,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Obx(

@@ -102,7 +102,8 @@ class _BlogPageState extends State<UAdminBlogPage> {
       content: Form(
         key: c.filterFormKey,
         child: SingleChildScrollView(
-          child: Column(
+          child: UColumn(
+            spacing: 0,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               UTextField(controller: c.titleFilter, labelText: U.s.title).pSymmetric(vertical: 6),
@@ -135,7 +136,8 @@ class _BlogPageState extends State<UAdminBlogPage> {
           child: (i.comments?.isEmpty ?? true)
               ? Center(child: Text(U.s.noCommentsFound).pSymmetric(vertical: 24))
               : SingleChildScrollView(
-                  child: Column(
+                  child: UColumn(
+                    spacing: 0,
                     children: (i.comments ?? <UCommentResponse>[])
                         .map(
                           (UCommentResponse cm) => ListTile(
@@ -173,7 +175,8 @@ class _BlogPageState extends State<UAdminBlogPage> {
             child: SingleChildScrollView(
               child: Form(
                 key: formKey,
-                child: Column(
+                child: UColumn(
+                  spacing: 0,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     UTextField(
@@ -201,7 +204,9 @@ class _BlogPageState extends State<UAdminBlogPage> {
                           border: Border.all(color: Theme.of(context).dividerColor),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: content.text.trim().isEmpty ? Row(children: <Widget>[const Icon(Icons.edit_note), const SizedBox(width: 8), Text(U.s.richTextEditor)]) : SingleChildScrollView(child: UHtmlView(html: content.text)),
+                        child: content.text.trim().isEmpty
+                            ? URow(spacing: 0, children: <Widget>[const Icon(Icons.edit_note), const SizedBox(width: 8), Text(U.s.richTextEditor)])
+                            : SingleChildScrollView(child: UHtmlView(html: content.text)),
                       ),
                     ).pSymmetric(vertical: 6),
                     const SizedBox(height: 12),

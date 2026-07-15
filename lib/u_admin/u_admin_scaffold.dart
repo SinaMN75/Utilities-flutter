@@ -50,7 +50,8 @@ class UAdminScaffold extends StatelessWidget {
         ...?extraActions,
       ],
     ),
-    body: Column(
+    body: UColumn(
+      spacing: 0,
       children: <Widget>[
         body.expanded(),
         if (_hasPagination) Obx(() => UNumberPagination(currentPage: pageNumber!.value, totalPages: totalPages!.value, onPageChanged: onPageChanged!).pOnly(bottom: 16, top: 8)),

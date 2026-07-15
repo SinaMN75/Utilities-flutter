@@ -169,7 +169,8 @@ class _ReservationPageState extends State<UAdminReservationPage> {
         title: Text(U.s.filterReservations),
         content: SingleChildScrollView(
           child: StatefulBuilder(
-            builder: (BuildContext context, void Function(void Function()) setLocal) => Column(
+            builder: (BuildContext context, void Function(void Function()) setLocal) =>
+                UColumn(spacing: 0,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 UTextField(controller: c.guestFilter, labelText: U.s.guest).pSymmetric(vertical: 6),
@@ -254,7 +255,7 @@ class _ReservationPageState extends State<UAdminReservationPage> {
           child: StatefulBuilder(
             builder: (BuildContext context, void Function(void Function()) setLocal) => Form(
               key: formKey,
-              child: Column(
+              child: UColumn(spacing: 0, 
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (!isEdit && widget.room == null)

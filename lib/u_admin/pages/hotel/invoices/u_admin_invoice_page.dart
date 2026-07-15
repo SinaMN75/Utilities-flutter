@@ -38,7 +38,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
       c.pageNumber(page);
       c.read();
     },
-    body: Column(
+    body: UColumn(spacing: 0, 
       children: <Widget>[
         if (widget.contract != null) Obx(() => c.state.isLoaded() ? _summary() : const SizedBox.shrink()),
         _statusFilter(),
@@ -50,7 +50,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
   Widget _summary() => SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    child: Row(children: <Widget>[_summaryCard(U.s.totalDebt, c.totalDebt, UAdminTheme.blueGrey), _summaryCard(U.s.totalPaid, c.totalPaid, UAdminTheme.green), _summaryCard(U.s.totalRemaining, c.totalRemaining, UAdminTheme.orange), _summaryCard(U.s.totalPenalty, c.totalPenalty, UAdminTheme.red)]),
+    child: URow(spacing: 0, children: <Widget>[_summaryCard(U.s.totalDebt, c.totalDebt, UAdminTheme.blueGrey), _summaryCard(U.s.totalPaid, c.totalPaid, UAdminTheme.green), _summaryCard(U.s.totalRemaining, c.totalRemaining, UAdminTheme.orange), _summaryCard(U.s.totalPenalty, c.totalPenalty, UAdminTheme.red)]),
   );
 
   Widget _summaryCard(String label, double value, Color color) => UContainer(
@@ -58,7 +58,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
     radius: 12,
     color: color.withValues(alpha: 0.11),
-    child: Column(
+    child: UColumn(spacing: 0, 
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -74,7 +74,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      child: Row(children: <Widget>[_chip(U.s.all, UAdminInvoiceStatusFilter.all), _chip(U.s.paid, UAdminInvoiceStatusFilter.paid), _chip(U.s.unpaid, UAdminInvoiceStatusFilter.unpaid), _chip(U.s.overdue, UAdminInvoiceStatusFilter.overdue)]),
+      child: URow(spacing: 0, children: <Widget>[_chip(U.s.all, UAdminInvoiceStatusFilter.all), _chip(U.s.paid, UAdminInvoiceStatusFilter.paid), _chip(U.s.unpaid, UAdminInvoiceStatusFilter.unpaid), _chip(U.s.overdue, UAdminInvoiceStatusFilter.overdue)]),
     );
   });
 
@@ -163,7 +163,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
     AlertDialog(
       title: Text(U.s.filter),
       content: SingleChildScrollView(
-        child: Column(
+        child: UColumn(spacing: 0, 
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             UTextFieldDatePicker(
@@ -227,7 +227,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
           child: StatefulBuilder(
             builder: (BuildContext context, void Function(void Function()) setLocal) => Form(
               key: formKey,
-              child: Column(
+              child: UColumn(spacing: 0, 
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (!isEdit && widget.contract == null)

@@ -80,7 +80,7 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
       content: SizedBox(
         width: context.dialogWidth(),
         child: SingleChildScrollView(
-          child: Column(
+          child: UColumn(spacing: 0, 
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               UDropDownField<TagTxn?>(
@@ -142,7 +142,7 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
           child: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: Column(
+              child: UColumn(spacing: 0, 
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(
@@ -193,7 +193,7 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
           child: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: Column(
+              child: UColumn(spacing: 0, 
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(controller: amount, labelText: U.s.amount, keyboardType: TextInputType.number).pSymmetric(vertical: 6),

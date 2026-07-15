@@ -75,7 +75,7 @@ class UAdminUserCreateUpdateController {
         onOk: (final UEmptyResponse r) {
           ULoading.dismiss();
           UNavigator.back();
-          UToast.snackBar(message: "User created successfully");
+          UToast.snackBar(message: U.s.userCreatedSuccessfully);
         },
         onError: (final UEmptyResponse r) {
           ULoading.dismiss();

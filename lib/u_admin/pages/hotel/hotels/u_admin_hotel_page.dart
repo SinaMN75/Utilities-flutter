@@ -89,7 +89,7 @@ class _HotelPageState extends State<UAdminHotelPage> {
       content: Form(
         key: c.filterFormKey,
         child: SingleChildScrollView(
-          child: Column(
+          child: UColumn(spacing: 0, 
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               UTextField(controller: c.titleFilter, labelText: U.s.title).pSymmetric(vertical: 6),
@@ -142,7 +142,7 @@ class _HotelPageState extends State<UAdminHotelPage> {
           content: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: Column(
+              child: UColumn(spacing: 0, 
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(

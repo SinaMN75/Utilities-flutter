@@ -153,7 +153,8 @@ class _ContractPageState extends State<UAdminContractPage> {
         title: Text(U.s.filterContracts),
         content: SingleChildScrollView(
           child: StatefulBuilder(
-            builder: (BuildContext context, void Function(void Function()) setLocal) => Column(
+            builder: (BuildContext context, void Function(void Function()) setLocal) =>
+                UColumn(spacing: 0,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 UTextField(controller: c.tenantFilter, labelText: U.s.tenant).pSymmetric(vertical: 6),
@@ -257,7 +258,7 @@ class _ContractPageState extends State<UAdminContractPage> {
           child: StatefulBuilder(
             builder: (BuildContext context, void Function(void Function()) setLocal) => Form(
               key: formKey,
-              child: Column(
+              child: UColumn(spacing: 0, 
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (!isEdit && widget.bed == null)

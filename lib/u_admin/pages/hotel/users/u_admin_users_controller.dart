@@ -169,7 +169,7 @@ class UAdminUsersController extends UBaseController {
           read();
           ULoading.dismiss();
           UNavigator.back();
-          UToast.snackBar(message: "User created successfully");
+          UToast.snackBar(message: U.s.userCreatedSuccessfully);
         },
         onError: (final UEmptyResponse r) {
           ULoading.dismiss();

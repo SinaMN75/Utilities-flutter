@@ -36,7 +36,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     ),
     body: SingleChildScrollView(
       padding: EdgeInsets.all(_isWide ? 24 : 14),
-      child: Column(
+      child: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Obx(_hero),
@@ -75,7 +76,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       boxShadow: <BoxShadow>[
         BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10)),
       ],
-      child: Column(
+      child: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           UIconTextHorizontal(
@@ -117,7 +119,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     );
   }
 
-  Widget _kpi(String title, String value) => Column(
+  Widget _kpi(String title, String value) => UColumn(
+    spacing: 0,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
       UTextBodySmall(title, color: UAdminTheme.white.withValues(alpha: 0.75)),
@@ -138,10 +141,12 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       padding: const EdgeInsets.all(20),
       radius: 20,
       color: Theme.of(context).cardTheme.color,
-      child: Column(
+      child: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
+          URow(
+            spacing: 0,
             children: <Widget>[
               const Icon(Icons.dns_rounded, size: 20),
               const SizedBox(width: 8),
@@ -150,7 +155,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(color: UAdminTheme.green.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(20)),
-                  child: Row(
+                  child: URow(
+                    spacing: 0,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Container(
@@ -176,7 +182,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
           else if (m == null)
             const SizedBox.shrink()
           else ...<Widget>[
-            Row(
+            URow(
+              spacing: 0,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 _osIdentityRow(m).expanded(),
@@ -189,7 +196,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     );
   }
 
-  Widget _osIdentityRow(UOsMetricsResponse m) => Column(
+  Widget _osIdentityRow(UOsMetricsResponse m) => UColumn(
+    spacing: 0,
     spacing: 12,
     children: <Widget>[
       _identityItem(Icons.computer_rounded, U.s.operatingSystem, m.osDescription),
@@ -214,7 +222,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     subtitle: Text(value),
   );
 
-  Widget _usageGauges(UOsMetricsResponse m) => Column(
+  Widget _usageGauges(UOsMetricsResponse m) => UColumn(
+    spacing: 0,
     spacing: 12,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -224,10 +233,12 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     ],
   );
 
-  Widget _usageBar(String label, double percent, String caption) => Column(
+  Widget _usageBar(String label, double percent, String caption) => UColumn(
+    spacing: 0,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Row(
+      URow(
+        spacing: 0,
         children: <Widget>[
           UTextBodyMedium(label, fontWeight: FontWeight.w600).expanded(),
           UTextBodyMedium("${percent.toStringAsFixed(1)}%", color: _usageColor(percent), fontWeight: FontWeight.w700),
@@ -268,7 +279,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     final UApiLogStatsResponse? s = c.stats.value;
     if (c.state2.value.isLoading() || s == null) return const SizedBox.shrink();
     return _isWide
-        ? Row(
+        ? URow(
+            spacing: 0,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               _timelineChart().expanded(flex: 2),
@@ -276,7 +288,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
               _distributionChart().expanded(),
             ],
           )
-        : Column(
+        : UColumn(
+            spacing: 0,
             children: <Widget>[
               _timelineChart(),
               const SizedBox(height: 16),
@@ -287,7 +300,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
 
   Widget _timelineChart() => _chartCard(
     title: U.s.requestsAndResponseDurationTrend,
-    trailing: Row(
+    trailing: URow(
+      spacing: 0,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         _bucketButton("minute", U.s.minute),
@@ -356,10 +370,12 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     padding: const EdgeInsets.all(18),
     radius: 20,
     color: Theme.of(context).cardTheme.color,
-    child: Column(
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Row(
+        URow(
+          spacing: 0,
           children: <Widget>[
             UTextTitleSmall(title, fontWeight: FontWeight.w700).expanded(),
             if (trailing != null) trailing,
@@ -375,7 +391,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     final UApiLogStatsResponse? s = c.stats.value;
     if (c.state2.value.isLoading() || s == null) return const SizedBox.shrink();
     return _isWide
-        ? Row(
+        ? URow(
+            spacing: 0,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               _endpointBarChart(title: U.s.slowestPaths, items: s.slowestEndpoints, color: UAdminTheme.orange).expanded(),
@@ -383,7 +400,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
               _endpointBarChart(title: U.s.mostFailingPaths, items: s.failingEndpoints, color: UAdminTheme.red).expanded(),
             ],
           )
-        : Column(
+        : UColumn(
+            spacing: 0,
             children: <Widget>[
               _endpointBarChart(title: U.s.slowestPaths, items: s.slowestEndpoints, color: UAdminTheme.orange),
               const SizedBox(height: 16),
@@ -419,10 +437,12 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       padding: const EdgeInsets.all(18),
       radius: 20,
       color: Theme.of(context).cardTheme.color,
-      child: Column(
+      child: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
+          URow(
+            spacing: 0,
             children: <Widget>[
               const Icon(Icons.local_fire_department_rounded, size: 20, color: UAdminTheme.orange),
               const SizedBox(width: 8),
@@ -451,7 +471,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     leading: _methodChip(i.jsonData.method),
     title: UTextBodyMedium(i.path, maxLines: 1, overflow: TextOverflow.ellipsis).ltr(),
     subtitle: UTextBodySmall(i.createdAt.formatDate("yyyy-MM-dd HH:mm:ss")).ltr(),
-    trailing: Row(
+    trailing: URow(
+      spacing: 0,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         if (_hasException(i)) _exceptionBadge(),
@@ -534,12 +555,14 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
             itemCount: data.length,
           );
 
-    return Column(
+    return UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
-          child: Row(
+          child: URow(
+            spacing: 0,
             children: <Widget>[
               Icon(Icons.format_list_bulleted_rounded, size: 16, color: Theme.of(context).disabledColor),
               const SizedBox(width: 6),
@@ -555,7 +578,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   Widget _tableMessage({required IconData icon, required String text, required bool retry}) => Center(
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 40),
-      child: Column(
+      child: UColumn(
+        spacing: 0,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Icon(icon, size: 56, color: retry ? Theme.of(context).colorScheme.error : Theme.of(context).disabledColor),
@@ -595,7 +619,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       child: ListTile(
         dense: true,
         leading: _statusChip(i.statusCode),
-        title: Row(
+        title: URow(
+          spacing: 0,
           children: <Widget>[
             _methodChip(i.jsonData.method),
             const SizedBox(width: 8),
@@ -619,7 +644,8 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
     ),
   );
 
-  Widget _pathCell(UApiLogResponse i) => Row(
+  Widget _pathCell(UApiLogResponse i) => URow(
+    spacing: 0,
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       if (_hasException(i)) _exceptionBadge(),
@@ -664,11 +690,13 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
       content: SizedBox(
         width: context.dialogWidth(),
         child: SingleChildScrollView(
-          child: Column(
+          child: UColumn(
+            spacing: 0,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               UTextField(controller: c.pathContainsCtrl, labelText: U.s.pathContains).pSymmetric(vertical: 6),
-              Row(
+              URow(
+                spacing: 0,
                 children: <Widget>[
                   UTextField(controller: c.minDurationCtrl, labelText: U.s.minDurationMs, keyboardType: TextInputType.number).expanded(),
                   const SizedBox(width: 8),
@@ -767,14 +795,16 @@ class _ApiLogDetailView extends StatelessWidget {
   final Color statusColor;
 
   @override
-  Widget build(BuildContext context) => Column(
+  Widget build(BuildContext context) => UColumn(
+    spacing: 0,
     children: <Widget>[
       _header(context),
       const Divider(height: 1),
       Expanded(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
-          child: Column(
+          child: UColumn(
+            spacing: 0,
             spacing: 8,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -810,7 +840,8 @@ class _ApiLogDetailView extends StatelessWidget {
     elevation: 2,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      child: Row(
+      child: URow(
+        spacing: 0,
         children: <Widget>[
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -832,7 +863,8 @@ class _ApiLogDetailView extends StatelessWidget {
     ),
   );
 
-  Widget _metaGrid(BuildContext context) => Column(
+  Widget _metaGrid(BuildContext context) => UColumn(
+    spacing: 0,
     children: <Widget>[
       _metaItem(context, U.s.time, item.createdAt.formatDate("yyyy-MM-dd HH:mm:ss")),
       _metaItem(context, U.s.duration, "${item.durationMs} ms"),
@@ -864,12 +896,14 @@ class _ApiLogDetailView extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: error.withValues(alpha: 0.35)),
       ),
-      child: Column(
+      child: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(14, 12, 8, 8),
-            child: Row(
+            child: URow(
+              spacing: 0,
               children: <Widget>[
                 Icon(Icons.error_outline_rounded, color: error, size: 20),
                 const SizedBox(width: 8),

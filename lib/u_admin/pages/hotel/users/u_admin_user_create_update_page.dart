@@ -34,7 +34,8 @@ class _UserCreateUpdateDialogState extends State<UAdminUserCreateUpdateDialog> {
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-    title: Row(
+    title: URow(
+      spacing: 0,
       children: <Widget>[
         Icon(_isEdit ? Icons.manage_accounts_rounded : Icons.person_add_alt_1_rounded, color: Theme.of(context).colorScheme.primary),
         const SizedBox(width: 10),
@@ -49,7 +50,8 @@ class _UserCreateUpdateDialogState extends State<UAdminUserCreateUpdateDialog> {
       child: Form(
         key: c.formKey,
         child: SingleChildScrollView(
-          child: Column(
+          child: UColumn(
+            spacing: 0,
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -66,7 +68,8 @@ class _UserCreateUpdateDialogState extends State<UAdminUserCreateUpdateDialog> {
                     },
                   ),
                 ),
-              Row(
+              URow(
+                spacing: 0,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   UTextField(
@@ -146,7 +149,8 @@ class _UserCreateUpdateDialogState extends State<UAdminUserCreateUpdateDialog> {
                 ),
                 Obx(() {
                   if (c.role.value != TagUser.subAdmin) return const SizedBox.shrink();
-                  return Column(
+                  return UColumn(
+                    spacing: 0,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       const SizedBox(height: 6),

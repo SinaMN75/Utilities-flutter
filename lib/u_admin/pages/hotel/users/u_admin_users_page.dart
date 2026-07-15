@@ -31,7 +31,8 @@ class _UserPageState extends State<UAdminUserPage> {
           ),
       ],
     ),
-    body: Column(
+    body: UColumn(
+      spacing: 0,
       children: <Widget>[
         buildUserList().expanded(),
         Obx(
@@ -85,7 +86,8 @@ class _UserPageState extends State<UAdminUserPage> {
         key: c.filterFormKey,
         child: SingleChildScrollView(
           child: StatefulBuilder(
-            builder: (BuildContext context, void Function(void Function()) setLocal) => Column(
+            builder: (BuildContext context, void Function(void Function()) setLocal) => UColumn(
+              spacing: 0,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 UTextField(controller: c.queryController, labelText: U.s.search, prefix: const Icon(Icons.search)).pSymmetric(vertical: 8),
@@ -204,14 +206,16 @@ class _UserPageState extends State<UAdminUserPage> {
     child: ListTile(
       dense: true,
       onTap: () => UAdminPageSwitcher.hotelUserDetail(user: i),
-      title: Row(
+      title: URow(
+        spacing: 0,
         children: <Widget>[
           _roleChip(i),
           const SizedBox(width: 8),
           UTextBodyMedium("${i.firstName ?? ""} ${i.lastName ?? ""} (${i.userName})".trim(), maxLines: 1, overflow: TextOverflow.ellipsis).expanded(),
         ],
       ),
-      subtitle: Column(
+      subtitle: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           UTextBodyMedium(i.phoneNumber ?? "-"),
@@ -230,7 +234,8 @@ class _UserPageState extends State<UAdminUserPage> {
     backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       Center(child: _genderIcon(i)).expanded(),
-      Row(
+      URow(
+        spacing: 0,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           _roleChip(i),

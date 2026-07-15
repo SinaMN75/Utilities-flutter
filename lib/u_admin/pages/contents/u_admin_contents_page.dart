@@ -55,16 +55,16 @@ class _ContentsPageState extends State<UAdminContentsPage> {
       UContainer(
     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
     margin: const EdgeInsets.symmetric(vertical: 4),
-    child: Row(
+        child: URow(spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(width: 48, height: 48, child: UImage(i.media.firstOrNull?.url ?? "")),
         const SizedBox(width: 12),
         Expanded(
-          child: Column(
+          child: UColumn(spacing: 0, 
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Row(
+              URow(spacing: 0, 
                 children: <Widget>[
                   Chip(
                     label: Text(_tagOf(i)?.localizedTitle ?? "---"),
@@ -114,7 +114,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
       content: Form(
         key: c.filterFormKey,
         child: SingleChildScrollView(
-          child: Column(
+          child: UColumn(spacing: 0, 
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Obx(
@@ -175,7 +175,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
             child: SingleChildScrollView(
               child: Form(
                 key: formKey,
-                child: Column(
+                child: UColumn(spacing: 0, 
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
@@ -203,7 +203,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
                     UTextField(controller: whatsapp, labelText: U.s.whatsapp).pSymmetric(vertical: 6),
                     UTextField(controller: phone, labelText: U.s.phoneNumber).pSymmetric(vertical: 6),
                     const SizedBox(height: 12),
-                    Row(
+                    URow(spacing: 0, 
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         UTextBodyLarge(U.s.extraSections),
@@ -287,10 +287,10 @@ class _ContentsPageState extends State<UAdminContentsPage> {
     margin: const EdgeInsets.symmetric(vertical: 6),
     color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.06),
     radius: 8,
-    child: Column(
+    child: UColumn(spacing: 0, 
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Row(
+        URow(spacing: 0, 
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             UTextBodyMedium("${U.s.section} ${index + 1}"),

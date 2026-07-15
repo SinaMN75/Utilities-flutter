@@ -39,7 +39,8 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: UAdminPageBody(
           maxWidth: 1100,
-          child: Column(
+          child: UColumn(
+            spacing: 0,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               _header(),
@@ -56,7 +57,8 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
     }),
   );
 
-  Widget _error() => Column(
+  Widget _error() => UColumn(
+    spacing: 0,
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       Icon(Icons.cloud_off_rounded, size: 56, color: Theme.of(context).colorScheme.error),
@@ -79,10 +81,12 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
         colors: <Color>[Theme.of(context).colorScheme.primary, UAdminTheme.indigo.shade400],
       ),
       boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.30), blurRadius: 22, offset: const Offset(0, 10))],
-      child: Column(
+      child: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
+          URow(
+            spacing: 0,
             children: <Widget>[
               CircleAvatar(
                 radius: 30,
@@ -91,7 +95,8 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
               ),
               const SizedBox(width: 16),
               Expanded(
-                child: Column(
+                child: UColumn(
+                  spacing: 0,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     UTextTitleLarge(name, color: UAdminTheme.white, fontWeight: FontWeight.w800, maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -120,7 +125,8 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
   Widget _pill(IconData icon, String text) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
     decoration: BoxDecoration(color: UAdminTheme.white24, borderRadius: BorderRadius.circular(30)),
-    child: Row(
+    child: URow(
+      spacing: 0,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(icon, size: 15, color: UAdminTheme.white),
@@ -142,7 +148,8 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
     return _card(
       title: U.s.permissions,
       icon: Icons.badge_outlined,
-      child: Column(
+      child: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Wrap(spacing: 8, runSpacing: 8, children: chips),
@@ -179,10 +186,12 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
       radius: 16,
       color: Theme.of(context).colorScheme.surface,
       border: Border.all(color: Theme.of(context).dividerColor.withValues(alpha: 0.5)),
-      child: Column(
+      child: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
+          URow(
+            spacing: 0,
             children: <Widget>[
               const Icon(Icons.bed_rounded, size: 18),
               const SizedBox(width: 8),
@@ -221,7 +230,8 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
   Widget _paymentsSection() => _card(
     title: U.s.payments,
     icon: Icons.account_balance_wallet_outlined,
-    child: Column(
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         UAdminResponsiveGrid(
@@ -244,10 +254,12 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
     padding: const EdgeInsets.all(18),
     radius: 20,
     color: Theme.of(context).cardTheme.color,
-    child: Column(
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Row(
+        URow(
+          spacing: 0,
           children: <Widget>[
             Icon(icon, size: 20, color: Theme.of(context).colorScheme.primary),
             const SizedBox(width: 8),
@@ -264,7 +276,8 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
   Widget _chip(String label, Color color, IconData icon) => Container(
     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     decoration: BoxDecoration(color: color.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(30)),
-    child: Row(
+    child: URow(
+      spacing: 0,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Icon(icon, size: 14, color: color),
@@ -280,7 +293,8 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
     child: UTextBodySmall(count.separate3By3(), color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.w700),
   );
 
-  Widget _kv(IconData icon, String text, {Color? color}) => Row(
+  Widget _kv(IconData icon, String text, {Color? color}) => URow(
+    spacing: 0,
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
       Icon(icon, size: 15, color: color ?? UAdminTheme.grey),
@@ -293,12 +307,14 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
     padding: const EdgeInsets.all(14),
     radius: 14,
     color: color.withValues(alpha: 0.10),
-    child: Row(
+    child: URow(
+      spacing: 0,
       children: <Widget>[
         Icon(icon, color: color, size: 22),
         const SizedBox(width: 10),
         Expanded(
-          child: Column(
+          child: UColumn(
+            spacing: 0,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[

@@ -84,7 +84,7 @@ class _DormRoomPageState extends State<UAdminDormRoomPage> {
     AlertDialog(
       title: Text(U.s.filterRooms),
       content: SingleChildScrollView(
-        child: Column(
+        child: UColumn(spacing: 0, 
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             UTextField(controller: c.titleFilter, labelText: U.s.title).pSymmetric(vertical: 6),
@@ -119,7 +119,7 @@ class _DormRoomPageState extends State<UAdminDormRoomPage> {
         content: SingleChildScrollView(
           child: Form(
             key: formKey,
-            child: Column(
+            child: UColumn(spacing: 0, 
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 UTextField(

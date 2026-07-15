@@ -102,7 +102,7 @@ class _DormPageState extends State<UAdminDormPage> {
           content: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: Column(
+              child: UColumn(spacing: 0, 
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(

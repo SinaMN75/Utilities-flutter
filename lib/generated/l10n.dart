@@ -4927,6 +4927,1391 @@ class S {
       args: [],
     );
   }
+
+  /// `Are you sure you want to delete this vehicle?`
+  String get areYouSureYouWantToDeleteThisVehicle {
+    return Intl.message(
+      'Are you sure you want to delete this vehicle?',
+      name: 'areYouSureYouWantToDeleteThisVehicle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continueLabel {
+    return Intl.message('Continue', name: 'continueLabel', desc: '', args: []);
+  }
+
+  /// `Resend`
+  String get resend {
+    return Intl.message('Resend', name: 'resend', desc: '', args: []);
+  }
+
+  /// `Are you sure about the entered postal code?`
+  String get areYouSureAboutTheEnteredPostalCode {
+    return Intl.message(
+      'Are you sure about the entered postal code?',
+      name: 'areYouSureAboutTheEnteredPostalCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From`
+  String get from {
+    return Intl.message('From', name: 'from', desc: '', args: []);
+  }
+
+  /// `Online inquiry of vehicle violations, license and plate`
+  String get onlineInquiryOfVehicleViolationsLicenseAndPlate {
+    return Intl.message(
+      'Online inquiry of vehicle violations, license and plate',
+      name: 'onlineInquiryOfVehicleViolationsLicenseAndPlate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle violation inquiry`
+  String get vehicleViolationInquiry {
+    return Intl.message(
+      'Vehicle violation inquiry',
+      name: 'vehicleViolationInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inquire again`
+  String get inquireAgain {
+    return Intl.message(
+      'Inquire again',
+      name: 'inquireAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plate history inquiry`
+  String get plateHistoryInquiry {
+    return Intl.message(
+      'Plate history inquiry',
+      name: 'plateHistoryInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill inquiry`
+  String get billInquiry {
+    return Intl.message(
+      'Bill inquiry',
+      name: 'billInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Re-inquiry (with fee)`
+  String get reInquiryWithFee {
+    return Intl.message(
+      'Re-inquiry (with fee)',
+      name: 'reInquiryWithFee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License negative point inquiry`
+  String get licenseNegativePointInquiry {
+    return Intl.message(
+      'License negative point inquiry',
+      name: 'licenseNegativePointInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plate status inquiry`
+  String get plateStatusInquiry {
+    return Intl.message(
+      'Plate status inquiry',
+      name: 'plateStatusInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License status inquiry`
+  String get licenseStatusInquiry {
+    return Intl.message(
+      'License status inquiry',
+      name: 'licenseStatusInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inquiry`
+  String get inquiry {
+    return Intl.message('Inquiry', name: 'inquiry', desc: '', args: []);
+  }
+
+  /// `Credit validation`
+  String get creditValidation {
+    return Intl.message(
+      'Credit validation',
+      name: 'creditValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Validity and status of driving license`
+  String get validityAndStatusOfDrivingLicense {
+    return Intl.message(
+      'Validity and status of driving license',
+      name: 'validityAndStatusOfDrivingLicense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add vehicle`
+  String get addVehicle {
+    return Intl.message('Add vehicle', name: 'addVehicle', desc: '', args: []);
+  }
+
+  /// `Add SIM card`
+  String get addSimCard {
+    return Intl.message('Add SIM card', name: 'addSimCard', desc: '', args: []);
+  }
+
+  /// `Select internet package`
+  String get selectInternetPackage {
+    return Intl.message(
+      'Select internet package',
+      name: 'selectInternetPackage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select amount`
+  String get selectAmount {
+    return Intl.message(
+      'Select amount',
+      name: 'selectAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instant money transfer`
+  String get instantMoneyTransfer {
+    return Intl.message(
+      'Instant money transfer',
+      name: 'instantMoneyTransfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select an operator.`
+  String get pleaseSelectOperator {
+    return Intl.message(
+      'Please select an operator.',
+      name: 'pleaseSelectOperator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Operator`
+  String get operatorLabel {
+    return Intl.message('Operator', name: 'operatorLabel', desc: '', args: []);
+  }
+
+  /// `Irancell, Hamrah-e Aval, Rightel`
+  String get irancellHamrahAvalRightel {
+    return Intl.message(
+      'Irancell, Hamrah-e Aval, Rightel',
+      name: 'irancellHamrahAvalRightel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This service will launch soon`
+  String get thisServiceWillLaunchSoon {
+    return Intl.message(
+      'This service will launch soon',
+      name: 'thisServiceWillLaunchSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internet`
+  String get internet {
+    return Intl.message('Internet', name: 'internet', desc: '', args: []);
+  }
+
+  /// `Invalid barcode, please enter the IDs manually`
+  String get invalidBarcodePleaseEnterIdsManually {
+    return Intl.message(
+      'Invalid barcode, please enter the IDs manually',
+      name: 'invalidBarcodePleaseEnterIdsManually',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Barcode`
+  String get barcode {
+    return Intl.message('Barcode', name: 'barcode', desc: '', args: []);
+  }
+
+  /// `Tap to inquire`
+  String get tapToInquire {
+    return Intl.message(
+      'Tap to inquire',
+      name: 'tapToInquire',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To register a merchant, your wallet must have at least 100,000 Tomans balance.`
+  String get merchantRegistrationMinimumBalanceNotice {
+    return Intl.message(
+      'To register a merchant, your wallet must have at least 100,000 Tomans balance.',
+      name: 'merchantRegistrationMinimumBalanceNotice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check negative points recorded on the license`
+  String get checkNegativePointsRecordedOnLicense {
+    return Intl.message(
+      'Check negative points recorded on the license',
+      name: 'checkNegativePointsRecordedOnLicense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Electricity, water, gas`
+  String get electricityWaterGas {
+    return Intl.message(
+      'Electricity, water, gas',
+      name: 'electricityWaterGas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internet package`
+  String get internetPackage {
+    return Intl.message(
+      'Internet package',
+      name: 'internetPackage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Internet data package`
+  String get internetDataPackage {
+    return Intl.message(
+      'Internet data package',
+      name: 'internetDataPackage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Package`
+  String get packageLabel {
+    return Intl.message('Package', name: 'packageLabel', desc: '', args: []);
+  }
+
+  /// `Coming soon`
+  String get comingSoon {
+    return Intl.message('Coming soon', name: 'comingSoon', desc: '', args: []);
+  }
+
+  /// `To`
+  String get to {
+    return Intl.message('To', name: 'to', desc: '', args: []);
+  }
+
+  /// `Various insurances`
+  String get variousInsurances {
+    return Intl.message(
+      'Various insurances',
+      name: 'variousInsurances',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Between 50,000 and 10,000,000 Rials`
+  String get betweenFiftyThousandAndTenMillionRials {
+    return Intl.message(
+      'Between 50,000 and 10,000,000 Rials',
+      name: 'betweenFiftyThousandAndTenMillionRials',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inquiry date`
+  String get inquiryDate {
+    return Intl.message(
+      'Inquiry date',
+      name: 'inquiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmation date`
+  String get confirmationDate {
+    return Intl.message(
+      'Confirmation date',
+      name: 'confirmationDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Installation date`
+  String get installationDate {
+    return Intl.message(
+      'Installation date',
+      name: 'installationDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Print date`
+  String get printDate {
+    return Intl.message('Print date', name: 'printDate', desc: '', args: []);
+  }
+
+  /// `Date`
+  String get date {
+    return Intl.message('Date', name: 'date', desc: '', args: []);
+  }
+
+  /// `Transaction history`
+  String get transactionHistory {
+    return Intl.message(
+      'Transaction history',
+      name: 'transactionHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Information confirmation`
+  String get informationConfirmation {
+    return Intl.message(
+      'Information confirmation',
+      name: 'informationConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm and continue`
+  String get confirmAndContinue {
+    return Intl.message(
+      'Confirm and continue',
+      name: 'confirmAndContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No transactions done.`
+  String get noTransactionsDone {
+    return Intl.message(
+      'No transactions done.',
+      name: 'noTransactionsDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register new merchant`
+  String get registerNewMerchant {
+    return Intl.message(
+      'Register new merchant',
+      name: 'registerNewMerchant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register merchant`
+  String get registerMerchant {
+    return Intl.message(
+      'Register merchant',
+      name: 'registerMerchant',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inquiry details`
+  String get inquiryDetails {
+    return Intl.message(
+      'Inquiry details',
+      name: 'inquiryDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill details`
+  String get billDetails {
+    return Intl.message(
+      'Bill details',
+      name: 'billDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License details`
+  String get licenseDetails {
+    return Intl.message(
+      'License details',
+      name: 'licenseDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete vehicle`
+  String get deleteVehicle {
+    return Intl.message(
+      'Delete vehicle',
+      name: 'deleteVehicle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My bank accounts`
+  String get myBankAccounts {
+    return Intl.message(
+      'My bank accounts',
+      name: 'myBankAccounts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle services`
+  String get vehicleServices {
+    return Intl.message(
+      'Vehicle services',
+      name: 'vehicleServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Services`
+  String get services {
+    return Intl.message('Services', name: 'services', desc: '', args: []);
+  }
+
+  /// `Buy internet package`
+  String get buyInternetPackage {
+    return Intl.message(
+      'Buy internet package',
+      name: 'buyInternetPackage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy insurance`
+  String get buyInsurance {
+    return Intl.message(
+      'Buy insurance',
+      name: 'buyInsurance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error loading balance`
+  String get errorLoadingBalance {
+    return Intl.message(
+      'Error loading balance',
+      name: 'errorLoadingBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Violation`
+  String get violation {
+    return Intl.message('Violation', name: 'violation', desc: '', args: []);
+  }
+
+  /// `Violations, plate and license`
+  String get violationsPlateAndLicense {
+    return Intl.message(
+      'Violations, plate and license',
+      name: 'violationsPlateAndLicense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My vehicle`
+  String get myVehicle {
+    return Intl.message('My vehicle', name: 'myVehicle', desc: '', args: []);
+  }
+
+  /// `Select the vehicle for violation inquiry`
+  String get selectVehicleForViolationInquiry {
+    return Intl.message(
+      'Select the vehicle for violation inquiry',
+      name: 'selectVehicleForViolationInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the vehicle for negative point inquiry`
+  String get selectVehicleForNegativePointInquiry {
+    return Intl.message(
+      'Select the vehicle for negative point inquiry',
+      name: 'selectVehicleForNegativePointInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the vehicle for plate status inquiry`
+  String get selectVehicleForPlateStatusInquiry {
+    return Intl.message(
+      'Select the vehicle for plate status inquiry',
+      name: 'selectVehicleForPlateStatusInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the vehicle for license status inquiry`
+  String get selectVehicleForLicenseStatusInquiry {
+    return Intl.message(
+      'Select the vehicle for license status inquiry',
+      name: 'selectVehicleForLicenseStatusInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your registered vehicles`
+  String get yourRegisteredVehicles {
+    return Intl.message(
+      'Your registered vehicles',
+      name: 'yourRegisteredVehicles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My vehicles`
+  String get myVehicles {
+    return Intl.message('My vehicles', name: 'myVehicles', desc: '', args: []);
+  }
+
+  /// `My POS`
+  String get myPos {
+    return Intl.message('My POS', name: 'myPos', desc: '', args: []);
+  }
+
+  /// `Has image`
+  String get hasImage {
+    return Intl.message('Has image', name: 'hasImage', desc: '', args: []);
+  }
+
+  /// `License holder`
+  String get licenseHolder {
+    return Intl.message(
+      'License holder',
+      name: 'licenseHolder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About AvaHamrah`
+  String get aboutAvaHamrah {
+    return Intl.message(
+      'About AvaHamrah',
+      name: 'aboutAvaHamrah',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loan request`
+  String get loanRequest {
+    return Intl.message(
+      'Loan request',
+      name: 'loanRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Period`
+  String get period {
+    return Intl.message('Period', name: 'period', desc: '', args: []);
+  }
+
+  /// `Transaction receipt`
+  String get transactionReceipt {
+    return Intl.message(
+      'Transaction receipt',
+      name: 'transactionReceipt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The support password was sent via SMS to the number registered in the app.`
+  String get supportPasswordSentViaSms {
+    return Intl.message(
+      'The support password was sent via SMS to the number registered in the app.',
+      name: 'supportPasswordSentViaSms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily`
+  String get daily {
+    return Intl.message('Daily', name: 'daily', desc: '', args: []);
+  }
+
+  /// `Payment method`
+  String get paymentMethod {
+    return Intl.message(
+      'Payment method',
+      name: 'paymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year`
+  String get year {
+    return Intl.message('Year', name: 'year', desc: '', args: []);
+  }
+
+  /// `AvaHamrah system`
+  String get avaHamrahSystem {
+    return Intl.message(
+      'AvaHamrah system',
+      name: 'avaHamrahSystem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Device serial`
+  String get deviceSerial {
+    return Intl.message(
+      'Device serial',
+      name: 'deviceSerial',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Validity years`
+  String get validityYears {
+    return Intl.message(
+      'Validity years',
+      name: 'validityYears',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Financial records`
+  String get financialRecords {
+    return Intl.message(
+      'Financial records',
+      name: 'financialRecords',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the desired SIM card`
+  String get selectDesiredSimCard {
+    return Intl.message(
+      'Select the desired SIM card',
+      name: 'selectDesiredSimCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SIM card charge`
+  String get simCardCharge {
+    return Intl.message(
+      'SIM card charge',
+      name: 'simCardCharge',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PIN charge`
+  String get pinCharge {
+    return Intl.message('PIN charge', name: 'pinCharge', desc: '', args: []);
+  }
+
+  /// `Wallet charge was not completed. If any amount was deducted, it will be refunded within 15 minutes.`
+  String get walletChargeFailedRefundNotice {
+    return Intl.message(
+      'Wallet charge was not completed. If any amount was deducted, it will be refunded within 15 minutes.',
+      name: 'walletChargeFailedRefundNotice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Good night`
+  String get goodNight {
+    return Intl.message('Good night', name: 'goodNight', desc: '', args: []);
+  }
+
+  /// `AvaHamrah terms of use`
+  String get avaHamrahTermsOfUse {
+    return Intl.message(
+      'AvaHamrah terms of use',
+      name: 'avaHamrahTermsOfUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Landline phone number`
+  String get landlinePhoneNumber {
+    return Intl.message(
+      'Landline phone number',
+      name: 'landlinePhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the prepaid SIM card number`
+  String get enterPrepaidSimCardNumber {
+    return Intl.message(
+      'Enter the prepaid SIM card number',
+      name: 'enterPrepaidSimCardNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile number`
+  String get mobileNumber {
+    return Intl.message(
+      'Mobile number',
+      name: 'mobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Print number`
+  String get printNumber {
+    return Intl.message(
+      'Print number',
+      name: 'printNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number`
+  String get number {
+    return Intl.message('Number', name: 'number', desc: '', args: []);
+  }
+
+  /// `Transaction ID`
+  String get transactionId {
+    return Intl.message(
+      'Transaction ID',
+      name: 'transactionId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill ID`
+  String get billId {
+    return Intl.message('Bill ID', name: 'billId', desc: '', args: []);
+  }
+
+  /// `Payment ID`
+  String get paymentId {
+    return Intl.message('Payment ID', name: 'paymentId', desc: '', args: []);
+  }
+
+  /// `Good morning`
+  String get goodMorning {
+    return Intl.message(
+      'Good morning',
+      name: 'goodMorning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Good noon`
+  String get goodNoon {
+    return Intl.message('Good noon', name: 'goodNoon', desc: '', args: []);
+  }
+
+  /// `Good afternoon`
+  String get goodAfternoon {
+    return Intl.message(
+      'Good afternoon',
+      name: 'goodAfternoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terminal title (optional)`
+  String get terminalTitleOptional {
+    return Intl.message(
+      'Terminal title (optional)',
+      name: 'terminalTitleOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Merchant title (store or business name)`
+  String get merchantTitleStoreOrBusinessName {
+    return Intl.message(
+      'Merchant title (store or business name)',
+      name: 'merchantTitleStoreOrBusinessName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bill`
+  String get bill {
+    return Intl.message('Bill', name: 'bill', desc: '', args: []);
+  }
+
+  /// `Accept terms and continue`
+  String get acceptTermsAndContinue {
+    return Intl.message(
+      'Accept terms and continue',
+      name: 'acceptTermsAndContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms and conditions`
+  String get termsAndConditions {
+    return Intl.message(
+      'Terms and conditions',
+      name: 'termsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly`
+  String get monthly {
+    return Intl.message('Monthly', name: 'monthly', desc: '', args: []);
+  }
+
+  /// `The amount will be added to the wallet and paid`
+  String get amountWillBeAddedToWalletAndPaid {
+    return Intl.message(
+      'The amount will be added to the wallet and paid',
+      name: 'amountWillBeAddedToWalletAndPaid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select the charge amount.`
+  String get pleaseSelectChargeAmount {
+    return Intl.message(
+      'Please select the charge amount.',
+      name: 'pleaseSelectChargeAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Charge amount`
+  String get chargeAmount {
+    return Intl.message(
+      'Charge amount',
+      name: 'chargeAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payable amount`
+  String get payableAmount {
+    return Intl.message(
+      'Payable amount',
+      name: 'payableAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid amount.`
+  String get invalidAmount {
+    return Intl.message(
+      'Invalid amount.',
+      name: 'invalidAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total violation amount`
+  String get totalViolationAmount {
+    return Intl.message(
+      'Total violation amount',
+      name: 'totalViolationAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Model`
+  String get model {
+    return Intl.message('Model', name: 'model', desc: '', args: []);
+  }
+
+  /// `Check management`
+  String get checkManagement {
+    return Intl.message(
+      'Check management',
+      name: 'checkManagement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View fines and total violation amount`
+  String get viewFinesAndTotalViolationAmount {
+    return Intl.message(
+      'View fines and total violation amount',
+      name: 'viewFinesAndTotalViolationAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View all`
+  String get viewAll {
+    return Intl.message('View all', name: 'viewAll', desc: '', args: []);
+  }
+
+  /// `Plate specifications`
+  String get plateSpecifications {
+    return Intl.message(
+      'Plate specifications',
+      name: 'plateSpecifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid`
+  String get valid {
+    return Intl.message('Valid', name: 'valid', desc: '', args: []);
+  }
+
+  /// `Violation items`
+  String get violationItems {
+    return Intl.message(
+      'Violation items',
+      name: 'violationItems',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insufficient wallet balance. Please use the payment gateway.`
+  String get insufficientWalletBalanceUsePaymentGateway {
+    return Intl.message(
+      'Insufficient wallet balance. Please use the payment gateway.',
+      name: 'insufficientWalletBalanceUsePaymentGateway',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successful`
+  String get successful {
+    return Intl.message('Successful', name: 'successful', desc: '', args: []);
+  }
+
+  /// `Invalid`
+  String get invalid {
+    return Intl.message('Invalid', name: 'invalid', desc: '', args: []);
+  }
+
+  /// `Previous inquiry result`
+  String get previousInquiryResult {
+    return Intl.message(
+      'Previous inquiry result',
+      name: 'previousInquiryResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction type`
+  String get transactionType {
+    return Intl.message(
+      'Transaction type',
+      name: 'transactionType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get type {
+    return Intl.message('Type', name: 'type', desc: '', args: []);
+  }
+
+  /// `Charity`
+  String get charity {
+    return Intl.message('Charity', name: 'charity', desc: '', args: []);
+  }
+
+  /// `Warnings`
+  String get warnings {
+    return Intl.message('Warnings', name: 'warnings', desc: '', args: []);
+  }
+
+  /// `Weekly`
+  String get weekly {
+    return Intl.message('Weekly', name: 'weekly', desc: '', args: []);
+  }
+
+  /// `AvaHamrah official website`
+  String get avaHamrahOfficialWebsite {
+    return Intl.message(
+      'AvaHamrah official website',
+      name: 'avaHamrahOfficialWebsite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vehicle plate status and history`
+  String get vehiclePlateStatusAndHistory {
+    return Intl.message(
+      'Vehicle plate status and history',
+      name: 'vehiclePlateStatusAndHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plate status`
+  String get plateStatus {
+    return Intl.message(
+      'Plate status',
+      name: 'plateStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit user information`
+  String get editUserInformation {
+    return Intl.message(
+      'Edit user information',
+      name: 'editUserInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My terminals`
+  String get myTerminals {
+    return Intl.message(
+      'My terminals',
+      name: 'myTerminals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My merchants`
+  String get myMerchants {
+    return Intl.message(
+      'My merchants',
+      name: 'myMerchants',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Online payment`
+  String get onlinePayment {
+    return Intl.message(
+      'Online payment',
+      name: 'onlinePayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment was successful.`
+  String get paymentSuccessful {
+    return Intl.message(
+      'Payment was successful.',
+      name: 'paymentSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay with wallet`
+  String get payWithWallet {
+    return Intl.message(
+      'Pay with wallet',
+      name: 'payWithWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment failed.`
+  String get paymentFailed {
+    return Intl.message(
+      'Payment failed.',
+      name: 'paymentFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment`
+  String get payment {
+    return Intl.message('Payment', name: 'payment', desc: '', args: []);
+  }
+
+  /// `Vehicle plate`
+  String get vehiclePlate {
+    return Intl.message(
+      'Vehicle plate',
+      name: 'vehiclePlate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plate`
+  String get plate {
+    return Intl.message('Plate', name: 'plate', desc: '', args: []);
+  }
+
+  /// `Loan pre-request`
+  String get loanPreRequest {
+    return Intl.message(
+      'Loan pre-request',
+      name: 'loanPreRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sayad check`
+  String get sayadCheck {
+    return Intl.message('Sayad check', name: 'sayadCheck', desc: '', args: []);
+  }
+
+  /// `Card to card`
+  String get cardToCard {
+    return Intl.message('Card to card', name: 'cardToCard', desc: '', args: []);
+  }
+
+  /// `IMEI code`
+  String get imeiCode {
+    return Intl.message('IMEI code', name: 'imeiCode', desc: '', args: []);
+  }
+
+  /// `Enter the sent verification code.`
+  String get enterTheSentVerificationCode {
+    return Intl.message(
+      'Enter the sent verification code.',
+      name: 'enterTheSentVerificationCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The entered verification code is incorrect.`
+  String get theEnteredVerificationCodeIsIncorrect {
+    return Intl.message(
+      'The entered verification code is incorrect.',
+      name: 'theEnteredVerificationCodeIsIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The entered national code is incorrect.`
+  String get theEnteredNationalCodeIsIncorrect {
+    return Intl.message(
+      'The entered national code is incorrect.',
+      name: 'theEnteredNationalCodeIsIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your postal code correctly and inquire.`
+  String get enterYourPostalCodeCorrectlyAndInquire {
+    return Intl.message(
+      'Enter your postal code correctly and inquire.',
+      name: 'enterYourPostalCodeCorrectlyAndInquire',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Postal code`
+  String get postalCode {
+    return Intl.message('Postal code', name: 'postalCode', desc: '', args: []);
+  }
+
+  /// `Plate tracking code`
+  String get plateTrackingCode {
+    return Intl.message(
+      'Plate tracking code',
+      name: 'plateTrackingCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Charity donation`
+  String get charityDonation {
+    return Intl.message(
+      'Charity donation',
+      name: 'charityDonation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your wallet`
+  String get yourWallet {
+    return Intl.message('Your wallet', name: 'yourWallet', desc: '', args: []);
+  }
+
+  /// `Wallet`
+  String get wallet {
+    return Intl.message('Wallet', name: 'wallet', desc: '', args: []);
+  }
+
+  /// `Driving license`
+  String get drivingLicense {
+    return Intl.message(
+      'Driving license',
+      name: 'drivingLicense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days`
+  String get dayCountSuffix {
+    return Intl.message('days', name: 'dayCountSuffix', desc: '', args: []);
+  }
+
+  /// `weeks`
+  String get weekCountSuffix {
+    return Intl.message('weeks', name: 'weekCountSuffix', desc: '', args: []);
+  }
+
+  /// `months`
+  String get monthCountSuffix {
+    return Intl.message('months', name: 'monthCountSuffix', desc: '', args: []);
+  }
+
+  /// `Rial`
+  String get rial {
+    return Intl.message('Rial', name: 'rial', desc: '', args: []);
+  }
+
+  /// `Insufficient balance`
+  String get insufficientBalance {
+    return Intl.message(
+      'Insufficient balance',
+      name: 'insufficientBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balance`
+  String get balance {
+    return Intl.message('Balance', name: 'balance', desc: '', args: []);
+  }
+
+  /// `Serial number`
+  String get serialNumber {
+    return Intl.message(
+      'Serial number',
+      name: 'serialNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terminal number`
+  String get terminalNumber {
+    return Intl.message(
+      'Terminal number',
+      name: 'terminalNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -28,7 +28,7 @@ class _UAdminParkingReportPageState extends State<UAdminParkingReportPage> {
       c.pageNumber(page);
       c.read();
     },
-    body: Column(children: <Widget>[_summary(), _list().expanded()]),
+    body: UColumn(spacing: 0, children: <Widget>[_summary(), _list().expanded()]),
   );
 
   Widget _summary() => Obx(() {
@@ -38,7 +38,8 @@ class _UAdminParkingReportPageState extends State<UAdminParkingReportPage> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.08),
       radius: 10,
-      child: Row(
+      child: URow(
+        spacing: 0,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           UTextBodyMedium("${U.s.totalResults}: ${c.totalCount.toString().separateNumbers3By3()}"),

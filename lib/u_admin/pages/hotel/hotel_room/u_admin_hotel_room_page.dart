@@ -84,7 +84,7 @@ class _HotelRoomPageState extends State<UAdminHotelRoomPage> {
     AlertDialog(
       title: Text(U.s.filterRooms),
       content: SingleChildScrollView(
-        child: Column(
+        child: UColumn(spacing: 0, 
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             UTextField(controller: c.titleFilter, labelText: U.s.title).pSymmetric(vertical: 6),
@@ -131,7 +131,7 @@ class _HotelRoomPageState extends State<UAdminHotelRoomPage> {
           child: StatefulBuilder(
             builder: (BuildContext context, void Function(void Function()) setLocal) => Form(
               key: formKey,
-              child: Column(
+              child: UColumn(spacing: 0, 
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(
