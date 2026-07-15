@@ -833,5 +833,9 @@
   "parentDirectory": "بالا",
   "newName": "نام جدید",
   "moveTo": "انتقال به",
-  "deleteItemConfirm": "آیا از حذف این مورد مطمئن هستید؟"
+  "deleteItemConfirm": "آیا از حذف این مورد مطمئن هستید؟",
+  "gridView": "شبکه‌ای",
+  "listView": "لیستی",
+  "previewNotAvailable": "پیش‌نمایش برای این نوع فایل در دسترس نیست",
+  "openInBrowser": "باز کردن در مرورگر"
 }

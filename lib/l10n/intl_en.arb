@@ -833,5 +833,9 @@
   "parentDirectory": "Up",
   "newName": "New Name",
   "moveTo": "Move To",
-  "deleteItemConfirm": "Are you sure you want to delete this item?"
+  "deleteItemConfirm": "Are you sure you want to delete this item?",
+  "gridView": "Grid",
+  "listView": "List",
+  "previewNotAvailable": "Preview not available for this file type",
+  "openInBrowser": "Open in Browser"
 }

@@ -6416,6 +6416,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Grid`
+  String get gridView {
+    return Intl.message('Grid', name: 'gridView', desc: '', args: []);
+  }
+
+  /// `List`
+  String get listView {
+    return Intl.message('List', name: 'listView', desc: '', args: []);
+  }
+
+  /// `Preview not available for this file type`
+  String get previewNotAvailable {
+    return Intl.message(
+      'Preview not available for this file type',
+      name: 'previewNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open in Browser`
+  String get openInBrowser {
+    return Intl.message(
+      'Open in Browser',
+      name: 'openInBrowser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

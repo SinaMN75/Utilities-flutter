@@ -446,6 +446,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "goodMorning": MessageLookupByLibrary.simpleMessage("صبح بخیر"),
     "goodNight": MessageLookupByLibrary.simpleMessage("شب بخیر"),
     "goodNoon": MessageLookupByLibrary.simpleMessage("ظهر بخیر"),
+    "gridView": MessageLookupByLibrary.simpleMessage("شبکه‌ای"),
     "guest": MessageLookupByLibrary.simpleMessage("مهمان"),
     "guestCount": MessageLookupByLibrary.simpleMessage("تعداد مهمان"),
     "guestName": MessageLookupByLibrary.simpleMessage("نام مهمان"),
@@ -542,6 +543,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "light": MessageLookupByLibrary.simpleMessage("روشن"),
     "link": MessageLookupByLibrary.simpleMessage("پیوند"),
+    "listView": MessageLookupByLibrary.simpleMessage("لیستی"),
     "loadAverage": MessageLookupByLibrary.simpleMessage("میانگین بار"),
     "loanPreRequest": MessageLookupByLibrary.simpleMessage("پیش‌درخواست وام"),
     "loanRequest": MessageLookupByLibrary.simpleMessage("درخواست وام"),
@@ -709,6 +711,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "onlinePayment": MessageLookupByLibrary.simpleMessage("پرداخت اینترنتی"),
     "onlyErrors": MessageLookupByLibrary.simpleMessage("فقط خطا"),
     "onlyExceptions": MessageLookupByLibrary.simpleMessage("فقط استثنا"),
+    "openInBrowser": MessageLookupByLibrary.simpleMessage("باز کردن در مرورگر"),
     "operatingSystem": MessageLookupByLibrary.simpleMessage("سیستم‌عامل"),
     "operations": MessageLookupByLibrary.simpleMessage("عملیات"),
     "operatorLabel": MessageLookupByLibrary.simpleMessage("اپراتور"),
@@ -807,6 +810,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "policies": MessageLookupByLibrary.simpleMessage("قوانین"),
     "postalCode": MessageLookupByLibrary.simpleMessage("کد پستی"),
     "preview": MessageLookupByLibrary.simpleMessage("پیش‌نمایش"),
+    "previewNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "پیش‌نمایش برای این نوع فایل در دسترس نیست",
+    ),
     "previousInquiryResult": MessageLookupByLibrary.simpleMessage(
       "نتیجه استعلام قبلی",
     ),

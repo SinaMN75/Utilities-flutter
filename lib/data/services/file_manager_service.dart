@@ -97,6 +97,21 @@ class FileManagerService {
   // Public URL used to open/download a file through the browser (token carried as a query param).
   String downloadUrl(final String path) => "${U.baseUrl}/FileManager/Download?path=${Uri.encodeQueryComponent(path)}&token=${Uri.encodeQueryComponent(ULocalStorage.getToken() ?? "")}";
 
+  // Fetches raw file contents (for inline text/json/code previews).
+  Future<void> fetchText({
+    required final String url,
+    required final Function(String content) onOk,
+    required final Function(String e) onException,
+  }) async {
+    await UHttpClient.send(
+      method: "GET",
+      endpoint: url,
+      onSuccess: (final Response r) => onOk(r.body),
+      onError: (final Response r) => onException(r.body),
+      onException: onException,
+    );
+  }
+
   Future<(UEmptyResponse?, UEmptyResponse?, String?)> _mutate(
     final String path,
     final Map<String, dynamic> body,

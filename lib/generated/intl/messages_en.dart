@@ -458,6 +458,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "goodMorning": MessageLookupByLibrary.simpleMessage("Good morning"),
     "goodNight": MessageLookupByLibrary.simpleMessage("Good night"),
     "goodNoon": MessageLookupByLibrary.simpleMessage("Good noon"),
+    "gridView": MessageLookupByLibrary.simpleMessage("Grid"),
     "guest": MessageLookupByLibrary.simpleMessage("Guest"),
     "guestCount": MessageLookupByLibrary.simpleMessage("Number of Guests"),
     "guestName": MessageLookupByLibrary.simpleMessage("Guest Name"),
@@ -556,6 +557,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "light": MessageLookupByLibrary.simpleMessage("Light"),
     "link": MessageLookupByLibrary.simpleMessage("Link"),
+    "listView": MessageLookupByLibrary.simpleMessage("List"),
     "loadAverage": MessageLookupByLibrary.simpleMessage("Load Average"),
     "loanPreRequest": MessageLookupByLibrary.simpleMessage("Loan pre-request"),
     "loanRequest": MessageLookupByLibrary.simpleMessage("Loan request"),
@@ -576,8 +578,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "memoryUsage": MessageLookupByLibrary.simpleMessage("Memory Usage"),
     "merchant": MessageLookupByLibrary.simpleMessage("Merchant"),
     "merchantId": MessageLookupByLibrary.simpleMessage("Merchant ID"),
-    "merchantRegistrationMinimumBalanceNotice":
-    MessageLookupByLibrary.simpleMessage(
+    "merchantRegistrationMinimumBalanceNotice": MessageLookupByLibrary.simpleMessage(
       "To register a merchant, your wallet must have at least 100,000 Tomans balance.",
     ),
     "merchantTitleStoreOrBusinessName": MessageLookupByLibrary.simpleMessage(
@@ -722,6 +723,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "onlinePayment": MessageLookupByLibrary.simpleMessage("Online payment"),
     "onlyErrors": MessageLookupByLibrary.simpleMessage("Only Errors"),
     "onlyExceptions": MessageLookupByLibrary.simpleMessage("Only Exceptions"),
+    "openInBrowser": MessageLookupByLibrary.simpleMessage("Open in Browser"),
     "operatingSystem": MessageLookupByLibrary.simpleMessage("Operating System"),
     "operations": MessageLookupByLibrary.simpleMessage("Operations"),
     "operatorLabel": MessageLookupByLibrary.simpleMessage("Operator"),
@@ -824,6 +826,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "policies": MessageLookupByLibrary.simpleMessage("Policies"),
     "postalCode": MessageLookupByLibrary.simpleMessage("Postal code"),
     "preview": MessageLookupByLibrary.simpleMessage("Preview"),
+    "previewNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "Preview not available for this file type",
+    ),
     "previousInquiryResult": MessageLookupByLibrary.simpleMessage(
       "Previous inquiry result",
     ),
