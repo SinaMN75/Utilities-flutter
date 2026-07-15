@@ -42,7 +42,7 @@ class _DormPageState extends State<UAdminDormPage> {
   Widget _itemDesktop(UDormResponse i, int index) {
     final UCountryCityInfo city = UCountries.infoByCode(i.cityCode);
     return URow(
-      backgroundColor: UAdminTable.rowColor(context, index),
+      color: UAdminTable.rowColor(context, index),
       children: <Widget>[
         UAdminTable.cell(i.title),
         UAdminTable.cell("${city.country?.nameFa ?? ""} - ${city.province?.nameFa ?? ""} - ${city.city?.nameFa ?? ""}"),

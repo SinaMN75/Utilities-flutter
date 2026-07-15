@@ -57,7 +57,7 @@ class _TerminalsPageState extends State<UAdminTerminalsPage> {
   }
 
   Widget _itemDesktop(UTerminalResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell(i.serial),
       UAdminTable.cell(i.simCardSerial ?? "-"),

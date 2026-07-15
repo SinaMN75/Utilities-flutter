@@ -44,7 +44,7 @@ class _HotelRoomPageState extends State<UAdminHotelRoomPage> {
 
   Widget _itemDesktop(UHotelRoomResponse i, int index) =>
       URow(
-        backgroundColor: UAdminTable.rowColor(context, index),
+        color: UAdminTable.rowColor(context, index),
         children: <Widget>[
           UAdminTable.cell(i.title),
           UAdminTable.cell(i.hotel?.title ?? "-"),

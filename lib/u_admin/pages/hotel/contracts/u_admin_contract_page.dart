@@ -89,7 +89,7 @@ class _ContractPageState extends State<UAdminContractPage> {
   String _tenantLabel(UDormBedContractResponse i) => i.user?.displayName ?? "-";
 
   Widget _itemDesktop(UDormBedContractResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell(_tenantLabel(i)),
       UAdminTable.cell(_bedLabel(i)),

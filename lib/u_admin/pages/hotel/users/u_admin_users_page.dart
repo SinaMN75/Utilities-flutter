@@ -56,7 +56,7 @@ class _UserPageState extends State<UAdminUserPage> {
     if (MediaQuery.sizeOf(context).width >= 800) {
       return UListView(
         header: URow(
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.primary,
           padding: const EdgeInsets.all(8),
           children: <Widget>[
             UTextBodyLarge(U.s.gender, color: UAdminTheme.white, textAlign: .center).expanded(),
@@ -231,7 +231,7 @@ class _UserPageState extends State<UAdminUserPage> {
   );
 
   Widget _listItemDesktop({required UUserResponse i, required int index}) => URow(
-    backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+    color: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
     children: <Widget>[
       Center(child: _genderIcon(i)).expanded(),
       URow(

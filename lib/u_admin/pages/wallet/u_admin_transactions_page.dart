@@ -44,7 +44,7 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
   String _statusName(UTxnResponse i) => i.tags.isEmpty ? "-" : (TagTxn.values.fromNumber(i.tags.first)?.localizedTitle ?? "-");
 
   Widget _itemDesktop(UTxnResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell(i.amount.rial()),
       UAdminTable.cell(i.trackingNumber ?? "-"),

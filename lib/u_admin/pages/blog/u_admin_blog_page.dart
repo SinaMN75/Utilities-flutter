@@ -50,7 +50,7 @@ class _BlogPageState extends State<UAdminBlogPage> {
   bool _isPublished(UBlogResponse i) => i.tags.contains(TagBlog.published.number);
 
   Widget _itemDesktop(UBlogResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       SizedBox(width: 48, child: i.media?.firstOrNull?.url != null ? UImage(i.media!.first.url!) : const Icon(Icons.article_outlined)).expanded(flex: 0),
       UAdminTable.cell(i.title, flex: 3),

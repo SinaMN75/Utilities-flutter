@@ -339,11 +339,19 @@ class UColumn extends StatelessWidget {
     this.mainAxisSize = MainAxisSize.max,
     this.width,
     this.height,
-    this.backgroundColor,
     this.padding,
     this.margin,
     this.radius,
     this.border,
+    this.color,
+    this.gradient,
+    this.image,
+    this.boxShadow,
+    this.constraints,
+    this.alignment,
+    this.clipBehavior = Clip.hardEdge,
+    this.transform,
+    this.foregroundDecoration,
   });
 
   final List<Widget> children;
@@ -354,28 +362,43 @@ class UColumn extends StatelessWidget {
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
   final double? radius;
-  final Color? backgroundColor;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
   final BoxBorder? border;
+  final Color? color;
+  final Gradient? gradient;
+  final DecorationImage? image;
+  final List<BoxShadow>? boxShadow;
+  final BoxConstraints? constraints;
+  final AlignmentGeometry? alignment;
+  final Clip clipBehavior;
+  final Matrix4? transform;
+  final Decoration? foregroundDecoration;
 
   @override
   Widget build(final BuildContext context) => UContainer(
-    color: backgroundColor,
-      width: width,
-      height: height,
-      padding: padding,
-      margin: margin,
-      radius: radius,
-      border: border,
-      child: Column(
+    color: color,
+    width: width,
+    height: height,
+    padding: padding,
+    margin: margin,
+    radius: radius,
+    border: border,
+    constraints: constraints,
+    alignment: alignment,
+    transform: transform,
+    foregroundDecoration: foregroundDecoration,
+    gradient: gradient,
+    image: image,
+    boxShadow: boxShadow,
+    child: Column(
       spacing: spacing,
       mainAxisAlignment: mainAxisAlignment,
-        crossAxisAlignment: crossAxisAlignment,
-        mainAxisSize: mainAxisSize,
+      crossAxisAlignment: crossAxisAlignment,
+      mainAxisSize: mainAxisSize,
       children: children,
     ),
-    );
+  );
 }
 
 class URow extends StatelessWidget {
@@ -388,11 +411,19 @@ class URow extends StatelessWidget {
     this.mainAxisSize = MainAxisSize.max,
     this.width,
     this.height,
-    this.backgroundColor,
     this.padding,
     this.margin,
     this.radius,
     this.border,
+    this.color,
+    this.gradient,
+    this.image,
+    this.boxShadow,
+    this.constraints,
+    this.alignment,
+    this.clipBehavior = Clip.hardEdge,
+    this.transform,
+    this.foregroundDecoration,
   });
 
   final List<Widget> children;
@@ -402,21 +433,36 @@ class URow extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisSize mainAxisSize;
-  final Color? backgroundColor;
+  final double? radius;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
-  final double? radius;
   final BoxBorder? border;
+  final Color? color;
+  final Gradient? gradient;
+  final DecorationImage? image;
+  final List<BoxShadow>? boxShadow;
+  final BoxConstraints? constraints;
+  final AlignmentGeometry? alignment;
+  final Clip clipBehavior;
+  final Matrix4? transform;
+  final Decoration? foregroundDecoration;
 
   @override
   Widget build(final BuildContext context) => UContainer(
-    color: backgroundColor,
+    color: color,
     width: width,
     height: height,
     padding: padding,
     margin: margin,
     radius: radius,
     border: border,
+    constraints: constraints,
+    alignment: alignment,
+    transform: transform,
+    foregroundDecoration: foregroundDecoration,
+    gradient: gradient,
+    image: image,
+    boxShadow: boxShadow,
     child: Row(
       spacing: spacing,
       mainAxisAlignment: mainAxisAlignment,

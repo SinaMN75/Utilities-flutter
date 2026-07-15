@@ -89,7 +89,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
 
   Widget _itemDesktop(UContentResponse i, int index) =>
       URow(
-        backgroundColor: UAdminTable.rowColor(context, index),
+        color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       SizedBox(width: 48, height: 48, child: UImage(i.media.firstOrNull?.url ?? "")).expanded(),
       UAdminTable.cell(_tagOf(i)?.localizedTitle ?? "---"),

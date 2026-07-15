@@ -50,7 +50,7 @@ class _UAdminParkingPageState extends State<UAdminParkingPage> {
   String _ownerLabel(UParkingResponse i) => i.creator?.displayName.nullIfEmpty() ?? i.creator?.userName ?? "-";
 
   Widget _itemDesktop(UParkingResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell(i.title, flex: 2),
       UAdminTable.cell(_ownerLabel(i), flex: 2),

@@ -98,7 +98,7 @@ class _ReservationPageState extends State<UAdminReservationPage> {
   String _roomLabel(UHotelReservationResponse i) => i.room?.title ?? widget.room?.title ?? "-";
 
   Widget _itemDesktop(UHotelReservationResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell(_guestLabel(i)),
       UAdminTable.cell(_roomLabel(i)),

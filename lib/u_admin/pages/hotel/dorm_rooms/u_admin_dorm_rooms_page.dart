@@ -44,7 +44,7 @@ class _DormRoomPageState extends State<UAdminDormRoomPage> {
 
   Widget _itemDesktop(UDormRoomResponse i, int index) =>
       URow(
-        backgroundColor: UAdminTable.rowColor(context, index),
+        color: UAdminTable.rowColor(context, index),
         children: <Widget>[
           UAdminTable.cell(i.title),
           UAdminTable.cell(i.dorm?.title ?? "-"),

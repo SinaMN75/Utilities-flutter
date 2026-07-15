@@ -137,62 +137,60 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
 
   Widget _osMetricsSection() {
     final UOsMetricsResponse? m = c.osMetrics.value;
-    return UContainer(
+    return UColumn(
       padding: const EdgeInsets.all(20),
       radius: 20,
       color: Theme.of(context).cardTheme.color,
-      child: UColumn(
-        spacing: 0,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+      spacing: 0,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        URow(
+          spacing: 0,
+          children: <Widget>[
+            const Icon(Icons.dns_rounded, size: 20),
+            const SizedBox(width: 8),
+            UTextTitleSmall(U.s.osMetrics, fontWeight: FontWeight.w700).expanded(),
+            if (m != null)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(color: UAdminTheme.green.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(20)),
+                child: URow(
+                  spacing: 0,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(color: UAdminTheme.green, shape: BoxShape.circle),
+                    ),
+                    const SizedBox(width: 6),
+                    UTextBodySmall(m.generatedAt.formatDate("HH:mm:ss"), color: UAdminTheme.green, fontWeight: FontWeight.w600).ltr(),
+                  ],
+                ),
+              ),
+          ],
+        ),
+        const Divider(height: 18),
+        if (c.osMetricsState.value.isLoading() && m == null)
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 30),
+            child: Center(child: CircularProgressIndicator()),
+          )
+        else if (c.osMetricsState.value.isError() && m == null)
+          Padding(padding: const EdgeInsets.symmetric(vertical: 20), child: UTextBodyMedium(U.s.errorReadingData).alignAtCenter())
+        else if (m == null)
+          const SizedBox.shrink()
+        else ...<Widget>[
           URow(
             spacing: 0,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Icon(Icons.dns_rounded, size: 20),
-              const SizedBox(width: 8),
-              UTextTitleSmall(U.s.osMetrics, fontWeight: FontWeight.w700).expanded(),
-              if (m != null)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(color: UAdminTheme.green.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(20)),
-                  child: URow(
-                    spacing: 0,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Container(
-                        width: 8,
-                        height: 8,
-                        decoration: const BoxDecoration(color: UAdminTheme.green, shape: BoxShape.circle),
-                      ),
-                      const SizedBox(width: 6),
-                      UTextBodySmall(m.generatedAt.formatDate("HH:mm:ss"), color: UAdminTheme.green, fontWeight: FontWeight.w600).ltr(),
-                    ],
-                  ),
-                ),
+              _osIdentityRow(m).expanded(),
+              _usageGauges(m).expanded(),
             ],
           ),
-          const Divider(height: 18),
-          if (c.osMetricsState.value.isLoading() && m == null)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 30),
-              child: Center(child: CircularProgressIndicator()),
-            )
-          else if (c.osMetricsState.value.isError() && m == null)
-            Padding(padding: const EdgeInsets.symmetric(vertical: 20), child: UTextBodyMedium(U.s.errorReadingData).alignAtCenter())
-          else if (m == null)
-            const SizedBox.shrink()
-          else ...<Widget>[
-            URow(
-              spacing: 0,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _osIdentityRow(m).expanded(),
-                _usageGauges(m).expanded(),
-              ],
-            ),
-          ],
         ],
-      ),
+      ],
     );
   }
 
@@ -363,26 +361,24 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
           ),
   );
 
-  Widget _chartCard({required String title, required Widget child, Widget? trailing}) => UContainer(
+  Widget _chartCard({required String title, required Widget child, Widget? trailing}) => UColumn(
     height: 320,
     padding: const EdgeInsets.all(18),
-    radius: 20,
+    radius: 12,
     color: Theme.of(context).cardTheme.color,
-    child: UColumn(
-      spacing: 0,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        URow(
-          spacing: 0,
-          children: <Widget>[
-            UTextTitleSmall(title, fontWeight: FontWeight.w700).expanded(),
-            if (trailing != null) trailing,
-          ],
-        ),
-        const Divider(height: 18),
-        child.expanded(),
-      ],
-    ),
+    spacing: 0,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      URow(
+        spacing: 0,
+        children: <Widget>[
+          UTextTitleSmall(title, fontWeight: FontWeight.w700).expanded(),
+          if (trailing != null) trailing,
+        ],
+      ),
+      const Divider(height: 18),
+      child.expanded(),
+    ],
   );
 
   Widget _endpointsSection() {
@@ -418,7 +414,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
             series: <CartesianSeries<UApiLogEndpointResponse, String>>[
               BarSeries<UApiLogEndpointResponse, String>(
                 dataSource: items,
-                xValueMapper: (UApiLogEndpointResponse e, _) => e.path,
+                xValueMapper: (UApiLogEndpointResponse e, _) => e.path.subStringIfExist(0, 32),
                 yValueMapper: (UApiLogEndpointResponse e, _) => e.averageDurationMs,
                 color: color,
                 dataLabelSettings: const DataLabelSettings(isVisible: true),
@@ -532,7 +528,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             header: URow(
-              backgroundColor: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.primary,
               padding: const EdgeInsets.all(8),
               children: <Widget>[
                 UTextBodyLarge(U.s.time, color: UAdminTheme.white, textAlign: .center).expanded(),
@@ -595,7 +591,7 @@ class _ApiLogPageState extends State<UAdminApiLogPage> {
   Widget _itemDesktop({required UApiLogResponse i, required int index}) => InkWell(
     onTap: () => _openDetail(i),
     child: URow(
-      backgroundColor: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
+      color: index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16),
       children: <Widget>[
         UTextBodySmall(i.createdAt.formatDate("yyyy-MM-dd HH:mm:ss"), textAlign: .center).ltr().expanded(),
         _methodChip(i.jsonData.method).alignAtCenter().expanded(),

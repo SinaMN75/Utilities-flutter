@@ -48,7 +48,7 @@ class _MerchantsPageState extends State<UAdminMerchantsPage> {
   );
 
   Widget _itemDesktop(UMerchantResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell(i.title),
       UAdminTable.cell(i.nationalCode),

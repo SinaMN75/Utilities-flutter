@@ -87,7 +87,7 @@ class _AdminUsersPageState extends State<UAdminUsersPage> {
   }
 
   Widget _itemDesktop(UUserResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell("${i.firstName ?? ""} ${i.lastName ?? ""}".trim()),
       UAdminTable.cell(i.userName),

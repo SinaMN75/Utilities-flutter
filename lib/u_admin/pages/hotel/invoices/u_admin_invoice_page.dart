@@ -117,7 +117,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
   String _tenantLabel(UDormBedInvoiceResponse i) => i.contract?.user?.displayName ?? widget.contract?.user?.displayName ?? "-";
 
   Widget _itemDesktop(UDormBedInvoiceResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell(_tenantLabel(i)),
       UAdminTable.cell(_typeLabel(i)),

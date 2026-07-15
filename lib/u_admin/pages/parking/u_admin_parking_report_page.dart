@@ -68,7 +68,7 @@ class _UAdminParkingReportPageState extends State<UAdminParkingReportPage> {
   );
 
   Widget _itemDesktop(UParkingReportResponse i, int index) => URow(
-    backgroundColor: UAdminTable.rowColor(context, index),
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       UAdminTable.cell(i.parking?.title ?? "-", flex: 2),
       UAdminTable.cell(i.vehicle?.licencePlate ?? "-", flex: 2),

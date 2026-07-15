@@ -24,7 +24,10 @@ class UAdminListView<T> extends StatelessWidget {
     final bool desktop = MediaQuery.sizeOf(context).width >= desktopBreakpoint;
     final Widget list = desktop
         ? UListView(
-            header: URow(backgroundColor: Theme.of(context).colorScheme.primary, padding: const EdgeInsets.all(8), children: desktopHeader()),
+      header: URow(color: Theme
+          .of(context)
+          .colorScheme
+          .primary, padding: const EdgeInsets.all(8), children: desktopHeader()),
             itemBuilder: (BuildContext context, int index) => desktopRow(data[index], index),
             itemCount: data.length,
           )

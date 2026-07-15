@@ -49,7 +49,7 @@ class _DormBedPageState extends State<UAdminDormBedPage> {
 
   Widget _itemDesktop(UDormBedResponse i, int index) =>
       URow(
-        backgroundColor: UAdminTable.rowColor(context, index),
+        color: UAdminTable.rowColor(context, index),
         children: <Widget>[
           UAdminTable.cell(i.title),
           UAdminTable.cell(i.deposit.rial()),
