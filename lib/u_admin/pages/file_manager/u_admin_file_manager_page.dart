@@ -78,7 +78,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
           );
         }
         ULoading.dismiss();
-        _load(_path);
+        await _load(_path);
       },
     );
   }
@@ -202,7 +202,6 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
         if (!_loading && _preview == null)
           URow(
             mainAxisSize: MainAxisSize.min,
-            spacing: 8,
             children: <Widget>[
               _statChip(Icons.description_outlined, "$count", cs),
               _statChip(Icons.sd_storage_outlined, _humanSize(_data?.totalSize ?? 0), cs),
@@ -246,7 +245,6 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     final Color fg = primary ? cs.onPrimary : cs.onSurface;
     return URow(
       mainAxisSize: MainAxisSize.min,
-      spacing: 8,
       children: <Widget>[
         Icon(icon, size: 18, color: enabled ? fg : fg.withValues(alpha: 0.4)),
         UTextLabelLarge(label, color: enabled ? fg : fg.withValues(alpha: 0.4), fontWeight: FontWeight.w600),
@@ -361,7 +359,6 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
           ],
             ),
             URow(
-              spacing: 8,
               children: <Widget>[
                 Icon(_iconFor(e), size: 18, color: _accentFor(e, cs)),
                 UTextBodyMedium(e.name, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).expanded(),
@@ -524,7 +521,6 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   Widget _previewToolbar(final UFileManagerEntry e, final ColorScheme cs) =>
       URow(
-        spacing: 8,
         children: <Widget>[
           IconButton(
             icon: const Icon(Icons.arrow_back_rounded),
@@ -554,7 +550,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
           child: InteractiveViewer(
             minScale: 0.5,
             maxScale: 5,
-            child: Center(child: UImageNetwork(url, fit: BoxFit.contain)),
+            child: Center(child: UImageNetwork(url)),
           ),
         );
       case _PreviewKind.video:
