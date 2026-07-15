@@ -226,6 +226,13 @@ abstract class UAdminModules {
   );
 
   // ---- System ----
+  static UAdminModule fileManager({List<TagUser>? roles}) => UAdminModule(
+    title: U.s.fileManager,
+    icon: Icons.folder_open_rounded,
+    page: () => const UAdminFileManagerPage(),
+    roles: roles,
+  );
+
   static UAdminModule settings({List<TagUser>? roles}) => UAdminModule(
     title: U.s.settings,
     icon: Icons.settings_rounded,

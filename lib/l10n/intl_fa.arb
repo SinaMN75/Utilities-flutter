@@ -816,5 +816,22 @@
   "insufficientBalance": "موجودی کافی نیست",
   "balance": "موجودی",
   "serialNumber": "شماره سریال",
-  "terminalNumber": "شماره ترمینال"
+  "terminalNumber": "شماره ترمینال",
+  "fileManager": "مدیریت فایل",
+  "files": "فایل‌ها",
+  "folder": "پوشه",
+  "folders": "پوشه‌ها",
+  "newFolder": "پوشه جدید",
+  "folderName": "نام پوشه",
+  "upload": "بارگذاری",
+  "download": "دانلود",
+  "rename": "تغییر نام",
+  "move": "انتقال",
+  "modified": "تاریخ تغییر",
+  "emptyFolder": "این پوشه خالی است",
+  "createFolder": "ایجاد پوشه",
+  "parentDirectory": "بالا",
+  "newName": "نام جدید",
+  "moveTo": "انتقال به",
+  "deleteItemConfirm": "آیا از حذف این مورد مطمئن هستید؟"
 }

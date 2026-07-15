@@ -816,5 +816,22 @@
   "insufficientBalance": "Insufficient balance",
   "balance": "Balance",
   "serialNumber": "Serial number",
-  "terminalNumber": "Terminal number"
+  "terminalNumber": "Terminal number",
+  "fileManager": "File Manager",
+  "files": "Files",
+  "folder": "Folder",
+  "folders": "Folders",
+  "newFolder": "New Folder",
+  "folderName": "Folder Name",
+  "upload": "Upload",
+  "download": "Download",
+  "rename": "Rename",
+  "move": "Move",
+  "modified": "Modified",
+  "emptyFolder": "This folder is empty",
+  "createFolder": "Create Folder",
+  "parentDirectory": "Up",
+  "newName": "New Name",
+  "moveTo": "Move To",
+  "deleteItemConfirm": "Are you sure you want to delete this item?"
 }

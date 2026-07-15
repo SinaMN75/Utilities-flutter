@@ -114,6 +114,7 @@ export "u_admin/pages/payments/merchants/u_admin_merchants_page.dart";
 export "u_admin/pages/payments/terminals/u_admin_terminals_page.dart";
 export "u_admin/pages/payments/users/u_admin_users_page.dart";
 export "u_admin/pages/payments/users/user_detail/u_admin_admin_user_detail_page.dart";
+export "u_admin/pages/file_manager/u_admin_file_manager_page.dart";
 export "u_admin/pages/pn/u_admin_pn_tester_page.dart";
 export "u_admin/pages/settings/u_admin_admin_settings_page.dart";
 export "u_admin/pages/u_admin_switch_page.dart";

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6308,6 +6307,111 @@ class S {
     return Intl.message(
       'Terminal number',
       name: 'terminalNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `File Manager`
+  String get fileManager {
+    return Intl.message(
+      'File Manager',
+      name: 'fileManager',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Files`
+  String get files {
+    return Intl.message('Files', name: 'files', desc: '', args: []);
+  }
+
+  /// `Folder`
+  String get folder {
+    return Intl.message('Folder', name: 'folder', desc: '', args: []);
+  }
+
+  /// `Folders`
+  String get folders {
+    return Intl.message('Folders', name: 'folders', desc: '', args: []);
+  }
+
+  /// `New Folder`
+  String get newFolder {
+    return Intl.message('New Folder', name: 'newFolder', desc: '', args: []);
+  }
+
+  /// `Folder Name`
+  String get folderName {
+    return Intl.message('Folder Name', name: 'folderName', desc: '', args: []);
+  }
+
+  /// `Upload`
+  String get upload {
+    return Intl.message('Upload', name: 'upload', desc: '', args: []);
+  }
+
+  /// `Download`
+  String get download {
+    return Intl.message('Download', name: 'download', desc: '', args: []);
+  }
+
+  /// `Rename`
+  String get rename {
+    return Intl.message('Rename', name: 'rename', desc: '', args: []);
+  }
+
+  /// `Move`
+  String get move {
+    return Intl.message('Move', name: 'move', desc: '', args: []);
+  }
+
+  /// `Modified`
+  String get modified {
+    return Intl.message('Modified', name: 'modified', desc: '', args: []);
+  }
+
+  /// `This folder is empty`
+  String get emptyFolder {
+    return Intl.message(
+      'This folder is empty',
+      name: 'emptyFolder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Folder`
+  String get createFolder {
+    return Intl.message(
+      'Create Folder',
+      name: 'createFolder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Up`
+  String get parentDirectory {
+    return Intl.message('Up', name: 'parentDirectory', desc: '', args: []);
+  }
+
+  /// `New Name`
+  String get newName {
+    return Intl.message('New Name', name: 'newName', desc: '', args: []);
+  }
+
+  /// `Move To`
+  String get moveTo {
+    return Intl.message('Move To', name: 'moveTo', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to delete this item?`
+  String get deleteItemConfirm {
+    return Intl.message(
+      'Are you sure you want to delete this item?',
+      name: 'deleteItemConfirm',
       desc: '',
       args: [],
     );

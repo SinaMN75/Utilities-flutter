@@ -18,6 +18,8 @@ part "params/content_params.dart";
 
 part "params/dashboard_analytics_params.dart";
 part "params/exam_params.dart";
+
+part "params/file_manager_params.dart";
 part "params/follow_params.dart";
 part "params/hotel_params.dart";
 part "params/inquiry_params.dart";
@@ -55,6 +57,8 @@ part "responses/dashboard_analytics_response.dart";
 
 part "responses/os_metrics_response.dart";
 part "responses/exam_response.dart";
+
+part "responses/file_manager_response.dart";
 part "responses/follower_following_count_response.dart";
 part "responses/hotel_response.dart";
 part "responses/inquiry_response.dart";
@@ -86,6 +90,8 @@ part "services/chat_bot_service.dart";
 part "services/comment_service.dart";
 part "services/content_service.dart";
 part "services/dashboard_service.dart";
+
+part "services/file_manager_service.dart";
 part "services/follow_service.dart";
 part "services/hotel_service.dart";
 part "services/inquiry_service.dart";
@@ -137,4 +143,5 @@ class UServices {
   static TxnService txn = TxnService();
   static BlogService blog = BlogService();
   static PnService pn = PnService();
+  static FileManagerService fileManager = FileManagerService();
 }

@@ -224,6 +224,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createContent": MessageLookupByLibrary.simpleMessage("Create Content"),
     "createContract": MessageLookupByLibrary.simpleMessage("Create Contract"),
     "createDorm": MessageLookupByLibrary.simpleMessage("Create Dorm"),
+    "createFolder": MessageLookupByLibrary.simpleMessage("Create Folder"),
     "createHotel": MessageLookupByLibrary.simpleMessage("Create Hotel"),
     "createInvoice": MessageLookupByLibrary.simpleMessage("Create Invoice"),
     "createMerchant": MessageLookupByLibrary.simpleMessage("Create Merchant"),
@@ -263,6 +264,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "debt": MessageLookupByLibrary.simpleMessage("Debt"),
     "debtAmount": MessageLookupByLibrary.simpleMessage("Debt Amount"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "deleteItemConfirm": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to delete this item?",
+    ),
     "deleteTransaction": MessageLookupByLibrary.simpleMessage(
       "Delete Transaction",
     ),
@@ -291,6 +295,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dormRooms": MessageLookupByLibrary.simpleMessage("Dorm Rooms"),
     "dorms": MessageLookupByLibrary.simpleMessage("Dorms"),
     "dormsByCity": MessageLookupByLibrary.simpleMessage("Dorms by City"),
+    "download": MessageLookupByLibrary.simpleMessage("Download"),
     "downloadData": MessageLookupByLibrary.simpleMessage("Download Data"),
     "draft": MessageLookupByLibrary.simpleMessage("Draft"),
     "drivingLicense": MessageLookupByLibrary.simpleMessage("Driving license"),
@@ -322,6 +327,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Electricity, water, gas",
     ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "emptyFolder": MessageLookupByLibrary.simpleMessage("This folder is empty"),
     "endDate": MessageLookupByLibrary.simpleMessage("End Date"),
     "endsOn": MessageLookupByLibrary.simpleMessage("Ends"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
@@ -390,6 +396,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldRequired": MessageLookupByLibrary.simpleMessage(
       "This field is required",
     ),
+    "fileManager": MessageLookupByLibrary.simpleMessage("File Manager"),
+    "files": MessageLookupByLibrary.simpleMessage("Files"),
     "filter": MessageLookupByLibrary.simpleMessage("Filter"),
     "filterBeds": MessageLookupByLibrary.simpleMessage("Filter Beds"),
     "filterBlogs": MessageLookupByLibrary.simpleMessage("Filter Blog Posts"),
@@ -424,6 +432,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "firstNameZA": MessageLookupByLibrary.simpleMessage("First Name (Z-A)"),
     "flashlight": MessageLookupByLibrary.simpleMessage("Flashlight"),
     "floor": MessageLookupByLibrary.simpleMessage("Floor"),
+    "folder": MessageLookupByLibrary.simpleMessage("Folder"),
+    "folderName": MessageLookupByLibrary.simpleMessage("Folder Name"),
+    "folders": MessageLookupByLibrary.simpleMessage("Folders"),
     "fontSize": MessageLookupByLibrary.simpleMessage("Font Size"),
     "framework": MessageLookupByLibrary.simpleMessage("Framework"),
     "free": MessageLookupByLibrary.simpleMessage("Free"),
@@ -565,7 +576,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "memoryUsage": MessageLookupByLibrary.simpleMessage("Memory Usage"),
     "merchant": MessageLookupByLibrary.simpleMessage("Merchant"),
     "merchantId": MessageLookupByLibrary.simpleMessage("Merchant ID"),
-    "merchantRegistrationMinimumBalanceNotice": MessageLookupByLibrary.simpleMessage(
+    "merchantRegistrationMinimumBalanceNotice":
+    MessageLookupByLibrary.simpleMessage(
       "To register a merchant, your wallet must have at least 100,000 Tomans balance.",
     ),
     "merchantTitleStoreOrBusinessName": MessageLookupByLibrary.simpleMessage(
@@ -585,6 +597,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "minute": MessageLookupByLibrary.simpleMessage("Minute"),
     "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile number"),
     "model": MessageLookupByLibrary.simpleMessage("Model"),
+    "modified": MessageLookupByLibrary.simpleMessage("Modified"),
     "moneyIn": MessageLookupByLibrary.simpleMessage("Money In"),
     "moneyOut": MessageLookupByLibrary.simpleMessage("Money Out"),
     "monthCountSuffix": MessageLookupByLibrary.simpleMessage("months"),
@@ -600,7 +613,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "mostFailingPaths": MessageLookupByLibrary.simpleMessage(
       "Most Failing Paths",
     ),
+    "move": MessageLookupByLibrary.simpleMessage("Move"),
     "moveDown": MessageLookupByLibrary.simpleMessage("Move Down"),
+    "moveTo": MessageLookupByLibrary.simpleMessage("Move To"),
     "moveUp": MessageLookupByLibrary.simpleMessage("Move Up"),
     "myBankAccounts": MessageLookupByLibrary.simpleMessage("My bank accounts"),
     "myMerchants": MessageLookupByLibrary.simpleMessage("My merchants"),
@@ -620,6 +635,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "net": MessageLookupByLibrary.simpleMessage("Net"),
     "network": MessageLookupByLibrary.simpleMessage("Network"),
     "newExam": MessageLookupByLibrary.simpleMessage("New Exam"),
+    "newFolder": MessageLookupByLibrary.simpleMessage("New Folder"),
+    "newName": MessageLookupByLibrary.simpleMessage("New Name"),
     "newThisPeriod": MessageLookupByLibrary.simpleMessage("New"),
     "newestFirst": MessageLookupByLibrary.simpleMessage("Newest First"),
     "next30Days": MessageLookupByLibrary.simpleMessage("Next 30 Days"),
@@ -730,6 +747,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "paidDate": MessageLookupByLibrary.simpleMessage("Paid Date"),
     "paidFactors": MessageLookupByLibrary.simpleMessage("Paid Factors"),
     "paragraph": MessageLookupByLibrary.simpleMessage("Paragraph"),
+    "parentDirectory": MessageLookupByLibrary.simpleMessage("Up"),
     "parking": MessageLookupByLibrary.simpleMessage("Parking"),
     "parkingManagement": MessageLookupByLibrary.simpleMessage(
       "Parking Management",
@@ -889,6 +907,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "remaining": MessageLookupByLibrary.simpleMessage("Remaining"),
     "removeBlock": MessageLookupByLibrary.simpleMessage("Remove Block"),
     "removeLink": MessageLookupByLibrary.simpleMessage("Remove Link"),
+    "rename": MessageLookupByLibrary.simpleMessage("Rename"),
     "rent": MessageLookupByLibrary.simpleMessage("Rent"),
     "request": MessageLookupByLibrary.simpleMessage("Request"),
     "requestBody": MessageLookupByLibrary.simpleMessage("Request Body"),
@@ -1116,6 +1135,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Update functionality would go here",
     ),
     "updateProfile": MessageLookupByLibrary.simpleMessage("Update Profile"),
+    "upload": MessageLookupByLibrary.simpleMessage("Upload"),
     "uploadFailed": MessageLookupByLibrary.simpleMessage("Upload Failed"),
     "uploadingImage": MessageLookupByLibrary.simpleMessage(
       "Uploading image...",
