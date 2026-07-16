@@ -48,24 +48,14 @@ class UAdminActionContext<T> {
 
   UAdminAction edit({List<TagUser>? roles}) => UAdminAction(label: U.s.edit, icon: Icons.edit, roles: roles, onTap: () => _handlers.onEdit?.call(item));
 
-  UAdminAction delete({List<TagUser>? roles}) =>
-      UAdminAction(label: U.s.delete,
-          icon: Icons.delete,
-          destructive: true,
-          roles: roles,
-          onTap: () => _handlers.onDelete?.call(item));
+  UAdminAction delete({List<TagUser>? roles}) => UAdminAction(label: U.s.delete, icon: Icons.delete, destructive: true, roles: roles, onTap: () => _handlers.onDelete?.call(item));
 
-  UAdminAction detail({String? label, IconData icon = Icons.info_outline, List<TagUser>? roles}) => UAdminAction(label: label ?? U.s.viewDetails, icon: icon, roles: roles, onTap: () => _handlers.onDetail?.call(item));
+  UAdminAction detail({String? label, IconData icon = Icons.info_outline, List<TagUser>? roles}) =>
+      UAdminAction(label: label ?? U.s.viewDetails, icon: icon, roles: roles, onTap: () => _handlers.onDetail?.call(item));
 
   // A page-specific handler (publish, pay, ...); [key] must exist in [UAdminActionHandlers.extras].
   UAdminAction extra(String key, {required String label, required IconData icon, bool destructive = false, bool visible = true, Color? color, List<TagUser>? roles}) =>
-      UAdminAction(label: label,
-          icon: icon,
-          destructive: destructive,
-          visible: visible,
-          color: color,
-          roles: roles,
-          onTap: () => _handlers.extras?[key]?.call(item));
+      UAdminAction(label: label, icon: icon, destructive: destructive, visible: visible, color: color, roles: roles, onTap: () => _handlers.extras?[key]?.call(item));
 }
 
 typedef UAdminActionBuilder<T> = List<UAdminAction> Function(UAdminActionContext<T> ctx);
@@ -73,7 +63,8 @@ typedef UAdminActionBuilder<T> = List<UAdminAction> Function(UAdminActionContext
 // Renders a row's "operations" popup. A page calls this with its [handlers] and its
 // own [fallback] default actions; if the app supplied [actions], those win.
 abstract class UAdminOps {
-  static Widget menu<T>(BuildContext context, {
+  static Widget menu<T>(
+    BuildContext context, {
     required T item,
     required UAdminActionHandlers<T> handlers,
     required UAdminActionBuilder<T> fallback,
@@ -88,7 +79,10 @@ abstract class UAdminOps {
         final Color? color = a.destructive ? Theme.of(context).colorScheme.error : a.color;
         return PopupMenuItem<String>(
           onTap: a.onTap,
-          child: UIconTextHorizontal(leading: Icon(a.icon, size: 20, color: color), trailing: Text(a.label, style: color == null ? null : TextStyle(color: color))),
+          child: UIconTextHorizontal(
+            leading: Icon(a.icon, size: 20, color: color),
+            trailing: Text(a.label, style: color == null ? null : TextStyle(color: color)),
+          ),
         );
       }).toList(),
     );
@@ -102,38 +96,113 @@ abstract class UAdminOps {
 
 abstract class UAdminLinks {
   // ---- from a user ----
-  static UAdminAction adminUserDetail(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(label: U.s.viewDetails, icon: Icons.visibility_outlined, roles: roles, onTap: () => UAdminPageSwitcher.adminUserDetail(user: u));
+  static UAdminAction adminUserDetail(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.viewDetails,
+    icon: Icons.visibility_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.adminUserDetail(user: u),
+  );
 
-  static UAdminAction hotelUserDetail(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(label: U.s.details, icon: Icons.badge_outlined, roles: roles, onTap: () => UAdminPageSwitcher.hotelUserDetail(user: u));
+  static UAdminAction hotelUserDetail(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.details,
+    icon: Icons.badge_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.hotelUserDetail(user: u),
+  );
 
-  static UAdminAction userMerchants(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(label: U.s.merchants, icon: Icons.storefront_outlined, roles: roles, onTap: () => UAdminPageSwitcher.merchants(user: u));
+  static UAdminAction userMerchants(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.merchants,
+    icon: Icons.storefront_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.merchants(user: u),
+  );
 
-  static UAdminAction userContracts(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(label: U.s.contracts, icon: Icons.description_outlined, roles: roles, onTap: () => UAdminPageSwitcher.contracts(user: u));
+  static UAdminAction userContracts(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.contracts,
+    icon: Icons.description_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.contracts(user: u),
+  );
 
   // ---- from a merchant ----
-  static UAdminAction merchantTerminals(UMerchantResponse m, {List<TagUser>? roles}) => UAdminAction(label: U.s.viewTerminals, icon: Icons.point_of_sale_outlined, roles: roles, onTap: () => UAdminPageSwitcher.terminals(merchant: m));
+  static UAdminAction merchantTerminals(UMerchantResponse m, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.viewTerminals,
+    icon: Icons.point_of_sale_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.terminals(merchant: m),
+  );
 
   // ---- from a parking ----
-  static UAdminAction parkingReport(UParkingResponse p, {List<TagUser>? roles}) => UAdminAction(label: U.s.viewReport, icon: Icons.assessment_outlined, roles: roles, onTap: () => UAdminPageSwitcher.parkingReport(parking: p));
+  static UAdminAction parkingReport(UParkingResponse p, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.viewReport,
+    icon: Icons.assessment_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.parkingReport(parking: p),
+  );
 
   // ---- from a hotel / room ----
-  static UAdminAction hotelRooms(UHotelResponse h, {List<TagUser>? roles}) => UAdminAction(label: U.s.rooms, icon: Icons.meeting_room_outlined, roles: roles, onTap: () => UAdminPageSwitcher.hotelRooms(hotel: h));
+  static UAdminAction hotelRooms(UHotelResponse h, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.rooms,
+    icon: Icons.meeting_room_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.hotelRooms(hotel: h),
+  );
 
-  static UAdminAction hotelReservations(UHotelResponse h, {List<TagUser>? roles}) => UAdminAction(label: U.s.reservations, icon: Icons.event_available_outlined, roles: roles, onTap: () => UAdminPageSwitcher.reservations(hotel: h));
+  static UAdminAction hotelReservations(UHotelResponse h, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.reservations,
+    icon: Icons.event_available_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.reservations(hotel: h),
+  );
 
-  static UAdminAction roomReservations(UHotelRoomResponse r, {List<TagUser>? roles}) => UAdminAction(label: U.s.reservations, icon: Icons.event_available_outlined, roles: roles, onTap: () => UAdminPageSwitcher.reservations(room: r));
+  static UAdminAction roomReservations(UHotelRoomResponse r, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.reservations,
+    icon: Icons.event_available_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.reservations(room: r),
+  );
 
   // ---- from a dorm / room / bed ----
-  static UAdminAction dormRooms(UDormResponse d, {List<TagUser>? roles}) => UAdminAction(label: U.s.room, icon: Icons.meeting_room_outlined, roles: roles, onTap: () => UAdminPageSwitcher.dormRooms(dorm: d));
+  static UAdminAction dormRooms(UDormResponse d, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.room,
+    icon: Icons.meeting_room_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.dormRooms(dorm: d),
+  );
 
-  static UAdminAction dormBeds(UDormResponse d, {List<TagUser>? roles}) => UAdminAction(label: U.s.beds, icon: Icons.bed_outlined, roles: roles, onTap: () => UAdminPageSwitcher.dormBeds(dorm: d));
+  static UAdminAction dormBeds(UDormResponse d, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.beds,
+    icon: Icons.bed_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.dormBeds(dorm: d),
+  );
 
-  static UAdminAction roomBeds(UDormRoomResponse r, {List<TagUser>? roles}) => UAdminAction(label: U.s.beds, icon: Icons.bed_outlined, roles: roles, onTap: () => UAdminPageSwitcher.dormBeds(room: r));
+  static UAdminAction roomBeds(UDormRoomResponse r, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.beds,
+    icon: Icons.bed_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.dormBeds(room: r),
+  );
 
-  static UAdminAction bedContracts(UDormBedResponse b, {List<TagUser>? roles}) => UAdminAction(label: U.s.contracts, icon: Icons.description_outlined, roles: roles, onTap: () => UAdminPageSwitcher.contracts(bed: b));
+  static UAdminAction bedContracts(UDormBedResponse b, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.contracts,
+    icon: Icons.description_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.contracts(bed: b),
+  );
 
   // ---- from a contract ----
-  static UAdminAction contractInvoices(UDormBedContractResponse c, {List<TagUser>? roles}) => UAdminAction(label: U.s.viewInvoices, icon: Icons.receipt_long_outlined, roles: roles, onTap: () => UAdminPageSwitcher.invoices(contract: c));
+  static UAdminAction contractInvoices(UDormBedContractResponse c, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.viewInvoices,
+    icon: Icons.receipt_long_outlined,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.invoices(contract: c),
+  );
 
-  static UAdminAction contractTenant(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(label: U.s.tenant, icon: Icons.person_outline, roles: roles, onTap: () => UAdminPageSwitcher.hotelUserDetail(user: u));
+  static UAdminAction contractTenant(UUserResponse u, {List<TagUser>? roles}) => UAdminAction(
+    label: U.s.tenant,
+    icon: Icons.person_outline,
+    roles: roles,
+    onTap: () => UAdminPageSwitcher.hotelUserDetail(user: u),
+  );
 }

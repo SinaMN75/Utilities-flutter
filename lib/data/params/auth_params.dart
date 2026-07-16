@@ -49,8 +49,7 @@ class ULoginParams {
 
   factory ULoginParams.fromJson(String str) => ULoginParams.fromMap(json.decode(str));
 
-  factory ULoginParams.fromMap(Map<String, dynamic> json) =>
-      ULoginParams(
+  factory ULoginParams.fromMap(Map<String, dynamic> json) => ULoginParams(
     userName: json["userName"],
     email: json["email"],
     password: json["password"],

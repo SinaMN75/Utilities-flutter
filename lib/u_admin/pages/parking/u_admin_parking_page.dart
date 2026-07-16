@@ -109,7 +109,8 @@ class _UAdminParkingPageState extends State<UAdminParkingPage> {
             child: SingleChildScrollView(
               child: Form(
                 key: formKey,
-                child: UColumn(spacing: 0, 
+                child: UColumn(
+                  spacing: 0,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     UTextField(
@@ -117,7 +118,12 @@ class _UAdminParkingPageState extends State<UAdminParkingPage> {
                       labelText: U.s.title,
                       validator: UValidators.required(message: ""),
                     ).pSymmetric(vertical: 6),
-                    UTextField(controller: entrance, labelText: U.s.entrancePrice, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
+                    UTextField(
+                      controller: entrance,
+                      labelText: U.s.entrancePrice,
+                      keyboardType: TextInputType.number,
+                      formatters: <TextInputFormatter>[UCurrencyInputFormatter()],
+                    ).pSymmetric(vertical: 6),
                     UTextField(controller: hourly, labelText: U.s.hourlyPrice, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
                     UTextField(controller: daily, labelText: U.s.dailyPrice, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
                     const SizedBox(height: 8),
@@ -150,7 +156,9 @@ class _UAdminParkingPageState extends State<UAdminParkingPage> {
                     Wrap(
                       spacing: 6,
                       runSpacing: 6,
-                      children: selectedAdmins.map((UUserResponse u) => Chip(label: Text(u.userName), onDeleted: () => setDialogState(() => selectedAdmins.removeWhere((UUserResponse x) => x.id == u.id)))).toList(),
+                      children: selectedAdmins
+                          .map((UUserResponse u) => Chip(label: Text(u.userName), onDeleted: () => setDialogState(() => selectedAdmins.removeWhere((UUserResponse x) => x.id == u.id))))
+                          .toList(),
                     ).pSymmetric(vertical: 6),
                     const SizedBox(height: 20),
                     UButtonSubmitCancel(

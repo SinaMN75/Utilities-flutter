@@ -38,7 +38,8 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
       c.pageNumber(page);
       c.read();
     },
-    body: UColumn(spacing: 0, 
+    body: UColumn(
+      spacing: 0,
       children: <Widget>[
         if (widget.contract != null) Obx(() => c.state.isLoaded() ? _summary() : const SizedBox.shrink()),
         _statusFilter(),
@@ -50,7 +51,15 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
   Widget _summary() => SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    child: URow(spacing: 0, children: <Widget>[_summaryCard(U.s.totalDebt, c.totalDebt, UAdminTheme.blueGrey), _summaryCard(U.s.totalPaid, c.totalPaid, UAdminTheme.green), _summaryCard(U.s.totalRemaining, c.totalRemaining, UAdminTheme.orange), _summaryCard(U.s.totalPenalty, c.totalPenalty, UAdminTheme.red)]),
+    child: URow(
+      spacing: 0,
+      children: <Widget>[
+        _summaryCard(U.s.totalDebt, c.totalDebt, UAdminTheme.blueGrey),
+        _summaryCard(U.s.totalPaid, c.totalPaid, UAdminTheme.green),
+        _summaryCard(U.s.totalRemaining, c.totalRemaining, UAdminTheme.orange),
+        _summaryCard(U.s.totalPenalty, c.totalPenalty, UAdminTheme.red),
+      ],
+    ),
   );
 
   Widget _summaryCard(String label, double value, Color color) => UContainer(
@@ -58,7 +67,8 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
     radius: 12,
     color: color.withValues(alpha: 0.11),
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -74,7 +84,15 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      child: URow(spacing: 0, children: <Widget>[_chip(U.s.all, UAdminInvoiceStatusFilter.all), _chip(U.s.paid, UAdminInvoiceStatusFilter.paid), _chip(U.s.unpaid, UAdminInvoiceStatusFilter.unpaid), _chip(U.s.overdue, UAdminInvoiceStatusFilter.overdue)]),
+      child: URow(
+        spacing: 0,
+        children: <Widget>[
+          _chip(U.s.all, UAdminInvoiceStatusFilter.all),
+          _chip(U.s.paid, UAdminInvoiceStatusFilter.paid),
+          _chip(U.s.unpaid, UAdminInvoiceStatusFilter.unpaid),
+          _chip(U.s.overdue, UAdminInvoiceStatusFilter.overdue),
+        ],
+      ),
     );
   });
 
@@ -163,7 +181,8 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
     AlertDialog(
       title: Text(U.s.filter),
       content: SingleChildScrollView(
-        child: UColumn(spacing: 0, 
+        child: UColumn(
+          spacing: 0,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             UTextFieldDatePicker(
@@ -184,8 +203,18 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
                 c.maxDueDateController.text = d.toJalaliDate();
               },
             ).pSymmetric(vertical: 6),
-            UTextField(controller: c.minDebtController, labelText: U.s.minPrice, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
-            UTextField(controller: c.maxDebtController, labelText: U.s.maxPrice, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
+            UTextField(
+              controller: c.minDebtController,
+              labelText: U.s.minPrice,
+              keyboardType: TextInputType.number,
+              formatters: <TextInputFormatter>[UCurrencyInputFormatter()],
+            ).pSymmetric(vertical: 6),
+            UTextField(
+              controller: c.maxDebtController,
+              labelText: U.s.maxPrice,
+              keyboardType: TextInputType.number,
+              formatters: <TextInputFormatter>[UCurrencyInputFormatter()],
+            ).pSymmetric(vertical: 6),
             const SizedBox(height: 20),
             UButtonSubmitCancel(
               submitTitle: U.s.filter,
@@ -227,7 +256,8 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
           child: StatefulBuilder(
             builder: (BuildContext context, void Function(void Function()) setLocal) => Form(
               key: formKey,
-              child: UColumn(spacing: 0, 
+              child: UColumn(
+                spacing: 0,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (!isEdit && widget.contract == null)
@@ -254,7 +284,12 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
                   ).pSymmetric(vertical: 6),
                   UTextField(controller: creditor, labelText: U.s.creditor, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
                   UTextField(controller: paid, labelText: U.s.paidAmount, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
-                  UTextField(controller: penalty, labelText: U.s.penaltyAmount, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
+                  UTextField(
+                    controller: penalty,
+                    labelText: U.s.penaltyAmount,
+                    keyboardType: TextInputType.number,
+                    formatters: <TextInputFormatter>[UCurrencyInputFormatter()],
+                  ).pSymmetric(vertical: 6),
                   UTextFieldDatePicker(
                     controller: dueCtrl,
                     labelText: U.s.dueDate,

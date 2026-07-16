@@ -31,7 +31,8 @@ extension WidgetsExtension on Widget {
 
   Widget onTap(final GestureTapCallback? onPressed) => GestureDetector(onTap: onPressed, child: this);
 
-  Widget onPress(VoidCallback onTap, {
+  Widget onPress(
+    VoidCallback onTap, {
     double pressedScale = 0.9,
     Duration duration = const Duration(milliseconds: 120),
   }) => UPressable(onTap: onTap, duration: duration, pressedScale: pressedScale, child: this);

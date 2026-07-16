@@ -19,52 +19,52 @@ class _ContentsPageState extends State<UAdminContentsPage> {
   TagContent? _tagOf(UContentResponse i) => TagContent.values.firstWhereOrNull((TagContent t) => i.tags.contains(t.number));
 
   @override
-  Widget build(BuildContext context) =>
-      UAdminScaffold(
-        title: U.s.contents,
-        onFilter: _showFilterDialog,
-        onCreate: _showEditDialog,
-        pageNumber: c.pageNumber,
-        totalPages: c.totalPages,
-        onPageChanged: (int page) {
-          c.pageNumber(page);
-          c.read();
-        },
-        body: UAdminListView<UContentResponse>(
-          state: c.state,
-          items: () => c.list,
-          totalCount: () => c.totalCount,
-          onRetry: c.read,
-          emptyText: U.s.noContentFound,
-          desktopBreakpoint: 720,
-          desktopHeader: () =>
-          <Widget>[
-            UAdminTable.headerCell(U.s.image),
-            UAdminTable.headerCell(U.s.contentType),
-            UAdminTable.headerCell(U.s.title),
-            UAdminTable.headerCell(U.s.description, flex: 2),
-            UAdminTable.headerCell(U.s.createdAt),
-            UAdminTable.headerCell(U.s.operations),
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: U.s.contents,
+    onFilter: _showFilterDialog,
+    onCreate: _showEditDialog,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: UAdminListView<UContentResponse>(
+      state: c.state,
+      items: () => c.list,
+      totalCount: () => c.totalCount,
+      onRetry: c.read,
+      emptyText: U.s.noContentFound,
+      desktopBreakpoint: 720,
+      desktopHeader: () => <Widget>[
+        UAdminTable.headerCell(U.s.image),
+        UAdminTable.headerCell(U.s.contentType),
+        UAdminTable.headerCell(U.s.title),
+        UAdminTable.headerCell(U.s.description, flex: 2),
+        UAdminTable.headerCell(U.s.createdAt),
+        UAdminTable.headerCell(U.s.operations),
       ],
-          desktopRow: _itemDesktop,
-          mobileRow: _itemMobile,
+      desktopRow: _itemDesktop,
+      mobileRow: _itemMobile,
     ),
   );
 
-  Widget _itemMobile(UContentResponse i, int index) =>
-      UContainer(
+  Widget _itemMobile(UContentResponse i, int index) => UContainer(
     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
     margin: const EdgeInsets.symmetric(vertical: 4),
-        child: URow(spacing: 0,
+    child: URow(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(width: 48, height: 48, child: UImage(i.media.firstOrNull?.url ?? "")),
         const SizedBox(width: 12),
         Expanded(
-          child: UColumn(spacing: 0, 
+          child: UColumn(
+            spacing: 0,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              URow(spacing: 0, 
+              URow(
+                spacing: 0,
                 children: <Widget>[
                   Chip(
                     label: Text(_tagOf(i)?.localizedTitle ?? "---"),
@@ -87,9 +87,8 @@ class _ContentsPageState extends State<UAdminContentsPage> {
     ),
   );
 
-  Widget _itemDesktop(UContentResponse i, int index) =>
-      URow(
-        color: UAdminTable.rowColor(context, index),
+  Widget _itemDesktop(UContentResponse i, int index) => URow(
+    color: UAdminTable.rowColor(context, index),
     children: <Widget>[
       SizedBox(width: 48, height: 48, child: UImage(i.media.firstOrNull?.url ?? "")).expanded(),
       UAdminTable.cell(_tagOf(i)?.localizedTitle ?? "---"),
@@ -100,12 +99,14 @@ class _ContentsPageState extends State<UAdminContentsPage> {
     ],
   );
 
-  Widget _menu(UContentResponse i) =>
-      UAdminOps.menu<UContentResponse>(
-        context,
-        item: i,
-        handlers: UAdminActionHandlers<UContentResponse>(onEdit: (UContentResponse x) => _showEditDialog(p: x), onDelete: c.delete),
-        fallback: (UAdminActionContext<UContentResponse> ctx) => <UAdminAction>[ctx.edit(), ctx.delete()],
+  Widget _menu(UContentResponse i) => UAdminOps.menu<UContentResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UContentResponse>(
+      onEdit: (UContentResponse x) => _showEditDialog(p: x),
+      onDelete: c.delete,
+    ),
+    fallback: (UAdminActionContext<UContentResponse> ctx) => <UAdminAction>[ctx.edit(), ctx.delete()],
   );
 
   void _showFilterDialog() => UNavigator.dialog(
@@ -114,7 +115,8 @@ class _ContentsPageState extends State<UAdminContentsPage> {
       content: Form(
         key: c.filterFormKey,
         child: SingleChildScrollView(
-          child: UColumn(spacing: 0, 
+          child: UColumn(
+            spacing: 0,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Obx(
@@ -175,7 +177,8 @@ class _ContentsPageState extends State<UAdminContentsPage> {
             child: SingleChildScrollView(
               child: Form(
                 key: formKey,
-                child: UColumn(spacing: 0, 
+                child: UColumn(
+                  spacing: 0,
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
@@ -203,7 +206,8 @@ class _ContentsPageState extends State<UAdminContentsPage> {
                     UTextField(controller: whatsapp, labelText: U.s.whatsapp).pSymmetric(vertical: 6),
                     UTextField(controller: phone, labelText: U.s.phoneNumber).pSymmetric(vertical: 6),
                     const SizedBox(height: 12),
-                    URow(spacing: 0, 
+                    URow(
+                      spacing: 0,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         UTextBodyLarge(U.s.extraSections),
@@ -287,10 +291,12 @@ class _ContentsPageState extends State<UAdminContentsPage> {
     margin: const EdgeInsets.symmetric(vertical: 6),
     color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.06),
     radius: 8,
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        URow(spacing: 0, 
+        URow(
+          spacing: 0,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             UTextBodyMedium("${U.s.section} ${index + 1}"),
@@ -330,7 +336,13 @@ class _ContentsPageState extends State<UAdminContentsPage> {
 }
 
 class _ExtraForm {
-  _ExtraForm({String? title, String? subtitle, String? description, String? icon1, String? icon2, String? icon3}) : title = TextEditingController(text: title), subtitle = TextEditingController(text: subtitle), description = TextEditingController(text: description), icon1 = TextEditingController(text: icon1), icon2 = TextEditingController(text: icon2), icon3 = TextEditingController(text: icon3);
+  _ExtraForm({String? title, String? subtitle, String? description, String? icon1, String? icon2, String? icon3})
+    : title = TextEditingController(text: title),
+      subtitle = TextEditingController(text: subtitle),
+      description = TextEditingController(text: description),
+      icon1 = TextEditingController(text: icon1),
+      icon2 = TextEditingController(text: icon2),
+      icon3 = TextEditingController(text: icon3);
 
   factory _ExtraForm.fromModel(UContentExtra m) => _ExtraForm(
     title: m.title,

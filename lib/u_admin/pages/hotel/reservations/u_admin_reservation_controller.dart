@@ -82,9 +82,19 @@ class UAdminReservationController extends UBaseController {
     reloadFirstPage(read);
   }
 
-  void create({required UHotelReservationCreateParams p}) => UServices.hotel.createHotelReservation(p: p, onOk: (UResponse<String> r) => okCallback(r.message, read), onError: (UResponse<dynamic> r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void create({required UHotelReservationCreateParams p}) => UServices.hotel.createHotelReservation(
+    p: p,
+    onOk: (UResponse<String> r) => okCallback(r.message, read),
+    onError: (UResponse<dynamic> r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
-  void update({required UHotelReservationUpdateParams p}) => UServices.hotel.updateHotelReservation(p: p, onOk: (UEmptyResponse r) => okCallback(r.message, read), onError: (UResponse<dynamic> r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void update({required UHotelReservationUpdateParams p}) => UServices.hotel.updateHotelReservation(
+    p: p,
+    onOk: (UEmptyResponse r) => okCallback(r.message, read),
+    onError: (UResponse<dynamic> r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
   void delete(UHotelReservationResponse i) => UNavigator.confirm(
     title: U.s.delete,

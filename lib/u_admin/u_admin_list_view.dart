@@ -1,7 +1,18 @@
 part of "u_admin.dart";
 
 class UAdminListView<T> extends StatelessWidget {
-  const UAdminListView({required this.state, required this.items, required this.totalCount, required this.desktopHeader, required this.desktopRow, required this.mobileRow, required this.onRetry, required this.emptyText, super.key, this.desktopBreakpoint = 800});
+  const UAdminListView({
+    required this.state,
+    required this.items,
+    required this.totalCount,
+    required this.desktopHeader,
+    required this.desktopRow,
+    required this.mobileRow,
+    required this.onRetry,
+    required this.emptyText,
+    super.key,
+    this.desktopBreakpoint = 800,
+  });
 
   final Rx<PageState> state;
 
@@ -24,21 +35,20 @@ class UAdminListView<T> extends StatelessWidget {
     final bool desktop = MediaQuery.sizeOf(context).width >= desktopBreakpoint;
     final Widget list = desktop
         ? UListView(
-      header: URow(color: Theme
-          .of(context)
-          .colorScheme
-          .primary, padding: const EdgeInsets.all(8), children: desktopHeader()),
+            header: URow(color: Theme.of(context).colorScheme.primary, padding: const EdgeInsets.all(8), children: desktopHeader()),
             itemBuilder: (BuildContext context, int index) => desktopRow(data[index], index),
             itemCount: data.length,
           )
         : UListView(itemBuilder: (BuildContext context, int index) => mobileRow(data[index], index), itemCount: data.length);
 
-    return UColumn(spacing: 0, 
+    return UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
-          child: URow(spacing: 0, 
+          child: URow(
+            spacing: 0,
             children: <Widget>[
               Icon(Icons.format_list_bulleted_rounded, size: 16, color: Theme.of(context).disabledColor),
               const SizedBox(width: 6),
@@ -68,20 +78,21 @@ abstract class UAdminTable {
   static Color rowColor(BuildContext context, int index) => index.isOdd ? UAdminTheme.transparent : Theme.of(context).colorScheme.primary.withValues(alpha: 0.16);
 
   // The mobile card row (UContainer + dense ListTile) used by every list page.
-  static Widget mobileTile(BuildContext context, {required int index, required IconData icon, required String title, required List<Widget> subtitle, Widget? trailing, VoidCallback? onTap}) => UContainer(
-    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-    margin: const EdgeInsets.symmetric(vertical: 4),
-    color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
-    radius: 8,
-    child: ListTile(
-      dense: true,
-      onTap: onTap,
-      leading: Icon(icon),
-      title: UTextBodyMedium(title),
-      subtitle: UColumn(spacing: 0, crossAxisAlignment: CrossAxisAlignment.start, children: subtitle),
-      trailing: trailing,
-    ),
-  );
+  static Widget mobileTile(BuildContext context, {required int index, required IconData icon, required String title, required List<Widget> subtitle, Widget? trailing, VoidCallback? onTap}) =>
+      UContainer(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        margin: const EdgeInsets.symmetric(vertical: 4),
+        color: index.isOdd ? Theme.of(context).colorScheme.surface : Theme.of(context).colorScheme.primary.withValues(alpha: 0.12),
+        radius: 8,
+        child: ListTile(
+          dense: true,
+          onTap: onTap,
+          leading: Icon(icon),
+          title: UTextBodyMedium(title),
+          subtitle: UColumn(spacing: 0, crossAxisAlignment: CrossAxisAlignment.start, children: subtitle),
+          trailing: trailing,
+        ),
+      );
 }
 
 class UAdminSortHeader extends StatelessWidget {
@@ -94,7 +105,8 @@ class UAdminSortHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) => InkWell(
     onTap: onTap,
-    child: URow(spacing: 0, 
+    child: URow(
+      spacing: 0,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Flexible(
@@ -113,7 +125,8 @@ class _AdminListError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Icon(Icons.cloud_off_rounded, size: 56, color: Theme.of(context).colorScheme.error),
@@ -133,7 +146,8 @@ class _AdminListEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Icon(Icons.inbox_rounded, size: 56, color: Theme.of(context).disabledColor),

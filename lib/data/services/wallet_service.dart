@@ -100,7 +100,10 @@ class WalletService {
       endpoint: "${U.baseUrl}/wallet/Read",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
       onSuccess: (final Response r) {
-        final UResponse<List<UWalletResponse>> ok = UResponse<List<UWalletResponse>>.fromJson(r.body, (final dynamic i) => List<UWalletResponse>.from((i as List<dynamic>).map((final dynamic x) => UWalletResponse.fromMap(x))));
+        final UResponse<List<UWalletResponse>> ok = UResponse<List<UWalletResponse>>.fromJson(
+          r.body,
+          (final dynamic i) => List<UWalletResponse>.from((i as List<dynamic>).map((final dynamic x) => UWalletResponse.fromMap(x))),
+        );
         result = (ok, null, null);
         onOk?.call(ok);
       },
@@ -129,7 +132,10 @@ class WalletService {
       endpoint: "${U.baseUrl}/wallet/ReadByUserId",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
       onSuccess: (final Response r) {
-        final UResponse<List<UWalletResponse>> ok = UResponse<List<UWalletResponse>>.fromJson(r.body, (final dynamic i) => List<UWalletResponse>.from((i as List<dynamic>).map((final dynamic x) => UWalletResponse.fromMap(x))));
+        final UResponse<List<UWalletResponse>> ok = UResponse<List<UWalletResponse>>.fromJson(
+          r.body,
+          (final dynamic i) => List<UWalletResponse>.from((i as List<dynamic>).map((final dynamic x) => UWalletResponse.fromMap(x))),
+        );
         result = (ok, null, null);
         onOk?.call(ok);
       },

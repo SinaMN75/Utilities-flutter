@@ -792,7 +792,10 @@ class HotelService {
       endpoint: "${U.baseUrl}/Hotel/DormBedContract/Read",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()).add("locale", ULocalStorage.getLocale()),
       onSuccess: (final Response r) {
-        final UResponse<List<UDormBedContractResponse>> ok = UResponse<List<UDormBedContractResponse>>.fromJson(r.body, (final dynamic i) => List<UDormBedContractResponse>.from((i as List<dynamic>).map((final dynamic x) => UDormBedContractResponse.fromMap(x))));
+        final UResponse<List<UDormBedContractResponse>> ok = UResponse<List<UDormBedContractResponse>>.fromJson(
+          r.body,
+          (final dynamic i) => List<UDormBedContractResponse>.from((i as List<dynamic>).map((final dynamic x) => UDormBedContractResponse.fromMap(x))),
+        );
         result = (ok, null, null);
         onOk?.call(ok);
       },
@@ -1195,13 +1198,33 @@ class HotelService {
     return result;
   }
 
-  Future<(UEmptyResponse?, UResponse<dynamic>?, String?)> confirmHotelReservation({required final UIdParams p, final Function(UEmptyResponse r)? onOk, final Function(UResponse<dynamic> e)? onError, final Function(String e)? onException}) => _reservationAction(action: "Confirm", p: p, onOk: onOk, onError: onError, onException: onException);
+  Future<(UEmptyResponse?, UResponse<dynamic>?, String?)> confirmHotelReservation({
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => _reservationAction(action: "Confirm", p: p, onOk: onOk, onError: onError, onException: onException);
 
-  Future<(UEmptyResponse?, UResponse<dynamic>?, String?)> checkInHotelReservation({required final UIdParams p, final Function(UEmptyResponse r)? onOk, final Function(UResponse<dynamic> e)? onError, final Function(String e)? onException}) => _reservationAction(action: "CheckIn", p: p, onOk: onOk, onError: onError, onException: onException);
+  Future<(UEmptyResponse?, UResponse<dynamic>?, String?)> checkInHotelReservation({
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => _reservationAction(action: "CheckIn", p: p, onOk: onOk, onError: onError, onException: onException);
 
-  Future<(UEmptyResponse?, UResponse<dynamic>?, String?)> checkOutHotelReservation({required final UIdParams p, final Function(UEmptyResponse r)? onOk, final Function(UResponse<dynamic> e)? onError, final Function(String e)? onException}) => _reservationAction(action: "CheckOut", p: p, onOk: onOk, onError: onError, onException: onException);
+  Future<(UEmptyResponse?, UResponse<dynamic>?, String?)> checkOutHotelReservation({
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => _reservationAction(action: "CheckOut", p: p, onOk: onOk, onError: onError, onException: onException);
 
-  Future<(UEmptyResponse?, UResponse<dynamic>?, String?)> cancelHotelReservation({required final UIdParams p, final Function(UEmptyResponse r)? onOk, final Function(UResponse<dynamic> e)? onError, final Function(String e)? onException}) => _reservationAction(action: "Cancel", p: p, onOk: onOk, onError: onError, onException: onException);
+  Future<(UEmptyResponse?, UResponse<dynamic>?, String?)> cancelHotelReservation({
+    required final UIdParams p,
+    final Function(UEmptyResponse r)? onOk,
+    final Function(UResponse<dynamic> e)? onError,
+    final Function(String e)? onException,
+  }) => _reservationAction(action: "Cancel", p: p, onOk: onOk, onError: onError, onException: onException);
 
   // ==================== HotelInvoice ====================
 

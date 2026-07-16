@@ -435,7 +435,14 @@ class _UScannerOverlayPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(final _UScannerOverlayPainter oldDelegate) =>
-      oldDelegate.window != window || oldDelegate.overlayColor != overlayColor || oldDelegate.borderColor != borderColor || oldDelegate.borderWidth != borderWidth || oldDelegate.borderRadius != borderRadius || oldDelegate.cornerLength != cornerLength || oldDelegate.showCorners != showCorners || oldDelegate.showFullBorder != showFullBorder;
+      oldDelegate.window != window ||
+      oldDelegate.overlayColor != overlayColor ||
+      oldDelegate.borderColor != borderColor ||
+      oldDelegate.borderWidth != borderWidth ||
+      oldDelegate.borderRadius != borderRadius ||
+      oldDelegate.cornerLength != cornerLength ||
+      oldDelegate.showCorners != showCorners ||
+      oldDelegate.showFullBorder != showFullBorder;
 }
 
 /// A ready-to-use full-screen scanner page wrapping [UScanner] in a [UScaffold].

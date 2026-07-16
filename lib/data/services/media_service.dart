@@ -9,7 +9,10 @@ class MediaService {
   }) async {
     (UResponse<String>?, UEmptyResponse?, String?) result = (null, null, null);
     final List<MultipartFile> files = <MultipartFile>[
-      if (p.file.path != null) await UHttpClient.multipartFileFromFile("File", File(p.file.path!), filename: p.file.path!.split("/").last) else if (p.file.bytes != null) await UHttpClient.multipartFileFromUint8List("File", p.file.bytes!, filename: p.file.path?.split("/").last ?? "file.${p.file.extension ?? "png"}"),
+      if (p.file.path != null)
+        await UHttpClient.multipartFileFromFile("File", File(p.file.path!), filename: p.file.path!.split("/").last)
+      else if (p.file.bytes != null)
+        await UHttpClient.multipartFileFromUint8List("File", p.file.bytes!, filename: p.file.path?.split("/").last ?? "file.${p.file.extension ?? "png"}"),
     ];
     await UHttpClient.upload(
       endpoint: "${U.baseUrl}/Media/Create",
@@ -45,7 +48,10 @@ class MediaService {
       endpoint: "${U.baseUrl}/Media/Read",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
       onSuccess: (final Response r) {
-        final UResponse<List<UMediaResponse>> ok = UResponse<List<UMediaResponse>>.fromJson(r.body, (dynamic i) => List<UMediaResponse>.from((i as List<dynamic>).map((dynamic x) => UMediaResponse.fromMap(x))));
+        final UResponse<List<UMediaResponse>> ok = UResponse<List<UMediaResponse>>.fromJson(
+          r.body,
+          (dynamic i) => List<UMediaResponse>.from((i as List<dynamic>).map((dynamic x) => UMediaResponse.fromMap(x))),
+        );
         result = (ok, null, null);
         onOk(ok);
       },

@@ -158,7 +158,10 @@ class InquiryService {
       endpoint: "${U.baseUrl}/inquiry/DrivingLicenceNegativePoint",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
       onSuccess: (final Response r) {
-        final UResponse<UDrivingLicenceNegativePointResponse> ok = UResponse<UDrivingLicenceNegativePointResponse>.fromJson(r.body, (final dynamic i) => UDrivingLicenceNegativePointResponse.fromMap(i));
+        final UResponse<UDrivingLicenceNegativePointResponse> ok = UResponse<UDrivingLicenceNegativePointResponse>.fromJson(
+          r.body,
+          (final dynamic i) => UDrivingLicenceNegativePointResponse.fromMap(i),
+        );
         result = (ok, null, null);
         onOk?.call(ok);
       },

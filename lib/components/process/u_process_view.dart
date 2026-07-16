@@ -60,7 +60,9 @@ class _UProcessViewState extends State<UProcessView> {
         appBar: AppBar(title: Text(step.title)),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         // Steps with inputs use "submit"; a message-only step (e.g. awaiting approval) reads better as "confirm".
-        floatingActionButton: hasFields || hasMessageBox ? UButton(width: MediaQuery.sizeOf(context).width, title: hasFields ? S.current.submit : S.current.confirm, onTap: c.send).pSymmetric(horizontal: 20) : null,
+        floatingActionButton: hasFields || hasMessageBox
+            ? UButton(width: MediaQuery.sizeOf(context).width, title: hasFields ? S.current.submit : S.current.confirm, onTap: c.send).pSymmetric(horizontal: 20)
+            : null,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[

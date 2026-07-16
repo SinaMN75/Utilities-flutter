@@ -17,26 +17,25 @@ class _HotelPageState extends State<UAdminHotelPage> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      UAdminScaffold(
-        title: U.s.hotels,
-        onFilter: _showFilterDialog,
-        onCreate: U.user.hasPermission(TagUser.permissionManageHotels) ? _showEditDialog : null,
-        pageNumber: c.pageNumber,
-        totalPages: c.totalPages,
-        onPageChanged: (int page) {
-          c.pageNumber(page);
-          c.read();
-        },
-        body: UAdminListView<UHotelResponse>(
-          state: c.state,
-          items: () => c.list,
-          totalCount: () => c.totalCount,
-          onRetry: c.read,
-          emptyText: U.s.noHotelsFound,
-          desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.city, U.s.rooms, U.s.created, U.s.operations]),
-          desktopRow: _itemDesktop,
-          mobileRow: _itemResponsive,
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: U.s.hotels,
+    onFilter: _showFilterDialog,
+    onCreate: U.user.hasPermission(TagUser.permissionManageHotels) ? _showEditDialog : null,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: UAdminListView<UHotelResponse>(
+      state: c.state,
+      items: () => c.list,
+      totalCount: () => c.totalCount,
+      onRetry: c.read,
+      emptyText: U.s.noHotelsFound,
+      desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.city, U.s.rooms, U.s.created, U.s.operations]),
+      desktopRow: _itemDesktop,
+      mobileRow: _itemResponsive,
     ),
   );
 
@@ -69,17 +68,18 @@ class _HotelPageState extends State<UAdminHotelPage> {
     );
   }
 
-  Widget _menu(UHotelResponse i) =>
-      UAdminOps.menu<UHotelResponse>(
-        context,
-        item: i,
-        handlers: UAdminActionHandlers<UHotelResponse>(onEdit: (UHotelResponse h) => _showEditDialog(p: h), onDelete: c.delete),
-        fallback: (UAdminActionContext<UHotelResponse> ctx) =>
-        <UAdminAction>[
-          UAdminLinks.hotelRooms(ctx.item),
-          UAdminLinks.hotelReservations(ctx.item),
-          ctx.edit(roles: <TagUser>[TagUser.permissionManageHotels]),
-          ctx.delete(roles: <TagUser>[TagUser.permissionDeleteHotels]),
+  Widget _menu(UHotelResponse i) => UAdminOps.menu<UHotelResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UHotelResponse>(
+      onEdit: (UHotelResponse h) => _showEditDialog(p: h),
+      onDelete: c.delete,
+    ),
+    fallback: (UAdminActionContext<UHotelResponse> ctx) => <UAdminAction>[
+      UAdminLinks.hotelRooms(ctx.item),
+      UAdminLinks.hotelReservations(ctx.item),
+      ctx.edit(roles: <TagUser>[TagUser.permissionManageHotels]),
+      ctx.delete(roles: <TagUser>[TagUser.permissionDeleteHotels]),
     ],
   );
 
@@ -89,7 +89,8 @@ class _HotelPageState extends State<UAdminHotelPage> {
       content: Form(
         key: c.filterFormKey,
         child: SingleChildScrollView(
-          child: UColumn(spacing: 0, 
+          child: UColumn(
+            spacing: 0,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               UTextField(controller: c.titleFilter, labelText: U.s.title).pSymmetric(vertical: 6),
@@ -142,7 +143,8 @@ class _HotelPageState extends State<UAdminHotelPage> {
           content: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: UColumn(spacing: 0, 
+              child: UColumn(
+                spacing: 0,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(

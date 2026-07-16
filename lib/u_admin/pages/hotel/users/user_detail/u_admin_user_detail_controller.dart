@@ -18,7 +18,14 @@ class UAdminUserDetailController {
       },
       p: UIdParams(
         id: user.id,
-        selectorArgs: const UserSelectorArgs(address: AddressSelectorArgs(), nationalCardFront: true, nationalCardBack: true, birthCertificateFirst: true, eSignature: true, visualAuthentication: true),
+        selectorArgs: const UserSelectorArgs(
+          address: AddressSelectorArgs(),
+          nationalCardFront: true,
+          nationalCardBack: true,
+          birthCertificateFirst: true,
+          eSignature: true,
+          visualAuthentication: true,
+        ),
       ),
       onOk: (UResponse<UUserResponse> response) {
         user = response.result!;
@@ -47,8 +54,22 @@ class UAdminUserDetailController {
         nationalCardFrontRejectionReason: "",
         visualAuthenticationRejectionReason: "",
         eSignatureRejectionReason: "",
-        addTags: <int>[TagUser.verified.number, TagUser.nationalCardBackVerified.number, TagUser.nationalCardFrontVerified.number, TagUser.birthCertificateFirstVerified.number, TagUser.eSignatureVerified.number, TagUser.visualAuthenticationVerified.number],
-        removeTags: <int>[TagUser.awaitingVerification.number, TagUser.nationalCardBackAwaitingVerification.number, TagUser.nationalCardFrontAwaitingVerification.number, TagUser.birthCertificateFirstAwaitingVerification.number, TagUser.eSignatureAwaitingVerification.number, TagUser.visualAuthenticationAwaitingVerification.number],
+        addTags: <int>[
+          TagUser.verified.number,
+          TagUser.nationalCardBackVerified.number,
+          TagUser.nationalCardFrontVerified.number,
+          TagUser.birthCertificateFirstVerified.number,
+          TagUser.eSignatureVerified.number,
+          TagUser.visualAuthenticationVerified.number,
+        ],
+        removeTags: <int>[
+          TagUser.awaitingVerification.number,
+          TagUser.nationalCardBackAwaitingVerification.number,
+          TagUser.nationalCardFrontAwaitingVerification.number,
+          TagUser.birthCertificateFirstAwaitingVerification.number,
+          TagUser.eSignatureAwaitingVerification.number,
+          TagUser.visualAuthenticationAwaitingVerification.number,
+        ],
       ),
       onOk: (UEmptyResponse r) {
         ULoading.dismiss();

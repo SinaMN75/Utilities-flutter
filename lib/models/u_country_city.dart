@@ -1,5 +1,3 @@
-
-
 class UCountry {
   final String code;
   final String nameEn;

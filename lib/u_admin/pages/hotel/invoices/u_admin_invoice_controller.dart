@@ -81,9 +81,19 @@ class UAdminInvoiceController extends UBaseController {
     reloadFirstPage(read);
   }
 
-  void create({required UDormBedInvoiceCreateParams p}) => UServices.hotel.createDormBedInvoice(p: p, onOk: (UResponse<UDormBedInvoiceResponse> r) => okCallback(r.message, read), onError: (UResponse<dynamic> r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void create({required UDormBedInvoiceCreateParams p}) => UServices.hotel.createDormBedInvoice(
+    p: p,
+    onOk: (UResponse<UDormBedInvoiceResponse> r) => okCallback(r.message, read),
+    onError: (UResponse<dynamic> r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
-  void update({required UDormBedInvoiceUpdateParams p}) => UServices.hotel.updateDormBedInvoice(p: p, onOk: (UResponse<UDormBedInvoiceResponse> r) => okCallback(r.message, read), onError: (UResponse<dynamic> r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void update({required UDormBedInvoiceUpdateParams p}) => UServices.hotel.updateDormBedInvoice(
+    p: p,
+    onOk: (UResponse<UDormBedInvoiceResponse> r) => okCallback(r.message, read),
+    onError: (UResponse<dynamic> r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
   void pay(UDormBedInvoiceResponse i) => UNavigator.confirm(
     title: U.s.payInvoice,

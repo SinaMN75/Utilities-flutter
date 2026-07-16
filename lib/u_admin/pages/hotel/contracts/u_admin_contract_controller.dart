@@ -75,9 +75,19 @@ class UAdminContractController extends UBaseController {
     reloadFirstPage(read);
   }
 
-  void create({required UDormBedContractCreateParams p}) => UServices.hotel.createDormBedContract(p: p, onOk: (UResponse<String> r) => okCallback(r.message, read), onError: (UResponse<dynamic> r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void create({required UDormBedContractCreateParams p}) => UServices.hotel.createDormBedContract(
+    p: p,
+    onOk: (UResponse<String> r) => okCallback(r.message, read),
+    onError: (UResponse<dynamic> r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
-  void update({required UDormBedContractUpdateParams p}) => UServices.hotel.updateDormBedContract(p: p, onOk: (UResponse<UDormBedContractResponse> r) => okCallback(r.message, read), onError: (UResponse<dynamic> r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void update({required UDormBedContractUpdateParams p}) => UServices.hotel.updateDormBedContract(
+    p: p,
+    onOk: (UResponse<UDormBedContractResponse> r) => okCallback(r.message, read),
+    onError: (UResponse<dynamic> r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
   void delete(UDormBedContractResponse i) => UNavigator.confirm(
     title: U.s.delete,

@@ -86,7 +86,11 @@ class _UBarcodeState extends State<UBarcode> {
   @override
   void didUpdateWidget(covariant UBarcode oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.type != oldWidget.type || widget.errorCorrectionLevel != oldWidget.errorCorrectionLevel || widget.qrCodeVersion != oldWidget.qrCodeVersion || widget.enableCheckSum != oldWidget.enableCheckSum || widget.module != oldWidget.module) {
+    if (widget.type != oldWidget.type ||
+        widget.errorCorrectionLevel != oldWidget.errorCorrectionLevel ||
+        widget.qrCodeVersion != oldWidget.qrCodeVersion ||
+        widget.enableCheckSum != oldWidget.enableCheckSum ||
+        widget.module != oldWidget.module) {
       _initializeSymbology();
     }
   }
@@ -185,7 +189,16 @@ class DemoBarcodes extends StatelessWidget {
             Text("QR Code", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(
               height: 200,
-              child: UBarcode(value: qrSampleValue, barColor: Colors.blue, backgroundColor: Colors.white, showValue: true, textSpacing: 10, module: 2, errorCorrectionLevel: UErrorCorrectionLevel.high, qrCodeVersion: 5),
+              child: UBarcode(
+                value: qrSampleValue,
+                barColor: Colors.blue,
+                backgroundColor: Colors.white,
+                showValue: true,
+                textSpacing: 10,
+                module: 2,
+                errorCorrectionLevel: UErrorCorrectionLevel.high,
+                qrCodeVersion: 5,
+              ),
             ),
             SizedBox(height: 20),
             Text("Data Matrix", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),

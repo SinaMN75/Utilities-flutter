@@ -190,7 +190,10 @@ class TerminalService {
       endpoint: "${U.baseUrl}/terminal/ReadSupportPassword",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
       onSuccess: (final Response r) {
-        final UResponse<UTerminalReadSupportPasswordResponse> ok = UResponse<UTerminalReadSupportPasswordResponse>.fromJson(r.body, (final dynamic i) => UTerminalReadSupportPasswordResponse.fromMap(i));
+        final UResponse<UTerminalReadSupportPasswordResponse> ok = UResponse<UTerminalReadSupportPasswordResponse>.fromJson(
+          r.body,
+          (final dynamic i) => UTerminalReadSupportPasswordResponse.fromMap(i),
+        );
         result = (ok, null, null);
         onOk?.call(ok);
       },

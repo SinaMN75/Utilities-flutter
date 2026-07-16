@@ -20,70 +20,66 @@ class _DormBedPageState extends State<UAdminDormBedPage> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      UAdminScaffold(
-        title: widget.room != null
-            ? "${U.s.beds} · ${widget.room!.title}"
-            : widget.dorm != null
-            ? "${U.s.beds} · ${widget.dorm!.title}"
-            : U.s.dormBeds,
-        onFilter: _showFilterDialog,
-        onCreate: U.user.hasPermission(TagUser.permissionManageDorms) ? _showEditDialog : null,
-        pageNumber: c.pageNumber,
-        totalPages: c.totalPages,
-        onPageChanged: (int page) {
-          c.pageNumber(page);
-          c.read();
-        },
-        body: UAdminListView<UDormBedResponse>(
-          state: c.state,
-          items: () => c.list,
-          totalCount: () => c.totalCount,
-          onRetry: c.read,
-          emptyText: U.s.noBedsFound,
-          desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.deposit, U.s.rent, U.s.occupancy, U.s.operations]),
-          desktopRow: _itemDesktop,
-          mobileRow: _itemResponsive,
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: widget.room != null
+        ? "${U.s.beds} · ${widget.room!.title}"
+        : widget.dorm != null
+        ? "${U.s.beds} · ${widget.dorm!.title}"
+        : U.s.dormBeds,
+    onFilter: _showFilterDialog,
+    onCreate: U.user.hasPermission(TagUser.permissionManageDorms) ? _showEditDialog : null,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: UAdminListView<UDormBedResponse>(
+      state: c.state,
+      items: () => c.list,
+      totalCount: () => c.totalCount,
+      onRetry: c.read,
+      emptyText: U.s.noBedsFound,
+      desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.deposit, U.s.rent, U.s.occupancy, U.s.operations]),
+      desktopRow: _itemDesktop,
+      mobileRow: _itemResponsive,
     ),
   );
 
-  Widget _itemDesktop(UDormBedResponse i, int index) =>
-      URow(
-        color: UAdminTable.rowColor(context, index),
-        children: <Widget>[
-          UAdminTable.cell(i.title),
-          UAdminTable.cell(i.deposit.rial()),
-          UAdminTable.cell(i.monthlyRent.rial()),
-          UAdminTable.cell((i.contracts
-              ?.where((UDormBedContractResponse i) => i.isActive)
-              .isEmpty ?? true) ? U.s.free : U.s.occupied),
+  Widget _itemDesktop(UDormBedResponse i, int index) => URow(
+    color: UAdminTable.rowColor(context, index),
+    children: <Widget>[
+      UAdminTable.cell(i.title),
+      UAdminTable.cell(i.deposit.rial()),
+      UAdminTable.cell(i.monthlyRent.rial()),
+      UAdminTable.cell((i.contracts?.where((UDormBedContractResponse i) => i.isActive).isEmpty ?? true) ? U.s.free : U.s.occupied),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive(UDormBedResponse i, int index) =>
-      UAdminTable.mobileTile(
-        context,
-        index: index,
-        icon: Icons.bed_rounded,
-        title: i.title,
-        subtitle: <Widget>[
-          UTextBodyMedium("${U.s.deposit}: ${i.deposit.rial()}"),
-          UTextBodyMedium("${U.s.rent}: ${i.monthlyRent.rial()}"),
-        ],
-        trailing: _menu(i),
+  Widget _itemResponsive(UDormBedResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.bed_rounded,
+    title: i.title,
+    subtitle: <Widget>[
+      UTextBodyMedium("${U.s.deposit}: ${i.deposit.rial()}"),
+      UTextBodyMedium("${U.s.rent}: ${i.monthlyRent.rial()}"),
+    ],
+    trailing: _menu(i),
   );
 
-  Widget _menu(UDormBedResponse i) =>
-      UAdminOps.menu<UDormBedResponse>(
-        context,
-        item: i,
-        handlers: UAdminActionHandlers<UDormBedResponse>(onEdit: (UDormBedResponse b) => _showEditDialog(p: b), onDelete: c.delete),
-        fallback: (UAdminActionContext<UDormBedResponse> ctx) =>
-        <UAdminAction>[
-          UAdminLinks.bedContracts(ctx.item),
-          ctx.edit(roles: <TagUser>[TagUser.permissionManageDorms]),
-          ctx.delete(roles: <TagUser>[TagUser.permissionDeleteDorms]),
+  Widget _menu(UDormBedResponse i) => UAdminOps.menu<UDormBedResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UDormBedResponse>(
+      onEdit: (UDormBedResponse b) => _showEditDialog(p: b),
+      onDelete: c.delete,
+    ),
+    fallback: (UAdminActionContext<UDormBedResponse> ctx) => <UAdminAction>[
+      UAdminLinks.bedContracts(ctx.item),
+      ctx.edit(roles: <TagUser>[TagUser.permissionManageDorms]),
+      ctx.delete(roles: <TagUser>[TagUser.permissionDeleteDorms]),
     ],
   );
 
@@ -91,7 +87,8 @@ class _DormBedPageState extends State<UAdminDormBedPage> {
     AlertDialog(
       title: Text(U.s.filterBeds),
       content: SingleChildScrollView(
-        child: UColumn(spacing: 0, 
+        child: UColumn(
+          spacing: 0,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             UTextField(controller: c.titleFilter, labelText: U.s.title).pSymmetric(vertical: 6),
@@ -129,7 +126,8 @@ class _DormBedPageState extends State<UAdminDormBedPage> {
           child: StatefulBuilder(
             builder: (BuildContext context, void Function(void Function()) setLocal) => Form(
               key: formKey,
-              child: UColumn(spacing: 0, 
+              child: UColumn(
+                spacing: 0,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(

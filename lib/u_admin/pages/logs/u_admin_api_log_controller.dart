@@ -60,23 +60,22 @@ class UAdminApiLogController extends UBaseController {
     return tags.isEmpty ? null : tags;
   }
 
-  UApiLogReadParams _buildSearchParams() =>
-      UApiLogReadParams(
-        pageSize: pageSize,
-        pageNumber: pageNumber.value,
-        fromCreatedAt: fromCreatedAt,
-        toCreatedAt: toCreatedAt,
-        tags: _buildTags(),
-        pathContains: pathContainsCtrl.text.nullIfEmpty(),
-        statusCode: int.tryParse(statusCodeCtrl.text),
-        minDurationMs: int.tryParse(minDurationCtrl.text),
-        maxDurationMs: int.tryParse(maxDurationCtrl.text),
-        userId: userIdCtrl.text.nullIfEmpty(),
-        ipAddress: ipAddressCtrl.text.nullIfEmpty(),
-        traceId: traceIdCtrl.text.nullIfEmpty(),
-        onlyErrors: onlyErrors.value ? true : null,
-        orderBy: orderBy.value.number,
-      );
+  UApiLogReadParams _buildSearchParams() => UApiLogReadParams(
+    pageSize: pageSize,
+    pageNumber: pageNumber.value,
+    fromCreatedAt: fromCreatedAt,
+    toCreatedAt: toCreatedAt,
+    tags: _buildTags(),
+    pathContains: pathContainsCtrl.text.nullIfEmpty(),
+    statusCode: int.tryParse(statusCodeCtrl.text),
+    minDurationMs: int.tryParse(minDurationCtrl.text),
+    maxDurationMs: int.tryParse(maxDurationCtrl.text),
+    userId: userIdCtrl.text.nullIfEmpty(),
+    ipAddress: ipAddressCtrl.text.nullIfEmpty(),
+    traceId: traceIdCtrl.text.nullIfEmpty(),
+    onlyErrors: onlyErrors.value ? true : null,
+    orderBy: orderBy.value.number,
+  );
 
   Future<void> search() async {
     state.loading();

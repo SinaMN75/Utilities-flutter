@@ -80,7 +80,8 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
       content: SizedBox(
         width: context.dialogWidth(),
         child: SingleChildScrollView(
-          child: UColumn(spacing: 0, 
+          child: UColumn(
+            spacing: 0,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               UDropDownField<TagTxn?>(
@@ -142,7 +143,8 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
           child: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: UColumn(spacing: 0, 
+              child: UColumn(
+                spacing: 0,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(
@@ -193,7 +195,8 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
           child: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: UColumn(spacing: 0, 
+              child: UColumn(
+                spacing: 0,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(controller: amount, labelText: U.s.amount, keyboardType: TextInputType.number).pSymmetric(vertical: 6),
@@ -209,7 +212,12 @@ class _TransactionsPageState extends State<UAdminTransactionsPage> {
                       key: formKey,
                       action: () {
                         UNavigator.back();
-                        c.update(id: i.id, amount: amount.text.nullIfEmpty() == null ? null : amount.text.trim().toDouble(), trackingNumber: tracking.text.nullIfEmpty(), tags: <int>[tag.value.number]);
+                        c.update(
+                          id: i.id,
+                          amount: amount.text.nullIfEmpty() == null ? null : amount.text.trim().toDouble(),
+                          trackingNumber: tracking.text.nullIfEmpty(),
+                          tags: <int>[tag.value.number],
+                        );
                       },
                     ),
                   ),

@@ -71,7 +71,10 @@ class UserService {
       endpoint: "${U.baseUrl}/User/Read",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
       onSuccess: (final Response r) {
-        final UResponse<List<UUserResponse>> ok = UResponse<List<UUserResponse>>.fromJson(r.body, (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))));
+        final UResponse<List<UUserResponse>> ok = UResponse<List<UUserResponse>>.fromJson(
+          r.body,
+          (final dynamic i) => List<UUserResponse>.from((i as List<dynamic>).map((final dynamic x) => UUserResponse.fromMap(x))),
+        );
         result = (ok, null, null);
         onOk?.call(ok);
       },

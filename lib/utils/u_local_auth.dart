@@ -1,5 +1,3 @@
-
-
 abstract class ULocalAuth {
   // static final LocalAuthentication auth = LocalAuthentication();
   //

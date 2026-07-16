@@ -308,7 +308,7 @@ class UImageMemory extends StatelessWidget {
     this.color,
     this.width,
     this.height,
-        this.placeholder,
+    this.placeholder,
     this.fit = BoxFit.contain,
     this.borderRadius = 1,
     super.key,
@@ -329,16 +329,15 @@ class UImageMemory extends StatelessWidget {
     width: width,
     height: height,
     fit: fit,
-    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) =>
-    placeholder == null
+    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) => placeholder == null
         ? SizedBox(width: width, height: height)
         : UImageAsset(
-      placeholder!,
-      color: color,
-      width: width,
-      height: height,
-      fit: fit,
-      borderRadius: borderRadius,
-    ),
+            placeholder!,
+            color: color,
+            width: width,
+            height: height,
+            fit: fit,
+            borderRadius: borderRadius,
+          ),
   ).container(radius: borderRadius);
 }

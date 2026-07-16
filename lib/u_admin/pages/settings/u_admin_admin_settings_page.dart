@@ -40,7 +40,8 @@ class _AdminSettingsPageState extends State<UAdminSettingsPage> {
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 720),
-          child: UColumn(spacing: 0, 
+          child: UColumn(
+            spacing: 0,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               _accountCard(),
@@ -48,7 +49,11 @@ class _AdminSettingsPageState extends State<UAdminSettingsPage> {
               _section(U.s.appearance, Icons.palette_outlined, <Widget>[
                 _rowLabel(U.s.theme, Icons.dark_mode_outlined),
                 const SizedBox(height: 8),
-                USegmentedControl<String>(selectedValue: _themeMode, items: <String, String>{"light": U.s.light, "dark": U.s.dark, "system": U.s.system}, onValueChanged: (String? v) => _applyTheme(v ?? _themeMode)),
+                USegmentedControl<String>(
+                  selectedValue: _themeMode,
+                  items: <String, String>{"light": U.s.light, "dark": U.s.dark, "system": U.s.system},
+                  onValueChanged: (String? v) => _applyTheme(v ?? _themeMode),
+                ),
               ]),
               const SizedBox(height: 16),
               _section(U.s.language, Icons.language_outlined, <Widget>[
@@ -99,15 +104,21 @@ class _AdminSettingsPageState extends State<UAdminSettingsPage> {
   Widget _accountCard() => Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
-      gradient: LinearGradient(colors: <Color>[Theme.of(context).colorScheme.primary.withValues(alpha: 0.15), Theme.of(context).colorScheme.primary.withValues(alpha: 0.05)], begin: Alignment.topRight, end: Alignment.bottomLeft),
+      gradient: LinearGradient(
+        colors: <Color>[Theme.of(context).colorScheme.primary.withValues(alpha: 0.15), Theme.of(context).colorScheme.primary.withValues(alpha: 0.05)],
+        begin: Alignment.topRight,
+        end: Alignment.bottomLeft,
+      ),
       borderRadius: BorderRadius.circular(16),
     ),
-    child: URow(spacing: 0, 
+    child: URow(
+      spacing: 0,
       children: <Widget>[
         CircleAvatar(radius: 28, backgroundColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2), child: UImage(UAdmin.logo)),
         const SizedBox(width: 16),
         Expanded(
-          child: UColumn(spacing: 0, 
+          child: UColumn(
+            spacing: 0,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               UTextBodyLarge("${U.user.firstName ?? ""} ${U.user.lastName ?? ""}".trim(), fontWeight: FontWeight.bold),
@@ -132,10 +143,12 @@ class _AdminSettingsPageState extends State<UAdminSettingsPage> {
       borderRadius: BorderRadius.circular(16),
       border: Border.all(color: Theme.of(context).dividerColor.withValues(alpha: 0.4)),
     ),
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        URow(spacing: 0, 
+        URow(
+          spacing: 0,
           children: <Widget>[
             Icon(icon, size: 20, color: Theme.of(context).colorScheme.primary),
             const SizedBox(width: 10),
@@ -148,8 +161,8 @@ class _AdminSettingsPageState extends State<UAdminSettingsPage> {
     ),
   );
 
-  Widget _rowLabel(String text, IconData icon) =>
-      URow(spacing: 0,
+  Widget _rowLabel(String text, IconData icon) => URow(
+    spacing: 0,
     children: <Widget>[
       Icon(icon, size: 18, color: UAdminTheme.grey),
       const SizedBox(width: 8),

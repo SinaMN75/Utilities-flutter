@@ -157,12 +157,11 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
           _header(cs),
           if (_preview != null)
             _previewPane(_preview!, cs).expanded()
-          else
-            ...<Widget>[
-              _toolbar(cs),
-              _breadcrumb(cs),
-              _body(cs).expanded(),
-            ],
+          else ...<Widget>[
+            _toolbar(cs),
+            _breadcrumb(cs),
+            _body(cs).expanded(),
+          ],
         ],
       ),
     );
@@ -213,21 +212,22 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   Widget _statChip(final IconData icon, final String label, final ColorScheme cs) =>
       URow(
-        mainAxisSize: MainAxisSize.min,
-        spacing: 6,
-        children: <Widget>[
-          Icon(icon, size: 15, color: cs.onSurface.withValues(alpha: 0.6)),
-          UTextLabelMedium(label, color: cs.onSurface.withValues(alpha: 0.75)),
-        ],
-      ).pSymmetric(horizontal: 12, vertical: 7).container(
-        backgroundColor: cs.surfaceContainerHighest.withValues(alpha: 0.5),
-        radius: 20,
-      );
+            mainAxisSize: MainAxisSize.min,
+            spacing: 6,
+            children: <Widget>[
+              Icon(icon, size: 15, color: cs.onSurface.withValues(alpha: 0.6)),
+              UTextLabelMedium(label, color: cs.onSurface.withValues(alpha: 0.75)),
+            ],
+          )
+          .pSymmetric(horizontal: 12, vertical: 7)
+          .container(
+            backgroundColor: cs.surfaceContainerHighest.withValues(alpha: 0.5),
+            radius: 20,
+          );
 
   // ---- Toolbar ----
 
-  Widget _toolbar(final ColorScheme cs) =>
-      URow(
+  Widget _toolbar(final ColorScheme cs) => URow(
     spacing: 10,
     children: <Widget>[
       _toolButton(Icons.arrow_upward_rounded, U.s.parentDirectory, _path.isEmpty ? null : () => _load(_parentPath), cs),
@@ -244,15 +244,18 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     final Color bg = primary ? cs.primary : cs.surfaceContainerHighest.withValues(alpha: 0.5);
     final Color fg = primary ? cs.onPrimary : cs.onSurface;
     return URow(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Icon(icon, size: 18, color: enabled ? fg : fg.withValues(alpha: 0.4)),
-        UTextLabelLarge(label, color: enabled ? fg : fg.withValues(alpha: 0.4), fontWeight: FontWeight.w600),
-      ],
-    ).pSymmetric(horizontal: 14, vertical: 10).container(
-      backgroundColor: enabled ? bg : bg.withValues(alpha: 0.4),
-      radius: 10,
-    ).onTap(enabled ? onTap : () {});
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(icon, size: 18, color: enabled ? fg : fg.withValues(alpha: 0.4)),
+            UTextLabelLarge(label, color: enabled ? fg : fg.withValues(alpha: 0.4), fontWeight: FontWeight.w600),
+          ],
+        )
+        .pSymmetric(horizontal: 14, vertical: 10)
+        .container(
+          backgroundColor: enabled ? bg : bg.withValues(alpha: 0.4),
+          radius: 10,
+        )
+        .onTap(enabled ? onTap : () {});
   }
 
   Widget _viewToggle(final ColorScheme cs) =>
@@ -269,13 +272,16 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   Widget _toggleSide(final IconData icon, final bool active, final VoidCallback onTap, final ColorScheme cs, {required final bool left}) =>
       Icon(
-        icon,
-        size: 18,
-        color: active ? cs.onPrimary : cs.onSurface.withValues(alpha: 0.6),
-      ).pAll(9).container(
-        backgroundColor: active ? cs.primary : Colors.transparent,
-        radius: 8,
-      ).onTap(onTap);
+            icon,
+            size: 18,
+            color: active ? cs.onPrimary : cs.onSurface.withValues(alpha: 0.6),
+          )
+          .pAll(9)
+          .container(
+            backgroundColor: active ? cs.primary : Colors.transparent,
+            radius: 8,
+          )
+          .onTap(onTap);
 
   // ---- Breadcrumb ----
 
@@ -296,21 +302,25 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
       acc = acc.isEmpty ? segments[i] : "$acc/${segments[i]}";
       final String target = acc;
       final bool active = i == segments.length - 1;
-      crumbs..add(Icon(Icons.chevron_right_rounded, size: 16, color: cs.onSurface.withValues(alpha: 0.35)))..add(
-        UTextLabelLarge(
-          segments[i],
-          color: active ? cs.primary : cs.onSurface.withValues(alpha: 0.7),
-          fontWeight: active ? FontWeight.bold : FontWeight.w500,
-        ).pSymmetric(horizontal: 8, vertical: 6).onTap(() => _load(target)),
-      );
+      crumbs
+        ..add(Icon(Icons.chevron_right_rounded, size: 16, color: cs.onSurface.withValues(alpha: 0.35)))
+        ..add(
+          UTextLabelLarge(
+            segments[i],
+            color: active ? cs.primary : cs.onSurface.withValues(alpha: 0.7),
+            fontWeight: active ? FontWeight.bold : FontWeight.w500,
+          ).pSymmetric(horizontal: 8, vertical: 6).onTap(() => _load(target)),
+        );
     }
     return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: crumbs),
-    ).pSymmetric(horizontal: 6).container(
-      backgroundColor: cs.surfaceContainerHighest.withValues(alpha: 0.35),
-      radius: 10,
-    );
+          scrollDirection: Axis.horizontal,
+          child: Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: crumbs),
+        )
+        .pSymmetric(horizontal: 6)
+        .container(
+          backgroundColor: cs.surfaceContainerHighest.withValues(alpha: 0.35),
+          radius: 10,
+        );
   }
 
   Widget _empty(final ColorScheme cs) => Center(
@@ -326,52 +336,50 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   // ---- Grid view ----
 
-  Widget _grid(final List<UFileManagerEntry> items, final ColorScheme cs) =>
-      SingleChildScrollView(
-        child: LayoutBuilder(
-          builder: (final BuildContext context, final BoxConstraints constraints) {
-            const double target = 190;
-            final int columns = (constraints.maxWidth / target).floor().clamp(1, 8);
-            final double width = (constraints.maxWidth - (columns - 1) * 12) / columns;
-            return Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              children: items.map((final UFileManagerEntry e) => SizedBox(width: width, child: _gridCard(e, cs))).toList(),
-            );
-          },
-        ).pAll(14),
+  Widget _grid(final List<UFileManagerEntry> items, final ColorScheme cs) => SingleChildScrollView(
+    child: LayoutBuilder(
+      builder: (final BuildContext context, final BoxConstraints constraints) {
+        const double target = 190;
+        final int columns = (constraints.maxWidth / target).floor().clamp(1, 8);
+        final double width = (constraints.maxWidth - (columns - 1) * 12) / columns;
+        return Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: items.map((final UFileManagerEntry e) => SizedBox(width: width, child: _gridCard(e, cs))).toList(),
+        );
+      },
+    ).pAll(14),
   );
 
-  Widget _gridCard(final UFileManagerEntry e, final ColorScheme cs) =>
-      _hoverable(
-        onTap: () => _open(e),
-        cs: cs,
-        child: UColumn(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 10,
-          children: <Widget>[
-            URow(
+  Widget _gridCard(final UFileManagerEntry e, final ColorScheme cs) => _hoverable(
+    onTap: () => _open(e),
+    cs: cs,
+    child: UColumn(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 10,
+      children: <Widget>[
+        URow(
           children: <Widget>[
             AspectRatio(
               aspectRatio: 1.6,
               child: _thumb(e, cs, radius: 10),
             ).expanded(),
           ],
-            ),
-            URow(
-              children: <Widget>[
-                Icon(_iconFor(e), size: 18, color: _accentFor(e, cs)),
-                UTextBodyMedium(e.name, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).expanded(),
-                _menu(e, cs),
-              ],
-            ),
-            UTextLabelSmall(
-              e.isDirectory ? U.s.folder : _humanSize(e.size),
-              color: cs.onSurface.withValues(alpha: 0.5),
-            ),
+        ),
+        URow(
+          children: <Widget>[
+            Icon(_iconFor(e), size: 18, color: _accentFor(e, cs)),
+            UTextBodyMedium(e.name, fontWeight: FontWeight.w600, maxLines: 1, overflow: TextOverflow.ellipsis).expanded(),
+            _menu(e, cs),
           ],
-        ).pAll(12),
-      );
+        ),
+        UTextLabelSmall(
+          e.isDirectory ? U.s.folder : _humanSize(e.size),
+          color: cs.onSurface.withValues(alpha: 0.5),
+        ),
+      ],
+    ).pAll(12),
+  );
 
   // A thumbnail: real image preview for image files, otherwise a tinted type-icon tile.
   Widget _thumb(final UFileManagerEntry e, final ColorScheme cs, {required final double radius}) {
@@ -394,69 +402,65 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   // ---- List view ----
 
-  Widget _list(final List<UFileManagerEntry> items, final ColorScheme cs) =>
-      Column(
-        children: <Widget>[
-          _listHeader(cs),
-          const Divider(height: 1),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: items.map((final UFileManagerEntry e) => _listRow(e, cs)).toList(),
-              ),
-            ),
-          ),
-        ],
-      );
-
-  Widget _listHeader(final ColorScheme cs) =>
-      URow(
-        children: <Widget>[
-          UTextLabelMedium(U.s.name, color: cs.onSurface.withValues(alpha: 0.6), fontWeight: FontWeight.bold).expanded(flex: 5),
-          UTextLabelMedium(U.s.size, color: cs.onSurface.withValues(alpha: 0.6), fontWeight: FontWeight.bold).expanded(flex: 2),
-          UTextLabelMedium(U.s.modified, color: cs.onSurface.withValues(alpha: 0.6), fontWeight: FontWeight.bold).expanded(flex: 3),
-          const SizedBox(width: 40),
-        ],
-      ).pSymmetric(horizontal: 16, vertical: 12);
-
-  Widget _listRow(final UFileManagerEntry e, final ColorScheme cs) =>
-      _hoverable(
-        onTap: () => _open(e),
-        cs: cs,
-        radius: 0,
-        child: URow(
-          children: <Widget>[
-            URow(
-              spacing: 12,
-              children: <Widget>[
-                SizedBox(width: 34, height: 34, child: _thumb(e, cs, radius: 8)),
-                UTextBodyMedium(e.name, fontWeight: FontWeight.w500, maxLines: 1, overflow: TextOverflow.ellipsis).expanded(),
-              ],
-            ).expanded(flex: 5),
-            UTextBodySmall(e.isDirectory ? "—" : _humanSize(e.size), color: cs.onSurface.withValues(alpha: 0.7)).expanded(flex: 2),
-            UTextBodySmall(_formatDate(e.modifiedAt), color: cs.onSurface.withValues(alpha: 0.7)).expanded(flex: 3),
-            SizedBox(width: 40, child: _menu(e, cs)),
-          ],
-        ).pSymmetric(horizontal: 16, vertical: 10),
-      );
-
-  // Wraps content in a Material/InkWell so grid cards and list rows get desktop hover + splash.
-  Widget _hoverable({required final Widget child, required final VoidCallback onTap, required final ColorScheme cs, final double radius = 12}) =>
-      Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(radius),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(radius),
-          hoverColor: cs.primary.withValues(alpha: 0.06),
-          child: Ink(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(radius),
-              border: radius > 0 ? Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)) : null,
-            ),
-            child: child,
+  Widget _list(final List<UFileManagerEntry> items, final ColorScheme cs) => Column(
+    children: <Widget>[
+      _listHeader(cs),
+      const Divider(height: 1),
+      Expanded(
+        child: SingleChildScrollView(
+          child: Column(
+            children: items.map((final UFileManagerEntry e) => _listRow(e, cs)).toList(),
           ),
         ),
+      ),
+    ],
+  );
+
+  Widget _listHeader(final ColorScheme cs) => URow(
+    children: <Widget>[
+      UTextLabelMedium(U.s.name, color: cs.onSurface.withValues(alpha: 0.6), fontWeight: FontWeight.bold).expanded(flex: 5),
+      UTextLabelMedium(U.s.size, color: cs.onSurface.withValues(alpha: 0.6), fontWeight: FontWeight.bold).expanded(flex: 2),
+      UTextLabelMedium(U.s.modified, color: cs.onSurface.withValues(alpha: 0.6), fontWeight: FontWeight.bold).expanded(flex: 3),
+      const SizedBox(width: 40),
+    ],
+  ).pSymmetric(horizontal: 16, vertical: 12);
+
+  Widget _listRow(final UFileManagerEntry e, final ColorScheme cs) => _hoverable(
+    onTap: () => _open(e),
+    cs: cs,
+    radius: 0,
+    child: URow(
+      children: <Widget>[
+        URow(
+          spacing: 12,
+          children: <Widget>[
+            SizedBox(width: 34, height: 34, child: _thumb(e, cs, radius: 8)),
+            UTextBodyMedium(e.name, fontWeight: FontWeight.w500, maxLines: 1, overflow: TextOverflow.ellipsis).expanded(),
+          ],
+        ).expanded(flex: 5),
+        UTextBodySmall(e.isDirectory ? "—" : _humanSize(e.size), color: cs.onSurface.withValues(alpha: 0.7)).expanded(flex: 2),
+        UTextBodySmall(_formatDate(e.modifiedAt), color: cs.onSurface.withValues(alpha: 0.7)).expanded(flex: 3),
+        SizedBox(width: 40, child: _menu(e, cs)),
+      ],
+    ).pSymmetric(horizontal: 16, vertical: 10),
+  );
+
+  // Wraps content in a Material/InkWell so grid cards and list rows get desktop hover + splash.
+  Widget _hoverable({required final Widget child, required final VoidCallback onTap, required final ColorScheme cs, final double radius = 12}) => Material(
+    color: Colors.transparent,
+    borderRadius: BorderRadius.circular(radius),
+    child: InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(radius),
+      hoverColor: cs.primary.withValues(alpha: 0.06),
+      child: Ink(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(radius),
+          border: radius > 0 ? Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)) : null,
+        ),
+        child: child,
+      ),
+    ),
   );
 
   Widget _menu(final UFileManagerEntry e, final ColorScheme cs) => PopupMenuButton<String>(
@@ -481,16 +485,18 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     itemBuilder: (final BuildContext context) => <PopupMenuEntry<String>>[
       if (e.isDirectory)
         PopupMenuItem<String>(value: "open", child: _menuRow(Icons.folder_open_rounded, U.s.folder))
-      else
-        ...<PopupMenuEntry<String>>[
-          if (_kind(e) != _PreviewKind.none) PopupMenuItem<String>(value: "open", child: _menuRow(Icons.visibility_rounded, U.s.preview)),
-          PopupMenuItem<String>(value: "download", child: _menuRow(Icons.download_rounded, U.s.download)),
-          PopupMenuItem<String>(value: "browser", child: _menuRow(Icons.open_in_new_rounded, U.s.openInBrowser)),
-        ],
+      else ...<PopupMenuEntry<String>>[
+        if (_kind(e) != _PreviewKind.none) PopupMenuItem<String>(value: "open", child: _menuRow(Icons.visibility_rounded, U.s.preview)),
+        PopupMenuItem<String>(value: "download", child: _menuRow(Icons.download_rounded, U.s.download)),
+        PopupMenuItem<String>(value: "browser", child: _menuRow(Icons.open_in_new_rounded, U.s.openInBrowser)),
+      ],
       const PopupMenuDivider(),
       PopupMenuItem<String>(value: "rename", child: _menuRow(Icons.drive_file_rename_outline_rounded, U.s.rename)),
       PopupMenuItem<String>(value: "move", child: _menuRow(Icons.drive_file_move_rounded, U.s.move)),
-      PopupMenuItem<String>(value: "delete", child: _menuRow(Icons.delete_outline_rounded, U.s.delete, color: cs.error)),
+      PopupMenuItem<String>(
+        value: "delete",
+        child: _menuRow(Icons.delete_outline_rounded, U.s.delete, color: cs.error),
+      ),
     ],
   );
 
@@ -505,41 +511,39 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   // ---- Preview pane ----
 
-  Widget _previewPane(final UFileManagerEntry e, final ColorScheme cs) =>
-      UContainer(
-        color: cs.surface,
-        radius: 16,
-        border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
-        child: Column(
-          children: <Widget>[
-            _previewToolbar(e, cs),
-            const Divider(height: 1),
-            Expanded(child: _previewBody(e, cs)),
-          ],
-        ),
-      );
+  Widget _previewPane(final UFileManagerEntry e, final ColorScheme cs) => UContainer(
+    color: cs.surface,
+    radius: 16,
+    border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
+    child: Column(
+      children: <Widget>[
+        _previewToolbar(e, cs),
+        const Divider(height: 1),
+        Expanded(child: _previewBody(e, cs)),
+      ],
+    ),
+  );
 
-  Widget _previewToolbar(final UFileManagerEntry e, final ColorScheme cs) =>
-      URow(
+  Widget _previewToolbar(final UFileManagerEntry e, final ColorScheme cs) => URow(
+    children: <Widget>[
+      IconButton(
+        icon: const Icon(Icons.arrow_back_rounded),
+        tooltip: U.s.close,
+        onPressed: () => setState(() => _preview = null),
+      ),
+      Icon(_iconFor(e), color: _accentFor(e, cs)),
+      UColumn(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.arrow_back_rounded),
-            tooltip: U.s.close,
-            onPressed: () => setState(() => _preview = null),
-          ),
-          Icon(_iconFor(e), color: _accentFor(e, cs)),
-          UColumn(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              UTextTitleSmall(e.name, fontWeight: FontWeight.bold, maxLines: 1, overflow: TextOverflow.ellipsis),
-              UTextLabelSmall(_humanSize(e.size), color: cs.onSurface.withValues(alpha: 0.5)),
-            ],
-          ).expanded(),
-          IconButton(icon: const Icon(Icons.open_in_new_rounded), tooltip: U.s.openInBrowser, onPressed: () => _openInBrowser(e)),
-          IconButton(icon: const Icon(Icons.download_rounded), tooltip: U.s.download, onPressed: () => _download(e)),
+          UTextTitleSmall(e.name, fontWeight: FontWeight.bold, maxLines: 1, overflow: TextOverflow.ellipsis),
+          UTextLabelSmall(_humanSize(e.size), color: cs.onSurface.withValues(alpha: 0.5)),
         ],
-      ).pSymmetric(horizontal: 8, vertical: 6);
+      ).expanded(),
+      IconButton(icon: const Icon(Icons.open_in_new_rounded), tooltip: U.s.openInBrowser, onPressed: () => _openInBrowser(e)),
+      IconButton(icon: const Icon(Icons.download_rounded), tooltip: U.s.download, onPressed: () => _download(e)),
+    ],
+  ).pSymmetric(horizontal: 8, vertical: 6);
 
   Widget _previewBody(final UFileManagerEntry e, final ColorScheme cs) {
     final String url = e.url ?? UServices.fileManager.downloadUrl(e.path);
@@ -566,24 +570,23 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     }
   }
 
-  Widget _notPreviewable(final UFileManagerEntry e, final ColorScheme cs) =>
-      Center(
-        child: UColumn(
-          mainAxisSize: MainAxisSize.min,
-          spacing: 16,
-          children: <Widget>[
-            Icon(_iconFor(e), size: 64, color: cs.onSurface.withValues(alpha: 0.3)),
-            UTextBodyMedium(U.s.previewNotAvailable, color: cs.onSurface.withValues(alpha: 0.6)),
-            UButton(
-              title: U.s.download,
-              icon: const Icon(Icons.download_rounded, size: 18),
-              backgroundColor: cs.primary,
-              foregroundColor: cs.onPrimary,
-              onTap: () => _download(e),
-            ),
-          ],
+  Widget _notPreviewable(final UFileManagerEntry e, final ColorScheme cs) => Center(
+    child: UColumn(
+      mainAxisSize: MainAxisSize.min,
+      spacing: 16,
+      children: <Widget>[
+        Icon(_iconFor(e), size: 64, color: cs.onSurface.withValues(alpha: 0.3)),
+        UTextBodyMedium(U.s.previewNotAvailable, color: cs.onSurface.withValues(alpha: 0.6)),
+        UButton(
+          title: U.s.download,
+          icon: const Icon(Icons.download_rounded, size: 18),
+          backgroundColor: cs.primary,
+          foregroundColor: cs.onPrimary,
+          onTap: () => _download(e),
         ),
-      );
+      ],
+    ),
+  );
 
   // ---- Type helpers ----
 
@@ -712,10 +715,7 @@ class _VideoPreviewState extends State<_VideoPreview> {
 
   @override
   Widget build(BuildContext context) {
-    if (_error != null) return Center(child: UTextBodyMedium(_error!, color: Theme
-        .of(context)
-        .colorScheme
-        .error));
+    if (_error != null) return Center(child: UTextBodyMedium(_error!, color: Theme.of(context).colorScheme.error));
     if (!_ready || _controller == null) return const Center(child: CircularProgressIndicator());
     return Container(
       color: Colors.black,
@@ -776,9 +776,7 @@ class _TextPreviewState extends State<_TextPreview> {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme cs = Theme
-        .of(context)
-        .colorScheme;
+    final ColorScheme cs = Theme.of(context).colorScheme;
     if (_error != null) return Center(child: UTextBodyMedium(_error!, color: cs.error));
     if (_content == null) return const Center(child: CircularProgressIndicator());
     if (widget.asJson) return SingleChildScrollView(child: UJsonViewer(jsonString: _content!).pAll(12));

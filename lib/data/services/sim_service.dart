@@ -42,7 +42,10 @@ class SimService {
       endpoint: "${U.baseUrl}/Sim/Read",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
       onSuccess: (final Response r) {
-        final UResponse<List<USimResponse>> ok = UResponse<List<USimResponse>>.fromJson(r.body, (final dynamic i) => List<USimResponse>.from((i as List<dynamic>).map((final dynamic x) => USimResponse.fromMap(x))));
+        final UResponse<List<USimResponse>> ok = UResponse<List<USimResponse>>.fromJson(
+          r.body,
+          (final dynamic i) => List<USimResponse>.from((i as List<dynamic>).map((final dynamic x) => USimResponse.fromMap(x))),
+        );
         result = (ok, null, null);
         onOk?.call(ok);
       },

@@ -61,15 +61,14 @@ class UImageBackground extends StatelessWidget {
   final double size;
 
   @override
-  Widget build(BuildContext context) =>
-      UContainer(
-        width: size,
-        height: size,
-        alignment: Alignment.center,
-        color: color.withValues(alpha: 0.2),
-        radius: 12,
-        child: UImage(asset, color: color, width: size / 1.8, height: size / 1.8),
-      );
+  Widget build(BuildContext context) => UContainer(
+    width: size,
+    height: size,
+    alignment: Alignment.center,
+    color: color.withValues(alpha: 0.2),
+    radius: 12,
+    child: UImage(asset, color: color, width: size / 1.8, height: size / 1.8),
+  );
 }
 
 class UGlassCard extends StatelessWidget {
@@ -94,17 +93,16 @@ class UGlassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color glassTint = tint ?? Theme
-        .of(context)
-        .colorScheme
-        .surface;
+    final Color glassTint = tint ?? Theme.of(context).colorScheme.surface;
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
-        boxShadow: <BoxShadow>[BoxShadow(color: Theme
-            .of(context)
-            .shadowColor
-            .withValues(alpha: shadowOpacity), blurRadius: shadowBlur, offset: const Offset(0, 10))
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Theme.of(context).shadowColor.withValues(alpha: shadowOpacity),
+            blurRadius: shadowBlur,
+            offset: const Offset(0, 10),
+          ),
         ],
       ),
       child: ClipRRect(
@@ -112,7 +110,11 @@ class UGlassCard extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
           child: DecoratedBox(
-            decoration: BoxDecoration(color: glassTint.withValues(alpha: opacity), borderRadius: BorderRadius.circular(borderRadius), border: Border.all(color: glassTint.withValues(alpha: 0.3))),
+            decoration: BoxDecoration(
+              color: glassTint.withValues(alpha: opacity),
+              borderRadius: BorderRadius.circular(borderRadius),
+              border: Border.all(color: glassTint.withValues(alpha: 0.3)),
+            ),
             child: child,
           ),
         ),
@@ -137,9 +139,7 @@ class UHeaderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme scheme = Theme
-        .of(context)
-        .colorScheme;
+    final ColorScheme scheme = Theme.of(context).colorScheme;
     return UContainer(
       radius: 20,
       padding: const EdgeInsets.all(20),
@@ -166,14 +166,10 @@ class UEmptyState extends StatelessWidget {
   final String? title;
 
   @override
-  Widget build(BuildContext context) =>
-      UIconTextVertical(
-        leading: UTextBodySmall(title ?? U.s.noData, color: Theme
-            .of(context)
-            .colorScheme
-            .onSurfaceVariant).alignAtCenter(),
-        trailing: const SizedBox(),
-      );
+  Widget build(BuildContext context) => UIconTextVertical(
+    leading: UTextBodySmall(title ?? U.s.noData, color: Theme.of(context).colorScheme.onSurfaceVariant).alignAtCenter(),
+    trailing: const SizedBox(),
+  );
 }
 
 class UErrorRetry extends StatelessWidget {
@@ -189,9 +185,8 @@ class UErrorRetry extends StatelessWidget {
   final String? buttonTitle;
 
   @override
-  Widget build(BuildContext context) =>
-      UIconTextVertical(
-        leading: UTextBodyMedium(title ?? U.s.errorLoadingData),
-        trailing: UButton(title: buttonTitle ?? U.s.tryAgain, onTap: onTap),
-      );
+  Widget build(BuildContext context) => UIconTextVertical(
+    leading: UTextBodyMedium(title ?? U.s.errorLoadingData),
+    trailing: UButton(title: buttonTitle ?? U.s.tryAgain, onTap: onTap),
+  );
 }

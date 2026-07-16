@@ -15,7 +15,7 @@ class AccountingService {
       onSuccess: (final Response r) {
         final UResponse<UAccountingReportResponse> ok = UResponse<UAccountingReportResponse>.fromJson(
           r.body,
-              (final dynamic i) => UAccountingReportResponse.fromMap(i),
+          (final dynamic i) => UAccountingReportResponse.fromMap(i),
         );
         result = (ok, null, null);
         onOk?.call(ok);

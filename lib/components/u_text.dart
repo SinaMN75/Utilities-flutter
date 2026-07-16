@@ -214,7 +214,8 @@ class UTextDisplayMedium extends _UText {
 }
 
 class UTextDisplaySmall extends _UText {
-  const UTextDisplaySmall(super.text, {
+  const UTextDisplaySmall(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -253,7 +254,8 @@ class UTextDisplaySmall extends _UText {
 }
 
 class UTextHeadlineLarge extends _UText {
-  const UTextHeadlineLarge(super.text, {
+  const UTextHeadlineLarge(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -292,7 +294,8 @@ class UTextHeadlineLarge extends _UText {
 }
 
 class UTextHeadlineMedium extends _UText {
-  const UTextHeadlineMedium(super.text, {
+  const UTextHeadlineMedium(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -331,7 +334,8 @@ class UTextHeadlineMedium extends _UText {
 }
 
 class UTextHeadlineSmall extends _UText {
-  const UTextHeadlineSmall(super.text, {
+  const UTextHeadlineSmall(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -370,7 +374,8 @@ class UTextHeadlineSmall extends _UText {
 }
 
 class UTextTitleLarge extends _UText {
-  const UTextTitleLarge(super.text, {
+  const UTextTitleLarge(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -409,7 +414,8 @@ class UTextTitleLarge extends _UText {
 }
 
 class UTextTitleMedium extends _UText {
-  const UTextTitleMedium(super.text, {
+  const UTextTitleMedium(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -448,7 +454,8 @@ class UTextTitleMedium extends _UText {
 }
 
 class UTextTitleSmall extends _UText {
-  const UTextTitleSmall(super.text, {
+  const UTextTitleSmall(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -487,7 +494,8 @@ class UTextTitleSmall extends _UText {
 }
 
 class UTextBodyLarge extends _UText {
-  const UTextBodyLarge(super.text, {
+  const UTextBodyLarge(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -526,7 +534,8 @@ class UTextBodyLarge extends _UText {
 }
 
 class UTextBodyMedium extends _UText {
-  const UTextBodyMedium(super.text, {
+  const UTextBodyMedium(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -565,7 +574,8 @@ class UTextBodyMedium extends _UText {
 }
 
 class UTextBodySmall extends _UText {
-  const UTextBodySmall(super.text, {
+  const UTextBodySmall(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -604,7 +614,8 @@ class UTextBodySmall extends _UText {
 }
 
 class UTextLabelLarge extends _UText {
-  const UTextLabelLarge(super.text, {
+  const UTextLabelLarge(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -643,7 +654,8 @@ class UTextLabelLarge extends _UText {
 }
 
 class UTextLabelMedium extends _UText {
-  const UTextLabelMedium(super.text, {
+  const UTextLabelMedium(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,
@@ -682,7 +694,8 @@ class UTextLabelMedium extends _UText {
 }
 
 class UTextLabelSmall extends _UText {
-  const UTextLabelSmall(super.text, {
+  const UTextLabelSmall(
+    super.text, {
     super.key,
     super.color,
     super.fontWeight,

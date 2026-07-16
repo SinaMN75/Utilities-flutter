@@ -87,7 +87,9 @@ class USegmentedControl<T extends Object> extends StatelessWidget {
                   child: Text(
                     entry.value,
                     style: TextStyle(
-                      color: isSelected ? (selectedColor != null ? _getContrastColor(selectedColor!) : Theme.of(context).colorScheme.onPrimary) : (unselectedColor ?? Theme.of(context).colorScheme.onSurfaceVariant),
+                      color: isSelected
+                          ? (selectedColor != null ? _getContrastColor(selectedColor!) : Theme.of(context).colorScheme.onPrimary)
+                          : (unselectedColor ?? Theme.of(context).colorScheme.onSurfaceVariant),
                       fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                     ),
                   ),

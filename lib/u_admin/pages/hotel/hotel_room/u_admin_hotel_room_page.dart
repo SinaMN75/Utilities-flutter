@@ -19,64 +19,62 @@ class _HotelRoomPageState extends State<UAdminHotelRoomPage> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      UAdminScaffold(
-        title: widget.hotel?.title == null ? U.s.hotelRooms : "${U.s.rooms} · ${widget.hotel?.title}",
-        onFilter: _showFilterDialog,
-        onCreate: U.user.hasPermission(TagUser.permissionManageHotels) ? _showEditDialog : null,
-        pageNumber: c.pageNumber,
-        totalPages: c.totalPages,
-        onPageChanged: (int page) {
-          c.pageNumber(page);
-          c.read();
-        },
-        body: UAdminListView<UHotelRoomResponse>(
-          state: c.state,
-          items: () => c.list,
-          totalCount: () => c.totalCount,
-          onRetry: c.read,
-          emptyText: U.s.noRoomsFound,
-          desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.hotel, U.s.capacity, U.s.priceNight, U.s.operations]),
-          desktopRow: _itemDesktop,
-          mobileRow: _itemResponsive,
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: widget.hotel?.title == null ? U.s.hotelRooms : "${U.s.rooms} · ${widget.hotel?.title}",
+    onFilter: _showFilterDialog,
+    onCreate: U.user.hasPermission(TagUser.permissionManageHotels) ? _showEditDialog : null,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: UAdminListView<UHotelRoomResponse>(
+      state: c.state,
+      items: () => c.list,
+      totalCount: () => c.totalCount,
+      onRetry: c.read,
+      emptyText: U.s.noRoomsFound,
+      desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.hotel, U.s.capacity, U.s.priceNight, U.s.operations]),
+      desktopRow: _itemDesktop,
+      mobileRow: _itemResponsive,
     ),
   );
 
-  Widget _itemDesktop(UHotelRoomResponse i, int index) =>
-      URow(
-        color: UAdminTable.rowColor(context, index),
-        children: <Widget>[
-          UAdminTable.cell(i.title),
-          UAdminTable.cell(i.hotel?.title ?? "-"),
-          UAdminTable.cell(i.capacity.toString()),
-          UAdminTable.cell(i.pricePerNight.rial()),
+  Widget _itemDesktop(UHotelRoomResponse i, int index) => URow(
+    color: UAdminTable.rowColor(context, index),
+    children: <Widget>[
+      UAdminTable.cell(i.title),
+      UAdminTable.cell(i.hotel?.title ?? "-"),
+      UAdminTable.cell(i.capacity.toString()),
+      UAdminTable.cell(i.pricePerNight.rial()),
       _menu(i).expanded(),
     ],
   );
 
-  Widget _itemResponsive(UHotelRoomResponse i, int index) =>
-      UAdminTable.mobileTile(
-        context,
-        index: index,
-        icon: Icons.meeting_room_rounded,
-        title: i.title,
-        subtitle: <Widget>[
-          UTextBodyMedium("${i.hotel?.title ?? "-"} • ${U.s.capacity}: ${i.capacity}"),
-          UTextBodyMedium(i.pricePerNight.rial()),
-        ],
-        trailing: _menu(i),
+  Widget _itemResponsive(UHotelRoomResponse i, int index) => UAdminTable.mobileTile(
+    context,
+    index: index,
+    icon: Icons.meeting_room_rounded,
+    title: i.title,
+    subtitle: <Widget>[
+      UTextBodyMedium("${i.hotel?.title ?? "-"} • ${U.s.capacity}: ${i.capacity}"),
+      UTextBodyMedium(i.pricePerNight.rial()),
+    ],
+    trailing: _menu(i),
   );
 
-  Widget _menu(UHotelRoomResponse i) =>
-      UAdminOps.menu<UHotelRoomResponse>(
-        context,
-        item: i,
-        handlers: UAdminActionHandlers<UHotelRoomResponse>(onEdit: (UHotelRoomResponse r) => _showEditDialog(p: r), onDelete: c.delete),
-        fallback: (UAdminActionContext<UHotelRoomResponse> ctx) =>
-        <UAdminAction>[
-          UAdminLinks.roomReservations(ctx.item),
-          ctx.edit(roles: <TagUser>[TagUser.permissionManageHotels]),
-          ctx.delete(roles: <TagUser>[TagUser.permissionDeleteHotels]),
+  Widget _menu(UHotelRoomResponse i) => UAdminOps.menu<UHotelRoomResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UHotelRoomResponse>(
+      onEdit: (UHotelRoomResponse r) => _showEditDialog(p: r),
+      onDelete: c.delete,
+    ),
+    fallback: (UAdminActionContext<UHotelRoomResponse> ctx) => <UAdminAction>[
+      UAdminLinks.roomReservations(ctx.item),
+      ctx.edit(roles: <TagUser>[TagUser.permissionManageHotels]),
+      ctx.delete(roles: <TagUser>[TagUser.permissionDeleteHotels]),
     ],
   );
 
@@ -84,7 +82,8 @@ class _HotelRoomPageState extends State<UAdminHotelRoomPage> {
     AlertDialog(
       title: Text(U.s.filterRooms),
       content: SingleChildScrollView(
-        child: UColumn(spacing: 0, 
+        child: UColumn(
+          spacing: 0,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             UTextField(controller: c.titleFilter, labelText: U.s.title).pSymmetric(vertical: 6),
@@ -131,7 +130,8 @@ class _HotelRoomPageState extends State<UAdminHotelRoomPage> {
           child: StatefulBuilder(
             builder: (BuildContext context, void Function(void Function()) setLocal) => Form(
               key: formKey,
-              child: UColumn(spacing: 0, 
+              child: UColumn(
+                spacing: 0,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(

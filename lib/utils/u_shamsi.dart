@@ -125,7 +125,8 @@ class JalaliFormatter extends DateFormatter {
 
 // Jalali date implementation
 class Jalali extends Date {
-  factory Jalali(int year, [int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0, int millisecond = 0]) => _JAlgo.createFromYearMonthDay(year, month, day, hour, minute, second, millisecond);
+  factory Jalali(int year, [int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0, int millisecond = 0]) =>
+      _JAlgo.createFromYearMonthDay(year, month, day, hour, minute, second, millisecond);
 
   const Jalali._raw(this.julianDayNumber, this.year, this.month, this.day, this.hour, this.minute, this.second, this.millisecond, this._isLeap);
 
@@ -315,7 +316,8 @@ class GregorianFormatter extends DateFormatter {
 
 // Gregorian date implementation
 class Gregorian extends Date {
-  factory Gregorian(int year, [int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0, int millisecond = 0]) => _GAlgo.createFromYearMonthDay(year, month, day, hour, minute, second, millisecond);
+  factory Gregorian(int year, [int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0, int millisecond = 0]) =>
+      _GAlgo.createFromYearMonthDay(year, month, day, hour, minute, second, millisecond);
 
   const Gregorian._raw(this.julianDayNumber, this.year, this.month, this.day, this.hour, this.minute, this.second, this.millisecond);
 

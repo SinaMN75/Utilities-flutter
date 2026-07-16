@@ -55,7 +55,8 @@ class OperatorDetail {
   );
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is OperatorDetail && base == other.base && provinces == other.provinces && model == other.model && type == other.type && operator == other.operator;
+  bool operator ==(Object other) =>
+      identical(this, other) || other is OperatorDetail && base == other.base && provinces == other.provinces && model == other.model && type == other.type && operator == other.operator;
 
   @override
   int get hashCode => base.hashCode ^ provinces.hashCode ^ model.hashCode ^ type.hashCode ^ operator.hashCode;
@@ -118,7 +119,15 @@ class BankInfo {
   );
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is BankInfo && nickname == other.nickname && name == other.name && persianName == other.persianName && isAccountNumberAvailable == other.isAccountNumberAvailable && accountNumber == other.accountNumber && formattedAccountNumber == other.formattedAccountNumber;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BankInfo &&
+          nickname == other.nickname &&
+          name == other.name &&
+          persianName == other.persianName &&
+          isAccountNumberAvailable == other.isAccountNumberAvailable &&
+          accountNumber == other.accountNumber &&
+          formattedAccountNumber == other.formattedAccountNumber;
 
   @override
   int get hashCode => nickname.hashCode ^ name.hashCode ^ persianName.hashCode ^ isAccountNumberAvailable.hashCode ^ accountNumber.hashCode ^ formattedAccountNumber.hashCode;

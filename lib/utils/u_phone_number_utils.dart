@@ -1,7 +1,8 @@
 import "package:u/utils/extensions/string_extension.dart";
 
 class UPhoneNumberUtils {
-  static String normalizePhone(String rawInput, {
+  static String normalizePhone(
+    String rawInput, {
     required String countryCode,
     bool stripLeadingZero = true,
   }) {

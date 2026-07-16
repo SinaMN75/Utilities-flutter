@@ -37,9 +37,19 @@ class UAdminHotelController extends UBaseController {
     reloadFirstPage(read);
   }
 
-  void create({required UHotelCreateParams p}) => UServices.hotel.createHotel(p: p, onOk: (UResponse<String> r) => okCallback(r.message, read), onError: (UEmptyResponse r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void create({required UHotelCreateParams p}) => UServices.hotel.createHotel(
+    p: p,
+    onOk: (UResponse<String> r) => okCallback(r.message, read),
+    onError: (UEmptyResponse r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
-  void update({required UHotelUpdateParams p}) => UServices.hotel.updateHotel(p: p, onOk: (UEmptyResponse r) => okCallback(r.message, read), onError: (UEmptyResponse r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void update({required UHotelUpdateParams p}) => UServices.hotel.updateHotel(
+    p: p,
+    onOk: (UEmptyResponse r) => okCallback(r.message, read),
+    onError: (UEmptyResponse r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
   void delete(UHotelResponse i) => UNavigator.confirm(
     title: U.s.delete,

@@ -30,7 +30,8 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
       final UFinancialOpsDashboardResponse r = c.report.value!;
       return SingleChildScrollView(
         padding: EdgeInsets.all(_isWide ? 24 : 14),
-        child: UColumn(spacing: 0, 
+        child: UColumn(
+          spacing: 0,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             _hero(r).pSymmetric(vertical: 16),
@@ -54,7 +55,8 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
       colors: <Color>[Theme.of(context).colorScheme.primary, UAdminTheme.indigo.shade400, UAdminTheme.blue.shade400],
     ),
     boxShadow: <BoxShadow>[BoxShadow(color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10))],
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         UIconTextHorizontal(
@@ -86,7 +88,14 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
     children: <Widget>[
       _statCard(U.s.users, r.usersCount.separate3By3(), "+${r.newUsersCount} ${U.s.newThisPeriod}", Icons.people_alt_rounded, UAdminTheme.indigo, UAdminPageSwitcher.adminUsers),
       _statCard(U.s.merchants, r.merchantsCount.separate3By3(), "+${r.newMerchantsCount} ${U.s.newThisPeriod}", Icons.storefront_rounded, UAdminTheme.orange, UAdminPageSwitcher.merchants),
-      _statCard(U.s.terminals, r.terminalsCount.separate3By3(), "${r.terminalsAssignedCount} ${U.s.assignedTerminalsCount}", Icons.point_of_sale_rounded, UAdminTheme.green, UAdminPageSwitcher.terminals),
+      _statCard(
+        U.s.terminals,
+        r.terminalsCount.separate3By3(),
+        "${r.terminalsAssignedCount} ${U.s.assignedTerminalsCount}",
+        Icons.point_of_sale_rounded,
+        UAdminTheme.green,
+        UAdminPageSwitcher.terminals,
+      ),
       _statCard(U.s.transactions, r.txnCount.separate3By3(), "+${r.newTxnCount} ${U.s.newThisPeriod}", Icons.swap_horiz_rounded, UAdminTheme.pink, UAdminPageSwitcher.transactions),
       _statCard(U.s.wallets, r.walletsCount.separate3By3(), r.totalWalletBalance.rial(), Icons.account_balance_wallet_rounded, UAdminTheme.blueGrey, UAdminPageSwitcher.wallet),
       _statCard(U.s.moneyIn, r.totalIn.rial(), "", Icons.south_west_rounded, UAdminTheme.green, null),
@@ -100,7 +109,8 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
       contentPadding: const EdgeInsets.all(18),
       leading: Icon(icon, color: color, size: 26).container(padding: const EdgeInsets.all(12), backgroundColor: color.withValues(alpha: 0.14), radius: 16),
       title: UTextTitleMedium(value, fontWeight: FontWeight.w800, maxLines: 1),
-      subtitle: UColumn(spacing: 0, 
+      subtitle: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -112,7 +122,9 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
     ),
   );
 
-  Widget _chartsSection(UFinancialOpsDashboardResponse r) => _isWide ? URow(spacing: 0, crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_timelineChart(r).expanded(flex: 2), const SizedBox(width: 16), _entityBarChart(r).expanded()]) : UColumn(spacing: 0, children: <Widget>[_timelineChart(r), const SizedBox(height: 16), _entityBarChart(r)]);
+  Widget _chartsSection(UFinancialOpsDashboardResponse r) => _isWide
+      ? URow(spacing: 0, crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[_timelineChart(r).expanded(flex: 2), const SizedBox(width: 16), _entityBarChart(r).expanded()])
+      : UColumn(spacing: 0, children: <Widget>[_timelineChart(r), const SizedBox(height: 16), _entityBarChart(r)]);
 
   Widget _timelineChart(UFinancialOpsDashboardResponse r) {
     if (r.dailyTimeline.isEmpty) return _chartCard(title: U.s.dailyInOut, child: UTextBodySmall(U.s.noData).alignAtCenter());
@@ -180,13 +192,15 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
       _doughnutCount(U.s.terminalsByType, r.terminalsByType),
     ];
     return _isWide
-        ? URow(spacing: 0, 
+        ? URow(
+            spacing: 0,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               for (int i = 0; i < charts.length; i++) ...<Widget>[if (i > 0) const SizedBox(width: 16), charts[i].expanded()],
             ],
           )
-        : UColumn(spacing: 0, 
+        : UColumn(
+            spacing: 0,
             children: <Widget>[
               for (final Widget w in charts) ...<Widget>[w, const SizedBox(height: 16)],
             ],
@@ -237,7 +251,8 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
     padding: const EdgeInsets.all(18),
     radius: 20,
     color: Theme.of(context).cardTheme.color,
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         UTextTitleSmall(title, fontWeight: FontWeight.w700),
@@ -250,10 +265,12 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
   Widget _topMerchants(UFinancialOpsDashboardResponse r) => UContainer(
     padding: const EdgeInsets.all(20),
     radius: 20,
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        URow(spacing: 0, 
+        URow(
+          spacing: 0,
           children: <Widget>[
             const Icon(Icons.workspace_premium_rounded, size: 20),
             const SizedBox(width: 8),
@@ -289,7 +306,8 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
   );
 
   Widget _recentListsSection(UFinancialOpsDashboardResponse r) => _isWide
-      ? URow(spacing: 0, 
+      ? URow(
+          spacing: 0,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[_recentTransactions(r).expanded(), const SizedBox(width: 16), _recentMerchantsAndUsers(r).expanded()],
         )
@@ -298,10 +316,12 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
   Widget _recentTransactions(UFinancialOpsDashboardResponse r) => UContainer(
     padding: const EdgeInsets.all(20),
     radius: 20,
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        URow(spacing: 0, 
+        URow(
+          spacing: 0,
           children: <Widget>[
             const Icon(Icons.receipt_long_rounded, size: 20),
             const SizedBox(width: 8),
@@ -333,16 +353,18 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
     ),
   );
 
-  Widget _recentMerchantsAndUsers(UFinancialOpsDashboardResponse r) =>
-      UColumn(spacing: 0,
+  Widget _recentMerchantsAndUsers(UFinancialOpsDashboardResponse r) => UColumn(
+    spacing: 0,
     children: <Widget>[
       UContainer(
         padding: const EdgeInsets.all(20),
         radius: 20,
-        child: UColumn(spacing: 0, 
+        child: UColumn(
+          spacing: 0,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            URow(spacing: 0, 
+            URow(
+              spacing: 0,
               children: <Widget>[
                 const Icon(Icons.storefront_rounded, size: 20),
                 const SizedBox(width: 8),
@@ -371,10 +393,12 @@ class _FinancialOpsDashboardPageState extends State<UAdminFinancialOpsDashboardP
       UContainer(
         padding: const EdgeInsets.all(20),
         radius: 20,
-        child: UColumn(spacing: 0, 
+        child: UColumn(
+          spacing: 0,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            URow(spacing: 0, 
+            URow(
+              spacing: 0,
               children: <Widget>[
                 const Icon(Icons.person_add_alt_1_rounded, size: 20),
                 const SizedBox(width: 8),

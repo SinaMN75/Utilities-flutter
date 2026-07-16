@@ -139,7 +139,12 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
   Widget _roleSection() {
     final UUserResponse u = c.user;
     final List<Widget> chips = <Widget>[
-      if (u.isFullAdmin()) _chip(U.s.admin, UAdminTheme.indigo, Icons.shield_rounded) else if (u.isSubAdmin()) _chip(U.s.subAdmin, UAdminTheme.blue, Icons.admin_panel_settings_rounded) else if (u.tags.contains(TagUser.guest.number)) _chip(U.s.guest, UAdminTheme.blueGrey, Icons.person_outline_rounded),
+      if (u.isFullAdmin())
+        _chip(U.s.admin, UAdminTheme.indigo, Icons.shield_rounded)
+      else if (u.isSubAdmin())
+        _chip(U.s.subAdmin, UAdminTheme.blue, Icons.admin_panel_settings_rounded)
+      else if (u.tags.contains(TagUser.guest.number))
+        _chip(U.s.guest, UAdminTheme.blueGrey, Icons.person_outline_rounded),
       if (c.contracts.isNotEmpty) _chip(U.s.tenant, UAdminTheme.green, Icons.home_rounded),
       _chip(u.isMale() ? U.s.male : U.s.female, u.isMale() ? UAdminTheme.blue : UAdminTheme.pink, u.isMale() ? Icons.male_rounded : Icons.female_rounded),
       if (u.tags.contains(TagUser.verified.number)) _chip(U.s.verified, UAdminTheme.green, Icons.verified_rounded),
@@ -155,7 +160,10 @@ class _HotelUserDetailPageState extends State<UAdminHotelUserDetailPage> {
           Wrap(spacing: 8, runSpacing: 8, children: chips),
           if (u.isSubAdmin()) ...<Widget>[
             const Divider(height: 22),
-            if (perms.isEmpty) UTextBodySmall(U.s.noData, color: UAdminTheme.grey) else Wrap(spacing: 8, runSpacing: 8, children: perms.map((TagUser t) => _chip(t.titleFa, UAdminTheme.orange, Icons.check_rounded)).toList()),
+            if (perms.isEmpty)
+              UTextBodySmall(U.s.noData, color: UAdminTheme.grey)
+            else
+              Wrap(spacing: 8, runSpacing: 8, children: perms.map((TagUser t) => _chip(t.titleFa, UAdminTheme.orange, Icons.check_rounded)).toList()),
           ],
         ],
       ),

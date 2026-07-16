@@ -36,7 +36,19 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
       return SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: UColumn(
-            spacing: 0, crossAxisAlignment: CrossAxisAlignment.stretch, children: <Widget>[_scopeBanner(), const SizedBox(height: 8), _statCards(r), const SizedBox(height: 8), _breakdown(U.s.incomeByType, r.incomeByType, UAdminTheme.green), _breakdown(U.s.spendingByType, r.spendingByType, UAdminTheme.red), _breakdown(U.s.gatewayPaymentsByType, r.gatewayByType, UAdminTheme.blue), _timeline(r)]),
+          spacing: 0,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            _scopeBanner(),
+            const SizedBox(height: 8),
+            _statCards(r),
+            const SizedBox(height: 8),
+            _breakdown(U.s.incomeByType, r.incomeByType, UAdminTheme.green),
+            _breakdown(U.s.spendingByType, r.spendingByType, UAdminTheme.red),
+            _breakdown(U.s.gatewayPaymentsByType, r.gatewayByType, UAdminTheme.blue),
+            _timeline(r),
+          ],
+        ),
       );
     }),
   );
@@ -44,7 +56,13 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
   Widget _scopeBanner() => Obx(() {
     final UUserResponse? u = c.user.value;
     return UCard(
-      child: ListTile(dense: true, contentPadding: EdgeInsets.zero, leading: Icon(u == null ? Icons.public_rounded : Icons.person_rounded), title: UTextBodyMedium(u == null ? U.s.systemWideReport : "${U.s.user}: ${u.displayName}"), subtitle: UTextBodySmall(_rangeLabel())),
+      child: ListTile(
+        dense: true,
+        contentPadding: EdgeInsets.zero,
+        leading: Icon(u == null ? Icons.public_rounded : Icons.person_rounded),
+        title: UTextBodyMedium(u == null ? U.s.systemWideReport : "${U.s.user}: ${u.displayName}"),
+        subtitle: UTextBodySmall(_rangeLabel()),
+      ),
     );
   });
 
@@ -57,16 +75,23 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
   Widget _statCards(UAccountingReportResponse r) => Wrap(
     spacing: 12,
     runSpacing: 12,
-    children: <Widget>[_stat(U.s.moneyIn, r.totalIn, UAdminTheme.green, Icons.south_west_rounded), _stat(U.s.moneyOut, r.totalOut, UAdminTheme.red, Icons.north_east_rounded), _stat(U.s.net, r.net, r.net >= 0 ? UAdminTheme.green : UAdminTheme.red, Icons.balance_rounded), _stat(U.s.walletBalance, r.totalWalletBalance, UAdminTheme.blueGrey, Icons.account_balance_wallet_rounded)],
+    children: <Widget>[
+      _stat(U.s.moneyIn, r.totalIn, UAdminTheme.green, Icons.south_west_rounded),
+      _stat(U.s.moneyOut, r.totalOut, UAdminTheme.red, Icons.north_east_rounded),
+      _stat(U.s.net, r.net, r.net >= 0 ? UAdminTheme.green : UAdminTheme.red, Icons.balance_rounded),
+      _stat(U.s.walletBalance, r.totalWalletBalance, UAdminTheme.blueGrey, Icons.account_balance_wallet_rounded),
+    ],
   );
 
   Widget _stat(String label, double value, Color color, IconData icon) => UCard(
     width: 220,
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        URow(spacing: 0, 
+        URow(
+          spacing: 0,
           children: <Widget>[
             Icon(icon, color: color, size: 18),
             const SizedBox(width: 8),
@@ -81,7 +106,8 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
 
   Widget _breakdown(String title, List<UAccountingBreakdownItem> items, Color color) => UCard(
     margin: const EdgeInsets.symmetric(vertical: 6),
-    child: UColumn(spacing: 0, 
+    child: UColumn(
+      spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         UTextTitleSmall(title),
@@ -92,7 +118,8 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
           ...items.map(
             (UAccountingBreakdownItem i) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
-              child: URow(spacing: 0, 
+              child: URow(
+                spacing: 0,
                 children: <Widget>[
                   UTextBodyMedium(i.tagName).expanded(),
                   UTextBodySmall("×${i.count}"),
@@ -110,7 +137,8 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
     if (r.timeline.isEmpty) return const SizedBox.shrink();
     return UCard(
       margin: const EdgeInsets.symmetric(vertical: 6),
-      child: UColumn(spacing: 0, 
+      child: UColumn(
+        spacing: 0,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           UTextTitleSmall(U.s.dailyInOut),
@@ -118,7 +146,8 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
           ...r.timeline.map(
             (UAccountingTimelineItem t) => Padding(
               padding: const EdgeInsets.symmetric(vertical: 6),
-              child: URow(spacing: 0, 
+              child: URow(
+                spacing: 0,
                 children: <Widget>[
                   UTextBodySmall(t.date.toJalaliDate()).expanded(),
                   UTextBodySmall("+${t.inAmount.rial()}", color: UAdminTheme.green),
@@ -139,7 +168,8 @@ class _AccountingPageState extends State<UAdminAccountingPage> {
       content: SizedBox(
         width: context.dialogWidth(),
         child: SingleChildScrollView(
-          child: UColumn(spacing: 0, 
+          child: UColumn(
+            spacing: 0,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               UTextFieldDatePicker(

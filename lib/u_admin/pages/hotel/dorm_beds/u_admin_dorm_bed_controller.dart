@@ -42,9 +42,19 @@ class UAdminDormBedController extends UBaseController {
     reloadFirstPage(read);
   }
 
-  void create({required UDormBedCreateParams p}) => UServices.hotel.createDormBed(p: p, onOk: (UResponse<String> r) => okCallback(r.message, read), onError: (UEmptyResponse r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void create({required UDormBedCreateParams p}) => UServices.hotel.createDormBed(
+    p: p,
+    onOk: (UResponse<String> r) => okCallback(r.message, read),
+    onError: (UEmptyResponse r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
-  void update({required UDormBedUpdateParams p}) => UServices.hotel.updateDormBed(p: p, onOk: (UEmptyResponse r) => okCallback(r.message, read), onError: (UEmptyResponse r) => errorCallBack(r.message, read), onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read));
+  void update({required UDormBedUpdateParams p}) => UServices.hotel.updateDormBed(
+    p: p,
+    onOk: (UEmptyResponse r) => okCallback(r.message, read),
+    onError: (UEmptyResponse r) => errorCallBack(r.message, read),
+    onException: (String e) => errorCallBack(U.s.errorSubmittingForm, read),
+  );
 
   void delete(UDormBedResponse i) => UNavigator.confirm(
     title: U.s.delete,

@@ -14,7 +14,8 @@ class UAdminContractPage extends StatefulWidget {
 class _ContractPageState extends State<UAdminContractPage> {
   final UAdminContractController c = UAdminContractController();
 
-  static const List<TagDormBedContract> _types = <TagDormBedContract>[TagDormBedContract.daily, TagDormBedContract.weekly, TagDormBedContract.monthly, TagDormBedContract.yearly];
+  // only two contract kinds are supported: monthly (rent + deposit) and daily (single invoice, no deposit)
+  static const List<TagDormBedContract> _types = <TagDormBedContract>[TagDormBedContract.monthly, TagDormBedContract.daily];
 
   TagDormBedContract? _typeOf(UDormBedContractResponse i) {
     for (final TagDormBedContract t in _types) if (i.tags.contains(t.number)) return t;
@@ -153,8 +154,8 @@ class _ContractPageState extends State<UAdminContractPage> {
         title: Text(U.s.filterContracts),
         content: SingleChildScrollView(
           child: StatefulBuilder(
-            builder: (BuildContext context, void Function(void Function()) setLocal) =>
-                UColumn(spacing: 0,
+            builder: (BuildContext context, void Function(void Function()) setLocal) => UColumn(
+              spacing: 0,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 UTextField(controller: c.tenantFilter, labelText: U.s.tenant).pSymmetric(vertical: 6),
@@ -247,7 +248,6 @@ class _ContractPageState extends State<UAdminContractPage> {
     DateTime? startDate = p?.startDate;
     DateTime? endDate = p?.endDate;
     TagDormBedContract type = _typeOf(p ?? _empty()) ?? TagDormBedContract.monthly;
-    bool singleInvoice = p?.tags.contains(TagDormBedContract.singleInvoice.number) ?? false;
 
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -258,7 +258,8 @@ class _ContractPageState extends State<UAdminContractPage> {
           child: StatefulBuilder(
             builder: (BuildContext context, void Function(void Function()) setLocal) => Form(
               key: formKey,
-              child: UColumn(spacing: 0, 
+              child: UColumn(
+                spacing: 0,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (!isEdit && widget.bed == null)
@@ -306,9 +307,18 @@ class _ContractPageState extends State<UAdminContractPage> {
                       endCtrl.text = d.toJalaliDate();
                     },
                   ).pSymmetric(vertical: 6),
-                  UTextField(controller: deposit, labelText: U.s.deposit, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
-                  UTextField(controller: rent, labelText: U.s.rent, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
-                  if (!isEdit) ...<Widget>[UTextField(controller: penalty, labelText: U.s.dailyPenalty, keyboardType: TextInputType.number).pSymmetric(vertical: 6), SwitchListTile(contentPadding: EdgeInsets.zero, title: Text(U.s.singleInvoice), value: singleInvoice, onChanged: (bool v) => setLocal(() => singleInvoice = v))],
+                  // deposit only applies to monthly contracts; daily contracts have no deposit
+                  if (type != TagDormBedContract.daily)
+                    UTextField(controller: deposit, labelText: U.s.deposit, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
+                  // the rent field doubles as the fixed per-day price when the contract is daily
+                  UTextField(
+                    controller: rent,
+                    labelText: type == TagDormBedContract.daily ? U.s.dailyPrice : U.s.rent,
+                    keyboardType: TextInputType.number,
+                    formatters: <TextInputFormatter>[UCurrencyInputFormatter()],
+                  ).pSymmetric(vertical: 6),
+                  // late-payment penalty only makes sense for recurring monthly invoices
+                  if (!isEdit && type != TagDormBedContract.daily) UTextField(controller: penalty, labelText: U.s.dailyPenalty, keyboardType: TextInputType.number).pSymmetric(vertical: 6),
                   UTextField(controller: description, labelText: U.s.description, lines: 2).pSymmetric(vertical: 6),
                   const SizedBox(height: 20),
                   UButtonSubmitCancel(
@@ -319,10 +329,19 @@ class _ContractPageState extends State<UAdminContractPage> {
                           UToast.error(message: U.s.errorSubmittingForm);
                           return;
                         }
+                        // daily contracts are single-invoice with no deposit; monthly keep rent + deposit
+                        final bool isDaily = type == TagDormBedContract.daily;
+                        final List<int> tags = <int>[type.number, if (isDaily) TagDormBedContract.singleInvoice.number];
                         if (isEdit) {
-                          final List<int> tags = <int>[type.number, if (singleInvoice) TagDormBedContract.singleInvoice.number];
                           c.update(
-                            p: UDormBedContractUpdateParams(id: p.id, tags: tags, startDate: startDate, endDate: endDate, deposit: deposit.text.isEmpty ? null : deposit.numDouble(), rent: rent.text.isEmpty ? null : rent.numDouble()),
+                            p: UDormBedContractUpdateParams(
+                              id: p.id,
+                              tags: tags,
+                              startDate: startDate,
+                              endDate: endDate,
+                              deposit: isDaily ? 0 : (deposit.text.isEmpty ? null : deposit.numDouble()),
+                              rent: rent.text.isEmpty ? null : rent.numDouble(),
+                            ),
                           );
                         } else {
                           final String? bid = bed.value?.id ?? widget.bed?.id;
@@ -336,14 +355,14 @@ class _ContractPageState extends State<UAdminContractPage> {
                           }
                           c.create(
                             p: UDormBedContractCreateParams(
-                              tags: <int>[type.number, if (singleInvoice) TagDormBedContract.singleInvoice.number],
+                              tags: tags,
                               startDate: startDate!,
                               endDate: endDate!,
                               userId: user.value!.id,
                               bedId: bid,
-                              deposit: deposit.text.isEmpty ? null : deposit.numDouble(),
+                              deposit: isDaily ? null : (deposit.text.isEmpty ? null : deposit.numDouble()),
                               rent: rent.text.isEmpty ? null : rent.numDouble(),
-                              penaltyPrecentEveryDate: penalty.text.isEmpty ? null : penalty.text.toInt(),
+                              penaltyPrecentEveryDate: isDaily ? null : (penalty.text.isEmpty ? null : penalty.text.toInt()),
                               description: description.text.nullIfEmpty(),
                             ),
                           );
@@ -361,5 +380,19 @@ class _ContractPageState extends State<UAdminContractPage> {
     );
   }
 
-  UDormBedContractResponse _empty() => UDormBedContractResponse(isActive: false, id: "", createdAt: DateTime.now(), updatedAt: DateTime.now(), jsonData: UContractJsonData(), tags: <int>[], startDate: DateTime.now(), endDate: DateTime.now(), deposit: 0, rent: 0, userId: "", bedId: "", adminUserIds: <String>[]);
+  UDormBedContractResponse _empty() => UDormBedContractResponse(
+    isActive: false,
+    id: "",
+    createdAt: DateTime.now(),
+    updatedAt: DateTime.now(),
+    jsonData: UContractJsonData(),
+    tags: <int>[],
+    startDate: DateTime.now(),
+    endDate: DateTime.now(),
+    deposit: 0,
+    rent: 0,
+    userId: "",
+    bedId: "",
+    adminUserIds: <String>[],
+  );
 }

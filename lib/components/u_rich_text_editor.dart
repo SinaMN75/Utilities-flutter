@@ -958,7 +958,8 @@ class URichTextEditor extends StatefulWidget {
   final EdgeInsets padding;
 
   /// Push a full-screen editor and await the resulting HTML (null if cancelled).
-  static Future<String?> open({String? initialHtml, URichImageUploader? onUploadImage}) => UNavigator.push<String>(_URichTextEditorPage(initialHtml: initialHtml, onUploadImage: onUploadImage), fullscreenDialog: true);
+  static Future<String?> open({String? initialHtml, URichImageUploader? onUploadImage}) =>
+      UNavigator.push<String>(_URichTextEditorPage(initialHtml: initialHtml, onUploadImage: onUploadImage), fullscreenDialog: true);
 
   @override
   State<URichTextEditor> createState() => _URichTextEditorState();

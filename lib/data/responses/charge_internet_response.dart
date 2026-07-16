@@ -75,11 +75,10 @@ class UInternetPackageResponse {
 
   String toJson() => json.encode(toMap());
 
-  factory UInternetPackageResponse.fromMap(Map<String, dynamic> json) =>
-      UInternetPackageResponse(
+  factory UInternetPackageResponse.fromMap(Map<String, dynamic> json) => UInternetPackageResponse(
     status: json["status"],
     message: json["message"],
-        list: json["list"] == null ? <UInternetPackageItem>[] : List<UInternetPackageItem>.from(json["list"]!.map((dynamic x) => UInternetPackageItem.fromMap(x))),
+    list: json["list"] == null ? <UInternetPackageItem>[] : List<UInternetPackageItem>.from(json["list"]!.map((dynamic x) => UInternetPackageItem.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -114,11 +113,10 @@ class UInternetPackageItem {
 
   String toJson() => json.encode(toMap());
 
-  factory UInternetPackageItem.fromMap(Map<String, dynamic> json) =>
-      UInternetPackageItem(
+  factory UInternetPackageItem.fromMap(Map<String, dynamic> json) => UInternetPackageItem(
     id: json["id"],
     title: json["title"],
-        amount: json["amount"],
+    amount: json["amount"],
     simType: json["simType"],
     duration: json["duration"],
     offerCode: json["offerCode"],

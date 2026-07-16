@@ -152,8 +152,20 @@ class _ReservationPageState extends State<UAdminReservationPage> {
         ctx.extra("confirm", label: U.s.confirm, icon: Icons.check_circle_outline, visible: s == TagHotelReservation.pending, roles: <TagUser>[TagUser.permissionManageReservations]),
         ctx.extra("checkIn", label: U.s.checkIn, icon: Icons.login_rounded, visible: s == TagHotelReservation.confirmed, roles: <TagUser>[TagUser.permissionManageReservations]),
         ctx.extra("checkOut", label: U.s.checkOut, icon: Icons.logout_rounded, visible: s == TagHotelReservation.checkedIn, roles: <TagUser>[TagUser.permissionManageReservations]),
-        ctx.extra("cancel", label: U.s.cancel, icon: Icons.cancel_outlined, visible: s == TagHotelReservation.pending || s == TagHotelReservation.confirmed, roles: <TagUser>[TagUser.permissionManageReservations]),
-        ctx.extra("pay", label: unpaid == null ? U.s.pay : "${U.s.pay} · ${unpaid.netDue.rial()}", icon: Icons.payments_outlined, visible: unpaid != null, roles: <TagUser>[TagUser.permissionPayInvoices]),
+        ctx.extra(
+          "cancel",
+          label: U.s.cancel,
+          icon: Icons.cancel_outlined,
+          visible: s == TagHotelReservation.pending || s == TagHotelReservation.confirmed,
+          roles: <TagUser>[TagUser.permissionManageReservations],
+        ),
+        ctx.extra(
+          "pay",
+          label: unpaid == null ? U.s.pay : "${U.s.pay} · ${unpaid.netDue.rial()}",
+          icon: Icons.payments_outlined,
+          visible: unpaid != null,
+          roles: <TagUser>[TagUser.permissionPayInvoices],
+        ),
         ctx.edit(roles: <TagUser>[TagUser.permissionManageReservations]),
         ctx.delete(roles: <TagUser>[TagUser.permissionDeleteReservations]),
       ];
@@ -169,8 +181,8 @@ class _ReservationPageState extends State<UAdminReservationPage> {
         title: Text(U.s.filterReservations),
         content: SingleChildScrollView(
           child: StatefulBuilder(
-            builder: (BuildContext context, void Function(void Function()) setLocal) =>
-                UColumn(spacing: 0,
+            builder: (BuildContext context, void Function(void Function()) setLocal) => UColumn(
+              spacing: 0,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 UTextField(controller: c.guestFilter, labelText: U.s.guest).pSymmetric(vertical: 6),
@@ -186,7 +198,9 @@ class _ReservationPageState extends State<UAdminReservationPage> {
                   isExpanded: true,
                   initialValue: c.statusFilter,
                   decoration: InputDecoration(labelText: U.s.status, border: const OutlineInputBorder()),
-                  items: UAdminReservationStatusFilter.values.map((UAdminReservationStatusFilter f) => DropdownMenuItem<UAdminReservationStatusFilter>(value: f, child: Text(_statusFilterLabel(f)))).toList(),
+                  items: UAdminReservationStatusFilter.values
+                      .map((UAdminReservationStatusFilter f) => DropdownMenuItem<UAdminReservationStatusFilter>(value: f, child: Text(_statusFilterLabel(f))))
+                      .toList(),
                   onChanged: (UAdminReservationStatusFilter? v) => setLocal(() => c.statusFilter = v ?? UAdminReservationStatusFilter.all),
                 ).pSymmetric(vertical: 6),
                 UTextFieldDatePicker(
@@ -255,7 +269,8 @@ class _ReservationPageState extends State<UAdminReservationPage> {
           child: StatefulBuilder(
             builder: (BuildContext context, void Function(void Function()) setLocal) => Form(
               key: formKey,
-              child: UColumn(spacing: 0, 
+              child: UColumn(
+                spacing: 0,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   if (!isEdit && widget.room == null)
@@ -302,7 +317,12 @@ class _ReservationPageState extends State<UAdminReservationPage> {
                     keyboardType: TextInputType.number,
                     validator: UValidators.required(message: ""),
                   ).pSymmetric(vertical: 6),
-                  UTextField(controller: totalPrice, labelText: U.s.totalPrice, keyboardType: TextInputType.number, formatters: <TextInputFormatter>[UCurrencyInputFormatter()]).pSymmetric(vertical: 6),
+                  UTextField(
+                    controller: totalPrice,
+                    labelText: U.s.totalPrice,
+                    keyboardType: TextInputType.number,
+                    formatters: <TextInputFormatter>[UCurrencyInputFormatter()],
+                  ).pSymmetric(vertical: 6),
                   UTextField(controller: guestName, labelText: U.s.guestName).pSymmetric(vertical: 6),
                   UTextField(controller: guestPhone, labelText: U.s.guestPhone, keyboardType: TextInputType.phone).pSymmetric(vertical: 6),
                   if (!isEdit) UTextField(controller: penalty, labelText: U.s.dailyPenalty, keyboardType: TextInputType.number).pSymmetric(vertical: 6),

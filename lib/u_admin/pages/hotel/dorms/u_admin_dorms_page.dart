@@ -17,25 +17,24 @@ class _DormPageState extends State<UAdminDormPage> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      UAdminScaffold(
-        title: U.s.dorms,
-        onCreate: U.user.hasPermission(TagUser.permissionManageDorms) ? _showEditDialog : null,
-        pageNumber: c.pageNumber,
-        totalPages: c.totalPages,
-        onPageChanged: (int page) {
-          c.pageNumber(page);
-          c.read();
-        },
-        body: UAdminListView<UDormResponse>(
-          state: c.state,
-          items: () => c.list,
-          totalCount: () => c.totalCount,
-          onRetry: c.read,
-          emptyText: U.s.noDormsFound,
-          desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.city, U.s.room, U.s.created, U.s.operations]),
-          desktopRow: _itemDesktop,
-          mobileRow: _itemResponsive,
+  Widget build(BuildContext context) => UAdminScaffold(
+    title: U.s.dorms,
+    onCreate: U.user.hasPermission(TagUser.permissionManageDorms) ? _showEditDialog : null,
+    pageNumber: c.pageNumber,
+    totalPages: c.totalPages,
+    onPageChanged: (int page) {
+      c.pageNumber(page);
+      c.read();
+    },
+    body: UAdminListView<UDormResponse>(
+      state: c.state,
+      items: () => c.list,
+      totalCount: () => c.totalCount,
+      onRetry: c.read,
+      emptyText: U.s.noDormsFound,
+      desktopHeader: () => UAdminTable.header(<String>[U.s.title, U.s.city, U.s.room, U.s.created, U.s.operations]),
+      desktopRow: _itemDesktop,
+      mobileRow: _itemResponsive,
     ),
   );
 
@@ -68,17 +67,18 @@ class _DormPageState extends State<UAdminDormPage> {
     );
   }
 
-  Widget _menu(UDormResponse i) =>
-      UAdminOps.menu<UDormResponse>(
-        context,
-        item: i,
-        handlers: UAdminActionHandlers<UDormResponse>(onEdit: (UDormResponse d) => _showEditDialog(p: d), onDelete: c.delete),
-        fallback: (UAdminActionContext<UDormResponse> ctx) =>
-        <UAdminAction>[
-          UAdminLinks.dormRooms(ctx.item),
-          UAdminLinks.dormBeds(ctx.item),
-          ctx.edit(roles: <TagUser>[TagUser.permissionManageDorms]),
-          ctx.delete(roles: <TagUser>[TagUser.permissionDeleteDorms]),
+  Widget _menu(UDormResponse i) => UAdminOps.menu<UDormResponse>(
+    context,
+    item: i,
+    handlers: UAdminActionHandlers<UDormResponse>(
+      onEdit: (UDormResponse d) => _showEditDialog(p: d),
+      onDelete: c.delete,
+    ),
+    fallback: (UAdminActionContext<UDormResponse> ctx) => <UAdminAction>[
+      UAdminLinks.dormRooms(ctx.item),
+      UAdminLinks.dormBeds(ctx.item),
+      ctx.edit(roles: <TagUser>[TagUser.permissionManageDorms]),
+      ctx.delete(roles: <TagUser>[TagUser.permissionDeleteDorms]),
     ],
   );
 
@@ -102,7 +102,8 @@ class _DormPageState extends State<UAdminDormPage> {
           content: SingleChildScrollView(
             child: Form(
               key: formKey,
-              child: UColumn(spacing: 0, 
+              child: UColumn(
+                spacing: 0,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   UTextField(

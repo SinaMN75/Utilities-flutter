@@ -336,5 +336,11 @@ class _CircularPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _CircularPainter oldDelegate) => oldDelegate.fraction != fraction || oldDelegate.rotation != rotation || oldDelegate.trackColor != trackColor || oldDelegate.progressColor != progressColor || oldDelegate.strokeWidth != strokeWidth || oldDelegate.strokeCap != strokeCap;
+  bool shouldRepaint(covariant _CircularPainter oldDelegate) =>
+      oldDelegate.fraction != fraction ||
+      oldDelegate.rotation != rotation ||
+      oldDelegate.trackColor != trackColor ||
+      oldDelegate.progressColor != progressColor ||
+      oldDelegate.strokeWidth != strokeWidth ||
+      oldDelegate.strokeCap != strokeCap;
 }

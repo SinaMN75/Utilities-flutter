@@ -55,11 +55,11 @@ extension DoubleExtionsion on double {
 }
 
 extension IntExtesion on int {
-  int subtractClamping(final int subtract, {
+  int subtractClamping(
+    final int subtract, {
     final int minValue = 0,
     final int maxValue = 999999999,
-  }) =>
-      (this - subtract).clamp(
+  }) => (this - subtract).clamp(
     minValue,
     maxValue,
   );

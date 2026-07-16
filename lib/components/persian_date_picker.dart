@@ -52,9 +52,7 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
   }
 
   Widget _buildHeader() {
-    final ColorScheme scheme = Theme
-        .of(context)
-        .colorScheme;
+    final ColorScheme scheme = Theme.of(context).colorScheme;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -122,9 +120,9 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
       weekDays
           .map(
             (String day) => UTextLabelSmall(day, fontWeight: FontWeight.bold).container(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  alignment: Alignment.center,
-                ),
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              alignment: Alignment.center,
+            ),
           )
           .toList(),
     );
@@ -143,9 +141,7 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
     final int daysInMonth = Jalali(currentYear, currentMonth).monthLength;
     for (int day = 1; day <= daysInMonth; day++) {
       final bool isSelected = (selectedDate.year == currentYear && selectedDate.month == currentMonth && selectedDate.day == day);
-      final ColorScheme scheme = Theme
-          .of(context)
-          .colorScheme;
+      final ColorScheme scheme = Theme.of(context).colorScheme;
       dayWidgets.add(
         InkWell(
           onTap: () => setState(() => selectedDate = Jalali(currentYear, currentMonth, day)),
@@ -181,9 +177,7 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
 
   /// Scrollable list for selecting the year (easier to scroll to a birth year).
   Widget _buildYearSelection() {
-    final ColorScheme scheme = Theme
-        .of(context)
-        .colorScheme;
+    final ColorScheme scheme = Theme.of(context).colorScheme;
     final int lo = math.min(widget.startYear, widget.endYear);
     final int hi = math.max(widget.startYear, widget.endYear);
     final List<int> years = <int>[for (int y = hi; y >= lo; y--) y];
@@ -196,12 +190,11 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
             final int year = years[index];
             final bool selected = year == currentYear;
             return InkWell(
-              onTap: () =>
-                  setState(() {
-                    currentYear = year;
-                    selectedDate = Jalali(currentYear, currentMonth, selectedDate.day);
-                    mode = _PickerMode.selectMonth;
-                  }),
+              onTap: () => setState(() {
+                currentYear = year;
+                selectedDate = Jalali(currentYear, currentMonth, selectedDate.day);
+                mode = _PickerMode.selectMonth;
+              }),
               child: Container(
                 margin: const EdgeInsets.symmetric(vertical: 3),
                 padding: const EdgeInsets.symmetric(vertical: 14),
@@ -210,7 +203,10 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
                   color: selected ? scheme.primary : scheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Text("$year", style: TextStyle(color: selected ? scheme.onPrimary : scheme.onSurface, fontWeight: selected ? FontWeight.bold : FontWeight.normal)),
+                child: Text(
+                  "$year",
+                  style: TextStyle(color: selected ? scheme.onPrimary : scheme.onSurface, fontWeight: selected ? FontWeight.bold : FontWeight.normal),
+                ),
               ),
             );
           },
@@ -221,9 +217,7 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
 
   /// Month grid arranged in 4 seasonal rows of 3 months each.
   Widget _buildMonthSelection() {
-    final ColorScheme scheme = Theme
-        .of(context)
-        .colorScheme;
+    final ColorScheme scheme = Theme.of(context).colorScheme;
     final List<Widget> monthWidgets = <Widget>[];
     for (int i = 0; i < 12; i++) {
       final bool selected = currentMonth == i + 1;
@@ -234,16 +228,17 @@ class _JalaliDatePickerDialogState extends State<JalaliDatePickerDialog> {
             selectedDate = Jalali(currentYear, currentMonth, selectedDate.day);
             mode = _PickerMode.calendar;
           }),
-          child: Text(
-            monthNames[i],
-            textAlign: TextAlign.center,
-            style: TextStyle(color: selected ? scheme.onPrimary : scheme.onSurface),
-          ).container(
-            backgroundColor: selected ? scheme.primary : scheme.surfaceContainerHighest,
-            radius: 8,
-            margin: const EdgeInsets.all(4),
-            alignment: Alignment.center,
-          ),
+          child:
+              Text(
+                monthNames[i],
+                textAlign: TextAlign.center,
+                style: TextStyle(color: selected ? scheme.onPrimary : scheme.onSurface),
+              ).container(
+                backgroundColor: selected ? scheme.primary : scheme.surfaceContainerHighest,
+                radius: 8,
+                margin: const EdgeInsets.all(4),
+                alignment: Alignment.center,
+              ),
         ),
       );
     }
