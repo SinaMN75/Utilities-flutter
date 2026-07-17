@@ -164,6 +164,13 @@ abstract class UAdminModules {
     roles: roles,
   );
 
+  static UAdminModule moadis({List<TagUser>? roles, UAdminActionBuilder<UMoadiResponse>? actions}) => UAdminModule(
+    title: U.s.moadiRequests,
+    icon: Icons.receipt_long_rounded,
+    page: () => UAdminMoadisPage(actions: actions),
+    roles: roles,
+  );
+
   // ---- Finance ----
   static UAdminModule wallet({List<TagUser>? roles}) => UAdminModule(
     title: U.s.wallets,

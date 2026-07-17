@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("About"),
     "aboutAvaHamrah": MessageLookupByLibrary.simpleMessage("About AvaHamrah"),
@@ -599,6 +598,75 @@ class MessageLookup extends MessageLookupByLibrary {
     "minRent": MessageLookupByLibrary.simpleMessage("Min Rent"),
     "minimumRent": MessageLookupByLibrary.simpleMessage("Minimum Rent"),
     "minute": MessageLookupByLibrary.simpleMessage("Minute"),
+    "moadiAddress": MessageLookupByLibrary.simpleMessage("Address"),
+    "moadiApprove": MessageLookupByLibrary.simpleMessage("Approve"),
+    "moadiApproveConfirm": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to approve and register this taxpayer in the Namat system?",
+    ),
+    "moadiDetails": MessageLookupByLibrary.simpleMessage("Taxpayer Details"),
+    "moadiEconomicCode": MessageLookupByLibrary.simpleMessage("Economic Code"),
+    "moadiInfo": MessageLookupByLibrary.simpleMessage("Taxpayer Information"),
+    "moadiIntroductionCode": MessageLookupByLibrary.simpleMessage(
+      "Introduction Code",
+    ),
+    "moadiLegalEntity": MessageLookupByLibrary.simpleMessage(
+      "Legal Entity Type",
+    ),
+    "moadiLegalEntityCivic": MessageLookupByLibrary.simpleMessage(
+      "Civic Partnership",
+    ),
+    "moadiLegalEntityFinalConsumer": MessageLookupByLibrary.simpleMessage(
+      "Final Consumer",
+    ),
+    "moadiLegalEntityForeigners": MessageLookupByLibrary.simpleMessage(
+      "Foreigners",
+    ),
+    "moadiLegalEntityLegal": MessageLookupByLibrary.simpleMessage(
+      "Legal Person",
+    ),
+    "moadiLegalEntityNatural": MessageLookupByLibrary.simpleMessage(
+      "Natural Person",
+    ),
+    "moadiName": MessageLookupByLibrary.simpleMessage("Taxpayer Name"),
+    "moadiNationalCode": MessageLookupByLibrary.simpleMessage("National Code"),
+    "moadiNewRequest": MessageLookupByLibrary.simpleMessage("New Request"),
+    "moadiNoRequests": MessageLookupByLibrary.simpleMessage(
+      "You have not submitted any taxpayer request yet.",
+    ),
+    "moadiOwnerInfo": MessageLookupByLibrary.simpleMessage("Owner Information"),
+    "moadiOwnerMobile": MessageLookupByLibrary.simpleMessage("Owner Mobile"),
+    "moadiOwnerName": MessageLookupByLibrary.simpleMessage("Owner Name"),
+    "moadiOwnerNationalCode": MessageLookupByLibrary.simpleMessage(
+      "Owner National Code",
+    ),
+    "moadiPostalCode": MessageLookupByLibrary.simpleMessage("Postal Code"),
+    "moadiRegistrationDate": MessageLookupByLibrary.simpleMessage(
+      "Registration Date",
+    ),
+    "moadiRegistrationNumber": MessageLookupByLibrary.simpleMessage(
+      "Registration Number",
+    ),
+    "moadiReject": MessageLookupByLibrary.simpleMessage("Reject"),
+    "moadiRejectReason": MessageLookupByLibrary.simpleMessage(
+      "Rejection Reason",
+    ),
+    "moadiRequests": MessageLookupByLibrary.simpleMessage("Taxpayer Requests"),
+    "moadiSection": MessageLookupByLibrary.simpleMessage("Taxpayer"),
+    "moadiStartInvoiceNumber": MessageLookupByLibrary.simpleMessage(
+      "Start Invoice Number",
+    ),
+    "moadiStatusApproved": MessageLookupByLibrary.simpleMessage("Approved"),
+    "moadiStatusPending": MessageLookupByLibrary.simpleMessage(
+      "Pending Approval",
+    ),
+    "moadiStatusRejected": MessageLookupByLibrary.simpleMessage("Rejected"),
+    "moadiSubmit": MessageLookupByLibrary.simpleMessage("Submit Request"),
+    "moadiSubmittedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Your request has been submitted and is awaiting approval.",
+    ),
+    "moadiUniqueTaxCode": MessageLookupByLibrary.simpleMessage(
+      "Unique Tax Code",
+    ),
     "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile number"),
     "model": MessageLookupByLibrary.simpleMessage("Model"),
     "modified": MessageLookupByLibrary.simpleMessage("Modified"),

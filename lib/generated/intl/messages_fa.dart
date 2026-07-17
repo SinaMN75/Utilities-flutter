@@ -21,7 +21,6 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'fa';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("درباره"),
     "aboutAvaHamrah": MessageLookupByLibrary.simpleMessage("درباره آواهمراه"),
@@ -585,6 +584,63 @@ class MessageLookup extends MessageLookupByLibrary {
     "minRent": MessageLookupByLibrary.simpleMessage("حداقل اجاره"),
     "minimumRent": MessageLookupByLibrary.simpleMessage("حداقل اجاره"),
     "minute": MessageLookupByLibrary.simpleMessage("دقیقه"),
+    "moadiAddress": MessageLookupByLibrary.simpleMessage("آدرس"),
+    "moadiApprove": MessageLookupByLibrary.simpleMessage("تایید"),
+    "moadiApproveConfirm": MessageLookupByLibrary.simpleMessage(
+      "آیا از تایید و ثبت این مودی در سامانه نما مطمئن هستید؟",
+    ),
+    "moadiDetails": MessageLookupByLibrary.simpleMessage("جزئیات مودی"),
+    "moadiEconomicCode": MessageLookupByLibrary.simpleMessage("کد اقتصادی"),
+    "moadiInfo": MessageLookupByLibrary.simpleMessage("اطلاعات مودی"),
+    "moadiIntroductionCode": MessageLookupByLibrary.simpleMessage("کد معرف"),
+    "moadiLegalEntity": MessageLookupByLibrary.simpleMessage("نوع شخصیت"),
+    "moadiLegalEntityCivic": MessageLookupByLibrary.simpleMessage(
+      "مشارکت مدنی",
+    ),
+    "moadiLegalEntityFinalConsumer": MessageLookupByLibrary.simpleMessage(
+      "مصرف‌کننده نهایی",
+    ),
+    "moadiLegalEntityForeigners": MessageLookupByLibrary.simpleMessage(
+      "اتباع خارجی",
+    ),
+    "moadiLegalEntityLegal": MessageLookupByLibrary.simpleMessage("حقوقی"),
+    "moadiLegalEntityNatural": MessageLookupByLibrary.simpleMessage("حقیقی"),
+    "moadiName": MessageLookupByLibrary.simpleMessage("نام مودی"),
+    "moadiNationalCode": MessageLookupByLibrary.simpleMessage("کد ملی"),
+    "moadiNewRequest": MessageLookupByLibrary.simpleMessage("درخواست جدید"),
+    "moadiNoRequests": MessageLookupByLibrary.simpleMessage(
+      "شما هنوز درخواستی برای مودی ثبت نکرده‌اید.",
+    ),
+    "moadiOwnerInfo": MessageLookupByLibrary.simpleMessage("اطلاعات مالک"),
+    "moadiOwnerMobile": MessageLookupByLibrary.simpleMessage("موبایل مالک"),
+    "moadiOwnerName": MessageLookupByLibrary.simpleMessage("نام مالک"),
+    "moadiOwnerNationalCode": MessageLookupByLibrary.simpleMessage(
+      "کد ملی مالک",
+    ),
+    "moadiPostalCode": MessageLookupByLibrary.simpleMessage("کد پستی"),
+    "moadiRegistrationDate": MessageLookupByLibrary.simpleMessage("تاریخ ثبت"),
+    "moadiRegistrationNumber": MessageLookupByLibrary.simpleMessage(
+      "شماره ثبت",
+    ),
+    "moadiReject": MessageLookupByLibrary.simpleMessage("رد کردن"),
+    "moadiRejectReason": MessageLookupByLibrary.simpleMessage("دلیل رد"),
+    "moadiRequests": MessageLookupByLibrary.simpleMessage("درخواست‌های مودی"),
+    "moadiSection": MessageLookupByLibrary.simpleMessage("مودی مالیاتی"),
+    "moadiStartInvoiceNumber": MessageLookupByLibrary.simpleMessage(
+      "شماره شروع فاکتور",
+    ),
+    "moadiStatusApproved": MessageLookupByLibrary.simpleMessage("تایید شده"),
+    "moadiStatusPending": MessageLookupByLibrary.simpleMessage(
+      "در انتظار تایید",
+    ),
+    "moadiStatusRejected": MessageLookupByLibrary.simpleMessage("رد شده"),
+    "moadiSubmit": MessageLookupByLibrary.simpleMessage("ثبت درخواست"),
+    "moadiSubmittedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "درخواست شما ثبت شد و در انتظار تایید است.",
+    ),
+    "moadiUniqueTaxCode": MessageLookupByLibrary.simpleMessage(
+      "شناسه یکتای مالیاتی",
+    ),
     "mobileNumber": MessageLookupByLibrary.simpleMessage("شماره موبایل"),
     "model": MessageLookupByLibrary.simpleMessage("مدل"),
     "modified": MessageLookupByLibrary.simpleMessage("تاریخ تغییر"),

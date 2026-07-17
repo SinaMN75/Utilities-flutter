@@ -53,6 +53,331 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Are you sure you want to approve and register this taxpayer in the Namat system?`
+  String get moadiApproveConfirm {
+    return Intl.message(
+      'Are you sure you want to approve and register this taxpayer in the Namat system?',
+      name: 'moadiApproveConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taxpayer`
+  String get moadiSection {
+    return Intl.message('Taxpayer', name: 'moadiSection', desc: '', args: []);
+  }
+
+  /// `Taxpayer Requests`
+  String get moadiRequests {
+    return Intl.message(
+      'Taxpayer Requests',
+      name: 'moadiRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Request`
+  String get moadiNewRequest {
+    return Intl.message(
+      'New Request',
+      name: 'moadiNewRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taxpayer Details`
+  String get moadiDetails {
+    return Intl.message(
+      'Taxpayer Details',
+      name: 'moadiDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have not submitted any taxpayer request yet.`
+  String get moadiNoRequests {
+    return Intl.message(
+      'You have not submitted any taxpayer request yet.',
+      name: 'moadiNoRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Request`
+  String get moadiSubmit {
+    return Intl.message(
+      'Submit Request',
+      name: 'moadiSubmit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your request has been submitted and is awaiting approval.`
+  String get moadiSubmittedSuccessfully {
+    return Intl.message(
+      'Your request has been submitted and is awaiting approval.',
+      name: 'moadiSubmittedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taxpayer Information`
+  String get moadiInfo {
+    return Intl.message(
+      'Taxpayer Information',
+      name: 'moadiInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Owner Information`
+  String get moadiOwnerInfo {
+    return Intl.message(
+      'Owner Information',
+      name: 'moadiOwnerInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending Approval`
+  String get moadiStatusPending {
+    return Intl.message(
+      'Pending Approval',
+      name: 'moadiStatusPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approved`
+  String get moadiStatusApproved {
+    return Intl.message(
+      'Approved',
+      name: 'moadiStatusApproved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get moadiStatusRejected {
+    return Intl.message(
+      'Rejected',
+      name: 'moadiStatusRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejection Reason`
+  String get moadiRejectReason {
+    return Intl.message(
+      'Rejection Reason',
+      name: 'moadiRejectReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approve`
+  String get moadiApprove {
+    return Intl.message('Approve', name: 'moadiApprove', desc: '', args: []);
+  }
+
+  /// `Reject`
+  String get moadiReject {
+    return Intl.message('Reject', name: 'moadiReject', desc: '', args: []);
+  }
+
+  /// `Taxpayer Name`
+  String get moadiName {
+    return Intl.message('Taxpayer Name', name: 'moadiName', desc: '', args: []);
+  }
+
+  /// `Economic Code`
+  String get moadiEconomicCode {
+    return Intl.message(
+      'Economic Code',
+      name: 'moadiEconomicCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Legal Entity Type`
+  String get moadiLegalEntity {
+    return Intl.message(
+      'Legal Entity Type',
+      name: 'moadiLegalEntity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unique Tax Code`
+  String get moadiUniqueTaxCode {
+    return Intl.message(
+      'Unique Tax Code',
+      name: 'moadiUniqueTaxCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National Code`
+  String get moadiNationalCode {
+    return Intl.message(
+      'National Code',
+      name: 'moadiNationalCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Postal Code`
+  String get moadiPostalCode {
+    return Intl.message(
+      'Postal Code',
+      name: 'moadiPostalCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration Date`
+  String get moadiRegistrationDate {
+    return Intl.message(
+      'Registration Date',
+      name: 'moadiRegistrationDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration Number`
+  String get moadiRegistrationNumber {
+    return Intl.message(
+      'Registration Number',
+      name: 'moadiRegistrationNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get moadiAddress {
+    return Intl.message('Address', name: 'moadiAddress', desc: '', args: []);
+  }
+
+  /// `Start Invoice Number`
+  String get moadiStartInvoiceNumber {
+    return Intl.message(
+      'Start Invoice Number',
+      name: 'moadiStartInvoiceNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Introduction Code`
+  String get moadiIntroductionCode {
+    return Intl.message(
+      'Introduction Code',
+      name: 'moadiIntroductionCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Owner Name`
+  String get moadiOwnerName {
+    return Intl.message(
+      'Owner Name',
+      name: 'moadiOwnerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Owner Mobile`
+  String get moadiOwnerMobile {
+    return Intl.message(
+      'Owner Mobile',
+      name: 'moadiOwnerMobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Owner National Code`
+  String get moadiOwnerNationalCode {
+    return Intl.message(
+      'Owner National Code',
+      name: 'moadiOwnerNationalCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Legal Person`
+  String get moadiLegalEntityLegal {
+    return Intl.message(
+      'Legal Person',
+      name: 'moadiLegalEntityLegal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Natural Person`
+  String get moadiLegalEntityNatural {
+    return Intl.message(
+      'Natural Person',
+      name: 'moadiLegalEntityNatural',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Civic Partnership`
+  String get moadiLegalEntityCivic {
+    return Intl.message(
+      'Civic Partnership',
+      name: 'moadiLegalEntityCivic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Foreigners`
+  String get moadiLegalEntityForeigners {
+    return Intl.message(
+      'Foreigners',
+      name: 'moadiLegalEntityForeigners',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Final Consumer`
+  String get moadiLegalEntityFinalConsumer {
+    return Intl.message(
+      'Final Consumer',
+      name: 'moadiLegalEntityFinalConsumer',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Reservations`
   String get reservations {
     return Intl.message(
@@ -6496,10 +6821,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
-
   @override
   Future<S> load(Locale locale) => S.load(locale);
-
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

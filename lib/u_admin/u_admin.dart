@@ -40,6 +40,8 @@ part "pages/parking/u_admin_parking_report_controller.dart";
 
 part "pages/payments/merchants/u_admin_merchant_controller.dart";
 
+part "pages/payments/moadi/u_admin_moadi_controller.dart";
+
 part "pages/payments/terminals/u_admin_terminal_controller.dart";
 
 part "pages/payments/users/u_admin_payment_users_controller.dart";

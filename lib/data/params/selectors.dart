@@ -228,6 +228,27 @@ class MerchantSelectorArgs {
   };
 }
 
+class MoadiSelectorArgs {
+  final UserSelectorArgs? creator;
+  final UserSelectorArgs? user;
+
+  const MoadiSelectorArgs({this.creator, this.user});
+
+  factory MoadiSelectorArgs.fromJson(String str) => MoadiSelectorArgs.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory MoadiSelectorArgs.fromMap(Map<String, dynamic> json) => MoadiSelectorArgs(
+    creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]),
+    user: json["user"] == null ? null : UserSelectorArgs.fromMap(json["user"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "creator": creator?.toMap(),
+    "user": user?.toMap(),
+  };
+}
+
 class WalletTxnSelectorArgs {
   final UserSelectorArgs? creator;
   final UserSelectorArgs? sender;

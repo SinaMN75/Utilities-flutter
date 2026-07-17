@@ -603,6 +603,21 @@ enum TagMerchant with NumericIdentifiable {
   final int number;
 }
 
+enum TagMoadi with NumericIdentifiable {
+  pending("در انتظار تایید", "Pending", 101),
+  approved("تایید شده", "Approved", 102),
+  rejected("رد شده", "Rejected", 103);
+
+  const TagMoadi(this.titleFa, this.titleEn, this.number);
+
+  @override
+  final String titleFa;
+  @override
+  final String titleEn;
+  @override
+  final int number;
+}
+
 enum TagFieldType with NumericIdentifiable {
   text("متن", "Text", 101),
   dropDown("لیست کشویی", "Drop Down", 102),
