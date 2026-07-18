@@ -851,6 +851,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "paymentFailed": MessageLookupByLibrary.simpleMessage("پرداخت ناموفق بود."),
     "paymentId": MessageLookupByLibrary.simpleMessage("شناسه پرداخت"),
     "paymentMethod": MessageLookupByLibrary.simpleMessage("روش پرداخت"),
+    "paymentPendingVerification": MessageLookupByLibrary.simpleMessage(
+      "پرداخت شما هنوز در حال تأیید است. در صورت کسر وجه، مبلغ به‌زودی به کیف پول شما اضافه می‌شود.",
+    ),
     "paymentStatus": MessageLookupByLibrary.simpleMessage("وضعیت پرداخت"),
     "paymentSuccessful": MessageLookupByLibrary.simpleMessage(
       "پرداخت با موفقیت انجام شد.",

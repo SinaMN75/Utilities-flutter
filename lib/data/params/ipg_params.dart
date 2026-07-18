@@ -4,10 +4,14 @@ part of "../data.dart";
 class UIpgPayParams {
   final double amount;
 
-  UIpgPayParams({required this.amount});
+  // Web only: the gateway callback redirects back here instead of rendering its result page. Must be allow-listed server side.
+  final String? returnUrl;
+
+  UIpgPayParams({required this.amount, this.returnUrl});
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "amount": amount,
+    if (returnUrl != null) "returnUrl": returnUrl,
   };
 }
 

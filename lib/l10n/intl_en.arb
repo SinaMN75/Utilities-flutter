@@ -927,5 +927,5 @@
   "table": "Table",
   "undo": "Undo",
   "words": "Words",
-  "completePaymentInNewTab": "Complete the payment in the new tab, then press Confirm."
+  "paymentPendingVerification": "Your payment is still being confirmed. If the amount was deducted it will be added to your wallet shortly."
 }

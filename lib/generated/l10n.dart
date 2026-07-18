@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7116,6 +7115,16 @@ class S {
   /// `Words`
   String get words {
     return Intl.message('Words', name: 'words', desc: '', args: []);
+  }
+
+  /// `Your payment is still being confirmed. If the amount was deducted it will be added to your wallet shortly.`
+  String get paymentPendingVerification {
+    return Intl.message(
+      'Your payment is still being confirmed. If the amount was deducted it will be added to your wallet shortly.',
+      name: 'paymentPendingVerification',
+      desc: '',
+      args: [],
+    );
   }
 }
 
