@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6845,6 +6846,301 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Add Column`
+  String get addColumn {
+    return Intl.message('Add Column', name: 'addColumn', desc: '', args: []);
+  }
+
+  /// `Add Row`
+  String get addRow {
+    return Intl.message('Add Row', name: 'addRow', desc: '', args: []);
+  }
+
+  /// `Apply`
+  String get apply {
+    return Intl.message('Apply', name: 'apply', desc: '', args: []);
+  }
+
+  /// `Checklist`
+  String get checklist {
+    return Intl.message('Checklist', name: 'checklist', desc: '', args: []);
+  }
+
+  /// `Code Language`
+  String get codeLanguage {
+    return Intl.message(
+      'Code Language',
+      name: 'codeLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Columns`
+  String get columns {
+    return Intl.message('Columns', name: 'columns', desc: '', args: []);
+  }
+
+  /// `Copy`
+  String get copy {
+    return Intl.message('Copy', name: 'copy', desc: '', args: []);
+  }
+
+  /// `Decrease Indent`
+  String get decreaseIndent {
+    return Intl.message(
+      'Decrease Indent',
+      name: 'decreaseIndent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Document Editor`
+  String get documentEditor {
+    return Intl.message(
+      'Document Editor',
+      name: 'documentEditor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Document Info`
+  String get documentInfo {
+    return Intl.message(
+      'Document Info',
+      name: 'documentInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Duplicate Block`
+  String get duplicateBlock {
+    return Intl.message(
+      'Duplicate Block',
+      name: 'duplicateBlock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Table`
+  String get editTable {
+    return Intl.message('Edit Table', name: 'editTable', desc: '', args: []);
+  }
+
+  /// `Find`
+  String get find {
+    return Intl.message('Find', name: 'find', desc: '', args: []);
+  }
+
+  /// `Find and Replace`
+  String get findAndReplace {
+    return Intl.message(
+      'Find and Replace',
+      name: 'findAndReplace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Font`
+  String get fontFamily {
+    return Intl.message('Font', name: 'fontFamily', desc: '', args: []);
+  }
+
+  /// `Header Row`
+  String get headerRow {
+    return Intl.message('Header Row', name: 'headerRow', desc: '', args: []);
+  }
+
+  /// `Heading 4`
+  String get heading4 {
+    return Intl.message('Heading 4', name: 'heading4', desc: '', args: []);
+  }
+
+  /// `Heading 5`
+  String get heading5 {
+    return Intl.message('Heading 5', name: 'heading5', desc: '', args: []);
+  }
+
+  /// `Heading 6`
+  String get heading6 {
+    return Intl.message('Heading 6', name: 'heading6', desc: '', args: []);
+  }
+
+  /// `Highlight Color`
+  String get highlightColor {
+    return Intl.message(
+      'Highlight Color',
+      name: 'highlightColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `HTML Source`
+  String get htmlSource {
+    return Intl.message('HTML Source', name: 'htmlSource', desc: '', args: []);
+  }
+
+  /// `Image Width`
+  String get imageWidth {
+    return Intl.message('Image Width', name: 'imageWidth', desc: '', args: []);
+  }
+
+  /// `Increase Indent`
+  String get increaseIndent {
+    return Intl.message(
+      'Increase Indent',
+      name: 'increaseIndent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inline Code`
+  String get inlineCode {
+    return Intl.message('Inline Code', name: 'inlineCode', desc: '', args: []);
+  }
+
+  /// `Insert`
+  String get insert {
+    return Intl.message('Insert', name: 'insert', desc: '', args: []);
+  }
+
+  /// `Insert Table`
+  String get insertTable {
+    return Intl.message(
+      'Insert Table',
+      name: 'insertTable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Match Case`
+  String get matchCase {
+    return Intl.message('Match Case', name: 'matchCase', desc: '', args: []);
+  }
+
+  /// `min`
+  String get minutes {
+    return Intl.message('min', name: 'minutes', desc: '', args: []);
+  }
+
+  /// `More`
+  String get more {
+    return Intl.message('More', name: 'more', desc: '', args: []);
+  }
+
+  /// `No matches found`
+  String get noMatchesFound {
+    return Intl.message(
+      'No matches found',
+      name: 'noMatchesFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `None`
+  String get none {
+    return Intl.message('None', name: 'none', desc: '', args: []);
+  }
+
+  /// `Reading Time`
+  String get readingTime {
+    return Intl.message(
+      'Reading Time',
+      name: 'readingTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Redo`
+  String get redo {
+    return Intl.message('Redo', name: 'redo', desc: '', args: []);
+  }
+
+  /// `Remove Column`
+  String get removeColumn {
+    return Intl.message(
+      'Remove Column',
+      name: 'removeColumn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove Row`
+  String get removeRow {
+    return Intl.message('Remove Row', name: 'removeRow', desc: '', args: []);
+  }
+
+  /// `Replace All`
+  String get replaceAll {
+    return Intl.message('Replace All', name: 'replaceAll', desc: '', args: []);
+  }
+
+  /// `Replace With`
+  String get replaceWith {
+    return Intl.message(
+      'Replace With',
+      name: 'replaceWith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Replaced`
+  String get replacedCount {
+    return Intl.message('Replaced', name: 'replacedCount', desc: '', args: []);
+  }
+
+  /// `Rows`
+  String get rows {
+    return Intl.message('Rows', name: 'rows', desc: '', args: []);
+  }
+
+  /// `Subscript`
+  String get subscript {
+    return Intl.message('Subscript', name: 'subscript', desc: '', args: []);
+  }
+
+  /// `Superscript`
+  String get superscript {
+    return Intl.message('Superscript', name: 'superscript', desc: '', args: []);
+  }
+
+  /// `Table`
+  String get table {
+    return Intl.message('Table', name: 'table', desc: '', args: []);
+  }
+
+  /// `Undo`
+  String get undo {
+    return Intl.message('Undo', name: 'undo', desc: '', args: []);
+  }
+
+  /// `Words`
+  String get words {
+    return Intl.message('Words', name: 'words', desc: '', args: []);
+  }
+
+  /// `Zoom In`
+  String get zoomIn {
+    return Intl.message('Zoom In', name: 'zoomIn', desc: '', args: []);
+  }
+
+  /// `Zoom Out`
+  String get zoomOut {
+    return Intl.message('Zoom Out', name: 'zoomOut', desc: '', args: []);
   }
 }
 

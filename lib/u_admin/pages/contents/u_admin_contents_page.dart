@@ -417,7 +417,6 @@ class _Base64ImageFieldState extends State<_Base64ImageField> {
   }
 
   Future<void> _pick() => UFile.showFilePicker(
-    fileType: FileType.custom,
     allowedExtensions: const <String>["jpg", "jpeg", "png", "gif", "webp", "svg"],
     action: (List<FileData> files) {
       if (files.isEmpty || files.first.bytes == null) return;

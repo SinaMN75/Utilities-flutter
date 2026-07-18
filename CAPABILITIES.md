@@ -177,6 +177,45 @@ marquee (`scrolling_text.dart`);
 `BadgeWidget`/`BadgePositioned` (`badges.dart`); `WidgetToImage`/`WidgetToImageController` (
 `widget_to_image.dart`).
 
+### Rich text / HTML  (`u_html_document.dart`, `u_html_view.dart`, `u_rich_text_editor.dart`,
+`u_document_editor.dart`, `u_editor_toolbar.dart`)
+
+Everything below round-trips through the same HTML, so an editor's output feeds `UHtmlView`
+directly. No WebView and no third-party editor package.
+
+**Document model & HTML** (`u_html_document.dart`):
+`UHtmlDocument.serialize(blocks)`, `.parse(html)`, `.toPlainText(html)`, `.wordCount(html)`,
+`.characterCount(html)`, `.readingMinutes(html)`, `.escapeHtml/.escapeAttr`, `.parseCssColor(s)`;
+`UEditorBlock` / `UEditorBlock.text(...)`, `UTableData` / `UTableData.empty(rows:, columns:)`,
+`UStyleSpan`, `URichTextController` (spans + `toggleAttribute`, `applyValue`, `clearFormatting`,
+`activeAttributes()`, `activeValue(attr)`, `activeLink()`, `setContent(...)`);
+`UInlineAttr` = bold, italic, underline, strikethrough, code, superscript, subscript, color,
+highlight, fontSize, fontFamily, link;
+`UBlockType` = paragraph, h1–h6, quote, bulleted, numbered, checklist, code, image, divider, table;
+`UEditorStyles.baseStyle/decorate/spacing/label`, `.palette`, `.fontSizes`, `.fontFamilies`.
+
+**Read-only renderer:** `UHtmlView(html:, onLinkTap:, onImageTap:, onChecklistChanged:,
+imageBuilder:, selectable:, showCodeCopyButton:, padding:, textStyle:, textDirection:,
+imageHeight:, scrollable:)` — tables, checklists, code blocks with copy button, tappable links and
+images, sub/superscript.
+
+**Block editor:** `URichTextEditor(initialHtml:, onChanged:, onUploadImage:, onAutoSave:,
+autoSaveInterval:, padding:, readOnly:, showStatusBar:)` and `URichTextEditor.open(...)` →
+`Future<String?>`. Drag-reorder, undo/redo, markdown shortcuts (`# `, `- `, `1. `, `> `, `[] `,
+` ``` `, `---`), tables, checklists, indent, image align/width, code language, find & replace,
+HTML source, document info, preview.
+
+**Continuous (Word / WordPress style) editor:** `UDocumentEditor(initialHtml:, onChanged:,
+onUploadImage:, onAutoSave:, pageWidth:, pagePadding:, showPage:, showStatusBar:, readOnly:,
+autofocus:)` and `UDocumentEditor.open(...)` → `Future<String?>`. One caret and one selection over
+the whole document; `UDocumentController` (`toHtml()`, `loadHtml()`, `setParagraphType`,
+`setParagraphAlign`, `indentBy`, `insertEmbed`, `renumber`), `UParagraphMark`, `UEmbed`
+(image/table/divider embedded in the text flow), page surface, zoom, ribbon toolbar.
+
+**Shared toolbar pieces** (`u_editor_toolbar.dart`): `UEditorToolButton`, `UEditorToolSeparator`,
+`UEditorDropdown`/`UEditorMenuEntry`, `UEditorDialogs.pickColor/editLink/insertTable/htmlSource/
+findReplace/documentInfo`, `UFindReplaceRequest`.
+
 ---
 
 ## 7. Utility classes  (`utils/*.dart`)
