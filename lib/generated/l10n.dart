@@ -6898,16 +6898,6 @@ class S {
     );
   }
 
-  /// `Document Editor`
-  String get documentEditor {
-    return Intl.message(
-      'Document Editor',
-      name: 'documentEditor',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Document Info`
   String get documentInfo {
     return Intl.message(
@@ -6926,11 +6916,6 @@ class S {
       desc: '',
       args: [],
     );
-  }
-
-  /// `Edit Table`
-  String get editTable {
-    return Intl.message('Edit Table', name: 'editTable', desc: '', args: []);
   }
 
   /// `Find`
@@ -7131,16 +7116,6 @@ class S {
   /// `Words`
   String get words {
     return Intl.message('Words', name: 'words', desc: '', args: []);
-  }
-
-  /// `Zoom In`
-  String get zoomIn {
-    return Intl.message('Zoom In', name: 'zoomIn', desc: '', args: []);
-  }
-
-  /// `Zoom Out`
-  String get zoomOut {
-    return Intl.message('Zoom Out', name: 'zoomOut', desc: '', args: []);
   }
 }
 

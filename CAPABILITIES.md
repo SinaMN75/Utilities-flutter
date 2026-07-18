@@ -177,13 +177,12 @@ marquee (`scrolling_text.dart`);
 `BadgeWidget`/`BadgePositioned` (`badges.dart`); `WidgetToImage`/`WidgetToImageController` (
 `widget_to_image.dart`).
 
-### Rich text / HTML  (`u_html_document.dart`, `u_html_view.dart`, `u_rich_text_editor.dart`,
-`u_document_editor.dart`, `u_editor_toolbar.dart`)
+### Rich text / HTML  (`u_rich_text_editor.dart`, `u_html_view.dart`)
 
-Everything below round-trips through the same HTML, so an editor's output feeds `UHtmlView`
+Everything below round-trips through the same HTML, so the editor's output feeds `UHtmlView`
 directly. No WebView and no third-party editor package.
 
-**Document model & HTML** (`u_html_document.dart`):
+**Document model & HTML** (`u_rich_text_editor.dart`):
 `UHtmlDocument.serialize(blocks)`, `.parse(html)`, `.toPlainText(html)`, `.wordCount(html)`,
 `.characterCount(html)`, `.readingMinutes(html)`, `.escapeHtml/.escapeAttr`, `.parseCssColor(s)`;
 `UEditorBlock` / `UEditorBlock.text(...)`, `UTableData` / `UTableData.empty(rows:, columns:)`,
@@ -205,14 +204,7 @@ autoSaveInterval:, padding:, readOnly:, showStatusBar:)` and `URichTextEditor.op
 ` ``` `, `---`), tables, checklists, indent, image align/width, code language, find & replace,
 HTML source, document info, preview.
 
-**Continuous (Word / WordPress style) editor:** `UDocumentEditor(initialHtml:, onChanged:,
-onUploadImage:, onAutoSave:, pageWidth:, pagePadding:, showPage:, showStatusBar:, readOnly:,
-autofocus:)` and `UDocumentEditor.open(...)` → `Future<String?>`. One caret and one selection over
-the whole document; `UDocumentController` (`toHtml()`, `loadHtml()`, `setParagraphType`,
-`setParagraphAlign`, `indentBy`, `insertEmbed`, `renumber`), `UParagraphMark`, `UEmbed`
-(image/table/divider embedded in the text flow), page surface, zoom, ribbon toolbar.
-
-**Shared toolbar pieces** (`u_editor_toolbar.dart`): `UEditorToolButton`, `UEditorToolSeparator`,
+**Toolbar pieces** (same file): `UEditorToolButton`, `UEditorToolSeparator`,
 `UEditorDropdown`/`UEditorMenuEntry`, `UEditorDialogs.pickColor/editLink/insertTable/htmlSource/
 findReplace/documentInfo`, `UFindReplaceRequest`.
 

@@ -5,8 +5,7 @@ typedef UHtmlImageBuilder = Widget Function(BuildContext context, String url, St
 
 /// Read-only renderer that draws stored HTML with native Flutter widgets, so it
 /// works on every platform without a WebView. It shares the parser and styling
-/// used by [URichTextEditor] and [UDocumentEditor], so what you edit is exactly
-/// what you see.
+/// used by [URichTextEditor], so what you edit is exactly what you see.
 ///
 /// ```dart
 /// UHtmlView(

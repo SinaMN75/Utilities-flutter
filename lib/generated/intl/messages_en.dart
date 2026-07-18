@@ -299,7 +299,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "diskUsage": MessageLookupByLibrary.simpleMessage("Disk Usage"),
     "disks": MessageLookupByLibrary.simpleMessage("Disks"),
     "divider": MessageLookupByLibrary.simpleMessage("Divider"),
-    "documentEditor": MessageLookupByLibrary.simpleMessage("Document Editor"),
     "documentInfo": MessageLookupByLibrary.simpleMessage("Document Info"),
     "documents": MessageLookupByLibrary.simpleMessage("Documents"),
     "dorm": MessageLookupByLibrary.simpleMessage("Dorm"),
@@ -333,7 +332,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "editQuestion": MessageLookupByLibrary.simpleMessage("Edit Question"),
     "editReservation": MessageLookupByLibrary.simpleMessage("Edit Reservation"),
     "editRoom": MessageLookupByLibrary.simpleMessage("Edit Room"),
-    "editTable": MessageLookupByLibrary.simpleMessage("Edit Table"),
     "editTerminal": MessageLookupByLibrary.simpleMessage("Edit Terminal"),
     "editTransaction": MessageLookupByLibrary.simpleMessage("Edit Transaction"),
     "editUserInformation": MessageLookupByLibrary.simpleMessage(
@@ -1374,7 +1372,5 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "yourWallet": MessageLookupByLibrary.simpleMessage("Your wallet"),
     "zipCode": MessageLookupByLibrary.simpleMessage("Zip Code"),
-    "zoomIn": MessageLookupByLibrary.simpleMessage("Zoom In"),
-    "zoomOut": MessageLookupByLibrary.simpleMessage("Zoom Out"),
   };
 }

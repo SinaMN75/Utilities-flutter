@@ -287,7 +287,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "diskUsage": MessageLookupByLibrary.simpleMessage("میزان استفاده دیسک"),
     "disks": MessageLookupByLibrary.simpleMessage("دیسک‌ها"),
     "divider": MessageLookupByLibrary.simpleMessage("جداکننده"),
-    "documentEditor": MessageLookupByLibrary.simpleMessage("ویرایشگر سند"),
     "documentInfo": MessageLookupByLibrary.simpleMessage("اطلاعات سند"),
     "documents": MessageLookupByLibrary.simpleMessage("مدارک"),
     "dorm": MessageLookupByLibrary.simpleMessage("خوابگاه"),
@@ -325,7 +324,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "editQuestion": MessageLookupByLibrary.simpleMessage("ویرایش سؤال"),
     "editReservation": MessageLookupByLibrary.simpleMessage("ویرایش رزرو"),
     "editRoom": MessageLookupByLibrary.simpleMessage("ویرایش اتاق"),
-    "editTable": MessageLookupByLibrary.simpleMessage("ویرایش جدول"),
     "editTerminal": MessageLookupByLibrary.simpleMessage("ویرایش پایانه"),
     "editTransaction": MessageLookupByLibrary.simpleMessage("ویرایش تراکنش"),
     "editUserInformation": MessageLookupByLibrary.simpleMessage(
@@ -1332,7 +1330,5 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "yourWallet": MessageLookupByLibrary.simpleMessage("کیف پول شما"),
     "zipCode": MessageLookupByLibrary.simpleMessage("کد پستی"),
-    "zoomIn": MessageLookupByLibrary.simpleMessage("بزرگ‌نمایی"),
-    "zoomOut": MessageLookupByLibrary.simpleMessage("کوچک‌نمایی"),
   };
 }

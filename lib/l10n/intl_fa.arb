@@ -893,10 +893,8 @@
   "columns": "ستون‌ها",
   "copy": "کپی",
   "decreaseIndent": "کاهش تورفتگی",
-  "documentEditor": "ویرایشگر سند",
   "documentInfo": "اطلاعات سند",
   "duplicateBlock": "تکثیر بلوک",
-  "editTable": "ویرایش جدول",
   "find": "یافتن",
   "findAndReplace": "یافتن و جایگزینی",
   "fontFamily": "قلم",
@@ -929,6 +927,5 @@
   "table": "جدول",
   "undo": "واگرد",
   "words": "کلمات",
-  "zoomIn": "بزرگ‌نمایی",
-  "zoomOut": "کوچک‌نمایی"
+  "completePaymentInNewTab": "پرداخت را در تب جدید کامل کنید، سپس تأیید را بزنید."
 }

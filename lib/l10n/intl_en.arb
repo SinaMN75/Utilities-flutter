@@ -893,10 +893,8 @@
   "columns": "Columns",
   "copy": "Copy",
   "decreaseIndent": "Decrease Indent",
-  "documentEditor": "Document Editor",
   "documentInfo": "Document Info",
   "duplicateBlock": "Duplicate Block",
-  "editTable": "Edit Table",
   "find": "Find",
   "findAndReplace": "Find and Replace",
   "fontFamily": "Font",
@@ -929,6 +927,5 @@
   "table": "Table",
   "undo": "Undo",
   "words": "Words",
-  "zoomIn": "Zoom In",
-  "zoomOut": "Zoom Out"
+  "completePaymentInNewTab": "Complete the payment in the new tab, then press Confirm."
 }
