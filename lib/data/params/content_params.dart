@@ -3,9 +3,15 @@ part of "../data.dart";
 class UContentCreateParams {
   UContentCreateParams({
     required this.tags,
-    required this.title,
+    this.title,
     this.detail1,
     this.detail2,
+    this.imageBase64,
+    this.iconBase64,
+    this.buttonText,
+    this.buttonLink,
+    this.link,
+    this.order,
     this.instagram,
     this.id,
     this.creatorId,
@@ -15,15 +21,22 @@ class UContentCreateParams {
     this.telegram,
     this.whatsapp,
     this.phone,
-    this.extra = const <UContentExtra>[],
+    this.links = const <UContentLink>[],
+    this.items = const <UContentItem>[],
   });
 
   factory UContentCreateParams.fromJson(String str) => UContentCreateParams.fromMap(json.decode(str));
 
   factory UContentCreateParams.fromMap(Map<String, dynamic> json) => UContentCreateParams(
-    title: json["title"] as String,
+    title: json["title"],
     detail1: json["detail1"],
     detail2: json["detail2"],
+    imageBase64: json["imageBase64"],
+    iconBase64: json["iconBase64"],
+    buttonText: json["buttonText"],
+    buttonLink: json["buttonLink"],
+    link: json["link"],
+    order: json["order"],
     instagram: json["instagram"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     id: json["id"],
@@ -34,11 +47,18 @@ class UContentCreateParams {
     telegram: json["telegram"],
     whatsapp: json["whatsapp"],
     phone: json["phone"],
-    extra: json["extra"] == null ? <UContentExtra>[] : List<UContentExtra>.from(json["extra"].map((dynamic x) => UContentExtra.fromMap(x))),
+    links: json["links"] == null ? <UContentLink>[] : List<UContentLink>.from(json["links"].map((dynamic x) => UContentLink.fromMap(x))),
+    items: json["items"] == null ? <UContentItem>[] : List<UContentItem>.from(json["items"].map((dynamic x) => UContentItem.fromMap(x))),
   );
-  final String title;
+  final String? title;
   final String? detail1;
   final String? detail2;
+  final String? imageBase64;
+  final String? iconBase64;
+  final String? buttonText;
+  final String? buttonLink;
+  final String? link;
+  final int? order;
   final String? instagram;
   final List<int> tags;
   final String? id;
@@ -49,7 +69,8 @@ class UContentCreateParams {
   final String? telegram;
   final String? whatsapp;
   final String? phone;
-  final List<UContentExtra> extra;
+  final List<UContentLink> links;
+  final List<UContentItem> items;
 
   String toJson() => json.encode(toMap());
 
@@ -57,6 +78,12 @@ class UContentCreateParams {
     "title": title,
     "detail1": detail1,
     "detail2": detail2,
+    "imageBase64": imageBase64,
+    "iconBase64": iconBase64,
+    "buttonText": buttonText,
+    "buttonLink": buttonLink,
+    "link": link,
+    "order": order,
     "instagram": instagram,
     "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
     "id": id,
@@ -67,7 +94,8 @@ class UContentCreateParams {
     "telegram": telegram,
     "whatsapp": whatsapp,
     "phone": phone,
-    "extra": List<dynamic>.from(extra.map((UContentExtra x) => x.toMap())),
+    "links": List<dynamic>.from(links.map((UContentLink x) => x.toMap())),
+    "items": List<dynamic>.from(items.map((UContentItem x) => x.toMap())),
   };
 }
 
@@ -77,6 +105,12 @@ class UContentUpdateParams {
     this.title,
     this.detail1,
     this.detail2,
+    this.imageBase64,
+    this.iconBase64,
+    this.buttonText,
+    this.buttonLink,
+    this.link,
+    this.order,
     this.instagram,
     this.addTags,
     this.removeTags,
@@ -89,7 +123,8 @@ class UContentUpdateParams {
     this.telegram,
     this.whatsapp,
     this.phone,
-    this.extra,
+    this.links,
+    this.items,
   });
 
   factory UContentUpdateParams.fromJson(String str) => UContentUpdateParams.fromMap(json.decode(str));
@@ -99,6 +134,12 @@ class UContentUpdateParams {
     title: json["title"],
     detail1: json["detail1"],
     detail2: json["detail2"],
+    imageBase64: json["imageBase64"],
+    iconBase64: json["iconBase64"],
+    buttonText: json["buttonText"],
+    buttonLink: json["buttonLink"],
+    link: json["link"],
+    order: json["order"],
     instagram: json["instagram"],
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
@@ -111,12 +152,19 @@ class UContentUpdateParams {
     telegram: json["telegram"],
     whatsapp: json["whatsapp"],
     phone: json["phone"],
-    extra: json["extra"] == null ? null : List<UContentExtra>.from(json["extra"].map((dynamic x) => UContentExtra.fromMap(x))),
+    links: json["links"] == null ? null : List<UContentLink>.from(json["links"].map((dynamic x) => UContentLink.fromMap(x))),
+    items: json["items"] == null ? null : List<UContentItem>.from(json["items"].map((dynamic x) => UContentItem.fromMap(x))),
   );
   final String id;
   final String? title;
   final String? detail1;
   final String? detail2;
+  final String? imageBase64;
+  final String? iconBase64;
+  final String? buttonText;
+  final String? buttonLink;
+  final String? link;
+  final int? order;
   final String? instagram;
   final List<int>? addTags;
   final List<int>? removeTags;
@@ -129,7 +177,8 @@ class UContentUpdateParams {
   final String? telegram;
   final String? whatsapp;
   final String? phone;
-  final List<UContentExtra>? extra;
+  final List<UContentLink>? links;
+  final List<UContentItem>? items;
 
   String toJson() => json.encode(toMap());
 
@@ -138,6 +187,12 @@ class UContentUpdateParams {
     "title": title,
     "detail1": detail1,
     "detail2": detail2,
+    "imageBase64": imageBase64,
+    "iconBase64": iconBase64,
+    "buttonText": buttonText,
+    "buttonLink": buttonLink,
+    "link": link,
+    "order": order,
     "instagram": instagram,
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((dynamic x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((dynamic x) => x)),
@@ -150,7 +205,8 @@ class UContentUpdateParams {
     "telegram": telegram,
     "whatsapp": whatsapp,
     "phone": phone,
-    "extra": extra == null ? null : List<dynamic>.from(extra!.map((UContentExtra x) => x.toMap())),
+    "links": links == null ? null : List<dynamic>.from(links!.map((UContentLink x) => x.toMap())),
+    "items": items == null ? null : List<dynamic>.from(items!.map((UContentItem x) => x.toMap())),
   };
 }
 

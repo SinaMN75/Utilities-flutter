@@ -59,13 +59,20 @@ class UContentJson {
     this.title,
     this.detail1,
     this.detail2,
+    this.imageBase64,
+    this.iconBase64,
+    this.buttonText,
+    this.buttonLink,
+    this.link,
+    this.order,
     this.instagram,
     this.telegram,
     this.whatsapp,
     this.phone,
     this.subTitle,
     this.description,
-    this.extra = const <UContentExtra>[],
+    this.links = const <UContentLink>[],
+    this.items = const <UContentItem>[],
   });
 
   factory UContentJson.fromJson(String str) => UContentJson.fromMap(json.decode(str));
@@ -74,24 +81,38 @@ class UContentJson {
     title: json["title"],
     detail1: json["detail1"],
     detail2: json["detail2"],
+    imageBase64: json["imageBase64"],
+    iconBase64: json["iconBase64"],
+    buttonText: json["buttonText"],
+    buttonLink: json["buttonLink"],
+    link: json["link"],
+    order: json["order"],
     instagram: json["instagram"],
     telegram: json["telegram"],
     whatsapp: json["whatsapp"],
     phone: json["phone"],
     subTitle: json["subTitle"],
     description: json["description"],
-    extra: json["extra"] == null ? <UContentExtra>[] : List<UContentExtra>.from(json["extra"].map((dynamic x) => UContentExtra.fromMap(x))),
+    links: json["links"] == null ? <UContentLink>[] : List<UContentLink>.from(json["links"].map((dynamic x) => UContentLink.fromMap(x))),
+    items: json["items"] == null ? <UContentItem>[] : List<UContentItem>.from(json["items"].map((dynamic x) => UContentItem.fromMap(x))),
   );
   final String? title;
   final String? detail1;
   final String? detail2;
+  final String? imageBase64;
+  final String? iconBase64;
+  final String? buttonText;
+  final String? buttonLink;
+  final String? link;
+  final int? order;
   final String? instagram;
   final String? telegram;
   final String? whatsapp;
   final String? phone;
   final String? subTitle;
   final String? description;
-  final List<UContentExtra> extra;
+  final List<UContentLink> links;
+  final List<UContentItem> items;
 
   String toJson() => json.encode(toMap());
 
@@ -99,52 +120,87 @@ class UContentJson {
     "title": title,
     "detail1": detail1,
     "detail2": detail2,
+    "imageBase64": imageBase64,
+    "iconBase64": iconBase64,
+    "buttonText": buttonText,
+    "buttonLink": buttonLink,
+    "link": link,
+    "order": order,
     "instagram": instagram,
     "telegram": telegram,
     "whatsapp": whatsapp,
     "phone": phone,
     "subTitle": subTitle,
     "description": description,
-    "extra": List<dynamic>.from(extra.map((UContentExtra x) => x.toMap())),
+    "links": List<dynamic>.from(links.map((UContentLink x) => x.toMap())),
+    "items": List<dynamic>.from(items.map((UContentItem x) => x.toMap())),
   };
 }
 
-class UContentExtra {
-  UContentExtra({
-    required this.title,
-    required this.subtitle,
-    required this.description,
-    this.icon1,
-    this.icon2,
-    this.icon3,
+class UContentItem {
+  UContentItem({
+    this.title,
+    this.subTitle,
+    this.description,
+    this.iconBase64,
+    this.imageBase64,
+    this.link,
+    this.order,
   });
 
-  factory UContentExtra.fromJson(String str) => UContentExtra.fromMap(json.decode(str));
+  factory UContentItem.fromJson(String str) => UContentItem.fromMap(json.decode(str));
 
-  factory UContentExtra.fromMap(Map<String, dynamic> json) => UContentExtra(
-    title: json["title"] ?? "",
-    subtitle: json["subtitle"] ?? "",
-    description: json["description"] ?? "",
-    icon1: json["icon1"],
-    icon2: json["icon2"],
-    icon3: json["icon3"],
+  factory UContentItem.fromMap(Map<String, dynamic> json) => UContentItem(
+    title: json["title"],
+    subTitle: json["subTitle"],
+    description: json["description"],
+    iconBase64: json["iconBase64"],
+    imageBase64: json["imageBase64"],
+    link: json["link"],
+    order: json["order"],
   );
 
-  final String title;
-  final String subtitle;
-  final String description;
-  final String? icon1;
-  final String? icon2;
-  final String? icon3;
+  final String? title;
+  final String? subTitle;
+  final String? description;
+  final String? iconBase64;
+  final String? imageBase64;
+  final String? link;
+  final int? order;
 
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
-    "subtitle": subtitle,
+    "subTitle": subTitle,
     "description": description,
-    "icon1": icon1,
-    "icon2": icon2,
-    "icon3": icon3,
+    "iconBase64": iconBase64,
+    "imageBase64": imageBase64,
+    "link": link,
+    "order": order,
+  };
+}
+
+class UContentLink {
+  UContentLink({this.title, this.url, this.iconBase64});
+
+  factory UContentLink.fromJson(String str) => UContentLink.fromMap(json.decode(str));
+
+  factory UContentLink.fromMap(Map<String, dynamic> json) => UContentLink(
+    title: json["title"],
+    url: json["url"],
+    iconBase64: json["iconBase64"],
+  );
+
+  final String? title;
+  final String? url;
+  final String? iconBase64;
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "title": title,
+    "url": url,
+    "iconBase64": iconBase64,
   };
 }

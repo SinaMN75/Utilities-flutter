@@ -49,6 +49,12 @@ class _ContentsPageState extends State<UAdminContentsPage> {
     ),
   );
 
+  Widget _thumb(String? base64, {double size = 48}) => SizedBox(
+    width: size,
+    height: size,
+    child: base64.isNotNullOrEmpty() ? UImage("", fileData: FileData(bytes: _decodeBase64(base64!)), borderRadius: 8) : const Icon(Icons.image_outlined),
+  );
+
   Widget _itemMobile(UContentResponse i, int index) => UContainer(
     padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
     margin: const EdgeInsets.symmetric(vertical: 4),
@@ -56,7 +62,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
       spacing: 0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(width: 48, height: 48, child: UImage(i.media.firstOrNull?.url ?? "")),
+        _thumb(i.jsonData.imageBase64 ?? i.jsonData.iconBase64),
         const SizedBox(width: 12),
         Expanded(
           child: UColumn(
@@ -90,7 +96,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
   Widget _itemDesktop(UContentResponse i, int index) => URow(
     color: UAdminTable.rowColor(context, index),
     children: <Widget>[
-      SizedBox(width: 48, height: 48, child: UImage(i.media.firstOrNull?.url ?? "")).expanded(),
+      _thumb(i.jsonData.imageBase64 ?? i.jsonData.iconBase64).expanded(),
       UAdminTable.cell(_tagOf(i)?.localizedTitle ?? "---"),
       UAdminTable.cell(i.jsonData.title ?? "---"),
       UTextBodyMedium(i.jsonData.description ?? i.jsonData.detail1 ?? "---", textAlign: TextAlign.center, maxLines: 2, overflow: TextOverflow.ellipsis).expanded(flex: 2),
@@ -159,14 +165,19 @@ class _ContentsPageState extends State<UAdminContentsPage> {
     final TextEditingController description = TextEditingController(text: p?.jsonData.description);
     final TextEditingController detail1 = TextEditingController(text: p?.jsonData.detail1);
     final TextEditingController detail2 = TextEditingController(text: p?.jsonData.detail2);
+    final TextEditingController buttonText = TextEditingController(text: p?.jsonData.buttonText);
+    final TextEditingController buttonLink = TextEditingController(text: p?.jsonData.buttonLink);
+    final TextEditingController link = TextEditingController(text: p?.jsonData.link);
+    final TextEditingController order = TextEditingController(text: p?.jsonData.order?.toString());
     final TextEditingController instagram = TextEditingController(text: p?.jsonData.instagram);
     final TextEditingController telegram = TextEditingController(text: p?.jsonData.telegram);
     final TextEditingController whatsapp = TextEditingController(text: p?.jsonData.whatsapp);
     final TextEditingController phone = TextEditingController(text: p?.jsonData.phone);
     final Rx<TagContent> tag = ((p == null ? null : _tagOf(p)) ?? TagContent.aboutUs).obs;
-    final List<_ExtraForm> extras = <_ExtraForm>[...?p?.jsonData.extra.map(_ExtraForm.fromModel)];
-    final List<UMediaResponse> existingMedia = <UMediaResponse>[...p?.media ?? <UMediaResponse>[]];
-    List<FileData> files = <FileData>[];
+    final List<_ItemForm> items = <_ItemForm>[...?p?.jsonData.items.map(_ItemForm.fromModel)];
+    final List<_LinkForm> links = <_LinkForm>[...?p?.jsonData.links.map(_LinkForm.fromModel)];
+    String? imageBase64 = p?.jsonData.imageBase64;
+    String? iconBase64 = p?.jsonData.iconBase64;
 
     await UNavigator.dialog(
       StatefulBuilder(
@@ -190,15 +201,25 @@ class _ContentsPageState extends State<UAdminContentsPage> {
                         if (v != null) tag.value = v;
                       },
                     ).pSymmetric(vertical: 6),
-                    UTextField(
-                      controller: title,
-                      labelText: U.s.title,
-                      validator: UValidators.required(message: ""),
-                    ).pSymmetric(vertical: 6),
+                    UTextField(controller: title, labelText: U.s.title).pSymmetric(vertical: 6),
                     UTextField(controller: subTitle, labelText: U.s.subtitle).pSymmetric(vertical: 6),
                     UTextField(controller: description, labelText: U.s.description, lines: 3).pSymmetric(vertical: 6),
                     UTextField(controller: detail1, labelText: U.s.detail1, lines: 2).pSymmetric(vertical: 6),
                     UTextField(controller: detail2, labelText: U.s.detail2, lines: 2).pSymmetric(vertical: 6),
+                    UTextField(controller: order, labelText: U.s.order, keyboardType: TextInputType.number).pSymmetric(vertical: 6),
+                    const SizedBox(height: 8),
+                    URow(
+                      spacing: 12,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        _Base64ImageField(label: U.s.image, initial: imageBase64, onChanged: (String? v) => imageBase64 = v).expanded(),
+                        _Base64ImageField(label: U.s.icon, initial: iconBase64, onChanged: (String? v) => iconBase64 = v).expanded(),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    UTextField(controller: buttonText, labelText: U.s.buttonText).pSymmetric(vertical: 6),
+                    UTextField(controller: buttonLink, labelText: U.s.buttonLink).pSymmetric(vertical: 6),
+                    UTextField(controller: link, labelText: U.s.link).pSymmetric(vertical: 6),
                     const SizedBox(height: 8),
                     UTextBodyLarge(U.s.socialMedia).pOnly(bottom: 4),
                     UTextField(controller: instagram, labelText: U.s.instagram).pSymmetric(vertical: 6),
@@ -210,49 +231,62 @@ class _ContentsPageState extends State<UAdminContentsPage> {
                       spacing: 0,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        UTextBodyLarge(U.s.extraSections),
+                        UTextBodyLarge(U.s.items),
                         TextButton.icon(
-                          onPressed: () => setDialogState(() => extras.add(_ExtraForm())),
+                          onPressed: () => setDialogState(() => items.add(_ItemForm())),
                           icon: const Icon(Icons.add, size: 18),
-                          label: Text(U.s.addSection),
+                          label: Text(U.s.addItem),
                         ),
                       ],
                     ),
-                    ...extras.mapIndexed(
-                      (int index, _ExtraForm e) => _extraCard(index, e, () => setDialogState(() => extras.removeAt(index))),
+                    ...items.mapIndexed(
+                      (int index, _ItemForm e) => _itemCard(index, e, () => setDialogState(() => items.removeAt(index))),
                     ),
                     const SizedBox(height: 12),
-                    if (existingMedia.isNotEmpty) ...<Widget>[
-                      UTextBodyLarge(U.s.images).pOnly(bottom: 6),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: existingMedia.map((UMediaResponse m) => _mediaThumb(m, () => c.deleteMedia(mediaId: m.id, onDone: () => setDialogState(() => existingMedia.remove(m))))).toList(),
-                      ).pOnly(bottom: 8),
-                    ],
-                    UFilePicker(onFilesChanged: (List<FileData> i) => files = i),
+                    URow(
+                      spacing: 0,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        UTextBodyLarge(U.s.links),
+                        TextButton.icon(
+                          onPressed: () => setDialogState(() => links.add(_LinkForm())),
+                          icon: const Icon(Icons.add, size: 18),
+                          label: Text(U.s.addLink),
+                        ),
+                      ],
+                    ),
+                    ...links.mapIndexed(
+                      (int index, _LinkForm e) => _linkCard(index, e, () => setDialogState(() => links.removeAt(index))),
+                    ),
                     const SizedBox(height: 20),
                     UButtonSubmitCancel(
                       onSubmit: () => UValidators.validateForm(
                         key: formKey,
                         action: () {
-                          final List<UContentExtra> extraModels = extras.map((_ExtraForm e) => e.toModel()).toList();
+                          final List<UContentItem> itemModels = items.map((_ItemForm e) => e.toModel()).toList();
+                          final List<UContentLink> linkModels = links.map((_LinkForm e) => e.toModel()).toList();
                           if (p == null)
                             c.create(
                               p: UContentCreateParams(
                                 tags: <int>[tag.value.number],
-                                title: title.text,
+                                title: title.text.nullIfEmpty(),
                                 subTitle: subTitle.text.nullIfEmpty(),
                                 description: description.text.nullIfEmpty(),
                                 detail1: detail1.text.nullIfEmpty(),
                                 detail2: detail2.text.nullIfEmpty(),
+                                imageBase64: imageBase64,
+                                iconBase64: iconBase64,
+                                buttonText: buttonText.text.nullIfEmpty(),
+                                buttonLink: buttonLink.text.nullIfEmpty(),
+                                link: link.text.nullIfEmpty(),
+                                order: int.tryParse(order.text),
                                 instagram: instagram.text.nullIfEmpty(),
                                 telegram: telegram.text.nullIfEmpty(),
                                 whatsapp: whatsapp.text.nullIfEmpty(),
                                 phone: phone.text.nullIfEmpty(),
-                                extra: extraModels,
+                                items: itemModels,
+                                links: linkModels,
                               ),
-                              files: files,
                             );
                           else
                             c.update(
@@ -264,13 +298,19 @@ class _ContentsPageState extends State<UAdminContentsPage> {
                                 description: description.text.nullIfEmpty(),
                                 detail1: detail1.text.nullIfEmpty(),
                                 detail2: detail2.text.nullIfEmpty(),
+                                imageBase64: imageBase64,
+                                iconBase64: iconBase64,
+                                buttonText: buttonText.text.nullIfEmpty(),
+                                buttonLink: buttonLink.text.nullIfEmpty(),
+                                link: link.text.nullIfEmpty(),
+                                order: int.tryParse(order.text),
                                 instagram: instagram.text.nullIfEmpty(),
                                 telegram: telegram.text.nullIfEmpty(),
                                 whatsapp: whatsapp.text.nullIfEmpty(),
                                 phone: phone.text.nullIfEmpty(),
-                                extra: extraModels,
+                                items: itemModels,
+                                links: linkModels,
                               ),
-                              files: files,
                             );
                           UNavigator.back();
                         },
@@ -286,7 +326,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
     );
   }
 
-  Widget _extraCard(int index, _ExtraForm e, VoidCallback onRemove) => UContainer(
+  Widget _itemCard(int index, _ItemForm e, VoidCallback onRemove) => UContainer(
     padding: const EdgeInsets.all(12),
     margin: const EdgeInsets.symmetric(vertical: 6),
     color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.06),
@@ -299,7 +339,7 @@ class _ContentsPageState extends State<UAdminContentsPage> {
           spacing: 0,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            UTextBodyMedium("${U.s.section} ${index + 1}"),
+            UTextBodyMedium("${U.s.item} ${index + 1}"),
             IconButton(
               icon: Icon(Icons.close, size: 18, color: Theme.of(context).colorScheme.error),
               onPressed: onRemove,
@@ -307,65 +347,181 @@ class _ContentsPageState extends State<UAdminContentsPage> {
           ],
         ),
         UTextField(controller: e.title, labelText: U.s.title).pSymmetric(vertical: 4),
-        UTextField(controller: e.subtitle, labelText: U.s.subtitle).pSymmetric(vertical: 4),
+        UTextField(controller: e.subTitle, labelText: U.s.subtitle).pSymmetric(vertical: 4),
         UTextField(controller: e.description, labelText: U.s.description, lines: 2).pSymmetric(vertical: 4),
-        UTextField(controller: e.icon1, labelText: U.s.icon1).pSymmetric(vertical: 4),
-        UTextField(controller: e.icon2, labelText: U.s.icon2).pSymmetric(vertical: 4),
-        UTextField(controller: e.icon3, labelText: U.s.icon3).pSymmetric(vertical: 4),
+        UTextField(controller: e.link, labelText: U.s.link).pSymmetric(vertical: 4),
+        UTextField(controller: e.order, labelText: U.s.order, keyboardType: TextInputType.number).pSymmetric(vertical: 4),
+        const SizedBox(height: 8),
+        URow(
+          spacing: 12,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            _Base64ImageField(label: U.s.icon, initial: e.iconBase64, onChanged: (String? v) => e.iconBase64 = v).expanded(),
+            _Base64ImageField(label: U.s.image, initial: e.imageBase64, onChanged: (String? v) => e.imageBase64 = v).expanded(),
+          ],
+        ),
       ],
     ),
   );
 
-  Widget _mediaThumb(UMediaResponse m, VoidCallback onDelete) => Stack(
-    children: <Widget>[
-      SizedBox(width: 72, height: 72, child: UImage(m.url ?? "")),
-      Positioned(
-        top: 0,
-        right: 0,
-        child: InkWell(
-          onTap: onDelete,
-          child: Container(
-            decoration: BoxDecoration(color: Theme.of(context).colorScheme.error, shape: BoxShape.circle),
-            padding: const EdgeInsets.all(2),
-            child: const Icon(Icons.close, size: 14, color: UAdminTheme.white),
-          ),
+  Widget _linkCard(int index, _LinkForm e, VoidCallback onRemove) => UContainer(
+    padding: const EdgeInsets.all(12),
+    margin: const EdgeInsets.symmetric(vertical: 6),
+    color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.06),
+    radius: 8,
+    child: UColumn(
+      spacing: 0,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        URow(
+          spacing: 0,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            UTextBodyMedium("${U.s.link} ${index + 1}"),
+            IconButton(
+              icon: Icon(Icons.close, size: 18, color: Theme.of(context).colorScheme.error),
+              onPressed: onRemove,
+            ),
+          ],
         ),
-      ),
-    ],
+        UTextField(controller: e.title, labelText: U.s.title).pSymmetric(vertical: 4),
+        UTextField(controller: e.url, labelText: U.s.url).pSymmetric(vertical: 4),
+        const SizedBox(height: 8),
+        _Base64ImageField(label: U.s.icon, initial: e.iconBase64, onChanged: (String? v) => e.iconBase64 = v),
+      ],
+    ),
   );
 }
 
-class _ExtraForm {
-  _ExtraForm({String? title, String? subtitle, String? description, String? icon1, String? icon2, String? icon3})
-    : title = TextEditingController(text: title),
-      subtitle = TextEditingController(text: subtitle),
-      description = TextEditingController(text: description),
-      icon1 = TextEditingController(text: icon1),
-      icon2 = TextEditingController(text: icon2),
-      icon3 = TextEditingController(text: icon3);
+// Decodes a base64 string, tolerating an optional data-uri prefix.
+Uint8List _decodeBase64(String base64) => (base64.contains(",") ? base64.split(",").last : base64).toBytesFromBase64();
 
-  factory _ExtraForm.fromModel(UContentExtra m) => _ExtraForm(
+class _Base64ImageField extends StatefulWidget {
+  const _Base64ImageField({required this.label, required this.initial, required this.onChanged});
+
+  final String label;
+  final String? initial;
+  final ValueChanged<String?> onChanged;
+
+  @override
+  State<_Base64ImageField> createState() => _Base64ImageFieldState();
+}
+
+class _Base64ImageFieldState extends State<_Base64ImageField> {
+  String? _value;
+
+  @override
+  void initState() {
+    _value = widget.initial;
+    super.initState();
+  }
+
+  Future<void> _pick() => UFile.showFilePicker(
+    fileType: FileType.custom,
+    allowedExtensions: const <String>["jpg", "jpeg", "png", "gif", "webp", "svg"],
+    action: (List<FileData> files) {
+      if (files.isEmpty || files.first.bytes == null) return;
+      final String encoded = files.first.bytes!.toBase64();
+      setState(() => _value = encoded);
+      widget.onChanged(encoded);
+    },
+  );
+
+  void _clear() {
+    setState(() => _value = null);
+    widget.onChanged(null);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+    return UColumn(
+      spacing: 0,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        UTextBodySmall(widget.label, color: scheme.onSurfaceVariant).pOnly(bottom: 4),
+        Stack(
+          children: <Widget>[
+            UContainer(
+              height: 96,
+              width: double.infinity,
+              radius: 12,
+              border: Border.all(color: scheme.outlineVariant, width: 1.5),
+              color: scheme.surfaceContainerHighest,
+              alignment: Alignment.center,
+              child: _value.isNotNullOrEmpty()
+                  ? UImage("", fileData: FileData(bytes: _decodeBase64(_value!)), borderRadius: 12)
+                  : Icon(Icons.add_photo_alternate_outlined, size: 32, color: scheme.onSurfaceVariant),
+            ).onTap(_pick),
+            if (_value.isNotNullOrEmpty())
+              Positioned(
+                top: 4,
+                right: 4,
+                child: InkWell(
+                  onTap: _clear,
+                  child: Container(
+                    decoration: BoxDecoration(color: scheme.error, shape: BoxShape.circle),
+                    padding: const EdgeInsets.all(2),
+                    child: const Icon(Icons.close, size: 14, color: UAdminTheme.white),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _ItemForm {
+  _ItemForm({String? title, String? subTitle, String? description, String? link, int? order, this.iconBase64, this.imageBase64})
+    : title = TextEditingController(text: title),
+      subTitle = TextEditingController(text: subTitle),
+      description = TextEditingController(text: description),
+      link = TextEditingController(text: link),
+      order = TextEditingController(text: order?.toString());
+
+  factory _ItemForm.fromModel(UContentItem m) => _ItemForm(
     title: m.title,
-    subtitle: m.subtitle,
+    subTitle: m.subTitle,
     description: m.description,
-    icon1: m.icon1,
-    icon2: m.icon2,
-    icon3: m.icon3,
+    link: m.link,
+    order: m.order,
+    iconBase64: m.iconBase64,
+    imageBase64: m.imageBase64,
   );
 
   final TextEditingController title;
-  final TextEditingController subtitle;
+  final TextEditingController subTitle;
   final TextEditingController description;
-  final TextEditingController icon1;
-  final TextEditingController icon2;
-  final TextEditingController icon3;
+  final TextEditingController link;
+  final TextEditingController order;
+  String? iconBase64;
+  String? imageBase64;
 
-  UContentExtra toModel() => UContentExtra(
-    title: title.text,
-    subtitle: subtitle.text,
-    description: description.text,
-    icon1: icon1.text.nullIfEmpty(),
-    icon2: icon2.text.nullIfEmpty(),
-    icon3: icon3.text.nullIfEmpty(),
+  UContentItem toModel() => UContentItem(
+    title: title.text.nullIfEmpty(),
+    subTitle: subTitle.text.nullIfEmpty(),
+    description: description.text.nullIfEmpty(),
+    link: link.text.nullIfEmpty(),
+    order: int.tryParse(order.text),
+    iconBase64: iconBase64,
+    imageBase64: imageBase64,
+  );
+}
+
+class _LinkForm {
+  _LinkForm({String? title, String? url, this.iconBase64}) : title = TextEditingController(text: title), url = TextEditingController(text: url);
+
+  factory _LinkForm.fromModel(UContentLink m) => _LinkForm(title: m.title, url: m.url, iconBase64: m.iconBase64);
+
+  final TextEditingController title;
+  final TextEditingController url;
+  String? iconBase64;
+
+  UContentLink toModel() => UContentLink(
+    title: title.text.nullIfEmpty(),
+    url: url.text.nullIfEmpty(),
+    iconBase64: iconBase64,
   );
 }

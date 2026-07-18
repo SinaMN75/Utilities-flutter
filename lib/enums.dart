@@ -298,7 +298,12 @@ enum TagContent with NumericIdentifiable {
   terms("قوانین و مقررات", "Terms", 102),
   contactUs("تماس با ما", "Contact Us", 103),
   homeSlider1("اسلایدر اصلی ۱", "Home Slider 1", 201),
-  homeSlider2("اسلایدر اصلی ۲", "Home Slider 2", 202);
+  homeSlider2("اسلایدر اصلی ۲", "Home Slider 2", 202),
+  aboutSection("بخش درباره ما", "About Section", 301),
+  servicesCarousel("اسلایدر خدمات", "Services Carousel", 302),
+  heroBanner("بنر اصلی", "Hero Banner", 303),
+  footer("فوتر", "Footer", 304),
+  latestBlogPosts("آخرین مطالب بلاگ", "Latest Blog Posts", 305);
 
   const TagContent(this.titleFa, this.titleEn, this.number);
 

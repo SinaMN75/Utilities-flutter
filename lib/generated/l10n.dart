@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4313,6 +4312,61 @@ class S {
     return Intl.message('Image', name: 'image', desc: '', args: []);
   }
 
+  /// `Icon`
+  String get icon {
+    return Intl.message('Icon', name: 'icon', desc: '', args: []);
+  }
+
+  /// `Order`
+  String get order {
+    return Intl.message('Order', name: 'order', desc: '', args: []);
+  }
+
+  /// `Button Text`
+  String get buttonText {
+    return Intl.message('Button Text', name: 'buttonText', desc: '', args: []);
+  }
+
+  /// `Button Link`
+  String get buttonLink {
+    return Intl.message('Button Link', name: 'buttonLink', desc: '', args: []);
+  }
+
+  /// `Link`
+  String get link {
+    return Intl.message('Link', name: 'link', desc: '', args: []);
+  }
+
+  /// `URL`
+  String get url {
+    return Intl.message('URL', name: 'url', desc: '', args: []);
+  }
+
+  /// `Items`
+  String get items {
+    return Intl.message('Items', name: 'items', desc: '', args: []);
+  }
+
+  /// `Item`
+  String get item {
+    return Intl.message('Item', name: 'item', desc: '', args: []);
+  }
+
+  /// `Add`
+  String get addItem {
+    return Intl.message('Add', name: 'addItem', desc: '', args: []);
+  }
+
+  /// `Links`
+  String get links {
+    return Intl.message('Links', name: 'links', desc: '', args: []);
+  }
+
+  /// `Add Link`
+  String get addLink {
+    return Intl.message('Add Link', name: 'addLink', desc: '', args: []);
+  }
+
   /// `Rich Text Editor`
   String get richTextEditor {
     return Intl.message(
@@ -4436,16 +4490,6 @@ class S {
   /// `Remove Link`
   String get removeLink {
     return Intl.message('Remove Link', name: 'removeLink', desc: '', args: []);
-  }
-
-  /// `Link`
-  String get link {
-    return Intl.message('Link', name: 'link', desc: '', args: []);
-  }
-
-  /// `URL`
-  String get url {
-    return Intl.message('URL', name: 'url', desc: '', args: []);
   }
 
   /// `Align Left`
@@ -6801,11 +6845,6 @@ class S {
       desc: '',
       args: [],
     );
-  }
-
-  /// `Add`
-  String get addItem {
-    return Intl.message('Add', name: 'addItem', desc: '', args: []);
   }
 }
 
