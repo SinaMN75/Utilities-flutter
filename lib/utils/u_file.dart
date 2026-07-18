@@ -59,7 +59,7 @@ abstract class UFile {
 
   static Future<void> showFilePicker({
     required final Function(List<FileData>) action,
-    final FileType fileType = FileType.any,
+    final FileType fileType = FileType.custom,
     final bool allowMultiple = false,
     final String? initialDirectory,
     final String? dialogTitle,
