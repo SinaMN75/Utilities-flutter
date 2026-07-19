@@ -1,4 +1,5 @@
 import "package:u/utilities.dart";
+import "package:web/web.dart" as web;
 
 abstract class UApp {
   static late PackageInfo packageInfo;
@@ -74,5 +75,32 @@ abstract class UApp {
   static void toLightMode() {
     Get.changeThemeMode(ThemeMode.light);
     ULocalStorage.setDarkMode(false);
+  }
+
+  static bool? _isEmbedded;
+
+  static Map<String, String> get queryParameters => Uri.base.queryParameters;
+
+  static bool get isEmbedded => _isEmbedded ??= _detectEmbedded();
+
+  static bool _detectEmbedded() {
+    if (!isWeb) return false;
+    if ((queryParameters["embedded"] ?? "").toLowerCase() == "true") return true;
+    return _isInIframe() || _isWebViewUserAgent();
+  }
+
+  static bool _isInIframe() {
+    try {
+      return web.window.self != web.window.top;
+    } catch (_) {
+      return true;
+    }
+  }
+
+  static bool _isWebViewUserAgent() {
+    final String ua = web.window.navigator.userAgent.toLowerCase();
+    final bool androidWebView = ua.contains("; wv") || ua.contains(" wv)");
+    final bool iosWebView = ua.contains("applewebkit") && !ua.contains("safari") && (ua.contains("mobile") || ua.contains("iphone") || ua.contains("ipad"));
+    return androidWebView || iosWebView;
   }
 }

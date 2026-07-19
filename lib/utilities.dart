@@ -3,7 +3,6 @@ export "dart:convert";
 export "dart:io";
 export "dart:math";
 
-// export "package:local_auth/local_auth.dart";
 export "package:async/async.dart";
 export "package:camera/camera.dart";
 export "package:collection/collection.dart" hide binarySearch, mergeSort;
@@ -142,7 +141,6 @@ export "utils/u_fonts.dart";
 export "utils/u_http_client.dart";
 export "utils/u_launch.dart";
 export "utils/u_loading.dart";
-export "utils/u_local_auth.dart";
 export "utils/u_local_storage.dart";
 export "utils/u_location.dart";
 export "utils/u_navigator.dart";
