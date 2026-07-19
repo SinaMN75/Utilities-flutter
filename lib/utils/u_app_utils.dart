@@ -1,5 +1,5 @@
 import "package:u/utilities.dart";
-import "package:web/web.dart" as web;
+import "package:u/utils/u_embed_detector_stub.dart" if (dart.library.html) "u_embed_detector_web.dart";
 
 abstract class UApp {
   static late PackageInfo packageInfo;
@@ -86,21 +86,6 @@ abstract class UApp {
   static bool _detectEmbedded() {
     if (!isWeb) return false;
     if ((queryParameters["embedded"] ?? "").toLowerCase() == "true") return true;
-    return _isInIframe() || _isWebViewUserAgent();
-  }
-
-  static bool _isInIframe() {
-    try {
-      return web.window.self != web.window.top;
-    } catch (_) {
-      return true;
-    }
-  }
-
-  static bool _isWebViewUserAgent() {
-    final String ua = web.window.navigator.userAgent.toLowerCase();
-    final bool androidWebView = ua.contains("; wv") || ua.contains(" wv)");
-    final bool iosWebView = ua.contains("applewebkit") && !ua.contains("safari") && (ua.contains("mobile") || ua.contains("iphone") || ua.contains("ipad"));
-    return androidWebView || iosWebView;
+    return embedDetectFromDom();
   }
 }

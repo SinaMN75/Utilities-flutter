@@ -1681,7 +1681,7 @@ class _URichTextEditorState extends State<URichTextEditor> {
   void initState() {
     super.initState();
     _blocks.addAll(UHtmlDocument.parse(widget.initialHtml));
-    for (final b in _blocks) _wireBlock(b);
+    for (final UEditorBlock b in _blocks) _wireBlock(b);
     _history.add(UHtmlDocument.serialize(_blocks));
     _historyIndex = 0;
     if (widget.onAutoSave != null) _autoSaveTimer = Timer.periodic(widget.autoSaveInterval, (_) => _autoSave());
@@ -1769,7 +1769,7 @@ class _URichTextEditorState extends State<URichTextEditor> {
       _blocks
         ..clear()
         ..addAll(UHtmlDocument.parse(html));
-      for (final b in _blocks) _wireBlock(b);
+      for (final UEditorBlock b in _blocks) _wireBlock(b);
       _activeIndex = 0;
     });
     _restoring = false;

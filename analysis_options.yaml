@@ -39,7 +39,6 @@ analyzer:
     prefer_const_literals_to_create_immutables: error
     prefer_final_fields: error
     prefer_final_locals: error
-    prefer_foreach: error
     prefer_is_empty: error
     prefer_spread_collections: error
     sized_box_for_whitespace: error
@@ -98,7 +97,6 @@ linter:
     prefer_const_literals_to_create_immutables: true
     prefer_final_fields: true
     prefer_final_locals: true
-    prefer_foreach: true
     prefer_is_empty: true
     prefer_spread_collections: true
     sized_box_for_whitespace: true
