@@ -5,7 +5,6 @@ class UAddressResponse {
   final List<int> tags;
   final UAddressResponseJsonData jsonData;
   final DateTime? createdAt;
-  final DateTime? deletedAt;
   final String? zipCode;
   final UUserResponse? creator;
   final String? creatorId;
@@ -17,7 +16,6 @@ class UAddressResponse {
     required this.jsonData,
     required this.adminUserIds,
     this.createdAt,
-    this.deletedAt,
     this.zipCode,
     this.creator,
     this.creatorId,
@@ -30,7 +28,6 @@ class UAddressResponse {
   factory UAddressResponse.fromMap(Map<String, dynamic> json) => UAddressResponse(
     id: json["id"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UAddressResponseJsonData.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"]!.map((dynamic x) => x)),
     zipCode: json["zipCode"],
@@ -42,7 +39,6 @@ class UAddressResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt?.toIso8601String(),
-    "deletedAt": deletedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "zipCode": zipCode,

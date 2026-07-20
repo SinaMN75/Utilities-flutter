@@ -72,7 +72,6 @@ class UAdminApiLogController extends UBaseController {
     maxDurationMs: int.tryParse(maxDurationCtrl.text),
     userId: userIdCtrl.text.nullIfEmpty(),
     ipAddress: ipAddressCtrl.text.nullIfEmpty(),
-    traceId: traceIdCtrl.text.nullIfEmpty(),
     onlyErrors: onlyErrors.value ? true : null,
     orderBy: orderBy.value.number,
   );

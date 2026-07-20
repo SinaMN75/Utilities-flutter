@@ -6,6 +6,14 @@ class UFileManagerBrowseParams {
   final String path;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"path": path};
+
+  factory UFileManagerBrowseParams.fromMap(Map<String, dynamic> json) => UFileManagerBrowseParams(
+    path: json["path"],
+  );
+
+  String toJson() => json.encode(toMap());
+
+  factory UFileManagerBrowseParams.fromJson(String str) => UFileManagerBrowseParams.fromMap(json.decode(str));
 }
 
 class UFileManagerCreateFolderParams {
@@ -15,6 +23,15 @@ class UFileManagerCreateFolderParams {
   final String name;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"path": path, "name": name};
+
+  factory UFileManagerCreateFolderParams.fromMap(Map<String, dynamic> json) => UFileManagerCreateFolderParams(
+    path: json["path"],
+    name: json["name"],
+  );
+
+  String toJson() => json.encode(toMap());
+
+  factory UFileManagerCreateFolderParams.fromJson(String str) => UFileManagerCreateFolderParams.fromMap(json.decode(str));
 }
 
 class UFileManagerRenameParams {
@@ -24,6 +41,15 @@ class UFileManagerRenameParams {
   final String newName;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"path": path, "newName": newName};
+
+  factory UFileManagerRenameParams.fromMap(Map<String, dynamic> json) => UFileManagerRenameParams(
+    path: json["path"],
+    newName: json["newName"],
+  );
+
+  String toJson() => json.encode(toMap());
+
+  factory UFileManagerRenameParams.fromJson(String str) => UFileManagerRenameParams.fromMap(json.decode(str));
 }
 
 class UFileManagerMoveParams {
@@ -33,6 +59,15 @@ class UFileManagerMoveParams {
   final String destination;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"path": path, "destination": destination};
+
+  factory UFileManagerMoveParams.fromMap(Map<String, dynamic> json) => UFileManagerMoveParams(
+    path: json["path"],
+    destination: json["destination"],
+  );
+
+  String toJson() => json.encode(toMap());
+
+  factory UFileManagerMoveParams.fromJson(String str) => UFileManagerMoveParams.fromMap(json.decode(str));
 }
 
 class UFileManagerDeleteParams {
@@ -41,6 +76,14 @@ class UFileManagerDeleteParams {
   final String path;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"path": path};
+
+  factory UFileManagerDeleteParams.fromMap(Map<String, dynamic> json) => UFileManagerDeleteParams(
+    path: json["path"],
+  );
+
+  String toJson() => json.encode(toMap());
+
+  factory UFileManagerDeleteParams.fromJson(String str) => UFileManagerDeleteParams.fromMap(json.decode(str));
 }
 
 class UFileManagerUploadParams {
@@ -50,4 +93,6 @@ class UFileManagerUploadParams {
   final String path;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"path": path};
+
+  String toJson() => json.encode(toMap());
 }

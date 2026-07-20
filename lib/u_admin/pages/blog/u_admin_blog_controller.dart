@@ -18,7 +18,6 @@ class UAdminBlogController extends UBaseController {
         pageNumber: pageNumber.value,
         pageSize: pageSize,
         title: titleFilter.valueOrNull(),
-        onlyPublished: onlyPublishedFilter,
         selectorArgs: const BlogSelectorArgs(media: MediaSelectorArgs(), category: CategorySelectorArgs(), commentsCount: true),
       ),
       onOk: (UResponse<List<UBlogResponse>> r) {

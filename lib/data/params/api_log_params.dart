@@ -1,6 +1,8 @@
 part of "../data.dart";
 
 class UApiLogReadParams {
+  final String? creatorId;
+  final dynamic selectorArgs;
   UApiLogReadParams({
     this.pageSize,
     this.pageNumber,
@@ -15,8 +17,9 @@ class UApiLogReadParams {
     this.maxDurationMs,
     this.userId,
     this.ipAddress,
-    this.traceId,
     this.onlyErrors,
+    this.creatorId,
+    this.selectorArgs,
   });
 
   final int? pageSize;
@@ -32,7 +35,6 @@ class UApiLogReadParams {
   final int? maxDurationMs;
   final String? userId;
   final String? ipAddress;
-  final String? traceId;
   final bool? onlyErrors;
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -49,9 +51,33 @@ class UApiLogReadParams {
     "maxDurationMs": maxDurationMs,
     "userId": userId,
     "ipAddress": ipAddress,
-    "traceId": traceId,
     "onlyErrors": onlyErrors,
+    "creatorId": creatorId,
+    "selectorArgs": selectorArgs,
   };
+
+  factory UApiLogReadParams.fromMap(Map<String, dynamic> json) => UApiLogReadParams(
+    creatorId: json["creatorId"],
+    selectorArgs: json["selectorArgs"],
+    pageSize: json["pageSize"],
+    pageNumber: json["pageNumber"],
+    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
+    toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
+    tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
+    ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
+    orderBy: json["orderBy"],
+    pathContains: json["pathContains"],
+    statusCode: json["statusCode"],
+    minDurationMs: json["minDurationMs"],
+    maxDurationMs: json["maxDurationMs"],
+    userId: json["userId"],
+    ipAddress: json["ipAddress"],
+    onlyErrors: json["onlyErrors"],
+  );
+
+  String toJson() => json.encode(toMap());
+
+  factory UApiLogReadParams.fromJson(String str) => UApiLogReadParams.fromMap(json.decode(str));
 }
 
 class UApiLogStatsParams {
@@ -70,4 +96,14 @@ class UApiLogStatsParams {
     "toCreatedAt": toCreatedAt?.toIso8601String(),
     "bucket": bucket,
   };
+
+  factory UApiLogStatsParams.fromMap(Map<String, dynamic> json) => UApiLogStatsParams(
+    fromCreatedAt: json["fromCreatedAt"] == null ? null : DateTime.parse(json["fromCreatedAt"]),
+    toCreatedAt: json["toCreatedAt"] == null ? null : DateTime.parse(json["toCreatedAt"]),
+    bucket: json["bucket"],
+  );
+
+  String toJson() => json.encode(toMap());
+
+  factory UApiLogStatsParams.fromJson(String str) => UApiLogStatsParams.fromMap(json.decode(str));
 }

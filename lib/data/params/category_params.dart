@@ -105,13 +105,9 @@ class UCategoryUpdateParams {
     this.order,
     this.parentId,
     this.relatedProducts,
-    this.addRelatedProducts,
-    this.removeRelatedProducts,
     this.addTags,
     this.removeTags,
     this.tags,
-    this.productDeposit,
-    this.productRent,
     this.detail1,
     this.detail2,
     this.adminUserIds,
@@ -132,12 +128,8 @@ class UCategoryUpdateParams {
     code: json["code"],
     type: json["type"],
     order: json["order"],
-    productDeposit: json["productDeposit"],
-    productRent: json["productRent"],
     parentId: json["parentId"],
     relatedProducts: json["relatedProducts"] == null ? null : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
-    addRelatedProducts: json["addRelatedProducts"] == null ? null : List<String>.from(json["addRelatedProducts"].map((dynamic x) => x)),
-    removeRelatedProducts: json["removeRelatedProducts"] == null ? null : List<String>.from(json["removeRelatedProducts"].map((dynamic x) => x)),
     id: json["id"],
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"].map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"].map((dynamic x) => x)),
@@ -160,14 +152,10 @@ class UCategoryUpdateParams {
   final int? order;
   final String? parentId;
   final List<String>? relatedProducts;
-  final List<String>? addRelatedProducts;
-  final List<String>? removeRelatedProducts;
   final String id;
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final double? productDeposit;
-  final double? productRent;
   final String? detail1;
   final String? detail2;
   final List<String>? adminUserIds;
@@ -189,11 +177,7 @@ class UCategoryUpdateParams {
     "code": code,
     "parentId": parentId,
     "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
-    "addRelatedProducts": addRelatedProducts == null ? null : List<dynamic>.from(addRelatedProducts!.map((String x) => x)),
-    "removeRelatedProducts": removeRelatedProducts == null ? null : List<dynamic>.from(removeRelatedProducts!.map((String x) => x)),
     "id": id,
-    "productDeposit": productDeposit,
-    "productRent": productRent,
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),

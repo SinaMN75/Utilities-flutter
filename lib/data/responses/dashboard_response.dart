@@ -32,21 +32,38 @@ class UMetricsResponse {
   final double totalDisk;
   final double freeDisk;
   final String date;
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "cpuUsage": cpuUsage,
+    "memoryUsage": memoryUsage,
+    "diskUsage": diskUsage,
+    "totalMemory": totalMemory,
+    "freeMemory": freeMemory,
+    "totalDisk": totalDisk,
+    "freeDisk": freeDisk,
+    "date": date,
+  };
+
+  String toJson() => json.encode(toMap());
 }
 
 class UDashboardResponse {
+  final List<UCommentResponse> newComments;
+  final List<UContentResponse> newContents;
+  final List<UProductResponse> newProducts;
   UDashboardResponse({
     required this.categories,
     required this.comments,
     required this.contents,
-    required this.exams,
     required this.media,
     required this.products,
     required this.users,
     required this.newUsers,
     required this.newCategories,
-    required this.newExams,
     required this.newMedia,
+    required this.newComments,
+    required this.newContents,
+    required this.newProducts,
   });
 
   factory UDashboardResponse.fromJson(String str) => UDashboardResponse.fromMap(json.decode(str));
@@ -55,25 +72,24 @@ class UDashboardResponse {
     categories: json["categories"],
     comments: json["comments"],
     contents: json["contents"],
-    exams: json["exams"],
     media: json["media"],
     products: json["products"],
     users: json["users"],
     newUsers: List<UUserResponse>.from(json["newUsers"].map((dynamic x) => UUserResponse.fromMap(x))),
     newCategories: List<UCategoryResponse>.from(json["newCategories"].map((dynamic x) => UCategoryResponse.fromMap(x))),
-    newExams: List<UExamResponse>.from(json["newExams"].map((dynamic x) => UExamResponse.fromMap(x))),
     newMedia: List<UMediaResponse>.from(json["newMedia"].map((dynamic x) => UMediaResponse.fromMap(x))),
+    newComments: json["newComments"] == null ? <UCommentResponse>[] : List<UCommentResponse>.from(json["newComments"]!.map((dynamic x) => UCommentResponse.fromMap(x))),
+    newContents: json["newContents"] == null ? <UContentResponse>[] : List<UContentResponse>.from(json["newContents"]!.map((dynamic x) => UContentResponse.fromMap(x))),
+    newProducts: json["newProducts"] == null ? <UProductResponse>[] : List<UProductResponse>.from(json["newProducts"]!.map((dynamic x) => UProductResponse.fromMap(x))),
   );
   final int categories;
   final int comments;
   final int contents;
-  final int exams;
   final int media;
   final int products;
   final int users;
   final List<UUserResponse> newUsers;
   final List<UCategoryResponse> newCategories;
-  final List<UExamResponse> newExams;
   final List<UMediaResponse> newMedia;
 
   String toJson() => json.encode(toMap());
@@ -82,14 +98,15 @@ class UDashboardResponse {
     "categories": categories,
     "comments": comments,
     "contents": contents,
-    "exams": exams,
     "media": media,
     "products": products,
     "users": users,
     "newUsers": List<dynamic>.from(newUsers.map((UUserResponse x) => x.toMap())),
     "newCategories": List<dynamic>.from(newCategories.map((UCategoryResponse x) => x.toMap())),
-    "newExams": List<dynamic>.from(newExams.map((UExamResponse x) => x.toMap())),
     "newMedia": List<dynamic>.from(newMedia.map((UMediaResponse x) => x.toMap())),
+    "newComments": List<dynamic>.from(newComments.map((UCommentResponse x) => x.toMap())),
+    "newContents": List<dynamic>.from(newContents.map((UContentResponse x) => x.toMap())),
+    "newProducts": List<dynamic>.from(newProducts.map((UProductResponse x) => x.toMap())),
   };
 }
 

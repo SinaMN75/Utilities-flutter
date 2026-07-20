@@ -240,8 +240,8 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
     final TextEditingController creditor = TextEditingController(text: p?.creditorAmount.toInt().toString());
     final TextEditingController paid = TextEditingController(text: p?.paidAmount.toInt().toString());
     final TextEditingController penalty = TextEditingController(text: p?.penaltyAmount.toInt().toString());
-    final TextEditingController dueCtrl = TextEditingController(text: p == null ? null : p.dueDate.toJalaliDate());
-    final TextEditingController description = TextEditingController(text: p?.jsonData.description);
+    final TextEditingController dueCtrl = TextEditingController(text: p?.dueDate.toJalaliDate());
+    final TextEditingController description = TextEditingController(text: p?.jsonData.detail1);
 
     final Rxn<UDormBedContractResponse> contract = Rxn<UDormBedContractResponse>();
     DateTime? dueDate = p?.dueDate;
@@ -321,7 +321,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
                               paidAmount: paid.text.isEmpty ? null : paid.numDouble(),
                               penaltyAmount: penalty.text.isEmpty ? null : penalty.numDouble(),
                               dueDate: dueDate,
-                              description: description.text.nullIfEmpty(),
+                              detail1: description.text.nullIfEmpty(),
                             ),
                           );
                         } else {
@@ -338,10 +338,9 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
                               creditorAmount: creditor.text.isEmpty ? 0 : creditor.numDouble(),
                               paidAmount: paid.text.isEmpty ? 0 : paid.numDouble(),
                               penaltyAmount: penalty.text.isEmpty ? 0 : penalty.numDouble(),
-                              userId: userId,
                               contractId: cid,
                               dueDate: dueDate!,
-                              description: description.text.trim(),
+                              detail1: description.text.trim(),
                             ),
                           );
                         }

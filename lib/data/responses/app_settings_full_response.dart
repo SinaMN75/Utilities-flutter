@@ -78,6 +78,10 @@ class UAppSettings {
     "chargeInternet": chargeInternet.map((USettingsChargeInternet e) => e.toMap()).toList(),
     "users": users,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory UAppSettings.fromJson(String str) => UAppSettings.fromMap(json.decode(str));
 }
 
 class USettingsJwt {
@@ -96,6 +100,10 @@ class USettingsJwt {
   String expires;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"key": key, "issuer": issuer, "audience": audience, "expires": expires};
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsJwt.fromJson(String str) => USettingsJwt.fromMap(json.decode(str));
 }
 
 class USettingsMiddleware {
@@ -122,6 +130,10 @@ class USettingsMiddleware {
     "logSuccess": logSuccess,
     "logHeaders": logHeaders,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsMiddleware.fromJson(String str) => USettingsMiddleware.fromMap(json.decode(str));
 }
 
 class USettingsSms {
@@ -145,6 +157,10 @@ class USettingsSms {
     "supportPasswordOtp": supportPasswordOtp,
     "apiKey": apiKey,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsSms.fromJson(String str) => USettingsSms.fromMap(json.decode(str));
 }
 
 class USettingsItHub {
@@ -164,6 +180,10 @@ class USettingsItHub {
   String password;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"clientId": clientId, "clientSecret": clientSecret, "userName": userName, "password": password};
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsItHub.fromJson(String str) => USettingsItHub.fromMap(json.decode(str));
 }
 
 class USettingsMobtakeran {
@@ -182,6 +202,10 @@ class USettingsMobtakeran {
   String baseUrl;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"userName": userName, "password": password, "apiKey": apiKey, "baseUrl": baseUrl};
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsMobtakeran.fromJson(String str) => USettingsMobtakeran.fromMap(json.decode(str));
 }
 
 class USettingsBasic {
@@ -196,6 +220,10 @@ class USettingsBasic {
   int verificationCodeLenght;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"defaultVerificationKey": defaultVerificationKey, "verificationCodeLenght": verificationCodeLenght};
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsBasic.fromJson(String str) => USettingsBasic.fromMap(json.decode(str));
 }
 
 class USettingsIpg {
@@ -216,6 +244,10 @@ class USettingsIpg {
   String callBackUrl;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"ipgUserId": ipgUserId, "tag": tag.number, "title": title, "token": token, "callBackUrl": callBackUrl};
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsIpg.fromJson(String str) => USettingsIpg.fromMap(json.decode(str));
 }
 
 class USettingsAvreen {
@@ -227,6 +259,10 @@ class USettingsAvreen {
   String baseUrl;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"authHeader": authHeader, "baseUrl": baseUrl};
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsAvreen.fromJson(String str) => USettingsAvreen.fromMap(json.decode(str));
 }
 
 class USettingsCosts {
@@ -273,6 +309,10 @@ class USettingsCosts {
     "drivingLicenceNegativePoint": drivingLicenceNegativePoint,
     "iBanToBankAccountDetail": iBanToBankAccountDetail,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsCosts.fromJson(String str) => USettingsCosts.fromMap(json.decode(str));
 }
 
 class USettingsChargeInternet {
@@ -296,6 +336,10 @@ class USettingsChargeInternet {
     "logo": logo,
     "preDefinedAmountsList": preDefinedAmountsList.map((USettingsChargeAmount e) => e.toMap()).toList(),
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsChargeInternet.fromJson(String str) => USettingsChargeInternet.fromMap(json.decode(str));
 }
 
 class USettingsChargeAmount {
@@ -310,4 +354,8 @@ class USettingsChargeAmount {
   double amount;
 
   Map<String, dynamic> toMap() => <String, dynamic>{"title": title, "amount": amount};
+
+  String toJson() => json.encode(toMap());
+
+  factory USettingsChargeAmount.fromJson(String str) => USettingsChargeAmount.fromMap(json.decode(str));
 }

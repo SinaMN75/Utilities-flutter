@@ -16,8 +16,6 @@ class UProductCreateParams {
     this.latitude,
     this.longitude,
     this.stock,
-    this.deposit,
-    this.rent,
     this.details,
     this.categories,
     this.relatedProducts,
@@ -51,8 +49,6 @@ class UProductCreateParams {
     latitude: json["latitude"],
     longitude: json["longitude"],
     stock: json["stock"],
-    deposit: json["deposit"].toString().toDouble(),
-    rent: json["rent"].toString().toDouble(),
     details: json["details"],
     point: json["point"],
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
@@ -83,8 +79,6 @@ class UProductCreateParams {
   final double? latitude;
   final double? longitude;
   final int? stock;
-  final double? deposit;
-  final double? rent;
   final String? details;
   final List<int> tags;
   final List<String>? categories;
@@ -118,8 +112,6 @@ class UProductCreateParams {
     "latitude": latitude,
     "longitude": longitude,
     "stock": stock,
-    "deposit": deposit,
-    "rent": rent,
     "details": details,
     "tags": List<dynamic>.from(tags.map((dynamic x) => x)),
     "categories": categories == null ? null : List<dynamic>.from(categories!.map((dynamic x) => x)),
@@ -152,8 +144,6 @@ class UProductUpdateParams {
     this.latitude,
     this.longitude,
     this.stock,
-    this.deposit,
-    this.rent,
     this.parentId,
     this.creatorId,
     this.actionType,
@@ -194,8 +184,6 @@ class UProductUpdateParams {
     latitude: json["latitude"],
     longitude: json["longitude"],
     stock: json["stock"],
-    deposit: json["deposit"].toString().toDouble(),
-    rent: json["rent"].toString().toDouble(),
     point: json["point"],
     parentId: json["parentId"],
     creatorId: json["creatorId"],
@@ -233,8 +221,6 @@ class UProductUpdateParams {
   final double? latitude;
   final double? longitude;
   final int? stock;
-  final double? deposit;
-  final double? rent;
   final String? parentId;
   final String? creatorId;
   final String? actionType;
@@ -275,8 +261,6 @@ class UProductUpdateParams {
     "latitude": latitude,
     "longitude": longitude,
     "stock": stock,
-    "deposit": deposit,
-    "rent": rent,
     "parentId": parentId,
     "creatorId": creatorId,
     "point": point,
@@ -308,7 +292,6 @@ class UProductUpdateParams {
 
 class UProductReadParams {
   UProductReadParams({
-    this.hasActiveContract,
     this.query,
     this.title,
     this.code,
@@ -316,10 +299,6 @@ class UProductReadParams {
     this.creatorId,
     this.minStock,
     this.maxStock,
-    this.minDeposit,
-    this.maxDeposit,
-    this.minRent,
-    this.maxRent,
     this.ids,
     this.pageSize,
     this.pageNumber,
@@ -335,7 +314,6 @@ class UProductReadParams {
   factory UProductReadParams.fromJson(String str) => UProductReadParams.fromMap(json.decode(str));
 
   factory UProductReadParams.fromMap(Map<String, dynamic> json) => UProductReadParams(
-    hasActiveContract: json["hasActiveContract"],
     query: json["query"],
     title: json["title"],
     code: json["code"],
@@ -343,10 +321,6 @@ class UProductReadParams {
     creatorId: json["creatorId"],
     minStock: json["minStock"],
     maxStock: json["maxStock"],
-    minDeposit: json["minDeposit"],
-    maxDeposit: json["maxDeposit"],
-    minRent: json["minRent"],
-    maxRent: json["maxRent"],
     ids: json["ids"] == null ? null : List<String>.from(json["ids"].map((dynamic x) => x)),
     pageSize: json["pageSize"] ?? 0,
     pageNumber: json["pageNumber"] ?? 0,
@@ -358,7 +332,6 @@ class UProductReadParams {
     orderBy: json["orderBy"],
     slug: json["slug"],
   );
-  final bool? hasActiveContract;
   final String? query;
   final String? title;
   final String? code;
@@ -366,10 +339,6 @@ class UProductReadParams {
   final String? creatorId;
   final int? minStock;
   final int? maxStock;
-  final double? minDeposit;
-  final double? maxDeposit;
-  final double? minRent;
-  final double? maxRent;
   final List<String>? ids;
   final int? pageSize;
   final int? pageNumber;
@@ -384,7 +353,6 @@ class UProductReadParams {
   String toJson() => json.encode(toMap());
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "hasActiveContract": hasActiveContract,
     "query": query,
     "title": title,
     "code": code,
@@ -392,10 +360,6 @@ class UProductReadParams {
     "creatorId": creatorId,
     "minStock": minStock,
     "maxStock": maxStock,
-    "minDeposit": minDeposit,
-    "maxDeposit": maxDeposit,
-    "minRent": minRent,
-    "maxRent": maxRent,
     "ids": ids == null ? null : List<dynamic>.from(ids!.map((dynamic x) => x)),
     "pageSize": pageSize,
     "pageNumber": pageNumber,

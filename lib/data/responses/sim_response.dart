@@ -1,6 +1,6 @@
 part of "../data.dart";
 
-class USimResponse {
+class USimCardResponse {
   final String id;
   final String createdAt;
   final UBaseJson jsonData;
@@ -11,25 +11,27 @@ class USimResponse {
   final String? serial;
   final String userId;
   final UUserResponse? user;
+  final List<String> adminUserIds;
 
-  USimResponse({
+  USimCardResponse({
     required this.id,
     required this.createdAt,
     required this.jsonData,
     required this.tags,
     required this.number,
     required this.userId,
+    required this.adminUserIds,
     this.creator,
     this.creatorId,
     this.serial,
     this.user,
   });
 
-  factory USimResponse.fromJson(String str) => USimResponse.fromMap(json.decode(str));
+  factory USimCardResponse.fromJson(String str) => USimCardResponse.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory USimResponse.fromMap(Map<String, dynamic> json) => USimResponse(
+  factory USimCardResponse.fromMap(Map<String, dynamic> json) => USimCardResponse(
     id: json["id"] as String,
     createdAt: json["createdAt"] as String,
     jsonData: UBaseJson.fromMap(json["jsonData"]),
@@ -40,6 +42,7 @@ class USimResponse {
     serial: json["serial"],
     userId: json["userId"] as String,
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -53,5 +56,6 @@ class USimResponse {
     "serial": serial,
     "userId": userId,
     "user": user?.toJson(),
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
 }

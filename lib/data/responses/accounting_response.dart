@@ -84,6 +84,10 @@ class UAccountingBreakdownItem {
     "amount": amount,
     "count": count,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory UAccountingBreakdownItem.fromJson(String str) => UAccountingBreakdownItem.fromMap(json.decode(str));
 }
 
 // One day of aggregated in/out totals.
@@ -109,4 +113,8 @@ class UAccountingTimelineItem {
     "in": inAmount,
     "out": outAmount,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory UAccountingTimelineItem.fromJson(String str) => UAccountingTimelineItem.fromMap(json.decode(str));
 }

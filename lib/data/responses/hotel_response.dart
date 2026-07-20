@@ -378,8 +378,6 @@ class UDormRoomResponse {
 class UDormBedContractResponse {
   final String id;
   final DateTime createdAt;
-  final DateTime? updatedAt;
-  final DateTime? deletedAt;
   final UContractJsonData jsonData;
   final List<int> tags;
   final DateTime startDate;
@@ -392,8 +390,6 @@ class UDormBedContractResponse {
   final UDormBedResponse? bed;
   final UUserResponse? creator;
   final String? creatorId;
-  final UProductResponse? product;
-  final String? productId;
   final bool isActive;
   final List<UDormBedInvoiceResponse>? invoices;
   final List<String> adminUserIds;
@@ -411,14 +407,10 @@ class UDormBedContractResponse {
     required this.bedId,
     required this.isActive,
     required this.adminUserIds,
-    this.updatedAt,
-    this.deletedAt,
     this.user,
     this.bed,
     this.creator,
     this.creatorId,
-    this.product,
-    this.productId,
     this.invoices,
   });
 
@@ -429,8 +421,6 @@ class UDormBedContractResponse {
   factory UDormBedContractResponse.fromMap(Map<String, dynamic> json) => UDormBedContractResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UContractJsonData.fromMap(json["jsonData"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     startDate: DateTime.parse(json["startDate"]),
@@ -443,8 +433,6 @@ class UDormBedContractResponse {
     bed: json["bed"] == null ? null : UDormBedResponse.fromMap(json["bed"]),
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
-    product: json["product"] == null ? null : UProductResponse.fromMap(json["product"]),
-    productId: json["productId"],
     isActive: json["isActive"],
     invoices: json["invoices"] == null ? <UDormBedInvoiceResponse>[] : List<UDormBedInvoiceResponse>.from(json["invoices"]!.map((dynamic x) => UDormBedInvoiceResponse.fromMap(x))),
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
@@ -453,8 +441,6 @@ class UDormBedContractResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "deletedAt": deletedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "startDate": startDate.toIso8601String(),
@@ -467,8 +453,6 @@ class UDormBedContractResponse {
     "bed": bed?.toMap(),
     "creator": creator?.toMap(),
     "creatorId": creatorId,
-    "product": product?.toMap(),
-    "productId": productId,
     "isActive": isActive,
     "invoices": invoices == null ? <dynamic>[] : List<dynamic>.from(invoices!.map((UDormBedInvoiceResponse x) => x.toMap())),
     "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
@@ -498,22 +482,14 @@ class UContractJsonData {
 class UDormBedInvoiceResponse {
   final String id;
   final DateTime createdAt;
-  final DateTime? updatedAt;
-  final DateTime? deletedAt;
   final UDormBedInvoiceJson jsonData;
   final List<int> tags;
   final double debtAmount;
   final double creditorAmount;
   final double paidAmount;
   final double penaltyAmount;
-  final DateTime? paidDate;
   final DateTime dueDate;
-  final DateTime? nextInvoiceIssueDate;
-  final String? trackingNumber;
-  final UUserResponse? user;
-  final String? userId;
   final UDormBedContractResponse? contract;
-  final String? contractId;
   final UUserResponse? creator;
   final String? creatorId;
   final List<String> adminUserIds;
@@ -529,15 +505,7 @@ class UDormBedInvoiceResponse {
     required this.paidAmount,
     required this.penaltyAmount,
     required this.adminUserIds,
-    this.updatedAt,
-    this.deletedAt,
-    this.paidDate,
-    this.nextInvoiceIssueDate,
-    this.trackingNumber,
-    this.user,
-    this.userId,
     this.contract,
-    this.contractId,
     this.creator,
     this.creatorId,
   });
@@ -549,22 +517,14 @@ class UDormBedInvoiceResponse {
   factory UDormBedInvoiceResponse.fromMap(Map<String, dynamic> json) => UDormBedInvoiceResponse(
     id: json["id"],
     createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    deletedAt: json["deletedAt"] == null ? null : DateTime.parse(json["deletedAt"]),
     jsonData: UDormBedInvoiceJson.fromMap(json["jsonData"]),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     debtAmount: (json["debtAmount"] as num).toDouble(),
     creditorAmount: (json["creditorAmount"] as num).toDouble(),
     paidAmount: (json["paidAmount"] as num).toDouble(),
     penaltyAmount: (json["penaltyAmount"] as num).toDouble(),
-    paidDate: json["paidDate"] == null ? null : DateTime.parse(json["paidDate"]),
     dueDate: DateTime.parse(json["dueDate"]),
-    nextInvoiceIssueDate: json["nextInvoiceIssueDate"] == null ? null : DateTime.parse(json["nextInvoiceIssueDate"]),
-    trackingNumber: json["trackingNumber"],
-    user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
-    userId: json["userId"],
     contract: json["contract"] == null ? null : UDormBedContractResponse.fromMap(json["contract"]),
-    contractId: json["contractId"],
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
@@ -573,22 +533,14 @@ class UDormBedInvoiceResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "id": id,
     "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt?.toIso8601String(),
-    "deletedAt": deletedAt?.toIso8601String(),
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "debtAmount": debtAmount,
     "creditorAmount": creditorAmount,
     "paidAmount": paidAmount,
     "penaltyAmount": penaltyAmount,
-    "paidDate": paidDate?.toIso8601String(),
     "dueDate": dueDate.toIso8601String(),
-    "nextInvoiceIssueDate": nextInvoiceIssueDate?.toIso8601String(),
-    "trackingNumber": trackingNumber,
-    "user": user?.toMap(),
-    "userId": userId,
     "contract": contract?.toMap(),
-    "contractId": contractId,
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
@@ -596,13 +548,11 @@ class UDormBedInvoiceResponse {
 }
 
 class UDormBedInvoiceJson {
-  final String? description;
   final int? penaltyPrecentEveryDate;
   final String? detail1;
   final String? detail2;
 
   UDormBedInvoiceJson({
-    this.description,
     this.penaltyPrecentEveryDate,
     this.detail1,
     this.detail2,
@@ -613,14 +563,12 @@ class UDormBedInvoiceJson {
   String toJson() => json.encode(toMap());
 
   factory UDormBedInvoiceJson.fromMap(Map<String, dynamic> json) => UDormBedInvoiceJson(
-    description: json["description"],
     penaltyPrecentEveryDate: json["penaltyPrecentEveryDate"] == null ? null : (json["penaltyPrecentEveryDate"] as num).toInt(),
     detail1: json["detail1"],
     detail2: json["detail2"],
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-    "description": description,
     "penaltyPrecentEveryDate": penaltyPrecentEveryDate,
     "detail1": detail1,
     "detail2": detail2,

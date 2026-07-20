@@ -28,7 +28,7 @@ class UAdminUserCreateUpdateController {
     controllerLastName = TextEditingController(text: args.user?.lastName);
     controllerUserName = TextEditingController(text: args.user?.userName);
     controllerBirthDate = TextEditingController(text: args.user?.birthdate?.toJalaliDate());
-    controllerPassword = TextEditingController(text: args.user?.password);
+    controllerPassword = TextEditingController();
     controllerEmail = TextEditingController(text: args.user?.email);
     controllerPhoneNumber = TextEditingController(text: args.user?.phoneNumber);
     controllerFatherName = TextEditingController(text: args.user?.jsonData.fatherName);

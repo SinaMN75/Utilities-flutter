@@ -42,13 +42,16 @@ class UTicketResponse {
     "media": media?.map((UMediaResponse e) => e.toMap()).toList(),
     "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory UTicketResponse.fromJson(String str) => UTicketResponse.fromMap(json.decode(str));
 }
 
 class UTicketJson {
   UTicketJson({
     required this.title,
     required this.description,
-    this.answer,
     this.detail1,
     this.detail2,
     this.instagram,
@@ -60,7 +63,6 @@ class UTicketJson {
   factory UTicketJson.fromMap(Map<String, dynamic> json) => UTicketJson(
     title: json["title"],
     description: json["description"],
-    answer: json["answer"],
     detail1: json["detail1"],
     detail2: json["detail2"],
     instagram: json["instagram"],
@@ -71,7 +73,6 @@ class UTicketJson {
 
   final String title;
   final String description;
-  final String? answer;
   final String? detail1;
   final String? detail2;
   final String? instagram;
@@ -82,7 +83,6 @@ class UTicketJson {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "title": title,
     "description": description,
-    "answer": answer,
     "detail1": detail1,
     "detail2": detail2,
     "instagram": instagram,
@@ -90,4 +90,8 @@ class UTicketJson {
     "whatsapp": whatsapp,
     "phone": phone,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory UTicketJson.fromJson(String str) => UTicketJson.fromMap(json.decode(str));
 }

@@ -88,4 +88,36 @@ class UOsMetricsResponse {
     diskFreeGb: (json["diskFreeGb"] ?? 0).toString().toDouble(),
     diskUsagePercent: (json["diskUsagePercent"] ?? 0).toString().toDouble(),
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "generatedAt": generatedAt.toIso8601String(),
+    "osName": osName,
+    "osDescription": osDescription,
+    "osArchitecture": osArchitecture,
+    "processArchitecture": processArchitecture,
+    "frameworkDescription": frameworkDescription,
+    "machineName": machineName,
+    "is64BitOperatingSystem": is64BitOperatingSystem,
+    "is64BitProcess": is64BitProcess,
+    "processorCount": processorCount,
+    "systemUptimeSeconds": systemUptimeSeconds,
+    "processUptimeSeconds": processUptimeSeconds,
+    "processStartedAt": processStartedAt.toIso8601String(),
+    "cpuUsagePercent": cpuUsagePercent,
+    "loadAverage1Min": loadAverage1Min,
+    "loadAverage5Min": loadAverage5Min,
+    "loadAverage15Min": loadAverage15Min,
+    "memoryTotalGb": memoryTotalGb,
+    "memoryUsedGb": memoryUsedGb,
+    "memoryFreeGb": memoryFreeGb,
+    "memoryUsagePercent": memoryUsagePercent,
+    "diskTotalGb": diskTotalGb,
+    "diskUsedGb": diskUsedGb,
+    "diskFreeGb": diskFreeGb,
+    "diskUsagePercent": diskUsagePercent,
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UOsMetricsResponse.fromJson(String str) => UOsMetricsResponse.fromMap(json.decode(str));
 }

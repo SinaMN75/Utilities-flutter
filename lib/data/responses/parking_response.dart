@@ -8,6 +8,9 @@ class UParkingResponse {
     required this.tags,
     required this.title,
     required this.adminUserIds,
+    required this.entrancePrice,
+    required this.hourlyPrice,
+    required this.dailyPrice,
     this.creator,
     this.creatorId,
   });
@@ -23,6 +26,9 @@ class UParkingResponse {
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    entrancePrice: (json["entrancePrice"] as num).toDouble(),
+    hourlyPrice: (json["hourlyPrice"] as num).toDouble(),
+    dailyPrice: (json["dailyPrice"] as num).toDouble(),
   );
 
   final String id;
@@ -33,6 +39,9 @@ class UParkingResponse {
   final UUserResponse? creator;
   final String? creatorId;
   final List<String> adminUserIds;
+  final double entrancePrice;
+  final double hourlyPrice;
+  final double dailyPrice;
 
   String toJson() => json.encode(toMap());
 
@@ -45,6 +54,9 @@ class UParkingResponse {
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
+    "entrancePrice": entrancePrice,
+    "hourlyPrice": hourlyPrice,
+    "dailyPrice": dailyPrice,
   };
 }
 

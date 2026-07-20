@@ -11,11 +11,9 @@ class UCommentResponse {
     required this.userId,
     required this.adminUserIds,
     this.parentId,
-    this.parent,
     this.user,
     this.creator,
     this.creatorId,
-    this.product,
     this.productId,
     this.blogId,
     this.children,
@@ -32,12 +30,10 @@ class UCommentResponse {
     score: json["score"],
     description: json["description"],
     parentId: json["parentId"],
-    parent: json["parent"] == null ? null : UCommentResponse.fromMap(json["parent"]),
     user: json["user"] == null ? null : UUserResponse.fromMap(json["user"]),
     userId: json["userId"],
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
-    product: json["product"] == null ? null : UProductResponse.fromMap(json["product"]),
     productId: json["productId"],
     blogId: json["blogId"],
     children: json["children"] == null ? <UCommentResponse>[] : List<UCommentResponse>.from(json["children"].map((dynamic x) => UCommentResponse.fromMap(x))),
@@ -51,12 +47,10 @@ class UCommentResponse {
   final double score;
   final String description;
   final String? parentId;
-  final UCommentResponse? parent;
   final UUserResponse? user;
   final String userId;
   final UUserResponse? creator;
   final String? creatorId;
-  final UProductResponse? product;
   final String? productId;
   final String? blogId;
   final List<UCommentResponse>? children;
@@ -73,12 +67,10 @@ class UCommentResponse {
     "score": score,
     "description": description,
     "parentId": parentId,
-    "parent": parent?.toMap(),
     "user": user?.toMap(),
     "userId": userId,
     "creator": creator?.toMap(),
     "creatorId": creatorId,
-    "product": product?.toMap(),
     "productId": productId,
     "blogId": blogId,
     "children": children == null ? null : List<dynamic>.from(children!.map((UCommentResponse x) => x.toMap())),

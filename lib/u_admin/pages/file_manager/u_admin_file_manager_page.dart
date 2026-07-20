@@ -14,10 +14,10 @@ enum _PreviewKind { image, video, pdf, json, text, none }
 
 class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
   String _path = "";
-  UFileManagerList? _data;
+  UFileManagerListResponse? _data;
   bool _loading = true;
   bool _gridView = true;
-  UFileManagerEntry? _preview;
+  UFileManagerEntryResponse? _preview;
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     });
     await UServices.fileManager.browse(
       p: UFileManagerBrowseParams(path: path),
-      onOk: (final UResponse<UFileManagerList> r) => setState(() {
+      onOk: (final UResponse<UFileManagerListResponse> r) => setState(() {
         _data = r.result;
         _path = r.result?.path ?? path;
         _loading = false;
@@ -83,7 +83,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     );
   }
 
-  Future<void> _rename(final UFileManagerEntry entry) async {
+  Future<void> _rename(final UFileManagerEntryResponse entry) async {
     final String? name = await UNavigator.inputDialog(title: U.s.rename, hint: U.s.newName, defaultValue: entry.name);
     if (name == null || name.trim().isEmpty || name.trim() == entry.name) return;
     await UServices.fileManager.rename(
@@ -97,7 +97,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     );
   }
 
-  Future<void> _move(final UFileManagerEntry entry) async {
+  Future<void> _move(final UFileManagerEntryResponse entry) async {
     final String? destination = await UNavigator.inputDialog(title: U.s.moveTo, hint: U.s.path, defaultValue: _parentPath);
     if (destination == null) return;
     await UServices.fileManager.move(
@@ -111,7 +111,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     );
   }
 
-  void _delete(final UFileManagerEntry entry) => UNavigator.confirm(
+  void _delete(final UFileManagerEntryResponse entry) => UNavigator.confirm(
     title: U.s.delete,
     message: U.s.deleteItemConfirm,
     onConfirm: () {
@@ -129,7 +129,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     },
   );
 
-  void _open(final UFileManagerEntry entry) {
+  void _open(final UFileManagerEntryResponse entry) {
     if (entry.isDirectory) {
       _load(entry.path);
     } else if (_kind(entry) != _PreviewKind.none) {
@@ -139,9 +139,9 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     }
   }
 
-  void _download(final UFileManagerEntry entry) => launchUrl(Uri.parse(UServices.fileManager.downloadUrl(entry.path)), mode: LaunchMode.externalApplication);
+  void _download(final UFileManagerEntryResponse entry) => launchUrl(Uri.parse(UServices.fileManager.downloadUrl(entry.path)), mode: LaunchMode.externalApplication);
 
-  void _openInBrowser(final UFileManagerEntry entry) => launchUrl(Uri.parse(entry.url ?? UServices.fileManager.downloadUrl(entry.path)), mode: LaunchMode.externalApplication);
+  void _openInBrowser(final UFileManagerEntryResponse entry) => launchUrl(Uri.parse(entry.url ?? UServices.fileManager.downloadUrl(entry.path)), mode: LaunchMode.externalApplication);
 
   // ---------------------------------------------------------------------------
 
@@ -169,7 +169,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   Widget _body(final ColorScheme cs) {
     if (_loading) return const Center(child: CircularProgressIndicator());
-    final List<UFileManagerEntry> items = _data?.all ?? <UFileManagerEntry>[];
+    final List<UFileManagerEntryResponse> items = _data?.all ?? <UFileManagerEntryResponse>[];
     if (items.isEmpty) return _empty(cs);
     return UContainer(
       color: cs.surface,
@@ -336,7 +336,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   // ---- Grid view ----
 
-  Widget _grid(final List<UFileManagerEntry> items, final ColorScheme cs) => SingleChildScrollView(
+  Widget _grid(final List<UFileManagerEntryResponse> items, final ColorScheme cs) => SingleChildScrollView(
     child: LayoutBuilder(
       builder: (final BuildContext context, final BoxConstraints constraints) {
         const double target = 190;
@@ -345,13 +345,13 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
         return Wrap(
           spacing: 12,
           runSpacing: 12,
-          children: items.map((final UFileManagerEntry e) => SizedBox(width: width, child: _gridCard(e, cs))).toList(),
+          children: items.map((final UFileManagerEntryResponse e) => SizedBox(width: width, child: _gridCard(e, cs))).toList(),
         );
       },
     ).pAll(14),
   );
 
-  Widget _gridCard(final UFileManagerEntry e, final ColorScheme cs) => _hoverable(
+  Widget _gridCard(final UFileManagerEntryResponse e, final ColorScheme cs) => _hoverable(
     onTap: () => _open(e),
     cs: cs,
     child: UColumn(
@@ -382,7 +382,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
   );
 
   // A thumbnail: real image preview for image files, otherwise a tinted type-icon tile.
-  Widget _thumb(final UFileManagerEntry e, final ColorScheme cs, {required final double radius}) {
+  Widget _thumb(final UFileManagerEntryResponse e, final ColorScheme cs, {required final double radius}) {
     if (!e.isDirectory && _kind(e) == _PreviewKind.image && e.url != null) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(radius),
@@ -402,14 +402,14 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   // ---- List view ----
 
-  Widget _list(final List<UFileManagerEntry> items, final ColorScheme cs) => Column(
+  Widget _list(final List<UFileManagerEntryResponse> items, final ColorScheme cs) => Column(
     children: <Widget>[
       _listHeader(cs),
       const Divider(height: 1),
       Expanded(
         child: SingleChildScrollView(
           child: Column(
-            children: items.map((final UFileManagerEntry e) => _listRow(e, cs)).toList(),
+            children: items.map((final UFileManagerEntryResponse e) => _listRow(e, cs)).toList(),
           ),
         ),
       ),
@@ -425,7 +425,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     ],
   ).pSymmetric(horizontal: 16, vertical: 12);
 
-  Widget _listRow(final UFileManagerEntry e, final ColorScheme cs) => _hoverable(
+  Widget _listRow(final UFileManagerEntryResponse e, final ColorScheme cs) => _hoverable(
     onTap: () => _open(e),
     cs: cs,
     radius: 0,
@@ -463,7 +463,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     ),
   );
 
-  Widget _menu(final UFileManagerEntry e, final ColorScheme cs) => PopupMenuButton<String>(
+  Widget _menu(final UFileManagerEntryResponse e, final ColorScheme cs) => PopupMenuButton<String>(
     icon: Icon(Icons.more_vert_rounded, size: 20, color: cs.onSurface.withValues(alpha: 0.6)),
     tooltip: "",
     onSelected: (final String value) {
@@ -511,7 +511,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   // ---- Preview pane ----
 
-  Widget _previewPane(final UFileManagerEntry e, final ColorScheme cs) => UContainer(
+  Widget _previewPane(final UFileManagerEntryResponse e, final ColorScheme cs) => UContainer(
     color: cs.surface,
     radius: 16,
     border: Border.all(color: cs.outlineVariant.withValues(alpha: 0.5)),
@@ -524,7 +524,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     ),
   );
 
-  Widget _previewToolbar(final UFileManagerEntry e, final ColorScheme cs) => URow(
+  Widget _previewToolbar(final UFileManagerEntryResponse e, final ColorScheme cs) => URow(
     children: <Widget>[
       IconButton(
         icon: const Icon(Icons.arrow_back_rounded),
@@ -545,7 +545,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     ],
   ).pSymmetric(horizontal: 8, vertical: 6);
 
-  Widget _previewBody(final UFileManagerEntry e, final ColorScheme cs) {
+  Widget _previewBody(final UFileManagerEntryResponse e, final ColorScheme cs) {
     final String url = e.url ?? UServices.fileManager.downloadUrl(e.path);
     switch (_kind(e)) {
       case _PreviewKind.image:
@@ -570,7 +570,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     }
   }
 
-  Widget _notPreviewable(final UFileManagerEntry e, final ColorScheme cs) => Center(
+  Widget _notPreviewable(final UFileManagerEntryResponse e, final ColorScheme cs) => Center(
     child: UColumn(
       mainAxisSize: MainAxisSize.min,
       spacing: 16,
@@ -590,7 +590,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
 
   // ---- Type helpers ----
 
-  _PreviewKind _kind(final UFileManagerEntry e) {
+  _PreviewKind _kind(final UFileManagerEntryResponse e) {
     if (e.isDirectory) return _PreviewKind.none;
     switch (e.extension) {
       case "png" || "jpg" || "jpeg" || "gif" || "webp" || "bmp" || "svg":
@@ -608,7 +608,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     }
   }
 
-  IconData _iconFor(final UFileManagerEntry e) {
+  IconData _iconFor(final UFileManagerEntryResponse e) {
     if (e.isDirectory) return Icons.folder_rounded;
     switch (_kind(e)) {
       case _PreviewKind.image:
@@ -640,7 +640,7 @@ class _UAdminFileManagerPageState extends State<UAdminFileManagerPage> {
     }
   }
 
-  Color _accentFor(final UFileManagerEntry e, final ColorScheme cs) {
+  Color _accentFor(final UFileManagerEntryResponse e, final ColorScheme cs) {
     if (e.isDirectory) return cs.primary;
     switch (_kind(e)) {
       case _PreviewKind.image:

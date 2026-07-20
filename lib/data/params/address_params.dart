@@ -19,9 +19,7 @@ class UAddressCreateParams {
   final String? localityType;
   final String? sideFloor;
   final String? subLocality;
-  final String? townShip;
   final String? village;
-  final String? localityCode;
   final List<int> tags;
   final List<String>? adminUserIds;
 
@@ -33,11 +31,9 @@ class UAddressCreateParams {
     this.detail1,
     this.detail2,
     this.buildingName,
-    this.localityCode,
     this.localityType,
     this.sideFloor,
     this.subLocality,
-    this.townShip,
     this.village,
     this.id,
     this.province,
@@ -72,11 +68,9 @@ class UAddressCreateParams {
     zipCode: json["zipCode"],
     creatorId: json["creatorId"],
     buildingName: json["buildingName"],
-    localityCode: json["localityCode"],
     localityType: json["localityType"],
     sideFloor: json["sideFloor"],
     subLocality: json["subLocality"],
-    townShip: json["townShip"],
     village: json["village"],
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
@@ -98,11 +92,9 @@ class UAddressCreateParams {
     "zipCode": zipCode,
     "creatorId": creatorId,
     "buildingName": buildingName,
-    "localityCode": localityCode,
     "localityType": localityType,
     "sideFloor": sideFloor,
     "subLocality": subLocality,
-    "townShip": townShip,
     "village": village,
     "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
   };
@@ -129,9 +121,7 @@ class UAddressUpdateParams {
   final String? localityType;
   final String? sideFloor;
   final String? subLocality;
-  final String? townShip;
   final String? village;
-  final String? localityCode;
   final List<String>? adminUserIds;
   final List<String>? addAdminUserIds;
   final List<String>? removeAdminUserIds;
@@ -154,11 +144,9 @@ class UAddressUpdateParams {
     this.zipCode,
     this.description,
     this.buildingName,
-    this.localityCode,
     this.localityType,
     this.sideFloor,
     this.subLocality,
-    this.townShip,
     this.village,
     this.adminUserIds,
     this.addAdminUserIds,
@@ -187,11 +175,9 @@ class UAddressUpdateParams {
     zipCode: json["zipCode"],
     description: json["description"],
     buildingName: json["buildingName"],
-    localityCode: json["localityCode"],
     localityType: json["localityType"],
     sideFloor: json["sideFloor"],
     subLocality: json["subLocality"],
-    townShip: json["townShip"],
     village: json["village"],
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
     addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
@@ -214,11 +200,9 @@ class UAddressUpdateParams {
     "zipCode": zipCode,
     "description": description,
     "buildingName": buildingName,
-    "localityCode": localityCode,
     "localityType": localityType,
     "sideFloor": sideFloor,
     "subLocality": subLocality,
-    "townShip": townShip,
     "village": village,
     "detail1": detail1,
     "detail2": detail2,

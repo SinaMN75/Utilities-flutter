@@ -25,6 +25,10 @@ class UProcessStepStatus {
     "title": title,
     "status": status.number,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory UProcessStepStatus.fromJson(String str) => UProcessStepStatus.fromMap(json.decode(str));
 }
 
 class UProcessStepSend {
@@ -177,6 +181,10 @@ class UProcessStepGet {
     "messageBox": messageBox,
     "steps": List<dynamic>.from(steps.map((UProcessStepStatus x) => x.toMap())),
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory UProcessStepGet.fromJson(String str) => UProcessStepGet.fromMap(json.decode(str));
 }
 
 class UProcessField {

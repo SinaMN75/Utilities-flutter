@@ -14,8 +14,6 @@ class UBlogCreateParams {
   final String? metaTitle;
   final String? metaDescription;
   final String? source;
-  final int? readingTimeMinutes;
-  final DateTime? publishedAt;
   final List<String>? categories;
   final List<String>? media;
   final String? code;
@@ -44,8 +42,6 @@ class UBlogCreateParams {
     this.metaTitle,
     this.metaDescription,
     this.source,
-    this.readingTimeMinutes,
-    this.publishedAt,
     this.categories,
     this.media,
     this.code,
@@ -79,8 +75,6 @@ class UBlogCreateParams {
     metaTitle: json["metaTitle"],
     metaDescription: json["metaDescription"],
     source: json["source"],
-    readingTimeMinutes: json["readingTimeMinutes"],
-    publishedAt: json["publishedAt"] == null ? null : DateTime.parse(json["publishedAt"]),
     categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((dynamic x) => x)),
     media: json["media"] == null ? <String>[] : List<String>.from(json["media"]!.map((dynamic x) => x)),
     code: json["code"],
@@ -110,8 +104,6 @@ class UBlogCreateParams {
     "metaTitle": metaTitle,
     "metaDescription": metaDescription,
     "source": source,
-    "readingTimeMinutes": readingTimeMinutes,
-    "publishedAt": publishedAt?.toIso8601String(),
     "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
     "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((String x) => x)),
     "code": code,
@@ -145,8 +137,6 @@ class UBlogUpdateParams {
   final String? metaTitle;
   final String? metaDescription;
   final String? source;
-  final int? readingTimeMinutes;
-  final DateTime? publishedAt;
   final List<String>? addCategories;
   final List<String>? removeCategories;
   final List<String>? categories;
@@ -182,8 +172,6 @@ class UBlogUpdateParams {
     this.metaTitle,
     this.metaDescription,
     this.source,
-    this.readingTimeMinutes,
-    this.publishedAt,
     this.addCategories,
     this.removeCategories,
     this.categories,
@@ -224,8 +212,6 @@ class UBlogUpdateParams {
     metaTitle: json["metaTitle"],
     metaDescription: json["metaDescription"],
     source: json["source"],
-    readingTimeMinutes: json["readingTimeMinutes"],
-    publishedAt: json["publishedAt"] == null ? null : DateTime.parse(json["publishedAt"]),
     addCategories: json["addCategories"] == null ? <String>[] : List<String>.from(json["addCategories"]!.map((dynamic x) => x)),
     removeCategories: json["removeCategories"] == null ? <String>[] : List<String>.from(json["removeCategories"]!.map((dynamic x) => x)),
     categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((dynamic x) => x)),
@@ -262,8 +248,6 @@ class UBlogUpdateParams {
     "metaTitle": metaTitle,
     "metaDescription": metaDescription,
     "source": source,
-    "readingTimeMinutes": readingTimeMinutes,
-    "publishedAt": publishedAt?.toIso8601String(),
     "addCategories": addCategories == null ? <dynamic>[] : List<dynamic>.from(addCategories!.map((String x) => x)),
     "removeCategories": removeCategories == null ? <dynamic>[] : List<dynamic>.from(removeCategories!.map((String x) => x)),
     "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
@@ -295,7 +279,6 @@ class UBlogReadParams {
   final String? query;
   final String? title;
   final String? slug;
-  final bool? onlyPublished;
   final List<String>? categories;
   final BlogSelectorArgs? selectorArgs;
   final int? orderBy;
@@ -313,7 +296,6 @@ class UBlogReadParams {
     this.query,
     this.title,
     this.slug,
-    this.onlyPublished,
     this.categories,
     this.selectorArgs,
     this.orderBy,
@@ -336,7 +318,6 @@ class UBlogReadParams {
     query: json["query"],
     title: json["title"],
     slug: json["slug"],
-    onlyPublished: json["onlyPublished"],
     categories: json["categories"] == null ? <String>[] : List<String>.from(json["categories"]!.map((dynamic x) => x)),
     selectorArgs: json["selectorArgs"] == null ? null : BlogSelectorArgs.fromMap(json["selectorArgs"]),
     orderBy: json["orderBy"],
@@ -355,7 +336,6 @@ class UBlogReadParams {
     "query": query,
     "title": title,
     "slug": slug,
-    "onlyPublished": onlyPublished,
     "categories": categories == null ? <dynamic>[] : List<dynamic>.from(categories!.map((String x) => x)),
     "selectorArgs": selectorArgs?.toMap(),
     "orderBy": orderBy,

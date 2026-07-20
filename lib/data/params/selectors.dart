@@ -423,6 +423,10 @@ class MediaSelectorArgs {
   factory MediaSelectorArgs.fromMap(Map<String, dynamic> json) => MediaSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
 
   Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+
+  String toJson() => json.encode(toMap());
+
+  factory MediaSelectorArgs.fromJson(String str) => MediaSelectorArgs.fromMap(json.decode(str));
 }
 
 class ParkingSelectorArgs {
@@ -433,6 +437,10 @@ class ParkingSelectorArgs {
   factory ParkingSelectorArgs.fromMap(Map<String, dynamic> json) => ParkingSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
 
   Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+
+  String toJson() => json.encode(toMap());
+
+  factory ParkingSelectorArgs.fromJson(String str) => ParkingSelectorArgs.fromMap(json.decode(str));
 }
 
 class VehicleSelectorArgs {
@@ -443,6 +451,10 @@ class VehicleSelectorArgs {
   factory VehicleSelectorArgs.fromMap(Map<String, dynamic> json) => VehicleSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
 
   Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+
+  String toJson() => json.encode(toMap());
+
+  factory VehicleSelectorArgs.fromJson(String str) => VehicleSelectorArgs.fromMap(json.decode(str));
 }
 
 class BankAccountSelectorArgs {
@@ -453,6 +465,10 @@ class BankAccountSelectorArgs {
   factory BankAccountSelectorArgs.fromMap(Map<String, dynamic> json) => BankAccountSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
 
   Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+
+  String toJson() => json.encode(toMap());
+
+  factory BankAccountSelectorArgs.fromJson(String str) => BankAccountSelectorArgs.fromMap(json.decode(str));
 }
 
 class AddressSelectorArgs {
@@ -463,6 +479,10 @@ class AddressSelectorArgs {
   factory AddressSelectorArgs.fromMap(Map<String, dynamic> json) => AddressSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
 
   Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+
+  String toJson() => json.encode(toMap());
+
+  factory AddressSelectorArgs.fromJson(String str) => AddressSelectorArgs.fromMap(json.decode(str));
 }
 
 class WalletSelectorArgs {
@@ -473,6 +493,10 @@ class WalletSelectorArgs {
   factory WalletSelectorArgs.fromMap(Map<String, dynamic> json) => WalletSelectorArgs(creator: json["creator"] == null ? null : UserSelectorArgs.fromMap(json["creator"]));
 
   Map<String, dynamic> toMap() => <String, dynamic>{"creator": creator?.toMap()};
+
+  String toJson() => json.encode(toMap());
+
+  factory WalletSelectorArgs.fromJson(String str) => WalletSelectorArgs.fromMap(json.decode(str));
 }
 
 class SimSelectorArgs {

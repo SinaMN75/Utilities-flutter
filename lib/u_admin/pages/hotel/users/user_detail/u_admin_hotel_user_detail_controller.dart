@@ -63,7 +63,7 @@ class UAdminHotelUserDetailController {
 
   List<UDormBedInvoiceResponse> invoicesOf(UDormBedContractResponse c) => c.invoices ?? <UDormBedInvoiceResponse>[];
 
-  int unpaidCountOf(UDormBedContractResponse c) => invoicesOf(c).where((UDormBedInvoiceResponse i) => i.paidDate == null).length;
+  int unpaidCountOf(UDormBedContractResponse c) => invoicesOf(c).where((UDormBedInvoiceResponse i) => i.dueDate == null).length;
 
   double outstandingOf(UDormBedContractResponse c) => invoicesOf(c).fold(0, (double sum, UDormBedInvoiceResponse i) {
     final double remaining = (i.debtAmount + i.penaltyAmount) - i.paidAmount;

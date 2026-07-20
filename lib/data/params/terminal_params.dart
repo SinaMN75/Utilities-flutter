@@ -294,4 +294,10 @@ class UTerminalImportParams {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "file": file,
   };
+
+  factory UTerminalImportParams.fromMap(Map<String, dynamic> json) => UTerminalImportParams(
+    file: json["file"],
+  );
+
+  factory UTerminalImportParams.fromJson(String str) => UTerminalImportParams.fromMap(json.decode(str));
 }

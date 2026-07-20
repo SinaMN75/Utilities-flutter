@@ -12,8 +12,6 @@ class UBlogResponse {
   final String? subtitle;
   final String? slug;
   final String? content;
-  final int viewCount;
-  final DateTime? publishedAt;
   final List<UMediaResponse>? media;
   final List<UCategoryResponse>? categories;
   final List<UCommentResponse>? comments;
@@ -33,14 +31,12 @@ class UBlogResponse {
     required this.jsonData,
     required this.tags,
     required this.title,
-    required this.viewCount,
     this.adminUserIds = const <String>[],
     this.creator,
     this.creatorId,
     this.subtitle,
     this.slug,
     this.content,
-    this.publishedAt,
     this.media,
     this.categories,
     this.comments,
@@ -71,8 +67,6 @@ class UBlogResponse {
     subtitle: json["subtitle"],
     slug: json["slug"],
     content: json["content"],
-    viewCount: json["viewCount"] ?? 0,
-    publishedAt: json["publishedAt"] == null ? null : DateTime.parse(json["publishedAt"]),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"]!.map((dynamic x) => UMediaResponse.fromMap(x))),
     categories: json["categories"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["categories"]!.map((dynamic x) => UCategoryResponse.fromMap(x))),
     comments: json["comments"] == null ? <UCommentResponse>[] : List<UCommentResponse>.from(json["comments"]!.map((dynamic x) => UCommentResponse.fromMap(x))),
@@ -99,8 +93,6 @@ class UBlogResponse {
     "subtitle": subtitle,
     "slug": slug,
     "content": content,
-    "viewCount": viewCount,
-    "publishedAt": publishedAt?.toIso8601String(),
     "media": media == null ? <UMediaResponse>[] : List<UMediaResponse>.from(media!.map((UMediaResponse x) => x.toMap())),
     "categories": categories == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(categories!.map((UCategoryResponse x) => x.toMap())),
     "comments": comments == null ? <UCommentResponse>[] : List<UCommentResponse>.from(comments!.map((UCommentResponse x) => x.toMap())),
@@ -120,7 +112,6 @@ class UBlogJson {
   final String? metaTitle;
   final String? metaDescription;
   final String? source;
-  final int? readingTimeMinutes;
   final String? detail1;
   final String? detail2;
   final String? actionType;
@@ -132,7 +123,6 @@ class UBlogJson {
     this.metaTitle,
     this.metaDescription,
     this.source,
-    this.readingTimeMinutes,
     this.detail1,
     this.detail2,
     this.actionType,
@@ -149,7 +139,6 @@ class UBlogJson {
     metaTitle: json["metaTitle"],
     metaDescription: json["metaDescription"],
     source: json["source"],
-    readingTimeMinutes: json["readingTimeMinutes"],
     detail1: json["detail1"],
     detail2: json["detail2"],
     actionType: json["actionType"],
@@ -162,7 +151,6 @@ class UBlogJson {
     "metaTitle": metaTitle,
     "metaDescription": metaDescription,
     "source": source,
-    "readingTimeMinutes": readingTimeMinutes,
     "detail1": detail1,
     "detail2": detail2,
     "actionType": actionType,

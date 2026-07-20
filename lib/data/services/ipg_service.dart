@@ -2,7 +2,7 @@ part of "../data.dart";
 
 class IpgService {
   Future<(UResponse<UIpgPayResponse>?, UEmptyResponse?, String?)> pay({
-    required final UIpgPayParams p,
+    required final UIpgSaleParams p,
     final Function(UResponse<UIpgPayResponse> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,

@@ -22,6 +22,18 @@ class URecentUserItem {
     phoneNumber: json["phoneNumber"],
     createdAt: DateTime.parse(json["createdAt"]),
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "displayName": displayName,
+    "userName": userName,
+    "phoneNumber": phoneNumber,
+    "createdAt": createdAt.toIso8601String(),
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory URecentUserItem.fromJson(String str) => URecentUserItem.fromMap(json.decode(str));
 }
 
 // ===================== Financial / Operations Dashboard =====================
@@ -116,6 +128,38 @@ class UFinancialOpsDashboardResponse {
     recentMerchants: ((json["recentMerchants"] ?? <dynamic>[]) as List<dynamic>).map((dynamic x) => URecentMerchantItem.fromMap(x)).toList(),
     recentUsers: ((json["recentUsers"] ?? <dynamic>[]) as List<dynamic>).map((dynamic x) => URecentUserItem.fromMap(x)).toList(),
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "generatedAt": generatedAt.toIso8601String(),
+    "fromDate": fromDate.toIso8601String(),
+    "toDate": toDate.toIso8601String(),
+    "usersCount": usersCount,
+    "newUsersCount": newUsersCount,
+    "merchantsCount": merchantsCount,
+    "newMerchantsCount": newMerchantsCount,
+    "terminalsCount": terminalsCount,
+    "terminalsAssignedCount": terminalsAssignedCount,
+    "terminalsUnassignedCount": terminalsUnassignedCount,
+    "txnCount": txnCount,
+    "newTxnCount": newTxnCount,
+    "walletsCount": walletsCount,
+    "totalWalletBalance": totalWalletBalance,
+    "totalIn": totalIn,
+    "totalOut": totalOut,
+    "net": net,
+    "txnByStatus": List<dynamic>.from(txnByStatus.map((UAccountingBreakdownItem x) => x.toMap())),
+    "txnByMethod": List<dynamic>.from(txnByMethod.map((UAccountingBreakdownItem x) => x.toMap())),
+    "terminalsByType": List<dynamic>.from(terminalsByType.map((UAccountingBreakdownItem x) => x.toMap())),
+    "dailyTimeline": List<dynamic>.from(dailyTimeline.map((UAccountingTimelineItem x) => x.toMap())),
+    "topMerchants": List<dynamic>.from(topMerchants.map((UTopMerchantItem x) => x.toMap())),
+    "recentTransactions": List<dynamic>.from(recentTransactions.map((URecentTxnItem x) => x.toMap())),
+    "recentMerchants": List<dynamic>.from(recentMerchants.map((URecentMerchantItem x) => x.toMap())),
+    "recentUsers": List<dynamic>.from(recentUsers.map((URecentUserItem x) => x.toMap())),
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UFinancialOpsDashboardResponse.fromJson(String str) => UFinancialOpsDashboardResponse.fromMap(json.decode(str));
 }
 
 class UTopMerchantItem {
@@ -134,6 +178,18 @@ class UTopMerchantItem {
     terminalCount: json["terminalCount"] ?? 0,
     createdAt: DateTime.parse(json["createdAt"]),
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "title": title,
+    "city": city,
+    "terminalCount": terminalCount,
+    "createdAt": createdAt.toIso8601String(),
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UTopMerchantItem.fromJson(String str) => UTopMerchantItem.fromMap(json.decode(str));
 }
 
 class URecentTxnItem {
@@ -154,6 +210,19 @@ class URecentTxnItem {
     tags: json["tags"] == null ? <String>[] : List<String>.from(json["tags"].map((dynamic x) => x.toString())),
     createdAt: DateTime.parse(json["createdAt"]),
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "amount": amount,
+    "trackingNumber": trackingNumber,
+    "userName": userName,
+    "tags": List<dynamic>.from(tags.map((String x) => x)),
+    "createdAt": createdAt.toIso8601String(),
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory URecentTxnItem.fromJson(String str) => URecentTxnItem.fromMap(json.decode(str));
 }
 
 class URecentMerchantItem {
@@ -172,6 +241,18 @@ class URecentMerchantItem {
     terminalCount: json["terminalCount"] ?? 0,
     createdAt: DateTime.parse(json["createdAt"]),
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "title": title,
+    "cityCode": cityCode,
+    "terminalCount": terminalCount,
+    "createdAt": createdAt.toIso8601String(),
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory URecentMerchantItem.fromJson(String str) => URecentMerchantItem.fromMap(json.decode(str));
 }
 
 // ===================== Property (Hotels/Dorms) Dashboard =====================
@@ -292,6 +373,47 @@ class UPropertyDashboardResponse {
     hotelsByCity: ((json["hotelsByCity"] ?? <dynamic>[]) as List<dynamic>).map((dynamic x) => UPropertyBreakdownItem.fromMap(x)).toList(),
     dormsByCity: ((json["dormsByCity"] ?? <dynamic>[]) as List<dynamic>).map((dynamic x) => UPropertyBreakdownItem.fromMap(x)).toList(),
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "generatedAt": generatedAt.toIso8601String(),
+    "usersCount": usersCount,
+    "newUsersCount": newUsersCount,
+    "hotelsCount": hotelsCount,
+    "hotelRoomsCount": hotelRoomsCount,
+    "hotelRoomsAvailableCount": hotelRoomsAvailableCount,
+    "hotelRoomsOccupiedCount": hotelRoomsOccupiedCount,
+    "hotelOccupancyRate": hotelOccupancyRate,
+    "dormsCount": dormsCount,
+    "dormRoomsCount": dormRoomsCount,
+    "dormBedsCount": dormBedsCount,
+    "dormBedsAvailableCount": dormBedsAvailableCount,
+    "dormBedsOccupiedCount": dormBedsOccupiedCount,
+    "dormOccupancyRate": dormOccupancyRate,
+    "contractsCount": contractsCount,
+    "activeContractsCount": activeContractsCount,
+    "upcomingContractsCount": upcomingContractsCount,
+    "expiredContractsCount": expiredContractsCount,
+    "expiringSoonContractsCount": expiringSoonContractsCount,
+    "invoicesCount": invoicesCount,
+    "paidInvoicesCount": paidInvoicesCount,
+    "unpaidInvoicesCount": unpaidInvoicesCount,
+    "overdueInvoicesCount": overdueInvoicesCount,
+    "totalDebt": totalDebt,
+    "totalPaid": totalPaid,
+    "totalPenalty": totalPenalty,
+    "totalOutstanding": totalOutstanding,
+    "monthlyRevenue": List<dynamic>.from(monthlyRevenue.map((UDormBedInvoiceChartItem x) => x.toMap())),
+    "expiringContracts": List<dynamic>.from(expiringContracts.map((UExpiringContractItem x) => x.toMap())),
+    "overdueInvoices": List<dynamic>.from(overdueInvoices.map((UOverdueInvoiceItem x) => x.toMap())),
+    "recentContracts": List<dynamic>.from(recentContracts.map((URecentContractItem x) => x.toMap())),
+    "recentUsers": List<dynamic>.from(recentUsers.map((URecentUserItem x) => x.toMap())),
+    "hotelsByCity": List<dynamic>.from(hotelsByCity.map((UPropertyBreakdownItem x) => x.toMap())),
+    "dormsByCity": List<dynamic>.from(dormsByCity.map((UPropertyBreakdownItem x) => x.toMap())),
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UPropertyDashboardResponse.fromJson(String str) => UPropertyDashboardResponse.fromMap(json.decode(str));
 }
 
 class UDormBedInvoiceChartItem {
@@ -319,6 +441,19 @@ class UDormBedInvoiceChartItem {
     totalRemaining: (json["totalRemaining"] ?? 0).toString().toDouble(),
     invoiceCount: json["invoiceCount"] ?? 0,
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "month": month,
+    "totalDebt": totalDebt,
+    "totalPaid": totalPaid,
+    "totalPenalty": totalPenalty,
+    "totalRemaining": totalRemaining,
+    "invoiceCount": invoiceCount,
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UDormBedInvoiceChartItem.fromJson(String str) => UDormBedInvoiceChartItem.fromMap(json.decode(str));
 }
 
 class UExpiringContractItem {
@@ -339,6 +474,19 @@ class UExpiringContractItem {
     endDate: DateTime.parse(json["endDate"]),
     rent: (json["rent"] ?? 0).toString().toDouble(),
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "userName": userName,
+    "bedTitle": bedTitle,
+    "dormTitle": dormTitle,
+    "endDate": endDate.toIso8601String(),
+    "rent": rent,
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UExpiringContractItem.fromJson(String str) => UExpiringContractItem.fromMap(json.decode(str));
 }
 
 class UOverdueInvoiceItem {
@@ -369,6 +517,20 @@ class UOverdueInvoiceItem {
     dueDate: DateTime.parse(json["dueDate"]),
     daysOverdue: json["daysOverdue"] ?? 0,
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "userName": userName,
+    "debtAmount": debtAmount,
+    "paidAmount": paidAmount,
+    "penaltyAmount": penaltyAmount,
+    "dueDate": dueDate.toIso8601String(),
+    "daysOverdue": daysOverdue,
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UOverdueInvoiceItem.fromJson(String str) => UOverdueInvoiceItem.fromMap(json.decode(str));
 }
 
 class URecentContractItem {
@@ -402,6 +564,21 @@ class URecentContractItem {
     rent: (json["rent"] ?? 0).toString().toDouble(),
     createdAt: DateTime.parse(json["createdAt"]),
   );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "id": id,
+    "userName": userName,
+    "bedTitle": bedTitle,
+    "dormTitle": dormTitle,
+    "startDate": startDate.toIso8601String(),
+    "endDate": endDate.toIso8601String(),
+    "rent": rent,
+    "createdAt": createdAt.toIso8601String(),
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory URecentContractItem.fromJson(String str) => URecentContractItem.fromMap(json.decode(str));
 }
 
 class UPropertyBreakdownItem {
@@ -411,4 +588,13 @@ class UPropertyBreakdownItem {
   UPropertyBreakdownItem({required this.name, required this.count});
 
   factory UPropertyBreakdownItem.fromMap(Map<String, dynamic> json) => UPropertyBreakdownItem(name: json["name"] ?? "", count: json["count"] ?? 0);
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "name": name,
+    "count": count,
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UPropertyBreakdownItem.fromJson(String str) => UPropertyBreakdownItem.fromMap(json.decode(str));
 }

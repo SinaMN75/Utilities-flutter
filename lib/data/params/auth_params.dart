@@ -137,16 +137,16 @@ class UVerifyMobileForLoginParams {
   };
 }
 
-class UCompleteProfileParams {
-  UCompleteProfileParams({
+class UAuthCompleteProfileParams {
+  UAuthCompleteProfileParams({
     required this.nationalCode,
     required this.firstName,
     required this.lastName,
   });
 
-  factory UCompleteProfileParams.fromJson(String str) => UCompleteProfileParams.fromMap(json.decode(str));
+  factory UAuthCompleteProfileParams.fromJson(String str) => UAuthCompleteProfileParams.fromMap(json.decode(str));
 
-  factory UCompleteProfileParams.fromMap(Map<String, dynamic> json) => UCompleteProfileParams(
+  factory UAuthCompleteProfileParams.fromMap(Map<String, dynamic> json) => UAuthCompleteProfileParams(
     nationalCode: json["nationalCode"],
     firstName: json["firstName"],
     lastName: json["lastName"],

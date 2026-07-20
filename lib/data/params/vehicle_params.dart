@@ -61,7 +61,6 @@ class UVehicleUpdateParams {
   final List<int>? addTags;
   final List<int>? removeTags;
   final List<int>? tags;
-  final String? title;
   final String? brand;
   final String? color;
   final String? detail1;
@@ -76,7 +75,6 @@ class UVehicleUpdateParams {
     this.addTags,
     this.removeTags,
     this.tags,
-    this.title,
     this.brand,
     this.color,
     this.detail1,
@@ -96,7 +94,6 @@ class UVehicleUpdateParams {
     addTags: json["addTags"] == null ? <int>[] : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? <int>[] : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
     tags: json["tags"] == null ? <int>[] : List<int>.from(json["tags"]!.map((dynamic x) => x)),
-    title: json["title"],
     brand: json["brand"],
     color: json["color"],
     detail1: json["detail1"],
@@ -112,7 +109,6 @@ class UVehicleUpdateParams {
     "addTags": addTags == null ? <dynamic>[] : List<dynamic>.from(addTags!.map((int x) => x)),
     "removeTags": removeTags == null ? <dynamic>[] : List<dynamic>.from(removeTags!.map((int x) => x)),
     "tags": tags == null ? <dynamic>[] : List<dynamic>.from(tags!.map((int x) => x)),
-    "title": title,
     "brand": brand,
     "color": color,
     "detail1": detail1,

@@ -363,7 +363,7 @@ class _ContractPageState extends State<UAdminContractPage> {
                               deposit: isDaily ? null : (deposit.text.isEmpty ? null : deposit.numDouble()),
                               rent: rent.text.isEmpty ? null : rent.numDouble(),
                               penaltyPrecentEveryDate: isDaily ? null : (penalty.text.isEmpty ? null : penalty.text.toInt()),
-                              description: description.text.nullIfEmpty(),
+                              detail1: description.text.nullIfEmpty(),
                             ),
                           );
                         }
@@ -384,7 +384,6 @@ class _ContractPageState extends State<UAdminContractPage> {
     isActive: false,
     id: "",
     createdAt: DateTime.now(),
-    updatedAt: DateTime.now(),
     jsonData: UContractJsonData(),
     tags: <int>[],
     startDate: DateTime.now(),

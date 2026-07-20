@@ -28,8 +28,6 @@ class UUserResponse {
     required this.tags,
     required this.userName,
     required this.adminUserIds,
-    this.password,
-    this.refreshToken,
     this.landLine,
     this.phoneNumber,
     this.email,
@@ -67,8 +65,6 @@ class UUserResponse {
     jsonData: UUserJson.fromMap(json["jsonData"]),
     tags: List<int>.from(json["tags"].map((dynamic x) => x)),
     userName: json["userName"],
-    password: json["password"],
-    refreshToken: json["refreshToken"],
     landLine: json["landLine"],
     phoneNumber: json["phoneNumber"],
     email: json["email"],
@@ -93,7 +89,7 @@ class UUserResponse {
     wallets: json["wallets"] == null ? <UWalletResponse>[] : List<UWalletResponse>.from(json["wallets"].map((dynamic x) => UWalletResponse.fromMap(x))),
     txns: json["txns"] == null ? <UTxnResponse>[] : List<UTxnResponse>.from(json["txns"].map((dynamic x) => UTxnResponse.fromMap(x))),
     bankAccounts: json["bankAccounts"] == null ? <UBankAccountResponse>[] : List<UBankAccountResponse>.from(json["bankAccounts"].map((dynamic x) => UBankAccountResponse.fromMap(x))),
-    simCards: json["simCards"] == null ? <USimResponse>[] : List<USimResponse>.from(json["simCards"].map((dynamic x) => USimResponse.fromMap(x))),
+    simCards: json["simCards"] == null ? <USimCardResponse>[] : List<USimCardResponse>.from(json["simCards"].map((dynamic x) => USimCardResponse.fromMap(x))),
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     creatorId: json["creatorId"],
     adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
@@ -103,8 +99,6 @@ class UUserResponse {
   final UUserJson jsonData;
   final List<int> tags;
   final String userName;
-  final String? password;
-  final String? refreshToken;
   final String? landLine;
   final String? phoneNumber;
   final String? email;
@@ -129,7 +123,7 @@ class UUserResponse {
   final List<UWalletResponse>? wallets;
   final List<UTxnResponse>? txns;
   final List<UBankAccountResponse>? bankAccounts;
-  final List<USimResponse>? simCards;
+  final List<USimCardResponse>? simCards;
   final UUserResponse? creator;
   final String? creatorId;
   final List<String> adminUserIds;
@@ -142,8 +136,6 @@ class UUserResponse {
     "jsonData": jsonData.toMap(),
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "userName": userName,
-    "password": password,
-    "refreshToken": refreshToken,
     "landLine": landLine,
     "phoneNumber": phoneNumber,
     "email": email,
@@ -168,7 +160,7 @@ class UUserResponse {
     "wallets": wallets == null ? null : List<dynamic>.from(wallets!.map((UWalletResponse x) => x.toMap())),
     "txns": txns == null ? null : List<dynamic>.from(txns!.map((UTxnResponse x) => x.toMap())),
     "bankAccounts": bankAccounts == null ? null : List<dynamic>.from(bankAccounts!.map((UBankAccountResponse x) => x.toMap())),
-    "simCards": simCards == null ? null : List<dynamic>.from(simCards!.map((USimResponse x) => x.toMap())),
+    "simCards": simCards == null ? null : List<dynamic>.from(simCards!.map((USimCardResponse x) => x.toMap())),
     "creator": creator?.toMap(),
     "creatorId": creatorId,
     "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
@@ -180,7 +172,6 @@ class UUserJson {
     this.fcmToken,
     this.weight,
     this.height,
-    this.address,
     this.fatherName,
 
     this.nationalCardFrontRejectionReason,
@@ -202,7 +193,6 @@ class UUserJson {
     fcmToken: json["fcmToken"],
     weight: json["weight"]?.toDouble(),
     height: json["height"]?.toDouble(),
-    address: json["address"],
     fatherName: json["fatherName"],
     nationalCardFrontRejectionReason: json["nationalCardFrontRejectionReason"],
     nationalCardBackRejectionReason: json["nationalCardBackRejectionReason"],
@@ -219,7 +209,6 @@ class UUserJson {
   final String? fcmToken;
   final double? weight;
   final double? height;
-  final String? address;
   final String? fatherName;
   final String? nationalCardFrontRejectionReason;
   final String? nationalCardBackRejectionReason;
@@ -239,7 +228,6 @@ class UUserJson {
     "fcmToken": fcmToken,
     "weight": weight,
     "height": height,
-    "address": address,
     "fatherName": fatherName,
     "nationalCardFrontRejectionReason": nationalCardFrontRejectionReason,
     "nationalCardBackRejectionReason": nationalCardBackRejectionReason,

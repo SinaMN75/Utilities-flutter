@@ -21,6 +21,13 @@ class UIdParams {
     "id": id,
     "selectorArgs": selectorArgs?.toMap(),
   };
+
+  factory UIdParams.fromMap(Map<String, dynamic> json) => UIdParams(
+    id: json["id"],
+    selectorArgs: json["selectorArgs"],
+  );
+
+  factory UIdParams.fromJson(String str) => UIdParams.fromMap(json.decode(str));
 }
 
 class UIdListParams {

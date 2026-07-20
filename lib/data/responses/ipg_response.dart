@@ -16,6 +16,10 @@ class UIpgPayResponse {
     "url": url,
     "trackingNumber": trackingNumber,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory UIpgPayResponse.fromJson(String str) => UIpgPayResponse.fromMap(json.decode(str));
 }
 
 // Result of Verify: final state of the charge plus the refreshed wallet balance.
@@ -37,4 +41,8 @@ class UIpgVerifyResponse {
     "failed": failed,
     "balance": balance,
   };
+
+  String toJson() => json.encode(toMap());
+
+  factory UIpgVerifyResponse.fromJson(String str) => UIpgVerifyResponse.fromMap(json.decode(str));
 }

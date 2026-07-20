@@ -2,19 +2,19 @@ part of "../data.dart";
 
 // Client for the SystemAdmin-only wwwroot file manager. Every path is relative to wwwroot.
 class FileManagerService {
-  Future<(UResponse<UFileManagerList>?, UEmptyResponse?, String?)> browse({
+  Future<(UResponse<UFileManagerListResponse>?, UEmptyResponse?, String?)> browse({
     required final UFileManagerBrowseParams p,
-    required final Function(UResponse<UFileManagerList> r) onOk,
+    required final Function(UResponse<UFileManagerListResponse> r) onOk,
     required final Function(UEmptyResponse e) onError,
     required final Function(String e) onException,
   }) async {
-    (UResponse<UFileManagerList>?, UEmptyResponse?, String?) result = (null, null, null);
+    (UResponse<UFileManagerListResponse>?, UEmptyResponse?, String?) result = (null, null, null);
     await UHttpClient.send(
       method: "POST",
       endpoint: "${U.baseUrl}/FileManager/Browse",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
       onSuccess: (final Response r) {
-        final UResponse<UFileManagerList> ok = UResponse<UFileManagerList>.fromJson(r.body, (dynamic i) => UFileManagerList.fromMap(i));
+        final UResponse<UFileManagerListResponse> ok = UResponse<UFileManagerListResponse>.fromJson(r.body, (dynamic i) => UFileManagerListResponse.fromMap(i));
         result = (ok, null, null);
         onOk(ok);
       },

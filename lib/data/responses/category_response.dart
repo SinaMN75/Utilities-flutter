@@ -22,7 +22,6 @@ class UCategoryResponse {
     required this.adminUserIds,
     this.code,
     this.parentId,
-    this.parent,
     this.order,
     this.children,
     this.media,
@@ -40,7 +39,6 @@ class UCategoryResponse {
     title: json["title"],
     code: json["code"],
     parentId: json["parentId"],
-    parent: json["parent"] == null ? null : UCategoryResponse.fromMap(json["parent"]),
     order: json["order"],
     children: json["children"] == null ? <UCategoryResponse>[] : List<UCategoryResponse>.from(json["children"].map((dynamic x) => UCategoryResponse.fromMap(x))),
     media: json["media"] == null ? <UMediaResponse>[] : List<UMediaResponse>.from(json["media"].map((dynamic x) => UMediaResponse.fromMap(x))),
@@ -55,7 +53,6 @@ class UCategoryResponse {
   final String title;
   final String? code;
   final String? parentId;
-  final UCategoryResponse? parent;
   final int? order;
   final List<UCategoryResponse>? children;
   final List<UMediaResponse>? media;
@@ -72,7 +69,6 @@ class UCategoryResponse {
     "tags": List<dynamic>.from(tags.map((int x) => x)),
     "title": title,
     "parentId": parentId,
-    "parent": parent?.toMap(),
     "order": order,
     "code": code,
     "children": children == null ? null : List<dynamic>.from(children!.map((UCategoryResponse x) => x.toMap())),

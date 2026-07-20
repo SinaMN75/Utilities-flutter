@@ -375,3 +375,91 @@ class UParkingReportReadParams {
     "creatorId": creatorId,
   };
 }
+
+class UParkingUserCreateParams {
+  final String parkingId;
+  final String userName;
+  final String password;
+  final String? firstName;
+  final String? lastName;
+  final String? phoneNumber;
+
+  UParkingUserCreateParams({
+    required this.parkingId,
+    required this.userName,
+    required this.password,
+    this.firstName,
+    this.lastName,
+    this.phoneNumber,
+  });
+
+  factory UParkingUserCreateParams.fromJson(String str) => UParkingUserCreateParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UParkingUserCreateParams.fromMap(Map<String, dynamic> json) => UParkingUserCreateParams(
+    parkingId: json["parkingId"],
+    userName: json["userName"],
+    password: json["password"],
+    firstName: json["firstName"],
+    lastName: json["lastName"],
+    phoneNumber: json["phoneNumber"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "parkingId": parkingId,
+    "userName": userName,
+    "password": password,
+    "firstName": firstName,
+    "lastName": lastName,
+    "phoneNumber": phoneNumber,
+  };
+}
+
+class UParkingUserDeleteParams {
+  final String parkingId;
+  final String userId;
+
+  UParkingUserDeleteParams({
+    required this.parkingId,
+    required this.userId,
+  });
+
+  factory UParkingUserDeleteParams.fromJson(String str) => UParkingUserDeleteParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UParkingUserDeleteParams.fromMap(Map<String, dynamic> json) => UParkingUserDeleteParams(
+    parkingId: json["parkingId"],
+    userId: json["userId"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "parkingId": parkingId,
+    "userId": userId,
+  };
+}
+
+class UParkingUserReadParams {
+  final String parkingId;
+  final UserSelectorArgs? selectorArgs;
+
+  UParkingUserReadParams({
+    required this.parkingId,
+    this.selectorArgs,
+  });
+
+  factory UParkingUserReadParams.fromJson(String str) => UParkingUserReadParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UParkingUserReadParams.fromMap(Map<String, dynamic> json) => UParkingUserReadParams(
+    parkingId: json["parkingId"],
+    selectorArgs: json["selectorArgs"] == null ? null : UserSelectorArgs.fromMap(json["selectorArgs"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "parkingId": parkingId,
+    "selectorArgs": selectorArgs?.toMap(),
+  };
+}

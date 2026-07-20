@@ -867,7 +867,6 @@ class _ApiLogDetailView extends StatelessWidget {
       _metaItem(context, U.s.requestSize, _formatBytes(item.jsonData.requestSizeBytes)),
       _metaItem(context, U.s.responseSize, _formatBytes(item.jsonData.responseSizeBytes)),
       if (item.jsonData.userAgent != null) SizedBox(width: 280, child: _metaItem(context, "User-Agent", item.jsonData.userAgent!)),
-      if (item.traceId != null) _metaItem(context, item.traceId!, U.s.traceId),
     ],
   );
 

@@ -37,7 +37,6 @@ class _BlogPageState extends State<UAdminBlogPage> {
         UAdminTable.headerCell("", flex: 0),
         UAdminTable.headerCell(U.s.title, flex: 3),
         UAdminTable.headerCell(U.s.status),
-        UAdminTable.headerCell(U.s.viewCount),
         UAdminTable.headerCell(U.s.comments),
         UAdminTable.headerCell(U.s.createdAt),
         UAdminTable.headerCell(U.s.operations),
@@ -58,7 +57,6 @@ class _BlogPageState extends State<UAdminBlogPage> {
         label: Text(_isPublished(i) ? U.s.published : U.s.draft),
         backgroundColor: _isPublished(i) ? Colors.green.withValues(alpha: 0.15) : Colors.grey.withValues(alpha: 0.15),
       ).expanded(),
-      UAdminTable.cell(i.viewCount.toString()),
       UAdminTable.cell((i.commentCount ?? 0).toString()),
       UAdminTable.cell(i.createdAt.toJalaliDate()),
       _menu(i).expanded(),
@@ -72,7 +70,7 @@ class _BlogPageState extends State<UAdminBlogPage> {
     title: i.title,
     subtitle: <Widget>[
       UTextBodyMedium(_isPublished(i) ? U.s.published : U.s.draft),
-      UTextBodySmall("${i.viewCount} ${U.s.viewCount} • ${i.commentCount ?? 0} ${U.s.comments} • ${i.createdAt.toJalaliDate()}"),
+      UTextBodySmall("${U.s.viewCount} • ${i.commentCount ?? 0} ${U.s.comments} • ${i.createdAt.toJalaliDate()}"),
     ],
     trailing: _menu(i),
   );

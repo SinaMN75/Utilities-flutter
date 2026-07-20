@@ -155,7 +155,7 @@ class AuthService {
   }
 
   Future<(UEmptyResponse?, UEmptyResponse?, String?)> completeProfile({
-    required final UCompleteProfileParams p,
+    required final UAuthCompleteProfileParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,

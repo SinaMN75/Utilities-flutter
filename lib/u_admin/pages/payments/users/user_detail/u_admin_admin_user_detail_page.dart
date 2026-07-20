@@ -182,8 +182,6 @@ class _AdminUserDetailPageState extends State<UAdminUserDetailPage> {
             const Divider(height: 1),
             _infoRow(Icons.email, U.s.email, c.user.email ?? U.s.notUploaded, UAdminTheme.orange),
             const Divider(height: 1),
-            _infoRow(Icons.location_city, U.s.address, c.user.jsonData.address ?? U.s.notUploaded, UAdminTheme.orange),
-            const Divider(height: 1),
             _infoRow(Icons.person_2, U.s.fatherName, c.user.jsonData.fatherName ?? U.s.notUploaded, UAdminTheme.orange),
           ],
         ),

@@ -9,7 +9,6 @@ class UProductResponse {
     required this.title,
     required this.point,
     required this.creatorId,
-    required this.visitCount,
     required this.adminUserIds,
     required this.order,
     this.code,
@@ -21,10 +20,7 @@ class UProductResponse {
     this.latitude,
     this.longitude,
     this.stock,
-    this.deposit,
-    this.rent,
     this.parentId,
-    this.parent,
     this.creator,
     this.children,
     this.media,
@@ -51,15 +47,11 @@ class UProductResponse {
     latitude: json["latitude"],
     longitude: json["longitude"],
     stock: json["stock"],
-    deposit: json["deposit"].toString().toDouble(),
-    rent: json["rent"].toString().toDouble(),
     point: json["point"],
     parentId: json["parentId"],
-    parent: json["parent"] == null ? null : UProductResponse.fromMap(json["parent"]),
     creatorId: json["creatorId"],
     commentCount: json["commentCount"],
     isFollowing: json["isFollowing"],
-    visitCount: json["visitCount"],
     childrenCount: json["childrenCount"],
     creator: json["creator"] == null ? null : UUserResponse.fromMap(json["creator"]),
     children: json["children"] == null ? <UProductResponse>[] : List<UProductResponse>.from(json["children"].map((dynamic x) => UProductResponse.fromMap(x))),
@@ -82,11 +74,8 @@ class UProductResponse {
   final double? latitude;
   final double? longitude;
   final int? stock;
-  final double? deposit;
-  final double? rent;
   final int point;
   final String? parentId;
-  final UProductResponse? parent;
   final String creatorId;
   final UUserResponse? creator;
   final List<UProductResponse>? children;
@@ -94,7 +83,6 @@ class UProductResponse {
   final List<UCategoryResponse>? categories;
   final int? commentCount;
   final bool? isFollowing;
-  final int? visitCount;
   final int? childrenCount;
   final List<String> adminUserIds;
   final int order;
@@ -117,14 +105,10 @@ class UProductResponse {
     "latitude": latitude,
     "longitude": longitude,
     "stock": stock,
-    "deposit": deposit,
-    "rent": rent,
     "parentId": parentId,
-    "parent": parent?.toMap(),
     "creatorId": creatorId,
     "commentCount": commentCount,
     "isFollowing": isFollowing,
-    "visitCount": visitCount,
     "childrenCount": childrenCount,
     "creator": creator?.toMap(),
     "children": children == null ? null : List<dynamic>.from(children!.map((UProductResponse x) => x.toMap())),
@@ -141,8 +125,6 @@ class UProductJson {
     this.actionTitle,
     this.actionUri,
     this.details,
-    this.visitCounts,
-    this.pointCounts,
     this.relatedProducts,
     this.phoneNumber,
     this.address,
@@ -157,8 +139,6 @@ class UProductJson {
     actionTitle: json["actionTitle"],
     actionUri: json["actionUri"],
     details: json["details"],
-    visitCounts: json["visitCounts"] == null ? <UVisitCount>[] : List<UVisitCount>.from(json["visitCounts"].map((dynamic x) => UVisitCount.fromMap(x))),
-    pointCounts: json["pointCounts"] == null ? <UPointCount>[] : List<UPointCount>.from(json["pointCounts"].map((dynamic x) => UPointCount.fromMap(x))),
     relatedProducts: json["relatedProducts"] == null ? <String>[] : List<String>.from(json["relatedProducts"].map((dynamic x) => x)),
     phoneNumber: json["phoneNumber"],
     address: json["address"],
@@ -169,8 +149,6 @@ class UProductJson {
   final String? actionTitle;
   final String? actionUri;
   final String? details;
-  final List<UVisitCount>? visitCounts;
-  final List<UPointCount>? pointCounts;
   final List<String>? relatedProducts;
   final String? phoneNumber;
   final String? address;
@@ -184,8 +162,6 @@ class UProductJson {
     "actionTitle": actionTitle,
     "actionUri": actionUri,
     "details": details,
-    "visitCounts": visitCounts == null ? null : List<dynamic>.from(visitCounts!.map((UVisitCount x) => x.toMap())),
-    "pointCounts": pointCounts == null ? null : List<dynamic>.from(pointCounts!.map((UPointCount x) => x.toMap())),
     "relatedProducts": relatedProducts == null ? null : List<dynamic>.from(relatedProducts!.map((String x) => x)),
     "phoneNumber": phoneNumber,
     "address": address,

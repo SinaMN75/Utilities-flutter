@@ -119,6 +119,11 @@ class UMoadiUpdateParams {
   final List<int>? tags;
   final List<int>? addTags;
   final List<int>? removeTags;
+  final String? detail1;
+  final String? detail2;
+  final List<String>? adminUserIds;
+  final List<String>? addAdminUserIds;
+  final List<String>? removeAdminUserIds;
 
   UMoadiUpdateParams({
     required this.id,
@@ -139,6 +144,11 @@ class UMoadiUpdateParams {
     this.tags,
     this.addTags,
     this.removeTags,
+    this.detail1,
+    this.detail2,
+    this.adminUserIds,
+    this.addAdminUserIds,
+    this.removeAdminUserIds,
   });
 
   factory UMoadiUpdateParams.fromJson(String str) => UMoadiUpdateParams.fromMap(json.decode(str));
@@ -164,6 +174,11 @@ class UMoadiUpdateParams {
     tags: json["tags"] == null ? null : List<int>.from(json["tags"]!.map((dynamic x) => x)),
     addTags: json["addTags"] == null ? null : List<int>.from(json["addTags"]!.map((dynamic x) => x)),
     removeTags: json["removeTags"] == null ? null : List<int>.from(json["removeTags"]!.map((dynamic x) => x)),
+    detail1: json["detail1"],
+    detail2: json["detail2"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
+    addAdminUserIds: json["addAdminUserIds"] == null ? <String>[] : List<String>.from(json["addAdminUserIds"]!.map((dynamic x) => x)),
+    removeAdminUserIds: json["removeAdminUserIds"] == null ? <String>[] : List<String>.from(json["removeAdminUserIds"]!.map((dynamic x) => x)),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -185,6 +200,11 @@ class UMoadiUpdateParams {
     "tags": tags == null ? null : List<dynamic>.from(tags!.map((int x) => x)),
     "addTags": addTags == null ? null : List<dynamic>.from(addTags!.map((int x) => x)),
     "removeTags": removeTags == null ? null : List<dynamic>.from(removeTags!.map((int x) => x)),
+    "detail1": detail1,
+    "detail2": detail2,
+    "adminUserIds": adminUserIds == null ? <dynamic>[] : List<dynamic>.from(adminUserIds!.map((String x) => x)),
+    "addAdminUserIds": addAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(addAdminUserIds!.map((String x) => x)),
+    "removeAdminUserIds": removeAdminUserIds == null ? <dynamic>[] : List<dynamic>.from(removeAdminUserIds!.map((String x) => x)),
   };
 }
 

@@ -1,6 +1,7 @@
 part of "../data.dart";
 
 class UApiLogResponse {
+  final List<String> adminUserIds;
   UApiLogResponse({
     required this.id,
     required this.createdAt,
@@ -10,10 +11,10 @@ class UApiLogResponse {
     required this.path,
     required this.statusCode,
     required this.durationMs,
+    required this.adminUserIds,
     this.creator,
     this.userId,
     this.ipAddress,
-    this.traceId,
   });
 
   factory UApiLogResponse.fromMap(Map<String, dynamic> json) => UApiLogResponse(
@@ -28,7 +29,7 @@ class UApiLogResponse {
     durationMs: json["durationMs"] is int ? json["durationMs"] : int.tryParse(json["durationMs"].toString()) ?? 0,
     userId: json["userId"],
     ipAddress: json["ipAddress"],
-    traceId: json["traceId"],
+    adminUserIds: json["adminUserIds"] == null ? <String>[] : List<String>.from(json["adminUserIds"]!.map((dynamic x) => x)),
   );
 
   final String id;
@@ -42,7 +43,25 @@ class UApiLogResponse {
   final int durationMs;
   final String? userId;
   final String? ipAddress;
-  final String? traceId;
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "adminUserIds": List<dynamic>.from(adminUserIds.map((String x) => x)),
+    "id": id,
+    "createdAt": createdAt.toIso8601String(),
+    "jsonData": jsonData.toMap(),
+    "tags": List<dynamic>.from(tags.map((int x) => x)),
+    "creatorId": creatorId,
+    "creator": creator?.toMap(),
+    "path": path,
+    "statusCode": statusCode,
+    "durationMs": durationMs,
+    "userId": userId,
+    "ipAddress": ipAddress,
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UApiLogResponse.fromJson(String str) => UApiLogResponse.fromMap(json.decode(str));
 }
 
 class UApiLogJson {
@@ -63,6 +82,8 @@ class UApiLogJson {
     this.stackTrace,
     this.requestSizeBytes = 0,
     this.responseSizeBytes = 0,
+    this.detail1,
+    this.detail2,
   });
 
   factory UApiLogJson.fromMap(Map<String, dynamic> json) => UApiLogJson(
@@ -82,8 +103,12 @@ class UApiLogJson {
     stackTrace: json["stackTrace"],
     requestSizeBytes: json["requestSizeBytes"] ?? 0,
     responseSizeBytes: json["responseSizeBytes"] ?? 0,
+    detail1: json["detail1"],
+    detail2: json["detail2"],
   );
 
+  final String? detail1;
+  final String? detail2;
   final String method;
   final String? queryString;
   final String? requestBody;
@@ -100,6 +125,31 @@ class UApiLogJson {
   final String? stackTrace;
   final int requestSizeBytes;
   final int responseSizeBytes;
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "detail1": detail1,
+    "detail2": detail2,
+    "method": method,
+    "queryString": queryString,
+    "requestBody": requestBody,
+    "responseBody": responseBody,
+    "requestHeaders": requestHeaders,
+    "responseHeaders": responseHeaders,
+    "userAgent": userAgent,
+    "host": host,
+    "userName": userName,
+    "userEmail": userEmail,
+    "userRoles": userRoles,
+    "exceptionType": exceptionType,
+    "exceptionMessage": exceptionMessage,
+    "stackTrace": stackTrace,
+    "requestSizeBytes": requestSizeBytes,
+    "responseSizeBytes": responseSizeBytes,
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UApiLogJson.fromJson(String str) => UApiLogJson.fromMap(json.decode(str));
 }
 
 class UApiLogBucketResponse {
@@ -121,6 +171,17 @@ class UApiLogBucketResponse {
   final int count;
   final int errorCount;
   final double averageDurationMs;
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "time": time.toIso8601String(),
+    "count": count,
+    "errorCount": errorCount,
+    "averageDurationMs": averageDurationMs,
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UApiLogBucketResponse.fromJson(String str) => UApiLogBucketResponse.fromMap(json.decode(str));
 }
 
 class UApiLogEndpointResponse {
@@ -139,6 +200,16 @@ class UApiLogEndpointResponse {
   final String path;
   final int count;
   final double averageDurationMs;
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "path": path,
+    "count": count,
+    "averageDurationMs": averageDurationMs,
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UApiLogEndpointResponse.fromJson(String str) => UApiLogEndpointResponse.fromMap(json.decode(str));
 }
 
 class UApiLogStatsResponse {
@@ -181,4 +252,22 @@ class UApiLogStatsResponse {
   final List<UApiLogEndpointResponse> slowestEndpoints;
   final List<UApiLogEndpointResponse> failingEndpoints;
   final List<UApiLogResponse> slowestRequests;
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "totalCount": totalCount,
+    "successCount": successCount,
+    "errorCount": errorCount,
+    "averageDurationMs": averageDurationMs,
+    "p50DurationMs": p50DurationMs,
+    "p95DurationMs": p95DurationMs,
+    "p99DurationMs": p99DurationMs,
+    "timeline": List<dynamic>.from(timeline.map((UApiLogBucketResponse x) => x.toMap())),
+    "slowestEndpoints": List<dynamic>.from(slowestEndpoints.map((UApiLogEndpointResponse x) => x.toMap())),
+    "failingEndpoints": List<dynamic>.from(failingEndpoints.map((UApiLogEndpointResponse x) => x.toMap())),
+    "slowestRequests": List<dynamic>.from(slowestRequests.map((UApiLogResponse x) => x.toMap())),
+  };
+
+  String toJson() => json.encode(toMap());
+
+  factory UApiLogStatsResponse.fromJson(String str) => UApiLogStatsResponse.fromMap(json.decode(str));
 }

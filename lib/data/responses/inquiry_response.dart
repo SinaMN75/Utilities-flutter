@@ -93,7 +93,6 @@ class UZipCodeToAddressDetailResponse {
     required this.townShip,
     required this.traceId,
     required this.village,
-    required this.localityCode,
     this.isCached = false,
     this.cachedAt,
   });
@@ -116,7 +115,6 @@ class UZipCodeToAddressDetailResponse {
     townShip: json["townShip"],
     traceId: json["traceId"],
     village: json["village"],
-    localityCode: json["localityCode"],
     isCached: json["isCached"] ?? false,
     cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
   );
@@ -135,7 +133,6 @@ class UZipCodeToAddressDetailResponse {
   final String? townShip;
   final String? traceId;
   final String? village;
-  final int? localityCode;
   final bool isCached;
   final DateTime? cachedAt;
 
@@ -157,7 +154,6 @@ class UZipCodeToAddressDetailResponse {
     "townShip": townShip,
     "traceId": traceId,
     "village": village,
-    "localityCode": localityCode,
     "isCached": isCached,
     "cachedAt": cachedAt?.toIso8601String(),
   };
@@ -530,7 +526,7 @@ class UIBanToBankAccountDetailResponse {
 class ULicencePlateDetailResponse {
   final String? status;
   final String? tracePlate;
-  final List<ULicencePlateDetailItem>? items;
+  final List<ULicencePlateHistoryItem>? items;
   final bool isCached;
   final DateTime? cachedAt;
 
@@ -549,7 +545,7 @@ class ULicencePlateDetailResponse {
   factory ULicencePlateDetailResponse.fromMap(Map<String, dynamic> json) => ULicencePlateDetailResponse(
     status: json["status"],
     tracePlate: json["tracePlate"],
-    items: json["items"] == null ? <ULicencePlateDetailItem>[] : List<ULicencePlateDetailItem>.from(json["items"]!.map((dynamic x) => ULicencePlateDetailItem.fromMap(x))),
+    items: json["items"] == null ? <ULicencePlateHistoryItem>[] : List<ULicencePlateHistoryItem>.from(json["items"]!.map((dynamic x) => ULicencePlateHistoryItem.fromMap(x))),
     isCached: json["isCached"] ?? false,
     cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
   );
@@ -557,30 +553,30 @@ class ULicencePlateDetailResponse {
   Map<String, dynamic> toMap() => <String, dynamic>{
     "status": status,
     "tracePlate": tracePlate,
-    "items": items == null ? <dynamic>[] : List<dynamic>.from(items!.map((ULicencePlateDetailItem x) => x.toMap())),
+    "items": items == null ? <dynamic>[] : List<dynamic>.from(items!.map((ULicencePlateHistoryItem x) => x.toMap())),
     "isCached": isCached,
     "cachedAt": cachedAt?.toIso8601String(),
   };
 }
 
-class ULicencePlateDetailItem {
+class ULicencePlateHistoryItem {
   final String? system;
   final String? type;
   final String? installDate;
   final String? model;
 
-  ULicencePlateDetailItem({
+  ULicencePlateHistoryItem({
     this.system,
     this.type,
     this.installDate,
     this.model,
   });
 
-  factory ULicencePlateDetailItem.fromJson(String str) => ULicencePlateDetailItem.fromMap(json.decode(str));
+  factory ULicencePlateHistoryItem.fromJson(String str) => ULicencePlateHistoryItem.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory ULicencePlateDetailItem.fromMap(Map<String, dynamic> json) => ULicencePlateDetailItem(
+  factory ULicencePlateHistoryItem.fromMap(Map<String, dynamic> json) => ULicencePlateHistoryItem(
     system: json["system"],
     type: json["type"],
     installDate: json["installDate"],

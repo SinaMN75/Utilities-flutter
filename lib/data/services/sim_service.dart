@@ -2,7 +2,7 @@ part of "../data.dart";
 
 class SimService {
   Future<(UResponse<String>?, UEmptyResponse?, String?)> create({
-    required final USimCreateParams p,
+    required final USimCardCreateParams p,
     final Function(UResponse<String> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
@@ -30,21 +30,21 @@ class SimService {
     return result;
   }
 
-  Future<(UResponse<List<USimResponse>>?, UEmptyResponse?, String?)> read({
-    required final USimReadParams p,
-    final Function(UResponse<List<USimResponse>> r)? onOk,
+  Future<(UResponse<List<USimCardResponse>>?, UEmptyResponse?, String?)> read({
+    required final USimCardReadParams p,
+    final Function(UResponse<List<USimCardResponse>> r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,
   }) async {
-    (UResponse<List<USimResponse>>?, UEmptyResponse?, String?) result = (null, null, null);
+    (UResponse<List<USimCardResponse>>?, UEmptyResponse?, String?) result = (null, null, null);
     await UHttpClient.send(
       method: "POST",
       endpoint: "${U.baseUrl}/Sim/Read",
       body: p.toMap().add("apiKey", U.apiKey).add("token", ULocalStorage.getToken()),
       onSuccess: (final Response r) {
-        final UResponse<List<USimResponse>> ok = UResponse<List<USimResponse>>.fromJson(
+        final UResponse<List<USimCardResponse>> ok = UResponse<List<USimCardResponse>>.fromJson(
           r.body,
-          (final dynamic i) => List<USimResponse>.from((i as List<dynamic>).map((final dynamic x) => USimResponse.fromMap(x))),
+          (final dynamic i) => List<USimCardResponse>.from((i as List<dynamic>).map((final dynamic x) => USimCardResponse.fromMap(x))),
         );
         result = (ok, null, null);
         onOk?.call(ok);
@@ -63,7 +63,7 @@ class SimService {
   }
 
   Future<(UEmptyResponse?, UEmptyResponse?, String?)> update({
-    required final USimUpdateParams p,
+    required final USimCardUpdateParams p,
     final Function(UEmptyResponse r)? onOk,
     final Function(UEmptyResponse e)? onError,
     final Function(String e)? onException,

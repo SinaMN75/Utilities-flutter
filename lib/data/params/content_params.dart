@@ -1,6 +1,7 @@
 part of "../data.dart";
 
 class UContentCreateParams {
+  final List<String>? media;
   UContentCreateParams({
     required this.tags,
     this.title,
@@ -23,6 +24,7 @@ class UContentCreateParams {
     this.phone,
     this.links = const <UContentLink>[],
     this.items = const <UContentItem>[],
+    this.media,
   });
 
   factory UContentCreateParams.fromJson(String str) => UContentCreateParams.fromMap(json.decode(str));
@@ -49,6 +51,7 @@ class UContentCreateParams {
     phone: json["phone"],
     links: json["links"] == null ? <UContentLink>[] : List<UContentLink>.from(json["links"].map((dynamic x) => UContentLink.fromMap(x))),
     items: json["items"] == null ? <UContentItem>[] : List<UContentItem>.from(json["items"].map((dynamic x) => UContentItem.fromMap(x))),
+    media: json["media"] == null ? <String>[] : List<String>.from(json["media"]!.map((dynamic x) => x)),
   );
   final String? title;
   final String? detail1;
@@ -96,10 +99,13 @@ class UContentCreateParams {
     "phone": phone,
     "links": List<dynamic>.from(links.map((UContentLink x) => x.toMap())),
     "items": List<dynamic>.from(items.map((UContentItem x) => x.toMap())),
+    "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((String x) => x)),
   };
 }
 
 class UContentUpdateParams {
+  final String? creatorId;
+  final List<String>? media;
   UContentUpdateParams({
     required this.id,
     this.title,
@@ -125,6 +131,8 @@ class UContentUpdateParams {
     this.phone,
     this.links,
     this.items,
+    this.creatorId,
+    this.media,
   });
 
   factory UContentUpdateParams.fromJson(String str) => UContentUpdateParams.fromMap(json.decode(str));
@@ -154,6 +162,8 @@ class UContentUpdateParams {
     phone: json["phone"],
     links: json["links"] == null ? null : List<UContentLink>.from(json["links"].map((dynamic x) => UContentLink.fromMap(x))),
     items: json["items"] == null ? null : List<UContentItem>.from(json["items"].map((dynamic x) => UContentItem.fromMap(x))),
+    creatorId: json["creatorId"],
+    media: json["media"] == null ? <String>[] : List<String>.from(json["media"]!.map((dynamic x) => x)),
   );
   final String id;
   final String? title;
@@ -207,10 +217,13 @@ class UContentUpdateParams {
     "phone": phone,
     "links": links == null ? null : List<dynamic>.from(links!.map((UContentLink x) => x.toMap())),
     "items": items == null ? null : List<dynamic>.from(items!.map((UContentItem x) => x.toMap())),
+    "creatorId": creatorId,
+    "media": media == null ? <dynamic>[] : List<dynamic>.from(media!.map((String x) => x)),
   };
 }
 
 class UContentReadParams {
+  final String? query;
   UContentReadParams({
     this.pageSize,
     this.pageNumber,
@@ -221,6 +234,7 @@ class UContentReadParams {
     this.orderBy,
     this.ids,
     this.creatorId,
+    this.query,
   });
 
   factory UContentReadParams.fromJson(String str) => UContentReadParams.fromMap(json.decode(str));
@@ -235,6 +249,7 @@ class UContentReadParams {
     orderBy: json["orderBy"],
     ids: json["ids"] == null ? <String>[] : List<String>.from(json["ids"]!.map((dynamic x) => x)),
     creatorId: json["creatorId"],
+    query: json["query"],
   );
   final int? pageSize;
   final int? pageNumber;
@@ -258,5 +273,6 @@ class UContentReadParams {
     "orderBy": orderBy,
     "ids": ids == null ? <dynamic>[] : List<dynamic>.from(ids!.map((String x) => x)),
     "creatorId": creatorId,
+    "query": query,
   };
 }
