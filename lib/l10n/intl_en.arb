@@ -927,5 +927,6 @@
   "table": "Table",
   "undo": "Undo",
   "words": "Words",
-  "paymentPendingVerification": "Your payment is still being confirmed. If the amount was deducted it will be added to your wallet shortly."
+  "paymentPendingVerification": "Your payment is still being confirmed. If the amount was deducted it will be added to your wallet shortly.",
+  "sessionExpired": "Your session has expired. Please sign in again."
 }

@@ -1118,6 +1118,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "serialNumber": MessageLookupByLibrary.simpleMessage("Serial number"),
     "serverGc": MessageLookupByLibrary.simpleMessage("Server GC"),
     "services": MessageLookupByLibrary.simpleMessage("Services"),
+    "sessionExpired": MessageLookupByLibrary.simpleMessage(
+      "Your session has expired. Please sign in again.",
+    ),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "settingsInMemoryNote": MessageLookupByLibrary.simpleMessage(
       "Changes apply live and reset to defaults on server restart.",

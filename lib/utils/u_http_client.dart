@@ -20,6 +20,20 @@ class UHttpClientResponse {
 
 abstract class UHttpClient {
   static final Client _client = Client();
+  static Future<void> Function()? onAuthFailed;
+  static Future<bool>? _refreshInFlight;
+
+  static Future<bool> _refreshToken() {
+    _refreshInFlight ??= (() async {
+      final String? refreshToken = ULocalStorage.getRefreshToken();
+      if (refreshToken == null || refreshToken.isEmpty) return false;
+      final (UResponse<ULoginResponse>?, UEmptyResponse?, String?) result = await AuthService().refreshToken(
+        p: URefreshTokenParams(refreshToken: refreshToken),
+      );
+      return result.$1?.result != null;
+    })().whenComplete(() => _refreshInFlight = null);
+    return _refreshInFlight!;
+  }
 
   static Future<UHttpClientResponse> send({
     required final String method,
@@ -38,6 +52,7 @@ abstract class UHttpClient {
     final int retryAmount = 3,
     final Duration timeout = const Duration(seconds: 30),
     final void Function(int percent)? onProgress,
+    final bool isRetryAfterRefresh = false,
   }) async {
     int lastPercent = -1;
     void report(final num percent) {
@@ -164,6 +179,7 @@ abstract class UHttpClient {
           unexpectedErrorMessage: unexpectedErrorMessage,
           timeout: timeout,
           onProgress: onProgress,
+          isRetryAfterRefresh: isRetryAfterRefresh,
         );
       } else {
         final String message = unexpectedErrorMessage ?? U.s.unexpectedErrorPleaseTryAgain;
@@ -179,6 +195,33 @@ abstract class UHttpClient {
         ULocalStorage.set(cacheKey, response.body, expireTime: cacheDuration);
         onSuccess(response);
         return UHttpClientResponse(response: response.body);
+      } else if (response.statusCode == Usc.expiredToken.number && !isRetryAfterRefresh && !endpoint.contains("/auth/")) {
+        final bool refreshed = await _refreshToken();
+        if (refreshed) {
+          final dynamic retryBody = body is Map ? (Map<String, dynamic>.from(body)..["token"] = ULocalStorage.getToken()) : body;
+          return send(
+            method: method,
+            endpoint: endpoint,
+            onSuccess: onSuccess,
+            onError: onError,
+            onException: onException,
+            headers: headers,
+            queryParams: queryParams,
+            body: retryBody,
+            bodyType: bodyType,
+            noNetworkMessage: noNetworkMessage,
+            unexpectedErrorMessage: unexpectedErrorMessage,
+            offline: offline,
+            cacheDuration: cacheDuration,
+            retryAmount: retryAmount,
+            timeout: timeout,
+            onProgress: onProgress,
+            isRetryAfterRefresh: true,
+          );
+        }
+        await onAuthFailed?.call();
+        onError(response);
+        return UHttpClientResponse(error: response.body);
       } else {
         onError(response);
         return UHttpClientResponse(error: response.body);

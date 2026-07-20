@@ -16,6 +16,7 @@ class AuthService {
         final UResponse<ULoginResponse> response = UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i));
         ULocalStorage.setUserId(response.result!.user.id);
         ULocalStorage.setToken(response.result!.token);
+        ULocalStorage.setRefreshToken(response.result!.refreshToken);
         result = (response, null, null);
         onOk?.call(response);
       },
@@ -47,6 +48,7 @@ class AuthService {
         final UResponse<ULoginResponse> response = UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i));
         ULocalStorage.setUserId(response.result!.user.id);
         ULocalStorage.setToken(response.result!.token);
+        ULocalStorage.setRefreshToken(response.result!.refreshToken);
         result = (response, null, null);
         onOk?.call(response);
       },
@@ -78,6 +80,7 @@ class AuthService {
         final UResponse<ULoginResponse> response = UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i));
         ULocalStorage.setUserId(response.result!.user.id);
         ULocalStorage.setToken(response.result!.token);
+        ULocalStorage.setRefreshToken(response.result!.refreshToken);
         result = (response, null, null);
         onOk?.call(response);
       },
@@ -138,6 +141,7 @@ class AuthService {
         final UResponse<ULoginResponse> response = UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i));
         ULocalStorage.setUserId(response.result!.user.id);
         ULocalStorage.setToken(response.result!.token);
+        ULocalStorage.setRefreshToken(response.result!.refreshToken);
         result = (response, null, null);
         onOk?.call(response);
       },
@@ -198,6 +202,7 @@ class AuthService {
         final UResponse<ULoginResponse> response = UResponse<ULoginResponse>.fromJson(r.body, (final dynamic i) => ULoginResponse.fromMap(i));
         ULocalStorage.setUserId(response.result!.user.id);
         ULocalStorage.setToken(response.result!.token);
+        ULocalStorage.setRefreshToken(response.result!.refreshToken);
         result = (response, null, null);
         onOk?.call(response);
       },

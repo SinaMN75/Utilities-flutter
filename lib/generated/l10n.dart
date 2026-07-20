@@ -7126,6 +7126,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Your session has expired. Please sign in again.`
+  String get sessionExpired {
+    return Intl.message(
+      'Your session has expired. Please sign in again.',
+      name: 'sessionExpired',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

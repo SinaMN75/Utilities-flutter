@@ -1084,6 +1084,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "serialNumber": MessageLookupByLibrary.simpleMessage("شماره سریال"),
     "serverGc": MessageLookupByLibrary.simpleMessage("Server GC"),
     "services": MessageLookupByLibrary.simpleMessage("خدمات"),
+    "sessionExpired": MessageLookupByLibrary.simpleMessage(
+      "نشست شما منقضی شده است. لطفاً دوباره وارد شوید.",
+    ),
     "settings": MessageLookupByLibrary.simpleMessage("تنظیمات"),
     "settingsInMemoryNote": MessageLookupByLibrary.simpleMessage(
       "تغییرات بلافاصله اعمال شده و با ری‌استارت سرور به حالت پیش‌فرض بازمی‌گردند.",

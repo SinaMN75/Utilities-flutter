@@ -3,6 +3,11 @@ part of "u_admin.dart";
 Future<void> runUAdminApp(UAdminConfig config) async {
   UAdmin.config = config;
   await initU(baseUrl: config.baseUrl, apiKey: config.apiKey);
+  UHttpClient.onAuthFailed = () async {
+    await ULocalStorage.clear();
+    UToast.error(message: U.s.sessionExpired);
+    await UNavigator.offAll(const UAdminLoginPage());
+  };
   runApp(
     UMaterialApp(
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
