@@ -18,8 +18,6 @@ extension WidgetsExtension on Widget {
     child: this,
   );
 
-  Widget get pZero => Padding(padding: EdgeInsets.zero, child: this);
-
   Widget fit({final Alignment alignment = Alignment.center}) => FittedBox(
     key: key,
     alignment: alignment,

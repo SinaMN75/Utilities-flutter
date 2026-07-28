@@ -46,6 +46,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "addRow": MessageLookupByLibrary.simpleMessage("Add Row"),
     "addSection": MessageLookupByLibrary.simpleMessage("Add Section"),
     "addSimCard": MessageLookupByLibrary.simpleMessage("Add SIM card"),
+    "addToHomeScreenStep1": MessageLookupByLibrary.simpleMessage(
+      "Tap the Share button in Safari\'s toolbar",
+    ),
+    "addToHomeScreenStep2": MessageLookupByLibrary.simpleMessage(
+      "Scroll down and tap \"Add to Home Screen\"",
+    ),
+    "addToHomeScreenStep3": MessageLookupByLibrary.simpleMessage(
+      "Tap \"Add\" in the top-right corner",
+    ),
+    "addToHomeScreenTitle": MessageLookupByLibrary.simpleMessage(
+      "Add this app to your Home Screen",
+    ),
     "addVehicle": MessageLookupByLibrary.simpleMessage("Add vehicle"),
     "address": MessageLookupByLibrary.simpleMessage("Address"),
     "admin": MessageLookupByLibrary.simpleMessage("Admin"),
@@ -476,6 +488,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "goodMorning": MessageLookupByLibrary.simpleMessage("Good morning"),
     "goodNight": MessageLookupByLibrary.simpleMessage("Good night"),
     "goodNoon": MessageLookupByLibrary.simpleMessage("Good noon"),
+    "gotIt": MessageLookupByLibrary.simpleMessage("Got it"),
     "gridView": MessageLookupByLibrary.simpleMessage("Grid"),
     "guest": MessageLookupByLibrary.simpleMessage("Guest"),
     "guestCount": MessageLookupByLibrary.simpleMessage("Number of Guests"),
@@ -831,6 +844,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "onlyErrors": MessageLookupByLibrary.simpleMessage("Only Errors"),
     "onlyExceptions": MessageLookupByLibrary.simpleMessage("Only Exceptions"),
     "openInBrowser": MessageLookupByLibrary.simpleMessage("Open in Browser"),
+    "openInSafariToInstall": MessageLookupByLibrary.simpleMessage(
+      "Open this page in Safari, then add it to your Home Screen",
+    ),
     "operatingSystem": MessageLookupByLibrary.simpleMessage("Operating System"),
     "operations": MessageLookupByLibrary.simpleMessage("Operations"),
     "operatorLabel": MessageLookupByLibrary.simpleMessage("Operator"),

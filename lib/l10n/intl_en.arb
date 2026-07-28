@@ -928,5 +928,11 @@
   "undo": "Undo",
   "words": "Words",
   "paymentPendingVerification": "Your payment is still being confirmed. If the amount was deducted it will be added to your wallet shortly.",
-  "sessionExpired": "Your session has expired. Please sign in again."
+  "sessionExpired": "Your session has expired. Please sign in again.",
+  "addToHomeScreenTitle": "Add this app to your Home Screen",
+  "addToHomeScreenStep1": "Tap the Share button in Safari's toolbar",
+  "addToHomeScreenStep2": "Scroll down and tap \"Add to Home Screen\"",
+  "addToHomeScreenStep3": "Tap \"Add\" in the top-right corner",
+  "openInSafariToInstall": "Open this page in Safari, then add it to your Home Screen",
+  "gotIt": "Got it"
 }

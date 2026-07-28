@@ -1,5 +1,5 @@
 import "package:u/utilities.dart";
-import "package:u/utils/u_embed_detector_stub.dart" if (dart.library.html) "u_embed_detector_web.dart";
+import "package:u/utils/web/u_web_stub.dart" if (dart.library.html) "package:u/utils/web/u_web_impl.dart";
 
 abstract class UApp {
   static late PackageInfo packageInfo;

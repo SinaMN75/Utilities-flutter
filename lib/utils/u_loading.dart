@@ -16,7 +16,6 @@ class ULoading {
   static Color _defaultSpinnerColor = Colors.white;
   static double _defaultSpinnerSize = 40;
 
-  /// Initialize loading with custom configurations (optional)
   static void initialize({
     WidgetBuilder? customLoaderBuilder,
     Color overlayColor = Colors.black54,
@@ -43,28 +42,17 @@ class ULoading {
     if (key != null) navigatorKey = key;
   }
 
-  /// Show loading overlay
   static void show({BuildContext? context, WidgetBuilder? customLoader}) {
     if (_isShowing) return;
-
     final OverlayState? overlayState = (context != null ? Overlay.of(context) : navigatorKey.currentState?.overlay);
-
-    if (overlayState == null) {
-      debugPrint("ULoading: No Overlay found. Make sure your app has a Navigator or MaterialApp widget.");
-      return;
-    }
-
+    if (overlayState == null) return;
     _overlayEntry = OverlayEntry(
-      builder: (BuildContext context) => _LoadingOverlay(
-        customLoader: customLoader ?? _customLoaderBuilder,
-      ),
+      builder: (BuildContext _) => _LoadingOverlay(customLoader: customLoader ?? _customLoaderBuilder),
     );
-
     overlayState.insert(_overlayEntry!);
     _isShowing = true;
   }
 
-  /// Hide loading overlay
   static void dismiss() {
     if (!_isShowing) return;
     _overlayEntry?.remove();
@@ -72,7 +60,6 @@ class ULoading {
     _isShowing = false;
   }
 
-  /// Check if loading is currently showing
   static bool isShowing() => _isShowing;
 }
 
@@ -92,15 +79,9 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: ULoading._animationDuration,
-      vsync: this,
-    );
+    _controller = AnimationController(duration: ULoading._animationDuration, vsync: this);
     _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: ULoading._animationCurve,
-      ),
+      CurvedAnimation(parent: _controller, curve: ULoading._animationCurve),
     );
     _controller.forward();
   }
@@ -118,13 +99,8 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
       children: <Widget>[
         Positioned.fill(
           child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: ULoading._blurAmount,
-              sigmaY: ULoading._blurAmount,
-            ),
-            child: Container(
-              color: ULoading._overlayColor,
-            ),
+            filter: ImageFilter.blur(sigmaX: ULoading._blurAmount, sigmaY: ULoading._blurAmount),
+            child: Container(color: ULoading._overlayColor),
           ),
         ),
         if (ULoading._dismissible)
@@ -158,13 +134,7 @@ class __LoadingOverlayState extends State<_LoadingOverlay> with SingleTickerProv
         ),
       ),
       const SizedBox(height: 16),
-      Text(
-        ULoading._defaultLoadingText,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-        ),
-      ),
+      UTextBodyLarge(ULoading._defaultLoadingText, color: Colors.white),
     ],
   );
 }

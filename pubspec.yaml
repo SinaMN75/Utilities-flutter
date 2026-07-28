@@ -27,7 +27,6 @@ dependencies:
   shared_preferences: ^2.5.5
   webview_all: ^1.2.1
   mobile_scanner: ^7.3.0
-  no_screenshot: ^1.2.0
   flutter_svg: ^2.3.0
   image_picker: ^1.2.3
   share_plus: ^13.2.1
@@ -84,23 +83,23 @@ flutter_intl:
 #  flutter pub global run rename setAppName --value ""
 #  flutter pub run flutter_launcher_icons:main
 
-#Android only:
-#  flutter build apk --target-platform android-arm64,android-arm --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Desktop/
+# N/V prefix used in every command below:
+#   N=$(sed -n 's/^name: *//p' pubspec.yaml) V=$(sed -n 's/^version: *//p' pubspec.yaml | cut -d+ -f1 | tr -d .)
 
-#Web only:
-#  flutter build web --release && cd build/web && zip -r web.zip . && cd - && cp build/web/web.zip ~/Desktop/
+#Android:
+#  N=$(sed -n 's/^name: *//p' pubspec.yaml) V=$(sed -n 's/^version: *//p' pubspec.yaml | cut -d+ -f1 | tr -d .) && flutter clean && flutter pub get && flutter build apk --target-platform android-arm64,android-arm --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Desktop/$N-$V.apk
 
-#Web and ftp:
-#  flutter build web --release && cd build/web && lftp -u sinapp_sinamn75_com,sinapp_sinamn75_com ftp://46.249.98.145:21 -e "set ssl:verify-certificate no; mirror -R ./ ./; bye"
+#Web:
+#  N=$(sed -n 's/^name: *//p' pubspec.yaml) V=$(sed -n 's/^version: *//p' pubspec.yaml | cut -d+ -f1 | tr -d .) && flutter clean && flutter pub get && flutter build web --release && (cd build/web && zip -r ~/Desktop/$N-$V-web.zip .)
 
-#macOS only:
-#  flutter build macos --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cp build/macos/Build/Products/Release/sinapp.zip ~/Desktop/
+#macOS:
+#  N=$(sed -n 's/^name: *//p' pubspec.yaml) V=$(sed -n 's/^version: *//p' pubspec.yaml | cut -d+ -f1 | tr -d .) && flutter clean && flutter pub get && flutter build macos --release && (cd build/macos/Build/Products/Release && zip -r ~/Desktop/$N-$V-macos.zip *.app)
 
 #Android + Web:
-#  flutter build apk --target-platform android-arm64,android-arm --release && flutter build web --release && cd build/web && zip -r web.zip . && cd - && cp build/app/outputs/flutter-apk/app-release.apk build/web/web.zip ~/Desktop/
+#  N=$(sed -n 's/^name: *//p' pubspec.yaml) V=$(sed -n 's/^version: *//p' pubspec.yaml | cut -d+ -f1 | tr -d .) && flutter clean && flutter pub get && flutter build apk --target-platform android-arm64,android-arm --release && flutter build web --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Desktop/$N-$V.apk && (cd build/web && zip -r ~/Desktop/$N-$V-web.zip .)
 
 #Android + macOS:
-#  flutter build apk --target-platform android-arm64,android-arm --release && flutter build macos --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cp build/app/outputs/flutter-apk/app-release.apk build/macos/Build/Products/Release/sinapp.zip ~/Desktop/
+#  N=$(sed -n 's/^name: *//p' pubspec.yaml) V=$(sed -n 's/^version: *//p' pubspec.yaml | cut -d+ -f1 | tr -d .) && flutter clean && flutter pub get && flutter build apk --target-platform android-arm64,android-arm --release && flutter build macos --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Desktop/$N-$V.apk && (cd build/macos/Build/Products/Release && zip -r ~/Desktop/$N-$V-macos.zip *.app)
 
-#All 3 platforms:
-#  flutter clean && flutter build apk --target-platform android-arm64,android-arm --release && flutter build macos --release && flutter build web --release && cd build/macos/Build/Products/Release/ && zip -r sinapp.zip sinapp.app && cd - && cd build/web && zip -r web.zip . && cd - && cp build/app/outputs/flutter-apk/app-release.apk build/macos/Build/Products/Release/sinapp.zip build/web/web.zip ~/Desktop/
+#Android + macOS + Web:
+#  N=$(sed -n 's/^name: *//p' pubspec.yaml) V=$(sed -n 's/^version: *//p' pubspec.yaml | cut -d+ -f1 | tr -d .) && flutter clean && flutter pub get && flutter build apk --target-platform android-arm64,android-arm --release && flutter build macos --release && flutter build web --release && cp build/app/outputs/flutter-apk/app-release.apk ~/Desktop/$N-$V.apk && (cd build/macos/Build/Products/Release && zip -r ~/Desktop/$N-$V-macos.zip *.app) && (cd build/web && zip -r ~/Desktop/$N-$V-web.zip .)

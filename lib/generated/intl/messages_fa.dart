@@ -48,6 +48,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "addRow": MessageLookupByLibrary.simpleMessage("افزودن ردیف"),
     "addSection": MessageLookupByLibrary.simpleMessage("افزودن بخش"),
     "addSimCard": MessageLookupByLibrary.simpleMessage("افزودن سیم‌کارت"),
+    "addToHomeScreenStep1": MessageLookupByLibrary.simpleMessage(
+      "دکمه اشتراک‌گذاری را در نوار ابزار Safari بزنید",
+    ),
+    "addToHomeScreenStep2": MessageLookupByLibrary.simpleMessage(
+      "به پایین بروید و «افزودن به صفحه اصلی» را بزنید",
+    ),
+    "addToHomeScreenStep3": MessageLookupByLibrary.simpleMessage(
+      "در گوشه بالا-راست «افزودن» را بزنید",
+    ),
+    "addToHomeScreenTitle": MessageLookupByLibrary.simpleMessage(
+      "این برنامه را به صفحه اصلی اضافه کنید",
+    ),
     "addVehicle": MessageLookupByLibrary.simpleMessage("افزودن خودرو"),
     "address": MessageLookupByLibrary.simpleMessage("آدرس"),
     "admin": MessageLookupByLibrary.simpleMessage("ادمین"),
@@ -464,6 +476,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "goodMorning": MessageLookupByLibrary.simpleMessage("صبح بخیر"),
     "goodNight": MessageLookupByLibrary.simpleMessage("شب بخیر"),
     "goodNoon": MessageLookupByLibrary.simpleMessage("ظهر بخیر"),
+    "gotIt": MessageLookupByLibrary.simpleMessage("متوجه شدم"),
     "gridView": MessageLookupByLibrary.simpleMessage("شبکه‌ای"),
     "guest": MessageLookupByLibrary.simpleMessage("مهمان"),
     "guestCount": MessageLookupByLibrary.simpleMessage("تعداد مهمان"),
@@ -807,6 +820,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "onlyErrors": MessageLookupByLibrary.simpleMessage("فقط خطا"),
     "onlyExceptions": MessageLookupByLibrary.simpleMessage("فقط استثنا"),
     "openInBrowser": MessageLookupByLibrary.simpleMessage("باز کردن در مرورگر"),
+    "openInSafariToInstall": MessageLookupByLibrary.simpleMessage(
+      "این صفحه را در Safari باز کنید، سپس آن را به صفحه اصلی اضافه کنید",
+    ),
     "operatingSystem": MessageLookupByLibrary.simpleMessage("سیستم‌عامل"),
     "operations": MessageLookupByLibrary.simpleMessage("عملیات"),
     "operatorLabel": MessageLookupByLibrary.simpleMessage("اپراتور"),

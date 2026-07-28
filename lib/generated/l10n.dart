@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7135,6 +7136,61 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Add this app to your Home Screen`
+  String get addToHomeScreenTitle {
+    return Intl.message(
+      'Add this app to your Home Screen',
+      name: 'addToHomeScreenTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap the Share button in Safari's toolbar`
+  String get addToHomeScreenStep1 {
+    return Intl.message(
+      'Tap the Share button in Safari\'s toolbar',
+      name: 'addToHomeScreenStep1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scroll down and tap "Add to Home Screen"`
+  String get addToHomeScreenStep2 {
+    return Intl.message(
+      'Scroll down and tap "Add to Home Screen"',
+      name: 'addToHomeScreenStep2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap "Add" in the top-right corner`
+  String get addToHomeScreenStep3 {
+    return Intl.message(
+      'Tap "Add" in the top-right corner',
+      name: 'addToHomeScreenStep3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open this page in Safari, then add it to your Home Screen`
+  String get openInSafariToInstall {
+    return Intl.message(
+      'Open this page in Safari, then add it to your Home Screen',
+      name: 'openInSafariToInstall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Got it`
+  String get gotIt {
+    return Intl.message('Got it', name: 'gotIt', desc: '', args: []);
   }
 }
 
