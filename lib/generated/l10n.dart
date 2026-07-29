@@ -7192,6 +7192,141 @@ class S {
   String get gotIt {
     return Intl.message('Got it', name: 'gotIt', desc: '', args: []);
   }
+
+  /// `Crypto Tester`
+  String get cryptoTester {
+    return Intl.message(
+      'Crypto Tester',
+      name: 'cryptoTester',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Encrypt, decrypt, encode and hash text locally — no server calls.`
+  String get cryptoTesterSubtitle {
+    return Intl.message(
+      'Encrypt, decrypt, encode and hash text locally — no server calls.',
+      name: 'cryptoTesterSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Configuration`
+  String get configuration {
+    return Intl.message(
+      'Configuration',
+      name: 'configuration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mode`
+  String get mode {
+    return Intl.message('Mode', name: 'mode', desc: '', args: []);
+  }
+
+  /// `Padding`
+  String get padding {
+    return Intl.message('Padding', name: 'padding', desc: '', args: []);
+  }
+
+  /// `Key Size`
+  String get keySize {
+    return Intl.message('Key Size', name: 'keySize', desc: '', args: []);
+  }
+
+  /// `Secret Key`
+  String get secretKey {
+    return Intl.message('Secret Key', name: 'secretKey', desc: '', args: []);
+  }
+
+  /// `IV (Initialization Vector)`
+  String get initializationVector {
+    return Intl.message(
+      'IV (Initialization Vector)',
+      name: 'initializationVector',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Key Encoding`
+  String get keyEncoding {
+    return Intl.message(
+      'Key Encoding',
+      name: 'keyEncoding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IV Encoding`
+  String get ivEncoding {
+    return Intl.message('IV Encoding', name: 'ivEncoding', desc: '', args: []);
+  }
+
+  /// `Input Text`
+  String get inputText {
+    return Intl.message('Input Text', name: 'inputText', desc: '', args: []);
+  }
+
+  /// `Please enter some input text.`
+  String get inputTextRequired {
+    return Intl.message(
+      'Please enter some input text.',
+      name: 'inputTextRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Output`
+  String get output {
+    return Intl.message('Output', name: 'output', desc: '', args: []);
+  }
+
+  /// `Encrypt`
+  String get encrypt {
+    return Intl.message('Encrypt', name: 'encrypt', desc: '', args: []);
+  }
+
+  /// `Decrypt`
+  String get decrypt {
+    return Intl.message('Decrypt', name: 'decrypt', desc: '', args: []);
+  }
+
+  /// `Encode`
+  String get encode {
+    return Intl.message('Encode', name: 'encode', desc: '', args: []);
+  }
+
+  /// `Decode`
+  String get decode {
+    return Intl.message('Decode', name: 'decode', desc: '', args: []);
+  }
+
+  /// `Hash`
+  String get hash {
+    return Intl.message('Hash', name: 'hash', desc: '', args: []);
+  }
+
+  /// `Generate`
+  String get generate {
+    return Intl.message('Generate', name: 'generate', desc: '', args: []);
+  }
+
+  /// `Use output as input`
+  String get useOutputAsInput {
+    return Intl.message(
+      'Use output as input',
+      name: 'useOutputAsInput',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

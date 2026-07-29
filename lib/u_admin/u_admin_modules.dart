@@ -232,6 +232,14 @@ abstract class UAdminModules {
     roles: roles,
   );
 
+  // Local-only encrypt / decrypt / encode / hash playground for admins.
+  static UAdminModule cryptoTester({List<TagUser>? roles}) => UAdminModule(
+    title: U.s.cryptoTester,
+    icon: Icons.security_rounded,
+    page: () => const UAdminCryptoTesterPage(),
+    roles: roles,
+  );
+
   // ---- System ----
   static UAdminModule fileManager({List<TagUser>? roles}) => UAdminModule(
     title: U.s.fileManager,

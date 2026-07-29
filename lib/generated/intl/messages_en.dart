@@ -208,6 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "completeYourIdentityInformationToUseAvaHamrahServices": MessageLookupByLibrary.simpleMessage(
       "To use AvaHamrah services, complete your identity information.",
     ),
+    "configuration": MessageLookupByLibrary.simpleMessage("Configuration"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirmAndContinue": MessageLookupByLibrary.simpleMessage(
       "Confirm and continue",
@@ -269,6 +270,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Credit validation",
     ),
     "creditor": MessageLookupByLibrary.simpleMessage("Creditor"),
+    "cryptoTester": MessageLookupByLibrary.simpleMessage("Crypto Tester"),
+    "cryptoTesterSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Encrypt, decrypt, encode and hash text locally — no server calls.",
+    ),
     "csvExport": MessageLookupByLibrary.simpleMessage("CSV Export"),
     "csvRowsHintSuffix": MessageLookupByLibrary.simpleMessage(
       "rows (including header) - up to 10,000 rows based on current filters.",
@@ -287,7 +292,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "daysOverdue": MessageLookupByLibrary.simpleMessage("Days Overdue"),
     "debt": MessageLookupByLibrary.simpleMessage("Debt"),
     "debtAmount": MessageLookupByLibrary.simpleMessage("Debt Amount"),
+    "decode": MessageLookupByLibrary.simpleMessage("Decode"),
     "decreaseIndent": MessageLookupByLibrary.simpleMessage("Decrease Indent"),
+    "decrypt": MessageLookupByLibrary.simpleMessage("Decrypt"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteItemConfirm": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this item?",
@@ -355,6 +362,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emptyFolder": MessageLookupByLibrary.simpleMessage("This folder is empty"),
+    "encode": MessageLookupByLibrary.simpleMessage("Encode"),
+    "encrypt": MessageLookupByLibrary.simpleMessage("Encrypt"),
     "endDate": MessageLookupByLibrary.simpleMessage("End Date"),
     "endsOn": MessageLookupByLibrary.simpleMessage("Ends"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
@@ -481,6 +490,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "gcGenerations": MessageLookupByLibrary.simpleMessage("Gen0 / Gen1 / Gen2"),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "general": MessageLookupByLibrary.simpleMessage("General"),
+    "generate": MessageLookupByLibrary.simpleMessage("Generate"),
     "getSupportPassword": MessageLookupByLibrary.simpleMessage(
       "Get Support Password",
     ),
@@ -497,6 +507,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "guests": MessageLookupByLibrary.simpleMessage("Guests"),
     "handles": MessageLookupByLibrary.simpleMessage("Handles"),
     "hasImage": MessageLookupByLibrary.simpleMessage("Has image"),
+    "hash": MessageLookupByLibrary.simpleMessage("Hash"),
     "hddUsage": MessageLookupByLibrary.simpleMessage("HDD Usage"),
     "headerRow": MessageLookupByLibrary.simpleMessage("Header Row"),
     "heading1": MessageLookupByLibrary.simpleMessage("Heading 1"),
@@ -532,7 +543,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "informationConfirmation": MessageLookupByLibrary.simpleMessage(
       "Information confirmation",
     ),
+    "initializationVector": MessageLookupByLibrary.simpleMessage(
+      "IV (Initialization Vector)",
+    ),
     "inlineCode": MessageLookupByLibrary.simpleMessage("Inline Code"),
+    "inputText": MessageLookupByLibrary.simpleMessage("Input Text"),
+    "inputTextRequired": MessageLookupByLibrary.simpleMessage(
+      "Please enter some input text.",
+    ),
     "inquireAgain": MessageLookupByLibrary.simpleMessage("Inquire again"),
     "inquiry": MessageLookupByLibrary.simpleMessage("Inquiry"),
     "inquiryDate": MessageLookupByLibrary.simpleMessage("Inquiry date"),
@@ -579,7 +597,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "italic": MessageLookupByLibrary.simpleMessage("Italic"),
     "item": MessageLookupByLibrary.simpleMessage("Item"),
     "items": MessageLookupByLibrary.simpleMessage("Items"),
+    "ivEncoding": MessageLookupByLibrary.simpleMessage("IV Encoding"),
     "joinedDate": MessageLookupByLibrary.simpleMessage("Joined Date"),
+    "keyEncoding": MessageLookupByLibrary.simpleMessage("Key Encoding"),
+    "keySize": MessageLookupByLibrary.simpleMessage("Key Size"),
     "landline": MessageLookupByLibrary.simpleMessage("Landline"),
     "landlinePhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Landline phone number",
@@ -714,6 +735,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Unique Tax Code",
     ),
     "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile number"),
+    "mode": MessageLookupByLibrary.simpleMessage("Mode"),
     "model": MessageLookupByLibrary.simpleMessage("Model"),
     "modified": MessageLookupByLibrary.simpleMessage("Modified"),
     "moneyIn": MessageLookupByLibrary.simpleMessage("Money In"),
@@ -858,6 +880,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "order": MessageLookupByLibrary.simpleMessage("Order"),
     "osMetrics": MessageLookupByLibrary.simpleMessage("OS Metrics"),
     "outOfService": MessageLookupByLibrary.simpleMessage("Out of Service"),
+    "output": MessageLookupByLibrary.simpleMessage("Output"),
     "overdue": MessageLookupByLibrary.simpleMessage("Overdue"),
     "overdueInvoicesTitle": MessageLookupByLibrary.simpleMessage(
       "Overdue Invoices",
@@ -868,6 +891,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Owner Phone Number",
     ),
     "packageLabel": MessageLookupByLibrary.simpleMessage("Package"),
+    "padding": MessageLookupByLibrary.simpleMessage("Padding"),
     "paid": MessageLookupByLibrary.simpleMessage("Paid"),
     "paidAmount": MessageLookupByLibrary.simpleMessage("Paid Amount"),
     "paidDate": MessageLookupByLibrary.simpleMessage("Paid Date"),
@@ -1095,6 +1119,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "secretHint": MessageLookupByLibrary.simpleMessage(
       "Leave masked to keep the current value",
     ),
+    "secretKey": MessageLookupByLibrary.simpleMessage("Secret Key"),
     "section": MessageLookupByLibrary.simpleMessage("Section"),
     "select": MessageLookupByLibrary.simpleMessage("Select"),
     "selectABed": MessageLookupByLibrary.simpleMessage("Select a Bed"),
@@ -1294,6 +1319,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Uploading image...",
     ),
     "url": MessageLookupByLibrary.simpleMessage("URL"),
+    "useOutputAsInput": MessageLookupByLibrary.simpleMessage(
+      "Use output as input",
+    ),
     "user": MessageLookupByLibrary.simpleMessage("User"),
     "userCategories": MessageLookupByLibrary.simpleMessage("User Categories"),
     "userCreatedSuccessfully": MessageLookupByLibrary.simpleMessage(
