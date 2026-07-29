@@ -21,24 +21,20 @@ abstract class UNavigator {
 
   static bool get canPop => Navigator.of(context).canPop();
 
-  static String? get currentRouteName =>
-      ModalRoute
-          .of(context)
-          ?.settings
-          .name;
+  static String? get currentRouteName => ModalRoute.of(context)?.settings.name;
 
   static Future<T?> push<T>(
     Widget page, {
     bool fullscreenDialog = false,
     bool preventDuplicates = true,
-        bool opaque = true,
-        bool maintainState = true,
+    bool opaque = true,
+    bool maintainState = true,
     RouteTransitions transition = RouteTransitions.rightToLeft,
     Duration duration = const Duration(milliseconds: 300),
     Curve curve = Curves.easeOut,
     RouteSettings? settings,
-        Object? arguments,
-        VoidCallback? onDismiss,
+    Object? arguments,
+    VoidCallback? onDismiss,
   }) {
     if (preventDuplicates && ModalRoute.of(navigatorKey.currentContext!)?.settings.name == page.runtimeType.toString()) {
       return Future<T?>.value();
@@ -51,7 +47,7 @@ abstract class UNavigator {
         transitionsBuilder: _getTransition(transition, curve),
         transitionDuration: duration,
         reverseTransitionDuration: duration,
-        settings: settings ?? RouteSettings(name: page.runtimeType.toString(), arguments: arguments),
+        settings: settings ?? RouteSettings(arguments: arguments),
         fullscreenDialog: fullscreenDialog,
         opaque: opaque,
         maintainState: maintainState,
@@ -65,12 +61,12 @@ abstract class UNavigator {
   static Future<T?> off<T>(
     Widget page, {
     RouteTransitions transition = RouteTransitions.fade,
-        Duration duration = const Duration(milliseconds: 300),
-        Curve curve = Curves.easeOut,
-        bool fullscreenDialog = false,
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeOut,
+    bool fullscreenDialog = false,
     RouteSettings? settings,
-        Object? arguments,
-        T? result,
+    Object? arguments,
+    T? result,
     VoidCallback? onDismiss,
   }) =>
       Navigator.pushReplacement<T, dynamic>(
@@ -80,7 +76,7 @@ abstract class UNavigator {
           transitionsBuilder: _getTransition(transition, curve),
           transitionDuration: duration,
           reverseTransitionDuration: duration,
-          settings: settings ?? RouteSettings(name: page.runtimeType.toString(), arguments: arguments),
+          settings: settings ?? RouteSettings(arguments: arguments),
           fullscreenDialog: fullscreenDialog,
         ),
         result: result,
@@ -92,10 +88,10 @@ abstract class UNavigator {
   static Future<void> offAll(
     Widget page, {
     RouteTransitions transition = RouteTransitions.fade,
-        Duration duration = const Duration(milliseconds: 300),
-        Curve curve = Curves.easeOut,
+    Duration duration = const Duration(milliseconds: 300),
+    Curve curve = Curves.easeOut,
     RouteSettings? settings,
-        Object? arguments,
+    Object? arguments,
     VoidCallback? onDismiss,
   }) async {
     await Navigator.pushAndRemoveUntil(
@@ -105,31 +101,31 @@ abstract class UNavigator {
         transitionsBuilder: _getTransition(transition, curve),
         transitionDuration: duration,
         reverseTransitionDuration: duration,
-        settings: settings ?? RouteSettings(name: page.runtimeType.toString(), arguments: arguments),
+        settings: settings ?? RouteSettings(arguments: arguments),
       ),
       (Route<dynamic> route) => false,
     ).then((_) => onDismiss?.call());
   }
 
-  static Future<T?> offUntil<T>(Widget page, {
+  static Future<T?> offUntil<T>(
+    Widget page, {
     required String untilRouteName,
     RouteTransitions transition = RouteTransitions.rightToLeft,
     Duration duration = const Duration(milliseconds: 300),
     Curve curve = Curves.easeOut,
     RouteSettings? settings,
     Object? arguments,
-  }) =>
-      Navigator.pushAndRemoveUntil<T>(
-        navigatorKey.currentContext!,
-        PageRouteBuilder<T>(
-          pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
-          transitionsBuilder: _getTransition(transition, curve),
-          transitionDuration: duration,
-          reverseTransitionDuration: duration,
-          settings: settings ?? RouteSettings(name: page.runtimeType.toString(), arguments: arguments),
-        ),
-            (Route<dynamic> route) => route.settings.name == untilRouteName,
-      );
+  }) => Navigator.pushAndRemoveUntil<T>(
+    navigatorKey.currentContext!,
+    PageRouteBuilder<T>(
+      pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => page,
+      transitionsBuilder: _getTransition(transition, curve),
+      transitionDuration: duration,
+      reverseTransitionDuration: duration,
+      settings: settings ?? RouteSettings(arguments: arguments),
+    ),
+    (Route<dynamic> route) => route.settings.name == untilRouteName,
+  );
 
   static void back<T>([T? result]) {
     if (Navigator.of(navigatorKey.currentContext!).canPop()) {
@@ -163,10 +159,10 @@ abstract class UNavigator {
           barrierDismissible: barrierDismissible,
           useRootNavigator: useRootNavigator,
           builder: (BuildContext context) => child,
-  ).then((T? value) {
-    onDismiss?.call();
-    return value;
-  })
+        ).then((T? value) {
+          onDismiss?.call();
+          return value;
+        })
       : showDialog<T>(
           context: navigatorKey.currentContext!,
           barrierDismissible: barrierDismissible,
@@ -179,7 +175,8 @@ abstract class UNavigator {
           return value;
         });
 
-  static Future<T?> animatedDialog<T>(Widget child, {
+  static Future<T?> animatedDialog<T>(
+    Widget child, {
     bool barrierDismissible = true,
     bool useRootNavigator = true,
     Color? barrierColor,
@@ -192,9 +189,7 @@ abstract class UNavigator {
       showGeneralDialog<T>(
         context: navigatorKey.currentContext!,
         barrierDismissible: barrierDismissible,
-        barrierLabel: MaterialLocalizations
-            .of(navigatorKey.currentContext!)
-            .modalBarrierDismissLabel,
+        barrierLabel: MaterialLocalizations.of(navigatorKey.currentContext!).modalBarrierDismissLabel,
         barrierColor: barrierColor ?? Colors.black54,
         useRootNavigator: useRootNavigator,
         transitionDuration: duration,
@@ -255,18 +250,17 @@ abstract class UNavigator {
     String? buttonText,
     IconData? icon,
     bool barrierDismissible = true,
-  }) =>
-      dialog(
-        AlertDialog.adaptive(
-          icon: icon != null ? Icon(icon) : null,
-          title: Text(title),
-          content: Text(message),
-          actions: <Widget>[
-            TextButton(onPressed: back, child: Text(buttonText ?? U.s.ok)),
-          ],
-        ),
-        barrierDismissible: barrierDismissible,
-      );
+  }) => dialog(
+    AlertDialog.adaptive(
+      icon: icon != null ? Icon(icon) : null,
+      title: Text(title),
+      content: Text(message),
+      actions: <Widget>[
+        TextButton(onPressed: back, child: Text(buttonText ?? U.s.ok)),
+      ],
+    ),
+    barrierDismissible: barrierDismissible,
+  );
 
   static void confirm({
     required String title,
@@ -326,10 +320,7 @@ abstract class UNavigator {
           TextButton(onPressed: () => back(false), child: Text(cancelText ?? U.s.cancel)),
           TextButton(
             onPressed: () => back(true),
-            style: destructive ? TextButton.styleFrom(foregroundColor: Theme
-                .of(navigatorKey.currentContext!)
-                .colorScheme
-                .error) : null,
+            style: destructive ? TextButton.styleFrom(foregroundColor: Theme.of(navigatorKey.currentContext!).colorScheme.error) : null,
             child: Text(confirmText ?? U.s.ok),
           ),
         ],
@@ -356,34 +347,33 @@ abstract class UNavigator {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     final String? text = await showDialog<String>(
       context: navigatorKey.currentContext!,
-      builder: (BuildContext context) =>
-          AlertDialog.adaptive(
-            title: Text(title),
-            content: Material(
-              type: MaterialType.transparency,
-              child: Form(
-                key: formKey,
-                child: UTextField(
-                  hintText: hint,
-                  lines: lines,
-                  controller: controller,
-                  obscureText: obscureText,
-                  keyboardType: keyboardType,
-                  validator: validator,
-                  contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-                ),
-              ),
+      builder: (BuildContext context) => AlertDialog.adaptive(
+        title: Text(title),
+        content: Material(
+          type: MaterialType.transparency,
+          child: Form(
+            key: formKey,
+            child: UTextField(
+              hintText: hint,
+              lines: lines,
+              controller: controller,
+              obscureText: obscureText,
+              keyboardType: keyboardType,
+              validator: validator,
+              contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
             ),
-            actions: <Widget>[
-              TextButton(onPressed: onCancel ?? back, child: Text(cancelText ?? U.s.cancel)),
-              TextButton(
-                onPressed: () {
-                  if (validator == null || (formKey.currentState?.validate() ?? true)) back(controller.text);
-                },
-                child: Text(submitText ?? U.s.submit),
-              ),
-            ],
           ),
+        ),
+        actions: <Widget>[
+          TextButton(onPressed: onCancel ?? back, child: Text(cancelText ?? U.s.cancel)),
+          TextButton(
+            onPressed: () {
+              if (validator == null || (formKey.currentState?.validate() ?? true)) back(controller.text);
+            },
+            child: Text(submitText ?? U.s.submit),
+          ),
+        ],
+      ),
     );
     controller.dispose();
     if (text != null && onSubmit != null) {
@@ -396,37 +386,35 @@ abstract class UNavigator {
     required Color defaultColor,
     final List<Color>? colors,
     String? title,
-  }) async =>
-      UNavigator.dialog<Color>(
-        AlertDialog(
-          title: Text(title ?? U.s.selectAColor),
-          content: SizedBox(
-            width: 200,
-            height: 100,
-            child: GridView.count(
-              shrinkWrap: true,
-              crossAxisCount: 5,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-              children: (colors ?? <Color>[Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange, Colors.purple, Colors.pink, Colors.cyan, Colors.black, Colors.teal])
-                  .map(
-                    (Color color) =>
-                    UContainer(
-                      width: 40,
-                      height: 40,
-                      color: color,
-                      radius: 100,
-                      border: color == defaultColor ? Border.all(width: 3) : null,
-                    ).onTap(() => UNavigator.back(color)),
+  }) async => UNavigator.dialog<Color>(
+    AlertDialog(
+      title: Text(title ?? U.s.selectAColor),
+      content: SizedBox(
+        width: 200,
+        height: 100,
+        child: GridView.count(
+          shrinkWrap: true,
+          crossAxisCount: 5,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          children: (colors ?? <Color>[Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.orange, Colors.purple, Colors.pink, Colors.cyan, Colors.black, Colors.teal])
+              .map(
+                (Color color) => UContainer(
+                  width: 40,
+                  height: 40,
+                  color: color,
+                  radius: 100,
+                  border: color == defaultColor ? Border.all(width: 3) : null,
+                ).onTap(() => UNavigator.back(color)),
               )
-                  .toList(),
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(onPressed: UNavigator.back, child: Text(U.s.cancel)),
-          ],
+              .toList(),
         ),
-      );
+      ),
+      actions: <Widget>[
+        TextButton(onPressed: UNavigator.back, child: Text(U.s.cancel)),
+      ],
+    ),
+  );
 
   static Future<DateTime?> datePicker({
     DateTime? initialDate,
@@ -435,54 +423,51 @@ abstract class UNavigator {
     String? helpText,
     DatePickerEntryMode initialEntryMode = DatePickerEntryMode.calendar,
     DatePickerMode initialDatePickerMode = DatePickerMode.day,
-  }) =>
-      showDatePicker(
-        context: navigatorKey.currentContext!,
-        initialDate: initialDate ?? DateTime.now(),
-        firstDate: firstDate ?? DateTime(1900),
-        lastDate: lastDate ?? DateTime(2100),
-        helpText: helpText,
-        initialEntryMode: initialEntryMode,
-        initialDatePickerMode: initialDatePickerMode,
-      );
+  }) => showDatePicker(
+    context: navigatorKey.currentContext!,
+    initialDate: initialDate ?? DateTime.now(),
+    firstDate: firstDate ?? DateTime(1900),
+    lastDate: lastDate ?? DateTime(2100),
+    helpText: helpText,
+    initialEntryMode: initialEntryMode,
+    initialDatePickerMode: initialDatePickerMode,
+  );
 
   static Future<DateTimeRange?> dateRangePicker({
     DateTimeRange? initialRange,
     DateTime? firstDate,
     DateTime? lastDate,
     String? helpText,
-  }) =>
-      showDateRangePicker(
-        context: navigatorKey.currentContext!,
-        initialDateRange: initialRange,
-        firstDate: firstDate ?? DateTime(1900),
-        lastDate: lastDate ?? DateTime(2100),
-        helpText: helpText,
-      );
+  }) => showDateRangePicker(
+    context: navigatorKey.currentContext!,
+    initialDateRange: initialRange,
+    firstDate: firstDate ?? DateTime(1900),
+    lastDate: lastDate ?? DateTime(2100),
+    helpText: helpText,
+  );
 
   static Future<TimeOfDay?> timePicker({
     TimeOfDay? initialTime,
     String? helpText,
     TimePickerEntryMode initialEntryMode = TimePickerEntryMode.dial,
-  }) =>
-      showTimePicker(
-        context: navigatorKey.currentContext!,
-        initialTime: initialTime ?? TimeOfDay.now(),
-        helpText: helpText,
-        initialEntryMode: initialEntryMode,
-      );
+  }) => showTimePicker(
+    context: navigatorKey.currentContext!,
+    initialTime: initialTime ?? TimeOfDay.now(),
+    helpText: helpText,
+    initialEntryMode: initialEntryMode,
+  );
 
   static Future<T?> bottomSheet<T>(
     Widget child, {
     bool isScrollControlled = true,
     bool useSafeArea = true,
-        bool isDismissible = true,
-        bool enableDrag = true,
-        bool showDragHandle = false,
-        bool useRootNavigator = true,
+    bool isDismissible = true,
+    bool enableDrag = true,
+    bool showDragHandle = false,
+    bool useRootNavigator = true,
     double? elevation,
     Color? backgroundColor,
-        Color? barrierColor,
+    Color? barrierColor,
     ShapeBorder? shape,
     Clip? clipBehavior,
     BoxConstraints? constraints,
@@ -526,12 +511,12 @@ abstract class UNavigator {
     double minChildSize = 0.25,
     double maxChildSize = 0.9,
     bool expand = false,
-        bool snap = false,
-        List<double>? snapSizes,
+    bool snap = false,
+    List<double>? snapSizes,
     bool useRootNavigator = true,
-        bool showDragHandle = false,
-        Color? backgroundColor,
-        ShapeBorder? shape,
+    bool showDragHandle = false,
+    Color? backgroundColor,
+    ShapeBorder? shape,
     VoidCallback? onDismiss,
   }) =>
       showModalBottomSheet<T>(
@@ -571,69 +556,57 @@ abstract class UNavigator {
       return showCupertinoModalPopup<T>(
         context: ctx,
         barrierDismissible: barrierDismissible,
-        builder: (BuildContext context) =>
-            CupertinoActionSheet(
-              title: title != null ? Text(title) : null,
-              message: message != null ? Text(message) : null,
-              actions: actions
-                  .map(
-                    (UNavAction<T> action) =>
-                    CupertinoActionSheetAction(
-                      isDestructiveAction: action.isDestructive,
-                      onPressed: action.enabled ? () => back<T>(action.value) : () {},
-                      child: Text(action.label),
-                    ),
+        builder: (BuildContext context) => CupertinoActionSheet(
+          title: title != null ? Text(title) : null,
+          message: message != null ? Text(message) : null,
+          actions: actions
+              .map(
+                (UNavAction<T> action) => CupertinoActionSheetAction(
+                  isDestructiveAction: action.isDestructive,
+                  onPressed: action.enabled ? () => back<T>(action.value) : () {},
+                  child: Text(action.label),
+                ),
               )
-                  .toList(),
-              cancelButton: showCancel
-                  ? CupertinoActionSheetAction(
-                onPressed: back,
-                child: Text(cancelText ?? U.s.cancel),
-              )
-                  : null,
-            ),
+              .toList(),
+          cancelButton: showCancel
+              ? CupertinoActionSheetAction(
+                  onPressed: back,
+                  child: Text(cancelText ?? U.s.cancel),
+                )
+              : null,
+        ),
       );
     }
     return showModalBottomSheet<T>(
       context: ctx,
       isDismissible: barrierDismissible,
       showDragHandle: true,
-      builder: (BuildContext context) =>
-          SafeArea(
-            child: UColumn(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                if (title != null) UTextTitleMedium(title, textAlign: TextAlign.center).pOnly(bottom: 4),
-                if (message != null) UTextBodySmall(message, textAlign: TextAlign.center).pOnly(bottom: 8),
-                ...actions.map(
-                      (UNavAction<T> action) =>
-                      ListTile(
-                        enabled: action.enabled,
-                        leading: action.icon != null
-                            ? Icon(action.icon, color: action.isDestructive ? Theme
-                            .of(context)
-                            .colorScheme
-                            .error : null)
-                            : null,
-                        title: UTextBodyLarge(
-                          action.label,
-                          color: action.isDestructive ? Theme
-                              .of(context)
-                              .colorScheme
-                              .error : null,
-                        ),
-                        onTap: () => back<T>(action.value),
-                      ),
+      builder: (BuildContext context) => SafeArea(
+        child: UColumn(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            if (title != null) UTextTitleMedium(title, textAlign: TextAlign.center).pOnly(bottom: 4),
+            if (message != null) UTextBodySmall(message, textAlign: TextAlign.center).pOnly(bottom: 8),
+            ...actions.map(
+              (UNavAction<T> action) => ListTile(
+                enabled: action.enabled,
+                leading: action.icon != null ? Icon(action.icon, color: action.isDestructive ? Theme.of(context).colorScheme.error : null) : null,
+                title: UTextBodyLarge(
+                  action.label,
+                  color: action.isDestructive ? Theme.of(context).colorScheme.error : null,
                 ),
-                if (showCancel)
-                  ListTile(
-                    title: UTextBodyLarge(cancelText ?? U.s.cancel, textAlign: TextAlign.center),
-                    onTap: back,
-                  ),
-              ],
+                onTap: () => back<T>(action.value),
+              ),
             ),
-          ),
+            if (showCancel)
+              ListTile(
+                title: UTextBodyLarge(cancelText ?? U.s.cancel, textAlign: TextAlign.center),
+                onTap: back,
+              ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -674,12 +647,12 @@ abstract class UNavigator {
                 color: Colors.transparent,
                 child: dismissOnTap
                     ? GestureDetector(
-                  onTap: () {
-                    dismissOverlay();
-                    onDismiss?.call();
-                  },
-                  child: child,
-                )
+                        onTap: () {
+                          dismissOverlay();
+                          onDismiss?.call();
+                        },
+                        child: child,
+                      )
                     : child,
               ),
             ),
@@ -726,7 +699,10 @@ abstract class UNavigator {
           final Animation<double> curved = CurvedAnimation(parent: animation, curve: curve);
           return FadeTransition(
             opacity: curved,
-            child: SlideTransition(position: Tween<Offset>(begin: const Offset(0.15, 0), end: Offset.zero).animate(curved), child: child),
+            child: SlideTransition(
+              position: Tween<Offset>(begin: const Offset(0.15, 0), end: Offset.zero).animate(curved),
+              child: child,
+            ),
           );
         };
       case RouteTransitions.rightToLeft:
@@ -760,19 +736,17 @@ abstract class UNavigator {
           child: child,
         );
       case RouteTransitions.size:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) =>
-            Align(
-              child: SizeTransition(
-                sizeFactor: CurvedAnimation(parent: animation, curve: curve),
-                child: child,
-              ),
-            );
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => Align(
+          child: SizeTransition(
+            sizeFactor: CurvedAnimation(parent: animation, curve: curve),
+            child: child,
+          ),
+        );
       case RouteTransitions.cupertino:
-        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) =>
-            CupertinoPageTransition(
-              primaryRouteAnimation: animation,
-              secondaryRouteAnimation: secondaryAnimation,
-              linearTransition: false,
+        return (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => CupertinoPageTransition(
+          primaryRouteAnimation: animation,
+          secondaryRouteAnimation: secondaryAnimation,
+          linearTransition: false,
           child: child,
         );
     }
