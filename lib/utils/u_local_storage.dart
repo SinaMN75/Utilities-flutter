@@ -13,7 +13,7 @@ abstract class ULocalStorage {
         key,
         encryptKeyIv == null
             ? value
-            : UEncryption.encryptString(
+            : UEncryption.aesEncrypt(
                 plainText: value,
                 key: encryptKeyIv.$1,
                 iv: encryptKeyIv.$2,
@@ -49,7 +49,7 @@ abstract class ULocalStorage {
     if (value == null) return null;
     if (encryptKeyIv == null) return value;
 
-    return UEncryption.decryptString(
+    return UEncryption.aesDecrypt(
       base64Encrypted: value,
       key: encryptKeyIv.$1,
       iv: encryptKeyIv.$2,
