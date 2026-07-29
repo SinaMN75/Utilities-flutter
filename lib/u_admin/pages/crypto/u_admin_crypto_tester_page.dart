@@ -1,8 +1,7 @@
-import "package:encrypt/encrypt.dart" as enc;
 import "package:u/utilities.dart";
 
 // Local-only playground for admins to encrypt, decrypt, encode and hash arbitrary text.
-// It never touches the network: every algorithm runs on-device via the `encrypt` and `crypto` packages.
+// All cryptography is delegated to the reusable [UEncryption] helper; this widget is pure UI.
 class UAdminCryptoTesterPage extends StatefulWidget {
   const UAdminCryptoTesterPage({super.key});
 
@@ -18,10 +17,10 @@ class _UAdminCryptoTesterPageState extends State<UAdminCryptoTesterPage> {
   late List<_CryptoAlgo> _algos;
   int _selected = 0;
 
-  enc.AESMode _aesMode = enc.AESMode.cbc;
+  UAesMode _aesMode = UAesMode.cbc;
   bool _padding = true;
-  _ByteEncoding _keyEncoding = _ByteEncoding.utf8;
-  _ByteEncoding _ivEncoding = _ByteEncoding.utf8;
+  UByteEncoding _keyEncoding = UByteEncoding.utf8;
+  UByteEncoding _ivEncoding = UByteEncoding.utf8;
   int _aesKeyBytes = 32;
 
   String? _output;
@@ -59,107 +58,86 @@ class _UAdminCryptoTesterPageState extends State<UAdminCryptoTesterPage> {
     _CryptoAlgo(id: "hmac", label: "HMAC-SHA256", category: _Category.hash, icon: Icons.vpn_key_rounded, needsKey: true),
   ];
 
-  // Turns a text field into a Key/IV byte source honouring the chosen interpretation (UTF-8 / Base64 / Hex).
-  enc.Key _key(final String v) => switch (_keyEncoding) {
-    _ByteEncoding.utf8 => enc.Key.fromUtf8(v),
-    _ByteEncoding.base64 => enc.Key.fromBase64(v),
-    _ByteEncoding.hex => enc.Key(Uint8List.fromList(_hexDecode(v))),
-  };
-
-  enc.IV _iv(final String v) => switch (_ivEncoding) {
-    _ByteEncoding.utf8 => enc.IV.fromUtf8(v),
-    _ByteEncoding.base64 => enc.IV.fromBase64(v),
-    _ByteEncoding.hex => enc.IV(Uint8List.fromList(_hexDecode(v))),
-  };
-
-  enc.Encrypter _encrypter() {
+  // Maps the current UI selection to the matching reusable UEncryption call.
+  String _process(final bool forward) {
+    final String text = _inputController.text;
+    final String key = _keyController.text;
+    final String iv = _ivController.text;
     switch (_algo.id) {
       case "aes":
-        return enc.Encrypter(enc.AES(_key(_keyController.text), mode: _aesMode, padding: _padding ? "PKCS7" : null));
+        return forward
+            ? UEncryption.aesEncrypt(plainText: text, key: key, iv: iv, mode: _aesMode, padding: _padding, keyEncoding: _keyEncoding, ivEncoding: _ivEncoding)
+            : UEncryption.aesDecrypt(base64Encrypted: text, key: key, iv: iv, mode: _aesMode, padding: _padding, keyEncoding: _keyEncoding, ivEncoding: _ivEncoding);
       case "salsa20":
-        return enc.Encrypter(enc.Salsa20(_key(_keyController.text)));
+        return forward
+            ? UEncryption.salsa20Encrypt(plainText: text, key: key, iv: iv, keyEncoding: _keyEncoding, ivEncoding: _ivEncoding)
+            : UEncryption.salsa20Decrypt(base64Encrypted: text, key: key, iv: iv, keyEncoding: _keyEncoding, ivEncoding: _ivEncoding);
       case "fernet":
-        return enc.Encrypter(enc.Fernet(_key(_keyController.text)));
+        return forward ? UEncryption.fernetEncrypt(plainText: text, key: key, keyEncoding: _keyEncoding) : UEncryption.fernetDecrypt(base64Encrypted: text, key: key, keyEncoding: _keyEncoding);
+      case "base64":
+        return forward ? UEncryption.base64EncodeText(text) : UEncryption.base64DecodeText(text);
+      case "base64url":
+        return forward ? UEncryption.base64UrlEncodeText(text) : UEncryption.base64UrlDecodeText(text);
+      case "hex":
+        return forward ? UEncryption.hexEncodeText(text) : UEncryption.hexDecodeText(text);
+      case "md5":
+        return UEncryption.md5Hash(text);
+      case "sha1":
+        return UEncryption.sha1Hash(text);
+      case "sha224":
+        return UEncryption.sha224Hash(text);
+      case "sha256":
+        return UEncryption.sha256Hash(text);
+      case "sha384":
+        return UEncryption.sha384Hash(text);
+      case "sha512":
+        return UEncryption.sha512Hash(text);
+      case "hmac":
+        return UEncryption.hmacSha256(text, key);
       default:
-        throw Exception("Unsupported cipher");
+        throw Exception("Unsupported algorithm");
     }
-  }
-
-  List<int> _hashInput() => utf8.encode(_inputController.text);
-
-  Digest _digest() => switch (_algo.id) {
-    "md5" => md5.convert(_hashInput()),
-    "sha1" => sha1.convert(_hashInput()),
-    "sha224" => sha224.convert(_hashInput()),
-    "sha256" => sha256.convert(_hashInput()),
-    "sha384" => sha384.convert(_hashInput()),
-    "sha512" => sha512.convert(_hashInput()),
-    "hmac" => Hmac(sha256, utf8.encode(_keyController.text)).convert(_hashInput()),
-    _ => throw Exception("Unsupported hash"),
-  };
-
-  String _hexEncode(final List<int> bytes) => bytes.map((final int b) => b.toRadixString(16).padLeft(2, "0")).join();
-
-  List<int> _hexDecode(final String hex) {
-    final String clean = hex.replaceAll(RegExp(r"\s"), "");
-    if (clean.length.isOdd) throw const FormatException("Hex length must be even");
-    return <int>[for (int i = 0; i < clean.length; i += 2) int.parse(clean.substring(i, i + 2), radix: 16)];
   }
 
   void _run(final bool forward) {
-    setState(() {
-      _output = null;
-      _error = null;
-    });
+    if (_inputController.text.isEmpty) {
+      setState(() {
+        _output = null;
+        _error = U.s.inputTextRequired;
+      });
+      return;
+    }
     try {
-      final String text = _inputController.text;
-      if (text.isEmpty) {
-        setState(() => _error = U.s.inputTextRequired);
-        return;
-      }
-      String result;
-      switch (_algo.category) {
-        case _Category.symmetric:
-          {
-            final enc.Encrypter encrypter = _encrypter();
-            final enc.IV? iv = _algo.needsIv ? _iv(_ivController.text) : null;
-            result = forward ? encrypter.encrypt(text, iv: iv).base64 : encrypter.decrypt(enc.Encrypted.fromBase64(text), iv: iv);
-          }
-        case _Category.encoding:
-          result = _encode(text, forward);
-        case _Category.hash:
-          result = _digest().toString();
-      }
-      setState(() => _output = result);
+      final String result = _process(forward);
+      setState(() {
+        _output = result;
+        _error = null;
+      });
     } catch (e) {
-      setState(() => _error = e.toString());
+      setState(() {
+        _output = null;
+        _error = e.toString();
+      });
     }
   }
-
-  String _encode(final String text, final bool forward) => switch (_algo.id) {
-    "base64" => forward ? base64.encode(utf8.encode(text)) : utf8.decode(base64.decode(text)),
-    "base64url" => forward ? base64Url.encode(utf8.encode(text)) : utf8.decode(base64Url.decode(text)),
-    "hex" => forward ? _hexEncode(utf8.encode(text)) : utf8.decode(_hexDecode(text)),
-    _ => throw Exception("Unsupported encoding"),
-  };
 
   void _generateKey() {
     final int bytes = _algo.id == "aes" ? _aesKeyBytes : 32;
     setState(() {
-      _keyEncoding = _ByteEncoding.base64;
-      _keyController.text = enc.Key.fromSecureRandom(bytes).base64;
+      _keyEncoding = UByteEncoding.base64;
+      _keyController.text = UEncryption.randomKey(bytes: bytes);
     });
   }
 
   void _generateIv() {
     final int bytes = _algo.id == "salsa20"
         ? 8
-        : _aesMode == enc.AESMode.gcm
+        : _aesMode == UAesMode.gcm
         ? 12
         : 16;
     setState(() {
-      _ivEncoding = _ByteEncoding.base64;
-      _ivController.text = enc.IV.fromSecureRandom(bytes).base64;
+      _ivEncoding = UByteEncoding.base64;
+      _ivController.text = UEncryption.randomIv(bytes: bytes);
     });
   }
 
@@ -269,11 +247,11 @@ class _UAdminCryptoTesterPageState extends State<UAdminCryptoTesterPage> {
     children: <Widget>[
       SizedBox(
         width: 180,
-        child: UDropDownField<enc.AESMode>(
+        child: UDropDownField<UAesMode>(
           initialValue: _aesMode,
           labelText: U.s.mode,
-          items: enc.AESMode.values.map((final enc.AESMode m) => DropdownMenuItem<enc.AESMode>(value: m, child: UTextBodyMedium(_aesModeLabel(m)))).toList(),
-          onChanged: (final enc.AESMode? m) => setState(() => _aesMode = m ?? enc.AESMode.cbc),
+          items: UAesMode.values.map((final UAesMode m) => DropdownMenuItem<UAesMode>(value: m, child: UTextBodyMedium(_aesModeLabel(m)))).toList(),
+          onChanged: (final UAesMode? m) => setState(() => _aesMode = m ?? UAesMode.cbc),
         ),
       ),
       SizedBox(
@@ -310,7 +288,7 @@ class _UAdminCryptoTesterPageState extends State<UAdminCryptoTesterPage> {
     children: <Widget>[
       UTextField(controller: _keyController, labelText: U.s.secretKey, hintText: U.s.secretKey).expanded(),
       if (_algo.id != "hmac") ...<Widget>[
-        SizedBox(width: 130, child: _encodingDropdown(_keyEncoding, (final _ByteEncoding e) => setState(() => _keyEncoding = e), U.s.keyEncoding)),
+        SizedBox(width: 130, child: _encodingDropdown(_keyEncoding, (final UByteEncoding e) => setState(() => _keyEncoding = e), U.s.keyEncoding)),
         IconButton(
           tooltip: U.s.generate,
           onPressed: _generateKey,
@@ -325,7 +303,7 @@ class _UAdminCryptoTesterPageState extends State<UAdminCryptoTesterPage> {
     crossAxisAlignment: CrossAxisAlignment.end,
     children: <Widget>[
       UTextField(controller: _ivController, labelText: U.s.initializationVector, hintText: U.s.initializationVector).expanded(),
-      SizedBox(width: 130, child: _encodingDropdown(_ivEncoding, (final _ByteEncoding e) => setState(() => _ivEncoding = e), U.s.ivEncoding)),
+      SizedBox(width: 130, child: _encodingDropdown(_ivEncoding, (final UByteEncoding e) => setState(() => _ivEncoding = e), U.s.ivEncoding)),
       IconButton(
         tooltip: U.s.generate,
         onPressed: _generateIv,
@@ -334,15 +312,15 @@ class _UAdminCryptoTesterPageState extends State<UAdminCryptoTesterPage> {
     ],
   );
 
-  Widget _encodingDropdown(final _ByteEncoding value, final ValueChanged<_ByteEncoding> onChanged, final String label) => UDropDownField<_ByteEncoding>(
+  Widget _encodingDropdown(final UByteEncoding value, final ValueChanged<UByteEncoding> onChanged, final String label) => UDropDownField<UByteEncoding>(
     initialValue: value,
     labelText: label,
-    items: const <DropdownMenuItem<_ByteEncoding>>[
-      DropdownMenuItem<_ByteEncoding>(value: _ByteEncoding.utf8, child: UTextBodyMedium("UTF-8")),
-      DropdownMenuItem<_ByteEncoding>(value: _ByteEncoding.base64, child: UTextBodyMedium("Base64")),
-      DropdownMenuItem<_ByteEncoding>(value: _ByteEncoding.hex, child: UTextBodyMedium("Hex")),
+    items: const <DropdownMenuItem<UByteEncoding>>[
+      DropdownMenuItem<UByteEncoding>(value: UByteEncoding.utf8, child: UTextBodyMedium("UTF-8")),
+      DropdownMenuItem<UByteEncoding>(value: UByteEncoding.base64, child: UTextBodyMedium("Base64")),
+      DropdownMenuItem<UByteEncoding>(value: UByteEncoding.hex, child: UTextBodyMedium("Hex")),
     ],
-    onChanged: (final _ByteEncoding? e) => onChanged(e ?? _ByteEncoding.utf8),
+    onChanged: (final UByteEncoding? e) => onChanged(e ?? UByteEncoding.utf8),
   );
 
   Widget _inputCard(final ColorScheme cs) => UCard(
@@ -441,21 +419,19 @@ class _UAdminCryptoTesterPageState extends State<UAdminCryptoTesterPage> {
     );
   }
 
-  String _aesModeLabel(final enc.AESMode mode) => switch (mode) {
-    enc.AESMode.cbc => "CBC",
-    enc.AESMode.cfb64 => "CFB-64",
-    enc.AESMode.ctr => "CTR",
-    enc.AESMode.ecb => "ECB",
-    enc.AESMode.ofb64 => "OFB-64",
-    enc.AESMode.ofb64Gctr => "OFB-64/GCTR",
-    enc.AESMode.sic => "SIC",
-    enc.AESMode.gcm => "GCM",
+  String _aesModeLabel(final UAesMode mode) => switch (mode) {
+    UAesMode.cbc => "CBC",
+    UAesMode.cfb64 => "CFB-64",
+    UAesMode.ctr => "CTR",
+    UAesMode.ecb => "ECB",
+    UAesMode.ofb64 => "OFB-64",
+    UAesMode.ofb64Gctr => "OFB-64/GCTR",
+    UAesMode.sic => "SIC",
+    UAesMode.gcm => "GCM",
   };
 }
 
 enum _Category { symmetric, encoding, hash }
-
-enum _ByteEncoding { utf8, base64, hex }
 
 // Static description of one algorithm the tester exposes and which inputs it needs.
 class _CryptoAlgo {
