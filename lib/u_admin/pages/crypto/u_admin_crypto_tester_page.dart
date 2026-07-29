@@ -346,7 +346,7 @@ class _UAdminCryptoTesterPageState extends State<UAdminCryptoTesterPage> {
               ),
           ],
         ),
-        UTextField(controller: _inputController, hintText: U.s.inputText, lines: 4),
+        UTextField(controller: _inputController, hintText: U.s.inputText, lines: 4, contentPadding: const EdgeInsets.all(16)),
       ],
     ).pAll(20),
   );
@@ -384,40 +384,66 @@ class _UAdminCryptoTesterPageState extends State<UAdminCryptoTesterPage> {
   }
 
   Widget _outputCard(final ColorScheme cs) {
-    final bool isError = _error != null;
-    final Color accent = isError ? cs.error : UAdminTheme.green;
+    if (_error != null) {
+      return UCard(
+        child: UColumn(
+          spacing: 14,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            UTextTitleMedium(U.s.error, fontWeight: FontWeight.bold, color: cs.error),
+            UContainer(
+              padding: const EdgeInsets.all(14),
+              color: cs.error.withValues(alpha: 0.08),
+              radius: 8,
+              child: SelectableText(
+                _error!,
+                style: TextStyle(fontFamily: "monospace", fontSize: 13, height: 1.5, color: cs.error),
+              ).ltr(),
+            ),
+          ],
+        ).pAll(20),
+      );
+    }
+    final String output = _output ?? "";
     return UCard(
       child: UColumn(
         spacing: 14,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          URow(
-            spacing: 10,
-            children: <Widget>[
-              UTextTitleMedium(isError ? U.s.error : U.s.output, fontWeight: FontWeight.bold, color: accent),
-              const Spacer(),
-              if (!isError)
-                IconButton(
-                  tooltip: U.s.copyToClipboard,
-                  visualDensity: VisualDensity.compact,
-                  icon: Icon(Icons.copy_rounded, size: 18, color: cs.primary),
-                  onPressed: () => _copy(_output ?? ""),
-                ),
-            ],
-          ),
-          UContainer(
-            padding: const EdgeInsets.all(14),
-            color: (isError ? cs.error : cs.surfaceContainerHighest).withValues(alpha: isError ? 0.08 : 0.5),
-            radius: 8,
-            child: SelectableText(
-              isError ? _error! : (_output ?? ""),
-              style: TextStyle(fontFamily: "monospace", fontSize: 13, height: 1.5, color: isError ? cs.error : cs.onSurface),
-            ).ltr(),
-          ),
+          _resultBlock(cs, U.s.output, output),
+          _resultBlock(cs, "Base64", UEncryption.base64EncodeText(output)),
         ],
       ).pAll(20),
     );
   }
+
+  Widget _resultBlock(final ColorScheme cs, final String label, final String value) => UColumn(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      URow(
+        spacing: 10,
+        children: <Widget>[
+          UTextTitleMedium(label, fontWeight: FontWeight.bold, color: UAdminTheme.green),
+          const Spacer(),
+          IconButton(
+            tooltip: U.s.copyToClipboard,
+            visualDensity: VisualDensity.compact,
+            icon: Icon(Icons.copy_rounded, size: 18, color: cs.primary),
+            onPressed: () => _copy(value),
+          ),
+        ],
+      ),
+      UContainer(
+        padding: const EdgeInsets.all(14),
+        color: cs.surfaceContainerHighest.withValues(alpha: 0.5),
+        radius: 8,
+        child: SelectableText(
+          value,
+          style: TextStyle(fontFamily: "monospace", fontSize: 13, height: 1.5, color: cs.onSurface),
+        ).ltr(),
+      ),
+    ],
+  );
 
   String _aesModeLabel(final UAesMode mode) => switch (mode) {
     UAesMode.cbc => "CBC",
