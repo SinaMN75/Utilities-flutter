@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "alignLeft": MessageLookupByLibrary.simpleMessage("چپ‌چین"),
     "alignRight": MessageLookupByLibrary.simpleMessage("راست‌چین"),
     "all": MessageLookupByLibrary.simpleMessage("همه"),
+    "allowedToDrive": MessageLookupByLibrary.simpleMessage("مجاز به رانندگی"),
     "amenities": MessageLookupByLibrary.simpleMessage("امکانات"),
     "amount": MessageLookupByLibrary.simpleMessage("مبلغ"),
     "amountWillBeAddedToWalletAndPaid": MessageLookupByLibrary.simpleMessage(
@@ -158,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "خرید بسته اینترنت",
     ),
     "cacheCleared": MessageLookupByLibrary.simpleMessage("حافظه پنهان پاک شد"),
+    "cachedData": MessageLookupByLibrary.simpleMessage("ذخیره‌شده"),
     "cancel": MessageLookupByLibrary.simpleMessage("انصراف"),
     "cancelled": MessageLookupByLibrary.simpleMessage("لغو شده"),
     "capacity": MessageLookupByLibrary.simpleMessage("ظرفیت"),
@@ -280,6 +282,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "day": MessageLookupByLibrary.simpleMessage("روز"),
     "dayCountSuffix": MessageLookupByLibrary.simpleMessage("روزه"),
     "daysOverdue": MessageLookupByLibrary.simpleMessage("روز تأخیر"),
+    "daysToExpiry": MessageLookupByLibrary.simpleMessage("روز تا انقضا"),
     "debt": MessageLookupByLibrary.simpleMessage("بدهکار"),
     "debtAmount": MessageLookupByLibrary.simpleMessage("مبلغ بدهی"),
     "decode": MessageLookupByLibrary.simpleMessage("کدگشایی"),
@@ -321,6 +324,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "download": MessageLookupByLibrary.simpleMessage("دانلود"),
     "downloadData": MessageLookupByLibrary.simpleMessage("دانلود اطلاعات"),
     "draft": MessageLookupByLibrary.simpleMessage("پیش‌نویس"),
+    "drivingLicenceNumber": MessageLookupByLibrary.simpleMessage(
+      "شماره گواهینامه",
+    ),
     "drivingLicense": MessageLookupByLibrary.simpleMessage("گواهینامه رانندگی"),
     "dueDate": MessageLookupByLibrary.simpleMessage("سررسید پرداخت"),
     "dueFactors": MessageLookupByLibrary.simpleMessage(
@@ -360,6 +366,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter": MessageLookupByLibrary.simpleMessage("ورود"),
     "enterBillIdAndPaymentIdOrScanBarcode": MessageLookupByLibrary.simpleMessage(
       "شناسه قبض و شناسه پرداخت را وارد یا بارکد آن را اسکن کنید",
+    ),
+    "enterDrivingLicenceNumberToInquire": MessageLookupByLibrary.simpleMessage(
+      "برای استعلام، شماره گواهینامه را وارد کنید",
     ),
     "enterPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "شماره موبایل وارد نمایید",
@@ -410,6 +419,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "exams": MessageLookupByLibrary.simpleMessage("آزمون‌ها"),
     "exception": MessageLookupByLibrary.simpleMessage("استثنا"),
     "expired": MessageLookupByLibrary.simpleMessage("منقضی"),
+    "expiresToday": MessageLookupByLibrary.simpleMessage("امروز منقضی می‌شود"),
     "expiringSoon": MessageLookupByLibrary.simpleMessage("در حال انقضا"),
     "externalApi": MessageLookupByLibrary.simpleMessage("API خارجی"),
     "extraSections": MessageLookupByLibrary.simpleMessage("بخش‌های اضافی"),
@@ -466,6 +476,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "framework": MessageLookupByLibrary.simpleMessage("فریم‌ورک"),
     "free": MessageLookupByLibrary.simpleMessage("آزاد"),
     "freeMemory": MessageLookupByLibrary.simpleMessage("حافظه آزاد"),
+    "freeway": MessageLookupByLibrary.simpleMessage("آزادراه"),
+    "freewayTollsInquiry": MessageLookupByLibrary.simpleMessage(
+      "استعلام عوارض آزادراهی",
+    ),
     "from": MessageLookupByLibrary.simpleMessage("از"),
     "fromBirthDate": MessageLookupByLibrary.simpleMessage("از تاریخ تولد"),
     "fromDate": MessageLookupByLibrary.simpleMessage("از تاریخ"),
@@ -539,8 +553,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "inputTextRequired": MessageLookupByLibrary.simpleMessage(
       "لطفاً متن ورودی را وارد کنید.",
     ),
+    "inquire": MessageLookupByLibrary.simpleMessage("استعلام"),
     "inquireAgain": MessageLookupByLibrary.simpleMessage("استعلام دوباره"),
     "inquiry": MessageLookupByLibrary.simpleMessage("استعلام"),
+    "inquiryCost": MessageLookupByLibrary.simpleMessage("هزینه استعلام"),
     "inquiryDate": MessageLookupByLibrary.simpleMessage("تاریخ استعلام"),
     "inquiryDetails": MessageLookupByLibrary.simpleMessage("جزئیات استعلام"),
     "insert": MessageLookupByLibrary.simpleMessage("درج"),
@@ -743,6 +759,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "nationalCardFront": MessageLookupByLibrary.simpleMessage("کارت ملی (رو)"),
     "nationalCode": MessageLookupByLibrary.simpleMessage("کد ملی"),
     "needsReview": MessageLookupByLibrary.simpleMessage("نیاز به بررسی"),
+    "negativePointDetails": MessageLookupByLibrary.simpleMessage(
+      "جزئیات نمره منفی",
+    ),
+    "negativePoints": MessageLookupByLibrary.simpleMessage("نمرات منفی"),
     "net": MessageLookupByLibrary.simpleMessage("خالص"),
     "network": MessageLookupByLibrary.simpleMessage("شبکه"),
     "newExam": MessageLookupByLibrary.simpleMessage("آزمون جدید"),
@@ -765,6 +785,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "هیچ خوابگاهی یافت نشد",
     ),
     "noExamFound": MessageLookupByLibrary.simpleMessage("هیچ آزمونی یافت نشد"),
+    "noFreewayTollsFound": MessageLookupByLibrary.simpleMessage(
+      "عوارضی برای این خودرو یافت نشد",
+    ),
     "noHotelsFound": MessageLookupByLibrary.simpleMessage("هیچ هتلی یافت نشد"),
     "noInformationFound": MessageLookupByLibrary.simpleMessage(
       "اطلاعاتی یافت نشد",
@@ -797,6 +820,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noResults": MessageLookupByLibrary.simpleMessage("نتیجه‌ای یافت نشد"),
     "noRoomsFound": MessageLookupByLibrary.simpleMessage("هیچ اتاقی یافت نشد"),
+    "noSavedData": MessageLookupByLibrary.simpleMessage("اطلاعاتی ذخیره نشده"),
+    "noSavedDataForThisVehicle": MessageLookupByLibrary.simpleMessage(
+      "برای این خودرو اطلاعاتی ذخیره نشده است. برای دریافت اطلاعات جدید باید هزینه استعلام را پرداخت کنید.",
+    ),
     "noShow": MessageLookupByLibrary.simpleMessage("عدم حضور"),
     "noSimCardRegistered": MessageLookupByLibrary.simpleMessage(
       "سیم‌کارتی ثبت نشده است",
@@ -822,6 +849,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "none": MessageLookupByLibrary.simpleMessage("هیچ‌کدام"),
     "normalText": MessageLookupByLibrary.simpleMessage("متن معمولی"),
+    "notAllowedToDrive": MessageLookupByLibrary.simpleMessage(
+      "غیرمجاز به رانندگی",
+    ),
     "notAssigned": MessageLookupByLibrary.simpleMessage("تخصیص داده نشده"),
     "notUploaded": MessageLookupByLibrary.simpleMessage("ثبت نشده"),
     "notes": MessageLookupByLibrary.simpleMessage("یادداشت‌ها"),
@@ -884,6 +914,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "path": MessageLookupByLibrary.simpleMessage("مسیر"),
     "pathContains": MessageLookupByLibrary.simpleMessage("بخشی از مسیر"),
     "pay": MessageLookupByLibrary.simpleMessage("پرداخت"),
+    "payAndInquire": MessageLookupByLibrary.simpleMessage("پرداخت و استعلام"),
     "payInvoice": MessageLookupByLibrary.simpleMessage("پرداخت فاکتور"),
     "payWithWallet": MessageLookupByLibrary.simpleMessage("پرداخت با کیف پول"),
     "payableAmount": MessageLookupByLibrary.simpleMessage("مبلغ قابل پرداخت"),
@@ -1107,6 +1138,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectUserToManageWallet": MessageLookupByLibrary.simpleMessage(
       "برای مدیریت کیف پول، کاربری را انتخاب کنید",
     ),
+    "selectVehicleForFreewayTollsInquiry": MessageLookupByLibrary.simpleMessage(
+      "خودرو موردنظر را برای استعلام عوارض آزادراهی انتخاب کنید",
+    ),
     "selectVehicleForLicenseStatusInquiry": MessageLookupByLibrary.simpleMessage(
       "خودرو موردنظر را برای استعلام وضعیت گواهینامه انتخاب کنید",
     ),
@@ -1226,11 +1260,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "to": MessageLookupByLibrary.simpleMessage("به"),
     "toBirthDate": MessageLookupByLibrary.simpleMessage("تا تاریخ تولد"),
     "toDate": MessageLookupByLibrary.simpleMessage("تا تاریخ"),
+    "tollGateway": MessageLookupByLibrary.simpleMessage("دروازه عوارض"),
+    "tollItems": MessageLookupByLibrary.simpleMessage("اقلام عوارض"),
     "topMerchants": MessageLookupByLibrary.simpleMessage("برترین پذیرندگان"),
     "topMerchantsByTerminalCount": MessageLookupByLibrary.simpleMessage(
       "برترین پذیرندگان (بر اساس تعداد پایانه)",
     ),
     "totalDebt": MessageLookupByLibrary.simpleMessage("کل بدهی"),
+    "totalFreewayTolls": MessageLookupByLibrary.simpleMessage(
+      "مجموع عوارض آزادراهی",
+    ),
     "totalMemory": MessageLookupByLibrary.simpleMessage("کل حافظه"),
     "totalPaid": MessageLookupByLibrary.simpleMessage("کل پرداختی"),
     "totalPenalty": MessageLookupByLibrary.simpleMessage("کل جریمه"),
@@ -1334,6 +1373,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewDetails": MessageLookupByLibrary.simpleMessage("مشاهده جزئیات"),
     "viewFinesAndTotalViolationAmount": MessageLookupByLibrary.simpleMessage(
       "مشاهده جریمه‌ها و مبلغ کل خلافی خودرو",
+    ),
+    "viewFreewayTollsAndTotalAmount": MessageLookupByLibrary.simpleMessage(
+      "مشاهده عوارض آزادراهی و مبلغ کل",
     ),
     "viewInvoices": MessageLookupByLibrary.simpleMessage("مشاهده فاکتورها"),
     "viewReport": MessageLookupByLibrary.simpleMessage("مشاهده گزارش"),

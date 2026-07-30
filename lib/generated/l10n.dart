@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7326,6 +7325,201 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Freeway tolls inquiry`
+  String get freewayTollsInquiry {
+    return Intl.message(
+      'Freeway tolls inquiry',
+      name: 'freewayTollsInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View freeway tolls and total amount`
+  String get viewFreewayTollsAndTotalAmount {
+    return Intl.message(
+      'View freeway tolls and total amount',
+      name: 'viewFreewayTollsAndTotalAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the vehicle for freeway tolls inquiry`
+  String get selectVehicleForFreewayTollsInquiry {
+    return Intl.message(
+      'Select the vehicle for freeway tolls inquiry',
+      name: 'selectVehicleForFreewayTollsInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total freeway tolls`
+  String get totalFreewayTolls {
+    return Intl.message(
+      'Total freeway tolls',
+      name: 'totalFreewayTolls',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No freeway tolls found for this vehicle`
+  String get noFreewayTollsFound {
+    return Intl.message(
+      'No freeway tolls found for this vehicle',
+      name: 'noFreewayTollsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Freeway`
+  String get freeway {
+    return Intl.message('Freeway', name: 'freeway', desc: '', args: []);
+  }
+
+  /// `Toll gateway`
+  String get tollGateway {
+    return Intl.message(
+      'Toll gateway',
+      name: 'tollGateway',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Toll items`
+  String get tollItems {
+    return Intl.message('Toll items', name: 'tollItems', desc: '', args: []);
+  }
+
+  /// `Driving license number`
+  String get drivingLicenceNumber {
+    return Intl.message(
+      'Driving license number',
+      name: 'drivingLicenceNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the driving license number to inquire`
+  String get enterDrivingLicenceNumberToInquire {
+    return Intl.message(
+      'Enter the driving license number to inquire',
+      name: 'enterDrivingLicenceNumberToInquire',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Negative points`
+  String get negativePoints {
+    return Intl.message(
+      'Negative points',
+      name: 'negativePoints',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allowed to drive`
+  String get allowedToDrive {
+    return Intl.message(
+      'Allowed to drive',
+      name: 'allowedToDrive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not allowed to drive`
+  String get notAllowedToDrive {
+    return Intl.message(
+      'Not allowed to drive',
+      name: 'notAllowedToDrive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Negative point details`
+  String get negativePointDetails {
+    return Intl.message(
+      'Negative point details',
+      name: 'negativePointDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inquire`
+  String get inquire {
+    return Intl.message('Inquire', name: 'inquire', desc: '', args: []);
+  }
+
+  /// `days left`
+  String get daysToExpiry {
+    return Intl.message('days left', name: 'daysToExpiry', desc: '', args: []);
+  }
+
+  /// `Expires today`
+  String get expiresToday {
+    return Intl.message(
+      'Expires today',
+      name: 'expiresToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No saved data`
+  String get noSavedData {
+    return Intl.message(
+      'No saved data',
+      name: 'noSavedData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is no saved data for this vehicle. To get fresh data you must pay the inquiry fee.`
+  String get noSavedDataForThisVehicle {
+    return Intl.message(
+      'There is no saved data for this vehicle. To get fresh data you must pay the inquiry fee.',
+      name: 'noSavedDataForThisVehicle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inquiry cost`
+  String get inquiryCost {
+    return Intl.message(
+      'Inquiry cost',
+      name: 'inquiryCost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay and inquire`
+  String get payAndInquire {
+    return Intl.message(
+      'Pay and inquire',
+      name: 'payAndInquire',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cached`
+  String get cachedData {
+    return Intl.message('Cached', name: 'cachedData', desc: '', args: []);
   }
 }
 
