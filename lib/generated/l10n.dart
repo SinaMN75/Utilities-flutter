@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7520,6 +7521,16 @@ class S {
   /// `Cached`
   String get cachedData {
     return Intl.message('Cached', name: 'cachedData', desc: '', args: []);
+  }
+
+  /// `Expiration date`
+  String get expirationDate {
+    return Intl.message(
+      'Expiration date',
+      name: 'expirationDate',
+      desc: '',
+      args: [],
+    );
   }
 }
 

@@ -426,6 +426,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "exams": MessageLookupByLibrary.simpleMessage("Exams"),
     "exception": MessageLookupByLibrary.simpleMessage("Exception"),
+    "expirationDate": MessageLookupByLibrary.simpleMessage("Expiration date"),
     "expired": MessageLookupByLibrary.simpleMessage("Expired"),
     "expiresToday": MessageLookupByLibrary.simpleMessage("Expires today"),
     "expiringSoon": MessageLookupByLibrary.simpleMessage("Expiring Soon"),

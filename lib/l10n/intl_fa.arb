@@ -976,5 +976,6 @@
   "noSavedDataForThisVehicle": "برای این خودرو اطلاعاتی ذخیره نشده است. برای دریافت اطلاعات جدید باید هزینه استعلام را پرداخت کنید.",
   "inquiryCost": "هزینه استعلام",
   "payAndInquire": "پرداخت و استعلام",
-  "cachedData": "ذخیره‌شده"
+  "cachedData": "ذخیره‌شده",
+  "expirationDate": "تاریخ انقضا"
 }

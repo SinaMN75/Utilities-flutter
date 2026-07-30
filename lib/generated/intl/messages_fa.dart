@@ -418,6 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "exams": MessageLookupByLibrary.simpleMessage("آزمون‌ها"),
     "exception": MessageLookupByLibrary.simpleMessage("استثنا"),
+    "expirationDate": MessageLookupByLibrary.simpleMessage("تاریخ انقضا"),
     "expired": MessageLookupByLibrary.simpleMessage("منقضی"),
     "expiresToday": MessageLookupByLibrary.simpleMessage("امروز منقضی می‌شود"),
     "expiringSoon": MessageLookupByLibrary.simpleMessage("در حال انقضا"),

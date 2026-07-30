@@ -976,5 +976,6 @@
   "noSavedDataForThisVehicle": "There is no saved data for this vehicle. To get fresh data you must pay the inquiry fee.",
   "inquiryCost": "Inquiry cost",
   "payAndInquire": "Pay and inquire",
-  "cachedData": "Cached"
+  "cachedData": "Cached",
+  "expirationDate": "Expiration date"
 }
