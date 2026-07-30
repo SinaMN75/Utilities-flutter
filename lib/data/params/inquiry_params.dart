@@ -215,3 +215,27 @@ class ULicencePlateDetailParams {
     "refresh": refresh,
   };
 }
+
+class UInquiryCacheStatusParams {
+  final String nationalCode;
+  final String phoneNumber;
+  final String licencePlate;
+
+  UInquiryCacheStatusParams({required this.nationalCode, required this.phoneNumber, required this.licencePlate});
+
+  factory UInquiryCacheStatusParams.fromJson(String str) => UInquiryCacheStatusParams.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UInquiryCacheStatusParams.fromMap(Map<String, dynamic> json) => UInquiryCacheStatusParams(
+    nationalCode: json["nationalCode"],
+    phoneNumber: json["phoneNumber"],
+    licencePlate: json["licencePlate"],
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "nationalCode": nationalCode,
+    "phoneNumber": phoneNumber,
+    "licencePlate": licencePlate,
+  };
+}

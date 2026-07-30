@@ -95,6 +95,7 @@ class UZipCodeToAddressDetailResponse {
     required this.village,
     this.isCached = false,
     this.cachedAt,
+    this.cacheExpiresAt,
   });
 
   factory UZipCodeToAddressDetailResponse.fromJson(String str) => UZipCodeToAddressDetailResponse.fromMap(json.decode(str));
@@ -117,6 +118,7 @@ class UZipCodeToAddressDetailResponse {
     village: json["village"],
     isCached: json["isCached"] ?? false,
     cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
+    cacheExpiresAt: json["cacheExpiresAt"] == null ? null : DateTime.tryParse(json["cacheExpiresAt"]),
   );
   final String? buildingName;
   final String? description;
@@ -135,6 +137,7 @@ class UZipCodeToAddressDetailResponse {
   final String? village;
   final bool isCached;
   final DateTime? cachedAt;
+  final DateTime? cacheExpiresAt;
 
   String toJson() => json.encode(toMap());
 
@@ -156,6 +159,7 @@ class UZipCodeToAddressDetailResponse {
     "village": village,
     "isCached": isCached,
     "cachedAt": cachedAt?.toIso8601String(),
+    "cacheExpiresAt": cacheExpiresAt?.toIso8601String(),
   };
 }
 
@@ -177,6 +181,7 @@ class UVehicleViolationDetailResponse {
   final List<UVehicleViolationDetailItem> items;
   final bool isCached;
   final DateTime? cachedAt;
+  final DateTime? cacheExpiresAt;
 
   UVehicleViolationDetailResponse({
     required this.items,
@@ -196,6 +201,7 @@ class UVehicleViolationDetailResponse {
     this.inquirePriceDictation,
     this.isCached = false,
     this.cachedAt,
+    this.cacheExpiresAt,
   });
 
   factory UVehicleViolationDetailResponse.fromJson(String str) => UVehicleViolationDetailResponse.fromMap(json.decode(str));
@@ -219,6 +225,7 @@ class UVehicleViolationDetailResponse {
     inquirePriceDictation: json["inquirePriceDictation"],
     isCached: json["isCached"] ?? false,
     cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
+    cacheExpiresAt: json["cacheExpiresAt"] == null ? null : DateTime.tryParse(json["cacheExpiresAt"]),
     items: json["items"] == null ? <UVehicleViolationDetailItem>[] : List<UVehicleViolationDetailItem>.from(json["items"]!.map((dynamic x) => UVehicleViolationDetailItem.fromMap(x))),
   );
 
@@ -239,6 +246,7 @@ class UVehicleViolationDetailResponse {
     "inquirePriceDictation": inquirePriceDictation,
     "isCached": isCached,
     "cachedAt": cachedAt?.toIso8601String(),
+    "cacheExpiresAt": cacheExpiresAt?.toIso8601String(),
     "items": List<dynamic>.from(items.map((UVehicleViolationDetailItem x) => x.toMap())),
   };
 }
@@ -309,6 +317,7 @@ class UDrivingLicenceNegativePointResponse {
   final String? ruleId;
   final bool isCached;
   final DateTime? cachedAt;
+  final DateTime? cacheExpiresAt;
 
   UDrivingLicenceNegativePointResponse({
     this.point,
@@ -316,6 +325,7 @@ class UDrivingLicenceNegativePointResponse {
     this.ruleId,
     this.isCached = false,
     this.cachedAt,
+    this.cacheExpiresAt,
   });
 
   factory UDrivingLicenceNegativePointResponse.fromJson(String str) => UDrivingLicenceNegativePointResponse.fromMap(json.decode(str));
@@ -328,6 +338,7 @@ class UDrivingLicenceNegativePointResponse {
     ruleId: json["ruleId"],
     isCached: json["isCached"] ?? false,
     cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
+    cacheExpiresAt: json["cacheExpiresAt"] == null ? null : DateTime.tryParse(json["cacheExpiresAt"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -336,6 +347,7 @@ class UDrivingLicenceNegativePointResponse {
     "ruleId": ruleId,
     "isCached": isCached,
     "cachedAt": cachedAt?.toIso8601String(),
+    "cacheExpiresAt": cacheExpiresAt?.toIso8601String(),
   };
 }
 
@@ -354,6 +366,7 @@ class UDrivingLicenceDetailResponse {
   final String? validYears;
   final bool isCached;
   final DateTime? cachedAt;
+  final DateTime? cacheExpiresAt;
 
   UDrivingLicenceDetailResponse({
     this.nationalCode,
@@ -370,6 +383,7 @@ class UDrivingLicenceDetailResponse {
     this.validYears,
     this.isCached = false,
     this.cachedAt,
+    this.cacheExpiresAt,
   });
 
   factory UDrivingLicenceDetailResponse.fromJson(String str) => UDrivingLicenceDetailResponse.fromMap(json.decode(str));
@@ -391,6 +405,7 @@ class UDrivingLicenceDetailResponse {
     validYears: json["validYears"],
     isCached: json["isCached"] ?? false,
     cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
+    cacheExpiresAt: json["cacheExpiresAt"] == null ? null : DateTime.tryParse(json["cacheExpiresAt"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -408,6 +423,7 @@ class UDrivingLicenceDetailResponse {
     "validYears": validYears,
     "isCached": isCached,
     "cachedAt": cachedAt?.toIso8601String(),
+    "cacheExpiresAt": cacheExpiresAt?.toIso8601String(),
   };
 }
 
@@ -416,12 +432,14 @@ class UFreewayTollsResponse {
   final List<UFreewayTollsItem>? items;
   final bool isCached;
   final DateTime? cachedAt;
+  final DateTime? cacheExpiresAt;
 
   UFreewayTollsResponse({
     this.totalPrice,
     this.items,
     this.isCached = false,
     this.cachedAt,
+    this.cacheExpiresAt,
   });
 
   factory UFreewayTollsResponse.fromJson(String str) => UFreewayTollsResponse.fromMap(json.decode(str));
@@ -433,6 +451,7 @@ class UFreewayTollsResponse {
     items: json["items"] == null ? <UFreewayTollsItem>[] : List<UFreewayTollsItem>.from(json["items"]!.map((dynamic x) => UFreewayTollsItem.fromMap(x))),
     isCached: json["isCached"] ?? false,
     cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
+    cacheExpiresAt: json["cacheExpiresAt"] == null ? null : DateTime.tryParse(json["cacheExpiresAt"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -440,6 +459,7 @@ class UFreewayTollsResponse {
     "items": items == null ? <dynamic>[] : List<dynamic>.from(items!.map((UFreewayTollsItem x) => x.toMap())),
     "isCached": isCached,
     "cachedAt": cachedAt?.toIso8601String(),
+    "cacheExpiresAt": cacheExpiresAt?.toIso8601String(),
   };
 }
 
@@ -487,6 +507,7 @@ class UIBanToBankAccountDetailResponse {
   final String? ownerName;
   final bool isCached;
   final DateTime? cachedAt;
+  final DateTime? cacheExpiresAt;
 
   UIBanToBankAccountDetailResponse({
     this.depositNumber,
@@ -496,6 +517,7 @@ class UIBanToBankAccountDetailResponse {
     this.ownerName,
     this.isCached = false,
     this.cachedAt,
+    this.cacheExpiresAt,
   });
 
   factory UIBanToBankAccountDetailResponse.fromJson(String str) => UIBanToBankAccountDetailResponse.fromMap(json.decode(str));
@@ -510,6 +532,7 @@ class UIBanToBankAccountDetailResponse {
     ownerName: json["ownerName"],
     isCached: json["isCached"] ?? false,
     cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
+    cacheExpiresAt: json["cacheExpiresAt"] == null ? null : DateTime.tryParse(json["cacheExpiresAt"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -520,6 +543,7 @@ class UIBanToBankAccountDetailResponse {
     "ownerName": ownerName,
     "isCached": isCached,
     "cachedAt": cachedAt?.toIso8601String(),
+    "cacheExpiresAt": cacheExpiresAt?.toIso8601String(),
   };
 }
 
@@ -529,6 +553,7 @@ class ULicencePlateDetailResponse {
   final List<ULicencePlateHistoryItem>? items;
   final bool isCached;
   final DateTime? cachedAt;
+  final DateTime? cacheExpiresAt;
 
   ULicencePlateDetailResponse({
     this.status,
@@ -536,6 +561,7 @@ class ULicencePlateDetailResponse {
     this.items,
     this.isCached = false,
     this.cachedAt,
+    this.cacheExpiresAt,
   });
 
   factory ULicencePlateDetailResponse.fromJson(String str) => ULicencePlateDetailResponse.fromMap(json.decode(str));
@@ -548,6 +574,7 @@ class ULicencePlateDetailResponse {
     items: json["items"] == null ? <ULicencePlateHistoryItem>[] : List<ULicencePlateHistoryItem>.from(json["items"]!.map((dynamic x) => ULicencePlateHistoryItem.fromMap(x))),
     isCached: json["isCached"] ?? false,
     cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
+    cacheExpiresAt: json["cacheExpiresAt"] == null ? null : DateTime.tryParse(json["cacheExpiresAt"]),
   );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -556,6 +583,7 @@ class ULicencePlateDetailResponse {
     "items": items == null ? <dynamic>[] : List<dynamic>.from(items!.map((ULicencePlateHistoryItem x) => x.toMap())),
     "isCached": isCached,
     "cachedAt": cachedAt?.toIso8601String(),
+    "cacheExpiresAt": cacheExpiresAt?.toIso8601String(),
   };
 }
 
@@ -588,5 +616,53 @@ class ULicencePlateHistoryItem {
     "type": type,
     "installDate": installDate,
     "model": model,
+  };
+}
+
+class UInquiryCacheStatusResponse {
+  final UCacheStatusItem? vehicleViolation;
+  final UCacheStatusItem? drivingLicence;
+  final UCacheStatusItem? licencePlate;
+  final UCacheStatusItem? freewayTolls;
+
+  UInquiryCacheStatusResponse({this.vehicleViolation, this.drivingLicence, this.licencePlate, this.freewayTolls});
+
+  factory UInquiryCacheStatusResponse.fromJson(String str) => UInquiryCacheStatusResponse.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UInquiryCacheStatusResponse.fromMap(Map<String, dynamic> json) => UInquiryCacheStatusResponse(
+    vehicleViolation: json["vehicleViolation"] == null ? null : UCacheStatusItem.fromMap(json["vehicleViolation"]),
+    drivingLicence: json["drivingLicence"] == null ? null : UCacheStatusItem.fromMap(json["drivingLicence"]),
+    licencePlate: json["licencePlate"] == null ? null : UCacheStatusItem.fromMap(json["licencePlate"]),
+    freewayTolls: json["freewayTolls"] == null ? null : UCacheStatusItem.fromMap(json["freewayTolls"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "vehicleViolation": vehicleViolation?.toMap(),
+    "drivingLicence": drivingLicence?.toMap(),
+    "licencePlate": licencePlate?.toMap(),
+    "freewayTolls": freewayTolls?.toMap(),
+  };
+}
+
+class UCacheStatusItem {
+  final DateTime? cachedAt;
+  final DateTime? cacheExpiresAt;
+
+  UCacheStatusItem({this.cachedAt, this.cacheExpiresAt});
+
+  factory UCacheStatusItem.fromJson(String str) => UCacheStatusItem.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory UCacheStatusItem.fromMap(Map<String, dynamic> json) => UCacheStatusItem(
+    cachedAt: json["cachedAt"] == null ? null : DateTime.tryParse(json["cachedAt"]),
+    cacheExpiresAt: json["cacheExpiresAt"] == null ? null : DateTime.tryParse(json["cacheExpiresAt"]),
+  );
+
+  Map<String, dynamic> toMap() => <String, dynamic>{
+    "cachedAt": cachedAt?.toIso8601String(),
+    "cacheExpiresAt": cacheExpiresAt?.toIso8601String(),
   };
 }

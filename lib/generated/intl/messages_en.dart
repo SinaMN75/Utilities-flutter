@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "alignLeft": MessageLookupByLibrary.simpleMessage("Align Left"),
     "alignRight": MessageLookupByLibrary.simpleMessage("Align Right"),
     "all": MessageLookupByLibrary.simpleMessage("All"),
+    "allowedToDrive": MessageLookupByLibrary.simpleMessage("Allowed to drive"),
     "amenities": MessageLookupByLibrary.simpleMessage("Amenities"),
     "amount": MessageLookupByLibrary.simpleMessage("Amount"),
     "amountWillBeAddedToWalletAndPaid": MessageLookupByLibrary.simpleMessage(
@@ -158,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Buy internet package",
     ),
     "cacheCleared": MessageLookupByLibrary.simpleMessage("Cache Cleared"),
+    "cachedData": MessageLookupByLibrary.simpleMessage("Cached"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancelled": MessageLookupByLibrary.simpleMessage("Cancelled"),
     "capacity": MessageLookupByLibrary.simpleMessage("Capacity"),
@@ -290,6 +292,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "day": MessageLookupByLibrary.simpleMessage("Day"),
     "dayCountSuffix": MessageLookupByLibrary.simpleMessage("days"),
     "daysOverdue": MessageLookupByLibrary.simpleMessage("Days Overdue"),
+    "daysToExpiry": MessageLookupByLibrary.simpleMessage("days left"),
     "debt": MessageLookupByLibrary.simpleMessage("Debt"),
     "debtAmount": MessageLookupByLibrary.simpleMessage("Debt Amount"),
     "decode": MessageLookupByLibrary.simpleMessage("Decode"),
@@ -331,6 +334,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "download": MessageLookupByLibrary.simpleMessage("Download"),
     "downloadData": MessageLookupByLibrary.simpleMessage("Download Data"),
     "draft": MessageLookupByLibrary.simpleMessage("Draft"),
+    "drivingLicenceNumber": MessageLookupByLibrary.simpleMessage(
+      "Driving license number",
+    ),
     "drivingLicense": MessageLookupByLibrary.simpleMessage("Driving license"),
     "dueDate": MessageLookupByLibrary.simpleMessage("Due Date"),
     "dueFactors": MessageLookupByLibrary.simpleMessage("Due Factors"),
@@ -370,6 +376,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter": MessageLookupByLibrary.simpleMessage("Enter"),
     "enterBillIdAndPaymentIdOrScanBarcode": MessageLookupByLibrary.simpleMessage(
       "Enter the bill ID and payment ID or scan its barcode",
+    ),
+    "enterDrivingLicenceNumberToInquire": MessageLookupByLibrary.simpleMessage(
+      "Enter the driving license number to inquire",
     ),
     "enterPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Enter phone number",
@@ -418,6 +427,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "exams": MessageLookupByLibrary.simpleMessage("Exams"),
     "exception": MessageLookupByLibrary.simpleMessage("Exception"),
     "expired": MessageLookupByLibrary.simpleMessage("Expired"),
+    "expiresToday": MessageLookupByLibrary.simpleMessage("Expires today"),
     "expiringSoon": MessageLookupByLibrary.simpleMessage("Expiring Soon"),
     "externalApi": MessageLookupByLibrary.simpleMessage("External API"),
     "extraSections": MessageLookupByLibrary.simpleMessage("Extra Sections"),
@@ -478,6 +488,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "framework": MessageLookupByLibrary.simpleMessage("Framework"),
     "free": MessageLookupByLibrary.simpleMessage("Free"),
     "freeMemory": MessageLookupByLibrary.simpleMessage("Free Memory"),
+    "freeway": MessageLookupByLibrary.simpleMessage("Freeway"),
+    "freewayTollsInquiry": MessageLookupByLibrary.simpleMessage(
+      "Freeway tolls inquiry",
+    ),
     "from": MessageLookupByLibrary.simpleMessage("From"),
     "fromBirthDate": MessageLookupByLibrary.simpleMessage("From Birth Date"),
     "fromDate": MessageLookupByLibrary.simpleMessage("From Date"),
@@ -551,8 +565,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "inputTextRequired": MessageLookupByLibrary.simpleMessage(
       "Please enter some input text.",
     ),
+    "inquire": MessageLookupByLibrary.simpleMessage("Inquire"),
     "inquireAgain": MessageLookupByLibrary.simpleMessage("Inquire again"),
     "inquiry": MessageLookupByLibrary.simpleMessage("Inquiry"),
+    "inquiryCost": MessageLookupByLibrary.simpleMessage("Inquiry cost"),
     "inquiryDate": MessageLookupByLibrary.simpleMessage("Inquiry date"),
     "inquiryDetails": MessageLookupByLibrary.simpleMessage("Inquiry details"),
     "insert": MessageLookupByLibrary.simpleMessage("Insert"),
@@ -773,6 +789,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "nationalCode": MessageLookupByLibrary.simpleMessage("National Code"),
     "needsReview": MessageLookupByLibrary.simpleMessage("Needs Review"),
+    "negativePointDetails": MessageLookupByLibrary.simpleMessage(
+      "Negative point details",
+    ),
+    "negativePoints": MessageLookupByLibrary.simpleMessage("Negative points"),
     "net": MessageLookupByLibrary.simpleMessage("Net"),
     "network": MessageLookupByLibrary.simpleMessage("Network"),
     "newExam": MessageLookupByLibrary.simpleMessage("New Exam"),
@@ -795,6 +815,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noData": MessageLookupByLibrary.simpleMessage("No data"),
     "noDormsFound": MessageLookupByLibrary.simpleMessage("No dorms found"),
     "noExamFound": MessageLookupByLibrary.simpleMessage("No Exam Found"),
+    "noFreewayTollsFound": MessageLookupByLibrary.simpleMessage(
+      "No freeway tolls found for this vehicle",
+    ),
     "noHotelsFound": MessageLookupByLibrary.simpleMessage("No hotels found"),
     "noInformationFound": MessageLookupByLibrary.simpleMessage(
       "No information found",
@@ -823,6 +846,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noResults": MessageLookupByLibrary.simpleMessage("No Results"),
     "noRoomsFound": MessageLookupByLibrary.simpleMessage("No rooms found"),
+    "noSavedData": MessageLookupByLibrary.simpleMessage("No saved data"),
+    "noSavedDataForThisVehicle": MessageLookupByLibrary.simpleMessage(
+      "There is no saved data for this vehicle. To get fresh data you must pay the inquiry fee.",
+    ),
     "noShow": MessageLookupByLibrary.simpleMessage("No Show"),
     "noSimCardRegistered": MessageLookupByLibrary.simpleMessage(
       "No SIM card registered",
@@ -846,6 +873,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "none": MessageLookupByLibrary.simpleMessage("None"),
     "normalText": MessageLookupByLibrary.simpleMessage("Normal Text"),
+    "notAllowedToDrive": MessageLookupByLibrary.simpleMessage(
+      "Not allowed to drive",
+    ),
     "notAssigned": MessageLookupByLibrary.simpleMessage("Not assigned"),
     "notUploaded": MessageLookupByLibrary.simpleMessage("Not Uploaded"),
     "notes": MessageLookupByLibrary.simpleMessage("Notes"),
@@ -908,6 +938,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "path": MessageLookupByLibrary.simpleMessage("Path"),
     "pathContains": MessageLookupByLibrary.simpleMessage("Path Contains"),
     "pay": MessageLookupByLibrary.simpleMessage("Pay"),
+    "payAndInquire": MessageLookupByLibrary.simpleMessage("Pay and inquire"),
     "payInvoice": MessageLookupByLibrary.simpleMessage("Pay Invoice"),
     "payWithWallet": MessageLookupByLibrary.simpleMessage("Pay with wallet"),
     "payableAmount": MessageLookupByLibrary.simpleMessage("Payable amount"),
@@ -1141,6 +1172,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectUserToManageWallet": MessageLookupByLibrary.simpleMessage(
       "Select a user to manage their wallet",
     ),
+    "selectVehicleForFreewayTollsInquiry": MessageLookupByLibrary.simpleMessage(
+      "Select the vehicle for freeway tolls inquiry",
+    ),
     "selectVehicleForLicenseStatusInquiry": MessageLookupByLibrary.simpleMessage(
       "Select the vehicle for license status inquiry",
     ),
@@ -1260,11 +1294,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "to": MessageLookupByLibrary.simpleMessage("To"),
     "toBirthDate": MessageLookupByLibrary.simpleMessage("To Birth Date"),
     "toDate": MessageLookupByLibrary.simpleMessage("To Date"),
+    "tollGateway": MessageLookupByLibrary.simpleMessage("Toll gateway"),
+    "tollItems": MessageLookupByLibrary.simpleMessage("Toll items"),
     "topMerchants": MessageLookupByLibrary.simpleMessage("Top Merchants"),
     "topMerchantsByTerminalCount": MessageLookupByLibrary.simpleMessage(
       "Top Merchants (by terminal count)",
     ),
     "totalDebt": MessageLookupByLibrary.simpleMessage("Total Debt"),
+    "totalFreewayTolls": MessageLookupByLibrary.simpleMessage(
+      "Total freeway tolls",
+    ),
     "totalMemory": MessageLookupByLibrary.simpleMessage("Total Memory"),
     "totalPaid": MessageLookupByLibrary.simpleMessage("Total Paid"),
     "totalPenalty": MessageLookupByLibrary.simpleMessage("Total Penalty"),
@@ -1372,6 +1411,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "viewDetails": MessageLookupByLibrary.simpleMessage("View Details"),
     "viewFinesAndTotalViolationAmount": MessageLookupByLibrary.simpleMessage(
       "View fines and total violation amount",
+    ),
+    "viewFreewayTollsAndTotalAmount": MessageLookupByLibrary.simpleMessage(
+      "View freeway tolls and total amount",
     ),
     "viewInvoices": MessageLookupByLibrary.simpleMessage("View Invoices"),
     "viewReport": MessageLookupByLibrary.simpleMessage("View Report"),
