@@ -93,18 +93,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "Are you sure to Delete this User?",
     ),
-    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments": MessageLookupByLibrary.simpleMessage(
-      "Are you sure you want to approve this user with all of their documents?",
-    ),
+    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments":
+        MessageLookupByLibrary.simpleMessage(
+          "Are you sure you want to approve this user with all of their documents?",
+        ),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "Are You Sure You Want To Delete",
     ),
     "areYouSureYouWantToDeleteThisExam": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this exam?",
     ),
-    "areYouSureYouWantToDeleteThisVehicle": MessageLookupByLibrary.simpleMessage(
-      "Are you sure you want to delete this vehicle?",
-    ),
+    "areYouSureYouWantToDeleteThisVehicle":
+        MessageLookupByLibrary.simpleMessage(
+          "Are you sure you want to delete this vehicle?",
+        ),
     "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to log out?",
     ),
@@ -130,9 +132,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "bed": MessageLookupByLibrary.simpleMessage("Bed"),
     "bedType": MessageLookupByLibrary.simpleMessage("Bed Type"),
     "beds": MessageLookupByLibrary.simpleMessage("Beds"),
-    "betweenFiftyThousandAndTenMillionRials": MessageLookupByLibrary.simpleMessage(
-      "Between 50,000 and 10,000,000 Rials",
-    ),
+    "betweenFiftyThousandAndTenMillionRials":
+        MessageLookupByLibrary.simpleMessage(
+          "Between 50,000 and 10,000,000 Rials",
+        ),
     "bill": MessageLookupByLibrary.simpleMessage("Bill"),
     "billDetails": MessageLookupByLibrary.simpleMessage("Bill details"),
     "billId": MessageLookupByLibrary.simpleMessage("Bill ID"),
@@ -179,9 +182,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkInDate": MessageLookupByLibrary.simpleMessage("Check-in Date"),
     "checkInTime": MessageLookupByLibrary.simpleMessage("Check-in Time"),
     "checkManagement": MessageLookupByLibrary.simpleMessage("Check management"),
-    "checkNegativePointsRecordedOnLicense": MessageLookupByLibrary.simpleMessage(
-      "Check negative points recorded on the license",
-    ),
+    "checkNegativePointsRecordedOnLicense":
+        MessageLookupByLibrary.simpleMessage(
+          "Check negative points recorded on the license",
+        ),
     "checkOut": MessageLookupByLibrary.simpleMessage("Check Out"),
     "checkOutDate": MessageLookupByLibrary.simpleMessage("Check-out Date"),
     "checkOutTime": MessageLookupByLibrary.simpleMessage("Check-out Time"),
@@ -207,9 +211,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "completeUserInformation": MessageLookupByLibrary.simpleMessage(
       "Complete user information",
     ),
-    "completeYourIdentityInformationToUseAvaHamrahServices": MessageLookupByLibrary.simpleMessage(
-      "To use AvaHamrah services, complete your identity information.",
-    ),
+    "completeYourIdentityInformationToUseAvaHamrahServices":
+        MessageLookupByLibrary.simpleMessage(
+          "To use AvaHamrah services, complete your identity information.",
+        ),
     "configuration": MessageLookupByLibrary.simpleMessage("Configuration"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirmAndContinue": MessageLookupByLibrary.simpleMessage(
@@ -374,9 +379,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "endsOn": MessageLookupByLibrary.simpleMessage("Ends"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "enter": MessageLookupByLibrary.simpleMessage("Enter"),
-    "enterBillIdAndPaymentIdOrScanBarcode": MessageLookupByLibrary.simpleMessage(
-      "Enter the bill ID and payment ID or scan its barcode",
-    ),
+    "enterBillIdAndPaymentIdOrScanBarcode":
+        MessageLookupByLibrary.simpleMessage(
+          "Enter the bill ID and payment ID or scan its barcode",
+        ),
     "enterDrivingLicenceNumberToInquire": MessageLookupByLibrary.simpleMessage(
       "Enter the driving license number to inquire",
     ),
@@ -389,9 +395,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterTheSentVerificationCode": MessageLookupByLibrary.simpleMessage(
       "Enter the sent verification code.",
     ),
-    "enterYourPostalCodeCorrectlyAndInquire": MessageLookupByLibrary.simpleMessage(
-      "Enter your postal code correctly and inquire.",
-    ),
+    "enterYourPostalCodeCorrectlyAndInquire":
+        MessageLookupByLibrary.simpleMessage(
+          "Enter your postal code correctly and inquire.",
+        ),
     "entityOverview": MessageLookupByLibrary.simpleMessage("Entity Overview"),
     "entrancePrice": MessageLookupByLibrary.simpleMessage("Entrance Price"),
     "error": MessageLookupByLibrary.simpleMessage("Error"),
@@ -586,9 +593,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "insufficientBalance": MessageLookupByLibrary.simpleMessage(
       "Insufficient balance",
     ),
-    "insufficientWalletBalanceUsePaymentGateway": MessageLookupByLibrary.simpleMessage(
-      "Insufficient wallet balance. Please use the payment gateway.",
-    ),
+    "insufficientWalletBalanceUsePaymentGateway":
+        MessageLookupByLibrary.simpleMessage(
+          "Insufficient wallet balance. Please use the payment gateway.",
+        ),
     "internet": MessageLookupByLibrary.simpleMessage("Internet"),
     "internetDataPackage": MessageLookupByLibrary.simpleMessage(
       "Internet data package",
@@ -596,9 +604,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "internetPackage": MessageLookupByLibrary.simpleMessage("Internet package"),
     "invalid": MessageLookupByLibrary.simpleMessage("Invalid"),
     "invalidAmount": MessageLookupByLibrary.simpleMessage("Invalid amount."),
-    "invalidBarcodePleaseEnterIdsManually": MessageLookupByLibrary.simpleMessage(
-      "Invalid barcode, please enter the IDs manually",
-    ),
+    "invalidBarcodePleaseEnterIdsManually":
+        MessageLookupByLibrary.simpleMessage(
+          "Invalid barcode, please enter the IDs manually",
+        ),
     "invoice": MessageLookupByLibrary.simpleMessage("Invoice"),
     "invoiceMarkedAsPaid": MessageLookupByLibrary.simpleMessage(
       "Invoice marked as paid",
@@ -662,9 +671,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "memoryUsage": MessageLookupByLibrary.simpleMessage("Memory Usage"),
     "merchant": MessageLookupByLibrary.simpleMessage("Merchant"),
     "merchantId": MessageLookupByLibrary.simpleMessage("Merchant ID"),
-    "merchantRegistrationMinimumBalanceNotice": MessageLookupByLibrary.simpleMessage(
-      "To register a merchant, your wallet must have at least 100,000 Tomans balance.",
-    ),
+    "merchantRegistrationMinimumBalanceNotice":
+        MessageLookupByLibrary.simpleMessage(
+          "To register a merchant, your wallet must have at least 100,000 Tomans balance.",
+        ),
     "merchantTitleStoreOrBusinessName": MessageLookupByLibrary.simpleMessage(
       "Merchant title (store or business name)",
     ),
@@ -886,12 +896,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "occupied": MessageLookupByLibrary.simpleMessage("Occupied"),
     "ok": MessageLookupByLibrary.simpleMessage("OK"),
     "oldestFirst": MessageLookupByLibrary.simpleMessage("Oldest First"),
-    "oneTerminalPerLineSerialSimnumberSimserialImei": MessageLookupByLibrary.simpleMessage(
-      "One terminal per line: serial,simNumber,simSerial,imei",
-    ),
-    "onlineInquiryOfVehicleViolationsLicenseAndPlate": MessageLookupByLibrary.simpleMessage(
-      "Online inquiry of vehicle violations, license and plate",
-    ),
+    "oneTerminalPerLineSerialSimnumberSimserialImei":
+        MessageLookupByLibrary.simpleMessage(
+          "One terminal per line: serial,simNumber,simSerial,imei",
+        ),
+    "onlineInquiryOfVehicleViolationsLicenseAndPlate":
+        MessageLookupByLibrary.simpleMessage(
+          "Online inquiry of vehicle violations, license and plate",
+        ),
     "onlinePayment": MessageLookupByLibrary.simpleMessage("Online payment"),
     "onlyErrors": MessageLookupByLibrary.simpleMessage("Only Errors"),
     "onlyExceptions": MessageLookupByLibrary.simpleMessage("Only Exceptions"),
@@ -979,12 +991,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "plateTrackingCode": MessageLookupByLibrary.simpleMessage(
       "Plate tracking code",
     ),
-    "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
-      "Please Create a Category before creating a Product.",
-    ),
-    "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
-      "Please Create a Product before Signing a Contract",
-    ),
+    "pleaseCreateACategoryBeforeCreatingAProduct":
+        MessageLookupByLibrary.simpleMessage(
+          "Please Create a Category before creating a Product.",
+        ),
+    "pleaseCreateAProductBeforeSigningAContract":
+        MessageLookupByLibrary.simpleMessage(
+          "Please Create a Product before Signing a Contract",
+        ),
     "pleaseEnterYourMobileNumberToLogin": MessageLookupByLibrary.simpleMessage(
       "Please enter your mobile number to log in.",
     ),
@@ -1036,9 +1050,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
     "queryString": MessageLookupByLibrary.simpleMessage("Query String"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("Question Title"),
-    "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
-      "Question title and at least one option are required",
-    ),
+    "questionTitleAndAtLeastOneOptionAreRequired":
+        MessageLookupByLibrary.simpleMessage(
+          "Question title and at least one option are required",
+        ),
     "questionnaire": MessageLookupByLibrary.simpleMessage("Questionnaire"),
     "questions": MessageLookupByLibrary.simpleMessage("Questions"),
     "quote": MessageLookupByLibrary.simpleMessage("Quote"),
@@ -1175,12 +1190,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectVehicleForFreewayTollsInquiry": MessageLookupByLibrary.simpleMessage(
       "Select the vehicle for freeway tolls inquiry",
     ),
-    "selectVehicleForLicenseStatusInquiry": MessageLookupByLibrary.simpleMessage(
-      "Select the vehicle for license status inquiry",
-    ),
-    "selectVehicleForNegativePointInquiry": MessageLookupByLibrary.simpleMessage(
-      "Select the vehicle for negative point inquiry",
-    ),
+    "selectVehicleForLicenseStatusInquiry":
+        MessageLookupByLibrary.simpleMessage(
+          "Select the vehicle for license status inquiry",
+        ),
+    "selectVehicleForNegativePointInquiry":
+        MessageLookupByLibrary.simpleMessage(
+          "Select the vehicle for negative point inquiry",
+        ),
     "selectVehicleForPlateStatusInquiry": MessageLookupByLibrary.simpleMessage(
       "Select the vehicle for plate status inquiry",
     ),
@@ -1272,9 +1289,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "theEnteredNationalCodeIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "The entered national code is incorrect.",
     ),
-    "theEnteredVerificationCodeIsIncorrect": MessageLookupByLibrary.simpleMessage(
-      "The entered verification code is incorrect.",
-    ),
+    "theEnteredVerificationCodeIsIncorrect":
+        MessageLookupByLibrary.simpleMessage(
+          "The entered verification code is incorrect.",
+        ),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "thisFieldIsInvalid": MessageLookupByLibrary.simpleMessage(
       "This field is invalid.",
@@ -1447,9 +1465,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "year": MessageLookupByLibrary.simpleMessage("Year"),
     "yes": MessageLookupByLibrary.simpleMessage("Yes"),
-    "youHaveNotRegisteredAnyBankAccountsYet": MessageLookupByLibrary.simpleMessage(
-      "You have not registered any bank accounts yet",
-    ),
+    "youHaveNotRegisteredAnyBankAccountsYet":
+        MessageLookupByLibrary.simpleMessage(
+          "You have not registered any bank accounts yet",
+        ),
     "youHaveNotRegisteredAnyMerchantsYet": MessageLookupByLibrary.simpleMessage(
       "You have not registered any merchants yet",
     ),

@@ -97,16 +97,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "areYouSureToDeleteThisUser": MessageLookupByLibrary.simpleMessage(
       "آیا از حذف این کاربر اطمینان دارید؟",
     ),
-    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments": MessageLookupByLibrary.simpleMessage(
-      "آیا از تایید این کاربر با تمام مدارک آن اطمینان دارید؟",
-    ),
+    "areYouSureYouWantToApproveThisUserWithAllOfTheirDocuments":
+        MessageLookupByLibrary.simpleMessage(
+          "آیا از تایید این کاربر با تمام مدارک آن اطمینان دارید؟",
+        ),
     "areYouSureYouWantToDelete": MessageLookupByLibrary.simpleMessage(
       "از حذف اطمینان دارید؟",
     ),
     "areYouSureYouWantToDeleteThisExam": MessageLookupByLibrary.simpleMessage(
       "آیا مطمئن هستید که می‌خواهید این آزمون را حذف کنید؟",
     ),
-    "areYouSureYouWantToDeleteThisVehicle": MessageLookupByLibrary.simpleMessage("آیا از حذف خودرو اطمینان دارید؟"),
+    "areYouSureYouWantToDeleteThisVehicle":
+        MessageLookupByLibrary.simpleMessage("آیا از حذف خودرو اطمینان دارید؟"),
     "areYouSureYouWantToLogOut": MessageLookupByLibrary.simpleMessage(
       "آیا از خروج از حساب اطمینان دارید؟",
     ),
@@ -134,7 +136,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "bed": MessageLookupByLibrary.simpleMessage("تخت"),
     "bedType": MessageLookupByLibrary.simpleMessage("نوع تخت"),
     "beds": MessageLookupByLibrary.simpleMessage("تخت‌ها"),
-    "betweenFiftyThousandAndTenMillionRials": MessageLookupByLibrary.simpleMessage("بین 50.000 تا 10.000.000 ریال"),
+    "betweenFiftyThousandAndTenMillionRials":
+        MessageLookupByLibrary.simpleMessage("بین 50.000 تا 10.000.000 ریال"),
     "bill": MessageLookupByLibrary.simpleMessage("قبض"),
     "billDetails": MessageLookupByLibrary.simpleMessage("جزئیات قبض"),
     "billId": MessageLookupByLibrary.simpleMessage("شناسه قبض"),
@@ -179,9 +182,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkInDate": MessageLookupByLibrary.simpleMessage("تاریخ ورود"),
     "checkInTime": MessageLookupByLibrary.simpleMessage("ساعت ورود"),
     "checkManagement": MessageLookupByLibrary.simpleMessage("مدیریت چک‌ها"),
-    "checkNegativePointsRecordedOnLicense": MessageLookupByLibrary.simpleMessage(
-      "بررسی نمرات منفی ثبت‌شده روی گواهینامه",
-    ),
+    "checkNegativePointsRecordedOnLicense":
+        MessageLookupByLibrary.simpleMessage(
+          "بررسی نمرات منفی ثبت‌شده روی گواهینامه",
+        ),
     "checkOut": MessageLookupByLibrary.simpleMessage("تسویه"),
     "checkOutDate": MessageLookupByLibrary.simpleMessage("تاریخ خروج"),
     "checkOutTime": MessageLookupByLibrary.simpleMessage("ساعت خروج"),
@@ -209,9 +213,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "completeUserInformation": MessageLookupByLibrary.simpleMessage(
       "تکمیل اطلاعات کاربری",
     ),
-    "completeYourIdentityInformationToUseAvaHamrahServices": MessageLookupByLibrary.simpleMessage(
-      "برای استفاده از خدمات آواهمراه، اطلاعات هویتی خود را تکمیل کنید.",
-    ),
+    "completeYourIdentityInformationToUseAvaHamrahServices":
+        MessageLookupByLibrary.simpleMessage(
+          "برای استفاده از خدمات آواهمراه، اطلاعات هویتی خود را تکمیل کنید.",
+        ),
     "configuration": MessageLookupByLibrary.simpleMessage("پیکربندی"),
     "confirm": MessageLookupByLibrary.simpleMessage("تایید"),
     "confirmAndContinue": MessageLookupByLibrary.simpleMessage("تایید و ادامه"),
@@ -364,9 +369,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "endsOn": MessageLookupByLibrary.simpleMessage("پایان"),
     "english": MessageLookupByLibrary.simpleMessage("انگلیسی"),
     "enter": MessageLookupByLibrary.simpleMessage("ورود"),
-    "enterBillIdAndPaymentIdOrScanBarcode": MessageLookupByLibrary.simpleMessage(
-      "شناسه قبض و شناسه پرداخت را وارد یا بارکد آن را اسکن کنید",
-    ),
+    "enterBillIdAndPaymentIdOrScanBarcode":
+        MessageLookupByLibrary.simpleMessage(
+          "شناسه قبض و شناسه پرداخت را وارد یا بارکد آن را اسکن کنید",
+        ),
     "enterDrivingLicenceNumberToInquire": MessageLookupByLibrary.simpleMessage(
       "برای استعلام، شماره گواهینامه را وارد کنید",
     ),
@@ -379,9 +385,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterTheSentVerificationCode": MessageLookupByLibrary.simpleMessage(
       "کد تایید ارسال شده را وارد نمایید.",
     ),
-    "enterYourPostalCodeCorrectlyAndInquire": MessageLookupByLibrary.simpleMessage(
-      "کد پستی خود را به درستی وارد کرده و استعلام بگیرید.",
-    ),
+    "enterYourPostalCodeCorrectlyAndInquire":
+        MessageLookupByLibrary.simpleMessage(
+          "کد پستی خود را به درستی وارد کرده و استعلام بگیرید.",
+        ),
     "entityOverview": MessageLookupByLibrary.simpleMessage(
       "نمای کلی موجودیت‌ها",
     ),
@@ -572,9 +579,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "insufficientBalance": MessageLookupByLibrary.simpleMessage(
       "موجودی کافی نیست",
     ),
-    "insufficientWalletBalanceUsePaymentGateway": MessageLookupByLibrary.simpleMessage(
-      "موجودی کیف پول کافی نیست. از درگاه پرداخت استفاده کنید.",
-    ),
+    "insufficientWalletBalanceUsePaymentGateway":
+        MessageLookupByLibrary.simpleMessage(
+          "موجودی کیف پول کافی نیست. از درگاه پرداخت استفاده کنید.",
+        ),
     "internet": MessageLookupByLibrary.simpleMessage("اینترنت"),
     "internetDataPackage": MessageLookupByLibrary.simpleMessage(
       "بسته اینترنتی",
@@ -582,9 +590,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "internetPackage": MessageLookupByLibrary.simpleMessage("بسته اینترنت"),
     "invalid": MessageLookupByLibrary.simpleMessage("نامعتبر"),
     "invalidAmount": MessageLookupByLibrary.simpleMessage("مبلغ نامعتبر است."),
-    "invalidBarcodePleaseEnterIdsManually": MessageLookupByLibrary.simpleMessage(
-      "بارکد نامعتبر است، لطفاً شناسه‌ها را به صورت دستی وارد کنید",
-    ),
+    "invalidBarcodePleaseEnterIdsManually":
+        MessageLookupByLibrary.simpleMessage(
+          "بارکد نامعتبر است، لطفاً شناسه‌ها را به صورت دستی وارد کنید",
+        ),
     "invoice": MessageLookupByLibrary.simpleMessage("فاکتور"),
     "invoiceMarkedAsPaid": MessageLookupByLibrary.simpleMessage(
       "فاکتور پرداخت شد",
@@ -648,9 +657,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "memoryUsage": MessageLookupByLibrary.simpleMessage("میزان استفاده حافظه"),
     "merchant": MessageLookupByLibrary.simpleMessage("پذیرنده"),
     "merchantId": MessageLookupByLibrary.simpleMessage("شناسه پذیرنده"),
-    "merchantRegistrationMinimumBalanceNotice": MessageLookupByLibrary.simpleMessage(
-      "برای ثبت پذیرندگی کیف پول شما باید حداقل ۱۰۰ هزار تومان موجودی داشته باشد.",
-    ),
+    "merchantRegistrationMinimumBalanceNotice":
+        MessageLookupByLibrary.simpleMessage(
+          "برای ثبت پذیرندگی کیف پول شما باید حداقل ۱۰۰ هزار تومان موجودی داشته باشد.",
+        ),
     "merchantTitleStoreOrBusinessName": MessageLookupByLibrary.simpleMessage(
       "عنوان پذیرندگی (نام فروشگاه، کسب و کار)",
     ),
@@ -862,12 +872,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "occupied": MessageLookupByLibrary.simpleMessage("اشغال شده"),
     "ok": MessageLookupByLibrary.simpleMessage("بله"),
     "oldestFirst": MessageLookupByLibrary.simpleMessage("قدیمی‌ترین"),
-    "oneTerminalPerLineSerialSimnumberSimserialImei": MessageLookupByLibrary.simpleMessage(
-      "هر پایانه در یک خط: سریال،شماره سیم‌کارت،سریال سیم‌کارت،imei",
-    ),
-    "onlineInquiryOfVehicleViolationsLicenseAndPlate": MessageLookupByLibrary.simpleMessage(
-      "استعلام آنلاین خلافی، گواهینامه و پلاک خودرو",
-    ),
+    "oneTerminalPerLineSerialSimnumberSimserialImei":
+        MessageLookupByLibrary.simpleMessage(
+          "هر پایانه در یک خط: سریال،شماره سیم‌کارت،سریال سیم‌کارت،imei",
+        ),
+    "onlineInquiryOfVehicleViolationsLicenseAndPlate":
+        MessageLookupByLibrary.simpleMessage(
+          "استعلام آنلاین خلافی، گواهینامه و پلاک خودرو",
+        ),
     "onlinePayment": MessageLookupByLibrary.simpleMessage("پرداخت اینترنتی"),
     "onlyErrors": MessageLookupByLibrary.simpleMessage("فقط خطا"),
     "onlyExceptions": MessageLookupByLibrary.simpleMessage("فقط استثنا"),
@@ -951,12 +963,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "استعلام وضعیت پلاک",
     ),
     "plateTrackingCode": MessageLookupByLibrary.simpleMessage("کد پیگیری پلاک"),
-    "pleaseCreateACategoryBeforeCreatingAProduct": MessageLookupByLibrary.simpleMessage(
-      "لطفاً قبل از ایجاد محصول، یک دسته‌بندی ایجاد کنید.",
-    ),
-    "pleaseCreateAProductBeforeSigningAContract": MessageLookupByLibrary.simpleMessage(
-      "لطفاً قبل از ثبت قرارداد، یک محصول ایجاد کنید",
-    ),
+    "pleaseCreateACategoryBeforeCreatingAProduct":
+        MessageLookupByLibrary.simpleMessage(
+          "لطفاً قبل از ایجاد محصول، یک دسته‌بندی ایجاد کنید.",
+        ),
+    "pleaseCreateAProductBeforeSigningAContract":
+        MessageLookupByLibrary.simpleMessage(
+          "لطفاً قبل از ثبت قرارداد، یک محصول ایجاد کنید",
+        ),
     "pleaseEnterYourMobileNumberToLogin": MessageLookupByLibrary.simpleMessage(
       "جهت ورود لطفا شماره موبایل خود را وارد کنید.",
     ),
@@ -1006,9 +1020,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "quantity": MessageLookupByLibrary.simpleMessage("تعداد"),
     "queryString": MessageLookupByLibrary.simpleMessage("رشته پرس‌وجو"),
     "questionTitle": MessageLookupByLibrary.simpleMessage("عنوان سؤال"),
-    "questionTitleAndAtLeastOneOptionAreRequired": MessageLookupByLibrary.simpleMessage(
-      "عنوان سؤال و حداقل یک گزینه الزامی است",
-    ),
+    "questionTitleAndAtLeastOneOptionAreRequired":
+        MessageLookupByLibrary.simpleMessage(
+          "عنوان سؤال و حداقل یک گزینه الزامی است",
+        ),
     "questionnaire": MessageLookupByLibrary.simpleMessage("پرسشنامه"),
     "questions": MessageLookupByLibrary.simpleMessage("سؤال‌ها"),
     "quote": MessageLookupByLibrary.simpleMessage("نقل قول"),
@@ -1141,12 +1156,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectVehicleForFreewayTollsInquiry": MessageLookupByLibrary.simpleMessage(
       "خودرو موردنظر را برای استعلام عوارض آزادراهی انتخاب کنید",
     ),
-    "selectVehicleForLicenseStatusInquiry": MessageLookupByLibrary.simpleMessage(
-      "خودرو موردنظر را برای استعلام وضعیت گواهینامه انتخاب کنید",
-    ),
-    "selectVehicleForNegativePointInquiry": MessageLookupByLibrary.simpleMessage(
-      "خودرو موردنظر را برای استعلام نمره منفی انتخاب کنید",
-    ),
+    "selectVehicleForLicenseStatusInquiry":
+        MessageLookupByLibrary.simpleMessage(
+          "خودرو موردنظر را برای استعلام وضعیت گواهینامه انتخاب کنید",
+        ),
+    "selectVehicleForNegativePointInquiry":
+        MessageLookupByLibrary.simpleMessage(
+          "خودرو موردنظر را برای استعلام نمره منفی انتخاب کنید",
+        ),
     "selectVehicleForPlateStatusInquiry": MessageLookupByLibrary.simpleMessage(
       "خودرو موردنظر را برای استعلام وضعیت پلاک انتخاب کنید",
     ),
@@ -1240,7 +1257,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "theEnteredNationalCodeIsIncorrect": MessageLookupByLibrary.simpleMessage(
       "کد ملی وارد شده صحیح نیست.",
     ),
-    "theEnteredVerificationCodeIsIncorrect": MessageLookupByLibrary.simpleMessage("کد تایید وارد شده صحیح نیست."),
+    "theEnteredVerificationCodeIsIncorrect":
+        MessageLookupByLibrary.simpleMessage("کد تایید وارد شده صحیح نیست."),
     "theme": MessageLookupByLibrary.simpleMessage("پوسته"),
     "thisFieldIsInvalid": MessageLookupByLibrary.simpleMessage(
       "مقدار وارد شده صحیح نیست",
@@ -1405,9 +1423,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "writeSomething": MessageLookupByLibrary.simpleMessage("چیزی بنویسید..."),
     "year": MessageLookupByLibrary.simpleMessage("سال"),
     "yes": MessageLookupByLibrary.simpleMessage("بله"),
-    "youHaveNotRegisteredAnyBankAccountsYet": MessageLookupByLibrary.simpleMessage(
-      "تا کنون حساب بانکی ثبت نکرده‌اید",
-    ),
+    "youHaveNotRegisteredAnyBankAccountsYet":
+        MessageLookupByLibrary.simpleMessage(
+          "تا کنون حساب بانکی ثبت نکرده‌اید",
+        ),
     "youHaveNotRegisteredAnyMerchantsYet": MessageLookupByLibrary.simpleMessage(
       "تاکنون پذیرندگی‌ای ثبت نکرده‌اید",
     ),
