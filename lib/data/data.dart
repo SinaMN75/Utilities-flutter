@@ -100,6 +100,18 @@ part "services/user_service.dart";
 part "services/vehicle_service.dart";
 part "services/wallet_service.dart";
 
+part "payment/ipg_flow.dart";
+
+part "payment/ipg_web_view_controller.dart";
+
+part "payment/ipg_web_view_page.dart";
+
+part "payment/payment_controller.dart";
+
+part "payment/payment_flow.dart";
+
+part "payment/payment_page.dart";
+
 class UServices {
   static AuthService auth = AuthService();
   static AccountingService accounting = AccountingService();

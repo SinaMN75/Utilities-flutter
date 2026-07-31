@@ -1,4 +1,4 @@
-part of "payment_flow.dart";
+part of "../data.dart";
 
 class UPaymentPage extends StatefulWidget {
   const UPaymentPage({required this.request, super.key});

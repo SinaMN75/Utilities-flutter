@@ -1,10 +1,4 @@
-import "package:u/utilities.dart";
-
-part "ipg_flow.dart";
-part "ipg_web_view_controller.dart";
-part "ipg_web_view_page.dart";
-part "payment_controller.dart";
-part "payment_page.dart";
+part of "../data.dart";
 
 abstract class UAppPrices {
   static UApiCallCosts? _costs;

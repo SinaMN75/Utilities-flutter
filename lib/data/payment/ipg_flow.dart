@@ -1,4 +1,4 @@
-part of "payment_flow.dart";
+part of "../data.dart";
 
 abstract class UIpgFlow {
   static Future<bool> topUp(int amount) async {

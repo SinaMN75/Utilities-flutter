@@ -1,4 +1,4 @@
-part of "payment_flow.dart";
+part of "../data.dart";
 
 class UPaymentController {
   late UPaymentRequest request;
