@@ -35,7 +35,7 @@ abstract class UIpg {
           completer.complete(false);
           return;
         }
-        completer.complete(await UNavigator.push<bool>(UIpgWebViewPage(url: data.url, trackingNumber: data.trackingNumber)) ?? false);
+        completer.complete(await UNavigator.push<bool>(UIpgWebViewPage2(url: data.url, trackingNumber: data.trackingNumber)) ?? false);
       },
       onError: (UEmptyResponse e) {
         ULoading.dismiss();
@@ -52,8 +52,8 @@ abstract class UIpg {
   }
 }
 
-class UIpgWebViewController {
-  UIpgWebViewController(this.trackingNumber) {
+class UIpgWebViewController2 {
+  UIpgWebViewController2(this.trackingNumber) {
     _poll = Timer.periodic(const Duration(seconds: 3), (Timer _) => _check());
   }
 
@@ -96,22 +96,22 @@ class UIpgWebViewController {
   void dispose() => _poll?.cancel();
 }
 
-class UIpgWebViewPage extends StatefulWidget {
-  const UIpgWebViewPage({required this.url, required this.trackingNumber, super.key});
+class UIpgWebViewPage2 extends StatefulWidget {
+  const UIpgWebViewPage2({required this.url, required this.trackingNumber, super.key});
 
   final String url;
   final String trackingNumber;
 
   @override
-  State<UIpgWebViewPage> createState() => _UIpgWebViewPageState();
+  State<UIpgWebViewPage2> createState() => _UIpgWebViewPage2State();
 }
 
-class _UIpgWebViewPageState extends State<UIpgWebViewPage> {
-  late final UIpgWebViewController c;
+class _UIpgWebViewPage2State extends State<UIpgWebViewPage2> {
+  late final UIpgWebViewController2 c;
 
   @override
   void initState() {
-    c = UIpgWebViewController(widget.trackingNumber);
+    c = UIpgWebViewController2(widget.trackingNumber);
     super.initState();
   }
 
