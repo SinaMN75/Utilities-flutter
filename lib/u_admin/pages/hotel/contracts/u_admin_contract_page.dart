@@ -127,6 +127,7 @@ class _ContractPageState extends State<UAdminContractPage> {
           if (x.user != null) UAdminPageSwitcher.hotelUserDetail(user: x.user!);
         },
         "invoices": (UDormBedContractResponse x) => UAdminPageSwitcher.invoices(contract: x),
+        "payLinks": (UDormBedContractResponse x) => UAdminPayLink.dormBedInvoiceList(x, onClosed: c.read),
         "bed": (UDormBedContractResponse x) {
           if (x.bed?.room != null) UAdminPageSwitcher.dormBeds(room: x.bed!.room);
         },
@@ -138,6 +139,7 @@ class _ContractPageState extends State<UAdminContractPage> {
     fallback: (UAdminActionContext<UDormBedContractResponse> ctx) => <UAdminAction>[
       ctx.extra("tenant", label: U.s.tenant, icon: Icons.person_outline, visible: ctx.item.user != null),
       ctx.extra("invoices", label: U.s.viewInvoices, icon: Icons.receipt_long_outlined),
+      ctx.extra("payLinks", label: "${U.s.payment} ${U.s.link}", icon: Icons.link_rounded, visible: ctx.item.invoices?.isNotEmpty ?? false, roles: <TagUser>[TagUser.permissionPayInvoices]),
       ctx.extra("bed", label: U.s.bed, icon: Icons.bed_outlined, visible: ctx.item.bed?.room != null),
       ctx.extra("dorm", label: U.s.dorm, icon: Icons.bedroom_parent_outlined, visible: ctx.item.bed?.room?.dorm != null),
       ctx.edit(roles: <TagUser>[TagUser.permissionManageContracts]),

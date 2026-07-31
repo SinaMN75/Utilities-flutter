@@ -4,14 +4,23 @@ part of "../data.dart";
 class UIpgSaleParams {
   final double amount;
 
-  UIpgSaleParams({required this.amount});
+  // Optional: for anything other than a plain wallet top-up (e.g. paying a dorm invoice). The server rides
+  // these in additionalData; omit them and the server treats it as a normal wallet charge.
+  final TagTxn? tag;
+  final String? invoiceId;
+
+  UIpgSaleParams({required this.amount, this.tag, this.invoiceId});
 
   Map<String, dynamic> toMap() => <String, dynamic>{
     "amount": amount,
+    if (tag != null) "tag": tag!.number,
+    if (invoiceId != null) "invoiceId": invoiceId,
   };
 
   factory UIpgSaleParams.fromMap(Map<String, dynamic> json) => UIpgSaleParams(
     amount: (json["amount"] as num).toDouble(),
+    tag: json["tag"] == null ? null : TagTxn.values.firstWhere((TagTxn e) => e.number == json["tag"]),
+    invoiceId: json["invoiceId"],
   );
 
   String toJson() => json.encode(toMap());

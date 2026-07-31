@@ -12,6 +12,8 @@ part "pages/hotel/dorms/u_admin_dorm_controller.dart";
 part "pages/hotel/hotel_room/u_admin_hotel_room_controller.dart";
 part "pages/hotel/hotels/u_admin_hotel_controller.dart";
 part "pages/hotel/invoices/u_admin_invoice_controller.dart";
+
+part "pages/hotel/u_admin_pay_link.dart";
 part "pages/hotel/reservations/u_admin_reservation_controller.dart";
 part "pages/hotel/users/u_admin_users_controller.dart";
 part "pages/hotel/users/user_detail/u_admin_hotel_user_detail_controller.dart";

@@ -337,7 +337,8 @@ enum TagTxn with NumericIdentifiable {
   failed("ناموفق", "Failed", 203),
   refunded("بازگشت داده شده", "Refunded", 204),
   chargeWallet("شارژ کیف پول", "Charge Wallet", 301),
-  merchantCreationFee("هزینه ایجاد پذیرنده", "Merchant Creation Fee", 302);
+  merchantCreationFee("هزینه ایجاد پذیرنده", "Merchant Creation Fee", 302),
+  dormInvoice("پرداخت قبض خوابگاه", "Dorm Invoice", 303);
 
   const TagTxn(this.titleFa, this.titleEn, this.number);
 
