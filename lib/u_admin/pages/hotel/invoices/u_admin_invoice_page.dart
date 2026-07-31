@@ -171,10 +171,12 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
       extras: <String, void Function(UDormBedInvoiceResponse)>{
         "pay": c.pay,
         "payLink": (UDormBedInvoiceResponse x) => UAdminPayLink.dormBedInvoice(x, onClosed: c.read),
+        "copyLink": (UDormBedInvoiceResponse x) => UAdminPayLink.copyDormBedInvoiceLink(x),
       },
     ),
     fallback: (UAdminActionContext<UDormBedInvoiceResponse> ctx) => <UAdminAction>[
       ctx.extra("payLink", label: "${U.s.payment} ${U.s.link}", icon: Icons.link_rounded, visible: !ctx.item.isPaid, roles: <TagUser>[TagUser.permissionPayInvoices]),
+      ctx.extra("copyLink", label: "${U.s.copy} ${U.s.link}", icon: Icons.copy_rounded, visible: !ctx.item.isPaid, roles: <TagUser>[TagUser.permissionPayInvoices]),
       ctx.extra("pay", label: U.s.markAsPaid, icon: Icons.payments_rounded, visible: !ctx.item.isPaid, color: UAdminTheme.green.shade700, roles: <TagUser>[TagUser.permissionPayInvoices]),
       ctx.edit(roles: <TagUser>[TagUser.permissionManageInvoices]),
       ctx.delete(roles: <TagUser>[TagUser.permissionDeleteInvoices]),

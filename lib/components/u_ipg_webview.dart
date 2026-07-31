@@ -3,6 +3,24 @@ import "package:u/utilities.dart";
 // Opens the IPG gateway for a payment and resolves true only when it succeeds. tag/invoiceId ride in additionalData
 // server-side; omit them for a normal wallet top-up. Settlement (wallet + invoice) happens 100% in the backend callback.
 abstract class UIpg {
+  // Returns the gateway payment-link url (without opening it) so it can be copied/shared. Same additionalData rules as pay().
+  static Future<String?> link({required double amount, TagTxn? tag, String? invoiceId}) async {
+    if (amount <= 0) {
+      UToast.error(message: U.s.invalidAmount);
+      return null;
+    }
+    ULoading.show();
+    String? url;
+    await UServices.ipg.pay(
+      p: UIpgSaleParams(amount: amount, tag: tag, invoiceId: invoiceId),
+      onOk: (UResponse<UIpgPayResponse> r) => url = r.result?.url,
+      onError: (UEmptyResponse e) => UToast.error(message: e.message),
+      onException: (String e) => UToast.error(message: e),
+    );
+    ULoading.dismiss();
+    return url;
+  }
+
   static Future<bool> pay({required double amount, TagTxn? tag, String? invoiceId}) async {
     if (amount <= 0) {
       UToast.error(message: U.s.invalidAmount);

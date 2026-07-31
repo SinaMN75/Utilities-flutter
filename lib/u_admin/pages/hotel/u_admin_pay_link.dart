@@ -8,6 +8,14 @@ abstract class UAdminPayLink {
     if (paid) await onClosed?.call();
   }
 
+  // Generates the invoice's payment link and copies it to the clipboard to share.
+  static Future<void> copyDormBedInvoiceLink(UDormBedInvoiceResponse i) async {
+    final String? url = await UIpg.link(amount: i.netDue, tag: TagTxn.dormInvoice, invoiceId: i.id);
+    if (url == null || url.isEmpty) return;
+    await Clipboard.setData(ClipboardData(text: url));
+    UToast.snackBar(message: U.s.copiedToClipboard);
+  }
+
   // Lists a contract's invoices with a one-tap online-pay for the unpaid ones.
   static void dormBedInvoiceList(UDormBedContractResponse contract, {Future<void> Function()? onClosed}) {
     final List<UDormBedInvoiceResponse> invoices = contract.invoices ?? <UDormBedInvoiceResponse>[];
@@ -31,9 +39,21 @@ abstract class UAdminPayLink {
                     subtitle: UTextBodySmall(i.dueDate.toJalaliDate()),
                     trailing: i.isPaid
                         ? UTextBodySmall(U.s.paid, color: UAdminTheme.green)
-                        : IconButton(
-                            icon: const Icon(Icons.payments_rounded),
-                            onPressed: () => dormBedInvoice(i, onClosed: onClosed),
+                        : URow(
+                            mainAxisSize: MainAxisSize.min,
+                            spacing: 0,
+                            children: <Widget>[
+                              IconButton(
+                                icon: const Icon(Icons.copy_rounded),
+                                tooltip: "${U.s.copy} ${U.s.link}",
+                                onPressed: () => copyDormBedInvoiceLink(i),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.payments_rounded),
+                                tooltip: U.s.payment,
+                                onPressed: () => dormBedInvoice(i, onClosed: onClosed),
+                              ),
+                            ],
                           ),
                   ),
                 )
