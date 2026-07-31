@@ -10,23 +10,23 @@ class UIpgWebViewPage extends StatefulWidget {
 }
 
 class _UIpgWebViewPageState extends State<UIpgWebViewPage> {
-  final UIpgWebViewController c = UIpgWebViewController();
+  late final UIpgWebViewController c;
 
   @override
-  void dispose() {
-    c.dispose();
-    super.dispose();
+  void initState() {
+    c = UIpgWebViewController();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) => PopScope(
     canPop: false,
     onPopInvokedWithResult: (bool didPop, Object? _) {
-      if (!didPop && !c.finished) c.confirmCancel();
+      if (!didPop && !c.finished) c.cancel();
     },
     child: UScaffold(
       appBar: AppBar(title: Text(U.s.payment)),
-      body: UWebView(initialUrl: widget.url, showUrlBar: true, onPageFinished: c.onPageFinished),
+      body: UWebView(initialUrl: widget.url, showUrlBar: true),
     ),
   );
 }

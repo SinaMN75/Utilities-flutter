@@ -4,13 +4,13 @@ part of "../../u_admin.dart";
 // (invoice id + tag ride in additionalData, no separate pay-link transaction). Refreshes on success.
 abstract class UAdminPayLink {
   static Future<void> dormBedInvoice(UDormBedInvoiceResponse i, {Future<void> Function()? onClosed}) async {
-    final bool paid = await UIpg.pay(amount: i.netDue, tag: TagTxn.dormInvoice, invoiceId: i.id);
+    final bool paid = await UIpgFlow.pay(amount: i.netDue, tag: TagTxn.dormInvoice, invoiceId: i.id);
     if (paid) await onClosed?.call();
   }
 
   // Generates the invoice's payment link and copies it to the clipboard to share.
   static Future<void> copyDormBedInvoiceLink(UDormBedInvoiceResponse i) async {
-    final String? url = await UIpg.link(amount: i.netDue, tag: TagTxn.dormInvoice, invoiceId: i.id);
+    final String? url = await UIpgFlow.link(amount: i.netDue, tag: TagTxn.dormInvoice, invoiceId: i.id);
     if (url == null || url.isEmpty) return;
     await Clipboard.setData(ClipboardData(text: url));
     UToast.snackBar(message: U.s.copiedToClipboard);
