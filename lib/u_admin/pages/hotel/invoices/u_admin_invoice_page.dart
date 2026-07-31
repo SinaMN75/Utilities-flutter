@@ -171,7 +171,7 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
       extras: <String, void Function(UDormBedInvoiceResponse)>{
         "pay": c.pay,
         "payLink": (UDormBedInvoiceResponse x) => UAdminPayLink.dormBedInvoice(x, onClosed: c.read),
-        "copyLink": (UDormBedInvoiceResponse x) => UAdminPayLink.copyDormBedInvoiceLink(x),
+        "copyLink": UAdminPayLink.copyDormBedInvoiceLink,
       },
     ),
     fallback: (UAdminActionContext<UDormBedInvoiceResponse> ctx) => <UAdminAction>[
@@ -336,7 +336,6 @@ class _InvoicePageState extends State<UAdminInvoicePage> {
                             UToast.error(message: U.s.errorSubmittingForm);
                             return;
                           }
-                          final String userId = contract.value?.user?.id ?? widget.contract?.user?.id ?? "";
                           c.create(
                             p: UDormBedInvoiceCreateParams(
                               tags: <int>[TagDormBedInvoice.notPaid.number, type.number],

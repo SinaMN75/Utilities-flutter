@@ -1,9 +1,6 @@
 import "package:u/utilities.dart";
 
-// Opens the IPG gateway for a payment and resolves true only when it succeeds. tag/invoiceId ride in additionalData
-// server-side; omit them for a normal wallet top-up. Settlement (wallet + invoice) happens 100% in the backend callback.
 abstract class UIpg {
-  // Returns the gateway payment-link url (without opening it) so it can be copied/shared. Same additionalData rules as pay().
   static Future<String?> link({required double amount, TagTxn? tag, String? invoiceId}) async {
     if (amount <= 0) {
       UToast.error(message: U.s.invalidAmount);
@@ -38,7 +35,7 @@ abstract class UIpg {
           completer.complete(false);
           return;
         }
-        completer.complete(await UNavigator.push<bool>(UIpgWebViewPage(url: data.url)) ?? false);
+        completer.complete(await UNavigator.push<bool>(UIpgWebViewPage(url: data.url, trackingNumber: data.trackingNumber)) ?? false);
       },
       onError: (UEmptyResponse e) {
         ULoading.dismiss();
@@ -56,55 +53,67 @@ abstract class UIpg {
 }
 
 class UIpgWebViewController {
-  UIpgWebViewController() {
-    if (kIsWeb) _webMessageDispose = UWebMessage.listen(_onWebMessage);
+  UIpgWebViewController(this.trackingNumber) {
+    _poll = Timer.periodic(const Duration(seconds: 3), (Timer _) => _check());
   }
 
+  final String trackingNumber;
   bool finished = false;
-  void Function()? _webMessageDispose;
+  Timer? _poll;
 
-  bool _isCallback(Uri uri) => uri.path.toLowerCase().contains("/ipg/verify") && uri.queryParameters.containsKey("status");
-
-  void onPageFinished(String url) {
+  // The backend is the single source of truth; we only ask it whether this payment is done yet.
+  Future<void> _check() async {
     if (finished) return;
-    final Uri? uri = Uri.tryParse(url);
-    if (uri == null || !_isCallback(uri)) return;
-    _finish(uri.queryParameters["status"] == "0");
-  }
-
-  // On web the iframe url is cross-origin and unreadable, so the Verify page posts its result to the app window instead.
-  void _onWebMessage(String origin, Map<String, dynamic> data) {
-    if (finished || data["source"] != "avahamrah_ipg") return;
-    _finish("${data["status"]}" == "0");
+    await UServices.ipg.status(
+      p: UIpgVerifyParams(trackingNumber: trackingNumber),
+      onOk: (UResponse<UIpgVerifyResponse> r) {
+        final UIpgVerifyResponse? data = r.result;
+        if (data == null || finished) return;
+        if (data.paid) {
+          _finish(true);
+        } else if (data.failed) {
+          _finish(false);
+        }
+      },
+    );
   }
 
   void _finish(bool paid) {
+    if (finished) return;
     finished = true;
+    _poll?.cancel();
     UToast.snackBar(message: paid ? U.s.paymentSuccessful : U.s.paymentFailed);
     UNavigator.back<bool>(paid);
   }
 
-  void confirmCancel() {
-    UNavigator.back();
+  void cancel() {
     if (finished) return;
     finished = true;
+    _poll?.cancel();
     UNavigator.back<bool>(false);
   }
 
-  void dispose() => _webMessageDispose?.call();
+  void dispose() => _poll?.cancel();
 }
 
 class UIpgWebViewPage extends StatefulWidget {
-  const UIpgWebViewPage({required this.url, super.key});
+  const UIpgWebViewPage({required this.url, required this.trackingNumber, super.key});
 
   final String url;
+  final String trackingNumber;
 
   @override
   State<UIpgWebViewPage> createState() => _UIpgWebViewPageState();
 }
 
 class _UIpgWebViewPageState extends State<UIpgWebViewPage> {
-  final UIpgWebViewController c = UIpgWebViewController();
+  late final UIpgWebViewController c;
+
+  @override
+  void initState() {
+    c = UIpgWebViewController(widget.trackingNumber);
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -116,11 +125,11 @@ class _UIpgWebViewPageState extends State<UIpgWebViewPage> {
   Widget build(BuildContext context) => PopScope(
     canPop: false,
     onPopInvokedWithResult: (bool didPop, Object? _) {
-      if (!didPop && !c.finished) c.confirmCancel();
+      if (!didPop && !c.finished) c.cancel();
     },
     child: UScaffold(
       appBar: AppBar(title: Text(U.s.payment)),
-      body: UWebView(initialUrl: widget.url, showUrlBar: true, onPageFinished: c.onPageFinished),
+      body: UWebView(initialUrl: widget.url, showUrlBar: true),
     ),
   );
 }
